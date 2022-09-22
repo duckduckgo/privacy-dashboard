@@ -70,7 +70,7 @@ jobs:
           cache-name: cache-build-output
         with:
           path: build
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('build/**') }}
   deploy:
     runs-on: ubuntu-20.04
     needs: build
@@ -91,7 +91,7 @@ jobs:
           cache-name: cache-build-output
         with:
           path: build
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('build/**') }}
       - name: Setup Github Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
