@@ -13,9 +13,9 @@ Visit our [Web Tracking Protections](https://help.duckduckgo.com/duckduckgo-help
 
 Report broken sites using the anonymous "Website not working as expected?" link in the dashboard popup.
 
-## Reporting bugs
+## Reporting security bugs
 
-Bugs can be submitted through our [bounty program](https://hackerone.com/duckduckgo/reports/new?type=team&report_type=vulnerability) or by sending an email to security@duckduckgo.com
+Security bugs can be submitted through our [bounty program](https://hackerone.com/duckduckgo/reports/new?type=team&report_type=vulnerability) or by sending an email to security@duckduckgo.com
 
 For more information, see [Reporting bugs](CONTRIBUTING.md#reporting-bugs).
 
