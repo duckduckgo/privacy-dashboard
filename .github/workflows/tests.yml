@@ -49,14 +49,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - name: Cache build outputs
-        id: build-output
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-build-output
-        with:
-          path: build
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - name: Build all
         run: npm run build
       - name: Install Playwright Browsers
@@ -71,6 +63,14 @@ jobs:
           retention-days: 30
       - name: Build docs
         run: npm run docs
+      - name: Cache build outputs
+        id: build-output
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-build-output
+        with:
+          path: build
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
   deploy:
     runs-on: ubuntu-20.04
     needs: build
