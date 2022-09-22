@@ -8,7 +8,7 @@ Report broken websites using the "Website not working as expected?" link in the 
 
 1. First check to see if the bug has not already been [reported](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/issues).
 2. Create a bug report [issue](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/issues/new?template=bug_report.md).
-3. Bugs can also submitted through our [bounty program](https://hackerone.com/duckduckgo/reports/new?type=team&report_type=vulnerability) or by sending an email to security@duckduckgo.com
+3. Bugs can also submitted through our [bounty program](https://hackerone.com/duckduckgo/reports/new?type=team&report_type=vulnerability) or by sending an email to security@duckduckgo.com.
 
 # Development
 
@@ -19,7 +19,7 @@ Right now all new feature development is handled internally.
 ## Bug fixes
 
 Most bug fixes are handled internally, but we will except pull requests for bug fixes if you first:
-1. Create an issue describing the bug. see [Reporting bugs](CONTRIBUTING.md#reporting-bugs)
+1. Create an issue describing the bug. See [Reporting bugs](CONTRIBUTING.md#reporting-bugs).
 2. Get approval from DDG staff before working on it. Since most bug fixes and feature development are handled internally, we want to make sure that your work doesn't conflict with any current projects.
 3. I confirm that this contribution is made under an Apache 2.0 license and that I have the authority necessary to make this contribution on behalf of its copyright owner.
 
@@ -95,7 +95,7 @@ fix supported issues.
 
 ## Testing
 
-All tests can be run with `npm test` -- this runs both unit and end-to-end
+All tests can be run with `npm test` - this runs both unit and end-to-end
 tests.
 
 ### Unit Tests
