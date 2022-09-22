@@ -1,0 +1,19 @@
+{
+  "entryPoints": [
+    "schema/__generated__/schema.types.ts",
+    "shared/js/browser/browser-communication.es6.js",
+    "shared/js/browser/macos-communication.es6.js",
+    "shared/js/browser/ios-communication.es6.js",
+    "shared/js/browser/android-communication.es6.js",
+    "shared/js/browser/windows-communication.es6.js",
+    "shared/js/browser/common.es6.js",
+    "shared/js/browser/utils/request-details.js"
+  ],
+  "out": "build/example/docs",
+  "media": "schema/__fixtures__",
+  "excludeExternals": true,
+  "readme": "DOCS.md",
+  "categoryOrder": ["Webkit Message Handlers", "References", "*"],
+  "treatWarningsAsErrors": true,
+  "searchInComments": true
+}

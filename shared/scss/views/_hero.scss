@@ -1,0 +1,71 @@
+$hero-height: 50px;
+
+.hero {
+    background-color: $white;
+    text-align: center;
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+    height: $hero-height;
+
+    .environment--ios & {
+        padding-top: 4px;
+    }
+
+    .body--theme-dark & {
+        background-color: $slate;
+    }
+
+    .body--theme-dark.environment--android & {
+        background-color: $black;
+    }
+}
+
+.hero__icon {
+    height: 115px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    width: 100%;
+    padding-top: 50px;
+    background-size: auto 96px;
+    background-position: center 53px;
+    margin-bottom: 10px;
+
+    &--hidden {
+        height: 0;
+        margin: 0;
+    }
+}
+
+.hero__close {
+    position: absolute;
+    padding: 10px;
+    left: 14px;
+    top: 7px;
+    border-radius: 100%;
+    display: flex;
+    font-size: 16px;
+
+    .environment--ios & {
+        left: 0;
+    }
+}
+
+.hero__done {
+    display: none;
+    position: absolute;
+    padding: 0 6px;
+    right: 14px;
+    height: $hero-height;
+    line-height: $hero-height;
+    font-size: 16px;
+    font-weight: bold;
+
+    .environment--ios & {
+        display: block;
+
+        &:active {
+            opacity: 0.5;
+        }
+    }
+}

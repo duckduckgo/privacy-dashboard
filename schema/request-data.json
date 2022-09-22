@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RequestData",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requests"],
+  "description": "This describes the shape of the data that's required to display grouped requests in the Dashboard. \n\nIt should include trackers (blocked or not) along with third party requests - all under the `requests` key.\n\nThis type is left as an 'open object' deliberately for future extension\n\n**Please see the following JSON files as examples**\n\nNote: These JSON files are validated against the generated types here, so can/should be used as reliable references\n\n- [amazon.json](media://request-data-amazon.json)\n- [cnn.json](media://request-data-cnn.json)\n- [google.json](media://request-data-google.json)\n\n",
+  "properties": {
+    "requests": {
+      "type": "array",
+      "description": "Requests that were detected as trackers - whether they were blocked or not",
+      "items": {
+        "$ref": "./detected-request.json"
+      }
+    },
+    "installedSurrogates": {
+      "type": "array",
+      "description": "A *optional* list of domains that indicate if a surrogate has been used on it",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

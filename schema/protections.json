@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProtectionsStatus",
+  "type": "object",
+  "description": "This provides information about privacy features and current status of protections for the current site.",
+  "required": ["allowlisted", "denylisted", "enabledFeatures", "unprotectedTemporary"],
+  "additionalProperties": false,
+  "properties": {
+    "unprotectedTemporary": {
+      "description": "Does the current domain have an entry in `unprotectedTemporary` in remote/privacy config",
+      "type": "boolean"
+    },
+    "enabledFeatures": {
+      "type": "array",
+      "description": "Is `contentBlocking` enabled for this domain in remote/privacy config?",
+      "examples": [
+        ["contentBlocking"],
+        []
+      ],
+      "items": {
+        "type": "string",
+        "examples": ["contentBlocking"]
+      }
+    },
+    "allowlisted": {
+      "description": "Is the current domain in the user's `allowlist`",
+      "type": "boolean"
+    },
+    "denylisted": {
+      "description": "Is the current domain in the user's `denylist` - meaning, did the user override our remote/privacy config?",
+      "type": "boolean"
+    }
+  }
+}

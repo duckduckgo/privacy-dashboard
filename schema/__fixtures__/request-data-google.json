@@ -1,0 +1,56 @@
+{
+  "requests": [
+    {
+      "category": "Advertising",
+      "url": "https:\/\/www.google.com\/images\/branding\/googlelogo\/2x\/googlelogo_color_160x56dp.png",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    },
+    {
+      "category": "Advertising",
+      "url": "https:\/\/apis.google.com\/_\/scs\/abc-static\/_\/js\/k=gapi.gapi.en.t9z7VPsEMFg.O\/m=gapi_iframes,googleapis_client\/rt=j\/sv=1\/d=1\/ed=1\/rs=AHpOoo8oD_5FQW3kT3ksWwmXIWvhhqbKdw\/cb=gapi.loaded_0",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    },
+    {
+      "category": "Content Delivery",
+      "url": "https:\/\/fonts.gstatic.com\/s\/i\/productlogos\/googleg\/v6\/24px.svg",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    },
+    {
+      "category": "Content Delivery",
+      "url": "https:\/\/www.gstatic.com\/og\/_\/js\/k=og.qtm.en_US.asUsweLQqwk.O\/rt=j\/m=qabr,q_dnp,qcwid,qapid\/exm=qaaw,qadd,qaid,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhpr\/d=1\/ed=1\/rs=AA2YrTvH37iHjvnJ7NPFbMaGY1OZ0tqdnw",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    }
+  ]
+}

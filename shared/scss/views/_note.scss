@@ -1,0 +1,9 @@
+.note {
+    background: $color-yellow;
+    border-radius: 12px;
+    padding: 12px;
+
+    .body--theme-dark & {
+        background: rgba(255, 214, 92, 0.2);
+    }
+}

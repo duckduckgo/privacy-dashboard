@@ -1,0 +1,142 @@
+@mixin token-body {
+  font-family: $font__face--default;
+
+  //styleName: Mac/Body;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+
+  //styleName: Android/Body 2;
+  .environment--android & {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+  }
+  .environment--browser & {
+    font-family: $font__face--browser-alt;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.token-body-em {
+  //styleName: Mac/Body (Emphasis);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+
+  //styleName: Android/Headline 4;
+  .environment--android & {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .environment--browser & {
+    font-family: $font__face--browser-alt;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.token-title-3 {
+  //styleName: Mac/Title 3;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+
+  //styleName: Android/Body 1;
+  .environment--android & {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+  }
+
+  .environment--browser & {
+    font-family: $font__face--browser-alt;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.token-title-3-em {
+
+  // macos defaults
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+
+
+  .environment--android & {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+  }
+
+  .environment--browser & {
+    font-family: $font__face--browser-alt;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.token-breakage-form-body {
+  //styleName: Mac/Body;
+  //styleName: Android/Body 1;
+
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+
+  .environment--android & {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+  }
+
+  .environment--browser & {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.08px;
+  }
+}
+
+.token-label-em {
+
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 13px;
+
+  //styleName: Android/Button 1;
+  .environment--android & {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+  }
+
+  .environment--browser & {
+    //styleName: Mac/Label (Emphasis);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 13px;
+  }
+}
+
+// This is only used in the 'search' box in the extensions
+.token-search-input {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+}

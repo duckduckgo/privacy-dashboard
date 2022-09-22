@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequestDetails sorts by prevalence (google first) 1`] = `
+Array [
+  AggregateCompanyData {
+    "displayName": "Google",
+    "name": "Google LLC",
+    "normalizedName": "google",
+    "prevalence": 80.1,
+    "urls": Object {
+      "apis.google.com": TrackerUrl {
+        "category": "Advertising",
+        "url": "apis.google.com",
+      },
+      "fonts.gstatic.com": TrackerUrl {
+        "category": "Content Delivery",
+        "url": "fonts.gstatic.com",
+      },
+      "www.google.com": TrackerUrl {
+        "category": "Advertising",
+        "url": "www.google.com",
+      },
+      "www.gstatic.com": TrackerUrl {
+        "category": "Content Delivery",
+        "url": "www.gstatic.com",
+      },
+    },
+  },
+  AggregateCompanyData {
+    "displayName": "Amazon.com",
+    "name": "Amazon Technologies, Inc.",
+    "normalizedName": "amazon",
+    "prevalence": 21.5,
+    "urls": Object {
+      "completion.amazon.com": TrackerUrl {
+        "category": "Analytics",
+        "url": "completion.amazon.com",
+      },
+      "images-eu.ssl-images-amazon.com": TrackerUrl {
+        "category": "Content Delivery",
+        "url": "images-eu.ssl-images-amazon.com",
+      },
+    },
+  },
+]
+`;
+
+exports[`RequestDetails sorts by prevalence 1`] = `
+Array [
+  AggregateCompanyData {
+    "displayName": "Amazon.com",
+    "name": "Amazon Technologies, Inc.",
+    "normalizedName": "amazon",
+    "prevalence": 21.5,
+    "urls": Object {
+      "completion.amazon.com": TrackerUrl {
+        "category": "Analytics",
+        "url": "completion.amazon.com",
+      },
+      "images-eu.ssl-images-amazon.com": TrackerUrl {
+        "category": "Content Delivery",
+        "url": "images-eu.ssl-images-amazon.com",
+      },
+    },
+  },
+]
+`;

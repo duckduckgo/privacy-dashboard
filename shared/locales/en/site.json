@@ -1,0 +1,239 @@
+{
+    "smartling": {
+        "string_format" : "icu",
+        "translate_paths": [{
+            "path": "*/title",
+            "key": "{*}/title",
+            "instruction": "*/note"
+        }]
+    },
+    "updatingProtectionList": {
+        "title": "Updating protection list",
+        "note": "Message shown while updating the list of protections"
+    },
+    "protectionsEnabled": {
+        "title": "Protections are <b>ON</b> for this site",
+        "note": "Headline when privacy protections are enabled"
+    },
+    "protectionsDisabled": {
+        "title": "Protections are <b>OFF</b> for this site",
+        "note": "Headline when privacy protections are disabled by user"
+    },
+    "protectionsDisabledRemote": {
+        "title": "We temporarily turned Privacy Protection off as it appears to be breaking this site.",
+        "note": "Headline when privacy protections are disabled by DDG"
+    },
+    "protectionsDisabledRemoteOverride": {
+        "title": "We recommend disabling Privacy Protection for this site to prevent the site from breaking.",
+        "note": "Headline when privacy protections are disabled by user"
+    },
+    "connectionDescriptionUnencrypted": {
+        "title": "<b>This site is not secure</b> and may compromise any information you send on this page.",
+        "note": "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
+    },
+    "trackerNetworksSummaryBlocked": {
+        "title": "The following third-party domains’ requests were blocked from loading because they were identified as tracking requests. If a company's requests are loaded, it can allow them to profile you.",
+        "note": "The summary immediately shown on the 'trackers blocked' screen"
+    },
+    "trackerNetworksSummaryNoneBlocked": {
+        "title": "No tracking requests were blocked from loading on this page. If a company's requests are loaded, it can allow them to profile you.",
+        "note": "The message shown when we detected trackers, but none were blocked"
+    },
+    "trackerNetworksSummaryNoneFound": {
+        "title": "We did not identify any tracking requests on this page.",
+        "note": "The message shown when we didn't detect any trackers"
+    },
+    "trackerNetworksSummaryNone": {
+        "title": "We didn't find any companies trying to load tracking requests on this page.",
+        "note": "We did not find any trackers on this page"
+    },
+    "trackerNetworksSummaryAllowedOnly": {
+        "title": "To prevent site breakage, we didn’t block any companies from loading tracking requests on this page.",
+        "note": "The message shown when we allowed some trackers to load."
+    },
+    "trackerNetworksSummaryProtectionsOff": {
+        "title": "No tracking requests were blocked from loading because Protections are turned off for this site. If a company's requests are loaded, it can allow them to profile you.",
+        "note": "We found trackers, but protections were disabled"
+    },
+    "createNewDuckAddress": {
+        "title": "Create new Duck Address",
+        "note": "Create a new private email alias"
+    },
+    "createNewDuckAddressCopied": {
+        "title": "Copied to your clipboard!",
+        "note": "Note to inform that the email address was copied"
+    },
+    "websiteNotWorkingQ": {
+        "title": "Website not working as expected?",
+        "note": "Call to action for user to click if they are having issues with this web page"
+    },
+    "takePrecautions": {
+        "title": "Take Precautions",
+        "note": "Title shown when the page is unencrypted"
+    },
+    "majorTrackingNetworkDesc": {
+        "title": "<b>This site is owned by {companyDisplayName}</b>, which operates a tracker network across {companyPrevalence}% of the top websites. {blocked, select, true {We were able to block some of their requests on this page.} other {}}",
+        "note": "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
+    },
+    "trackersBlockedDesc": {
+        "title": "We blocked {companyCount, plural, =0 {We blocked} =1 {<b>{firstCompany}</b>} =2 {<b>{firstCompany}</b> and <b>{secondCompany}</b>} =3 {<b>{firstCompany}</b>, <b>{secondCompany}</b> and <b>{thirdCompany}</b>} =4 {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> and <b>{fourthCompany}</b>} =5 {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> and <b>1 other</b>} other {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> and <b>{othersCount} others</b>}} from loading tracking requests on this page.",
+        "note": "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
+    },
+    "cookiesMinimized": {
+        "title": "Cookies Managed",
+        "note": "Title for when we have set the cookie privacy settings on this website to maximize privacy"
+    },
+    "connectionSecure": {
+        "title": "Connection Is Encrypted",
+        "note": "The connection to the website is secure (HTTPS)"
+    },
+    "connectionNotSecure": {
+        "title": "Connection Is Not Encrypted",
+        "note": "The connection is not secure (HTTP)"
+    },
+    "trackerNetworksDesc": {
+        "title": "Requests Blocked from Loading",
+        "note": "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    },
+    "trackerNetworksNotBlocked": {
+        "title": "No Tracking Requests Blocked",
+        "note": "This indicates that no trackers were blocked."
+    },
+    "trackerNetworksNotFound": {
+        "title": "No Tracking Requests Found",
+        "note": "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+    },
+    "trackerNetworksProtectionsDisabled": {
+        "note": "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+    },
+    "thirdParties": {
+        "title": "Third-Party Requests Loaded",
+        "subtitle": "Requests from third-party domains were loaded on this page.",
+        "note": "todo"
+    },
+    "thirdPartiesLoaded": {
+        "title": "Third-Party Requests Loaded",
+        "subtitle": "Requests from other third-party domains were loaded on this page.",
+        "note": "todo"
+    },
+    "thirdPartiesNoneFound": {
+        "title": "No Third-Party Requests Found",
+        "note": "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
+    },
+    "firstPartyDesc": {
+        "title": "{companyName} owns this site and the known trackers found on this page, so we didn't block them.",
+        "note": "When trackers detected belong to companyName, we can't block them on a site that company owns"
+    },
+    "noTrackersFound": {
+        "title": "We didn't find any companies trying to load tracking requests on this page.",
+        "note": "We did not find any trackers on this page"
+    },
+    "trackersFoundForAllowlisted": {
+        "title": "Trackers help companies profile you. We found these companies monitoring your activity on this page.",
+        "note": "This header for the list of tracker companies is shown when a site has protections disabled"
+    },
+    "trackersFoundAndBlocked": {
+        "title": "Trackers help companies profile you. We blocked these companies from monitoring your activity on this page.",
+        "note": "This header for the list of tracker companies is shown when a site has protections enabled"
+    },
+    "trackerNetworkUnknown": {
+        "title": "Tracker network unknown",
+        "note": "Shown when we don't have a company name for a given tracker"
+    },
+    "trackerDomainsForCompany": {
+        "title": "Tracker domains for {companyName}",
+        "note": "Title for the list of tracker domains detected from a given company"
+    },
+    "zeroTrackersFound": {
+        "title": "0 Trackers Found",
+        "note": "We did not find any trackers on this page"
+    },
+    "trackerOwnedByThisSite": {
+        "title": "Trackers Owned by This Site (Allowed)",
+        "note": "Trackers owned by this site are not blocked"
+    },
+    "trackerCountForDomain": {
+        "title": "{trackerCount} {trackerCount, plural, =1 {Tracker} other {Trackers}} {blocked, select, true {Blocked} other {Found}} on {domain}",
+        "note": "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
+    },
+    "trackerLimitationsNote": {
+        "title": "Please note: platform limitations may limit our ability to detect all requests.",
+        "note": "Shown at the bottom of tracker lists"
+    },
+    "trackerAboutLink": {
+        "title": "About our Web Tracking Protections",
+        "note": "Shown in tracker lists"
+    },
+    "trackerAdLink": {
+        "title": "How our search ads impact our protections",
+        "note": "Shown in tracker lists for Ad Attribution"
+    },
+    "sectionHeadingAdAttribution": {
+        "title": "The following domain’s requests were loaded because a {domain} ad on DuckDuckGo was recently clicked. These requests help evaluate ad effectiveness. All ads on DuckDuckGo are non-profiling."
+    },
+    "sectionHeadingIgnore": {
+        "title": "The following domains’ requests were loaded to prevent site breakage."
+    },
+    "sectionHeadingFirstParty": {
+        "title": "The following domains’ requests were loaded because they’re associated with {domain}."
+    },
+    "sectionHeadingThirdParty": {
+        "title": "The following domains' requests were also loaded."
+    },
+    "sectionHeadingProtectionsDisabled": {
+        "title": "The following domains' requests were loaded because protections are off.",
+        "note": "The label to display when it's a single combined list"
+    },
+    "thirdPartiesSummaryLoaded": {
+        "title": "The following third-party domains’ requests were loaded. If a company's requests are loaded, it can allow them to profile you, though our other web tracking protections still apply.",
+        "note": "Shown as the summary in third parties screen"
+    },
+    "thirdPartiesSummaryProtectionsOff": {
+        "title": "The following third-party domains’ requests were loaded. If a company's requests are loaded, it can allow them to profile you, though our other web tracking protections still apply.",
+        "note": "Shown when any requests were loaded, but protections are off"
+    },
+    "thirdPartiesSummaryNone": {
+        "title": "We did not identify any requests from third-party domains.",
+        "note": "Shown in third party listing screen"
+    },
+    "analyticsCategory": {
+        "title": "Analytics",
+        "note": "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
+    },
+    "advertisingCategory": {
+        "title": "Advertising",
+        "note": "Used to describe the type of tracker, in this case one that is used for advertising"
+    },
+    "socialCategory": {
+        "title": "Social Network",
+        "note": "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+    },
+    "contentDeliveryCategory": {
+        "title": "Content Delivery",
+        "note": "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+    },
+    "embeddedContentCategory": {
+        "title": "Embedded Content",
+        "note": "Used to describe the type of tracker, in this case one that is used by embedded content"
+    },
+    "searchPlaceholder": {
+        "title": "Search DuckDuckGo",
+        "note": "Placeholder text for the search bar"
+    },
+    "searchGoButton": {
+        "title": "Search",
+        "note": "Aria label for the search button"
+    },
+    "optionsButton": {
+        "title": "More options",
+        "note": "Aria label for the for the options button"
+    },
+    "navigationComplete": {
+        "title": "Done",
+        "note": "Button text for iOS on top bar navigation"
+    },
+    "navigationBack": {
+        "title": "Back",
+        "note": "Aria label and visible text for iOS on top bar navigation"
+    }
+}

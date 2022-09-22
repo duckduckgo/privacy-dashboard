@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SetListOptions",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "The data sent when setting a list",
+  "required": ["list", "domain", "value"],
+  "properties": {
+    "list": {
+      "description": "`allowlist` if this domain should be added/removed from the users allowlist. `denylist` if this domain should be added/removed from the users denylist (remote overrides)",
+      "oneOf": [
+        {
+          "type": "string",
+          "const": "allowlisted"
+        },
+        {
+          "type": "string",
+          "const": "denylisted"
+        }
+      ]
+    },
+    "domain": {
+      "type": "string"
+    },
+    "value": {
+      "type": "boolean"
+    }
+  }
+}

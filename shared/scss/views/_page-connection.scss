@@ -1,0 +1,47 @@
+.hero__icon--connection-secure,
+.hero__icon--connection-upgraded {
+  @include cross_platform_bg_image("refresh-assets/Locked-96.svg");
+}
+
+.hero__icon--connection-none {
+  @include cross_platform_bg_image("refresh-assets/Unlocked-96.svg");
+}
+
+.page-connection {
+
+  &__certificate {
+    padding: 0 $card--padded--side;
+  }
+
+  &__certificate-details {
+    padding: 18px 0;
+
+    h3 {
+      color: $slate-dark;
+      margin-bottom: 14px;
+
+      .body--theme-dark & {
+        color: $color--off-white;
+      }
+    }
+
+    > div {
+      color: $slate;
+      display: flex;
+      margin-top: 6px;
+      justify-content: space-between;
+
+      .body--theme-dark & {
+        color: $color--off-white;
+      }
+    }
+  }
+
+  &__certificate-value {
+    color: $gray-seventy;
+
+    .body--theme-dark & {
+      color: $gray-fifty;
+    }
+  }
+}

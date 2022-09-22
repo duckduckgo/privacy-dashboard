@@ -1,0 +1,5 @@
+build/
+swift-package/
+shared/data/constants.js
+schema/__generated__
+schema/__fixtures__
