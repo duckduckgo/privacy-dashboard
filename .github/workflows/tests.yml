@@ -49,6 +49,12 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache build outputs
+        id: build-output
+        uses: actions/cache@v3
+        with:
+          path: build
+          key: build-output
       - name: Build all
         run: npm run build
       - name: Install Playwright Browsers
@@ -63,14 +69,6 @@ jobs:
           retention-days: 30
       - name: Build docs
         run: npm run docs
-      - name: Cache build outputs
-        id: build-output
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-build-output2
-        with:
-          path: build
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('build/**') }}
   deploy:
     runs-on: ubuntu-20.04
     needs: build
@@ -87,11 +85,9 @@ jobs:
       - name: Cache build outputs
         id: build-output
         uses: actions/cache@v3
-        env:
-          cache-name: cache-build-output2
         with:
           path: build
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('build/**') }}
+          key: build-output
       - name: Setup Github Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
