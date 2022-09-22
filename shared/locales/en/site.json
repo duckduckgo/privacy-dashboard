@@ -108,12 +108,10 @@
     },
     "thirdParties": {
         "title": "Third-Party Requests Loaded",
-        "subtitle": "Requests from third-party domains were loaded on this page.",
         "note": "todo"
     },
     "thirdPartiesLoaded": {
         "title": "Third-Party Requests Loaded",
-        "subtitle": "Requests from other third-party domains were loaded on this page.",
         "note": "todo"
     },
     "thirdPartiesNoneFound": {
