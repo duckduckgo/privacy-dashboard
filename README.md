@@ -9,8 +9,6 @@ DuckDuckGo Privacy Dashboard used in iOS, macOS, Extensions, Android & Windows
 
 Visit our [Web Tracking Protections](https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/) page to learn how each of our web tracking protections works and how they work together in our browser extensions and apps to provide overlapping protection.
 
-DuckDuckGo Privacy Dashboard is distributed under the Apache 2.0 [License](LICENSE.md).
-
 ## Reporting a broken site
 
 Report broken sites using the anonymous "Website not working as expected?" link in the dashboard popup.
