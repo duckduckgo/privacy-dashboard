@@ -5,7 +5,7 @@ DuckDuckGo Privacy Dashboard is distributed under the Apache 2.0
 
 [![Build Status](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/actions/workflows/tests.yml)
 
-DuckDuckGo Privacy Dashboard used in iOS, macOS, Extensions, Android & Windows
+Common UI used by DuckDuckGo apps and extensions to report trackers seen, present connection details, change permissions and send breakage reports.
 
 Visit our [Web Tracking Protections](https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/) page to learn how each of our web tracking protections works and how they work together in our browser extensions and apps to provide overlapping protection.
 

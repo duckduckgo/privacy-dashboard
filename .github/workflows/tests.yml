@@ -67,7 +67,7 @@ jobs:
         id: build-output
         uses: actions/cache@v3
         env:
-          cache-name: cache-build-output
+          cache-name: cache-build-output2
         with:
           path: build
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('build/**') }}
@@ -88,7 +88,7 @@ jobs:
         id: build-output
         uses: actions/cache@v3
         env:
-          cache-name: cache-build-output
+          cache-name: cache-build-output2
         with:
           path: build
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('build/**') }}
