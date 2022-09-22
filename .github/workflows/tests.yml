@@ -53,7 +53,7 @@ jobs:
         id: build-output
         uses: actions/cache@v3
         with:
-          path: build
+          path: build/example
           key: build-output
       - name: Build all
         run: npm run build
@@ -86,7 +86,7 @@ jobs:
         id: build-output
         uses: actions/cache@v3
         with:
-          path: build
+          path: build/example
           key: build-output
       - name: Setup Github Pages
         uses: actions/configure-pages@v2
