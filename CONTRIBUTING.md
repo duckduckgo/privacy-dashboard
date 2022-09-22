@@ -8,7 +8,10 @@ Report broken websites using the "Website not working as expected?" link in the 
 
 1. First check to see if the bug has not already been [reported](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/issues).
 2. Create a bug report [issue](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/issues/new?template=bug_report.md).
-3. Bugs can also submitted through our [bounty program](https://hackerone.com/duckduckgo/reports/new?type=team&report_type=vulnerability) or by sending an email to security@duckduckgo.com.
+
+## Reporting security bugs
+
+Security bugs can be submitted through our [bounty program](https://hackerone.com/duckduckgo/reports/new?type=team&report_type=vulnerability) or by sending an email to security@duckduckgo.com
 
 # Development
 

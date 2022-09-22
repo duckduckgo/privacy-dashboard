@@ -35,9 +35,6 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     needs: test
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 16
@@ -49,6 +46,14 @@ jobs:
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache build outputs
+        id: build-output
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-build-output
         with:
           path: node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
@@ -66,13 +71,33 @@ jobs:
           retention-days: 30
       - name: Build docs
         run: npm run docs
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Cache build outputs
+        id: build-output
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-build-output
+        with:
+          path: build
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - name: Setup Github Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'build/example'
+          path: build
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-

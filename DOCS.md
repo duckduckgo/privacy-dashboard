@@ -1,10 +1,4 @@
-This is the entry-point for all documentation relating to the DuckDuckGo Privacy Dashboard.
-
-## Dashboard Internals
-
-Start here when you want to explore the internal APIs/Data structures of the Dashboard internals.
-
-- TODO: Add docs about internals
+This is the entry-point for the auto-generated documentation relating to the DuckDuckGo Privacy Dashboard.
 
 ## Native Integrations
 
