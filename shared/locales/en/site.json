@@ -20,11 +20,11 @@
         "note": "Headline when privacy protections are disabled by user"
     },
     "protectionsDisabledRemote": {
-        "title": "We temporarily turned Privacy Protection off as it appears to be breaking this site.",
+        "title": "We temporarily turned Privacy Protections off as they appear to be breaking this site.",
         "note": "Headline when privacy protections are disabled by DDG"
     },
     "protectionsDisabledRemoteOverride": {
-        "title": "We recommend disabling Privacy Protection for this site to prevent the site from breaking.",
+        "title": "We recommend disabling Privacy Protections for this site to prevent the site from breaking.",
         "note": "Headline when privacy protections are disabled by user"
     },
     "connectionDescriptionUnencrypted": {
@@ -105,10 +105,6 @@
     },
     "trackerNetworksProtectionsDisabled": {
         "note": "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-    },
-    "thirdParties": {
-        "title": "Third-Party Requests Loaded",
-        "note": "todo"
     },
     "thirdPartiesLoaded": {
         "title": "Third-Party Requests Loaded",

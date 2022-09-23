@@ -663,7 +663,7 @@ exports[`Browser specific Site view when content-blocking has an exception rende
             <div
               class="note token-title-3"
             >
-              We temporarily turned Privacy Protection off as it appears to be breaking this site.
+              We temporarily turned Privacy Protections off as they appear to be breaking this site.
             </div>
           </div>
         </li>
@@ -906,7 +906,7 @@ exports[`Browser specific Site view when the site broken, but the user has overr
             <div
               class="note token-title-3"
             >
-              We recommend disabling Privacy Protection for this site to prevent the site from breaking.
+              We recommend disabling Privacy Protections for this site to prevent the site from breaking.
             </div>
           </div>
         </li>
@@ -1149,7 +1149,7 @@ exports[`Browser specific Site view when the site is marked as broken renders th
             <div
               class="note token-title-3"
             >
-              We temporarily turned Privacy Protection off as it appears to be breaking this site.
+              We temporarily turned Privacy Protections off as they appear to be breaking this site.
             </div>
           </div>
         </li>
