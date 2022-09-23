@@ -13,11 +13,11 @@
     },
     "spreadTitle": {
         "title": "Love using DuckDuckGo?",
-        "note": "Title text for 'spread' CTA"
+        "note": "Title text for 'Spread DuckDuckGo' CTA"
     },
     "spreadText": {
         "title": "Help us spread the word to your family and friends",
-        "note": "Secondary text for 'spread' CTA"
+        "note": "Secondary text for 'Spread DuckDuckGo' CTA"
     },
     "spreadButton": {
         "title": "Spread DuckDuckGo",
@@ -25,10 +25,10 @@
     },
     "emailTitle": {
         "title": "Tired of emails being tracked?",
-        "note": "Title text for 'email' CTA"
+        "note": "Title text for 'Email Protection' CTA"
     },
     "emailText": {
         "title": "Sign up for DuckDuckGo Email Protection for your extension now!",
-        "note": "Secondary text for 'email' CTA"
+        "note": "Extension here means browser extension or addon"
     }
 }
