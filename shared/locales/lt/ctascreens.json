@@ -1,0 +1,35 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "protectionsUnavailableNote" : {
+    "title" : "Privatumo apsauga netaikoma specialiesiems ar vietiniams puslapiams.",
+    "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
+  },
+  "spreadTitle" : {
+    "title" : "Mėgstate naudoti „DuckDuckGo“?",
+    "note" : "Title text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadText" : {
+    "title" : "Padėkite mums skleisti žinią jūsų šeimai ir draugams",
+    "note" : "Secondary text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadButton" : {
+    "title" : "Skleiskite žinią apie „DuckDuckGo“",
+    "note" : "Button text for 'spread' CTA"
+  },
+  "emailTitle" : {
+    "title" : "Pavargote nuo sekamų el. laiškų?",
+    "note" : "Title text for 'Email Protection' CTA"
+  },
+  "emailText" : {
+    "title" : "Užsisakykite „DuckDuckGo“ el. pašto apsaugą savo plėtiniui dabar!",
+    "note" : "Extension here means browser extension or addon"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "protectionsUnavailableNote" : {
+    "title" : "Защитата на поверителността не е налична за специални или локални страници.",
+    "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
+  },
+  "spreadTitle" : {
+    "title" : "Харесва ли Ви да използвате DuckDuckGo?",
+    "note" : "Title text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadText" : {
+    "title" : "Споделете това с Вашето семейство и приятели",
+    "note" : "Secondary text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadButton" : {
+    "title" : "Разпространение на DuckDuckGo",
+    "note" : "Button text for 'spread' CTA"
+  },
+  "emailTitle" : {
+    "title" : "Омръзна ли Ви имейлите да бъдат проследявани?",
+    "note" : "Title text for 'Email Protection' CTA"
+  },
+  "emailText" : {
+    "title" : "Регистрирайте се за разширението DuckDuckGo Email Protection сега!",
+    "note" : "Extension here means browser extension or addon"
+  }
+}

@@ -48,10 +48,6 @@
     "title" : "Kaut kas cits",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Ziņot par bojātu vietni",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Ja vēlies, pastāsti mums par savu problēmu",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "DuckDuckGo nosūtītie ziņojumi ir 100% anonīmi, un tajos ir iekļauta tikai tava augstāk norādītā izvēle, neobligātais apraksts, URL un vietnē atrasto izsekotāju saraksts.",
+    "title" : "Ziņojumos, kas tiek nosūtīti DuckDuckGo, tiek iekļauta tikai informācija, kas mums nepieciešama, lai reaģētu uz tavām atsauksmēm.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Tavs ziņojums palīdzēs uzlabot pārlūkprogrammu un uzlabot citu lietotāju pieredzi.",
+    "title" : "Tavs ziņojums palīdzēs padarīt mūsu produktus labākus un uzlabot citu lietotāju pieredzi.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

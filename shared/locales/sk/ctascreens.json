@@ -1,0 +1,35 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "protectionsUnavailableNote" : {
+    "title" : "Ochrana súkromia nie je k dispozícii pre špeciálne stránky alebo miestne stránky.",
+    "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
+  },
+  "spreadTitle" : {
+    "title" : "Radi používate DuckDuckGo?",
+    "note" : "Title text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadText" : {
+    "title" : "Povedzte o DuckDuckGo rodine a priateľom",
+    "note" : "Secondary text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadButton" : {
+    "title" : "Rozšíriť DuckDuckGo",
+    "note" : "Button text for 'spread' CTA"
+  },
+  "emailTitle" : {
+    "title" : "Máte už dosť sledovania vašich e-mailov?",
+    "note" : "Title text for 'Email Protection' CTA"
+  },
+  "emailText" : {
+    "title" : "Zaregistrujte si svoje rozšírenie DuckDuckGo na ochranu e-mailov teraz!",
+    "note" : "Extension here means browser extension or addon"
+  }
+}

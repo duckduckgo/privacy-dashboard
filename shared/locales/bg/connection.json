@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Връзка",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Криптиране",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Тази страница не осигурява защитена връзка. Възможно е други лица да могат да прихванат поверителна информация, която изпращате на тази страница.",
+    "title" : "Тази страница използва некриптирана връзка. Възможно е трети страни да могат да виждат дейността Ви или да прихващат поверителна информация, която изпращате на тази страница.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Тази страница използва сигурна връзка, която защитава изпращаната от Вас информация по време на преноса.",
+    "title" : "Тази страница използва криптирана връзка, която не позволява на трети страни да виждат дейността Ви или да прихващат поверителна информация, която изпращате на тази страница.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

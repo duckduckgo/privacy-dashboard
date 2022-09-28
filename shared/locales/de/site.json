@@ -12,37 +12,57 @@
     "title" : "Schutzliste wird aktualisiert",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Schutzmaßnahmen wurden <b>DEAKTIVIERT</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Der Schutz für diese Website ist <b>AKTIVIERT</b>",
+    "title" : "Der Schutz ist für diese Website <b>AKTIVIERT</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Schutzmaßnahmen sind für diese Website <b>DEAKTIVIERT</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Wir haben den Datenschutz vorübergehend deaktiviert, da es den Anschein hat, dass er diese Website beschädigt.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Wir empfehlen, den Datenschutz für diese Website zu deaktivieren, um zu verhindern, dass die Website beschädigt wird.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Vertrauliche Informationen, die du auf dieser Seite sendest, können von Dritten abgefangen werden.",
+    "title" : "<b>Diese Website ist nicht sicher</b> und kann alle Informationen gefährden, die du auf dieser Seite sendest.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Wir haben die Verbindung auf dieser Seite verbessert, um die von dir gesendeten Daten während der Übertragung zu schützen.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Das Laden folgender Anfragen von Drittanbieter-Domains wurde blockiert, da sie als Tracking-Anfragen identifiziert wurden. Wenn die Anfragen eines Unternehmens geladen werden, kann ihm dies ermöglichen, ein Profil von dir zu erstellen.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Die Verbindung auf dieser Seite ist sicher, um die von dir gesendeten Informationen bei der Übertragung zu schützen.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Es wurden keine Tracking-Anfragen für das Laden auf dieser Seite blockiert. Wenn die Anfragen eines Unternehmens geladen werden, kann ihm dies ermöglichen, ein Profil von dir zu erstellen.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Wir haben auf dieser Seite keine Tracking-Anfragen identifiziert.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Wir haben keine Unternehmen gefunden, die versuchen, dich auf dieser Seite zu tracken.",
+    "title" : "Wir haben keine Unternehmen gefunden, die versuchen, Tracking-Anfragen auf dieser Seite zu laden.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Wir haben nur Tracker gefunden, die {name} gehören. Diese haben wir nicht blockiert.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Um Website-Unterbrechungen zu vermeiden, haben wir keine Unternehmen daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Wir {isWhitelisted, select, true {found} other {blocked}} {displayCount} bekannt {displayCount, plural, =1 {tracker} other {trackers}} von {companyCount} {companyCount, plural, one {company} other {companies}} auf dieser Seite. Complete sentence: Wir haben 1 Tracker von 2 Unternehmen auf dieser Seite gefunden.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Das Laden von Tracking-Anfragen wurde nicht blockiert, da der Schutz für diese Website deaktiviert ist. Wenn die Anfragen eines Unternehmens geladen werden, kann ihm dies ermöglichen, ein Profil von dir zu erstellen.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Neue Duck-Adresse erstellen",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "In deine Zwischenablage kopiert!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Die Website funktioniert nicht wie erwartet?",
@@ -52,57 +72,56 @@
     "title" : "Vorsichtsmaßnahmen treffen",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Schutzmaßnahmen sind DEAKTIVIERT",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Wir haben einige Unternehmen gefunden, die dich auf dieser Seite tracken und ein Profil über dich erstellen.} =2 {Wir haben herausgefunden, dass {firstCompany} und {secondCompany} dich auf dieser Seite tracken und ein Profil über dich erstellen.} one {Wir haben herausgefunden, dass {firstCompany} und andere dich auf dieser Seite tracken und Profile über dich erstellen.} other {Wir haben herausgefunden, dass {firstCompany}, {secondCompany} und andere dich auf dieser Seite tracken und Profile über dich erstellen.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Tracker-Netzwerk",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (Besitzer von {domain})\ntrackt dich auf {companyPrevalence}% der Top-Sites.\nWir können das Unternehmen nicht auf seinen eigenen Websites blockieren, aber wir können es auf anderen Seiten blockieren.",
+    "title" : "{blocked, select, true {<b>Diese Website ist Eigentum von {companyDisplayName}</b>, das ein Tracker-Netzwerk auf {companyPrevalence} % der Top-Websites betreibt. Wir konnten einige ihrer Anfragen auf dieser Seite blockieren.} other {<b>Diese Website ist Eigentum von {companyDisplayName}</b>, das ein Tracker-Netzwerk auf {companyPrevalence} % der Top-Websites betreibt. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Keine auffällige Aktivität gefunden",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Wen wir blockiert haben",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Wir haben einige Unternehmen daran gehindert, dich zu tracken.} =2 {Wir haben {firstCompany} und {secondCompany} daran gehindert, dich zu tracken.} one {Wir haben {firstCompany} daran gehindert, dich zu tracken.} other {Wir haben {firstCompany}, {secondCompany} und andere daran gehindert, dich zu tracken.}}",
+    "title" : "{companyCount, plural, =0 {Wir haben das Laden von Tracking-Anfragen auf dieser Seite blockiert.} =2 {Wir haben <b>{firstCompany}</b> und <b>{secondCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =3 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b> und <b>{thirdCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =4 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> und <b>{fourthCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =5 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> und <b>1 andere</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} one {Wir haben das Laden <b>{firstCompany}</b>von Tracking-Anfragen auf dieser Seite blockiert.} other {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}<b>{thirdCompany}</b></b>, <b>{fourthCompany}</b>und <b>{othersCount}andere</b> daran gehindert, Tracking-Anfragen auf diese Seite zu laden.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Cookies minimiert",
+    "title" : "Cookies verwaltet",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Wir haben deine Cookie-Einstellungen so eingestellt, dass die Privatsphäre maximiert wird, und das Zustimmungs-Pop-up geschlossen.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Die Verbindung ist sicher",
+    "title" : "Die Verbindung ist verschlüsselt",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Verbindung konnte nicht gesichert werden",
+    "title" : "Verbindung ist nicht verschlüsselt",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} großes Tracker-Netzwerk blockiert} other {{trackerCount} große Tracker-Netzwerke blockiert}}} other {{trackerCount, plural, one {{trackerCount} Tracker blockiert} other {{trackerCount} Tracker blockiert}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} großes Tracker-Netzwerk gefunden} other {{trackerCount} große Tracker-Netzwerke gefunden}}} other {{trackerCount, plural, one {{trackerCount} Tracker gefunden} other {{trackerCount} Tracker gefunden}}}}}}",
+    "title" : "Blockierte Anfragen",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Keine Tracking-Anfragen blockiert",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Keine Tracking-Anfragen gefunden",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Anfragen von Drittanbietern geladen",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Keine Anfragen von Drittanbietern gefunden",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} ist Besitzer dieser Website und der bekannten Tracker darauf. Deshalb haben wir das Unternehmen nicht blockiert.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Wir haben keine Unternehmen gefunden, die versuchen, Tracking-Anfragen auf dieser Seite zu laden.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Tracker helfen Unternehmen, ein Profil von dir zu erstellen. Wir haben herausgefunden, dass diese Unternehmen deine Aktivitäten auf dieser Seite überwachen.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} Tracker blockiert auf {domain}} other {{trackerCount} Tracker blockiert auf {domain}}}} other {{trackerCount, plural, one {{trackerCount} Tracker gefunden auf {domain}} other {{trackerCount} Tracker gefunden auf {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Bitte beachte, dass wir aufgrund von Plattformbeschränkungen möglicherweise nicht alle Anfragen erkennen können.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Über unseren Web-Tracking-Schutz",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Wie sich unsere Suchanzeigen auf unseren Schutz auswirken",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Die Anfragen der folgenden Domain wurden geladen, da kürzlich eine {domain}-Werbung auf DuckDuckGo angeklickt wurde. Diese Anfragen helfen bei der Bewertung der Effektivität von Werbung. Werbung auf DuckDuckGo erstellt keine Profile von dir.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Die Anfragen der folgenden Domain wurden geladen, um eine Störung der Website zu verhindern.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Die Anforderungen der folgenden Domänen wurden geladen, weil sie mit {domain} verbunden sind.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Die Anfragen der folgenden Domain wurden ebenfalls geladen."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Die Anfragen der folgenden Domänen wurden geladen, da der Schutz deaktiviert ist.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Die Anfragen der folgenden Drittanbieter-Domains wurden geladen. Wenn die Anfragen eines Unternehmens geladen werden, kann dies ihnen erlauben, ein Profil von dir zu erstellen, obwohl unsere anderen Schutzmaßnahmen für das Web-Tracking weiterhin gelten.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Die Anfragen der folgenden Drittanbieter-Domains wurden geladen. Wenn die Anfragen eines Unternehmens geladen werden, kann dies ihnen erlauben, ein Profil von dir zu erstellen, obwohl unsere anderen Schutzmaßnahmen für das Web-Tracking weiterhin gelten.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Wir haben keine Anfragen von Drittanbieter-Domains identifiziert.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analytik",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Soziales Netzwerk",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Lieferung von Inhalten",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Eingebettete Inhalte",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Mit DuckDuckGo suchen",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Suche",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Weitere Optionen",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Fertig",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Zurück",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

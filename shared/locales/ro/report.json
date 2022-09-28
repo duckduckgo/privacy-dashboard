@@ -48,10 +48,6 @@
     "title" : "Altceva",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Raportează Site-ul Defect",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Dacă dorești, spune-ne despre problema cu care te-ai confruntat",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Rapoartele trimise către DuckDuckGo sunt 100% anonime și includ doar selecția ta de mai sus, descrierea ta opțională, adresa URL și o listă de tehnologii de urmărire pe care le-am găsit pe site.",
+    "title" : "Rapoartele trimise către DuckDuckGo includ doar informațiile necesare pentru a ne ajuta să răspundem la feedbackul tău.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Raportul tău va contribui la îmbunătățirea browserului și la îmbunătățirea experienței pentru alte persoane.",
+    "title" : "Raportul tău va contribui la îmbunătățirea produselor noastre și la îmbunătățirea experienței pentru alte persoane.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

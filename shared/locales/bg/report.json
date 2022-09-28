@@ -48,10 +48,6 @@
     "title" : "Нещо друго",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Подаване на сигнал за повреден сайт",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Ако искате, опишете ни за възникналия проблем",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Докладите, изпратени до DuckDuckGo, са 100% анонимни и включват само направения по-горе избор, евентуално въведеното описание, URL адреса и списък на тракерите, които сме открили в сайта.",
+    "title" : "Докладите, изпращани до DuckDuckGo, включват само информацията, необходима за обработка с Вашите отзиви.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Вашият доклад ще помогне за подобряване на браузъра и изживяването на останалите.",
+    "title" : "Вашият доклад ще помогне за подобряването на нашите продукти и изживяването на останалите потребители.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

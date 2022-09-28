@@ -12,37 +12,57 @@
     "title" : "Список защиты обновляется",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Функции защиты <b>ОТКЛЮЧЕНЫ</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Функции защиты <b>ВКЛЮЧЕНЫ</b>",
+    "title" : "Функции защиты на этом сайте <b>ВКЛЮЧЕНЫ</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Функции защиты на этом сайте <b>ВЫКЛЮЧЕНЫ</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Мы временно отключили защиту конфиденциальности, так как она нарушала работу этого сайта.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Рекомендуем отключить защиту конфиденциальности на этом сайте, чтобы не нарушать его работу.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Конфиденциальная информация, передаваемая на этой странице, может быть перехвачена.",
+    "title" : "<b>Сайт небезопасен</b> и не обеспечивает защиту информации, передаваемой на этой странице.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Чтобы защитить отправляемые вами данные, мы повысили безопасность соединения.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Мы заблокировали загрузку следующих запросов сторонних доменов, так как распознали в них трекинг-запросы. Загруженные запросы позволяют компаниям вас профилировать.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Безопасное соединение с этой страницей обеспечивает защиту ваших данных при передаче.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Мы не заблокировали ни одного запроса на отслеживание на этой странице. В случае загрузки их запросов, компании имеют возможность создавать ваш профиль.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Мы не обнаружили на этой странице запросов на отслеживание.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "На этой странице не обнаружено ни одной компании, которая пытается отслеживать ваши действия.",
+    "title" : "На этом сайте не обнаружено компаний, пытавшихся загрузить запросы на отслеживание.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Обнаружены только трекеры, принадлежащие {name}, которые мы не блокировали.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Чтобы не нарушить работу сайта, мы не стали блокировать запросы компаний на отслеживание.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Мы {isWhitelisted, select, true {обнаружили} other {заблокировали}} {displayCount} {displayCount, plural, =1 {трекер} other {трекера(-ов)}} {companyCount} {companyCount, plural, one {компании} other {компаний}} на этой странице.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Мы не заблокировали ни одного трекинг-запроса, так как защита на этом сайте отключена. Загруженные запросы позволяют компаниям вас профилировать.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Создать новый адрес Duck",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Скопировано в буфер!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Сайт плохо работает?",
@@ -52,57 +72,56 @@
     "title" : "Будьте осторожны!",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Функции защиты ОТКЛЮЧЕНЫ",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Мы обнаружили, что некоторые компании отслеживают и профилируют вас на этой странице.} =2 {Мы обнаружили, что {firstCompany} и {secondCompany} отслеживают и профилируют вас на этой странице.} one {Мы обнаружили, что {firstCompany} отслеживает и профилирует вас на этой странице.} few {Мы обнаружили, что {firstCompany}, {secondCompany} и другие компании отслеживают и профилируют вас на этой странице.} many {Мы обнаружили, что {firstCompany}, {secondCompany} и другие компании отслеживают и профилируют вас на этой странице.} other {Мы обнаружили, что {firstCompany}, {secondCompany} и другие компании отслеживают и профилируют вас на этой странице.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Сеть трекеров",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (владелец {domain}) отслеживает ваши действия на {companyPrevalence}% самых популярных сайтов.\nМы можем блокировать трекеры на страницах других сайтов, но не сайтах, принадлежащих этой компании.",
+    "title" : "{blocked, select, true {<b>Этот сайт принадлежит компании {companyDisplayName}</b>, которая управляет сетью трекеров на {companyPrevalence}% ведущих сайтов. Нам не удалось заблокировать на этой странице несколько запросов на отслеживание.} other {<b>Этот сайт принадлежит компании {companyDisplayName}</b>, которая управляет сетью трекеров на {companyPrevalence}% ведущих сайтов. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Пока нет сведений для отчета",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Кого мы заблокировали",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Чтобы предотвратить отслеживание, мы заблокировали несколько компаний.} =2 {Чтобы предотвратить отслеживание, мы заблокировали {firstCompany} и {secondCompany}.} one {Чтобы предотвратить отслеживание, мы заблокировали {firstCompany}.} few {Чтобы предотвратить отслеживание, мы заблокировали {firstCompany}, {secondCompany} и другие компании.} many {Чтобы предотвратить отслеживание, мы заблокировали {firstCompany}, {secondCompany} и другие компании.} other {Чтобы предотвратить отслеживание, мы заблокировали {firstCompany}, {secondCompany} и другие компании.}}",
+    "title" : "{companyCount, plural, =0 {Мы заблокировали на этой странице несколько запросов на отслеживание.} =2 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b>.} =5 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще одной</b> компании.} one {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b> на этом сайте.} few {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> и еще <b>{othersCount}</b> на этом сайте.} many {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> на этом сайте.} other {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> на этом сайте.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Минимум куки-файлов",
+    "title" : "Kуки-файлы выбраны",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Заданные нами параметры максимально защищают вашу конфиденциальность и блокируют всплывающее окно настроек куки-файлов.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Установлено безопасное соединение",
+    "title" : "Соединение зашифровано",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Не удалось обезопасить соединение",
+    "title" : "Соединение не зашифровано",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {Заблокирована {trackerCount} крупная сеть трекеров} few {Заблокировано {trackerCount} крупные сети трекеров} many {Заблокировано {trackerCount} крупных сетей трекеров} other {Заблокировано {trackerCount} крупных сетей трекеров}}} other {{trackerCount, plural, one {Заблокирован {trackerCount} трекер} few {Заблокировано {trackerCount} трекера} many {Заблокировано {trackerCount} трекеров} other {Заблокированы {trackerCount} трекеры}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {Обнаружена {trackerCount} крупная сеть трекеров} few {Обнаружено {trackerCount} крупные сети трекеров} many {Обнаружено {trackerCount} крупных сетей трекеров} other {Обнаружено {trackerCount} крупных сетей трекеров}}} other {{trackerCount, plural, one {Найден {trackerCount} трекер} few {Найдено {trackerCount} трекера} many {Найдено {trackerCount} трекеров} other {Найдены {trackerCount} трекеры}}}}}}",
+    "title" : "Заблокирована загрузка запросов",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Трекинг-запросы не заблокированы",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Трекинг-запросы не обнаружены",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Загружены сторонние запросы",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Не найдено сторонних запросов",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "Этот сайт и найденные на нем трекеры принадлежат компании {companyName}, поэтому мы их не блокировали.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "На этом сайте не обнаружено компаний, пытавшихся загрузить запросы на отслеживание.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Трекеры применяются для профилирования посетителей сайтов. Перечисленные здесь компании отслеживают ваши действия на этой странице.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {На {domain} заблокирован {trackerCount} трекер} few {На {domain} заблокировано {trackerCount} трекера} many {На {domain} заблокировано {trackerCount} трекеров} other {Заблокировано трекеров на сайте {domain}: {trackerCount}}}} other {{trackerCount, plural, one {На сайте {domain} обнаружен {trackerCount} трекер} few {На сайте {domain} обнаружено {trackerCount} трекера} many {На сайте {domain} обнаружено {trackerCount} трекеров} other {Обнаружено трекеров на сайте {domain}: {trackerCount}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Внимание: наши возможности обнаружения запросов зависят от ограничений платформы.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "О нашей защите от отслеживания онлайн",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Как реклама при поиске влияет на защиту",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Запросы этого домена были загружены в результате недавнего нажатия на рекламу {domain} в DuckDuckGo. Такие запросы помогают оценить эффективность рекламы. Рекламные объявления в DuckDuckGo не профилируют пользователей.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Мы загрузили запросы этих доменов, чтобы не нарушить работу сайта.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Мы загрузили запросы этих доменов, так как они связаны с {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Также загружены запросы следующих доменов."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Мы загрузили запросы этих доменов, так как у вас отключена защита.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Ниже приведен список загруженных запросов сторонних доменов. Благодаря этим запросам компании могут вас профилировать, однако мы по-прежнему защищаем вас от отслеживания в сети другими способами.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Ниже приведен список загруженных запросов сторонних доменов. Благодаря этим запросам компании могут вас профилировать, однако мы по-прежнему защищаем вас от отслеживания в сети другими способами.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Запросов от сторонних доменов не обнаружено.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Аналитика",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Социальная сеть",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Доставка контента",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Встроенный контент",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Поиск в DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Поиск",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Другие параметры",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Готово",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Назад",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

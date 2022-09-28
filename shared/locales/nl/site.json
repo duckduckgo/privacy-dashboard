@@ -12,37 +12,57 @@
     "title" : "Beveiligingslijst updaten",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Beveiliging is <b>UITGESCHAKELD</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Beveiliging is <b>INGESCHAKELD</b> voor deze site",
+    "title" : "Beveiliging is <b>INGESCHAKELD</b> voor deze website",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Beveiliging is <b>UITGESCHAKELD</b> voor deze website",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "We hebben privacybescherming tijdelijk uitgeschakeld, omdat het erop lijkt dat deze site hierdoor niet goed meer werkt.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "We raden aan om Privacybescherming voor deze site uit te schakelen om te voorkomen dat de site niet meer goed werkt.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Anderen kunnen mogelijk gevoelige informatie onderscheppen die je op deze pagina verzendt.",
+    "title" : "<b>Deze site is niet veilig</b> en kan alle informatie die je op deze pagina verzendt, in gevaar brengen.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Wij hebben de verbinding op deze pagina geüpgraded om de informatie die je verzendt te beschermen tijdens de overdracht.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "De volgende verzoeken van domeinen van derden werden geblokkeerd omdat ze werden geïdentificeerd als trackingverzoeken. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "De verbinding op deze pagina is beveiligd om informatie die je verzendt tijdens de overdracht te beveiligen.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Er zijn geen trackingverzoeken geblokkeerd die op deze pagina worden geladen. Als de verzoeken van een bedrijf worden geladen, kunnen deze bedrijven een profiel van je maken.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "We hebben geen trackingverzoeken op deze pagina gevonden.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "We hebben geen bedrijven gevonden die je proberen te volgen op deze pagina.",
+    "title" : "We hebben geen bedrijven gevonden die trackingverzoeken op deze pagina proberen te laden.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "We hebben alleen trackers gevonden die eigendom zijn van {name}. Deze zijn niet geblokkeerd.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Om te voorkomen dat deze site niet meer goed werkt, hebben we geen enkel trackingverzoek van bedrijven op deze pagina geblokkeerd.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "We {isWhitelisted, select, true {vonden} other {blokkeerden}} {displayCount} bekende {displayCount, plural, =1 {tracker} other {trackers}} van {companyCount} {companyCount, plural, one {bedrijf} other {bedrijven}} op deze pagina.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Trackingverzoeken werden niet verhinderd om te laden omdat beschermingen zijn uitgeschakeld voor deze site. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Nieuw Duck-adres aanmaken",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Naar je klembord gekopieerd!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Werkt de website niet zoals verwacht?",
@@ -52,57 +72,56 @@
     "title" : "Neem voorzorgsmaatregelen",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Beveiliging is UITGESCHAKELD",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {We hebben op deze pagina enkele bedrijven gevonden die je volgen en een profiel van je maken.} =2 {We hebben geconstateerd dat {firstCompany} en {secondCompany} je op deze pagina willen traceren en een profiel van je willen maken.} one {We hebben geconstateerd dat {firstCompany} je op deze pagina wil traceren en een profiel van je wil maken.} other {We hebben geconstateerd dat {firstCompany}, {secondCompany} en andere bedrijven je op deze pagina willen traceren en een profiel van je willen maken.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Tracker-netwerk",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (eigenaar van {domain})\nvolgt je op {companyPrevalence}% van de populairste sites.\nWe kunnen ze niet blokkeren op sites waarvan ze de eigenaar zijn, maar we kunnen ze wel blokkeren op andere pagina's.",
+    "title" : "{blocked, select, true {<b>Deze site is eigendom van {companyDisplayName}</b>. Dit bedrijf beheert een netwerk met trackers op {companyPrevalence}% van de meest bezochte websites. We hebben een aantal verzoeken op deze pagina kunnen blokkeren.} other {<b>Deze site is eigendom van {companyDisplayName}</b>. Dit bedrijf beheert een netwerk met trackers op {companyPrevalence}% van de meest bezochte websites. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Geen activiteit te melden",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Wie we hebben geblokkeerd",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {We hebben voorkomen dat sommige bedrijven je volgen.} =2 {We hebben voorkomen dat {firstCompany} en {secondCompany} je kunnen volgen.} one {We hebben voorkomen dat {firstCompany} je kan volgen.} other {We hebben voorkomen dat {firstCompany}, {secondCompany} en anderen je kunnen volgen.}}",
+    "title" : "{companyCount, plural, =0 {We hebben het laden van trackingverzoeken op deze pagina geblokkeerd.} =2 {We hebben voorkomen dat <b>{firstCompany}</b> en <b>{secondCompany}</b> trackingverzoeken op deze pagina laden.} =3 {We hebben voorkomen dat <b>{firstCompany}</b>, <b>{secondCompany}</b> en <b>{thirdCompany}</b> trackingverzoeken op deze pagina laden.} =4 {We hebben voorkomen dat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> en <b>{fourthCompany}</b> trackingverzoeken op deze pagina laden.} =5 {We hebben voorkomen dat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> en <b>1 ander bedrijf</b> trackingverzoeken op deze pagina laden.} one {We hebben voorkomen dat <b>{firstCompany}</b> trackingverzoeken op deze pagina laadt.} other {We hebben voorkomen dat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> en <b>{othersCount} andere bedrijven</b> trackingverzoeken op deze pagina laden.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Cookies geminimaliseerd",
+    "title" : "Beheerde cookies",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "We hebben je cookievoorkeuren ingesteld voor maximale privacy en het pop-upvenster waarin om toestemming wordt gevraagd gesloten.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Verbinding is veilig",
+    "title" : "Verbinding is versleuteld",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Verbinding kan niet worden beveiligd",
+    "title" : "Verbinding is niet versleuteld",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} groot trackernetwerk geblokkeerd} other {{trackerCount} grote trackernetwerken geblokkeerd}}} other {{trackerCount, plural, one {{trackerCount} tracker geblokkeerd} other {{trackerCount} trackers geblokkeerd}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} groot trackernetwerk gevonden} other {{trackerCount} grote trackernetwerken gevonden}}} other {{trackerCount, plural, one {{trackerCount} tracker gevonden} other {{trackerCount} trackers gevonden}}}}}}",
+    "title" : "Verzoeken geblokkeerd bij laden",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Geen trackingverzoeken geblokkeerd",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Geen trackingverzoeken gevonden",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Verzoeken van derden geladen",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Geen verzoeken van derden gevonden",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} is eigenaar van deze site en de bekende trackers op deze pagina. Die hebben we dus niet geblokkeerd.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "We hebben geen bedrijven gevonden die trackingverzoeken op deze pagina proberen te laden.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Trackers helpen bedrijven om een profiel van je te maken. We hebben deze bedrijven gevonden die je activiteit op deze pagina volgen.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} tracker geblokkeerd op {domain}} other {{trackerCount} trackers geblokkeerd op {domain}}}} other {{trackerCount, plural, one {{trackerCount} tracker gevonden op {domain}} other {{trackerCount} trackers gevonden op {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Let op: beperkingen op het platform kunnen ons vermogen om alle verzoeken te detecteren beperken.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Over onze bescherming tegen webtracking",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Hoe onze zoekadvertenties onze bescherming beïnvloeden",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "De verzoeken van het volgende domein zijn geladen omdat er onlangs in DuckDuckGo op een advertentie van {domain} is geklikt. Deze verzoeken helpen de effectiviteit van advertenties te beoordelen. Geen enkele advertentie op DuckDuckGo maakt een profiel van je.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "De verzoeken van het volgende domein werden geladen om te voorkomen dat de site niet meer goed zou werken.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "De verzoeken van de volgende domeinen zijn geladen omdat ze aan {domain} zijn gekoppeld.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "De verzoeken van de volgende domeinen zijn ook geladen."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "De verzoeken van de volgende domeinen zijn geladen omdat de beveiliging is uitgeschakeld.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "De volgende verzoeken van domeinen van derden zijn geladen. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken, hoewel onze andere beschermingen tegen webtracking nog steeds van toepassing zijn.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "De volgende verzoeken van domeinen van derden zijn geladen. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken, hoewel onze andere beschermingen tegen webtracking nog steeds van toepassing zijn.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "We hebben geen verzoeken van domeinen van derden gedetecteerd.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analyses",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Sociaal netwerk",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Levering van inhoud",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Geïntegreerde inhoud",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Zoek in DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Zoeken",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Meer opties",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Klaar",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Terug",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

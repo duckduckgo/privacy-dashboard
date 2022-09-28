@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Forbindelse",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Krypter",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Denne side giver ikke mulighed for en sikker forbindelse. Andre kan muligvis opfange følsomme oplysninger, som du sender på denne side.",
+    "title" : "Denne side bruger en ukrypteret forbindelse. Tredjeparter kan muligvis se din aktivitet eller opfange følsomme oplysninger, som du sender på denne side.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Denne side bruger en sikker forbindelse, som beskytter de oplysninger, du sender, mens de overføres.",
+    "title" : "Denne side bruger en krypteret forbindelse, hvilket forhindrer tredjeparter i at se dine aktiviteter eller opsnappe følsomme oplysninger, som du sender på denne side.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

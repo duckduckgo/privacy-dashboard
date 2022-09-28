@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Σύνδεση",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Κρυπτογράφηση",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Η σελίδα αυτή δεν επιτρέπει ασφαλή σύνδεση. Άλλα άτομα ενδέχεται να μπορούν να υποκλέψουν ευαίσθητες πληροφορίες που στέλνετε στη σελίδα αυτή.",
+    "title" : "Η σελίδα αυτή χρησιμοποιεί μη κρυπτογραφημένη σύνδεση. Τρίτα μέρη ενδέχεται να μπορούν να δουν τη δραστηριότητά σας ή να υποκλέψουν ευαίσθητες πληροφορίες που στέλνετε στη σελίδα αυτή.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Η σελίδα αυτή χρησιμοποιεί ασφαλή σύνδεση, η οποία προστατεύει τις πληροφορίες που στέλνετε κατά τη μεταφορά τους.",
+    "title" : "Η σελίδα αυτή χρησιμοποιεί κρυπτογραφημένη σύνδεση, η οποία εμποδίζει τρίτα μέρη να βλέπουν τη δραστηριότητά σας ή να υποκλέπτουν ευαίσθητες πληροφορίες που στέλνετε στη σελίδα αυτή.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

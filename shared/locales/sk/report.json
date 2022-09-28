@@ -48,10 +48,6 @@
     "title" : "Niečo iné",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Nahlásiť nefunkčný web",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Ak chcete, povedzte nám o probléme, ktorý ste zaznamenali",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Správy odoslané službe DuckDuckGo sú 100 % anonymné a obsahujú len váš výber, voliteľný opis, adresu URL a zoznam sledovacích zariadení, ktoré sme na stránke našli.",
+    "title" : "Správy odoslané spoločnosti DuckDuckGo obsahujú len informácie, ktoré sú potrebné na to, aby sme mohli riešiť vašu spätnú väzbu.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Vaše hlásenie pomôže zlepšiť prehliadač a zlepšiť skúsenosti ostatných používateľov.",
+    "title" : "Vaše oznámenie pomôže zlepšiť prehliadač a zlepšiť skúsenosti ostatných používateľov.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

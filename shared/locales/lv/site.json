@@ -12,37 +12,57 @@
     "title" : "Aizsardzības saraksta atjaunināšana",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Aizsardzība ir <b>ATSPĒJOTA</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Aizsardzība šajā vietnē ir <b>IESPĒJOTA</b>",
+    "title" : "Aizsardzība šai vietnei ir <b>IESLĒGTA</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Aizsardzība šai vietnei ir <b>IZSLĒGTA</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Mēs uz laiku esam izslēguši privātuma aizsardzību, jo šķiet, ka tā traucē šīs vietnes darbību.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Mēs iesakām atspējot šīs vietnes privātuma aizsardzību, lai novērstu vietnes darbības traucējumus.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Citi var pārtvert šai lapai nosūtīto sensitīvo informāciju.",
+    "title" : "<b>Šī vietne nav droša</b> un var pakļaut riskam jebkuru informāciju, ko nosūti šajā lapā.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Mēs esam uzlabojuši šīs lapas savienojumu, lai aizsargātu nosūtīto informāciju tās pārraidīšanas laikā.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Turpmāk norādīto trešo pušu domēnu pieprasījumu ielāde tika bloķēta, jo tie tika identificēti kā izsekošanas pieprasījumi. Ja uzņēmuma pieprasījumi tiek ielādēti, tas var ļaut uzņēmumam veidot tavu profilu.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Šīs lapas savienojums ir drošs un aizsargā nosūtīto informāciju.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Šajā lapā netika bloķēta neviena izsekošanas pieprasījuma ielāde. Uzņēmuma pieprasījumu ielāde var ļaut tam veidot tavu profilu.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Mēs neatradām nevienu izsekošanas pieprasījumu šajā lapā.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Neatradām nevienu uzņēmumu, kas censtos tevi izsekot šajā lapā.",
+    "title" : "Šajā lapā neatradām nevienu uzņēmumu, kas mēģinātu ielādēt izsekošanas pieprasījumus.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Esam atraduši tikai {name} piederošus izsekotājus, kurus nebloķējām.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Lai nepieļautu vietnes darbības traucējumus, mēs nebloķējām neviena uzņēmuma izsekošanas pieprasījumus šajā lapā.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Mēs {isWhitelisted, select, true {esam atraduši} other {esam bloķējuši}} {displayCount} zināmus {displayCount, plural, =1 {izsekotāju} other {izsekotājus}} no {companyCount} {companyCount, plural, one {uzņēmuma} other {uzņēmumiem}} šajā lapā.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Netika bloķēta neviena izsekošanas pieprasījuma ielāde, jo šai vietnei ir izslēgta aizsardzība. Ja uzņēmuma pieprasījumi tiek ielādēti, tas var ļaut uzņēmumam veidot tavu profilu.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Izveidot jaunu Duck adresi",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Nokopēts starpliktuvē!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Tīmekļa vietne nedarbojas, kā paredzēts?",
@@ -52,57 +72,56 @@
     "title" : "Veikt piesardzības pasākumus",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Aizsardzība ir ATSPĒJOTA",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Esam atraduši dažus uzņēmumus, kas tevi izseko un profilē šajā lapā.} =2 {Esam atraduši {firstCompany} un {secondCompany}, kas tevi izseko un profilē šajā lapā.} zero {Esam atraduši {firstCompany}, {secondCompany} un citus, kas izseko un profilē tevi šajā lapā.} one {Esam atraduši {firstCompany}, kas izseko un profilē tevi šajā lapā.} other {Esam atraduši {firstCompany}, {secondCompany} un citus, kas izseko un profilē tevi šajā lapā.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Izsekotāju tīkls",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} ({domain} īpašnieks)\nizseko tevi {companyPrevalence}% populārāko vietņu.\nMēs nevaram tos bloķēt viņiem piederošajās vietnēs, bet varam bloķēt citās lapās.",
+    "title" : "{blocked, select, true {<b>Šī vietne pieder {companyDisplayName}</b>, kas pārvalda izsekošanas tīklu {companyPrevalence}% populārāko vietņu. Mums izdevās bloķēt dažus no tā pieprasījumiem šajā lapā.} other {<b>Šī vietne pieder {companyDisplayName}</b>, kas pārvalda izsekošanas tīklu {companyPrevalence}% populārāko vietņu. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Nav darbību, par kurām ziņot",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Ko mēs esam bloķējuši",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Esam bloķējuši dažu uzņēmumu mēģinājumus izsekot tevi.} =2 {Esam bloķējuši {firstCompany} un {secondCompany} mēģinājumus izsekot tevi.} zero {Esam bloķējuši {firstCompany}, {secondCompany} un citu centienus izsekot tevi.} one {Esam bloķējuši {firstCompany} centienus izsekot tevi.} other {Esam bloķējuši {firstCompany}, {secondCompany} un citu centienus izsekot tevi.}}",
+    "title" : "{companyCount, plural, =0 {Mēs bloķējām izsekošanas pieprasījumu ielādēšanu šajā lapā.} =2 {Mēs bloķējām <b>{firstCompany}</b> un <b>{secondCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} =3 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b> un <b>{thirdCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} =4 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> un <b>{fourthCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} =5 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>1 cita uzņēmuma</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} zero {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} one {Mēs bloķējām <b>{firstCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} other {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Minimizēti sīkfaili",
+    "title" : "Pārvaldītie sīkfaili",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Mēs esam iestatījuši sīkfailu preferences, lai maksimāli palielinātu konfidencialitāti, un aizvēruši piekrišanas uznirstošo logu.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Savienojums ir drošs",
+    "title" : "Savienojums ir šifrēts",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Savienojumu nav iespējams padarīt drošu",
+    "title" : "Savienojums nav šifrēts",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, zero {{trackerCount} lielāko izsekotāju tīkli ir bloķēti} one {{trackerCount} lielāko izsekotāju tīkls ir bloķēts} other {{trackerCount} lielāko izsekotāju tīkli ir bloķēti}}} other {{trackerCount, plural, zero {{trackerCount} Izsekotāji ir bloķēti} one {{trackerCount} Izsekotājs ir bloķēts} other {{trackerCount} Izsekotāji ir bloķēti}}}}} other {{majorNetwork, select, true {{trackerCount, plural, zero {Atrasti {trackerCount} lielāko izsekotāju tīkli} one {Atrasts {trackerCount} lielāko izsekotāju tīkls} other {Atrasti {trackerCount} lielāko izsekotāju tīkli}}} other {{trackerCount, plural, zero {{trackerCount} Atrasti izsekotāji} one {{trackerCount} Atrasts izsekotājs} other {{trackerCount} Atrasti izsekotāji}}}}}}",
+    "title" : "Pieprasījumi, kuru ielādēšana ir bloķēta",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Nav bloķēts neviens izsekošanas pieprasījums",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Nav atrasts neviens izsekošanas pieprasījums",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Ielādētie trešo pušu pieprasījumi",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Netika atrasts neviens trešo pušu pieprasījums",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} ir šīs vietnes un šajā lapā atrodamo zināmo izsekotāju īpašnieks, tāpēc mēs tos nebloķējām.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Šajā lapā neatradām nevienu uzņēmumu, kas mēģinātu ielādēt izsekošanas pieprasījumus.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Izsekotāji palīdz uzņēmumiem tevi profilēt. Esam atraduši šos uzņēmumus, kuri novēro tavas darbības šajā lapā.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, zero {{trackerCount} bloķēti izsekotāji {domain}} one {{trackerCount} bloķēts izsekotājs {domain}} other {{trackerCount} bloķēti izsekotāji {domain}}}} other {{trackerCount, plural, zero {Atrasti {trackerCount} izsekotāji {domain}} one {Atrasts {trackerCount} izsekotājs {domain}} other {Atrasti {trackerCount} izsekotāji {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Lūdzu, ņemiet vērā: platformas ierobežojumi var ierobežot mūsu spēju noteikt visus pieprasījumus.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Par mūsu Tīmekļa izsekošanas aizsardzību",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Kā mūsu meklēšanas reklāmas ietekmē mūsu aizsardzību",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Šā domēna pieprasījumi tika ielādēti, jo nesen tika noklikšķināts uz {domain} reklāmas pakalpojumā DuckDuckGo. Šie pieprasījumi palīdz novērtēt reklāmu efektivitāti. Neviena reklāma pakalpojumā DuckDuckGo nav profilējoša.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Šī domēna pieprasījumi tika ielādēti, lai nepieļautu vietnes darbības traucējumus.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Tika ielādēti šo domēnu pieprasījumi, jo tie ir saistīti ar {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Tika ielādēti arī šādu domēnu pieprasījumi."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Šo domēnu pieprasījumi tika ielādēti, jo aizsardzība ir izslēgta.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Tika ielādēti šādi trešo pušu domēnu pieprasījumi. Ja tiek ielādēti uzņēmuma pieprasījumi, tas var ļaut uzņēmumam tevi profilēt, lai gan joprojām ir spēkā citi mūsu tīmekļa izsekošanas aizsardzības līdzekļi.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Tika ielādēti šādi trešo pušu domēnu pieprasījumi. Ja tiek ielādēti uzņēmuma pieprasījumi, tas var ļaut uzņēmumam tevi profilēt, lai gan joprojām ir spēkā citi mūsu tīmekļa izsekošanas aizsardzības līdzekļi.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Netika identificēts neviens pieprasījums no trešo pušu domēniem.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analītika",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Sociālais tīkls",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Satura piegāde",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Iegultais saturs",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Meklēt DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Meklēt",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Citas iespējas",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Gatavs",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Atpakaļ",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

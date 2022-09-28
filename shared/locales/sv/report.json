@@ -48,10 +48,6 @@
     "title" : "Övrigt",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Rapportera skadad webbplats",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Om du vill kan du berätta mer om det problem som du har stött på",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Rapporter som skickas till DuckDuckGo är 100 % anonyma och innehåller endast ditt val ovan, din valfria beskrivning, webbadressen och en lista över spårare som vi hittade på webbplatsen.",
+    "title" : "Rapporter som skickas till DuckDuckGo innehåller endast information som krävs för att vi ska kunna bemöta din feedback.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Din rapport bidrar till att förbättra webbläsaren och göra upplevelsen bättre för andra.",
+    "title" : "Din rapport bidrar till att förbättra våra produkter och göra upplevelsen bättre för andra.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

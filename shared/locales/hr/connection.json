@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Veza",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Enkripcija",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Ova stranica ne dopušta sigurnu vezu. Drugi će možda moći presresti osjetljive podatke koje šalješ na ovoj stranici.",
+    "title" : "Ova stranica koristi nešifriranu vezu. Treće strane bi mogle vidjeti tvoje aktivnosti ili presresti osjetljive informacije koje šalješ na ovoj stranici.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Ova stranica koristi sigurnu vezu, koja štiti informacije koje šalješ tijekom prijenosa.",
+    "title" : "Ova stranica koristi šifriranu vezu koja trećim stranama onemogućuje prikaz tvojih aktivnosti ili presretanje osjetljivih podataka koje šalješ na ovoj stranici.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

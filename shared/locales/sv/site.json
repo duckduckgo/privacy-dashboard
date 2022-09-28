@@ -12,37 +12,57 @@
     "title" : "Skyddslistan uppdateras",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Skydd har <b>INAKTIVERATS</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Skydd är <b>AKTIVERADE</b> för den här webbplatsen",
+    "title" : "Skydd är <b>PÅ</b> för den här webbplatsen",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Skydd är <b>AV</b> för den här webbplatsen",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Vi har tillfälligt stängt av integritetsskydd eftersom det verkade göra att denna webbplats inte fungerade.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Vi rekommenderar att du inaktiverar integritetsskydd för den här webbplatsen för att förhindra fel på webbplatsen.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Andra kan få tillgång till känslig information som du skickar på den här sidan.",
+    "title" : "<b>Den här webbplatsen är inte säker</b> och kan äventyra eventuell information som du skickar på sidan.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Vi har uppgraderat anslutningen på den här sidan för att skydda den information som du skickar medan den överförs.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Följande tredjepartsdomäners förfrågningar blockerades från att läsas in eftersom de identifierades som spårningsförfrågningar. Om ett företags förfrågningar läses in kan det göra det möjligt för företaget att profilera dig.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Anslutningen på den här sidan är säker för att skydda information som du skickar medan den överförs.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Inga spårningsförfrågningar blockerades från att läsas in på den här sidan. Om ett företags förfrågningar läses in kan det göra det möjligt för företaget att profilera dig.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Vi har inte identifierat några spårningsförfrågningar på den här sidan.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Vi har inte hittat några företag som försöker spåra dig på den här sidan.",
+    "title" : "Vi har inte hittat några företag som försöker läsa in spårningsförfrågningar på den här sidan.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Vi hittade bara spårare som ägs av {name}, vilka vi inte har blockerat.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "För att förhindra fel på webbplatsen har vi inte blockerat några företag från att läsa in spårningsförfrågningar på den här sidan.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Vi {isWhitelisted, select, true {hittade} other {blockerade}} {displayCount} {displayCount, plural, =1 {känd spårare} other {kända spårare}} från {companyCount} {companyCount, plural, one {företag} other {företag}} på den här sidan.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Inga spårningsförfrågningar blockerades från att läsas in eftersom skyddet är avstängt för den här webbplatsen. Om ett företags förfrågningar läses in kan det göra det möjligt för företaget att profilera dig.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Skapa en ny Duck-adress",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Kopierad till Urklipp!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Fungerar inte webbplatsen som förväntat?",
@@ -52,57 +72,56 @@
     "title" : "Vidta försiktighetsåtgärder",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Skydd är INAKTIVERADE",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Vi hittade några företag som spårar och profilerar dig på den här sidan.} =2 {Vi har upptäckt att {firstCompany} och {secondCompany} spårar och profilerar dig på den här sidan.} one {Vi har upptäckt att {firstCompany} spårar och profilerar dig på den här sidan.} other {Vi har upptäckt att {firstCompany}, {secondCompany} med flera spårar och profilerar dig på den här sidan.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Spårningsnätverk",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (som äger {domain})\nspårar dig på {companyPrevalence} % av de populäraste webbplatserna.\nVi kan inte blockera dem på webbplatser som de själva äger, men vi kan göra det på andra webbplatser.",
+    "title" : "{blocked, select, true {<b>Den här webbplatsen ägs av {companyDisplayName}</b>, som driver ett spårningsnätverk på {companyPrevalence} % av de populäraste webbplatserna. Vi har lyckats blockera några av deras förfrågningar på den här sidan.} other {<b>Den här webbplatsen ägs av {companyDisplayName}</b>, som driver ett spårningsnätverk på {companyPrevalence} % av de populäraste webbplatserna. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Ingen aktivitet att rapportera",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Vilka vi har blockerat",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Vi har blockerat vissa företag från att försöka spåra dig.} =2 {Vi har blockerat {firstCompany} och {secondCompany} från att försöka spåra dig.} one {Vi har blockerat {firstCompany} från att försöka spåra dig.} other {Vi har blockerat {firstCompany}, {secondCompany} med flera från att försöka spåra dig.}}",
+    "title" : "{companyCount, plural, =0 {Vi har blockerat vissa företag från att läsa in spårningsförfrågningar på den här sidan.} =2 {Vi har blockerat <b>{firstCompany}</b> och <b>{secondCompany}</b> från att läsa in spårningsförfrågningar på den här sidan.} =3 {Vi har blockerat <b>{firstCompany}</b>, <b>{secondCompany}</b> och <b>{thirdCompany}</b> från att läsa in spårningsförfrågningar på den här sidan.} =4 {Vi har blockerat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> och <b>{fourthCompany}</b> från att läsa in spårningsförfrågningar på den här sidan.} =5 {Vi har blockerat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> och <b>1 annat företag </b> från att läsa in spårningsförfrågningar på den här sidan.} one {Vi har blockerat <b>{firstCompany}</b> från att läsa in spårningsförfrågningar på den här sidan.} other {Vi har blockerat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> och <b>{othersCount} andra företag</b> från att läsa in spårningsförfrågningar på den här sidan.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Cookies minimerade",
+    "title" : "Cookies hanteras",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Vi har konfigurerat dina cookieinställningar för att maximera din integritet och stängt popup-fönstret för samtycke.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Anslutningen är säker",
+    "title" : "Anslutningen är krypterad",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Anslutningen kunde inte säkras",
+    "title" : "Anslutningen är inte krypterad",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} större spårningsnätverk blockerades} other {{trackerCount} större spårningsnätverk blockerades}}} other {{trackerCount, plural, one {{trackerCount} spårare blockerades} other {{trackerCount} spårare blockerades}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} större spårningsnätverk hittades} other {{trackerCount} större spårningsnätverk hittades}}} other {{trackerCount, plural, one {{trackerCount} spårare hittades} other {{trackerCount} spårare hittades}}}}}}",
+    "title" : "Förfrågningar blockerades från att läsas in",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Inga spårningsförfrågningar blockerades",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Inga spårningsförfrågningar hittades",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Förfrågningar från tredje part lästes in",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Inga förfrågningar från tredje part hittades",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} äger den här webbplatsen och de kända spårare som hittades på sidan, så vi har inte blockerat dem.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Vi har inte hittat några företag som försöker läsa in spårningsförfrågningar på den här sidan.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Spårare hjälper företag att profilera dig. Vi har upptäckt att följande företag övervakar din aktivitet på den här sidan.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} spårare blockerad på {domain}} other {{trackerCount} spårare blockerade på {domain}}}} other {{trackerCount, plural, one {{trackerCount} spårare hittades på {domain}} other {{trackerCount} spårare hittades på {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Obs! Plattformsbegränsningar kan begränsa vår förmåga att upptäcka alla förfrågningar.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Om våra webbspårningsskydd",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Hur våra sökannonser påverkar vårt skydd",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Följande domäns förfrågningar lästes in eftersom du nyligen klickade på en annons från {domain} på DuckDuckGo. Dessa förfrågningar hjälper till att utvärdera annonsens effektivitet. Alla annonser på DuckDuckGo är icke-profilerande.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Följande domäners förfrågningar lästes in för att förhindra fel på webbplatsen.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Följande domäners förfrågningar lästes in eftersom de är kopplade till {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Följande domäners förfrågningar lästes också in."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Följande domäners förfrågningar lästes in eftersom skydd är avstängda.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Följande tredjepartsdomäners förfrågningar lästes in. Om ett företags förfrågningar läses in kan det göra det möjligt för företaget att profilera dig, även om våra övriga webbspårningsskydd fortfarande är aktiva.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Följande tredjepartsdomäners förfrågningar lästes in. Om ett företags förfrågningar läses in kan det göra det möjligt för företaget att profilera dig, även om våra övriga webbspårningsskydd fortfarande är aktiva.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Vi har inte identifierat några förfrågningar från tredjepartsdomäner.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analys",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Socialt nätverk",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Innehållsleverans",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Inbäddat innehåll",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Sök med DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Sök",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Fler alternativ",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Klart",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Tillbaka",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

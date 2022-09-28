@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Ühendus",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Krüpteeri",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "See leht ei luba turvalist ühendust. Teised võivad olla võimelised kinni püüdma tundlikku teavet, mida sa sellel lehel saadad.",
+    "title" : "See leht kasutab krüptimata ühendust. Kolmandad osapooled võivad näha sinu tegevust või kinni püüda tundlikku teavet, mida sellel lehel saadad.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "See leht kasutab turvalist ühendust, mis kaitseb edastamise ajal saadavat teavet.",
+    "title" : "See leht kasutab krüptitud ühendust, mis takistab kolmandatel pooltel sinu tegevuse vaatamist või sinu sellel lehel saadetud tundliku teabe kinnipüüdmist.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

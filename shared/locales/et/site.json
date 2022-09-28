@@ -12,37 +12,57 @@
     "title" : "Kaitseloendi värskendamine",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Kaitsed on <b>KEELATUD</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Kaitsed on sellel saidil <b>LUBATUD</b>",
+    "title" : "Selle saidi kaitse on <b>SISSE</b> lülitatud",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Selle saidi kaitse on <b>VÄLJA</b> lülitatud",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Lülitasime privaatsuskaitse ajutiselt välja, sest näib, et see häirib selle saidi tööd.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Soovitame selle saidi privaatsuskaitse välja lülitada, et vältida häireid selle saidi kasutamisel.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Teised võivad olla võimelised kinni püüdma tundlikku teavet, mida sa sellel lehel saadad.",
+    "title" : "<b>See sait ei ole turvaline</b> ja võib ohustada mis tahes teavet, mida sa sellel lehel saadad.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Me täiendasime sellel lehel olevat ühendust, et kaitsta sinu saadetud teavet selle edastamise ajal.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Järgmiste kolmanda poole domeenide päringute laadimine blokeeriti, sest need tuvastati jälgimispäringutena. Kui ettevõtte päringud laaditakse, võib see võimaldada neil sind profileerida.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Sellel lehel kasutatav ühendus on turvaline, et kaitsta sinu saadetud teavet.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Sellel lehel ei blokeritud ühtegi jälgimispäringute laadimist. Kui ettevõtte päringud laaditakse, võib see võimaldada neil sind profileerida.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Me ei tuvastanud sellel lehel ühtegi jälgimispäringut.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Me ei leidnud ühtegi ettevõtet, mis üritaks sind sellel lehel jälgida.",
+    "title" : "Me ei leidnud ühtegi ettevõtet, kes oleks üritanud sellel lehel jälgimispäringuid laadida.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Me leidsime ainult ettevõttele {name} kuuluvad jälgurid, mida me ei blokeerinud.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Saidi häirete vältimiseks ei blokeerinud me sellel lehel ühtegi ettevõtte jälgimispäringute laadimist.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Me {isWhitelisted, select, true {leidsime} other {blokeerisime}} sellel leheküljel {displayCount} teadaoleva {displayCount, plural, =1 {jälguri} {jälgurit}} {companyCount} {companyCount, plural, one {ettevõttelt} other {ettevõttelt}}.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Jälgimispäringute laadimist ei blokeeritud, sest selle saidi jaoks on kaitsed välja lülitatud. Kui ettevõtte päringud laaditakse, võib see võimaldada neil sind profileerida.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Loo uus Ducki aadress",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Kopeeritud sinu lõikelauale!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Kas veebisait ei tööta ootuspäraselt?",
@@ -52,57 +72,56 @@
     "title" : "Kasuta ettevaatusabinõusid",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Kaitsed on KEELATUD",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Leidsime sellel lehel mõned ettevõtted, kes sind jälgivad ja profileerivad.} =2 {Me leidsime ettevõtte {firstCompany} ja {secondCompany}, kes sind sellel lehel jälgivad ja profileerivad.} one {Leidsime ettevõtte {firstCompany}, kes jälgib ja profileerib sind sellel lehel.} other {Leidsime ettevõtted {firstCompany}, {secondCompany} ja veel teisi, kes jälgivad ja profileerivad sind sellel lehel.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Jälgimisvõrk",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (domeeni {domain} omanik)\njälgib sind {companyPrevalence}% populaarseimatest saitidest.\nMe ei saa blokeerida neid nende enda saitidel, kuid saame blokeerida teisi lehekülgi.",
+    "title" : "{blocked, select, true {<b>Selle saidi omanik on {companyDisplayName}</b>, mis haldab jälgimisvõrgustikku {companyPrevalence}%-l populaarsematest veebisaitidest. Suutsime sellel lehel blokeerida mõned nende päringud.} other {<b>Selle saidi omanik on {companyDisplayName}</b>, mis haldab jälgimisvõrgustikku {companyPrevalence}%-l populaarsematest veebisaitidest. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Raporteeritavat tegevust ei ole",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Kelle me blokeerisime",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Me blokeerisime mõnede ettevõtete püüded sind jälgida.} =2 {Me blokeerisime ettevõtete {firstCompany} ja {secondCompany} püüded sind jälgida.} one {Me blokeerisime ettevõtte {firstCompany} püüded sind jälgida.} other {Me blokeerisime ettevõtte {firstCompany}, {secondCompany} ja teiste püüded sind jälgida.}}",
+    "title" : "{companyCount, plural, =0 {Blokeerisime sellel lehel jälgimispäringute laadimise.} =2 {Blokeerisime sellel lehel ettevõtete <b>{firstCompany}</b> ja <b>{secondCompany}</b> jälgimispäringute laadimise.} =3 {Blokeerisime sellel lehel ettevõtete <b>{firstCompany}</b>, <b>{secondCompany}</b> ja <b>{thirdCompany}</b> jälgimispäringute laadimise.} =4 {Blokeerisime sellel lehel ettevõtete <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ja <b>{fourthCompany}</b> jälgimispäringute laadimise.} =5 {Blokeerisime sellel lehel ettevõtete <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ja <b>veel ühe</b> ettevõtte jälgimispäringute laadimise.} one {Blokeerisime sellel lehel ettevõtte <b>{firstCompany}</b> jälgimispäringute laadimise.} other {Me blokeerisime <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ja <b>{othersCount} teised</b> jälgimispäringute laadimise sellel lehel.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Minimeeritud küpsised",
+    "title" : "Hallatavad küpsised",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Me seadistasime sinu küpsiste eelistused maksimeerima privaatsust ja sulgesime nõusoleku hüpikakna.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Ühendus on turvaline",
+    "title" : "Ühendus on krüptitud",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Ühendust ei saanud turvata",
+    "title" : "Ühendus ei ole krüptitud",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} Peamine jälgimisvõrk on blokeeritud} other {{trackerCount} Peamine jälgimisvõrk on blokeeritud}}} other {{trackerCount, plural, one {{trackerCount} jälgija on blokeeritud} other {{trackerCount} jälgijat on blokeeritud}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} Leitud peamine jälgimisvõrk} other {{trackerCount} Leitud peamine jälgimisvõrk}}} other {{trackerCount, plural, one {{trackerCount} jälitaja leitud} other {{trackerCount} jälitajat leitud}}}}}}",
+    "title" : "Päringute laadimine on blokeeritud",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Ühtegi jälgimispäringut pole blokeeritud",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Jälgimispäringuid ei leitud",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Kolmanda poole päringud on laaditud",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Kolmandate poolte päringuid ei leitud",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} omab seda saiti ja sellel lehel kasutatavaid teada olevaid jälgureid, seega me ei blokeerinud neid.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Me ei leidnud ühtegi ettevõtet, kes oleks üritanud sellel lehel jälgimispäringuid laadida.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Jälgurid aitavad ettevõtetel sind profileerida. Leidsime, et need ettevõtted jälgivad sinu tegevust sellel lehel.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {Saidil {domain} blokeeriti {trackerCount} jälgur} other {Saidil {domain} blokeeriti {trackerCount} jälgurit}}} other {{trackerCount, plural, one {Saidilt {domain} leiti {trackerCount} jälgur} other {Saidilt {domain} leiti {trackerCount} jälgurit}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Pane tähele: platvormi piirangud võivad piirata meie võimet tuvastada kõiki päringuid.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Meie veebijälgimise kaitsete teave",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Kuidas meie otsingu reklaamid meie kaitset mõjutavad?",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Järgmise domeeni päringud laaditi, sest hiljuti klõpsati DuckDuckGo kaudu ettevõtte {domain} reklaamil. Need päringud aitavad hinnata reklaamide tõhusust. Kõik DuckDuckGo reklaamid on mitteprofileerivad.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Laaditi järgmiste domeenide päringud, et vältida saidi töö häirimist.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Järgmiste domeenide päringud laaditi, sest need on seotud domeeniga {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Laaditi ka järgmiste domeenide päringud."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Järgmiste domeenide päringud laaditi, sest kaitse on välja lülitatud.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Laaditi järgmiste kolmanda poole domeenide päringud. Kui ettevõtte päringud laaditakse, võib see võimaldada neil sind profileerida, kuigi meie teised veebi jälgimise kaitsemeetmed kehtivad endiselt.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Laaditi järgmiste kolmanda poole domeenide päringud. Kui ettevõtte päringud laaditakse, võib see võimaldada neil sind profileerida, kuigi meie teised veebi jälgimise kaitsemeetmed kehtivad endiselt.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Me ei tuvastanud kolmandate poolte domeenide päringuid.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analüütika",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Sotsiaalvõrk",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Sisu esitamine",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Manustatud sisu",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Otsi DuckDuckGo'st",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Otsi",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Veel valikuid",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Valmis",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Tagasi",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

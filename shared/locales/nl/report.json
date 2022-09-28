@@ -48,10 +48,6 @@
     "title" : "Iets anders",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Defecte website melden",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Vertel ons eventueel over het probleem dat je hebt ondervonden",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Rapporten die naar DuckDuckGo worden verzonden, zijn 100% anoniem en bevatten alleen je selectie hierboven, je optionele beschrijving, de URL en een lijst met trackers die we op de site hebben gevonden.",
+    "title" : "Rapporten die naar DuckDuckGo worden verzonden, bevatten alleen informatie die nodig is om ons te helpen je feedback te verwerken.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Je rapport helpt ons om de browser én de ervaring voor anderen te verbeteren.",
+    "title" : "Je rapport helpt ons om onze producten én de ervaring voor anderen te verbeteren.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

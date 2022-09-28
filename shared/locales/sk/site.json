@@ -12,37 +12,57 @@
     "title" : "Aktualizácia zoznamu ochrany",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Ochrana bola <b>VYPNUTÁ</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Ochrana je pre túto lokalitu je <b>ZAPNUTÁ</b>",
+    "title" : "Ochrany sú pre tento web <b>ZAPNUTÉ</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Ochrany sú pre tento web <b>VYPNUTÉ</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Dočasne sme vypli ochranu súkromia, pretože sa zdá, že spôsobuje poruchy na tejto lokalite.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Odporúčame vypnúť ochranu súkromia pre túto lokalitu s cieľom zabrániť chybám.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Iné osoby môžu zachytiť citlivé údaje, ktoré odosielate na tejto stránke.",
+    "title" : "<b>Táto lokalita nie je zabezpečená</b> a môže ohroziť zabezpečenie všetkých informácií, ktoré na nej odošlete.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Pripojenie na tejto stránke sme vylepšili, aby sme chránili vami odosielané údaje počas prenosu.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Načítanie požiadaviek nasledujúcich domén tretích strán bolo zablokované, pretože boli identifikované ako požiadavky na sledovanie. Ak sú načítané požiadavky spoločnosti, môže im umožniť profilovať vás.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Spojenie na tejto stránke je zabezpečené, aby sa chránili vami zaslané údaje počas prenosu.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Na tejto stránke nebolo zablokované načítanie žiadnych požiadaviek na sledovanie. Ak sú požiadavky spoločnosti načítané, môže im to umožniť profilovať vás.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Na tejto stránke sme nezistili žiadne požiadavky na sledovanie.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Na tejto stránke sme nenašli žiadne spoločnosti, ktoré by sa vás snažili sledovať.",
+    "title" : "Na tejto stránke sme nenašli žiadne spoločnosti, ktoré by sa pokúšali načítať požiadavky na sledovanie.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Našli sme len sledovacie zariadenia, ktoré vlastní {name}, ktoré sme nezablokovali.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Aby sme zabránili narušeniu lokality, neblokovali sme žiadnym spoločnostiam načítanie žiadostí o sledovanie na tejto stránke.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "My {isWhitelisted, select, true {found} iné {blocked}} {displayCount} známe {displayCount, množné číslo, =1 {tracker} iné {trackers}} z {companyCount} {companyCount, množné číslo, jeden {company} iné {company}} na tejto stránke.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Nebolo zablokované žiadne načítavanie požiadaviek na sledovanie, pretože ochrana je pre túto stránku vypnutá. Ak sú požiadavky spoločnosti načítané, môže im to umožniť profilovať vás.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Vytvoriť novú adresu Duck",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Skopírované do schránky!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Webová lokalita nefunguje podľa očakávania?",
@@ -52,57 +72,56 @@
     "title" : "Vykonajte preventívne opatrenia",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Ochrana je VYPNUTÁ",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Na tejto stránke sme našli niekoľko spoločností, ktoré vás sledujú a profilujú.} =2 {Na tejto stránke sme našli spoločnosť {firstCompany} a {secondCompany}, ktoré vás sledujú a profilujú.} one {Na tejto stránke sme našli spoločnosť {firstCompany}, ktorá vás sleduje a profiluje.} few {Na tejto stránke sme našli spoločnosť {firstCompany}, {secondCompany} a ďalšie, ktoré vás sledujú a profilujú.} many {Na tejto stránke sme našli spoločnosť {firstCompany}, {secondCompany} a ďalšie, ktoré vás sledujú a profilujú.} other {Na tejto stránke sme našli spoločnosť {firstCompany}, {secondCompany} a ďalšie, ktoré vás sledujú a profilujú.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Siete sledovacích objektov",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (vlastník {domain})\nvás sleduje na {companyPrevalence}% top stránok.\nNemôžeme ich zablokovať na lokalitách, ktoré vlastnia, ale môžeme ich zablokovať na iných stránkach.",
+    "title" : "{blocked, select, true {<b>Túto stránku vlastní spoločnosť {companyDisplayName}</b>, ktorá prevádzkuje sieť sledovačov na {companyPrevalence} % najlepších webových lokalít. Na tejto stránke sa nám podarilo zablokovať niektoré z ich požiadaviek.} other {<b>Túto stránku vlastní spoločnosť {companyDisplayName}</b>, ktorá prevádzkuje sieť sledovačov na {companyPrevalence} % najlepších webových lokalít. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Žiadna aktivita na hlásenie",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Koho sme zablokovali",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Zablokovali sme niektoré spoločnosti, ktoré sa vás pokúšali sledovať.} =2 {Zablokovali sme {firstCompany} a {secondCompany}, ktoré sa vás pokúšali sledovať.} one {Zablokovali sme spoločnosť {firstCompany}, ktorá sa vás pokúšali sledovať.} few {Zablokovali sme spoločnosti {firstCompany}, {secondCompany} a ďalšie, ktoré sa vás pokúšali sledovať.} many {Zablokovali sme spoločnosť {firstCompany}, {secondCompany} a ďalšie, ktoré sa vás pokúšali sledovať.} other {Zablokovali sme spoločnosti {firstCompany}, {secondCompany} a ďalšie, ktoré sa vás pokúšali sledovať.}}",
+    "title" : "{companyCount, plural, =0 {Zablokovali sme Zablokovali sme načítanie požiadaviek na sledovanie na tejto stránke.} =2 {Zablokovali sme <b>{firstCompany}</b> a <b>{secondCompany}</b>, z načítania požiadaviek na sledovanie na tejto stránke.} =3 {Zablokovali sme <b>{firstCompany}</b>, <b>{secondCompany}</b> a <b>{thirdCompany}</b> z načítania požiadaviek na sledovanie na tejto stránke.} =4 {Zablokovali sme <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> a <b>{fourthCompany}</b> z načítania požiadaviek na sledovanie na tejto stránke.} =5 {Zablokovali sme <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> a <b>1 ďalšie</b> z načítania sledovacích požiadaviek na tejto stránke.} one {Zablokovali sme <b>{firstCompany}</b> pred načítaním požiadaviek na sledovanie na tejto stránke.} few {Zablokovali sme <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b>a <b>{othersCount} ďalšie</b>pred načítaním požiadaviek na sledovanie na tejto stránke.} many {Zablokovali sme <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b>a <b>{othersCount} ďalšie</b>pred načítaním požiadaviek na sledovanie na tejto stránke.} other {Zablokovali sme <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b>a <b>{othersCount} ďalšie</b>pred načítaním požiadaviek na sledovanie na tejto stránke.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Súbory cookie boli minimalizované",
+    "title" : "Spravované súbory cookie",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Nastavili sme vaše nastavenia súborov cookie na maximalizáciu ochrany súkromia a zatvorili sme automaticky zobrazované okno so súhlasom.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Pripojenie je zabezpečené",
+    "title" : "Pripojenie je šifrované",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Pripojenie sa nepodarilo zabezpečiť ",
+    "title" : "Pripojenie nie je šifrované",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {Zablokovala sa {trackerCount} hlavná sieť sledovacích zariadení} few {Zablokovali sa {trackerCount} hlavné siete sledovacích zariadení} many {Zablokovala sa {trackerCount} hlavnej siete sledovacích zariadení} other {Zablokovalo sa {trackerCount} hlavných sietí sledovacích zariadení}}} other {{trackerCount, plural, one {Zablokovalo sa {trackerCount} sledovacie zariadenie} few {Zablokovali sa {trackerCount} sledovacie zariadenia} many {Zablokovalo sa {trackerCount} sledovacieho zariadenia} other {Zablokovalo sa {trackerCount} sledovacích zariadení}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {Našla sa {trackerCount} hlavná sieť sledovacích zariadení} few {Našli sa {trackerCount} hlavné siete sledovacích zariadení} many {Našlo sa {trackerCount} hlavnej siete sledovacích zariadení} other {Našlo sa {trackerCount} hlavných sietí sledovacích zariadení}}} other {{trackerCount, plural, one {Našlo sa {trackerCount} sledovacie zariadenie} few {Našli sa {trackerCount} sledovacie zariadenia} many {Našlo sa {trackerCount} sledovacieho zariadenia} other {Našlo sa {trackerCount} sledovacích zariadení}}}}}}",
+    "title" : "Načítavanie žiadostí je zablokované",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Nie sú blokované žiadne žiadosti o sledovanie",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Nenašli sa žiadne požiadavky na sledovanie",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Požiadavky tretích strán boli načítané",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Nenašli sa žiadne požiadavky tretích strán",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} vlastní túto stránku a známe sledovacie zariadenia nájdené na tejto stránke, takže sme ich nezablokovali.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Na tejto stránke sme nenašli žiadne spoločnosti, ktoré by sa pokúšali načítať požiadavky na sledovanie.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Sledovacie zariadenia pomáhajú spoločnostiam profilovať vás. Na tejto stránke sme našli tieto spoločnosti, ktoré monitorujú vašu aktivitu.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} sledovacie zariadenie zablokované na {domain}} few {{trackerCount} sledovacie zariadenia zablokované na {domain}} many {{trackerCount} sledovacieho zariadenia zablokovaného na {domain}} other {{trackerCount} sledovacích zariadení zablokovaných na {domain}}}} other {{trackerCount, plural, one {{trackerCount} sledovacie zariadenie nájdené na {domain}} few {{trackerCount} sledovacie zariadenia nájdené na {domain}} many {{trackerCount} sledovacieho zariadenia nájdeného na {domain}} other {{trackerCount} sledovacích zariadení nájdených na {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Upozornenie: obmedzenia platformy môžu obmedziť našu schopnosť zistiť všetky požiadavky.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "O našej ochrane pred sledovaním činnosti na webe",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Ako naše reklamy vo vyhľadávaní ovplyvňujú našu ochranu",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Požiadavky nasledujúcej domény boli načítané, pretože nedávno ste klikli na reklamu {domain} na DuckDuckGo. Tieto žiadosti pomáhajú vyhodnotiť účinnosť reklám. Všetky reklamy na DuckDuckGo sú neprofilujúce.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Požiadavky nasledujúcej domény boli načítané, aby sa zabránilo rozbitiu stránky.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Požiadavky na nasledujúce domény boli načítané, pretože sú spojené s doménou {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Boli načítané aj nasledujúce požiadavky domény."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Požiadavky na nasledujúce domény boli načítané, pretože ochrany sú vypnuté.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Boli načítané nasledujúce požiadavky na domény tretích strán. Ak sú požiadavky spoločnosti načítané, môže im to umožniť profilovať vás, hoci naše ostatné ochrany sledovania webu stále platia.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Boli načítané nasledujúce požiadavky na domény tretích strán. Ak sú požiadavky spoločnosti načítané, môže im to umožniť profilovať vás, hoci naše ostatné ochrany sledovania webu stále platia.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Neidentifikovali sme žiadne žiadosti z domén tretích strán.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analytické údaje",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Sociálna sieť",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Dodanie obsahu",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Vložený obsah",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Vyhľadávajte cez DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Vyhľadávať",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Ďalšie možnosti",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Hotovo",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Späť",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

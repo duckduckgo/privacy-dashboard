@@ -12,37 +12,57 @@
     "title" : "Koruma listesi güncelleniyor",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Korumalar <b>DEVRE DIŞI BIRAKILDI</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Korumalar bu site için <b>ETKİNLEŞTİRİLDİ</b>",
+    "title" : "Bu site için koruma <b>AÇIK</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Bu site için koruma <b>KAPALI</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Bu sitede hatalara neden olduğu için Gizlilik Korumasını geçici olarak kapattık.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Sitede hataları önlemek için bu sitede Gizlilik Koruması'nı devre dışı bırakmanızı öneririz.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Başkaları bu sayfada gönderdiğiniz hassas bilgileri ele geçirebilir.",
+    "title" : "<b>Bu site güvenli değildir</b> ve bu sayfada gönderdiğiniz bilgileri tehlikeye atabilir.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Aktarım sırasında gönderdiğiniz bilgileri korumak için bu sayfadaki bağlantıyı yükselttik.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Aşağıdaki üçüncü taraf alan adlarının isteklerinin yüklenmesi, izleme istekleri olarak tanımlandıkları için engellendi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Bu sayfadaki bağlantı, gönderdiğiniz bilgileri aktarım sırasında korumak için güvenlidir.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Tespit edilen herhangi bir izleme isteğinin bu sayfaya yüklenmesi engellenmedi. Bir şirketin isteklerinin yüklenmesi profilinizi oluşturmalarını mümkün kılabilir.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Bu sayfada herhangi bir izleme isteği tespit etmedik.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Bu sayfada sizi takip etmeye çalışan herhangi bir şirket bulamadık.",
+    "title" : "Bu sayfada izleme taleplerini yüklemeye çalışan herhangi bir şirket bulamadık.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Yalnızca {name} şirketine ait ve engellemediğimiz izleyiciler bulduk.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Sitede hatalar olmasını önlemek için şirketlerin bu sayfaya izleme isteği yüklemesini engellemedik.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Bu sayfada {companyCount} {companyCount, plural, one {company} other {companies}} şirketten {displayCount} bilinen {displayCount, plural, =1 {tracker} other {trackers}} izleyiciyi {isWhitelisted, select, true {found} other {blocked}}.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Bu site için Korumalar kapalı olduğundan hiçbir izleme isteğinin yüklenmesi engellenmedi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Yeni Duck Adresi oluştur",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Panonuza kopyalandı!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Web sitesi beklendiği gibi çalışmıyor mu?",
@@ -52,57 +72,56 @@
     "title" : "Önlem Alın",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Korumalar DEVRE DIŞI",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Bu sayfada sizi izleyen ve profilinizi çıkaran bazı şirketler olduğunu belirledik.} =2 {Bu sayfada sizi izleyen ve profilinizi çıkaran {firstCompany} ve {secondCompany} bulduk.} one {{firstCompany} şirketinin sizi bu sayfada izlediğini ve profilinizi çıkardığını belirledik.} other {{firstCompany}, {secondCompany} ve diğerlerinin sizi bu sayfada izlediğini ve profilinizi çıkardığını belirledik.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "İzleyici Ağı",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} ({domain} alan adının sahibi)\nsizi en popüler sitelerin %{companyPrevalence} kadarında izliyor.\nOnları sahip oldukları sitelerde engelleyemiyor, ancak diğer sayfalarda engelleyebiliyoruz.",
+    "title" : "{blocked, select, true {<b>Bu site, en iyi web sitelerinin önemli bir kısmında (%{companyPrevalence}) bir izleyici ağını yöneten {companyDisplayName}</b> şirketine aittir. Bu sayfadaki bazı taleplerini engelleyebildik.} other {<b>Bu site, en iyi web sitelerinin önemli bir kısmında (%{companyPrevalence}) bir izleyici ağını yöneten {companyDisplayName}</b> şirketine aittir. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Raporlanacak Etkinlik Yok",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Engellenen Şirketler",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Bazı şirketlerin sizi izlemesini engelledik.} =2 {{firstCompany} ve {secondCompany} tarafından izlenmenizi engelledik.} one {{firstCompany} tarafından izlenmenizi engelledik.} other {{firstCompany}, {secondCompany} ve diğerlerinin sizi izlemesini engelledik.}}",
+    "title" : "{companyCount, plural, =0 {Bu sayfada izleme isteklerinin yüklenmesini engelledik.} =2 {<b>{firstCompany}</b> ve <b>{secondCompany}</b> şirketlerinin bu sayfadaki izleme isteklerini yüklemesini engelledik.} =3 {<b>{firstCompany}</b>, <b>{secondCompany}</b> ve <b>{thirdCompany}</b> şirketlerinin bu sayfadaki izleme isteklerini yüklemesini engelledik.} =4 {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ve <b>{fourthCompany}</b> şirketlerinin bu sayfadaki izleme isteklerini yüklemesini engelledik.} =5 {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ve <b>1 diğer</b> şirketin bu sayfadaki izleme isteklerini yüklemesini engelledik.} one {<b>{firstCompany}</b> şirketinin bu sayfadaki izleme isteklerini yüklemesini engelledik.} other {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ve <b>{othersCount} diğerlerinin</b> bu sayfadaki izleme isteklerini yüklemesini engelledik.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Çerezler Minimize Edildi",
+    "title" : "Yönetilen Çerezler",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Çerez tercihlerinizi gizliliği en üst düzeye çıkaracak şekilde ayarladık ve onay açılır penceresini kapattık.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Bağlantı Güvenli",
+    "title" : "Bağlantı Şifrelenmiştir",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Bağlantı Güvenli Hâle Getirilemedi",
+    "title" : "Bağlantı Şifrelenmemiştir",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} Başlıca İzleyici Ağı Engellendi} other {{trackerCount} Başlıca İzleyici Ağları Engellendi}}} other {{trackerCount, plural, one {{trackerCount} İzleyici Engellendi} other {{trackerCount} İzleyici Engellendi}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} Ana İzleyici Ağı Bulundu} other {{trackerCount} Başlıca İzleyici Ağları Bulundu}}} other {{trackerCount, plural, one {{trackerCount} İzleyici Bulundu} other {{trackerCount} İzleyici Bulundu}}}}}}",
+    "title" : "Yüklenmesi Engellenen İstekler",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Hiçbir İzleme İsteği Engellenmedi",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "İzleme İsteği Bulunamadı",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Üçüncü Taraf İstekleri Yüklendi",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Yüklenen Üçüncü Taraf İsteği Yok",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} bu sitenin ve bu sayfada bulunan bilinen izleyicilerin sahibi olduğundan bu şirketi engellemedik.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Bu sayfada izleme taleplerini yüklemeye çalışan herhangi bir şirket bulamadık.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Şirketler izleyici kullanarak profilinizi çıkarabilir. Bu sayfadaki etkinliğinizi bu şirketlerin izlediğini belirledik.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{domain} üzerinde {trackerCount} İzleyici Engellendi} other {{domain} üzerinde {trackerCount} İzleyici Engellendi}}} other {{trackerCount, plural, one {{domain} üzerinde {trackerCount} İzleyici Bulundu} other {{domain} üzerinde {trackerCount} İzleyici Bulundu}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Not: Platform sınırlamaları yüzünden tüm istekleri belirlememiz mümkün olmayabilir.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Web İzleme Korumalarımız hakkında",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Arama ağı reklamlarımız korumalarımızı nasıl etkiler?",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Aşağıdaki etki alanından gelen istekler, yakın zamanda DuckDuckGo'daki bir {domain} reklamı tıklandığı için yüklendi. Bu istekler, reklamların ne kadar etkili olduğunun değerlendirilmesine yardımcı olur. DuckDuckGo'daki reklamlar profil oluşturmak için kullanılmaz.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Sitede hatalar oluşmasını önlemek için aşağıdaki etki alanı istekleri yüklendi.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Aşağıdaki etki alanı istekleri {domain} ile ilişkili olduğu için yüklendi.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Aşağıdaki etki alanlarının istekleri de yüklendi."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Korumalar kapalı olduğu için aşağıdaki etki alanı istekleri yüklendi.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Aşağıdaki üçüncü taraf alan adlarının istekleri yüklendi. Bir şirketin istekleri yüklenirse, diğer web izleme korumalarımıza rağmen profilinizi oluşturmaları mümkün olabilir.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Aşağıdaki üçüncü taraf alan adlarının istekleri yüklendi. Bir şirketin istekleri yüklenirse, diğer web izleme korumalarımıza rağmen profilinizi oluşturmaları mümkün olabilir.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Üçüncü taraf etki alanlarından gelen herhangi bir talep tespit etmedik.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analitik",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Sosyal Ağ",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "İçerik Dağıtımı",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Gömülü İçerik",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "DuckDuckGo'da Ara",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Ara",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Diğer seçenekler",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Bitti",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Geri",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }
