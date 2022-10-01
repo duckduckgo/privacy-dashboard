@@ -93,7 +93,7 @@
     },
     "trackerNetworksDesc": {
         "title": "Requests Blocked from Loading",
-        "note": "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+        "note": "This indicates that 1 or more trackers were blocked."
     },
     "trackerNetworksNotBlocked": {
         "title": "No Tracking Requests Blocked",
@@ -101,9 +101,6 @@
     },
     "trackerNetworksNotFound": {
         "title": "No Tracking Requests Found",
-        "note": "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-    },
-    "trackerNetworksProtectionsDisabled": {
         "note": "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
     },
     "thirdPartiesLoaded": {
