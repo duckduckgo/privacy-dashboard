@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Pripojenie",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Šifrovať",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Táto stránka neumožňuje zabezpečené pripojenie. Iné osoby môžu zachytiť citlivé údaje, ktoré odošlete na tejto stránke.",
+    "title" : "Táto stránka používa nešifrované pripojenie. Tretie strany môžu byť schopné zobraziť vašu aktivitu alebo môžu zachytiť citlivé informácie, ktoré odošlete na tejto stránke.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Táto stránka používa zabezpečené pripojenie, ktoré chráni odosielané údaje počas prenosu.",
+    "title" : "Táto stránka používa šifrované pripojenie, ktoré zabraňuje tretím stranám prezerať si vašu činnosť alebo zachytávať citlivé informácie, ktoré na tejto stránke odosielate.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

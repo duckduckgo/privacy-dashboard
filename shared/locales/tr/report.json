@@ -48,10 +48,6 @@
     "title" : "Başka bir şey",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Hatalı Siteyi Bildirin",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "İsterseniz bize yaşadığınız sorun hakkında bilgi verin",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "DuckDuckGo'ya gönderilen raporlar %100 isimsizdir ve yalnızca yukarıdaki seçiminizi, isteğe bağlı açıklamanızı, URL'yi ve sitede bulduğumuz izleyicilerin bir listesini içerir.",
+    "title" : "DuckDuckGo'ya gönderilen raporlar yalnızca geri bildiriminizi değerlendirmemize yardımcı olacak gerekli bilgileri içerir.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Raporunuz tarayıcıyı geliştirmemize ve diğer kullanıcılar için daha iyi bir deneyim sunmamıza yardımcı olacaktır.",
+    "title" : "Raporunuz ürünlerimizi geliştirmemize ve diğer kullanıcılar için daha iyi bir deneyim sunmamıza yardımcı olacaktır.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

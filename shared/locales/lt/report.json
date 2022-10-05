@@ -48,10 +48,6 @@
     "title" : "Kažkas kito",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Pranešti apie sugadintą svetainę",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Jei norite, papasakokite apie problemą, su kuria susidūrėte",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "„DuckDuckGo“ siunčiamos ataskaitos yra 100 % anonimiškos ir apima tik jūsų pasirinkimą aukščiau, pasirenkamą aprašymą, URL ir stebėjimo priemonių, kurias radome svetainėje, sąrašą.",
+    "title" : "„DuckDuckGo“ siunčiamose ataskaitose pateikiama tik ta informacija, kurios reikia, kad galėtume reaguoti į jūsų atsiliepimus.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Jūsų ataskaita padės patobulinti naršyklę ir pagerinti kitų naudotojų patirtį.",
+    "title" : "Jūsų ataskaita padės patobulinti mūsų produktus ir pagerinti kitų naudotojų patirtį.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

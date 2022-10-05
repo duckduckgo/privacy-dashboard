@@ -48,10 +48,6 @@
     "title" : "Jotain muuta",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Ilmoita viallisesta sivustosta",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Jos haluat, kerro meille ongelmasta",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "DuckDuckGolle lähetetyt raportit ovat täysin anonyymeja, ja ne sisältävät vain yllä olevan valintasi, valinnaisen kuvauksesi, URL-osoitteen ja luettelon sivustolta löytämistämme seurantaohjelmista.",
+    "title" : "DuckDuckGolle lähetetyt raportit sisältävät vain tietoja, joita tarvitaan palautteesi käsittelemiseen.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Raporttisi auttaa parantamaan selainta sekä muiden ihmisten käyttökokemusta.",
+    "title" : "Raporttisi auttaa parantamaan tuotteitamme sekä muiden ihmisten käyttökokemusta.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

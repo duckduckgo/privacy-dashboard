@@ -12,37 +12,57 @@
     "title" : "Apsaugos sąrašo atnaujinimas",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Apsaugos buvo <b>IŠJUNGTOS</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Apsaugos yra <b>ĮJUNGTOS</b> šioje svetainėje",
+    "title" : "Šios svetainės apsauga <b>ĮJUNGTA</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Šios svetainės apsauga <b>IŠJUNGTA</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Laikinai išjungėme privatumo apsaugą, nes atrodo, kad ji trikdo šios svetainės veikimą.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Rekomenduojame išjungti šios svetainės privatumo apsaugą, kad svetainė veiktų tinkamai.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Kiti asmenys gali perimti konfidencialią informaciją, kurią siunčiate šiame puslapyje.",
+    "title" : "<b>Ši svetainė nėra saugi</b> ir gali pakenkti bet kokiai informacijai, kurią siunčiate šiame puslapyje.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Atnaujinome šiame puslapyje esantį ryšį, kad apsaugotume siunčiamą informaciją.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Toliau nurodytų trečiųjų šalių domenų užklausų įkėlimas buvo užblokuotas, nes jos buvo identifikuotos kaip sekimo užklausos. Jei įmonės užklausos įkeliamos, ji gali leisti joms rinkti informaciją apie jus.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Šiame puslapyje esantis ryšys yra saugus, kad būtų apsaugota siunčiama informacija.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Sekimo užklausos nebuvo užblokuotos šiame puslapyje. Jei įmonės užklausos įkeliamos, jos gali būti naudojamos informacijai apie jus rinkti.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Šiame puslapyje nenustatėme jokių sekimo užklausų.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Šiame puslapyje neradome jokių įmonių, kurios bandytų jus stebėti.",
+    "title" : "Neradome nė vienos įmonės, kuri šiame puslapyje bandytų įkelti sekimo užklausas.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Radome tik {name} priklausančias stebėjimo priemones, kurių neblokavome.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Kad svetainės veikimas nebūtų sutrikdytas, neužblokavome jokių įmonių, bandančių šiame puslapyje įkelti sekimo užklausas.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Mes {isWhitelisted, select, true {found} other {blocked}} {displayCount} žinome {displayCount, plural, =1 {tracker} other {trackers}} iš {companyCount} {companyCount, plural, one {company} other {companies}} šiame puslapyje.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Nebuvo užblokuotas jokių sekimo užklausų įkėlimas, nes šioje svetainėje apsauga yra išjungta. Jei įmonės užklausos įkeliamos, ji gali leisti joms rinkti informaciją apie jus.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Susikurkite naują „Duck“ adresą",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Nukopijuota į iškarpinę!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Svetainė neveikia taip, kaip tikėtasi?",
@@ -52,57 +72,56 @@
     "title" : "Imkitės atsargumo priemonių",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Apsaugos yra IŠJUNGTOS",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Šiame puslapyje radome keletą jus stebinčių ir profiliuojančių įmonių.} =2 {Šiame puslapyje radome {firstCompany} ir {secondCompany} stebinčias ir profiliuojančias jus.} one {Nustatėme, kad šiame puslapyje jus stebi ir profiliuoja {firstCompany}.} few {Nustatėme, kad šiame puslapyje jus stebi ir profiliuoja {firstCompany}, {secondCompany} ir kt.} many {Nustatėme, kad šiame puslapyje jus stebi ir profiliuoja {firstCompany}, {secondCompany} ir kt.} other {Nustatėme, kad šiame puslapyje jus stebi ir profiliuoja {firstCompany}, {secondCompany} ir kt.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Stebėjimo priemonių tinklas",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} ({domain} savininkas)\nstebi jus {companyPrevalence} % populiariausių svetainių.\nNegalime jų užblokuoti jiems priklausančiose svetainėse, bet galime kituose puslapiuose.",
+    "title" : "{blocked, select, true {<b>Ši svetainė priklauso {companyDisplayName}</b>, kuri valdo sekimo tinklą {companyPrevalence} % geriausių svetainių. Mums pavyko užblokuoti kai kurias jų užklausas šiame puslapyje.} other {<b>Ši svetainė priklauso {companyDisplayName}</b>, kuri valdo sekimo tinklą {companyPrevalence} % geriausių svetainių. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Nėra jokios veiklos",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Ką mes užblokavome",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Užblokavome kai kurių įmonių bandymus jus stebėti.} =2 {Užblokavome {firstCompany} ir {secondCompany} bandymus jus stebėti.} one {Užblokavome {firstCompany} nuo bandymo jus stebėti.} few {Užblokavome {firstCompany}, {secondCompany} ir kt. nuo bandymo jus stebėti.} many {Užblokavome {firstCompany}, {secondCompany} ir kt. nuo bandymo jus stebėti.} other {Užblokavome {firstCompany}, {secondCompany} ir kt. nuo bandymo jus stebėti.}}",
+    "title" : "{companyCount, plural, =0 {Užblokavome sekimo užklausų įkėlimą šiame puslapyje.} =2 {Užblokavome <b>{firstCompany}</b> ir <b>{secondCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =3 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b> ir <b>{thirdCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =4 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ir <b>{fourthCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =5 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar 1</b> sekimo užklausų įkėlimą šiame puslapyje.} one {Užblokavome <b>{firstCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} few {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} many {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} other {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Slapukai yra sumažinti",
+    "title" : "Slapukai valdomi",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Nustatėme slapukų nuostatas, kad būtų užtikrintas kuo didesnis privatumas, ir uždarėme iššokantįjį sutikimo langą.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Ryšys yra saugus",
+    "title" : "Ryšys užšifruotas",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Nepavyko užtikrinti ryšio saugumo",
+    "title" : "Ryšys neužšifruotas",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {Užblokuotas {trackerCount} pagrindinis stebėjimo priemonės tinklas} few {Užblokuoti {trackerCount} pagrindiniai stebėjimo priemonės tinklai} many {Užblokuota {trackerCount} pagrindinio stebėjimo priemonės tinklo} other {Užblokuota {trackerCount} pagrindinių stebėjimo priemonės tinklų}}} other {{trackerCount, plural, one {Užblokuota {trackerCount} stebėjimo priemonė} few {Užblokuotos {trackerCount} stebėjimo priemonės} many {Užblokuota {trackerCount} stebėjimo priemonė} other {Užblokuota {trackerCount} stebėjimo priemonių}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {Rastas {trackerCount} pagrindinis stebėjimo priemonės tinklas} few {Rasti {trackerCount} pagrindiniai stebėjimo priemonės tinklai} many {Rasta {trackerCount} pagrindinio stebėjimo priemonės tinklo} other {Rasta {trackerCount} pagrindinių stebėjimo priemonės tinklų}}} other {{trackerCount, plural, one {Rasta {trackerCount} stebėjimo priemonė} few {Rastos {trackerCount} stebėjimo priemonės} many {Rasta {trackerCount} stebėjimo priemonės} other {Rasta {trackerCount} stebėjimo priemonių}}}}}}",
+    "title" : "Užklausos užblokuotos įkelti",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Neužblokuota jokių sekimo užklausų",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Sekimo užklausų nerasta",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Įkeltos trečiųjų šalių užklausos",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Nėra trečiųjų šalių užklausų",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} priklauso ši svetainė ir žinomos stebėjimo priemonės, rastos šiame puslapyje, todėl mes jų neužblokavome.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Neradome nė vienos įmonės, kuri šiame puslapyje bandytų įkelti sekimo užklausas.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Stebėjimo priemonės padeda įmonėms sudaryti jūsų profilį. Nustatėme, kad šios įmonės stebi jūsų veiklą šiame puslapyje.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} stebėjimo priemonė užblokuota {domain}} few {{trackerCount} stebėjimo priemonės užblokuotos {domain}} many {{trackerCount} stebėjimo priemonės užblokuota {domain}} other {{trackerCount} stebėjimo priemonių užblokuota {domain}}}} other {{trackerCount, plural, one {{trackerCount} stebėjimo priemonė rasta {domain}} few {{trackerCount} stebėjimo priemonės rastos {domain}} many {{trackerCount} stebėjimo priemonės rasta {domain}} other {{trackerCount} stebėjimo priemonių rasta {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Atkreipkite dėmesį: platformos apribojimai gali riboti mūsų galimybes aptikti visas užklausas.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Apie mūsų žiniatinklio stebėjimo apsaugą",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Kaip paieškos skelbimai veikia mūsų apsaugos priemones",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Šio domeno užklausos buvo įkeltos, nes neseniai „DuckDuckGo“ buvo spustelėta {domain} reklama. Šios užklausos padeda įvertinti reklamų efektyvumą. Visos „DuckDuckGo“ reklamos nerenka informacijos apie naudotoją.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Siekiant išvengti svetainės veikimo sutrikimų, buvo įkeltos šios domeno užklausos.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Šios domeno užklausos buvo įkeltos, nes jos susijusios su {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Taip pat buvo įkeltos šios domeno užklausos."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Šios domeno užklausos buvo įkeltos, nes apsaugos yra išjungtos.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Buvo įkeltos šios trečiųjų šalių domenų užklausos. Jei įmonės užklausos įkeliamos, ji gali leisti joms rinkti informaciją apie jus, nors kitos mūsų žiniatinklio sekimo apsaugos priemonės tebegalioja.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Buvo įkeltos šios trečiųjų šalių domenų užklausos. Jei įmonės užklausos įkeliamos, ji gali leisti joms rinkti informaciją apie jus, nors kitos mūsų žiniatinklio sekimo apsaugos priemonės tebegalioja.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Nenustatėme jokių užklausų iš trečiųjų šalių domenų.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analizė",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Socialinis tinklas",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Turinio pateikimas",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Įdėtasis turinys",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Ieškoti DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Paieška",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Daugiau parinkčių",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Atlikta",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Atgal",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

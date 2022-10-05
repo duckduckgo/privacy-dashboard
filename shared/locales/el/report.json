@@ -48,10 +48,6 @@
     "title" : "Κάτι άλλο",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Αναφορά ιστότοπου που δεν λειτουργεί",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Αν θέλετε, πείτε μας για το πρόβλημα που αντιμετωπίσατε",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Οι αναφορές που αποστέλλονται στο DuckDuckGo είναι 100% ανώνυμες και περιλαμβάνουν μόνο την πιο πάνω επιλογή σας, την προαιρετική περιγραφή σας, τη διεύθυνση URL και μια λίστα με εφαρμογές παρακολούθησης που βρήκαμε στον ιστότοπο.",
+    "title" : "Οι αναφορές που αποστέλλονται στο DuckDuckGo περιλαμβάνουν μόνο τις πληροφορίες που απαιτούνται για να μας βοηθήσουν να απαντάμε στα σχόλιά σας.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Η αναφορά σας θα μας βοηθήσει στο να βελτιώσουμε το πρόγραμμα περιήγησης και θα καταστήσει την εμπειρία καλύτερη για άλλα άτομα που χρησιμοποιούν τις υπηρεσίες μας.",
+    "title" : "Η αναφορά σας θα μας βοηθήσει στο να βελτιώσουμε τα προϊόντα μας και θα καταστήσει την εμπειρία καλύτερη για άλλα άτομα που χρησιμοποιούν τις υπηρεσίες μας.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }

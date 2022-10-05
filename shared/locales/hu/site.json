@@ -12,37 +12,57 @@
     "title" : "A védelmi lista frissítése",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Védelmek <b>LETILTVA</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "A védelmek <b>ENGEDÉLYEZVE</b> vannak ezen az oldalon",
+    "title" : "A védelmek <b>BE</b> vannak kapcsolva ezen a webhelyen",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "A védelmek <b>KI</b> vannak kapcsolva ezen a webhelyen",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Ideiglenesen kikapcsoltuk az Adatvédelem funkciót, mert úgy tűnik, hogy a webhely helytelen működését eredményezi.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Javasoljuk, hogy kapcsold ki az Adatvédelem funkciót ezen a webhelyen, hogy kiküszöböld a webhely helytelen működését.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Mások megszerezhetik az ezen az oldalon keresztül küldött érzékeny adatokat.",
+    "title" : "<b>Ez az oldal nem biztonságos</b> és veszélyeztetheti az erre az oldalra küldött információkat.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Az oldal kapcsolatát biztonságosabbá tettük, hogy megvédjük az elküldött adatokat az átvitel során.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "A következő harmadik fél tartományok kéréseinek betöltése blokkolva van, mivel nyomkövető kérésként lettek beazonosítva. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Az oldal kapcsolata biztonságos, hogy megvédje az elküldött adatokat az átvitel során.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Ezen az oldalon nyomkövetési kérés betöltése nem lett blokkolva. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Ezen az oldalon nem észleltünk nyomkövetési kérést.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Az oldalon nem található olyan cég, amely megpróbált volna nyomon követni.",
+    "title" : "Nem található olyan cég, amely megpróbált volna nyomkövető kérést betölteni ezen az oldalon.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Csak a(z) {name} tulajdonában lévő nyomkövetőket találtunk, amelyeket nem tiltottunk le.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "A webhely helytelen működésének kiküszöböléséhez nem blokkoltuk egyetlen cég nyomkövetési kérésének betöltését sem ezen az oldalon.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Ezen az oldalon {companyCount} {companyCount, plural, one {cég} other {cég}} {displayCount} ismert {displayCount, plural, =1 {nyomkövetőjét} other {nyomkövetőjét}} {isWhitelisted, select, true {találtuk meg} other {tiltottuk le}}.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "A nyomkövető kérések betöltése nincs blokkolva, mert a védelem ki van kapcsolva ehhez a webhelyhez. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Új Duck-cím létrehozása",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "A vágólapra másolva!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "A weboldal nem az elvártak szerint működik?",
@@ -52,57 +72,56 @@
     "title" : "Óvintézkedésekre van szükség",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Védelmek LETILTVA",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Azt észleltük, hogy néhány cég ezen az oldalon nyomon követ és profilt alkot rólad.} =2 {Azt észleltük, hogy a(z) {firstCompany} és a(z) {secondCompany} ezen az oldalon nyomon követ és profilt alkot rólad.} one {Azt észleltük, hogy a(z) {firstCompany} ezen az oldalon nyomon követ és profilt alkot rólad.} other {Azt észleltük, hogy a(z) {firstCompany}, a(z) {secondCompany} és mások ezen az oldalon nyomon követnek és profilt alkotnak rólad.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Nyomkövető hálózat",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "A(z) {companyDisplayName} (a(z) {domain} tulajdonosa)\na legnépszerűbb oldalak {companyPrevalence}%-án nyomon követ téged.\nA saját oldalaikon nem tudjuk letiltani őket, de más oldalakon igen.",
+    "title" : "{blocked, select, true {<b>Ez az oldal a(z) {companyDisplayName} tulajdonában van</b>, amely nyomkövető hálózatot működtet a legnépszerűbb webhelyek {companyPrevalence}%-án. Ezen az oldalon sikerült blokkolnunk néhány kérésüket.} other {<b>Ez az oldal a(z) {companyDisplayName} tulajdonában van</b>, amely nyomkövető hálózatot működtet a legnépszerűbb webhelyek {companyPrevalence}%-án. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Nincs jelentendő tevékenység",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Letiltott cégek",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Megtiltottuk néhány cégnek hogy megpróbáljon nyomon követni téged.} =2 {Megtiltottuk, hogy a(z) {firstCompany} és a(z) {secondCompany} megpróbáljon nyomon követni téged.} one {Megtiltottuk, hogy a(z) {firstCompany} megpróbáljon nyomon követni téged.} other {Megtiltottuk, hogy a(z) {firstCompany}, a(z) {secondCompany} és mások megpróbáljanak nyomon követni téged.}}",
+    "title" : "{companyCount, plural, =0 {Blokkoltuk a nyomkövetési kérések betöltését ezen az oldalon.} =2 {Blokkoltuk a(z) <b>{firstCompany}</b> és a(z) <b>{secondCompany}</b> nyomkövetési kéréseinek betöltését ezen az oldalon.} =3 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b> és a(z) <b>{thirdCompany}</b> nyomkövetési kéréseinek betöltését ezen az oldalon.} =4 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b> és a(z) <b>{fourthCompany}</b> nyomkövetési kéréseinek betöltését ezen az oldalon.} =5 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>1 másik</b> cég nyomkövetési kéréseinek betöltését ezen az oldalon.} one {Blokkoltuk a(z) <b>{firstCompany}</b> nyomkövetési kérésének betöltését ezen az oldalon.} other {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>{othersCount} másik</b> cég nyomkövetési kéréseinek betöltését ezen az oldalon.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Sütik minimalizálva",
+    "title" : "Kezelt sütik",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "A sütibeállításokat az adatvédelem maximalizálására állítottuk be, és bezártuk a beleegyezést kérő felugró ablakot.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "A kapcsolat biztonságos",
+    "title" : "A kapcsolat titkosított",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "A kapcsolatot nem sikerült biztonságossá tenni",
+    "title" : "A kapcsolat nem titkosított",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} nagy nyomkövető-hálózat letiltva} other {{trackerCount} nagy nyomkövető-hálózat letiltva}}} other {{trackerCount, plural, one {{trackerCount} nyomkövető letiltva} other {{trackerCount} nyomkövető letiltva}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} nagy nyomkövető-hálózat megtalálva} other {{trackerCount} nagy nyomkövető-hálózat megtalálva}}} other {{trackerCount, plural, one {{trackerCount} nyomkövető megtalálva} other {{trackerCount} nyomkövető megtalálva}}}}}}",
+    "title" : "Kérések betöltése blokkolva",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Nincsenek nyomkövetési kérések blokkolva",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Nem találhatók nyomkövetési kérések",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "A harmadik fél kérései be lettek töltve",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Nem találhatók harmadik féltől származó kérések",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "A(z) {companyName} tulajdonában van ez az oldal és az oldalon található ismert nyomkövetők, ezért nem tiltottuk lő őket.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Nem található olyan cég, amely megpróbált volna nyomkövető kérést betölteni ezen az oldalon.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "A nyomkövetők segítségével a cégek profilt alkothatnak rólad. Azt észleltük, hogy ezen az oldalon ezek a cégek nyomon követik a tevékenységedet.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} nyomkövető letiltva itt: {domain}} other {{trackerCount} nyomkövető letiltva itt: {domain}}}} other {{trackerCount, plural, one {{trackerCount} nyomkövető található itt: {domain}} other {{trackerCount} nyomkövető található itt: {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Fontos tudni: a platformkorlátozások korlátozhatják az összes kérés észlelését.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "A webes követés elleni védelmünkről",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Hogyan hatnak a keresési hirdetéseink a védelmünkre",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "A következő tartomány kérései azért lettek betöltve, mert a DuckDuckGo-n nemrég rákattintottak egy {domain} hirdetésre. Ezek a kérések segítenek értékelni a hirdetések hatékonyságát. A DuckDuckGo egyik hirdetése sem profilozó.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "A következő tartományok kérései a webhely helytelen működésének megelőzése érdekében töltődtek be.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "A következő tartományok kérései azért töltődtek be, mert a következőhöz vannak társítva: {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "A következő tartományok kérései is betöltődtek."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "A következő tartományok kérései azért töltődtek be, mert a védelem ki van kapcsolva.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "A következő harmadik fél tartományok kérései be lettek töltve. Ha egy cég kérései betöltődnek, ez lehetővé teheti számukra, hogy profilokat készítsenek rólad, bár a többi webes nyomkövetési védelmünk továbbra is működik.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "A következő harmadik fél tartományok kérései be lettek töltve. Ha egy cég kérései betöltődnek, ez lehetővé teheti számukra, hogy profilokat készítsenek rólad, bár a többi webes nyomkövetési védelmünk továbbra is működik.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Nem észleltünk harmadik fél tartományából érkező kéréseket.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analitika",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Közösségi hálózat",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Tartalomkézbesítés",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Beágyazott tartalom",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Keresés a DuckDuckGo alkalmazásban",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Keresés",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "További lehetőségek",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Kész",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Vissza",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

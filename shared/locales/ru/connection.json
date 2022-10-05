@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Соединение",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Шифрование",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Эта страница не поддерживает безопасное соединение. Конфиденциальная информация, передаваемая здесь, может быть перехвачена.",
+    "title" : "На этой странице используется нешифрованное соединение. Сторонние лица могут просматривать ваши действия и перехватывать конфиденциальную информацию, отправляемую на этой странице.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Безопасное соединение на этой странице защищает ваши данные при отправке.",
+    "title" : "На этой странице используется зашифрованное соединение, которое не позволяет сторонним лицам просматривать ваши действия и перехватывать конфиденциальную информацию.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

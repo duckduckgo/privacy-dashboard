@@ -12,37 +12,57 @@
     "title" : "Актуализиране на списъка за защита",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Защитите са <b>ДЕАКТИВИРАНИ</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Защитите за този сайт са <b>АКТИВИРАНИ</b>",
+    "title" : "Защитите за този сайт са <b>ВКЛЮЧЕНИ</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Защитите за този сайт са <b>ИЗКЛЮЧЕНИ</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Изключихме временно защитата на поверителността, защото изглежда, че пречи на зареждането на този сайт.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Препоръчваме да деактивирате защитата на поверителността за този сайт, за да предотвратите срив на сайта.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Възможно е други лица да могат да прихванат поверителна информация, която изпращате на тази страница.",
+    "title" : "<b>Този сайт не е защитен</b> и може да компрометира информацията, която изпращате на тази страница.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Надградихме връзката на тази страница, за да защитим изпращаната от Вас информация по време на преноса.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Блокирано е зареждането на заявки от следните домейни на трети страни, тъй като са идентифицирани като заявки за проследяване. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Връзката на тази страница е сигурна и защитава изпращаната от Вас информация по време на преноса.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Няма блокирано зареждане на заявки проследяване на тази страница. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Не идентифицирахме заявки за проследяване на тази страница.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Не открихме компании, които да се опитват да Ви следят на тази страница.",
+    "title" : "Не открихме компании, които да се опитват да зареждат заявки за проследяване на тази страница.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Открихме само тракери, собственост на {name}, които не блокирахме.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "За да предотвратим срив на сайта, не сме блокирали зареждането на заявки за проследяване на тази страница от други компании.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Ние {isWhitelisted, select, true {открихме} other {блокирахме}} {displayCount} {displayCount, plural, =1 {тракер} other {тракера}} от {companyCount} {companyCount, plural, one {компания} other {компании}} на тази страница.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Няма блокирано зареждане на заявки проследяване, тъй като защитите за този сайт са изключени. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Създаване на нов Duck адрес",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Копиран в клипборда!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Уебсайтът не работи според очакванията?",
@@ -52,57 +72,56 @@
     "title" : "Вземете предпазни мерки",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Защитите са ДЕАКТИВИРАНИ",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Открихме, че няколко компании Ви следят и профилират на тази страница.} =2 {Открихме, че {firstCompany} и {secondCompany} Ви следят и профилират на тази страница.} one {Открихме, че {firstCompany} Ви следи и профилира на тази страница.} other {Открихме, че {firstCompany}, {secondCompany} и други Ви следят и профилират на тази страница.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Проследяващи мрежи",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (собственик на {domain})\nВи следи в {companyPrevalence}% от водещите сайтове.\nНе можем да блокираме компанията на сайтовете, които притежава, но можем да я блокираме на други страници.",
+    "title" : "{blocked, select, true {<b>Този сайт е собственост на {companyDisplayName}</b> – компания, която управлява мрежа от тракери в {companyPrevalence}% от водещите уебсайтове. Успяхме да блокираме някои от техните заявки на тази страница.} other {<b>Този сайт е собственост на {companyDisplayName}</b> – компания, която управлява мрежа от тракери в {companyPrevalence}% от водещите уебсайтове. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Няма активност за отчитане",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Кои компании блокирахме",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Блокирахме няколко компании, които се опитват да Ви следят.} =2 {Блокирахме {firstCompany} и {secondCompany}, които се опитват да Ви следят.} one {Блокирахме {firstCompany}, която се опитва да Ви следи.} other {Блокирахме {firstCompany}, {secondCompany} и други, които се опитват да Ви следят.}}",
+    "title" : "{companyCount, plural, =0 {Блокирахме зареждането на заявки за проследяване на тази страница.} =2 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> .} =5 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>още 1 друга компания</b>.} one {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>.} other {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и още <b>{othersCount} други компании</b>.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Бисквитките са намалени до минимум",
+    "title" : "Бисквитките са настроени",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Настроихме предпочитанията Ви за бисквитките, за да увеличим поверителността, и затворихме изскачащия прозорец за съгласие.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Връзката е сигурна",
+    "title" : "Връзката е криптирана",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Връзката не може да бъде защитена",
+    "title" : "Връзката не е криптирана",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} блокирана основна проследяваща мрежа} other {{trackerCount} блокирани основни проследяващи мрежи}}} other {{trackerCount, plural, one {{trackerCount} блокирано проследяващо устройство} other {{trackerCount} блокирани проследяващи устройства}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} открита основна проследяваща мрежа} other {{trackerCount} открити основни проследяващи мрежи}}} other {{trackerCount, plural, one {{trackerCount} открито проследяващо устройство} other {{trackerCount} открити проследяващи устройства}}}}}}",
+    "title" : "Блокирано зареждане на заявки",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Няма блокирани заявки за проследяване",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Няма открити заявки за проследяване",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Заредени заявки от трети страни",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Не са намерени заявки от трети страни",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} е собственик на този сайт и на установените тракери, които се намират на тази страница, затова не ги блокирахме.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Не открихме компании, които да се опитват да зареждат заявки за проследяване на тази страница.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Тракерите се използват от компаниите за профилиране. Открихме, че тези компании следят Вашата дейност на тази страница.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {Блокиран е {trackerCount} тракер на {domain}} other {Блокирани са {trackerCount} тракера на {domain}}}} other {{trackerCount, plural, one {Открит е {trackerCount} тракер на {domain}} other {Открити са {trackerCount} тракера на {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Моля, имайте предвид, че ограниченията на платформата могат да намалят способността ни да откриваме всички заявки.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Относно нашите защити срещу проследяване в мрежата",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Какво влияние оказват нашите реклами при търсене върху нашите защити",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Заредени са заявки от следния домейн, защото наскоро сте щракнали върху реклама на {domain} в DuckDuckGo. Тези заявки помагат за оценка на ефективността на рекламата. Рекламите в DuckDuckGo не са профилиращи.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Заредени са заявки от следните домейни, за да се предотврати срив на сайта.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Заредени са заявки от следните домейни, защото са свързани с [{domain}].",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Заредени са също и заявки от следните домейни."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Заредени са заявки от следните домейни, защото защитите са изключени.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Заредени са заявки от следните домейни на трети страни. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира, въпреки че останалите ни защити срещу проследяване в мрежата все още се прилагат.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Заредени са заявки от следните домейни на трети страни. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира, въпреки че останалите ни защити срещу проследяване в мрежата все още се прилагат.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Не идентифицирахме заявки от домейни на трети страни.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Анализ",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Социална мрежа",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Доставка на съдържание",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Вградено съдържание",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Търси с DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Търсене",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Още опции",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Готово",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Обратно",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

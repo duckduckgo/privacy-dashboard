@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Verbinding",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Versleutelen",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Deze pagina staat geen beveiligde verbinding toe. Anderen kunnen mogelijk gevoelige informatie onderscheppen die je op deze pagina verzendt.",
+    "title" : "Deze pagina gebruikt een niet-versleutelde verbinding. Mogelijk kunnen externe partijen je activiteit bekijken of gevoelige informatie onderscheppen die je op deze pagina verzendt.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Deze pagina maakt gebruik van een beveiligde verbinding, die de informatie die je verzendt beveiligt.",
+    "title" : "Deze pagina maakt gebruik van een versleutelde verbinding, waardoor externe partijen je activiteit niet kunnen bekijken en gevoelige informatie die je op deze pagina verzendt niet kunnen onderscheppen.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

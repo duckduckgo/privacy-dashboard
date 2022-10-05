@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Kapcsolat",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Titkosítás",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Ez az oldal nem tesz lehetővé biztonságos kapcsolatot. Mások megszerezhetik az ezen az oldalon keresztül küldött érzékeny adatokat.",
+    "title" : "Ez az oldal titkosítatlan kapcsolatot használ. Előfordulhat, hogy harmadik felek megtekinthetik a tevékenységedet, vagy megszerezhetik az erre az oldalra küldött érzékeny adatokat.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Az oldal biztonságos kapcsolatot használ, amely az átvitel során védi az elküldött adatokat.",
+    "title" : "Ez az oldal titkosított kapcsolatot használ, amely megakadályozza, hogy harmadik felek megtekintsék a tevékenységedet, vagy megszerezzék az erre az oldalra küldött érzékeny adatokat.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

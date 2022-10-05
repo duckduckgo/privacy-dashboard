@@ -12,37 +12,57 @@
     "title" : "Se actualizează lista de protecție",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Protecțiile au fost <b>DEZACTIVATE</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
     "title" : "Protecțiile sunt <b>ACTIVATE</b> pentru acest site",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Protecțiile sunt <b>DEZACTIVATE</b> pentru acest site",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Am dezactivat temporar protecția confidențialității, deoarece pare să creeze disfuncții pe acest site.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Îți recomandăm să dezactivezi protecția confidențialității pentru acest site pentru a preveni disfuncțiile pe site.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Este posibil ca alte persoane să poată intercepta informațiile sensibile pe care le trimiți pe această pagină.",
+    "title" : "<b>Acest site nu este securizat</b> și poate compromite informațiile pe care le trimiți pe această pagină.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Am îmbunătățit conexiunea de pe această pagină pentru a proteja informațiile pe care le trimiți, în timp ce se află în tranzit.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Încărcarea cererilor următoarelor domenii terțe a fost blocată, deoarece au fost identificate ca fiind cereri de urmărire. În cazul în care cererile unei societăți sunt încărcate, aceasta îi poate permite să îți creeze un profil.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Conexiunea de pe această pagină este securizată pentru a proteja informațiile pe care le trimiți în timp ce se află în tranzit.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Nu a fost blocată încărcarea niciunei cereri de urmărire pe această pagină. În cazul în care cererile unei companii sunt încărcate, aceasta îi poate permite să îți creeze un profil.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Nu am identificat nicio cerere de urmărire pe această pagină.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Nu am găsit nicio companie care să încerce să te urmărească pe această pagină.",
+    "title" : "Nu am găsit nicio companie care să încerce să încarce cereri de urmărire pe această pagină.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Am găsit doar instrumente de urmărire deținute de {name}, pe care nu le-am blocat.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Pentru a preveni apariția unor disfuncții pe site, nu am blocat încărcarea cererilor de urmărire ale companiilor pe această pagină.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Am {isWhitelisted, select, true {găsit} other {blocat}} {displayCount} {displayCount, plural, =1 {instrument de urmărire} alte {instrumente de urmărire}} cunoscut/cunoscute de la {companyCount} {companyCount, plural, one {companie} other {companii}} pe această pagină.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Nu a fost blocată încărcarea niciunei cereri de urmărire, deoarece protecțiile sunt dezactivate pentru acest site. În cazul în care cererile unei societăți sunt încărcate, aceasta îi poate permite să îți creeze un profil.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Creează o nouă adresă Duck",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "S-a copiat în clipboard!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Site-ul nu funcționează așa cum era de așteptat?",
@@ -52,57 +72,56 @@
     "title" : "Ia măsuri de precauție",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Protecțiile sunt DEZACTIVATE",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Pe această pagină am găsit câteva companii care te urmăresc și îți creează profilul.} =2 {Am găsit {firstCompany} și {secondCompany} care te urmăresc și îți creează profilul pe această pagină.} one {Pe această pagină, am găsit instrumente de urmărire și de creare de profiluri de la {firstCompany}.} few {Pe această pagină, am găsit instrumente de urmărire și de creare de profiluri de la {firstCompany}, {secondCompany} și alții.} other {Pe această pagină, am găsit instrumente de urmărire și de creare de profiluri de la {firstCompany}, {secondCompany} și alții.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Rețea de instrumente de urmărire",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (proprietară a {domain})\nte urmărește pe {companyPrevalence}% din principalele site-uri.\nNu o putem bloca pe site-urile pe care le deține, dar putem să o facem pe alte pagini.",
+    "title" : "{blocked, select, true {<b>Acest site este deținut de {companyDisplayName}</b>, care operează o rețea de tehnologii de urmărire pe {companyPrevalence}% dintre principalele site-uri. Am reușit să blocăm unele dintre cererile companiei respective pe această pagină.} other {<b>Acest site este deținut de {companyDisplayName}</b>, care operează o rețea de tehnologii de urmărire pe {companyPrevalence}% dintre principalele site-uri. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Nicio activitate de raportat",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Pe cine am blocat",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Am blocat unele companii să încerce să te urmărească.} =2 {Am blocat companiile {firstCompany} și {secondCompany} ca să nu încerce să te urmărească.} one {Am blocat {firstCompany} ca să nu încerce să te urmărească.} few {Am blocat {firstCompany}, {secondCompany} și altele ca să nu încerce să te urmărească.} other {Am blocat {firstCompany}, {secondCompany} și altele ca să nu încerce să te urmărească.}}",
+    "title" : "{companyCount, plural, =0 {Am blocat încărcarea cererilor de urmărire pe această pagină.} =2 {Am blocat <b>{firstCompany}</b> și <b>{secondCompany}</b> să încarce cereri de urmărire pe această pagină.} =3 {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b> și <b>{thirdCompany}</b> să încarce cereri de urmărire pe această pagină.} =4 {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>și <b>{fourthCompany}</b>să încarce cereri de urmărire pe această pagină.} =5 {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> și <b>încă o companie</b> să încarce cereri de urmărire pe această pagină.} one {Am blocat <b>{firstCompany}</b> să încarce cereri de urmărire pe această pagină.} few {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> și <b>{othersCount} altele</b> de la încărcarea cererilor de urmărire pe această pagină.} other {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> și încă <b>{othersCount} companii</b> să încarce cereri de urmărire pe această pagină.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Module cookie minimizate",
+    "title" : "Modulele cookie au fost gestionate",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Am setat preferințele tale privind modulele cookie pentru a maximiza confidențialitatea și am închis fereastra pop-up de consimțământ.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Conexiunea este securizată",
+    "title" : "Conexiunea este criptată",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Conexiunea nu a putut fi securizată",
+    "title" : "Conexiunea nu este criptată",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} rețea principală urmăritoare blocată} few {{trackerCount} rețele principale urmăritoare blocate} other {{trackerCount} de rețele principale urmăritoare blocate}}} other {{trackerCount, plural, one {{trackerCount} Urmăritor Blocat} few {{trackerCount} Urmăritori Blocați} other {{trackerCount} Urmăritori Blocați}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {{trackerCount} rețea principală urmăritoare găsită} few {{trackerCount} rețele principale urmăritoare găsite} other {{trackerCount} de rețele principale urmăritoare găsite}}} other {{trackerCount, plural, one {{trackerCount} Urmăritor Găsit} few {{trackerCount} Urmăritori Găsiți} other {{trackerCount} Urmăritori Găsiți}}}}}}",
+    "title" : "Solicitări a căror încărcare a fost blocată",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Nu a fost blocată nicio solicitare de urmărire",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Nu au fost găsite solicitări de urmărire",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Solicitări de la terți încărcate",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Nu s-au găsit cereri de la terți",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "{companyName} este proprietara acestui site și a instrumentelor de urmărire cunoscute găsite pe această pagină, așadar nu am blocat-o.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Nu am găsit nicio companie care să încerce să încarce cereri de urmărire pe această pagină.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Instrumentele de urmărire ajută companiile să creeze profilul tău. Am găsit aceste companii care îți monitorizează activitatea pe această pagină.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} instrument de urmărire blocat pe {domain}} few {{trackerCount} instrumente de urmărire blocate pe {domain}} other {{trackerCount} instrumente de urmărire blocate pe {domain}}}} other {{trackerCount, plural, one {{trackerCount} instrument de urmărire găsit pe {domain}} few {{trackerCount} instrumente de urmărire găsite pe {domain}} other {{trackerCount} instrumente de urmărire găsite pe {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Reține: limitările platformei ne pot limita capacitatea de a detecta toate solicitările.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Despre protecțiile noastre împotriva urmăririi pe internet",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "În ce mod anunțurile noastre de căutare ne afectează măsurile de protecție",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Cererile următorului domeniu au fost încărcate deoarece s-a făcut clic recent pe o reclamă {domain} de pe DuckDuckGo. Aceste cereri ajută la evaluarea eficienței anunțurilor. Nicio reclamă de pe DuckDuckGo nu creează profiluri.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Cererile următoarelor domenii au fost încărcate pentru a preveni disfuncțiile pe site.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Cererile următoarelor domenii au fost încărcate deoarece sunt asociate cu {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Au fost încărcate și cererile următoarelor domenii."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Cererile următoarelor domenii au fost încărcate deoarece protecțiile sunt dezactivate.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Au fost încărcate următoarele solicitări ale domeniilor terțe. În cazul în care solicitările unei societăți sunt încărcate, aceasta îi poate permite să îți creeze un profil, deși celelalte măsuri de protecție ale noastre împotriva urmăririi pe internet se aplică în continuare.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Au fost încărcate următoarele solicitări ale domeniilor terțe. În cazul în care solicitările unei societăți sunt încărcate, aceasta îi poate permite să îți creeze un profil, deși celelalte măsuri de protecție ale noastre împotriva urmăririi pe internet se aplică în continuare.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Nu am identificat nicio cerere din partea domeniilor terțe.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analiză",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Rețea socială",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Livrare de conținut",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Conținut încorporat",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Căutare DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Caută",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Mai multe opțiuni",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Terminat",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Înapoi",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

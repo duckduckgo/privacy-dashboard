@@ -20,11 +20,11 @@
         "note": "Headline when privacy protections are disabled by user"
     },
     "protectionsDisabledRemote": {
-        "title": "We temporarily turned Privacy Protection off as it appears to be breaking this site.",
+        "title": "We temporarily turned Privacy Protections off as they appear to be breaking this site.",
         "note": "Headline when privacy protections are disabled by DDG"
     },
     "protectionsDisabledRemoteOverride": {
-        "title": "We recommend disabling Privacy Protection for this site to prevent the site from breaking.",
+        "title": "We recommend disabling Privacy Protections for this site to prevent the site from breaking.",
         "note": "Headline when privacy protections are disabled by user"
     },
     "connectionDescriptionUnencrypted": {
@@ -93,7 +93,7 @@
     },
     "trackerNetworksDesc": {
         "title": "Requests Blocked from Loading",
-        "note": "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+        "note": "This indicates that 1 or more trackers were blocked."
     },
     "trackerNetworksNotBlocked": {
         "title": "No Tracking Requests Blocked",
@@ -102,13 +102,6 @@
     "trackerNetworksNotFound": {
         "title": "No Tracking Requests Found",
         "note": "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-    },
-    "trackerNetworksProtectionsDisabled": {
-        "note": "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-    },
-    "thirdParties": {
-        "title": "Third-Party Requests Loaded",
-        "note": "todo"
     },
     "thirdPartiesLoaded": {
         "title": "Third-Party Requests Loaded",
@@ -160,27 +153,30 @@
     },
     "trackerAboutLink": {
         "title": "About our Web Tracking Protections",
-        "note": "Shown in tracker lists"
+        "note": "A link pointing to a help page that gives more info on our Web Tracking Protections"
     },
     "trackerAdLink": {
         "title": "How our search ads impact our protections",
-        "note": "Shown in tracker lists for Ad Attribution"
+        "note": "A link pointing to an help page explaining how our search ads impact our protections"
     },
     "sectionHeadingAdAttribution": {
-        "title": "The following domain’s requests were loaded because a {domain} ad on DuckDuckGo was recently clicked. These requests help evaluate ad effectiveness. All ads on DuckDuckGo are non-profiling."
+        "title": "The following domain’s requests were loaded because a {domain} ad on DuckDuckGo was recently clicked. These requests help evaluate ad effectiveness. All ads on DuckDuckGo are non-profiling.",
+        "note": "The placeholder stands for a company name"
     },
     "sectionHeadingIgnore": {
-        "title": "The following domains’ requests were loaded to prevent site breakage."
+        "title": "The following domains’ requests were loaded to prevent site breakage.",
+        "note": "Blocking trackers can cause issue with the host page, so we may allow them to load"
     },
     "sectionHeadingFirstParty": {
-        "title": "The following domains’ requests were loaded because they’re associated with {domain}."
+        "title": "The following domains’ requests were loaded because they’re associated with {domain}.",
+        "note": "The placeholder stands for a company name"
     },
     "sectionHeadingThirdParty": {
         "title": "The following domains' requests were also loaded."
     },
     "sectionHeadingProtectionsDisabled": {
         "title": "The following domains' requests were loaded because protections are off.",
-        "note": "The label to display when it's a single combined list"
+        "note": "The user can manually turn off protections. When that happens we show this message"
     },
     "thirdPartiesSummaryLoaded": {
         "title": "The following third-party domains’ requests were loaded. If a company's requests are loaded, it can allow them to profile you, though our other web tracking protections still apply.",

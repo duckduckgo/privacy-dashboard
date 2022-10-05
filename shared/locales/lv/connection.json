@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Savienojums",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Šifrēt",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Ar šo lapu nevar izveidot drošu savienojumu. Citi var pārtvert šai lapai nosūtīto sensitīvo informāciju.",
+    "title" : "Šajā lapā tiek izmantots nešifrēts savienojums. Trešās puses, iespējams, varēs skatīt tavas darbības vai pārtvert sensitīvu informāciju, ko nosūti šajā lapā.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Šajā lapā tiek izmantots drošs savienojums, kas aizsargā nosūtīto informāciju tās pārraides laikā.",
+    "title" : "Šajā lapā tiek izmantots šifrēts savienojums, kas neļauj trešajām pusēm redzēt tavas darbības un pārtvert sensitīvu informāciju, ko sūti šajā lapā.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

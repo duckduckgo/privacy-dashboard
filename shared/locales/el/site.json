@@ -12,37 +12,57 @@
     "title" : "Ενημέρωση του καταλόγου προστασίας",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Οι επιλογές προστασίας έχουν <b>ΑΠΕΝΕΡΓΟΠΟΙΗΘΕΙ</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Οι επιλογές προστασίας είναι <b>ΕΝΕΡΓΟΠΟΙΗΜΕΝΕΣ</b> για τον συγκεκριμένο ιστότοπο",
+    "title" : "Οι επιλογές προστασίας είναι <b>ΕΝΕΡΓΕΣ</b> για τον συγκεκριμένο ιστότοπο",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Οι επιλογές προστασίας είναι <b>ΑΝΕΝΕΡΓΕΣ</b> για τον συγκεκριμένο ιστότοπο",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Απενεργοποιήσαμε προσωρινά την Προστασία προσωπικών δεδομένων καθώς φαίνεται ότι διακόπτει τη λειτουργία του ιστότοπου.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Προτείνουμε να απενεργοποιήσετε την Προστασία προσωπικών δεδομένων γι' αυτόν τον ιστότοπο ώστε να αποτρέψετε τη διακοπή λειτουργίας του ιστότοπου.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Άλλα άτομα ενδέχεται να μπορούν να υποκλέψουν ευαίσθητες πληροφορίες που στέλνετε στη σελίδα αυτή.",
+    "title" : "<b>O ιστότοπος αυτός δεν είναι ασφαλής</b> και ενδέχεται να θέσει σε κίνδυνο τις πληροφορίες που στέλνετε στη σελίδα αυτή.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Αναβαθμίσαμε τη σύνδεση στη σελίδα αυτή για προστασία των πληροφοριών που στέλνετε κατά τη μεταφορά τους.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Τα αιτήματα των ακόλουθων τομέων τρίτων μερών αποκλείστηκαν από τη φόρτωση επειδή αναγνωρίστηκαν ως αιτήματα παρακολούθησης. Εάν τα αιτήματα μιας εταιρείας έχουν φορτωθεί, ίσως τους επιτρέπουν να σκιαγραφήσουν το προφίλ σας.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Η σύνδεση στη σελίδα αυτή είναι ασφαλής για προστασία των πληροφοριών που στέλνετε κατά τη μεταφορά τους.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Δεν αποκλείστηκε η φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή. Εάν τα αιτήματα μιας εταιρείας έχουν φορτωθεί, ίσως τους επιτρέπουν να σκιαγραφήσουν το προφίλ σας.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Δεν αναγνωρίσαμε αιτήματα παρακολούθησης στη σελίδα αυτή.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Δεν βρήκαμε εταιρείες που να προσπαθούν να σας παρακολουθήσουν στη σελίδα αυτή.",
+    "title" : "Δεν βρήκαμε εταιρείες που να προσπαθούν να φορτώσουν αιτήματα παρακολούθησης στη σελίδα αυτή.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Βρήκαμε μόνο εφαρμογές παρακολούθησης που ανήκουν στην εταιρεία {name}, τους οποίους δεν μπλοκάραμε.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Για να αποφύγουμε διακοπή της λειτουργίας του ιστότοπου, δεν εμποδίσαμε καμία εταιρεία να φορτώσει αιτήματα παρακολούθησης στη σελίδα αυτή.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "{isWhitelisted, select, true {Βρήκαμε} other {Αποκλείσαμε}} {displayCount} γνωστό {displayCount, plural, =1 {εφαρμογή παρακολούθησης} other {εφαρμογές παρακολούθησης}} από {companyCount} {companyCount, plural, one {εταιρεία} other {εταιρείες}} σε αυτήν τη σελίδα.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Δεν αποκλείστηκαν αιτήματα παρακολούθησης από τη φόρτωση, καθώς οι Προστασίες είναι απενεργοποιημένες γι' αυτόν τον ιστότοπο. Εάν τα αιτήματα μιας εταιρείας έχουν φορτωθεί, ίσως τους επιτρέπουν να σκιαγραφήσουν το προφίλ σας.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Δημιουργήστε μια νέα Διεύθυνση Duck",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Αντιγράφτηκε στο πρόχειρό σας!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Δεν λειτουργεί ο ιστότοπος όπως αναμενόταν;",
@@ -52,57 +72,56 @@
     "title" : "Λάβετε μέτρα προφύλαξης",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Οι επιλογές προστασίας είναι ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΕΣ",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Βρήκαμε ορισμένες εταιρείες οι οποίες σας παρακολουθούν και σκιαγραφούν το προφίλ σας σε αυτήν τη σελίδα.} =2 {Βρήκαμε τις εταιρείες {firstCompany} και {secondCompany} οι οποίες σας παρακολουθούν και σκιαγραφούν το προφίλ σας σε αυτήν τη σελίδα.} one {Βρήκαμε την εταιρεία {firstCompany} η οποία σας παρακολουθεί και σκιαγραφεί το προφίλ σας σε αυτήν τη σελίδα.} other {Βρήκαμε τις εταιρείες {firstCompany}, {secondCompany} και άλλες οι οποίες σας παρακολουθούν και σκιαγραφούν το προφίλ σας σε αυτήν τη σελίδα.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Δίκτυο παρακολούθησης",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (ιδιοκτήτης του {domain})\nσάς παρακολουθεί στο {companyPrevalence}% των κορυφαίων ιστότοπων.\nΔεν μπορούμε να τους αποκλείσουμε σε ιστότοπους που τους ανήκουν, ωστόσο μπορούμε σε άλλες σελίδες.",
+    "title" : "{blocked, select, true {<b>Ο ιστότοπος αυτός ανήκει στην εταιρεία {companyDisplayName}</b>, η οποία διαχειρίζεται ένα δίκτυο παρακολούθησης σε ποσοστό {companyPrevalence}% των κορυφαίων ιστότοπων. Καταφέραμε να μπλοκάρουμε ορισμένα από τα αιτήματά τους στη σελίδα αυτή.} other {<b>Ο ιστότοπος αυτός ανήκει στην εταιρεία {companyDisplayName}</b>, η οποία διαχειρίζεται ένα δίκτυο παρακολούθησης σε ποσοστό {companyPrevalence}% των κορυφαίων ιστότοπων. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Δεν υπάρχει καμία δραστηριότητα προς αναφορά",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Ποιους μπλοκάραμε",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Αποκλείσαμε ορισμένες εταιρείες από την προσπάθειά τους να σας παρακολουθήσουν.} =2 {Αποκλείσαμε τις εταιρείες {firstCompany} και {secondCompany} από την προσπάθειά τους να σας παρακολουθήσουν.} one {Αποκλείσαμε την εταιρεία {firstCompany} από την προσπάθειά της να σας παρακολουθήσει.} other {Αποκλείσαμε τις εταιρείες {firstCompany}, {secondCompany} και άλλες από την προσπάθειά τους να σας παρακολουθήσουν.}}",
+    "title" : "{companyCount, plural, =0 {Αποκλείσαμε τη φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή.} =2 {Αποκλείσαμε τις εταιρείες <b>{firstCompany}</b> και <b>{secondCompany}</b> από τη φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή.} =3 {Αποκλείσαμε τις εταιρείες <b>{firstCompany}</b>, <b>{secondCompany}</b> και <b>{thirdCompany}</b> από τη φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή.} =4 {Αποκλείσαμε τις εταιρείες <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> και <b>{fourthCompany}</b> από τη φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή.} =5 {Αποκλείσαμε τις εταιρείες <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> και <b>1 ακόμη</b> από τη φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή.} one {Αποκλείσαμε την εταιρεία <b>{firstCompany}</b> από τη φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή.} other {Αποκλείσαμε τις εταιρείες <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> και <b>{othersCount} ακόμη</b> από τη φόρτωση αιτημάτων παρακολούθησης στη σελίδα αυτή.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Ελαχιστοποίηση cookies",
+    "title" : "Διαχειριζόμενα cookies",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Ρυθμίσαμε τις προτιμήσεις σας σχετικά με τα cookies ώστε να μεγιστοποιήσουμε το απόρρητο και κλείσαμε το αναδυόμενο παράθυρο συγκατάθεσης.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Η σύνδεση είναι ασφαλής",
+    "title" : "Η σύνδεση είναι κρυπτογραφημένη",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Η σύνδεση ενδέχεται να μην είναι ασφαλής",
+    "title" : "Η σύνδεση δεν είναι κρυπτογραφημένη",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {Αποκλείστηκε {trackerCount} κύριο δίκτυο παρακολούθησης} other {Αποκλείστηκαν {trackerCount} κύρια δίκτυα παρακολούθησης}}} other {{trackerCount, plural, one {Αποκλείστηκε {trackerCount} παρακολούθηση} other {Αποκλείστηκαν {trackerCount} παρακολουθήσεις}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {Βρέθηκε {trackerCount} κύριο δίκτυο παρακολούθησης} other {Βρέθηκαν {trackerCount} κύρια δίκτυα παρακολούθησης}}} other {{trackerCount, plural, one {Βρέθηκε {trackerCount} παρακολούθηση} other {Βρέθηκαν {trackerCount} παρακολουθήσεις}}}}}}",
+    "title" : "Αιτήματα που αποκλείστηκαν από τη φόρτωση",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Δεν αποκλείστηκαν αιτήματα παρακολούθησης",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Δεν βρέθηκαν αιτήματα παρακολούθησης",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Αιτήματα τρίτων μερών που φορτώθηκαν",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Δεν έχουν βρεθεί αιτήματα τρίτων μερών",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "Η εταιρεία {companyName} αποτελεί κάτοχο αυτού του ιστότοπου και των γνωστών εφαρμογών παρακολούθησης που βρέθηκαν στη σελίδα αυτή, γι' αυτό δεν τα αποκλείσαμε.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Δεν βρήκαμε εταιρείες που να προσπαθούν να φορτώσουν αιτήματα παρακολούθησης στη σελίδα αυτή.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Οι εφαρμογές παρακολούθησης βοηθούν τις εταιρείες να σκιαγραφήσουν το προφίλ σας. Βρήκαμε αυτές τις εταιρείες οι οποίες παρακολουθούν τη δραστηριότητά σας στη συγκεκριμένη σελίδα.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} εφαρμογή παρακολούθησης αποκλείστηκε στο {domain}} other {{trackerCount} εφαρμογές παρακολούθησης μπλοκαρίστηκαν στο {domain}}}} other {{trackerCount, plural, one {{trackerCount} εφαρμογή παρακολούθησης βρέθηκε στο {domain}} other {{trackerCount} εφαρμογές παρακολούθησης βρέθηκαν στο {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Σημείωση: οι περιορισμοί της πλατφόρμας ενδέχεται να περιορίσουν την ικανότητά μας για εντοπισμό όλων των αιτημάτων.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "Σχετικά με τις Προστασίες παρακολούθησης ιστού",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Πώς επηρεάζουν οι διαφημίσεις αναζήτησης τις προστασίες μας",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Τα αιτήματα του ακόλουθου τομέα φορτώθηκαν επειδή έγινε πρόσφατα κλικ σε μια διαφήμιση {domain} στο DuckDuckGo. Τα αιτήματα αυτά βοηθούν στην αξιολόγηση της αποτελεσματικότητας των διαφημίσεων. Καμία διαφήμιση στο DuckDuckGo δεν σκιαγραφεί προφίλ.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Τα αιτήματα του ακόλουθου τομέα φορτώθηκαν για να αποφευχθεί η διακοπή της λειτουργίας του ιστότοπου.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Τα αιτήματα του ακόλουθου τομέα φορτώθηκαν επειδή σχετίζονται με το {domain}.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Φορτώθηκαν επίσης τα αιτήματα του ακόλουθου τομέα."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Τα αιτήματα των ακόλουθων τομέων φορτώθηκαν επειδή οι προστασίες είναι απενεργοποιημένες.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Τα αιτήματα των ακόλουθων τομέων τρίτων μερών φορτώθηκαν. Εάν τα αιτήματα μιας εταιρείας έχουν φορτωθεί, ίσως τους επιτρέπουν να σκιαγραφήσουν το προφίλ σας, μολονότι εξακολουθούν να ισχύουν οι άλλες προστασίες μας για την παρακολούθηση στο διαδίκτυο.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Τα αιτήματα των ακόλουθων τομέων τρίτων μερών φορτώθηκαν. Εάν τα αιτήματα μιας εταιρείας έχουν φορτωθεί, ίσως τους επιτρέπουν να σκιαγραφήσουν το προφίλ σας, μολονότι εξακολουθούν να ισχύουν οι άλλες προστασίες μας για την παρακολούθηση στο διαδίκτυο.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Δεν εντοπίσαμε κανένα αίτημα από τομείς τρίτων μερών.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Ανάλυση",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Κοινωνικό δίκτυο",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Παράδοση περιεχομένου",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Ενσωματωμένο περιεχόμενο",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Αναζήτηση DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Αναζήτηση",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Περισσότερες επιλογές",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Ολοκληρώθηκε",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Πίσω",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

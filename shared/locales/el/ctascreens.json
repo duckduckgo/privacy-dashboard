@@ -1,0 +1,35 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "protectionsUnavailableNote" : {
+    "title" : "Η Προστασία προσωπικών δεδομένων δεν είναι διαθέσιμη για ειδικές σελίδες ή τοπικές σελίδες.",
+    "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
+  },
+  "spreadTitle" : {
+    "title" : "Σας αρέσει να χρησιμοποιείτε το DuckDuckGo;",
+    "note" : "Title text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadText" : {
+    "title" : "Βοηθήστε μας να διαδώσουμε τα νέα στην οικογένεια και στους φίλους σας",
+    "note" : "Secondary text for 'Spread DuckDuckGo' CTA"
+  },
+  "spreadButton" : {
+    "title" : "Διαδώστε το DuckDuckGo",
+    "note" : "Button text for 'spread' CTA"
+  },
+  "emailTitle" : {
+    "title" : "Έχετε κουραστεί να παρακολουθούν τα email σας;",
+    "note" : "Title text for 'Email Protection' CTA"
+  },
+  "emailText" : {
+    "title" : "Εγγραφείτε τώρα για την Προστασία email του DuckDuckGo για την επέκτασή σας!",
+    "note" : "Extension here means browser extension or addon"
+  }
+}

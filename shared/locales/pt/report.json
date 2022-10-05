@@ -48,10 +48,6 @@
     "title" : "Outra coisa",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Denunciar site danificado",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Se preferires, fala-nos do problema que enfrentaste",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
@@ -61,7 +57,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Os relatórios enviados para o DuckDuckGo são 100% anónimos e apenas incluem a tua seleção acima, a tua descrição opcional, o URL e uma lista de rastreadores que encontrámos no site.",
+    "title" : "As denúncias enviadas para o DuckDuckGo incluem apenas as informações necessárias para processarmos o teu feedback.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -69,7 +65,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "O teu relatório ajudará a melhorar o navegador e melhorará a experiência de todos.",
+    "title" : "A tua denúncia ajuda-nos a melhorarmos os nossos produtos e a experiência de todos os utilizadores.",
     "note" : "Body that the user sees upon submitting the report"
   }
 }
