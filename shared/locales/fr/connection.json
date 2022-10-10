@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Connexion",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Chiffrer",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Cette connexion n'est pas sécurisée. Les informations sensibles que vous envoyez sur cette page peuvent être interceptées.",
+    "title" : "Cette page utilise une connexion non chiffrée. Des tiers sont susceptibles de voir votre activité ou d'intercepter les informations sensibles que vous envoyez sur cette page.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Votre connexion à cette page est sécurisée, protégeant les informations que vous envoyez pendant leur transit.",
+    "title" : "Cette page utilise une connexion chiffrée, ce qui empêche des tiers de consulter votre activité ou d'intercepter les informations sensibles que vous envoyez sur cette page.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

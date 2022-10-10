@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Yhteys",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Salaa",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Tämä sivu ei salli suojattua yhteyttä. Muut saattavat pystyä sieppaamaan tällä sivulla lähettämäsi arkaluonteiset tiedot.",
+    "title" : "Tällä sivulla käytetään salaamatonta yhteyttä. Kolmannet osapuolet saattavat kyetä tarkastelemaan toimintaasi tai sieppaamaan tällä sivulla lähettämiäsi arkaluontoisia tietoja.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Tällä sivulla käytetään suojattua yhteyttä, joka suojaa siirron aikana lähettämiäsi tietoja.",
+    "title" : "Tällä sivulla käytetään salattua yhteyttä, joka estää kolmansia osapuolia tarkastelemasta toimintaasi tai sieppaamasta tällä sivulla lähettämiäsi arkaluontoisia tietoja.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

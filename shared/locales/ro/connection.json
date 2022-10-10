@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Conexiune",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Criptare",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Această pagină nu permite o conexiune securizată. Este posibil ca alte persoane să poată intercepta informațiile sensibile pe care le trimiți pe această pagină.",
+    "title" : "Această pagină folosește o conexiune necriptată. Este posibil ca terțe părți să îți poată vedea activitatea sau să intercepteze informațiile sensibile pe care le trimiți pe această pagină.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Această pagină folosește o conexiune securizată, care protejează informațiile pe care le trimiți, în timpul tranzitului.",
+    "title" : "Această pagină utilizează o conexiune criptată, care împiedică terții să îți vizualizeze activitatea sau să intercepteze informațiile sensibile pe care le trimiți pe această pagină.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

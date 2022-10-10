@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Ryšys",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Šifruoti",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Šiame puslapyje neleidžiamas saugus ryšys. Kiti asmenys gali perimti konfidencialią informaciją, kurią siunčiate šiame puslapyje.",
+    "title" : "Šiame puslapyje naudojamas neužšifruotas ryšys. Trečiosios šalys gali matyti jūsų veiklą arba perimti slaptą informaciją, kurią siunčiate šiame puslapyje.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Šiame puslapyje naudojamas saugus ryšys, kuris apsaugo siunčiamą informaciją jos perdavimo metu.",
+    "title" : "Šiame puslapyje naudojamas užšifruotas ryšys, todėl trečiosios šalys negali peržiūrėti jūsų veiklos ar perimti slaptos informacijos, kurią siunčiate šiame puslapyje.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

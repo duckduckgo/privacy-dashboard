@@ -8,10 +8,6 @@
       "instruction" : "*/note"
     }]
   },
-  "connection" : {
-    "title" : "Bağlantı",
-    "note" : "The technical details of the connection between the browser and the website (whether encrypted and how)"
-  },
   "encrypt" : {
     "title" : "Şifreleme",
     "note" : "When the cryptographic key can be used to encrypt data"
@@ -85,7 +81,7 @@
     "note" : "Header for certificate details for a given domain"
   },
   "insecureConnectionDesc" : {
-    "title" : "Bu sayfa güvenli bağlantıya izin vermiyor. Başkaları bu sayfada gönderdiğiniz hassas bilgileri ele geçirebilir.",
+    "title" : "Bu sayfada şifrelenmemiş bir bağlantı kullanılıyor. Üçüncü taraflar bu sayfadaki etkinliğinizi görüntüleyebilir veya bu sayfada gönderdiğiniz hassas bilgileri ele geçirebilir.",
     "note" : "Shown we connection is not encrypted"
   },
   "upgradedConnectionDesc" : {
@@ -93,7 +89,7 @@
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
   },
   "secureConnectionDesc" : {
-    "title" : "Bu sayfa, gönderdiğiniz bilgileri aktarım sırasında koruyan güvenli bir bağlantı kullanır.",
+    "title" : "Bu sayfada üçüncü tarafların etkinliğinizi görüntülemesini veya bu sayfadayken gönderdiğiniz hassas bilgileri ele geçirmesini önleyen şifreli bir bağlantı kullanılmaktadır.",
     "note" : "Shown when the user navigated directly to a secure connection"
   }
 }

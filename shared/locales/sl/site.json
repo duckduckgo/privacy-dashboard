@@ -12,37 +12,57 @@
     "title" : "Posodabljanje seznama zaščite",
     "note" : "Message shown while updating the list of protections"
   },
-  "protectionsDisabled" : {
-    "title" : "Zaščite so bile <b>ONEMOGOČENE</b>",
-    "note" : "Headline when privacy protections are disabled"
-  },
   "protectionsEnabled" : {
-    "title" : "Zaščite za to spletno mesto so <b>OMOGOČENE</b>",
+    "title" : "Zaščita za to stran je <b>OMOGOČENA</b>",
     "note" : "Headline when privacy protections are enabled"
   },
+  "protectionsDisabled" : {
+    "title" : "Zaščita so za to stran je <b>ONEMOGOČENA</b>",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
+  "protectionsDisabledRemote" : {
+    "title" : "Zaščito zasebnosti smo začasno onemogočili, saj se zdi, da zato prihaja do napak na tem spletnem mestu.",
+    "note" : "Headline when privacy protections are disabled by DDG"
+  },
+  "protectionsDisabledRemoteOverride" : {
+    "title" : "Priporočamo, da za to spletno mesto onemogočite zaščito zasebnosti, da preprečite prekinitev delovanja spletnega mesta.",
+    "note" : "Headline when privacy protections are disabled by user"
+  },
   "connectionDescriptionUnencrypted" : {
-    "title" : "Drugi lahko prestrežejo občutljive podatke, ki jih pošljete na tej strani.",
+    "title" : "<b>To spletno mesto ni varno</b> in lahko ogrozi vse podatke, ki jih pošljete na tej strani.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
-  "connectionDescriptionUpgraded" : {
-    "title" : "Na tej strani smo nadgradili povezavo za zaščito podatkov, ki jih pošiljate med prenosom.",
-    "note" : "Shown when the connection has been upgraded from unencrypted to encrypted (HTTP to HTTPS)"
+  "trackerNetworksSummaryBlocked" : {
+    "title" : "Nalaganje zahtevkov naslednjih domen tretjih oseb je bilo blokirano, ker so bili prepoznani kot zahtevki za sledenje. Če so zahtevki podjetja naloženi, lahko na podlagi tega oblikujejo vaš profil.",
+    "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
-  "connectionDescriptionEncrypted" : {
-    "title" : "Povezava na tej strani je varna za zaščito podatkov, ki jih pošiljate med prenosom.",
-    "note" : "Shown when the connection is encrypted (HTTPS not HTTP)"
+  "trackerNetworksSummaryNoneBlocked" : {
+    "title" : "Na tej strani nalaganje zahtevkov za sledenje ni bilo blokirano. Če so zahtevki podjetja naloženi, lahko na podlagi tega oblikujejo vaš profil.",
+    "note" : "The message shown when we detected trackers, but none were blocked"
+  },
+  "trackerNetworksSummaryNoneFound" : {
+    "title" : "Na tej strani nismo odkrili nobenih zahtev za sledenje.",
+    "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Na tej strani nismo našli nobenega podjetja, ki bi vas poskušalo izslediti.",
+    "title" : "Na tej strani nismo našli nobenega podjetja, ki bi poskušalo naložiti zahteve za sledenje.",
     "note" : "We did not find any trackers on this page"
   },
-  "trackerNetworksSummaryOwn" : {
-    "title" : "Našli smo le sledilnike v lasti {name}, ki jih nismo blokirali.",
-    "note" : "We found but did not block trackers from company named"
+  "trackerNetworksSummaryAllowedOnly" : {
+    "title" : "Da bi preprečili okvare spletnega mesta, na tej strani nismo blokirali nobenih podjetij, ki bi nalagala zahteve za sledenje.",
+    "note" : "The message shown when we allowed some trackers to load."
   },
-  "trackerNetworksSummaryOther" : {
-    "title" : "Na tej strani smo {isWhitelisted, select, true {našli} other {blokirali}} odkrite sledilnike: {displayCount} iz toliko podjetij: {companyCount}.",
-    "note" : "This summarizes the number of trackers that we either blocked or did not block (depending on the protection setting for this site)"
+  "trackerNetworksSummaryProtectionsOff" : {
+    "title" : "Nalaganje zahtevkov za sledenje ni bilo blokirano, ker so zaščite za to spletno mesto izklopljene. Če so zahtevki podjetja naloženi, lahko na podlagi tega oblikujejo vaš profil.",
+    "note" : "We found trackers, but protections were disabled"
+  },
+  "createNewDuckAddress" : {
+    "title" : "Ustvari nov naslov Duck",
+    "note" : "Create a new private email alias"
+  },
+  "createNewDuckAddressCopied" : {
+    "title" : "Kopirano v odložišče!",
+    "note" : "Note to inform that the email address was copied"
   },
   "websiteNotWorkingQ" : {
     "title" : "Spletno mesto ne deluje po pričakovanjih?",
@@ -52,57 +72,56 @@
     "title" : "Previdnostni ukrepi",
     "note" : "Title shown when the page is unencrypted"
   },
-  "protectionsAreDisabled" : {
-    "title" : "Zaščite so ONEMOGOČENE",
-    "note" : "Shown when user has disabled protections for this site (or they have been programatically disabled)"
-  },
-  "foundCompanyNamesList" : {
-    "title" : "{companyCount, plural, =0 {Na tej strani smo našli nekaj podjetij, ki vam sledijo in vas profilirajo.} =2 {Na tej strani smo odkrili podjetji {firstCompany} in {secondCompany}, ki vam sledita in vas profilirata.} one {Na tej strani smo našli podjetje {firstCompany}, ki vas spremlja in profilira.} two {Na tej strani smo našli podjetji {firstCompany}, {secondCompany} in druga podjetja, ki vas spremljajo in profilirajo.} few {Na tej strani smo našli podjetji {firstCompany}, {secondCompany} in druga podjetja, ki vas spremljajo in profilirajo.} other {Na tej strani smo našli podjetji {firstCompany}, {secondCompany} in druga podjetja, ki vas spremljajo in profilirajo.}}",
-    "note" : "Returns a string in the form of 'We found CompanyA, CompanyB and others tracking and profiling you on this page.'"
-  },
-  "majorTrackerNetwork" : {
-    "title" : "Sledilno omrežje",
-    "note" : "Tracker network is a group of trackers, usually in the form of a company name, that track users across websites"
-  },
   "majorTrackingNetworkDesc" : {
-    "title" : "{companyDisplayName} (lastnik {domain})\nvas spremlja na {companyPrevalence} % najboljših spletnih mest.\nNe moremo jih blokirati na straneh, ki so v njihovi lasti, lahko pa jih blokiramo na drugih straneh.",
+    "title" : "{blocked, select, true {<b>To spletno mesto je v lasti podjetja {companyDisplayName}</b>, ki upravlja mrežo sledilnikov pri {companyPrevalence}% najboljših spletnih mest. Na tej strani smo uspeli blokirati nekatere njihove zahteve.} other {<b>To spletno mesto je v lasti podjetja {companyDisplayName}</b>, ki upravlja mrežo sledilnikov pri {companyPrevalence}% najboljših spletnih mest. }}",
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
-  "noActivityToReport" : {
-    "title" : "Ni dejavnosti za poročanje",
-    "note" : "Title when we did not find any trackers on this page"
-  },
-  "trackersBlocked" : {
-    "title" : "Koga smo blokirali",
-    "note" : "Title for the list of companies that we blocked"
-  },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Nekaterim podjetjem smo preprečili, da bi vam poskušala slediti.} =2 {Blokirali smo podjetji {firstCompany} in {secondCompany}, da vam ne bi poskušali slediti.} one {Blokirali smo podjetje {firstCompany}, da vam ne bi poskušalo slediti.} two {Blokirali smo {firstCompany}, {secondCompany} in druga podjetja, da vam ne bi poskušala slediti.} few {Blokirali smo {firstCompany}, {secondCompany} in druga podjetja, da vam ne bi poskušala slediti.} other {Blokirali smo {firstCompany}, {secondCompany} in druga podjetja, da vam ne bi poskušala slediti.}}",
+    "title" : "{companyCount, plural, =0 {Blokirali smo Blokirali smo nalaganje zahtevkov za sledenje na tej strani.} =2 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjema <b>{firstCompany}</b> in <b>{secondCompany}</b>.} =3 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b> in <b>{thirdCompany}</b>.} =4 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> in <b>{fourthCompany}</b>.} =5 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>1 drugim</b>.} one {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in {othersCount} drugim.} two {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim</b>.} few {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim</b>.} other {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim</b>.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
-    "title" : "Piškotki so minimizirani",
+    "title" : "Upravljani piškotki",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
-  "cookiesMinimizedDesc" : {
-    "title" : "Nastavili smo vaše nastavitve piškotkov za čim večjo zasebnost in zaprli pojavno okno za soglasje.",
-    "note" : "Description for when we have set the cookie privacy settings on this website to maximize privacy"
-  },
   "connectionSecure" : {
-    "title" : "Povezava je varna",
+    "title" : "Povezava je šifrirana",
     "note" : "The connection to the website is secure (HTTPS)"
   },
   "connectionNotSecure" : {
-    "title" : "Povezave ni bilo mogoče zavarovati",
+    "title" : "Povezava ni šifrirana",
     "note" : "The connection is not secure (HTTP)"
   },
   "trackerNetworksDesc" : {
-    "title" : "{blocked, select, true {{majorNetwork, select, true {{trackerCount, plural, one {Blokirano {trackerCount} glavno sledilno omrežje} two {Blokirani {trackerCount} glavni omrežji} few {Blokiranih {trackerCount} glavnih omrežij} other {Blokiranih {trackerCount} glavnih sledilnih omrežij}}} other {{trackerCount, plural, one {Blokiran {trackerCount} sledilnik} two {Blokirana {trackerCount} sledilnika} few {Blokiranih {trackerCount} sledilnikov} other {Blokiranih {trackerCount} sledilnikov}}}}} other {{majorNetwork, select, true {{trackerCount, plural, one {Najdeno {trackerCount} glavno sledilno omrežje} two {Najdeni {trackerCount} glavni omrežji} few {Najdenih {trackerCount} glavnih omrežij} other {Najdenih {trackerCount} glavnih sledilnih omrežij}}} other {{trackerCount, plural, one {Najden {trackerCount} sledilnik} two {Najdena {trackerCount} sledilnika} few {Najdeni {trackerCount} sledilniki} other {Najdenih {trackerCount} sledilnikov}}}}}}",
+    "title" : "Zahtevki, katerih nalaganje je blokirano",
     "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+  },
+  "trackerNetworksNotBlocked" : {
+    "title" : "Noben zahtevek za sledenje ni blokiran",
+    "note" : "This indicates that no trackers were blocked."
+  },
+  "trackerNetworksNotFound" : {
+    "title" : "Ni najdenih zahtevkov za sledenje",
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "trackerNetworksProtectionsDisabled" : {
+    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
+  },
+  "thirdPartiesLoaded" : {
+    "title" : "Nalaganje zahtevkov tretjih oseb",
+    "note" : "todo"
+  },
+  "thirdPartiesNoneFound" : {
+    "title" : "Zahtev tretjih oseb ni bilo mogoče najti",
+    "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
     "title" : "Podjetje {companyName} je lastnik tega spletnega mesta in znanih sledilnikov na tej strani, zato jih nismo blokirali.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
+  },
+  "noTrackersFound" : {
+    "title" : "Na tej strani nismo našli nobenega podjetja, ki bi poskušalo naložiti zahteve za sledenje.",
+    "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
     "title" : "Sledilniki podjetjem pomagajo pri oblikovanju vašega profila. Ta podjetja spremljajo vaše dejavnosti na tej strani.",
@@ -132,6 +151,49 @@
     "title" : "{blocked, select, true {{trackerCount, plural, one {{trackerCount} sledilnik je bil blokiran na {domain}} two {{trackerCount} sledilnika sta bila blokirana na {domain}} few {{trackerCount} sledilniki so bili blokirani na {domain}} other {{trackerCount} sledilnikov je bilo blokiranih na {domain}}}} other {{trackerCount, plural, one {{trackerCount} sledilnik je bil najden na {domain}} two {{trackerCount} sledilnika sta bila najdena na {domain}} few {{trackerCount} sledilniki so bili najdeni na {domain}} other {{trackerCount} sledilnikov je bilo najdenih na {domain}}}}}",
     "note" : "For a given domain, the count of trackers either blocked or just detected (found).  Ex 4 Trackers Blocked"
   },
+  "trackerLimitationsNote" : {
+    "title" : "Upoštevajte: omejitve platforme lahko omejijo našo zmožnost zaznavanja vseh zahtevkov.",
+    "note" : "Shown at the bottom of tracker lists"
+  },
+  "trackerAboutLink" : {
+    "title" : "O naši zaščiti spletnega sledenja",
+    "note" : "A link pointing to a help page that gives more info on our Web Tracking Protections"
+  },
+  "trackerAdLink" : {
+    "title" : "Kako naši oglasi v iskalnem omrežju vplivajo na našo zaščito",
+    "note" : "A link pointing to an help page explaining how our search ads impact our protections"
+  },
+  "sectionHeadingAdAttribution" : {
+    "title" : "Naslednji zahtevki domen so bili naloženi, ker ste pred kratkim kliknili oglas {domain} na portalu DuckDuckGo. Ti zahtevki pomagajo oceniti učinkovitost oglasa. Vsi oglasi na DuckDuckGo so neprofilirani.",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingIgnore" : {
+    "title" : "Naložene so bile naslednje zahteve za domene, da se prepreči prekinitev spletnega mesta.",
+    "note" : "Blocking trackers can cause issue with the host page, so we may allow them to load"
+  },
+  "sectionHeadingFirstParty" : {
+    "title" : "Naloženi so bili naslednji zahtevki domen, ker so povezani z [{domain}].",
+    "note" : "The placeholder stands for a company name"
+  },
+  "sectionHeadingThirdParty" : {
+    "title" : "Naložene so bile tudi naslednje zahteve domene."
+  },
+  "sectionHeadingProtectionsDisabled" : {
+    "title" : "Zahteve naslednjih domen so bile naložene, ker so zaščite izklopljene.",
+    "note" : "The user can manually turn off protections. When that happens we show this message"
+  },
+  "thirdPartiesSummaryLoaded" : {
+    "title" : "Naložene so bile naslednje zahteve za domene tretjih oseb. Če so zahteve podjetja izpolnjene, lahko podjetje na podlagi tega oblikuje vaš profil, čeprav še vedno veljajo naša druga zaščitna pravila za sledenje v spletu.",
+    "note" : "Shown as the summary in third parties screen"
+  },
+  "thirdPartiesSummaryProtectionsOff" : {
+    "title" : "Naložene so bile naslednje zahteve za domene tretjih oseb. Če so zahteve podjetja izpolnjene, lahko podjetje na podlagi tega oblikuje vaš profil, čeprav še vedno veljajo naša druga zaščitna pravila za sledenje v spletu.",
+    "note" : "Shown when any requests were loaded, but protections are off"
+  },
+  "thirdPartiesSummaryNone" : {
+    "title" : "Nismo ugotovili nobenih zahtevkov z domen tretjih oseb.",
+    "note" : "Shown in third party listing screen"
+  },
   "analyticsCategory" : {
     "title" : "Analitika",
     "note" : "Used to describe the type of tracker, in this case one that is used to report analytics back to the site owner"
@@ -142,6 +204,34 @@
   },
   "socialCategory" : {
     "title" : "Družbena omrežja",
-    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networksr"
+    "note" : "Used to describe the type of tracker, in this case one that is used by one of the popular social networks"
+  },
+  "contentDeliveryCategory" : {
+    "title" : "Dostava vsebine",
+    "note" : "Used to describe the type of tracker, in this case one that is used by content delivery platforms"
+  },
+  "embeddedContentCategory" : {
+    "title" : "Vdelana vsebina",
+    "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
+  },
+  "searchPlaceholder" : {
+    "title" : "Iščite po DuckDuckGo",
+    "note" : "Placeholder text for the search bar"
+  },
+  "searchGoButton" : {
+    "title" : "Iskanje",
+    "note" : "Aria label for the search button"
+  },
+  "optionsButton" : {
+    "title" : "Več možnosti",
+    "note" : "Aria label for the for the options button"
+  },
+  "navigationComplete" : {
+    "title" : "Končano",
+    "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationBack" : {
+    "title" : "Nazaj",
+    "note" : "Aria label and visible text for iOS on top bar navigation"
   }
 }

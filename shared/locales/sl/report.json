@@ -48,20 +48,16 @@
     "title" : "Nekaj drugega",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
-  "reportBrokenSite" : {
-    "title" : "Prijavite poškodovano spletno mesto",
-    "note" : "Title for reporting broken website view"
-  },
   "tellUsMoreDesc" : {
     "title" : "Če želite, nam opišite težavo, na katero ste naleteli.",
     "note" : "A hint for a text box that lets user enter free text to describe their problem"
   },
   "sendReport" : {
-    "title" : "Pošlji poročilo",
+    "title" : "Pošljite poročilo",
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Poročila, poslana družbi DuckDuckGo, so 100 % anonimna in vključujejo samo vaš zgornji izbor, vaš neobvezni opis, URL in seznam sledilnikov, ki smo jih našli na spletnem mestu.",
+    "title" : "Poročila, poslana podjetju DuckDuckGo, vključujejo samo informacije, ki so potrebne za obravnavanje vaših povratnih informacij.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {

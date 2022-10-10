@@ -5,7 +5,7 @@ DuckDuckGo Privacy Dashboard is distributed under the Apache 2.0
 
 DuckDuckGo apps and extensions use Common UI to report trackers found and blocked by our Web Tracking Protections, display connection details, change permissions, and send breakage reports. To learn more about our Web Tracking Protections, and how they work together in our browser extensions and apps to provide overlapping protection, visit our [Web Tracking Protections](https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/) page.
 
-[![Build Status](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/duckduckgo/duckduckgo-privacy-dashboard/actions/workflows/tests.yml)
+[![Build Status](https://github.com/duckduckgo/privacy-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/duckduckgo/privacy-dashboard/actions/workflows/tests.yml)
 
 ## Reporting a Broken Site
 
