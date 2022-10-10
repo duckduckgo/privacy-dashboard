@@ -234,7 +234,7 @@ export function privacyDashboardOpenUrlInNewTab (args) {
 /**
  * {@inheritDoc common.submitBrokenSiteReport}
  * @type {import("./common.es6").submitBrokenSiteReport}
- // * @category Webkit Message Handlers
+ * @category Webkit Message Handlers
  */
 export function privacyDashboardSubmitBrokenSiteReport (report) {
     window.webkit.messageHandlers.privacyDashboardSubmitBrokenSiteReport.postMessage({
@@ -243,18 +243,31 @@ export function privacyDashboardSubmitBrokenSiteReport (report) {
     })
 }
 
+/**
+ * {@inheritDoc common.setSize}
+ * @type {import("./common.es6").setSize}
+ * @category Webkit Message Handlers
+ */
+export function privacyDashboardSetSize (payload) {
+    window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
+}
+
 // todo(Shane): This is probably also running on iOS since it imports this file.
 setupMutationObserver((height) => {
-    window.webkit.messageHandlers.privacyDashboardSetHeight.postMessage(height)
+    privacyDashboardSetSize({ height })
 })
 
 /**
+ * Called when the DOM has been rendered for the first time. This is
+ * helpful on platforms that need to update their window size immediately
+ *
  * @type {NonNullable<import('./communication.es6').Communication['firstRenderComplete']>}
+ * @category Internal API
  */
 function firstRenderComplete () {
     const height = getContentHeight()
     if (typeof height === 'number') {
-        window.webkit.messageHandlers.privacyDashboardSetHeight.postMessage(height)
+        privacyDashboardSetSize({ height })
     }
 }
 

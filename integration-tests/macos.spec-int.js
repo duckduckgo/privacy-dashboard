@@ -38,9 +38,18 @@ test.describe('open external links', () => {
         await page.locator('"No Tracking Requests Found"').click()
         await page.locator('"About our Web Tracking Protections"').click()
         // @ts-ignore
-        const calls = await macOSMocks.outgoing()
+        const calls = await macOSMocks.outgoing({ names: ['privacyDashboardOpenUrlInNewTab'] })
         expect(calls).toMatchObject([
             ['privacyDashboardOpenUrlInNewTab', { url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/' }]
         ])
+    })
+})
+
+test.describe('setting the height', () => {
+    test('should send the initial height to native', async ({ page, macOSMocks }) => {
+        await page.locator('"No Tracking Requests Found"').click()
+        // @ts-ignore
+        const calls = await macOSMocks.outgoing({ names: ['privacyDashboardSetSize'] })
+        expect(calls.length).toBe(2)
     })
 })

@@ -27997,8 +27997,8 @@ exports.concatParams = concatParams;
 exports.getContentHeightForScreenShot = exports.getContentHeight = exports.convertTrackerDataPayload = void 0;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.openInNewTab = openInNewTab;
-exports.setHeight = setHeight;
 exports.setList = setList;
+exports.setSize = setSize;
 exports.setupColorScheme = setupColorScheme;
 exports.setupMutationObserver = setupMutationObserver;
 exports.submitBrokenSiteReport = submitBrokenSiteReport;
@@ -28107,6 +28107,10 @@ var getContentHeightForScreenShot = function getContentHeightForScreenShot() {
   var $rootSubview = window.document.querySelector('.site-info.site-info--main');
   return $rootSubview === null || $rootSubview === void 0 ? void 0 : $rootSubview.scrollHeight;
 };
+/**
+ * @param {(height: number) => void} callback
+ */
+
 
 exports.getContentHeightForScreenShot = getContentHeightForScreenShot;
 
@@ -28198,14 +28202,14 @@ function assert(condition) {
 
 function openInNewTab(payload) {}
 /**
- * Communicate the height of the dashboard so that native sides can
+ * Communicate the size of the dashboard so that native sides can
  * alter the height of their webview
  *
  * @param {{height: number}} payload
  */
 
 
-function setHeight(payload) {}
+function setSize(payload) {}
 /**
  * Call this method with Protection status updates.
  *
@@ -28375,6 +28379,7 @@ exports.getBackgroundTabData = void 0;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.onChangeRequestData = onChangeRequestData;
 exports.privacyDashboardOpenUrlInNewTab = privacyDashboardOpenUrlInNewTab;
+exports.privacyDashboardSetSize = privacyDashboardSetSize;
 exports.privacyDashboardSubmitBrokenSiteReport = privacyDashboardSubmitBrokenSiteReport;
 
 var _common = require("./common.es6");
@@ -28630,7 +28635,7 @@ function privacyDashboardOpenUrlInNewTab(args) {
 /**
  * {@inheritDoc common.submitBrokenSiteReport}
  * @type {import("./common.es6").submitBrokenSiteReport}
- // * @category Webkit Message Handlers
+ * @category Webkit Message Handlers
  */
 
 
@@ -28639,21 +28644,39 @@ function privacyDashboardSubmitBrokenSiteReport(report) {
     category: report.category,
     description: report.description
   });
+}
+/**
+ * {@inheritDoc common.setSize}
+ * @type {import("./common.es6").setSize}
+ * @category Webkit Message Handlers
+ */
+
+
+function privacyDashboardSetSize(payload) {
+  window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
 } // todo(Shane): This is probably also running on iOS since it imports this file.
 
 
 (0, _common.setupMutationObserver)(function (height) {
-  window.webkit.messageHandlers.privacyDashboardSetHeight.postMessage(height);
+  privacyDashboardSetSize({
+    height: height
+  });
 });
 /**
+ * Called when the DOM has been rendered for the first time. This is
+ * helpful on platforms that need to update their window size immediately
+ *
  * @type {NonNullable<import('./communication.es6').Communication['firstRenderComplete']>}
+ * @category Internal API
  */
 
 function firstRenderComplete() {
   var height = (0, _common.getContentHeight)();
 
-  if (typeof height === "number") {
-    window.webkit.messageHandlers.privacyDashboardSetHeight.postMessage(height);
+  if (typeof height === 'number') {
+    privacyDashboardSetSize({
+      height: height
+    });
   }
 }
 /**
@@ -29273,18 +29296,18 @@ require('./loadcss.js');
 },{"../pages/popup.es6.js":82,"./loadcss.js":65,"./localize.es6.js":66,"./mixins/index.es6.js":68,"./model.es6.js":69,"./page.es6.js":71,"./view.es6.js":73,"jquery":46}],65:[function(require,module,exports){
 "use strict";
 
-function loadCss(href) {
+function loadCss(file) {
   var head = document.getElementsByTagName('head')[0];
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
-  link.href = href;
+  link.href = '../public/css/' + file + '.css';
   head.appendChild(link);
 }
 
 setTimeout(function () {
-  loadCss('http://localhost:3000/public/css/base.css');
-  loadCss('http://localhost:3000/public/css/popup.css'); // loadCss('popup')
+  loadCss('base');
+  loadCss('popup');
 }, 5);
 
 },{}],66:[function(require,module,exports){

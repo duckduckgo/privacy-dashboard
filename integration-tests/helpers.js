@@ -329,6 +329,11 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
                         postMessage: (arg) => {
                             window.__playwright.mocks.outgoing.push(['privacyDashboardSubmitBrokenSiteReport', arg])
                         }
+                    },
+                    privacyDashboardSetSize: {
+                        postMessage: (arg) => {
+                            window.__playwright.mocks.outgoing.push(['privacyDashboardSetSize', arg])
+                        }
                     }
                 }
             }
@@ -353,6 +358,9 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
          */
         async outgoing (opts = { names: [] }) {
             const result = await page.evaluate(() => window.__playwright.mocks.outgoing)
+            if (Array.isArray(opts.names) && opts.names.length > 0) {
+                return result.filter(([name]) => opts.names.includes(name))
+            }
             return result
         }
     }

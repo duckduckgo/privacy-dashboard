@@ -44,7 +44,7 @@ interface Window {
     messageHandlers?: {
       privacyDashboardSubmitBrokenSiteReport?: any,
       privacyDashboardOpenUrlInNewTab?: any,
-      privacyDashboardSetHeight?: any,
+      privacyDashboardSetSize?: any,
       privacyDashboardShowReportBrokenSite?: any,
       privacyDashboardClose?: any
     }

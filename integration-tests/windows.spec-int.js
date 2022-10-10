@@ -40,3 +40,12 @@ test.describe('breakage form', () => {
         ])
     })
 })
+
+test.describe('setting the height', () => {
+    test('should send the initial height to native', async ({ page, windowsMocks }) => {
+        await page.locator('"No Tracking Requests Found"').click()
+        // @ts-ignore
+        const calls = await windowsMocks.outgoing({ names: ['SetSize'] })
+        expect(calls.length).toBe(2)
+    })
+})
