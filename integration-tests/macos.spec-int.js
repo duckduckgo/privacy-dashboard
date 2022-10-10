@@ -50,6 +50,6 @@ test.describe('setting the height', () => {
         await page.locator('"No Tracking Requests Found"').click()
         // @ts-ignore
         const calls = await macOSMocks.outgoing({ names: ['privacyDashboardSetSize'] })
-        expect(calls.length).toBe(2)
+        expect(calls.length).toBeGreaterThanOrEqual(2)
     })
 })
