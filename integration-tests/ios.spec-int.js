@@ -25,7 +25,7 @@ test.describe('breakage form', () => {
     test('should call webkit interface and not use HTML form', async ({ page, iosMocks }) => {
         await page.locator('"Website not working as expected?"').click()
         // @ts-ignore
-        const calls = await iosMocks.outgoing()
+        const calls = await iosMocks.outgoing({ names: ['privacyDashboardShowReportBrokenSite'] })
         expect(calls).toMatchObject([
             ['privacyDashboardShowReportBrokenSite', {}]
         ])
@@ -37,7 +37,7 @@ test.describe('open external links', () => {
         await page.locator('"No Tracking Requests Found"').click()
         await page.locator('"About our Web Tracking Protections"').click()
         // @ts-ignore
-        const calls = await iosMocks.outgoing()
+        const calls = await iosMocks.outgoing({ names: ['privacyDashboardOpenUrlInNewTab'] })
         expect(calls).toMatchObject([
             ['privacyDashboardOpenUrlInNewTab', { url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/' }]
         ])

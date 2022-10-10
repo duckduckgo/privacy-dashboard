@@ -28357,8 +28357,8 @@ exports.concatParams = concatParams;
 exports.getContentHeightForScreenShot = exports.getContentHeight = exports.convertTrackerDataPayload = void 0;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.openInNewTab = openInNewTab;
-exports.setHeight = setHeight;
 exports.setList = setList;
+exports.setSize = setSize;
 exports.setupColorScheme = setupColorScheme;
 exports.setupMutationObserver = setupMutationObserver;
 exports.submitBrokenSiteReport = submitBrokenSiteReport;
@@ -28467,6 +28467,10 @@ var getContentHeightForScreenShot = function getContentHeightForScreenShot() {
   var $rootSubview = window.document.querySelector('.site-info.site-info--main');
   return $rootSubview === null || $rootSubview === void 0 ? void 0 : $rootSubview.scrollHeight;
 };
+/**
+ * @param {(height: number) => void} callback
+ */
+
 
 exports.getContentHeightForScreenShot = getContentHeightForScreenShot;
 
@@ -28558,14 +28562,14 @@ function assert(condition) {
 
 function openInNewTab(payload) {}
 /**
- * Communicate the height of the dashboard so that native sides can
+ * Communicate the size of the dashboard so that native sides can
  * alter the height of their webview
  *
  * @param {{height: number}} payload
  */
 
 
-function setHeight(payload) {}
+function setSize(payload) {}
 /**
  * Call this method with Protection status updates.
  *
@@ -29205,18 +29209,18 @@ require('./loadcss.js');
 },{"../pages/popup.es6.js":81,"./loadcss.js":64,"./localize.es6.js":65,"./mixins/index.es6.js":67,"./model.es6.js":68,"./page.es6.js":70,"./view.es6.js":72,"jquery":46}],64:[function(require,module,exports){
 "use strict";
 
-function loadCss(href) {
+function loadCss(file) {
   var head = document.getElementsByTagName('head')[0];
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
-  link.href = href;
+  link.href = '../public/css/' + file + '.css';
   head.appendChild(link);
 }
 
 setTimeout(function () {
-  loadCss('http://localhost:3000/public/css/base.css');
-  loadCss('http://localhost:3000/public/css/popup.css'); // loadCss('popup')
+  loadCss('base');
+  loadCss('popup');
 }, 5);
 
 },{}],65:[function(require,module,exports){

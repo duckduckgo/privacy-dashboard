@@ -1,7 +1,6 @@
 /**
  * @module common
  */
-
 const getHostname = (url) => {
     if (url.indexOf('//') === 0) {
         url = `http:${url}`
@@ -100,6 +99,9 @@ export const getContentHeightForScreenShot = () => {
     return $rootSubview?.scrollHeight
 }
 
+/**
+ * @param {(height: number) => void} callback
+ */
 export function setupMutationObserver (callback) {
     const bufferHeight = 200
     let lastHeight
@@ -187,12 +189,12 @@ export function assert (condition, message = '') {
 export function openInNewTab (payload) {}
 
 /**
- * Communicate the height of the dashboard so that native sides can
+ * Communicate the size of the dashboard so that native sides can
  * alter the height of their webview
  *
  * @param {{height: number}} payload
  */
-export function setHeight (payload) {}
+export function setSize (payload) {}
 
 /**
  * Call this method with Protection status updates.

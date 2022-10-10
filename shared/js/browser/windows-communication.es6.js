@@ -210,6 +210,25 @@ export function OpenInNewTab (args) {
     })
 }
 
+/**
+ * {@inheritDoc common.setSize}
+ * @type {import("./common.es6").setSize}
+ * @category Windows Webview Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.webview.postMessage({
+ *    Feature: 'PrivacyDashboard',
+ *    Name: 'SetSize',
+ *    Data: { height: 445 }
+ * })
+ * ```
+ */
+export function SetSize (payload) {
+    windowsPostMessage('SetSize', payload)
+}
+
 const getBackgroundTabData = () => {
     return new Promise((resolve) => {
         if (trackerBlockingData) {
@@ -224,8 +243,9 @@ const getBackgroundTabData = () => {
 assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required')
 window.chrome.webview.addEventListener('message', event => handleViewModelUpdate(event.data))
 
+// todo(Shane): does this fire early enough on Windows
 setupMutationObserver((height) => {
-    windowsPostMessage('setSize', { height: height })
+    SetSize({ height })
 })
 
 /**
