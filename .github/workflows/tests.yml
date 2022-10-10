@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: build/example
-          key: build-output
+          key: build-output-${{ github.run_id }}
       - name: Build all
         run: npm run build
       - name: Install Playwright Browsers
@@ -87,7 +87,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: build/example
-          key: build-output
+          key: build-output-${{ github.run_id }}
       - name: Setup Github Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
