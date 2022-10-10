@@ -461,7 +461,7 @@ exports[`Browser specific Site view email protection: when the user is signed in
       <span
         class="email-alias__text"
       >
-        Create new Duck Address
+        Generate Private Duck Address
       </span>
       
     </button>
@@ -520,7 +520,7 @@ exports[`Browser specific Site view email protection: when the user is signed in
       <span
         class="email-alias__text"
       >
-        Create new Duck Address
+        Generate Private Duck Address
       </span>
       
     </button>

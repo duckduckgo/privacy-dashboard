@@ -56,7 +56,7 @@
         "note": "We found trackers, but protections were disabled"
     },
     "createNewDuckAddress": {
-        "title": "Create new Duck Address",
+        "title": "Generate Private Duck Address",
         "note": "Create a new private email alias"
     },
     "createNewDuckAddressCopied": {
