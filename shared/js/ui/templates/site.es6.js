@@ -63,7 +63,7 @@ module.exports = function () {
     ${renderEmailWrapper(this.model)}
     <div class="list-wrapper card-list--last">
         <ul class="default-list">
-            <li class="js-site-manage-allowlist-li site-info__li--manage-allowlist  border-light--top">
+            <li class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top">
                 ${renderManageAllowlist()}
             </li>
         </ul>

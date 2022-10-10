@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "PrivacyDashboard",
     platforms: [
-        .iOS("13.0"),
+        .iOS("14.0"),
         .macOS("10.15")
     ],
     products: [
@@ -15,14 +15,11 @@ let package = Package(
             targets: ["PrivacyDashboard"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/duckduckgo/BrowserServicesKit", .upToNextMajor(from: "25.0.0")),
-        .package(url: "https://github.com/duckduckgo/TrackerRadarKit", .upToNextMajor(from: "1.0.4"))
     ],
     targets: [
         .target(
             name: "PrivacyDashboard",
-            dependencies: ["BrowserServicesKit",
-                           "TrackerRadarKit",
+            dependencies: [
                            .target(name: "PrivacyDashboard-resources-for-ios", condition: .when(platforms: [.iOS])),
                            .target(name: "PrivacyDashboard-resources-for-macos", condition: .when(platforms: [.macOS]))
                           ],
