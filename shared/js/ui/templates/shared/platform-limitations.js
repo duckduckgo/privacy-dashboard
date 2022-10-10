@@ -2,8 +2,7 @@ import bel from 'bel'
 import { ns } from '../../base/localize.es6'
 
 export function platformLimitations () {
-    return bel`<div>
-        <div class="horizontal-separator horizontal-separator--light"></div>
-        <p class="text--center">${ns.site('trackerLimitationsNote.title')}</p>
-    </div>`
+    return bel`<div class="padded-sides">
+         <p class="platform-limitations border--top--inner">${ns.site('trackerLimitationsNote.title')}</p>
+     </div>`
 }

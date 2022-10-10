@@ -20,6 +20,8 @@ const searchTemplate = require('../templates/search.es6')
 const CtaRotationView = require('./cta-rotation.es6')
 const { CtaRotationModel } = require('../models/cta-rotation.es6')
 const ctaRotationView = require('../templates/cta-rotation.es6')
+/** @type {import('../../browser/communication.es6.js').Communication} */
+const browserUIWrapper = require('../../browser/communication.es6.js')
 
 function Site (ops) {
     this.model = ops.model
@@ -104,6 +106,10 @@ Site.prototype = window.$.extend({},
             ])
 
             this._setupFeatures()
+
+            setTimeout(() => {
+                browserUIWrapper.firstRenderComplete?.();
+            }, 100);
         },
 
         rerender: function () {

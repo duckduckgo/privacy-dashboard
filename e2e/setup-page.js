@@ -1,6 +1,6 @@
 import { webkit } from 'playwright-webkit'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
-import { getContentHeight } from '../shared/js/browser/common.es6'
+import { getContentHeightForScreenShot } from '../shared/js/browser/common.es6'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -47,7 +47,7 @@ function setupPage () {
     }
 
     const takeScreenshot = async () => {
-        const height = await globalThis.page.evaluate(getContentHeight)
+        const height = await globalThis.page.evaluate(getContentHeightForScreenShot)
         await globalThis.page.setViewportSize({
             width: defaultPageWidth,
             height: height || defaultPageHeight

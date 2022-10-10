@@ -593,3 +593,8 @@ body.environment--browser {
 
 /* Sliding subviews */
 @include sliding_subview();
+
+.platform-limitations {
+    padding: 16px;
+    text-align: center;
+}

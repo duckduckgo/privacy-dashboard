@@ -90,6 +90,12 @@ export function concatParams (args) {
 }
 
 export const getContentHeight = () => {
+    const $openSubview = window.document.querySelector('#popup-container.sliding-subview--open > section:last-child > div')
+    const $rootSubview = window.document.querySelector('#popup-container.sliding-subview--root > section:first-child > div')
+    return ($openSubview || $rootSubview)?.scrollHeight
+}
+
+export const getContentHeightForScreenShot = () => {
     const $rootSubview = window.document.querySelector('.site-info.site-info--main')
     return $rootSubview?.scrollHeight
 }
@@ -101,7 +107,7 @@ export function setupMutationObserver (callback) {
         const contentHeight = getContentHeight()
         if (!contentHeight) return
 
-        const height = Math.min(window.screen.height - bufferHeight, contentHeight)
+        const height = Math.min(    window.screen.height - bufferHeight, contentHeight)
 
         // Only update if the height has changed since last run
         if (lastHeight === height) return
@@ -211,6 +217,4 @@ export function submitBrokenSiteReport (report) {}
 /**
  * @param {import('../../../schema/__generated__/schema.types').SetListOptions} options
  */
-export function setList (options) {
-
-}
+export function setList (options) {}

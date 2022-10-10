@@ -15,7 +15,7 @@
 
  * @category integrations
  */
-import { setupColorScheme, setupMutationObserver } from './common.es6'
+import { getContentHeight, setupColorScheme, setupMutationObserver } from './common.es6'
 import {
     protectionsStatusSchema,
     requestDataSchema
@@ -66,7 +66,6 @@ const resolveInitialRender = function () {
     if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
         return
     }
-
     getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()))
     channel?.send('updateTabData')
 }
@@ -235,7 +234,7 @@ export function privacyDashboardOpenUrlInNewTab (args) {
 /**
  * {@inheritDoc common.submitBrokenSiteReport}
  * @type {import("./common.es6").submitBrokenSiteReport}
- * @category Webkit Message Handlers
+ // * @category Webkit Message Handlers
  */
 export function privacyDashboardSubmitBrokenSiteReport (report) {
     window.webkit.messageHandlers.privacyDashboardSubmitBrokenSiteReport.postMessage({
@@ -248,6 +247,16 @@ export function privacyDashboardSubmitBrokenSiteReport (report) {
 setupMutationObserver((height) => {
     window.webkit.messageHandlers.privacyDashboardSetHeight.postMessage(height)
 })
+
+/**
+ * @type {NonNullable<import('./communication.es6').Communication['firstRenderComplete']>}
+ */
+function firstRenderComplete() {
+    const height = getContentHeight();
+    if (typeof height === "number") {
+        window.webkit.messageHandlers.privacyDashboardSetHeight.postMessage(height)
+    }
+}
 
 /**
  * on macOS + iOS, respond to all clicks on links with target="_blank"
@@ -268,5 +277,6 @@ document.addEventListener('click', (e) => {
 export {
     fetch,
     backgroundMessage,
-    getBackgroundTabData
+    getBackgroundTabData,
+    firstRenderComplete,
 }

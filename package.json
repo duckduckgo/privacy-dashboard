@@ -18,6 +18,7 @@
         "watch.example": "grunt dev --platform=example --watch",
         "watch.browser": "grunt dev --platform=browser --watch",
         "watch.android": "grunt dev --platform=android --watch",
+        "watch.macos": "grunt dev --platform=macos --watch",
         "serve": "http-server -c-1 --port 3210 ./",
         "serve.example": "http-server -c-1 --port 3210 ./build/example",
         "lint": "eslint .",

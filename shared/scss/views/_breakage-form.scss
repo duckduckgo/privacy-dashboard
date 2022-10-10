@@ -63,7 +63,7 @@
             opacity: 1;
 
             &.is-transparent {
-                opacity: 0;
+                display: none;
             }
         }
 
