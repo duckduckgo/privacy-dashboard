@@ -107,7 +107,7 @@ export function setupMutationObserver (callback) {
         const contentHeight = getContentHeight()
         if (!contentHeight) return
 
-        const height = Math.min(    window.screen.height - bufferHeight, contentHeight)
+        const height = Math.min(window.screen.height - bufferHeight, contentHeight)
 
         // Only update if the height has changed since last run
         if (lastHeight === height) return

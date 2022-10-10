@@ -824,7 +824,7 @@ exports[`Browser specific Site view when content-blocking has an exception rende
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist  border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -1067,7 +1067,7 @@ exports[`Browser specific Site view when the site broken, but the user has overr
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist  border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -1310,7 +1310,7 @@ exports[`Browser specific Site view when the site is marked as broken renders th
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist  border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
         >
           <div
             class="manage-allowlist"

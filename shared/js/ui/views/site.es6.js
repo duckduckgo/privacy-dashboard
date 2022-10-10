@@ -108,8 +108,8 @@ Site.prototype = window.$.extend({},
             this._setupFeatures()
 
             setTimeout(() => {
-                browserUIWrapper.firstRenderComplete?.();
-            }, 100);
+                browserUIWrapper.firstRenderComplete?.()
+            }, 100)
         },
 
         rerender: function () {

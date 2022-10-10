@@ -251,9 +251,9 @@ setupMutationObserver((height) => {
 /**
  * @type {NonNullable<import('./communication.es6').Communication['firstRenderComplete']>}
  */
-function firstRenderComplete() {
-    const height = getContentHeight();
-    if (typeof height === "number") {
+function firstRenderComplete () {
+    const height = getContentHeight()
+    if (typeof height === 'number') {
         window.webkit.messageHandlers.privacyDashboardSetHeight.postMessage(height)
     }
 }
@@ -278,5 +278,5 @@ export {
     fetch,
     backgroundMessage,
     getBackgroundTabData,
-    firstRenderComplete,
+    firstRenderComplete
 }
