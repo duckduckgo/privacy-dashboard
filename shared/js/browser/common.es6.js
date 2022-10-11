@@ -183,6 +183,27 @@ export function assert (condition, message = '') {
 }
 
 /**
+ * Sets the locale once initially. This is a required call.
+ *
+ * It's not expected that this method will be called more than once during the lifespan of
+ * the open Privacy Dashboard - although technically it does support it
+ *
+ * Must be 2 letters, lower-case to match a name in the `shared/locales` folder. If you're
+ * not sure what to send for any reason, send `{ locale: "en" }` as a default.
+ *
+ * Valid values would be along the lines of:
+ *
+ * ```
+ * "fr"
+ * "en"
+ * "pl"
+ * ```
+ *
+ * @param {import('../../../schema/__generated__/schema.types').LocaleSettings} payload
+ */
+export function onChangeLocale (payload) {}
+
+/**
  * Calling this method should close the dashboard and open the given URL in a **new tab**.
  * @param {{url: string}} payload
  */

@@ -17,6 +17,7 @@
  */
 import { getContentHeight, setupColorScheme, setupMutationObserver } from './common.es6'
 import {
+    localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema
 } from '../../../schema/__generated__/schema.parsers'
@@ -45,6 +46,9 @@ let isPendingUpdates
 let parentEntity
 let consentManaged
 
+/** @type {string | undefined} */
+let locale
+
 const combineSources = () => ({
     tab: Object.assign({},
         trackerBlockingData || {},
@@ -52,7 +56,8 @@ const combineSources = () => ({
             isPendingUpdates,
             parentEntity,
             consentManaged,
-            platformLimitations: true
+            platformLimitations: true,
+            locale
         },
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
@@ -63,7 +68,8 @@ const resolveInitialRender = function () {
     const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean'
     const isIsProtectedSet = typeof protections !== 'undefined'
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object'
-    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    const isLocaleSet = typeof locale === 'string'
+    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
         return
     }
     getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()))
@@ -138,6 +144,29 @@ export function onChangeProtectionStatus (protectionsStatus) {
     resolveInitialRender()
 }
 window.onChangeProtectionStatus = onChangeProtectionStatus
+
+/**
+ * {@inheritDoc common.onChangeLocale}
+ * @type {import("./common.es6").onChangeLocale}
+ * @group macOS -> JavaScript Interface
+ * @example
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangeLocale(\(localSettingsJsonString))", in: webView)
+ * ```
+ */
+export function onChangeLocale (payload) {
+    const parsed = localeSettingsSchema.safeParse(payload)
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangeLocale')
+        console.error(parsed.error)
+        return
+    }
+    locale = parsed.data.locale
+    channel?.send('updateTabData')
+}
+window.onChangeLocale = onChangeLocale
 
 window.onChangeCertificateData = function (data) {
     certificateData = data.secCertificateViewModels

@@ -214,6 +214,7 @@ export async function withAndroidRequests (page, requestData, tab = {}) {
         submitBrokenSiteReport: {},
         /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
         getPrivacyDashboardData: {
+            /** @type {import('../schema/__generated__/schema.types').Tab} */
             tab: {
                 id: 1533,
                 url: 'https://example.com',
@@ -223,6 +224,9 @@ export async function withAndroidRequests (page, requestData, tab = {}) {
                     enabledFeatures: ['contentBlocking'],
                     denylisted: false,
                     allowlisted: false
+                },
+                localeSettings: {
+                    locale: 'en'
                 },
                 ...tab
             },
@@ -257,6 +261,7 @@ export async function withAndroidRequests (page, requestData, tab = {}) {
                 allowlisted: false,
                 denylisted: false
             })
+            window.onChangeLocale(messages.getPrivacyDashboardData.tab.localeSettings)
             window.onChangeRequestData(messages.getPrivacyDashboardData.tab.url, messages.getPrivacyDashboardData.requestData)
         } catch (e) {
             console.error('❌couldn\'t set up mocks')
@@ -286,6 +291,7 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
         submitBrokenSiteReport: {},
         /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
         getPrivacyDashboardData: {
+            /** @type {import('../schema/__generated__/schema.types').Tab} */
             tab: {
                 id: 1533,
                 url: 'https://example.com',
@@ -295,6 +301,9 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
                     enabledFeatures: ['contentBlocking'],
                     denylisted: false,
                     allowlisted: false
+                },
+                localeSettings: {
+                    locale: 'en'
                 },
                 ...tab
             },
@@ -337,6 +346,7 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
                     }
                 }
             }
+            window.onChangeLocale(messages.getPrivacyDashboardData.tab.localeSettings)
             window.onChangeUpgradedHttps(false)
             window.onChangeProtectionStatus({
                 unprotectedTemporary: false,

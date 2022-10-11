@@ -48,6 +48,7 @@ export interface API {
   "breakage-report": BreakageReport;
   "set-list"?: SetListOptions;
   "windows-view-model": WindowsViewModel;
+  "locale-settings"?: LocaleSettings;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -191,6 +192,7 @@ export interface Tab {
   url: string;
   upgradedHttps: boolean;
   protections: ProtectionsStatus;
+  localeSettings?: LocaleSettings;
   parentEntity?: ParentEntity;
   /**
    * Provide this if the current tab is a domain that we cannot provide regular dashboard features for (like new tab, about://blank etc)
@@ -217,6 +219,15 @@ export interface ProtectionsStatus {
    * Is the current domain in the user's `denylist` - meaning, did the user override our remote/privacy config?
    */
   denylisted: boolean;
+}
+/**
+ * This describes the payload required to set the locale
+ */
+export interface LocaleSettings {
+  /**
+   * 2 letters, such as `pl`, `en`, `fr` etc
+   */
+  locale: string;
 }
 /**
  * This fields required to describe a 'parent entity'

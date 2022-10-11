@@ -10,7 +10,11 @@
  * @category integrations
  */
 import { setupColorScheme } from './common.es6'
-import { protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
+import {
+    localeSettingsSchema,
+    protectionsStatusSchema,
+    requestDataSchema
+} from '../../../schema/__generated__/schema.parsers'
 import { createTabData } from './utils/request-details'
 
 let channel = null
@@ -31,13 +35,17 @@ let isPendingUpdates
 let parentEntity
 let consentManaged
 
+/** @type {string | undefined} */
+let locale
+
 const combineSources = () => ({
     tab: Object.assign({},
         trackerBlockingData || {},
         {
             isPendingUpdates,
             parentEntity,
-            consentManaged
+            consentManaged,
+            locale
         },
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
@@ -48,7 +56,8 @@ const resolveInitialRender = function () {
     const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean'
     const isIsProtectedSet = typeof protections !== 'undefined'
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object'
-    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    const isLocaleSet = typeof locale === 'string'
+    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
         return
     }
 
@@ -126,7 +135,7 @@ window.onChangeUpgradedHttps = function (data) {
  * ... which is the equivalent of calling the following inside the Privacy Dashboard
  * ```javascript
  * // JavaScript
- * window.evaluateJavascript(protectionStatus)
+ * window.onChangeProtectionStatus(protectionStatus)
  * ```
  *
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
@@ -143,6 +152,30 @@ export function onChangeProtectionStatus (protectionsStatus) {
     resolveInitialRender()
 }
 window.onChangeProtectionStatus = onChangeProtectionStatus
+
+/**
+ * {@inheritDoc common.onChangeLocale}
+ * @type {import("./common.es6").onChangeLocale}
+ * @group Android -> JavaScript Interface
+ *
+ * @example
+ *
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeLocale(${localSettingsAsJsonString});", null)
+ * ```
+ */
+export function onChangeLocale (payload) {
+    const parsed = localeSettingsSchema.safeParse(payload)
+    if (!parsed.success) {
+        console.error('could not parse incoming protection status from onChangeLocale')
+        console.error(parsed.error)
+        return
+    }
+    locale = parsed.data.locale
+    channel?.send('updateTabData')
+}
+window.onChangeLocale = onChangeLocale
 
 window.onChangeCertificateData = function (data) {
     certificateData = data.secCertificateViewModels

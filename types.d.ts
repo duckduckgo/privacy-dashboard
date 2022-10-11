@@ -10,6 +10,7 @@ interface Window {
   onChangeTrackerBlockingData: any;
   onChangeTheme: any;
   onChangeRequestData: any;
+  onChangeLocale: any;
   onChangeAllowedPermissions: any;
   onChangeUpgradedHttps: any;
   onChangeProtectionStatus: any;
