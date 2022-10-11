@@ -43,3 +43,30 @@ test.describe('open external links', () => {
         ])
     })
 })
+
+test.describe('localization', () => {
+    test('should load with `pl` locale', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto('/build/android/html/popup.html')
+        await withAndroidRequests(page, {
+            requests: []
+        }, {
+            localeSettings: {
+                locale: 'pl'
+            }
+        })
+        await page.locator('"Połączenie jest szyfrowane"').click()
+    })
+    test('should load with `fr` locale', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto('/build/android/html/popup.html')
+        await withAndroidRequests(page, {
+            requests: []
+        }, {
+            localeSettings: {
+                locale: 'fr'
+            }
+        })
+        await page.locator('"La connexion est chiffrée"').click()
+    })
+})

@@ -12,6 +12,7 @@
  * Examples from the macOS integration:
  * - {@link "macOS integration".onChangeProtectionStatus}
  * - {@link "macOS integration".onChangeRequestData}
+ * - {@link "macOS integration".onChangeLocale}
  *
  * **Outgoing messages**
  *

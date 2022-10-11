@@ -15,6 +15,7 @@
     "extension-message-get-privacy-dashboard-data": { "$ref": "./extension-message-get-privacy-dashboard-data.json" },
     "breakage-report": { "$ref": "./breakage-report.json" },
     "set-list": { "$ref": "./set-list-options.json"},
-    "windows-view-model": { "$ref":  "./windows-view-model.json" }
+    "windows-view-model": { "$ref":  "./windows-view-model.json" },
+    "locale-settings": { "$ref":  "./locale.json" }
   }
 }

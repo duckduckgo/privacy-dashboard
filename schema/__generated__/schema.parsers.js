@@ -35,6 +35,10 @@ export const protectionsStatusSchema = z.object({
     denylisted: z.boolean()
 });
 
+export const localeSettingsSchema = z.object({
+    locale: z.string()
+});
+
 export const parentEntitySchema = z.object({
     displayName: z.string(),
     prevalence: z.number()
@@ -67,6 +71,7 @@ export const tabSchema = z.object({
     url: z.string(),
     upgradedHttps: z.boolean(),
     protections: protectionsStatusSchema,
+    localeSettings: localeSettingsSchema.optional(),
     parentEntity: parentEntitySchema.optional(),
     specialDomainName: z.string().optional()
 });
@@ -102,6 +107,7 @@ export const apiSchema = z.object({
     "extension-message-get-privacy-dashboard-data": extensionGetPrivacyDashboardDataSchema,
     "breakage-report": breakageReportSchema,
     "set-list": setListOptionsSchema.optional(),
-    "windows-view-model": windowsViewModelSchema
+    "windows-view-model": windowsViewModelSchema,
+    "locale-settings": localeSettingsSchema.optional()
 });
 

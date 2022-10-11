@@ -27820,7 +27820,7 @@ exports.oboolean = oboolean;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.windowsViewModelSchema = exports.tabSchema = exports.stateBlockedSchema = exports.stateAllowedSchema = exports.setListOptionsSchema = exports.ruleExceptionReasonSchema = exports.requestDataSchema = exports.protectionsStatusSchema = exports.protectionsDisabledReasonSchema = exports.parentEntitySchema = exports.ownedByFirstPartyReasonSchema = exports.otherThirdPartyRequestReasonSchema = exports.extensionGetPrivacyDashboardDataSchema = exports.emailProtectionUserDataSchema = exports.detectedRequestSchema = exports.breakageReportSchema = exports.breakageReportRequestSchema = exports.apiSchema = exports.adClickAttributionReasonSchema = void 0;
+exports.windowsViewModelSchema = exports.tabSchema = exports.stateBlockedSchema = exports.stateAllowedSchema = exports.setListOptionsSchema = exports.ruleExceptionReasonSchema = exports.requestDataSchema = exports.protectionsStatusSchema = exports.protectionsDisabledReasonSchema = exports.parentEntitySchema = exports.ownedByFirstPartyReasonSchema = exports.otherThirdPartyRequestReasonSchema = exports.localeSettingsSchema = exports.extensionGetPrivacyDashboardDataSchema = exports.emailProtectionUserDataSchema = exports.detectedRequestSchema = exports.breakageReportSchema = exports.breakageReportRequestSchema = exports.apiSchema = exports.adClickAttributionReasonSchema = void 0;
 
 var _zod = require("zod");
 
@@ -27877,6 +27877,12 @@ var protectionsStatusSchema = _zod.z.object({
 
 exports.protectionsStatusSchema = protectionsStatusSchema;
 
+var localeSettingsSchema = _zod.z.object({
+  locale: _zod.z.string()
+});
+
+exports.localeSettingsSchema = localeSettingsSchema;
+
 var parentEntitySchema = _zod.z.object({
   displayName: _zod.z.string(),
   prevalence: _zod.z.number()
@@ -27917,6 +27923,7 @@ var tabSchema = _zod.z.object({
   url: _zod.z.string(),
   upgradedHttps: _zod.z["boolean"](),
   protections: protectionsStatusSchema,
+  localeSettings: localeSettingsSchema.optional(),
   parentEntity: parentEntitySchema.optional(),
   specialDomainName: _zod.z.string().optional()
 });
@@ -27962,7 +27969,8 @@ var apiSchema = _zod.z.object({
   "extension-message-get-privacy-dashboard-data": extensionGetPrivacyDashboardDataSchema,
   "breakage-report": breakageReportSchema,
   "set-list": setListOptionsSchema.optional(),
-  "windows-view-model": windowsViewModelSchema
+  "windows-view-model": windowsViewModelSchema,
+  "locale-settings": localeSettingsSchema.optional()
 });
 
 exports.apiSchema = apiSchema;
@@ -27993,6 +28001,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.PrivacyDashboardJavascriptInterface = void 0;
+exports.onChangeLocale = onChangeLocale;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.onChangeRequestData = onChangeRequestData;
 
@@ -28028,13 +28037,17 @@ var protections;
 var isPendingUpdates;
 var parentEntity;
 var consentManaged;
+/** @type {string | undefined} */
+
+var locale;
 
 var combineSources = function combineSources() {
   return {
     tab: Object.assign({}, trackerBlockingData || {}, {
       isPendingUpdates: isPendingUpdates,
       parentEntity: parentEntity,
-      consentManaged: consentManaged
+      consentManaged: consentManaged,
+      locale: locale
     }, permissionsData ? {
       permissions: permissionsData
     } : {}, certificateData ? {
@@ -28049,8 +28062,9 @@ var resolveInitialRender = function resolveInitialRender() {
   var isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
   var isIsProtectedSet = typeof protections !== 'undefined';
   var isTrackerBlockingDataSet = _typeof(trackerBlockingData) === 'object';
+  var isLocaleSet = typeof locale === 'string';
 
-  if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+  if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
     return;
   }
 
@@ -28134,7 +28148,7 @@ window.onChangeUpgradedHttps = function (data) {
  * ... which is the equivalent of calling the following inside the Privacy Dashboard
  * ```javascript
  * // JavaScript
- * window.evaluateJavascript(protectionStatus)
+ * window.onChangeProtectionStatus(protectionStatus)
  * ```
  *
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
@@ -28155,33 +28169,62 @@ function onChangeProtectionStatus(protectionsStatus) {
 }
 
 window.onChangeProtectionStatus = onChangeProtectionStatus;
+/**
+ * {@inheritDoc common.onChangeLocale}
+ * @type {import("./common.es6").onChangeLocale}
+ * @group Android -> JavaScript Interface
+ *
+ * @example
+ *
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeLocale(${localSettingsAsJsonString});", null)
+ * ```
+ */
 
-window.onChangeCertificateData = function (data) {
+function onChangeLocale(payload) {
   var _channel3;
 
-  certificateData = data.secCertificateViewModels;
-  (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
-};
+  var parsed = _schema.localeSettingsSchema.safeParse(payload);
 
-window.onIsPendingUpdates = function (data) {
+  if (!parsed.success) {
+    console.error('could not parse incoming protection status from onChangeLocale');
+    console.error(parsed.error);
+    return;
+  }
+
+  locale = parsed.data.locale;
+  (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
+}
+
+window.onChangeLocale = onChangeLocale;
+
+window.onChangeCertificateData = function (data) {
   var _channel4;
 
-  isPendingUpdates = data;
+  certificateData = data.secCertificateViewModels;
   (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData');
 };
 
-window.onChangeParentEntity = function (data) {
+window.onIsPendingUpdates = function (data) {
   var _channel5;
 
-  parentEntity = data;
+  isPendingUpdates = data;
   (_channel5 = channel) === null || _channel5 === void 0 ? void 0 : _channel5.send('updateTabData');
 };
 
-window.onChangeConsentManaged = function (data) {
+window.onChangeParentEntity = function (data) {
   var _channel6;
 
-  consentManaged = data;
+  parentEntity = data;
   (_channel6 = channel) === null || _channel6 === void 0 ? void 0 : _channel6.send('updateTabData');
+};
+
+window.onChangeConsentManaged = function (data) {
+  var _channel7;
+
+  consentManaged = data;
+  (_channel7 = channel) === null || _channel7 === void 0 ? void 0 : _channel7.send('updateTabData');
 };
 /**
  * This describes the JavaScript Interface, `PrivacyDashboard`, that gets added to the `window` object by Android.
@@ -28355,6 +28398,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.assert = assert;
 exports.concatParams = concatParams;
 exports.getContentHeightForScreenShot = exports.getContentHeight = exports.convertTrackerDataPayload = void 0;
+exports.onChangeLocale = onChangeLocale;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.openInNewTab = openInNewTab;
 exports.setList = setList;
@@ -28554,6 +28598,28 @@ function assert(condition) {
     throw new Error(message);
   }
 }
+/**
+ * Sets the locale once initially. This is a required call.
+ *
+ * It's not expected that this method will be called more than once during the lifespan of
+ * the open Privacy Dashboard - although technically it does support it
+ *
+ * Must be 2 letters, lower-case to match a name in the `shared/locales` folder. If you're
+ * not sure what to send for any reason, send `{ locale: "en" }` as a default.
+ *
+ * Valid values would be along the lines of:
+ *
+ * ```
+ * "fr"
+ * "en"
+ * "pl"
+ * ```
+ *
+ * @param {import('../../../schema/__generated__/schema.types').LocaleSettings} payload
+ */
+
+
+function onChangeLocale(payload) {}
 /**
  * Calling this method should close the dashboard and open the given URL in a **new tab**.
  * @param {{url: string}} payload
