@@ -4,21 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "PrivacyDashboard",
+    name: "PrivacyDashboardResources",
     platforms: [
         .iOS("14.0"),
         .macOS("10.15")
     ],
     products: [
         .library(
-            name: "PrivacyDashboard",
-            targets: ["PrivacyDashboard"]),
+            name: "PrivacyDashboardResources",
+            targets: ["PrivacyDashboardResources"]),
     ],
     dependencies: [
     ],
     targets: [
         .target(
-            name: "PrivacyDashboard",
+            name: "PrivacyDashboardResources",
             dependencies: [
                            .target(name: "PrivacyDashboard-resources-for-ios", condition: .when(platforms: [.iOS])),
                            .target(name: "PrivacyDashboard-resources-for-macos", condition: .when(platforms: [.macOS]))
@@ -37,7 +37,7 @@ let package = Package(
     
         .testTarget(
             name: "PrivacyDashboardTests",
-            dependencies: ["PrivacyDashboard"],
+            dependencies: ["PrivacyDashboardResources"],
             path: "swift-package/Tests"),
     ]
 )

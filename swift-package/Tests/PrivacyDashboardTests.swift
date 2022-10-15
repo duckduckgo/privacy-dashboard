@@ -1,5 +1,5 @@
 import XCTest
-@testable import PrivacyDashboard
+@testable import PrivacyDashboardResources
 
 final class PrivacyDashboardTests: XCTestCase {
     func testExample() throws {
