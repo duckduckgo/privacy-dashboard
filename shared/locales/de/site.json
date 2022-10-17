@@ -21,7 +21,7 @@
     "note" : "Headline when privacy protections are disabled by user"
   },
   "protectionsDisabledRemote" : {
-    "title" : "Wir haben den Datenschutz vorübergehend deaktiviert, da es den Anschein hat, dass er diese Website beschädigt.",
+    "title" : "Wir haben den Datenschutz vorübergehend deaktiviert, da es den Anschein hat, dass die Seite dadurch gestört wird.",
     "note" : "Headline when privacy protections are disabled by DDG"
   },
   "protectionsDisabledRemoteOverride" : {
@@ -57,7 +57,7 @@
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Neue Duck-Adresse erstellen",
+    "title" : "Private Duck-Adresse generieren",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Wir haben das Laden von Tracking-Anfragen auf dieser Seite blockiert.} =2 {Wir haben <b>{firstCompany}</b> und <b>{secondCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =3 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b> und <b>{thirdCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =4 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> und <b>{fourthCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =5 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> und <b>1 andere</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} one {Wir haben das Laden <b>{firstCompany}</b>von Tracking-Anfragen auf dieser Seite blockiert.} other {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}<b>{thirdCompany}</b></b>, <b>{fourthCompany}</b>und <b>{othersCount}andere</b> daran gehindert, Tracking-Anfragen auf diese Seite zu laden.}}",
+    "title" : "{companyCount, plural, =0 {Wir haben einige Unternehmen daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =2 {Wir haben <b>{firstCompany}</b> und <b>{secondCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =3 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b> und <b>{thirdCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =4 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> und <b>{fourthCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =5 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> und <b>1 andere</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} one {Wir haben das Laden <b>{firstCompany}</b>von Tracking-Anfragen auf dieser Seite blockiert.} other {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}<b>{thirdCompany}</b></b>, <b>{fourthCompany}</b>und <b>{othersCount}andere</b> daran gehindert, Tracking-Anfragen auf diese Seite zu laden.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,7 +94,7 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Blockierte Anfragen",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
     "title" : "Keine Tracking-Anfragen blockiert",
@@ -102,9 +102,6 @@
   },
   "trackerNetworksNotFound" : {
     "title" : "Keine Tracking-Anfragen gefunden",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {

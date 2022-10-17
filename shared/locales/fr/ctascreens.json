@@ -9,7 +9,7 @@
     }]
   },
   "protectionsUnavailableNote" : {
-    "title" : "La protection de la confidentialité n'est pas disponible pour les pages spéciales ou locales.",
+    "title" : "Les protections de confidentialité ne sont pas disponibles pour les pages spéciales ou locales.",
     "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
   },
   "spreadTitle" : {
@@ -29,7 +29,7 @@
     "note" : "Title text for 'Email Protection' CTA"
   },
   "emailText" : {
-    "title" : "Inscrivez-vous à DuckDuckGo Email Protection pour obtenir dès maintenant votre extension !",
+    "title" : "Ajoutez DuckDuckGo Email Protection à votre extension en vous inscrivant dès maintenant !",
     "note" : "Extension here means browser extension or addon"
   }
 }

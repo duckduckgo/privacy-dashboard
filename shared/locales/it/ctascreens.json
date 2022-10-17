@@ -9,7 +9,7 @@
     }]
   },
   "protectionsUnavailableNote" : {
-    "title" : "La Tutela della privacy non è disponibile per le pagine speciali, come quella delle impostazioni del browser, o per le pagine aperte dall'utente.",
+    "title" : "Le Protezioni della Privacy non sono disponibili per le pagine speciali o per le pagine locali.",
     "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
   },
   "spreadTitle" : {

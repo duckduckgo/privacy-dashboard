@@ -9,7 +9,7 @@
     }]
   },
   "protectionsUnavailableNote" : {
-    "title" : "Az adatvédelem a speciális vagy helyi oldalakon nem érhető el.",
+    "title" : "Az adatvédelmi funkciók a speciális vagy helyi oldalakon nem érhetők el.",
     "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
   },
   "spreadTitle" : {
@@ -29,7 +29,7 @@
     "note" : "Title text for 'Email Protection' CTA"
   },
   "emailText" : {
-    "title" : "Regisztrálj most, hogy használd a DuckDuckGo e-mail-védelmi bővítményét!",
+    "title" : "Regisztrálj most, hogy a DuckDuckGo Email Protection a bővítményedhez legyen adva!",
     "note" : "Extension here means browser extension or addon"
   }
 }

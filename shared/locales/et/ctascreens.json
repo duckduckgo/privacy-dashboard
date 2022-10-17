@@ -9,7 +9,7 @@
     }]
   },
   "protectionsUnavailableNote" : {
-    "title" : "Privaatsuskaitse ei ole spetsiaalsete lehtede ega arvutis asuvate lehtede puhul saadaval.",
+    "title" : "Privaatsuskaitse ei ole spetsiaalsete lehtede ega arvutis asuvate lehtede jaoks saadaval.",
     "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
   },
   "spreadTitle" : {

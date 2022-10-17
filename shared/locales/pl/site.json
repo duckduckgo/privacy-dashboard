@@ -37,11 +37,11 @@
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Na tej stronie nie zablokowano ładowania żadnych zapytań o śledzenie. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
+    "title" : "Na tej stronie nie zablokowano ładowania żadnych żądań śledzenia. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Nie wykryliśmy żadnych zapytań o śledzenie na tej stronie.",
+    "title" : "Nie wykryliśmy żadnych żądań śledzenia na tej stronie.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
@@ -57,7 +57,7 @@
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Utwórz nowy adres Duck",
+    "title" : "Wygeneruj prywatny adres Duck Address",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Zablokowaliśmy ładowanie żądań śledzenia na tej stronie.} =2 {Zablokowaliśmy firmom <b>{firstCompany}</b> oraz <b>{secondCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =3 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b> oraz <b>{thirdCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =4 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> oraz <b>{fourthCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =5 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> oraz <b>1 innej firmie</b> możliwość umieszczania na tej stronie żądań śledzenia.} one {Zablokowaliśmy firmie <b>{firstCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} few {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i<b> {othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} many {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} other {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.}}",
+    "title" : "{companyCount, plural, =0 {Zablokowaliśmy ładowanie żądań śledzenia wysyłanych przez niektóre firmy na tej stronie.} =2 {Zablokowaliśmy firmom <b>{firstCompany}</b> oraz <b>{secondCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =3 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b> oraz <b>{thirdCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =4 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> oraz <b>{fourthCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =5 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> oraz <b>1 innej firmie</b> możliwość umieszczania na tej stronie żądań śledzenia.} one {Zablokowaliśmy firmie <b>{firstCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} few {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i<b> {othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} many {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} other {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,7 +94,7 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Żądania zablokowane przed załadowaniem",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
     "title" : "Brak zablokowanych żądań śledzenia",
@@ -102,9 +102,6 @@
   },
   "trackerNetworksNotFound" : {
     "title" : "Nie znaleziono żądań śledzenia",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {

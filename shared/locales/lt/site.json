@@ -57,7 +57,7 @@
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Susikurkite naują „Duck“ adresą",
+    "title" : "Generuoti privatų „Duck“ adresą",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Užblokavome sekimo užklausų įkėlimą šiame puslapyje.} =2 {Užblokavome <b>{firstCompany}</b> ir <b>{secondCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =3 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b> ir <b>{thirdCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =4 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ir <b>{fourthCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =5 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar 1</b> sekimo užklausų įkėlimą šiame puslapyje.} one {Užblokavome <b>{firstCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} few {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} many {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} other {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..}}",
+    "title" : "{companyCount, plural, =0 {Užblokavome kai kurių bendrovių galimybę šiame puslapyje įkelti sekimo užklausas.} =2 {Užblokavome <b>{firstCompany}</b> ir <b>{secondCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =3 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b> ir <b>{thirdCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =4 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ir <b>{fourthCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =5 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar 1</b> sekimo užklausų įkėlimą šiame puslapyje.} one {Užblokavome <b>{firstCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} few {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} many {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} other {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,7 +94,7 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Užklausos užblokuotos įkelti",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
     "title" : "Neužblokuota jokių sekimo užklausų",
@@ -102,9 +102,6 @@
   },
   "trackerNetworksNotFound" : {
     "title" : "Sekimo užklausų nerasta",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {

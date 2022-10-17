@@ -57,7 +57,7 @@
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Skapa en ny Duck-adress",
+    "title" : "Generera privat Duck Address",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -94,7 +94,7 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Förfrågningar blockerades från att läsas in",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
     "title" : "Inga spårningsförfrågningar blockerades",
@@ -102,9 +102,6 @@
   },
   "trackerNetworksNotFound" : {
     "title" : "Inga spårningsförfrågningar hittades",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {

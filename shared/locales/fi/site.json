@@ -21,11 +21,11 @@
     "note" : "Headline when privacy protections are disabled by user"
   },
   "protectionsDisabledRemote" : {
-    "title" : "Yksityisyyden suoja on väliaikaisesti poistettu käytöstä, koska se näyttäisi rikkovan tämän sivun.",
+    "title" : "Yksityisyyden suojaukset on väliaikaisesti poistettu käytöstä, koska ne näyttäisivät rikkovan tämän sivun.",
     "note" : "Headline when privacy protections are disabled by DDG"
   },
   "protectionsDisabledRemoteOverride" : {
-    "title" : "Suosittelemme poistamaan käytöstä tämän sivuston yksityisyyden suojan, jotta sivusto ei mene epäkuntoon.",
+    "title" : "Suosittelemme poistamaan käytöstä tämän sivuston yksityisyyden suojaukset, jotta sivusto ei mene epäkuntoon.",
     "note" : "Headline when privacy protections are disabled by user"
   },
   "connectionDescriptionUnencrypted" : {
@@ -57,7 +57,7 @@
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Luo uusi Duck-osoite",
+    "title" : "Luo yksityinen Duck Address",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Estimme seurantapyyntöjen lataamisen tällä sivulla.} =2 {Estimme yrityksiä <b>{firstCompany}</b> ja <b>{secondCompany}</b> lataamasta seurantapyyntöjä tällä sivulla.} =3 {Estimme yrityksiä <b>{firstCompany}</b>, <b>{secondCompany}</b> ja <b>{thirdCompany}</b> lataamasta seurantapyyntöjä tällä sivulla.} =4 {Estimme yritykset <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ja <b>{fourthCompany}</b> lataamasta jäljittämispyyntöjä tällä sivulla.} =5 {Estimme yrityksiä <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ja <b>1 muu</b> lataamasta seurantapyyntöjä tällä sivulla.} one {Estimme yrityksen <b>{firstCompany}</b> lataamasta jäljittämispyyntöjä tällä sivulla.} other {Estimme yritykset <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ja <b>{othersCount} muuta</b> lataamasta jäljittämispyyntöjä tällä sivulla.}}",
+    "title" : "{companyCount, plural, =0 {Estimme joitakin yrityksiä lataamasta seurantapyyntöjä tälle sivulle.} =2 {Estimme yrityksiä <b>{firstCompany}</b> ja <b>{secondCompany}</b> lataamasta seurantapyyntöjä tällä sivulla.} =3 {Estimme yrityksiä <b>{firstCompany}</b>, <b>{secondCompany}</b> ja <b>{thirdCompany}</b> lataamasta seurantapyyntöjä tällä sivulla.} =4 {Estimme yritykset <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ja <b>{fourthCompany}</b> lataamasta jäljittämispyyntöjä tällä sivulla.} =5 {Estimme yrityksiä <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ja <b>1 muu</b> lataamasta seurantapyyntöjä tällä sivulla.} one {Estimme yrityksen <b>{firstCompany}</b> lataamasta jäljittämispyyntöjä tällä sivulla.} other {Estimme yritykset <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ja <b>{othersCount} muuta</b> lataamasta jäljittämispyyntöjä tällä sivulla.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,7 +94,7 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Pyynnöt, joiden lataaminen estetty",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
     "title" : "Ei estettyjä seurantapyyntöjä",
@@ -102,9 +102,6 @@
   },
   "trackerNetworksNotFound" : {
     "title" : "Seurantapyyntöjä ei löytynyt",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {

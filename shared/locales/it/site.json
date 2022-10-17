@@ -21,11 +21,11 @@
     "note" : "Headline when privacy protections are disabled by user"
   },
   "protectionsDisabledRemote" : {
-    "title" : "Abbiamo temporaneamente disabilitato la Tutela della privacy poiché sembra che stia interrompendo il funzionamento del sito.",
+    "title" : "Abbiamo temporaneamente disabilitato le Protezioni della Privacy perché sembra che stiano interrompendo il funzionamento del sito.",
     "note" : "Headline when privacy protections are disabled by DDG"
   },
   "protectionsDisabledRemoteOverride" : {
-    "title" : "Ti consigliamo di disabilitare la Tutela della privacy per questo sito per evitare malfunzionamenti.",
+    "title" : "Per evitare malfunzionamenti, ti consigliamo di disabilitare le Protezioni della Privacy per questo sito.",
     "note" : "Headline when privacy protections are disabled by user"
   },
   "connectionDescriptionUnencrypted" : {
@@ -33,31 +33,31 @@
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Il caricamento delle richieste da parte dei seguenti domini di terze parti è stato bloccato perché si trattava di richieste di tracciamento. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",
+    "title" : "Il caricamento delle richieste da parte dei seguenti domini di terze parti è stato bloccato perché si trattava di richieste con tracciamento. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Nessun caricamento delle richieste di tracciamento è stato bloccato su questa pagina. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",
+    "title" : "Nessun caricamento di richieste con tracciamento è stato bloccato su questa pagina. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Non abbiamo individuato richieste di tracciamento su questa pagina.",
+    "title" : "Non abbiamo individuato richieste con tracciamento su questa pagina.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Non abbiamo trovato aziende che tentano di caricare richieste di tracciamento su questa pagina.",
+    "title" : "Non abbiamo trovato aziende che tentano di caricare richieste con tracciamento su questa pagina.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Per evitare malfunzionamenti sul sito, non abbiamo bloccato il caricamento delle richieste di tracciamento da parte delle aziende su questa pagina.",
+    "title" : "Per evitare malfunzionamenti sul sito, non abbiamo bloccato il caricamento delle richieste con tracciamento da parte delle aziende su questa pagina.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Il caricamento delle richieste di tracciamento non è stato bloccato perché le protezioni per questo sito sono disattivate. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",
+    "title" : "Il caricamento delle richieste con tracciamento non è stato bloccato perché le protezioni per questo sito sono disattivate. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Crea un nuovo indirizzo Duck",
+    "title" : "Genera Duck Address privato",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Abbiamo bloccato il caricamento delle richieste di tracciamento su questa pagina.} =2 {Abbiamo bloccato il caricamento delle richieste di tracciamento di <b>{firstCompany}</b> e <b>{secondCompany}</b> su questa pagina.} =3 {Abbiamo bloccato il caricamento delle richieste di tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b> e <b>{thirdCompany}</b> su questa pagina.} =4 {Abbiamo bloccato il caricamento delle richieste di tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> e <b>{fourthCompany}</b> su questa pagina.} =5 {Abbiamo bloccato il caricamento delle richieste di tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> e di <b>1 altra</b> su questa pagina.} one {Abbiamo bloccato il caricamento delle richieste di tracciamento di <b>{firstCompany}</b> su questa pagina.} other {Abbiamo bloccato il caricamento delle richieste di tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> e di <b>{othersCount} altre</b> su questa pagina.}}",
+    "title" : "{companyCount, plural, =0 {Abbiamo impedito ad alcune aziende di caricare richieste di tracciamento su questa pagina.} =2 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b> e <b>{secondCompany}</b> su questa pagina.} =3 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b> e <b>{thirdCompany}</b> su questa pagina.} =4 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> e <b>{fourthCompany}</b> su questa pagina.} =5 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> e di <b>1 altra</b> su questa pagina.} one {Abbiamo bloccato il caricamento della richiesta con tracciamento di <b>{firstCompany}</b> su questa pagina.} other {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> e di <b>{othersCount} altre</b> su questa pagina.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,17 +94,14 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Caricamento delle richieste bloccato",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Nessuna richiesta di tracciamento bloccata",
+    "title" : "Nessuna richiesta con tracciamento bloccata",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Nessuna richiesta di tracciamento trovata",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
+    "title" : "Nessuna richiesta con tracciamento trovata",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -120,7 +117,7 @@
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Non abbiamo trovato aziende che tentano di caricare richieste di tracciamento su questa pagina.",
+    "title" : "Non abbiamo trovato aziende che tentano di caricare richieste con tracciamento su questa pagina.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {

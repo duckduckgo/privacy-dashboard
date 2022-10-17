@@ -21,11 +21,11 @@
     "note" : "Headline when privacy protections are disabled by user"
   },
   "protectionsDisabledRemote" : {
-    "title" : "Desativámos temporariamente a Proteção de Privacidade, pois parece impedir que o site funcione corretamente.",
+    "title" : "Desativámos temporariamente as Proteções de Privacidade, pois parecem estar a impedir que o site funcione corretamente.",
     "note" : "Headline when privacy protections are disabled by DDG"
   },
   "protectionsDisabledRemoteOverride" : {
-    "title" : "Recomendamos a desativação da Proteção de Privacidade para que este site funcione corretamente.",
+    "title" : "Recomendamos a desativação das Proteções de Privacidade para que este site funcione corretamente.",
     "note" : "Headline when privacy protections are disabled by user"
   },
   "connectionDescriptionUnencrypted" : {
@@ -57,7 +57,7 @@
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Criar novo endereço Duck",
+    "title" : "Gerar um Duck Address Privado",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Bloqueámos Bloqueámos o carregamento dos pedidos de rastreamento nesta página.} =2 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b> e da <b>{secondCompany}</b> nesta página.} =3 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b> e da <b>{thirdCompany}</b> nesta página.} =4 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b> e da <b>{fourthCompany}</b> nesta página.} =5 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais 1 empresa</b> nesta página.} one {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b> nesta página.} other {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais {othersCount} empresas</b> nesta página.}}",
+    "title" : "{companyCount, plural, =0 {Bloqueámos algumas empresas de carregarem solicitações de rastreamento nesta página.} =2 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b> e da <b>{secondCompany}</b> nesta página.} =3 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b> e da <b>{thirdCompany}</b> nesta página.} =4 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b> e da <b>{fourthCompany}</b> nesta página.} =5 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais 1 empresa</b> nesta página.} one {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b> nesta página.} other {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais {othersCount} empresas</b> nesta página.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,7 +94,7 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Pedidos com carregamento bloqueado",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
     "title" : "Nenhum pedido de rastreamento bloqueado",
@@ -102,9 +102,6 @@
   },
   "trackerNetworksNotFound" : {
     "title" : "Nenhum pedido de rastreamento encontrado",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
