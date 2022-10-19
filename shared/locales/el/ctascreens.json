@@ -9,7 +9,7 @@
     }]
   },
   "protectionsUnavailableNote" : {
-    "title" : "Η Προστασία προσωπικών δεδομένων δεν είναι διαθέσιμη για ειδικές σελίδες ή τοπικές σελίδες.",
+    "title" : "Οι Προστασίες προσωπικών δεδομένων δεν είναι διαθέσιμες για ειδικές σελίδες ή τοπικές σελίδες.",
     "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
   },
   "spreadTitle" : {

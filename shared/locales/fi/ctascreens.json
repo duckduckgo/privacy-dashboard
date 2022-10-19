@@ -9,7 +9,7 @@
     }]
   },
   "protectionsUnavailableNote" : {
-    "title" : "Yksityisyyden suojaus ei ole käytettävissä erikoissivuilla tai paikallisilla sivuilla.",
+    "title" : "Yksityisyyden suojaukset ei ole käytettävissä erikoissivuilla tai paikallisilla sivuilla.",
     "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
   },
   "spreadTitle" : {

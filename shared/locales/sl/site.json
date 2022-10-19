@@ -21,11 +21,11 @@
     "note" : "Headline when privacy protections are disabled by user"
   },
   "protectionsDisabledRemote" : {
-    "title" : "Zaščito zasebnosti smo začasno onemogočili, saj se zdi, da zato prihaja do napak na tem spletnem mestu.",
+    "title" : "Zaščito zasebnosti smo začasno onemogočili, ker je videti, da zato prihaja do napak na tem spletnem mestu.",
     "note" : "Headline when privacy protections are disabled by DDG"
   },
   "protectionsDisabledRemoteOverride" : {
-    "title" : "Priporočamo, da za to spletno mesto onemogočite zaščito zasebnosti, da preprečite prekinitev delovanja spletnega mesta.",
+    "title" : "Priporočamo, da za to spletno mesto onemogočite zaščite zasebnosti, da preprečite prekinitev delovanja spletnega mesta.",
     "note" : "Headline when privacy protections are disabled by user"
   },
   "connectionDescriptionUnencrypted" : {
@@ -45,7 +45,7 @@
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Na tej strani nismo našli nobenega podjetja, ki bi poskušalo naložiti zahteve za sledenje.",
+    "title" : "Na tej strani nismo našli nobenega podjetja, ki bi poskušalo naložiti zahtevke za sledenje.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
@@ -57,7 +57,7 @@
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Ustvari nov naslov Duck",
+    "title" : "Ustvarjanje zasebnega naslova Duck",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Blokirali smo Blokirali smo nalaganje zahtevkov za sledenje na tej strani.} =2 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjema <b>{firstCompany}</b> in <b>{secondCompany}</b>.} =3 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b> in <b>{thirdCompany}</b>.} =4 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> in <b>{fourthCompany}</b>.} =5 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>1 drugim</b>.} one {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in {othersCount} drugim.} two {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim</b>.} few {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim</b>.} other {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim</b>.}}",
+    "title" : "{companyCount, plural, =0 {Nekaterim podjetjem smo preprečili nalaganje zahtevkov za sledenje na tej strani.} =2 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjema <b>{firstCompany}</b> in <b>{secondCompany}</b>.} =3 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b> in <b>{thirdCompany}</b>.} =4 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> in <b>{fourthCompany}</b>.} =5 {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>1 drugemu podjetju</b>.} one {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetju <b>{firstCompany}</b>.} two {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugima podjetjema</b>.} few {Na tej strani smo blokirali nalaganje zahtevkov za sledenje podjetjem <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim podjetjem</b>.} other {Na tej strani smo blokirali nalaganje zahtevkov za sledenje <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> in <b>{othersCount} drugim podjetjem</b>.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,17 +94,14 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Zahtevki, katerih nalaganje je blokirano",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Noben zahtevek za sledenje ni blokiran",
+    "title" : "Noben zahtevek za sledenje ni bil blokiran",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Ni najdenih zahtevkov za sledenje",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
+    "title" : "Nobenega zahtevka za sledenje ni bilo mogoče najti",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -120,7 +117,7 @@
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Na tej strani nismo našli nobenega podjetja, ki bi poskušalo naložiti zahteve za sledenje.",
+    "title" : "Na tej strani nismo našli nobenega podjetja, ki bi poskušalo naložiti zahtevke za sledenje.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {

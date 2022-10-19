@@ -21,11 +21,11 @@
     "note" : "Headline when privacy protections are disabled by user"
   },
   "protectionsDisabledRemote" : {
-    "title" : "Nous avons temporairement désactivé la protection de la confidentialité car elle semble perturber ce site.",
+    "title" : "Nous avons temporairement désactivé les protections de confidentialité car elles semblent perturber ce site.",
     "note" : "Headline when privacy protections are disabled by DDG"
   },
   "protectionsDisabledRemoteOverride" : {
-    "title" : "Nous vous recommandons de désactiver la protection de la confidentialité sur ce site afin d'empêcher toute perturbation.",
+    "title" : "Nous vous recommandons de désactiver les protections de confidentialité sur ce site afin d'empêcher toute perturbation.",
     "note" : "Headline when privacy protections are disabled by user"
   },
   "connectionDescriptionUnencrypted" : {
@@ -33,31 +33,31 @@
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Les demandes des domaines tiers suivants ont vu leur chargement bloqué, car elles ont été identifiées comme des demandes de suivi. Si les demandes d'une entreprise sont chargées, cela peut lui permettre d'établir votre profil.",
+    "title" : "Les demandes des domaines tiers suivants ont vu leur chargement bloqué, car elles ont été identifiées comme des demandes de pistage. Si les demandes d'une entreprise sont chargées, cela peut lui permettre d'établir votre profil.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Aucune demande de suivi n'a vu son chargement bloqué sur cette page. Si les demandes d'une entreprise sont chargées, cela peut lui permettre d'établir votre profil.",
+    "title" : "Aucune demande de pistage n'a vu son chargement bloqué sur cette page. Si les demandes d'une entreprise sont chargées, cela peut lui permettre d'établir votre profil.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Nous n'avons identifié aucune demande de suivi sur cette page.",
+    "title" : "Nous n'avons identifié aucune demande de pistage sur cette page.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Nous n'avons trouvé aucune entreprise tentant de charger des demandes de suivi sur cette page.",
+    "title" : "Nous n'avons trouvé aucune entreprise tentant de charger des demandes de pistage sur cette page.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Pour éviter toute coupure du site, nous n'avons empêché aucune entreprise de charger des demandes de suivi sur cette page.",
+    "title" : "Pour éviter toute coupure du site, nous n'avons empêché aucune entreprise de charger des demandes de pistage sur cette page.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Aucune demande de suivi n'a vu son chargement bloqué car les protections sont désactivées pour ce site. Si les demandes d'une entreprise sont chargées, cela peut lui permettre d'établir votre profil.",
+    "title" : "Aucune demande de pistage n'a vu son chargement bloqué car les protections sont désactivées pour ce site. Si les demandes d'une entreprise sont chargées, cela peut lui permettre d'établir votre profil.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
-    "title" : "Créer une nouvelle adresse Duck",
+    "title" : "Générer une Duck Address privée",
     "note" : "Create a new private email alias"
   },
   "createNewDuckAddressCopied" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Nous avons bloqué le chargement des demandes de suivi sur cette page.} =2 {Nous avons empêché <b>{firstCompany}</b> et <b>{secondCompany}</b> de charger des demandes de suivi sur cette page.} =3 {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b> et <b>{thirdCompany}</b> de charger des demandes de suivi sur cette page.} =4 {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> et <b>{fourthCompany}</b> de charger des demandes de suivi sur cette page.} =5 {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> et <b>1 autre entreprise</b> de charger des demandes de suivi sur cette page.} one {Nous avons empêché <b>{firstCompany}</b> de charger des demandes de suivi sur cette page.} other {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> et <b>{othersCount} autres entreprises</b> de charger des demandes de suivi sur cette page.}}",
+    "title" : "{companyCount, plural, =0 {Nous avons empêché certaines entreprises de charger des demandes de pistage sur cette page.} =2 {Nous avons empêché <b>{firstCompany}</b> et <b>{secondCompany}</b> de charger des demandes de pistage sur cette page.} =3 {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b> et <b>{thirdCompany}</b> de charger des demandes de pistage sur cette page.} =4 {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> et <b>{fourthCompany}</b> de charger des demandes de pistage sur cette page.} =5 {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> et <b>1 autre entreprise</b> de charger des demandes de pistage sur cette page.} one {Nous avons empêché <b>{firstCompany}</b> de charger des demandes de pistage sur cette page.} other {Nous avons empêché <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> et <b>{othersCount} autres entreprises</b> de charger des demandes de pistage sur cette page.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -94,17 +94,14 @@
   },
   "trackerNetworksDesc" : {
     "title" : "Demandes dont le chargement a été bloqué",
-    "note" : "This describes how many trackers (or major tracking networks) were blocked (or found if protections are disabled).  Ex: 9 Trackers Blocked"
+    "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Aucune demande de suivi bloquée",
+    "title" : "Aucune demande de pistage bloquée",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Aucune demande de suivi trouvée",
-    "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
-  },
-  "trackerNetworksProtectionsDisabled" : {
+    "title" : "Aucune demande de pistage trouvée",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -120,7 +117,7 @@
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Nous n'avons trouvé aucune entreprise tentant de charger des demandes de suivi sur cette page.",
+    "title" : "Nous n'avons trouvé aucune entreprise tentant de charger des demandes de pistage sur cette page.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {

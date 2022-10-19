@@ -9,7 +9,7 @@
     }]
   },
   "protectionsUnavailableNote" : {
-    "title" : "A Proteção de Privacidade não está disponível para páginas especiais nem páginas locais.",
+    "title" : "As Proteções de Privacidade não estão disponível para páginas especiais nem páginas locais.",
     "note" : "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
   },
   "spreadTitle" : {
