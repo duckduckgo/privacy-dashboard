@@ -1,6 +1,5 @@
-/** @type {any} */
-const bel = require('bel')
-const { isAndroid } = require('../../environment-check')
+import bel from 'bel'
+import { isAndroid } from '../../environment-check'
 
 const generateMaterialDesignToggle = (isActiveBoolean, klass, disabled) => {
     return bel`

@@ -1,4 +1,5 @@
-const Parent = window.DDG.base.View
+import $ from 'jquery'
+import Parent from '../base/view.es6.js'
 
 function UserData (ops) {
     this.model = ops.model
@@ -12,7 +13,7 @@ function UserData (ops) {
     this.setup()
 }
 
-UserData.prototype = window.$.extend({},
+UserData.prototype = $.extend({},
     Parent.prototype,
     {
 
@@ -39,4 +40,4 @@ UserData.prototype = window.$.extend({},
     }
 )
 
-module.exports = UserData
+export default UserData

@@ -1,7 +1,5 @@
+import bel from 'bel'
 import { ns } from '../../base/localize.es6'
-
-/** @type {any} */
-const bel = require('bel')
 
 export function aboutLink () {
     const text = ns.site('trackerAboutLink.title')

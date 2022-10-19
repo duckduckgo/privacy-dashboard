@@ -1,7 +1,7 @@
-import { createRequestDetails, fromJson, fromMultiJson, states } from './request-details'
 import amazon from '../../../../schema/__fixtures__/request-data-amazon.json'
 import google from '../../../../schema/__fixtures__/request-data-google.json'
 import cnn from '../../../../schema/__fixtures__/request-data-cnn.json'
+import { createRequestDetails, fromJson, fromMultiJson, states } from './request-details'
 
 describe('RequestDetails', () => {
     it('accepts zero requests', () => {

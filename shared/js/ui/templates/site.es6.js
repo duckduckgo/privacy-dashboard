@@ -1,13 +1,12 @@
-/** @type {any} */
-const bel = require('bel')
-const raw = require('bel/raw')
-const { normalizeCompanyName } = require('../models/mixins/normalize-company-name.es6.js')
-const hero = require('./shared/hero.es6.js')
-const { trackerNetworksText } = require('./shared/tracker-networks-text.es6.js')
-const { getColorId } = require('./shared/utils.es6.js')
-const { protectionToggle } = require('./shared/protection-toggle')
-const { thirdpartyText } = require('./shared/thirdparty-text.es6')
-const i18n = window.DDG.base.i18n
+import bel from 'bel'
+import raw from 'bel/raw'
+import { normalizeCompanyName } from '../models/mixins/normalize-company-name.es6.js'
+import { i18n } from '../base/localize.es6'
+import hero from './shared/hero.es6.js'
+import { trackerNetworksText } from './shared/tracker-networks-text.es6.js'
+import { getColorId } from './shared/utils.es6.js'
+import { protectionToggle } from './shared/protection-toggle'
+import { thirdpartyText } from './shared/thirdparty-text.es6'
 
 function renderHero () {
     return bel`${hero({
@@ -16,7 +15,7 @@ function renderHero () {
 }
 
 /** @this {{model: import('../models/site.es6.js').PublicSiteModel}} */
-module.exports = function () {
+export default function () {
     // here we'll show CTAs when the tab is disabled
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens)
     if (this.model.disabled && supportsCtaScreens) {

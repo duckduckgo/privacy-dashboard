@@ -1,8 +1,8 @@
+import generateData, { protectionsOff } from '../ui/views/tests/mock-data/generate-data'
 import { setupColorScheme, setupMutationObserver } from './common.es6'
 import { getOverrides } from './utils/overrides'
 
 // This is am example interface purely for previewing the panel
-import generateData, { protectionsOff } from '../ui/views/tests/mock-data/generate-data'
 import { Protections } from './utils/request-details'
 
 // Overrides based on URL params

@@ -1,6 +1,5 @@
 module.exports = function (grunt) {
     const path = require('path')
-    const through = require('through2')
     const sass = require('sass')
     require('load-grunt-tasks')(grunt)
     grunt.loadNpmTasks('grunt-execute')
@@ -55,13 +54,7 @@ module.exports = function (grunt) {
                 },
                 transform: [
                     ['babelify'],
-                    ['require-globify'],
-                    [(file) => {
-                        return through(function (buf, enc, next) {
-                            this.push(buf.toString('utf8').replace(/\$ENVIRONMENT/g, platform))
-                            next()
-                        })
-                    }]
+                    ['require-globify']
                 ]
             },
             ui: {

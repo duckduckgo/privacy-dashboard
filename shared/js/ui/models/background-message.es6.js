@@ -1,6 +1,7 @@
 // @ts-nocheck
-const Parent = window.DDG.base.Model
-const browserUIWrapper = require('../../browser/communication.es6.js')
+import $ from 'jquery'
+import Parent from '../base/model.es6'
+import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
 
 /**
  * Background messaging is done via two methods:
@@ -26,11 +27,11 @@ function BackgroundMessage (attrs) {
     browserUIWrapper.backgroundMessage(thisModel)
 }
 
-BackgroundMessage.prototype = window.$.extend({},
+BackgroundMessage.prototype = $.extend({},
     Parent.prototype,
     {
         modelName: 'backgroundMessage'
     }
 )
 
-module.exports = BackgroundMessage
+export default BackgroundMessage

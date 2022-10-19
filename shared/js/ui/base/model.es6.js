@@ -1,8 +1,8 @@
 // @ts-nocheck
-const $ = require('jquery')
-const mixins = require('./mixins/index.es6.js')
-const store = require('./store.es6.js')
-const browserUIWrapper = require('../../browser/communication.es6.js')
+import $ from 'jquery'
+import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import mixins from './mixins/index.es6.js'
+import store from './store.es6.js'
 
 function BaseModel (attrs) {
     // attributes are applied directly
@@ -140,4 +140,4 @@ BaseModel.prototype = $.extend({},
     }
 )
 
-module.exports = BaseModel
+export default BaseModel

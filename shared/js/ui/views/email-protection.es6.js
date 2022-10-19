@@ -1,4 +1,5 @@
-const Parent = window.DDG.base.View
+import $ from 'jquery'
+import Parent from '../base/view.es6.js'
 
 /**
  * Given a username, returns a valid email address with the duck domain
@@ -16,7 +17,7 @@ function EmailProtectionView (ops) {
     this._setup()
 }
 
-EmailProtectionView.prototype = window.$.extend({},
+EmailProtectionView.prototype = $.extend({},
     Parent.prototype,
     {
         _setup: function () {
@@ -48,4 +49,4 @@ EmailProtectionView.prototype = window.$.extend({},
     }
 )
 
-module.exports = EmailProtectionView
+export default EmailProtectionView

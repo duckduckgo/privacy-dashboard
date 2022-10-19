@@ -1,6 +1,7 @@
 // @ts-nocheck
+import * as events from './events.es6.js'
 module.exports = {
     /** @type {any} */
-    events: require('./events.es6.js')
+    events: events
     // ...add more here!
 }

@@ -1,12 +1,13 @@
-const browserUIWrapper = require('../../browser/communication.es6.js')
-const Parent = window.DDG.base.Model
+import $ from 'jquery'
+import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import Parent from '../base/model.es6'
 
 /** @this {any} */
 function Search (attrs) {
     Parent.call(this, attrs)
 }
 
-Search.prototype = window.$.extend({},
+Search.prototype = $.extend({},
     Parent.prototype,
     {
 
@@ -28,4 +29,4 @@ Search.prototype = window.$.extend({},
     }
 )
 
-module.exports = Search
+export default Search

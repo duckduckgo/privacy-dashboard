@@ -1,5 +1,6 @@
-const Parent = window.DDG.base.Model
-const { ctas } = require('../templates/cta-rotation.es6')
+import $ from 'jquery'
+import Parent from '../base/model.es6'
+import { ctas } from '../templates/cta-rotation.es6'
 
 const constants = {
     MODEL_NAME: 'ctaRotation',
@@ -13,7 +14,7 @@ function CtaRotationModel (attrs) {
     this._setup()
 }
 
-CtaRotationModel.prototype = window.$.extend({},
+CtaRotationModel.prototype = $.extend({},
     Parent.prototype,
     {
         modelName: constants.MODEL_NAME,
@@ -44,6 +45,7 @@ CtaRotationModel.prototype = window.$.extend({},
         }
     }
 )
-
-module.exports.CtaRotationModel = CtaRotationModel
-module.exports.constants = constants
+export {
+    CtaRotationModel,
+    constants
+}

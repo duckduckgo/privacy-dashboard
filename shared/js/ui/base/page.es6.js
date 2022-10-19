@@ -1,6 +1,7 @@
 // @ts-nocheck
-const mixins = require('./mixins/index.es6.js')
-const store = require('./store.es6.js')
+import $ from 'jquery'
+import mixins from './mixins/index.es6.js'
+import store from './store.es6.js'
 
 function BasePage (ops) {
     this.views = {}
@@ -8,7 +9,7 @@ function BasePage (ops) {
     this.ready()
 }
 
-BasePage.prototype = window.$.extend({},
+BasePage.prototype = $.extend({},
     mixins.events,
     {
 
@@ -19,4 +20,4 @@ BasePage.prototype = window.$.extend({},
     }
 )
 
-module.exports = BasePage
+export default BasePage

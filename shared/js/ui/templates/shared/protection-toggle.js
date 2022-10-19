@@ -1,8 +1,8 @@
-import { toggleButton } from './toggle-button.es6'
 import bel from 'bel'
+import raw from 'bel/raw'
 import { isBrowser } from '../../environment-check'
-const raw = require('bel/raw')
-const i18n = window.DDG.base.i18n
+import { i18n } from '../../base/localize.es6'
+import { toggleButton } from './toggle-button.es6'
 
 const renderUpdatingSpinner = () => {
     return bel`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t('site:updatingProtectionList.title')}" />`

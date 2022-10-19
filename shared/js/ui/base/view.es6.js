@@ -1,7 +1,7 @@
 // @ts-nocheck
-const $ = require('jquery')
-const mixins = require('./mixins/index.es6.js')
-const store = require('./store.es6.js')
+import $ from 'jquery'
+import mixins from './mixins/index.es6.js'
+import store from './store.es6.js'
 
 /**
  * Abstract Base class for any type of view.
@@ -177,4 +177,4 @@ BaseView.prototype = $.extend(
     }
 )
 
-module.exports = BaseView
+export default BaseView

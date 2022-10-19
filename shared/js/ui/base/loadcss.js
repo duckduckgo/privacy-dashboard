@@ -1,4 +1,4 @@
-function loadCss (file) {
+function loadCssFile (file) {
     const head = document.getElementsByTagName('head')[0]
     const link = document.createElement('link')
     link.rel = 'stylesheet'
@@ -7,7 +7,9 @@ function loadCss (file) {
     head.appendChild(link)
 }
 
-setTimeout(() => {
-    loadCss('base')
-    loadCss('popup')
-}, 5)
+export function loadCss () {
+    setTimeout(() => {
+        loadCssFile('base')
+        loadCssFile('popup')
+    }, 5)
+}

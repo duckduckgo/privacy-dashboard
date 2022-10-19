@@ -35,10 +35,10 @@
  */
 
 // Dependencies
-const { isPlainObject } = require('is-plain-object')
-const deepFreeze = require('deep-freeze')
-const EventEmitter2 = require('eventemitter2')
-const notifiers = require('./notifiers.es6.js')
+import { isPlainObject } from 'is-plain-object'
+import deepFreeze from 'deep-freeze'
+import EventEmitter2 from 'eventemitter2'
+import notifiers from './notifiers.es6.js'
 
 /**
  * .register() creates a notifier function for each caller.

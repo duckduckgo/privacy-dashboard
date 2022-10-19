@@ -1,6 +1,6 @@
 import { MDCRipple } from '@material/ripple'
 
-function setupMaterialDesignRipple (...selectors) {
+export function setupMaterialDesignRipple (...selectors) {
     selectors.forEach((selector) => {
         const $matches = document.querySelectorAll(selector)
         $matches.forEach(($el) => {
@@ -8,8 +8,4 @@ function setupMaterialDesignRipple (...selectors) {
             MDCRipple.attachTo($el)
         })
     })
-}
-
-module.exports = {
-    setupMaterialDesignRipple
 }

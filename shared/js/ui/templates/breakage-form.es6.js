@@ -1,7 +1,6 @@
-/** @type {any} */
-const bel = require('bel')
-const hero = require('./shared/hero.es6.js')
-const i18n = window.DDG.base.i18n
+import bel from 'bel'
+import { i18n } from '../base/localize.es6'
+import hero from './shared/hero.es6.js'
 
 function categories () {
     return [
@@ -36,7 +35,7 @@ function renderHero () {
     })}`
 }
 
-module.exports = function () {
+export default function () {
     return bel`<section class="sliding-subview">
         <div class="breakage-form js-breakage-form card">
         ${renderHero()}

@@ -1,4 +1,5 @@
-const Parent = window.DDG.base.View
+import $ from 'jquery'
+import Parent from '../base/view.es6'
 const FOCUS_CLASS = 'go--focused'
 
 /** @this {any} */
@@ -27,7 +28,7 @@ function Search (ops) {
     // window.setTimeout(() => this.$input.focus(), 200)
 }
 
-Search.prototype = window.$.extend({},
+Search.prototype = $.extend({},
     Parent.prototype,
     {
 
@@ -72,4 +73,4 @@ Search.prototype = window.$.extend({},
     }
 )
 
-module.exports = Search
+export default Search

@@ -1,16 +1,17 @@
 // @ts-nocheck
-const Parent = window.DDG.base.Page
-const SiteView = require('./../views/site.es6.js')
-const SiteModel = require('./../models/site.es6.js')
-const BackgroundMessageModel = require('./../models/background-message.es6.js')
-const siteTemplate = require('./../templates/site.es6.js')
+import $ from 'jquery'
+import Parent from '../base/page.es6.js'
+import SiteView from './../views/site.es6.js'
+import SiteModel from './../models/site.es6.js'
+import BackgroundMessageModel from './../models/background-message.es6.js'
+import siteTemplate from './../templates/site.es6.js'
 
 function Trackers (ops) {
-    this.$parent = window.$('#popup-container')
+    this.$parent = $('#popup-container')
     Parent.call(this, ops)
 }
 
-Trackers.prototype = window.$.extend({},
+Trackers.prototype = $.extend({},
     Parent.prototype,
     {
 
@@ -23,7 +24,7 @@ Trackers.prototype = window.$.extend({},
             this.views.site = new SiteView({
                 pageView: this,
                 model: new SiteModel(),
-                appendTo: window.$('#site-info-container'),
+                appendTo: $('#site-info-container'),
                 template: siteTemplate
             })
         }
@@ -31,5 +32,7 @@ Trackers.prototype = window.$.extend({},
 )
 
 // kickoff!
-window.DDG = window.DDG || {}
-window.DDG.page = new Trackers()
+export function initPopup () {
+    const page = new Trackers()
+    console.log(page)
+}

@@ -1,4 +1,5 @@
-const Parent = window.DDG.base.View
+import $ from 'jquery'
+import Parent from '../base/view.es6.js'
 
 function CtaRotationView (ops) {
     this.model = ops.model
@@ -7,9 +8,9 @@ function CtaRotationView (ops) {
     Parent.call(this, ops)
 }
 
-CtaRotationView.prototype = window.$.extend({},
+CtaRotationView.prototype = $.extend({},
     Parent.prototype,
     {}
 )
 
-module.exports = CtaRotationView
+export default CtaRotationView

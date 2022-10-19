@@ -1,7 +1,7 @@
 /** @type {any} */
-const bel = require('bel')
+import bel from 'bel'
 
-module.exports = function (items, extraClasses) {
+export default function (items, extraClasses) {
     extraClasses = extraClasses || ''
 
     return bel`<ul class="status-list ${extraClasses}">

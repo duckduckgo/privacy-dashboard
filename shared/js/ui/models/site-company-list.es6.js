@@ -1,6 +1,7 @@
-const Parent = window.DDG.base.Model
-const normalizeCompanyName = require('./mixins/normalize-company-name.es6')
-const browserUIWrapper = require('../../browser/communication.es6.js')
+import $ from 'jquery'
+import Parent from '../base/model.es6'
+import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import normalizeCompanyName from './mixins/normalize-company-name.es6'
 
 /** @this {any} */
 function SiteCompanyList (attrs) {
@@ -10,7 +11,7 @@ function SiteCompanyList (attrs) {
     Parent.call(this, attrs)
 }
 
-SiteCompanyList.prototype = window.$.extend({},
+SiteCompanyList.prototype = $.extend({},
     Parent.prototype,
     normalizeCompanyName,
     {
@@ -31,4 +32,4 @@ SiteCompanyList.prototype = window.$.extend({},
     }
 )
 
-module.exports = SiteCompanyList
+export default SiteCompanyList

@@ -1,9 +1,9 @@
-const Parent = window.DDG.base.Model
-const constants = require('../../../data/constants')
+import $ from 'jquery'
+import Parent from '../base/model.es6'
+import constants from '../../../data/constants'
+import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import { i18n } from '../base/localize.es6'
 const httpsMessages = constants.httpsMessages
-/** @type {import('../../browser/communication.es6.js').Communication} */
-const browserUIWrapper = require('../../browser/communication.es6.js')
-const i18n = window.DDG.base.i18n
 
 // We consider major tracker networks as those found on this percentage of sites
 // that we crawl
@@ -52,7 +52,7 @@ function Site (attrs) {
  * @property {import('../../browser/utils/request-details').TabData} tab
  */
 
-Site.prototype = window.$.extend({},
+Site.prototype = $.extend({},
     Parent.prototype,
     {
 
@@ -64,6 +64,7 @@ Site.prototype = window.$.extend({},
                 browserUIWrapper.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
                     if (tab) {
                         if (tab.locale) {
+                            // @ts-ignore
                             if (Object.keys(i18n.options.resources).includes(tab.locale)) {
                                 i18n.changeLanguage(tab.locale)
                             } else {
@@ -314,4 +315,4 @@ Site.prototype = window.$.extend({},
     }
 )
 
-module.exports = Site
+export default Site

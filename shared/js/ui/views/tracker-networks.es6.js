@@ -1,7 +1,8 @@
-const ParentSlidingSubview = require('./sliding-subview.es6.js')
-const heroTemplate = require('./../templates/shared/hero.es6.js')
-const CompanyListModel = require('./../models/site-company-list.es6.js')
-const SiteModel = require('./../models/site.es6.js')
+import $ from 'jquery'
+import ParentSlidingSubview from './sliding-subview.es6.js'
+import heroTemplate from './../templates/shared/hero.es6.js'
+import CompanyListModel from './../models/site-company-list.es6.js'
+import SiteModel from './../models/site.es6.js'
 
 function TrackerNetworks (ops) {
     // model data is async
@@ -18,7 +19,7 @@ function TrackerNetworks (ops) {
     this.renderAsyncContent()
 }
 
-TrackerNetworks.prototype = window.$.extend({},
+TrackerNetworks.prototype = $.extend({},
     // @ts-ignore
     ParentSlidingSubview.prototype,
     {
@@ -86,4 +87,4 @@ TrackerNetworks.prototype = window.$.extend({},
     }
 )
 
-module.exports = TrackerNetworks
+export default TrackerNetworks

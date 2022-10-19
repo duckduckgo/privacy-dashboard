@@ -1,8 +1,7 @@
-/** @type {any} */
-const bel = require('bel')
-const i18n = window.DDG.base.i18n
+import bel from 'bel'
+import { i18n } from '../base/localize.es6'
 
-module.exports = function () {
+export default function () {
     return bel`
     <div class="search token-search-input">
         <form class="search-form js-search-form" name="x" data-test-id="search-form">

@@ -1,12 +1,11 @@
-/** @type {any} */
-const bel = require('bel')
-const hero = require('./shared/hero.es6.js')
-const { renderSections } = require('./tracker-networks.es6')
-const { thirdpartySummary, thirdpartyHeroIcon, thirdpartyText } = require('./shared/thirdparty-text.es6')
-const { aboutLink, adAttributionLink } = require('./shared/about-link')
-const { ns } = require('../base/localize.es6.js')
-const { states } = require('../../browser/utils/request-details')
-const { platformLimitations } = require('./shared/platform-limitations')
+import bel from 'bel'
+import { ns } from '../base/localize.es6.js'
+import { states } from '../../browser/utils/request-details'
+import hero from './shared/hero.es6.js'
+import { renderSections } from './tracker-networks.es6'
+import { thirdpartySummary, thirdpartyHeroIcon, thirdpartyText } from './shared/thirdparty-text.es6'
+import { aboutLink, adAttributionLink } from './shared/about-link'
+import { platformLimitations } from './shared/platform-limitations'
 
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
 export function nonTrackersTemplate () {

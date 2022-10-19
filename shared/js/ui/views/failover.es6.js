@@ -1,4 +1,5 @@
-const Parent = window.DDG.base.View
+import $ from 'jquery'
+import Parent from '../base/view.es6.js'
 
 function Failover (ops) {
     this.template = ops.template
@@ -6,11 +7,11 @@ function Failover (ops) {
     Parent.call(this, ops)
 }
 
-Failover.prototype = window.$.extend({},
+Failover.prototype = $.extend({},
     Parent.prototype,
     {
 
     }
 )
 
-module.exports = Failover
+export default Failover

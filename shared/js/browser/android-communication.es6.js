@@ -9,12 +9,12 @@
  *
  * @category integrations
  */
-import { setupColorScheme } from './common.es6'
 import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema
 } from '../../../schema/__generated__/schema.parsers'
+import { setupColorScheme } from './common.es6'
 import { createTabData } from './utils/request-details'
 
 let channel = null

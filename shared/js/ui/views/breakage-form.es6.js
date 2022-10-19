@@ -1,4 +1,5 @@
-const ParentSlidingSubview = require('./sliding-subview.es6.js')
+import $ from 'jquery'
+import ParentSlidingSubview from './sliding-subview.es6.js'
 
 /** @this {any} */
 function BreakageForm (ops) {
@@ -6,14 +7,14 @@ function BreakageForm (ops) {
     this.template = ops.template
     this.siteView = ops.siteView
     this.clickSource = ops.clickSource
-    this.$root = window.$('.js-breakage-form')
+    this.$root = $('.js-breakage-form')
     // @ts-ignore
     ParentSlidingSubview.call(this, ops)
 
     this._setup()
 }
 
-BreakageForm.prototype = window.$.extend({},
+BreakageForm.prototype = $.extend({},
     // @ts-ignore
     ParentSlidingSubview.prototype,
     {
@@ -60,4 +61,4 @@ BreakageForm.prototype = window.$.extend({},
     }
 )
 
-module.exports = BreakageForm
+export default BreakageForm

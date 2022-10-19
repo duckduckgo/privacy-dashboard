@@ -2,6 +2,10 @@
  * @jest-environment jsdom
  */
 
+import $ from 'jquery'
+import SiteModel from '../../models/site.es6.js'
+import siteTemplate from '../../templates/site.es6'
+import SiteView from '../site.es6.js'
 import generateData from './mock-data/generate-data'
 class MockMutationObserver {
     observe () {}
@@ -9,7 +13,7 @@ class MockMutationObserver {
 }
 // @ts-ignore
 window.MutationObserver = MockMutationObserver
-jest.mock('../../../browser/$ENVIRONMENT-communication.es6.js', () => ({
+jest.mock('../../../browser/browser-communication.es6.js', () => ({
     fetch: jest.fn(),
     backgroundMessage: jest.fn(),
     getBackgroundTabData: jest.fn(),
@@ -36,8 +40,10 @@ describe('Browser specific Site view', () => {
             // Mock out communication calls
             const dataPromise = new Promise((resolve) => { dataResolve = resolve })
             // @ts-ignore
-            browserCommunication = require('../../../browser/$ENVIRONMENT-communication.es6.js')
+            browserCommunication = require('../../../browser/browser-communication.es6.js')
+            // @ts-ignore
             browserCommunication.getBackgroundTabData.mockReturnValue(dataPromise)
+            // @ts-ignore
             browserCommunication.fetch.mockImplementation((params) => {
                 if (params.messageType === 'refreshAlias') {
                     return Promise.resolve({ privateAddress: 'dax222' })
@@ -49,15 +55,11 @@ describe('Browser specific Site view', () => {
             })
 
             // Call the site view and pass in dependencies
-            const SiteModel = require('../../models/site.es6.js')
-            const siteTemplate = require('../../templates/site.es6')
-            /** @type {any} */
-            const SiteView = require('../site.es6.js')
             // eslint-disable-next-line no-new
             new SiteView({
                 pageView: this,
                 model: new SiteModel(),
-                appendTo: window.$('#test-container'),
+                appendTo: $('#test-container'),
                 template: siteTemplate
             })
         })

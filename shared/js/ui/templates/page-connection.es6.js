@@ -1,8 +1,7 @@
-/** @type {any} */
-const bel = require('bel')
-const hero = require('./shared/hero.es6.js')
-const { aboutLink } = require('./shared/about-link.js')
-const i18n = window.DDG.base.i18n
+import bel from 'bel'
+import { i18n } from '../base/localize.es6.js'
+import hero from './shared/hero.es6.js'
+import { aboutLink } from './shared/about-link.js'
 
 /**
  * @this {{
@@ -12,7 +11,7 @@ const i18n = window.DDG.base.i18n
  *   }
  * }}
  */
-module.exports = function () {
+export default function () {
     if (!this.model) {
         return bel`<section class="sliding-subview"></section>`
     }

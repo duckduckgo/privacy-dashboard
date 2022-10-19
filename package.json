@@ -33,14 +33,14 @@
         "test.serve": "http-server -c-1 --port 8080 ./build/example",
         "test.e2e": "npm run build.example && start-server-and-test 'npm run test.serve' 8080 'jest -c jest.e2e.config.js --runInBand'",
         "test.e2e.update": "npm run build.example && start-server-and-test 'npm run test.serve' 8080 'jest -c jest.e2e.config.js --runInBand --updateSnapshot'",
-        "test.int": "playwright test",
+        "test.int": "playwright test --project browser --headed",
         "test.int-debug": "playwright test --headed --debug",
         "verify.local": "npm run lint.fix && npm run test.unit && npm run build.example && npm run docs"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.3",
         "@babel/core": "^7.13.15",
-        "@babel/eslint-parser": "^7.18.9",
+        "@babel/eslint-parser": "^7.19.1",
         "@babel/polyfill": "^7.10.4",
         "@babel/preset-env": "^7.11.0",
         "@material/ripple": "^14.0.0",

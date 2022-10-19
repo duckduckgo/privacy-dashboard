@@ -15,12 +15,12 @@
 
  * @category integrations
  */
-import { getContentHeight, setupColorScheme, setupMutationObserver } from './common.es6'
 import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema
 } from '../../../schema/__generated__/schema.parsers'
+import { getContentHeight, setupColorScheme, setupMutationObserver } from './common.es6'
 import { createTabData } from './utils/request-details'
 
 let channel = null

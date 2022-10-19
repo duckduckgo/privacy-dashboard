@@ -23,9 +23,9 @@
  */
 import { setupColorScheme } from './common.es6'
 import {
-    fetch as macosFetch,
     backgroundMessage,
-    getBackgroundTabData
+    getBackgroundTabData,
+    fetch as macosFetch
 } from './macos-communication.es6'
 
 const setColorScheme = setupColorScheme()

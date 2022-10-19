@@ -6,14 +6,14 @@
  *
  * @category integrations
  */
-import { setupColorScheme } from './common.es6'
 import {
     breakageReportRequestSchema,
     extensionGetPrivacyDashboardDataSchema, setListOptionsSchema
 } from '../../../schema/__generated__/schema.parsers'
-import { createTabData, Protections } from './utils/request-details'
+import parseUserAgentString from '../shared-utils/parse-user-agent-string.es6'
+import { setupColorScheme } from './common.es6'
+import { Protections, createTabData } from './utils/request-details'
 
-const parseUserAgentString = require('../shared-utils/parse-user-agent-string.es6')
 const browserInfo = parseUserAgentString()
 
 let channel

@@ -1,14 +1,13 @@
-// @ts-ignore
+import $ from 'jquery'
+import { isAndroid, isIOS } from '../environment-check.js'
+import Parent from '../base/view.es6.js'
 import { setupMaterialDesignRipple } from './utils/utils.js'
-import { isIOS, isAndroid } from '../environment-check.js'
-
-const Parent = window.DDG.base.View
 
 function SlidingSubview (ops) {
-    ops.appendTo = window.$('.sliding-subview--root')
+    ops.appendTo = $('.sliding-subview--root')
     Parent.call(this, ops)
 
-    this.$root = window.$('.sliding-subview--root')
+    this.$root = $('.sliding-subview--root')
     this.$root.addClass('sliding-subview--open')
 
     // @ts-ignore
@@ -17,7 +16,7 @@ function SlidingSubview (ops) {
     this.setupClose()
 }
 
-SlidingSubview.prototype = window.$.extend({},
+SlidingSubview.prototype = $.extend({},
     Parent.prototype,
     {
 
@@ -89,4 +88,4 @@ SlidingSubview.prototype = window.$.extend({},
     }
 )
 
-module.exports = SlidingSubview
+export default SlidingSubview

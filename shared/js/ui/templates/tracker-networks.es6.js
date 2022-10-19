@@ -1,14 +1,11 @@
+import bel from 'bel'
 import { displayCategories } from '../../../data/constants'
-
-/** @type {any} */
-const bel = require('bel')
-const hero = require('./shared/hero.es6.js')
-const { getColorId } = require('./shared/utils.es6.js')
-const { trackerNetworksText, trackerNetworksHeroIcon, trackerNetworkSummary } = require('./shared/tracker-networks-text.es6')
-const { aboutLink } = require('./shared/about-link')
-const { platformLimitations } = require('./shared/platform-limitations')
-
-const i18n = window.DDG.base.i18n
+import { i18n } from '../base/localize.es6'
+import hero from './shared/hero.es6.js'
+import { getColorId } from './shared/utils.es6.js'
+import { trackerNetworksText, trackerNetworksHeroIcon, trackerNetworkSummary } from './shared/tracker-networks-text.es6'
+import { aboutLink } from './shared/about-link'
+import { platformLimitations } from './shared/platform-limitations'
 
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
 export function trackerNetworksTemplate () {

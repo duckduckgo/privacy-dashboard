@@ -1,4 +1,5 @@
-const Parent = window.DDG.base.Model
+import $ from 'jquery'
+import Parent from '../base/model.es6'
 
 /** @this {any} */
 function EmailProtectionModel (attrs) {
@@ -18,7 +19,7 @@ function EmailProtectionModel (attrs) {
  * @property {string} userName
  */
 
-EmailProtectionModel.prototype = window.$.extend({},
+EmailProtectionModel.prototype = $.extend({},
     Parent.prototype,
     {
         modelName: 'emailProtection',
@@ -61,4 +62,4 @@ EmailProtectionModel.prototype = window.$.extend({},
     }
 )
 
-module.exports = EmailProtectionModel
+export default EmailProtectionModel

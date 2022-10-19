@@ -1,19 +1,22 @@
 /**
  * @jest-environment jsdom
  */
-
-import generateData from './mock-data/generate-data'
+import $ from 'jquery'
 import { Protections } from '../../../browser/utils/request-details'
+// Call the site view and pass in dependencies
+import SiteModel from '../../models/site.es6.js'
+import siteTemplate from '../../templates/site.es6'
+import SiteView from '../site.es6.js'
+import generateData from './mock-data/generate-data'
 
 class MockMutationObserver {
     observe () {}
-
     unobserve () {}
 }
 
 // @ts-ignore
 window.MutationObserver = MockMutationObserver
-jest.mock('../../../browser/$ENVIRONMENT-communication.es6.js', () => ({
+jest.mock('../../../browser/browser-communication.es6.js', () => ({
     fetch: jest.fn(),
     backgroundMessage: jest.fn(),
     getBackgroundTabData: jest.fn()
@@ -36,13 +39,10 @@ describe('Site view', () => {
             // Mock out communication calls
             const dataPromise = new Promise((resolve) => { dataResolve = resolve })
             // @ts-ignore
-            macosCommunication = require('../../../browser/$ENVIRONMENT-communication.es6.js')
+            macosCommunication = require('../../../browser/browser-communication.es6.js')
+            // @ts-ignore
             macosCommunication.getBackgroundTabData.mockReturnValue(dataPromise)
 
-            // Call the site view and pass in dependencies
-            const SiteModel = require('../../models/site.es6.js')
-            const siteTemplate = require('../../templates/site.es6')
-            const SiteView = require('../site.es6.js')
             // eslint-disable-next-line no-new
 
             // @ts-ignore
@@ -50,7 +50,7 @@ describe('Site view', () => {
             const _site = new SiteView({
                 pageView: this,
                 model: new SiteModel(),
-                appendTo: window.$('#test-container'),
+                appendTo: $('#test-container'),
                 template: siteTemplate
             })
         })

@@ -30,11 +30,11 @@
  *
  * @category integrations
  */
-import { setupColorScheme, setupMutationObserver, assert } from './common.es6'
-import { createTabData } from './utils/request-details'
 import {
     windowsViewModelSchema
 } from '../../../schema/__generated__/schema.parsers'
+import { assert, setupColorScheme, setupMutationObserver } from './common.es6'
+import { createTabData } from './utils/request-details'
 
 let channel = null
 const backgroundMessage = (backgroundModel) => {

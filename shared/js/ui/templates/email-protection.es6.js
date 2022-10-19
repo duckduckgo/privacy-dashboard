@@ -1,12 +1,11 @@
-/** @type {any} */
-const bel = require('bel')
-const i18n = window.DDG.base.i18n
+import bel from 'bel'
+import { i18n } from '../base/localize.es6'
 
 /**
  * @this {any}
- * @returns {null}
+ * @returns {null|HTMLElement}
  */
-function emailProtectionTemplate () {
+export default function emailProtectionTemplate () {
     const state = this.model.state
 
     if (state === 'unknown') {
@@ -34,8 +33,6 @@ function emailProtectionTemplate () {
             </button>
         </div>`
 }
-
-module.exports = emailProtectionTemplate
 
 function wandIcon () {
     return bel`<svg width="16" height="16" viewBox="0 0 16 16" fill="none">

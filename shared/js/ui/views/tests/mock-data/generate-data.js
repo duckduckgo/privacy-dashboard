@@ -1,4 +1,4 @@
-import { createTabData, Protections, states } from '../../../../browser/utils/request-details'
+import { Protections, createTabData, states } from '../../../../browser/utils/request-details'
 import _google from '../../../../../../schema/__fixtures__/request-data-google.json'
 import _cnn from '../../../../../../schema/__fixtures__/request-data-cnn.json'
 import { detectedRequestSchema, requestDataSchema } from '../../../../../../schema/__generated__/schema.parsers'

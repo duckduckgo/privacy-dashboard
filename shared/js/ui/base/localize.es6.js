@@ -1,10 +1,10 @@
 import i18next from 'i18next'
 import ICU from 'i18next-icu'
+// eslint-disable-next-line no-unused-vars
+import siteTranslations from '../../../locales/en/site.json'
 
 // @ts-ignore
 const localeResources = require('../../../locales/*/*.json', { mode: 'list' })
-// eslint-disable-next-line no-unused-vars
-const siteTranslations = require('../../../locales/en/site.json')
 
 const resources = localeResources.reduce((mapping, { name, module }) => {
     const [locale, namespace] = name.split('/')

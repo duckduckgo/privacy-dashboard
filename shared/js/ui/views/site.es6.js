@@ -1,27 +1,28 @@
 import { MDCSwitch } from '@material/switch'
+// @ts-ignore
+import $ from 'jquery'
+import { thirdpartyHeroIcon } from '../templates/shared/thirdparty-text.es6'
 import { isAndroid } from '../environment-check.js'
 import { trackerNetworksHeroIcon } from '../templates/shared/tracker-networks-text.es6.js'
-// @ts-ignore
+import EmailProtectionModel from '../models/email-protection.es6'
+import emailProtectionTemplate from '../templates/email-protection.es6'
+import SearchModel from '../models/search.es6'
+import searchTemplate from '../templates/search.es6'
+import Parent from '../base/view.es6'
+import { CtaRotationModel } from '../models/cta-rotation.es6'
+import ctaRotationView from '../templates/cta-rotation.es6'
+import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import { trackerNetworksTemplate } from '../templates/tracker-networks.es6'
+import { nonTrackersTemplate } from '../templates/non-trackers.es6'
 import { setupMaterialDesignRipple } from './utils/utils.js'
-import { thirdpartyHeroIcon } from '../templates/shared/thirdparty-text.es6'
-const Parent = window.DDG.base.View
-const TrackerNetworksView = require('./../views/tracker-networks.es6.js')
-const BreakageFormView = require('./../views/breakage-form.es6.js')
-const pageConnectionTemplate = require('./../templates/page-connection.es6.js')
-const { trackerNetworksTemplate } = require('./../templates/tracker-networks.es6.js')
-const { nonTrackersTemplate } = require('./../templates/non-trackers.es6.js')
-const breakageFormTemplate = require('./../templates/breakage-form.es6.js')
-const EmailProtectionView = require('./email-protection.es6')
-const EmailProtectionModel = require('../models/email-protection.es6')
-const emailProtectionTemplate = require('../templates/email-protection.es6')
-const SearchView = require('./search.es6')
-const SearchModel = require('../models/search.es6')
-const searchTemplate = require('../templates/search.es6')
-const CtaRotationView = require('./cta-rotation.es6')
-const { CtaRotationModel } = require('../models/cta-rotation.es6')
-const ctaRotationView = require('../templates/cta-rotation.es6')
-/** @type {import('../../browser/communication.es6.js').Communication} */
-const browserUIWrapper = require('../../browser/communication.es6.js')
+import BreakageFormView from './../views/breakage-form.es6.js'
+import pageConnectionTemplate from './../templates/page-connection.es6.js'
+import breakageFormTemplate from './../templates/breakage-form.es6.js'
+import EmailProtectionView from './email-protection.es6'
+import SearchView from './search.es6'
+import CtaRotationView from './cta-rotation.es6'
+/** @type {import('../../browser/browser-communication.es6.js').Communication} */
+import TrackerNetworksView from './../views/tracker-networks.es6.js'
 
 function Site (ops) {
     this.model = ops.model
@@ -29,7 +30,7 @@ function Site (ops) {
     this.template = ops.template
 
     // cache 'body' selector
-    this.$body = window.$('body')
+    this.$body = $('body')
 
     // get data from background process, then re-render template with it
     this.model.getBackgroundTabData().then(() => {
@@ -52,7 +53,7 @@ function Site (ops) {
         })
 }
 
-Site.prototype = window.$.extend({},
+Site.prototype = $.extend({},
     Parent.prototype,
     {
         _onAllowlistClick: function (e) {
@@ -191,7 +192,7 @@ Site.prototype = window.$.extend({},
                 this.views.search = new SearchView({
                     pageView: this,
                     model: new SearchModel({ searchText: '' }),
-                    appendTo: window.$('#search-form-container'),
+                    appendTo: $('#search-form-container'),
                     template: searchTemplate
                 })
             }
@@ -201,7 +202,7 @@ Site.prototype = window.$.extend({},
                 this.views.ctaRotations = new CtaRotationView({
                     pageView: this,
                     model: new CtaRotationModel({ emailProtectionUserData: this.model.emailProtectionUserData }),
-                    appendTo: window.$('#cta-rotation'),
+                    appendTo: $('#cta-rotation'),
                     template: ctaRotationView
                 })
             }
@@ -213,7 +214,7 @@ Site.prototype = window.$.extend({},
                 }
                 this.views.emailProtection = new EmailProtectionView({
                     model: new EmailProtectionModel({ emailProtectionUserData: this.model.emailProtectionUserData }),
-                    appendTo: window.$('#email-alias-container'),
+                    appendTo: $('#email-alias-container'),
                     template: emailProtectionTemplate
                 })
             }
@@ -221,4 +222,4 @@ Site.prototype = window.$.extend({},
     }
 )
 
-module.exports = Site
+export default Site

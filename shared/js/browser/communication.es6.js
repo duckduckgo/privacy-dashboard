@@ -1,5 +1,6 @@
 // @ts-ignore
-module.exports = require('./$ENVIRONMENT-communication.es6.js')
+import comms from './browser-communication.es6.js'
+export default comms
 
 /**
  * @typedef Communication

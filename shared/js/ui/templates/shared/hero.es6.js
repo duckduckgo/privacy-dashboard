@@ -1,8 +1,7 @@
-/** @type {any} */
-const bel = require('bel')
-const i18n = window.DDG.base.i18n
+import bel from 'bel'
+import { i18n } from '../../base/localize.es6'
 
-module.exports = function (ops) {
+export default function (ops) {
     return bel`
         <div class="hero-wrapper">
             <div class="hero text--center ${ops.className || ''}">

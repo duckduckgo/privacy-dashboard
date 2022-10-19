@@ -1,7 +1,6 @@
-/** @type {any} */
-const bel = require('bel')
-const raw = require('bel/raw')
-const i18n = window.DDG.base.i18n
+import bel from 'bel'
+import raw from 'bel/raw'
+import { i18n } from '../base/localize.es6'
 
 const ctas = {
     spread: {
@@ -104,5 +103,5 @@ function emailSvg () {
 `
 }
 
-module.exports = ctaRotationView
-module.exports.ctas = ctas
+export default ctaRotationView
+export { ctas }
