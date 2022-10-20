@@ -1406,6 +1406,11 @@ th {
   font-weight: 500;
   line-height: 20px;
 }
+.environment--ios .token-body-em {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+}
 .environment--browser .token-body-em {
   font-family: "Proxima Nova";
   font-style: normal;
@@ -1419,11 +1424,15 @@ th {
   font-weight: 400;
   line-height: 20px;
 }
+.environment--ios .token-title-3 {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
 .environment--android .token-title-3 {
   font-size: 16px;
-  font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0em;
+  letter-spacing: 0;
 }
 .environment--browser .token-title-3 {
   font-family: "Proxima Nova";

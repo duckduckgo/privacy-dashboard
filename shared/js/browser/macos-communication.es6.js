@@ -22,6 +22,7 @@ import {
     requestDataSchema
 } from '../../../schema/__generated__/schema.parsers'
 import { createTabData } from './utils/request-details'
+import { isIOS } from '../ui/environment-check'
 
 let channel = null
 
@@ -278,7 +279,9 @@ export function privacyDashboardSubmitBrokenSiteReport (report) {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardSetSize (payload) {
-    window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
+    if (!isIOS()) {
+        window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
+    }
 }
 
 // todo(Shane): This is probably also running on iOS since it imports this file.

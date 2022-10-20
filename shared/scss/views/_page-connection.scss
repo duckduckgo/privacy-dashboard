@@ -7,41 +7,48 @@
   @include cross_platform_bg_image("refresh-assets/Unlocked-96.svg");
 }
 
-.page-connection {
+.page-connection__certificate {
+  padding: 0 $card--padded--side;
+}
 
-  &__certificate {
-    padding: 0 $card--padded--side;
+
+.page-connection__certificate-value {
+  color: $gray-seventy;
+
+  .body--theme-dark & {
+    color: $gray-fifty;
   }
+}
 
-  &__certificate-details {
-    padding: 18px 0;
+.page-connection__certificate-details {
+  padding: 18px 0;
 
-    h3 {
-      color: $slate-dark;
-      margin-bottom: 14px;
-
-      .body--theme-dark & {
-        color: $color--off-white;
-      }
-    }
-
-    > div {
-      color: $slate;
-      display: flex;
-      margin-top: 6px;
-      justify-content: space-between;
-
-      .body--theme-dark & {
-        color: $color--off-white;
-      }
-    }
-  }
-
-  &__certificate-value {
-    color: $gray-seventy;
+  h3 {
+    color: $slate-dark;
+    margin-bottom: 14px;
 
     .body--theme-dark & {
-      color: $gray-fifty;
+      color: $color--off-white;
+    }
+  }
+
+  > div {
+    color: $slate;
+    display: flex;
+    margin-top: 6px;
+    justify-content: space-between;
+
+    .body--theme-dark & {
+      color: $color--off-white;
+    }
+  }
+
+  + .page-connection__certificate-details {
+    border-top: $border--separator-light;
+
+    .body--theme-dark & {
+      border-top: $border--separator-dark-mode;
     }
   }
 }
+

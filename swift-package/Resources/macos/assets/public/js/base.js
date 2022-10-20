@@ -28304,6 +28304,8 @@ var _schema = require("../../../schema/__generated__/schema.parsers");
 
 var _requestDetails = require("./utils/request-details");
 
+var _environmentCheck = require("../ui/environment-check");
+
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 var channel = null;
@@ -28602,7 +28604,9 @@ function privacyDashboardSubmitBrokenSiteReport(report) {
 
 
 function privacyDashboardSetSize(payload) {
-  window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
+  if (!(0, _environmentCheck.isIOS)()) {
+    window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
+  }
 } // todo(Shane): This is probably also running on iOS since it imports this file.
 
 
@@ -28647,7 +28651,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-},{"../../../schema/__generated__/schema.parsers":57,"./common.es6":59,"./utils/request-details":62}],62:[function(require,module,exports){
+},{"../../../schema/__generated__/schema.parsers":57,"../ui/environment-check":73,"./common.es6":59,"./utils/request-details":62}],62:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

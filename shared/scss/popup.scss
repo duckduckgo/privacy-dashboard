@@ -65,6 +65,12 @@ body.environment--browser {
     .site-info {
         margin-top: 0;
 
+        .environment--ios & {
+            > :last-child {
+                padding-bottom: 18px;
+            }
+        }
+
         .list-wrapper {
             background-color: $white;
             padding: 0 24px;
@@ -126,9 +132,6 @@ body.environment--browser {
            margin-left: 2px;
         }
 
-        .site-info__trackers {
-        }
-
         .site-info__protection {
             padding-right: 2.5rem;
             opacity: 1;
@@ -167,7 +170,7 @@ body.environment--browser {
             }
 
             .environment--ios & {
-                right: 12px;
+                right: 15px;
                 top: 10px;
             }
 
@@ -215,6 +218,9 @@ body.environment--browser {
             .environment--browser & {
                 padding: 11px 48px 11px 46px;
             }
+            .environment--ios & {
+                padding: 13px 48px 13px 46px;
+            }
         }
 
 
@@ -258,6 +264,9 @@ body.environment--browser {
 
             .environment--browser & {
                 top: 12px;
+            }
+            .environment--ios & {
+                top: 15px;
             }
         }
 
@@ -528,10 +537,6 @@ body.environment--browser {
             .hero__close {
                 display: none;
             }
-
-            > :last-child {
-                padding-bottom: 18px;
-            }
         }
 
         .environment--ios &,
@@ -542,6 +547,7 @@ body.environment--browser {
 
             .site-info__protection-wrapper {
                 flex: 1;
+                padding-top: 10px;
             }
 
             .hero-wrapper {

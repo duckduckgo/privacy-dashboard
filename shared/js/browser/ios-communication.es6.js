@@ -79,7 +79,6 @@ const fetch = (message) => {
         return
     }
 
-    console.log({ message: JSON.stringify(message, null, 2) })
     if (message.checkBrokenSiteReportHandled) {
         privacyDashboardShowReportBrokenSite({})
         return true // Return true to prevent HTML form from showing
