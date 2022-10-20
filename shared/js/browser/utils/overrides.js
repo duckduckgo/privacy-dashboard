@@ -33,7 +33,7 @@ export function getOverrides (searchString) {
             parentEntity: undefined
         },
         requests: [],
-        platform: 'example',
+        platform: 'n/a',
         state: 'unknown',
         emailProtectionUserData: undefined,
         theme: undefined

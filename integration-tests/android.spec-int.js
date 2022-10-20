@@ -1,10 +1,12 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withAndroidRequests } from './helpers'
 
+const HTML = '/build/example/html/android.html'
+
 const test = baseTest.extend({
     androidMocks: [async ({ page }, use) => {
         forwardConsole(page)
-        await page.goto('/build/android/html/popup.html')
+        await page.goto(HTML)
         const requests = await withAndroidRequests(page, {
             requests: []
         })
@@ -47,7 +49,7 @@ test.describe('open external links', () => {
 test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
         forwardConsole(page)
-        await page.goto('/build/android/html/popup.html')
+        await page.goto(HTML)
         await withAndroidRequests(page, {
             requests: []
         }, {
@@ -59,7 +61,7 @@ test.describe('localization', () => {
     })
     test('should load with `fr` locale', async ({ page }) => {
         forwardConsole(page)
-        await page.goto('/build/android/html/popup.html')
+        await page.goto(HTML)
         await withAndroidRequests(page, {
             requests: []
         }, {

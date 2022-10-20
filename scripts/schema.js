@@ -1,11 +1,14 @@
-const { writeFileSync } = require('fs')
-const { join } = require('path')
+import { writeFileSync, readFileSync } from 'node:fs'
+import { join } from 'path'
+import { generate } from 'ts-to-zod'
+import { compile } from 'json-schema-to-typescript'
 
-const CWD = join(__dirname, '..')
+// @ts-ignore
+const CWD = new URL("..", import.meta.url).pathname;
 const BASE = join(CWD, 'schema')
 const SCHEMA_TYPES = join(BASE, '__generated__', 'schema.types.ts')
 const SCHEMA_PARSERS = join(BASE, '__generated__', 'schema.parsers.js')
-const schema = require(join(BASE, 'api.json'))
+const schema = JSON.parse(readFileSync(join(BASE, 'api.json'), 'utf8'));
 
 const bannerComment = `/**
  * @module Generated Schema Definitions
@@ -28,7 +31,6 @@ create(schema)
     .catch(e => console.error(e))
 
 async function create (schema) {
-    const { compile } = require('json-schema-to-typescript')
     const typescriptSourceCode = await compile(schema, schema.title, { cwd: BASE })
     return {
         content: typescriptSourceCode,
@@ -59,7 +61,6 @@ function writeItem (outputFile, item, banner = '') {
  * @returns {string}
  */
 function createValidatorsOutput (typescriptDefinitions) {
-    const { generate } = require('ts-to-zod')
     const zodResult = generate({
         sourceText: typescriptDefinitions
     })

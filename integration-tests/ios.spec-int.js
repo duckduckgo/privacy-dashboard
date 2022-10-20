@@ -1,10 +1,12 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withWebkitRequests } from './helpers'
 
+const HTML = '/swift-package/Resources/ios/assets/html/ios.html'
+
 const test = baseTest.extend({
     iosMocks: [async ({ page }, use) => {
         forwardConsole(page)
-        await page.goto('/swift-package/Resources/ios/assets/html/popup.html')
+        await page.goto(HTML)
         const requests = await withWebkitRequests(page, {
             requests: []
         })
@@ -47,7 +49,7 @@ test.describe('open external links', () => {
 test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
         forwardConsole(page)
-        await page.goto('/build/android/html/popup.html')
+        await page.goto(HTML)
         await withWebkitRequests(page, {
             requests: []
         }, {
@@ -59,7 +61,7 @@ test.describe('localization', () => {
     })
     test('should load with `fr` locale', async ({ page }) => {
         forwardConsole(page)
-        await page.goto('/build/android/html/popup.html')
+        await page.goto(HTML)
         await withWebkitRequests(page, {
             requests: []
         }, {

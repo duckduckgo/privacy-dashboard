@@ -19,7 +19,9 @@ const browserInfo = parseUserAgentString()
 let channel
 const isPendingUpdates = false
 
-setupColorScheme()
+export function setup () {
+    setupColorScheme()
+}
 
 export function fetch (message) {
     console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2))

@@ -11,7 +11,7 @@ import searchTemplate from '../templates/search.es6'
 import Parent from '../base/view.es6'
 import { CtaRotationModel } from '../models/cta-rotation.es6'
 import ctaRotationView from '../templates/cta-rotation.es6'
-import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import browserUIWrapper from '../../browser/communication.es6.js'
 import { trackerNetworksTemplate } from '../templates/tracker-networks.es6'
 import { nonTrackersTemplate } from '../templates/non-trackers.es6'
 import { setupMaterialDesignRipple } from './utils/utils.js'
@@ -21,7 +21,7 @@ import breakageFormTemplate from './../templates/breakage-form.es6.js'
 import EmailProtectionView from './email-protection.es6'
 import SearchView from './search.es6'
 import CtaRotationView from './cta-rotation.es6'
-/** @type {import('../../browser/browser-communication.es6.js').Communication} */
+/** @type {import('../../browser/communication.es6.js').Communication} */
 import TrackerNetworksView from './../views/tracker-networks.es6.js'
 
 function Site (ops) {

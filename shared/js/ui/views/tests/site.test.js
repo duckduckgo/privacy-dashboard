@@ -16,7 +16,7 @@ class MockMutationObserver {
 
 // @ts-ignore
 window.MutationObserver = MockMutationObserver
-jest.mock('../../../browser/browser-communication.es6.js', () => ({
+jest.mock('../../../browser/communication.es6.js', () => ({
     fetch: jest.fn(),
     backgroundMessage: jest.fn(),
     getBackgroundTabData: jest.fn()
@@ -39,7 +39,7 @@ describe('Site view', () => {
             // Mock out communication calls
             const dataPromise = new Promise((resolve) => { dataResolve = resolve })
             // @ts-ignore
-            macosCommunication = require('../../../browser/browser-communication.es6.js')
+            macosCommunication = require('../../../browser/communication.es6.js')
             // @ts-ignore
             macosCommunication.getBackgroundTabData.mockReturnValue(dataPromise)
 

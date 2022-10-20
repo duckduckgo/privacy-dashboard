@@ -1,6 +1,8 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withExtensionRequests } from './helpers'
 
+const HTML = '/build/example/html/browser.html'
+
 const test = baseTest.extend({
     extensionMessages: [async ({ page }, use) => {
         forwardConsole(page)
@@ -11,7 +13,7 @@ const test = baseTest.extend({
         const requests = await withExtensionRequests(page, {
             requests: []
         })
-        await page.goto('/build/browser/html/popup.html')
+        await page.goto(HTML)
         await use(requests)
         // @ts-ignore
     }, { auto: true }]
@@ -118,7 +120,7 @@ test.describe('Protections toggle', () => {
                     unprotectedTemporary: false
                 }
             })
-            await page.goto('/build/browser/html/popup.html')
+            await page.goto(HTML)
             await page.locator('[aria-pressed="false"]').click()
             await page.waitForTimeout(1000)
             // @ts-ignore
@@ -155,7 +157,7 @@ test.describe('Protections toggle', () => {
                     unprotectedTemporary: false
                 }
             })
-            await page.goto('/build/browser/html/popup.html')
+            await page.goto(HTML)
             await page.locator('[aria-pressed="false"]').click()
             await page.waitForTimeout(1000)
             // @ts-ignore

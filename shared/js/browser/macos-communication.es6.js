@@ -33,8 +33,6 @@ const backgroundMessage = (backgroundModel) => {
     channel = backgroundModel
 }
 
-setupColorScheme()
-
 const getBackgroundTabDataPromises = []
 let trackerBlockingData
 let permissionsData
@@ -106,19 +104,6 @@ export function onChangeRequestData (tabUrl, rawRequestData) {
     trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data)
     resolveInitialRender()
 }
-window.onChangeRequestData = onChangeRequestData
-
-window.onChangeAllowedPermissions = function (data) {
-    permissionsData = data
-    channel?.send('updateTabData')
-}
-
-window.onChangeUpgradedHttps = function (data) {
-    upgradedHttps = data
-
-    if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
-    resolveInitialRender()
-}
 
 /**
  * {@inheritDoc common.onChangeProtectionStatus}
@@ -143,7 +128,6 @@ export function onChangeProtectionStatus (protectionsStatus) {
     protections = parsed.data
     resolveInitialRender()
 }
-window.onChangeProtectionStatus = onChangeProtectionStatus
 
 /**
  * {@inheritDoc common.onChangeLocale}
@@ -164,27 +148,6 @@ export function onChangeLocale (payload) {
         return
     }
     locale = parsed.data.locale
-    channel?.send('updateTabData')
-}
-window.onChangeLocale = onChangeLocale
-
-window.onChangeCertificateData = function (data) {
-    certificateData = data.secCertificateViewModels
-    channel?.send('updateTabData')
-}
-
-window.onIsPendingUpdates = function (data) {
-    isPendingUpdates = data
-    channel?.send('updateTabData')
-}
-
-window.onChangeParentEntity = function (data) {
-    parentEntity = data
-    channel?.send('updateTabData')
-}
-
-window.onChangeConsentManaged = function (data) {
-    consentManaged = data
     channel?.send('updateTabData')
 }
 
@@ -281,10 +244,45 @@ export function privacyDashboardSetSize (payload) {
     window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
 }
 
-// todo(Shane): This is probably also running on iOS since it imports this file.
-setupMutationObserver((height) => {
-    privacyDashboardSetSize({ height })
-})
+export function setupShared () {
+    window.onChangeRequestData = onChangeRequestData
+    window.onChangeAllowedPermissions = function (data) {
+        permissionsData = data
+        channel?.send('updateTabData')
+    }
+    window.onChangeUpgradedHttps = function (data) {
+        upgradedHttps = data
+        if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
+        resolveInitialRender()
+    }
+    window.onChangeProtectionStatus = onChangeProtectionStatus
+    window.onChangeLocale = onChangeLocale
+    window.onChangeCertificateData = function (data) {
+        certificateData = data.secCertificateViewModels
+        channel?.send('updateTabData')
+    }
+    window.onIsPendingUpdates = function (data) {
+        isPendingUpdates = data
+        channel?.send('updateTabData')
+    }
+    window.onChangeParentEntity = function (data) {
+        parentEntity = data
+        channel?.send('updateTabData')
+    }
+    window.onChangeConsentManaged = function (data) {
+        consentManaged = data
+        channel?.send('updateTabData')
+    }
+}
+
+export function setup () {
+    setupColorScheme()
+    setupShared()
+    setupMutationObserver((height) => {
+        privacyDashboardSetSize({ height })
+    })
+    setupClickEventHandlers()
+}
 
 /**
  * Called when the DOM has been rendered for the first time. This is
@@ -300,21 +298,23 @@ function firstRenderComplete () {
     }
 }
 
-/**
- * on macOS + iOS, respond to all clicks on links with target="_blank"
- * by forwarding to the native side.
- */
-document.addEventListener('click', (e) => {
-    const targetElem = e.target
-    if (targetElem instanceof HTMLAnchorElement) {
-        if (targetElem.target === '_blank' && targetElem.origin) {
-            e.preventDefault()
-            privacyDashboardOpenUrlInNewTab({
-                url: targetElem.href
-            })
+export function setupClickEventHandlers () {
+    /**
+     * on macOS + iOS, respond to all clicks on links with target="_blank"
+     * by forwarding to the native side.
+     */
+    document.addEventListener('click', (e) => {
+        const targetElem = e.target
+        if (targetElem instanceof HTMLAnchorElement) {
+            if (targetElem.target === '_blank' && targetElem.origin) {
+                e.preventDefault()
+                privacyDashboardOpenUrlInNewTab({
+                    url: targetElem.href
+                })
+            }
         }
-    }
-})
+    })
+}
 
 export {
     fetch,

@@ -8,10 +8,6 @@ import { Protections } from './utils/request-details'
 // Overrides based on URL params
 const overrides = getOverrides(window.location.search)
 
-// set initial colour scheme
-const setColorScheme = setupColorScheme()
-setColorScheme(overrides.theme)
-
 let channel = null
 const isSecure = true
 let isPendingUpdates = false
@@ -85,9 +81,15 @@ export async function getBackgroundTabData () {
     return output
 }
 
-setupMutationObserver((height) => {
-    console.log('Window height change:', height)
-})
+export function setup () {
+    // set initial colour scheme
+    const setColorScheme = setupColorScheme()
+    setColorScheme(overrides.theme)
+
+    setupMutationObserver((height) => {
+        console.log('Window height change:', height)
+    })
+}
 
 export function openOptionsPage () {
     console.warn('should open options page here')

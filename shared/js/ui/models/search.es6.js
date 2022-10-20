@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import browserUIWrapper from '../../browser/communication.es6.js'
 import Parent from '../base/model.es6'
 
 /** @this {any} */

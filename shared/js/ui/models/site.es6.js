@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import Parent from '../base/model.es6'
 import constants from '../../../data/constants'
-import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import browserUIWrapper from '../../browser/communication.es6.js'
 import { i18n } from '../base/localize.es6'
 const httpsMessages = constants.httpsMessages
 

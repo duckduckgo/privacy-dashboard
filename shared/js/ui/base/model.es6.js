@@ -1,6 +1,6 @@
 // @ts-nocheck
 import $ from 'jquery'
-import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import browserUIWrapper from '../../browser/communication.es6.js'
 import mixins from './mixins/index.es6.js'
 import store from './store.es6.js'
 

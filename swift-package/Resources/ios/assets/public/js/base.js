@@ -27815,6 +27815,498 @@ const oboolean = () => booleanType().optional();
 exports.oboolean = oboolean;
 
 },{"./ZodError":49,"./helpers/errorUtil":51,"./helpers/parseUtil":52,"./helpers/util":54}],57:[function(require,module,exports){
+module.exports={
+  "installedSurrogates": [
+    "widgets.outbrain.com",
+    "www.googletagservices.com",
+    "sb.scorecardresearch.com"
+  ],
+  "requests": [
+    {
+      "category": "Advertising",
+      "url": "https://cdn.krxd.net/",
+      "eTLDplus1": "krxd.net",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Salesforce.com, Inc.",
+      "entityName": "Salesforce.com",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 9.23
+    },
+    {
+      "category": "Advertising",
+      "url": "https://www.google.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ruleException"
+        }
+      },
+      "prevalence": 79.9
+    },
+    {
+      "category": "Advertising",
+      "url": "https://vrt.outbrain.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Outbrain",
+      "entityName": "Outbrain",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 12.4
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 21.6,
+      "url": "https://www.ugdturner.com/",
+      "ownerName": "WarnerMedia, LLC",
+      "entityName": "WarnerMedia"
+    },
+    {
+      "category": "Advertising",
+      "url": "https://js-sec.indexww.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Index Exchange, Inc.",
+      "entityName": "Index Exchange",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 17.3
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 0.854,
+      "url": "https://consent.truste.com/",
+      "ownerName": "TrustArc Inc.",
+      "entityName": "TrustArc"
+    },
+    {
+      "category": "Advertising",
+      "url": "https://as.casalemedia.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Index Exchange, Inc.",
+      "entityName": "Index Exchange",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 17.3
+    },
+    {
+      "category": "Advertising",
+      "url": "https://c.amazon-adsystem.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Amazon Technologies, Inc.",
+      "entityName": "Amazon.com",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 21.4
+    },
+    {
+      "category": "Advertising",
+      "url": "https://as-sec.casalemedia.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Index Exchange, Inc.",
+      "entityName": "Index Exchange",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 17.3
+    },
+    {
+      "category": "Advertising",
+      "url": "https://ads.rubiconproject.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Magnite, Inc.",
+      "entityName": "Magnite",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 18.3
+    },
+    {
+      "category": "Advertising",
+      "url": "https://aax.amazon-adsystem.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Amazon Technologies, Inc.",
+      "entityName": "Amazon.com",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 21.4
+    },
+    {
+      "category": "Advertising",
+      "url": "https://dsum-sec.casalemedia.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Index Exchange, Inc.",
+      "entityName": "Index Exchange",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 17.3
+    },
+    {
+      "category": "Advertising",
+      "url": "https://plus.google.com/+cnn/posts",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ruleException"
+        }
+      },
+      "prevalence": 79.9
+    },
+    {
+      "category": "Advertising",
+      "url": "https://tpc.googlesyndication.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 79.9
+    },
+    {
+      "category": "Advertising",
+      "url": "https://fastlane.rubiconproject.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Magnite, Inc.",
+      "entityName": "Magnite",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 18.3
+    },
+    {
+      "category": "Advertising",
+      "url": "https://partner.googleadservices.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 79.9
+    },
+    {
+      "category": "Advertising",
+      "url": "https://pagead2.googlesyndication.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 79.9
+    },
+    {
+      "category": "Advertising",
+      "url": "https://amplify.outbrain.com/cp/obtp.js",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Outbrain",
+      "entityName": "Outbrain",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 12.4
+    },
+    {
+      "category": "Advertising",
+      "url": "https://tag.bounceexchange.com/340/i.js",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Bounce Exchange",
+      "entityName": "Bounce Exchange",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 0.582
+    },
+    {
+      "category": "Advertising",
+      "url": "https://widgets.outbrain.com/outbrain.js",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Outbrain",
+      "entityName": "Outbrain",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 12.4
+    },
+    {
+      "category": "Advertising",
+      "url": "https://fastlane-adv.rubiconproject.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Magnite, Inc.",
+      "entityName": "Magnite",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 18.3
+    },
+    {
+      "category": "Advertising",
+      "url": "https://optimized-by.rubiconproject.com/",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Magnite, Inc.",
+      "entityName": "Magnite",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 18.3
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "ruleException"
+        }
+      },
+      "prevalence": 0.0468,
+      "url": "https://www.dianomi.com/js/contextfeed.js",
+      "ownerName": "Dianomi Ltd",
+      "entityName": "Dianomi"
+    },
+    {
+      "category": "Analytics",
+      "url": "https://sb.scorecardresearch.com/beacon.js",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "comScore, Inc",
+      "entityName": "comScore",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 9.99
+    },
+    {
+      "category": "Advertising",
+      "url": "https://c.amazon-adsystem.com/aax2/apstag.js",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Amazon Technologies, Inc.",
+      "entityName": "Amazon.com",
+      "state": {
+        "allowed": {
+          "reason": "ruleException"
+        }
+      },
+      "prevalence": 21.4
+    },
+    {
+      "category": "Advertising",
+      "url": "https://www.googletagservices.com/tag/js/gpt.js",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 79.9
+    },
+    {
+      "category": "Advertising",
+      "url": "https://get.s-onetag.com/c15ddde9-ec7d-4a49-b8ca-7a21bc4b943b/tag.min.js",
+      "pageUrl": "https://edition.cnn.com/",
+      "ownerName": "Sovrn Holdings",
+      "entityName": "Sovrn Holdings",
+      "state": {
+        "blocked": {}
+      },
+      "prevalence": 10.5
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 21.6,
+      "url": "https://data.api.cnn.io/",
+      "entityName": "WarnerMedia"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 21.6,
+      "url": "https://pmd.cdn.turner.com/",
+      "entityName": "WarnerMedia"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 21.6,
+      "url": "https://amd.cdn.turner.com/",
+      "entityName": "WarnerMedia"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 21.6,
+      "url": "https://registry.api.cnn.io/bundles/fave/latest-4.x/js",
+      "entityName": "WarnerMedia"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "url": "android-app://com.cnn.mobile.android.phone/http/edition.cnn.com",
+      "entityName": "android.phone"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "url": "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+      "entityName": "cookielaw.org"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 9.99,
+      "url": "https://segment-data-us-east.zqtk.net/turner-47fcf6",
+      "entityName": "comScore"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 21.4,
+      "url": "https://d2uap9jskdzp2.cloudfront.net/script.js",
+      "entityName": "Amazon.com"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 21.6,
+      "url": "https://ht.cdn.turner.com/",
+      "entityName": "WarnerMedia"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "url": "https://w.usabilla.com/",
+      "entityName": "usabilla.com"
+    },
+    {
+      "pageUrl": "https://edition.cnn.com/",
+      "state": {
+        "allowed": {
+          "reason": "otherThirdPartyRequest"
+        }
+      },
+      "prevalence": 21.6,
+      "url": "https://s.cdn.turner.com/analytics/comscore/streamsense.5.2.0.160629.min.js",
+      "entityName": "WarnerMedia"
+    }
+  ]
+}
+
+},{}],58:[function(require,module,exports){
+module.exports={
+  "requests": [
+    {
+      "category": "Advertising",
+      "url": "https:\/\/www.google.com\/images\/branding\/googlelogo\/2x\/googlelogo_color_160x56dp.png",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    },
+    {
+      "category": "Advertising",
+      "url": "https:\/\/apis.google.com\/_\/scs\/abc-static\/_\/js\/k=gapi.gapi.en.t9z7VPsEMFg.O\/m=gapi_iframes,googleapis_client\/rt=j\/sv=1\/d=1\/ed=1\/rs=AHpOoo8oD_5FQW3kT3ksWwmXIWvhhqbKdw\/cb=gapi.loaded_0",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    },
+    {
+      "category": "Content Delivery",
+      "url": "https:\/\/fonts.gstatic.com\/s\/i\/productlogos\/googleg\/v6\/24px.svg",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    },
+    {
+      "category": "Content Delivery",
+      "url": "https:\/\/www.gstatic.com\/og\/_\/js\/k=og.qtm.en_US.asUsweLQqwk.O\/rt=j\/m=qabr,q_dnp,qcwid,qapid\/exm=qaaw,qadd,qaid,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhpr\/d=1\/ed=1\/rs=AA2YrTvH37iHjvnJ7NPFbMaGY1OZ0tqdnw",
+      "pageUrl": "https:\/\/www.google.com\/",
+      "ownerName": "Google LLC",
+      "entityName": "Google",
+      "state": {
+        "allowed": {
+          "reason": "ownedByFirstParty"
+        }
+      },
+      "prevalence": 80.099999999999994
+    }
+  ]
+}
+
+},{}],59:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27975,7 +28467,7 @@ var apiSchema = _zod.z.object({
 
 exports.apiSchema = apiSchema;
 
-},{"zod":55}],58:[function(require,module,exports){
+},{"zod":55}],60:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -27994,7 +28486,701 @@ module.exports = {
   }
 };
 
-},{}],59:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getBackgroundTabData = exports.fetch = exports.backgroundMessage = exports.PrivacyDashboardJavascriptInterface = void 0;
+exports.onChangeLocale = onChangeLocale;
+exports.onChangeProtectionStatus = onChangeProtectionStatus;
+exports.onChangeRequestData = onChangeRequestData;
+exports.setup = setup;
+
+var _schema = require("../../../schema/__generated__/schema.parsers");
+
+var _common = require("./common.es6");
+
+var _requestDetails = require("./utils/request-details");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+var channel = null;
+
+var backgroundMessage = function backgroundMessage(backgroundModel) {
+  channel = backgroundModel;
+};
+
+exports.backgroundMessage = backgroundMessage;
+var getBackgroundTabDataPromises = [];
+var trackerBlockingData;
+var permissionsData;
+var certificateData;
+var upgradedHttps;
+/** @type {import("./utils/request-details").Protections | undefined} */
+
+var protections;
+var isPendingUpdates;
+var parentEntity;
+var consentManaged;
+/** @type {string | undefined} */
+
+var locale;
+
+var combineSources = function combineSources() {
+  return {
+    tab: Object.assign({}, trackerBlockingData || {}, {
+      isPendingUpdates: isPendingUpdates,
+      parentEntity: parentEntity,
+      consentManaged: consentManaged,
+      locale: locale
+    }, permissionsData ? {
+      permissions: permissionsData
+    } : {}, certificateData ? {
+      certificate: certificateData
+    } : {})
+  };
+};
+
+var resolveInitialRender = function resolveInitialRender() {
+  var _channel;
+
+  var isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
+  var isIsProtectedSet = typeof protections !== 'undefined';
+  var isTrackerBlockingDataSet = _typeof(trackerBlockingData) === 'object';
+  var isLocaleSet = typeof locale === 'string';
+
+  if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    return;
+  }
+
+  getBackgroundTabDataPromises.forEach(function (resolve) {
+    return resolve(combineSources());
+  });
+  (_channel = channel) === null || _channel === void 0 ? void 0 : _channel.send('updateTabData');
+}; // Integration APIs
+// -----------------------------------------------------------------------------
+
+/**
+ * Call this method when there is updated request information.
+ *
+ * Note: this expects each call to provide the full data set each time, **not** any kind of delta.
+ *
+ * @group Android -> JavaScript Interface
+ * @example
+ * In Kotlin, it might look something like this...
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeRequestData(\"${url}\", $requestDataAsJsonString);", null)
+ * ```
+ *
+ * ... which is the equivalent of calling the following inside the Privacy Dashboard
+ * ```javascript
+ * // JavaScript
+ * window.onChangeTrackerBlockingData("https://example.com", rawRequestData)
+ * ```
+ *
+ * Please see [cnn.json](media://request-data-cnn.json) or [google.json](media://request-data-google.json) for examples of the RequestData type
+ * @param {string} tabUrl
+ * @param {import('../../../schema/__generated__/schema.types').RequestData} rawRequestData
+ */
+
+
+function onChangeRequestData(tabUrl, rawRequestData) {
+  // note: this will fail currently, but is added here to enable the wiring of the documentation/schema
+  // eslint-disable-next-line no-unused-vars
+  var requestData = _schema.requestDataSchema.safeParse(rawRequestData);
+
+  if (!protections) throw new Error('protections status not set');
+
+  if (!requestData.success) {
+    console.error('could not parse incoming request data from `onChangeRequestData`');
+    console.log(requestData.error);
+    return;
+  }
+
+  trackerBlockingData = (0, _requestDetails.createTabData)(tabUrl, upgradedHttps, protections, requestData.data);
+  resolveInitialRender();
+}
+/**
+ * {@inheritDoc common.onChangeProtectionStatus}
+ * @type {import("./common.es6").onChangeProtectionStatus}
+ * @group Android -> JavaScript Interface
+ *
+ * @example
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeProtectionStatus(${protectionStatusAsJsonString});", null)
+ * ```
+ * ... which is the equivalent of calling the following inside the Privacy Dashboard
+ * ```javascript
+ * // JavaScript
+ * window.onChangeProtectionStatus(protectionStatus)
+ * ```
+ *
+ * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
+ */
+
+
+function onChangeProtectionStatus(protectionsStatus) {
+  var parsed = _schema.protectionsStatusSchema.safeParse(protectionsStatus);
+
+  if (!parsed.success) {
+    console.error('could not parse incoming protection status from onChangeProtectionStatus');
+    console.error(parsed.error);
+    return;
+  }
+
+  protections = parsed.data;
+  resolveInitialRender();
+}
+/**
+ * {@inheritDoc common.onChangeLocale}
+ * @type {import("./common.es6").onChangeLocale}
+ * @group Android -> JavaScript Interface
+ *
+ * @example
+ *
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeLocale(${localSettingsAsJsonString});", null)
+ * ```
+ */
+
+
+function onChangeLocale(payload) {
+  var _channel2;
+
+  var parsed = _schema.localeSettingsSchema.safeParse(payload);
+
+  if (!parsed.success) {
+    console.error('could not parse incoming protection status from onChangeLocale');
+    console.error(parsed.error);
+    return;
+  }
+
+  locale = parsed.data.locale;
+  (_channel2 = channel) === null || _channel2 === void 0 ? void 0 : _channel2.send('updateTabData');
+}
+/**
+ * This describes the JavaScript Interface, `PrivacyDashboard`, that gets added to the `window` object by Android.
+ *
+ * The Privacy Dashboard communicates with Android by calling methods on that global object.
+ *
+ * ---
+ *
+ * For example, to show the breakage form, we'd call:
+ *
+ * ```
+ * window.PrivacyDashboard.showBreakageForm()
+ * ```
+ *
+ * Each `method` documented below is intended
+ *
+ *
+ * @group Javascript -> Android Interface
+ */
+
+
+var PrivacyDashboardJavascriptInterface = /*#__PURE__*/function () {
+  function PrivacyDashboardJavascriptInterface() {
+    _classCallCheck(this, PrivacyDashboardJavascriptInterface);
+  }
+
+  _createClass(PrivacyDashboardJavascriptInterface, [{
+    key: "toggleAllowlist",
+    value:
+    /**
+     * @param {boolean} isProtected - note: this will be sent as valid JSON, eg: `"true"` or `"false"`
+     *
+     * Add the current domain to the 'allowlist'
+     *
+     * ```js
+     * window.PrivacyDashboard.toggleAllowlist("true")
+     * ```
+     *
+     * Remove the current domain from the 'allowlist'
+     *
+     * ```js
+     * window.PrivacyDashboard.toggleAllowlist("false")
+     * ```
+     */
+    function toggleAllowlist(isProtected) {
+      window.PrivacyDashboard.toggleAllowlist(isProtected);
+    }
+    /**
+     * Shows the native breakage form, instead of using the one
+     * embedded in the Privacy Dashboard
+     * @example
+     * ```
+     * window.PrivacyDashboard.showBreakageForm()
+     * ```
+     */
+
+  }, {
+    key: "showBreakageForm",
+    value: function showBreakageForm() {
+      window.PrivacyDashboard.showBreakageForm();
+    }
+    /**
+     * @example
+     * ```
+     * window.PrivacyDashboard.close()
+     * ```
+     */
+
+  }, {
+    key: "close",
+    value: function close() {
+      window.PrivacyDashboard.close();
+    }
+    /**
+     * {@inheritDoc common.openInNewTab}
+     * @type {import("./common.es6").openInNewTab}
+     *
+     * ```js
+     * const payload = JSON.stringify({
+     *     "url": "https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/"
+     * });
+     * window.PrivacyDashboard.openInNewTab(payload)
+     * ```
+     */
+
+  }, {
+    key: "openInNewTab",
+    value: function openInNewTab(payload) {
+      window.PrivacyDashboard.openInNewTab(JSON.stringify(payload));
+    }
+  }]);
+
+  return PrivacyDashboardJavascriptInterface;
+}();
+
+exports.PrivacyDashboardJavascriptInterface = PrivacyDashboardJavascriptInterface;
+var privacyDashboardApi; // -----------------------------------------------------------------------------
+
+var fetch = function fetch(message) {
+  if (!window.PrivacyDashboard) {
+    console.error('window.PrivacyDashboard not available');
+    return;
+  }
+
+  if (message.setList) {
+    var _message$setList = message.setList,
+        list = _message$setList.list,
+        value = _message$setList.value;
+
+    if (list !== 'allowlisted') {
+      console.warn('only `allowlisted` is currently supported on android');
+      return;
+    } // `allowlisted: true` means the user disabled protections.
+    // so `isProtected` is the opposite of `allowlisted`.
+
+
+    var isProtected = value === false;
+    privacyDashboardApi.toggleAllowlist(isProtected);
+  }
+
+  if (message.closePrivacyDashboard) {
+    privacyDashboardApi.close();
+  }
+
+  if (message.checkBrokenSiteReportHandled) {
+    privacyDashboardApi.showBreakageForm();
+    return true; // Return true to prevent HTML form from showing
+  }
+};
+
+exports.fetch = fetch;
+
+var getBackgroundTabData = function getBackgroundTabData() {
+  return new Promise(function (resolve) {
+    if (trackerBlockingData) {
+      resolve(combineSources());
+      return;
+    }
+
+    getBackgroundTabDataPromises.push(resolve);
+  });
+};
+
+exports.getBackgroundTabData = getBackgroundTabData;
+
+function setup() {
+  var setColorScheme = (0, _common.setupColorScheme)();
+
+  window.onChangeTheme = function (themeName) {
+    setColorScheme(themeName);
+  };
+
+  window.onChangeProtectionStatus = onChangeProtectionStatus;
+  window.onChangeLocale = onChangeLocale;
+  window.onChangeRequestData = onChangeRequestData;
+
+  window.onChangeAllowedPermissions = function (data) {
+    var _channel3;
+
+    permissionsData = data;
+    (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
+  };
+
+  window.onChangeUpgradedHttps = function (data) {
+    upgradedHttps = data;
+    if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
+    resolveInitialRender();
+  };
+
+  window.onChangeCertificateData = function (data) {
+    var _channel4;
+
+    certificateData = data.secCertificateViewModels;
+    (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData');
+  };
+
+  window.onIsPendingUpdates = function (data) {
+    var _channel5;
+
+    isPendingUpdates = data;
+    (_channel5 = channel) === null || _channel5 === void 0 ? void 0 : _channel5.send('updateTabData');
+  };
+
+  window.onChangeParentEntity = function (data) {
+    var _channel6;
+
+    parentEntity = data;
+    (_channel6 = channel) === null || _channel6 === void 0 ? void 0 : _channel6.send('updateTabData');
+  };
+
+  window.onChangeConsentManaged = function (data) {
+    var _channel7;
+
+    consentManaged = data;
+    (_channel7 = channel) === null || _channel7 === void 0 ? void 0 : _channel7.send('updateTabData');
+  };
+
+  privacyDashboardApi = new PrivacyDashboardJavascriptInterface();
+  /**
+   * on macOS, respond to all clicks on links with target="_blank"
+   * by forwarding to the native side.
+   */
+
+  document.addEventListener('click', function (e) {
+    var targetElem = e.target;
+
+    if (targetElem instanceof HTMLAnchorElement) {
+      if (targetElem.target === '_blank' && targetElem.origin) {
+        e.preventDefault();
+        privacyDashboardApi.openInNewTab({
+          url: targetElem.href
+        });
+      }
+    }
+  });
+}
+
+},{"../../../schema/__generated__/schema.parsers":59,"./common.es6":63,"./utils/request-details":69}],62:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.backgroundMessage = backgroundMessage;
+exports.fetch = fetch;
+exports.getBackgroundTabData = getBackgroundTabData;
+exports.search = exports.openOptionsPage = exports.openNewTab = void 0;
+exports.setList = setList;
+exports.setup = setup;
+exports.submitBrokenSiteReport = submitBrokenSiteReport;
+
+var _schema = require("../../../schema/__generated__/schema.parsers");
+
+var _parseUserAgentString = _interopRequireDefault(require("../shared-utils/parse-user-agent-string.es6"));
+
+var _common = require("./common.es6");
+
+var _requestDetails = require("./utils/request-details");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var browserInfo = (0, _parseUserAgentString["default"])();
+var channel;
+var isPendingUpdates = false;
+
+function setup() {
+  (0, _common.setupColorScheme)();
+}
+
+function fetch(message) {
+  console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2)); // ensure the HTML form is shown for the extension
+
+  if (message.checkBrokenSiteReportHandled) {
+    return false;
+  }
+
+  if (message.submitBrokenSiteReport) {
+    return submitBrokenSiteReport(message.submitBrokenSiteReport);
+  }
+
+  if (message.setList) {
+    return setList(message.setList);
+  }
+
+  return new Promise(function (resolve, reject) {
+    if (message.postToggleAllowlist) {
+      postToggleAllowlist(message.postToggleAllowlist.id);
+      return;
+    }
+
+    console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2));
+    window.chrome.runtime.sendMessage(message, function (result) {
+      console.log('🚀✅ [RESPONSE]', JSON.stringify(result, null, 2));
+      resolve(result);
+    });
+  });
+}
+/**
+ * {@inheritDoc common.submitBrokenSiteReport}
+ * @type {import("./common.es6").submitBrokenSiteReport}
+ * @category Extension Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'submitBrokenSiteReport',
+ *    options: { category: "videos", description: "something was broken :(" }
+ * })
+ * ```
+ */
+
+
+function submitBrokenSiteReport(_x) {
+  return _submitBrokenSiteReport.apply(this, arguments);
+}
+/**
+ * {@inheritDoc common.setList}
+ * @type {import("./common.es6").setList}
+ * @category Extension Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'setList',
+ *    options: {
+ *        list: 'allowlist',
+ *        domain: 'https://example.com',
+ *        value: true
+ *    }
+ * })
+ * ```
+ */
+
+
+function _submitBrokenSiteReport() {
+  _submitBrokenSiteReport = _asyncToGenerator(function* (report) {
+    var parsedInput = _schema.breakageReportRequestSchema.parse(report);
+
+    yield window.chrome.runtime.sendMessage({
+      messageType: 'submitBrokenSiteReport',
+      options: parsedInput
+    });
+  });
+  return _submitBrokenSiteReport.apply(this, arguments);
+}
+
+function setList(_x2) {
+  return _setList.apply(this, arguments);
+}
+
+function _setList() {
+  _setList = _asyncToGenerator(function* (options) {
+    var parsedInput = _schema.setListOptionsSchema.parse(options);
+
+    yield window.chrome.runtime.sendMessage({
+      messageType: 'setList',
+      options: parsedInput
+    });
+  });
+  return _setList.apply(this, arguments);
+}
+
+function backgroundMessage(_channel) {
+  channel = _channel; // listen for messages from background and
+  // notify subscribers
+
+  window.chrome.runtime.onMessage.addListener(function (req, sender) {
+    if (sender.id !== window.chrome.runtime.id) return;
+    console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req); // todo(Shane): We are explicit about closing the PD now, so is this needed?
+
+    if (req.allowlistChanged) {// force the toggles or any other UI to go into a 'pending state'
+      // console.log('EXTENSION SAID SOMETHING CHANGED', req)
+      // isPendingUpdates = true
+      // channel.send('updateTabData')
+    }
+
+    if (req.updateTabData) channel.send('updateTabData'); // todo(Shane): verify if these are both still needed?
+
+    if (req.didResetTrackersData) channel.send('didResetTrackersData', req.didResetTrackersData);
+    if (req.closePopup) window.close();
+  });
+}
+/**
+ * @returns {Promise<{tab: import('./utils/request-details').TabData} & Record<string, any>>}
+ */
+
+
+function getBackgroundTabData() {
+  return _getBackgroundTabData.apply(this, arguments);
+}
+
+function _getBackgroundTabData() {
+  _getBackgroundTabData = _asyncToGenerator(function* () {
+    var _chrome$devtools, _chrome$devtools$insp;
+
+    // @ts-ignore
+    var tabId = ((_chrome$devtools = chrome.devtools) === null || _chrome$devtools === void 0 ? void 0 : (_chrome$devtools$insp = _chrome$devtools.inspectedWindow) === null || _chrome$devtools$insp === void 0 ? void 0 : _chrome$devtools$insp.tabId) || parseInt(0 + new URL(document.location.href).searchParams.get('tabId'));
+    var resp = yield fetch({
+      messageType: 'getPrivacyDashboardData',
+      options: {
+        tabId: tabId
+      }
+    });
+
+    var parsedMessageData = _schema.extensionGetPrivacyDashboardDataSchema.safeParse(resp);
+
+    if (parsedMessageData.success === true) {
+      var _parsedMessageData$da = parsedMessageData.data,
+          tab = _parsedMessageData$da.tab,
+          emailProtectionUserData = _parsedMessageData$da.emailProtectionUserData,
+          requestData = _parsedMessageData$da.requestData;
+      var upgradedHttps = tab.upgradedHttps,
+          url = tab.url,
+          parentEntity = tab.parentEntity,
+          specialDomainName = tab.specialDomainName,
+          id = tab.id; // const { allowlisted } = resp.tab.site;
+
+      var _protections = new _requestDetails.Protections(tab.protections.unprotectedTemporary, tab.protections.enabledFeatures, tab.protections.allowlisted, tab.protections.denylisted);
+
+      return {
+        tab: _objectSpread(_objectSpread({}, (0, _requestDetails.createTabData)(url, upgradedHttps, _protections, requestData)), {}, {
+          id: id,
+          search: {},
+          emailProtection: {},
+          ctaScreens: {},
+          isPendingUpdates: isPendingUpdates,
+          parentEntity: parentEntity,
+          specialDomainName: specialDomainName
+        }),
+        emailProtectionUserData: emailProtectionUserData
+      };
+    }
+
+    console.log('🙏 getBackgroundTabData ❌', parsedMessageData.error, resp); // todo(Shane): Have an error state here instead?
+
+    var protections = {
+      allowlisted: false,
+      denylisted: false,
+      enabledFeatures: ['contentBlocking'],
+      unprotectedTemporary: false
+    };
+    return {
+      tab: (0, _requestDetails.createTabData)('https://example.com', false, protections, {
+        requests: []
+      })
+    };
+  });
+  return _getBackgroundTabData.apply(this, arguments);
+}
+
+var getExtensionURL = function getExtensionURL(path) {
+  return window.chrome.runtime.getURL(path);
+};
+
+var openExtensionPage = function openExtensionPage(path) {
+  window.chrome.tabs.create({
+    url: getExtensionURL(path)
+  });
+};
+
+var openOptionsPage = function openOptionsPage(browser) {
+  if (browser === 'moz') {
+    openExtensionPage('/html/options.html');
+    window.close();
+  } else {
+    window.chrome.runtime.openOptionsPage();
+  }
+};
+
+exports.openOptionsPage = openOptionsPage;
+
+var search = function search(url) {
+  if (browserInfo !== null && browserInfo !== void 0 && browserInfo.os) {
+    window.chrome.tabs.create({
+      url: "https://duckduckgo.com/?q=".concat(url, "&bext=").concat(browserInfo.os, "cr")
+    });
+  }
+};
+
+exports.search = search;
+
+var reloadTab = function reloadTab(id) {
+  try {
+    window.chrome.tabs.reload(id);
+  } catch (e) {
+    console.error(e);
+  } // window.chrome.tabs.reload(id)
+
+};
+
+var closePopup = function closePopup() {
+  try {
+    var w = window.chrome.extension.getViews({
+      type: 'popup'
+    })[0];
+    w.close();
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+var openNewTab = function openNewTab(url) {
+  try {
+    window.chrome.tabs.create({
+      url: url
+    });
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+exports.openNewTab = openNewTab;
+
+var postToggleAllowlist = function postToggleAllowlist(tabId) {
+  setTimeout(function () {
+    reloadTab(tabId);
+    closePopup();
+  }, 500);
+};
+
+},{"../../../schema/__generated__/schema.parsers":59,"../shared-utils/parse-user-agent-string.es6":71,"./common.es6":63,"./utils/request-details":69}],63:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28270,11 +29456,60 @@ function submitBrokenSiteReport(report) {}
 
 function setList(options) {}
 
-},{}],60:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 "use strict";
 
-// @ts-ignore
-module.exports = require('./ios-communication.es6.js');
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _environmentCheck = require("../ui/environment-check");
+
+var browserComms = _interopRequireWildcard(require("./browser-communication.es6.js"));
+
+var iosComms = _interopRequireWildcard(require("./ios-communication.es6.js"));
+
+var androidComms = _interopRequireWildcard(require("./android-communication.es6.js"));
+
+var windowsComms = _interopRequireWildcard(require("./windows-communication.es6.js"));
+
+var macosComms = _interopRequireWildcard(require("./macos-communication.es6.js"));
+
+var exampleComms = _interopRequireWildcard(require("./example-communication.es6.js"));
+
+var _overrides = require("./utils/overrides");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var defaultComms;
+var overrides = (0, _overrides.getOverrides)(window.location.search);
+
+if (overrides.platform && overrides.platform !== 'n/a') {
+  window.environmentOverride = overrides.platform;
+  defaultComms = exampleComms;
+} else if ((0, _environmentCheck.isIOS)()) {
+  defaultComms = iosComms;
+} else if ((0, _environmentCheck.isBrowser)()) {
+  defaultComms = browserComms;
+} else if ((0, _environmentCheck.isAndroid)()) {
+  defaultComms = androidComms;
+} else if ((0, _environmentCheck.isWindows)()) {
+  defaultComms = windowsComms;
+} else if ((0, _environmentCheck.isMacos)()) {
+  defaultComms = macosComms;
+} else {
+  defaultComms = exampleComms;
+}
+
+if (!defaultComms) throw new Error('unsupported environment'); // @ts-ignore
+
+defaultComms.setup();
+var _default = defaultComms;
 /**
  * @typedef Communication
  * @property {any} fetch
@@ -28282,7 +29517,149 @@ module.exports = require('./ios-communication.es6.js');
  * @property {() => void} [firstRenderComplete]
  */
 
-},{"./ios-communication.es6.js":61}],61:[function(require,module,exports){
+exports["default"] = _default;
+
+},{"../ui/environment-check":82,"./android-communication.es6.js":61,"./browser-communication.es6.js":62,"./example-communication.es6.js":65,"./ios-communication.es6.js":66,"./macos-communication.es6.js":67,"./utils/overrides":68,"./windows-communication.es6.js":70}],65:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.backgroundMessage = backgroundMessage;
+exports.fetch = fetch;
+exports.getBackgroundTabData = getBackgroundTabData;
+exports.openOptionsPage = openOptionsPage;
+exports.search = search;
+exports.setup = setup;
+
+var _generateData = _interopRequireWildcard(require("../ui/views/tests/mock-data/generate-data"));
+
+var _common = require("./common.es6");
+
+var _overrides = require("./utils/overrides");
+
+var _requestDetails = require("./utils/request-details");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+// Overrides based on URL params
+var overrides = (0, _overrides.getOverrides)(window.location.search);
+var channel = null;
+var isSecure = true;
+var isPendingUpdates = false; // Modify state after render
+// eslint-disable-next-line no-unused-vars
+// const tweakSecureStatus = () => {
+//     isSecure = false
+//     channel?.send('updateTabData')
+// }
+// setTimeout(() => tweakSecureStatus(), 10000)
+
+function fetch() {
+  var _args$, _args$2;
+
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  if (args[0].setList) {
+    var _channel;
+
+    console.log('fetch - Updating in memory overrides for setList', args);
+    var _args$0$setList = args[0].setList,
+        list = _args$0$setList.list,
+        value = _args$0$setList.value;
+    isPendingUpdates = true;
+    (_channel = channel) === null || _channel === void 0 ? void 0 : _channel.send('updateTabData');
+    setTimeout(function () {
+      var _channel2;
+
+      isPendingUpdates = false;
+
+      if (list === 'allowlisted') {
+        overrides.tab.protections = new _requestDetails.Protections(false, ['contentBlocking'], value, false);
+        overrides.requests = (0, _generateData.protectionsOff)(overrides.requests);
+      } // if (list === 'denylisted') {
+      //     overrides.tab.site.denylisted = value
+      // }
+
+
+      (_channel2 = channel) === null || _channel2 === void 0 ? void 0 : _channel2.send('updateTabData');
+    }, 2000);
+    return;
+  }
+
+  if (((_args$ = args[0]) === null || _args$ === void 0 ? void 0 : _args$.messageType) === 'refreshAlias') {
+    if (overrides.platform === 'browser') {
+      return Promise.resolve({
+        privateAddress: 'dax123456'
+      });
+    }
+  }
+
+  if (((_args$2 = args[0]) === null || _args$2 === void 0 ? void 0 : _args$2.messageType) === 'getBrowser') {
+    if (overrides.platform === 'browser') {
+      return Promise.resolve('chrome');
+    }
+  }
+
+  console.log('fetch - Not implemented', args);
+}
+
+function backgroundMessage(backgroundModel) {
+  console.log('backgroundMessage - setting local channel');
+  channel = backgroundModel;
+}
+
+function getBackgroundTabData() {
+  return _getBackgroundTabData.apply(this, arguments);
+}
+
+function _getBackgroundTabData() {
+  _getBackgroundTabData = _asyncToGenerator(function* () {
+    var output = (0, _generateData["default"])(_objectSpread({
+      isSecure: isSecure,
+      isPendingUpdates: isPendingUpdates
+    }, overrides)); // @ts-ignore
+
+    output.emailProtectionUserData = overrides.emailProtectionUserData;
+    console.log('✅', output);
+    return output;
+  });
+  return _getBackgroundTabData.apply(this, arguments);
+}
+
+function setup() {
+  // set initial colour scheme
+  var setColorScheme = (0, _common.setupColorScheme)();
+  setColorScheme(overrides.theme);
+  (0, _common.setupMutationObserver)(function (height) {
+    console.log('Window height change:', height);
+  });
+}
+
+function openOptionsPage() {
+  console.warn('should open options page here');
+}
+
+function search(query) {
+  console.warn('should open search for ', JSON.stringify(query));
+}
+
+},{"../ui/views/tests/mock-data/generate-data":113,"./common.es6":63,"./utils/overrides":68,"./utils/request-details":69}],66:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28303,6 +29680,7 @@ Object.defineProperty(exports, "getBackgroundTabData", {
 });
 exports.privacyDashboardClose = privacyDashboardClose;
 exports.privacyDashboardShowReportBrokenSite = privacyDashboardShowReportBrokenSite;
+exports.setup = setup;
 
 var _common = require("./common.es6");
 
@@ -28331,13 +29709,17 @@ var _macosCommunication = require("./macos-communication.es6");
  *
  * @category integrations
  */
-var setColorScheme = (0, _common.setupColorScheme)();
+function setup() {
+  var setColorScheme = (0, _common.setupColorScheme)();
 
-window.onChangeTheme = function (themeName) {
-  setColorScheme(themeName);
-};
+  window.onChangeTheme = function (themeName) {
+    setColorScheme(themeName);
+  };
 
-window.history.replaceState({}, '', window.location.href);
+  window.history.replaceState({}, '', window.location.href);
+  (0, _macosCommunication.setupClickEventHandlers)();
+  (0, _macosCommunication.setupShared)();
+}
 /**
  * Close the Dashboard.
  * @category Webkit Message Handlers
@@ -28347,6 +29729,7 @@ window.history.replaceState({}, '', window.location.href);
  * window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
  * ```
  */
+
 
 function privacyDashboardClose(args) {
   window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
@@ -28385,10 +29768,6 @@ var fetch = function fetch(message) {
     return;
   }
 
-  console.log({
-    message: JSON.stringify(message, null, 2)
-  });
-
   if (message.checkBrokenSiteReportHandled) {
     privacyDashboardShowReportBrokenSite({});
     return true; // Return true to prevent HTML form from showing
@@ -28399,7 +29778,7 @@ var fetch = function fetch(message) {
 
 exports.fetch = fetch;
 
-},{"./common.es6":59,"./macos-communication.es6":62}],62:[function(require,module,exports){
+},{"./common.es6":63,"./macos-communication.es6":67}],67:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28414,10 +29793,13 @@ exports.onChangeRequestData = onChangeRequestData;
 exports.privacyDashboardOpenUrlInNewTab = privacyDashboardOpenUrlInNewTab;
 exports.privacyDashboardSetSize = privacyDashboardSetSize;
 exports.privacyDashboardSubmitBrokenSiteReport = privacyDashboardSubmitBrokenSiteReport;
-
-var _common = require("./common.es6");
+exports.setup = setup;
+exports.setupClickEventHandlers = setupClickEventHandlers;
+exports.setupShared = setupShared;
 
 var _schema = require("../../../schema/__generated__/schema.parsers");
+
+var _common = require("./common.es6");
 
 var _requestDetails = require("./utils/request-details");
 
@@ -28434,7 +29816,6 @@ var backgroundMessage = function backgroundMessage(backgroundModel) {
 };
 
 exports.backgroundMessage = backgroundMessage;
-(0, _common.setupColorScheme)();
 var getBackgroundTabDataPromises = [];
 var trackerBlockingData;
 var permissionsData;
@@ -28518,21 +29899,6 @@ function onChangeRequestData(tabUrl, rawRequestData) {
   trackerBlockingData = (0, _requestDetails.createTabData)(tabUrl, upgradedHttps, protections, requestData.data);
   resolveInitialRender();
 }
-
-window.onChangeRequestData = onChangeRequestData;
-
-window.onChangeAllowedPermissions = function (data) {
-  var _channel2;
-
-  permissionsData = data;
-  (_channel2 = channel) === null || _channel2 === void 0 ? void 0 : _channel2.send('updateTabData');
-};
-
-window.onChangeUpgradedHttps = function (data) {
-  upgradedHttps = data;
-  if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
-  resolveInitialRender();
-};
 /**
  * {@inheritDoc common.onChangeProtectionStatus}
  * @type {import("./common.es6").onChangeProtectionStatus}
@@ -28560,8 +29926,6 @@ function onChangeProtectionStatus(protectionsStatus) {
   protections = parsed.data;
   resolveInitialRender();
 }
-
-window.onChangeProtectionStatus = onChangeProtectionStatus;
 /**
  * {@inheritDoc common.onChangeLocale}
  * @type {import("./common.es6").onChangeLocale}
@@ -28574,8 +29938,9 @@ window.onChangeProtectionStatus = onChangeProtectionStatus;
  * ```
  */
 
+
 function onChangeLocale(payload) {
-  var _channel3;
+  var _channel2;
 
   var parsed = _schema.localeSettingsSchema.safeParse(payload);
 
@@ -28586,38 +29951,8 @@ function onChangeLocale(payload) {
   }
 
   locale = parsed.data.locale;
-  (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
-}
-
-window.onChangeLocale = onChangeLocale;
-
-window.onChangeCertificateData = function (data) {
-  var _channel4;
-
-  certificateData = data.secCertificateViewModels;
-  (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData');
-};
-
-window.onIsPendingUpdates = function (data) {
-  var _channel5;
-
-  isPendingUpdates = data;
-  (_channel5 = channel) === null || _channel5 === void 0 ? void 0 : _channel5.send('updateTabData');
-};
-
-window.onChangeParentEntity = function (data) {
-  var _channel6;
-
-  parentEntity = data;
-  (_channel6 = channel) === null || _channel6 === void 0 ? void 0 : _channel6.send('updateTabData');
-};
-
-window.onChangeConsentManaged = function (data) {
-  var _channel7;
-
-  consentManaged = data;
-  (_channel7 = channel) === null || _channel7 === void 0 ? void 0 : _channel7.send('updateTabData');
-}; // -----------------------------------------------------------------------------
+  (_channel2 = channel) === null || _channel2 === void 0 ? void 0 : _channel2.send('updateTabData');
+} // -----------------------------------------------------------------------------
 
 /**
  * @category Internal API
@@ -28720,14 +30055,66 @@ function privacyDashboardSubmitBrokenSiteReport(report) {
 
 function privacyDashboardSetSize(payload) {
   window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
-} // todo(Shane): This is probably also running on iOS since it imports this file.
+}
 
+function setupShared() {
+  window.onChangeRequestData = onChangeRequestData;
 
-(0, _common.setupMutationObserver)(function (height) {
-  privacyDashboardSetSize({
-    height: height
+  window.onChangeAllowedPermissions = function (data) {
+    var _channel3;
+
+    permissionsData = data;
+    (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
+  };
+
+  window.onChangeUpgradedHttps = function (data) {
+    upgradedHttps = data;
+    if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
+    resolveInitialRender();
+  };
+
+  window.onChangeProtectionStatus = onChangeProtectionStatus;
+  window.onChangeLocale = onChangeLocale;
+
+  window.onChangeCertificateData = function (data) {
+    var _channel4;
+
+    certificateData = data.secCertificateViewModels;
+    (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData');
+  };
+
+  window.onIsPendingUpdates = function (data) {
+    var _channel5;
+
+    isPendingUpdates = data;
+    (_channel5 = channel) === null || _channel5 === void 0 ? void 0 : _channel5.send('updateTabData');
+  };
+
+  window.onChangeParentEntity = function (data) {
+    var _channel6;
+
+    parentEntity = data;
+    (_channel6 = channel) === null || _channel6 === void 0 ? void 0 : _channel6.send('updateTabData');
+  };
+
+  window.onChangeConsentManaged = function (data) {
+    var _channel7;
+
+    consentManaged = data;
+    (_channel7 = channel) === null || _channel7 === void 0 ? void 0 : _channel7.send('updateTabData');
+  };
+}
+
+function setup() {
+  (0, _common.setupColorScheme)();
+  setupShared();
+  (0, _common.setupMutationObserver)(function (height) {
+    privacyDashboardSetSize({
+      height: height
+    });
   });
-});
+  setupClickEventHandlers();
+}
 /**
  * Called when the DOM has been rendered for the first time. This is
  * helpful on platforms that need to update their window size immediately
@@ -28735,6 +30122,7 @@ function privacyDashboardSetSize(payload) {
  * @type {NonNullable<import('./communication.es6').Communication['firstRenderComplete']>}
  * @category Internal API
  */
+
 
 function firstRenderComplete() {
   var height = (0, _common.getContentHeight)();
@@ -28745,26 +30133,195 @@ function firstRenderComplete() {
     });
   }
 }
+
+function setupClickEventHandlers() {
+  /**
+   * on macOS + iOS, respond to all clicks on links with target="_blank"
+   * by forwarding to the native side.
+   */
+  document.addEventListener('click', function (e) {
+    var targetElem = e.target;
+
+    if (targetElem instanceof HTMLAnchorElement) {
+      if (targetElem.target === '_blank' && targetElem.origin) {
+        e.preventDefault();
+        privacyDashboardOpenUrlInNewTab({
+          url: targetElem.href
+        });
+      }
+    }
+  });
+}
+
+},{"../../../schema/__generated__/schema.parsers":59,"./common.es6":63,"./utils/request-details":69}],68:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getOverrides = getOverrides;
+
+var _generateData = require("../../ui/views/tests/mock-data/generate-data");
+
+var _requestDetails = require("./request-details");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /**
- * on macOS + iOS, respond to all clicks on links with target="_blank"
- * by forwarding to the native side.
+ * The purpose of this function is to allow URL parameters to override
+ * test data when viewing the 'example' build.
+ *
+ * Eg: after running 'npm run preview.example', you could then set the theme
+ * by providing '?theme=dark' as a url parameter
+ *
+ * See the 'Emulating different platforms/scenarios' section in the README.md file
  */
 
+/**
+ * @typedef Overrides
+ * @property {Partial<import('../../ui/views/tests/mock-data/generate-data').TabData>} tab
+ * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
+ * @property {string} state
+ * @property {string} platform
+ * @property {any | undefined} emailProtectionUserData
+ * @property {("dark" | "light") | undefined} theme
+ * @param {string} searchString
+ * @returns {Overrides}
+ */
+function getOverrides(searchString) {
+  /** @type {Overrides} */
+  var overrides = {
+    tab: {
+      consentManaged: {
+        consentManaged: false,
+        optoutFailed: false,
+        selftestFailed: false
+      },
+      parentEntity: undefined
+    },
+    requests: [],
+    platform: 'n/a',
+    state: 'unknown',
+    emailProtectionUserData: undefined,
+    theme: undefined
+  };
+  var params = new URLSearchParams(searchString);
 
-document.addEventListener('click', function (e) {
-  var targetElem = e.target;
+  if (params.has('state')) {
+    var match = _generateData.dataStates[params.get('state')];
 
-  if (targetElem instanceof HTMLAnchorElement) {
-    if (targetElem.target === '_blank' && targetElem.origin) {
-      e.preventDefault();
-      privacyDashboardOpenUrlInNewTab({
-        url: targetElem.href
-      });
+    if (match) {
+      overrides.requests = match.requests;
+      overrides.state = match.state;
+
+      if ('parentEntity' in match) {
+        overrides.tab.parentEntity = _objectSpread({}, match.parentEntity);
+      }
+
+      if ('url' in match) {
+        overrides.tab.url = match.url;
+      }
+
+      if ('contentBlockingException' in match) {
+        overrides.requests = (0, _generateData.protectionsOff)(overrides.requests);
+        overrides.tab.protections = new _requestDetails.Protections(false, [], false, false);
+      }
+
+      if ('upgradedHttps' in match) {
+        overrides.tab.upgradedHttps = true;
+      }
+
+      if ('certificates' in match) {
+        overrides.tab.certificate = match.certificates;
+      }
     }
   }
-});
 
-},{"../../../schema/__generated__/schema.parsers":57,"./common.es6":59,"./utils/request-details":63}],63:[function(require,module,exports){
+  if (params.has('platform')) {
+    overrides.platform = params.get('platform') || 'n/a';
+    document.body.classList.remove('environment--example');
+    document.body.classList.add("environment--".concat(overrides.platform));
+    window.environmentOverride = overrides.platform;
+  } // emulate a different theme
+
+
+  if (params.has('theme')) {
+    var _overrides$theme;
+
+    if (params.get('theme') === 'light') {
+      overrides.theme = 'light';
+    } else if (params.get('theme') === 'dark') {
+      overrides.theme = 'dark';
+    }
+
+    if (((_overrides$theme = overrides.theme) === null || _overrides$theme === void 0 ? void 0 : _overrides$theme.toLowerCase()) === 'dark') {
+      document.body.classList.add('body--theme-dark');
+    } else {
+      document.body.classList.remove('body--theme-dark');
+    }
+  } // emulate a 'contentBlockingException'
+
+
+  if (params.get('contentBlockingException') === 'true') {
+    overrides.requests = (0, _generateData.protectionsOff)(overrides.requests);
+    overrides.tab.protections = new _requestDetails.Protections(false, [], false, false);
+  }
+
+  if (params.get('allowlisted')) {
+    overrides.requests = (0, _generateData.protectionsOff)(overrides.requests);
+    overrides.tab.protections = new _requestDetails.Protections(false, ['contentBlocking'], true, false);
+  }
+
+  if (params.get('specialDomainName')) {
+    overrides.tab.specialDomainName = 'extensions';
+  }
+
+  if (params.get('locale')) {
+    overrides.tab.locale = params.get('locale');
+  }
+
+  if (params.get('denylisted')) {
+    overrides.requests = (0, _generateData.protectionsOff)(overrides.requests);
+    overrides.tab.protections = new _requestDetails.Protections(false, [], false, true);
+  }
+
+  if (params.get('consentManaged')) {
+    overrides.tab.consentManaged = {
+      consentManaged: true,
+      optoutFailed: false,
+      selftestFailed: false
+    };
+  } // browser-specific overrides
+
+
+  if (overrides.platform === 'browser') {
+    // supports email
+    overrides.tab.emailProtection = {}; // supports search
+
+    overrides.tab.search = {}; // supports CTA screens
+
+    overrides.tab.ctaScreens = {}; // extensions can't handle 'permissions'
+
+    overrides.tab.permissions = []; // emulate a user being signed in to email protection
+
+    if (params.get('emailUser') === 'true') {
+      overrides.emailProtectionUserData = {
+        cohort: 'private_beta_dax',
+        nextAlias: '123456_next',
+        token: '123456',
+        userName: 'daxtheduck'
+      };
+    }
+  }
+
+  return overrides;
+}
+
+},{"../../ui/views/tests/mock-data/generate-data":113,"./request-details":69}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29326,43 +30883,339 @@ function TrackerUrl(url, category) {
 
 exports.TrackerUrl = TrackerUrl;
 
-},{"../../../../schema/__generated__/schema.parsers":57,"../../ui/models/mixins/normalize-company-name.es6.js":78}],64:[function(require,module,exports){
+},{"../../../../schema/__generated__/schema.parsers":59,"../../ui/models/mixins/normalize-company-name.es6.js":86}],70:[function(require,module,exports){
 "use strict";
 
-// @ts-nocheck
-// create global $
-window.$ = window.jQuery = require('jquery'); // base dependencies
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.OpenInNewTab = OpenInNewTab;
+exports.SetSize = SetSize;
+exports.SubmitBrokenSiteReport = SubmitBrokenSiteReport;
+exports.getBackgroundTabData = exports.fetch = exports.backgroundMessage = void 0;
+exports.handleViewModelUpdate = handleViewModelUpdate;
+exports.setup = setup;
 
-var _require = require('./localize.es6.js'),
-    i18n = _require.i18n;
+var _schema = require("../../../schema/__generated__/schema.parsers");
 
-var mixins = require('./mixins/index.es6.js');
+var _common = require("./common.es6");
 
-var BaseModel = require('./model.es6.js');
+var _requestDetails = require("./utils/request-details");
 
-var BasePage = require('./page.es6.js');
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var BaseView = require('./view.es6.js'); // init base
+var channel = null;
 
-
-window.DDG = window.DDG || {};
-window.DDG.base = {
-  mixins: mixins,
-  Model: BaseModel,
-  Page: BasePage,
-  utils: {},
-  View: BaseView,
-  i18n: i18n
+var backgroundMessage = function backgroundMessage(backgroundModel) {
+  channel = backgroundModel;
 };
 
-require('../pages/popup.es6.js');
+exports.backgroundMessage = backgroundMessage;
+var getBackgroundTabDataPromises = [];
+var trackerBlockingData;
+var permissionsData;
+var certificateData;
+var upgradedHttps;
+var protections;
+var isPendingUpdates;
+var parentEntity;
 
-require('./loadcss.js');
+var combineSources = function combineSources() {
+  return {
+    tab: Object.assign({}, trackerBlockingData || {}, {
+      isPendingUpdates: isPendingUpdates,
+      parentEntity: parentEntity
+    }, permissionsData ? {
+      permissions: permissionsData
+    } : {}, certificateData ? {
+      certificate: certificateData
+    } : {})
+  };
+};
 
-},{"../pages/popup.es6.js":82,"./loadcss.js":65,"./localize.es6.js":66,"./mixins/index.es6.js":68,"./model.es6.js":69,"./page.es6.js":71,"./view.es6.js":73,"jquery":46}],65:[function(require,module,exports){
+var resolveInitialRender = function resolveInitialRender() {
+  var _channel;
+
+  var isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
+  var isIsProtectedSet = typeof protections !== 'undefined';
+  var isTrackerBlockingDataSet = _typeof(trackerBlockingData) === 'object';
+
+  if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    return;
+  }
+
+  getBackgroundTabDataPromises.forEach(function (resolve) {
+    return resolve(combineSources());
+  });
+  (_channel = channel) === null || _channel === void 0 ? void 0 : _channel.send('updateTabData');
+}; // Change handlers
+// -----------------------------------------------------------------------------
+
+/**
+ * The Dashboard will listen for incoming messages
+ *
+ * @example
+ *
+ * ```js
+ * window.chrome.webview.addEventListener('message', event => handleViewModelUpdate(event.data))
+ * ```
+ *
+ * @group Windows -> JavaScript Interface
+ * @param {import('../../../schema/__generated__/schema.types').WindowsViewModel} rawViewModel
+ */
+
+
+function handleViewModelUpdate(rawViewModel) {
+  var parsed = _schema.windowsViewModelSchema.safeParse(rawViewModel);
+
+  if (!parsed.success) {
+    console.error('rawViewModel parsing failed');
+    console.error(parsed.error);
+    return;
+  }
+
+  var viewModel = parsed.data;
+  upgradedHttps = viewModel.upgradedHttps;
+  parentEntity = viewModel.parentEntity || {};
+  permissionsData = viewModel.permissions || [];
+  certificateData = viewModel.certificates || [];
+  protections = viewModel.protections;
+  trackerBlockingData = (0, _requestDetails.createTabData)(rawViewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData);
+  if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
+  resolveInitialRender();
+} // -----------------------------------------------------------------------------
+
+
+function windowsPostMessage(name, data) {
+  var _window$chrome$webvie;
+
+  (0, _common.assert)(typeof ((_window$chrome$webvie = window.chrome.webview) === null || _window$chrome$webvie === void 0 ? void 0 : _window$chrome$webvie.postMessage) === 'function');
+  window.chrome.webview.postMessage({
+    Feature: 'PrivacyDashboard',
+    Name: name,
+    Data: data
+  });
+}
+
+var fetch = function fetch(message) {
+  if (!window.chrome.webview) {
+    console.error('window.chrome.webview not available');
+    return;
+  }
+
+  if (message.submitBrokenSiteReport) {
+    SubmitBrokenSiteReport({
+      category: message.submitBrokenSiteReport.category,
+      description: message.submitBrokenSiteReport.description
+    });
+    return;
+  }
+
+  if (message.setList) {
+    var _message$setList = message.setList,
+        list = _message$setList.list,
+        value = _message$setList.value;
+
+    if (list !== 'allowlisted') {
+      console.warn('only `allowlisted` is currently supported on windows');
+      return;
+    } // `allowlisted: true` means the user disabled protections.
+    // so `isProtected` is the opposite of `allowlisted`.
+
+
+    var isProtected = value === false;
+
+    if (isProtected) {
+      windowsPostMessage('RemoveFromAllowListCommand');
+    } else {
+      windowsPostMessage('AddToAllowListCommand');
+    } // Call as if this was an outside change. This will trigger events to
+    // have all models re-request data from background state.
+
+
+    window.onChangeProtectionStatus(isProtected);
+  }
+
+  if (message.updatePermission) {
+    windowsPostMessage('SetPermissionCommand', {
+      permission: message.updatePermission.id,
+      value: message.updatePermission.value
+    });
+  }
+};
+/**
+ * {@inheritDoc common.submitBrokenSiteReport}
+ * @type {import("./common.es6").submitBrokenSiteReport}
+ * @category Windows Webview Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.webview.postMessage({
+ *    Feature: 'PrivacyDashboard',
+ *    Name: 'SubmitBrokenSiteReport',
+ *    Data: { category: "videos", description: "something was broken :(" }
+ * })
+ * ```
+ */
+
+
+exports.fetch = fetch;
+
+function SubmitBrokenSiteReport(report) {
+  windowsPostMessage('SubmitBrokenSiteReport', {
+    category: report.category,
+    description: report.description
+  });
+}
+/**
+ * {@inheritDoc common.openInNewTab}
+ * @type {import("./common.es6").openInNewTab}
+ * @category Windows Webview Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.webview.postMessage({
+ *    Feature: 'PrivacyDashboard',
+ *    Name: 'OpenInNewTab',
+ *    Data: { url: "https://example.com" }
+ * })
+ * ```
+ */
+
+
+function OpenInNewTab(args) {
+  windowsPostMessage('OpenInNewTab', {
+    url: args.url
+  });
+}
+/**
+ * {@inheritDoc common.setSize}
+ * @type {import("./common.es6").setSize}
+ * @category Windows Webview Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.webview.postMessage({
+ *    Feature: 'PrivacyDashboard',
+ *    Name: 'SetSize',
+ *    Data: { height: 445 }
+ * })
+ * ```
+ */
+
+
+function SetSize(payload) {
+  windowsPostMessage('SetSize', payload);
+}
+
+var getBackgroundTabData = function getBackgroundTabData() {
+  return new Promise(function (resolve) {
+    if (trackerBlockingData) {
+      resolve(combineSources());
+      return;
+    }
+
+    getBackgroundTabDataPromises.push(resolve);
+  });
+};
+
+exports.getBackgroundTabData = getBackgroundTabData;
+
+function setup() {
+  var _window$chrome$webvie2;
+
+  (0, _common.setupColorScheme)();
+  (0, _common.assert)(typeof ((_window$chrome$webvie2 = window.chrome.webview) === null || _window$chrome$webvie2 === void 0 ? void 0 : _window$chrome$webvie2.addEventListener) === 'function', 'window.chrome.webview.addEventListener is required');
+  window.chrome.webview.addEventListener('message', function (event) {
+    return handleViewModelUpdate(event.data);
+  }); // todo(Shane): does this fire early enough on Windows
+
+  (0, _common.setupMutationObserver)(function (height) {
+    SetSize({
+      height: height
+    });
+  });
+  /**
+   * on macOS, respond to all clicks on links with target="_blank"
+   * by forwarding to the native side.
+   */
+
+  document.addEventListener('click', function (e) {
+    var targetElem = e.target;
+
+    if (targetElem instanceof HTMLAnchorElement) {
+      if (targetElem.target === '_blank' && targetElem.origin) {
+        e.preventDefault();
+        OpenInNewTab({
+          url: targetElem.href
+        });
+      }
+    }
+  });
+}
+
+},{"../../../schema/__generated__/schema.parsers":59,"./common.es6":63,"./utils/request-details":69}],71:[function(require,module,exports){
 "use strict";
 
-function loadCss(file) {
+module.exports = function (uaString) {
+  if (!globalThis.navigator) return;
+  if (!uaString) uaString = globalThis.navigator.userAgent;
+  var browser;
+  var version;
+
+  try {
+    var parsedUaParts = uaString.match(/(Firefox|Chrome|Edg)\/([0-9]+)/);
+
+    if (uaString.match(/(Edge?)\/([0-9]+)/)) {
+      // Above regex matches on Chrome first, so check if this is really Edge
+      parsedUaParts = uaString.match(/(Edge?)\/([0-9]+)/);
+    }
+
+    browser = parsedUaParts[1];
+    version = parsedUaParts[2]; // Brave doesn't include any information in the UserAgent
+
+    if (globalThis.navigator.brave) {
+      browser = 'Brave';
+    }
+  } catch (e) {
+    // unlikely, prevent extension from exploding if we don't recognize the UA
+    browser = version = '';
+  }
+
+  var os = 'o';
+  if (globalThis.navigator.userAgent.indexOf('Windows') !== -1) os = 'w';
+  if (globalThis.navigator.userAgent.indexOf('Mac') !== -1) os = 'm';
+  if (globalThis.navigator.userAgent.indexOf('Linux') !== -1) os = 'l';
+  return {
+    os: os,
+    browser: browser,
+    version: version
+  };
+};
+
+},{}],72:[function(require,module,exports){
+"use strict";
+
+var _popupEs = require("../pages/popup.es6.js");
+
+var _loadcss = require("./loadcss.js");
+
+// @ts-nocheck
+(0, _popupEs.initPopup)();
+(0, _loadcss.loadCss)();
+
+},{"../pages/popup.es6.js":90,"./loadcss.js":73}],73:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.loadCss = loadCss;
+
+function loadCssFile(file) {
   var head = document.getElementsByTagName('head')[0];
   var link = document.createElement('link');
   link.rel = 'stylesheet';
@@ -29371,12 +31224,14 @@ function loadCss(file) {
   head.appendChild(link);
 }
 
-setTimeout(function () {
-  loadCss('base');
-  loadCss('popup');
-}, 5);
+function loadCss() {
+  setTimeout(function () {
+    loadCssFile('base');
+    loadCssFile('popup');
+  }, 5);
+}
 
-},{}],66:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29387,6 +31242,8 @@ exports.ns = exports.i18n = void 0;
 var _i18next = _interopRequireDefault(require("i18next"));
 
 var _i18nextIcu = _interopRequireDefault(require("i18next-icu"));
+
+var _site = _interopRequireDefault(require("../../../locales/en/site.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -29403,10 +31260,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // @ts-ignore
-var localeResources = [{name:'bg/connection',module:require('../../../locales/bg/connection.json')},{name:'bg/ctascreens',module:require('../../../locales/bg/ctascreens.json')},{name:'bg/permissions',module:require('../../../locales/bg/permissions.json')},{name:'bg/report',module:require('../../../locales/bg/report.json')},{name:'bg/shared',module:require('../../../locales/bg/shared.json')},{name:'bg/site',module:require('../../../locales/bg/site.json')},{name:'cs/connection',module:require('../../../locales/cs/connection.json')},{name:'cs/ctascreens',module:require('../../../locales/cs/ctascreens.json')},{name:'cs/permissions',module:require('../../../locales/cs/permissions.json')},{name:'cs/report',module:require('../../../locales/cs/report.json')},{name:'cs/shared',module:require('../../../locales/cs/shared.json')},{name:'cs/site',module:require('../../../locales/cs/site.json')},{name:'da/connection',module:require('../../../locales/da/connection.json')},{name:'da/ctascreens',module:require('../../../locales/da/ctascreens.json')},{name:'da/permissions',module:require('../../../locales/da/permissions.json')},{name:'da/report',module:require('../../../locales/da/report.json')},{name:'da/shared',module:require('../../../locales/da/shared.json')},{name:'da/site',module:require('../../../locales/da/site.json')},{name:'de/connection',module:require('../../../locales/de/connection.json')},{name:'de/ctascreens',module:require('../../../locales/de/ctascreens.json')},{name:'de/permissions',module:require('../../../locales/de/permissions.json')},{name:'de/report',module:require('../../../locales/de/report.json')},{name:'de/shared',module:require('../../../locales/de/shared.json')},{name:'de/site',module:require('../../../locales/de/site.json')},{name:'el/connection',module:require('../../../locales/el/connection.json')},{name:'el/ctascreens',module:require('../../../locales/el/ctascreens.json')},{name:'el/permissions',module:require('../../../locales/el/permissions.json')},{name:'el/report',module:require('../../../locales/el/report.json')},{name:'el/shared',module:require('../../../locales/el/shared.json')},{name:'el/site',module:require('../../../locales/el/site.json')},{name:'en/connection',module:require('../../../locales/en/connection.json')},{name:'en/ctascreens',module:require('../../../locales/en/ctascreens.json')},{name:'en/permissions',module:require('../../../locales/en/permissions.json')},{name:'en/report',module:require('../../../locales/en/report.json')},{name:'en/shared',module:require('../../../locales/en/shared.json')},{name:'en/site',module:require('../../../locales/en/site.json')},{name:'es/connection',module:require('../../../locales/es/connection.json')},{name:'es/ctascreens',module:require('../../../locales/es/ctascreens.json')},{name:'es/permissions',module:require('../../../locales/es/permissions.json')},{name:'es/report',module:require('../../../locales/es/report.json')},{name:'es/shared',module:require('../../../locales/es/shared.json')},{name:'es/site',module:require('../../../locales/es/site.json')},{name:'et/connection',module:require('../../../locales/et/connection.json')},{name:'et/ctascreens',module:require('../../../locales/et/ctascreens.json')},{name:'et/permissions',module:require('../../../locales/et/permissions.json')},{name:'et/report',module:require('../../../locales/et/report.json')},{name:'et/shared',module:require('../../../locales/et/shared.json')},{name:'et/site',module:require('../../../locales/et/site.json')},{name:'fi/connection',module:require('../../../locales/fi/connection.json')},{name:'fi/ctascreens',module:require('../../../locales/fi/ctascreens.json')},{name:'fi/permissions',module:require('../../../locales/fi/permissions.json')},{name:'fi/report',module:require('../../../locales/fi/report.json')},{name:'fi/shared',module:require('../../../locales/fi/shared.json')},{name:'fi/site',module:require('../../../locales/fi/site.json')},{name:'fr/connection',module:require('../../../locales/fr/connection.json')},{name:'fr/ctascreens',module:require('../../../locales/fr/ctascreens.json')},{name:'fr/permissions',module:require('../../../locales/fr/permissions.json')},{name:'fr/report',module:require('../../../locales/fr/report.json')},{name:'fr/shared',module:require('../../../locales/fr/shared.json')},{name:'fr/site',module:require('../../../locales/fr/site.json')},{name:'hr/connection',module:require('../../../locales/hr/connection.json')},{name:'hr/ctascreens',module:require('../../../locales/hr/ctascreens.json')},{name:'hr/permissions',module:require('../../../locales/hr/permissions.json')},{name:'hr/report',module:require('../../../locales/hr/report.json')},{name:'hr/shared',module:require('../../../locales/hr/shared.json')},{name:'hr/site',module:require('../../../locales/hr/site.json')},{name:'hu/connection',module:require('../../../locales/hu/connection.json')},{name:'hu/ctascreens',module:require('../../../locales/hu/ctascreens.json')},{name:'hu/permissions',module:require('../../../locales/hu/permissions.json')},{name:'hu/report',module:require('../../../locales/hu/report.json')},{name:'hu/shared',module:require('../../../locales/hu/shared.json')},{name:'hu/site',module:require('../../../locales/hu/site.json')},{name:'it/connection',module:require('../../../locales/it/connection.json')},{name:'it/ctascreens',module:require('../../../locales/it/ctascreens.json')},{name:'it/permissions',module:require('../../../locales/it/permissions.json')},{name:'it/report',module:require('../../../locales/it/report.json')},{name:'it/shared',module:require('../../../locales/it/shared.json')},{name:'it/site',module:require('../../../locales/it/site.json')},{name:'lt/connection',module:require('../../../locales/lt/connection.json')},{name:'lt/ctascreens',module:require('../../../locales/lt/ctascreens.json')},{name:'lt/permissions',module:require('../../../locales/lt/permissions.json')},{name:'lt/report',module:require('../../../locales/lt/report.json')},{name:'lt/shared',module:require('../../../locales/lt/shared.json')},{name:'lt/site',module:require('../../../locales/lt/site.json')},{name:'lv/connection',module:require('../../../locales/lv/connection.json')},{name:'lv/ctascreens',module:require('../../../locales/lv/ctascreens.json')},{name:'lv/permissions',module:require('../../../locales/lv/permissions.json')},{name:'lv/report',module:require('../../../locales/lv/report.json')},{name:'lv/shared',module:require('../../../locales/lv/shared.json')},{name:'lv/site',module:require('../../../locales/lv/site.json')},{name:'nb/connection',module:require('../../../locales/nb/connection.json')},{name:'nb/ctascreens',module:require('../../../locales/nb/ctascreens.json')},{name:'nb/permissions',module:require('../../../locales/nb/permissions.json')},{name:'nb/report',module:require('../../../locales/nb/report.json')},{name:'nb/shared',module:require('../../../locales/nb/shared.json')},{name:'nb/site',module:require('../../../locales/nb/site.json')},{name:'nl/connection',module:require('../../../locales/nl/connection.json')},{name:'nl/ctascreens',module:require('../../../locales/nl/ctascreens.json')},{name:'nl/permissions',module:require('../../../locales/nl/permissions.json')},{name:'nl/report',module:require('../../../locales/nl/report.json')},{name:'nl/shared',module:require('../../../locales/nl/shared.json')},{name:'nl/site',module:require('../../../locales/nl/site.json')},{name:'pl/connection',module:require('../../../locales/pl/connection.json')},{name:'pl/ctascreens',module:require('../../../locales/pl/ctascreens.json')},{name:'pl/permissions',module:require('../../../locales/pl/permissions.json')},{name:'pl/report',module:require('../../../locales/pl/report.json')},{name:'pl/shared',module:require('../../../locales/pl/shared.json')},{name:'pl/site',module:require('../../../locales/pl/site.json')},{name:'pt/connection',module:require('../../../locales/pt/connection.json')},{name:'pt/ctascreens',module:require('../../../locales/pt/ctascreens.json')},{name:'pt/permissions',module:require('../../../locales/pt/permissions.json')},{name:'pt/report',module:require('../../../locales/pt/report.json')},{name:'pt/shared',module:require('../../../locales/pt/shared.json')},{name:'pt/site',module:require('../../../locales/pt/site.json')},{name:'ro/connection',module:require('../../../locales/ro/connection.json')},{name:'ro/ctascreens',module:require('../../../locales/ro/ctascreens.json')},{name:'ro/permissions',module:require('../../../locales/ro/permissions.json')},{name:'ro/report',module:require('../../../locales/ro/report.json')},{name:'ro/shared',module:require('../../../locales/ro/shared.json')},{name:'ro/site',module:require('../../../locales/ro/site.json')},{name:'ru/connection',module:require('../../../locales/ru/connection.json')},{name:'ru/ctascreens',module:require('../../../locales/ru/ctascreens.json')},{name:'ru/permissions',module:require('../../../locales/ru/permissions.json')},{name:'ru/report',module:require('../../../locales/ru/report.json')},{name:'ru/shared',module:require('../../../locales/ru/shared.json')},{name:'ru/site',module:require('../../../locales/ru/site.json')},{name:'sk/connection',module:require('../../../locales/sk/connection.json')},{name:'sk/ctascreens',module:require('../../../locales/sk/ctascreens.json')},{name:'sk/permissions',module:require('../../../locales/sk/permissions.json')},{name:'sk/report',module:require('../../../locales/sk/report.json')},{name:'sk/shared',module:require('../../../locales/sk/shared.json')},{name:'sk/site',module:require('../../../locales/sk/site.json')},{name:'sl/connection',module:require('../../../locales/sl/connection.json')},{name:'sl/ctascreens',module:require('../../../locales/sl/ctascreens.json')},{name:'sl/permissions',module:require('../../../locales/sl/permissions.json')},{name:'sl/report',module:require('../../../locales/sl/report.json')},{name:'sl/shared',module:require('../../../locales/sl/shared.json')},{name:'sl/site',module:require('../../../locales/sl/site.json')},{name:'sv/connection',module:require('../../../locales/sv/connection.json')},{name:'sv/ctascreens',module:require('../../../locales/sv/ctascreens.json')},{name:'sv/permissions',module:require('../../../locales/sv/permissions.json')},{name:'sv/report',module:require('../../../locales/sv/report.json')},{name:'sv/shared',module:require('../../../locales/sv/shared.json')},{name:'sv/site',module:require('../../../locales/sv/site.json')},{name:'tr/connection',module:require('../../../locales/tr/connection.json')},{name:'tr/ctascreens',module:require('../../../locales/tr/ctascreens.json')},{name:'tr/permissions',module:require('../../../locales/tr/permissions.json')},{name:'tr/report',module:require('../../../locales/tr/report.json')},{name:'tr/shared',module:require('../../../locales/tr/shared.json')},{name:'tr/site',module:require('../../../locales/tr/site.json')}]; // eslint-disable-next-line no-unused-vars
-
-
-var siteTranslations = require('../../../locales/en/site.json');
+var localeResources = [{name:'bg/connection',module:require('../../../locales/bg/connection.json')},{name:'bg/ctascreens',module:require('../../../locales/bg/ctascreens.json')},{name:'bg/permissions',module:require('../../../locales/bg/permissions.json')},{name:'bg/report',module:require('../../../locales/bg/report.json')},{name:'bg/shared',module:require('../../../locales/bg/shared.json')},{name:'bg/site',module:require('../../../locales/bg/site.json')},{name:'cs/connection',module:require('../../../locales/cs/connection.json')},{name:'cs/ctascreens',module:require('../../../locales/cs/ctascreens.json')},{name:'cs/permissions',module:require('../../../locales/cs/permissions.json')},{name:'cs/report',module:require('../../../locales/cs/report.json')},{name:'cs/shared',module:require('../../../locales/cs/shared.json')},{name:'cs/site',module:require('../../../locales/cs/site.json')},{name:'da/connection',module:require('../../../locales/da/connection.json')},{name:'da/ctascreens',module:require('../../../locales/da/ctascreens.json')},{name:'da/permissions',module:require('../../../locales/da/permissions.json')},{name:'da/report',module:require('../../../locales/da/report.json')},{name:'da/shared',module:require('../../../locales/da/shared.json')},{name:'da/site',module:require('../../../locales/da/site.json')},{name:'de/connection',module:require('../../../locales/de/connection.json')},{name:'de/ctascreens',module:require('../../../locales/de/ctascreens.json')},{name:'de/permissions',module:require('../../../locales/de/permissions.json')},{name:'de/report',module:require('../../../locales/de/report.json')},{name:'de/shared',module:require('../../../locales/de/shared.json')},{name:'de/site',module:require('../../../locales/de/site.json')},{name:'el/connection',module:require('../../../locales/el/connection.json')},{name:'el/ctascreens',module:require('../../../locales/el/ctascreens.json')},{name:'el/permissions',module:require('../../../locales/el/permissions.json')},{name:'el/report',module:require('../../../locales/el/report.json')},{name:'el/shared',module:require('../../../locales/el/shared.json')},{name:'el/site',module:require('../../../locales/el/site.json')},{name:'en/connection',module:require('../../../locales/en/connection.json')},{name:'en/ctascreens',module:require('../../../locales/en/ctascreens.json')},{name:'en/permissions',module:require('../../../locales/en/permissions.json')},{name:'en/report',module:require('../../../locales/en/report.json')},{name:'en/shared',module:require('../../../locales/en/shared.json')},{name:'en/site',module:require('../../../locales/en/site.json')},{name:'es/connection',module:require('../../../locales/es/connection.json')},{name:'es/ctascreens',module:require('../../../locales/es/ctascreens.json')},{name:'es/permissions',module:require('../../../locales/es/permissions.json')},{name:'es/report',module:require('../../../locales/es/report.json')},{name:'es/shared',module:require('../../../locales/es/shared.json')},{name:'es/site',module:require('../../../locales/es/site.json')},{name:'et/connection',module:require('../../../locales/et/connection.json')},{name:'et/ctascreens',module:require('../../../locales/et/ctascreens.json')},{name:'et/permissions',module:require('../../../locales/et/permissions.json')},{name:'et/report',module:require('../../../locales/et/report.json')},{name:'et/shared',module:require('../../../locales/et/shared.json')},{name:'et/site',module:require('../../../locales/et/site.json')},{name:'fi/connection',module:require('../../../locales/fi/connection.json')},{name:'fi/ctascreens',module:require('../../../locales/fi/ctascreens.json')},{name:'fi/permissions',module:require('../../../locales/fi/permissions.json')},{name:'fi/report',module:require('../../../locales/fi/report.json')},{name:'fi/shared',module:require('../../../locales/fi/shared.json')},{name:'fi/site',module:require('../../../locales/fi/site.json')},{name:'fr/connection',module:require('../../../locales/fr/connection.json')},{name:'fr/ctascreens',module:require('../../../locales/fr/ctascreens.json')},{name:'fr/permissions',module:require('../../../locales/fr/permissions.json')},{name:'fr/report',module:require('../../../locales/fr/report.json')},{name:'fr/shared',module:require('../../../locales/fr/shared.json')},{name:'fr/site',module:require('../../../locales/fr/site.json')},{name:'hr/connection',module:require('../../../locales/hr/connection.json')},{name:'hr/ctascreens',module:require('../../../locales/hr/ctascreens.json')},{name:'hr/permissions',module:require('../../../locales/hr/permissions.json')},{name:'hr/report',module:require('../../../locales/hr/report.json')},{name:'hr/shared',module:require('../../../locales/hr/shared.json')},{name:'hr/site',module:require('../../../locales/hr/site.json')},{name:'hu/connection',module:require('../../../locales/hu/connection.json')},{name:'hu/ctascreens',module:require('../../../locales/hu/ctascreens.json')},{name:'hu/permissions',module:require('../../../locales/hu/permissions.json')},{name:'hu/report',module:require('../../../locales/hu/report.json')},{name:'hu/shared',module:require('../../../locales/hu/shared.json')},{name:'hu/site',module:require('../../../locales/hu/site.json')},{name:'it/connection',module:require('../../../locales/it/connection.json')},{name:'it/ctascreens',module:require('../../../locales/it/ctascreens.json')},{name:'it/permissions',module:require('../../../locales/it/permissions.json')},{name:'it/report',module:require('../../../locales/it/report.json')},{name:'it/shared',module:require('../../../locales/it/shared.json')},{name:'it/site',module:require('../../../locales/it/site.json')},{name:'lt/connection',module:require('../../../locales/lt/connection.json')},{name:'lt/ctascreens',module:require('../../../locales/lt/ctascreens.json')},{name:'lt/permissions',module:require('../../../locales/lt/permissions.json')},{name:'lt/report',module:require('../../../locales/lt/report.json')},{name:'lt/shared',module:require('../../../locales/lt/shared.json')},{name:'lt/site',module:require('../../../locales/lt/site.json')},{name:'lv/connection',module:require('../../../locales/lv/connection.json')},{name:'lv/ctascreens',module:require('../../../locales/lv/ctascreens.json')},{name:'lv/permissions',module:require('../../../locales/lv/permissions.json')},{name:'lv/report',module:require('../../../locales/lv/report.json')},{name:'lv/shared',module:require('../../../locales/lv/shared.json')},{name:'lv/site',module:require('../../../locales/lv/site.json')},{name:'nb/connection',module:require('../../../locales/nb/connection.json')},{name:'nb/ctascreens',module:require('../../../locales/nb/ctascreens.json')},{name:'nb/permissions',module:require('../../../locales/nb/permissions.json')},{name:'nb/report',module:require('../../../locales/nb/report.json')},{name:'nb/shared',module:require('../../../locales/nb/shared.json')},{name:'nb/site',module:require('../../../locales/nb/site.json')},{name:'nl/connection',module:require('../../../locales/nl/connection.json')},{name:'nl/ctascreens',module:require('../../../locales/nl/ctascreens.json')},{name:'nl/permissions',module:require('../../../locales/nl/permissions.json')},{name:'nl/report',module:require('../../../locales/nl/report.json')},{name:'nl/shared',module:require('../../../locales/nl/shared.json')},{name:'nl/site',module:require('../../../locales/nl/site.json')},{name:'pl/connection',module:require('../../../locales/pl/connection.json')},{name:'pl/ctascreens',module:require('../../../locales/pl/ctascreens.json')},{name:'pl/permissions',module:require('../../../locales/pl/permissions.json')},{name:'pl/report',module:require('../../../locales/pl/report.json')},{name:'pl/shared',module:require('../../../locales/pl/shared.json')},{name:'pl/site',module:require('../../../locales/pl/site.json')},{name:'pt/connection',module:require('../../../locales/pt/connection.json')},{name:'pt/ctascreens',module:require('../../../locales/pt/ctascreens.json')},{name:'pt/permissions',module:require('../../../locales/pt/permissions.json')},{name:'pt/report',module:require('../../../locales/pt/report.json')},{name:'pt/shared',module:require('../../../locales/pt/shared.json')},{name:'pt/site',module:require('../../../locales/pt/site.json')},{name:'ro/connection',module:require('../../../locales/ro/connection.json')},{name:'ro/ctascreens',module:require('../../../locales/ro/ctascreens.json')},{name:'ro/permissions',module:require('../../../locales/ro/permissions.json')},{name:'ro/report',module:require('../../../locales/ro/report.json')},{name:'ro/shared',module:require('../../../locales/ro/shared.json')},{name:'ro/site',module:require('../../../locales/ro/site.json')},{name:'ru/connection',module:require('../../../locales/ru/connection.json')},{name:'ru/ctascreens',module:require('../../../locales/ru/ctascreens.json')},{name:'ru/permissions',module:require('../../../locales/ru/permissions.json')},{name:'ru/report',module:require('../../../locales/ru/report.json')},{name:'ru/shared',module:require('../../../locales/ru/shared.json')},{name:'ru/site',module:require('../../../locales/ru/site.json')},{name:'sk/connection',module:require('../../../locales/sk/connection.json')},{name:'sk/ctascreens',module:require('../../../locales/sk/ctascreens.json')},{name:'sk/permissions',module:require('../../../locales/sk/permissions.json')},{name:'sk/report',module:require('../../../locales/sk/report.json')},{name:'sk/shared',module:require('../../../locales/sk/shared.json')},{name:'sk/site',module:require('../../../locales/sk/site.json')},{name:'sl/connection',module:require('../../../locales/sl/connection.json')},{name:'sl/ctascreens',module:require('../../../locales/sl/ctascreens.json')},{name:'sl/permissions',module:require('../../../locales/sl/permissions.json')},{name:'sl/report',module:require('../../../locales/sl/report.json')},{name:'sl/shared',module:require('../../../locales/sl/shared.json')},{name:'sl/site',module:require('../../../locales/sl/site.json')},{name:'sv/connection',module:require('../../../locales/sv/connection.json')},{name:'sv/ctascreens',module:require('../../../locales/sv/ctascreens.json')},{name:'sv/permissions',module:require('../../../locales/sv/permissions.json')},{name:'sv/report',module:require('../../../locales/sv/report.json')},{name:'sv/shared',module:require('../../../locales/sv/shared.json')},{name:'sv/site',module:require('../../../locales/sv/site.json')},{name:'tr/connection',module:require('../../../locales/tr/connection.json')},{name:'tr/ctascreens',module:require('../../../locales/tr/ctascreens.json')},{name:'tr/permissions',module:require('../../../locales/tr/permissions.json')},{name:'tr/report',module:require('../../../locales/tr/report.json')},{name:'tr/shared',module:require('../../../locales/tr/shared.json')},{name:'tr/site',module:require('../../../locales/tr/site.json')}];
 
 var resources = localeResources.reduce(function (mapping, _ref) {
   var name = _ref.name,
@@ -29452,7 +31306,7 @@ var ns = {
 };
 exports.ns = ns;
 
-},{"../../../locales/bg/connection.json":107,"../../../locales/bg/ctascreens.json":108,"../../../locales/bg/permissions.json":109,"../../../locales/bg/report.json":110,"../../../locales/bg/shared.json":111,"../../../locales/bg/site.json":112,"../../../locales/cs/connection.json":113,"../../../locales/cs/ctascreens.json":114,"../../../locales/cs/permissions.json":115,"../../../locales/cs/report.json":116,"../../../locales/cs/shared.json":117,"../../../locales/cs/site.json":118,"../../../locales/da/connection.json":119,"../../../locales/da/ctascreens.json":120,"../../../locales/da/permissions.json":121,"../../../locales/da/report.json":122,"../../../locales/da/shared.json":123,"../../../locales/da/site.json":124,"../../../locales/de/connection.json":125,"../../../locales/de/ctascreens.json":126,"../../../locales/de/permissions.json":127,"../../../locales/de/report.json":128,"../../../locales/de/shared.json":129,"../../../locales/de/site.json":130,"../../../locales/el/connection.json":131,"../../../locales/el/ctascreens.json":132,"../../../locales/el/permissions.json":133,"../../../locales/el/report.json":134,"../../../locales/el/shared.json":135,"../../../locales/el/site.json":136,"../../../locales/en/connection.json":137,"../../../locales/en/ctascreens.json":138,"../../../locales/en/permissions.json":139,"../../../locales/en/report.json":140,"../../../locales/en/shared.json":141,"../../../locales/en/site.json":142,"../../../locales/es/connection.json":143,"../../../locales/es/ctascreens.json":144,"../../../locales/es/permissions.json":145,"../../../locales/es/report.json":146,"../../../locales/es/shared.json":147,"../../../locales/es/site.json":148,"../../../locales/et/connection.json":149,"../../../locales/et/ctascreens.json":150,"../../../locales/et/permissions.json":151,"../../../locales/et/report.json":152,"../../../locales/et/shared.json":153,"../../../locales/et/site.json":154,"../../../locales/fi/connection.json":155,"../../../locales/fi/ctascreens.json":156,"../../../locales/fi/permissions.json":157,"../../../locales/fi/report.json":158,"../../../locales/fi/shared.json":159,"../../../locales/fi/site.json":160,"../../../locales/fr/connection.json":161,"../../../locales/fr/ctascreens.json":162,"../../../locales/fr/permissions.json":163,"../../../locales/fr/report.json":164,"../../../locales/fr/shared.json":165,"../../../locales/fr/site.json":166,"../../../locales/hr/connection.json":167,"../../../locales/hr/ctascreens.json":168,"../../../locales/hr/permissions.json":169,"../../../locales/hr/report.json":170,"../../../locales/hr/shared.json":171,"../../../locales/hr/site.json":172,"../../../locales/hu/connection.json":173,"../../../locales/hu/ctascreens.json":174,"../../../locales/hu/permissions.json":175,"../../../locales/hu/report.json":176,"../../../locales/hu/shared.json":177,"../../../locales/hu/site.json":178,"../../../locales/it/connection.json":179,"../../../locales/it/ctascreens.json":180,"../../../locales/it/permissions.json":181,"../../../locales/it/report.json":182,"../../../locales/it/shared.json":183,"../../../locales/it/site.json":184,"../../../locales/lt/connection.json":185,"../../../locales/lt/ctascreens.json":186,"../../../locales/lt/permissions.json":187,"../../../locales/lt/report.json":188,"../../../locales/lt/shared.json":189,"../../../locales/lt/site.json":190,"../../../locales/lv/connection.json":191,"../../../locales/lv/ctascreens.json":192,"../../../locales/lv/permissions.json":193,"../../../locales/lv/report.json":194,"../../../locales/lv/shared.json":195,"../../../locales/lv/site.json":196,"../../../locales/nb/connection.json":197,"../../../locales/nb/ctascreens.json":198,"../../../locales/nb/permissions.json":199,"../../../locales/nb/report.json":200,"../../../locales/nb/shared.json":201,"../../../locales/nb/site.json":202,"../../../locales/nl/connection.json":203,"../../../locales/nl/ctascreens.json":204,"../../../locales/nl/permissions.json":205,"../../../locales/nl/report.json":206,"../../../locales/nl/shared.json":207,"../../../locales/nl/site.json":208,"../../../locales/pl/connection.json":209,"../../../locales/pl/ctascreens.json":210,"../../../locales/pl/permissions.json":211,"../../../locales/pl/report.json":212,"../../../locales/pl/shared.json":213,"../../../locales/pl/site.json":214,"../../../locales/pt/connection.json":215,"../../../locales/pt/ctascreens.json":216,"../../../locales/pt/permissions.json":217,"../../../locales/pt/report.json":218,"../../../locales/pt/shared.json":219,"../../../locales/pt/site.json":220,"../../../locales/ro/connection.json":221,"../../../locales/ro/ctascreens.json":222,"../../../locales/ro/permissions.json":223,"../../../locales/ro/report.json":224,"../../../locales/ro/shared.json":225,"../../../locales/ro/site.json":226,"../../../locales/ru/connection.json":227,"../../../locales/ru/ctascreens.json":228,"../../../locales/ru/permissions.json":229,"../../../locales/ru/report.json":230,"../../../locales/ru/shared.json":231,"../../../locales/ru/site.json":232,"../../../locales/sk/connection.json":233,"../../../locales/sk/ctascreens.json":234,"../../../locales/sk/permissions.json":235,"../../../locales/sk/report.json":236,"../../../locales/sk/shared.json":237,"../../../locales/sk/site.json":238,"../../../locales/sl/connection.json":239,"../../../locales/sl/ctascreens.json":240,"../../../locales/sl/permissions.json":241,"../../../locales/sl/report.json":242,"../../../locales/sl/shared.json":243,"../../../locales/sl/site.json":244,"../../../locales/sv/connection.json":245,"../../../locales/sv/ctascreens.json":246,"../../../locales/sv/permissions.json":247,"../../../locales/sv/report.json":248,"../../../locales/sv/shared.json":249,"../../../locales/sv/site.json":250,"../../../locales/tr/connection.json":251,"../../../locales/tr/ctascreens.json":252,"../../../locales/tr/permissions.json":253,"../../../locales/tr/report.json":254,"../../../locales/tr/shared.json":255,"../../../locales/tr/site.json":256,"i18next":40,"i18next-icu":39}],67:[function(require,module,exports){
+},{"../../../locales/bg/connection.json":116,"../../../locales/bg/ctascreens.json":117,"../../../locales/bg/permissions.json":118,"../../../locales/bg/report.json":119,"../../../locales/bg/shared.json":120,"../../../locales/bg/site.json":121,"../../../locales/cs/connection.json":122,"../../../locales/cs/ctascreens.json":123,"../../../locales/cs/permissions.json":124,"../../../locales/cs/report.json":125,"../../../locales/cs/shared.json":126,"../../../locales/cs/site.json":127,"../../../locales/da/connection.json":128,"../../../locales/da/ctascreens.json":129,"../../../locales/da/permissions.json":130,"../../../locales/da/report.json":131,"../../../locales/da/shared.json":132,"../../../locales/da/site.json":133,"../../../locales/de/connection.json":134,"../../../locales/de/ctascreens.json":135,"../../../locales/de/permissions.json":136,"../../../locales/de/report.json":137,"../../../locales/de/shared.json":138,"../../../locales/de/site.json":139,"../../../locales/el/connection.json":140,"../../../locales/el/ctascreens.json":141,"../../../locales/el/permissions.json":142,"../../../locales/el/report.json":143,"../../../locales/el/shared.json":144,"../../../locales/el/site.json":145,"../../../locales/en/connection.json":146,"../../../locales/en/ctascreens.json":147,"../../../locales/en/permissions.json":148,"../../../locales/en/report.json":149,"../../../locales/en/shared.json":150,"../../../locales/en/site.json":151,"../../../locales/es/connection.json":152,"../../../locales/es/ctascreens.json":153,"../../../locales/es/permissions.json":154,"../../../locales/es/report.json":155,"../../../locales/es/shared.json":156,"../../../locales/es/site.json":157,"../../../locales/et/connection.json":158,"../../../locales/et/ctascreens.json":159,"../../../locales/et/permissions.json":160,"../../../locales/et/report.json":161,"../../../locales/et/shared.json":162,"../../../locales/et/site.json":163,"../../../locales/fi/connection.json":164,"../../../locales/fi/ctascreens.json":165,"../../../locales/fi/permissions.json":166,"../../../locales/fi/report.json":167,"../../../locales/fi/shared.json":168,"../../../locales/fi/site.json":169,"../../../locales/fr/connection.json":170,"../../../locales/fr/ctascreens.json":171,"../../../locales/fr/permissions.json":172,"../../../locales/fr/report.json":173,"../../../locales/fr/shared.json":174,"../../../locales/fr/site.json":175,"../../../locales/hr/connection.json":176,"../../../locales/hr/ctascreens.json":177,"../../../locales/hr/permissions.json":178,"../../../locales/hr/report.json":179,"../../../locales/hr/shared.json":180,"../../../locales/hr/site.json":181,"../../../locales/hu/connection.json":182,"../../../locales/hu/ctascreens.json":183,"../../../locales/hu/permissions.json":184,"../../../locales/hu/report.json":185,"../../../locales/hu/shared.json":186,"../../../locales/hu/site.json":187,"../../../locales/it/connection.json":188,"../../../locales/it/ctascreens.json":189,"../../../locales/it/permissions.json":190,"../../../locales/it/report.json":191,"../../../locales/it/shared.json":192,"../../../locales/it/site.json":193,"../../../locales/lt/connection.json":194,"../../../locales/lt/ctascreens.json":195,"../../../locales/lt/permissions.json":196,"../../../locales/lt/report.json":197,"../../../locales/lt/shared.json":198,"../../../locales/lt/site.json":199,"../../../locales/lv/connection.json":200,"../../../locales/lv/ctascreens.json":201,"../../../locales/lv/permissions.json":202,"../../../locales/lv/report.json":203,"../../../locales/lv/shared.json":204,"../../../locales/lv/site.json":205,"../../../locales/nb/connection.json":206,"../../../locales/nb/ctascreens.json":207,"../../../locales/nb/permissions.json":208,"../../../locales/nb/report.json":209,"../../../locales/nb/shared.json":210,"../../../locales/nb/site.json":211,"../../../locales/nl/connection.json":212,"../../../locales/nl/ctascreens.json":213,"../../../locales/nl/permissions.json":214,"../../../locales/nl/report.json":215,"../../../locales/nl/shared.json":216,"../../../locales/nl/site.json":217,"../../../locales/pl/connection.json":218,"../../../locales/pl/ctascreens.json":219,"../../../locales/pl/permissions.json":220,"../../../locales/pl/report.json":221,"../../../locales/pl/shared.json":222,"../../../locales/pl/site.json":223,"../../../locales/pt/connection.json":224,"../../../locales/pt/ctascreens.json":225,"../../../locales/pt/permissions.json":226,"../../../locales/pt/report.json":227,"../../../locales/pt/shared.json":228,"../../../locales/pt/site.json":229,"../../../locales/ro/connection.json":230,"../../../locales/ro/ctascreens.json":231,"../../../locales/ro/permissions.json":232,"../../../locales/ro/report.json":233,"../../../locales/ro/shared.json":234,"../../../locales/ro/site.json":235,"../../../locales/ru/connection.json":236,"../../../locales/ru/ctascreens.json":237,"../../../locales/ru/permissions.json":238,"../../../locales/ru/report.json":239,"../../../locales/ru/shared.json":240,"../../../locales/ru/site.json":241,"../../../locales/sk/connection.json":242,"../../../locales/sk/ctascreens.json":243,"../../../locales/sk/permissions.json":244,"../../../locales/sk/report.json":245,"../../../locales/sk/shared.json":246,"../../../locales/sk/site.json":247,"../../../locales/sl/connection.json":248,"../../../locales/sl/ctascreens.json":249,"../../../locales/sl/permissions.json":250,"../../../locales/sl/report.json":251,"../../../locales/sl/shared.json":252,"../../../locales/sl/site.json":253,"../../../locales/sv/connection.json":254,"../../../locales/sv/ctascreens.json":255,"../../../locales/sv/permissions.json":256,"../../../locales/sv/report.json":257,"../../../locales/sv/shared.json":258,"../../../locales/sv/site.json":259,"../../../locales/tr/connection.json":260,"../../../locales/tr/ctascreens.json":261,"../../../locales/tr/permissions.json":262,"../../../locales/tr/report.json":263,"../../../locales/tr/shared.json":264,"../../../locales/tr/site.json":265,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
 "use strict";
 
 // @ts-nocheck
@@ -29505,46 +31359,61 @@ module.exports = {
   }
 };
 
-},{}],68:[function(require,module,exports){
-"use strict";
-
-// @ts-nocheck
-module.exports = {
-  /** @type {any} */
-  events: require('./events.es6.js') // ...add more here!
-
-};
-
-},{"./events.es6.js":67}],69:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+var events = _interopRequireWildcard(require("./events.es6.js"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 // @ts-nocheck
-var $ = require('jquery');
+module.exports = {
+  /** @type {any} */
+  events: events // ...add more here!
 
-var mixins = require('./mixins/index.es6.js');
+};
 
-var store = require('./store.es6.js');
+},{"./events.es6.js":75}],77:[function(require,module,exports){
+"use strict";
 
-var browserUIWrapper = require('../../browser/communication.es6.js');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
+
+var _indexEs = _interopRequireDefault(require("./mixins/index.es6.js"));
+
+var _storeEs = _interopRequireDefault(require("./store.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function BaseModel(attrs) {
   // attributes are applied directly
   // onto the instance:
-  $.extend(this, attrs); // register model with `store` of
+  _jquery["default"].extend(this, attrs); // register model with `store` of
   // global notifications
   // (after checking `modelName` property)
+
 
   if (!this.modelName || typeof this.modelName !== 'string') {
     throw new Error('cannot init model without `modelName` property');
   } else {
-    this.store = store;
+    this.store = _storeEs["default"];
     this.store.register(this.modelName);
   }
 }
 
-BaseModel.prototype = $.extend({}, mixins.events, {
+BaseModel.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
   /**
    * Setter method for modifying attributes
    * on the model. Since the attributes
@@ -29624,7 +31493,7 @@ BaseModel.prototype = $.extend({}, mixins.events, {
    * this.model.fetch({'messageName': messageValue}).then((response) ..
    **/
   fetch: function fetch(message) {
-    return browserUIWrapper.fetch(message);
+    return _communicationEs["default"].fetch(message);
   },
 
   /**
@@ -29662,9 +31531,10 @@ BaseModel.prototype = $.extend({}, mixins.events, {
     return JSON.parse(JSON.stringify(attributes));
   }
 });
-module.exports = BaseModel;
+var _default = BaseModel;
+exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":60,"./mixins/index.es6.js":68,"./store.es6.js":72,"jquery":46}],70:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],78:[function(require,module,exports){
 "use strict";
 
 /**
@@ -29771,28 +31641,48 @@ module.exports = {
 
 };
 
-},{}],71:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _indexEs = _interopRequireDefault(require("./mixins/index.es6.js"));
+
+var _storeEs = _interopRequireDefault(require("./store.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 // @ts-nocheck
-var mixins = require('./mixins/index.es6.js');
-
-var store = require('./store.es6.js');
-
 function BasePage(ops) {
   this.views = {};
-  this.store = store;
+  this.store = _storeEs["default"];
   this.ready();
 }
 
-BasePage.prototype = window.$.extend({}, mixins.events, {
+BasePage.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
   // pageName: '' - should be unique, defined by each page subclass
   ready: function ready() {}
 });
-module.exports = BasePage;
+var _default = BasePage;
+exports["default"] = _default;
 
-},{"./mixins/index.es6.js":68,"./store.es6.js":72}],72:[function(require,module,exports){
+},{"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],80:[function(require,module,exports){
 "use strict";
+
+var _isPlainObject = require("is-plain-object");
+
+var _deepFreeze = _interopRequireDefault(require("deep-freeze"));
+
+var _eventemitter = _interopRequireDefault(require("eventemitter2"));
+
+var _notifiersEs = _interopRequireDefault(require("./notifiers.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // @ts-nocheck
 
@@ -29831,39 +31721,31 @@ module.exports = BasePage;
  *
  */
 // Dependencies
-var _require = require('is-plain-object'),
-    isPlainObject = _require.isPlainObject;
 
-var deepFreeze = require('deep-freeze');
-
-var EventEmitter2 = require('eventemitter2');
-
-var notifiers = require('./notifiers.es6.js');
 /**
  * .register() creates a notifier function for each caller.
  * (models should be the callers in most cases).
  * @param {string} notifierName - unique name of registrant (i.e. model name)
  * @api public
  */
-
-
 function register(notifierName) {
   if (typeof notifierName !== 'string') {
     throw new Error('notifierName argument must be a string');
   }
 
-  if (notifiers.registered[notifierName]) {
+  if (_notifiersEs["default"].registered[notifierName]) {
     throw new Error("notifierName argument must be unique to store ".concat(notifierName, " already exists"));
   }
 
-  notifiers.add(notifierName);
-  var combinedNotifiers = notifiers.combine();
+  _notifiersEs["default"].add(notifierName);
+
+  var combinedNotifiers = _notifiersEs["default"].combine();
 
   if (!_store) {
     _store = _createStore(combinedNotifiers);
 
     _store.subscribe(function (notification) {
-      notification = deepFreeze(notification); // make immutable before publishing
+      notification = (0, _deepFreeze["default"])(notification); // make immutable before publishing
 
       _publish(notification); // publish notif. about state changes to subscribers
 
@@ -29890,7 +31772,7 @@ function publish(notification) {
  */
 
 
-var _publisher = new EventEmitter2();
+var _publisher = new _eventemitter["default"]();
 
 _publisher.setMaxListeners(100); // EventEmitter2 default of 10 is too low
 
@@ -29917,8 +31799,8 @@ function _publish(notification) {
 
 
 function remove(notifierName) {
-  if (notifiers.remove(notifierName)) {
-    var combinedNotifiers = notifiers.combine();
+  if (_notifiersEs["default"].remove(notifierName)) {
+    var combinedNotifiers = _notifiersEs["default"].combine();
 
     _store.replaceNotifier(combinedNotifiers);
   }
@@ -29947,7 +31829,7 @@ function _createStore(notifier) {
   var isEmitting = false;
 
   function dispatch(notification) {
-    if (!notification || !isPlainObject(notification)) throw new Error('notification parameter is required and must be a plain object');
+    if (!notification || !(0, _isPlainObject.isPlainObject)(notification)) throw new Error('notification parameter is required and must be a plain object');
     if (!notification.notifierName || typeof notification.notifierName !== 'string') throw new Error('notifierName property of notification parameter is required and must be a string');
     if (isEmitting) throw new Error('subscribers may not generate notifications');
     isEmitting = true;
@@ -29989,15 +31871,24 @@ module.exports = {
 
 };
 
-},{"./notifiers.es6.js":70,"deep-freeze":33,"eventemitter2":34,"is-plain-object":45}],73:[function(require,module,exports){
+},{"./notifiers.es6.js":78,"deep-freeze":33,"eventemitter2":34,"is-plain-object":45}],81:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _indexEs = _interopRequireDefault(require("./mixins/index.es6.js"));
+
+var _storeEs = _interopRequireDefault(require("./store.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 // @ts-nocheck
-var $ = require('jquery');
 
-var mixins = require('./mixins/index.es6.js');
-
-var store = require('./store.es6.js');
 /**
  * Abstract Base class for any type of view.
  *
@@ -30008,18 +31899,16 @@ var store = require('./store.es6.js');
  * @constructor
  * @param {object} ops
  */
-
-
 function BaseView(ops) {
   this.model = ops.model;
   this.views = this.views || {};
-  this.store = store; // A jquery object should be passed in as either 'appendTo', 'before' or 'after'
+  this.store = _storeEs["default"]; // A jquery object should be passed in as either 'appendTo', 'before' or 'after'
   // indicating where on the DOM the view should be added. If none is passed
   // the view will render itself to an in-memory jquery object, but won't be added to the DOM.
 
-  this.$parent = typeof ops.appendTo === 'string' ? $(ops.appendTo) : ops.appendTo;
-  this.$before = typeof ops.before === 'string' ? $(ops.before) : ops.before;
-  this.$after = typeof ops.after === 'string' ? $(ops.after) : ops.after;
+  this.$parent = typeof ops.appendTo === 'string' ? (0, _jquery["default"])(ops.appendTo) : ops.appendTo;
+  this.$before = typeof ops.before === 'string' ? (0, _jquery["default"])(ops.before) : ops.before;
+  this.$after = typeof ops.after === 'string' ? (0, _jquery["default"])(ops.after) : ops.after;
 
   if (ops.events) {
     for (var id in ops.events) {
@@ -30030,7 +31919,7 @@ function BaseView(ops) {
   this._render(ops);
 }
 
-BaseView.prototype = $.extend({}, mixins.events, {
+BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
   /***
    * Each view should define a template
    * if it wants to be rendered and added to the DOM.
@@ -30070,11 +31959,11 @@ BaseView.prototype = $.extend({}, mixins.events, {
 
       var v;
 
-      if ($.isArray(views)) {
+      if (_jquery["default"].isArray(views)) {
         for (var i = 0; i < views.length; i++) {
           v = views[i];
 
-          if (v && $.isArray(v)) {
+          if (v && _jquery["default"].isArray(v)) {
             destroyViews(v);
           } else {
             v && v.destroy && v.destroy();
@@ -30086,7 +31975,7 @@ BaseView.prototype = $.extend({}, mixins.events, {
         for (var c in views) {
           v = views[c];
 
-          if (v && $.isArray(v)) {
+          if (v && _jquery["default"].isArray(v)) {
             destroyViews(v);
           } else {
             v && v.destroy && v.destroy();
@@ -30115,7 +32004,7 @@ BaseView.prototype = $.extend({}, mixins.events, {
         this.$el = ops.$el;
       } else {
         var el = this.template();
-        this.$el = $(el);
+        this.$el = (0, _jquery["default"])(el);
       }
     }
 
@@ -30182,40 +32071,79 @@ BaseView.prototype = $.extend({}, mixins.events, {
     }
   }
 });
-module.exports = BaseView;
+var _default = BaseView;
+exports["default"] = _default;
 
-},{"./mixins/index.es6.js":68,"./store.es6.js":72,"jquery":46}],74:[function(require,module,exports){
+},{"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],82:[function(require,module,exports){
 "use strict";
 
-var isEnvironment = function isEnvironment(environment) {
-  return environment === 'ios' || environment === window.environmentOverride;
-};
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isBrowser = exports.isAndroid = void 0;
+exports.isEnvironment = isEnvironment;
+exports.isWindows = exports.isMacos = exports.isIOS = void 0;
+
+/**
+ * @param {"ios" | "android" | "macos" | "browser" | "windows" | "example"} environment
+ * @returns {boolean}
+ */
+function isEnvironment(environment) {
+  if (environment === window.environmentOverride) {
+    return true;
+  }
+
+  return document.body.classList.contains("environment--".concat(environment));
+}
 
 var isIOS = function isIOS() {
   return isEnvironment('ios');
 };
 
+exports.isIOS = isIOS;
+
 var isAndroid = function isAndroid() {
   return isEnvironment('android');
 };
+
+exports.isAndroid = isAndroid;
 
 var isBrowser = function isBrowser() {
   return isEnvironment('browser');
 };
 
-module.exports = {
-  isIOS: isIOS,
-  isAndroid: isAndroid,
-  isBrowser: isBrowser
+exports.isBrowser = isBrowser;
+
+var isWindows = function isWindows() {
+  return isEnvironment('windows');
 };
 
-},{}],75:[function(require,module,exports){
+exports.isWindows = isWindows;
+
+var isMacos = function isMacos() {
+  return isEnvironment('macos');
+};
+
+exports.isMacos = isMacos;
+
+},{}],83:[function(require,module,exports){
 "use strict";
 
-// @ts-nocheck
-var Parent = window.DDG.base.Model;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-var browserUIWrapper = require('../../browser/communication.es6.js');
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _model = _interopRequireDefault(require("../base/model.es6"));
+
+var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+// @ts-nocheck
+
 /**
  * Background messaging is done via two methods:
  *
@@ -30234,41 +32162,54 @@ var browserUIWrapper = require('../../browser/communication.es6.js');
  *
  *  The common fetch method is defined in base/model.es6.js
  */
-
-
 function BackgroundMessage(attrs) {
-  Parent.call(this, attrs);
+  _model["default"].call(this, attrs);
+
   var thisModel = this;
-  browserUIWrapper.backgroundMessage(thisModel);
+
+  _communicationEs["default"].backgroundMessage(thisModel);
 }
 
-BackgroundMessage.prototype = window.$.extend({}, Parent.prototype, {
+BackgroundMessage.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
   modelName: 'backgroundMessage'
 });
-module.exports = BackgroundMessage;
+var _default = BackgroundMessage;
+exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":60}],76:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/model.es6":77,"jquery":46}],84:[function(require,module,exports){
 "use strict";
 
-var Parent = window.DDG.base.Model;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CtaRotationModel = CtaRotationModel;
+exports.constants = void 0;
 
-var _require = require('../templates/cta-rotation.es6'),
-    ctas = _require.ctas;
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _model = _interopRequireDefault(require("../base/model.es6"));
+
+var _ctaRotation = require("../templates/cta-rotation.es6");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var constants = {
   MODEL_NAME: 'ctaRotation',
-  CTA_SCREENS: Object.keys(ctas)
+  CTA_SCREENS: Object.keys(_ctaRotation.ctas)
 };
 /** @this {any} */
 
+exports.constants = constants;
+
 function CtaRotationModel(attrs) {
   attrs = attrs || {};
-  Parent.call(this, attrs);
+
+  _model["default"].call(this, attrs);
 
   this._setup();
 }
 
-CtaRotationModel.prototype = window.$.extend({}, Parent.prototype, {
+CtaRotationModel.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
   modelName: constants.MODEL_NAME,
 
   /**
@@ -30301,15 +32242,22 @@ CtaRotationModel.prototype = window.$.extend({}, Parent.prototype, {
     this.currentCta = names[random];
   }
 });
-module.exports.CtaRotationModel = CtaRotationModel;
-module.exports.constants = constants;
 
-},{"../templates/cta-rotation.es6":84}],77:[function(require,module,exports){
+},{"../base/model.es6":77,"../templates/cta-rotation.es6":92,"jquery":46}],85:[function(require,module,exports){
 "use strict";
 
-var Parent = window.DDG.base.Model;
-/** @this {any} */
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _model = _interopRequireDefault(require("../base/model.es6"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+/** @this {any} */
 function EmailProtectionModel(attrs) {
   attrs = attrs || {};
 
@@ -30317,7 +32265,7 @@ function EmailProtectionModel(attrs) {
     throw new Error('`emailProtectionUserData` is required for EmailProtectionModel');
   }
 
-  Parent.call(this, attrs);
+  _model["default"].call(this, attrs);
 
   this._setup();
 }
@@ -30330,7 +32278,7 @@ function EmailProtectionModel(attrs) {
  */
 
 
-EmailProtectionModel.prototype = window.$.extend({}, Parent.prototype, {
+EmailProtectionModel.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
   modelName: 'emailProtection',
 
   /**
@@ -30377,9 +32325,10 @@ EmailProtectionModel.prototype = window.$.extend({}, Parent.prototype, {
     });
   }
 });
-module.exports = EmailProtectionModel;
+var _default = EmailProtectionModel;
+exports["default"] = _default;
 
-},{}],78:[function(require,module,exports){
+},{"../base/model.es6":77,"jquery":46}],86:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -30392,56 +32341,76 @@ module.exports = {
   }
 };
 
-},{}],79:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 "use strict";
 
-var browserUIWrapper = require('../../browser/communication.es6.js');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-var Parent = window.DDG.base.Model;
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
+
+var _model = _interopRequireDefault(require("../base/model.es6"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /** @this {any} */
-
 function Search(attrs) {
-  Parent.call(this, attrs);
+  _model["default"].call(this, attrs);
 }
 
-Search.prototype = window.$.extend({}, Parent.prototype, {
+Search.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
   modelName: 'search',
   doSearch: function doSearch(searchTerm) {
     this.searchText = searchTerm;
     searchTerm = encodeURIComponent(searchTerm);
-    browserUIWrapper.search(searchTerm);
+
+    _communicationEs["default"].search(searchTerm);
   },
   openOptionsPage: function openOptionsPage() {
     this.fetch({
       messageType: 'getBrowser'
     }).then(function (browserName) {
-      browserUIWrapper.openOptionsPage(browserName);
+      _communicationEs["default"].openOptionsPage(browserName);
     })["catch"](function (e) {
       console.error('openOptionsPage', e);
     });
   }
 });
-module.exports = Search;
+var _default = Search;
+exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":60}],80:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/model.es6":77,"jquery":46}],88:[function(require,module,exports){
 "use strict";
 
-var Parent = window.DDG.base.Model;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-var normalizeCompanyName = require('./mixins/normalize-company-name.es6');
+var _jquery = _interopRequireDefault(require("jquery"));
 
-var browserUIWrapper = require('../../browser/communication.es6.js');
+var _model = _interopRequireDefault(require("../base/model.es6"));
+
+var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
+
+var _normalizeCompanyName = _interopRequireDefault(require("./mixins/normalize-company-name.es6"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /** @this {any} */
-
-
 function SiteCompanyList(attrs) {
   attrs = attrs || {};
   attrs.tab = null;
   attrs.companyList = [];
-  Parent.call(this, attrs);
+
+  _model["default"].call(this, attrs);
 }
 
-SiteCompanyList.prototype = window.$.extend({}, Parent.prototype, normalizeCompanyName, {
+SiteCompanyList.prototype = _jquery["default"].extend({}, _model["default"].prototype, _normalizeCompanyName["default"], {
   modelName: 'siteCompanyList',
 
   /** @this {any} */
@@ -30449,7 +32418,7 @@ SiteCompanyList.prototype = window.$.extend({}, Parent.prototype, normalizeCompa
     var _this = this;
 
     return new Promise(function (resolve, reject) {
-      browserUIWrapper.getBackgroundTabData().then(function (_ref) {
+      _communicationEs["default"].getBackgroundTabData().then(function (_ref) {
         var tab = _ref.tab;
 
         if (tab) {
@@ -30461,21 +32430,30 @@ SiteCompanyList.prototype = window.$.extend({}, Parent.prototype, normalizeCompa
     });
   }
 });
-module.exports = SiteCompanyList;
+var _default = SiteCompanyList;
+exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":60,"./mixins/normalize-company-name.es6":78}],81:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/model.es6":77,"./mixins/normalize-company-name.es6":86,"jquery":46}],89:[function(require,module,exports){
 "use strict";
 
-var Parent = window.DDG.base.Model;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-var constants = require('../../../data/constants');
+var _jquery = _interopRequireDefault(require("jquery"));
 
-var httpsMessages = constants.httpsMessages;
-/** @type {import('../../browser/communication.es6.js').Communication} */
+var _model = _interopRequireDefault(require("../base/model.es6"));
 
-var browserUIWrapper = require('../../browser/communication.es6.js');
+var _constants = _interopRequireDefault(require("../../../data/constants"));
 
-var i18n = window.DDG.base.i18n; // We consider major tracker networks as those found on this percentage of sites
+var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
+
+var _localize = require("../base/localize.es6");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var httpsMessages = _constants["default"].httpsMessages; // We consider major tracker networks as those found on this percentage of sites
 // that we crawl
 
 var MAJOR_TRACKER_THRESHOLD_PCT = 25;
@@ -30503,7 +32481,9 @@ function Site(attrs) {
   attrs.isaMajorTrackingNetwork = false;
   attrs.emailProtectionUserData = null;
   attrs.acceptingUpdates = true;
-  Parent.call(this, attrs);
+
+  _model["default"].call(this, attrs);
+
   this.bindEvents([[this.store.subscribe, 'action:backgroundMessage', this.handleBackgroundMsg]]);
 }
 /**
@@ -30522,7 +32502,7 @@ function Site(attrs) {
  */
 
 
-Site.prototype = window.$.extend({}, Parent.prototype, {
+Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
   modelName: 'site',
 
   /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
@@ -30530,7 +32510,7 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
     var _this = this;
 
     return new Promise(function (resolve) {
-      browserUIWrapper.getBackgroundTabData().then(function (_ref) {
+      _communicationEs["default"].getBackgroundTabData().then(function (_ref) {
         var tab = _ref.tab,
             emailProtectionUserData = _ref.emailProtectionUserData;
 
@@ -30538,8 +32518,9 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
           var _tab$parentEntity;
 
           if (tab.locale) {
-            if (Object.keys(i18n.options.resources).includes(tab.locale)) {
-              i18n.changeLanguage(tab.locale);
+            // @ts-ignore
+            if (Object.keys(_localize.i18n.options.resources).includes(tab.locale)) {
+              _localize.i18n.changeLanguage(tab.locale);
             } else {
               console.warn("Unsupported locale ".concat(tab.locale));
             }
@@ -30597,7 +32578,7 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
       this.httpsState = 'none';
     }
 
-    this.httpsStatusText = i18n.t(httpsMessages[this.httpsState]);
+    this.httpsStatusText = _localize.i18n.t(httpsMessages[this.httpsState]);
   },
 
   /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
@@ -30607,7 +32588,7 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
     if (!this.tab) return;
 
     if (message.action && message.action === 'updateTabData') {
-      browserUIWrapper.getBackgroundTabData().then(function (_ref2) {
+      _communicationEs["default"].getBackgroundTabData().then(function (_ref2) {
         var tab = _ref2.tab,
             emailProtectionUserData = _ref2.emailProtectionUserData;
         _this2.tab = tab;
@@ -30832,79 +32813,100 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
     });
   }
 });
-module.exports = Site;
+var _default = Site;
+exports["default"] = _default;
 
-},{"../../../data/constants":58,"../../browser/communication.es6.js":60}],82:[function(require,module,exports){
+},{"../../../data/constants":60,"../../browser/communication.es6.js":64,"../base/localize.es6":74,"../base/model.es6":77,"jquery":46}],90:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.initPopup = initPopup;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _pageEs = _interopRequireDefault(require("../base/page.es6.js"));
+
+var _siteEs = _interopRequireDefault(require("./../views/site.es6.js"));
+
+var _siteEs2 = _interopRequireDefault(require("./../models/site.es6.js"));
+
+var _backgroundMessageEs = _interopRequireDefault(require("./../models/background-message.es6.js"));
+
+var _siteEs3 = _interopRequireDefault(require("./../templates/site.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 // @ts-nocheck
-var Parent = window.DDG.base.Page;
-
-var SiteView = require('./../views/site.es6.js');
-
-var SiteModel = require('./../models/site.es6.js');
-
-var BackgroundMessageModel = require('./../models/background-message.es6.js');
-
-var siteTemplate = require('./../templates/site.es6.js');
-
 function Trackers(ops) {
-  this.$parent = window.$('#popup-container');
-  Parent.call(this, ops);
+  this.$parent = (0, _jquery["default"])('#popup-container');
+
+  _pageEs["default"].call(this, ops);
 }
 
-Trackers.prototype = window.$.extend({}, Parent.prototype, {
+Trackers.prototype = _jquery["default"].extend({}, _pageEs["default"].prototype, {
   pageName: 'popup',
   ready: function ready() {
-    Parent.prototype.ready.call(this);
-    this.message = new BackgroundMessageModel();
-    this.views.site = new SiteView({
+    _pageEs["default"].prototype.ready.call(this);
+
+    this.message = new _backgroundMessageEs["default"]();
+    console.log(this.message);
+    this.views.site = new _siteEs["default"]({
       pageView: this,
-      model: new SiteModel(),
-      appendTo: window.$('#site-info-container'),
-      template: siteTemplate
+      model: new _siteEs2["default"](),
+      appendTo: (0, _jquery["default"])('#site-info-container'),
+      template: _siteEs3["default"]
     });
   }
 }); // kickoff!
 
-window.DDG = window.DDG || {};
-window.DDG.page = new Trackers();
+function initPopup() {
+  var page = new Trackers();
+  console.log('initPopup', page);
+}
 
-},{"./../models/background-message.es6.js":75,"./../models/site.es6.js":81,"./../templates/site.es6.js":97,"./../views/site.es6.js":103}],83:[function(require,module,exports){
+},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":105,"./../views/site.es6.js":111,"jquery":46}],91:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localize = require("../base/localize.es6");
+
+var _heroEs = _interopRequireDefault(require("./shared/hero.es6.js"));
 
 var _templateObject, _templateObject2, _templateObject3;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-/** @type {any} */
-var bel = require('bel');
-
-var hero = require('./shared/hero.es6.js');
-
-var i18n = window.DDG.base.i18n;
 
 function categories() {
   return [{
-    category: i18n.t('report:videos.title'),
+    category: _localize.i18n.t('report:videos.title'),
     value: 'videos'
   }, {
-    category: i18n.t('report:images.title'),
+    category: _localize.i18n.t('report:images.title'),
     value: 'images'
   }, {
-    category: i18n.t('report:comments.title'),
+    category: _localize.i18n.t('report:comments.title'),
     value: 'comments'
   }, {
-    category: i18n.t('report:content.title'),
+    category: _localize.i18n.t('report:content.title'),
     value: 'content'
   }, {
-    category: i18n.t('report:links.title'),
+    category: _localize.i18n.t('report:links.title'),
     value: 'links'
   }, {
-    category: i18n.t('report:login.title'),
+    category: _localize.i18n.t('report:login.title'),
     value: 'login'
   }, {
-    category: i18n.t('report:paywall.title'),
+    category: _localize.i18n.t('report:paywall.title'),
     value: 'paywall'
   }];
 }
@@ -30926,50 +32928,59 @@ function shuffle(arr) {
 }
 
 function renderHero() {
-  return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["", ""])), hero({
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["", ""])), (0, _heroEs["default"])({
     status: 'breakage-form',
     className: 'js-breakage-form-close'
   }));
 }
 
-module.exports = function () {
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form js-breakage-form card\">\n        ", "\n        <div class=\"breakage-form__content padded\">\n            <div class=\"breakage-form__element js-breakage-form-element\">\n                <div class=\"breakage-form__explanation token-title-3\">\n                    ", "\n                </div>\n                <div class=\"form__group\">\n                    <div class=\"form__select breakage-form__input--dropdown\">\n                        <select class=\"js-breakage-form-dropdown\">\n                            <option value=''>", "</option>\n                            ", "\n                            <option value='Other'>", "</option>\n                        </select>\n                    </div>\n                    <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                    <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                </div>\n                <div class=\"breakage-form__footer token-breakage-form-body\">\n                    ", "\n                </div>\n            </div>\n            <div class=\"breakage-form__message js-breakage-form-message is-transparent\">\n                <h2 class=\"breakage-form__success--title\">", "</h2>\n                <div class=\"breakage-form__success--message\">", "</div>\n            </div>\n        </div>\n    </div>\n    </section>"])), renderHero(), i18n.t('report:selectTheOptionDesc.title'), i18n.t('report:pickYourIssueFromTheList.title'), shuffle(categories()).map(function (item) {
-    return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<option value=", ">", "</option>"])), item.value, item.category);
-  }), i18n.t('report:other.title'), i18n.t('report:tellUsMoreDesc.title'), i18n.t('report:sendReport.title'), i18n.t('report:reportsAreAnonymousDesc.title'), i18n.t('report:thankYou.title'), i18n.t('report:yourReportWillHelpDesc.title'));
-};
+function _default() {
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form js-breakage-form card\">\n        ", "\n        <div class=\"breakage-form__content padded\">\n            <div class=\"breakage-form__element js-breakage-form-element\">\n                <div class=\"breakage-form__explanation token-title-3\">\n                    ", "\n                </div>\n                <div class=\"form__group\">\n                    <div class=\"form__select breakage-form__input--dropdown\">\n                        <select class=\"js-breakage-form-dropdown\">\n                            <option value=''>", "</option>\n                            ", "\n                            <option value='Other'>", "</option>\n                        </select>\n                    </div>\n                    <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                    <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                </div>\n                <div class=\"breakage-form__footer token-breakage-form-body\">\n                    ", "\n                </div>\n            </div>\n            <div class=\"breakage-form__message js-breakage-form-message is-transparent\">\n                <h2 class=\"breakage-form__success--title\">", "</h2>\n                <div class=\"breakage-form__success--message\">", "</div>\n            </div>\n        </div>\n    </div>\n    </section>"])), renderHero(), _localize.i18n.t('report:selectTheOptionDesc.title'), _localize.i18n.t('report:pickYourIssueFromTheList.title'), shuffle(categories()).map(function (item) {
+    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<option value=", ">", "</option>"])), item.value, item.category);
+  }), _localize.i18n.t('report:other.title'), _localize.i18n.t('report:tellUsMoreDesc.title'), _localize.i18n.t('report:sendReport.title'), _localize.i18n.t('report:reportsAreAnonymousDesc.title'), _localize.i18n.t('report:thankYou.title'), _localize.i18n.t('report:yourReportWillHelpDesc.title'));
+}
 
-},{"./shared/hero.es6.js":90,"bel":31}],84:[function(require,module,exports){
+},{"../base/localize.es6":74,"./shared/hero.es6.js":98,"bel":31}],92:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = exports.ctas = void 0;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _raw = _interopRequireDefault(require("bel/raw"));
+
+var _localize = require("../base/localize.es6");
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var raw = require('bel/raw');
-
-var i18n = window.DDG.base.i18n;
 var ctas = {
   spread: {
-    title: i18n.t('ctascreens:spreadTitle.title'),
-    text: i18n.t('ctascreens:spreadText.title'),
+    title: _localize.i18n.t('ctascreens:spreadTitle.title'),
+    text: _localize.i18n.t('ctascreens:spreadText.title'),
     icon: heartArrowSvg,
     action: function action() {
-      return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["<a href=\"https://duckduckgo.com/spread\" target=\"_blank\" class=\"cta__button\">", "</a>"])), i18n.t('ctascreens:spreadButton.title'));
+      return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<a href=\"https://duckduckgo.com/spread\" target=\"_blank\" class=\"cta__button\">", "</a>"])), _localize.i18n.t('ctascreens:spreadButton.title'));
     }
   },
   email: {
-    title: i18n.t('ctascreens:emailTitle.title'),
-    text: i18n.t('ctascreens:emailText.title'),
+    title: _localize.i18n.t('ctascreens:emailTitle.title'),
+    text: _localize.i18n.t('ctascreens:emailText.title'),
     icon: emailSvg,
     action: function action() {
-      return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a href=\"https://duckduckgo.com/email\" target=\"_blank\" class=\"cta__button\">", "</a>"])), i18n.t('ctascreens:spreadButton.title'));
+      return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a href=\"https://duckduckgo.com/email\" target=\"_blank\" class=\"cta__button\">", "</a>"])), _localize.i18n.t('ctascreens:spreadButton.title'));
     }
   }
 };
 /** @this {any} */
+
+exports.ctas = ctas;
 
 function ctaRotationView() {
   var cta = ctas[this.model.currentCta];
@@ -30979,36 +32990,42 @@ function ctaRotationView() {
     return '';
   }
 
-  return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"cta-screen\" data-test-id=\"cta-screens\">\n        <p class=\"note token-title-3 text--center\">", "</p>\n        <div class=\"cta text--center\">\n            <div class=\"cta__icon\">", "</div>\n            <h1 class=\"cta__title\">", "</h1>\n            <h2 class=\"cta__text\">", "</h2>\n            <div class=\"cta__action\">", "</div>\n        </div>  \n    </div>\n    "])), i18n.t('ctascreens:protectionsUnavailableNote.title'), cta.icon(), cta.title, cta.text, cta.action());
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"cta-screen\" data-test-id=\"cta-screens\">\n        <p class=\"note token-title-3 text--center\">", "</p>\n        <div class=\"cta text--center\">\n            <div class=\"cta__icon\">", "</div>\n            <h1 class=\"cta__title\">", "</h1>\n            <h2 class=\"cta__text\">", "</h2>\n            <div class=\"cta__action\">", "</div>\n        </div>  \n    </div>\n    "])), _localize.i18n.t('ctascreens:protectionsUnavailableNote.title'), cta.icon(), cta.title, cta.text, cta.action());
 }
 
 function heartArrowSvg() {
-  return raw(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<svg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M78.5138 21L71.5098 28.003V34.003L78.5138 27V21Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M78.505 27.0034L71.51 33.9614H77.51L84.505 27.0034H78.505Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M66.339 42.0032L63.51 39.1742L76.684 26.0012L79.512 28.8302L66.339 42.0032Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M64.755 32.1171C58.769 31.3911 53.4 34.2001 50.505 38.6781C47.61 34.2001 42.241 31.3911 36.255 32.1171C29.715 32.9091 24.444 38.0531 23.619 44.4181C23.577 44.7471 23.546 45.0751 23.526 45.4001C23.293 49.2851 24.979 53.0491 27.799 55.8071L50.505 78.0031L73.211 55.8071C76.031 53.0491 77.717 49.2851 77.484 45.4001C77.464 45.0751 77.433 44.7471 77.391 44.4181C76.566 38.0531 71.295 32.9091 64.755 32.1171Z\" fill=\"#DE5833\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M77.3909 44.4179C76.5659 38.0529 71.2949 32.9099 64.7549 32.1169C62.5109 31.8449 60.3539 32.0699 58.3809 32.6929C63.6639 34.3599 67.6819 38.9309 68.3929 44.4179C68.4359 44.7479 68.4669 45.0749 68.4869 45.3999C68.7189 49.2849 67.0349 53.0489 64.2129 55.8069L46.0059 73.6049L50.5049 78.0029L73.2109 55.8069C76.0319 53.0489 77.7169 49.2849 77.4839 45.3999C77.4639 45.0749 77.4329 44.7479 77.3909 44.4179Z\" fill=\"#BC4726\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M31.51 66.0034L27.51 78.0034L39.51 74.0034L31.51 66.0034Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M33.51 74.0034C32.998 74.0034 32.487 73.8084 32.096 73.4174C31.315 72.6364 31.315 71.3704 32.096 70.5894L44.096 58.5894C44.876 57.8084 46.144 57.8084 46.924 58.5894C47.705 59.3704 47.705 60.6364 46.924 61.4174L34.924 73.4174C34.534 73.8084 34.022 74.0034 33.51 74.0034Z\" fill=\"#C0C0C0\"/>\n<path d=\"M86.4922 44L90.5052 41\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M88.5049 52.5H94.5099\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M14.5176 44L10.5046 41\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M12.505 52.5H6.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M86.4922 61.5L90.5052 64.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M14.5176 61.5L10.5046 64.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M27.9544 15.0818C26.3303 14.4357 24.6178 14.8261 23.4753 15.8672C22.995 14.398 21.6978 13.2137 19.9664 12.9746C18.0748 12.7131 16.2171 13.7652 15.5153 15.4882C15.4792 15.5773 15.4462 15.6669 15.4166 15.7565C15.0641 16.8282 15.2583 18.0079 15.8448 18.9894L20.5677 26.8894L28.5729 22.3469C29.5672 21.7824 30.318 20.8521 30.54 19.7459C30.5584 19.6534 30.574 19.5591 30.5865 19.4638C30.8259 17.6188 29.7289 15.7873 27.9544 15.0818Z\" fill=\"#E2E2E2\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M77.945 75.9298C76.9297 76.1112 76.1926 76.8398 75.9437 77.7173C75.2457 77.1301 74.2269 76.94 73.2844 77.3588C72.2546 77.8163 71.6506 78.9218 71.8348 80.004C71.8444 80.0599 71.8558 80.1151 71.8688 80.1693C72.0255 80.8163 72.49 81.3473 73.0894 81.6569L77.9155 84.1482L80.5157 79.3799C80.8385 78.7875 80.9255 78.0875 80.6926 77.4638C80.673 77.4117 80.6515 77.3596 80.6282 77.3079C80.1741 76.3084 79.0542 75.7314 77.945 75.9298Z\" fill=\"#E2E2E2\"/>\n</svg>\n\n"])));
+  return (0, _raw["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<svg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M78.5138 21L71.5098 28.003V34.003L78.5138 27V21Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M78.505 27.0034L71.51 33.9614H77.51L84.505 27.0034H78.505Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M66.339 42.0032L63.51 39.1742L76.684 26.0012L79.512 28.8302L66.339 42.0032Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M64.755 32.1171C58.769 31.3911 53.4 34.2001 50.505 38.6781C47.61 34.2001 42.241 31.3911 36.255 32.1171C29.715 32.9091 24.444 38.0531 23.619 44.4181C23.577 44.7471 23.546 45.0751 23.526 45.4001C23.293 49.2851 24.979 53.0491 27.799 55.8071L50.505 78.0031L73.211 55.8071C76.031 53.0491 77.717 49.2851 77.484 45.4001C77.464 45.0751 77.433 44.7471 77.391 44.4181C76.566 38.0531 71.295 32.9091 64.755 32.1171Z\" fill=\"#DE5833\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M77.3909 44.4179C76.5659 38.0529 71.2949 32.9099 64.7549 32.1169C62.5109 31.8449 60.3539 32.0699 58.3809 32.6929C63.6639 34.3599 67.6819 38.9309 68.3929 44.4179C68.4359 44.7479 68.4669 45.0749 68.4869 45.3999C68.7189 49.2849 67.0349 53.0489 64.2129 55.8069L46.0059 73.6049L50.5049 78.0029L73.2109 55.8069C76.0319 53.0489 77.7169 49.2849 77.4839 45.3999C77.4639 45.0749 77.4329 44.7479 77.3909 44.4179Z\" fill=\"#BC4726\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M31.51 66.0034L27.51 78.0034L39.51 74.0034L31.51 66.0034Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M33.51 74.0034C32.998 74.0034 32.487 73.8084 32.096 73.4174C31.315 72.6364 31.315 71.3704 32.096 70.5894L44.096 58.5894C44.876 57.8084 46.144 57.8084 46.924 58.5894C47.705 59.3704 47.705 60.6364 46.924 61.4174L34.924 73.4174C34.534 73.8084 34.022 74.0034 33.51 74.0034Z\" fill=\"#C0C0C0\"/>\n<path d=\"M86.4922 44L90.5052 41\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M88.5049 52.5H94.5099\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M14.5176 44L10.5046 41\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M12.505 52.5H6.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M86.4922 61.5L90.5052 64.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M14.5176 61.5L10.5046 64.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M27.9544 15.0818C26.3303 14.4357 24.6178 14.8261 23.4753 15.8672C22.995 14.398 21.6978 13.2137 19.9664 12.9746C18.0748 12.7131 16.2171 13.7652 15.5153 15.4882C15.4792 15.5773 15.4462 15.6669 15.4166 15.7565C15.0641 16.8282 15.2583 18.0079 15.8448 18.9894L20.5677 26.8894L28.5729 22.3469C29.5672 21.7824 30.318 20.8521 30.54 19.7459C30.5584 19.6534 30.574 19.5591 30.5865 19.4638C30.8259 17.6188 29.7289 15.7873 27.9544 15.0818Z\" fill=\"#E2E2E2\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M77.945 75.9298C76.9297 76.1112 76.1926 76.8398 75.9437 77.7173C75.2457 77.1301 74.2269 76.94 73.2844 77.3588C72.2546 77.8163 71.6506 78.9218 71.8348 80.004C71.8444 80.0599 71.8558 80.1151 71.8688 80.1693C72.0255 80.8163 72.49 81.3473 73.0894 81.6569L77.9155 84.1482L80.5157 79.3799C80.8385 78.7875 80.9255 78.0875 80.6926 77.4638C80.673 77.4117 80.6515 77.3596 80.6282 77.3079C80.1741 76.3084 79.0542 75.7314 77.945 75.9298Z\" fill=\"#E2E2E2\"/>\n</svg>\n\n"])));
 }
 
 function emailSvg() {
-  return raw(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<svg width=\"76\" height=\"78\" viewBox=\"0 0 76 78\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_273_32068)\">\n<path d=\"M55.0125 26.7115C55.3701 26.3897 55.6204 25.9249 55.6204 25.3886V0.71875L41.4263 16.2L55.0125 26.7115Z\" fill=\"#F9BE1A\"/>\n<path d=\"M14.147 0.71875V25.3886C14.147 25.9249 14.3972 26.3897 14.7548 26.7115L28.3411 16.2L14.147 0.71875Z\" fill=\"#F9BE1A\"/>\n<path d=\"M40.9621 16.7361C40.2828 17.487 39.3175 17.8803 38.3164 17.8803H31.4517C30.4506 17.8803 29.4853 17.4512 28.806 16.7361L28.3412 16.2356L14.7549 26.7471C15.0767 27.0331 15.47 27.2119 15.9347 27.2119H53.8333C54.2981 27.2119 54.6914 27.0331 55.0132 26.7471L41.4269 16.2356L40.9621 16.7361Z\" fill=\"#F9BE1A\"/>\n<path d=\"M55.6209 0.71875L41.4268 16.2L40.962 16.7363C40.2827 17.4871 39.3174 17.8804 38.3163 17.8804H31.4516C30.4505 17.8804 29.4852 17.4513 28.8059 16.7363L28.3411 16.2357L14.147 0.71875H55.6209Z\" fill=\"#F9BE1A\"/>\n</g>\n<g clip-path=\"url(#clip1_273_32068)\">\n<path d=\"M60.3304 38.5762C60.7824 38.1695 61.0987 37.5819 61.0987 36.9039V5.71753L43.1553 25.2881L60.3304 38.5762Z\" fill=\"#FFCC33\"/>\n<path d=\"M8.66943 5.71753V36.9039C8.66943 37.5819 8.98582 38.1695 9.43779 38.5762L26.6129 25.2881L8.66943 5.71753Z\" fill=\"#FFCC33\"/>\n<path d=\"M42.5679 25.966C41.7091 26.9152 40.4888 27.4123 39.2233 27.4123H30.5453C29.2798 27.4123 28.0594 26.87 27.2007 25.966L26.6131 25.3333L9.43799 38.6214C9.84477 38.983 10.3419 39.2089 10.9295 39.2089H58.839C59.4266 39.2089 59.9238 38.983 60.3306 38.6214L43.1555 25.3333L42.5679 25.966Z\" fill=\"#FFCC33\"/>\n<path d=\"M61.0987 5.71753L43.1553 25.2881L42.5677 25.9661C41.7089 26.9152 40.4886 27.4124 39.2231 27.4124H30.5451C29.2796 27.4124 28.0592 26.87 27.2005 25.9661L26.6129 25.3333L8.66943 5.71753H61.0987Z\" fill=\"#FFCC33\"/>\n</g>\n<g clip-path=\"url(#clip2_273_32068)\">\n<path d=\"M63.5124 47.6839C64.0209 47.2263 64.3769 46.5652 64.3769 45.8025V10.7161L44.1895 32.7341L63.5124 47.6839Z\" fill=\"#FDD20A\"/>\n<path d=\"M5.39062 10.7161V45.8025C5.39062 46.5652 5.74657 47.2263 6.25507 47.6839L25.578 32.7341L5.39062 10.7161Z\" fill=\"#FDD20A\"/>\n<path d=\"M43.5283 33.4968C42.5622 34.5647 41.1892 35.124 39.7654 35.124H30.0023C28.5785 35.124 27.2055 34.5138 26.2394 33.4968L25.5783 32.7849L6.25537 47.7348C6.71302 48.1416 7.27237 48.3958 7.93342 48.3958H61.8343C62.4954 48.3958 63.0547 48.1416 63.5124 47.7348L44.1894 32.7849L43.5283 33.4968Z\" fill=\"#F5B608\"/>\n<path d=\"M64.3765 10.7161L44.1891 32.7341L43.528 33.4968C42.5619 34.5647 41.189 35.124 39.7652 35.124H30.002C28.5782 35.124 27.2052 34.5138 26.2391 33.4968L25.578 32.7849L5.39062 10.7161H64.3765Z\" fill=\"#FFDE7A\"/>\n</g>\n<rect x=\"13.0835\" y=\"47.7449\" width=\"43.9126\" height=\"4.87918\" fill=\"#8CABFF\"/>\n<path d=\"M59.4354 37.9863L52.1166 52.6239H17.9624L10.6436 37.9863H0.885254V64.8218C0.885254 67.5165 3.06974 69.701 5.76443 69.701H64.3145C67.0092 69.701 69.1937 67.5165 69.1937 64.8218V37.9863H59.4354Z\" fill=\"#668BFF\"/>\n<path d=\"M10.6436 37.9864H5.76443V23.3489H3.32484C1.97749 23.3489 0.885254 24.4411 0.885254 25.7885V40.426C0.885254 41.7733 1.97749 42.8656 3.32484 42.8656H13.0832L10.6436 37.9864Z\" fill=\"#8CABFF\"/>\n<path d=\"M59.4357 37.9864H64.3149V23.3489H66.7544C68.1018 23.3489 69.194 24.4411 69.194 25.7885V40.426C69.194 41.7733 68.1018 42.8656 66.7544 42.8656H56.9961L59.4357 37.9864Z\" fill=\"#8CABFF\"/>\n<path d=\"M59.1032 54.5231C60.7374 51.5626 64.9926 51.5626 66.6268 54.5231L74.8089 69.3457C76.3897 72.2095 74.3182 75.7191 71.047 75.7191H54.6829C51.4118 75.7191 49.3403 72.2095 50.9211 69.3457L59.1032 54.5231Z\" fill=\"#FDD20A\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M62.1235 58.5312C61.6767 58.5312 61.3209 58.9053 61.3433 59.3515L61.6558 65.6015C61.6765 66.0173 62.0197 66.3438 62.436 66.3438H63.2935C63.7098 66.3438 64.0529 66.0173 64.0737 65.6015L64.3862 59.3515C64.4085 58.9053 64.0528 58.5312 63.606 58.5312H62.1235ZM62.8647 71.0312C63.7277 71.0312 64.4272 70.3317 64.4272 69.4688C64.4272 68.6058 63.7277 67.9062 62.8647 67.9062C62.0018 67.9062 61.3022 68.6058 61.3022 69.4688C61.3022 70.3317 62.0018 71.0312 62.8647 71.0312Z\" fill=\"black\" fill-opacity=\"0.8\"/>\n<defs>\n<clipPath id=\"clip0_273_32068\">\n<rect x=\"14.147\" y=\"0.71875\" width=\"41.4739\" height=\"26.4932\" rx=\"2.99924\" fill=\"white\"/>\n</clipPath>\n<clipPath id=\"clip1_273_32068\">\n<rect x=\"8.66943\" y=\"5.71753\" width=\"52.4293\" height=\"33.4915\" rx=\"2.99924\" fill=\"white\"/>\n</clipPath>\n<clipPath id=\"clip2_273_32068\">\n<rect x=\"5.39062\" y=\"10.7161\" width=\"58.9859\" height=\"37.6798\" rx=\"2.99924\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n"])));
+  return (0, _raw["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<svg width=\"76\" height=\"78\" viewBox=\"0 0 76 78\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_273_32068)\">\n<path d=\"M55.0125 26.7115C55.3701 26.3897 55.6204 25.9249 55.6204 25.3886V0.71875L41.4263 16.2L55.0125 26.7115Z\" fill=\"#F9BE1A\"/>\n<path d=\"M14.147 0.71875V25.3886C14.147 25.9249 14.3972 26.3897 14.7548 26.7115L28.3411 16.2L14.147 0.71875Z\" fill=\"#F9BE1A\"/>\n<path d=\"M40.9621 16.7361C40.2828 17.487 39.3175 17.8803 38.3164 17.8803H31.4517C30.4506 17.8803 29.4853 17.4512 28.806 16.7361L28.3412 16.2356L14.7549 26.7471C15.0767 27.0331 15.47 27.2119 15.9347 27.2119H53.8333C54.2981 27.2119 54.6914 27.0331 55.0132 26.7471L41.4269 16.2356L40.9621 16.7361Z\" fill=\"#F9BE1A\"/>\n<path d=\"M55.6209 0.71875L41.4268 16.2L40.962 16.7363C40.2827 17.4871 39.3174 17.8804 38.3163 17.8804H31.4516C30.4505 17.8804 29.4852 17.4513 28.8059 16.7363L28.3411 16.2357L14.147 0.71875H55.6209Z\" fill=\"#F9BE1A\"/>\n</g>\n<g clip-path=\"url(#clip1_273_32068)\">\n<path d=\"M60.3304 38.5762C60.7824 38.1695 61.0987 37.5819 61.0987 36.9039V5.71753L43.1553 25.2881L60.3304 38.5762Z\" fill=\"#FFCC33\"/>\n<path d=\"M8.66943 5.71753V36.9039C8.66943 37.5819 8.98582 38.1695 9.43779 38.5762L26.6129 25.2881L8.66943 5.71753Z\" fill=\"#FFCC33\"/>\n<path d=\"M42.5679 25.966C41.7091 26.9152 40.4888 27.4123 39.2233 27.4123H30.5453C29.2798 27.4123 28.0594 26.87 27.2007 25.966L26.6131 25.3333L9.43799 38.6214C9.84477 38.983 10.3419 39.2089 10.9295 39.2089H58.839C59.4266 39.2089 59.9238 38.983 60.3306 38.6214L43.1555 25.3333L42.5679 25.966Z\" fill=\"#FFCC33\"/>\n<path d=\"M61.0987 5.71753L43.1553 25.2881L42.5677 25.9661C41.7089 26.9152 40.4886 27.4124 39.2231 27.4124H30.5451C29.2796 27.4124 28.0592 26.87 27.2005 25.9661L26.6129 25.3333L8.66943 5.71753H61.0987Z\" fill=\"#FFCC33\"/>\n</g>\n<g clip-path=\"url(#clip2_273_32068)\">\n<path d=\"M63.5124 47.6839C64.0209 47.2263 64.3769 46.5652 64.3769 45.8025V10.7161L44.1895 32.7341L63.5124 47.6839Z\" fill=\"#FDD20A\"/>\n<path d=\"M5.39062 10.7161V45.8025C5.39062 46.5652 5.74657 47.2263 6.25507 47.6839L25.578 32.7341L5.39062 10.7161Z\" fill=\"#FDD20A\"/>\n<path d=\"M43.5283 33.4968C42.5622 34.5647 41.1892 35.124 39.7654 35.124H30.0023C28.5785 35.124 27.2055 34.5138 26.2394 33.4968L25.5783 32.7849L6.25537 47.7348C6.71302 48.1416 7.27237 48.3958 7.93342 48.3958H61.8343C62.4954 48.3958 63.0547 48.1416 63.5124 47.7348L44.1894 32.7849L43.5283 33.4968Z\" fill=\"#F5B608\"/>\n<path d=\"M64.3765 10.7161L44.1891 32.7341L43.528 33.4968C42.5619 34.5647 41.189 35.124 39.7652 35.124H30.002C28.5782 35.124 27.2052 34.5138 26.2391 33.4968L25.578 32.7849L5.39062 10.7161H64.3765Z\" fill=\"#FFDE7A\"/>\n</g>\n<rect x=\"13.0835\" y=\"47.7449\" width=\"43.9126\" height=\"4.87918\" fill=\"#8CABFF\"/>\n<path d=\"M59.4354 37.9863L52.1166 52.6239H17.9624L10.6436 37.9863H0.885254V64.8218C0.885254 67.5165 3.06974 69.701 5.76443 69.701H64.3145C67.0092 69.701 69.1937 67.5165 69.1937 64.8218V37.9863H59.4354Z\" fill=\"#668BFF\"/>\n<path d=\"M10.6436 37.9864H5.76443V23.3489H3.32484C1.97749 23.3489 0.885254 24.4411 0.885254 25.7885V40.426C0.885254 41.7733 1.97749 42.8656 3.32484 42.8656H13.0832L10.6436 37.9864Z\" fill=\"#8CABFF\"/>\n<path d=\"M59.4357 37.9864H64.3149V23.3489H66.7544C68.1018 23.3489 69.194 24.4411 69.194 25.7885V40.426C69.194 41.7733 68.1018 42.8656 66.7544 42.8656H56.9961L59.4357 37.9864Z\" fill=\"#8CABFF\"/>\n<path d=\"M59.1032 54.5231C60.7374 51.5626 64.9926 51.5626 66.6268 54.5231L74.8089 69.3457C76.3897 72.2095 74.3182 75.7191 71.047 75.7191H54.6829C51.4118 75.7191 49.3403 72.2095 50.9211 69.3457L59.1032 54.5231Z\" fill=\"#FDD20A\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M62.1235 58.5312C61.6767 58.5312 61.3209 58.9053 61.3433 59.3515L61.6558 65.6015C61.6765 66.0173 62.0197 66.3438 62.436 66.3438H63.2935C63.7098 66.3438 64.0529 66.0173 64.0737 65.6015L64.3862 59.3515C64.4085 58.9053 64.0528 58.5312 63.606 58.5312H62.1235ZM62.8647 71.0312C63.7277 71.0312 64.4272 70.3317 64.4272 69.4688C64.4272 68.6058 63.7277 67.9062 62.8647 67.9062C62.0018 67.9062 61.3022 68.6058 61.3022 69.4688C61.3022 70.3317 62.0018 71.0312 62.8647 71.0312Z\" fill=\"black\" fill-opacity=\"0.8\"/>\n<defs>\n<clipPath id=\"clip0_273_32068\">\n<rect x=\"14.147\" y=\"0.71875\" width=\"41.4739\" height=\"26.4932\" rx=\"2.99924\" fill=\"white\"/>\n</clipPath>\n<clipPath id=\"clip1_273_32068\">\n<rect x=\"8.66943\" y=\"5.71753\" width=\"52.4293\" height=\"33.4915\" rx=\"2.99924\" fill=\"white\"/>\n</clipPath>\n<clipPath id=\"clip2_273_32068\">\n<rect x=\"5.39062\" y=\"10.7161\" width=\"58.9859\" height=\"37.6798\" rx=\"2.99924\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n"])));
 }
 
-module.exports = ctaRotationView;
-module.exports.ctas = ctas;
+var _default = ctaRotationView;
+exports["default"] = _default;
 
-},{"bel":31,"bel/raw":32}],85:[function(require,module,exports){
+},{"../base/localize.es6":74,"bel":31,"bel/raw":32}],93:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = emailProtectionTemplate;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localize = require("../base/localize.es6");
 
 var _templateObject, _templateObject2, _templateObject3;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var i18n = window.DDG.base.i18n;
 /**
  * @this {any}
- * @returns {null}
+ * @returns {null|HTMLElement}
  */
-
 function emailProtectionTemplate() {
   var _this = this;
 
@@ -31018,24 +33035,22 @@ function emailProtectionTemplate() {
     return null;
   }
 
-  var text = state === 'idle' ? i18n.t('site:createNewDuckAddress.title') : i18n.t('site:createNewDuckAddressCopied.title');
+  var text = state === 'idle' ? _localize.i18n.t('site:createNewDuckAddress.title') : _localize.i18n.t('site:createNewDuckAddressCopied.title');
   var icon = state === 'idle' ? wandIcon() : checkMarkIcon();
-  return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"js-email-alias email-alias token-body-em\">\n            <button class=\"email-alias__button\"\n                    type=\"button\"\n                    data-state=", "\n                    data-test-id=\"email-alias-button\"\n                    disabled=", "\n                    onclick=", ">\n                ", "\n                <span class=\"email-alias__text\">", "</span>\n            </button>\n        </div>"])), state, state === 'added', function (e) {
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"js-email-alias email-alias token-body-em\">\n            <button class=\"email-alias__button\"\n                    type=\"button\"\n                    data-state=", "\n                    data-test-id=\"email-alias-button\"\n                    disabled=", "\n                    onclick=", ">\n                ", "\n                <span class=\"email-alias__text\">", "</span>\n            </button>\n        </div>"])), state, state === 'added', function (e) {
     return _this.copyAlias(e);
   }, icon, text);
 }
 
-module.exports = emailProtectionTemplate;
-
 function wandIcon() {
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\">\n        <path d=\"M10.4998 0.75C10.4998 0.335786 10.164 0 9.74976 0C9.33554 0 8.99976 0.335786 8.99976 0.75V3.25C8.99976 3.66421 9.33554 4 9.74976 4C10.164 4 10.4998 3.66421 10.4998 3.25V0.75Z\"/>\n        <path d=\"M10.4998 9.75C10.4998 9.33579 10.164 9 9.74976 9C9.33554 9 8.99976 9.33579 8.99976 9.75V12.25C8.99976 12.6642 9.33554 13 9.74976 13C10.164 13 10.4998 12.6642 10.4998 12.25V9.75Z\"/>\n        <path d=\"M15.9998 6.25C15.9998 6.66421 15.664 7 15.2498 7H12.7498C12.3355 7 11.9998 6.66421 11.9998 6.25C11.9998 5.83579 12.3355 5.5 12.7498 5.5H15.2498C15.664 5.5 15.9998 5.83579 15.9998 6.25Z\"/>\n        <path d=\"M6.24976 7C6.66397 7 6.99976 6.66421 6.99976 6.25C6.99976 5.83579 6.66397 5.5 6.24976 5.5H3.74976C3.33554 5.5 2.99976 5.83579 2.99976 6.25C2.99976 6.66421 3.33554 7 3.74976 7H6.24976Z\"/>\n        <path d=\"M14.2801 10.7803C13.9872 11.0732 13.5123 11.0732 13.2194 10.7803L11.4694 9.03033C11.1765 8.73744 11.1765 8.26256 11.4694 7.96967C11.7623 7.67678 12.2372 7.67678 12.5301 7.96967L14.2801 9.71967C14.573 10.0126 14.573 10.4874 14.2801 10.7803Z\"/>\n        <path d=\"M6.71942 4.28033C7.01231 4.57322 7.48719 4.57322 7.78008 4.28033C8.07297 3.98744 8.07297 3.51256 7.78008 3.21967L6.03008 1.46967C5.73719 1.17678 5.26231 1.17678 4.96942 1.46967C4.67653 1.76256 4.67653 2.23744 4.96942 2.53033L6.71942 4.28033Z\"/>\n        <path d=\"M11.4694 4.53032C11.1765 4.23743 11.1765 3.76256 11.4694 3.46966L13.2194 1.71966C13.5123 1.42677 13.9872 1.42677 14.2801 1.71966C14.573 2.01256 14.573 2.48743 14.2801 2.78032L12.5301 4.53032C12.2372 4.82322 11.7623 4.82322 11.4694 4.53032Z\"/>\n        <path d=\"M2.28296 12.658L9.24784 5.69307C9.54074 5.40018 10.0156 5.40018 10.3085 5.69307V5.69307C10.6014 5.98597 10.6014 6.46084 10.3085 6.75373L3.34362 13.7186L2.28296 12.658Z\"/>\n        <path d=\"M0.243221 15.7588C-0.0496725 15.466 -0.0496726 14.9911 0.243221 14.6982L1.75195 13.1895L2.81261 14.2501L1.30388 15.7588C1.01099 16.0517 0.536114 16.0517 0.243221 15.7588V15.7588Z\"/>\n    </svg>"])));
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\">\n        <path d=\"M10.4998 0.75C10.4998 0.335786 10.164 0 9.74976 0C9.33554 0 8.99976 0.335786 8.99976 0.75V3.25C8.99976 3.66421 9.33554 4 9.74976 4C10.164 4 10.4998 3.66421 10.4998 3.25V0.75Z\"/>\n        <path d=\"M10.4998 9.75C10.4998 9.33579 10.164 9 9.74976 9C9.33554 9 8.99976 9.33579 8.99976 9.75V12.25C8.99976 12.6642 9.33554 13 9.74976 13C10.164 13 10.4998 12.6642 10.4998 12.25V9.75Z\"/>\n        <path d=\"M15.9998 6.25C15.9998 6.66421 15.664 7 15.2498 7H12.7498C12.3355 7 11.9998 6.66421 11.9998 6.25C11.9998 5.83579 12.3355 5.5 12.7498 5.5H15.2498C15.664 5.5 15.9998 5.83579 15.9998 6.25Z\"/>\n        <path d=\"M6.24976 7C6.66397 7 6.99976 6.66421 6.99976 6.25C6.99976 5.83579 6.66397 5.5 6.24976 5.5H3.74976C3.33554 5.5 2.99976 5.83579 2.99976 6.25C2.99976 6.66421 3.33554 7 3.74976 7H6.24976Z\"/>\n        <path d=\"M14.2801 10.7803C13.9872 11.0732 13.5123 11.0732 13.2194 10.7803L11.4694 9.03033C11.1765 8.73744 11.1765 8.26256 11.4694 7.96967C11.7623 7.67678 12.2372 7.67678 12.5301 7.96967L14.2801 9.71967C14.573 10.0126 14.573 10.4874 14.2801 10.7803Z\"/>\n        <path d=\"M6.71942 4.28033C7.01231 4.57322 7.48719 4.57322 7.78008 4.28033C8.07297 3.98744 8.07297 3.51256 7.78008 3.21967L6.03008 1.46967C5.73719 1.17678 5.26231 1.17678 4.96942 1.46967C4.67653 1.76256 4.67653 2.23744 4.96942 2.53033L6.71942 4.28033Z\"/>\n        <path d=\"M11.4694 4.53032C11.1765 4.23743 11.1765 3.76256 11.4694 3.46966L13.2194 1.71966C13.5123 1.42677 13.9872 1.42677 14.2801 1.71966C14.573 2.01256 14.573 2.48743 14.2801 2.78032L12.5301 4.53032C12.2372 4.82322 11.7623 4.82322 11.4694 4.53032Z\"/>\n        <path d=\"M2.28296 12.658L9.24784 5.69307C9.54074 5.40018 10.0156 5.40018 10.3085 5.69307V5.69307C10.6014 5.98597 10.6014 6.46084 10.3085 6.75373L3.34362 13.7186L2.28296 12.658Z\"/>\n        <path d=\"M0.243221 15.7588C-0.0496725 15.466 -0.0496726 14.9911 0.243221 14.6982L1.75195 13.1895L2.81261 14.2501L1.30388 15.7588C1.01099 16.0517 0.536114 16.0517 0.243221 15.7588V15.7588Z\"/>\n    </svg>"])));
 }
 
 function checkMarkIcon() {
-  return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\">\n        <path d=\"M11.809 6.2501C12.0851 5.94141 12.0588 5.46727 11.7501 5.19108C11.4414 4.91488 10.9673 4.94122 10.6911 5.24991L7.0255 9.34675L5.33049 7.27508C5.06819 6.9545 4.59568 6.90724 4.27509 7.16954C3.95451 7.43183 3.90726 7.90435 4.16955 8.22494L6.41955 10.9749C6.55833 11.1446 6.76436 11.245 6.98346 11.2498C7.20256 11.2547 7.41282 11.1634 7.55895 11.0001L11.809 6.2501Z\" />\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8Z\" />\n    </svg>"])));
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\">\n        <path d=\"M11.809 6.2501C12.0851 5.94141 12.0588 5.46727 11.7501 5.19108C11.4414 4.91488 10.9673 4.94122 10.6911 5.24991L7.0255 9.34675L5.33049 7.27508C5.06819 6.9545 4.59568 6.90724 4.27509 7.16954C3.95451 7.43183 3.90726 7.90435 4.16955 8.22494L6.41955 10.9749C6.55833 11.1446 6.76436 11.245 6.98346 11.2498C7.20256 11.2547 7.41282 11.1634 7.55895 11.0001L11.809 6.2501Z\" />\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8Z\" />\n    </svg>"])));
 }
 
-},{"bel":31}],86:[function(require,module,exports){
+},{"../base/localize.es6":74,"bel":31}],94:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31043,45 +33058,36 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.nonTrackersTemplate = nonTrackersTemplate;
 
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localizeEs = require("../base/localize.es6.js");
+
+var _requestDetails = require("../../browser/utils/request-details");
+
+var _heroEs = _interopRequireDefault(require("./shared/hero.es6.js"));
+
+var _trackerNetworks = require("./tracker-networks.es6");
+
+var _thirdpartyText2 = require("./shared/thirdparty-text.es6");
+
+var _aboutLink = require("./shared/about-link");
+
+var _platformLimitations = require("./shared/platform-limitations");
+
 var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var hero = require('./shared/hero.es6.js');
-
-var _require = require('./tracker-networks.es6'),
-    renderSections = _require.renderSections;
-
-var _require2 = require('./shared/thirdparty-text.es6'),
-    thirdpartySummary = _require2.thirdpartySummary,
-    thirdpartyHeroIcon = _require2.thirdpartyHeroIcon,
-    thirdpartyText = _require2.thirdpartyText;
-
-var _require3 = require('./shared/about-link'),
-    aboutLink = _require3.aboutLink,
-    adAttributionLink = _require3.adAttributionLink;
-
-var _require4 = require('../base/localize.es6.js'),
-    ns = _require4.ns;
-
-var _require5 = require('../../browser/utils/request-details'),
-    states = _require5.states;
-
-var _require6 = require('./shared/platform-limitations'),
-    platformLimitations = _require6.platformLimitations;
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
-
-
 function nonTrackersTemplate() {
   if (!this.model) {
-    return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
   }
 
-  var summary = thirdpartySummary(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"tracker-networks site-info card\" data-test-id=\"non-tracker-list-view\">\n        <div class=\"js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"tracker-networks__explainer text--center\">\n            <p data-test-id=\"thirdPartySubView.summary\" class=\"token-title-3\">", "</p>\n            <p>", "</p>\n        </div>\n        <div class=\"tracker-networks__details padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderHero(this.model.site), summary, aboutLink(), renderNonTrackerDetails(this.model.site), this.model.site.tab.platformLimitations ? platformLimitations() : null);
+  var summary = (0, _thirdpartyText2.thirdpartySummary)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"tracker-networks site-info card\" data-test-id=\"non-tracker-list-view\">\n        <div class=\"js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"tracker-networks__explainer text--center\">\n            <p data-test-id=\"thirdPartySubView.summary\" class=\"token-title-3\">", "</p>\n            <p>", "</p>\n        </div>\n        <div class=\"tracker-networks__details padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderHero(this.model.site), summary, (0, _aboutLink.aboutLink)(), renderNonTrackerDetails(this.model.site), this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
@@ -31089,12 +33095,12 @@ function nonTrackersTemplate() {
 
 
 function renderHero(site) {
-  var _thirdpartyText = thirdpartyText(site.tab.requestDetails, site.protectionsEnabled),
+  var _thirdpartyText = (0, _thirdpartyText2.thirdpartyText)(site.tab.requestDetails, site.protectionsEnabled),
       title = _thirdpartyText.title;
 
-  var icon = thirdpartyHeroIcon(site.tab.requestDetails, site.protectionsEnabled);
+  var icon = (0, _thirdpartyText2.thirdpartyHeroIcon)(site.tab.requestDetails, site.protectionsEnabled);
   console.log('icon', icon);
-  return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["", ""])), hero({
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["", ""])), (0, _heroEs["default"])({
     status: icon,
     title: title,
     showClose: true
@@ -31107,10 +33113,10 @@ function renderHero(site) {
 
 function renderNonTrackerDetails(site) {
   var requestDetails = site.tab.requestDetails;
-  var onlyAllowedNonTrackers = requestDetails.matches(site.protectionsEnabled, [states.protectionsOn_allowedNonTrackers, states.protectionsOff_allowedNonTrackers, states.protectionsOn_blocked_allowedNonTrackers]); // when protections are protectionsOff, we just show every request
+  var onlyAllowedNonTrackers = requestDetails.matches(site.protectionsEnabled, [_requestDetails.states.protectionsOn_allowedNonTrackers, _requestDetails.states.protectionsOff_allowedNonTrackers, _requestDetails.states.protectionsOn_blocked_allowedNonTrackers]); // when protections are protectionsOff, we just show every request
 
   if (!site.protectionsEnabled) {
-    return renderSections([{
+    return (0, _trackerNetworks.renderSections)([{
       name: 'protectionsDisabled',
       heading: function heading() {
         return null;
@@ -31121,24 +33127,24 @@ function renderNonTrackerDetails(site) {
   } // when protections are ON, render all sections
 
 
-  return renderSections([{
+  return (0, _trackerNetworks.renderSections)([{
     name: 'adAttribution',
     heading: function heading() {
-      return bel(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    <p class=\"padded--top-half\">", "</p>\n                </div>\n                "])), ns.site('sectionHeadingAdAttribution.title', {
+      return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    <p class=\"padded--top-half\">", "</p>\n                </div>\n                "])), _localizeEs.ns.site('sectionHeadingAdAttribution.title', {
         domain: site.tab.domain
-      }), adAttributionLink());
+      }), (0, _aboutLink.adAttributionLink)());
     },
     companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence()
   }, {
     name: 'ignored (rule exceptions)',
     heading: function heading() {
-      return ns.site('sectionHeadingIgnore.title');
+      return _localizeEs.ns.site('sectionHeadingIgnore.title');
     },
     companies: requestDetails.allowed.ruleException.sortedByPrevalence()
   }, {
     name: 'firstParty',
     heading: function heading() {
-      return ns.site('sectionHeadingFirstParty.title', {
+      return _localizeEs.ns.site('sectionHeadingFirstParty.title', {
         domain: site.tab.domain
       });
     },
@@ -31151,29 +33157,35 @@ function renderNonTrackerDetails(site) {
         return null;
       }
 
-      return ns.site('sectionHeadingThirdParty.title');
+      return _localizeEs.ns.site('sectionHeadingThirdParty.title');
     },
     companies: requestDetails.allowed.otherThirdPartyRequest.sortedByPrevalence(),
     bordered: onlyAllowedNonTrackers
   }]);
 }
 
-},{"../../browser/utils/request-details":63,"../base/localize.es6.js":66,"./shared/about-link":89,"./shared/hero.es6.js":90,"./shared/platform-limitations":91,"./shared/thirdparty-text.es6":93,"./tracker-networks.es6":98,"bel":31}],87:[function(require,module,exports){
+},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./shared/about-link":97,"./shared/hero.es6.js":98,"./shared/platform-limitations":99,"./shared/thirdparty-text.es6":101,"./tracker-networks.es6":106,"bel":31}],95:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localizeEs = require("../base/localize.es6.js");
+
+var _heroEs = _interopRequireDefault(require("./shared/hero.es6.js"));
+
+var _aboutLink = require("./shared/about-link.js");
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var hero = require('./shared/hero.es6.js');
-
-var _require = require('./shared/about-link.js'),
-    aboutLink = _require.aboutLink;
-
-var i18n = window.DDG.base.i18n;
 /**
  * @this {{
  *  model: {
@@ -31182,24 +33194,23 @@ var i18n = window.DDG.base.i18n;
  *   }
  * }}
  */
-
-module.exports = function () {
+function _default() {
   if (!this.model) {
-    return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
   }
 
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"tracker-networks site-info card\">\n        <div class=\"js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"tracker-networks__explainer text--center\">\n            <p class=\"token-title-3\">", "</p>\n            <p>\n                ", "\n            </p>\n        </div>\n        ", "\n    </div>"])), renderHero(this.model.site), renderConnectionDescription(this.model.site), aboutLink(), renderCertificateDetails(this.model.site, this.model.tab));
-};
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"tracker-networks site-info card\">\n        <div class=\"js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"tracker-networks__explainer text--center\">\n            <p class=\"token-title-3\">", "</p>\n            <p>\n                ", "\n            </p>\n        </div>\n        ", "\n    </div>"])), renderHero(this.model.site), renderConnectionDescription(this.model.site), (0, _aboutLink.aboutLink)(), renderCertificateDetails(this.model.site, this.model.tab));
+}
 
 function getKeyUsage(key) {
   var capabilities = {
-    canEncrypt: i18n.t('connection:encrypt.title'),
-    canDecrypt: i18n.t('connection:decrypt.title'),
-    canSign: i18n.t('connection:sign.title'),
-    canVerify: i18n.t('connection:verify.title'),
-    canDerive: i18n.t('connection:derive.title'),
-    canWrap: i18n.t('connection:wrap.title'),
-    canUnwrap: i18n.t('connection:unwrap.title')
+    canEncrypt: _localizeEs.i18n.t('connection:encrypt.title'),
+    canDecrypt: _localizeEs.i18n.t('connection:decrypt.title'),
+    canSign: _localizeEs.i18n.t('connection:sign.title'),
+    canVerify: _localizeEs.i18n.t('connection:verify.title'),
+    canDerive: _localizeEs.i18n.t('connection:derive.title'),
+    canWrap: _localizeEs.i18n.t('connection:wrap.title'),
+    canUnwrap: _localizeEs.i18n.t('connection:unwrap.title')
   };
   return Object.keys(capabilities).reduce(function (usage, capability) {
     if (!key[capability]) return usage;
@@ -31215,43 +33226,43 @@ function getKeyUsage(key) {
 function renderCertificateDetails(site, tab) {
   if (site.httpsState === 'none' || !tab.certificate || tab.certificate.length === 0) return '';
   var certificate = tab.certificate[0];
-  return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"padded-sides\">\n                ", "\n            </div>\n            <div class=\"page-connection__certificate\">\n                <div class=\"page-connection__certificate-details\">\n                    <h3 class=\"token-body-em\">", "</h3>\n                    <div>\n                        <span>", "</span>\n                        <span class=\"page-connection__certificate-value\">", "</span>\n                    </div>\n                    ", "\n                </div>\n                ", "\n            </div>\n        </div>\n    "])), renderHeader(site, tab), i18n.t('connection:certificateDetail.title'), i18n.t('connection:commonName.title'), certificate.commonName, renderCertificateSummary(certificate), renderPublicKeyDetails(certificate));
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"padded-sides\">\n                ", "\n            </div>\n            <div class=\"page-connection__certificate\">\n                <div class=\"page-connection__certificate-details\">\n                    <h3 class=\"token-body-em\">", "</h3>\n                    <div>\n                        <span>", "</span>\n                        <span class=\"page-connection__certificate-value\">", "</span>\n                    </div>\n                    ", "\n                </div>\n                ", "\n            </div>\n        </div>\n    "])), renderHeader(site, tab), _localizeEs.i18n.t('connection:certificateDetail.title'), _localizeEs.i18n.t('connection:commonName.title'), certificate.commonName, renderCertificateSummary(certificate), renderPublicKeyDetails(certificate));
 }
 
 function renderCertificateSummary(certificate) {
   if (!certificate.summary) return '';
-  return bel(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), i18n.t('connection:summary.title'), certificate.summary);
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), _localizeEs.i18n.t('connection:summary.title'), certificate.summary);
 }
 
 function renderPublicKeyDetails(certificate) {
   if (!certificate.publicKey) return '';
-  return bel(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<div class=\"page-connection__certificate-details\">\n        <h3 class=\"token-body-em\">", "</h3>\n        ", "\n        ", "\n        ", "\n        ", "\n        ", "\n    </div>"])), i18n.t('connection:publicKey.title'), renderCertificateType(certificate.publicKey), renderCertificateBitSize(certificate.publicKey), renderCertificateEffectiveSize(certificate.publicKey), renderCertificateKeyUsage(certificate.publicKey), renderCertificateIsPermanent(certificate.publicKey));
+  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<div class=\"page-connection__certificate-details\">\n        <h3 class=\"token-body-em\">", "</h3>\n        ", "\n        ", "\n        ", "\n        ", "\n        ", "\n    </div>"])), _localizeEs.i18n.t('connection:publicKey.title'), renderCertificateType(certificate.publicKey), renderCertificateBitSize(certificate.publicKey), renderCertificateEffectiveSize(certificate.publicKey), renderCertificateKeyUsage(certificate.publicKey), renderCertificateIsPermanent(certificate.publicKey));
 }
 
 function renderCertificateType(publicKey) {
   if (!publicKey.type) return '';
-  return bel(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), i18n.t('connection:algorithm.title'), publicKey.type);
+  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), _localizeEs.i18n.t('connection:algorithm.title'), publicKey.type);
 }
 
 function renderCertificateBitSize(publicKey) {
   if (!publicKey.bitSize) return '';
-  return bel(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", " bits</span>\n            </div>"])), i18n.t('connection:keySize.title'), publicKey.bitSize);
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", " bits</span>\n            </div>"])), _localizeEs.i18n.t('connection:keySize.title'), publicKey.bitSize);
 }
 
 function renderCertificateIsPermanent(publicKey) {
   if (typeof publicKey.isPermanent !== 'boolean') return '';
-  return bel(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), i18n.t('connection:permanent.title'), publicKey.isPermanent ? 'Yes' : 'No');
+  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), _localizeEs.i18n.t('connection:permanent.title'), publicKey.isPermanent ? 'Yes' : 'No');
 }
 
 function renderCertificateKeyUsage(publicKey) {
   var keyUsage = getKeyUsage(publicKey);
   if (keyUsage.length === 0) return '';
-  return bel(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), i18n.t('connection:usage.title'), keyUsage.join(', '));
+  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", "</span>\n            </div>"])), _localizeEs.i18n.t('connection:usage.title'), keyUsage.join(', '));
 }
 
 function renderCertificateEffectiveSize(publicKey) {
   if (!publicKey.effectiveSize) return '';
-  return bel(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", " bits</span>\n            </div>"])), i18n.t('connection:effectiveSize.title'), publicKey.effectiveSize);
+  return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["<div>\n                <span>", "</span>\n                <span class=\"page-connection__certificate-value\">", " bits</span>\n            </div>"])), _localizeEs.i18n.t('connection:effectiveSize.title'), publicKey.effectiveSize);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
@@ -31261,10 +33272,10 @@ function renderCertificateEffectiveSize(publicKey) {
 
 function renderHeader(site, tab) {
   if (site.httpsState === 'none') {
-    return bel(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<div class=\"section-list-header certificate-header--not-found\">\n            ", "\n        </div>"])), i18n.t('connection:certificateNotFound.title'));
+    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<div class=\"section-list-header certificate-header--not-found\">\n            ", "\n        </div>"])), _localizeEs.i18n.t('connection:certificateNotFound.title'));
   }
 
-  return bel(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<div class=\"section-list-header\">\n        ", "\n    </div>"])), i18n.t('connection:certificateForDomain.title', {
+  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<div class=\"section-list-header\">\n        ", "\n    </div>"])), _localizeEs.i18n.t('connection:certificateForDomain.title', {
     domain: tab.domain
   }));
 }
@@ -31275,14 +33286,14 @@ function renderHeader(site, tab) {
 
 function renderConnectionDescription(site) {
   if (site.httpsState === 'none') {
-    return i18n.t('connection:insecureConnectionDesc.title');
+    return _localizeEs.i18n.t('connection:insecureConnectionDesc.title');
   }
 
   if (site.httpsState === 'upgraded') {
-    return i18n.t('connection:upgradedConnectionDesc.title');
+    return _localizeEs.i18n.t('connection:upgradedConnectionDesc.title');
   }
 
-  return i18n.t('connection:secureConnectionDesc.title');
+  return _localizeEs.i18n.t('connection:secureConnectionDesc.title');
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
@@ -31290,36 +33301,42 @@ function renderConnectionDescription(site) {
 
 
 function renderHero(site) {
-  return bel(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["", ""])), hero({
+  return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["", ""])), (0, _heroEs["default"])({
     status: "connection-".concat(site.httpsState)
   }));
 }
 
-},{"./shared/about-link.js":89,"./shared/hero.es6.js":90,"bel":31}],88:[function(require,module,exports){
+},{"../base/localize.es6.js":74,"./shared/about-link.js":97,"./shared/hero.es6.js":98,"bel":31}],96:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localize = require("../base/localize.es6");
 
 var _templateObject, _templateObject2, _templateObject3;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var i18n = window.DDG.base.i18n;
-
-module.exports = function () {
-  return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    <div class=\"search token-search-input\">\n        <form class=\"search-form js-search-form\" name=\"x\" data-test-id=\"search-form\">\n            <input type=\"text\" autocomplete=\"off\" autofocus placeholder=\"", "\"\n                name=\"q\" class=\"search-form__input js-search-input\"\n                value=\"\" />\n            <button class=\"search-form__go js-search-go\" type=\"submit\" aria-label=\"", "\">\n                ", "\n            </button>\n        </form>\n        <button type=\"button\" class=\"cog-button js-search-cog-button\" aria-label=\"", "\">\n        ", "\n        </button>\n    </div>\n    "])), i18n.t('site:searchPlaceholder.title'), i18n.t('site:searchGoButton.title'), loupeIcon(), i18n.t('site:optionsButton.title'), cogIcon());
-};
+function _default() {
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    <div class=\"search token-search-input\">\n        <form class=\"search-form js-search-form\" name=\"x\" data-test-id=\"search-form\">\n            <input type=\"text\" autocomplete=\"off\" autofocus placeholder=\"", "\"\n                name=\"q\" class=\"search-form__input js-search-input\"\n                value=\"\" />\n            <button class=\"search-form__go js-search-go\" type=\"submit\" aria-label=\"", "\">\n                ", "\n            </button>\n        </form>\n        <button type=\"button\" class=\"cog-button js-search-cog-button\" aria-label=\"", "\">\n        ", "\n        </button>\n    </div>\n    "])), _localize.i18n.t('site:searchPlaceholder.title'), _localize.i18n.t('site:searchGoButton.title'), loupeIcon(), _localize.i18n.t('site:optionsButton.title'), cogIcon());
+}
 
 function loupeIcon() {
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n    <rect class=\"loupe-handle\" x=\"11.5\" y=\"12.9142\" width=\"2\" height=\"6\" rx=\"1\" transform=\"rotate(-45 11.5 12.9142)\" />\n    <path class=\"loupe-glass\" d=\"M12.6976 5.27292C14.7478 7.32317 14.7478 10.6473 12.6976 12.6975C10.6473 14.7478 7.32322 14.7478 5.27297 12.6975C3.22272 10.6473 3.22272 7.32317 5.27297 5.27292C7.32322 3.22267 10.6473 3.22267 12.6976 5.27292Z\"\n          stroke-width=\"1.5\"/>\n</svg>"])));
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n    <rect class=\"loupe-handle\" x=\"11.5\" y=\"12.9142\" width=\"2\" height=\"6\" rx=\"1\" transform=\"rotate(-45 11.5 12.9142)\" />\n    <path class=\"loupe-glass\" d=\"M12.6976 5.27292C14.7478 7.32317 14.7478 10.6473 12.6976 12.6975C10.6473 14.7478 7.32322 14.7478 5.27297 12.6975C3.22272 10.6473 3.22272 7.32317 5.27297 5.27292C7.32322 3.22267 10.6473 3.22267 12.6976 5.27292Z\"\n          stroke-width=\"1.5\"/>\n</svg>"])));
 }
 
 function cogIcon() {
-  return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n    <path class=\"settings-cog\" fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M3.43351 13.1462C3.06364 14.0391 3.48767 15.0628 4.3806 15.4327L5.30448 15.8154C6.19741 16.1853 7.2211 15.7612 7.59096 14.8683L7.84778 14.2483C7.89842 14.2495 7.94918 14.2501 8.00007 14.2501C8.05068 14.2501 8.10118 14.2495 8.15154 14.2483L8.40831 14.8682C8.77818 15.7611 9.80187 16.1852 10.6948 15.8153L11.6187 15.4326C12.5116 15.0628 12.9356 14.0391 12.5658 13.1461L12.3093 12.527C12.3828 12.457 12.4546 12.3853 12.5247 12.3118L13.1437 12.5682C14.0366 12.9381 15.0603 12.514 15.4302 11.6211L15.8129 10.6972C16.1827 9.8043 15.7587 8.7806 14.8658 8.41074L14.2482 8.15493C14.2494 8.10345 14.2501 8.05185 14.2501 8.00011C14.2501 7.94964 14.2495 7.89928 14.2483 7.84905L14.8659 7.59324C15.7588 7.22337 16.1828 6.19968 15.8129 5.30675L15.4303 4.38287C15.0604 3.48994 14.0367 3.06592 13.1438 3.43578L12.5273 3.69115C12.4568 3.61712 12.3845 3.54482 12.3105 3.47432L12.5658 2.85787C12.9357 1.96494 12.5117 0.94124 11.6188 0.571378L10.6949 0.188694C9.80195 -0.181168 8.77825 0.242858 8.40839 1.13579L8.15316 1.75196C8.10226 1.75073 8.05122 1.75011 8.00007 1.75011C7.94864 1.75011 7.89734 1.75074 7.84616 1.75198L7.59089 1.13569C7.22102 0.242766 6.19733 -0.181263 5.3044 0.1886L4.38052 0.571284C3.4876 0.941146 3.06357 1.96484 3.43343 2.85777L3.68905 3.47488C3.61513 3.54532 3.54293 3.61755 3.47254 3.69151L2.85533 3.43585C1.9624 3.06599 0.938705 3.49002 0.568843 4.38295L0.186159 5.30683C-0.183704 6.19975 0.240324 7.22345 1.13325 7.59331L1.75185 7.84955C1.75067 7.89961 1.75007 7.9498 1.75007 8.00011C1.75007 8.05168 1.7507 8.10312 1.75194 8.15443L1.13335 8.41066C0.240417 8.78052 -0.18361 9.80422 0.186252 10.6971L0.568936 11.621C0.938798 12.514 1.96249 12.938 2.85542 12.5681L3.47512 12.3114C3.54507 12.3848 3.6168 12.4565 3.69022 12.5265L3.43351 13.1462ZM1.61161 6.43846C1.35648 6.33279 1.23533 6.0403 1.34101 5.78518L1.72369 4.8613C1.82937 4.60618 2.12185 4.48503 2.37697 4.5907L3.47809 5.0468C3.69752 5.13769 3.94855 5.05988 4.09713 4.87459C4.32641 4.58865 4.58647 4.32845 4.87227 4.099C5.05738 3.95039 5.13507 3.69948 5.04422 3.48016L4.58828 2.37941C4.4826 2.12429 4.60375 1.83181 4.85888 1.72613L5.78276 1.34345C6.03788 1.23777 6.33036 1.35893 6.43604 1.61405L6.89159 2.71385C6.98246 2.93322 7.21488 3.05571 7.45092 3.02993C7.63126 3.01022 7.81448 3.00011 8.00007 3.00011C8.18541 3.00011 8.3684 3.0102 8.54851 3.02985C8.78452 3.0556 9.01691 2.93311 9.10776 2.71377L9.56324 1.61414C9.66891 1.35902 9.9614 1.23787 10.2165 1.34354L11.1404 1.72623C11.3955 1.8319 11.5167 2.12439 11.411 2.37951L10.9553 3.47967C10.8644 3.69901 10.9422 3.94995 11.1273 4.09856C11.4132 4.32802 11.6734 4.58826 11.9027 4.87425C12.0513 5.05952 12.3023 5.13731 12.5217 5.04642L13.6221 4.59063C13.8773 4.48495 14.1697 4.6061 14.2754 4.86122L14.6581 5.7851C14.7638 6.04023 14.6426 6.33271 14.3875 6.43839L13.2866 6.89438C13.0674 6.98521 12.9449 7.21748 12.9705 7.45343C12.99 7.63298 13.0001 7.81537 13.0001 8.00011C13.0001 8.18597 12.9899 8.36945 12.9702 8.55005C12.9443 8.78611 13.0668 9.01859 13.2862 9.10947L14.3874 9.56559C14.6425 9.67126 14.7637 9.96375 14.658 10.2189L14.2753 11.1427C14.1696 11.3979 13.8772 11.519 13.622 11.4133L12.5195 10.9566C12.3002 10.8658 12.0493 10.9435 11.9007 11.1285C11.6715 11.4139 11.4117 11.6736 11.1262 11.9026C10.941 12.0511 10.8632 12.3021 10.9541 12.5215L11.4109 13.6245C11.5166 13.8796 11.3954 14.1721 11.1403 14.2778L10.2164 14.6604C9.96132 14.7661 9.66884 14.645 9.56316 14.3898L9.1062 13.2866C9.01536 13.0673 8.78307 12.9449 8.54711 12.9705C8.36745 12.9901 8.18493 13.0001 8.00007 13.0001C7.81497 13.0001 7.63221 12.9901 7.45233 12.9705C7.21634 12.9447 6.984 13.0672 6.89316 13.2865L6.43611 14.3899C6.33044 14.6451 6.03796 14.7662 5.78283 14.6605L4.85895 14.2779C4.60383 14.1722 4.48268 13.8797 4.58836 13.6246L5.04545 12.521C5.13632 12.3017 5.05857 12.0507 4.87337 11.9021C4.58799 11.6731 4.32826 11.4135 4.09918 11.1282C3.95057 10.9431 3.69967 10.8654 3.48037 10.9563L2.37707 11.4133C2.12194 11.5189 1.82946 11.3978 1.72379 11.1427L1.3411 10.2188C1.23543 9.96367 1.35658 9.67119 1.6117 9.56551L2.71385 9.10898C2.93323 9.01811 3.05572 8.78566 3.02992 8.54962C3.01019 8.36916 3.00007 8.18582 3.00007 8.00011C3.00007 7.81552 3.01007 7.63327 3.02957 7.45386C3.0552 7.21793 2.93271 6.98568 2.71345 6.89486L1.61161 6.43846ZM6.12508 8.00008C6.12508 6.96455 6.96455 6.12508 8.00008 6.12508C9.03562 6.12508 9.87508 6.96455 9.87508 8.00008C9.87508 9.03562 9.03562 9.87508 8.00008 9.87508C6.96455 9.87508 6.12508 9.03562 6.12508 8.00008ZM8.00008 4.87508C6.27419 4.87508 4.87508 6.27419 4.87508 8.00008C4.87508 9.72597 6.27419 11.1251 8.00008 11.1251C9.72597 11.1251 11.1251 9.72597 11.1251 8.00008C11.1251 6.27419 9.72597 4.87508 8.00008 4.87508Z\"\n         fill-opacity=\"0.8\"\n     />\n</svg>\n"])));
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n    <path class=\"settings-cog\" fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M3.43351 13.1462C3.06364 14.0391 3.48767 15.0628 4.3806 15.4327L5.30448 15.8154C6.19741 16.1853 7.2211 15.7612 7.59096 14.8683L7.84778 14.2483C7.89842 14.2495 7.94918 14.2501 8.00007 14.2501C8.05068 14.2501 8.10118 14.2495 8.15154 14.2483L8.40831 14.8682C8.77818 15.7611 9.80187 16.1852 10.6948 15.8153L11.6187 15.4326C12.5116 15.0628 12.9356 14.0391 12.5658 13.1461L12.3093 12.527C12.3828 12.457 12.4546 12.3853 12.5247 12.3118L13.1437 12.5682C14.0366 12.9381 15.0603 12.514 15.4302 11.6211L15.8129 10.6972C16.1827 9.8043 15.7587 8.7806 14.8658 8.41074L14.2482 8.15493C14.2494 8.10345 14.2501 8.05185 14.2501 8.00011C14.2501 7.94964 14.2495 7.89928 14.2483 7.84905L14.8659 7.59324C15.7588 7.22337 16.1828 6.19968 15.8129 5.30675L15.4303 4.38287C15.0604 3.48994 14.0367 3.06592 13.1438 3.43578L12.5273 3.69115C12.4568 3.61712 12.3845 3.54482 12.3105 3.47432L12.5658 2.85787C12.9357 1.96494 12.5117 0.94124 11.6188 0.571378L10.6949 0.188694C9.80195 -0.181168 8.77825 0.242858 8.40839 1.13579L8.15316 1.75196C8.10226 1.75073 8.05122 1.75011 8.00007 1.75011C7.94864 1.75011 7.89734 1.75074 7.84616 1.75198L7.59089 1.13569C7.22102 0.242766 6.19733 -0.181263 5.3044 0.1886L4.38052 0.571284C3.4876 0.941146 3.06357 1.96484 3.43343 2.85777L3.68905 3.47488C3.61513 3.54532 3.54293 3.61755 3.47254 3.69151L2.85533 3.43585C1.9624 3.06599 0.938705 3.49002 0.568843 4.38295L0.186159 5.30683C-0.183704 6.19975 0.240324 7.22345 1.13325 7.59331L1.75185 7.84955C1.75067 7.89961 1.75007 7.9498 1.75007 8.00011C1.75007 8.05168 1.7507 8.10312 1.75194 8.15443L1.13335 8.41066C0.240417 8.78052 -0.18361 9.80422 0.186252 10.6971L0.568936 11.621C0.938798 12.514 1.96249 12.938 2.85542 12.5681L3.47512 12.3114C3.54507 12.3848 3.6168 12.4565 3.69022 12.5265L3.43351 13.1462ZM1.61161 6.43846C1.35648 6.33279 1.23533 6.0403 1.34101 5.78518L1.72369 4.8613C1.82937 4.60618 2.12185 4.48503 2.37697 4.5907L3.47809 5.0468C3.69752 5.13769 3.94855 5.05988 4.09713 4.87459C4.32641 4.58865 4.58647 4.32845 4.87227 4.099C5.05738 3.95039 5.13507 3.69948 5.04422 3.48016L4.58828 2.37941C4.4826 2.12429 4.60375 1.83181 4.85888 1.72613L5.78276 1.34345C6.03788 1.23777 6.33036 1.35893 6.43604 1.61405L6.89159 2.71385C6.98246 2.93322 7.21488 3.05571 7.45092 3.02993C7.63126 3.01022 7.81448 3.00011 8.00007 3.00011C8.18541 3.00011 8.3684 3.0102 8.54851 3.02985C8.78452 3.0556 9.01691 2.93311 9.10776 2.71377L9.56324 1.61414C9.66891 1.35902 9.9614 1.23787 10.2165 1.34354L11.1404 1.72623C11.3955 1.8319 11.5167 2.12439 11.411 2.37951L10.9553 3.47967C10.8644 3.69901 10.9422 3.94995 11.1273 4.09856C11.4132 4.32802 11.6734 4.58826 11.9027 4.87425C12.0513 5.05952 12.3023 5.13731 12.5217 5.04642L13.6221 4.59063C13.8773 4.48495 14.1697 4.6061 14.2754 4.86122L14.6581 5.7851C14.7638 6.04023 14.6426 6.33271 14.3875 6.43839L13.2866 6.89438C13.0674 6.98521 12.9449 7.21748 12.9705 7.45343C12.99 7.63298 13.0001 7.81537 13.0001 8.00011C13.0001 8.18597 12.9899 8.36945 12.9702 8.55005C12.9443 8.78611 13.0668 9.01859 13.2862 9.10947L14.3874 9.56559C14.6425 9.67126 14.7637 9.96375 14.658 10.2189L14.2753 11.1427C14.1696 11.3979 13.8772 11.519 13.622 11.4133L12.5195 10.9566C12.3002 10.8658 12.0493 10.9435 11.9007 11.1285C11.6715 11.4139 11.4117 11.6736 11.1262 11.9026C10.941 12.0511 10.8632 12.3021 10.9541 12.5215L11.4109 13.6245C11.5166 13.8796 11.3954 14.1721 11.1403 14.2778L10.2164 14.6604C9.96132 14.7661 9.66884 14.645 9.56316 14.3898L9.1062 13.2866C9.01536 13.0673 8.78307 12.9449 8.54711 12.9705C8.36745 12.9901 8.18493 13.0001 8.00007 13.0001C7.81497 13.0001 7.63221 12.9901 7.45233 12.9705C7.21634 12.9447 6.984 13.0672 6.89316 13.2865L6.43611 14.3899C6.33044 14.6451 6.03796 14.7662 5.78283 14.6605L4.85895 14.2779C4.60383 14.1722 4.48268 13.8797 4.58836 13.6246L5.04545 12.521C5.13632 12.3017 5.05857 12.0507 4.87337 11.9021C4.58799 11.6731 4.32826 11.4135 4.09918 11.1282C3.95057 10.9431 3.69967 10.8654 3.48037 10.9563L2.37707 11.4133C2.12194 11.5189 1.82946 11.3978 1.72379 11.1427L1.3411 10.2188C1.23543 9.96367 1.35658 9.67119 1.6117 9.56551L2.71385 9.10898C2.93323 9.01811 3.05572 8.78566 3.02992 8.54962C3.01019 8.36916 3.00007 8.18582 3.00007 8.00011C3.00007 7.81552 3.01007 7.63327 3.02957 7.45386C3.0552 7.21793 2.93271 6.98568 2.71345 6.89486L1.61161 6.43846ZM6.12508 8.00008C6.12508 6.96455 6.96455 6.12508 8.00008 6.12508C9.03562 6.12508 9.87508 6.96455 9.87508 8.00008C9.87508 9.03562 9.03562 9.87508 8.00008 9.87508C6.96455 9.87508 6.12508 9.03562 6.12508 8.00008ZM8.00008 4.87508C6.27419 4.87508 4.87508 6.27419 4.87508 8.00008C4.87508 9.72597 6.27419 11.1251 8.00008 11.1251C9.72597 11.1251 11.1251 9.72597 11.1251 8.00008C11.1251 6.27419 9.72597 4.87508 8.00008 4.87508Z\"\n         fill-opacity=\"0.8\"\n     />\n</svg>\n"])));
 }
 
-},{"bel":31}],89:[function(require,module,exports){
+},{"../base/localize.es6":74,"bel":31}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31328,44 +33345,51 @@ Object.defineProperty(exports, "__esModule", {
 exports.aboutLink = aboutLink;
 exports.adAttributionLink = adAttributionLink;
 
+var _bel = _interopRequireDefault(require("bel"));
+
 var _localize = require("../../base/localize.es6");
 
 var _templateObject, _templateObject2;
 
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-/** @type {any} */
-var bel = require('bel');
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 function aboutLink() {
   var text = _localize.ns.site('trackerAboutLink.title');
 
-  return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["<a class=\"about-link\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/\" target=\"_blank\">", "</a>"])), text);
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<a class=\"about-link\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/\" target=\"_blank\">", "</a>"])), text);
 }
 
 function adAttributionLink() {
   var text = _localize.ns.site('trackerAdLink.title');
 
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a class=\"ad-link\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection\" target=\"_blank\">", "</a>"])), text);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a class=\"ad-link\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection\" target=\"_blank\">", "</a>"])), text);
 }
 
-},{"../../base/localize.es6":66,"bel":31}],90:[function(require,module,exports){
+},{"../../base/localize.es6":74,"bel":31}],98:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localize = require("../../base/localize.es6");
 
 var _templateObject;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
+function _default(ops) {
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"hero-wrapper\">\n            <div class=\"hero text--center ", "\">\n                <a href=\"javascript:void(0)\"\n                    class=\"hero__close js-sliding-subview-close js-site-done link-action\"\n                    role=\"button\"\n                    aria-label=\"", "\"\n                    data-test-id=\"back-button\"\n                >\n                    <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n                </a>\n                <a href=\"javascript:void(0)\"\n                    class=\"hero__done js-sliding-subview-done js-site-done link-action\"\n                    role=\"button\"\n                >\n                    ", "\n                </a>\n            </div>\n             <div class=\"hero__icon hero__icon--", "\"></div>\n        </div>\n    "])), ops.className || '', _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'), ops.status);
+}
 
-var i18n = window.DDG.base.i18n;
-
-module.exports = function (ops) {
-  return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"hero-wrapper\">\n            <div class=\"hero text--center ", "\">\n                <a href=\"javascript:void(0)\"\n                    class=\"hero__close js-sliding-subview-close js-site-done link-action\"\n                    role=\"button\"\n                    aria-label=\"", "\"\n                    data-test-id=\"back-button\"\n                >\n                    <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n                </a>\n                <a href=\"javascript:void(0)\"\n                    class=\"hero__done js-sliding-subview-done js-site-done link-action\"\n                    role=\"button\"\n                >\n                    ", "\n                </a>\n            </div>\n             <div class=\"hero__icon hero__icon--", "\"></div>\n        </div>\n    "])), ops.className || '', i18n.t('site:navigationBack.title'), i18n.t('site:navigationBack.title'), i18n.t('site:navigationComplete.title'), ops.status);
-};
-
-},{"bel":31}],91:[function(require,module,exports){
+},{"../../base/localize.es6":74,"bel":31}],99:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31387,7 +33411,7 @@ function platformLimitations() {
   return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div class=\"padded-sides\">\n         <p class=\"platform-limitations border--top--inner\">", "</p>\n     </div>"])), _localize.ns.site('trackerLimitationsNote.title'));
 }
 
-},{"../../base/localize.es6":66,"bel":31}],92:[function(require,module,exports){
+},{"../../base/localize.es6":74,"bel":31}],100:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31395,11 +33419,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.protectionToggle = protectionToggle;
 
-var _toggleButton = require("./toggle-button.es6");
-
 var _bel = _interopRequireDefault(require("bel"));
 
+var _raw = _interopRequireDefault(require("bel/raw"));
+
 var _environmentCheck = require("../../environment-check");
+
+var _localize = require("../../base/localize.es6");
+
+var _toggleButton = require("./toggle-button.es6");
 
 var _templateObject, _templateObject2;
 
@@ -31407,12 +33435,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var raw = require('bel/raw');
-
-var i18n = window.DDG.base.i18n;
-
 var renderUpdatingSpinner = function renderUpdatingSpinner() {
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<img src=\"../img/spinner.svg\" class=\"toggle-spinner\" alt=\"", "\" />"])), i18n.t('site:updatingProtectionList.title'));
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<img src=\"../img/spinner.svg\" class=\"toggle-spinner\" alt=\"", "\" />"])), _localize.i18n.t('site:updatingProtectionList.title'));
 };
 /**
  * @param {import('../../models/site.es6').PublicSiteModel} model
@@ -31421,12 +33445,13 @@ var renderUpdatingSpinner = function renderUpdatingSpinner() {
 
 
 function protectionToggle(model) {
-  var text = i18n.t('site:protectionsEnabled.title');
+  var text = _localize.i18n.t('site:protectionsEnabled.title');
+
   var active = true;
   var disabled = false;
 
   if (!model.protectionsEnabled) {
-    text = i18n.t('site:protectionsDisabled.title');
+    text = _localize.i18n.t('site:protectionsDisabled.title');
     active = false;
   }
   /**
@@ -31443,10 +33468,10 @@ function protectionToggle(model) {
   }
 
   var protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : (0, _toggleButton.toggleButton)(active, 'js-site-toggle pull-right', disabled);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"list-wrapper site-info__protection-wrapper\" data-test-id=\"protection-toggle\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', raw(text), protectionToggle);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"list-wrapper site-info__protection-wrapper\" data-test-id=\"protection-toggle\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
 }
 
-},{"../../environment-check":74,"./toggle-button.es6":94,"bel":31,"bel/raw":32}],93:[function(require,module,exports){
+},{"../../base/localize.es6":74,"../../environment-check":82,"./toggle-button.es6":102,"bel":31,"bel/raw":32}],101:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31579,7 +33604,7 @@ function unreachable(x) {
   throw new Error("Didn't expect to get here with value " + x);
 }
 
-},{"../../../browser/utils/request-details":63,"../../base/localize.es6":66}],94:[function(require,module,exports){
+},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],102:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31587,18 +33612,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.toggleButton = toggleButton;
 
+var _bel = _interopRequireDefault(require("bel"));
+
+var _environmentCheck = require("../../environment-check");
+
 var _templateObject, _templateObject2;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var _require = require('../../environment-check'),
-    isAndroid = _require.isAndroid;
-
 var generateMaterialDesignToggle = function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
-  return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    <button\n        id=\"basic-switch\"\n        class=\"mdc-switch mdc-switch--", " ", "\"\n        type=\"button\"\n        role=\"switch\"\n        aria-checked=\"false\"\n        ", "\n    >\n        <div class=\"mdc-switch__track\"></div>\n        <div class=\"mdc-switch__handle-track\">\n            <div class=\"mdc-switch__handle\">\n            <div class=\"mdc-switch__shadow\">\n                <div class=\"mdc-elevation-overlay\"></div>\n            </div>\n            <div class=\"mdc-switch__ripple\"></div>\n            </div>\n        </div>\n        <span class=\"mdc-switch__focus-ring-wrapper\">\n            <div class=\"mdc-switch__focus-ring\"></div>\n        </span>\n    </button>\n        "])), isActiveBoolean ? 'selected' : 'unselected', klass, disabled ? 'disabled' : '');
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    <button\n        id=\"basic-switch\"\n        class=\"mdc-switch mdc-switch--", " ", "\"\n        type=\"button\"\n        role=\"switch\"\n        aria-checked=\"false\"\n        ", "\n    >\n        <div class=\"mdc-switch__track\"></div>\n        <div class=\"mdc-switch__handle-track\">\n            <div class=\"mdc-switch__handle\">\n            <div class=\"mdc-switch__shadow\">\n                <div class=\"mdc-elevation-overlay\"></div>\n            </div>\n            <div class=\"mdc-switch__ripple\"></div>\n            </div>\n        </div>\n        <span class=\"mdc-switch__focus-ring-wrapper\">\n            <div class=\"mdc-switch__focus-ring\"></div>\n        </span>\n    </button>\n        "])), isActiveBoolean ? 'selected' : 'unselected', klass, disabled ? 'disabled' : '');
 };
 /**
  * @param {boolean} isActiveBoolean
@@ -31609,14 +33634,14 @@ var generateMaterialDesignToggle = function generateMaterialDesignToggle(isActiv
 
 
 function toggleButton(isActiveBoolean, klass, disabled) {
-  if (isAndroid()) {
+  if ((0, _environmentCheck.isAndroid)()) {
     return generateMaterialDesignToggle(isActiveBoolean, klass, disabled);
   }
 
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\">\n        </div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', disabled ? 'disabled' : '');
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\">\n        </div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', disabled ? 'disabled' : '');
 }
 
-},{"../../environment-check":74,"bel":31}],95:[function(require,module,exports){
+},{"../../environment-check":82,"bel":31}],103:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31776,7 +33801,7 @@ function unreachable(x) {
   throw new Error("Didn't expect to get here with value" + x);
 }
 
-},{"../../../browser/utils/request-details":63,"../../base/localize.es6":66}],96:[function(require,module,exports){
+},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],104:[function(require,module,exports){
 "use strict";
 
 var isSiteWithOnlyOwnTrackers = function isSiteWithOnlyOwnTrackers(_ref) {
@@ -31820,58 +33845,59 @@ module.exports = {
   getColorId: getColorId
 };
 
-},{}],97:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _raw = _interopRequireDefault(require("bel/raw"));
+
+var _normalizeCompanyNameEs = require("../models/mixins/normalize-company-name.es6.js");
+
+var _localize = require("../base/localize.es6");
+
+var _heroEs = _interopRequireDefault(require("./shared/hero.es6.js"));
+
+var _trackerNetworksTextEs = require("./shared/tracker-networks-text.es6.js");
+
+var _utilsEs = require("./shared/utils.es6.js");
+
+var _protectionToggle = require("./shared/protection-toggle");
+
+var _thirdpartyText2 = require("./shared/thirdparty-text.es6");
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var raw = require('bel/raw');
-
-var _require = require('../models/mixins/normalize-company-name.es6.js'),
-    normalizeCompanyName = _require.normalizeCompanyName;
-
-var hero = require('./shared/hero.es6.js');
-
-var _require2 = require('./shared/tracker-networks-text.es6.js'),
-    trackerNetworksText = _require2.trackerNetworksText;
-
-var _require3 = require('./shared/utils.es6.js'),
-    getColorId = _require3.getColorId;
-
-var _require4 = require('./shared/protection-toggle'),
-    protectionToggle = _require4.protectionToggle;
-
-var _require5 = require('./shared/thirdparty-text.es6'),
-    thirdpartyText = _require5.thirdpartyText;
-
-var i18n = window.DDG.base.i18n;
-
 function renderHero() {
-  return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["", ""])), hero({
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["", ""])), (0, _heroEs["default"])({
     status: 'hidden'
   }));
 }
 /** @this {{model: import('../models/site.es6.js').PublicSiteModel}} */
 
 
-module.exports = function () {
+function _default() {
   var _this$model$tab;
 
   // here we'll show CTAs when the tab is disabled
   var supportsCtaScreens = Boolean((_this$model$tab = this.model.tab) === null || _this$model$tab === void 0 ? void 0 : _this$model$tab.ctaScreens);
 
   if (this.model.disabled && supportsCtaScreens) {
-    return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n            <div class=\"site-info site-info--main\">\n                ", "\n                <div class=\"list-wrapper\" id=\"cta-rotation\"></div>\n                ", "\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
+    return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n            <div class=\"site-info site-info--main\">\n                ", "\n                <div class=\"list-wrapper\" id=\"cta-rotation\"></div>\n                ", "\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
   } // console.log('this.model.tab.requestDetails.state(true)', this.model.tab.requestDetails.state(this.model.protectionsEnabled))
 
 
-  return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n    ", "\n    ", "\n    <div class=\"list-wrapper\" data-test-id=\"key-insight\">\n        <ul class=\"default-list card-list\">\n            ", "\n        </ul>\n    </div>\n    <div class=\"list-wrapper\">\n        <ul class=\"default-list card-list card-list--bordered token-body-em\" data-test-id=\"list-links\">\n            <li class=\"js-site-show-page-connection site-info__li--https-status\">\n                <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\">\n                    ", "\n                </a>\n            </li>\n            <li class=\"js-site-tracker-networks js-site-show-page-trackers site-info__li--trackers border-light--top\" data-test-id=\"tracker-list-link\">\n                <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\">\n                    ", "\n                </a>\n            </li>\n            <li class=\"js-site-show-page-non-trackers site-info__li--trackers border-light--top\" data-test-id=\"thirdparty-list-link\">\n                <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\">\n                    ", "\n                </a>\n            </li>\n            ", "\n        </ul>\n    </div>\n    ", "\n    ", "\n    <div class=\"list-wrapper card-list--last\">\n        <ul class=\"default-list\">\n            <li class=\"js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top\">\n                ", "\n            </li>\n        </ul>\n    </div>\n    ", "\n</div>"])), renderSearchWrapper(this.model), renderHero(), renderKeyInsight(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), renderCookieConsentManaged(this.model), protectionToggle(this.model), renderEmailWrapper(this.model), renderManageAllowlist(), renderManagePermissions(this.model));
-};
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n    ", "\n    ", "\n    <div class=\"list-wrapper\" data-test-id=\"key-insight\">\n        <ul class=\"default-list card-list\">\n            ", "\n        </ul>\n    </div>\n    <div class=\"list-wrapper\">\n        <ul class=\"default-list card-list card-list--bordered token-body-em\" data-test-id=\"list-links\">\n            <li class=\"js-site-show-page-connection site-info__li--https-status\">\n                <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\">\n                    ", "\n                </a>\n            </li>\n            <li class=\"js-site-tracker-networks js-site-show-page-trackers site-info__li--trackers border-light--top\" data-test-id=\"tracker-list-link\">\n                <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\">\n                    ", "\n                </a>\n            </li>\n            <li class=\"js-site-show-page-non-trackers site-info__li--trackers border-light--top\" data-test-id=\"thirdparty-list-link\">\n                <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\">\n                    ", "\n                </a>\n            </li>\n            ", "\n        </ul>\n    </div>\n    ", "\n    ", "\n    <div class=\"list-wrapper card-list--last\">\n        <ul class=\"default-list\">\n            <li class=\"js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top\">\n                ", "\n            </li>\n        </ul>\n    </div>\n    ", "\n</div>"])), renderSearchWrapper(this.model), renderHero(), renderKeyInsight(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), renderCookieConsentManaged(this.model), (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderManageAllowlist(), renderManagePermissions(this.model));
+}
 /**
 * @param {import('../models/site.es6.js').PublicSiteModel} model
 */
@@ -31881,7 +33907,7 @@ function renderSearchWrapper(model) {
   var _model$tab;
 
   if ((_model$tab = model.tab) !== null && _model$tab !== void 0 && _model$tab.search) {
-    return bel(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
+    return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
   }
 }
 /**
@@ -31893,7 +33919,7 @@ function renderEmailWrapper(model) {
   var _model$tab2;
 
   if ((_model$tab2 = model.tab) !== null && _model$tab2 !== void 0 && _model$tab2.emailProtection) {
-    return bel(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<div class=\"list-wrapper\" id=\"email-alias-container\"></div>"])));
+    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<div class=\"list-wrapper\" id=\"email-alias-container\"></div>"])));
   }
 }
 /**
@@ -31902,7 +33928,7 @@ function renderEmailWrapper(model) {
 
 
 function renderConnection(model) {
-  return bel(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<div>\n            <div class=\"site-info__trackers\">\n                <span class=\"site-info__https-status__icon is-", "\"></span>\n                <span>", "</span>\n                <span class=\"icon icon__arrow pull-right\"></span>\n            </div>\n        </div>"])), model.httpsState, model.httpsStatusText);
+  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<div>\n            <div class=\"site-info__trackers\">\n                <span class=\"site-info__https-status__icon is-", "\"></span>\n                <span>", "</span>\n                <span class=\"icon icon__arrow pull-right\"></span>\n            </div>\n        </div>"])), model.httpsState, model.httpsStatusText);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -31912,11 +33938,11 @@ function renderConnection(model) {
 function renderTrackerNetworksNew(model) {
   var isActive = !model.isAllowlisted ? 'is-active' : '';
 
-  var _trackerNetworksText = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled),
+  var _trackerNetworksText = (0, _trackerNetworksTextEs.trackerNetworksText)(model.tab.requestDetails, model.protectionsEnabled),
       title = _trackerNetworksText.title,
       icon = _trackerNetworksText.icon;
 
-  return bel(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"site-info__trackers\">\n                <span class=\"site-info__trackers-status__icon icon-", "\" data-test-id=\"trackerLink.icon\"></span>\n                <span class=\"", "\">", "</span>\n                <span class=\"icon icon__arrow pull-right\"></span>\n            </div>\n        </div>"])), icon, isActive, title);
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"site-info__trackers\">\n                <span class=\"site-info__trackers-status__icon icon-", "\" data-test-id=\"trackerLink.icon\"></span>\n                <span class=\"", "\">", "</span>\n                <span class=\"icon icon__arrow pull-right\"></span>\n            </div>\n        </div>"])), icon, isActive, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -31926,11 +33952,11 @@ function renderTrackerNetworksNew(model) {
 function renderThirdPartyNew(model) {
   var isActive = !model.isAllowlisted ? 'is-active' : '';
 
-  var _thirdpartyText = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled),
+  var _thirdpartyText = (0, _thirdpartyText2.thirdpartyText)(model.tab.requestDetails, model.protectionsEnabled),
       title = _thirdpartyText.title,
       icon = _thirdpartyText.icon;
 
-  return bel(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"site-info__trackers\">\n                <span class=\"site-info__trackers-status__icon icon-", "\" data-test-id=\"trackerLink.icon\"></span>\n                <span class=\"", "\">", "</span>\n                <span class=\"icon icon__arrow pull-right\"></span>\n            </div>\n        </div>"])), icon, isActive, title);
+  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"site-info__trackers\">\n                <span class=\"site-info__trackers-status__icon icon-", "\" data-test-id=\"trackerLink.icon\"></span>\n                <span class=\"", "\">", "</span>\n                <span class=\"icon icon__arrow pull-right\"></span>\n            </div>\n        </div>"])), icon, isActive, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -31943,23 +33969,23 @@ function renderManagePermissions(model) {
   }
 
   var localizedPerms = localizePermissions(model.permissions);
-  return bel(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<ul class=\"default-list\">\n        <li class=\"site-info__li--manage-permissions\">\n            ", "\n        </li>\n    </ul>"])), localizedPerms.map(function (_ref, index) {
+  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<ul class=\"default-list\">\n        <li class=\"site-info__li--manage-permissions\">\n            ", "\n        </li>\n    </ul>"])), localizedPerms.map(function (_ref, index) {
     var permissionId = _ref.key,
         title = _ref.title,
         permission = _ref.permission,
         options = _ref.options;
     if (!model.permissions) return ''; // todo(Shane): typescript issue
 
-    return bel(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission ", "\">\n                    <label>\n                        <div>\n                            <div class=\"site-info__page-permission__icon ", "\"></div>\n                            ", "\n                        </div>\n                        <select class=\"js-site-permission\" name=\"", "\">\n                            ", "\n                        </select>\n                    </label>\n                </div>"])), index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : '', permissionId, title, permissionId, options.map(function (_ref2) {
+    return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission ", "\">\n                    <label>\n                        <div>\n                            <div class=\"site-info__page-permission__icon ", "\"></div>\n                            ", "\n                        </div>\n                        <select class=\"js-site-permission\" name=\"", "\">\n                            ", "\n                        </select>\n                    </label>\n                </div>"])), index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : '', permissionId, title, permissionId, options.map(function (_ref2) {
       var id = _ref2.id,
           title = _ref2.title;
-      return bel(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
+      return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
     }));
   }));
 }
 
 function renderManageAllowlist() {
-  return bel(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<div class=\"manage-allowlist\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken site-info__report-broken\">\n                ", "\n            </a>\n        </div>"])), i18n.t('site:websiteNotWorkingQ.title'));
+  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<div class=\"manage-allowlist\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken site-info__report-broken\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -31988,13 +34014,13 @@ function renderCompanyIconsList(model) {
   if (companyNames.length === 0) return '';
   var topCompanies = companyNames.slice(0, 4);
   var remainingCount = companyNames.length - topCompanies.length;
-  var remainingCountIcon = remainingCount <= 0 ? '' : bel(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n            <span class=\"site-info__tracker__icon-positioner\">\n                <span class=\"site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--count\">\n                    <span class=\"site-info__tracker__count\">+", "</span>\n                </span>\n            </div>\n            "])), remainingCount);
+  var remainingCountIcon = remainingCount <= 0 ? '' : (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n            <span class=\"site-info__tracker__icon-positioner\">\n                <span class=\"site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--count\">\n                    <span class=\"site-info__tracker__count\">+", "</span>\n                </span>\n            </div>\n            "])), remainingCount);
   var topCompaniesIcons = topCompanies.map(function (name, index) {
-    var slug = normalizeCompanyName(name);
+    var slug = (0, _normalizeCompanyNameEs.normalizeCompanyName)(name);
     var locationClass = index === topCompanies.length - 1 ? 'first' : 'other';
-    return bel(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n            <span class=\"site-info__tracker__icon-positioner\">\n                <span class=\"site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--", "\">\n                    <span class=\"site-info__tracker__icon ", " color-", " ", "\"></span>\n                    <span class=\"site-info__tracker__blocked-icon\"></span>\n                </span>\n            </span>\n            "])), locationClass, slug[0].toUpperCase(), getColorId(slug), slug);
+    return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n            <span class=\"site-info__tracker__icon-positioner\">\n                <span class=\"site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--", "\">\n                    <span class=\"site-info__tracker__icon ", " color-", " ", "\"></span>\n                    <span class=\"site-info__tracker__blocked-icon\"></span>\n                </span>\n            </span>\n            "])), locationClass, slug[0].toUpperCase(), (0, _utilsEs.getColorId)(slug), slug);
   });
-  return bel(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n            <div class=\"site-info__key-insight_trackers-icons token-title-3-em\">\n                ", "\n                ", "\n            </div>\n        "])), topCompaniesIcons, remainingCountIcon);
+  return (0, _bel["default"])(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n            <div class=\"site-info__key-insight_trackers-icons token-title-3-em\">\n                ", "\n                ", "\n            </div>\n        "])), topCompaniesIcons, remainingCountIcon);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -32003,32 +34029,32 @@ function renderCompanyIconsList(model) {
 
 function renderKeyInsight(model) {
   var title = function title(text) {
-    return bel(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["<h1 class=\"token-title-3-em\">", "</h1>"])), text);
+    return (0, _bel["default"])(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["<h1 class=\"token-title-3-em\">", "</h1>"])), text);
   };
 
   if (model.httpsState === 'none') {
-    return bel(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--insecure-connection\">\n                        ", "\n                        <div class=\"token-title-3\">", "</div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), raw(i18n.t('site:connectionDescriptionUnencrypted.title')));
+    return (0, _bel["default"])(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--insecure-connection\">\n                        ", "\n                        <div class=\"token-title-3\">", "</div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:connectionDescriptionUnencrypted.title')));
   } // remote disabled
 
 
   if (model.isBroken) {
-    var text = i18n.t('site:protectionsDisabledRemote.title');
+    var text = _localize.i18n.t('site:protectionsDisabledRemote.title');
 
     if (model.isDenylisted) {
-      text = i18n.t('site:protectionsDisabledRemoteOverride.title');
+      text = _localize.i18n.t('site:protectionsDisabledRemoteOverride.title');
     }
 
-    return bel(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n        <li class=\"site-info__li--key-insight\">\n            <div class=\"site-info__key-insight site-info__key-insight--protections-off\">\n                ", "\n                <div class=\"note token-title-3\">\n                   ", "\n                </div>\n            </div>\n        </li>\n    "])), title(model.tab.domain), text);
+    return (0, _bel["default"])(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n        <li class=\"site-info__li--key-insight\">\n            <div class=\"site-info__key-insight site-info__key-insight--protections-off\">\n                ", "\n                <div class=\"note token-title-3\">\n                   ", "\n                </div>\n            </div>\n        </li>\n    "])), title(model.tab.domain), text);
   } // user allow-listed
 
 
   if (!model.protectionsEnabled) {
-    return bel(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n            <li class=\"site-info__li--key-insight\">\n                <div class=\"site-info__key-insight site-info__key-insight--protections-off\">\n                    ", "\n                    <div class=\"token-title-3\">\n                       ", "\n                    </div>\n                </div>\n            </li>\n            "])), title(model.tab.domain), raw(i18n.t('site:protectionsDisabled.title')));
+    return (0, _bel["default"])(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n            <li class=\"site-info__li--key-insight\">\n                <div class=\"site-info__key-insight site-info__key-insight--protections-off\">\n                    ", "\n                    <div class=\"token-title-3\">\n                       ", "\n                    </div>\n                </div>\n            </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:protectionsDisabled.title')));
   }
 
   if (model.isaMajorTrackingNetwork && model.tab.parentEntity) {
     var company = model.tab.parentEntity;
-    return bel(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--tracker-network\">\n                        ", "\n                        <div class=\"token-title-3\">\n                            ", "\n                        </div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), raw(i18n.t('site:majorTrackingNetworkDesc.title', {
+    return (0, _bel["default"])(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--tracker-network\">\n                        ", "\n                        <div class=\"token-title-3\">\n                            ", "\n                        </div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:majorTrackingNetworkDesc.title', {
       companyDisplayName: company.displayName,
       companyPrevalence: Math.round(company.prevalence),
       blocked: model.tab.requestDetails.blocked.entitiesCount > 0
@@ -32037,19 +34063,19 @@ function renderKeyInsight(model) {
 
   if (model.tab.requestDetails.blocked.requestCount === 0) {
     if (model.tab.requestDetails.allowedSpecialCount() > 0) {
-      return bel(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--info\">\n                        ", "\n                        <div class=\"token-title-3\">", "</div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), i18n.t('site:trackerNetworksSummaryAllowedOnly.title'));
+      return (0, _bel["default"])(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--info\">\n                        ", "\n                        <div class=\"token-title-3\">", "</div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), _localize.i18n.t('site:trackerNetworksSummaryAllowedOnly.title'));
     }
 
-    return bel(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--no-activity\">\n                        ", "\n                        <div class=\"token-title-3\">", "</div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), raw(i18n.t('site:trackerNetworksSummaryNone.title')));
+    return (0, _bel["default"])(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--no-activity\">\n                        ", "\n                        <div class=\"token-title-3\">", "</div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:trackerNetworksSummaryNone.title')));
   }
 
   var companyNames = model.tab.requestDetails.blockedCompanyNames();
 
   if (companyNames.length === 0) {
-    return bel(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--trackers-blocked\">\n                        ", "\n                        <div class=\"token-title-3\"><span>", "</span></div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))));
+    return (0, _bel["default"])(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n                <li class=\"site-info__li--key-insight\">\n                    <div class=\"site-info__key-insight site-info__key-insight--trackers-blocked\">\n                        ", "\n                        <div class=\"token-title-3\"><span>", "</span></div>\n                    </div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))));
   }
 
-  return bel(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n            <li class=\"site-info__li--key-insight\">\n                <div class=\"site-info__key-insight\">                \n                    ", "\n                    ", "\n                    <div class=\"token-title-3\"><span>", "</span></div>\n                </div>\n            </li>\n        "])), renderCompanyIconsList(model), title(model.tab.domain), raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))));
+  return (0, _bel["default"])(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n            <li class=\"site-info__li--key-insight\">\n                <div class=\"site-info__key-insight\">                \n                    ", "\n                    ", "\n                    <div class=\"token-title-3\"><span>", "</span></div>\n                </div>\n            </li>\n        "])), renderCompanyIconsList(model), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -32059,16 +34085,16 @@ function renderKeyInsight(model) {
 function renderCookieConsentManaged(model) {
   var _model$tab3;
 
-  if (!((_model$tab3 = model.tab) !== null && _model$tab3 !== void 0 && _model$tab3.consentManaged)) return bel(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
+  if (!((_model$tab3 = model.tab) !== null && _model$tab3 !== void 0 && _model$tab3.consentManaged)) return (0, _bel["default"])(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
   var _model$tab$consentMan = model.tab.consentManaged,
       consentManaged = _model$tab$consentMan.consentManaged,
       optoutFailed = _model$tab$consentMan.optoutFailed;
 
   if (consentManaged && !optoutFailed) {
-    return bel(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n            <li class=\"js-site-show-consent-managed site-info__li--consent-managed border-light--top\">\n                <div>\n                    <div class=\"site-info__trackers\">\n                        <span class=\"site-info__https-status__icon is-secure\"></span>\n                        <span>", "</span>\n                    </div>\n                </div>\n            </li>\n            "])), i18n.t('site:cookiesMinimized.title'));
+    return (0, _bel["default"])(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n            <li class=\"js-site-show-consent-managed site-info__li--consent-managed border-light--top\">\n                <div>\n                    <div class=\"site-info__trackers\">\n                        <span class=\"site-info__https-status__icon is-secure\"></span>\n                        <span>", "</span>\n                    </div>\n                </div>\n            </li>\n            "])), _localize.i18n.t('site:cookiesMinimized.title'));
   }
 
-  return bel(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral([""])));
+  return (0, _bel["default"])(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral([""])));
 }
 
 function localizePermissions(permissions) {
@@ -32077,15 +34103,15 @@ function localizePermissions(permissions) {
   return updatedPermissions.map(function (perm) {
     var permKey = "permissions:".concat(perm.key, ".title");
 
-    if (i18n.exists(permKey)) {
-      perm.title = i18n.t(permKey);
+    if (_localize.i18n.exists(permKey)) {
+      perm.title = _localize.i18n.t(permKey);
     }
 
     perm.options = perm.options.map(function (option) {
       var optionKey = "permissions:".concat(option.id, ".title");
 
-      if (i18n.exists(optionKey)) {
-        option.title = i18n.t(optionKey);
+      if (_localize.i18n.exists(optionKey)) {
+        option.title = _localize.i18n.t(optionKey);
       }
 
       return option;
@@ -32094,7 +34120,7 @@ function localizePermissions(permissions) {
   });
 }
 
-},{"../models/mixins/normalize-company-name.es6.js":78,"./shared/hero.es6.js":90,"./shared/protection-toggle":92,"./shared/thirdparty-text.es6":93,"./shared/tracker-networks-text.es6.js":95,"./shared/utils.es6.js":96,"bel":31,"bel/raw":32}],98:[function(require,module,exports){
+},{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6.js":86,"./shared/hero.es6.js":98,"./shared/protection-toggle":100,"./shared/thirdparty-text.es6":101,"./shared/tracker-networks-text.es6.js":103,"./shared/utils.es6.js":104,"bel":31,"bel/raw":32}],106:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32105,40 +34131,35 @@ exports.renderSections = renderSections;
 exports.trackerListWrapper = trackerListWrapper;
 exports.trackerNetworksTemplate = trackerNetworksTemplate;
 
+var _bel = _interopRequireDefault(require("bel"));
+
 var _constants = require("../../../data/constants");
+
+var _localize = require("../base/localize.es6");
+
+var _heroEs = _interopRequireDefault(require("./shared/hero.es6.js"));
+
+var _utilsEs = require("./shared/utils.es6.js");
+
+var _trackerNetworksText2 = require("./shared/tracker-networks-text.es6");
+
+var _aboutLink = require("./shared/about-link");
+
+var _platformLimitations = require("./shared/platform-limitations");
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-/** @type {any} */
-var bel = require('bel');
-
-var hero = require('./shared/hero.es6.js');
-
-var _require = require('./shared/utils.es6.js'),
-    getColorId = _require.getColorId;
-
-var _require2 = require('./shared/tracker-networks-text.es6'),
-    trackerNetworksText = _require2.trackerNetworksText,
-    trackerNetworksHeroIcon = _require2.trackerNetworksHeroIcon,
-    trackerNetworkSummary = _require2.trackerNetworkSummary;
-
-var _require3 = require('./shared/about-link'),
-    aboutLink = _require3.aboutLink;
-
-var _require4 = require('./shared/platform-limitations'),
-    platformLimitations = _require4.platformLimitations;
-
-var i18n = window.DDG.base.i18n;
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
-
 function trackerNetworksTemplate() {
   if (!this.model) {
-    return bel(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
   }
 
-  var summary = trackerNetworkSummary(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
+  var summary = (0, _trackerNetworksText2.trackerNetworkSummary)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
   var blocked = this.model.site.tab.requestDetails.blocked;
   var sections = [{
     name: 'blocked',
@@ -32148,7 +34169,7 @@ function trackerNetworksTemplate() {
     companies: blocked.sortedByPrevalence(),
     bordered: true
   }];
-  return bel(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"tracker-networks site-info card\" data-test-id=\"tracker-list-view\">\n        <div class=\"js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"tracker-networks__explainer text--center\" data-test-id=\"tracker-list.summary\">\n            <p data-test-id=\"tracker.summary\" class=\"token-title-3\">", "</p>\n            <p>", "</p>\n        </div>\n        <div class=\"tracker-networks__details padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderHero(this.model.site), summary, aboutLink(), renderSections(sections), this.model.site.tab.platformLimitations ? platformLimitations() : null);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"tracker-networks site-info card\" data-test-id=\"tracker-list-view\">\n        <div class=\"js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"tracker-networks__explainer text--center\" data-test-id=\"tracker-list.summary\">\n            <p data-test-id=\"tracker.summary\" class=\"token-title-3\">", "</p>\n            <p>", "</p>\n        </div>\n        <div class=\"tracker-networks__details padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderHero(this.model.site), summary, (0, _aboutLink.aboutLink)(), renderSections(sections), this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
@@ -32156,11 +34177,11 @@ function trackerNetworksTemplate() {
 
 
 function renderHero(site) {
-  var _trackerNetworksText = trackerNetworksText(site.tab.requestDetails, site.protectionsEnabled),
+  var _trackerNetworksText = (0, _trackerNetworksText2.trackerNetworksText)(site.tab.requestDetails, site.protectionsEnabled),
       title = _trackerNetworksText.title;
 
-  var icon = trackerNetworksHeroIcon(site.tab.requestDetails, site.protectionsEnabled);
-  return bel(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["", ""])), hero({
+  var icon = (0, _trackerNetworksText2.trackerNetworksHeroIcon)(site.tab.requestDetails, site.protectionsEnabled);
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["", ""])), (0, _heroEs["default"])({
     status: icon,
     title: title,
     showClose: true
@@ -32176,7 +34197,7 @@ function renderHero(site) {
 
 
 function trackerListWrapper(name, heading, companiesList, bordered) {
-  return bel(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\"\n             >\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? bel(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-test-id=\"sectionHeading\">", "</li>"])), heading) : bel(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral([""]))), companiesList);
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\"\n             >\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-test-id=\"sectionHeading\">", "</li>"])), heading) : (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral([""]))), companiesList);
 }
 /**
  * @param {import("../../browser/utils/request-details.js").AggregateCompanyData} company
@@ -32185,16 +34206,16 @@ function trackerListWrapper(name, heading, companiesList, bordered) {
 
 function renderCompany(company) {
   if (company.displayName && company.displayName === 'unknown') {
-    company.displayName = "(".concat(i18n.t('site:trackerNetworkUnknown.title'), ")");
+    company.displayName = "(".concat(_localize.i18n.t('site:trackerNetworkUnknown.title'), ")");
   }
 
   var slug = company.normalizedName;
-  return bel(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["<li class=\"site-info__trackers__company-list-item\" data-test-id=\"entityListItem\">\n        <h1 title=\"", "\" class=\"site-info__domain block token-title-3-em\" data-test-id=\"entityTitle\">\n            <span class=\"site-info__tracker__icon site-info__tracker__icon--company ", " color-", " ", "\"></span>\n            ", "\n        </h1>\n        <ol class=\"default-list site-info__trackers__company-list__url-list\" aria-label=\"", "\">\n            ", "\n        </ol>\n    </li>"])), company.name || company.displayName, slug[0].toUpperCase(), getColorId(slug), slug, company.displayName, i18n.t('site:trackerDomainsForCompany.title', {
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["<li class=\"site-info__trackers__company-list-item\" data-test-id=\"entityListItem\">\n        <h1 title=\"", "\" class=\"site-info__domain block token-title-3-em\" data-test-id=\"entityTitle\">\n            <span class=\"site-info__tracker__icon site-info__tracker__icon--company ", " color-", " ", "\"></span>\n            ", "\n        </h1>\n        <ol class=\"default-list site-info__trackers__company-list__url-list\" aria-label=\"", "\">\n            ", "\n        </ol>\n    </li>"])), company.name || company.displayName, slug[0].toUpperCase(), (0, _utilsEs.getColorId)(slug), slug, company.displayName, _localize.i18n.t('site:trackerDomainsForCompany.title', {
     companyName: company.displayName
   }), Object.keys(company.urls).map(function (urlHostname) {
     var url = company.urls[urlHostname];
     var matched = _constants.displayCategories[url.category];
-    return bel(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n                <li data-test-id=\"entityUrlListItem\" class=\"url-list-item\">\n                    <div class=\"url\" title=\"", "\">", "</div>\n                    ", "\n                </li>"])), urlHostname, urlHostname, matched ? bel(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<div class=\"category\">", "</div>"])), i18n.t(matched)) : '');
+    return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n                <li data-test-id=\"entityUrlListItem\" class=\"url-list-item\">\n                    <div class=\"url\" title=\"", "\">", "</div>\n                    ", "\n                </li>"])), urlHostname, urlHostname, matched ? (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<div class=\"category\">", "</div>"])), _localize.i18n.t(matched)) : '');
   }));
 }
 /**
@@ -32222,27 +34243,35 @@ function renderSections(sections) {
   return output;
 }
 
-},{"../../../data/constants":58,"./shared/about-link":89,"./shared/hero.es6.js":90,"./shared/platform-limitations":91,"./shared/tracker-networks-text.es6":95,"./shared/utils.es6.js":96,"bel":31}],99:[function(require,module,exports){
+},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/about-link":97,"./shared/hero.es6.js":98,"./shared/platform-limitations":99,"./shared/tracker-networks-text.es6":103,"./shared/utils.es6.js":104,"bel":31}],107:[function(require,module,exports){
 "use strict";
 
-var ParentSlidingSubview = require('./sliding-subview.es6.js');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _slidingSubviewEs = _interopRequireDefault(require("./sliding-subview.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /** @this {any} */
-
-
 function BreakageForm(ops) {
   this.model = ops.model;
   this.template = ops.template;
   this.siteView = ops.siteView;
   this.clickSource = ops.clickSource;
-  this.$root = window.$('.js-breakage-form'); // @ts-ignore
+  this.$root = (0, _jquery["default"])('.js-breakage-form'); // @ts-ignore
 
-  ParentSlidingSubview.call(this, ops);
+  _slidingSubviewEs["default"].call(this, ops);
 
   this._setup();
 }
 
-BreakageForm.prototype = window.$.extend({}, // @ts-ignore
-ParentSlidingSubview.prototype, {
+BreakageForm.prototype = _jquery["default"].extend({}, // @ts-ignore
+_slidingSubviewEs["default"].prototype, {
   _setup: function _setup() {
     this._cacheElems('.js-breakage-form', ['close', 'submit', 'element', 'message', 'dropdown', 'description']);
 
@@ -32273,33 +34302,54 @@ ParentSlidingSubview.prototype, {
     }
   }
 });
-module.exports = BreakageForm;
+var _default = BreakageForm;
+exports["default"] = _default;
 
-},{"./sliding-subview.es6.js":104}],100:[function(require,module,exports){
+},{"./sliding-subview.es6.js":112,"jquery":46}],108:[function(require,module,exports){
 "use strict";
 
-var Parent = window.DDG.base.View;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _viewEs = _interopRequireDefault(require("../base/view.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function CtaRotationView(ops) {
   this.model = ops.model;
   this.pageView = ops.pageView;
   this.template = ops.template;
-  Parent.call(this, ops);
+
+  _viewEs["default"].call(this, ops);
 }
 
-CtaRotationView.prototype = window.$.extend({}, Parent.prototype, {});
-module.exports = CtaRotationView;
+CtaRotationView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototype, {});
+var _default = CtaRotationView;
+exports["default"] = _default;
 
-},{}],101:[function(require,module,exports){
+},{"../base/view.es6.js":81,"jquery":46}],109:[function(require,module,exports){
 "use strict";
 
-var Parent = window.DDG.base.View;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _viewEs = _interopRequireDefault(require("../base/view.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /**
  * Given a username, returns a valid email address with the duck domain
  * @param {string} address
  * @returns {string}
  */
-
 var formatAddress = function formatAddress(address) {
   return address + '@duck.com';
 };
@@ -32310,12 +34360,13 @@ function EmailProtectionView(ops) {
   this.model = ops.model;
   this.pageView = ops.pageView;
   this.template = ops.template;
-  Parent.call(this, ops);
+
+  _viewEs["default"].call(this, ops);
 
   this._setup();
 }
 
-EmailProtectionView.prototype = window.$.extend({}, Parent.prototype, {
+EmailProtectionView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototype, {
   _setup: function _setup() {
     this.bindEvents([[this.store.subscribe, "change:".concat(this.model.modelName), this._rerender]]);
   },
@@ -32339,12 +34390,23 @@ EmailProtectionView.prototype = window.$.extend({}, Parent.prototype, {
     });
   }
 });
-module.exports = EmailProtectionView;
+var _default = EmailProtectionView;
+exports["default"] = _default;
 
-},{}],102:[function(require,module,exports){
+},{"../base/view.es6.js":81,"jquery":46}],110:[function(require,module,exports){
 "use strict";
 
-var Parent = window.DDG.base.View;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _view = _interopRequireDefault(require("../base/view.es6"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 var FOCUS_CLASS = 'go--focused';
 /** @this {any} */
 
@@ -32352,7 +34414,8 @@ function Search(ops) {
   this.model = ops.model;
   this.pageView = ops.pageView;
   this.template = ops.template;
-  Parent.call(this, ops);
+
+  _view["default"].call(this, ops);
 
   this._cacheElems('.js-search', ['form', 'input', 'go', 'cog-button']);
 
@@ -32360,7 +34423,7 @@ function Search(ops) {
   // window.setTimeout(() => this.$input.focus(), 200)
 }
 
-Search.prototype = window.$.extend({}, Parent.prototype, {
+Search.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   // Hover effect on search button while typing
   _addHoverEffect: function _addHoverEffect() {
     if (!this.$go.hasClass(FOCUS_CLASS)) {
@@ -32395,61 +34458,68 @@ Search.prototype = window.$.extend({}, Parent.prototype, {
     this.model.openOptionsPage();
   }
 });
-module.exports = Search;
+var _default = Search;
+exports["default"] = _default;
 
-},{}],103:[function(require,module,exports){
+},{"../base/view.es6":81,"jquery":46}],111:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
 var _switch = require("@material/switch");
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _thirdpartyText = require("../templates/shared/thirdparty-text.es6");
 
 var _environmentCheck = require("../environment-check.js");
 
 var _trackerNetworksTextEs = require("../templates/shared/tracker-networks-text.es6.js");
 
+var _emailProtection = _interopRequireDefault(require("../models/email-protection.es6"));
+
+var _emailProtection2 = _interopRequireDefault(require("../templates/email-protection.es6"));
+
+var _search = _interopRequireDefault(require("../models/search.es6"));
+
+var _search2 = _interopRequireDefault(require("../templates/search.es6"));
+
+var _view = _interopRequireDefault(require("../base/view.es6"));
+
+var _ctaRotation = require("../models/cta-rotation.es6");
+
+var _ctaRotation2 = _interopRequireDefault(require("../templates/cta-rotation.es6"));
+
+var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
+
+var _trackerNetworks = require("../templates/tracker-networks.es6");
+
+var _nonTrackers = require("../templates/non-trackers.es6");
+
 var _utils = require("./utils/utils.js");
 
-var _thirdpartyText = require("../templates/shared/thirdparty-text.es6");
+var _breakageFormEs = _interopRequireDefault(require("./../views/breakage-form.es6.js"));
+
+var _pageConnectionEs = _interopRequireDefault(require("./../templates/page-connection.es6.js"));
+
+var _breakageFormEs2 = _interopRequireDefault(require("./../templates/breakage-form.es6.js"));
+
+var _emailProtection3 = _interopRequireDefault(require("./email-protection.es6"));
+
+var _search3 = _interopRequireDefault(require("./search.es6"));
+
+var _ctaRotation3 = _interopRequireDefault(require("./cta-rotation.es6"));
+
+var _trackerNetworksEs = _interopRequireDefault(require("./../views/tracker-networks.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // @ts-ignore
-var Parent = window.DDG.base.View;
 
-var TrackerNetworksView = require('./../views/tracker-networks.es6.js');
-
-var BreakageFormView = require('./../views/breakage-form.es6.js');
-
-var pageConnectionTemplate = require('./../templates/page-connection.es6.js');
-
-var _require = require('./../templates/tracker-networks.es6.js'),
-    trackerNetworksTemplate = _require.trackerNetworksTemplate;
-
-var _require2 = require('./../templates/non-trackers.es6.js'),
-    nonTrackersTemplate = _require2.nonTrackersTemplate;
-
-var breakageFormTemplate = require('./../templates/breakage-form.es6.js');
-
-var EmailProtectionView = require('./email-protection.es6');
-
-var EmailProtectionModel = require('../models/email-protection.es6');
-
-var emailProtectionTemplate = require('../templates/email-protection.es6');
-
-var SearchView = require('./search.es6');
-
-var SearchModel = require('../models/search.es6');
-
-var searchTemplate = require('../templates/search.es6');
-
-var CtaRotationView = require('./cta-rotation.es6');
-
-var _require3 = require('../models/cta-rotation.es6'),
-    CtaRotationModel = _require3.CtaRotationModel;
-
-var ctaRotationView = require('../templates/cta-rotation.es6');
 /** @type {import('../../browser/communication.es6.js').Communication} */
-
-
-var browserUIWrapper = require('../../browser/communication.es6.js');
-
 function Site(ops) {
   var _this = this;
 
@@ -32457,18 +34527,20 @@ function Site(ops) {
   this.pageView = ops.pageView;
   this.template = ops.template; // cache 'body' selector
 
-  this.$body = window.$('body'); // get data from background process, then re-render template with it
+  this.$body = (0, _jquery["default"])('body'); // get data from background process, then re-render template with it
 
   this.model.getBackgroundTabData().then(function () {
     if (_this.model.tab && (_this.model.tab.status === 'complete' || _this.model.domain === 'new tab')) {
       // render template for the first time here
-      Parent.call(_this, ops); // @ts-ignore
+      _view["default"].call(_this, ops); // @ts-ignore
+
 
       _this._setup();
     } else {
       // the timeout helps buffer the re-render cycle during heavy
       // page loads with lots of trackers
-      Parent.call(_this, ops); // @ts-ignore
+      _view["default"].call(_this, ops); // @ts-ignore
+
 
       setTimeout(function () {
         return _this.rerender();
@@ -32479,7 +34551,7 @@ function Site(ops) {
   });
 }
 
-Site.prototype = window.$.extend({}, Parent.prototype, {
+Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   _onAllowlistClick: function _onAllowlistClick(e) {
     var _this2 = this;
 
@@ -32517,7 +34589,7 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
     setTimeout(function () {
       var _browserUIWrapper$fir;
 
-      (_browserUIWrapper$fir = browserUIWrapper.firstRenderComplete) === null || _browserUIWrapper$fir === void 0 ? void 0 : _browserUIWrapper$fir.call(browserUIWrapper);
+      (_browserUIWrapper$fir = _communicationEs["default"].firstRenderComplete) === null || _browserUIWrapper$fir === void 0 ? void 0 : _browserUIWrapper$fir.call(_communicationEs["default"]);
     }, 100);
   },
   rerender: function rerender() {
@@ -32561,9 +34633,9 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
   // pass clickSource to specify whether page should reload
   // after submitting breakage form.
   showBreakageForm: function showBreakageForm(clickSource) {
-    this.views.breakageForm = new BreakageFormView({
+    this.views.breakageForm = new _breakageFormEs["default"]({
       siteView: this,
-      template: breakageFormTemplate,
+      template: _breakageFormEs2["default"],
       model: this.model,
       appendTo: this.$body,
       clickSource: clickSource
@@ -32571,22 +34643,22 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
   },
   _showPageTrackers: function _showPageTrackers(e) {
     if (this.$body.hasClass('is-disabled')) return;
-    this.views.slidingSubview = new TrackerNetworksView({
-      template: trackerNetworksTemplate,
+    this.views.slidingSubview = new _trackerNetworksEs["default"]({
+      template: _trackerNetworks.trackerNetworksTemplate,
       heroFn: _trackerNetworksTextEs.trackerNetworksHeroIcon
     });
   },
   _showPageNonTrackers: function _showPageNonTrackers(e) {
     if (this.$body.hasClass('is-disabled')) return;
-    this.views.slidingSubview = new TrackerNetworksView({
-      template: nonTrackersTemplate,
+    this.views.slidingSubview = new _trackerNetworksEs["default"]({
+      template: _nonTrackers.nonTrackersTemplate,
       heroFn: _thirdpartyText.thirdpartyHeroIcon
     });
   },
   _showPageConnection: function _showPageConnection(e) {
     if (this.$body.hasClass('is-disabled')) return;
-    this.views.slidingSubview = new TrackerNetworksView({
-      template: pageConnectionTemplate
+    this.views.slidingSubview = new _trackerNetworksEs["default"]({
+      template: _pageConnectionEs["default"]
     });
   },
   _done: function _done() {
@@ -32600,25 +34672,25 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
         this.views.search.destroy();
       }
 
-      this.views.search = new SearchView({
+      this.views.search = new _search3["default"]({
         pageView: this,
-        model: new SearchModel({
+        model: new _search["default"]({
           searchText: ''
         }),
-        appendTo: window.$('#search-form-container'),
-        template: searchTemplate
+        appendTo: (0, _jquery["default"])('#search-form-container'),
+        template: _search2["default"]
       });
     } // does the device support CTA screens?
 
 
     if ((_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && _this$model$tab2.ctaScreens && !this.views.ctaRotations) {
-      this.views.ctaRotations = new CtaRotationView({
+      this.views.ctaRotations = new _ctaRotation3["default"]({
         pageView: this,
-        model: new CtaRotationModel({
+        model: new _ctaRotation.CtaRotationModel({
           emailProtectionUserData: this.model.emailProtectionUserData
         }),
-        appendTo: window.$('#cta-rotation'),
-        template: ctaRotationView
+        appendTo: (0, _jquery["default"])('#cta-rotation'),
+        template: _ctaRotation2["default"]
       });
     } // does the device support Email Protection?
 
@@ -32628,32 +34700,43 @@ Site.prototype = window.$.extend({}, Parent.prototype, {
         this.views.emailProtection.destroy();
       }
 
-      this.views.emailProtection = new EmailProtectionView({
-        model: new EmailProtectionModel({
+      this.views.emailProtection = new _emailProtection3["default"]({
+        model: new _emailProtection["default"]({
           emailProtectionUserData: this.model.emailProtectionUserData
         }),
-        appendTo: window.$('#email-alias-container'),
-        template: emailProtectionTemplate
+        appendTo: (0, _jquery["default"])('#email-alias-container'),
+        template: _emailProtection2["default"]
       });
     }
   }
 });
-module.exports = Site;
+var _default = Site;
+exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":60,"../environment-check.js":74,"../models/cta-rotation.es6":76,"../models/email-protection.es6":77,"../models/search.es6":79,"../templates/cta-rotation.es6":84,"../templates/email-protection.es6":85,"../templates/search.es6":88,"../templates/shared/thirdparty-text.es6":93,"../templates/shared/tracker-networks-text.es6.js":95,"./../templates/breakage-form.es6.js":83,"./../templates/non-trackers.es6.js":86,"./../templates/page-connection.es6.js":87,"./../templates/tracker-networks.es6.js":98,"./../views/breakage-form.es6.js":99,"./../views/tracker-networks.es6.js":105,"./cta-rotation.es6":100,"./email-protection.es6":101,"./search.es6":102,"./utils/utils.js":106,"@material/switch":29}],104:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":92,"../templates/email-protection.es6":93,"../templates/non-trackers.es6":94,"../templates/search.es6":96,"../templates/shared/thirdparty-text.es6":101,"../templates/shared/tracker-networks-text.es6.js":103,"../templates/tracker-networks.es6":106,"./../templates/breakage-form.es6.js":91,"./../templates/page-connection.es6.js":95,"./../views/breakage-form.es6.js":107,"./../views/tracker-networks.es6.js":114,"./cta-rotation.es6":108,"./email-protection.es6":109,"./search.es6":110,"./utils/utils.js":115,"@material/switch":29,"jquery":46}],112:[function(require,module,exports){
 "use strict";
 
-var _utils = require("./utils/utils.js");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
 
 var _environmentCheck = require("../environment-check.js");
 
-// @ts-ignore
-var Parent = window.DDG.base.View;
+var _viewEs = _interopRequireDefault(require("../base/view.es6.js"));
+
+var _utils = require("./utils/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function SlidingSubview(ops) {
-  ops.appendTo = window.$('.sliding-subview--root');
-  Parent.call(this, ops);
-  this.$root = window.$('.sliding-subview--root');
+  ops.appendTo = (0, _jquery["default"])('.sliding-subview--root');
+
+  _viewEs["default"].call(this, ops);
+
+  this.$root = (0, _jquery["default"])('.sliding-subview--root');
   this.$root.addClass('sliding-subview--open'); // @ts-ignore
 
   this.setupNavigationSupport(); // @ts-ignore
@@ -32661,7 +34744,7 @@ function SlidingSubview(ops) {
   this.setupClose();
 }
 
-SlidingSubview.prototype = window.$.extend({}, Parent.prototype, {
+SlidingSubview.prototype = _jquery["default"].extend({}, _viewEs["default"].prototype, {
   setupClose: function setupClose() {
     this._cacheElems('.js-sliding-subview', ['close', 'done']);
 
@@ -32735,18 +34818,457 @@ SlidingSubview.prototype = window.$.extend({}, Parent.prototype, {
     this.model.site.close();
   }
 });
-module.exports = SlidingSubview;
+var _default = SlidingSubview;
+exports["default"] = _default;
 
-},{"../environment-check.js":74,"./utils/utils.js":106}],105:[function(require,module,exports){
+},{"../base/view.es6.js":81,"../environment-check.js":82,"./utils/utils.js":115,"jquery":46}],113:[function(require,module,exports){
 "use strict";
 
-var ParentSlidingSubview = require('./sliding-subview.es6.js');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.dataStates = void 0;
+exports["default"] = _default;
+exports.protectionsOff = protectionsOff;
 
-var heroTemplate = require('./../templates/shared/hero.es6.js');
+var _requestDetails = require("../../../../browser/utils/request-details");
 
-var CompanyListModel = require('./../models/site-company-list.es6.js');
+var _requestDataGoogle = _interopRequireDefault(require("../../../../../../schema/__fixtures__/request-data-google.json"));
 
-var SiteModel = require('./../models/site.es6.js');
+var _requestDataCnn = _interopRequireDefault(require("../../../../../../schema/__fixtures__/request-data-cnn.json"));
+
+var _schema = require("../../../../../../schema/__generated__/schema.parsers");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var google = _schema.requestDataSchema.parse(_requestDataGoogle["default"]);
+
+var cnn = _schema.requestDataSchema.parse(_requestDataCnn["default"]);
+/**
+ * @typedef {import('../../../../browser/utils/request-details').TabData} TabData
+ * @typedef {import('../../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
+ */
+
+/** @type {DetectedRequest} */
+
+
+var allowedTracker = {
+  entityName: 'example.com',
+  prevalence: 82.6,
+  url: 'https://example.com/a.js',
+  pageUrl: 'https://example.com',
+  state: {
+    allowed: {
+      reason: 'ownedByFirstParty'
+    }
+  }
+};
+/** @type {DetectedRequest} */
+
+var allowedThirdParty = {
+  entityName: 'Index Exchange',
+  prevalence: 12.7,
+  url: 'indexww.com',
+  pageUrl: 'https://example.com',
+  category: 'Advertising',
+  state: {
+    allowed: {
+      reason: 'otherThirdPartyRequest'
+    }
+  }
+};
+/** @type {DetectedRequest} */
+
+var blocked1 = {
+  entityName: 'Google',
+  prevalence: 82.6,
+  url: 'securepubads.g.doubleclick.net',
+  pageUrl: 'https://example.com',
+  category: 'Advertising',
+  state: {
+    blocked: {}
+  }
+};
+/** @type {DetectedRequest} */
+
+var blocked2 = {
+  entityName: 'Google',
+  prevalence: 82.6,
+  url: 'pagead2.googlesyndication.com',
+  pageUrl: 'https://example.com',
+  category: 'Advertising',
+  state: {
+    blocked: {}
+  }
+};
+/** @type {DetectedRequest} */
+
+var blocked3 = {
+  entityName: 'Index Exchange',
+  prevalence: 12.7,
+  url: 'htlb.casalemedia.com',
+  pageUrl: 'https://example.com',
+  category: 'Advertising',
+  state: {
+    blocked: {}
+  }
+};
+/** @type {DetectedRequest[]} */
+
+var defaultRequests = [allowedTracker, allowedThirdParty, blocked1, blocked2, blocked3]; // eslint-disable-next-line no-unused-vars
+
+var defaultCertificates = [{
+  commonName: 'sni.cloudflaressl.com',
+  publicKey: {
+    blockSize: 72,
+    canEncrypt: true,
+    bitSize: 256,
+    canSign: false,
+    canDerive: true,
+    canUnwrap: false,
+    canWrap: false,
+    canDecrypt: false,
+    effectiveSize: 256,
+    isPermanent: false,
+    type: 'Elliptic Curve',
+    externalRepresentation: 'BEO3YVjG8jpNVRlh9G10paEfrx9XnVG9GvNtOAYkZvuytfhKTZ9sW+MhQaFDAgKveZUDIMg7WvG8QXZGPNTWCKg=',
+    canVerify: true,
+    keyId: 'Xbo6o2j/lA8zNZ/axcChz8ID2MM='
+  },
+  emails: [],
+  summary: 'sni.cloudflaressl.com'
+}, {
+  commonName: 'Cloudflare Inc ECC CA-3',
+  publicKey: {
+    blockSize: 72,
+    canEncrypt: true,
+    bitSize: 256,
+    canSign: false,
+    canDerive: true,
+    canUnwrap: false,
+    canWrap: false,
+    canDecrypt: false,
+    effectiveSize: 256,
+    isPermanent: false,
+    type: 'Elliptic Curve',
+    externalRepresentation: 'BLmtTWaZFAtG7B+B0SpQHp0DFS80En0tlriIOJuFX4+/u03vYUbEyXPUJE/g7hzObLNRcS9q7kwFCXfTcmKkm9c=',
+    canVerify: true,
+    keyId: 'pc436uuwdQ6UZ4i0RfrZJBCHlh8='
+  },
+  emails: [],
+  summary: 'Cloudflare Inc ECC CA-3'
+}, {
+  commonName: 'Baltimore CyberTrust Root',
+  publicKey: {
+    blockSize: 256,
+    canEncrypt: false,
+    bitSize: 2048,
+    canSign: false,
+    canDerive: false,
+    canUnwrap: false,
+    canWrap: false,
+    canDecrypt: false,
+    effectiveSize: 2048,
+    isPermanent: false,
+    type: 'RSA',
+    externalRepresentation: 'MIIBCgKCAQEAowS7IquYPVfoJnKatXnUKeLh6JWAsbDjW44rKZpk36Fd7bAJBW3bKC7OYqJi/rSI2hLrOOshncBBKwFSe4h30xyPx7q5iLVqCedz6BFAp9HMymKNLeWPC6ZQ0qhQwyjq9aslh4qalhypZ7g/DNX3+VITL8Ib1XBw8I/AEsoGy5rh2cozenfW+Oy58WhEQkgT0sDCpK5eYP62pgX8tN0HWQLUWRiYY/WlY+CQDH1dsgZ684Xq69QDrl6EPl//Fe1pvPk5NnJ1z3dSTfPJkCy5PeXJI1M/HySYIVwHmSm9xjrs526GOmuXdGMzvWgYMfB4jXa//J6OXSqGp02Q3CcaOQIDAQAB',
+    canVerify: true,
+    keyId: '5Z1ZMIJHWMys+ghUNoZ7OrUETfA='
+  },
+  emails: [],
+  summary: 'Baltimore CyberTrust Root'
+}];
+var permissions = [{
+  key: 'camera',
+  paused: false,
+  permission: 'deny',
+  title: 'Camera',
+  used: true,
+  options: [{
+    id: 'ask',
+    title: 'Ask every time'
+  }, {
+    id: 'grant',
+    title: 'Always allow'
+  }, {
+    id: 'deny',
+    title: 'Always deny'
+  }]
+}, {
+  key: 'microphone',
+  paused: false,
+  permission: 'ask',
+  title: 'Microphone',
+  used: true,
+  options: [{
+    id: 'ask',
+    title: 'Ask every time'
+  }, {
+    id: 'grant',
+    title: 'Always allow'
+  }, {
+    id: 'deny',
+    title: 'Always deny'
+  }]
+}, {
+  key: 'geolocation',
+  paused: false,
+  permission: 'ask',
+  title: 'Geolocation',
+  used: true,
+  options: [{
+    id: 'ask',
+    title: 'Ask every time'
+  }, {
+    id: 'deny',
+    title: 'Always deny'
+  }]
+}, {
+  key: 'popups',
+  paused: false,
+  permission: 'notify',
+  title: 'Pop-ups',
+  used: true,
+  options: [{
+    id: 'notify',
+    title: 'Notify'
+  }, {
+    id: 'grant',
+    title: 'Always allow'
+  }, {
+    id: 'deny',
+    title: 'Always deny'
+  }]
+}];
+/**
+ * These can be used when previewing the dashboard by adding the 'state' parameter, such as
+ *
+ * - http://localhost:8080/html/popup.html?state=01
+ * - http://localhost:8080/html/popup.html?state=02
+ * - http://localhost:8080/html/popup.html?state=google
+ * - http://localhost:8080/html/popup.html?state=cnn
+ */
+
+var dataStates = {
+  'without-certificate': {
+    state: _requestDetails.states.protectionsOn,
+    url: 'https://example.com',
+    requests: [],
+    certificates: []
+  },
+  insecure: {
+    state: _requestDetails.states.protectionsOn,
+    url: 'http://example.com',
+    requests: []
+  },
+  upgraded: {
+    state: _requestDetails.states.protectionsOn,
+    url: 'http://example.com',
+    upgradedHttps: true,
+    requests: []
+  },
+  google: {
+    state: _requestDetails.states.protectionsOn_allowedTrackers,
+    requests: google.requests,
+    url: 'https://google.com',
+    parentEntity: {
+      displayName: 'Google',
+      prevalence: 80.1
+    }
+  },
+  'google-off': {
+    state: _requestDetails.states.protectionsOff_allowedTrackers,
+    requests: protectionsOff(google.requests),
+    contentBlockingException: true,
+    url: 'https://google.com',
+    parentEntity: {
+      displayName: 'Google',
+      prevalence: 80.1
+    }
+  },
+  'google-with-blocked': {
+    state: _requestDetails.states.protectionsOn_blocked_allowedTrackers,
+    requests: google.requests.concat(blocked1),
+    url: 'https://google.com',
+    parentEntity: {
+      displayName: 'Google',
+      prevalence: 80.1
+    }
+  },
+  cnn: {
+    state: _requestDetails.states.protectionsOn,
+    url: 'https://edition.cnn.com',
+    requests: cnn.requests,
+    parentEntity: {
+      displayName: 'WarnerMedia, LLC',
+      prevalence: 0.401
+    }
+  },
+  '01': {
+    state: _requestDetails.states.protectionsOn,
+    url: 'https://example.com',
+    requests: []
+  },
+  '02': {
+    state: _requestDetails.states.protectionsOn_blocked,
+    url: 'https://example.com',
+    requests: [blocked1, blocked2, blocked3]
+  },
+  '03': {
+    state: _requestDetails.states.protectionsOn_blocked_allowedTrackers,
+    url: 'https://example.com',
+    requests: [blocked1, allowedTracker]
+  },
+  '04': {
+    state: _requestDetails.states.protectionsOn_blocked_allowedNonTrackers,
+    url: 'https://example.com',
+    requests: [blocked1, allowedThirdParty]
+  },
+  '05': {
+    state: _requestDetails.states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers,
+    url: 'https://example.com',
+    requests: [blocked1, allowedThirdParty, allowedTracker]
+  },
+  '06': {
+    state: _requestDetails.states.protectionsOn_allowedTrackers,
+    url: 'https://example.com',
+    requests: [allowedTracker]
+  },
+  '07': {
+    state: _requestDetails.states.protectionsOn_allowedNonTrackers,
+    url: 'https://example.com',
+    requests: [allowedThirdParty]
+  },
+  '08': {
+    state: _requestDetails.states.protectionsOn_allowedTrackers_allowedNonTrackers,
+    url: 'https://example.com',
+    requests: [allowedThirdParty, allowedTracker]
+  },
+  '09': {
+    state: _requestDetails.states.protectionsOff,
+    url: 'https://example.com',
+    requests: [],
+    contentBlockingException: true
+  },
+  10: {
+    state: _requestDetails.states.protectionsOff_allowedTrackers,
+    url: 'https://example.com',
+    requests: [allowedTracker],
+    contentBlockingException: true
+  },
+  11: {
+    state: _requestDetails.states.protectionsOff_allowedNonTrackers,
+    url: 'https://example.com',
+    requests: [allowedThirdParty],
+    contentBlockingException: true
+  },
+  12: {
+    state: _requestDetails.states.protectionsOff_allowedTrackers_allowedNonTrackers,
+    url: 'https://example.com',
+    requests: [allowedThirdParty, allowedTracker],
+    contentBlockingException: true
+  }
+};
+/**
+ * @param {Partial<{
+ *      isSecure?: boolean,
+ *      requests?: DetectedRequest[],
+ *      tab?: Partial<TabData>,
+ *      parentEntity?: { displayName: string, prevalence: number},
+ *      certificate?: any[],
+ *      isPendingUpdates?: boolean | null | undefined
+ *  }>} [overrides]
+ * @returns {{tab: TabData} & Record<string, any>}
+ */
+
+exports.dataStates = dataStates;
+
+function _default() {
+  var overrides = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var _overrides$isSecure = overrides.isSecure,
+      isSecure = _overrides$isSecure === void 0 ? true : _overrides$isSecure,
+      _overrides$requests = overrides.requests,
+      requests = _overrides$requests === void 0 ? defaultRequests : _overrides$requests,
+      _overrides$isPendingU = overrides.isPendingUpdates,
+      isPendingUpdates = _overrides$isPendingU === void 0 ? false : _overrides$isPendingU,
+      _overrides$certificat = overrides.certificate,
+      certificate = _overrides$certificat === void 0 ? defaultCertificates : _overrides$certificat,
+      _overrides$tab = overrides.tab,
+      tab = _overrides$tab === void 0 ? {} : _overrides$tab;
+  var url = tab.url ? tab.url : "http".concat(isSecure ? 's' : '', "://www.example.com/");
+  var protections = new _requestDetails.Protections(false, ['contentBlocking'], false, false);
+  var tabData = (0, _requestDetails.createTabData)(url, false, protections, {
+    requests: requests
+  });
+  return {
+    tab: _objectSpread(_objectSpread({}, tabData), {}, {
+      isPendingUpdates: isPendingUpdates,
+      permissions: permissions,
+      certificate: certificate
+    }, tab)
+  };
+}
+/**
+ * @param {DetectedRequest[]} requests
+ * @returns {DetectedRequest[]}
+ */
+
+
+function protectionsOff(requests) {
+  return requests.map(function (r) {
+    if ('blocked' in r.state) {
+      return _schema.detectedRequestSchema.parse(_objectSpread(_objectSpread({}, r), {}, {
+        state: {
+          allowed: {
+            reason: 'protectionDisabled'
+          }
+        }
+      }));
+    }
+
+    if ('allowed' in r.state) {
+      if (r.state.allowed.reason === 'otherThirdPartyRequest') {
+        return r;
+      }
+
+      return _schema.detectedRequestSchema.parse(_objectSpread(_objectSpread({}, r), {}, {
+        state: {
+          allowed: {
+            reason: 'protectionDisabled'
+          }
+        }
+      }));
+    }
+
+    return r;
+  });
+}
+
+},{"../../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../../schema/__generated__/schema.parsers":59,"../../../../browser/utils/request-details":69}],114:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _slidingSubviewEs = _interopRequireDefault(require("./sliding-subview.es6.js"));
+
+var _heroEs = _interopRequireDefault(require("./../templates/shared/hero.es6.js"));
+
+var _siteCompanyListEs = _interopRequireDefault(require("./../models/site-company-list.es6.js"));
+
+var _siteEs = _interopRequireDefault(require("./../models/site.es6.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function TrackerNetworks(ops) {
   // model data is async
@@ -32756,13 +35278,14 @@ function TrackerNetworks(ops) {
   this.template = ops.template;
   this.heroFn = ops.heroFn; // @ts-ignore
 
-  ParentSlidingSubview.call(this, ops); // @ts-ignore
+  _slidingSubviewEs["default"].call(this, ops); // @ts-ignore
+
 
   this.renderAsyncContent();
 }
 
-TrackerNetworks.prototype = window.$.extend({}, // @ts-ignore
-ParentSlidingSubview.prototype, {
+TrackerNetworks.prototype = _jquery["default"].extend({}, // @ts-ignore
+_slidingSubviewEs["default"].prototype, {
   /** @this {any} */
   setup: function setup() {
     this._cacheElems('.js-tracker-networks', ['hero', 'details']);
@@ -32777,11 +35300,11 @@ ParentSlidingSubview.prototype, {
     var random = Math.round(Math.random() * 100000);
     this.currentModelName = 'siteCompanyList' + random;
     this.currentSiteModelName = 'site' + random;
-    this.model = new CompanyListModel({
+    this.model = new _siteCompanyListEs["default"]({
       modelName: this.currentModelName
     });
     this.model.fetchAsyncData().then(function () {
-      _this.model.site = new SiteModel({
+      _this.model.site = new _siteEs["default"]({
         modelName: _this.currentSiteModelName
       });
 
@@ -32803,7 +35326,7 @@ ParentSlidingSubview.prototype, {
       /** @type {import('./../models/site.es6.js').PublicSiteModel} */
       var site = this.model.site;
       var icon = (_this$heroFn = this.heroFn) === null || _this$heroFn === void 0 ? void 0 : _this$heroFn.call(this, site.tab.requestDetails, site.protectionsEnabled);
-      this.$hero.html(heroTemplate({
+      this.$hero.html((0, _heroEs["default"])({
         status: icon,
         title: 'Trackers',
         showClose: true
@@ -32822,10 +35345,16 @@ ParentSlidingSubview.prototype, {
     }
   }
 });
-module.exports = TrackerNetworks;
+var _default = TrackerNetworks;
+exports["default"] = _default;
 
-},{"./../models/site-company-list.es6.js":80,"./../models/site.es6.js":81,"./../templates/shared/hero.es6.js":90,"./sliding-subview.es6.js":104}],106:[function(require,module,exports){
+},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./../templates/shared/hero.es6.js":98,"./sliding-subview.es6.js":112,"jquery":46}],115:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setupMaterialDesignRipple = setupMaterialDesignRipple;
 
 var _ripple = require("@material/ripple");
 
@@ -32844,11 +35373,7 @@ function setupMaterialDesignRipple() {
   });
 }
 
-module.exports = {
-  setupMaterialDesignRipple: setupMaterialDesignRipple
-};
-
-},{"@material/ripple":28}],107:[function(require,module,exports){
+},{"@material/ripple":28}],116:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -32945,7 +35470,7 @@ module.exports={
   }
 }
 
-},{}],108:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -32982,7 +35507,7 @@ module.exports={
   }
 }
 
-},{}],109:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33026,7 +35551,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],110:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33099,7 +35624,7 @@ module.exports={
   }
 }
 
-},{}],111:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33116,7 +35641,7 @@ module.exports={
   }
 }
 
-},{}],112:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33352,7 +35877,7 @@ module.exports={
   }
 }
 
-},{}],113:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33449,7 +35974,7 @@ module.exports={
   }
 }
 
-},{}],114:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33486,7 +36011,7 @@ module.exports={
   }
 }
 
-},{}],115:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33530,7 +36055,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],116:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33603,7 +36128,7 @@ module.exports={
   }
 }
 
-},{}],117:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33620,7 +36145,7 @@ module.exports={
   }
 }
 
-},{}],118:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33856,7 +36381,7 @@ module.exports={
   }
 }
 
-},{}],119:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33953,7 +36478,7 @@ module.exports={
   }
 }
 
-},{}],120:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -33990,7 +36515,7 @@ module.exports={
   }
 }
 
-},{}],121:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34034,7 +36559,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],122:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34107,7 +36632,7 @@ module.exports={
   }
 }
 
-},{}],123:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34124,7 +36649,7 @@ module.exports={
   }
 }
 
-},{}],124:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34360,7 +36885,7 @@ module.exports={
   }
 }
 
-},{}],125:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34457,7 +36982,7 @@ module.exports={
   }
 }
 
-},{}],126:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34494,7 +37019,7 @@ module.exports={
   }
 }
 
-},{}],127:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34538,7 +37063,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],128:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34611,7 +37136,7 @@ module.exports={
   }
 }
 
-},{}],129:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34628,7 +37153,7 @@ module.exports={
   }
 }
 
-},{}],130:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34864,7 +37389,7 @@ module.exports={
   }
 }
 
-},{}],131:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34961,7 +37486,7 @@ module.exports={
   }
 }
 
-},{}],132:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -34998,7 +37523,7 @@ module.exports={
   }
 }
 
-},{}],133:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35042,7 +37567,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],134:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35115,7 +37640,7 @@ module.exports={
   }
 }
 
-},{}],135:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35132,7 +37657,7 @@ module.exports={
   }
 }
 
-},{}],136:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35368,7 +37893,7 @@ module.exports={
   }
 }
 
-},{}],137:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -35464,7 +37989,7 @@ module.exports={
     }
 }
 
-},{}],138:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -35500,7 +38025,7 @@ module.exports={
     }
 }
 
-},{}],139:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -35543,7 +38068,7 @@ module.exports={
         "note": "A permission setting that always blocks the website from using this permission"
     }
 }
-},{}],140:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -35615,7 +38140,7 @@ module.exports={
     }
 }
 
-},{}],141:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -35627,7 +38152,7 @@ module.exports={
     }
 }
 
-},{}],142:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -35862,7 +38387,7 @@ module.exports={
     }
 }
 
-},{}],143:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35959,7 +38484,7 @@ module.exports={
   }
 }
 
-},{}],144:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35996,7 +38521,7 @@ module.exports={
   }
 }
 
-},{}],145:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36040,7 +38565,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],146:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36113,7 +38638,7 @@ module.exports={
   }
 }
 
-},{}],147:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36130,7 +38655,7 @@ module.exports={
   }
 }
 
-},{}],148:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36366,7 +38891,7 @@ module.exports={
   }
 }
 
-},{}],149:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36463,7 +38988,7 @@ module.exports={
   }
 }
 
-},{}],150:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36500,7 +39025,7 @@ module.exports={
   }
 }
 
-},{}],151:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36544,7 +39069,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],152:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36617,7 +39142,7 @@ module.exports={
   }
 }
 
-},{}],153:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36634,7 +39159,7 @@ module.exports={
   }
 }
 
-},{}],154:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36870,7 +39395,7 @@ module.exports={
   }
 }
 
-},{}],155:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36967,7 +39492,7 @@ module.exports={
   }
 }
 
-},{}],156:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37004,7 +39529,7 @@ module.exports={
   }
 }
 
-},{}],157:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37048,7 +39573,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],158:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37121,7 +39646,7 @@ module.exports={
   }
 }
 
-},{}],159:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37138,7 +39663,7 @@ module.exports={
   }
 }
 
-},{}],160:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37374,7 +39899,7 @@ module.exports={
   }
 }
 
-},{}],161:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37471,7 +39996,7 @@ module.exports={
   }
 }
 
-},{}],162:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37508,7 +40033,7 @@ module.exports={
   }
 }
 
-},{}],163:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37552,7 +40077,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],164:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37625,7 +40150,7 @@ module.exports={
   }
 }
 
-},{}],165:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37642,7 +40167,7 @@ module.exports={
   }
 }
 
-},{}],166:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37878,7 +40403,7 @@ module.exports={
   }
 }
 
-},{}],167:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37975,7 +40500,7 @@ module.exports={
   }
 }
 
-},{}],168:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38012,7 +40537,7 @@ module.exports={
   }
 }
 
-},{}],169:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38056,7 +40581,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],170:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38129,7 +40654,7 @@ module.exports={
   }
 }
 
-},{}],171:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38146,7 +40671,7 @@ module.exports={
   }
 }
 
-},{}],172:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38382,7 +40907,7 @@ module.exports={
   }
 }
 
-},{}],173:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38479,7 +41004,7 @@ module.exports={
   }
 }
 
-},{}],174:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38516,7 +41041,7 @@ module.exports={
   }
 }
 
-},{}],175:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38560,7 +41085,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],176:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38633,7 +41158,7 @@ module.exports={
   }
 }
 
-},{}],177:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38650,7 +41175,7 @@ module.exports={
   }
 }
 
-},{}],178:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38886,7 +41411,7 @@ module.exports={
   }
 }
 
-},{}],179:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38983,7 +41508,7 @@ module.exports={
   }
 }
 
-},{}],180:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39020,7 +41545,7 @@ module.exports={
   }
 }
 
-},{}],181:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39064,7 +41589,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],182:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39137,7 +41662,7 @@ module.exports={
   }
 }
 
-},{}],183:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39154,7 +41679,7 @@ module.exports={
   }
 }
 
-},{}],184:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39390,7 +41915,7 @@ module.exports={
   }
 }
 
-},{}],185:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39487,7 +42012,7 @@ module.exports={
   }
 }
 
-},{}],186:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39524,7 +42049,7 @@ module.exports={
   }
 }
 
-},{}],187:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39568,7 +42093,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],188:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39641,7 +42166,7 @@ module.exports={
   }
 }
 
-},{}],189:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39658,7 +42183,7 @@ module.exports={
   }
 }
 
-},{}],190:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39894,7 +42419,7 @@ module.exports={
   }
 }
 
-},{}],191:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39991,7 +42516,7 @@ module.exports={
   }
 }
 
-},{}],192:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40028,7 +42553,7 @@ module.exports={
   }
 }
 
-},{}],193:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40072,7 +42597,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],194:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40145,7 +42670,7 @@ module.exports={
   }
 }
 
-},{}],195:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40162,7 +42687,7 @@ module.exports={
   }
 }
 
-},{}],196:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40398,7 +42923,7 @@ module.exports={
   }
 }
 
-},{}],197:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40495,7 +43020,7 @@ module.exports={
   }
 }
 
-},{}],198:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40532,7 +43057,7 @@ module.exports={
   }
 }
 
-},{}],199:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40576,7 +43101,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],200:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40649,7 +43174,7 @@ module.exports={
   }
 }
 
-},{}],201:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40666,7 +43191,7 @@ module.exports={
   }
 }
 
-},{}],202:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40902,7 +43427,7 @@ module.exports={
   }
 }
 
-},{}],203:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40999,7 +43524,7 @@ module.exports={
   }
 }
 
-},{}],204:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41036,7 +43561,7 @@ module.exports={
   }
 }
 
-},{}],205:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41080,7 +43605,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],206:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41153,7 +43678,7 @@ module.exports={
   }
 }
 
-},{}],207:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41170,7 +43695,7 @@ module.exports={
   }
 }
 
-},{}],208:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41406,7 +43931,7 @@ module.exports={
   }
 }
 
-},{}],209:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41503,7 +44028,7 @@ module.exports={
   }
 }
 
-},{}],210:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41540,7 +44065,7 @@ module.exports={
   }
 }
 
-},{}],211:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41584,7 +44109,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],212:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41657,7 +44182,7 @@ module.exports={
   }
 }
 
-},{}],213:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41674,7 +44199,7 @@ module.exports={
   }
 }
 
-},{}],214:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41910,7 +44435,7 @@ module.exports={
   }
 }
 
-},{}],215:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42007,7 +44532,7 @@ module.exports={
   }
 }
 
-},{}],216:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42044,7 +44569,7 @@ module.exports={
   }
 }
 
-},{}],217:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42088,7 +44613,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],218:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42161,9 +44686,9 @@ module.exports={
   }
 }
 
-},{}],219:[function(require,module,exports){
-arguments[4][147][0].apply(exports,arguments)
-},{"dup":147}],220:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],229:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42399,7 +44924,7 @@ module.exports={
   }
 }
 
-},{}],221:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42496,7 +45021,7 @@ module.exports={
   }
 }
 
-},{}],222:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42533,7 +45058,7 @@ module.exports={
   }
 }
 
-},{}],223:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42577,7 +45102,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],224:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42650,7 +45175,7 @@ module.exports={
   }
 }
 
-},{}],225:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42667,7 +45192,7 @@ module.exports={
   }
 }
 
-},{}],226:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42903,7 +45428,7 @@ module.exports={
   }
 }
 
-},{}],227:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43000,7 +45525,7 @@ module.exports={
   }
 }
 
-},{}],228:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43037,7 +45562,7 @@ module.exports={
   }
 }
 
-},{}],229:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43081,7 +45606,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],230:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43154,7 +45679,7 @@ module.exports={
   }
 }
 
-},{}],231:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43171,7 +45696,7 @@ module.exports={
   }
 }
 
-},{}],232:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43407,7 +45932,7 @@ module.exports={
   }
 }
 
-},{}],233:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43504,7 +46029,7 @@ module.exports={
   }
 }
 
-},{}],234:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43541,7 +46066,7 @@ module.exports={
   }
 }
 
-},{}],235:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43585,7 +46110,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],236:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43658,7 +46183,7 @@ module.exports={
   }
 }
 
-},{}],237:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43675,7 +46200,7 @@ module.exports={
   }
 }
 
-},{}],238:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43911,7 +46436,7 @@ module.exports={
   }
 }
 
-},{}],239:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44008,7 +46533,7 @@ module.exports={
   }
 }
 
-},{}],240:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44045,7 +46570,7 @@ module.exports={
   }
 }
 
-},{}],241:[function(require,module,exports){
+},{}],250:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44089,7 +46614,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],242:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44162,7 +46687,7 @@ module.exports={
   }
 }
 
-},{}],243:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44179,7 +46704,7 @@ module.exports={
   }
 }
 
-},{}],244:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44415,7 +46940,7 @@ module.exports={
   }
 }
 
-},{}],245:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44512,7 +47037,7 @@ module.exports={
   }
 }
 
-},{}],246:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44549,7 +47074,7 @@ module.exports={
   }
 }
 
-},{}],247:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44593,7 +47118,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],248:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44666,7 +47191,7 @@ module.exports={
   }
 }
 
-},{}],249:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44683,7 +47208,7 @@ module.exports={
   }
 }
 
-},{}],250:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44919,7 +47444,7 @@ module.exports={
   }
 }
 
-},{}],251:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45016,7 +47541,7 @@ module.exports={
   }
 }
 
-},{}],252:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45053,7 +47578,7 @@ module.exports={
   }
 }
 
-},{}],253:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45097,7 +47622,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],254:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45170,7 +47695,7 @@ module.exports={
   }
 }
 
-},{}],255:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45187,7 +47712,7 @@ module.exports={
   }
 }
 
-},{}],256:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45423,4 +47948,4 @@ module.exports={
   }
 }
 
-},{}]},{},[64]);
+},{}]},{},[72]);

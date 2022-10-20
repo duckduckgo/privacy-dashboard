@@ -20,7 +20,7 @@ Trackers.prototype = $.extend({},
         ready: function () {
             Parent.prototype.ready.call(this)
             this.message = new BackgroundMessageModel()
-
+            console.log(this.message)
             this.views.site = new SiteView({
                 pageView: this,
                 model: new SiteModel(),
@@ -34,5 +34,5 @@ Trackers.prototype = $.extend({},
 // kickoff!
 export function initPopup () {
     const page = new Trackers()
-    console.log(page)
+    console.log('initPopup', page)
 }

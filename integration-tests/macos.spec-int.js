@@ -1,10 +1,12 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withWebkitRequests } from './helpers'
 
+const HTML = '/swift-package/Resources/ios/assets/html/macos.html'
+
 const test = baseTest.extend({
     macOSMocks: [async ({ page }, use) => {
         forwardConsole(page)
-        await page.goto('/swift-package/Resources/macos/assets/html/popup.html')
+        await page.goto(HTML)
         const requests = await withWebkitRequests(page, {
             requests: []
         })

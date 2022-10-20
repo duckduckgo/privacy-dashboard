@@ -80,10 +80,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'shared/html',
                 src: htmlFiles,
-                dest: `${buildPath}/html`,
-                options: {
-                    process: (content) => content.replace(/\$ENVIRONMENT/g, platform)
-                }
+                dest: `${buildPath}/html`
             },
             index: {
                 src: 'shared/html/index.html',
@@ -107,15 +104,33 @@ module.exports = function (grunt) {
             },
             scripts: {
                 files: ['shared/js/**/*', 'shared/html/**/*', 'shared/locales/**/*', 'fixtures/**/*.json', 'schema/**/*.json'],
-                tasks: ['exec:schema', 'browserify:ui', 'copy:html', 'copy:index']
+                tasks: [
+                    'exec:schema',
+                    'browserify:ui',
+                    'copy:html',
+                    'copy:index',
+                    'exec:buildHtml',
+                    'exec:copyTEMP'
+                ]
             }
         },
         exec: {
-            schema: 'npm run schema'
+            schema: 'npm run schema',
+            buildHtml: 'node scripts/duplicate-html.js',
+            copyTEMP: 'cp -R build/example/ swift-package/Resources/ios/assets'
         }
     })
 
-    grunt.registerTask('build', 'Build project(s)css, templates, js', ['exec:schema', 'sass', 'browserify:ui', 'copy:html', 'copy:index', 'copy:images'])
+    grunt.registerTask('build', 'Build project(s)css, templates, js', [
+        'exec:schema',
+        'sass',
+        'browserify:ui',
+        'copy:html',
+        'copy:index',
+        'copy:images',
+        'exec:buildHtml',
+        'exec:copyTEMP'
+    ])
     grunt.registerTask('default', 'build')
     grunt.registerTask('dev', ['default', 'watch'])
 }

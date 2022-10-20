@@ -41,8 +41,6 @@ const backgroundMessage = (backgroundModel) => {
     channel = backgroundModel
 }
 
-setupColorScheme()
-
 const getBackgroundTabDataPromises = []
 let trackerBlockingData
 let permissionsData
@@ -240,32 +238,33 @@ const getBackgroundTabData = () => {
     })
 }
 
-assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required')
-window.chrome.webview.addEventListener('message', event => handleViewModelUpdate(event.data))
-
-// todo(Shane): does this fire early enough on Windows
-setupMutationObserver((height) => {
-    SetSize({ height })
-})
-
-/**
- * on macOS, respond to all clicks on links with target="_blank"
- * by forwarding to the native side.
- */
-document.addEventListener('click', (e) => {
-    const targetElem = e.target
-    if (targetElem instanceof HTMLAnchorElement) {
-        if (targetElem.target === '_blank' && targetElem.origin) {
-            e.preventDefault()
-            OpenInNewTab({
-                url: targetElem.href
-            })
+export function setup () {
+    setupColorScheme()
+    assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required')
+    window.chrome.webview.addEventListener('message', event => handleViewModelUpdate(event.data))
+    // todo(Shane): does this fire early enough on Windows
+    setupMutationObserver((height) => {
+        SetSize({ height })
+    })
+    /**
+     * on macOS, respond to all clicks on links with target="_blank"
+     * by forwarding to the native side.
+     */
+    document.addEventListener('click', (e) => {
+        const targetElem = e.target
+        if (targetElem instanceof HTMLAnchorElement) {
+            if (targetElem.target === '_blank' && targetElem.origin) {
+                e.preventDefault()
+                OpenInNewTab({
+                    url: targetElem.href
+                })
+            }
         }
-    }
-})
+    })
+}
 
-module.exports = {
-    fetch: fetch,
-    backgroundMessage: backgroundMessage,
-    getBackgroundTabData: getBackgroundTabData
+export {
+    fetch,
+    backgroundMessage,
+    getBackgroundTabData
 }

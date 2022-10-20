@@ -25,15 +25,19 @@ import { setupColorScheme } from './common.es6'
 import {
     backgroundMessage,
     getBackgroundTabData,
-    fetch as macosFetch
+    fetch as macosFetch,
+    setupClickEventHandlers, setupShared
 } from './macos-communication.es6'
 
-const setColorScheme = setupColorScheme()
-window.onChangeTheme = function (themeName) {
-    setColorScheme(themeName)
+export function setup () {
+    const setColorScheme = setupColorScheme()
+    window.onChangeTheme = function (themeName) {
+        setColorScheme(themeName)
+    }
+    window.history.replaceState({}, '', window.location.href)
+    setupClickEventHandlers()
+    setupShared()
 }
-
-window.history.replaceState({}, '', window.location.href)
 
 /**
  * Close the Dashboard.
@@ -79,7 +83,6 @@ const fetch = (message) => {
         return
     }
 
-    console.log({ message: JSON.stringify(message, null, 2) })
     if (message.checkBrokenSiteReportHandled) {
         privacyDashboardShowReportBrokenSite({})
         return true // Return true to prevent HTML form from showing

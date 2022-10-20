@@ -1,13 +1,15 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withWindowsRequests } from './helpers'
 
+const HTML = '/build/example/html/windows.html'
+
 const test = baseTest.extend({
     windowsMocks: [async ({ page }, use) => {
         forwardConsole(page)
         const requests = await withWindowsRequests(page, {
             requests: []
         })
-        await page.goto('/build/windows/html/popup.html')
+        await page.goto(HTML)
         await requests.deliverInitial()
         await use(requests)
         // @ts-ignore

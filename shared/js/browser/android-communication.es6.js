@@ -22,8 +22,6 @@ const backgroundMessage = (backgroundModel) => {
     channel = backgroundModel
 }
 
-const setColorScheme = setupColorScheme()
-
 const getBackgroundTabDataPromises = []
 let trackerBlockingData
 let permissionsData
@@ -68,10 +66,6 @@ const resolveInitialRender = function () {
 // Integration APIs
 // -----------------------------------------------------------------------------
 
-window.onChangeTheme = function (themeName) {
-    setColorScheme(themeName)
-}
-
 /**
  * Call this method when there is updated request information.
  *
@@ -108,19 +102,6 @@ export function onChangeRequestData (tabUrl, rawRequestData) {
     trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data)
     resolveInitialRender()
 }
-window.onChangeRequestData = onChangeRequestData
-
-window.onChangeAllowedPermissions = function (data) {
-    permissionsData = data
-    channel?.send('updateTabData')
-}
-
-window.onChangeUpgradedHttps = function (data) {
-    upgradedHttps = data
-
-    if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
-    resolveInitialRender()
-}
 
 /**
  * {@inheritDoc common.onChangeProtectionStatus}
@@ -151,7 +132,6 @@ export function onChangeProtectionStatus (protectionsStatus) {
 
     resolveInitialRender()
 }
-window.onChangeProtectionStatus = onChangeProtectionStatus
 
 /**
  * {@inheritDoc common.onChangeLocale}
@@ -173,27 +153,6 @@ export function onChangeLocale (payload) {
         return
     }
     locale = parsed.data.locale
-    channel?.send('updateTabData')
-}
-window.onChangeLocale = onChangeLocale
-
-window.onChangeCertificateData = function (data) {
-    certificateData = data.secCertificateViewModels
-    channel?.send('updateTabData')
-}
-
-window.onIsPendingUpdates = function (data) {
-    isPendingUpdates = data
-    channel?.send('updateTabData')
-}
-
-window.onChangeParentEntity = function (data) {
-    parentEntity = data
-    channel?.send('updateTabData')
-}
-
-window.onChangeConsentManaged = function (data) {
-    consentManaged = data
     channel?.send('updateTabData')
 }
 
@@ -273,7 +232,7 @@ export class PrivacyDashboardJavascriptInterface {
     }
 }
 
-const privacyDashboardApi = new PrivacyDashboardJavascriptInterface()
+let privacyDashboardApi
 
 // -----------------------------------------------------------------------------
 
@@ -318,24 +277,65 @@ const getBackgroundTabData = () => {
     })
 }
 
-/**
- * on macOS, respond to all clicks on links with target="_blank"
- * by forwarding to the native side.
- */
-document.addEventListener('click', (e) => {
-    const targetElem = e.target
-    if (targetElem instanceof HTMLAnchorElement) {
-        if (targetElem.target === '_blank' && targetElem.origin) {
-            e.preventDefault()
-            privacyDashboardApi.openInNewTab({
-                url: targetElem.href
-            })
-        }
+export function setup () {
+    const setColorScheme = setupColorScheme()
+    window.onChangeTheme = function (themeName) {
+        setColorScheme(themeName)
     }
-})
+    window.onChangeProtectionStatus = onChangeProtectionStatus
+    window.onChangeLocale = onChangeLocale
+    window.onChangeRequestData = onChangeRequestData
 
-module.exports = {
-    fetch: fetch,
-    backgroundMessage: backgroundMessage,
-    getBackgroundTabData: getBackgroundTabData
+    window.onChangeAllowedPermissions = function (data) {
+        permissionsData = data
+        channel?.send('updateTabData')
+    }
+
+    window.onChangeUpgradedHttps = function (data) {
+        upgradedHttps = data
+
+        if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
+        resolveInitialRender()
+    }
+    window.onChangeCertificateData = function (data) {
+        certificateData = data.secCertificateViewModels
+        channel?.send('updateTabData')
+    }
+
+    window.onIsPendingUpdates = function (data) {
+        isPendingUpdates = data
+        channel?.send('updateTabData')
+    }
+
+    window.onChangeParentEntity = function (data) {
+        parentEntity = data
+        channel?.send('updateTabData')
+    }
+
+    window.onChangeConsentManaged = function (data) {
+        consentManaged = data
+        channel?.send('updateTabData')
+    }
+    privacyDashboardApi = new PrivacyDashboardJavascriptInterface()
+    /**
+     * on macOS, respond to all clicks on links with target="_blank"
+     * by forwarding to the native side.
+     */
+    document.addEventListener('click', (e) => {
+        const targetElem = e.target
+        if (targetElem instanceof HTMLAnchorElement) {
+            if (targetElem.target === '_blank' && targetElem.origin) {
+                e.preventDefault()
+                privacyDashboardApi.openInNewTab({
+                    url: targetElem.href
+                })
+            }
+        }
+    })
+}
+
+export {
+    fetch,
+    backgroundMessage,
+    getBackgroundTabData
 }

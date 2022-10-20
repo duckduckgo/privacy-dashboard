@@ -1,7 +1,7 @@
 // @ts-nocheck
 import $ from 'jquery'
 import Parent from '../base/model.es6'
-import * as browserUIWrapper from '../../browser/browser-communication.es6.js'
+import browserUIWrapper from '../../browser/communication.es6.js'
 
 /**
  * Background messaging is done via two methods:
