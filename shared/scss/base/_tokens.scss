@@ -35,6 +35,12 @@
     line-height: 20px;
   }
 
+  .environment--ios & {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+
   .environment--browser & {
     font-family: $font__face--browser-alt;
     font-style: normal;
@@ -50,12 +56,17 @@
   font-weight: 400;
   line-height: 20px;
 
+  .environment--ios & {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
+
   //styleName: Android/Body 1;
   .environment--android & {
     font-size: 16px;
-    font-weight: 400;
     line-height: 20px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
   }
 
   .environment--browser & {

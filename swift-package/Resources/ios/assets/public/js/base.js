@@ -29799,6 +29799,8 @@ exports.setupShared = setupShared;
 
 var _schema = require("../../../schema/__generated__/schema.parsers");
 
+var _environmentCheck = require("../ui/environment-check");
+
 var _common = require("./common.es6");
 
 var _requestDetails = require("./utils/request-details");
@@ -30054,7 +30056,9 @@ function privacyDashboardSubmitBrokenSiteReport(report) {
 
 
 function privacyDashboardSetSize(payload) {
-  window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
+  if (!(0, _environmentCheck.isIOS)()) {
+    window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
+  }
 }
 
 function setupShared() {
@@ -30153,7 +30157,7 @@ function setupClickEventHandlers() {
   });
 }
 
-},{"../../../schema/__generated__/schema.parsers":59,"./common.es6":63,"./utils/request-details":69}],68:[function(require,module,exports){
+},{"../../../schema/__generated__/schema.parsers":59,"../ui/environment-check":82,"./common.es6":63,"./utils/request-details":69}],68:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

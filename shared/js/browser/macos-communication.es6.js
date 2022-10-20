@@ -20,6 +20,7 @@ import {
     protectionsStatusSchema,
     requestDataSchema
 } from '../../../schema/__generated__/schema.parsers'
+import { isIOS } from '../ui/environment-check'
 import { getContentHeight, setupColorScheme, setupMutationObserver } from './common.es6'
 import { createTabData } from './utils/request-details'
 
@@ -241,7 +242,9 @@ export function privacyDashboardSubmitBrokenSiteReport (report) {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardSetSize (payload) {
-    window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
+    if (!isIOS()) {
+        window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
+    }
 }
 
 export function setupShared () {

@@ -17,3 +17,4 @@ __diff_output__
 /test-results/
 /playwright-report/
 /playwright/.cache/
+/swift-package/Resources/ios/assets/docs
