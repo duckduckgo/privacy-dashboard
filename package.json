@@ -5,7 +5,8 @@
         "npm": ">=7.0.0"
     },
     "scripts": {
-        "build": "grunt --platform=example",
+        "build": "grunt build",
+        "build.watch": "grunt dev --watch",
         "docs": "typedoc",
         "docs.watch": "npm run docs -- --watch",
         "preview": "npm run build && http-server build/example -o html/popup.html?state=02 -c-1",

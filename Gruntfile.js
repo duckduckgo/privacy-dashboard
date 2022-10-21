@@ -17,11 +17,6 @@ module.exports = function (grunt) {
 
     let buildPath = path.join('build', platform)
 
-    // Output builds for apple devices to the swift package
-    if (platform === 'ios' || platform === 'macos') {
-        buildPath = `swift-package/Resources/${platform}/assets`
-    }
-
     const baseFileMap = {
         ui: {
             '<%= dirs.public.js %>/base.js': ['<%= dirs.src.js %>/ui/base/index.es6.js']
@@ -100,7 +95,7 @@ module.exports = function (grunt) {
         watch: {
             sass: {
                 files: ['shared/scss/**/*'],
-                tasks: ['sass']
+                tasks: ['sass', 'exec:copyTEMP']
             },
             scripts: {
                 files: ['shared/js/**/*', 'shared/html/**/*', 'shared/locales/**/*', 'fixtures/**/*.json', 'schema/**/*.json'],
