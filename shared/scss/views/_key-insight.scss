@@ -10,7 +10,8 @@
     }
 
     .environment--ios & {
-        margin-top: 6px;
+        padding-top: 6px;
+        //outline: 1px solid black;
     }
 
     .is-disabled & {
@@ -35,5 +36,8 @@
 .key-insight--main {
     .environment--macos &, .environment--windows & {
         padding-top: 32px;
+    }
+    .environment--browser & {
+        padding-top: 6px;
     }
 }
