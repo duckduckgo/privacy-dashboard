@@ -11,7 +11,7 @@ export function renderKeyInsight (model) {
     const title = (text) => bel`<h1 class="token-title-3-em">${text}</h1>`
     if (model.httpsState === 'none') {
         return bel`
-                <li class="site-info__li--key-insight">
+                <li class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--insecure-connection"></div>
                     ${title(model.tab.domain)}
                     <div class="token-title-3">${raw(i18n.t('site:connectionDescriptionUnencrypted.title'))}</div>
@@ -26,7 +26,7 @@ export function renderKeyInsight (model) {
             text = i18n.t('site:protectionsDisabledRemoteOverride.title')
         }
         return bel`
-        <li class="site-info__li--key-insight">
+        <li class="key-insight key-insight--main">
             <div class="large-icon-container hero-icon--protections-off"></div>
             ${title(model.tab.domain)}
             <div class="note token-title-3">
@@ -39,7 +39,7 @@ export function renderKeyInsight (model) {
     // user allow-listed
     if (!model.protectionsEnabled) {
         return bel`
-            <li class="site-info__li--key-insight">
+            <li class="key-insight key-insight--main">
                 <div class="large-icon-container hero-icon--protections-off"></div>
                 ${title(model.tab.domain)}
                 <div class="token-title-3">
@@ -53,15 +53,15 @@ export function renderKeyInsight (model) {
         const company = model.tab.parentEntity
 
         return bel`
-                <li class="site-info__li--key-insight">
+                <li class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--tracker-network"></div>
                         ${title(model.tab.domain)}
                         <div class="token-title-3">
                             ${raw(i18n.t('site:majorTrackingNetworkDesc.title', {
-            companyDisplayName: company.displayName,
-            companyPrevalence: Math.round(company.prevalence),
-            blocked: model.tab.requestDetails.blocked.entitiesCount > 0
-        }))}
+        companyDisplayName: company.displayName,
+        companyPrevalence: Math.round(company.prevalence),
+        blocked: model.tab.requestDetails.blocked.entitiesCount > 0
+    }))}
                     </div>
                 </li>
             `
@@ -70,7 +70,7 @@ export function renderKeyInsight (model) {
     if (model.tab.requestDetails.blocked.requestCount === 0) {
         if (model.tab.requestDetails.allowedSpecialCount() > 0) {
             return bel`
-                <li class="site-info__li--key-insight">
+                <li class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--info"></div>
                     ${title(model.tab.domain)}
                     <div class="token-title-3">${i18n.t('site:trackerNetworksSummaryAllowedOnly.title')}</div>
@@ -78,7 +78,7 @@ export function renderKeyInsight (model) {
             `
         }
         return bel`
-                <li class="site-info__li--key-insight">
+                <li class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--no-activity"></div>
                     ${title(model.tab.domain)}
                     <div class="token-title-3">${raw(i18n.t('site:trackerNetworksSummaryNone.title'))}</div>
@@ -89,7 +89,7 @@ export function renderKeyInsight (model) {
     const companyNames = model.tab.requestDetails.blockedCompanyNames()
     if (companyNames.length === 0) {
         return bel`
-                <li class="site-info__li--key-insight">
+                <li class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
                     <div class="token-title-3"><span>${raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))}</span></div>
@@ -98,7 +98,7 @@ export function renderKeyInsight (model) {
     }
 
     return bel`
-            <li class="site-info__li--key-insight">
+            <li class="key-insight key-insight--main">
                 ${renderCompanyIconsList(model)}
                 ${title(model.tab.domain)}
                 <div class="token-title-3"><span>${raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))}</span></div>

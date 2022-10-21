@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         htmlFiles.push('iframe.html')
     }
 
-    let buildPath = path.join('build', platform)
+    const buildPath = path.join('build', platform)
 
     const baseFileMap = {
         ui: {

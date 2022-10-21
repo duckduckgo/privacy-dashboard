@@ -1,5 +1,6 @@
 import bel from 'bel'
 import { i18n } from '../../base/localize.es6'
+import { isAndroid, isIOS } from '../../environment-check'
 
 /**
  * @param {object} ops
@@ -23,10 +24,17 @@ export function largeHeroIcon (ops) {
     return bel`<div class="large-icon-container hero-icon--${ops.status}"></div>`
 }
 
-export function topNav () {
+/**
+ * @param {object} opts
+ * @param {"tall" | "short"} [opts.variant]
+ */
+export function topNav (opts = {}) {
+    const variant = (isIOS() || isAndroid())
+        ? 'tall'
+        : 'short'
     return bel`
     <div>
-        <div class="top-nav text--center">
+        <div class="top-nav top-nav--${variant}">
             <a href="javascript:void(0)"
                 class="top-nav__close js-sliding-subview-close js-site-done link-action"
                 role="button"
@@ -42,7 +50,7 @@ export function topNav () {
                 ${i18n.t('site:navigationComplete.title')}
             </a>
         </div>    
-        <div style="height: 56px"></div>
+        <div class="top-nav__spacer"></div>
     </div>
 `
 }

@@ -15,26 +15,26 @@ export function trackerNetworksTemplate () {
 
     const summary = trackerNetworkSummary(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
     const { blocked } = this.model.site.tab.requestDetails
-    const sections = [
+    const sections = renderSections([
         {
             name: 'blocked',
             heading: () => null,
             companies: blocked.sortedByPrevalence(),
             bordered: true
         }
-    ]
+    ])
+    const icon = renderHeroIcon(this.model.site)
 
-    return bel`<div class="tracker-networks site-info card" data-test-id="tracker-list-view">
-        <div class="js-tracker-networks-hero">
-            ${topNav()}
-            ${renderHeroIcon(this.model.site)}
-        </div>
-        <div class="tracker-networks__explainer text--center" data-test-id="tracker-list.summary">
-            <p data-test-id="tracker.summary" class="token-title-3">${summary}</p>
-            <p>${aboutLink()}</p>
-        </div>
-        <div class="tracker-networks__details padded-sides js-tracker-networks-details">
-            ${renderSections(sections)}
+    return bel`
+    <div class="site-info card">
+        ${topNav()}
+        <div class="padded-sides">
+            <div class="key-insight">
+                ${icon}
+                <p class="token-title-3">${summary}</p>
+                <p>${aboutLink()}</p>
+            </div>
+            ${sections}
         </div>
         ${this.model.site.tab.platformLimitations ? platformLimitations() : null}
     </div>`
@@ -60,8 +60,7 @@ function renderHeroIcon (site) {
 export function trackerListWrapper (name, heading, companiesList, bordered) {
     return bel`
         <ol class="default-list site-info__trackers__company-list ${bordered ? 'border--top' : ''}" 
-             aria-label="List of tracker networks"
-             >
+             aria-label="List of tracker networks">
             ${heading
         ? bel`<li class="section-list-header" data-test-id="sectionHeading">${heading}</li>`
         : bel``

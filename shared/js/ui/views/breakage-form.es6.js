@@ -23,7 +23,6 @@ BreakageForm.prototype = $.extend({},
                 'close',
                 'submit',
                 'element',
-                'message',
                 'dropdown',
                 'description'
             ])
@@ -50,8 +49,7 @@ BreakageForm.prototype = $.extend({},
         },
 
         _showThankYouMessage: function () {
-            this.$element.addClass('is-transparent')
-            this.$message.removeClass('is-transparent')
+            this.$element[0].dataset.state = 'sent'
             // reload page after form submission if user got to form from
             // toggling privacy protection, otherwise destroy view.
             if (this.clickSource === 'toggle') {

@@ -14,18 +14,19 @@ export function nonTrackersTemplate () {
     }
 
     const summary = thirdpartySummary(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
+    const sections = renderNonTrackerDetails(this.model.site)
+    const icon = renderHeroIcon(this.model.site)
 
-    return bel`<div class="tracker-networks site-info card" data-test-id="non-tracker-list-view">
-        <div class="js-tracker-networks-hero">
-            ${topNav()}
-            ${renderHero(this.model.site)}
-        </div>
-        <div class="tracker-networks__explainer text--center">
-            <p data-test-id="thirdPartySubView.summary" class="token-title-3">${summary}</p>
-            <p>${aboutLink()}</p>
-        </div>
-        <div class="tracker-networks__details padded-sides js-tracker-networks-details">
-            ${renderNonTrackerDetails(this.model.site)}
+    return bel`
+    <div class="site-info card">
+        ${topNav()}
+        <div class="padded-sides">
+            <div class="key-insight">
+                ${icon}
+                <p class="token-title-3">${summary}</p>
+                <p>${aboutLink()}</p>
+            </div>
+            ${sections}
         </div>
         ${this.model.site.tab.platformLimitations ? platformLimitations() : null}
     </div>`
@@ -34,10 +35,10 @@ export function nonTrackersTemplate () {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
-function renderHero (site) {
+function renderHeroIcon (site) {
     const icon = thirdpartyHeroIcon(site.tab.requestDetails, site.protectionsEnabled)
     return bel`${largeHeroIcon({
-        status: icon,
+        status: icon
     })}`
 }
 

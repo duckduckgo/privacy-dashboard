@@ -1,4 +1,5 @@
 $nav-height: 56px;
+$nav-height-short: 32px;
 .top-nav {
     text-align: center;
     position: fixed;
@@ -6,10 +7,6 @@ $nav-height: 56px;
     width: 100%;
     height: $nav-height;
     background: white;
-
-    .environment--ios & {
-        //padding-top: 4px;
-    }
 
     .body--theme-dark & {
         background-color: $slate;
@@ -20,6 +17,19 @@ $nav-height: 56px;
     }
 }
 
+.top-nav__spacer {
+    height: $nav-height;
+
+    .top-nav--short + & {
+        height: $nav-height-short;
+    }
+}
+
+.top-nav--short {
+    height: $nav-height-short;
+}
+
+// todo(Shane): align the small version of the icon to the bottom-most part
 .top-nav__close {
     position: absolute;
     padding: 10px;
@@ -31,6 +41,19 @@ $nav-height: 56px;
 
     .environment--ios & {
         left: 0;
+    }
+
+    .top-nav--short & {
+        border-radius: 0;
+        bottom: 0;
+        top: 0;
+        padding-bottom: 0;
+        height: 32px;
+        width: 32px;
+
+        .icon {
+            //display: none;
+        }
     }
 }
 

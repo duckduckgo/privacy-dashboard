@@ -1,8 +1,5 @@
 @use "sass:math";
 
-.tracker-networks {
-}
-
 .tracker-networks__explainer {
     padding: 0 $card--padded--side 0;
 
@@ -93,7 +90,7 @@
     justify-content: center;
 }
 
-.site-info .default-list .site-info__li--key-insight {
+.site-info .default-list .key-insight {
     $large-icon: 64px;
     $medium-icon: 32px;
     $small-icon: 23px;

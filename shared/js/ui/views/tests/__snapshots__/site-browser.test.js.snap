@@ -650,7 +650,7 @@ exports[`Browser specific Site view when content-blocking has an exception rende
         class="default-list card-list"
       >
         <li
-          class="site-info__li--key-insight"
+          class="key-insight"
         >
           <div
             class="key-insight site-info__key-insight--protections-off"
@@ -893,7 +893,7 @@ exports[`Browser specific Site view when the site broken, but the user has overr
         class="default-list card-list"
       >
         <li
-          class="site-info__li--key-insight"
+          class="key-insight"
         >
           <div
             class="key-insight site-info__key-insight--protections-off"
@@ -1136,7 +1136,7 @@ exports[`Browser specific Site view when the site is marked as broken renders th
         class="default-list card-list"
       >
         <li
-          class="site-info__li--key-insight"
+          class="key-insight"
         >
           <div
             class="key-insight site-info__key-insight--protections-off"

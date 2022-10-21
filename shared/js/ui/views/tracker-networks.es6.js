@@ -65,7 +65,7 @@ TrackerNetworks.prototype = $.extend({},
                 const site = this.model.site
                 const icon = this.heroFn?.(site.tab.requestDetails, site.protectionsEnabled)
                 this.$hero.html(heroTemplate({
-                    status: icon,
+                    status: icon
                 }))
             }
         },

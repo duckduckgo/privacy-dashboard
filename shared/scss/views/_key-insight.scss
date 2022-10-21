@@ -1,0 +1,39 @@
+.key-insight {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 24px;
+    text-align: center;
+    //outline: 1px dotted orange;
+
+    .environment--browser & {
+        background-color: transparent;
+    }
+
+    .environment--ios & {
+        margin-top: 6px;
+    }
+
+    .is-disabled & {
+        @include is_disabled();
+    }
+
+    .token-title-3-em {
+        //border: 1px solid red;
+        margin-bottom: 8px;
+    }
+
+    .token-title-3 {
+        //border: 1px solid blue;
+    }
+
+    .about-link {
+        display: block;
+        margin-top: 12px;
+    }
+}
+
+.key-insight--main {
+    .environment--macos &, .environment--windows & {
+        padding-top: 32px;
+    }
+}

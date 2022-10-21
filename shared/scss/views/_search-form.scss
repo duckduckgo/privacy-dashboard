@@ -6,6 +6,7 @@ $dark-mode-white-hover: rgba(255, 255, 255, .20);
     align-items: center;
     padding: 8px;
     background: $white;
+    height: 56px;
     .body--theme-dark & {
         background-color: $slate;
     }
@@ -20,7 +21,6 @@ $dark-mode-white-hover: rgba(255, 255, 255, .20);
     -moz-appearance: none;
     outline: medium none;
     border: medium none;
-    padding: 12px 0;
     padding-left: 46px;
     z-index: 1;
     color: $slate;

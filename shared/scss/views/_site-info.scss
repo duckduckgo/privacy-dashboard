@@ -211,30 +211,6 @@
     }
 }
 
-.site-info__li--key-insight {
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 24px;
-    text-align: center;
-
-    .environment--browser & {
-        background-color: transparent;
-        padding: 0 12px 20px;
-    }
-
-    .is-disabled & {
-        @include is_disabled();
-    }
-
-    .token-title-3-em {
-        border: 1px solid red;
-        margin-bottom: 8px;
-    }
-    .token-title-3 {
-        border: 1px solid blue;
-    }
-}
-
 .site-info__li--manage-allowlist {
     text-align: center;
     padding: 16px 0;
@@ -288,6 +264,7 @@
     position: absolute;
     top: 15px;
     right: 0;
+    //background: white;
 
     .environment--android & {
         top: 17px;

@@ -16,18 +16,22 @@ export default function () {
         return bel`<section class="sliding-subview"></section>`
     }
 
-    return bel`<div class="tracker-networks site-info card">
-        <div class="js-tracker-networks-hero">
-            ${topNav()}
-            ${renderHero(this.model.site)}
+    const summary = renderConnectionDescription(this.model.site)
+    const icon = largeHeroIcon({
+        status: `connection-${this.model.site.httpsState}`
+    })
+
+    return bel`
+    <div class="site-info card">
+        ${topNav()}
+        <div class="padded-sides">
+            <div class="key-insight">
+                ${icon}
+                <p class="token-title-3">${summary}</p>
+                <p>${aboutLink()}</p>
+            </div>
+            ${renderCertificateDetails(this.model.site, this.model.tab)}
         </div>
-        <div class="tracker-networks__explainer text--center">
-            <p class="token-title-3">${renderConnectionDescription(this.model.site)}</p>
-            <p>
-                ${aboutLink()}
-            </p>
-        </div>
-        ${renderCertificateDetails(this.model.site, this.model.tab)}
     </div>`
 }
 
@@ -58,9 +62,7 @@ function renderCertificateDetails (site, tab) {
     const certificate = tab.certificate[0]
     return bel`
         <div>
-            <div class="padded-sides">
-                ${renderHeader(site, tab)}
-            </div>
+            ${renderHeader(site, tab)}
             <div class="page-connection__certificate">
                 <div class="page-connection__certificate-details">
                     <h3 class="token-body-em">${i18n.t('connection:certificateDetail.title')}</h3>
@@ -173,13 +175,4 @@ function renderConnectionDescription (site) {
     }
 
     return i18n.t('connection:secureConnectionDesc.title')
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} site
- */
-function renderHero (site) {
-    return bel`${largeHeroIcon({
-        status: `connection-${site.httpsState}`
-    })}`
 }

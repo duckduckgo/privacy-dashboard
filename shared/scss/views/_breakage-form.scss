@@ -4,165 +4,165 @@
     .body--theme-dark & {
         background: $slate;
     }
+}
 
-    .hero__icon--breakage-form {
-        @include cross_platform_bg_image("refresh-assets/Breakage-96.svg");
+.breakage-form__content {
+    z-index: 1;
+    position: relative;
+    background-color: $white;
+    text-align: center;
+
+    .body--theme-dark & {
+        background-color: $slate;
     }
 
-    &__content {
-        z-index: 1;
-        margin-top: 0;
-        position: relative;
-        background-color: $white;
-        margin: 0;
-        text-align: center;
+    [data-state="sent"] & {
+        display: none;
+    }
+}
 
-        .body--theme-dark & {
-            background-color: $slate;
+.breakage-form__close-container {
+    top: 13px;
+    right: 15px;
+    position: absolute;
+}
+
+.form__icon--wrapper {
+    padding-bottom: 5px;
+    margin: 0 20px;
+    position: relative;
+}
+
+.breakage-form__element {
+    opacity: 1;
+    transition: all .2s ease-in-out;
+
+    &.is-transparent {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+}
+
+.breakage-form__title {
+    padding: 5px 0 0;
+}
+
+.breakage-form__advise {
+    display: none;
+    [data-state="idle"] & {
+        display: block;
+    }
+}
+.breakage-form__message {
+    text-align: center;
+    padding-bottom: 20px;
+    transition: all .2s ease-in-out;
+    opacity: 1;
+    display: none;
+
+    .token-title-3-em {
+        margin-bottom: 8px;
+    }
+
+    [data-state="sent"] & {
+        display: block;
+    }
+}
+
+.breakage-form__success--title {
+    padding-top: 15px;
+}
+
+.breakage-form__success--message {
+    padding: 15px;
+}
+
+.form__label__select {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.form__group {
+    margin-bottom: 20px;
+
+    .body--theme-dark & {
+        background-color: $color-gray-80;
+    }
+}
+
+.form__select {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form__select select {
+    cursor: pointer;
+    margin: 0;
+    display: block;
+    min-width: 9em;
+    min-height: 2em;
+    width: 100% !important;
+    height: 2em !important;
+}
+
+.form__textarea {
+    resize: none;
+    width: 100%;
+    height: 110px;
+    border: 1px solid $color--dark-silver;
+    border-radius: 6px;
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    padding: 8px;
+    outline-color: #6e90f7;
+
+    .body--theme-dark.environment--windows {
+        background-color: $color--dark-theme-background;
+        border-color: $color--dark-theme-border;
+        color: $white;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.24);
         }
+    }
+}
 
-        .breakage-form__close-container {
-            top: 13px;
-            right: 15px;
-            position: absolute;
+.form__submit {
+    text-align: center;
+    color: $white;
+    padding: 10px 12px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+
+    /* Controls/Mac/System (Light) */
+    border: 0.5px solid rgba(40, 145, 255, 0.05);
+    background: linear-gradient(180deg, #4690F7 0%, #307BF7 100%);
+    box-shadow: 0px 0px 1px rgba(40, 145, 255, 0.05), 0px 1px 1px rgba(40, 145, 255, 0.1);
+
+    /* Mac/Button (Accent) */
+    border-radius: 8px;
+
+    &.btn-disabled {
+        background-color: #e3e3e3;
+        color: $grey;
+        cursor: default;
+
+        .body--theme-dark.environment--windows {
+            background-color: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.36);
         }
+    }
+}
 
-        .form__icon--wrapper {
-            padding-bottom: 5px;
-            margin: 0 20px;
-            position: relative;
-        }
+.breakage-form__footer {
+    padding: 0 5px;
 
-        .breakage-form__element {
-            opacity: 1;
-            transition: all .2s ease-in-out;
-
-            &.is-transparent {
-                opacity: 0;
-                max-height: 0;
-                overflow: hidden;
-            }
-        }
-
-        .breakage-form__title {
-            padding: 5px 0 0;
-        }
-
-        .breakage-form__explanation {
-            display: block;
-            padding: 0 0 16px 0;
-
-            .body--theme-dark & {
-            }
-        }
-
-        .breakage-form__message {
-            text-align: center;
-            padding-bottom: 20px;
-            transition: all .2s ease-in-out;
-            opacity: 1;
-
-            &.is-transparent {
-                display: none;
-            }
-        }
-
-        .breakage-form__success--title {
-            padding-top: 15px;
-        }
-
-        .breakage-form__success--message {
-            padding: 15px;
-        }
-
-        .form__label__select {
-            display: block;
-            text-align: left;
-            margin-bottom: 8px;
-        }
-
-        .form__group {
-            margin-bottom: 20px;
-
-            .body--theme-dark & {
-                background-color: $color-gray-80;
-            }
-        }
-
-        .form__select {
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        .form__select select {
-            cursor: pointer;
-            margin: 0;
-            display: block;
-            min-width: 9em;
-            min-height: 2em;
-            width: 100% !important;
-            height: 2em !important;
-        }
-
-        .form__textarea {
-            resize: none;
-            width: 100%;
-            height: 110px;
-            border: 1px solid $color--dark-silver;
-            border-radius: 6px;
-            display: block;
-            box-sizing: border-box;
-            margin-bottom: 8px;
-            padding: 8px;
-            outline-color: #6e90f7;
-
-            .body--theme-dark.environment--windows {
-                background-color: $color--dark-theme-background;
-                border-color: $color--dark-theme-border;
-                color: $white;
-
-                &::placeholder {
-                    color: rgba(255, 255, 255, 0.24);
-                }
-            }
-        }
-
-        .form__submit {
-            text-align: center;
-            color: $white;
-            padding: 10px 12px;
-            cursor: pointer;
-            display: block;
-            text-decoration: none;
-            width: 100%;
-
-            /* Controls/Mac/System (Light) */
-            border: 0.5px solid rgba(40, 145, 255, 0.05);
-            background: linear-gradient(180deg, #4690F7 0%, #307BF7 100%);
-            box-shadow: 0px 0px 1px rgba(40, 145, 255, 0.05), 0px 1px 1px rgba(40, 145, 255, 0.1);
-
-            /* Mac/Button (Accent) */
-            border-radius: 8px;
-
-            &.btn-disabled {
-                background-color: #e3e3e3;
-                color: $grey;
-                cursor: default;
-
-                .body--theme-dark.environment--windows {
-                    background-color: rgba(255, 255, 255, 0.06);
-                    color: rgba(255, 255, 255, 0.36);
-                }
-            }
-        }
-
-
-        .breakage-form__footer {
-            padding: 0 5px;
-
-            .body--theme-dark & {
-                color: rgba(255, 255, 255, 0.5);
-            }
-        }
+    .body--theme-dark & {
+        color: rgba(255, 255, 255, 0.5);
     }
 }
