@@ -188,14 +188,6 @@
         .site-info__trackers-status__icon {
             @include icon_display();
             @include site_status_icons();
-
-            &.is-blocking--true {
-                @include cross_platform_bg_image("blocking--on.svg");
-            }
-
-            &.is-blocking--false {
-                @include cross_platform_bg_image("blocking--off.svg");
-            }
         }
 
         .float-right {
@@ -211,7 +203,7 @@
     }
 }
 
-.site-info__li--manage-allowlist {
+.site-info__li--report {
     text-align: center;
     padding: 16px 0;
 
@@ -223,12 +215,13 @@
         @include is_disabled();
     }
 
-    .manage-allowlist {
-        .environment--browser & {
-        }
+}
 
-        .environment--ios &,
-        .environment--android & {
+.report-breakage {}
+.report-breakage__link {
+    .environment--ios &, .environment--android & {
+        &:visited, &:active, &:hover {
+            text-decoration: none;
         }
     }
 }
@@ -323,10 +316,6 @@
             border-color: transparent;
         }
     }
-
-    .is-disabled & {
-        @include is_disabled();
-    }
 }
 
 .site-info__li--consent-managed {
@@ -335,18 +324,18 @@
 }
 
 .site-info__https-status__icon {
-    @include icon_display();
-    @include site_status_icons();
-
-    &.is-secure, // default = secure, https
-    &.is-upgraded {
+    //@include icon_display();
+    //@include site_status_icons();
+    //
+    //&.is-secure, // default = secure, https
+    //&.is-upgraded {
         @include cross_platform_bg_image($status--good);
-    }
-
-    &.is-none,
-    &.is-insecure { // none = insecure, http
-        @include cross_platform_bg_image($status--bad);
-    }
+    //}
+    //
+    //&.is-none,
+    //&.is-insecure { // none = insecure, http
+    //    @include cross_platform_bg_image($status--bad);
+    //}
 }
 
 .site-info--main {

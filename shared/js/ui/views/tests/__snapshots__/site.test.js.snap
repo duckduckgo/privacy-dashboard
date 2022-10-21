@@ -295,7 +295,7 @@ exports[`Site view when cookie consent popups are hidden renders the correct out
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -737,7 +737,7 @@ exports[`Site view when permissions are set renders the correct output 1`] = `
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -1027,7 +1027,7 @@ exports[`Site view when protection is enabled and connection is insecure renders
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -1324,7 +1324,7 @@ exports[`Site view when protection is enabled and connection is secure renders t
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -1621,7 +1621,7 @@ exports[`Site view when protection is enabled and connection was upgraded render
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -1906,7 +1906,7 @@ exports[`Site view when protection is enabled and locale is changed renders the 
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -2148,7 +2148,7 @@ exports[`Site view when protection is enabled and no trackers are found renders 
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -2395,7 +2395,7 @@ exports[`Site view when protection is enabled and site is owned by tracking netw
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -2640,7 +2640,7 @@ exports[`Site view when protection is not enabled and connection is insecure ren
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -2888,7 +2888,7 @@ exports[`Site view when protection is not enabled and connection is secure rende
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -3136,7 +3136,7 @@ exports[`Site view when protection is not enabled and connection was upgraded re
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -3376,7 +3376,7 @@ exports[`Site view when protection is not enabled and locale is changed renders 
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -3624,7 +3624,7 @@ exports[`Site view when protection is not enabled and no trackers are found rend
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"
@@ -3872,7 +3872,7 @@ exports[`Site view when protection is not enabled and site is owned by tracking 
         class="default-list"
       >
         <li
-          class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top"
+          class="js-site-manage-allowlist-li site-info__li--report border-light--top"
         >
           <div
             class="manage-allowlist"

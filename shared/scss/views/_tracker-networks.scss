@@ -48,16 +48,6 @@
     @include cross_platform_bg_image($status--mixed);
 }
 
-.icon-info {
-    @include cross_platform_bg_image("status--info.svg");
-}
-.icon-blocked {
-    @include cross_platform_bg_image($status--good);
-}
-.icon-warning {
-    @include cross_platform_bg_image($status--bad);
-}
-
 .site-info__tracker__icon {
     @include tracker_network_icons_colors();
     @include tracker_network_icons_subview();

@@ -25,11 +25,7 @@ export function getOverrides (searchString) {
     /** @type {Overrides} */
     const overrides = {
         tab: {
-            consentManaged: {
-                consentManaged: false,
-                optoutFailed: false,
-                selftestFailed: false
-            },
+            consentManaged: undefined,
             parentEntity: undefined
         },
         requests: [],

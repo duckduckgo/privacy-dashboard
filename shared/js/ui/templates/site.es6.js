@@ -22,48 +22,46 @@ export default function () {
             </div>
         `
     }
-    // console.log('this.model.tab.requestDetails.state(true)', this.model.tab.requestDetails.state(this.model.protectionsEnabled))
 
     return bel`
     <div class="site-info site-info--main">
-    ${renderSearchWrapper(this.model)}
-    ${topNavSupported ? topNav() : null}
-    <div class="list-wrapper">
-        <ul class="default-list card-list">
-            ${renderKeyInsight(this.model)}
-        </ul>
-    </div>
-    <div class="list-wrapper">
-        <ul class="default-list card-list card-list--bordered token-body-em" data-test-id="list-links">
-            <li class="js-site-show-page-connection site-info__li--https-status">
-                <a href="javascript:void(0)" class="link-action" role="button">
+        ${renderSearchWrapper(this.model)}
+        ${topNavSupported ? topNav() : null}
+        <div class="list-wrapper">
+            <ul class="default-list card-list">
+                ${renderKeyInsight(this.model)}
+            </ul>
+        </div>
+        <div class="list-wrapper">
+            <ul class="default-list card-list card-list--bordered token-body-em">
+                <li class="link-item js-site-show-page-connection">
                     ${renderConnection(this.model)}
-                </a>
-            </li>
-            <li class="js-site-tracker-networks js-site-show-page-trackers site-info__li--trackers border-light--top" data-test-id="tracker-list-link">
-                <a href="javascript:void(0)" class="link-action" role="button">
+                </li>
+                <li class="link-item js-site-tracker-networks js-site-show-page-trackers">
                     ${renderTrackerNetworksNew(this.model)}
-                </a>
-            </li>
-            <li class="js-site-show-page-non-trackers site-info__li--trackers border-light--top" data-test-id="thirdparty-list-link">
-                <a href="javascript:void(0)" class="link-action" role="button">
+                </li>
+                <li class="link-item js-site-show-page-non-trackers">
                     ${renderThirdPartyNew(this.model)}
-                </a>
-            </li>
-            ${renderCookieConsentManaged(this.model)}
-        </ul>
-    </div>
-    ${protectionToggle(this.model)}
-    ${renderEmailWrapper(this.model)}
-    <div class="list-wrapper card-list--last">
-        <ul class="default-list">
-            <li class="js-site-manage-allowlist-li site-info__li--manage-allowlist border-light--top">
-                ${renderManageAllowlist()}
-            </li>
-        </ul>
-    </div>
-    ${renderManagePermissions(this.model)}
-</div>`
+                </li>
+                ${this.model.tab?.consentManaged
+        ? bel`<li class="link-item js-site-show-consent-managed">
+                    ${renderCookieConsentManaged(this.model)}
+                </li>`
+        : null
+}
+            </ul>
+        </div>
+        ${protectionToggle(this.model)}
+        ${renderEmailWrapper(this.model)}
+        <div class="list-wrapper card-list--last">
+            <ul class="default-list">
+                <li class="js-site-manage-allowlist-li site-info__li--report border-light--top">
+                    ${renderReportButton()}
+                </li>
+            </ul>
+        </div>
+        ${renderManagePermissions(this.model)}
+    </div>`
 }
 
 /**
@@ -88,45 +86,42 @@ function renderEmailWrapper (model) {
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderConnection (model) {
-    return bel`<div>
-            <div class="site-info__trackers">
-                <span class="site-info__https-status__icon is-${model.httpsState}"></span>
-                <span>${model.httpsStatusText}</span>
-                <span class="icon icon__arrow pull-right"></span>
-            </div>
-        </div>`
+    const icon = model.httpsState === 'secure'
+        ? 'icon-small--secure'
+        : 'icon-small--insecure'
+
+    return bel`
+        <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
+            <span class="link-action__icon ${icon}"></span>
+            <span class="link-action__text">${model.httpsStatusText}</span>
+            <span class="link-action__chev"></span>
+        </a>`
 }
 
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderTrackerNetworksNew (model) {
-    const isActive = !model.isAllowlisted ? 'is-active' : ''
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
-        <div>
-            <div class="site-info__trackers">
-                <span class="site-info__trackers-status__icon icon-${icon}" data-test-id="trackerLink.icon"></span>
-                <span class="${isActive}">${title}</span>
-                <span class="icon icon__arrow pull-right"></span>
-            </div>
-        </div>`
+        <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
+            <span class="link-action__icon icon-small--${icon}"></span>
+            <span class="link-action__text">${title}</span>
+            <span class="link-action__chev"></span>
+        </a>`
 }
 
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderThirdPartyNew (model) {
-    const isActive = !model.isAllowlisted ? 'is-active' : ''
     const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
-        <div>
-            <div class="site-info__trackers">
-                <span class="site-info__trackers-status__icon icon-${icon}" data-test-id="trackerLink.icon"></span>
-                <span class="${isActive}">${title}</span>
-                <span class="icon icon__arrow pull-right"></span>
-            </div>
-        </div>`
+        <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
+            <span class="link-action__icon icon-small--${icon}"></span>
+            <span class="link-action__text">${title}</span>
+            <span class="link-action__chev"></span>
+        </a>`
 }
 
 /**
@@ -161,9 +156,9 @@ function renderManagePermissions (model) {
     </ul>`
 }
 
-function renderManageAllowlist () {
-    return bel`<div class="manage-allowlist">
-            <a href="javascript:void(0)" class="js-site-report-broken site-info__report-broken">
+function renderReportButton () {
+    return bel`<div class="report-breakage">
+            <a href="javascript:void(0)" class="js-site-report-broken report-breakage__link" draggable="false">
                 ${i18n.t('site:websiteNotWorkingQ.title')}
             </a>
         </div>`
@@ -173,19 +168,15 @@ function renderManageAllowlist () {
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderCookieConsentManaged (model) {
-    if (!model.tab?.consentManaged) return bel``
+    if (!model.tab?.consentManaged) return null
 
     const { consentManaged, optoutFailed } = model.tab.consentManaged
     if (consentManaged && !optoutFailed) {
         return bel`
-            <li class="js-site-show-consent-managed site-info__li--consent-managed border-light--top">
-                <div>
-                    <div class="site-info__trackers">
-                        <span class="site-info__https-status__icon is-secure"></span>
-                        <span>${i18n.t('site:cookiesMinimized.title')}</span>
-                    </div>
-                </div>
-            </li>
+            <div class="link-action">
+                <span class="link-action__icon icon-small--secure"></span>
+                <span class="link-action__text">${i18n.t('site:cookiesMinimized.title')}</span>
+            </div>
             `
     }
     return bel``
