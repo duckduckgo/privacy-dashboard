@@ -61,7 +61,7 @@ exports[`Site view when cookie consent popups are hidden renders the correct out
               
                 
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -80,7 +80,7 @@ exports[`Site view when cookie consent popups are hidden renders the correct out
                 
               </span>
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -521,7 +521,7 @@ exports[`Site view when permissions are set renders the correct output 1`] = `
               
                 
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -540,7 +540,7 @@ exports[`Site view when permissions are set renders the correct output 1`] = `
                 
               </span>
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -1108,7 +1108,7 @@ exports[`Site view when protection is enabled and connection is secure renders t
               
                 
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -1127,7 +1127,7 @@ exports[`Site view when protection is enabled and connection is secure renders t
                 
               </span>
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -1405,7 +1405,7 @@ exports[`Site view when protection is enabled and connection was upgraded render
               
                 
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -1424,7 +1424,7 @@ exports[`Site view when protection is enabled and connection was upgraded render
                 
               </span>
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -1702,7 +1702,7 @@ exports[`Site view when protection is enabled and locale is changed renders the 
               
                 
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
@@ -1721,7 +1721,7 @@ exports[`Site view when protection is enabled and locale is changed renders the 
                 
               </span>
               <span
-                class="icon-positioner"
+                class="tracker-icons__icon"
               >
                  
                 <span
