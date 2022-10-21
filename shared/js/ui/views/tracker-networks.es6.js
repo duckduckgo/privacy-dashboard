@@ -27,7 +27,7 @@ TrackerNetworks.prototype = $.extend({},
         /** @this {any} */
         setup: function () {
             this._cacheElems('.js-tracker-networks', [
-                'heroTemplate',
+                'hero',
                 'details'
             ])
 
@@ -64,6 +64,7 @@ TrackerNetworks.prototype = $.extend({},
                 /** @type {import('./../models/site.es6.js').PublicSiteModel} */
                 const site = this.model.site
                 const icon = this.heroFn?.(site.tab.requestDetails, site.protectionsEnabled)
+                // todo(Shane): Fix this next
                 this.$hero.html(heroTemplate({
                     status: icon
                 }))

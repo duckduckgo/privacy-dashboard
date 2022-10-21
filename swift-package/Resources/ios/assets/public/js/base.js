@@ -35311,7 +35311,7 @@ TrackerNetworks.prototype = _jquery["default"].extend({}, // @ts-ignore
 _slidingSubviewEs["default"].prototype, {
   /** @this {any} */
   setup: function setup() {
-    this._cacheElems('.js-tracker-networks', ['heroTemplate', 'details']);
+    this._cacheElems('.js-tracker-networks', ['hero', 'details']);
 
     this.bindEvents([[this.store.subscribe, "change:".concat(this.currentSiteModelName), this._rerender]]);
   },
