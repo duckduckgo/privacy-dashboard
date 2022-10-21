@@ -1,6 +1,6 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6'
-import hero from './shared/hero.es6.js'
+import { largeHeroIcon, topNav } from './shared/hero.es6.js'
 
 function categories () {
     return [
@@ -29,15 +29,15 @@ function shuffle (arr) {
 }
 
 function renderHero () {
-    return bel`${hero({
+    return bel`${largeHeroIcon({
         status: 'breakage-form',
-        className: 'js-breakage-form-close'
     })}`
 }
 
 export default function () {
     return bel`<section class="sliding-subview">
-        <div class="breakage-form js-breakage-form card">
+        <div class="breakage-form js-breakage-form">
+        ${topNav()}
         ${renderHero()}
         <div class="breakage-form__content padded">
             <div class="breakage-form__element js-breakage-form-element">

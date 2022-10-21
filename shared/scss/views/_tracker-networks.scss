@@ -35,23 +35,8 @@
     }
 }
 
-.hero__icon--major-networks-blocked {
-    @include cross_platform_bg_image("refresh-assets/Shield-128.svg");
-}
-
 .icon-major-networks-blocked {
     @include cross_platform_bg_image($status--good);
-}
-
-.hero__icon--major-networks-warning {
-    @include cross_platform_bg_image("refresh-assets/Block-Disabled-128.svg");
-}
-
-.hero__icon--major-networks-info {
-    @include cross_platform_bg_image("refresh-assets/Block-Info.svg");
-}
-.hero__icon--major-networks-no-activity {
-    @include cross_platform_bg_image("refresh-assets/Counter-128.svg");
 }
 
 .icon-major-networks-warning {
@@ -60,14 +45,6 @@
 
 .icon-major-networks-info {
     @include cross_platform_bg_image("status--info.svg");
-}
-
-.hero__icon--major-networks-mixed {
-    @include cross_platform_bg_image("refresh-assets/Block-Allowed-96.svg");
-}
-
-.hero__icon--major-networks-protections-off {
-    @include cross_platform_bg_image("refresh-assets/Block-Disabled-128.svg");
 }
 
 .icon-major-networks-mixed {
@@ -110,14 +87,13 @@
     }
 }
 
-.site-info .default-list .site-info__li--key-insight {
-    .site-info__key-insight_trackers-icons {
-        position: relative;
-        top: -120px;
-        display: flex;
-        justify-content: center;
-    }
+.tracker-icons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
 
+.site-info .default-list .site-info__li--key-insight {
     $large-icon: 64px;
     $medium-icon: 32px;
     $small-icon: 23px;
@@ -162,7 +138,7 @@
         height: $small-icon;
     }
 
-    .site-info__tracker__icon-positioner {
+    .icon-positioner {
         position: absolute;
 
         &:nth-child(1) {
@@ -283,10 +259,6 @@
     padding-right: 12px;
 }
 
-.site-info__trackers__company-list {
-
-}
-
 .site-info__trackers__company-list--bordered {
     border-top: $border--separator;
 }
@@ -320,7 +292,7 @@
         padding-right: 10px;
     }
     .category {
-        padding: 0 8px;
+        padding: 1px 8px;
         background-color: $color--dark-platinum;
         border-radius: 33px;
         color: rgba(0, 0, 0, 0.5);

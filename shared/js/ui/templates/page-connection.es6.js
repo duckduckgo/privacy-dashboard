@@ -1,6 +1,6 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6.js'
-import hero from './shared/hero.es6.js'
+import { largeHeroIcon, topNav } from './shared/hero.es6.js'
 import { aboutLink } from './shared/about-link.js'
 
 /**
@@ -18,6 +18,7 @@ export default function () {
 
     return bel`<div class="tracker-networks site-info card">
         <div class="js-tracker-networks-hero">
+            ${topNav()}
             ${renderHero(this.model.site)}
         </div>
         <div class="tracker-networks__explainer text--center">
@@ -178,7 +179,7 @@ function renderConnectionDescription (site) {
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
 function renderHero (site) {
-    return bel`${hero({
+    return bel`${largeHeroIcon({
         status: `connection-${site.httpsState}`
     })}`
 }

@@ -1,0 +1,55 @@
+$nav-height: 56px;
+.top-nav {
+    text-align: center;
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+    height: $nav-height;
+    background: white;
+
+    .environment--ios & {
+        //padding-top: 4px;
+    }
+
+    .body--theme-dark & {
+        background-color: $slate;
+    }
+
+    .body--theme-dark.environment--android & {
+        background-color: $black;
+    }
+}
+
+.top-nav__close {
+    position: absolute;
+    padding: 10px;
+    left: 14px;
+    top: 7px;
+    border-radius: 100%;
+    display: flex;
+    font-size: 16px;
+
+    .environment--ios & {
+        left: 0;
+    }
+}
+
+.top-nav__done {
+    display: none;
+    position: absolute;
+    padding: 0 6px;
+    right: 14px;
+    height: $nav-height;
+    line-height: $nav-height;
+    font-size: 16px;
+    font-weight: bold;
+
+    .environment--ios & {
+        display: block;
+        font-size: 17px;
+
+        &:active {
+            opacity: 0.5;
+        }
+    }
+}

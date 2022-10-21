@@ -1,12 +1,3 @@
-.hero__icon--connection-secure,
-.hero__icon--connection-upgraded {
-  @include cross_platform_bg_image("refresh-assets/Locked-96.svg");
-}
-
-.hero__icon--connection-none {
-  @include cross_platform_bg_image("refresh-assets/Unlocked-96.svg");
-}
-
 .page-connection__certificate {
   padding: 0 $card--padded--side;
 }

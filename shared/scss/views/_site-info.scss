@@ -73,86 +73,86 @@
     }
 }
 
+.site-info__page-permission {
+    label {
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        padding: 16px 0;
+    }
+
+    select {
+        float: right;
+        max-width: 170px;
+    }
+}
+
 .site-info__li--manage-permissions {
     margin: 5px 20px 0;
+}
 
-    .site-info__page-permission {
-        &__icon {
-            @include icon_display();
-            margin-right: 8px;
+.site-info__page-permission__icon {
+    @include icon_display();
+    margin-right: 8px;
 
-            &.geolocation {
-                @include cross_platform_bg_image("refresh-assets/permissions-location.svg");
+    &[data-icon="geolocation"] {
+        @include cross_platform_bg_image("refresh-assets/permissions-location.svg");
 
-                .body--theme-dark & {
-                    @include cross_platform_bg_image("refresh-assets/permissions-location-light.svg");
-                }
-            }
+        .body--theme-dark & {
+            @include cross_platform_bg_image("refresh-assets/permissions-location-light.svg");
+        }
+    }
 
-            &.microphone {
-                @include cross_platform_bg_image("refresh-assets/permissions-microphone.svg");
+    &[data-icon="microphone"] {
+        @include cross_platform_bg_image("refresh-assets/permissions-microphone.svg");
 
-                .body--theme-dark & {
-                    @include cross_platform_bg_image("refresh-assets/permissions-microphone-light.svg");
-                }
-
-                margin-top: -2px;
-            }
-
-            &.camera {
-                @include cross_platform_bg_image("refresh-assets/permissions-camera.svg");
-
-                .body--theme-dark & {
-                    @include cross_platform_bg_image("refresh-assets/permissions-camera-light.svg");
-                }
-
-                width: 16px;
-                height: 12px;
-                margin-top: -2px;
-            }
-
-            &.popups {
-                @include cross_platform_bg_image("refresh-assets/permissions-popups.svg");
-
-                .body--theme-dark & {
-                    @include cross_platform_bg_image("refresh-assets/permissions-popups-light.svg");
-                }
-            }
-
-            &.externalScheme {
-                @include cross_platform_bg_image("refresh-assets/permissions-externalScheme.svg");
-
-                .body--theme-dark & {
-                    @include cross_platform_bg_image("refresh-assets/permissions-externalScheme-light.svg");
-                }
-
-                margin-top: -4px;
-            }
-
-            &.notification {
-                @include cross_platform_bg_image("refresh-assets/permissions-notification.svg");
-
-                .body--theme-dark & {
-                    @include cross_platform_bg_image("refresh-assets/permissions-notification-light.svg");
-                }
-
-                width: 16px;
-                height: 14px;
-                margin-top: -4px;
-            }
+        .body--theme-dark & {
+            @include cross_platform_bg_image("refresh-assets/permissions-microphone-light.svg");
         }
 
-        label {
-            display: flex;
-            justify-content: space-between;
-            overflow: hidden;
-            padding: 16px 0;
+        margin-top: -2px;
+    }
+
+    &[data-icon="camera"] {
+        @include cross_platform_bg_image("refresh-assets/permissions-camera.svg");
+
+        .body--theme-dark & {
+            @include cross_platform_bg_image("refresh-assets/permissions-camera-light.svg");
         }
 
-        select {
-            float: right;
-            max-width: 170px;
+        width: 16px;
+        height: 12px;
+        margin-top: -2px;
+    }
+
+    &[data-icon="popups"] {
+        @include cross_platform_bg_image("refresh-assets/permissions-popups.svg");
+
+        .body--theme-dark & {
+            @include cross_platform_bg_image("refresh-assets/permissions-popups-light.svg");
         }
+    }
+
+    &[data-icon="externalScheme"] {
+        @include cross_platform_bg_image("refresh-assets/permissions-externalScheme.svg");
+
+        .body--theme-dark & {
+            @include cross_platform_bg_image("refresh-assets/permissions-externalScheme-light.svg");
+        }
+
+        margin-top: -4px;
+    }
+
+    &[data-icon="notification"] {
+        @include cross_platform_bg_image("refresh-assets/permissions-notification.svg");
+
+        .body--theme-dark & {
+            @include cross_platform_bg_image("refresh-assets/permissions-notification-light.svg");
+        }
+
+        width: 16px;
+        height: 14px;
+        margin-top: -4px;
     }
 }
 
@@ -214,69 +214,24 @@
 .site-info__li--key-insight {
     position: relative;
     overflow: hidden;
-    padding: 5px 12px 12px;
     padding-bottom: 24px;
+    text-align: center;
 
     .environment--browser & {
         background-color: transparent;
-        padding: 5px 12px 20px;
+        padding: 0 12px 20px;
     }
 
     .is-disabled & {
         @include is_disabled();
     }
 
-    .site-info__key-insight {
-        background-position: center 10px;
-        background-repeat: no-repeat;
-        background-size: 134px;
-        padding-top: 130px;
-        text-align: center;
-
-        &--trackers-blocked {
-            @include cross_platform_bg_image("refresh-assets/Shield-128.svg");
-        }
-
-        &--protections-off {
-            @include cross_platform_bg_image("refresh-assets/Block-Disabled-128.svg");
-
-            // pull the note out of the parent's padding to prevent needing to change the DOM order
-            .note {
-                margin-left: -12px;
-                margin-right: -12px;
-            }
-        }
-
-        &--no-activity {
-            @include cross_platform_bg_image("refresh-assets/Counter-128.svg");
-        }
-
-        &--tracker-network {
-            @include cross_platform_bg_image("refresh-assets/Network-128.svg");
-        }
-
-        &--insecure-connection {
-            @include cross_platform_bg_image("refresh-assets/Unlocked-128.svg");
-        }
-
-        &--info {
-            @include cross_platform_bg_image("refresh-assets/Block-Info.svg");
-        }
-
-        h1 {
-
-            .environment--ios &,
-            .environment--android & {
-            }
-        }
-
-        div {
-            margin-top: 8px;
-
-            .environment--ios &,
-            .environment--android & {
-            }
-        }
+    .token-title-3-em {
+        border: 1px solid red;
+        margin-bottom: 8px;
+    }
+    .token-title-3 {
+        border: 1px solid blue;
     }
 }
 
@@ -331,22 +286,15 @@
 
 .site-info__toggle-container {
     position: absolute;
-    right: 1px;
-    top: 18px;
+    top: 15px;
+    right: 0;
 
     .environment--android & {
-        right: 0;
-        top: 20px;
+        top: 17px;
     }
 
     .environment--ios & {
-        right: 15px;
         top: 10px;
-    }
-
-    .environment--browser & {
-        right: 18px;
-        top: 15px;
     }
 
     .toggle-spinner {
@@ -358,12 +306,6 @@
             height: 26px;
             width: 26px;
         }
-    }
-
-    .toggle-button {
-        position: absolute;
-        right: -2px;
-        top: -1px;
     }
 
     .toggle-button--is-active-true {
@@ -431,16 +373,6 @@
 }
 
 .site-info--main {
-    .hero-wrapper {
-        display: none;
-    }
-
-    .environment--ios & {
-        .hero__close {
-            display: none;
-        }
-    }
-
     .environment--ios &,
     .environment--android & {
         display: flex;
@@ -450,10 +382,6 @@
         .site-info__protection-wrapper {
             flex: 1;
             padding-top: 10px;
-        }
-
-        .hero-wrapper {
-            display: block;
         }
     }
 

@@ -2,6 +2,10 @@
 @import "../vars";
 @import "../mixins";
 
+* {
+    box-sizing: border-box;
+}
+
 /* Normalize File */
 @import "normalize.scss/normalize";
 

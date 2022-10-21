@@ -1,18 +1,13 @@
 import bel from 'bel'
-import raw from 'bel/raw'
-import { normalizeCompanyName } from '../models/mixins/normalize-company-name.es6.js'
 import { i18n } from '../base/localize.es6'
-import hero from './shared/hero.es6.js'
+import { topNav } from './shared/hero.es6.js'
 import { trackerNetworksText } from './shared/tracker-networks-text.es6.js'
-import { getColorId } from './shared/utils.es6.js'
 import { protectionToggle } from './shared/protection-toggle'
 import { thirdpartyText } from './shared/thirdparty-text.es6'
+import { renderKeyInsight } from './key-insights'
+import { isAndroid, isIOS } from '../environment-check'
 
-function renderHero () {
-    return bel`${hero({
-        status: 'hidden'
-    })}`
-}
+const topNavSupported = isIOS() || isAndroid();
 
 /** @this {{model: import('../models/site.es6.js').PublicSiteModel}} */
 export default function () {
@@ -32,7 +27,7 @@ export default function () {
     return bel`
     <div class="site-info site-info--main">
     ${renderSearchWrapper(this.model)}
-    ${renderHero()}
+    ${topNavSupported ? topNav() : null}
     <div class="list-wrapper" data-test-id="key-insight">
         <ul class="default-list card-list">
             ${renderKeyInsight(this.model)}
@@ -151,7 +146,7 @@ function renderManagePermissions (model) {
         return bel`<div class="site-info__page-permission ${index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : ''}">
                     <label>
                         <div>
-                            <div class="site-info__page-permission__icon ${permissionId}"></div>
+                            <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
                             ${title}
                         </div>
                         <select class="js-site-permission" name="${permissionId}">
@@ -174,172 +169,6 @@ function renderManageAllowlist () {
         </div>`
 }
 
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-function generateCompanyNamesList (model) {
-    // const companyNames = model.tab.requestDetails.companyNames();
-    const blockedCompanyNames = model.tab.requestDetails.blockedCompanyNames()
-    return {
-        companyCount: blockedCompanyNames.length,
-        othersCount: blockedCompanyNames.length - 4,
-        firstCompany: blockedCompanyNames[0],
-        secondCompany: blockedCompanyNames[1],
-        thirdCompany: blockedCompanyNames[2],
-        fourthCompany: blockedCompanyNames[3]
-    }
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-function renderCompanyIconsList (model) {
-    const companyNames = model.tab.requestDetails.blockedCompanyNames()
-
-    if (companyNames.length === 0) return ''
-
-    const topCompanies = companyNames.slice(0, 4)
-    const remainingCount = companyNames.length - topCompanies.length
-    const remainingCountIcon = remainingCount <= 0
-        ? ''
-        : bel`
-            <span class="site-info__tracker__icon-positioner">
-                <span class="site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--count">
-                    <span class="site-info__tracker__count">+${remainingCount}</span>
-                </span>
-            </div>
-            `
-    const topCompaniesIcons = topCompanies.map((name, index) => {
-        const slug = normalizeCompanyName(name)
-        const locationClass = index === topCompanies.length - 1 ? 'first' : 'other'
-
-        return bel`
-            <span class="site-info__tracker__icon-positioner">
-                <span class="site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--${locationClass}">
-                    <span class="site-info__tracker__icon ${slug[0].toUpperCase()} color-${getColorId(slug)} ${slug}"></span>
-                    <span class="site-info__tracker__blocked-icon"></span>
-                </span>
-            </span>
-            `
-    })
-
-    return bel`
-            <div class="site-info__key-insight_trackers-icons token-title-3-em">
-                ${topCompaniesIcons}
-                ${remainingCountIcon}
-            </div>
-        `
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-function renderKeyInsight (model) {
-    const title = (text) => bel`<h1 class="token-title-3-em">${text}</h1>`
-    if (model.httpsState === 'none') {
-        return bel`
-                <li class="site-info__li--key-insight">
-                    <div class="site-info__key-insight site-info__key-insight--insecure-connection">
-                        ${title(model.tab.domain)}
-                        <div class="token-title-3">${raw(i18n.t('site:connectionDescriptionUnencrypted.title'))}</div>
-                    </div>
-                </li>
-            `
-    }
-
-    // remote disabled
-    if (model.isBroken) {
-        let text = i18n.t('site:protectionsDisabledRemote.title')
-        if (model.isDenylisted) {
-            text = i18n.t('site:protectionsDisabledRemoteOverride.title')
-        }
-        return bel`
-        <li class="site-info__li--key-insight">
-            <div class="site-info__key-insight site-info__key-insight--protections-off">
-                ${title(model.tab.domain)}
-                <div class="note token-title-3">
-                   ${text}
-                </div>
-            </div>
-        </li>
-    `
-    }
-
-    // user allow-listed
-    if (!model.protectionsEnabled) {
-        return bel`
-            <li class="site-info__li--key-insight">
-                <div class="site-info__key-insight site-info__key-insight--protections-off">
-                    ${title(model.tab.domain)}
-                    <div class="token-title-3">
-                       ${raw(i18n.t('site:protectionsDisabled.title'))}
-                    </div>
-                </div>
-            </li>
-            `
-    }
-
-    if (model.isaMajorTrackingNetwork && model.tab.parentEntity) {
-        const company = model.tab.parentEntity
-
-        return bel`
-                <li class="site-info__li--key-insight">
-                    <div class="site-info__key-insight site-info__key-insight--tracker-network">
-                        ${title(model.tab.domain)}
-                        <div class="token-title-3">
-                            ${raw(i18n.t('site:majorTrackingNetworkDesc.title', {
-        companyDisplayName: company.displayName,
-        companyPrevalence: Math.round(company.prevalence),
-        blocked: model.tab.requestDetails.blocked.entitiesCount > 0
-    }))}
-                        </div>
-                    </div>
-                </li>
-            `
-    }
-
-    if (model.tab.requestDetails.blocked.requestCount === 0) {
-        if (model.tab.requestDetails.allowedSpecialCount() > 0) {
-            return bel`
-                <li class="site-info__li--key-insight">
-                    <div class="site-info__key-insight site-info__key-insight--info">
-                        ${title(model.tab.domain)}
-                        <div class="token-title-3">${i18n.t('site:trackerNetworksSummaryAllowedOnly.title')}</div>
-                    </div>
-                </li>
-            `
-        }
-        return bel`
-                <li class="site-info__li--key-insight">
-                    <div class="site-info__key-insight site-info__key-insight--no-activity">
-                        ${title(model.tab.domain)}
-                        <div class="token-title-3">${raw(i18n.t('site:trackerNetworksSummaryNone.title'))}</div>
-                    </div>
-                </li>
-            `
-    }
-
-    const companyNames = model.tab.requestDetails.blockedCompanyNames()
-    if (companyNames.length === 0) {
-        return bel`
-                <li class="site-info__li--key-insight">
-                    <div class="site-info__key-insight site-info__key-insight--trackers-blocked">
-                        ${title(model.tab.domain)}
-                        <div class="token-title-3"><span>${raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))}</span></div>
-                    </div>
-                </li>
-            `
-    }
-
-    return bel`
-            <li class="site-info__li--key-insight">
-                <div class="site-info__key-insight">                
-                    ${renderCompanyIconsList(model)}
-                    ${title(model.tab.domain)}
-                    <div class="token-title-3"><span>${raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))}</span></div>
-                </div>
-            </li>
-        `
-}
 
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model

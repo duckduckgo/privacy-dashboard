@@ -11,11 +11,11 @@ exports[`Site view when cookie consent popups are hidden renders the correct out
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -29,7 +29,7 @@ exports[`Site view when cookie consent popups are hidden renders the correct out
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -52,16 +52,16 @@ exports[`Site view when cookie consent popups are hidden renders the correct out
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight"
+            class="key-insight"
           >
              
             <div
-              class="site-info__key-insight_trackers-icons token-title-3-em"
+              class="tracker-icons token-title-3-em"
             >
               
                 
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -80,7 +80,7 @@ exports[`Site view when cookie consent popups are hidden renders the correct out
                 
               </span>
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -471,11 +471,11 @@ exports[`Site view when permissions are set renders the correct output 1`] = `
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -489,7 +489,7 @@ exports[`Site view when permissions are set renders the correct output 1`] = `
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -512,16 +512,16 @@ exports[`Site view when permissions are set renders the correct output 1`] = `
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight"
+            class="key-insight"
           >
              
             <div
-              class="site-info__key-insight_trackers-icons token-title-3-em"
+              class="tracker-icons token-title-3-em"
             >
               
                 
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -540,7 +540,7 @@ exports[`Site view when permissions are set renders the correct output 1`] = `
                 
               </span>
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -813,11 +813,11 @@ exports[`Site view when protection is enabled and connection is insecure renders
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -831,7 +831,7 @@ exports[`Site view when protection is enabled and connection is insecure renders
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -854,7 +854,7 @@ exports[`Site view when protection is enabled and connection is insecure renders
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--insecure-connection"
+            class="key-insight site-info__key-insight--insecure-connection"
           >
             <h1
               class="token-title-3-em"
@@ -1058,11 +1058,11 @@ exports[`Site view when protection is enabled and connection is secure renders t
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -1076,7 +1076,7 @@ exports[`Site view when protection is enabled and connection is secure renders t
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -1099,16 +1099,16 @@ exports[`Site view when protection is enabled and connection is secure renders t
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight"
+            class="key-insight"
           >
              
             <div
-              class="site-info__key-insight_trackers-icons token-title-3-em"
+              class="tracker-icons token-title-3-em"
             >
               
                 
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -1127,7 +1127,7 @@ exports[`Site view when protection is enabled and connection is secure renders t
                 
               </span>
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -1355,11 +1355,11 @@ exports[`Site view when protection is enabled and connection was upgraded render
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -1373,7 +1373,7 @@ exports[`Site view when protection is enabled and connection was upgraded render
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -1396,16 +1396,16 @@ exports[`Site view when protection is enabled and connection was upgraded render
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight"
+            class="key-insight"
           >
              
             <div
-              class="site-info__key-insight_trackers-icons token-title-3-em"
+              class="tracker-icons token-title-3-em"
             >
               
                 
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -1424,7 +1424,7 @@ exports[`Site view when protection is enabled and connection was upgraded render
                 
               </span>
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -1652,11 +1652,11 @@ exports[`Site view when protection is enabled and locale is changed renders the 
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="navigationBack.title"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -1670,7 +1670,7 @@ exports[`Site view when protection is enabled and locale is changed renders the 
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -1693,16 +1693,16 @@ exports[`Site view when protection is enabled and locale is changed renders the 
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight"
+            class="key-insight"
           >
              
             <div
-              class="site-info__key-insight_trackers-icons token-title-3-em"
+              class="tracker-icons token-title-3-em"
             >
               
                 
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -1721,7 +1721,7 @@ exports[`Site view when protection is enabled and locale is changed renders the 
                 
               </span>
               <span
-                class="site-info__tracker__icon-positioner"
+                class="icon-positioner"
               >
                  
                 <span
@@ -1937,11 +1937,11 @@ exports[`Site view when protection is enabled and no trackers are found renders 
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -1955,7 +1955,7 @@ exports[`Site view when protection is enabled and no trackers are found renders 
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -1978,7 +1978,7 @@ exports[`Site view when protection is enabled and no trackers are found renders 
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--no-activity"
+            class="key-insight site-info__key-insight--no-activity"
           >
             <h1
               class="token-title-3-em"
@@ -2179,11 +2179,11 @@ exports[`Site view when protection is enabled and site is owned by tracking netw
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -2197,7 +2197,7 @@ exports[`Site view when protection is enabled and site is owned by tracking netw
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -2220,7 +2220,7 @@ exports[`Site view when protection is enabled and site is owned by tracking netw
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--tracker-network"
+            class="key-insight site-info__key-insight--tracker-network"
           >
             <h1
               class="token-title-3-em"
@@ -2426,11 +2426,11 @@ exports[`Site view when protection is not enabled and connection is insecure ren
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -2444,7 +2444,7 @@ exports[`Site view when protection is not enabled and connection is insecure ren
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -2467,7 +2467,7 @@ exports[`Site view when protection is not enabled and connection is insecure ren
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--insecure-connection"
+            class="key-insight site-info__key-insight--insecure-connection"
           >
             <h1
               class="token-title-3-em"
@@ -2671,11 +2671,11 @@ exports[`Site view when protection is not enabled and connection is secure rende
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -2689,7 +2689,7 @@ exports[`Site view when protection is not enabled and connection is secure rende
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -2712,7 +2712,7 @@ exports[`Site view when protection is not enabled and connection is secure rende
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"
@@ -2919,11 +2919,11 @@ exports[`Site view when protection is not enabled and connection was upgraded re
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -2937,7 +2937,7 @@ exports[`Site view when protection is not enabled and connection was upgraded re
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -2960,7 +2960,7 @@ exports[`Site view when protection is not enabled and connection was upgraded re
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"
@@ -3167,11 +3167,11 @@ exports[`Site view when protection is not enabled and locale is changed renders 
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="navigationBack.title"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -3185,7 +3185,7 @@ exports[`Site view when protection is not enabled and locale is changed renders 
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -3208,7 +3208,7 @@ exports[`Site view when protection is not enabled and locale is changed renders 
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"
@@ -3407,11 +3407,11 @@ exports[`Site view when protection is not enabled and no trackers are found rend
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -3425,7 +3425,7 @@ exports[`Site view when protection is not enabled and no trackers are found rend
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -3448,7 +3448,7 @@ exports[`Site view when protection is not enabled and no trackers are found rend
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"
@@ -3655,11 +3655,11 @@ exports[`Site view when protection is not enabled and site is owned by tracking 
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -3673,7 +3673,7 @@ exports[`Site view when protection is not enabled and site is owned by tracking 
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -3696,7 +3696,7 @@ exports[`Site view when protection is not enabled and site is owned by tracking 
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"

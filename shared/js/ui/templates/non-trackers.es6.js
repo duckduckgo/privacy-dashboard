@@ -1,9 +1,9 @@
 import bel from 'bel'
 import { ns } from '../base/localize.es6.js'
 import { states } from '../../browser/utils/request-details'
-import hero from './shared/hero.es6.js'
+import { largeHeroIcon, topNav } from './shared/hero.es6.js'
 import { renderSections } from './tracker-networks.es6'
-import { thirdpartySummary, thirdpartyHeroIcon, thirdpartyText } from './shared/thirdparty-text.es6'
+import { thirdpartySummary, thirdpartyHeroIcon } from './shared/thirdparty-text.es6'
 import { aboutLink, adAttributionLink } from './shared/about-link'
 import { platformLimitations } from './shared/platform-limitations'
 
@@ -17,6 +17,7 @@ export function nonTrackersTemplate () {
 
     return bel`<div class="tracker-networks site-info card" data-test-id="non-tracker-list-view">
         <div class="js-tracker-networks-hero">
+            ${topNav()}
             ${renderHero(this.model.site)}
         </div>
         <div class="tracker-networks__explainer text--center">
@@ -34,15 +35,9 @@ export function nonTrackersTemplate () {
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
 function renderHero (site) {
-    const { title } = thirdpartyText(site.tab.requestDetails, site.protectionsEnabled)
     const icon = thirdpartyHeroIcon(site.tab.requestDetails, site.protectionsEnabled)
-
-    console.log('icon', icon)
-
-    return bel`${hero({
+    return bel`${largeHeroIcon({
         status: icon,
-        title: title,
-        showClose: true
     })}`
 }
 

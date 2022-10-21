@@ -57,109 +57,109 @@ export const selectors = {
     //     'tracker-list-link.icon': icons.small['green check'],
     //     'third-party-list-link.text': text['no third parties found'],
     //     'third-party-list-link.icon': icons.small['green check'],
-    //     'tracker-hero.text': text['hero blocked'],
-    //     'tracker-hero.icon': icons.large['shield green check'],
-    //     'third-party-hero.text': text['hero no thirdparties found'],
-    //     'third-party-hero.icon': icons.large['no-activity']
+    //     'tracker-heroTemplate.text': text['heroTemplate blocked'],
+    //     'tracker-heroTemplate.icon': icons.large['shield green check'],
+    //     'third-party-heroTemplate.text': text['heroTemplate no thirdparties found'],
+    //     'third-party-heroTemplate.icon': icons.large['no-activity']
     // },
     // [states.protectionsOn_allowedTrackers]: {
     //     'tracker-list-link.text': text['no trackers blocked'],
     //     'tracker-list-link.icon': icons.small['grey info'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero trackers not blocked'],
-    //     'tracker-hero.icon': icons.large['shield grey info'],
-    //     'third-party-hero.text': text['hero thirdparties loaded'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate trackers not blocked'],
+    //     'tracker-heroTemplate.icon': icons.large['shield grey info'],
+    //     'third-party-heroTemplate.text': text['heroTemplate thirdparties loaded'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOn_allowedNonTrackers]: {
     //     'tracker-list-link.text': text['no trackers found'],
     //     'tracker-list-link.icon': icons.small['green check'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero no trackers found'],
-    //     'tracker-hero.icon': icons.large['no-activity'],
-    //     'third-party-hero.text': text['hero thirdparties loaded'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate no trackers found'],
+    //     'tracker-heroTemplate.icon': icons.large['no-activity'],
+    //     'third-party-heroTemplate.text': text['heroTemplate thirdparties loaded'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOn_blocked_allowedTrackers]: {
     //     'tracker-list-link.text': text['requests blocked'],
     //     'tracker-list-link.icon': icons.small['grey info'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero blocked'],
-    //     'tracker-hero.icon': icons.large['shield green check'],
-    //     'third-party-hero.text': text['hero thirdparties loaded'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate blocked'],
+    //     'tracker-heroTemplate.icon': icons.large['shield green check'],
+    //     'third-party-heroTemplate.text': text['heroTemplate thirdparties loaded'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOn_allowedTrackers_allowedNonTrackers]: {
     //     'tracker-list-link.text': text['no trackers blocked'],
     //     'tracker-list-link.icon': icons.small['grey info'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero trackers not blocked'],
-    //     'tracker-hero.icon': icons.large['shield grey info'],
-    //     'third-party-hero.text': text['hero thirdparties loaded'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate trackers not blocked'],
+    //     'tracker-heroTemplate.icon': icons.large['shield grey info'],
+    //     'third-party-heroTemplate.text': text['heroTemplate thirdparties loaded'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOn_blocked_allowedNonTrackers]: {
     //     'tracker-list-link.text': text['requests blocked'],
     //     'tracker-list-link.icon': icons.small['green tick'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero blocked'],
-    //     'tracker-hero.icon': icons.small['green check'],
-    //     'third-party-hero.text': text['hero thirdparties loaded'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate blocked'],
+    //     'tracker-heroTemplate.icon': icons.small['green check'],
+    //     'third-party-heroTemplate.text': text['heroTemplate thirdparties loaded'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers]: {
     //     'tracker-list-link.text': text['requests blocked'],
     //     'tracker-list-link.icon': icons.small['grey info'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero blocked'],
-    //     'tracker-hero.icon': icons.small['green check'],
-    //     'third-party-hero.text': text['hero thirdparties loaded'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate blocked'],
+    //     'tracker-heroTemplate.icon': icons.small['green check'],
+    //     'third-party-heroTemplate.text': text['heroTemplate thirdparties loaded'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOff]: {
     //     'tracker-list-link.text': text['no trackers found'],
     //     'tracker-list-link.icon': icons.small['green check'],
     //     'third-party-list-link.text': text['no third parties found'],
     //     'third-party-list-link.icon': icons.small['green check'],
-    //     'tracker-hero.text': text['hero no trackers found'],
-    //     'tracker-hero.icon': icons.large['no-activity'],
-    //     'third-party-hero.text': text['hero no thirdparties found'],
-    //     'third-party-hero.icon': icons.large['no-activity']
+    //     'tracker-heroTemplate.text': text['heroTemplate no trackers found'],
+    //     'tracker-heroTemplate.icon': icons.large['no-activity'],
+    //     'third-party-heroTemplate.text': text['heroTemplate no thirdparties found'],
+    //     'third-party-heroTemplate.icon': icons.large['no-activity']
     // },
     // [states.protectionsOff_allowedTrackers]: {
     //     'tracker-list-link.text': text['no trackers blocked'],
     //     'tracker-list-link.icon': icons.small['red info'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero not blocked protections protectionsOff'],
-    //     'tracker-hero.icon': icons.large['shield red info'],
-    //     'third-party-hero.text': text['hero third parties protections protectionsOff'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate not blocked protections protectionsOff'],
+    //     'tracker-heroTemplate.icon': icons.large['shield red info'],
+    //     'third-party-heroTemplate.text': text['heroTemplate third parties protections protectionsOff'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOff_allowedNonTrackers]: {
     //     'tracker-list-link.text': text['no trackers found'],
     //     'tracker-list-link.icon': icons.small['green check'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero no trackers found'],
-    //     'tracker-hero.icon': icons.large['no-activity'],
-    //     'third-party-hero.text': text['hero third parties protections protectionsOff'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate no trackers found'],
+    //     'tracker-heroTemplate.icon': icons.large['no-activity'],
+    //     'third-party-heroTemplate.text': text['heroTemplate third parties protections protectionsOff'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // },
     // [states.protectionsOff_allowedTrackers_allowedNonTrackers]: {
     //     'tracker-list-link.text': text['no trackers blocked'],
     //     'tracker-list-link.icon': icons.small['red info'],
     //     'third-party-list-link.text': text['thirdparties loaded'],
     //     'third-party-list-link.icon': icons.small['grey info'],
-    //     'tracker-hero.text': text['hero not blocked protections protectionsOff'],
-    //     'tracker-hero.icon': icons.large['shield red info'],
-    //     'third-party-hero.text': text['hero third parties protections protectionsOff'],
-    //     'third-party-hero.icon': icons.large['shield grey info']
+    //     'tracker-heroTemplate.text': text['heroTemplate not blocked protections protectionsOff'],
+    //     'tracker-heroTemplate.icon': icons.large['shield red info'],
+    //     'third-party-heroTemplate.text': text['heroTemplate third parties protections protectionsOff'],
+    //     'third-party-heroTemplate.icon': icons.large['shield grey info']
     // }
 }

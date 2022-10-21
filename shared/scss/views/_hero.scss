@@ -1,71 +1,61 @@
-$hero-height: 50px;
-
-.hero {
-    background-color: $white;
-    text-align: center;
-    position: fixed;
-    z-index: 5;
-    width: 100%;
-    height: $hero-height;
-
-    .environment--ios & {
-        padding-top: 4px;
-    }
-
-    .body--theme-dark & {
-        background-color: $slate;
-    }
-
-    .body--theme-dark.environment--android & {
-        background-color: $black;
-    }
-}
-
-.hero__icon {
-    height: 115px;
+.large-icon-container {
+    height: 96px;
+    outline: 1px dotted grey;
+    background-position: center center;
     background-repeat: no-repeat;
-    vertical-align: middle;
-    width: 100%;
-    padding-top: 50px;
-    background-size: auto 96px;
-    background-position: center 53px;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
+    margin-top: 6px;
+    background-size: contain;
+}
 
-    &--hidden {
-        height: 0;
-        margin: 0;
+.hero-icon--protections-off {
+    @include cross_platform_bg_image("refresh-assets/Block-Disabled-128.svg");
+
+    // pull the note out of the parent's padding to prevent needing to change the DOM order
+    .note {
+        margin-left: -12px;
+        margin-right: -12px;
     }
 }
 
-.hero__close {
-    position: absolute;
-    padding: 10px;
-    left: 14px;
-    top: 7px;
-    border-radius: 100%;
-    display: flex;
-    font-size: 16px;
-
-    .environment--ios & {
-        left: 0;
-    }
+.hero-icon--tracker-network {
+    @include cross_platform_bg_image("refresh-assets/Network-128.svg");
 }
 
-.hero__done {
-    display: none;
-    position: absolute;
-    padding: 0 6px;
-    right: 14px;
-    height: $hero-height;
-    line-height: $hero-height;
-    font-size: 16px;
-    font-weight: bold;
-
-    .environment--ios & {
-        display: block;
-
-        &:active {
-            opacity: 0.5;
-        }
-    }
+.hero-icon--insecure-connection,
+.hero-icon--trackers-blocked {
+    @include cross_platform_bg_image("refresh-assets/Unlocked-128.svg");
 }
+
+.hero-icon--major-networks-mixed {
+    @include cross_platform_bg_image("refresh-assets/Block-Allowed-96.svg");
+}
+
+.hero-icon--major-networks-blocked {
+    @include cross_platform_bg_image("refresh-assets/Shield-128.svg");
+}
+
+.hero-icon--major-networks-warning,
+.hero-icon--major-networks-protections-off {
+    @include cross_platform_bg_image("refresh-assets/Block-Disabled-128.svg");
+}
+
+.hero-icon--info,
+.hero-icon--major-networks-info {
+    @include cross_platform_bg_image("refresh-assets/Block-Info.svg");
+}
+
+.hero-icon--no-activity,
+.hero-icon--major-networks-no-activity {
+    @include cross_platform_bg_image("refresh-assets/Counter-128.svg");
+}
+
+.hero-icon--connection-secure,
+.hero-icon--connection-upgraded {
+    @include cross_platform_bg_image("refresh-assets/Locked-96.svg");
+}
+
+.hero-icon--connection-none {
+    @include cross_platform_bg_image("refresh-assets/Unlocked-96.svg");
+}
+

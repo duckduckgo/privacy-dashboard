@@ -612,11 +612,11 @@ exports[`Browser specific Site view when content-blocking has an exception rende
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -630,7 +630,7 @@ exports[`Browser specific Site view when content-blocking has an exception rende
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -639,7 +639,7 @@ exports[`Browser specific Site view when content-blocking has an exception rende
         
       </div>
       <div
-        class="hero__icon hero__icon--hidden"
+        class="large-hero-icon hero__icon--hidden"
       />
     </div>
     <div
@@ -653,7 +653,7 @@ exports[`Browser specific Site view when content-blocking has an exception rende
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"
@@ -855,11 +855,11 @@ exports[`Browser specific Site view when the site broken, but the user has overr
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -873,7 +873,7 @@ exports[`Browser specific Site view when the site broken, but the user has overr
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -896,7 +896,7 @@ exports[`Browser specific Site view when the site broken, but the user has overr
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"
@@ -1098,11 +1098,11 @@ exports[`Browser specific Site view when the site is marked as broken renders th
       class="hero-wrapper"
     >
       <div
-        class="hero text--center "
+        class="top-nav text--center "
       >
         <a
           aria-label="Back"
-          class="hero__close js-sliding-subview-close js-site-done link-action"
+          class="top-nav__close js-sliding-subview-close js-site-done link-action"
           data-test-id="back-button"
           href="javascript:void(0)"
           role="button"
@@ -1116,7 +1116,7 @@ exports[`Browser specific Site view when the site is marked as broken renders th
         </a>
          
         <a
-          class="hero__done js-sliding-subview-done js-site-done link-action"
+          class="top-nav__done js-sliding-subview-done js-site-done link-action"
           href="javascript:void(0)"
           role="button"
         >
@@ -1139,7 +1139,7 @@ exports[`Browser specific Site view when the site is marked as broken renders th
           class="site-info__li--key-insight"
         >
           <div
-            class="site-info__key-insight site-info__key-insight--protections-off"
+            class="key-insight site-info__key-insight--protections-off"
           >
             <h1
               class="token-title-3-em"

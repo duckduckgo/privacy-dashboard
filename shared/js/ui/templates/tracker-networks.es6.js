@@ -1,9 +1,9 @@
 import bel from 'bel'
 import { displayCategories } from '../../../data/constants'
 import { i18n } from '../base/localize.es6'
-import hero from './shared/hero.es6.js'
+import { largeHeroIcon, topNav } from './shared/hero.es6.js'
 import { getColorId } from './shared/utils.es6.js'
-import { trackerNetworksText, trackerNetworksHeroIcon, trackerNetworkSummary } from './shared/tracker-networks-text.es6'
+import { trackerNetworksHeroIcon, trackerNetworkSummary } from './shared/tracker-networks-text.es6'
 import { aboutLink } from './shared/about-link'
 import { platformLimitations } from './shared/platform-limitations'
 
@@ -26,7 +26,8 @@ export function trackerNetworksTemplate () {
 
     return bel`<div class="tracker-networks site-info card" data-test-id="tracker-list-view">
         <div class="js-tracker-networks-hero">
-            ${renderHero(this.model.site)}
+            ${topNav()}
+            ${renderHeroIcon(this.model.site)}
         </div>
         <div class="tracker-networks__explainer text--center" data-test-id="tracker-list.summary">
             <p data-test-id="tracker.summary" class="token-title-3">${summary}</p>
@@ -42,14 +43,10 @@ export function trackerNetworksTemplate () {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
-function renderHero (site) {
-    const { title } = trackerNetworksText(site.tab.requestDetails, site.protectionsEnabled)
+function renderHeroIcon (site) {
     const icon = trackerNetworksHeroIcon(site.tab.requestDetails, site.protectionsEnabled)
-
-    return bel`${hero({
-        status: icon,
-        title,
-        showClose: true
+    return bel`${largeHeroIcon({
+        status: icon
     })}`
 }
 

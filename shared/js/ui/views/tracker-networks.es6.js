@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import ParentSlidingSubview from './sliding-subview.es6.js'
-import heroTemplate from './../templates/shared/hero.es6.js'
+import { heroTemplate } from './../templates/shared/hero.es6.js'
 import CompanyListModel from './../models/site-company-list.es6.js'
 import SiteModel from './../models/site.es6.js'
 
@@ -27,7 +27,7 @@ TrackerNetworks.prototype = $.extend({},
         /** @this {any} */
         setup: function () {
             this._cacheElems('.js-tracker-networks', [
-                'hero',
+                'heroTemplate',
                 'details'
             ])
 
@@ -66,8 +66,6 @@ TrackerNetworks.prototype = $.extend({},
                 const icon = this.heroFn?.(site.tab.requestDetails, site.protectionsEnabled)
                 this.$hero.html(heroTemplate({
                     status: icon,
-                    title: 'Trackers',
-                    showClose: true
                 }))
             }
         },
