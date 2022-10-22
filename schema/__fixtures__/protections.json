@@ -1,6 +1,6 @@
 {
-  "allowlisted": false,
-  "denylisted": false,
-  "enabledFeatures": ["contentBlocking"],
-  "unprotectedTemporary": false
+    "allowlisted": false,
+    "denylisted": false,
+    "enabledFeatures": ["contentBlocking"],
+    "unprotectedTemporary": false
 }

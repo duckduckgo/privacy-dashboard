@@ -1,34 +1,34 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "BreakageReport",
-  "type": "object",
-  "additionalProperties": false,
-  "description": "The data sent in a Breakage Report",
-  "examples": [
-    {
-      "category": "video",
-      "description": "The video didn't start"
-    }
-  ],
-  "required": [],
-  "properties": {
-    "request": {
-      "title": "BreakageReportRequest",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "category": {
-          "description": "Chosen from the dropdown list",
-          "type": "string"
-        },
-        "description": {
-          "description": "The users' message",
-          "type": "string"
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "BreakageReport",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "The data sent in a Breakage Report",
+    "examples": [
+        {
+            "category": "video",
+            "description": "The video didn't start"
         }
-      }
-    },
-    "response": {
-      "type": "object"
+    ],
+    "required": [],
+    "properties": {
+        "request": {
+            "title": "BreakageReportRequest",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "category": {
+                    "description": "Chosen from the dropdown list",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "The users' message",
+                    "type": "string"
+                }
+            }
+        },
+        "response": {
+            "type": "object"
+        }
     }
-  }
 }

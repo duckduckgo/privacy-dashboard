@@ -21,17 +21,14 @@ import browserUIWrapper from '../../browser/communication.es6.js'
  *
  *  The common fetch method is defined in base/model.es6.js
  */
-function BackgroundMessage (attrs) {
+function BackgroundMessage(attrs) {
     Parent.call(this, attrs)
     const thisModel = this
     browserUIWrapper.backgroundMessage(thisModel)
 }
 
-BackgroundMessage.prototype = $.extend({},
-    Parent.prototype,
-    {
-        modelName: 'backgroundMessage'
-    }
-)
+BackgroundMessage.prototype = $.extend({}, Parent.prototype, {
+    modelName: 'backgroundMessage',
+})
 
 export default BackgroundMessage

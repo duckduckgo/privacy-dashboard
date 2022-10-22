@@ -1,23 +1,22 @@
-@import "material-design-setup";
-@import "../vars";
-@import "../mixins";
+@import 'material-design-setup';
+@import '../vars';
+@import '../mixins';
 
 * {
     box-sizing: border-box;
 }
 
 /* Normalize File */
-@import "normalize.scss/normalize";
+@import 'normalize.scss/normalize';
 
-@import "forms";
-@import "tokens";
+@import 'forms';
+@import 'tokens';
 
 /**
  * DDG Extension Resets & Base Styles
  */
 
 body {
-
     @include token-body;
 
     &.body--theme-light {
@@ -25,12 +24,19 @@ body {
     }
 
     &.body--theme-dark {
-        background-color:  $color--dark-theme-border;
+        background-color: $color--dark-theme-border;
         color: $color--off-white;
     }
 }
 
-h1, h2, h3, h4, h5, h5, p, div {
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+p,
+div {
     margin: 0;
     padding: 0;
 
@@ -40,16 +46,25 @@ h1, h2, h3, h4, h5, h5, p, div {
     }
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
 }
 
-section, ul, ol, li {
+section,
+ul,
+ol,
+li {
     margin: 0;
     padding: 0;
     position: relative;
 }
 
-form, input, select, option, button {
+form,
+input,
+select,
+option,
+button {
     outline: none;
 
     * {
@@ -62,7 +77,6 @@ button {
     background-color: $white;
     padding: 0;
 }
-
 
 /* Fonts */
 input,
@@ -95,14 +109,13 @@ textarea {
     font-weight: bold;
 }
 
-
 /* Links */
 a {
     color: $color-blue-50;
     text-decoration: none;
 
     .body--theme-dark & {
-        color: #7295F6;
+        color: #7295f6;
     }
 
     &:hover {
@@ -127,17 +140,14 @@ a {
     }
 }
 
-
 /**
  * DDG Extension Helper Classes
  */
-
 
 /* Hide element */
 .is-hidden {
     display: none;
 }
-
 
 /* Position */
 .pull-right {
@@ -150,12 +160,10 @@ a {
     left: 16px;
 }
 
-
 /* Display */
 .block {
     display: block;
 }
-
 
 /* Floats */
 .float-left {
@@ -172,7 +180,6 @@ a {
     line-height: 0;
 }
 
-
 /* Text Centering */
 .text--center {
     text-align: center;
@@ -181,7 +188,6 @@ a {
 .text--left {
     text-align: left;
 }
-
 
 /* Borders */
 .border--top {
@@ -204,7 +210,7 @@ a {
     border-top: 1px solid rgba(0, 0, 0, 0.06);
 
     .body--theme-dark & {
-        border-top: 1px solid  $color--dark-theme-border;
+        border-top: 1px solid $color--dark-theme-border;
     }
 }
 
@@ -212,7 +218,7 @@ a {
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 
     .body--theme-dark & {
-        border-bottom: 1px solid  $color--dark-theme-border;
+        border-bottom: 1px solid $color--dark-theme-border;
     }
 }
 
@@ -220,7 +226,7 @@ a {
     position: relative;
 
     &:after {
-        content: "";
+        content: '';
         border-bottom: 1px solid $color--border-gray;
         position: absolute;
         bottom: 0;
@@ -237,7 +243,7 @@ a {
     position: relative;
 
     &:before {
-        content: "";
+        content: '';
         border-top: 1px solid $color--border-gray;
         position: absolute;
         top: 0;
@@ -254,7 +260,7 @@ a {
     position: relative;
 
     &:after {
-        content: "";
+        content: '';
         border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         position: absolute;
         bottom: 0;
@@ -262,7 +268,7 @@ a {
         right: 0;
 
         .body--theme-dark & {
-            border-bottom: 1px solid  $color--dark-theme-border;
+            border-bottom: 1px solid $color--dark-theme-border;
         }
     }
 }
@@ -271,7 +277,7 @@ a {
     position: relative;
 
     &:before {
-        content: "";
+        content: '';
         border-top: 1px solid rgba(0, 0, 0, 0.06);
         position: absolute;
         top: 0;
@@ -279,7 +285,7 @@ a {
         right: 0;
 
         .body--theme-dark & {
-            border-top: 1px solid  $color--dark-theme-border;
+            border-top: 1px solid $color--dark-theme-border;
         }
     }
 }
@@ -331,7 +337,6 @@ a {
     }
 }
 
-
 /* Icons */
 /* Standard icon display within the extension */
 .icon {
@@ -342,7 +347,7 @@ a {
         width: 14px;
         height: 14px;
 
-        @include cross_platform_bg_image("close.svg");
+        @include cross_platform_bg_image('close.svg');
     }
 
     &.icon__arrow {
@@ -350,10 +355,10 @@ a {
         height: 12px;
         background-size: contain;
 
-        @include cross_platform_bg_image("refresh-assets/chevron.svg");
+        @include cross_platform_bg_image('refresh-assets/chevron.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/chevron--light.svg");
+            @include cross_platform_bg_image('refresh-assets/chevron--light.svg');
         }
 
         &.icon__arrow--left {
@@ -363,29 +368,29 @@ a {
         &.icon__arrow--large {
             width: 7px;
             margin-top: -20px;
-            @include cross_platform_bg_image("arrow--large.svg");
+            @include cross_platform_bg_image('arrow--large.svg');
         }
     }
 
     &.icon__back-arrow {
         background-size: contain;
 
-        @include cross_platform_bg_image("refresh-assets/back-arrow.svg");
+        @include cross_platform_bg_image('refresh-assets/back-arrow.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/back-arrow--light.svg");
+            @include cross_platform_bg_image('refresh-assets/back-arrow--light.svg');
         }
 
         .environment--android & {
-            @include cross_platform_bg_image("refresh-assets/back-arrow-android.svg");
+            @include cross_platform_bg_image('refresh-assets/back-arrow-android.svg');
         }
 
         .body--theme-dark.environment--android & {
-            @include cross_platform_bg_image("refresh-assets/back-arrow-android--light.svg");
+            @include cross_platform_bg_image('refresh-assets/back-arrow-android--light.svg');
         }
 
         .environment--ios & {
-            @include cross_platform_bg_image("refresh-assets/back-chevron-ios.svg");
+            @include cross_platform_bg_image('refresh-assets/back-chevron-ios.svg');
             width: 20px;
             height: 20px;
 
@@ -399,7 +404,7 @@ a {
         }
 
         .body--theme-dark.environment--ios & {
-            @include cross_platform_bg_image("refresh-assets/back-chevron-ios--light.svg");
+            @include cross_platform_bg_image('refresh-assets/back-chevron-ios--light.svg');
         }
     }
 
@@ -407,7 +412,7 @@ a {
         width: 16px;
         height: 16px;
 
-        @include cross_platform_bg_image("settings-gear@2x.png");
+        @include cross_platform_bg_image('settings-gear@2x.png');
     }
 
     &.icon__error {
@@ -416,7 +421,7 @@ a {
         vertical-align: bottom;
         margin-left: -2px;
 
-        @include cross_platform_bg_image("error.svg");
+        @include cross_platform_bg_image('error.svg');
     }
 
     &.icon__check {
@@ -426,7 +431,7 @@ a {
         margin-left: 1px;
         vertical-align: top;
 
-        @include cross_platform_bg_image("check.svg");
+        @include cross_platform_bg_image('check.svg');
     }
 
     &.icon__shield {
@@ -436,7 +441,7 @@ a {
         margin-left: 1px;
         vertical-align: top;
 
-        @include cross_platform_bg_image("shield.svg");
+        @include cross_platform_bg_image('shield.svg');
     }
 }
 

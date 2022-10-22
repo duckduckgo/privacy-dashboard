@@ -4,15 +4,18 @@ import { forwardConsole, withWebkitRequests } from './helpers'
 const HTML = '/swift-package/Resources/ios/assets/html/macos.html'
 
 const test = baseTest.extend({
-    macOSMocks: [async ({ page }, use) => {
-        forwardConsole(page)
-        await page.goto(HTML)
-        const requests = await withWebkitRequests(page, {
-            requests: []
-        })
-        await use(requests)
+    macOSMocks: [
+        async ({ page }, use) => {
+            forwardConsole(page)
+            await page.goto(HTML)
+            const requests = await withWebkitRequests(page, {
+                requests: [],
+            })
+            await use(requests)
+        },
         // @ts-ignore
-    }, { auto: true }]
+        { auto: true },
+    ],
 })
 
 test.describe('initial page data', () => {
@@ -28,10 +31,10 @@ test.describe('breakage form', () => {
         await page.locator('"Website not working as expected?"').click()
         await page.locator('"Send Report"').click()
         // @ts-ignore
-        const out = await macOSMocks.outgoing({ names: ['privacyDashboardSubmitBrokenSiteReport'] })
-        expect(out).toMatchObject([
-            ['privacyDashboardSubmitBrokenSiteReport', { category: '', description: '' }]
-        ])
+        const out = await macOSMocks.outgoing({
+            names: ['privacyDashboardSubmitBrokenSiteReport'],
+        })
+        expect(out).toMatchObject([['privacyDashboardSubmitBrokenSiteReport', { category: '', description: '' }]])
     })
 })
 
@@ -40,9 +43,16 @@ test.describe('open external links', () => {
         await page.locator('"No Tracking Requests Found"').click()
         await page.locator('"About our Web Tracking Protections"').click()
         // @ts-ignore
-        const calls = await macOSMocks.outgoing({ names: ['privacyDashboardOpenUrlInNewTab'] })
+        const calls = await macOSMocks.outgoing({
+            names: ['privacyDashboardOpenUrlInNewTab'],
+        })
         expect(calls).toMatchObject([
-            ['privacyDashboardOpenUrlInNewTab', { url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/' }]
+            [
+                'privacyDashboardOpenUrlInNewTab',
+                {
+                    url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
+                },
+            ],
         ])
     })
 })
@@ -51,7 +61,9 @@ test.describe('setting the height', () => {
     test('should send the initial height to native', async ({ page, macOSMocks }) => {
         await page.locator('"No Tracking Requests Found"').click()
         // @ts-ignore
-        const calls = await macOSMocks.outgoing({ names: ['privacyDashboardSetSize'] })
+        const calls = await macOSMocks.outgoing({
+            names: ['privacyDashboardSetSize'],
+        })
         expect(calls.length).toBeGreaterThanOrEqual(2)
     })
 })

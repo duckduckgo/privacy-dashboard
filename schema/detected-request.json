@@ -1,177 +1,151 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "DetectedRequest",
-  "type": "object",
-  "additionalProperties": false,
-  "description": "This describes a single request. It's expected that native platforms de-duplicate requests.\n\nThis type is mainly used by {@link RequestData} when platforms deliver request data to the dashboard.\n\nAlso, please see the following JSON files where this type is used under the `requests` key:\n\n- [amazon.json](media://request-data-amazon.json)\n- [cnn.json](media://request-data-cnn.json)\n- [google.json](media://request-data-google.json)",
-  "examples": [
-    {
-      "category": "Analytics",
-      "url": "https:\/\/completion.amazon.com\/",
-      "pageUrl": "https:\/\/www.amazon.co.uk\/",
-      "ownerName": "Amazon Technologies, Inc.",
-      "entityName": "Amazon.com",
-      "state": {
-        "allowed": {
-          "reason": "ownedByFirstParty"
-        }
-      },
-      "prevalence": 21.5
-    },
-    {
-      "category": "Analytics",
-      "url": "https:\/\/completion.amazon.com\/",
-      "pageUrl": "https:\/\/www.amazon.co.uk\/",
-      "ownerName": "Amazon Technologies, Inc.",
-      "entityName": "Amazon.com",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 10
-    }
-  ],
-  "required": [
-    "pageUrl",
-    "url",
-    "state"
-  ],
-  "properties": {
-    "url": {
-      "description": "The full URL of this request",
-      "type": "string"
-    },
-    "eTLDplus1": {
-      "description": "The eTLD+1 for this request. For example, if the tracker `https://google.com/a.js` was loaded in the page `https://example.com`, then the eTLD+1 for this request would be `google.com`",
-      "type": "string",
-      "examples": [
-        "cnn.com",
-        "bbc.co.uk"
-      ]
-    },
-    "pageUrl": {
-      "description": "The full page URL where this request was observed",
-      "type": "string"
-    },
-    "state": {
-      "description": "The state of the request - 'blocked', or 'allowed' with a given reason\n\n@example \n\nWhen blocked, there're no additional properties (yet):\n\n```json\n{ \"blocked\": {} }\n```\n\nWhen allowed, 'reason' is always present and will be one of the keys defined in {@link StateAllowed}\n\n```json\n{ \n  \"allowed\": { \n    \"reason\": \"adClickAttribution\"\n  }\n}\n```\n\n",
-      "oneOf": [
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DetectedRequest",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "This describes a single request. It's expected that native platforms de-duplicate requests.\n\nThis type is mainly used by {@link RequestData} when platforms deliver request data to the dashboard.\n\nAlso, please see the following JSON files where this type is used under the `requests` key:\n\n- [amazon.json](media://request-data-amazon.json)\n- [cnn.json](media://request-data-cnn.json)\n- [google.json](media://request-data-google.json)",
+    "examples": [
         {
-          "$ref": "#/definitions/state-blocked"
+            "category": "Analytics",
+            "url": "https://completion.amazon.com/",
+            "pageUrl": "https://www.amazon.co.uk/",
+            "ownerName": "Amazon Technologies, Inc.",
+            "entityName": "Amazon.com",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 21.5
         },
         {
-          "$ref": "#/definitions/state-allowed"
+            "category": "Analytics",
+            "url": "https://completion.amazon.com/",
+            "pageUrl": "https://www.amazon.co.uk/",
+            "ownerName": "Amazon Technologies, Inc.",
+            "entityName": "Amazon.com",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 10
         }
-      ]
-    },
-    "entityName": {
-      "description": "The **display name** of the entity this request belongs to, for example: `Amazon.com`, or `Google`. **NOT** `Google LLC` <- that would be the `ownerName`",
-      "type": "string",
-      "examples": [
-        "Amazon.com",
-        "Google"
-      ]
-    },
-    "category": {
-      "description": "The category to display for this request. For example, 'Advertising'. Note: the Tracker Radar may assign multiple categories, but we would only show one of them. Please refer to existing implementations to see the order in which you should choose.",
-      "examples": [
-        "Advertising",
-        "Content Delivery"
-      ],
-      "type": "string"
-    },
-    "prevalence": {
-      "description": "The prevalence of the associated entity - if one is known. For example, `10.2` or `82.8`",
-      "type": "number",
-      "examples": [
-        10.2,
-        82.8
-      ]
-    },
-    "ownerName": {
-      "description": "The name of the company this requests belongs to, if one is known. For example `Google LLC`",
-      "type": "string",
-      "examples": [
-        "Amazon Technologies, Inc.",
-        "Google LLC"
-      ]
-    }
-  },
-  "definitions": {
-    "state-blocked": {
-      "title": "StateBlocked",
-      "description": "When present, indicates that this request was blocked",
-      "examples": [
-        {
-          "blocked": {}
+    ],
+    "required": ["pageUrl", "url", "state"],
+    "properties": {
+        "url": {
+            "description": "The full URL of this request",
+            "type": "string"
+        },
+        "eTLDplus1": {
+            "description": "The eTLD+1 for this request. For example, if the tracker `https://google.com/a.js` was loaded in the page `https://example.com`, then the eTLD+1 for this request would be `google.com`",
+            "type": "string",
+            "examples": ["cnn.com", "bbc.co.uk"]
+        },
+        "pageUrl": {
+            "description": "The full page URL where this request was observed",
+            "type": "string"
+        },
+        "state": {
+            "description": "The state of the request - 'blocked', or 'allowed' with a given reason\n\n@example \n\nWhen blocked, there're no additional properties (yet):\n\n```json\n{ \"blocked\": {} }\n```\n\nWhen allowed, 'reason' is always present and will be one of the keys defined in {@link StateAllowed}\n\n```json\n{ \n  \"allowed\": { \n    \"reason\": \"adClickAttribution\"\n  }\n}\n```\n\n",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/state-blocked"
+                },
+                {
+                    "$ref": "#/definitions/state-allowed"
+                }
+            ]
+        },
+        "entityName": {
+            "description": "The **display name** of the entity this request belongs to, for example: `Amazon.com`, or `Google`. **NOT** `Google LLC` <- that would be the `ownerName`",
+            "type": "string",
+            "examples": ["Amazon.com", "Google"]
+        },
+        "category": {
+            "description": "The category to display for this request. For example, 'Advertising'. Note: the Tracker Radar may assign multiple categories, but we would only show one of them. Please refer to existing implementations to see the order in which you should choose.",
+            "examples": ["Advertising", "Content Delivery"],
+            "type": "string"
+        },
+        "prevalence": {
+            "description": "The prevalence of the associated entity - if one is known. For example, `10.2` or `82.8`",
+            "type": "number",
+            "examples": [10.2, 82.8]
+        },
+        "ownerName": {
+            "description": "The name of the company this requests belongs to, if one is known. For example `Google LLC`",
+            "type": "string",
+            "examples": ["Amazon Technologies, Inc.", "Google LLC"]
         }
-      ],
-      "type": "object",
-      "required": [
-        "blocked"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "blocked": {
-          "type": "object"
-        }
-      }
     },
-    "state-allowed": {
-      "title": "StateAllowed",
-      "description": "When present, indicates that this request was allowed to load. The `reason` key should indicate why it was allowed",
-      "type": "object",
-      "required": [
-        "allowed",
-        "other"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "allowed": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "reason"
-          ],
-          "properties": {
-            "reason": {
-              "type": "string",
-              "description": "- {@link ProtectionsDisabledReason}\n- {@link OwnedByFirstPartyReason}\n- {@link RuleExceptionReason}\n- {@link AdClickAttributionReason}\n- {@link OtherThirdPartyRequestReason}",
-              "enum": [
-                {"$ref": "#/definitions/protectionDisabled" },
-                {"$ref": "#/definitions/ownedByFirstParty" },
-                {"$ref": "#/definitions/ruleException" },
-                {"$ref": "#/definitions/adClickAttribution" },
-                {"$ref": "#/definitions/otherThirdPartyRequest" }
-              ]
+    "definitions": {
+        "state-blocked": {
+            "title": "StateBlocked",
+            "description": "When present, indicates that this request was blocked",
+            "examples": [
+                {
+                    "blocked": {}
+                }
+            ],
+            "type": "object",
+            "required": ["blocked"],
+            "additionalProperties": false,
+            "properties": {
+                "blocked": {
+                    "type": "object"
+                }
             }
-          }
+        },
+        "state-allowed": {
+            "title": "StateAllowed",
+            "description": "When present, indicates that this request was allowed to load. The `reason` key should indicate why it was allowed",
+            "type": "object",
+            "required": ["allowed", "other"],
+            "additionalProperties": false,
+            "properties": {
+                "allowed": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["reason"],
+                    "properties": {
+                        "reason": {
+                            "type": "string",
+                            "description": "- {@link ProtectionsDisabledReason}\n- {@link OwnedByFirstPartyReason}\n- {@link RuleExceptionReason}\n- {@link AdClickAttributionReason}\n- {@link OtherThirdPartyRequestReason}",
+                            "enum": [
+                                { "$ref": "#/definitions/protectionDisabled" },
+                                { "$ref": "#/definitions/ownedByFirstParty" },
+                                { "$ref": "#/definitions/ruleException" },
+                                { "$ref": "#/definitions/adClickAttribution" },
+                                { "$ref": "#/definitions/otherThirdPartyRequest" }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "protectionDisabled": {
+            "title": "ProtectionsDisabledReason",
+            "const": "protectionDisabled",
+            "description": "This indicates that the request was allowed because either the user or DuckDuckGo disabled protections"
+        },
+        "ownedByFirstParty": {
+            "title": "OwnedByFirstPartyReason",
+            "const": "ownedByFirstParty",
+            "description": "This indicates that the request was allowed because the request was to a domain that the current web page's owner also owns"
+        },
+        "ruleException": {
+            "title": "RuleExceptionReason",
+            "const": "ruleException",
+            "description": "This indicates that the request was allowed because of a rule exception, such as a Tracker Radar 'ignore' entry"
+        },
+        "adClickAttribution": {
+            "title": "AdClickAttributionReason",
+            "const": "adClickAttribution",
+            "description": "This indicates that the request was allowed because of Ad Attribution"
+        },
+        "otherThirdPartyRequest": {
+            "title": "OtherThirdPartyRequestReason",
+            "const": "otherThirdPartyRequest",
+            "description": "This indicates that the request was allowed because it was to a third party, but was not classified to be a tracker"
         }
-      }
-    },
-    "protectionDisabled": {
-      "title": "ProtectionsDisabledReason",
-      "const": "protectionDisabled",
-      "description": "This indicates that the request was allowed because either the user or DuckDuckGo disabled protections"
-    },
-    "ownedByFirstParty": {
-      "title": "OwnedByFirstPartyReason",
-      "const": "ownedByFirstParty",
-      "description": "This indicates that the request was allowed because the request was to a domain that the current web page's owner also owns"
-    },
-    "ruleException": {
-      "title": "RuleExceptionReason",
-      "const": "ruleException",
-      "description": "This indicates that the request was allowed because of a rule exception, such as a Tracker Radar 'ignore' entry"
-    },
-    "adClickAttribution": {
-      "title": "AdClickAttributionReason",
-      "const": "adClickAttribution",
-      "description": "This indicates that the request was allowed because of Ad Attribution"
-    },
-    "otherThirdPartyRequest": {
-      "title": "OtherThirdPartyRequestReason",
-      "const": "otherThirdPartyRequest",
-      "description": "This indicates that the request was allowed because it was to a third party, but was not classified to be a tracker"
     }
-  }
 }

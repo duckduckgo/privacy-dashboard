@@ -1,4 +1,3 @@
-
 const isSiteWithOnlyOwnTrackers = ({ trackersCount, tab }) => {
     if (trackersCount === 0) {
         return false
@@ -21,14 +20,14 @@ const isSameEntity = (tracker, parentEntity) => {
 
 const offset = 'a'.charCodeAt(0)
 const colorCount = 16
-function getColorId (value) {
+function getColorId(value) {
     const characters = value.toLowerCase().split('')
     const sum = characters.reduce((total, character) => total + character.charCodeAt(0) - offset, 0)
-    return Math.abs(sum % colorCount + 1)
+    return Math.abs((sum % colorCount) + 1)
 }
 
 module.exports = {
     isSiteWithOnlyOwnTrackers: isSiteWithOnlyOwnTrackers,
     isSameEntity: isSameEntity,
-    getColorId: getColorId
+    getColorId: getColorId,
 }

@@ -26,10 +26,11 @@ import {
     backgroundMessage,
     getBackgroundTabData,
     fetch as macosFetch,
-    setupClickEventHandlers, setupShared
+    setupClickEventHandlers,
+    setupShared,
 } from './macos-communication.es6'
 
-export function setup () {
+export function setup() {
     const setColorScheme = setupColorScheme()
     window.onChangeTheme = function (themeName) {
         setColorScheme(themeName)
@@ -48,7 +49,7 @@ export function setup () {
  * window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
  * ```
  */
-export function privacyDashboardClose (args) {
+export function privacyDashboardClose(args) {
     window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
 }
 
@@ -63,7 +64,7 @@ export function privacyDashboardClose (args) {
  * window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args)
  * ```
  */
-export function privacyDashboardShowReportBrokenSite (args) {
+export function privacyDashboardShowReportBrokenSite(args) {
     window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args)
 }
 
@@ -91,8 +92,4 @@ const fetch = (message) => {
     macosFetch(message)
 }
 
-export {
-    backgroundMessage,
-    getBackgroundTabData,
-    fetch
-}
+export { backgroundMessage, getBackgroundTabData, fetch }

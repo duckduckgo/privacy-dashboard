@@ -1,13 +1,13 @@
 .status-list--right {
-  .status-list__item {
-    padding-left: 0;
-    padding-right: 40px;
+    .status-list__item {
+        padding-left: 0;
+        padding-right: 40px;
 
-    &:before {
-      left: auto;
-      right: 0;
+        &:before {
+            left: auto;
+            right: 0;
+        }
     }
-  }
 }
 
 .status-list__item {
@@ -21,7 +21,7 @@
     }
 
     &:before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         height: 20px;
@@ -37,17 +37,17 @@
     }
 }
 
-$statuses: ("good", "bad", "mixed");
+$statuses: ('good', 'bad', 'mixed');
 
 @each $status in $statuses {
     .status-list__item--#{$status} {
         &:before {
-            @include cross_platform_bg_image("status--#{$status}.svg");
+            @include cross_platform_bg_image('status--#{$status}.svg');
         }
     }
 }
 
 /* privacy practices uses the modifier 'poor' */
 .status-list__item--poor:before {
-    @include cross_platform_bg_image("status--bad.svg");
+    @include cross_platform_bg_image('status--bad.svg');
 }

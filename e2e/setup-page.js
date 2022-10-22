@@ -9,7 +9,7 @@ const defaultPageHeight = 550
 let browser
 let context
 
-function setupPage () {
+function setupPage() {
     beforeAll(async () => {
         browser = await webkit.launch()
     })
@@ -23,8 +23,8 @@ function setupPage () {
         globalThis.page = await context.newPage({
             viewport: {
                 width: defaultPageWidth,
-                height: defaultPageHeight
-            }
+                height: defaultPageHeight,
+            },
         })
     })
     afterEach(async () => {
@@ -39,8 +39,7 @@ function setupPage () {
         await wait(250) // wait for animations to complete
     }
 
-    const wait = (timeout) =>
-        new Promise((resolve) => setTimeout(resolve, timeout))
+    const wait = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout))
 
     const setupColorScheme = async (colorScheme) => {
         await globalThis.page.emulateMedia({ colorScheme })
@@ -50,7 +49,7 @@ function setupPage () {
         const height = await globalThis.page.evaluate(getContentHeightForScreenShot)
         await globalThis.page.setViewportSize({
             width: defaultPageWidth,
-            height: height || defaultPageHeight
+            height: height || defaultPageHeight,
         })
         return await globalThis.page.screenshot()
     }
@@ -77,7 +76,7 @@ function setupPage () {
         takeScreenshot,
         clickTrackerListAction,
         clickConnectionAction,
-        clickBrokenSiteAction
+        clickBrokenSiteAction,
     }
 }
 

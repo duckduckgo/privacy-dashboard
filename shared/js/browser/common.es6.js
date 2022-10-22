@@ -23,7 +23,7 @@ const convertTrackers = (trackerList) => {
             mapping[key] = {
                 displayName: tracker.entity.displayName,
                 prevalence: tracker.entity.prevalence,
-                urls: {}
+                urls: {},
             }
         }
 
@@ -32,7 +32,7 @@ const convertTrackers = (trackerList) => {
 
         mapping[key].urls[urlKey] = {
             isBlocked: tracker.blocked,
-            categories: tracker.knownTracker.categories
+            categories: tracker.knownTracker.categories,
         }
         mapping[key].count = Object.keys(mapping[key].urls).length
 
@@ -44,7 +44,7 @@ export const convertTrackerDataPayload = (tabUrl, upgradedHttps, allowlisted, da
     const allTrackers = data.trackersDetected.concat(data.trackersBlocked)
     const trackers = convertTrackers(allTrackers)
     const trackersBlocked = convertTrackers(data.trackersBlocked)
-    const tabDomain = (new URL(tabUrl).host).replace(/^www\./, '')
+    const tabDomain = new URL(tabUrl).host.replace(/^www\./, '')
 
     return {
         url: tabUrl,
@@ -54,14 +54,14 @@ export const convertTrackerDataPayload = (tabUrl, upgradedHttps, allowlisted, da
             url: tabUrl,
             domain: tabDomain,
             allowlisted,
-            enabledFeatures: ['contentBlocking']
+            enabledFeatures: ['contentBlocking'],
         },
         trackers,
-        trackersBlocked
+        trackersBlocked,
     }
 }
 
-export function concatParams (args) {
+export function concatParams(args) {
     args = args || []
 
     let paramString = ''
@@ -102,7 +102,7 @@ export const getContentHeightForScreenShot = () => {
 /**
  * @param {(height: number) => void} callback
  */
-export function setupMutationObserver (callback) {
+export function setupMutationObserver(callback) {
     const bufferHeight = 200
     let lastHeight
     const mutationObserver = new MutationObserver(() => {
@@ -127,15 +127,15 @@ let explicitlySetTheme = ''
 let detectedTheme = LIGHT_THEME
 const oppositeTheme = {
     [LIGHT_THEME]: DARK_THEME,
-    [DARK_THEME]: LIGHT_THEME
+    [DARK_THEME]: LIGHT_THEME,
 }
 
-function swapThemeTo (theme) {
+function swapThemeTo(theme) {
     document.body.classList.remove(`body--theme-${oppositeTheme[theme]}`)
     document.body.classList.add(`body--theme-${theme}`)
 }
 
-function updateTheme () {
+function updateTheme() {
     if (explicitlySetTheme) {
         swapThemeTo(explicitlySetTheme)
     } else {
@@ -143,12 +143,12 @@ function updateTheme () {
     }
 }
 
-export function setupColorScheme () {
+export function setupColorScheme() {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         detectedTheme = DARK_THEME
     }
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
         detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME
         updateTheme()
     })
@@ -173,7 +173,7 @@ export function setupColorScheme () {
  * @param message
  * @returns {asserts condition}
  */
-export function assert (condition, message = '') {
+export function assert(condition, message = '') {
     if (!condition) {
         if (!message) {
             throw new Error('invariant')
@@ -201,13 +201,13 @@ export function assert (condition, message = '') {
  *
  * @param {import('../../../schema/__generated__/schema.types').LocaleSettings} payload
  */
-export function onChangeLocale (payload) {}
+export function onChangeLocale(payload) {}
 
 /**
  * Calling this method should close the dashboard and open the given URL in a **new tab**.
  * @param {{url: string}} payload
  */
-export function openInNewTab (payload) {}
+export function openInNewTab(payload) {}
 
 /**
  * Communicate the size of the dashboard so that native sides can
@@ -215,7 +215,7 @@ export function openInNewTab (payload) {}
  *
  * @param {{height: number}} payload
  */
-export function setSize (payload) {}
+export function setSize(payload) {}
 
 /**
  * Call this method with Protection status updates.
@@ -224,7 +224,7 @@ export function setSize (payload) {}
  *
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
  */
-export function onChangeProtectionStatus (protectionsStatus) {}
+export function onChangeProtectionStatus(protectionsStatus) {}
 
 /**
  * This is used when the user has reported a broken site from
@@ -235,9 +235,9 @@ export function onChangeProtectionStatus (protectionsStatus) {}
  *
  * @param {import('../../../schema/__generated__/schema.types').BreakageReportRequest} report
  */
-export function submitBrokenSiteReport (report) {}
+export function submitBrokenSiteReport(report) {}
 
 /**
  * @param {import('../../../schema/__generated__/schema.types').SetListOptions} options
  */
-export function setList (options) {}
+export function setList(options) {}

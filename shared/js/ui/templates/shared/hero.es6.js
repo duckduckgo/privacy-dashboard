@@ -12,7 +12,7 @@ import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.es6'
  * @param {"about-link" | "none"} opts.suffix
  * @param {HTMLElement} [opts.children]
  */
-export function heroTemplate (opts) {
+export function heroTemplate(opts) {
     return bel`
         <div class="key-insight">
             ${opts.icon}
@@ -28,16 +28,16 @@ export function heroTemplate (opts) {
  * @param {boolean} protectionsEnabled
  * @returns {HTMLElement}
  */
-export function heroFromTabTrackers (requestDetails, protectionsEnabled) {
+export function heroFromTabTrackers(requestDetails, protectionsEnabled) {
     const summary = trackerNetworkSummary(requestDetails, protectionsEnabled)
     const icon = trackerNetworksHeroIcon(requestDetails, protectionsEnabled)
     const largeIcon = largeHeroIcon({
-        status: icon
+        status: icon,
     })
     return heroTemplate({
         suffix: 'about-link',
         icon: largeIcon,
-        summary
+        summary,
     })
 }
 
@@ -46,16 +46,16 @@ export function heroFromTabTrackers (requestDetails, protectionsEnabled) {
  * @param {boolean} protectionsEnabled
  * @returns {HTMLElement}
  */
-export function heroFromTabNonTrackers (requestDetails, protectionsEnabled) {
+export function heroFromTabNonTrackers(requestDetails, protectionsEnabled) {
     const summary = thirdpartySummary(requestDetails, protectionsEnabled)
     const icon = thirdpartyHeroIcon(requestDetails, protectionsEnabled)
     const largeIcon = largeHeroIcon({
-        status: icon
+        status: icon,
     })
     return heroTemplate({
         suffix: 'about-link',
         icon: largeIcon,
-        summary
+        summary,
     })
 }
 
@@ -63,7 +63,7 @@ export function heroFromTabNonTrackers (requestDetails, protectionsEnabled) {
  * @param {object} ops
  * @param {string} ops.status
  */
-export function largeHeroIcon (ops) {
+export function largeHeroIcon(ops) {
     return bel`<div class="large-icon-container hero-icon--${ops.status}"></div>`
 }
 
@@ -71,10 +71,8 @@ export function largeHeroIcon (ops) {
  * @param {object} opts
  * @param {"tall" | "short"} [opts.variant]
  */
-export function topNav (opts = {}) {
-    const variant = (isIOS() || isAndroid())
-        ? 'tall'
-        : 'short'
+export function topNav(opts = {}) {
+    const variant = isIOS() || isAndroid() ? 'tall' : 'short'
     return bel`
     <div>
         <div class="top-nav top-nav--${variant}">

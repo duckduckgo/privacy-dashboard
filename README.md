@@ -22,4 +22,5 @@ For more information, see [Reporting bugs](CONTRIBUTING.md#reporting-bugs).
 We're not accepting new feature pull requests at this time. For non security–related bug fixes see [Development](CONTRIBUTING.md#development).
 
 ## Questions?
+
 Visit our [help pages](https://help.duckduckgo.com/) for answers to common questions.

@@ -34,7 +34,8 @@
 }
 
 .key-insight--main {
-    .environment--macos &, .environment--windows & {
+    .environment--macos &,
+    .environment--windows & {
         padding-top: 32px;
     }
     .environment--browser & {

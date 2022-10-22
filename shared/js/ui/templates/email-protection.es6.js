@@ -5,20 +5,16 @@ import { i18n } from '../base/localize.es6'
  * @this {any}
  * @returns {null|HTMLElement}
  */
-export default function emailProtectionTemplate () {
+export default function emailProtectionTemplate() {
     const state = this.model.state
 
     if (state === 'unknown') {
         return null
     }
 
-    const text = state === 'idle'
-        ? i18n.t('site:createNewDuckAddress.title')
-        : i18n.t('site:createNewDuckAddressCopied.title')
+    const text = state === 'idle' ? i18n.t('site:createNewDuckAddress.title') : i18n.t('site:createNewDuckAddressCopied.title')
 
-    const icon = state === 'idle'
-        ? wandIcon()
-        : checkMarkIcon()
+    const icon = state === 'idle' ? wandIcon() : checkMarkIcon()
 
     return bel`
         <div class="js-email-alias email-alias token-body-em">
@@ -34,7 +30,7 @@ export default function emailProtectionTemplate () {
         </div>`
 }
 
-function wandIcon () {
+function wandIcon() {
     return bel`<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M10.4998 0.75C10.4998 0.335786 10.164 0 9.74976 0C9.33554 0 8.99976 0.335786 8.99976 0.75V3.25C8.99976 3.66421 9.33554 4 9.74976 4C10.164 4 10.4998 3.66421 10.4998 3.25V0.75Z"/>
         <path d="M10.4998 9.75C10.4998 9.33579 10.164 9 9.74976 9C9.33554 9 8.99976 9.33579 8.99976 9.75V12.25C8.99976 12.6642 9.33554 13 9.74976 13C10.164 13 10.4998 12.6642 10.4998 12.25V9.75Z"/>
@@ -48,7 +44,7 @@ function wandIcon () {
     </svg>`
 }
 
-function checkMarkIcon () {
+function checkMarkIcon() {
     return bel`<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M11.809 6.2501C12.0851 5.94141 12.0588 5.46727 11.7501 5.19108C11.4414 4.91488 10.9673 4.94122 10.6911 5.24991L7.0255 9.34675L5.33049 7.27508C5.06819 6.9545 4.59568 6.90724 4.27509 7.16954C3.95451 7.43183 3.90726 7.90435 4.16955 8.22494L6.41955 10.9749C6.55833 11.1446 6.76436 11.245 6.98346 11.2498C7.20256 11.2547 7.41282 11.1634 7.55895 11.0001L11.809 6.2501Z" />
         <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8Z" />

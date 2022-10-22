@@ -2,14 +2,14 @@ import { setupColorScheme } from './common.es6'
 
 setupColorScheme()
 
-export function fetch () {
+export function fetch() {
     // noop
 }
 
-export function backgroundMessage () {
+export function backgroundMessage() {
     // noop
 }
 
-export async function getBackgroundTabData () {
+export async function getBackgroundTabData() {
     return window.__DDG_TEST_DATA
 }

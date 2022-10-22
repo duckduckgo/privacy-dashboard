@@ -17,7 +17,7 @@ const allowedTracker = {
     prevalence: 82.6,
     url: 'https://example.com/a.js',
     pageUrl: 'https://example.com',
-    state: { allowed: { reason: 'ownedByFirstParty' } }
+    state: { allowed: { reason: 'ownedByFirstParty' } },
 }
 
 /** @type {DetectedRequest} */
@@ -27,7 +27,7 @@ const allowedThirdParty = {
     url: 'indexww.com',
     pageUrl: 'https://example.com',
     category: 'Advertising',
-    state: { allowed: { reason: 'otherThirdPartyRequest' } }
+    state: { allowed: { reason: 'otherThirdPartyRequest' } },
 }
 
 /** @type {DetectedRequest} */
@@ -37,7 +37,7 @@ const blocked1 = {
     url: 'securepubads.g.doubleclick.net',
     pageUrl: 'https://example.com',
     category: 'Advertising',
-    state: { blocked: {} }
+    state: { blocked: {} },
 }
 /** @type {DetectedRequest} */
 const blocked2 = {
@@ -46,7 +46,7 @@ const blocked2 = {
     url: 'pagead2.googlesyndication.com',
     pageUrl: 'https://example.com',
     category: 'Advertising',
-    state: { blocked: {} }
+    state: { blocked: {} },
 }
 
 /** @type {DetectedRequest} */
@@ -56,17 +56,11 @@ const blocked3 = {
     url: 'htlb.casalemedia.com',
     pageUrl: 'https://example.com',
     category: 'Advertising',
-    state: { blocked: {} }
+    state: { blocked: {} },
 }
 
 /** @type {DetectedRequest[]} */
-const defaultRequests = [
-    allowedTracker,
-    allowedThirdParty,
-    blocked1,
-    blocked2,
-    blocked3
-]
+const defaultRequests = [allowedTracker, allowedThirdParty, blocked1, blocked2, blocked3]
 
 // eslint-disable-next-line no-unused-vars
 const defaultCertificates = [
@@ -84,13 +78,12 @@ const defaultCertificates = [
             effectiveSize: 256,
             isPermanent: false,
             type: 'Elliptic Curve',
-            externalRepresentation:
-          'BEO3YVjG8jpNVRlh9G10paEfrx9XnVG9GvNtOAYkZvuytfhKTZ9sW+MhQaFDAgKveZUDIMg7WvG8QXZGPNTWCKg=',
+            externalRepresentation: 'BEO3YVjG8jpNVRlh9G10paEfrx9XnVG9GvNtOAYkZvuytfhKTZ9sW+MhQaFDAgKveZUDIMg7WvG8QXZGPNTWCKg=',
             canVerify: true,
-            keyId: 'Xbo6o2j/lA8zNZ/axcChz8ID2MM='
+            keyId: 'Xbo6o2j/lA8zNZ/axcChz8ID2MM=',
         },
         emails: [],
-        summary: 'sni.cloudflaressl.com'
+        summary: 'sni.cloudflaressl.com',
     },
     {
         commonName: 'Cloudflare Inc ECC CA-3',
@@ -106,13 +99,12 @@ const defaultCertificates = [
             effectiveSize: 256,
             isPermanent: false,
             type: 'Elliptic Curve',
-            externalRepresentation:
-                'BLmtTWaZFAtG7B+B0SpQHp0DFS80En0tlriIOJuFX4+/u03vYUbEyXPUJE/g7hzObLNRcS9q7kwFCXfTcmKkm9c=',
+            externalRepresentation: 'BLmtTWaZFAtG7B+B0SpQHp0DFS80En0tlriIOJuFX4+/u03vYUbEyXPUJE/g7hzObLNRcS9q7kwFCXfTcmKkm9c=',
             canVerify: true,
-            keyId: 'pc436uuwdQ6UZ4i0RfrZJBCHlh8='
+            keyId: 'pc436uuwdQ6UZ4i0RfrZJBCHlh8=',
         },
         emails: [],
-        summary: 'Cloudflare Inc ECC CA-3'
+        summary: 'Cloudflare Inc ECC CA-3',
     },
     {
         commonName: 'Baltimore CyberTrust Root',
@@ -131,11 +123,11 @@ const defaultCertificates = [
             externalRepresentation:
                 'MIIBCgKCAQEAowS7IquYPVfoJnKatXnUKeLh6JWAsbDjW44rKZpk36Fd7bAJBW3bKC7OYqJi/rSI2hLrOOshncBBKwFSe4h30xyPx7q5iLVqCedz6BFAp9HMymKNLeWPC6ZQ0qhQwyjq9aslh4qalhypZ7g/DNX3+VITL8Ib1XBw8I/AEsoGy5rh2cozenfW+Oy58WhEQkgT0sDCpK5eYP62pgX8tN0HWQLUWRiYY/WlY+CQDH1dsgZ684Xq69QDrl6EPl//Fe1pvPk5NnJ1z3dSTfPJkCy5PeXJI1M/HySYIVwHmSm9xjrs526GOmuXdGMzvWgYMfB4jXa//J6OXSqGp02Q3CcaOQIDAQAB',
             canVerify: true,
-            keyId: '5Z1ZMIJHWMys+ghUNoZ7OrUETfA='
+            keyId: '5Z1ZMIJHWMys+ghUNoZ7OrUETfA=',
         },
         emails: [],
-        summary: 'Baltimore CyberTrust Root'
-    }
+        summary: 'Baltimore CyberTrust Root',
+    },
 ]
 
 const permissions = [
@@ -148,17 +140,17 @@ const permissions = [
         options: [
             {
                 id: 'ask',
-                title: 'Ask every time'
+                title: 'Ask every time',
             },
             {
                 id: 'grant',
-                title: 'Always allow'
+                title: 'Always allow',
             },
             {
                 id: 'deny',
-                title: 'Always deny'
-            }
-        ]
+                title: 'Always deny',
+            },
+        ],
     },
     {
         key: 'microphone',
@@ -169,17 +161,17 @@ const permissions = [
         options: [
             {
                 id: 'ask',
-                title: 'Ask every time'
+                title: 'Ask every time',
             },
             {
                 id: 'grant',
-                title: 'Always allow'
+                title: 'Always allow',
             },
             {
                 id: 'deny',
-                title: 'Always deny'
-            }
-        ]
+                title: 'Always deny',
+            },
+        ],
     },
     {
         key: 'geolocation',
@@ -190,13 +182,13 @@ const permissions = [
         options: [
             {
                 id: 'ask',
-                title: 'Ask every time'
+                title: 'Ask every time',
             },
             {
                 id: 'deny',
-                title: 'Always deny'
-            }
-        ]
+                title: 'Always deny',
+            },
+        ],
     },
     {
         key: 'popups',
@@ -207,18 +199,18 @@ const permissions = [
         options: [
             {
                 id: 'notify',
-                title: 'Notify'
+                title: 'Notify',
             },
             {
                 id: 'grant',
-                title: 'Always allow'
+                title: 'Always allow',
             },
             {
                 id: 'deny',
-                title: 'Always deny'
-            }
-        ]
-    }
+                title: 'Always deny',
+            },
+        ],
+    },
 ]
 
 /**
@@ -234,18 +226,18 @@ export const dataStates = {
         state: states.protectionsOn,
         url: 'https://example.com',
         requests: [],
-        certificates: []
+        certificates: [],
     },
     insecure: {
         state: states.protectionsOn,
         url: 'http://example.com',
-        requests: []
+        requests: [],
     },
     upgraded: {
         state: states.protectionsOn,
         url: 'http://example.com',
         upgradedHttps: true,
-        requests: []
+        requests: [],
     },
     google: {
         state: states.protectionsOn_allowedTrackers,
@@ -253,8 +245,8 @@ export const dataStates = {
         url: 'https://google.com',
         parentEntity: {
             displayName: 'Google',
-            prevalence: 80.1
-        }
+            prevalence: 80.1,
+        },
     },
     'google-off': {
         state: states.protectionsOff_allowedTrackers,
@@ -263,8 +255,8 @@ export const dataStates = {
         url: 'https://google.com',
         parentEntity: {
             displayName: 'Google',
-            prevalence: 80.1
-        }
+            prevalence: 80.1,
+        },
     },
     'google-with-blocked': {
         state: states.protectionsOn_blocked_allowedTrackers,
@@ -272,8 +264,8 @@ export const dataStates = {
         url: 'https://google.com',
         parentEntity: {
             displayName: 'Google',
-            prevalence: 80.1
-        }
+            prevalence: 80.1,
+        },
     },
     cnn: {
         state: states.protectionsOn,
@@ -281,73 +273,73 @@ export const dataStates = {
         requests: cnn.requests,
         parentEntity: {
             displayName: 'WarnerMedia, LLC',
-            prevalence: 0.401
-        }
+            prevalence: 0.401,
+        },
     },
     '01': {
         state: states.protectionsOn,
         url: 'https://example.com',
-        requests: []
+        requests: [],
     },
     '02': {
         state: states.protectionsOn_blocked,
         url: 'https://example.com',
-        requests: [blocked1, blocked2, blocked3]
+        requests: [blocked1, blocked2, blocked3],
     },
     '03': {
         state: states.protectionsOn_blocked_allowedTrackers,
         url: 'https://example.com',
-        requests: [blocked1, allowedTracker]
+        requests: [blocked1, allowedTracker],
     },
     '04': {
         state: states.protectionsOn_blocked_allowedNonTrackers,
         url: 'https://example.com',
-        requests: [blocked1, allowedThirdParty]
+        requests: [blocked1, allowedThirdParty],
     },
     '05': {
         state: states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers,
         url: 'https://example.com',
-        requests: [blocked1, allowedThirdParty, allowedTracker]
+        requests: [blocked1, allowedThirdParty, allowedTracker],
     },
     '06': {
         state: states.protectionsOn_allowedTrackers,
         url: 'https://example.com',
-        requests: [allowedTracker]
+        requests: [allowedTracker],
     },
     '07': {
         state: states.protectionsOn_allowedNonTrackers,
         url: 'https://example.com',
-        requests: [allowedThirdParty]
+        requests: [allowedThirdParty],
     },
     '08': {
         state: states.protectionsOn_allowedTrackers_allowedNonTrackers,
         url: 'https://example.com',
-        requests: [allowedThirdParty, allowedTracker]
+        requests: [allowedThirdParty, allowedTracker],
     },
     '09': {
         state: states.protectionsOff,
         url: 'https://example.com',
         requests: [],
-        contentBlockingException: true
+        contentBlockingException: true,
     },
     10: {
         state: states.protectionsOff_allowedTrackers,
         url: 'https://example.com',
         requests: [allowedTracker],
-        contentBlockingException: true
+        contentBlockingException: true,
     },
     11: {
         state: states.protectionsOff_allowedNonTrackers,
         url: 'https://example.com',
         requests: [allowedThirdParty],
-        contentBlockingException: true
+        contentBlockingException: true,
     },
     12: {
         state: states.protectionsOff_allowedTrackers_allowedNonTrackers,
         url: 'https://example.com',
         requests: [allowedThirdParty, allowedTracker],
-        contentBlockingException: true
-    }
+        contentBlockingException: true,
+    },
 }
 
 /**
@@ -362,13 +354,7 @@ export const dataStates = {
  * @returns {{tab: TabData} & Record<string, any>}
  */
 export default function (overrides = {}) {
-    const {
-        isSecure = true,
-        requests = defaultRequests,
-        isPendingUpdates = false,
-        certificate = defaultCertificates,
-        tab = {}
-    } = overrides
+    const { isSecure = true, requests = defaultRequests, isPendingUpdates = false, certificate = defaultCertificates, tab = {} } = overrides
 
     const url = tab.url ? tab.url : `http${isSecure ? 's' : ''}://www.example.com/`
     const protections = new Protections(false, ['contentBlocking'], false, false)
@@ -380,8 +366,8 @@ export default function (overrides = {}) {
             isPendingUpdates,
             permissions,
             certificate,
-            ...tab
-        }
+            ...tab,
+        },
     }
 }
 
@@ -389,12 +375,12 @@ export default function (overrides = {}) {
  * @param {DetectedRequest[]} requests
  * @returns {DetectedRequest[]}
  */
-export function protectionsOff (requests) {
-    return requests.map(r => {
+export function protectionsOff(requests) {
+    return requests.map((r) => {
         if ('blocked' in r.state) {
             return detectedRequestSchema.parse({
                 ...r,
-                state: { allowed: { reason: 'protectionDisabled' } }
+                state: { allowed: { reason: 'protectionDisabled' } },
             })
         }
         if ('allowed' in r.state) {
@@ -403,7 +389,7 @@ export function protectionsOff (requests) {
             }
             return detectedRequestSchema.parse({
                 ...r,
-                state: { allowed: { reason: 'protectionDisabled' } }
+                state: { allowed: { reason: 'protectionDisabled' } },
             })
         }
         return r

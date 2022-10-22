@@ -9,7 +9,6 @@
     }
 }
 
-
 @mixin site_status_icons() {
     position: absolute;
     //top: 26px;
@@ -95,29 +94,29 @@
     @include icon_display();
     margin-right: 8px;
 
-    &[data-icon="geolocation"] {
-        @include cross_platform_bg_image("refresh-assets/permissions-location.svg");
+    &[data-icon='geolocation'] {
+        @include cross_platform_bg_image('refresh-assets/permissions-location.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/permissions-location-light.svg");
+            @include cross_platform_bg_image('refresh-assets/permissions-location-light.svg');
         }
     }
 
-    &[data-icon="microphone"] {
-        @include cross_platform_bg_image("refresh-assets/permissions-microphone.svg");
+    &[data-icon='microphone'] {
+        @include cross_platform_bg_image('refresh-assets/permissions-microphone.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/permissions-microphone-light.svg");
+            @include cross_platform_bg_image('refresh-assets/permissions-microphone-light.svg');
         }
 
         margin-top: -2px;
     }
 
-    &[data-icon="camera"] {
-        @include cross_platform_bg_image("refresh-assets/permissions-camera.svg");
+    &[data-icon='camera'] {
+        @include cross_platform_bg_image('refresh-assets/permissions-camera.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/permissions-camera-light.svg");
+            @include cross_platform_bg_image('refresh-assets/permissions-camera-light.svg');
         }
 
         width: 16px;
@@ -125,29 +124,29 @@
         margin-top: -2px;
     }
 
-    &[data-icon="popups"] {
-        @include cross_platform_bg_image("refresh-assets/permissions-popups.svg");
+    &[data-icon='popups'] {
+        @include cross_platform_bg_image('refresh-assets/permissions-popups.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/permissions-popups-light.svg");
+            @include cross_platform_bg_image('refresh-assets/permissions-popups-light.svg');
         }
     }
 
-    &[data-icon="externalScheme"] {
-        @include cross_platform_bg_image("refresh-assets/permissions-externalScheme.svg");
+    &[data-icon='externalScheme'] {
+        @include cross_platform_bg_image('refresh-assets/permissions-externalScheme.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/permissions-externalScheme-light.svg");
+            @include cross_platform_bg_image('refresh-assets/permissions-externalScheme-light.svg');
         }
 
         margin-top: -4px;
     }
 
-    &[data-icon="notification"] {
-        @include cross_platform_bg_image("refresh-assets/permissions-notification.svg");
+    &[data-icon='notification'] {
+        @include cross_platform_bg_image('refresh-assets/permissions-notification.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/permissions-notification-light.svg");
+            @include cross_platform_bg_image('refresh-assets/permissions-notification-light.svg');
         }
 
         width: 16px;
@@ -174,7 +173,8 @@
             }
         }
 
-        &:hover, &:hover + li {
+        &:hover,
+        &:hover + li {
             border-color: transparent;
         }
     }
@@ -184,7 +184,6 @@
     }
 
     .site-info__trackers {
-
         .site-info__trackers-status__icon {
             @include icon_display();
             @include site_status_icons();
@@ -214,13 +213,16 @@
     .is-disabled & {
         @include is_disabled();
     }
-
 }
 
-.report-breakage {}
+.report-breakage {
+}
 .report-breakage__link {
-    .environment--ios &, .environment--android & {
-        &:visited, &:active, &:hover {
+    .environment--ios &,
+    .environment--android & {
+        &:visited,
+        &:active,
+        &:hover {
             text-decoration: none;
         }
     }
@@ -312,7 +314,8 @@
             }
         }
 
-        &:hover, &:hover + li {
+        &:hover,
+        &:hover + li {
             border-color: transparent;
         }
     }
@@ -329,7 +332,7 @@
     //
     //&.is-secure, // default = secure, https
     //&.is-upgraded {
-        @include cross_platform_bg_image($status--good);
+    @include cross_platform_bg_image($status--good);
     //}
     //
     //&.is-none,

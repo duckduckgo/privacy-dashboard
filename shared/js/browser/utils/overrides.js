@@ -21,18 +21,18 @@ import { Protections } from './request-details'
  * @param {string} searchString
  * @returns {Overrides}
  */
-export function getOverrides (searchString) {
+export function getOverrides(searchString) {
     /** @type {Overrides} */
     const overrides = {
         tab: {
             consentManaged: undefined,
-            parentEntity: undefined
+            parentEntity: undefined,
         },
         requests: [],
         platform: 'n/a',
         state: 'unknown',
         emailProtectionUserData: undefined,
-        theme: undefined
+        theme: undefined,
     }
 
     const params = new URLSearchParams(searchString)
@@ -50,12 +50,7 @@ export function getOverrides (searchString) {
             }
             if ('contentBlockingException' in match) {
                 overrides.requests = protectionsOff(overrides.requests)
-                overrides.tab.protections = new Protections(
-                    false,
-                    [],
-                    false,
-                    false
-                )
+                overrides.tab.protections = new Protections(false, [], false, false)
             }
             if ('upgradedHttps' in match) {
                 overrides.tab.upgradedHttps = true
@@ -89,22 +84,12 @@ export function getOverrides (searchString) {
     // emulate a 'contentBlockingException'
     if (params.get('contentBlockingException') === 'true') {
         overrides.requests = protectionsOff(overrides.requests)
-        overrides.tab.protections = new Protections(
-            false,
-            [],
-            false,
-            false
-        )
+        overrides.tab.protections = new Protections(false, [], false, false)
     }
 
     if (params.get('allowlisted')) {
         overrides.requests = protectionsOff(overrides.requests)
-        overrides.tab.protections = new Protections(
-            false,
-            ['contentBlocking'],
-            true,
-            false
-        )
+        overrides.tab.protections = new Protections(false, ['contentBlocking'], true, false)
     }
 
     if (params.get('specialDomainName')) {
@@ -117,19 +102,14 @@ export function getOverrides (searchString) {
 
     if (params.get('denylisted')) {
         overrides.requests = protectionsOff(overrides.requests)
-        overrides.tab.protections = new Protections(
-            false,
-            [],
-            false,
-            true
-        )
+        overrides.tab.protections = new Protections(false, [], false, true)
     }
 
     if (params.get('consentManaged')) {
         overrides.tab.consentManaged = {
             consentManaged: true,
             optoutFailed: false,
-            selftestFailed: false
+            selftestFailed: false,
         }
     }
 
@@ -140,7 +120,7 @@ export function getOverrides (searchString) {
         // supports search
         overrides.tab.search = {}
         // supports CTA screens
-        overrides.tab.ctaScreens = { }
+        overrides.tab.ctaScreens = {}
         // extensions can't handle 'permissions'
         overrides.tab.permissions = []
 
@@ -150,7 +130,7 @@ export function getOverrides (searchString) {
                 cohort: 'private_beta_dax',
                 nextAlias: '123456_next',
                 token: '123456',
-                userName: 'daxtheduck'
+                userName: 'daxtheduck',
             }
         }
     }

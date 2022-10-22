@@ -1,14 +1,8 @@
 import setupPage from './setup-page'
 
 describe('Privacy Dashboard States', () => {
-    const {
-        goToState,
-        setupColorScheme,
-        takeScreenshot,
-        clickTrackerListAction,
-        clickConnectionAction,
-        clickBrokenSiteAction
-    } = setupPage()
+    const { goToState, setupColorScheme, takeScreenshot, clickTrackerListAction, clickConnectionAction, clickBrokenSiteAction } =
+        setupPage()
 
     const sanitize = (value) =>
         value
@@ -19,7 +13,7 @@ describe('Privacy Dashboard States', () => {
 
     describe.each([
         ['Light Appearance', 'light', 'macos'],
-        ['Dark Appearance', 'dark', 'macos']
+        ['Dark Appearance', 'dark', 'macos'],
     ])('%s', (name, colorScheme, platform) => {
         const testScreenshot = () => {
             it('renders correctly', async () => {
@@ -31,7 +25,7 @@ describe('Privacy Dashboard States', () => {
                         return `states/${platform}/${colorScheme}/${sanitize(imageName)}-${counter}`
                     },
                     failureThreshold: 0.005,
-                    failureThresholdType: 'percent'
+                    failureThresholdType: 'percent',
                 })
             })
         }
@@ -44,7 +38,7 @@ describe('Privacy Dashboard States', () => {
             beforeEach(async () => {
                 await goToState({
                     platform,
-                    state: '02'
+                    state: '02',
                 })
             })
 
@@ -72,7 +66,7 @@ describe('Privacy Dashboard States', () => {
             beforeEach(async () => {
                 await goToState({
                     platform,
-                    state: '02'
+                    state: '02',
                 })
             })
 
@@ -85,7 +79,7 @@ describe('Privacy Dashboard States', () => {
             beforeEach(async () => {
                 await goToState({
                     platform,
-                    state: 'google'
+                    state: 'google',
                 })
             })
 
@@ -98,7 +92,7 @@ describe('Privacy Dashboard States', () => {
             beforeEach(async () => {
                 await goToState({
                     platform: platform,
-                    state: '01'
+                    state: '01',
                 })
             })
 
@@ -117,7 +111,7 @@ describe('Privacy Dashboard States', () => {
                 await goToState({
                     platform: platform,
                     state: '02',
-                    allowlisted: true
+                    allowlisted: true,
                 })
             })
 
@@ -136,7 +130,7 @@ describe('Privacy Dashboard States', () => {
                 await goToState({
                     platform: platform,
                     state: '01',
-                    locale: 'fr'
+                    locale: 'fr',
                 })
             })
 
@@ -154,7 +148,7 @@ describe('Privacy Dashboard States', () => {
             beforeEach(async () => {
                 await goToState({
                     platform: platform,
-                    state: 'upgraded'
+                    state: 'upgraded',
                 })
             })
 
@@ -172,7 +166,7 @@ describe('Privacy Dashboard States', () => {
             beforeEach(async () => {
                 await goToState({
                     state: 'insecure',
-                    platform
+                    platform,
                 })
             })
 
@@ -191,7 +185,7 @@ describe('Privacy Dashboard States', () => {
                 await goToState({
                     platform,
                     state: '01',
-                    consentManaged: true
+                    consentManaged: true,
                 })
             })
 

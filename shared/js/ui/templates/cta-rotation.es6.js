@@ -8,20 +8,24 @@ const ctas = {
         text: i18n.t('ctascreens:spreadText.title'),
         icon: heartArrowSvg,
         action: () => {
-            return bel`<a href="https://duckduckgo.com/spread" target="_blank" class="cta__button">${i18n.t('ctascreens:spreadButton.title')}</a>`
-        }
+            return bel`<a href="https://duckduckgo.com/spread" target="_blank" class="cta__button">${i18n.t(
+                'ctascreens:spreadButton.title'
+            )}</a>`
+        },
     },
     email: {
         title: i18n.t('ctascreens:emailTitle.title'),
         text: i18n.t('ctascreens:emailText.title'),
         icon: emailSvg,
         action: () => {
-            return bel`<a href="https://duckduckgo.com/email" target="_blank" class="cta__button">${i18n.t('ctascreens:spreadButton.title')}</a>`
-        }
-    }
+            return bel`<a href="https://duckduckgo.com/email" target="_blank" class="cta__button">${i18n.t(
+                'ctascreens:spreadButton.title'
+            )}</a>`
+        },
+    },
 }
 /** @this {any} */
-function ctaRotationView () {
+function ctaRotationView() {
     const cta = ctas[this.model.currentCta]
     if (!cta) {
         console.warn('unreachable - selected CTA not available ' + this.model.currentCta)
@@ -40,7 +44,7 @@ function ctaRotationView () {
     `
 }
 
-function heartArrowSvg () {
+function heartArrowSvg() {
     return raw`<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M78.5138 21L71.5098 28.003V34.003L78.5138 27V21Z" fill="#C0C0C0"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M78.505 27.0034L71.51 33.9614H77.51L84.505 27.0034H78.505Z" fill="#C0C0C0"/>
@@ -62,7 +66,7 @@ function heartArrowSvg () {
 `
 }
 
-function emailSvg () {
+function emailSvg() {
     return raw`<svg width="76" height="78" viewBox="0 0 76 78" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_273_32068)">
 <path d="M55.0125 26.7115C55.3701 26.3897 55.6204 25.9249 55.6204 25.3886V0.71875L41.4263 16.2L55.0125 26.7115Z" fill="#F9BE1A"/>

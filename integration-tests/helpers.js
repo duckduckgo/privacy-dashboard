@@ -5,7 +5,7 @@ import { dataStates } from '../shared/js/ui/views/tests/mock-data/generate-data'
  * @param {import('../schema/__generated__/schema.types').RequestData} requestData
  * @param {Partial<import('../schema/__generated__/schema.types').Tab>} tab
  */
-export async function withExtensionRequests (page, requestData, tab = {}) {
+export async function withExtensionRequests(page, requestData, tab = {}) {
     const messages = {
         submitBrokenSiteReport: {},
         /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
@@ -18,13 +18,13 @@ export async function withExtensionRequests (page, requestData, tab = {}) {
                     unprotectedTemporary: false,
                     enabledFeatures: ['contentBlocking'],
                     denylisted: false,
-                    allowlisted: false
+                    allowlisted: false,
                 },
-                ...tab
+                ...tab,
             },
-            requestData: requestData
+            requestData: requestData,
         },
-        setList: {}
+        setList: {},
     }
     await page.addInitScript((messages) => {
         try {
@@ -37,9 +37,9 @@ export async function withExtensionRequests (page, requestData, tab = {}) {
                 messages: messages,
                 mocks: {
                     outgoing: [],
-                    incoming: []
+                    incoming: [],
                 },
-                calls: []
+                calls: [],
             }
 
             // override some methods on window.chrome.tabs that the extension might call
@@ -52,7 +52,7 @@ export async function withExtensionRequests (page, requestData, tab = {}) {
                 // @ts-ignore
                 create: async (arg) => {
                     window.__playwright.calls.push(['create', arg])
-                }
+                },
             }
 
             // override some methods on window.chrome.extension that the extension might call
@@ -65,16 +65,16 @@ export async function withExtensionRequests (page, requestData, tab = {}) {
                         {
                             close: (arg) => {
                                 window.__playwright.calls.push(['close', arg])
-                            }
-                        }
+                            },
+                        },
                     ]
-                }
+                },
             }
 
             // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
             window.chrome.runtime = {
-                async sendMessage (message, cb) {
-                    function send (fn, timeout = 100) {
+                async sendMessage(message, cb) {
+                    function send(fn, timeout = 100) {
                         setTimeout(() => {
                             fn()
                         }, timeout)
@@ -92,13 +92,13 @@ export async function withExtensionRequests (page, requestData, tab = {}) {
                 },
                 // @ts-ignore
                 onMessage: {
-                    addListener (listener) {
+                    addListener(listener) {
                         listeners.push(listener)
-                    }
-                }
+                    },
+                },
             }
         } catch (e) {
-            console.error('❌couldn\'t set up mocks')
+            console.error("❌couldn't set up mocks")
             console.error(e)
         }
     }, messages)
@@ -108,15 +108,15 @@ export async function withExtensionRequests (page, requestData, tab = {}) {
          * @param {{names: string[]}} [opts]
          * @returns {Promise<any[]>}
          */
-        async outgoing (opts = { names: [] }) {
+        async outgoing(opts = { names: [] }) {
             const result = await page.evaluate(() => window.__playwright.mocks.outgoing)
             /** @type {any[]} */
             if (opts.names.length === 0) return result
-            return result.filter(item => opts.names.includes(item.messageType))
+            return result.filter((item) => opts.names.includes(item.messageType))
         },
-        async calls () {
+        async calls() {
             return page.evaluate(() => window.__playwright.calls)
-        }
+        },
     }
 }
 
@@ -125,7 +125,7 @@ export async function withExtensionRequests (page, requestData, tab = {}) {
  * @param {import('../schema/__generated__/schema.types').RequestData} requestData
  * @param {Partial<import('../schema/__generated__/schema.types').Tab>} tab
  */
-export async function withWindowsRequests (page, requestData, tab = {}) {
+export async function withWindowsRequests(page, requestData, tab = {}) {
     const messages = {
         /** @type {import('../schema/__generated__/schema.types').WindowsViewModel} */
         windowsViewModel: {
@@ -133,15 +133,15 @@ export async function withWindowsRequests (page, requestData, tab = {}) {
                 unprotectedTemporary: false,
                 enabledFeatures: ['contentBlocking'],
                 denylisted: false,
-                allowlisted: false
+                allowlisted: false,
             },
             rawRequestData: requestData,
             tabUrl: 'https://example.com',
             upgradedHttps: false,
             parentEntity: undefined,
             permissions: undefined,
-            certificates: []
-        }
+            certificates: [],
+        },
     }
     await page.addInitScript((messages) => {
         try {
@@ -154,9 +154,9 @@ export async function withWindowsRequests (page, requestData, tab = {}) {
                 messages: messages,
                 mocks: {
                     outgoing: [],
-                    incoming: []
+                    incoming: [],
                 },
-                calls: []
+                calls: [],
             }
             // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
             window.chrome.webview = {
@@ -164,18 +164,18 @@ export async function withWindowsRequests (page, requestData, tab = {}) {
                 addEventListener: (messageName, listener) => {
                     window.__playwright.listeners?.push(listener)
                 },
-                postMessage (arg) {
+                postMessage(arg) {
                     window.__playwright.mocks.outgoing.push(arg)
-                }
+                },
             }
         } catch (e) {
-            console.error('❌couldn\'t set up mocks')
+            console.error("❌couldn't set up mocks")
             console.error(e)
         }
     }, messages)
 
     return {
-        async deliverInitial () {
+        async deliverInitial() {
             await page.evaluate((messages) => {
                 for (const listener of window.__playwright.listeners || []) {
                     listener({ data: messages.windowsViewModel })
@@ -186,22 +186,21 @@ export async function withWindowsRequests (page, requestData, tab = {}) {
          * @param {{names: string[]}} [opts]
          * @returns {Promise<any[]>}
          */
-        async outgoing (opts = { names: [] }) {
+        async outgoing(opts = { names: [] }) {
             const result = await page.evaluate(() => window.__playwright.mocks.outgoing)
             /** @type {any[]} */
             if (opts.names.length === 0) return result
-            return result.filter(item => opts.names.includes(item.Name))
-        }
+            return result.filter((item) => opts.names.includes(item.Name))
+        },
     }
 }
 
 /**
  * @param {import('@playwright/test').Page} page
  */
-export function forwardConsole (page) {
+export function forwardConsole(page) {
     page.on('console', (msg, other) => {
-        const replaced = msg.text()
-            .replace(/http:\/\/localhost:3210/g, './build/browser')
+        const replaced = msg.text().replace(/http:\/\/localhost:3210/g, './build/browser')
         console.log('->', msg.type(), replaced)
     })
 }
@@ -211,7 +210,7 @@ export function forwardConsole (page) {
  * @param {import('../schema/__generated__/schema.types').RequestData} requestData
  * @param {Partial<import('../schema/__generated__/schema.types').Tab>} tab
  */
-export async function withAndroidRequests (page, requestData, tab = {}) {
+export async function withAndroidRequests(page, requestData, tab = {}) {
     const messages = {
         submitBrokenSiteReport: {},
         /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
@@ -225,16 +224,16 @@ export async function withAndroidRequests (page, requestData, tab = {}) {
                     unprotectedTemporary: false,
                     enabledFeatures: ['contentBlocking'],
                     denylisted: false,
-                    allowlisted: false
+                    allowlisted: false,
                 },
                 localeSettings: {
-                    locale: 'en'
+                    locale: 'en',
                 },
-                ...tab
+                ...tab,
             },
-            requestData: requestData
+            requestData: requestData,
         },
-        setList: {}
+        setList: {},
     }
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function')
     await page.evaluate((messages) => {
@@ -243,30 +242,30 @@ export async function withAndroidRequests (page, requestData, tab = {}) {
                 messages: messages,
                 mocks: {
                     outgoing: [],
-                    incoming: []
+                    incoming: [],
                 },
-                calls: []
+                calls: [],
             }
             // @ts-ignore
             window.PrivacyDashboard = {
-                showBreakageForm (arg) {
+                showBreakageForm(arg) {
                     window.__playwright.mocks.outgoing.push(['showBreakageForm', arg])
                 },
-                openInNewTab (arg) {
+                openInNewTab(arg) {
                     window.__playwright.mocks.outgoing.push(['openInNewTab', arg])
-                }
+                },
             }
             window.onChangeUpgradedHttps(false)
             window.onChangeProtectionStatus({
                 unprotectedTemporary: false,
                 enabledFeatures: ['contentBlocking'],
                 allowlisted: false,
-                denylisted: false
+                denylisted: false,
             })
             window.onChangeLocale(messages.getPrivacyDashboardData.tab.localeSettings)
             window.onChangeRequestData(messages.getPrivacyDashboardData.tab.url, messages.getPrivacyDashboardData.requestData)
         } catch (e) {
-            console.error('❌couldn\'t set up mocks')
+            console.error("❌couldn't set up mocks")
             console.error(e)
         }
     }, messages)
@@ -276,10 +275,10 @@ export async function withAndroidRequests (page, requestData, tab = {}) {
          * @param {{names: string[]}} [opts]
          * @returns {Promise<any[]>}
          */
-        async outgoing (opts = { names: [] }) {
+        async outgoing(opts = { names: [] }) {
             const result = await page.evaluate(() => window.__playwright.mocks.outgoing)
             return result
-        }
+        },
     }
 }
 
@@ -288,7 +287,7 @@ export async function withAndroidRequests (page, requestData, tab = {}) {
  * @param {import('../schema/__generated__/schema.types').RequestData} requestData
  * @param {Partial<import('../schema/__generated__/schema.types').Tab>} tab
  */
-export async function withWebkitRequests (page, requestData, tab = {}) {
+export async function withWebkitRequests(page, requestData, tab = {}) {
     const messages = {
         submitBrokenSiteReport: {},
         /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
@@ -302,16 +301,16 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
                     unprotectedTemporary: false,
                     enabledFeatures: ['contentBlocking'],
                     denylisted: false,
-                    allowlisted: false
+                    allowlisted: false,
                 },
                 localeSettings: {
-                    locale: 'en'
+                    locale: 'en',
                 },
-                ...tab
+                ...tab,
             },
-            requestData: requestData
+            requestData: requestData,
         },
-        setList: {}
+        setList: {},
     }
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function')
     await page.evaluate((messages) => {
@@ -320,33 +319,33 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
                 messages: messages,
                 mocks: {
                     outgoing: [],
-                    incoming: []
+                    incoming: [],
                 },
-                calls: []
+                calls: [],
             }
             window.webkit = {
                 messageHandlers: {
                     privacyDashboardShowReportBrokenSite: {
                         postMessage: (arg) => {
                             window.__playwright.mocks.outgoing.push(['privacyDashboardShowReportBrokenSite', arg])
-                        }
+                        },
                     },
                     privacyDashboardOpenUrlInNewTab: {
                         postMessage: (arg) => {
                             window.__playwright.mocks.outgoing.push(['privacyDashboardOpenUrlInNewTab', arg])
-                        }
+                        },
                     },
                     privacyDashboardSubmitBrokenSiteReport: {
                         postMessage: (arg) => {
                             window.__playwright.mocks.outgoing.push(['privacyDashboardSubmitBrokenSiteReport', arg])
-                        }
+                        },
                     },
                     privacyDashboardSetSize: {
                         postMessage: (arg) => {
                             window.__playwright.mocks.outgoing.push(['privacyDashboardSetSize', arg])
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             }
             window.onChangeLocale(messages.getPrivacyDashboardData.tab.localeSettings)
             window.onChangeUpgradedHttps(false)
@@ -354,11 +353,11 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
                 unprotectedTemporary: false,
                 enabledFeatures: ['contentBlocking'],
                 allowlisted: false,
-                denylisted: false
+                denylisted: false,
             })
             window.onChangeRequestData(messages.getPrivacyDashboardData.tab.url, messages.getPrivacyDashboardData.requestData)
         } catch (e) {
-            console.error('❌couldn\'t set up mocks')
+            console.error("❌couldn't set up mocks")
             console.error(e)
         }
     }, messages)
@@ -368,7 +367,7 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
          * @param {{names: string[]}} [opts]
          * @returns {Promise<any[]>}
          */
-        async outgoing (opts = { names: [] }) {
+        async outgoing(opts = { names: [] }) {
             const result = await page.evaluate(() => window.__playwright.mocks.outgoing)
             if (Array.isArray(opts.names) && opts.names.length > 0) {
                 return result.filter(([name]) => opts.names.includes(name))
@@ -379,26 +378,29 @@ export async function withWebkitRequests (page, requestData, tab = {}) {
          * @param {("new-requests" | "none")[]} kind
          * @returns {Promise<void>}
          */
-        async playTimeline (kind) {
-            await page.evaluate(async (params) => {
-                const { dataStates, kind } = params
-                for (const timelineKind of kind) {
-                    if (timelineKind === 'new-requests') {
-                        /** @type {import('../schema/__generated__/schema.types').DetectedRequest[]} */
-                        const payload1 = dataStates['02'].requests.slice(0, 1)
-                        const payload2 = dataStates['02'].requests.slice(0, 2)
-                        const payload3 = dataStates['02'].requests.slice()
-                        const payload4 = dataStates['02'].requests.slice().concat(dataStates['03'].requests)
-                        const payloads = [payload1, payload2, payload3, payload4]
-                        for (const payload of payloads) {
-                            await new Promise(resolve => setTimeout(resolve, 100))
-                            window.onChangeRequestData('https://example.com', {
-                                requests: payload
-                            })
+        async playTimeline(kind) {
+            await page.evaluate(
+                async (params) => {
+                    const { dataStates, kind } = params
+                    for (const timelineKind of kind) {
+                        if (timelineKind === 'new-requests') {
+                            /** @type {import('../schema/__generated__/schema.types').DetectedRequest[]} */
+                            const payload1 = dataStates['02'].requests.slice(0, 1)
+                            const payload2 = dataStates['02'].requests.slice(0, 2)
+                            const payload3 = dataStates['02'].requests.slice()
+                            const payload4 = dataStates['02'].requests.slice().concat(dataStates['03'].requests)
+                            const payloads = [payload1, payload2, payload3, payload4]
+                            for (const payload of payloads) {
+                                await new Promise((resolve) => setTimeout(resolve, 100))
+                                window.onChangeRequestData('https://example.com', {
+                                    requests: payload,
+                                })
+                            }
                         }
                     }
-                }
-            }, { dataStates, kind })
-        }
+                },
+                { dataStates, kind }
+            )
+        },
     }
 }

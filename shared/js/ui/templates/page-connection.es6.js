@@ -17,13 +17,13 @@ export default function () {
 
     const summary = renderConnectionDescription(this.model.site)
     const icon = largeHeroIcon({
-        status: `connection-${this.model.site.httpsState}`
+        status: `connection-${this.model.site.httpsState}`,
     })
 
     const hero = heroTemplate({
         icon,
         summary,
-        suffix: 'none'
+        suffix: 'none',
     })
 
     return bel`
@@ -36,7 +36,7 @@ export default function () {
     </div>`
 }
 
-function getKeyUsage (key) {
+function getKeyUsage(key) {
     const capabilities = {
         canEncrypt: i18n.t('connection:encrypt.title'),
         canDecrypt: i18n.t('connection:decrypt.title'),
@@ -44,7 +44,7 @@ function getKeyUsage (key) {
         canVerify: i18n.t('connection:verify.title'),
         canDerive: i18n.t('connection:derive.title'),
         canWrap: i18n.t('connection:wrap.title'),
-        canUnwrap: i18n.t('connection:unwrap.title')
+        canUnwrap: i18n.t('connection:unwrap.title'),
     }
 
     return Object.keys(capabilities).reduce((usage, capability) => {
@@ -57,7 +57,7 @@ function getKeyUsage (key) {
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  * @param {import("../../browser/utils/request-details.js").TabData} tab
  */
-function renderCertificateDetails (site, tab) {
+function renderCertificateDetails(site, tab) {
     if (site.httpsState === 'none' || !tab.certificate || tab.certificate.length === 0) return ''
 
     const certificate = tab.certificate[0]
@@ -79,7 +79,7 @@ function renderCertificateDetails (site, tab) {
     `
 }
 
-function renderCertificateSummary (certificate) {
+function renderCertificateSummary(certificate) {
     if (!certificate.summary) return ''
 
     return bel`<div>
@@ -88,7 +88,7 @@ function renderCertificateSummary (certificate) {
             </div>`
 }
 
-function renderPublicKeyDetails (certificate) {
+function renderPublicKeyDetails(certificate) {
     if (!certificate.publicKey) return ''
 
     return bel`<div class="page-connection__certificate-details">
@@ -101,7 +101,7 @@ function renderPublicKeyDetails (certificate) {
     </div>`
 }
 
-function renderCertificateType (publicKey) {
+function renderCertificateType(publicKey) {
     if (!publicKey.type) return ''
 
     return bel`<div>
@@ -110,7 +110,7 @@ function renderCertificateType (publicKey) {
             </div>`
 }
 
-function renderCertificateBitSize (publicKey) {
+function renderCertificateBitSize(publicKey) {
     if (!publicKey.bitSize) return ''
 
     return bel`<div>
@@ -119,7 +119,7 @@ function renderCertificateBitSize (publicKey) {
             </div>`
 }
 
-function renderCertificateIsPermanent (publicKey) {
+function renderCertificateIsPermanent(publicKey) {
     if (typeof publicKey.isPermanent !== 'boolean') return ''
 
     return bel`<div>
@@ -128,7 +128,7 @@ function renderCertificateIsPermanent (publicKey) {
             </div>`
 }
 
-function renderCertificateKeyUsage (publicKey) {
+function renderCertificateKeyUsage(publicKey) {
     const keyUsage = getKeyUsage(publicKey)
     if (keyUsage.length === 0) return ''
 
@@ -138,7 +138,7 @@ function renderCertificateKeyUsage (publicKey) {
             </div>`
 }
 
-function renderCertificateEffectiveSize (publicKey) {
+function renderCertificateEffectiveSize(publicKey) {
     if (!publicKey.effectiveSize) return ''
 
     return bel`<div>
@@ -151,7 +151,7 @@ function renderCertificateEffectiveSize (publicKey) {
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  * @param {import("../../browser/utils/request-details.js").TabData} tab
  */
-function renderHeader (site, tab) {
+function renderHeader(site, tab) {
     if (site.httpsState === 'none') {
         return bel`<div class="section-list-header certificate-header--not-found">
             ${i18n.t('connection:certificateNotFound.title')}
@@ -166,7 +166,7 @@ function renderHeader (site, tab) {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
-function renderConnectionDescription (site) {
+function renderConnectionDescription(site) {
     if (site.httpsState === 'none') {
         return i18n.t('connection:insecureConnectionDesc.title')
     }

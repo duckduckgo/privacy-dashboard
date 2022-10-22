@@ -1,6 +1,5 @@
-@import "vars";
-@import "mixins";
-
+@import 'vars';
+@import 'mixins';
 
 /* Popup */
 body {
@@ -76,28 +75,26 @@ body.environment--browser {
     }
 }
 
-@import "views/site-info";
-@import "views/card-list";
-@import "views/search-form";
-@import "views/tracker-icons";
-@import "views/hero";
-@import "views/key-insight";
-@import "views/top-nav";
-@import "views/status-list";
-@import "views/tracker-networks";
-@import "views/page-connection";
-@import "views/breakage-form";
-@import "views/email-alias";
-@import "views/cta-screens";
-@import "views/note";
+@import 'views/site-info';
+@import 'views/card-list';
+@import 'views/search-form';
+@import 'views/tracker-icons';
+@import 'views/hero';
+@import 'views/key-insight';
+@import 'views/top-nav';
+@import 'views/status-list';
+@import 'views/tracker-networks';
+@import 'views/page-connection';
+@import 'views/breakage-form';
+@import 'views/email-alias';
+@import 'views/cta-screens';
+@import 'views/note';
 
 /* Generic menu list styling */
 @include default_list();
 
-
 /* Generic toggle button styling */
 @include toggle_button();
-
 
 /* Sliding subviews */
 @include sliding_subview();

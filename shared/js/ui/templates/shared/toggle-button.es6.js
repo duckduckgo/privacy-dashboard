@@ -33,7 +33,7 @@ const generateMaterialDesignToggle = (isActiveBoolean, klass, disabled) => {
  * @param {boolean | undefined} disabled
  * @returns {*}
  */
-export function toggleButton (isActiveBoolean, klass, disabled) {
+export function toggleButton(isActiveBoolean, klass, disabled) {
     if (isAndroid()) {
         return generateMaterialDesignToggle(isActiveBoolean, klass, disabled)
     }

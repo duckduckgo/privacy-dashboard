@@ -4,11 +4,11 @@ import { generate } from 'ts-to-zod'
 import { compile } from 'json-schema-to-typescript'
 
 // @ts-ignore
-const CWD = new URL("..", import.meta.url).pathname;
+const CWD = new URL('..', import.meta.url).pathname
 const BASE = join(CWD, 'schema')
 const SCHEMA_TYPES = join(BASE, '__generated__', 'schema.types.ts')
 const SCHEMA_PARSERS = join(BASE, '__generated__', 'schema.parsers.js')
-const schema = JSON.parse(readFileSync(join(BASE, 'api.json'), 'utf8'));
+const schema = JSON.parse(readFileSync(join(BASE, 'api.json'), 'utf8'))
 
 const bannerComment = `/**
  * @module Generated Schema Definitions
@@ -27,14 +27,21 @@ const bannerComment = `/**
 create(schema)
     .then((items) => writeItem(SCHEMA_TYPES, items, bannerComment))
     .then((tsContent) => createValidatorsOutput(tsContent))
-    .then((parserContent) => writeItem(SCHEMA_PARSERS, { name: 'schema.parsers.js', content: parserContent }))
-    .catch(e => console.error(e))
+    .then((parserContent) =>
+        writeItem(SCHEMA_PARSERS, {
+            name: 'schema.parsers.js',
+            content: parserContent,
+        })
+    )
+    .catch((e) => console.error(e))
 
-async function create (schema) {
-    const typescriptSourceCode = await compile(schema, schema.title, { cwd: BASE })
+async function create(schema) {
+    const typescriptSourceCode = await compile(schema, schema.title, {
+        cwd: BASE,
+    })
     return {
         content: typescriptSourceCode,
-        name: schema.title
+        name: schema.title,
     }
 }
 
@@ -45,7 +52,7 @@ async function create (schema) {
  * @param {string} [banner]
  * @returns {string}
  */
-function writeItem (outputFile, item, banner = '') {
+function writeItem(outputFile, item, banner = '') {
     let output = banner
     output += item.content + '\n'
     console.log('✅', item.name)
@@ -60,9 +67,9 @@ function writeItem (outputFile, item, banner = '') {
  * @param {string} typescriptDefinitions
  * @returns {string}
  */
-function createValidatorsOutput (typescriptDefinitions) {
+function createValidatorsOutput(typescriptDefinitions) {
     const zodResult = generate({
-        sourceText: typescriptDefinitions
+        sourceText: typescriptDefinitions,
     })
     return zodResult.getZodSchemasFile('')
 }

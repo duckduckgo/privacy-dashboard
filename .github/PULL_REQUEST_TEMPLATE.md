@@ -4,14 +4,15 @@
 
 <!-- Optional fields
 **CC:**
-**Depends on:** 
+**Depends on:**
 -->
 
 ## Description:
+
 <!-- Explain what is being changed, why, etc -->
 
-
 ## Steps to test this PR:
-<!-- List steps to test it manually 
-1. <STEP 1> 
+
+<!-- List steps to test it manually
+1. <STEP 1>
 -->

@@ -1,5 +1,5 @@
-$dark-mode-white: rgba(255, 255, 255, .12);
-$dark-mode-white-hover: rgba(255, 255, 255, .20);
+$dark-mode-white: rgba(255, 255, 255, 0.12);
+$dark-mode-white-hover: rgba(255, 255, 255, 0.2);
 
 .search {
     display: flex;
@@ -26,7 +26,7 @@ $dark-mode-white-hover: rgba(255, 255, 255, .20);
     color: $slate;
     height: 40px;
     background-color: $color--dark-platinum;
-    @include cross_platform_bg_image("logo-small-new.svg");
+    @include cross_platform_bg_image('logo-small-new.svg');
     background-repeat: no-repeat;
     background-position: 10px 8px;
     background-size: 24px;
@@ -41,7 +41,6 @@ $dark-mode-white-hover: rgba(255, 255, 255, .20);
         color: $grey;
     }
 }
-
 
 .search-form__go {
     display: flex;
@@ -68,21 +67,23 @@ $dark-mode-white-hover: rgba(255, 255, 255, .20);
 
     .loupe-handle {
         fill: currentColor;
-        opacity: .8;
+        opacity: 0.8;
     }
     .loupe-glass {
         stroke: currentColor;
-        opacity: .8;
+        opacity: 0.8;
     }
 
     .body--theme-dark & {
         background-color: $dark-mode-white;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background-color: $dark-mode-white-hover;
         }
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         background-color: $color--blue-40;
         color: white;
     }
@@ -90,7 +91,8 @@ $dark-mode-white-hover: rgba(255, 255, 255, .20);
     &.go--focused {
         background-color: $color--blue-20;
         color: white;
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             background-color: $color--blue-40;
         }
     }
@@ -122,7 +124,7 @@ $dark-mode-white-hover: rgba(255, 255, 255, .20);
         fill: black;
         .body--theme-dark & {
             fill: white;
-            opacity: .8;
+            opacity: 0.8;
         }
     }
 }

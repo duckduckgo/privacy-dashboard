@@ -10,25 +10,31 @@ This form is for reporting bugs or issues with the dashboard and not to report b
 -->
 
 ## Description
+
 <!-- Description of the issue -->
 
 ## Platform
-- [ ] Extension
-- [ ] macOS
-- [ ] iOS
-- [ ] Windows
-- [ ] Android
+
+-   [ ] Extension
+-   [ ] macOS
+-   [ ] iOS
+-   [ ] Windows
+-   [ ] Android
 
 ## Steps to Reproduce
+
 <!-- How can we reproduce the bug ourselves -->
+
 1. step 1
 2. step 2
 3. ...
 
 **Expected behavior:**
+
 <!-- What you expect to happen -->
 
 **Actual behavior:**
+
 <!-- What actually happens -->
 
 **Versions**
@@ -40,11 +46,12 @@ To find the dashboard versions:
      Chrome: go to about:dashboards in the address bar, click "details" on DuckDuckGo Privacy Essentials, the version is listed near the top of the page.
 -->
 
-- Extension: 20xx-xx-xx
-- Browser: <!-- Firefox, Chrome, Vivaldi ... Version number is not needed, but let us know if you're not on the normal production version of the browser. -->
-- OS: <!-- Windows, Linux, Mac. Version number for the OS is not needed -->
+-   Extension: 20xx-xx-xx
+-   Browser: <!-- Firefox, Chrome, Vivaldi ... Version number is not needed, but let us know if you're not on the normal production version of the browser. -->
+-   OS: <!-- Windows, Linux, Mac. Version number for the OS is not needed -->
 
 ## Additional Information
+
 <!--
 Provide additional context (optional):
 1. Is the issue repeatable or intermittent?

@@ -32,6 +32,6 @@ module.exports = (uaString) => {
     return {
         os,
         browser,
-        version
+        version,
     }
 }

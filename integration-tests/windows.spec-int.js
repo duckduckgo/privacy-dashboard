@@ -4,16 +4,19 @@ import { forwardConsole, withWindowsRequests } from './helpers'
 const HTML = '/build/example/html/windows.html'
 
 const test = baseTest.extend({
-    windowsMocks: [async ({ page }, use) => {
-        forwardConsole(page)
-        const requests = await withWindowsRequests(page, {
-            requests: []
-        })
-        await page.goto(HTML)
-        await requests.deliverInitial()
-        await use(requests)
+    windowsMocks: [
+        async ({ page }, use) => {
+            forwardConsole(page)
+            const requests = await withWindowsRequests(page, {
+                requests: [],
+            })
+            await page.goto(HTML)
+            await requests.deliverInitial()
+            await use(requests)
+        },
         // @ts-ignore
-    }, { auto: true }]
+        { auto: true },
+    ],
 })
 
 test.describe('initial page data', () => {
@@ -29,16 +32,18 @@ test.describe('breakage form', () => {
         await page.locator('"Website not working as expected?"').click()
         await page.locator('"Send Report"').click()
         // @ts-ignore
-        const out = await windowsMocks.outgoing({ names: ['SubmitBrokenSiteReport'] })
+        const out = await windowsMocks.outgoing({
+            names: ['SubmitBrokenSiteReport'],
+        })
         expect(out).toMatchObject([
             {
                 Feature: 'PrivacyDashboard',
                 Name: 'SubmitBrokenSiteReport',
                 Data: {
                     category: '',
-                    description: ''
-                }
-            }
+                    description: '',
+                },
+            },
         ])
     })
 })

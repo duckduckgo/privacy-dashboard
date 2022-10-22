@@ -8,19 +8,23 @@ import siteTemplate from '../../templates/site.es6'
 import SiteView from '../site.es6.js'
 import generateData from './mock-data/generate-data'
 class MockMutationObserver {
-    observe () {}
-    unobserve () {}
+    observe() {}
+    unobserve() {}
 }
 // @ts-ignore
 window.MutationObserver = MockMutationObserver
-jest.mock('../../../browser/communication.es6.js', () => ({
-    fetch: jest.fn(),
-    backgroundMessage: jest.fn(),
-    getBackgroundTabData: jest.fn(),
-    search: jest.fn(),
-    openOptionsPage: jest.fn(),
-    openNewTab: jest.fn()
-}), { virtual: true })
+jest.mock(
+    '../../../browser/communication.es6.js',
+    () => ({
+        fetch: jest.fn(),
+        backgroundMessage: jest.fn(),
+        getBackgroundTabData: jest.fn(),
+        search: jest.fn(),
+        openOptionsPage: jest.fn(),
+        openNewTab: jest.fn(),
+    }),
+    { virtual: true }
+)
 jest.mock('../../pages/popup.es6.js', () => {})
 
 describe('Browser specific Site view', () => {
@@ -38,7 +42,9 @@ describe('Browser specific Site view', () => {
             require('../../../ui/base/index.es6.js')
 
             // Mock out communication calls
-            const dataPromise = new Promise((resolve) => { dataResolve = resolve })
+            const dataPromise = new Promise((resolve) => {
+                dataResolve = resolve
+            })
             // @ts-ignore
             browserCommunication = require('../../../browser/communication.es6.js')
             // @ts-ignore
@@ -60,25 +66,26 @@ describe('Browser specific Site view', () => {
                 pageView: this,
                 model: new SiteModel(),
                 appendTo: $('#test-container'),
-                template: siteTemplate
+                template: siteTemplate,
             })
         })
     })
 
     describe('when the site is marked as broken', () => {
         beforeEach(() => {
-            dataResolve(generateData({
-                tab: {
-                    permissions: [],
-                    protections: {
-                        unprotectedTemporary: true,
-                        enabledFeatures: ['contentBlocking'],
-                        allowlisted: false,
-                        denylisted: false
-                    }
-                }
-
-            }))
+            dataResolve(
+                generateData({
+                    tab: {
+                        permissions: [],
+                        protections: {
+                            unprotectedTemporary: true,
+                            enabledFeatures: ['contentBlocking'],
+                            allowlisted: false,
+                            denylisted: false,
+                        },
+                    },
+                })
+            )
         })
 
         it('renders the correct output', () => {
@@ -88,17 +95,19 @@ describe('Browser specific Site view', () => {
 
     describe('when content-blocking has an exception', () => {
         beforeEach(() => {
-            dataResolve(generateData({
-                tab: {
-                    permissions: [],
-                    protections: {
-                        unprotectedTemporary: false,
-                        enabledFeatures: [], // <-- missing 'contentBlocking'
-                        allowlisted: false,
-                        denylisted: false
-                    }
-                }
-            }))
+            dataResolve(
+                generateData({
+                    tab: {
+                        permissions: [],
+                        protections: {
+                            unprotectedTemporary: false,
+                            enabledFeatures: [], // <-- missing 'contentBlocking'
+                            allowlisted: false,
+                            denylisted: false,
+                        },
+                    },
+                })
+            )
         })
 
         it('renders the correct output', () => {
@@ -108,17 +117,19 @@ describe('Browser specific Site view', () => {
 
     describe('when the site broken, but the user has overridden that decision', () => {
         beforeEach(() => {
-            dataResolve(generateData({
-                tab: {
-                    permissions: [],
-                    protections: {
-                        unprotectedTemporary: false,
-                        enabledFeatures: [], // <-- missing 'contentBlocking'
-                        allowlisted: false,
-                        denylisted: true // <-- user overriden
-                    }
-                }
-            }))
+            dataResolve(
+                generateData({
+                    tab: {
+                        permissions: [],
+                        protections: {
+                            unprotectedTemporary: false,
+                            enabledFeatures: [], // <-- missing 'contentBlocking'
+                            allowlisted: false,
+                            denylisted: true, // <-- user overriden
+                        },
+                    },
+                })
+            )
         })
 
         it('renders the correct output', () => {
@@ -132,14 +143,14 @@ describe('Browser specific Site view', () => {
             const data = generateData({
                 tab: {
                     permissions: [],
-                    emailProtection: {}
-                }
+                    emailProtection: {},
+                },
             })
             data.emailProtectionUserData = {
                 cohort: 'private_beta_dax',
                 nextAlias: '123456_next',
                 token: '123456',
-                userName: 'daxtheduck'
+                userName: 'daxtheduck',
             }
             dataResolve(data)
         })
@@ -165,8 +176,8 @@ describe('Browser specific Site view', () => {
             const data = generateData({
                 tab: {
                     permissions: [],
-                    emailProtection: {}
-                }
+                    emailProtection: {},
+                },
             })
             dataResolve(data)
         })
@@ -181,8 +192,8 @@ describe('Browser specific Site view', () => {
             const data = generateData({
                 tab: {
                     permissions: [],
-                    search: {}
-                }
+                    search: {},
+                },
             })
             dataResolve(data)
             jest.spyOn(window, 'close').mockImplementation()
@@ -214,14 +225,16 @@ describe('Browser specific Site view', () => {
         describe('showing first option', () => {
             beforeEach(() => {
                 jest.spyOn(global.Math, 'random').mockImplementation(() => 0.1)
-                dataResolve(generateData({
-                    tab: {
-                        permissions: [],
-                        search: {},
-                        ctaScreens: {},
-                        specialDomainName: 'extensions'
-                    }
-                }))
+                dataResolve(
+                    generateData({
+                        tab: {
+                            permissions: [],
+                            search: {},
+                            ctaScreens: {},
+                            specialDomainName: 'extensions',
+                        },
+                    })
+                )
             })
             afterEach(() => {
                 jest.clearAllMocks()
@@ -239,14 +252,14 @@ describe('Browser specific Site view', () => {
                         search: {},
                         ctaScreens: {},
                         emailProtection: {},
-                        specialDomainName: 'extensions'
-                    }
+                        specialDomainName: 'extensions',
+                    },
                 })
                 data.emailProtectionUserData = {
                     cohort: 'private_beta_dax',
                     nextAlias: '123456_next',
                     token: '123456',
-                    userName: 'daxtheduck'
+                    userName: 'daxtheduck',
                 }
                 dataResolve(data)
             })

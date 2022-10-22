@@ -1,24 +1,23 @@
-@import "vars";
-@import "tracker-network-icons";
+@import 'vars';
+@import 'tracker-network-icons';
 
 /* Logo */
-@mixin ddg_logo () {
-    @include cross_platform_bg_image("logo-horizontal@2x.png");
+@mixin ddg_logo() {
+    @include cross_platform_bg_image('logo-horizontal@2x.png');
     background-size: contain;
 }
 
-@mixin ddg_logo--small () {
-    @include cross_platform_bg_image("logo-small.svg");
+@mixin ddg_logo--small() {
+    @include cross_platform_bg_image('logo-small.svg');
     background-size: contain;
 }
-
 
 /* App states */
-@mixin is_disabled () {
+@mixin is_disabled() {
     opacity: 0.5;
 }
 
-@mixin is_disableable_link () {
+@mixin is_disableable_link() {
     body.is-disabled & {
         cursor: default;
 
@@ -29,7 +28,7 @@
 }
 
 /* Font groupings */
-@mixin uppercase_label () {
+@mixin uppercase_label() {
     font-size: 12px;
     color: $color--grey;
     text-transform: uppercase;
@@ -42,8 +41,7 @@
 }
 
 /* Lists */
-@mixin default_list () {
-
+@mixin default_list() {
     .default-list {
         list-style-type: none;
         padding-left: 0;
@@ -60,10 +58,8 @@
     }
 }
 
-
 /* Toggle buttons */
-@mixin toggle_button () {
-
+@mixin toggle_button() {
     .toggle-button {
         z-index: 0;
         position: absolute;
@@ -116,7 +112,6 @@
         }
 
         &.toggle-button--is-active-false {
-
             .toggle-button__knob {
                 margin-left: 1px;
             }
@@ -124,11 +119,9 @@
             .toggle-button__bg {
                 background-color: $color--medium-silver;
             }
-
         }
 
         &.toggle-button--is-active-true {
-
             .toggle-button__knob {
                 margin-left: 15px;
 
@@ -140,14 +133,12 @@
             .toggle-button__bg {
                 background-color: $color--blue;
             }
-
         }
     }
 }
 
-
 /* Images & icons */
-@mixin icon_display () {
+@mixin icon_display() {
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
@@ -157,13 +148,12 @@
 }
 
 /* Cross-platform background image */
-@mixin cross_platform_bg_image ($image) {
-    background-image: url("../../img/#{$image}");
+@mixin cross_platform_bg_image($image) {
+    background-image: url('../../img/#{$image}');
 }
 
 /* Sliding subviews */
-@mixin sliding_subview () {
-
+@mixin sliding_subview() {
     .sliding-subview {
         position: absolute;
         top: 0;
@@ -227,18 +217,23 @@
                 padding: 14px 0 10px 0;
                 text-decoration: none;
             }
-
         }
     }
 }
 
 @mixin placeholder {
     .is-browser--chrome & {
-        &::-webkit-input-placeholder {@content}
+        &::-webkit-input-placeholder {
+            @content;
+        }
     }
     .is-browser--moz & {
-        &:-moz-placeholder {@content}
-        &::-moz-placeholder {@content}
+        &:-moz-placeholder {
+            @content;
+        }
+        &::-moz-placeholder {
+            @content;
+        }
     }
 }
 
@@ -250,7 +245,7 @@
     border-right: $size solid $color;
 }
 
-@mixin btn-pill ($size) {
+@mixin btn-pill($size) {
     border-radius: 28px;
     font-weight: bold;
     cursor: pointer;

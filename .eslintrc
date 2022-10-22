@@ -2,7 +2,7 @@
     "extends": "standard",
     "parser": "@babel/eslint-parser",
     "rules": {
-        "indent": ["error", 4],
+        "indent": "off",
         "import/order": "error"
     },
     "env": {

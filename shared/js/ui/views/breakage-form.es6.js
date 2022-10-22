@@ -2,7 +2,7 @@ import $ from 'jquery'
 import ParentSlidingSubview from './sliding-subview.es6.js'
 
 /** @this {any} */
-function BreakageForm (ops) {
+function BreakageForm(ops) {
     this.model = ops.model
     this.template = ops.template
     this.siteView = ops.siteView
@@ -14,21 +14,16 @@ function BreakageForm (ops) {
     this._setup()
 }
 
-BreakageForm.prototype = $.extend({},
+BreakageForm.prototype = $.extend(
+    {},
     // @ts-ignore
     ParentSlidingSubview.prototype,
     {
         _setup: function () {
-            this._cacheElems('.js-breakage-form', [
-                'close',
-                'submit',
-                'element',
-                'dropdown',
-                'description'
-            ])
+            this._cacheElems('.js-breakage-form', ['close', 'submit', 'element', 'dropdown', 'description'])
             this.bindEvents([
                 [this.$close, 'click', this._closeForm],
-                [this.$submit, 'click', this._submitForm]
+                [this.$submit, 'click', this._submitForm],
             ])
         },
 
@@ -55,7 +50,7 @@ BreakageForm.prototype = $.extend({},
             if (this.clickSource === 'toggle') {
                 this.siteView.closePopupAndReload(3500)
             }
-        }
+        },
     }
 )
 

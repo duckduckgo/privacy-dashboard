@@ -8,27 +8,27 @@ export class Protections {
      * @param {boolean} allowlisted
      * @param {boolean} denylisted
      */
-    constructor (unprotectedTemporary, enabledFeatures, allowlisted = false, denylisted = false) {
+    constructor(unprotectedTemporary, enabledFeatures, allowlisted = false, denylisted = false) {
         this.unprotectedTemporary = unprotectedTemporary
         this.enabledFeatures = enabledFeatures
         this.allowlisted = allowlisted
         this.denylisted = denylisted
     }
 
-    static default () {
+    static default() {
         return new Protections(false, ['contentBlocking'], false, false)
     }
 }
 
 export class TabData {
     /** @type {string | null | undefined} */
-    locale;
+    locale
     /** @type {boolean | null | undefined} */
-    isPendingUpdates;
+    isPendingUpdates
     /** @type {any[] | null | undefined} */
-    certificate;
+    certificate
     /** @type {boolean | null | undefined} */
-    platformLimitations;
+    platformLimitations
     /**
      * @param {number | null | undefined} id
      * @param {string} url
@@ -45,7 +45,22 @@ export class TabData {
      * @param {Record<string, any> | null | undefined} emailProtection
      * @param {{prevalence: number, displayName: string} | null | undefined} parentEntity
      */
-    constructor (id, url, domain, specialDomainName, status, upgradedHttps, protections, permissions, requestDetails, consentManaged, ctaScreens, search, emailProtection, parentEntity) {
+    constructor(
+        id,
+        url,
+        domain,
+        specialDomainName,
+        status,
+        upgradedHttps,
+        protections,
+        permissions,
+        requestDetails,
+        consentManaged,
+        ctaScreens,
+        search,
+        emailProtection,
+        parentEntity
+    ) {
         this.url = url
         this.id = id
         this.domain = domain
@@ -77,7 +92,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         status: 'complete',
         upgradedHttps,
         specialDomainName: undefined,
-        domain: (new URL(tabUrl).host).replace(/^www\./, ''),
+        domain: new URL(tabUrl).host.replace(/^www\./, ''),
         protections,
         locale: null,
         requestDetails: createRequestDetails(rawRequestData.requests, rawRequestData.installedSurrogates || []),
@@ -89,7 +104,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         emailProtection: undefined,
         isPendingUpdates: undefined,
         certificate: undefined,
-        platformLimitations: undefined
+        platformLimitations: undefined,
     }
 }
 
@@ -99,7 +114,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
  * @param {string[]} installedSurrogates
  * @returns {RequestDetails}
  */
-export function createRequestDetails (requests, installedSurrogates) {
+export function createRequestDetails(requests, installedSurrogates) {
     const output = new RequestDetails(installedSurrogates)
     for (const request of requests) {
         // an overall list
@@ -126,30 +141,24 @@ export function createRequestDetails (requests, installedSurrogates) {
  * @returns {RequestDetails}
  * @throws {ZodError}
  */
-export function fromJson (json) {
+export function fromJson(json) {
     const requestData = requestDataSchema.parse(json)
-    return createRequestDetails(
-        requestData.requests,
-        requestData.installedSurrogates || []
-    )
+    return createRequestDetails(requestData.requests, requestData.installedSurrogates || [])
 }
 
 /**
  * @param {any} inputs
  * @throws {ZodError}
  */
-export function fromMultiJson (...inputs) {
+export function fromMultiJson(...inputs) {
     const requests = []
     const installedSurrogates = []
     for (const input of inputs) {
         const requestData = requestDataSchema.parse(input)
         requests.push(...requestData.requests)
-        installedSurrogates.push(...requestData.installedSurrogates || [])
+        installedSurrogates.push(...(requestData.installedSurrogates || []))
     }
-    return createRequestDetails(
-        requests,
-        installedSurrogates
-    )
+    return createRequestDetails(requests, installedSurrogates)
 }
 
 export class AggregatedCompanyResponseData {
@@ -163,7 +172,7 @@ export class AggregatedCompanyResponseData {
     /**
      * @param {import('../../../../schema/__generated__/schema.types.js').DetectedRequest} request
      */
-    addRequest (request) {
+    addRequest(request) {
         let hostname
         try {
             hostname = new URL(request.url).hostname
@@ -187,9 +196,8 @@ export class AggregatedCompanyResponseData {
      * Returns a list of AggregateCompanyData sorted by the entity prevalence
      * @returns {AggregateCompanyData[]}
      */
-    sortedByPrevalence () {
-        return [...Object.values(this.entities)]
-            .sort((a, b) => b.prevalence - a.prevalence)
+    sortedByPrevalence() {
+        return [...Object.values(this.entities)].sort((a, b) => b.prevalence - a.prevalence)
     }
 }
 
@@ -209,14 +217,14 @@ export const states = /** @type {const} */ ({
     /* 09 */ protectionsOff: 'protectionsOff',
     /* 010 */ protectionsOff_allowedTrackers: 'protectionsOff_allowedTrackers',
     /* 011 */ protectionsOff_allowedNonTrackers: 'protectionsOff_allowedNonTrackers',
-    /* 012 */ protectionsOff_allowedTrackers_allowedNonTrackers: 'protectionsOff_allowedTrackers_allowedNonTrackers'
+    /* 012 */ protectionsOff_allowedTrackers_allowedNonTrackers: 'protectionsOff_allowedTrackers_allowedNonTrackers',
 })
 
 /**
  * This is the data format that the UI can use to render sections
  */
 export class RequestDetails {
-    surrogates;
+    surrogates
     all = new AggregatedCompanyResponseData()
     blocked = new AggregatedCompanyResponseData()
     allowed = {
@@ -224,13 +232,13 @@ export class RequestDetails {
         ownedByFirstParty: new AggregatedCompanyResponseData(),
         ruleException: new AggregatedCompanyResponseData(),
         protectionDisabled: new AggregatedCompanyResponseData(),
-        otherThirdPartyRequest: new AggregatedCompanyResponseData()
+        otherThirdPartyRequest: new AggregatedCompanyResponseData(),
     }
 
     /**
      * @param {string[]} surrogates - any installed surrogates, just the domains
      */
-    constructor (surrogates) {
+    constructor(surrogates) {
         this.surrogates = surrogates
     }
 
@@ -238,7 +246,7 @@ export class RequestDetails {
      * Loop over every seen entity
      * @param {(entity: AggregateCompanyData) => void} fn
      */
-    forEachEntity (fn) {
+    forEachEntity(fn) {
         for (const entity of Object.values(this.all.entities)) {
             fn(entity)
         }
@@ -247,7 +255,7 @@ export class RequestDetails {
     /**
      * @returns {number}
      */
-    blockedCount () {
+    blockedCount() {
         return this.blocked.entitiesCount
     }
 
@@ -260,11 +268,13 @@ export class RequestDetails {
      *
      * @returns {number}
      */
-    allowedSpecialCount () {
-        return this.allowed.adClickAttribution.entitiesCount +
+    allowedSpecialCount() {
+        return (
+            this.allowed.adClickAttribution.entitiesCount +
             this.allowed.ownedByFirstParty.entitiesCount +
             this.allowed.ruleException.entitiesCount +
             this.allowed.protectionDisabled.entitiesCount
+        )
     }
 
     /**
@@ -274,7 +284,7 @@ export class RequestDetails {
      *
      * @returns {number}
      */
-    allowedNonSpecialCount () {
+    allowedNonSpecialCount() {
         return this.allowed.otherThirdPartyRequest.entitiesCount
     }
 
@@ -282,7 +292,7 @@ export class RequestDetails {
      * Create a list of company names, excluding any 'unknown' ones.
      * @returns {string[]}
      */
-    blockedCompanyNames () {
+    blockedCompanyNames() {
         /** @type {AggregateCompanyData[]} */
         const output = []
 
@@ -291,16 +301,14 @@ export class RequestDetails {
             output.push(entity)
         }
 
-        return output
-            .sort((a, b) => b.prevalence - a.prevalence)
-            .map(entity => entity.displayName)
+        return output.sort((a, b) => b.prevalence - a.prevalence).map((entity) => entity.displayName)
     }
 
     /**
      * @param {boolean} protectionsEnabled
      * @param {(keyof states & string)[]} states
      */
-    matches (protectionsEnabled, states) {
+    matches(protectionsEnabled, states) {
         const curr = this.state(protectionsEnabled)
         return states.includes(curr)
     }
@@ -310,7 +318,7 @@ export class RequestDetails {
      * @param {boolean} protectionsEnabled
      * @return {keyof states & string}
      */
-    state (protectionsEnabled) {
+    state(protectionsEnabled) {
         if (!protectionsEnabled) {
             if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
                 return states.protectionsOff_allowedTrackers_allowedNonTrackers
@@ -358,7 +366,7 @@ export class AggregateCompanyData {
      * @param {string} displayName
      * @param {number} prevalence
      */
-    constructor (name, displayName, prevalence) {
+    constructor(name, displayName, prevalence) {
         this.name = name
         this.displayName = displayName
         this.prevalence = prevalence
@@ -372,7 +380,7 @@ export class AggregateCompanyData {
      * @param {string} url
      * @param {string} [category]
      */
-    addUrl (url, category) {
+    addUrl(url, category) {
         this.urls[url] = new TrackerUrl(url, category)
     }
 }
@@ -382,7 +390,7 @@ export class TrackerUrl {
      * @param {string} url
      * @param {string} [category]
      */
-    constructor (url, category) {
+    constructor(url, category) {
         this.url = url
         this.category = category
     }

@@ -16,7 +16,7 @@
         background-color: $slate;
     }
 
-    [data-state="sent"] & {
+    [data-state='sent'] & {
         display: none;
     }
 }
@@ -35,7 +35,7 @@
 
 .breakage-form__element {
     opacity: 1;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &.is-transparent {
         opacity: 0;
@@ -50,14 +50,14 @@
 
 .breakage-form__advise {
     display: none;
-    [data-state="idle"] & {
+    [data-state='idle'] & {
         display: block;
     }
 }
 .breakage-form__message {
     text-align: center;
     padding-bottom: 20px;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     opacity: 1;
     display: none;
 
@@ -65,7 +65,7 @@
         margin-bottom: 8px;
     }
 
-    [data-state="sent"] & {
+    [data-state='sent'] & {
         display: block;
     }
 }
@@ -141,7 +141,7 @@
 
     /* Controls/Mac/System (Light) */
     border: 0.5px solid rgba(40, 145, 255, 0.05);
-    background: linear-gradient(180deg, #4690F7 0%, #307BF7 100%);
+    background: linear-gradient(180deg, #4690f7 0%, #307bf7 100%);
     box-shadow: 0px 0px 1px rgba(40, 145, 255, 0.05), 0px 1px 1px rgba(40, 145, 255, 0.1);
 
     /* Mac/Button (Accent) */

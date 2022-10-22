@@ -12,7 +12,7 @@ const renderUpdatingSpinner = () => {
  * @param {import('../../models/site.es6').PublicSiteModel} model
  * @returns {HTMLElement}
  */
-export function protectionToggle (model) {
+export function protectionToggle(model) {
     let text = i18n.t('site:protectionsEnabled.title')
     let active = true
     let disabled = false

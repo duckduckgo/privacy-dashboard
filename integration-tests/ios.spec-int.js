@@ -4,15 +4,18 @@ import { forwardConsole, withWebkitRequests } from './helpers'
 const HTML = '/swift-package/Resources/ios/assets/html/ios.html'
 
 const test = baseTest.extend({
-    iosMocks: [async ({ page }, use) => {
-        forwardConsole(page)
-        await page.goto(HTML)
-        const requests = await withWebkitRequests(page, {
-            requests: []
-        })
-        await use(requests)
+    iosMocks: [
+        async ({ page }, use) => {
+            forwardConsole(page)
+            await page.goto(HTML)
+            const requests = await withWebkitRequests(page, {
+                requests: [],
+            })
+            await use(requests)
+        },
         // @ts-ignore
-    }, { auto: true }]
+        { auto: true },
+    ],
 })
 
 test.describe('page data', () => {
@@ -48,10 +51,10 @@ test.describe('breakage form', () => {
     test('should call webkit interface and not use HTML form', async ({ page, iosMocks }) => {
         await page.locator('"Website not working as expected?"').click()
         // @ts-ignore
-        const calls = await iosMocks.outgoing({ names: ['privacyDashboardShowReportBrokenSite'] })
-        expect(calls).toMatchObject([
-            ['privacyDashboardShowReportBrokenSite', {}]
-        ])
+        const calls = await iosMocks.outgoing({
+            names: ['privacyDashboardShowReportBrokenSite'],
+        })
+        expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]])
     })
 })
 
@@ -60,9 +63,16 @@ test.describe('open external links', () => {
         await page.locator('"No Tracking Requests Found"').click()
         await page.locator('"About our Web Tracking Protections"').click()
         // @ts-ignore
-        const calls = await iosMocks.outgoing({ names: ['privacyDashboardOpenUrlInNewTab'] })
+        const calls = await iosMocks.outgoing({
+            names: ['privacyDashboardOpenUrlInNewTab'],
+        })
         expect(calls).toMatchObject([
-            ['privacyDashboardOpenUrlInNewTab', { url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/' }]
+            [
+                'privacyDashboardOpenUrlInNewTab',
+                {
+                    url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
+                },
+            ],
         ])
     })
 })
@@ -71,25 +81,33 @@ test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        await withWebkitRequests(page, {
-            requests: []
-        }, {
-            localeSettings: {
-                locale: 'pl'
+        await withWebkitRequests(
+            page,
+            {
+                requests: [],
+            },
+            {
+                localeSettings: {
+                    locale: 'pl',
+                },
             }
-        })
+        )
         await page.locator('"Połączenie jest szyfrowane"').click()
     })
     test('should load with `fr` locale', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        await withWebkitRequests(page, {
-            requests: []
-        }, {
-            localeSettings: {
-                locale: 'fr'
+        await withWebkitRequests(
+            page,
+            {
+                requests: [],
+            },
+            {
+                localeSettings: {
+                    locale: 'fr',
+                },
             }
-        })
+        )
         await page.locator('"La connexion est chiffrée"').click()
     })
 })

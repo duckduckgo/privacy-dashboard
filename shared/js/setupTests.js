@@ -7,12 +7,12 @@ jest.mock(
         resources.flatMap((resource) => [
             {
                 name: `en/${resource}`,
-                module: require(`../locales/en/${resource}.json`)
+                module: require(`../locales/en/${resource}.json`),
             },
             {
                 name: `cimode/${resource}`,
-                module: {}
-            }
+                module: {},
+            },
         ]),
     { virtual: true }
 )

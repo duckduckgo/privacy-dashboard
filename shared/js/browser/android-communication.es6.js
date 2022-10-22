@@ -9,11 +9,7 @@
  *
  * @category integrations
  */
-import {
-    localeSettingsSchema,
-    protectionsStatusSchema,
-    requestDataSchema
-} from '../../../schema/__generated__/schema.parsers'
+import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
 import { setupColorScheme } from './common.es6'
 import { createTabData } from './utils/request-details'
 
@@ -37,17 +33,18 @@ let consentManaged
 let locale
 
 const combineSources = () => ({
-    tab: Object.assign({},
+    tab: Object.assign(
+        {},
         trackerBlockingData || {},
         {
             isPendingUpdates,
             parentEntity,
             consentManaged,
-            locale
+            locale,
         },
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
-    )
+    ),
 })
 
 const resolveInitialRender = function () {
@@ -89,7 +86,7 @@ const resolveInitialRender = function () {
  * @param {string} tabUrl
  * @param {import('../../../schema/__generated__/schema.types').RequestData} rawRequestData
  */
-export function onChangeRequestData (tabUrl, rawRequestData) {
+export function onChangeRequestData(tabUrl, rawRequestData) {
     // note: this will fail currently, but is added here to enable the wiring of the documentation/schema
     // eslint-disable-next-line no-unused-vars
     const requestData = requestDataSchema.safeParse(rawRequestData)
@@ -121,7 +118,7 @@ export function onChangeRequestData (tabUrl, rawRequestData) {
  *
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
  */
-export function onChangeProtectionStatus (protectionsStatus) {
+export function onChangeProtectionStatus(protectionsStatus) {
     const parsed = protectionsStatusSchema.safeParse(protectionsStatus)
     if (!parsed.success) {
         console.error('could not parse incoming protection status from onChangeProtectionStatus')
@@ -145,7 +142,7 @@ export function onChangeProtectionStatus (protectionsStatus) {
  * webView.evaluateJavascript("javascript:onChangeLocale(${localSettingsAsJsonString});", null)
  * ```
  */
-export function onChangeLocale (payload) {
+export function onChangeLocale(payload) {
     const parsed = localeSettingsSchema.safeParse(payload)
     if (!parsed.success) {
         console.error('could not parse incoming protection status from onChangeLocale')
@@ -190,7 +187,7 @@ export class PrivacyDashboardJavascriptInterface {
      * window.PrivacyDashboard.toggleAllowlist("false")
      * ```
      */
-    toggleAllowlist (isProtected) {
+    toggleAllowlist(isProtected) {
         window.PrivacyDashboard.toggleAllowlist(isProtected)
     }
 
@@ -202,7 +199,7 @@ export class PrivacyDashboardJavascriptInterface {
      * window.PrivacyDashboard.showBreakageForm()
      * ```
      */
-    showBreakageForm () {
+    showBreakageForm() {
         window.PrivacyDashboard.showBreakageForm()
     }
 
@@ -212,7 +209,7 @@ export class PrivacyDashboardJavascriptInterface {
      * window.PrivacyDashboard.close()
      * ```
      */
-    close () {
+    close() {
         window.PrivacyDashboard.close()
     }
 
@@ -227,7 +224,7 @@ export class PrivacyDashboardJavascriptInterface {
      * window.PrivacyDashboard.openInNewTab(payload)
      * ```
      */
-    openInNewTab (payload) {
+    openInNewTab(payload) {
         window.PrivacyDashboard.openInNewTab(JSON.stringify(payload))
     }
 }
@@ -277,7 +274,7 @@ const getBackgroundTabData = () => {
     })
 }
 
-export function setup () {
+export function setup() {
     const setColorScheme = setupColorScheme()
     window.onChangeTheme = function (themeName) {
         setColorScheme(themeName)
@@ -327,15 +324,11 @@ export function setup () {
             if (targetElem.target === '_blank' && targetElem.origin) {
                 e.preventDefault()
                 privacyDashboardApi.openInNewTab({
-                    url: targetElem.href
+                    url: targetElem.href,
                 })
             }
         }
     })
 }
 
-export {
-    fetch,
-    backgroundMessage,
-    getBackgroundTabData
-}
+export { fetch, backgroundMessage, getBackgroundTabData }

@@ -1,0 +1,6 @@
+shared/locales
+shared/img
+build
+swift-package
+.idea
+playwright-report

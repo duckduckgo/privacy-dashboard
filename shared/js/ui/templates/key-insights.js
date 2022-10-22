@@ -7,7 +7,7 @@ import { getColorId } from './shared/utils.es6'
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-export function renderKeyInsight (model) {
+export function renderKeyInsight(model) {
     const title = (text) => bel`<h1 class="token-title-3-em">${text}</h1>`
     if (model.httpsState === 'none') {
         return bel`
@@ -57,11 +57,13 @@ export function renderKeyInsight (model) {
                     <div class="large-icon-container hero-icon--tracker-network"></div>
                         ${title(model.tab.domain)}
                         <div class="token-title-3">
-                            ${raw(i18n.t('site:majorTrackingNetworkDesc.title', {
-        companyDisplayName: company.displayName,
-        companyPrevalence: Math.round(company.prevalence),
-        blocked: model.tab.requestDetails.blocked.entitiesCount > 0
-    }))}
+                            ${raw(
+                                i18n.t('site:majorTrackingNetworkDesc.title', {
+                                    companyDisplayName: company.displayName,
+                                    companyPrevalence: Math.round(company.prevalence),
+                                    blocked: model.tab.requestDetails.blocked.entitiesCount > 0,
+                                })
+                            )}
                     </div>
                 </li>
             `
@@ -92,7 +94,9 @@ export function renderKeyInsight (model) {
                 <li class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
-                    <div class="token-title-3"><span>${raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))}</span></div>
+                    <div class="token-title-3"><span>${raw(
+                        i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))
+                    )}</span></div>
                 </li>
             `
     }
@@ -101,7 +105,9 @@ export function renderKeyInsight (model) {
             <li class="key-insight key-insight--main">
                 ${renderCompanyIconsList(model)}
                 ${title(model.tab.domain)}
-                <div class="token-title-3"><span>${raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))}</span></div>
+                <div class="token-title-3"><span>${raw(
+                    i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))
+                )}</span></div>
             </li>
         `
 }
@@ -109,7 +115,7 @@ export function renderKeyInsight (model) {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function generateCompanyNamesList (model) {
+function generateCompanyNamesList(model) {
     // const companyNames = model.tab.requestDetails.companyNames();
     const blockedCompanyNames = model.tab.requestDetails.blockedCompanyNames()
     return {
@@ -118,22 +124,23 @@ function generateCompanyNamesList (model) {
         firstCompany: blockedCompanyNames[0],
         secondCompany: blockedCompanyNames[1],
         thirdCompany: blockedCompanyNames[2],
-        fourthCompany: blockedCompanyNames[3]
+        fourthCompany: blockedCompanyNames[3],
     }
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderCompanyIconsList (model) {
+function renderCompanyIconsList(model) {
     const companyNames = model.tab.requestDetails.blockedCompanyNames()
 
     if (companyNames.length === 0) return ''
 
     const topCompanies = companyNames.slice(0, 4)
     const remainingCount = companyNames.length - topCompanies.length
-    const remainingCountIcon = remainingCount <= 0
-        ? ''
-        : bel`
+    const remainingCountIcon =
+        remainingCount <= 0
+            ? ''
+            : bel`
             <span class="icon-positioner">
                 <span class="site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--count">
                     <span class="site-info__tracker__count">+${remainingCount}</span>

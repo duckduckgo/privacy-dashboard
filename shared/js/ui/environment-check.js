@@ -2,7 +2,7 @@
  * @param {"ios" | "android" | "macos" | "browser" | "windows" | "example"} environment
  * @returns {boolean}
  */
-export function isEnvironment (environment) {
+export function isEnvironment(environment) {
     if (environment === window.environmentOverride) {
         return true
     }

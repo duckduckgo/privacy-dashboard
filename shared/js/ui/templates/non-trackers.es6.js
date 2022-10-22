@@ -7,7 +7,7 @@ import { adAttributionLink } from './shared/about-link'
 import { platformLimitations } from './shared/platform-limitations'
 
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
-export function nonTrackersTemplate () {
+export function nonTrackersTemplate() {
     if (!this.model) {
         return bel`<section class="sliding-subview"></section>`
     }
@@ -31,12 +31,12 @@ export function nonTrackersTemplate () {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
-export function sectionsFromSiteNonTracker (site) {
+export function sectionsFromSiteNonTracker(site) {
     const requestDetails = site.tab.requestDetails
     const onlyAllowedNonTrackers = requestDetails.matches(site.protectionsEnabled, [
         states.protectionsOn_allowedNonTrackers,
         states.protectionsOff_allowedNonTrackers,
-        states.protectionsOn_blocked_allowedNonTrackers
+        states.protectionsOn_blocked_allowedNonTrackers,
     ])
 
     // when protections are protectionsOff, we just show every request
@@ -46,8 +46,8 @@ export function sectionsFromSiteNonTracker (site) {
                 name: 'protectionsDisabled',
                 heading: () => null,
                 companies: requestDetails.all.sortedByPrevalence(),
-                bordered: true
-            }
+                bordered: true,
+            },
         ])
     }
 
@@ -61,17 +61,17 @@ export function sectionsFromSiteNonTracker (site) {
                     <p class="padded--top-half">${adAttributionLink()}</p>
                 </div>
                 `,
-            companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence()
+            companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence(),
         },
         {
             name: 'ignored (rule exceptions)',
             heading: () => ns.site('sectionHeadingIgnore.title'),
-            companies: requestDetails.allowed.ruleException.sortedByPrevalence()
+            companies: requestDetails.allowed.ruleException.sortedByPrevalence(),
         },
         {
             name: 'firstParty',
             heading: () => ns.site('sectionHeadingFirstParty.title', { domain: site.tab.domain }),
-            companies: requestDetails.allowed.ownedByFirstParty.sortedByPrevalence()
+            companies: requestDetails.allowed.ownedByFirstParty.sortedByPrevalence(),
         },
         {
             name: 'thirdParty',
@@ -83,7 +83,7 @@ export function sectionsFromSiteNonTracker (site) {
                 return ns.site('sectionHeadingThirdParty.title')
             },
             companies: requestDetails.allowed.otherThirdPartyRequest.sortedByPrevalence(),
-            bordered: onlyAllowedNonTrackers
-        }
+            bordered: onlyAllowedNonTrackers,
+        },
     ])
 }

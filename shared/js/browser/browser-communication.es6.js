@@ -8,7 +8,8 @@
  */
 import {
     breakageReportRequestSchema,
-    extensionGetPrivacyDashboardDataSchema, setListOptionsSchema
+    extensionGetPrivacyDashboardDataSchema,
+    setListOptionsSchema,
 } from '../../../schema/__generated__/schema.parsers'
 import parseUserAgentString from '../shared-utils/parse-user-agent-string.es6'
 import { setupColorScheme } from './common.es6'
@@ -19,11 +20,11 @@ const browserInfo = parseUserAgentString()
 let channel
 const isPendingUpdates = false
 
-export function setup () {
+export function setup() {
     setupColorScheme()
 }
 
-export function fetch (message) {
+export function fetch(message) {
     console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2))
     // ensure the HTML form is shown for the extension
     if (message.checkBrokenSiteReportHandled) {
@@ -62,11 +63,11 @@ export function fetch (message) {
  * })
  * ```
  */
-export async function submitBrokenSiteReport (report) {
+export async function submitBrokenSiteReport(report) {
     const parsedInput = breakageReportRequestSchema.parse(report)
     await window.chrome.runtime.sendMessage({
         messageType: 'submitBrokenSiteReport',
-        options: parsedInput
+        options: parsedInput,
     })
 }
 
@@ -88,15 +89,15 @@ export async function submitBrokenSiteReport (report) {
  * })
  * ```
  */
-export async function setList (options) {
+export async function setList(options) {
     const parsedInput = setListOptionsSchema.parse(options)
     await window.chrome.runtime.sendMessage({
         messageType: 'setList',
-        options: parsedInput
+        options: parsedInput,
     })
 }
 
-export function backgroundMessage (_channel) {
+export function backgroundMessage(_channel) {
     channel = _channel
     // listen for messages from background and
     // notify subscribers
@@ -120,7 +121,7 @@ export function backgroundMessage (_channel) {
 /**
  * @returns {Promise<{tab: import('./utils/request-details').TabData} & Record<string, any>>}
  */
-export async function getBackgroundTabData () {
+export async function getBackgroundTabData() {
     // @ts-ignore
     const tabId = chrome.devtools?.inspectedWindow?.tabId || parseInt(0 + new URL(document.location.href).searchParams.get('tabId'))
     const resp = await fetch({ messageType: 'getPrivacyDashboardData', options: { tabId: tabId } })
@@ -131,7 +132,12 @@ export async function getBackgroundTabData () {
         const { upgradedHttps, url, parentEntity, specialDomainName, id } = tab
 
         // const { allowlisted } = resp.tab.site;
-        const protections = new Protections(tab.protections.unprotectedTemporary, tab.protections.enabledFeatures, tab.protections.allowlisted, tab.protections.denylisted)
+        const protections = new Protections(
+            tab.protections.unprotectedTemporary,
+            tab.protections.enabledFeatures,
+            tab.protections.allowlisted,
+            tab.protections.denylisted
+        )
         return {
             tab: {
                 ...createTabData(url, upgradedHttps, protections, requestData),
@@ -141,9 +147,9 @@ export async function getBackgroundTabData () {
                 ctaScreens: {},
                 isPendingUpdates,
                 parentEntity,
-                specialDomainName
+                specialDomainName,
             },
-            emailProtectionUserData
+            emailProtectionUserData,
         }
     }
 
@@ -153,10 +159,10 @@ export async function getBackgroundTabData () {
         allowlisted: false,
         denylisted: false,
         enabledFeatures: ['contentBlocking'],
-        unprotectedTemporary: false
+        unprotectedTemporary: false,
     }
     return {
-        tab: createTabData('https://example.com', false, protections, { requests: [] })
+        tab: createTabData('https://example.com', false, protections, { requests: [] }),
     }
 }
 

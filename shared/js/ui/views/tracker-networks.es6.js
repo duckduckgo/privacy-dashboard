@@ -10,7 +10,7 @@ import SiteModel from './../models/site.es6.js'
  * @param {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers} [opts.detailsFn]
  * @constructor
  */
-function TrackerNetworks (opts) {
+function TrackerNetworks(opts) {
     // model data is async
     /** @type {import("jquery") | null} */
     this.$hero = null
@@ -40,23 +40,16 @@ function TrackerNetworks (opts) {
     this.renderAsyncContent()
 }
 
-TrackerNetworks.prototype = $.extend({},
+TrackerNetworks.prototype = $.extend(
+    {},
     // @ts-ignore
     ParentSlidingSubview.prototype,
     {
-
         /** @this {any} */
         setup: function () {
-            this._cacheElems('.js-tracker-networks', [
-                'hero',
-                'details'
-            ])
+            this._cacheElems('.js-tracker-networks', ['hero', 'details'])
 
-            this.bindEvents([[
-                this.store.subscribe,
-                `change:${this.currentSiteModelName}`,
-                this._rerender
-            ]])
+            this.bindEvents([[this.store.subscribe, `change:${this.currentSiteModelName}`, this._rerender]])
         },
         /** @this {any} */
         renderAsyncContent: function () {
@@ -65,11 +58,11 @@ TrackerNetworks.prototype = $.extend({},
             this.currentSiteModelName = 'site' + random
 
             this.model = new CompanyListModel({
-                modelName: this.currentModelName
+                modelName: this.currentModelName,
             })
             this.model.fetchAsyncData().then(() => {
                 this.model.site = new SiteModel({
-                    modelName: this.currentSiteModelName
+                    modelName: this.currentSiteModelName,
                 })
                 this.model.site.getBackgroundTabData().then(() => {
                     const content = this.template()
@@ -99,16 +92,18 @@ TrackerNetworks.prototype = $.extend({},
 
         _rerender: function (e) {
             if (e && e.change) {
-                if (e.change.attribute === 'isaMajorTrackingNetwork' ||
+                if (
+                    e.change.attribute === 'isaMajorTrackingNetwork' ||
                     e.change.attribute === 'isAllowlisted' ||
-                    e.change.attribute === 'totalTrackerNetworksCount') {
+                    e.change.attribute === 'totalTrackerNetworksCount'
+                ) {
                     this._renderHeroTemplate()
                     this.unbindEvents()
                     this.setup()
                     this.setupClose()
                 }
             }
-        }
+        },
     }
 )
 

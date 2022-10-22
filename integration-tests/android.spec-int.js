@@ -4,15 +4,18 @@ import { forwardConsole, withAndroidRequests } from './helpers'
 const HTML = '/build/example/html/android.html'
 
 const test = baseTest.extend({
-    androidMocks: [async ({ page }, use) => {
-        forwardConsole(page)
-        await page.goto(HTML)
-        const requests = await withAndroidRequests(page, {
-            requests: []
-        })
-        await use(requests)
+    androidMocks: [
+        async ({ page }, use) => {
+            forwardConsole(page)
+            await page.goto(HTML)
+            const requests = await withAndroidRequests(page, {
+                requests: [],
+            })
+            await use(requests)
+        },
         // @ts-ignore
-    }, { auto: true }]
+        { auto: true },
+    ],
 })
 
 test.describe('initial page data', () => {
@@ -28,9 +31,7 @@ test.describe('breakage form', () => {
         await page.locator('"Website not working as expected?"').click()
         // @ts-ignore
         const calls = await androidMocks.outgoing()
-        expect(calls).toMatchObject([
-            ['showBreakageForm', undefined]
-        ])
+        expect(calls).toMatchObject([['showBreakageForm', undefined]])
     })
 })
 
@@ -41,7 +42,12 @@ test.describe('open external links', () => {
         // @ts-ignore
         const calls = await androidMocks.outgoing()
         expect(calls).toMatchObject([
-            ['openInNewTab', JSON.stringify({ url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/' })]
+            [
+                'openInNewTab',
+                JSON.stringify({
+                    url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
+                }),
+            ],
         ])
     })
 })
@@ -50,25 +56,33 @@ test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        await withAndroidRequests(page, {
-            requests: []
-        }, {
-            localeSettings: {
-                locale: 'pl'
+        await withAndroidRequests(
+            page,
+            {
+                requests: [],
+            },
+            {
+                localeSettings: {
+                    locale: 'pl',
+                },
             }
-        })
+        )
         await page.locator('"Połączenie jest szyfrowane"').click()
     })
     test('should load with `fr` locale', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        await withAndroidRequests(page, {
-            requests: []
-        }, {
-            localeSettings: {
-                locale: 'fr'
+        await withAndroidRequests(
+            page,
+            {
+                requests: [],
+            },
+            {
+                localeSettings: {
+                    locale: 'fr',
+                },
             }
-        })
+        )
         await page.locator('"La connexion est chiffrée"').click()
     })
 })

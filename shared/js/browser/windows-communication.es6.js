@@ -30,9 +30,7 @@
  *
  * @category integrations
  */
-import {
-    windowsViewModelSchema
-} from '../../../schema/__generated__/schema.parsers'
+import { windowsViewModelSchema } from '../../../schema/__generated__/schema.parsers'
 import { assert, setupColorScheme, setupMutationObserver } from './common.es6'
 import { createTabData } from './utils/request-details'
 
@@ -51,15 +49,16 @@ let isPendingUpdates
 let parentEntity
 
 const combineSources = () => ({
-    tab: Object.assign({},
+    tab: Object.assign(
+        {},
         trackerBlockingData || {},
         {
             isPendingUpdates,
-            parentEntity
+            parentEntity,
         },
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
-    )
+    ),
 })
 
 const resolveInitialRender = function () {
@@ -89,7 +88,7 @@ const resolveInitialRender = function () {
  * @group Windows -> JavaScript Interface
  * @param {import('../../../schema/__generated__/schema.types').WindowsViewModel} rawViewModel
  */
-export function handleViewModelUpdate (rawViewModel) {
+export function handleViewModelUpdate(rawViewModel) {
     const parsed = windowsViewModelSchema.safeParse(rawViewModel)
     if (!parsed.success) {
         console.error('rawViewModel parsing failed')
@@ -112,12 +111,12 @@ export function handleViewModelUpdate (rawViewModel) {
 
 // -----------------------------------------------------------------------------
 
-function windowsPostMessage (name, data) {
+function windowsPostMessage(name, data) {
     assert(typeof window.chrome.webview?.postMessage === 'function')
     window.chrome.webview.postMessage({
         Feature: 'PrivacyDashboard',
         Name: name,
-        Data: data
+        Data: data,
     })
 }
 
@@ -130,7 +129,7 @@ const fetch = (message) => {
     if (message.submitBrokenSiteReport) {
         SubmitBrokenSiteReport({
             category: message.submitBrokenSiteReport.category,
-            description: message.submitBrokenSiteReport.description
+            description: message.submitBrokenSiteReport.description,
         })
         return
     }
@@ -160,7 +159,7 @@ const fetch = (message) => {
     if (message.updatePermission) {
         windowsPostMessage('SetPermissionCommand', {
             permission: message.updatePermission.id,
-            value: message.updatePermission.value
+            value: message.updatePermission.value,
         })
     }
 }
@@ -180,10 +179,10 @@ const fetch = (message) => {
  * })
  * ```
  */
-export function SubmitBrokenSiteReport (report) {
+export function SubmitBrokenSiteReport(report) {
     windowsPostMessage('SubmitBrokenSiteReport', {
         category: report.category,
-        description: report.description
+        description: report.description,
     })
 }
 
@@ -202,9 +201,9 @@ export function SubmitBrokenSiteReport (report) {
  * })
  * ```
  */
-export function OpenInNewTab (args) {
+export function OpenInNewTab(args) {
     windowsPostMessage('OpenInNewTab', {
-        url: args.url
+        url: args.url,
     })
 }
 
@@ -223,7 +222,7 @@ export function OpenInNewTab (args) {
  * })
  * ```
  */
-export function SetSize (payload) {
+export function SetSize(payload) {
     windowsPostMessage('SetSize', payload)
 }
 
@@ -238,10 +237,10 @@ const getBackgroundTabData = () => {
     })
 }
 
-export function setup () {
+export function setup() {
     setupColorScheme()
     assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required')
-    window.chrome.webview.addEventListener('message', event => handleViewModelUpdate(event.data))
+    window.chrome.webview.addEventListener('message', (event) => handleViewModelUpdate(event.data))
     // todo(Shane): does this fire early enough on Windows
     setupMutationObserver((height) => {
         SetSize({ height })
@@ -256,15 +255,11 @@ export function setup () {
             if (targetElem.target === '_blank' && targetElem.origin) {
                 e.preventDefault()
                 OpenInNewTab({
-                    url: targetElem.href
+                    url: targetElem.href,
                 })
             }
         }
     })
 }
 
-export {
-    fetch,
-    backgroundMessage,
-    getBackgroundTabData
-}
+export { fetch, backgroundMessage, getBackgroundTabData }

@@ -15,11 +15,7 @@
 
  * @category integrations
  */
-import {
-    localeSettingsSchema,
-    protectionsStatusSchema,
-    requestDataSchema
-} from '../../../schema/__generated__/schema.parsers'
+import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
 import { isIOS } from '../ui/environment-check'
 import { getContentHeight, setupColorScheme, setupMutationObserver } from './common.es6'
 import { createTabData } from './utils/request-details'
@@ -49,18 +45,19 @@ let consentManaged
 let locale
 
 const combineSources = () => ({
-    tab: Object.assign({},
+    tab: Object.assign(
+        {},
         trackerBlockingData || {},
         {
             isPendingUpdates,
             parentEntity,
             consentManaged,
             platformLimitations: true,
-            locale
+            locale,
         },
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
-    )
+    ),
 })
 
 const resolveInitialRender = function () {
@@ -94,7 +91,7 @@ const resolveInitialRender = function () {
  *
  * Please see [cnn.json](media://request-data-cnn.json) or [google.json](media://request-data-google.json) for examples of this type
  */
-export function onChangeRequestData (tabUrl, rawRequestData) {
+export function onChangeRequestData(tabUrl, rawRequestData) {
     const requestData = requestDataSchema.safeParse(rawRequestData)
     if (!protections) throw new Error('protections status not set')
     if (!requestData.success) {
@@ -119,7 +116,7 @@ export function onChangeRequestData (tabUrl, rawRequestData) {
  *
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
  */
-export function onChangeProtectionStatus (protectionsStatus) {
+export function onChangeProtectionStatus(protectionsStatus) {
     const parsed = protectionsStatusSchema.safeParse(protectionsStatus)
     if (!parsed.success) {
         console.error('could not parse incoming protection status from onChangeProtectionStatus')
@@ -141,7 +138,7 @@ export function onChangeProtectionStatus (protectionsStatus) {
  * evaluate(js: "window.onChangeLocale(\(localSettingsJsonString))", in: webView)
  * ```
  */
-export function onChangeLocale (payload) {
+export function onChangeLocale(payload) {
     const parsed = localeSettingsSchema.safeParse(payload)
     if (!parsed.success) {
         console.error('could not parse incoming data from onChangeLocale')
@@ -168,7 +165,7 @@ const fetch = (message) => {
     if (message.submitBrokenSiteReport) {
         privacyDashboardSubmitBrokenSiteReport({
             category: message.submitBrokenSiteReport.category,
-            description: message.submitBrokenSiteReport.description
+            description: message.submitBrokenSiteReport.description,
         })
         return
     }
@@ -193,7 +190,7 @@ const fetch = (message) => {
     if (message.updatePermission) {
         window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
             permission: message.updatePermission.id,
-            value: message.updatePermission.value
+            value: message.updatePermission.value,
         })
     }
 }
@@ -218,9 +215,9 @@ const getBackgroundTabData = () => {
  * @type {import("./common.es6").openInNewTab}
  * @category Webkit Message Handlers
  */
-export function privacyDashboardOpenUrlInNewTab (args) {
+export function privacyDashboardOpenUrlInNewTab(args) {
     window.webkit.messageHandlers.privacyDashboardOpenUrlInNewTab.postMessage({
-        url: args.url
+        url: args.url,
     })
 }
 
@@ -229,10 +226,10 @@ export function privacyDashboardOpenUrlInNewTab (args) {
  * @type {import("./common.es6").submitBrokenSiteReport}
  * @category Webkit Message Handlers
  */
-export function privacyDashboardSubmitBrokenSiteReport (report) {
+export function privacyDashboardSubmitBrokenSiteReport(report) {
     window.webkit.messageHandlers.privacyDashboardSubmitBrokenSiteReport.postMessage({
         category: report.category,
-        description: report.description
+        description: report.description,
     })
 }
 
@@ -241,13 +238,13 @@ export function privacyDashboardSubmitBrokenSiteReport (report) {
  * @type {import("./common.es6").setSize}
  * @category Webkit Message Handlers
  */
-export function privacyDashboardSetSize (payload) {
+export function privacyDashboardSetSize(payload) {
     if (!isIOS()) {
         window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
     }
 }
 
-export function setupShared () {
+export function setupShared() {
     window.onChangeRequestData = onChangeRequestData
     window.onChangeAllowedPermissions = function (data) {
         permissionsData = data
@@ -278,7 +275,7 @@ export function setupShared () {
     }
 }
 
-export function setup () {
+export function setup() {
     setupColorScheme()
     setupShared()
     setupMutationObserver((height) => {
@@ -294,14 +291,14 @@ export function setup () {
  * @type {NonNullable<import('./communication.es6').Communication['firstRenderComplete']>}
  * @category Internal API
  */
-function firstRenderComplete () {
+function firstRenderComplete() {
     const height = getContentHeight()
     if (typeof height === 'number') {
         privacyDashboardSetSize({ height })
     }
 }
 
-export function setupClickEventHandlers () {
+export function setupClickEventHandlers() {
     /**
      * on macOS + iOS, respond to all clicks on links with target="_blank"
      * by forwarding to the native side.
@@ -312,16 +309,11 @@ export function setupClickEventHandlers () {
             if (targetElem.target === '_blank' && targetElem.origin) {
                 e.preventDefault()
                 privacyDashboardOpenUrlInNewTab({
-                    url: targetElem.href
+                    url: targetElem.href,
                 })
             }
         }
     })
 }
 
-export {
-    fetch,
-    backgroundMessage,
-    getBackgroundTabData,
-    firstRenderComplete
-}
+export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete }

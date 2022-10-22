@@ -10,17 +10,21 @@ import SiteView from '../site.es6.js'
 import generateData from './mock-data/generate-data'
 
 class MockMutationObserver {
-    observe () {}
-    unobserve () {}
+    observe() {}
+    unobserve() {}
 }
 
 // @ts-ignore
 window.MutationObserver = MockMutationObserver
-jest.mock('../../../browser/communication.es6.js', () => ({
-    fetch: jest.fn(),
-    backgroundMessage: jest.fn(),
-    getBackgroundTabData: jest.fn()
-}), { virtual: true })
+jest.mock(
+    '../../../browser/communication.es6.js',
+    () => ({
+        fetch: jest.fn(),
+        backgroundMessage: jest.fn(),
+        getBackgroundTabData: jest.fn(),
+    }),
+    { virtual: true }
+)
 jest.mock('../../pages/popup.es6.js', () => {})
 
 describe('Site view', () => {
@@ -37,7 +41,9 @@ describe('Site view', () => {
             require('../../../ui/base/index.es6.js')
 
             // Mock out communication calls
-            const dataPromise = new Promise((resolve) => { dataResolve = resolve })
+            const dataPromise = new Promise((resolve) => {
+                dataResolve = resolve
+            })
             // @ts-ignore
             macosCommunication = require('../../../browser/communication.es6.js')
             // @ts-ignore
@@ -51,7 +57,7 @@ describe('Site view', () => {
                 pageView: this,
                 model: new SiteModel(),
                 appendTo: $('#test-container'),
-                template: siteTemplate
+                template: siteTemplate,
             })
         })
     })
@@ -117,8 +123,8 @@ describe('Site view', () => {
                 const data = generateData({
                     tab: {
                         permissions: [],
-                        parentEntity: { displayName: 'Example', prevalence: 90.123 }
-                    }
+                        parentEntity: { displayName: 'Example', prevalence: 90.123 },
+                    },
                 })
                 dataResolve(data)
             })
@@ -132,16 +138,18 @@ describe('Site view', () => {
     describe('when protection is not enabled', () => {
         describe('and locale is changed', () => {
             beforeEach(() => {
-                dataResolve(generateData({
-                    tab: {
-                        permissions: [],
-                        protections: {
-                            ...Protections.default(),
-                            allowlisted: true
+                dataResolve(
+                    generateData({
+                        tab: {
+                            permissions: [],
+                            protections: {
+                                ...Protections.default(),
+                                allowlisted: true,
+                            },
+                            locale: 'cimode',
                         },
-                        locale: 'cimode'
-                    }
-                }))
+                    })
+                )
             })
 
             it('renders the correct output', () => {
@@ -151,16 +159,18 @@ describe('Site view', () => {
 
         describe('and connection is secure', () => {
             beforeEach(() => {
-                dataResolve(generateData({
-                    tab: {
-                        permissions: [],
-                        protections: {
-                            ...Protections.default(),
-                            allowlisted: true
-                        }
-                    },
-                    isSecure: true
-                }))
+                dataResolve(
+                    generateData({
+                        tab: {
+                            permissions: [],
+                            protections: {
+                                ...Protections.default(),
+                                allowlisted: true,
+                            },
+                        },
+                        isSecure: true,
+                    })
+                )
             })
 
             it('renders the correct output', () => {
@@ -170,16 +180,18 @@ describe('Site view', () => {
 
         describe('and connection is insecure', () => {
             beforeEach(() => {
-                dataResolve(generateData({
-                    tab: {
-                        permissions: [],
-                        protections: {
-                            ...Protections.default(),
-                            allowlisted: true
-                        }
-                    },
-                    isSecure: false
-                }))
+                dataResolve(
+                    generateData({
+                        tab: {
+                            permissions: [],
+                            protections: {
+                                ...Protections.default(),
+                                allowlisted: true,
+                            },
+                        },
+                        isSecure: false,
+                    })
+                )
             })
 
             it('renders the correct output', () => {
@@ -189,17 +201,19 @@ describe('Site view', () => {
 
         describe('and connection was upgraded', () => {
             beforeEach(() => {
-                dataResolve(generateData({
-                    tab: {
-                        permissions: [],
-                        protections: {
-                            ...Protections.default(),
-                            allowlisted: true
+                dataResolve(
+                    generateData({
+                        tab: {
+                            permissions: [],
+                            protections: {
+                                ...Protections.default(),
+                                allowlisted: true,
+                            },
+                            upgradedHttps: true,
                         },
-                        upgradedHttps: true
-                    },
-                    isSecure: true
-                }))
+                        isSecure: true,
+                    })
+                )
             })
 
             it('renders the correct output', () => {
@@ -215,9 +229,9 @@ describe('Site view', () => {
                         permissions: [],
                         protections: {
                             ...Protections.default(),
-                            allowlisted: true
-                        }
-                    }
+                            allowlisted: true,
+                        },
+                    },
                 })
                 dataResolve(data)
             })
@@ -235,9 +249,9 @@ describe('Site view', () => {
                         parentEntity: { displayName: 'Example', prevalence: 90.123 },
                         protections: {
                             ...Protections.default(),
-                            allowlisted: true
-                        }
-                    }
+                            allowlisted: true,
+                        },
+                    },
                 })
                 dataResolve(data)
             })
@@ -256,13 +270,13 @@ describe('Site view', () => {
                     options: [
                         { id: 'ask', title: 'Always Ask on example.com' },
                         { id: 'grant', title: 'Always Allow on example.com' },
-                        { id: 'deny', title: 'Never ask again for example.com' }
+                        { id: 'deny', title: 'Never ask again for example.com' },
                     ],
                     paused: false,
                     permission: 'ask',
                     title: 'camera',
-                    used: true
-                }
+                    used: true,
+                },
             ]
             dataResolve(generateData({ tab: { permissions } }))
         })
@@ -285,8 +299,8 @@ describe('Site view', () => {
                 expect(macosCommunication.fetch.mock.calls[0][0]).toEqual({
                     updatePermission: {
                         id: 'camera',
-                        value: 'deny'
-                    }
+                        value: 'deny',
+                    },
                 })
             })
         })
@@ -297,7 +311,7 @@ describe('Site view', () => {
             const consentManaged = {
                 consentManaged: true,
                 optoutFailed: false,
-                selftestFailed: false
+                selftestFailed: false,
             }
             // @ts-ignore
             dataResolve(generateData({ tab: { consentManaged } }))

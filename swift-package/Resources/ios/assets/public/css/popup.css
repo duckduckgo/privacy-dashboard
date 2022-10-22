@@ -330,7 +330,7 @@ body.is-disabled .site-info .link-secondary:hover {
   width: 26px;
 }
 .site-info__toggle-container .toggle-button--is-active-true .toggle-button__bg {
-  background-color: #007AFF;
+  background-color: #007aff;
 }
 .environment--ios .site-info__toggle-container .toggle-button--is-active-true .toggle-button__bg {
   background-color: #21c000;
@@ -493,7 +493,8 @@ body.is-disabled .site-info .link-secondary:hover {
 .body--theme-dark .card-list--bordered .link-action__chev {
   background-image: url("../../img/refresh-assets/chevron--light.svg");
 }
-.environment--ios .card-list--bordered .link-action__chev, .card-list--bordered .link-action__chev .environment--android {
+.environment--ios .card-list--bordered .link-action__chev,
+.card-list--bordered .link-action__chev .environment--android {
   opacity: 24%;
 }
 
@@ -586,15 +587,15 @@ body.is-disabled .site-info .link-secondary:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 .search-form__go:hover, .search-form__go:focus {
-  background-color: #2950BF;
+  background-color: #2950bf;
   color: white;
 }
 .search-form__go.go--focused {
-  background-color: #3969EF;
+  background-color: #3969ef;
   color: white;
 }
 .search-form__go.go--focused:hover, .search-form__go.go--focused:focus {
-  background-color: #2950BF;
+  background-color: #2950bf;
 }
 
 /* cog-button */
@@ -885,7 +886,7 @@ body.is-disabled .site-info .link-secondary:hover {
   background-size: contain;
 }
 .site-info__tracker__icon.color-1 {
-  background-color: #94B3AF;
+  background-color: #94b3af;
 }
 .site-info__tracker__icon.color-2 {
   background-color: #727998;
@@ -894,43 +895,43 @@ body.is-disabled .site-info .link-secondary:hover {
   background-color: #645468;
 }
 .site-info__tracker__icon.color-4 {
-  background-color: #4D5F7F;
+  background-color: #4d5f7f;
 }
 .site-info__tracker__icon.color-5 {
-  background-color: #855DB6;
+  background-color: #855db6;
 }
 .site-info__tracker__icon.color-6 {
-  background-color: #5E5ADB;
+  background-color: #5e5adb;
 }
 .site-info__tracker__icon.color-7 {
-  background-color: #678FFF;
+  background-color: #678fff;
 }
 .site-info__tracker__icon.color-8 {
-  background-color: #6BB4EF;
+  background-color: #6bb4ef;
 }
 .site-info__tracker__icon.color-9 {
-  background-color: #4A9BAE;
+  background-color: #4a9bae;
 }
 .site-info__tracker__icon.color-10 {
-  background-color: #66C4C6;
+  background-color: #66c4c6;
 }
 .site-info__tracker__icon.color-11 {
-  background-color: #55D388;
+  background-color: #55d388;
 }
 .site-info__tracker__icon.color-12 {
-  background-color: #99DB7A;
+  background-color: #99db7a;
 }
 .site-info__tracker__icon.color-13 {
-  background-color: #ECCC7B;
+  background-color: #eccc7b;
 }
 .site-info__tracker__icon.color-14 {
-  background-color: #E7A538;
+  background-color: #e7a538;
 }
 .site-info__tracker__icon.color-15 {
-  background-color: #DD6B4C;
+  background-color: #dd6b4c;
 }
 .site-info__tracker__icon.color-16 {
-  background-color: #D65D62;
+  background-color: #d65d62;
 }
 .site-info__tracker__icon.A {
   margin: 0 4px 0 0;
@@ -1781,7 +1782,7 @@ body.is-disabled .site-info .link-secondary:hover {
   border: 1px solid #eeeeee;
   height: 46px;
   width: 46px;
-  background: #FAFAFA;
+  background: #fafafa;
   font-size: 16px;
 }
 .key-insight .site-info__tracker__count {
@@ -2094,7 +2095,7 @@ body.is-disabled .site-info .link-secondary:hover {
   width: 100%;
   /* Controls/Mac/System (Light) */
   border: 0.5px solid rgba(40, 145, 255, 0.05);
-  background: linear-gradient(180deg, #4690F7 0%, #307BF7 100%);
+  background: linear-gradient(180deg, #4690f7 0%, #307bf7 100%);
   box-shadow: 0px 0px 1px rgba(40, 145, 255, 0.05), 0px 1px 1px rgba(40, 145, 255, 0.1);
   /* Mac/Button (Accent) */
   border-radius: 8px;
@@ -2196,7 +2197,7 @@ body.is-disabled .site-info .link-secondary:hover {
 
 .cta__button {
   display: inline-block;
-  background: #3969EF;
+  background: #3969ef;
   border-radius: 8px;
   padding: 10px 16px;
   max-width: 165px;
@@ -2204,14 +2205,14 @@ body.is-disabled .site-info .link-secondary:hover {
   font-weight: 600;
   font-size: 13px;
   line-height: 14px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .cta__button:hover, .cta__button:focus {
-  background-color: #2950BF;
+  background-color: #2950bf;
   text-decoration: none;
 }
 .body--theme-dark .cta__button {
-  background: #7295F6;
+  background: #7295f6;
   color: #222222;
 }
 .body--theme-dark .cta__button:hover, .body--theme-dark .cta__button:focus {
@@ -2220,7 +2221,7 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .note {
-  background: #FFF0C2;
+  background: #fff0c2;
   border-radius: 12px;
   padding: 12px;
 }
@@ -2302,7 +2303,7 @@ body.is-disabled .site-info .link-secondary:hover {
   margin-left: 22px;
 }
 .toggle-button.toggle-button--is-active-true .toggle-button__bg {
-  background-color: #007AFF;
+  background-color: #007aff;
 }
 
 /* Sliding subviews */

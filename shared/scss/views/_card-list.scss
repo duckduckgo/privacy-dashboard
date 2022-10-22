@@ -80,7 +80,7 @@
         @include cross_platform_bg_image($status--bad);
     }
     .icon-small--info {
-        @include cross_platform_bg_image("status--info.svg");
+        @include cross_platform_bg_image('status--info.svg');
     }
     .icon-small--blocked {
         @include cross_platform_bg_image($status--good);
@@ -102,13 +102,14 @@
         background-size: 7px;
         background-position: center center;
         opacity: 60%;
-        @include cross_platform_bg_image("refresh-assets/chevron.svg");
+        @include cross_platform_bg_image('refresh-assets/chevron.svg');
 
         .body--theme-dark & {
-            @include cross_platform_bg_image("refresh-assets/chevron--light.svg");
+            @include cross_platform_bg_image('refresh-assets/chevron--light.svg');
         }
 
-        .environment--ios &, .environment--android {
+        .environment--ios &,
+        .environment--android {
             opacity: 24%;
         }
     }

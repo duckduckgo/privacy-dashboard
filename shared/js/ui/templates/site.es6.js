@@ -43,12 +43,13 @@ export default function () {
                 <li class="link-item js-site-show-page-non-trackers">
                     ${renderThirdPartyNew(this.model)}
                 </li>
-                ${this.model.tab?.consentManaged
-        ? bel`<li class="link-item js-site-show-consent-managed">
+                ${
+                    this.model.tab?.consentManaged
+                        ? bel`<li class="link-item js-site-show-consent-managed">
                     ${renderCookieConsentManaged(this.model)}
                 </li>`
-        : null
-}
+                        : null
+                }
             </ul>
         </div>
         ${protectionToggle(this.model)}
@@ -65,9 +66,9 @@ export default function () {
 }
 
 /**
-* @param {import('../models/site.es6.js').PublicSiteModel} model
-*/
-function renderSearchWrapper (model) {
+ * @param {import('../models/site.es6.js').PublicSiteModel} model
+ */
+function renderSearchWrapper(model) {
     if (model.tab?.search) {
         return bel`<section id="search-form-container"></section>`
     }
@@ -76,7 +77,7 @@ function renderSearchWrapper (model) {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderEmailWrapper (model) {
+function renderEmailWrapper(model) {
     if (model.tab?.emailProtection) {
         return bel`<div class="list-wrapper" id="email-alias-container"></div>`
     }
@@ -85,10 +86,8 @@ function renderEmailWrapper (model) {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderConnection (model) {
-    const icon = model.httpsState === 'secure'
-        ? 'icon-small--secure'
-        : 'icon-small--insecure'
+function renderConnection(model) {
+    const icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure'
 
     return bel`
         <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
@@ -101,7 +100,7 @@ function renderConnection (model) {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderTrackerNetworksNew (model) {
+function renderTrackerNetworksNew(model) {
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
         <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
@@ -114,7 +113,7 @@ function renderTrackerNetworksNew (model) {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderThirdPartyNew (model) {
+function renderThirdPartyNew(model) {
     const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
         <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
@@ -127,7 +126,7 @@ function renderThirdPartyNew (model) {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderManagePermissions (model) {
+function renderManagePermissions(model) {
     if (!model.permissions || model.permissions.length === 0) {
         return ''
     }
@@ -137,26 +136,28 @@ function renderManagePermissions (model) {
     return bel`<ul class="default-list">
         <li class="site-info__li--manage-permissions">
             ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
-        if (!model.permissions) return '' // todo(Shane): typescript issue
-        return bel`<div class="site-info__page-permission ${index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : ''}">
+                if (!model.permissions) return '' // todo(Shane): typescript issue
+                return bel`<div class="site-info__page-permission ${
+                    index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : ''
+                }">
                     <label>
                         <div>
                             <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
                             ${title}
                         </div>
                         <select class="js-site-permission" name="${permissionId}">
-                            ${options.map(({ id, title }) =>
-        bel`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`)
-}
+                            ${options.map(
+                                ({ id, title }) => bel`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`
+                            )}
                         </select>
                     </label>
                 </div>`
-    })}
+            })}
         </li>
     </ul>`
 }
 
-function renderReportButton () {
+function renderReportButton() {
     return bel`<div class="report-breakage">
             <a href="javascript:void(0)" class="js-site-report-broken report-breakage__link" draggable="false">
                 ${i18n.t('site:websiteNotWorkingQ.title')}
@@ -167,7 +168,7 @@ function renderReportButton () {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderCookieConsentManaged (model) {
+function renderCookieConsentManaged(model) {
     if (!model.tab?.consentManaged) return null
 
     const { consentManaged, optoutFailed } = model.tab.consentManaged
@@ -182,7 +183,7 @@ function renderCookieConsentManaged (model) {
     return bel``
 }
 
-function localizePermissions (permissions) {
+function localizePermissions(permissions) {
     // deep copy before mutating
     const updatedPermissions = JSON.parse(JSON.stringify(permissions))
 

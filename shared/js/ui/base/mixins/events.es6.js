@@ -1,20 +1,20 @@
+/* eslint-disable */
 // @ts-nocheck
 module.exports = {
-
     /** @type {any} */
     bindEvents: function (events) {
         if (!this._bEvents) {
             this._bEvents = []
         }
 
-        for (var i=0,evt; evt=events[i]; i++) { // eslint-disable-line
+        for (var i = 0, evt; (evt = events[i]); i++) {
             if (evt.length < 2 || !evt[0] || !evt[1] || !evt[2]) {
                 continue
             }
 
             const eventObject = {
                 bound: evt[2].bind(this),
-                evt: evt
+                evt: evt,
             }
 
             if (typeof evt[0] === 'string') {
@@ -45,5 +45,5 @@ module.exports = {
         }
 
         this._bEvents = null
-    }
+    },
 }

@@ -20,7 +20,7 @@ let isPendingUpdates = false
 // }
 // setTimeout(() => tweakSecureStatus(), 10000)
 
-export function fetch (...args) {
+export function fetch(...args) {
     if (args[0].setList) {
         console.log('fetch - Updating in memory overrides for setList', args)
         const { list, value } = args[0].setList
@@ -29,12 +29,7 @@ export function fetch (...args) {
         setTimeout(() => {
             isPendingUpdates = false
             if (list === 'allowlisted') {
-                overrides.tab.protections = new Protections(
-                    false,
-                    ['contentBlocking'],
-                    value,
-                    false
-                )
+                overrides.tab.protections = new Protections(false, ['contentBlocking'], value, false)
                 overrides.requests = protectionsOff(overrides.requests)
             }
             // if (list === 'denylisted') {
@@ -48,7 +43,7 @@ export function fetch (...args) {
     if (args[0]?.messageType === 'refreshAlias') {
         if (overrides.platform === 'browser') {
             return Promise.resolve({
-                privateAddress: 'dax123456'
+                privateAddress: 'dax123456',
             })
         }
     }
@@ -62,16 +57,16 @@ export function fetch (...args) {
     console.log('fetch - Not implemented', args)
 }
 
-export function backgroundMessage (backgroundModel) {
+export function backgroundMessage(backgroundModel) {
     console.log('backgroundMessage - setting local channel')
     channel = backgroundModel
 }
 
-export async function getBackgroundTabData () {
+export async function getBackgroundTabData() {
     const output = generateData({
         isSecure,
         isPendingUpdates,
-        ...overrides
+        ...overrides,
     })
 
     // @ts-ignore
@@ -81,7 +76,7 @@ export async function getBackgroundTabData () {
     return output
 }
 
-export function setup () {
+export function setup() {
     // set initial colour scheme
     const setColorScheme = setupColorScheme()
     setColorScheme(overrides.theme)
@@ -91,10 +86,10 @@ export function setup () {
     })
 }
 
-export function openOptionsPage () {
+export function openOptionsPage() {
     console.warn('should open options page here')
 }
 
-export function search (query) {
+export function search(query) {
     console.warn('should open search for ', JSON.stringify(query))
 }

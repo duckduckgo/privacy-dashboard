@@ -27816,494 +27816,490 @@ exports.oboolean = oboolean;
 
 },{"./ZodError":49,"./helpers/errorUtil":51,"./helpers/parseUtil":52,"./helpers/util":54}],57:[function(require,module,exports){
 module.exports={
-  "installedSurrogates": [
-    "widgets.outbrain.com",
-    "www.googletagservices.com",
-    "sb.scorecardresearch.com"
-  ],
-  "requests": [
-    {
-      "category": "Advertising",
-      "url": "https://cdn.krxd.net/",
-      "eTLDplus1": "krxd.net",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Salesforce.com, Inc.",
-      "entityName": "Salesforce.com",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 9.23
-    },
-    {
-      "category": "Advertising",
-      "url": "https://www.google.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "allowed": {
-          "reason": "ruleException"
+    "installedSurrogates": ["widgets.outbrain.com", "www.googletagservices.com", "sb.scorecardresearch.com"],
+    "requests": [
+        {
+            "category": "Advertising",
+            "url": "https://cdn.krxd.net/",
+            "eTLDplus1": "krxd.net",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Salesforce.com, Inc.",
+            "entityName": "Salesforce.com",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 9.23
+        },
+        {
+            "category": "Advertising",
+            "url": "https://www.google.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "allowed": {
+                    "reason": "ruleException"
+                }
+            },
+            "prevalence": 79.9
+        },
+        {
+            "category": "Advertising",
+            "url": "https://vrt.outbrain.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Outbrain",
+            "entityName": "Outbrain",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 12.4
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 21.6,
+            "url": "https://www.ugdturner.com/",
+            "ownerName": "WarnerMedia, LLC",
+            "entityName": "WarnerMedia"
+        },
+        {
+            "category": "Advertising",
+            "url": "https://js-sec.indexww.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Index Exchange, Inc.",
+            "entityName": "Index Exchange",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 17.3
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 0.854,
+            "url": "https://consent.truste.com/",
+            "ownerName": "TrustArc Inc.",
+            "entityName": "TrustArc"
+        },
+        {
+            "category": "Advertising",
+            "url": "https://as.casalemedia.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Index Exchange, Inc.",
+            "entityName": "Index Exchange",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 17.3
+        },
+        {
+            "category": "Advertising",
+            "url": "https://c.amazon-adsystem.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Amazon Technologies, Inc.",
+            "entityName": "Amazon.com",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 21.4
+        },
+        {
+            "category": "Advertising",
+            "url": "https://as-sec.casalemedia.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Index Exchange, Inc.",
+            "entityName": "Index Exchange",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 17.3
+        },
+        {
+            "category": "Advertising",
+            "url": "https://ads.rubiconproject.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Magnite, Inc.",
+            "entityName": "Magnite",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 18.3
+        },
+        {
+            "category": "Advertising",
+            "url": "https://aax.amazon-adsystem.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Amazon Technologies, Inc.",
+            "entityName": "Amazon.com",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 21.4
+        },
+        {
+            "category": "Advertising",
+            "url": "https://dsum-sec.casalemedia.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Index Exchange, Inc.",
+            "entityName": "Index Exchange",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 17.3
+        },
+        {
+            "category": "Advertising",
+            "url": "https://plus.google.com/+cnn/posts",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "allowed": {
+                    "reason": "ruleException"
+                }
+            },
+            "prevalence": 79.9
+        },
+        {
+            "category": "Advertising",
+            "url": "https://tpc.googlesyndication.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 79.9
+        },
+        {
+            "category": "Advertising",
+            "url": "https://fastlane.rubiconproject.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Magnite, Inc.",
+            "entityName": "Magnite",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 18.3
+        },
+        {
+            "category": "Advertising",
+            "url": "https://partner.googleadservices.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 79.9
+        },
+        {
+            "category": "Advertising",
+            "url": "https://pagead2.googlesyndication.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 79.9
+        },
+        {
+            "category": "Advertising",
+            "url": "https://amplify.outbrain.com/cp/obtp.js",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Outbrain",
+            "entityName": "Outbrain",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 12.4
+        },
+        {
+            "category": "Advertising",
+            "url": "https://tag.bounceexchange.com/340/i.js",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Bounce Exchange",
+            "entityName": "Bounce Exchange",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 0.582
+        },
+        {
+            "category": "Advertising",
+            "url": "https://widgets.outbrain.com/outbrain.js",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Outbrain",
+            "entityName": "Outbrain",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 12.4
+        },
+        {
+            "category": "Advertising",
+            "url": "https://fastlane-adv.rubiconproject.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Magnite, Inc.",
+            "entityName": "Magnite",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 18.3
+        },
+        {
+            "category": "Advertising",
+            "url": "https://optimized-by.rubiconproject.com/",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Magnite, Inc.",
+            "entityName": "Magnite",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 18.3
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "ruleException"
+                }
+            },
+            "prevalence": 0.0468,
+            "url": "https://www.dianomi.com/js/contextfeed.js",
+            "ownerName": "Dianomi Ltd",
+            "entityName": "Dianomi"
+        },
+        {
+            "category": "Analytics",
+            "url": "https://sb.scorecardresearch.com/beacon.js",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "comScore, Inc",
+            "entityName": "comScore",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 9.99
+        },
+        {
+            "category": "Advertising",
+            "url": "https://c.amazon-adsystem.com/aax2/apstag.js",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Amazon Technologies, Inc.",
+            "entityName": "Amazon.com",
+            "state": {
+                "allowed": {
+                    "reason": "ruleException"
+                }
+            },
+            "prevalence": 21.4
+        },
+        {
+            "category": "Advertising",
+            "url": "https://www.googletagservices.com/tag/js/gpt.js",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 79.9
+        },
+        {
+            "category": "Advertising",
+            "url": "https://get.s-onetag.com/c15ddde9-ec7d-4a49-b8ca-7a21bc4b943b/tag.min.js",
+            "pageUrl": "https://edition.cnn.com/",
+            "ownerName": "Sovrn Holdings",
+            "entityName": "Sovrn Holdings",
+            "state": {
+                "blocked": {}
+            },
+            "prevalence": 10.5
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 21.6,
+            "url": "https://data.api.cnn.io/",
+            "entityName": "WarnerMedia"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 21.6,
+            "url": "https://pmd.cdn.turner.com/",
+            "entityName": "WarnerMedia"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 21.6,
+            "url": "https://amd.cdn.turner.com/",
+            "entityName": "WarnerMedia"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 21.6,
+            "url": "https://registry.api.cnn.io/bundles/fave/latest-4.x/js",
+            "entityName": "WarnerMedia"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "url": "android-app://com.cnn.mobile.android.phone/http/edition.cnn.com",
+            "entityName": "android.phone"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "url": "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+            "entityName": "cookielaw.org"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 9.99,
+            "url": "https://segment-data-us-east.zqtk.net/turner-47fcf6",
+            "entityName": "comScore"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 21.4,
+            "url": "https://d2uap9jskdzp2.cloudfront.net/script.js",
+            "entityName": "Amazon.com"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 21.6,
+            "url": "https://ht.cdn.turner.com/",
+            "entityName": "WarnerMedia"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "url": "https://w.usabilla.com/",
+            "entityName": "usabilla.com"
+        },
+        {
+            "pageUrl": "https://edition.cnn.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "prevalence": 21.6,
+            "url": "https://s.cdn.turner.com/analytics/comscore/streamsense.5.2.0.160629.min.js",
+            "entityName": "WarnerMedia"
         }
-      },
-      "prevalence": 79.9
-    },
-    {
-      "category": "Advertising",
-      "url": "https://vrt.outbrain.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Outbrain",
-      "entityName": "Outbrain",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 12.4
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "ownedByFirstParty"
-        }
-      },
-      "prevalence": 21.6,
-      "url": "https://www.ugdturner.com/",
-      "ownerName": "WarnerMedia, LLC",
-      "entityName": "WarnerMedia"
-    },
-    {
-      "category": "Advertising",
-      "url": "https://js-sec.indexww.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Index Exchange, Inc.",
-      "entityName": "Index Exchange",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 17.3
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 0.854,
-      "url": "https://consent.truste.com/",
-      "ownerName": "TrustArc Inc.",
-      "entityName": "TrustArc"
-    },
-    {
-      "category": "Advertising",
-      "url": "https://as.casalemedia.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Index Exchange, Inc.",
-      "entityName": "Index Exchange",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 17.3
-    },
-    {
-      "category": "Advertising",
-      "url": "https://c.amazon-adsystem.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Amazon Technologies, Inc.",
-      "entityName": "Amazon.com",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 21.4
-    },
-    {
-      "category": "Advertising",
-      "url": "https://as-sec.casalemedia.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Index Exchange, Inc.",
-      "entityName": "Index Exchange",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 17.3
-    },
-    {
-      "category": "Advertising",
-      "url": "https://ads.rubiconproject.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Magnite, Inc.",
-      "entityName": "Magnite",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 18.3
-    },
-    {
-      "category": "Advertising",
-      "url": "https://aax.amazon-adsystem.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Amazon Technologies, Inc.",
-      "entityName": "Amazon.com",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 21.4
-    },
-    {
-      "category": "Advertising",
-      "url": "https://dsum-sec.casalemedia.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Index Exchange, Inc.",
-      "entityName": "Index Exchange",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 17.3
-    },
-    {
-      "category": "Advertising",
-      "url": "https://plus.google.com/+cnn/posts",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "allowed": {
-          "reason": "ruleException"
-        }
-      },
-      "prevalence": 79.9
-    },
-    {
-      "category": "Advertising",
-      "url": "https://tpc.googlesyndication.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 79.9
-    },
-    {
-      "category": "Advertising",
-      "url": "https://fastlane.rubiconproject.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Magnite, Inc.",
-      "entityName": "Magnite",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 18.3
-    },
-    {
-      "category": "Advertising",
-      "url": "https://partner.googleadservices.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 79.9
-    },
-    {
-      "category": "Advertising",
-      "url": "https://pagead2.googlesyndication.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 79.9
-    },
-    {
-      "category": "Advertising",
-      "url": "https://amplify.outbrain.com/cp/obtp.js",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Outbrain",
-      "entityName": "Outbrain",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 12.4
-    },
-    {
-      "category": "Advertising",
-      "url": "https://tag.bounceexchange.com/340/i.js",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Bounce Exchange",
-      "entityName": "Bounce Exchange",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 0.582
-    },
-    {
-      "category": "Advertising",
-      "url": "https://widgets.outbrain.com/outbrain.js",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Outbrain",
-      "entityName": "Outbrain",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 12.4
-    },
-    {
-      "category": "Advertising",
-      "url": "https://fastlane-adv.rubiconproject.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Magnite, Inc.",
-      "entityName": "Magnite",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 18.3
-    },
-    {
-      "category": "Advertising",
-      "url": "https://optimized-by.rubiconproject.com/",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Magnite, Inc.",
-      "entityName": "Magnite",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 18.3
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "ruleException"
-        }
-      },
-      "prevalence": 0.0468,
-      "url": "https://www.dianomi.com/js/contextfeed.js",
-      "ownerName": "Dianomi Ltd",
-      "entityName": "Dianomi"
-    },
-    {
-      "category": "Analytics",
-      "url": "https://sb.scorecardresearch.com/beacon.js",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "comScore, Inc",
-      "entityName": "comScore",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 9.99
-    },
-    {
-      "category": "Advertising",
-      "url": "https://c.amazon-adsystem.com/aax2/apstag.js",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Amazon Technologies, Inc.",
-      "entityName": "Amazon.com",
-      "state": {
-        "allowed": {
-          "reason": "ruleException"
-        }
-      },
-      "prevalence": 21.4
-    },
-    {
-      "category": "Advertising",
-      "url": "https://www.googletagservices.com/tag/js/gpt.js",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 79.9
-    },
-    {
-      "category": "Advertising",
-      "url": "https://get.s-onetag.com/c15ddde9-ec7d-4a49-b8ca-7a21bc4b943b/tag.min.js",
-      "pageUrl": "https://edition.cnn.com/",
-      "ownerName": "Sovrn Holdings",
-      "entityName": "Sovrn Holdings",
-      "state": {
-        "blocked": {}
-      },
-      "prevalence": 10.5
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 21.6,
-      "url": "https://data.api.cnn.io/",
-      "entityName": "WarnerMedia"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 21.6,
-      "url": "https://pmd.cdn.turner.com/",
-      "entityName": "WarnerMedia"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 21.6,
-      "url": "https://amd.cdn.turner.com/",
-      "entityName": "WarnerMedia"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 21.6,
-      "url": "https://registry.api.cnn.io/bundles/fave/latest-4.x/js",
-      "entityName": "WarnerMedia"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "url": "android-app://com.cnn.mobile.android.phone/http/edition.cnn.com",
-      "entityName": "android.phone"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "url": "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
-      "entityName": "cookielaw.org"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 9.99,
-      "url": "https://segment-data-us-east.zqtk.net/turner-47fcf6",
-      "entityName": "comScore"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 21.4,
-      "url": "https://d2uap9jskdzp2.cloudfront.net/script.js",
-      "entityName": "Amazon.com"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 21.6,
-      "url": "https://ht.cdn.turner.com/",
-      "entityName": "WarnerMedia"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "url": "https://w.usabilla.com/",
-      "entityName": "usabilla.com"
-    },
-    {
-      "pageUrl": "https://edition.cnn.com/",
-      "state": {
-        "allowed": {
-          "reason": "otherThirdPartyRequest"
-        }
-      },
-      "prevalence": 21.6,
-      "url": "https://s.cdn.turner.com/analytics/comscore/streamsense.5.2.0.160629.min.js",
-      "entityName": "WarnerMedia"
-    }
-  ]
+    ]
 }
 
 },{}],58:[function(require,module,exports){
 module.exports={
-  "requests": [
-    {
-      "category": "Advertising",
-      "url": "https:\/\/www.google.com\/images\/branding\/googlelogo\/2x\/googlelogo_color_160x56dp.png",
-      "pageUrl": "https:\/\/www.google.com\/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "allowed": {
-          "reason": "ownedByFirstParty"
+    "requests": [
+        {
+            "category": "Advertising",
+            "url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png",
+            "pageUrl": "https://www.google.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 80.099999999999994
+        },
+        {
+            "category": "Advertising",
+            "url": "https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.t9z7VPsEMFg.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo8oD_5FQW3kT3ksWwmXIWvhhqbKdw/cb=gapi.loaded_0",
+            "pageUrl": "https://www.google.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 80.099999999999994
+        },
+        {
+            "category": "Content Delivery",
+            "url": "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg",
+            "pageUrl": "https://www.google.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 80.099999999999994
+        },
+        {
+            "category": "Content Delivery",
+            "url": "https://www.gstatic.com/og/_/js/k=og.qtm.en_US.asUsweLQqwk.O/rt=j/m=qabr,q_dnp,qcwid,qapid/exm=qaaw,qadd,qaid,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhpr/d=1/ed=1/rs=AA2YrTvH37iHjvnJ7NPFbMaGY1OZ0tqdnw",
+            "pageUrl": "https://www.google.com/",
+            "ownerName": "Google LLC",
+            "entityName": "Google",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 80.099999999999994
         }
-      },
-      "prevalence": 80.099999999999994
-    },
-    {
-      "category": "Advertising",
-      "url": "https:\/\/apis.google.com\/_\/scs\/abc-static\/_\/js\/k=gapi.gapi.en.t9z7VPsEMFg.O\/m=gapi_iframes,googleapis_client\/rt=j\/sv=1\/d=1\/ed=1\/rs=AHpOoo8oD_5FQW3kT3ksWwmXIWvhhqbKdw\/cb=gapi.loaded_0",
-      "pageUrl": "https:\/\/www.google.com\/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "allowed": {
-          "reason": "ownedByFirstParty"
-        }
-      },
-      "prevalence": 80.099999999999994
-    },
-    {
-      "category": "Content Delivery",
-      "url": "https:\/\/fonts.gstatic.com\/s\/i\/productlogos\/googleg\/v6\/24px.svg",
-      "pageUrl": "https:\/\/www.google.com\/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "allowed": {
-          "reason": "ownedByFirstParty"
-        }
-      },
-      "prevalence": 80.099999999999994
-    },
-    {
-      "category": "Content Delivery",
-      "url": "https:\/\/www.gstatic.com\/og\/_\/js\/k=og.qtm.en_US.asUsweLQqwk.O\/rt=j\/m=qabr,q_dnp,qcwid,qapid\/exm=qaaw,qadd,qaid,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhpr\/d=1\/ed=1\/rs=AA2YrTvH37iHjvnJ7NPFbMaGY1OZ0tqdnw",
-      "pageUrl": "https:\/\/www.google.com\/",
-      "ownerName": "Google LLC",
-      "entityName": "Google",
-      "state": {
-        "allowed": {
-          "reason": "ownedByFirstParty"
-        }
-      },
-      "prevalence": 80.099999999999994
-    }
-  ]
+    ]
 }
 
 },{}],59:[function(require,module,exports){
@@ -28471,17 +28467,17 @@ exports.apiSchema = apiSchema;
 "use strict";
 
 module.exports = {
-  "displayCategories": {
-    "Analytics": "site:analyticsCategory.title",
-    "Advertising": "site:advertisingCategory.title",
-    "Social Network": "site:socialCategory.title",
-    'Content Delivery': "site:contentDeliveryCategory.title",
-    'Embedded Content': "site:embeddedContentCategory.title"
+  displayCategories: {
+    Analytics: 'site:analyticsCategory.title',
+    Advertising: 'site:advertisingCategory.title',
+    'Social Network': 'site:socialCategory.title',
+    'Content Delivery': 'site:contentDeliveryCategory.title',
+    'Embedded Content': 'site:embeddedContentCategory.title'
   },
-  "httpsMessages": {
-    "secure": "site:connectionSecure.title",
-    "upgraded": "site:connectionSecure.title",
-    "none": "site:connectionNotSecure.title"
+  httpsMessages: {
+    secure: 'site:connectionSecure.title',
+    upgraded: 'site:connectionSecure.title',
+    none: 'site:connectionNotSecure.title'
   }
 };
 
@@ -31308,6 +31304,7 @@ exports.ns = ns;
 },{"../../../locales/bg/connection.json":117,"../../../locales/bg/ctascreens.json":118,"../../../locales/bg/permissions.json":119,"../../../locales/bg/report.json":120,"../../../locales/bg/shared.json":121,"../../../locales/bg/site.json":122,"../../../locales/cs/connection.json":123,"../../../locales/cs/ctascreens.json":124,"../../../locales/cs/permissions.json":125,"../../../locales/cs/report.json":126,"../../../locales/cs/shared.json":127,"../../../locales/cs/site.json":128,"../../../locales/da/connection.json":129,"../../../locales/da/ctascreens.json":130,"../../../locales/da/permissions.json":131,"../../../locales/da/report.json":132,"../../../locales/da/shared.json":133,"../../../locales/da/site.json":134,"../../../locales/de/connection.json":135,"../../../locales/de/ctascreens.json":136,"../../../locales/de/permissions.json":137,"../../../locales/de/report.json":138,"../../../locales/de/shared.json":139,"../../../locales/de/site.json":140,"../../../locales/el/connection.json":141,"../../../locales/el/ctascreens.json":142,"../../../locales/el/permissions.json":143,"../../../locales/el/report.json":144,"../../../locales/el/shared.json":145,"../../../locales/el/site.json":146,"../../../locales/en/connection.json":147,"../../../locales/en/ctascreens.json":148,"../../../locales/en/permissions.json":149,"../../../locales/en/report.json":150,"../../../locales/en/shared.json":151,"../../../locales/en/site.json":152,"../../../locales/es/connection.json":153,"../../../locales/es/ctascreens.json":154,"../../../locales/es/permissions.json":155,"../../../locales/es/report.json":156,"../../../locales/es/shared.json":157,"../../../locales/es/site.json":158,"../../../locales/et/connection.json":159,"../../../locales/et/ctascreens.json":160,"../../../locales/et/permissions.json":161,"../../../locales/et/report.json":162,"../../../locales/et/shared.json":163,"../../../locales/et/site.json":164,"../../../locales/fi/connection.json":165,"../../../locales/fi/ctascreens.json":166,"../../../locales/fi/permissions.json":167,"../../../locales/fi/report.json":168,"../../../locales/fi/shared.json":169,"../../../locales/fi/site.json":170,"../../../locales/fr/connection.json":171,"../../../locales/fr/ctascreens.json":172,"../../../locales/fr/permissions.json":173,"../../../locales/fr/report.json":174,"../../../locales/fr/shared.json":175,"../../../locales/fr/site.json":176,"../../../locales/hr/connection.json":177,"../../../locales/hr/ctascreens.json":178,"../../../locales/hr/permissions.json":179,"../../../locales/hr/report.json":180,"../../../locales/hr/shared.json":181,"../../../locales/hr/site.json":182,"../../../locales/hu/connection.json":183,"../../../locales/hu/ctascreens.json":184,"../../../locales/hu/permissions.json":185,"../../../locales/hu/report.json":186,"../../../locales/hu/shared.json":187,"../../../locales/hu/site.json":188,"../../../locales/it/connection.json":189,"../../../locales/it/ctascreens.json":190,"../../../locales/it/permissions.json":191,"../../../locales/it/report.json":192,"../../../locales/it/shared.json":193,"../../../locales/it/site.json":194,"../../../locales/lt/connection.json":195,"../../../locales/lt/ctascreens.json":196,"../../../locales/lt/permissions.json":197,"../../../locales/lt/report.json":198,"../../../locales/lt/shared.json":199,"../../../locales/lt/site.json":200,"../../../locales/lv/connection.json":201,"../../../locales/lv/ctascreens.json":202,"../../../locales/lv/permissions.json":203,"../../../locales/lv/report.json":204,"../../../locales/lv/shared.json":205,"../../../locales/lv/site.json":206,"../../../locales/nb/connection.json":207,"../../../locales/nb/ctascreens.json":208,"../../../locales/nb/permissions.json":209,"../../../locales/nb/report.json":210,"../../../locales/nb/shared.json":211,"../../../locales/nb/site.json":212,"../../../locales/nl/connection.json":213,"../../../locales/nl/ctascreens.json":214,"../../../locales/nl/permissions.json":215,"../../../locales/nl/report.json":216,"../../../locales/nl/shared.json":217,"../../../locales/nl/site.json":218,"../../../locales/pl/connection.json":219,"../../../locales/pl/ctascreens.json":220,"../../../locales/pl/permissions.json":221,"../../../locales/pl/report.json":222,"../../../locales/pl/shared.json":223,"../../../locales/pl/site.json":224,"../../../locales/pt/connection.json":225,"../../../locales/pt/ctascreens.json":226,"../../../locales/pt/permissions.json":227,"../../../locales/pt/report.json":228,"../../../locales/pt/shared.json":229,"../../../locales/pt/site.json":230,"../../../locales/ro/connection.json":231,"../../../locales/ro/ctascreens.json":232,"../../../locales/ro/permissions.json":233,"../../../locales/ro/report.json":234,"../../../locales/ro/shared.json":235,"../../../locales/ro/site.json":236,"../../../locales/ru/connection.json":237,"../../../locales/ru/ctascreens.json":238,"../../../locales/ru/permissions.json":239,"../../../locales/ru/report.json":240,"../../../locales/ru/shared.json":241,"../../../locales/ru/site.json":242,"../../../locales/sk/connection.json":243,"../../../locales/sk/ctascreens.json":244,"../../../locales/sk/permissions.json":245,"../../../locales/sk/report.json":246,"../../../locales/sk/shared.json":247,"../../../locales/sk/site.json":248,"../../../locales/sl/connection.json":249,"../../../locales/sl/ctascreens.json":250,"../../../locales/sl/permissions.json":251,"../../../locales/sl/report.json":252,"../../../locales/sl/shared.json":253,"../../../locales/sl/site.json":254,"../../../locales/sv/connection.json":255,"../../../locales/sv/ctascreens.json":256,"../../../locales/sv/permissions.json":257,"../../../locales/sv/report.json":258,"../../../locales/sv/shared.json":259,"../../../locales/sv/site.json":260,"../../../locales/tr/connection.json":261,"../../../locales/tr/ctascreens.json":262,"../../../locales/tr/permissions.json":263,"../../../locales/tr/report.json":264,"../../../locales/tr/shared.json":265,"../../../locales/tr/site.json":266,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
 "use strict";
 
+/* eslint-disable */
 // @ts-nocheck
 module.exports = {
   /** @type {any} */
@@ -31317,7 +31314,6 @@ module.exports = {
     }
 
     for (var i = 0, evt; evt = events[i]; i++) {
-      // eslint-disable-line
       if (evt.length < 2 || !evt[0] || !evt[1] || !evt[2]) {
         continue;
       }
@@ -31519,11 +31515,11 @@ BaseModel.prototype = _jquery["default"].extend({}, _indexEs["default"].events, 
   },
 
   /**
-    * Private method for turning `this` into a
-    * JSON object before sending to application store.
-    * Basically just weeds out properties that
-    * are functions.
-    */
+   * Private method for turning `this` into a
+   * JSON object before sending to application store.
+   * Basically just weeds out properties that
+   * are functions.
+   */
   _toJSON: function _toJSON() {
     var attributes = Object.assign({}, Object.getPrototypeOf(this), this);
     if (attributes.store) delete attributes.store;
@@ -31829,7 +31825,11 @@ function _createStore(notifier) {
 
   function dispatch(notification) {
     if (!notification || !(0, _isPlainObject.isPlainObject)(notification)) throw new Error('notification parameter is required and must be a plain object');
-    if (!notification.notifierName || typeof notification.notifierName !== 'string') throw new Error('notifierName property of notification parameter is required and must be a string');
+
+    if (!notification.notifierName || typeof notification.notifierName !== 'string') {
+      throw new Error('notifierName property of notification parameter is required and must be a string');
+    }
+
     if (isEmitting) throw new Error('subscribers may not generate notifications');
     isEmitting = true;
     state = notifier(state, notification);
@@ -31950,8 +31950,8 @@ BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
    *
    */
   destroyChildViews: function destroyChildViews() {
+    // eslint-disable-next-line
     !function destroyViews(views) {
-      // eslint-disable-line
       if (!views) {
         return;
       }
@@ -34054,8 +34054,8 @@ function _default() {
   return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n        ", "\n        ", "\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list\">\n                ", "\n            </ul>\n        </div>\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list card-list--bordered token-body-em\">\n                <li class=\"link-item js-site-show-page-connection\">\n                    ", "\n                </li>\n                <li class=\"link-item js-site-tracker-networks js-site-show-page-trackers\">\n                    ", "\n                </li>\n                <li class=\"link-item js-site-show-page-non-trackers\">\n                    ", "\n                </li>\n                ", "\n            </ul>\n        </div>\n        ", "\n        ", "\n        <div class=\"list-wrapper card-list--last\">\n            <ul class=\"default-list\">\n                <li class=\"js-site-manage-allowlist-li site-info__li--report border-light--top\">\n                    ", "\n                </li>\n            </ul>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && _this$model$tab2.consentManaged ? (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<li class=\"link-item js-site-show-consent-managed\">\n                    ", "\n                </li>"])), renderCookieConsentManaged(this.model)) : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), renderManagePermissions(this.model));
 }
 /**
-* @param {import('../models/site.es6.js').PublicSiteModel} model
-*/
+ * @param {import('../models/site.es6.js').PublicSiteModel} model
+ */
 
 
 function renderSearchWrapper(model) {
@@ -34624,10 +34624,10 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     if ((0, _environmentCheck.isAndroid)()) {
       document.querySelectorAll('.mdc-switch').forEach(function ($el) {
         return (// @ts-ignore
-          new _switch.MDCSwitch($el) // eslint-disable-line no-new
-
+          new _switch.MDCSwitch($el)
         );
-      });
+      } // eslint-disable-line no-new
+      );
       (0, _utils.setupMaterialDesignRipple)('.js-site-show-page-connection', '.js-site-show-page-trackers', '.js-site-done');
     }
 

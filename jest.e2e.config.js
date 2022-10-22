@@ -3,7 +3,7 @@ module.exports = {
     testMatch: ['**/e2e/**/?(*.)+(e2e).[jt]s?(x)'],
     testEnvironmentOptions: {
         'jest-playwright': {
-            browsers: ['webkit']
-        }
-    }
+            browsers: ['webkit'],
+        },
+    },
 }

@@ -388,9 +388,9 @@
 }
 
 .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
-  background: #678FFF;
+  background: #678fff;
   /* @alternate */
-  background: var(--mdc-switch-selected-handle-color, var(--mdc-theme-primary, #678FFF));
+  background: var(--mdc-switch-selected-handle-color, var(--mdc-theme-primary, #678fff));
 }
 
 .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
@@ -554,23 +554,23 @@
 
 .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus) .mdc-switch__ripple::before,
 .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus) .mdc-switch__ripple::after {
-  background-color: #678FFF;
+  background-color: #678fff;
   /* @alternate */
-  background-color: var(--mdc-switch-selected-hover-state-layer-color, var(--mdc-theme-primary, #678FFF));
+  background-color: var(--mdc-switch-selected-hover-state-layer-color, var(--mdc-theme-primary, #678fff));
 }
 
 .mdc-switch.mdc-switch--selected:enabled:focus .mdc-switch__ripple::before,
 .mdc-switch.mdc-switch--selected:enabled:focus .mdc-switch__ripple::after {
-  background-color: #678FFF;
+  background-color: #678fff;
   /* @alternate */
-  background-color: var(--mdc-switch-selected-focus-state-layer-color, var(--mdc-theme-primary, #678FFF));
+  background-color: var(--mdc-switch-selected-focus-state-layer-color, var(--mdc-theme-primary, #678fff));
 }
 
 .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__ripple::before,
 .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__ripple::after {
-  background-color: #678FFF;
+  background-color: #678fff;
   /* @alternate */
-  background-color: var(--mdc-switch-selected-pressed-state-layer-color, var(--mdc-theme-primary, #678FFF));
+  background-color: var(--mdc-switch-selected-pressed-state-layer-color, var(--mdc-theme-primary, #678fff));
 }
 
 .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus) .mdc-switch__ripple::before,
@@ -1534,20 +1534,38 @@ body.body--theme-dark {
   color: rgba(255, 255, 255, 0.9);
 }
 
-h1, h2, h3, h4, h5, h5, p, div {
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+p,
+div {
   margin: 0;
   padding: 0;
 }
-section, ul, ol, li {
+section,
+ul,
+ol,
+li {
   margin: 0;
   padding: 0;
   position: relative;
 }
 
-form, input, select, option, button {
+form,
+input,
+select,
+option,
+button {
   outline: none;
 }
-form *, input *, select *, option *, button * {
+form *,
+input *,
+select *,
+option *,
+button * {
   outline: none;
 }
 
@@ -1584,11 +1602,11 @@ select {
 
 /* Links */
 a {
-  color: #3969EF;
+  color: #3969ef;
   text-decoration: none;
 }
 .body--theme-dark a {
-  color: #7295F6;
+  color: #7295f6;
 }
 a:hover {
   text-decoration: underline;

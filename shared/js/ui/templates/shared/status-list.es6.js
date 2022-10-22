@@ -9,7 +9,7 @@ export default function (items, extraClasses) {
 </ul>`
 }
 
-function renderItem (item) {
+function renderItem(item) {
     return bel`<li class="status-list__item status-list__item--${item.modifier}
     bold ${item.highlight ? 'is-highlighted' : ''}">
     ${item.msg}

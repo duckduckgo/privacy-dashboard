@@ -8,7 +8,7 @@
 }
 
 .hero-icon--protections-off {
-    @include cross_platform_bg_image("refresh-assets/Block-Disabled-128.svg");
+    @include cross_platform_bg_image('refresh-assets/Block-Disabled-128.svg');
 
     // pull the note out of the parent's padding to prevent needing to change the DOM order
     .note {
@@ -18,48 +18,45 @@
 }
 
 .hero-icon--breakage-form {
-    @include cross_platform_bg_image("refresh-assets/Breakage-96.svg");
+    @include cross_platform_bg_image('refresh-assets/Breakage-96.svg');
 }
 .hero-icon--tracker-network {
-    @include cross_platform_bg_image("refresh-assets/Network-128.svg");
+    @include cross_platform_bg_image('refresh-assets/Network-128.svg');
 }
 
 .hero-icon--insecure-connection,
 .hero-icon--trackers-blocked {
-    @include cross_platform_bg_image("refresh-assets/Unlocked-128.svg");
+    @include cross_platform_bg_image('refresh-assets/Unlocked-128.svg');
 }
 
 .hero-icon--major-networks-mixed {
-    @include cross_platform_bg_image("refresh-assets/Block-Allowed-96.svg");
+    @include cross_platform_bg_image('refresh-assets/Block-Allowed-96.svg');
 }
 
 .hero-icon--major-networks-blocked {
-    @include cross_platform_bg_image("refresh-assets/Shield-128.svg");
+    @include cross_platform_bg_image('refresh-assets/Shield-128.svg');
 }
 
 .hero-icon--major-networks-warning,
 .hero-icon--major-networks-protections-off {
-    @include cross_platform_bg_image("refresh-assets/Block-Disabled-128.svg");
+    @include cross_platform_bg_image('refresh-assets/Block-Disabled-128.svg');
 }
 
 .hero-icon--info,
 .hero-icon--major-networks-info {
-    @include cross_platform_bg_image("refresh-assets/Block-Info.svg");
+    @include cross_platform_bg_image('refresh-assets/Block-Info.svg');
 }
 
 .hero-icon--no-activity,
 .hero-icon--major-networks-no-activity {
-    @include cross_platform_bg_image("refresh-assets/Counter-128.svg");
+    @include cross_platform_bg_image('refresh-assets/Counter-128.svg');
 }
 
 .hero-icon--connection-secure,
 .hero-icon--connection-upgraded {
-    @include cross_platform_bg_image("refresh-assets/Locked-96.svg");
+    @include cross_platform_bg_image('refresh-assets/Locked-96.svg');
 }
 
 .hero-icon--connection-none {
-    @include cross_platform_bg_image("refresh-assets/Unlocked-96.svg");
+    @include cross_platform_bg_image('refresh-assets/Unlocked-96.svg');
 }
-
-
-

@@ -1,9 +1,9 @@
-@use "@material/theme" with (
-  $primary: #678FFF,
-  $secondary: rgba(#678FFF, 0.38),
+@use '@material/theme' with (
+    $primary: #678fff,
+    $secondary: rgba(#678fff, 0.38)
 );
-@use "@material/switch/styles";
-@use "@material/ripple";
+@use '@material/switch/styles';
+@use '@material/ripple';
 
 .material-design-ripple {
     @include ripple.surface;
@@ -12,11 +12,23 @@
 }
 
 .body--theme-light .material-design-ripple {
-  @include ripple.states-base-color(black);
-  @include ripple.states-opacities((hover: 0, focus: .08, press: .08));
+    @include ripple.states-base-color(black);
+    @include ripple.states-opacities(
+        (
+            hover: 0,
+            focus: 0.08,
+            press: 0.08,
+        )
+    );
 }
 
 .body--theme-dark .material-design-ripple {
-  @include ripple.states-base-color(white);
-  @include ripple.states-opacities((hover: 0, focus: .30, press: .30));
+    @include ripple.states-base-color(white);
+    @include ripple.states-opacities(
+        (
+            hover: 0,
+            focus: 0.3,
+            press: 0.3,
+        )
+    );
 }

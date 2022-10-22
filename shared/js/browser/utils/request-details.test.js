@@ -50,15 +50,17 @@ describe('RequestDetails', () => {
     })
     it('calculates states (on + blocked)', () => {
         const requestDetails = fromJson({
-            requests: [{
-                pageUrl: 'https://example.com',
-                url: 'https://google.com/a.js',
-                entityName: 'Google',
-                category: 'Advertising',
-                state: {
-                    blocked: {}
-                }
-            }]
+            requests: [
+                {
+                    pageUrl: 'https://example.com',
+                    url: 'https://google.com/a.js',
+                    entityName: 'Google',
+                    category: 'Advertising',
+                    state: {
+                        blocked: {},
+                    },
+                },
+            ],
         })
         const state = requestDetails.state(true)
         expect(state).toBe(states.protectionsOn_blocked)

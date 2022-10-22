@@ -13,17 +13,15 @@ const resources = localeResources.reduce((mapping, { name, module }) => {
     return mapping
 }, {})
 
-i18next
-    .use(ICU)
-    .init({
+i18next.use(ICU).init({
     // debug: true,
-        initImmediate: false,
-        fallbackLng: 'en',
-        lng: 'en',
-        ns: ['shared', 'site', 'connection', 'report'],
-        defaultNS: 'shared',
-        resources
-    })
+    initImmediate: false,
+    fallbackLng: 'en',
+    lng: 'en',
+    ns: ['shared', 'site', 'connection', 'report'],
+    defaultNS: 'shared',
+    resources,
+})
 
 export const i18n = i18next
 
@@ -34,10 +32,10 @@ export const i18n = i18next
  * @param {F} key
  * @param {Record<string, any>} [options]
  */
-function site (key, options) {
+function site(key, options) {
     return i18next.t(`site:${key}`, options)
 }
 
 export const ns = {
-    site: site
+    site: site,
 }

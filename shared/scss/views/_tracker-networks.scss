@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 .tracker-networks__explainer {
     padding: 0 $card--padded--side 0;
@@ -41,7 +41,7 @@
 }
 
 .icon-major-networks-info {
-    @include cross_platform_bg_image("status--info.svg");
+    @include cross_platform_bg_image('status--info.svg');
 }
 
 .icon-major-networks-mixed {
@@ -58,13 +58,13 @@
 
 /* todo(Shane): remove these 'importants'  */
 .site-info__tracker__icon--company {
-    width: 24px!important;
-    height: 24px!important;
+    width: 24px !important;
+    height: 24px !important;
 }
 
 .site-info__tracker__blocked-icon {
     @include icon_display();
-    @include cross_platform_bg_image("refresh-assets/blocked-icon.svg");
+    @include cross_platform_bg_image('refresh-assets/blocked-icon.svg');
     background-color: $white;
     border-radius: 100%;
     position: absolute;
@@ -89,9 +89,7 @@ $medium-wrapper: 64px;
 $small-wrapper: 48px;
 
 .key-insight {
-
     .site-info__tracker__icon-wrapper {
-
         background-color: $white;
         border-radius: 50%;
 
@@ -115,7 +113,7 @@ $small-wrapper: 48px;
         border: 1px solid $color-gray-20;
         height: $small-wrapper - 2;
         width: $small-wrapper - 2;
-        background: #FAFAFA;
+        background: #fafafa;
         font-size: 16px;
     }
 
