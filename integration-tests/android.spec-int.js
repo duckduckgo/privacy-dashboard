@@ -1,7 +1,7 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withAndroidRequests } from './helpers'
 
-const HTML = '/build/example/html/android.html'
+const HTML = '/build/app/html/android.html'
 
 const test = baseTest.extend({
     androidMocks: [

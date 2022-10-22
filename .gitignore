@@ -9,11 +9,10 @@ public/js/*.*
 public/css/*.*
 *.swp
 *.swo
-build/browser/
-build/windows/
-build/test/
+build/docs/
 __diff_output__
 /test-results/
 /playwright-report/
 /playwright/.cache/
 /swift-package/Resources/ios/assets/docs
+build/app/html/iframe.html

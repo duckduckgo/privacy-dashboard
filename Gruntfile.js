@@ -6,16 +6,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy')
     grunt.loadNpmTasks('grunt-contrib-watch')
 
-    const platform = grunt.option('platform') || 'example'
     const watch = grunt.option('watch')
 
-    // only add `iframe.html` to 'example' platform for testing multiple screens
+    // only add `iframe.html` when we're in watch mode
     const htmlFiles = ['popup.html']
-    if (platform === 'example') {
+    if (watch) {
         htmlFiles.push('iframe.html')
     }
 
-    const buildPath = path.join('build', platform)
+    const appBuildPath = path.join('build', 'app')
 
     const baseFileMap = {
         ui: {
@@ -37,8 +36,8 @@ module.exports = function (grunt) {
             },
             data: 'shared/data',
             public: {
-                js: `${buildPath}/public/js`,
-                css: `${buildPath}/public/css`,
+                js: `${appBuildPath}/public/js`,
+                css: `${appBuildPath}/public/css`,
             },
         },
 
@@ -70,17 +69,17 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'shared/html',
                 src: htmlFiles,
-                dest: `${buildPath}/html`,
+                dest: `${appBuildPath}/html`,
             },
             index: {
                 src: 'shared/html/index.html',
-                dest: `${buildPath}/index.html`,
+                dest: `${appBuildPath}/index.html`,
             },
             images: {
                 expand: true,
                 cwd: 'shared',
                 src: 'img/**',
-                dest: `${buildPath}/`,
+                dest: `${appBuildPath}/`,
             },
         },
         /**
@@ -100,7 +99,7 @@ module.exports = function (grunt) {
         exec: {
             schema: 'npm run schema',
             buildHtml: 'node scripts/duplicate-html.js',
-            copyTEMP: 'cp -R build/example/ swift-package/Resources/ios/assets',
+            copyTEMP: 'cp -R build/app/ swift-package/Resources/ios/assets',
         },
     })
 

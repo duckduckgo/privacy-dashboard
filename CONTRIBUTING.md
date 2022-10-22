@@ -79,10 +79,10 @@ Documentation will be built using [Typedoc](https://typedoc.org/) on every Pull 
 `gh-pages` branch of this repo.
 
 To verify locally, and to check how your documentation is looking, you can run the `npm run docs` command, and then
-serve the `build/example/docs` folder (or just open the file directly in the browser)
+serve the `build/docs` folder (or just open the file directly in the browser)
 
 -   npm command: `npm run docs`
--   output folder: `build/example/docs`
+-   output folder: `build/docs`
 -   included files: check the `files` array in the [`tsconfig.json`](./tsconfig.json) file
 
 ## Watch mode

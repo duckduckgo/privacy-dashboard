@@ -1,7 +1,7 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withExtensionRequests } from './helpers'
 
-const HTML = '/build/example/html/browser.html'
+const HTML = '/build/app/html/browser.html'
 
 const test = baseTest.extend({
     extensionMessages: [

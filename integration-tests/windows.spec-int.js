@@ -1,7 +1,7 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withWindowsRequests } from './helpers'
 
-const HTML = '/build/example/html/windows.html'
+const HTML = '/build/app/html/windows.html'
 
 const test = baseTest.extend({
     windowsMocks: [

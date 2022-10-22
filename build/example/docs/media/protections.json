@@ -1,6 +1,0 @@
-{
-    "allowlisted": false,
-    "denylisted": false,
-    "enabledFeatures": ["contentBlocking"],
-    "unprotectedTemporary": false
-}

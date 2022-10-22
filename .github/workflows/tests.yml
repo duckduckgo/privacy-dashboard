@@ -55,7 +55,7 @@ jobs:
               id: build-output
               uses: actions/cache@v3
               with:
-                  path: build/example
+                  path: build
                   key: build-output-${{ github.run_id }}
             - name: Build all
               run: npm run build
@@ -88,14 +88,14 @@ jobs:
               id: build-output
               uses: actions/cache@v3
               with:
-                  path: build/example
+                  path: build/docs
                   key: build-output-${{ github.run_id }}
             - name: Setup Github Pages
               uses: actions/configure-pages@v2
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v1
               with:
-                  path: build
+                  path: build/docs
             - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v1

@@ -5,7 +5,7 @@
         "shared/js/browser/common.es6.js",
         "shared/js/browser/utils/request-details.js"
     ],
-    "out": "build/example/docs",
+    "out": "build/docs",
     "media": "schema/__fixtures__",
     "excludeExternals": true,
     "readme": "DOCS.md",
