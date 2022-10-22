@@ -1,5 +1,4 @@
 module.exports = {
-    // todo(Shane): localize more of these
     "displayCategories": {
         "Analytics": "site:analyticsCategory.title",
         "Advertising": "site:advertisingCategory.title",

@@ -1,19 +1,62 @@
 import bel from 'bel'
 import { i18n } from '../../base/localize.es6'
 import { isAndroid, isIOS } from '../../environment-check'
+import { aboutLink } from './about-link'
+import { trackerNetworksHeroIcon, trackerNetworkSummary } from './tracker-networks-text.es6'
+import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.es6'
 
 /**
- * @param {object} ops
- * @param {string} ops.status
- * @param {boolean} [ops.topNav]
- * @param {string} [ops.className]
+ * @param {object} opts
+ * @param {HTMLElement} opts.icon
+ * @param {string} [opts.summary]
+ * @param {"about-link" | "none"} opts.suffix
+ * @param {HTMLElement} [opts.children]
  */
-export function heroTemplate (ops) {
+export function heroTemplate (opts) {
     return bel`
-        <div class="hero-wrapper">
-             ${ops.topNav ? topNav() : null}
+        <div class="key-insight">
+            ${opts.icon}
+            ${opts.summary ? bel`<p class="token-title-3">${opts.summary}</p>` : null}
+            ${opts.suffix === 'about-link' ? bel`<p>${aboutLink()}</p>` : null}
+            ${opts.children ? opts.children : null}
         </div>
     `
+}
+
+/**
+ * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {boolean} protectionsEnabled
+ * @returns {HTMLElement}
+ */
+export function heroFromTabTrackers (requestDetails, protectionsEnabled) {
+    const summary = trackerNetworkSummary(requestDetails, protectionsEnabled)
+    const icon = trackerNetworksHeroIcon(requestDetails, protectionsEnabled)
+    const largeIcon = largeHeroIcon({
+        status: icon
+    })
+    return heroTemplate({
+        suffix: 'about-link',
+        icon: largeIcon,
+        summary
+    })
+}
+
+/**
+ * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {boolean} protectionsEnabled
+ * @returns {HTMLElement}
+ */
+export function heroFromTabNonTrackers (requestDetails, protectionsEnabled) {
+    const summary = thirdpartySummary(requestDetails, protectionsEnabled)
+    const icon = thirdpartyHeroIcon(requestDetails, protectionsEnabled)
+    const largeIcon = largeHeroIcon({
+        status: icon
+    })
+    return heroTemplate({
+        suffix: 'about-link',
+        icon: largeIcon,
+        summary
+    })
 }
 
 /**

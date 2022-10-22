@@ -1,19 +1,40 @@
 import $ from 'jquery'
 import ParentSlidingSubview from './sliding-subview.es6.js'
-import { heroTemplate } from './../templates/shared/hero.es6.js'
 import CompanyListModel from './../models/site-company-list.es6.js'
 import SiteModel from './../models/site.es6.js'
 
-function TrackerNetworks (ops) {
+/**
+ * @param {object} opts
+ * @param {any} opts.template
+ * @param {import("../templates/shared/hero.es6").heroFromTabTrackers} [opts.heroFn]
+ * @param {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers} [opts.detailsFn]
+ * @constructor
+ */
+function TrackerNetworks (opts) {
     // model data is async
+    /** @type {import("jquery") | null} */
+    this.$hero = null
+
+    /** @type {import("jquery") | null} */
+    this.$details = null
+
     this.model = null
     this.currentModelName = null
     this.currentSiteModelName = null
-    this.template = ops.template
-    this.heroFn = ops.heroFn
+    this.template = opts.template
+
+    /**
+     * @type {import("../templates/shared/hero.es6").heroFromTabTrackers | undefined}
+     */
+    this.heroFn = opts.heroFn
+
+    /**
+     * @type {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers | undefined}
+     */
+    this.detailsFn = opts.detailsFn
 
     // @ts-ignore
-    ParentSlidingSubview.call(this, ops)
+    ParentSlidingSubview.call(this, opts)
 
     // @ts-ignore
     this.renderAsyncContent()
@@ -59,15 +80,20 @@ TrackerNetworks.prototype = $.extend({},
             })
         },
 
+        /**
+         * @this {TrackerNetworks}
+         */
         _renderHeroTemplate: function () {
-            if (this.model.site) {
-                /** @type {import('./../models/site.es6.js').PublicSiteModel} */
+            if (this.model.site && this.heroFn) {
+                // /** @type {import('./../models/site.es6.js').PublicSiteModel} */
                 const site = this.model.site
-                const icon = this.heroFn?.(site.tab.requestDetails, site.protectionsEnabled)
-                // todo(Shane): Fix this next
-                this.$hero.html(heroTemplate({
-                    status: icon
-                }))
+                const heroElement = this.heroFn(site.tab.requestDetails, site.protectionsEnabled)
+                this.$hero?.html(heroElement)
+            }
+            if (this.model.site && this.detailsFn) {
+                const site = this.model.site
+                const detailsElement = this.detailsFn(site)
+                this.$details?.html(detailsElement)
             }
         },
 

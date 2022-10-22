@@ -15,11 +15,32 @@ const test = baseTest.extend({
     }, { auto: true }]
 })
 
-test.describe('initial page data', () => {
+test.describe('page data', () => {
     test('should fetch initial data', async ({ page, iosMocks }) => {
         // @ts-ignore
         await iosMocks.outgoing({ names: [] })
         await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 500 })
+    })
+    test('should accept updates when on trackers list screen', async ({ page, iosMocks }) => {
+        await page.locator('"No Tracking Requests Found"').click()
+        await expect(page).toHaveScreenshot('tracker-list-before.png')
+        // @ts-ignore
+        await iosMocks.playTimeline(['new-requests'])
+        await expect(page).toHaveScreenshot('tracker-list-after.png')
+    })
+    test('should accept updates when on non-trackers list screen', async ({ page, iosMocks }) => {
+        await page.locator('"No Third-Party Requests Found"').click()
+        await expect(page).toHaveScreenshot('non-tracker-list-before.png')
+        // @ts-ignore
+        await iosMocks.playTimeline(['new-requests'])
+        await expect(page).toHaveScreenshot('non-tracker-list-after.png')
+    })
+    test('does not alter the appearance of connection panel', async ({ page, iosMocks }) => {
+        await page.locator('"Connection Is Encrypted"').click()
+        await expect(page).toHaveScreenshot('connection-before.png')
+        // @ts-ignore
+        await iosMocks.playTimeline(['new-requests'])
+        await expect(page).toHaveScreenshot('connection-before.png') // <- should be identical
     })
 })
 

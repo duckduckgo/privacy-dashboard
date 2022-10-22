@@ -28471,7 +28471,6 @@ exports.apiSchema = apiSchema;
 "use strict";
 
 module.exports = {
-  // todo(Shane): localize more of these
   "displayCategories": {
     "Analytics": "site:analyticsCategory.title",
     "Advertising": "site:advertisingCategory.title",
@@ -32851,7 +32850,6 @@ Trackers.prototype = _jquery["default"].extend({}, _pageEs["default"].prototype,
     _pageEs["default"].prototype.ready.call(this);
 
     this.message = new _backgroundMessageEs["default"]();
-    console.log(this.message);
     this.views.site = new _siteEs["default"]({
       pageView: this,
       model: new _siteEs2["default"](),
@@ -32862,8 +32860,7 @@ Trackers.prototype = _jquery["default"].extend({}, _pageEs["default"].prototype,
 }); // kickoff!
 
 function initPopup() {
-  var page = new Trackers();
-  console.log('initPopup', page);
+  return new Trackers();
 }
 
 },{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":106,"./../views/site.es6.js":112,"jquery":46}],91:[function(require,module,exports){
@@ -33166,6 +33163,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.nonTrackersTemplate = nonTrackersTemplate;
+exports.sectionsFromSiteNonTracker = sectionsFromSiteNonTracker;
 
 var _bel = _interopRequireDefault(require("bel"));
 
@@ -33177,13 +33175,11 @@ var _heroEs = require("./shared/hero.es6.js");
 
 var _trackerNetworks = require("./tracker-networks.es6");
 
-var _thirdpartyText = require("./shared/thirdparty-text.es6");
-
 var _aboutLink = require("./shared/about-link");
 
 var _platformLimitations = require("./shared/platform-limitations");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -33195,28 +33191,16 @@ function nonTrackersTemplate() {
     return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
   }
 
-  var summary = (0, _thirdpartyText.thirdpartySummary)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-  var sections = renderNonTrackerDetails(this.model.site);
-  var icon = renderHeroIcon(this.model.site);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides\">\n            <div class=\"key-insight\">\n                ", "\n                <p class=\"token-title-3\">", "</p>\n                <p>", "</p>\n            </div>\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), icon, summary, (0, _aboutLink.aboutLink)(), sections, this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
+  var sections = sectionsFromSiteNonTracker(this.model.site);
+  var hero = (0, _heroEs.heroFromTabNonTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
 
 
-function renderHeroIcon(site) {
-  var icon = (0, _thirdpartyText.thirdpartyHeroIcon)(site.tab.requestDetails, site.protectionsEnabled);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["", ""])), (0, _heroEs.largeHeroIcon)({
-    status: icon
-  }));
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} site
- */
-
-
-function renderNonTrackerDetails(site) {
+function sectionsFromSiteNonTracker(site) {
   var requestDetails = site.tab.requestDetails;
   var onlyAllowedNonTrackers = requestDetails.matches(site.protectionsEnabled, [_requestDetails.states.protectionsOn_allowedNonTrackers, _requestDetails.states.protectionsOff_allowedNonTrackers, _requestDetails.states.protectionsOn_blocked_allowedNonTrackers]); // when protections are protectionsOff, we just show every request
 
@@ -33235,7 +33219,7 @@ function renderNonTrackerDetails(site) {
   return (0, _trackerNetworks.renderSections)([{
     name: 'adAttribution',
     heading: function heading() {
-      return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    <p class=\"padded--top-half\">", "</p>\n                </div>\n                "])), _localizeEs.ns.site('sectionHeadingAdAttribution.title', {
+      return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    <p class=\"padded--top-half\">", "</p>\n                </div>\n                "])), _localizeEs.ns.site('sectionHeadingAdAttribution.title', {
         domain: site.tab.domain
       }), (0, _aboutLink.adAttributionLink)());
     },
@@ -33269,7 +33253,7 @@ function renderNonTrackerDetails(site) {
   }]);
 }
 
-},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./shared/about-link":98,"./shared/hero.es6.js":99,"./shared/platform-limitations":100,"./shared/thirdparty-text.es6":102,"./tracker-networks.es6":107,"bel":31}],96:[function(require,module,exports){
+},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./shared/about-link":98,"./shared/hero.es6.js":99,"./shared/platform-limitations":100,"./tracker-networks.es6":107,"bel":31}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33282,8 +33266,6 @@ var _bel = _interopRequireDefault(require("bel"));
 var _localizeEs = require("../base/localize.es6.js");
 
 var _heroEs = require("./shared/hero.es6.js");
-
-var _aboutLink = require("./shared/about-link.js");
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
 
@@ -33308,7 +33290,12 @@ function _default() {
   var icon = (0, _heroEs.largeHeroIcon)({
     status: "connection-".concat(this.model.site.httpsState)
   });
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides\">\n            <div class=\"key-insight\">\n                ", "\n                <p class=\"token-title-3\">", "</p>\n                <p>", "</p>\n            </div>\n            ", "\n        </div>\n    </div>"])), (0, _heroEs.topNav)(), icon, summary, (0, _aboutLink.aboutLink)(), renderCertificateDetails(this.model.site, this.model.tab));
+  var hero = (0, _heroEs.heroTemplate)({
+    icon: icon,
+    summary: summary,
+    suffix: 'none'
+  });
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides\">\n            ", "\n            ", "\n        </div>\n    </div>"])), (0, _heroEs.topNav)(), hero, renderCertificateDetails(this.model.site, this.model.tab));
 }
 
 function getKeyUsage(key) {
@@ -33405,7 +33392,7 @@ function renderConnectionDescription(site) {
   return _localizeEs.i18n.t('connection:secureConnectionDesc.title');
 }
 
-},{"../base/localize.es6.js":74,"./shared/about-link.js":98,"./shared/hero.es6.js":99,"bel":31}],97:[function(require,module,exports){
+},{"../base/localize.es6.js":74,"./shared/hero.es6.js":99,"bel":31}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33472,6 +33459,8 @@ function adAttributionLink() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.heroFromTabNonTrackers = heroFromTabNonTrackers;
+exports.heroFromTabTrackers = heroFromTabTrackers;
 exports.heroTemplate = heroTemplate;
 exports.largeHeroIcon = largeHeroIcon;
 exports.topNav = topNav;
@@ -33482,20 +33471,65 @@ var _localize = require("../../base/localize.es6");
 
 var _environmentCheck = require("../../environment-check");
 
-var _templateObject, _templateObject2, _templateObject3;
+var _aboutLink = require("./about-link");
+
+var _trackerNetworksText = require("./tracker-networks-text.es6");
+
+var _thirdpartyText = require("./thirdparty-text.es6");
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 /**
- * @param {object} ops
- * @param {string} ops.status
- * @param {boolean} [ops.topNav]
- * @param {string} [ops.className]
+ * @param {object} opts
+ * @param {HTMLElement} opts.icon
+ * @param {string} [opts.summary]
+ * @param {"about-link" | "none"} opts.suffix
+ * @param {HTMLElement} [opts.children]
  */
-function heroTemplate(ops) {
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"hero-wrapper\">\n             ", "\n        </div>\n    "])), ops.topNav ? topNav() : null);
+function heroTemplate(opts) {
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"key-insight\">\n            ", "\n            ", "\n            ", "\n            ", "\n        </div>\n    "])), opts.icon, opts.summary ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<p class=\"token-title-3\">", "</p>"])), opts.summary) : null, opts.suffix === 'about-link' ? (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<p>", "</p>"])), (0, _aboutLink.aboutLink)()) : null, opts.children ? opts.children : null);
+}
+/**
+ * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {boolean} protectionsEnabled
+ * @returns {HTMLElement}
+ */
+
+
+function heroFromTabTrackers(requestDetails, protectionsEnabled) {
+  var summary = (0, _trackerNetworksText.trackerNetworkSummary)(requestDetails, protectionsEnabled);
+  var icon = (0, _trackerNetworksText.trackerNetworksHeroIcon)(requestDetails, protectionsEnabled);
+  var largeIcon = largeHeroIcon({
+    status: icon
+  });
+  return heroTemplate({
+    suffix: 'about-link',
+    icon: largeIcon,
+    summary: summary
+  });
+}
+/**
+ * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {boolean} protectionsEnabled
+ * @returns {HTMLElement}
+ */
+
+
+function heroFromTabNonTrackers(requestDetails, protectionsEnabled) {
+  var summary = (0, _thirdpartyText.thirdpartySummary)(requestDetails, protectionsEnabled);
+  var icon = (0, _thirdpartyText.thirdpartyHeroIcon)(requestDetails, protectionsEnabled);
+  var largeIcon = largeHeroIcon({
+    status: icon
+  });
+  return heroTemplate({
+    suffix: 'about-link',
+    icon: largeIcon,
+    summary: summary
+  });
 }
 /**
  * @param {object} ops
@@ -33504,7 +33538,7 @@ function heroTemplate(ops) {
 
 
 function largeHeroIcon(ops) {
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"large-icon-container hero-icon--", "\"></div>"])), ops.status);
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<div class=\"large-icon-container hero-icon--", "\"></div>"])), ops.status);
 }
 /**
  * @param {object} opts
@@ -33515,10 +33549,10 @@ function largeHeroIcon(ops) {
 function topNav() {
   var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var variant = (0, _environmentCheck.isIOS)() || (0, _environmentCheck.isAndroid)() ? 'tall' : 'short';
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
+  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
 }
 
-},{"../../base/localize.es6":74,"../../environment-check":82,"bel":31}],100:[function(require,module,exports){
+},{"../../base/localize.es6":74,"../../environment-check":82,"./about-link":98,"./thirdparty-text.es6":102,"./tracker-networks-text.es6":104,"bel":31}],100:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34156,6 +34190,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.renderCompany = renderCompany;
 exports.renderSections = renderSections;
+exports.sectionsFromSiteTrackers = sectionsFromSiteTrackers;
 exports.trackerListWrapper = trackerListWrapper;
 exports.trackerNetworksTemplate = trackerNetworksTemplate;
 
@@ -34169,13 +34204,9 @@ var _heroEs = require("./shared/hero.es6.js");
 
 var _utilsEs = require("./shared/utils.es6.js");
 
-var _trackerNetworksText = require("./shared/tracker-networks-text.es6");
-
-var _aboutLink = require("./shared/about-link");
-
 var _platformLimitations = require("./shared/platform-limitations");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -34187,29 +34218,9 @@ function trackerNetworksTemplate() {
     return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
   }
 
-  var summary = (0, _trackerNetworksText.trackerNetworkSummary)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-  var blocked = this.model.site.tab.requestDetails.blocked;
-  var sections = renderSections([{
-    name: 'blocked',
-    heading: function heading() {
-      return null;
-    },
-    companies: blocked.sortedByPrevalence(),
-    bordered: true
-  }]);
-  var icon = renderHeroIcon(this.model.site);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides\">\n            <div class=\"key-insight\">\n                ", "\n                <p class=\"token-title-3\">", "</p>\n                <p>", "</p>\n            </div>\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), icon, summary, (0, _aboutLink.aboutLink)(), sections, this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} site
- */
-
-
-function renderHeroIcon(site) {
-  var icon = (0, _trackerNetworksText.trackerNetworksHeroIcon)(site.tab.requestDetails, site.protectionsEnabled);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["", ""])), (0, _heroEs.largeHeroIcon)({
-    status: icon
-  }));
+  var sections = sectionsFromSiteTrackers(this.model.site);
+  var hero = (0, _heroEs.heroFromTabTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
 }
 /**
  * This is exported so that the allowedRequests UI can re-use the template
@@ -34221,7 +34232,7 @@ function renderHeroIcon(site) {
 
 
 function trackerListWrapper(name, heading, companiesList, bordered) {
-  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\">\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-test-id=\"sectionHeading\">", "</li>"])), heading) : (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral([""]))), companiesList);
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\">\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-test-id=\"sectionHeading\">", "</li>"])), heading) : (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral([""]))), companiesList);
 }
 /**
  * @param {import("../../browser/utils/request-details.js").AggregateCompanyData} company
@@ -34234,12 +34245,12 @@ function renderCompany(company) {
   }
 
   var slug = company.normalizedName;
-  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["<li class=\"site-info__trackers__company-list-item\" data-test-id=\"entityListItem\">\n        <h1 title=\"", "\" class=\"site-info__domain block token-title-3-em\" data-test-id=\"entityTitle\">\n            <span class=\"site-info__tracker__icon site-info__tracker__icon--company ", " color-", " ", "\"></span>\n            ", "\n        </h1>\n        <ol class=\"default-list site-info__trackers__company-list__url-list\" aria-label=\"", "\">\n            ", "\n        </ol>\n    </li>"])), company.name || company.displayName, slug[0].toUpperCase(), (0, _utilsEs.getColorId)(slug), slug, company.displayName, _localize.i18n.t('site:trackerDomainsForCompany.title', {
+  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<li class=\"site-info__trackers__company-list-item\" data-test-id=\"entityListItem\">\n        <h1 title=\"", "\" class=\"site-info__domain block token-title-3-em\" data-test-id=\"entityTitle\">\n            <span class=\"site-info__tracker__icon site-info__tracker__icon--company ", " color-", " ", "\"></span>\n            ", "\n        </h1>\n        <ol class=\"default-list site-info__trackers__company-list__url-list\" aria-label=\"", "\">\n            ", "\n        </ol>\n    </li>"])), company.name || company.displayName, slug[0].toUpperCase(), (0, _utilsEs.getColorId)(slug), slug, company.displayName, _localize.i18n.t('site:trackerDomainsForCompany.title', {
     companyName: company.displayName
   }), Object.keys(company.urls).map(function (urlHostname) {
     var url = company.urls[urlHostname];
     var matched = _constants.displayCategories[url.category];
-    return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n                <li data-test-id=\"entityUrlListItem\" class=\"url-list-item\">\n                    <div class=\"url\" title=\"", "\">", "</div>\n                    ", "\n                </li>"])), urlHostname, urlHostname, matched ? (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<div class=\"category\">", "</div>"])), _localize.i18n.t(matched)) : '');
+    return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n                <li data-test-id=\"entityUrlListItem\" class=\"url-list-item\">\n                    <div class=\"url\" title=\"", "\">", "</div>\n                    ", "\n                </li>"])), urlHostname, urlHostname, matched ? (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<div class=\"category\">", "</div>"])), _localize.i18n.t(matched)) : '');
   }));
 }
 /**
@@ -34266,8 +34277,25 @@ function renderSections(sections) {
   });
   return output;
 }
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} site
+ */
 
-},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/about-link":98,"./shared/hero.es6.js":99,"./shared/platform-limitations":100,"./shared/tracker-networks-text.es6":104,"./shared/utils.es6.js":105,"bel":31}],108:[function(require,module,exports){
+
+function sectionsFromSiteTrackers(site) {
+  var blocked = site.tab.requestDetails.blocked;
+  var sections = renderSections([{
+    name: 'blocked',
+    heading: function heading() {
+      return null;
+    },
+    companies: blocked.sortedByPrevalence(),
+    bordered: true
+  }]);
+  return sections;
+}
+
+},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/hero.es6.js":99,"./shared/platform-limitations":100,"./shared/utils.es6.js":105,"bel":31}],108:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34496,11 +34524,7 @@ var _switch = require("@material/switch");
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
-var _thirdpartyText = require("../templates/shared/thirdparty-text.es6");
-
 var _environmentCheck = require("../environment-check.js");
-
-var _trackerNetworksTextEs = require("../templates/shared/tracker-networks-text.es6.js");
 
 var _emailProtection = _interopRequireDefault(require("../models/email-protection.es6"));
 
@@ -34521,6 +34545,8 @@ var _communicationEs = _interopRequireDefault(require("../../browser/communicati
 var _trackerNetworks = require("../templates/tracker-networks.es6");
 
 var _nonTrackers = require("../templates/non-trackers.es6");
+
+var _hero = require("../templates/shared/hero.es6");
 
 var _utils = require("./utils/utils.js");
 
@@ -34668,14 +34694,16 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     if (this.$body.hasClass('is-disabled')) return;
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _trackerNetworks.trackerNetworksTemplate,
-      heroFn: _trackerNetworksTextEs.trackerNetworksHeroIcon
+      heroFn: _hero.heroFromTabTrackers,
+      detailsFn: _trackerNetworks.sectionsFromSiteTrackers
     });
   },
   _showPageNonTrackers: function _showPageNonTrackers(e) {
     if (this.$body.hasClass('is-disabled')) return;
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _nonTrackers.nonTrackersTemplate,
-      heroFn: _thirdpartyText.thirdpartyHeroIcon
+      heroFn: _hero.heroFromTabNonTrackers,
+      detailsFn: _nonTrackers.sectionsFromSiteNonTracker
     });
   },
   _showPageConnection: function _showPageConnection(e) {
@@ -34736,7 +34764,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 var _default = Site;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":92,"../templates/email-protection.es6":93,"../templates/non-trackers.es6":95,"../templates/search.es6":97,"../templates/shared/thirdparty-text.es6":102,"../templates/shared/tracker-networks-text.es6.js":104,"../templates/tracker-networks.es6":107,"./../templates/breakage-form.es6.js":91,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":108,"./../views/tracker-networks.es6.js":115,"./cta-rotation.es6":109,"./email-protection.es6":110,"./search.es6":111,"./utils/utils.js":116,"@material/switch":29,"jquery":46}],113:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":92,"../templates/email-protection.es6":93,"../templates/non-trackers.es6":95,"../templates/search.es6":97,"../templates/shared/hero.es6":99,"../templates/tracker-networks.es6":107,"./../templates/breakage-form.es6.js":91,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":108,"./../views/tracker-networks.es6.js":115,"./cta-rotation.es6":109,"./email-protection.es6":110,"./search.es6":111,"./utils/utils.js":116,"@material/switch":29,"jquery":46}],113:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35285,23 +35313,43 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _slidingSubviewEs = _interopRequireDefault(require("./sliding-subview.es6.js"));
 
-var _heroEs = require("./../templates/shared/hero.es6.js");
-
 var _siteCompanyListEs = _interopRequireDefault(require("./../models/site-company-list.es6.js"));
 
 var _siteEs = _interopRequireDefault(require("./../models/site.es6.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function TrackerNetworks(ops) {
+/**
+ * @param {object} opts
+ * @param {any} opts.template
+ * @param {import("../templates/shared/hero.es6").heroFromTabTrackers} [opts.heroFn]
+ * @param {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers} [opts.detailsFn]
+ * @constructor
+ */
+function TrackerNetworks(opts) {
   // model data is async
+
+  /** @type {import("jquery") | null} */
+  this.$hero = null;
+  /** @type {import("jquery") | null} */
+
+  this.$details = null;
   this.model = null;
   this.currentModelName = null;
   this.currentSiteModelName = null;
-  this.template = ops.template;
-  this.heroFn = ops.heroFn; // @ts-ignore
+  this.template = opts.template;
+  /**
+   * @type {import("../templates/shared/hero.es6").heroFromTabTrackers | undefined}
+   */
 
-  _slidingSubviewEs["default"].call(this, ops); // @ts-ignore
+  this.heroFn = opts.heroFn;
+  /**
+   * @type {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers | undefined}
+   */
+
+  this.detailsFn = opts.detailsFn; // @ts-ignore
+
+  _slidingSubviewEs["default"].call(this, opts); // @ts-ignore
 
 
   this.renderAsyncContent();
@@ -35342,16 +35390,26 @@ _slidingSubviewEs["default"].prototype, {
       });
     });
   },
-  _renderHeroTemplate: function _renderHeroTemplate() {
-    if (this.model.site) {
-      var _this$heroFn;
 
-      /** @type {import('./../models/site.es6.js').PublicSiteModel} */
+  /**
+   * @this {TrackerNetworks}
+   */
+  _renderHeroTemplate: function _renderHeroTemplate() {
+    if (this.model.site && this.heroFn) {
+      var _this$$hero;
+
+      // /** @type {import('./../models/site.es6.js').PublicSiteModel} */
       var site = this.model.site;
-      var icon = (_this$heroFn = this.heroFn) === null || _this$heroFn === void 0 ? void 0 : _this$heroFn.call(this, site.tab.requestDetails, site.protectionsEnabled);
-      this.$hero.html((0, _heroEs.heroTemplate)({
-        status: icon
-      }));
+      var heroElement = this.heroFn(site.tab.requestDetails, site.protectionsEnabled);
+      (_this$$hero = this.$hero) === null || _this$$hero === void 0 ? void 0 : _this$$hero.html(heroElement);
+    }
+
+    if (this.model.site && this.detailsFn) {
+      var _this$$details;
+
+      var _site = this.model.site;
+      var detailsElement = this.detailsFn(_site);
+      (_this$$details = this.$details) === null || _this$$details === void 0 ? void 0 : _this$$details.html(detailsElement);
     }
   },
   _rerender: function _rerender(e) {
@@ -35369,7 +35427,7 @@ _slidingSubviewEs["default"].prototype, {
 var _default = TrackerNetworks;
 exports["default"] = _default;
 
-},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./../templates/shared/hero.es6.js":99,"./sliding-subview.es6.js":113,"jquery":46}],116:[function(require,module,exports){
+},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./sliding-subview.es6.js":113,"jquery":46}],116:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

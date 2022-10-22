@@ -1,10 +1,9 @@
 import bel from 'bel'
 import { ns } from '../base/localize.es6.js'
 import { states } from '../../browser/utils/request-details'
-import { largeHeroIcon, topNav } from './shared/hero.es6.js'
+import { heroFromTabNonTrackers, topNav } from './shared/hero.es6.js'
 import { renderSections } from './tracker-networks.es6'
-import { thirdpartySummary, thirdpartyHeroIcon } from './shared/thirdparty-text.es6'
-import { aboutLink, adAttributionLink } from './shared/about-link'
+import { adAttributionLink } from './shared/about-link'
 import { platformLimitations } from './shared/platform-limitations'
 
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
@@ -13,19 +12,16 @@ export function nonTrackersTemplate () {
         return bel`<section class="sliding-subview"></section>`
     }
 
-    const summary = thirdpartySummary(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
-    const sections = renderNonTrackerDetails(this.model.site)
-    const icon = renderHeroIcon(this.model.site)
+    const sections = sectionsFromSiteNonTracker(this.model.site)
+    const hero = heroFromTabNonTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
 
     return bel`
     <div class="site-info card">
         ${topNav()}
-        <div class="padded-sides">
-            <div class="key-insight">
-                ${icon}
-                <p class="token-title-3">${summary}</p>
-                <p>${aboutLink()}</p>
-            </div>
+        <div class="padded-sides js-tracker-networks-hero">
+            ${hero}
+        </div>
+        <div class="padded-sides js-tracker-networks-details">
             ${sections}
         </div>
         ${this.model.site.tab.platformLimitations ? platformLimitations() : null}
@@ -35,17 +31,7 @@ export function nonTrackersTemplate () {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
  */
-function renderHeroIcon (site) {
-    const icon = thirdpartyHeroIcon(site.tab.requestDetails, site.protectionsEnabled)
-    return bel`${largeHeroIcon({
-        status: icon
-    })}`
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} site
- */
-function renderNonTrackerDetails (site) {
+export function sectionsFromSiteNonTracker (site) {
     const requestDetails = site.tab.requestDetails
     const onlyAllowedNonTrackers = requestDetails.matches(site.protectionsEnabled, [
         states.protectionsOn_allowedNonTrackers,

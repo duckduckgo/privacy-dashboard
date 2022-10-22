@@ -1,9 +1,7 @@
 import { MDCSwitch } from '@material/switch'
 // @ts-ignore
 import $ from 'jquery'
-import { thirdpartyHeroIcon } from '../templates/shared/thirdparty-text.es6'
 import { isAndroid } from '../environment-check.js'
-import { trackerNetworksHeroIcon } from '../templates/shared/tracker-networks-text.es6.js'
 import EmailProtectionModel from '../models/email-protection.es6'
 import emailProtectionTemplate from '../templates/email-protection.es6'
 import SearchModel from '../models/search.es6'
@@ -12,8 +10,9 @@ import Parent from '../base/view.es6'
 import { CtaRotationModel } from '../models/cta-rotation.es6'
 import ctaRotationView from '../templates/cta-rotation.es6'
 import browserUIWrapper from '../../browser/communication.es6.js'
-import { trackerNetworksTemplate } from '../templates/tracker-networks.es6'
-import { nonTrackersTemplate } from '../templates/non-trackers.es6'
+import { sectionsFromSiteTrackers, trackerNetworksTemplate } from '../templates/tracker-networks.es6'
+import { nonTrackersTemplate, sectionsFromSiteNonTracker } from '../templates/non-trackers.es6'
+import { heroFromTabNonTrackers, heroFromTabTrackers } from '../templates/shared/hero.es6'
 import { setupMaterialDesignRipple } from './utils/utils.js'
 import BreakageFormView from './../views/breakage-form.es6.js'
 import pageConnectionTemplate from './../templates/page-connection.es6.js'
@@ -162,7 +161,8 @@ Site.prototype = $.extend({},
             if (this.$body.hasClass('is-disabled')) return
             this.views.slidingSubview = new TrackerNetworksView({
                 template: trackerNetworksTemplate,
-                heroFn: trackerNetworksHeroIcon
+                heroFn: heroFromTabTrackers,
+                detailsFn: sectionsFromSiteTrackers
             })
         },
 
@@ -170,7 +170,8 @@ Site.prototype = $.extend({},
             if (this.$body.hasClass('is-disabled')) return
             this.views.slidingSubview = new TrackerNetworksView({
                 template: nonTrackersTemplate,
-                heroFn: thirdpartyHeroIcon
+                heroFn: heroFromTabNonTrackers,
+                detailsFn: sectionsFromSiteNonTracker
             })
         },
 

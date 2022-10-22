@@ -1,7 +1,6 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6.js'
-import { largeHeroIcon, topNav } from './shared/hero.es6.js'
-import { aboutLink } from './shared/about-link.js'
+import { heroTemplate, largeHeroIcon, topNav } from './shared/hero.es6.js'
 
 /**
  * @this {{
@@ -21,15 +20,17 @@ export default function () {
         status: `connection-${this.model.site.httpsState}`
     })
 
+    const hero = heroTemplate({
+        icon,
+        summary,
+        suffix: 'none'
+    })
+
     return bel`
     <div class="site-info card">
         ${topNav()}
         <div class="padded-sides">
-            <div class="key-insight">
-                ${icon}
-                <p class="token-title-3">${summary}</p>
-                <p>${aboutLink()}</p>
-            </div>
+            ${hero}
             ${renderCertificateDetails(this.model.site, this.model.tab)}
         </div>
     </div>`

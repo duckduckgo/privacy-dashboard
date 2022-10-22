@@ -1,10 +1,8 @@
 import bel from 'bel'
 import { displayCategories } from '../../../data/constants'
 import { i18n } from '../base/localize.es6'
-import { largeHeroIcon, topNav } from './shared/hero.es6.js'
+import { heroFromTabTrackers, topNav } from './shared/hero.es6.js'
 import { getColorId } from './shared/utils.es6.js'
-import { trackerNetworksHeroIcon, trackerNetworkSummary } from './shared/tracker-networks-text.es6'
-import { aboutLink } from './shared/about-link'
 import { platformLimitations } from './shared/platform-limitations'
 
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
@@ -13,41 +11,20 @@ export function trackerNetworksTemplate () {
         return bel`<section class="sliding-subview"></section>`
     }
 
-    const summary = trackerNetworkSummary(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
-    const { blocked } = this.model.site.tab.requestDetails
-    const sections = renderSections([
-        {
-            name: 'blocked',
-            heading: () => null,
-            companies: blocked.sortedByPrevalence(),
-            bordered: true
-        }
-    ])
-    const icon = renderHeroIcon(this.model.site)
+    const sections = sectionsFromSiteTrackers(this.model.site)
+    const hero = heroFromTabTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
 
     return bel`
     <div class="site-info card">
         ${topNav()}
-        <div class="padded-sides">
-            <div class="key-insight">
-                ${icon}
-                <p class="token-title-3">${summary}</p>
-                <p>${aboutLink()}</p>
-            </div>
+        <div class="padded-sides js-tracker-networks-hero">
+            ${hero}
+        </div>
+        <div class="padded-sides js-tracker-networks-details">
             ${sections}
         </div>
         ${this.model.site.tab.platformLimitations ? platformLimitations() : null}
     </div>`
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} site
- */
-function renderHeroIcon (site) {
-    const icon = trackerNetworksHeroIcon(site.tab.requestDetails, site.protectionsEnabled)
-    return bel`${largeHeroIcon({
-        status: icon
-    })}`
 }
 
 /**
@@ -118,4 +95,20 @@ export function renderSections (sections) {
         })
 
     return output
+}
+
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} site
+ */
+export function sectionsFromSiteTrackers (site) {
+    const { blocked } = site.tab.requestDetails
+    const sections = renderSections([
+        {
+            name: 'blocked',
+            heading: () => null,
+            companies: blocked.sortedByPrevalence(),
+            bordered: true
+        }
+    ])
+    return sections
 }
