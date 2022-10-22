@@ -1,0 +1,31 @@
+{
+    "requests": [
+        {
+            "category": "Content Delivery",
+            "url": "https://images-eu.ssl-images-amazon.com/images/I/019KkYeBraL.js?AUIClients/ShoppingPortalAssets-cookieConsent#mobile",
+            "pageUrl": "https://www.amazon.co.uk/",
+            "ownerName": "Amazon Technologies, Inc.",
+            "entityName": "Amazon.com",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 21.5
+        },
+        {
+            "category": "Analytics",
+            "url": "https://completion.amazon.com/",
+            "pageUrl": "https://www.amazon.co.uk/",
+            "ownerName": "Amazon Technologies, Inc.",
+            "entityName": "Amazon.com",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "prevalence": 21.5
+        }
+    ],
+    "installedSurrogates": []
+}
