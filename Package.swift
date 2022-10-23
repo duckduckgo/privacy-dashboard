@@ -21,12 +21,12 @@ let package = Package(
             name: "PrivacyDashboardResources",
             dependencies: [.target(name: "PrivacyDashboard-resources")],
             path: "swift-package/Sources"),
-        
+
         .target(
             name: "PrivacyDashboard-resources",
-            path: "swift-package/Resources",
-            resources: [.copy("assets")]),
-    
+            path: "build",
+            resources: [.copy("app")]),
+
         .testTarget(
             name: "PrivacyDashboardTests",
             dependencies: ["PrivacyDashboardResources"],

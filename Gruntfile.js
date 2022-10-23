@@ -89,17 +89,16 @@ module.exports = function (grunt) {
         watch: {
             sass: {
                 files: ['shared/scss/**/*'],
-                tasks: ['sass', 'exec:copyTEMP'],
+                tasks: ['sass'],
             },
             scripts: {
                 files: ['shared/js/**/*', 'shared/html/**/*', 'shared/locales/**/*', 'fixtures/**/*.json', 'schema/**/*.json'],
-                tasks: ['exec:schema', 'browserify:ui', 'copy:html', 'copy:index', 'exec:buildHtml', 'exec:copyTEMP'],
+                tasks: ['exec:schema', 'browserify:ui', 'copy:html', 'copy:index', 'exec:buildHtml'],
             },
         },
         exec: {
             schema: 'npm run schema',
             buildHtml: 'node scripts/duplicate-html.js',
-            copyTEMP: 'cp -R build/app/ swift-package/Resources/assets',
         },
     })
 
@@ -111,7 +110,6 @@ module.exports = function (grunt) {
         'copy:index',
         'copy:images',
         'exec:buildHtml',
-        'exec:copyTEMP',
     ])
     grunt.registerTask('default', 'build')
     grunt.registerTask('dev', ['default', 'watch'])

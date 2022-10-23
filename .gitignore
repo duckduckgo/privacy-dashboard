@@ -14,5 +14,4 @@ __diff_output__
 /test-results/
 /playwright-report/
 /playwright/.cache/
-/swift-package/Resources/assets/docs
 build/app/html/iframe.html
