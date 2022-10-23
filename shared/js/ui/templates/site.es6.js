@@ -44,7 +44,7 @@ export default function () {
                     ${renderThirdPartyNew(this.model)}
                 </li>
                 ${
-                    this.model.tab?.consentManaged
+                    this.model.tab?.consentManaged?.consentManaged
                         ? bel`<li class="link-item js-site-show-consent-managed">
                     ${renderCookieConsentManaged(this.model)}
                 </li>`

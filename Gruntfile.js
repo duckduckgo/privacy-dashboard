@@ -99,7 +99,7 @@ module.exports = function (grunt) {
         exec: {
             schema: 'npm run schema',
             buildHtml: 'node scripts/duplicate-html.js',
-            copyTEMP: 'cp -R build/app/ swift-package/Resources/ios/assets',
+            copyTEMP: 'cp -R build/app/ swift-package/Resources/assets',
         },
     })
 

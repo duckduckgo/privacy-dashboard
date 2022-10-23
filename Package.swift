@@ -19,20 +19,12 @@ let package = Package(
     targets: [
         .target(
             name: "PrivacyDashboardResources",
-            dependencies: [
-                           .target(name: "PrivacyDashboard-resources-for-ios", condition: .when(platforms: [.iOS])),
-                           .target(name: "PrivacyDashboard-resources-for-macos", condition: .when(platforms: [.macOS]))
-                          ],
+            dependencies: [.target(name: "PrivacyDashboard-resources")],
             path: "swift-package/Sources"),
         
         .target(
-            name: "PrivacyDashboard-resources-for-ios",
-            path: "swift-package/Resources/ios",
-            resources: [.copy("assets")]),
-    
-        .target(
-            name: "PrivacyDashboard-resources-for-macos",
-            path: "swift-package/Resources/macos",
+            name: "PrivacyDashboard-resources",
+            path: "swift-package/Resources",
             resources: [.copy("assets")]),
     
         .testTarget(
