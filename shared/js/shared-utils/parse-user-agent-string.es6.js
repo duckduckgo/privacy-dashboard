@@ -1,4 +1,4 @@
-module.exports = (uaString) => {
+export default function (uaString) {
     if (!globalThis.navigator) return
 
     if (!uaString) uaString = globalThis.navigator.userAgent

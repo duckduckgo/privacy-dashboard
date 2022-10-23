@@ -1,7 +1,7 @@
 import { test as baseTest, expect } from '@playwright/test'
 import { forwardConsole, withWebkitRequests } from './helpers'
 
-const HTML = '/swift-package/Resources/ios/assets/html/ios.html'
+const HTML = '/swift-package/Resources/assets/html/ios.html'
 
 const test = baseTest.extend({
     iosMocks: [

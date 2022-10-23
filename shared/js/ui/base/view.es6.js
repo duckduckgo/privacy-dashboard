@@ -1,7 +1,6 @@
-// @ts-nocheck
 import $ from 'jquery'
-import mixins from './mixins/index.es6.js'
-import store from './store.es6.js'
+import * as mixins from './mixins/index.es6.js'
+import * as store from './store.es6.js'
 
 /**
  * Abstract Base class for any type of view.
@@ -13,7 +12,6 @@ import store from './store.es6.js'
  * @constructor
  * @param {object} ops
  */
-
 function BaseView(ops) {
     this.model = ops.model
     this.views = this.views || {}
@@ -28,9 +26,11 @@ function BaseView(ops) {
 
     if (ops.events) {
         for (const id in ops.events) {
+            // @ts-ignore
             this.on(id, ops.events[id])
         }
     }
+    // @ts-ignore
     this._render(ops)
 }
 
@@ -67,7 +67,7 @@ BaseView.prototype = $.extend({}, mixins.events, {
      */
     destroyChildViews: function () {
         // eslint-disable-next-line
-        !(function destroyViews(views) {
+        ;(function destroyViews(views) {
             if (!views) {
                 return
             }
@@ -106,6 +106,7 @@ BaseView.prototype = $.extend({}, mixins.events, {
      * a view may need to do.
      *
      * @param {object} ops - the same ops hash passed into the view constructor
+     * @this {any}
      */
     _render: function (ops) {
         if (!this.$el) {
@@ -122,6 +123,9 @@ BaseView.prototype = $.extend({}, mixins.events, {
         this.$ = this.$el.find.bind(this.$el)
     },
 
+    /**
+     * @this {any}
+     */
     _rerender: function () {
         const $prev = this.$el.prev()
         if ($prev.length) {
@@ -165,6 +169,7 @@ BaseView.prototype = $.extend({}, mixins.events, {
      *
      * @param {String} prefix
      * @param {Array} elems
+     * @this {any}
      */
     _cacheElems: function (prefix, elems) {
         for (let i = 0; i < elems.length; i++) {

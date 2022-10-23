@@ -28466,20 +28466,24 @@ exports.apiSchema = apiSchema;
 },{"zod":55}],60:[function(require,module,exports){
 "use strict";
 
-module.exports = {
-  displayCategories: {
-    Analytics: 'site:analyticsCategory.title',
-    Advertising: 'site:advertisingCategory.title',
-    'Social Network': 'site:socialCategory.title',
-    'Content Delivery': 'site:contentDeliveryCategory.title',
-    'Embedded Content': 'site:embeddedContentCategory.title'
-  },
-  httpsMessages: {
-    secure: 'site:connectionSecure.title',
-    upgraded: 'site:connectionSecure.title',
-    none: 'site:connectionNotSecure.title'
-  }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.httpsMessages = exports.displayCategories = void 0;
+var displayCategories = {
+  Analytics: 'site:analyticsCategory.title',
+  Advertising: 'site:advertisingCategory.title',
+  'Social Network': 'site:socialCategory.title',
+  'Content Delivery': 'site:contentDeliveryCategory.title',
+  'Embedded Content': 'site:embeddedContentCategory.title'
 };
+exports.displayCategories = displayCategories;
+var httpsMessages = {
+  secure: 'site:connectionSecure.title',
+  upgraded: 'site:connectionSecure.title',
+  none: 'site:connectionNotSecure.title'
+};
+exports.httpsMessages = httpsMessages;
 
 },{}],61:[function(require,module,exports){
 "use strict";
@@ -31158,7 +31162,12 @@ function setup() {
 },{"../../../schema/__generated__/schema.parsers":59,"./common.es6":63,"./utils/request-details":69}],71:[function(require,module,exports){
 "use strict";
 
-module.exports = function (uaString) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+function _default(uaString) {
   if (!globalThis.navigator) return;
   if (!uaString) uaString = globalThis.navigator.userAgent;
   var browser;
@@ -31192,7 +31201,7 @@ module.exports = function (uaString) {
     browser: browser,
     version: version
   };
-};
+}
 
 },{}],72:[function(require,module,exports){
 "use strict";
@@ -31201,7 +31210,6 @@ var _popupEs = require("../pages/popup.es6.js");
 
 var _loadcss = require("./loadcss.js");
 
-// @ts-nocheck
 (0, _popupEs.initPopup)();
 (0, _loadcss.loadCss)();
 
@@ -31307,73 +31315,78 @@ exports.ns = ns;
 },{"../../../locales/bg/connection.json":117,"../../../locales/bg/ctascreens.json":118,"../../../locales/bg/permissions.json":119,"../../../locales/bg/report.json":120,"../../../locales/bg/shared.json":121,"../../../locales/bg/site.json":122,"../../../locales/cs/connection.json":123,"../../../locales/cs/ctascreens.json":124,"../../../locales/cs/permissions.json":125,"../../../locales/cs/report.json":126,"../../../locales/cs/shared.json":127,"../../../locales/cs/site.json":128,"../../../locales/da/connection.json":129,"../../../locales/da/ctascreens.json":130,"../../../locales/da/permissions.json":131,"../../../locales/da/report.json":132,"../../../locales/da/shared.json":133,"../../../locales/da/site.json":134,"../../../locales/de/connection.json":135,"../../../locales/de/ctascreens.json":136,"../../../locales/de/permissions.json":137,"../../../locales/de/report.json":138,"../../../locales/de/shared.json":139,"../../../locales/de/site.json":140,"../../../locales/el/connection.json":141,"../../../locales/el/ctascreens.json":142,"../../../locales/el/permissions.json":143,"../../../locales/el/report.json":144,"../../../locales/el/shared.json":145,"../../../locales/el/site.json":146,"../../../locales/en/connection.json":147,"../../../locales/en/ctascreens.json":148,"../../../locales/en/permissions.json":149,"../../../locales/en/report.json":150,"../../../locales/en/shared.json":151,"../../../locales/en/site.json":152,"../../../locales/es/connection.json":153,"../../../locales/es/ctascreens.json":154,"../../../locales/es/permissions.json":155,"../../../locales/es/report.json":156,"../../../locales/es/shared.json":157,"../../../locales/es/site.json":158,"../../../locales/et/connection.json":159,"../../../locales/et/ctascreens.json":160,"../../../locales/et/permissions.json":161,"../../../locales/et/report.json":162,"../../../locales/et/shared.json":163,"../../../locales/et/site.json":164,"../../../locales/fi/connection.json":165,"../../../locales/fi/ctascreens.json":166,"../../../locales/fi/permissions.json":167,"../../../locales/fi/report.json":168,"../../../locales/fi/shared.json":169,"../../../locales/fi/site.json":170,"../../../locales/fr/connection.json":171,"../../../locales/fr/ctascreens.json":172,"../../../locales/fr/permissions.json":173,"../../../locales/fr/report.json":174,"../../../locales/fr/shared.json":175,"../../../locales/fr/site.json":176,"../../../locales/hr/connection.json":177,"../../../locales/hr/ctascreens.json":178,"../../../locales/hr/permissions.json":179,"../../../locales/hr/report.json":180,"../../../locales/hr/shared.json":181,"../../../locales/hr/site.json":182,"../../../locales/hu/connection.json":183,"../../../locales/hu/ctascreens.json":184,"../../../locales/hu/permissions.json":185,"../../../locales/hu/report.json":186,"../../../locales/hu/shared.json":187,"../../../locales/hu/site.json":188,"../../../locales/it/connection.json":189,"../../../locales/it/ctascreens.json":190,"../../../locales/it/permissions.json":191,"../../../locales/it/report.json":192,"../../../locales/it/shared.json":193,"../../../locales/it/site.json":194,"../../../locales/lt/connection.json":195,"../../../locales/lt/ctascreens.json":196,"../../../locales/lt/permissions.json":197,"../../../locales/lt/report.json":198,"../../../locales/lt/shared.json":199,"../../../locales/lt/site.json":200,"../../../locales/lv/connection.json":201,"../../../locales/lv/ctascreens.json":202,"../../../locales/lv/permissions.json":203,"../../../locales/lv/report.json":204,"../../../locales/lv/shared.json":205,"../../../locales/lv/site.json":206,"../../../locales/nb/connection.json":207,"../../../locales/nb/ctascreens.json":208,"../../../locales/nb/permissions.json":209,"../../../locales/nb/report.json":210,"../../../locales/nb/shared.json":211,"../../../locales/nb/site.json":212,"../../../locales/nl/connection.json":213,"../../../locales/nl/ctascreens.json":214,"../../../locales/nl/permissions.json":215,"../../../locales/nl/report.json":216,"../../../locales/nl/shared.json":217,"../../../locales/nl/site.json":218,"../../../locales/pl/connection.json":219,"../../../locales/pl/ctascreens.json":220,"../../../locales/pl/permissions.json":221,"../../../locales/pl/report.json":222,"../../../locales/pl/shared.json":223,"../../../locales/pl/site.json":224,"../../../locales/pt/connection.json":225,"../../../locales/pt/ctascreens.json":226,"../../../locales/pt/permissions.json":227,"../../../locales/pt/report.json":228,"../../../locales/pt/shared.json":229,"../../../locales/pt/site.json":230,"../../../locales/ro/connection.json":231,"../../../locales/ro/ctascreens.json":232,"../../../locales/ro/permissions.json":233,"../../../locales/ro/report.json":234,"../../../locales/ro/shared.json":235,"../../../locales/ro/site.json":236,"../../../locales/ru/connection.json":237,"../../../locales/ru/ctascreens.json":238,"../../../locales/ru/permissions.json":239,"../../../locales/ru/report.json":240,"../../../locales/ru/shared.json":241,"../../../locales/ru/site.json":242,"../../../locales/sk/connection.json":243,"../../../locales/sk/ctascreens.json":244,"../../../locales/sk/permissions.json":245,"../../../locales/sk/report.json":246,"../../../locales/sk/shared.json":247,"../../../locales/sk/site.json":248,"../../../locales/sl/connection.json":249,"../../../locales/sl/ctascreens.json":250,"../../../locales/sl/permissions.json":251,"../../../locales/sl/report.json":252,"../../../locales/sl/shared.json":253,"../../../locales/sl/site.json":254,"../../../locales/sv/connection.json":255,"../../../locales/sv/ctascreens.json":256,"../../../locales/sv/permissions.json":257,"../../../locales/sv/report.json":258,"../../../locales/sv/shared.json":259,"../../../locales/sv/site.json":260,"../../../locales/tr/connection.json":261,"../../../locales/tr/ctascreens.json":262,"../../../locales/tr/permissions.json":263,"../../../locales/tr/report.json":264,"../../../locales/tr/shared.json":265,"../../../locales/tr/site.json":266,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bindEvents = bindEvents;
+exports.unbindEvents = unbindEvents;
+
 /* eslint-disable */
-// @ts-nocheck
-module.exports = {
-  /** @type {any} */
-  bindEvents: function bindEvents(events) {
-    if (!this._bEvents) {
-      this._bEvents = [];
-    }
 
-    for (var i = 0, evt; evt = events[i]; i++) {
-      if (evt.length < 2 || !evt[0] || !evt[1] || !evt[2]) {
-        continue;
-      }
-
-      var eventObject = {
-        bound: evt[2].bind(this),
-        evt: evt
-      };
-
-      if (typeof evt[0] === 'string') {
-        this.$ && this.$(evt[0]).on(evt[1], eventObject.bound);
-      } else {
-        evt[0].on(evt[1], eventObject.bound);
-      }
-
-      this._bEvents.push(eventObject);
-    }
-  },
-
-  /** @type {any} */
-  unbindEvents: function unbindEvents() {
-    while (this._bEvents && this._bEvents.length) {
-      var eventObject = this._bEvents[this._bEvents.length - 1];
-      var evt = eventObject.evt;
-
-      if (evt) {
-        if (typeof evt[0] === 'string') {
-          this.$ && this.$(evt[0]).off(evt[1], eventObject.bound);
-        } else {
-          evt[0].off(evt[1], eventObject.bound);
-        }
-      }
-
-      this._bEvents.pop();
-    }
-
-    this._bEvents = null;
+/** @this {any} */
+function bindEvents(events) {
+  if (!this._bEvents) {
+    this._bEvents = [];
   }
-};
+
+  for (var i = 0, evt; evt = events[i]; i++) {
+    if (evt.length < 2 || !evt[0] || !evt[1] || !evt[2]) {
+      continue;
+    }
+
+    var eventObject = {
+      bound: evt[2].bind(this),
+      evt: evt
+    };
+
+    if (typeof evt[0] === 'string') {
+      this.$ && this.$(evt[0]).on(evt[1], eventObject.bound);
+    } else {
+      evt[0].on(evt[1], eventObject.bound);
+    }
+
+    this._bEvents.push(eventObject);
+  }
+}
+/** @this {any} */
+
+
+function unbindEvents() {
+  while (this._bEvents && this._bEvents.length) {
+    var eventObject = this._bEvents[this._bEvents.length - 1];
+    var evt = eventObject.evt;
+
+    if (evt) {
+      if (typeof evt[0] === 'string') {
+        this.$ && this.$(evt[0]).off(evt[1], eventObject.bound);
+      } else {
+        evt[0].off(evt[1], eventObject.bound);
+      }
+    }
+
+    this._bEvents.pop();
+  }
+
+  this._bEvents = null;
+}
 
 },{}],76:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.events = void 0;
+
 var events = _interopRequireWildcard(require("./events.es6.js"));
+
+exports.events = events;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-// @ts-nocheck
-module.exports = {
-  /** @type {any} */
-  events: events // ...add more here!
-
-};
 
 },{"./events.es6.js":75}],77:[function(require,module,exports){
 "use strict";
@@ -31387,31 +31400,42 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
 
-var _indexEs = _interopRequireDefault(require("./mixins/index.es6.js"));
+var mixins = _interopRequireWildcard(require("./mixins/index.es6.js"));
 
-var _storeEs = _interopRequireDefault(require("./store.es6.js"));
+var store = _interopRequireWildcard(require("./store.es6.js"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
+/**
+ * @param attrs
+ * @constructor
+ */
 function BaseModel(attrs) {
+  // this.modelName = null
   // attributes are applied directly
   // onto the instance:
   _jquery["default"].extend(this, attrs); // register model with `store` of
   // global notifications
   // (after checking `modelName` property)
+  // @ts-ignore
 
 
   if (!this.modelName || typeof this.modelName !== 'string') {
     throw new Error('cannot init model without `modelName` property');
   } else {
-    this.store = _storeEs["default"];
+    this.store = store; // @ts-ignore
+
     this.store.register(this.modelName);
   }
 }
 
-BaseModel.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
+BaseModel.prototype = _jquery["default"].extend({}, mixins.events, {
   /**
    * Setter method for modifying attributes
    * on the model. Since the attributes
@@ -31423,9 +31447,10 @@ BaseModel.prototype = _jquery["default"].extend({}, _indexEs["default"].events, 
    * to any UI components that might want to observe
    * changes and update their state.
    *
-   * @param {string or object} attr
+   * @param {string | object} attr
    * @param {*} val
    * @api public
+   * @this {any}
    */
   set: function set(attr, val) {
     /*
@@ -31499,7 +31524,7 @@ BaseModel.prototype = _jquery["default"].extend({}, _indexEs["default"].events, 
    * Broadcasts an action to other UI components
    * via notification store
    * @param action {string}
-   * @param data {could be a jquery event or other data is optional}
+   * @param data - could be a jquery event or other data is optional
    */
   send: function send(action, data) {
     if (!action) throw new Error('model.send() requires an action argument');
@@ -31535,6 +31560,14 @@ exports["default"] = _default;
 },{"../../browser/communication.es6.js":64,"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],78:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.add = add;
+exports.combine = combine;
+exports.registered = void 0;
+exports.remove = remove;
+
 /**
  * Check out notes in store.es6.js to understand what's happening here.
  */
@@ -31555,6 +31588,8 @@ var registered = {};
  * state data about each notifier, sent via events emitted
  * from the store (see store.es6.js file).
  */
+
+exports.registered = registered;
 
 function add(notifierName) {
   registered[notifierName] = function (state, notification) {
@@ -31627,20 +31662,10 @@ function remove(notifier) {
   }
 } // Public api
 
-
-module.exports = {
-  registered: registered,
-  // object containing each of our notifier funcs auto-generated by .add()
-  add: add,
-  // adds a new notifier to `registered`
-  combine: combine,
-  // similar to Redux combineReducers() function
-  remove: remove // remove a notifier from `registered` object
-
-};
-
 },{}],79:[function(require,module,exports){
 "use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -31649,20 +31674,28 @@ exports["default"] = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
-var _indexEs = _interopRequireDefault(require("./mixins/index.es6.js"));
+var mixins = _interopRequireWildcard(require("./mixins/index.es6.js"));
 
-var _storeEs = _interopRequireDefault(require("./store.es6.js"));
+var store = _interopRequireWildcard(require("./store.es6.js"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// @ts-nocheck
+/**
+ * @param ops
+ * @constructor
+ */
 function BasePage(ops) {
   this.views = {};
-  this.store = _storeEs["default"];
+  this.store = store; // @ts-ignore
+
   this.ready();
 }
 
-BasePage.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
+BasePage.prototype = _jquery["default"].extend({}, mixins.events, {
   // pageName: '' - should be unique, defined by each page subclass
   ready: function ready() {}
 });
@@ -31672,17 +31705,29 @@ exports["default"] = _default;
 },{"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],80:[function(require,module,exports){
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.publish = publish;
+exports.register = register;
+exports.remove = remove;
+exports.subscribe = void 0;
+
 var _isPlainObject = require("is-plain-object");
 
 var _deepFreeze = _interopRequireDefault(require("deep-freeze"));
 
 var _eventemitter = _interopRequireDefault(require("eventemitter2"));
 
-var _notifiersEs = _interopRequireDefault(require("./notifiers.es6.js"));
+var notifiers = _interopRequireWildcard(require("./notifiers.es6.js"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-// @ts-nocheck
 
 /**
  * Base application `store`.
@@ -31731,13 +31776,12 @@ function register(notifierName) {
     throw new Error('notifierName argument must be a string');
   }
 
-  if (_notifiersEs["default"].registered[notifierName]) {
+  if (notifiers.registered[notifierName]) {
     throw new Error("notifierName argument must be unique to store ".concat(notifierName, " already exists"));
   }
 
-  _notifiersEs["default"].add(notifierName);
-
-  var combinedNotifiers = _notifiersEs["default"].combine();
+  notifiers.add(notifierName);
+  var combinedNotifiers = notifiers.combine();
 
   if (!_store) {
     _store = _createStore(combinedNotifiers);
@@ -31768,6 +31812,7 @@ function publish(notification) {
  * Broadcasts state change events out to subscribers
  * @api private, but exposed as `store.subscribe()` for clarity
  */
+// @ts-ignore
 
 
 var _publisher = new _eventemitter["default"]();
@@ -31797,8 +31842,8 @@ function _publish(notification) {
 
 
 function remove(notifierName) {
-  if (_notifiersEs["default"].remove(notifierName)) {
-    var combinedNotifiers = _notifiersEs["default"].combine();
+  if (notifiers.remove(notifierName)) {
+    var combinedNotifiers = notifiers.combine();
 
     _store.replaceNotifier(combinedNotifiers);
   }
@@ -31862,19 +31907,14 @@ function _createStore(notifier) {
 } // Public api
 
 
-module.exports = {
-  register: register,
-  // registers a new notifier to the store (likely a model)
-  publish: publish,
-  // publish a notification from notifier to subscribers
-  subscribe: _publisher,
-  // subscribe to notifiers' notifications
-  remove: remove // remove a notifier from the store
+var subscribe = _publisher; // subscribe to notifiers' notifications
 
-};
+exports.subscribe = subscribe;
 
 },{"./notifiers.es6.js":78,"deep-freeze":33,"eventemitter2":34,"is-plain-object":45}],81:[function(require,module,exports){
 "use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -31883,13 +31923,15 @@ exports["default"] = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
-var _indexEs = _interopRequireDefault(require("./mixins/index.es6.js"));
+var mixins = _interopRequireWildcard(require("./mixins/index.es6.js"));
 
-var _storeEs = _interopRequireDefault(require("./store.es6.js"));
+var store = _interopRequireWildcard(require("./store.es6.js"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-// @ts-nocheck
 
 /**
  * Abstract Base class for any type of view.
@@ -31904,7 +31946,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function BaseView(ops) {
   this.model = ops.model;
   this.views = this.views || {};
-  this.store = _storeEs["default"]; // A jquery object should be passed in as either 'appendTo', 'before' or 'after'
+  this.store = store; // A jquery object should be passed in as either 'appendTo', 'before' or 'after'
   // indicating where on the DOM the view should be added. If none is passed
   // the view will render itself to an in-memory jquery object, but won't be added to the DOM.
 
@@ -31914,14 +31956,16 @@ function BaseView(ops) {
 
   if (ops.events) {
     for (var id in ops.events) {
+      // @ts-ignore
       this.on(id, ops.events[id]);
     }
-  }
+  } // @ts-ignore
+
 
   this._render(ops);
 }
 
-BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
+BaseView.prototype = _jquery["default"].extend({}, mixins.events, {
   /***
    * Each view should define a template
    * if it wants to be rendered and added to the DOM.
@@ -31954,7 +31998,9 @@ BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
    */
   destroyChildViews: function destroyChildViews() {
     // eslint-disable-next-line
-    !function destroyViews(views) {
+    ;
+
+    (function destroyViews(views) {
       if (!views) {
         return;
       }
@@ -31986,7 +32032,8 @@ BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
           delete views[c];
         }
       }
-    }(this.views); // eslint-disable-line
+    })(this.views); // eslint-disable-line
+
 
     delete this.views;
   },
@@ -31999,6 +32046,7 @@ BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
    * a view may need to do.
    *
    * @param {object} ops - the same ops hash passed into the view constructor
+   * @this {any}
    */
   _render: function _render(ops) {
     if (!this.$el) {
@@ -32016,6 +32064,10 @@ BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
 
     this.$ = this.$el.find.bind(this.$el);
   },
+
+  /**
+   * @this {any}
+   */
   _rerender: function _rerender() {
     var $prev = this.$el.prev();
 
@@ -32062,6 +32114,7 @@ BaseView.prototype = _jquery["default"].extend({}, _indexEs["default"].events, {
    *
    * @param {String} prefix
    * @param {Array} elems
+   * @this {any}
    */
   _cacheElems: function _cacheElems(prefix, elems) {
     for (var i = 0; i < elems.length; i++) {
@@ -32144,8 +32197,6 @@ var _communicationEs = _interopRequireDefault(require("../../browser/communicati
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// @ts-nocheck
-
 /**
  * Background messaging is done via two methods:
  *
@@ -32163,6 +32214,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
  *  Listeners must be registered in the background to respond to messages with this 'name'.
  *
  *  The common fetch method is defined in base/model.es6.js
+ *  @this {any}
  */
 function BackgroundMessage(attrs) {
   _model["default"].call(this, attrs);
@@ -32333,15 +32385,18 @@ exports["default"] = _default;
 },{"../base/model.es6":77,"jquery":46}],86:[function(require,module,exports){
 "use strict";
 
-module.exports = {
-  normalizeCompanyName: function normalizeCompanyName(companyName) {
-    return (companyName || '').toLowerCase() // Remove TLD suffixes
-    // e.g. Fixes cases like "amazon.com" -> "amazon"
-    .replace(/\.[a-z]+$/, '') // Remove non-alphanumeric characters
-    // e.g. Fixes cases like "new relic" -> "newrelic"
-    .replace(/[^a-z0-9]/g, '');
-  }
-};
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.normalizeCompanyName = normalizeCompanyName;
+
+function normalizeCompanyName(companyName) {
+  return (companyName || '').toLowerCase() // Remove TLD suffixes
+  // e.g. Fixes cases like "amazon.com" -> "amazon"
+  .replace(/\.[a-z]+$/, '') // Remove non-alphanumeric characters
+  // e.g. Fixes cases like "new relic" -> "newrelic"
+  .replace(/[^a-z0-9]/g, '');
+}
 
 },{}],87:[function(require,module,exports){
 "use strict";
@@ -32399,7 +32454,7 @@ var _model = _interopRequireDefault(require("../base/model.es6"));
 
 var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
 
-var _normalizeCompanyName = _interopRequireDefault(require("./mixins/normalize-company-name.es6"));
+var _normalizeCompanyName = require("./mixins/normalize-company-name.es6");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -32412,7 +32467,7 @@ function SiteCompanyList(attrs) {
   _model["default"].call(this, attrs);
 }
 
-SiteCompanyList.prototype = _jquery["default"].extend({}, _model["default"].prototype, _normalizeCompanyName["default"], {
+SiteCompanyList.prototype = _jquery["default"].extend({}, _model["default"].prototype, _normalizeCompanyName.normalizeCompanyName, {
   modelName: 'siteCompanyList',
 
   /** @this {any} */
@@ -32447,7 +32502,7 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _model = _interopRequireDefault(require("../base/model.es6"));
 
-var _constants = _interopRequireDefault(require("../../../data/constants"));
+var _constants = require("../../../data/constants");
 
 var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
 
@@ -32455,9 +32510,8 @@ var _localize = require("../base/localize.es6");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var httpsMessages = _constants["default"].httpsMessages; // We consider major tracker networks as those found on this percentage of sites
+// We consider major tracker networks as those found on this percentage of sites
 // that we crawl
-
 var MAJOR_TRACKER_THRESHOLD_PCT = 25;
 /** @this {any} */
 
@@ -32580,8 +32634,9 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
       this.httpsState = 'none';
     }
 
-    this.httpsStatusText = _localize.i18n.t(httpsMessages[this.httpsState]);
+    this.httpsStatusText = _localize.i18n.t(_constants.httpsMessages[this.httpsState]);
   },
+  timeout: null,
 
   /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
   handleBackgroundMsg: function handleBackgroundMsg(message) {
@@ -32590,16 +32645,19 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     if (!this.tab) return;
 
     if (message.action && message.action === 'updateTabData') {
-      _communicationEs["default"].getBackgroundTabData().then(function (_ref2) {
-        var tab = _ref2.tab,
-            emailProtectionUserData = _ref2.emailProtectionUserData;
-        _this2.tab = tab;
-        _this2.emailProtectionUserData = emailProtectionUserData;
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(function () {
+        _communicationEs["default"].getBackgroundTabData().then(function (_ref2) {
+          var tab = _ref2.tab,
+              emailProtectionUserData = _ref2.emailProtectionUserData;
+          _this2.tab = tab;
+          _this2.emailProtectionUserData = emailProtectionUserData;
 
-        _this2.update();
-      })["catch"](function (e) {
-        console.log('❌ [models/site.es6.js:handleBackgroundMsg()] --> ', e);
-      });
+          _this2.update();
+        })["catch"](function (e) {
+          console.log('❌ [models/site.es6.js:handleBackgroundMsg()] --> ', e);
+        });
+      }, 100);
     }
   },
 
@@ -32840,8 +32898,13 @@ var _siteEs3 = _interopRequireDefault(require("./../templates/site.es6.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// @ts-nocheck
 function Trackers(ops) {
+  /** @type {BackgroundMessageModel | null} */
+  this.message = null;
+  this.views = {
+    /** @type {SiteView | null} */
+    site: null
+  };
   this.$parent = (0, _jquery["default"])('#popup-container');
 
   _pageEs["default"].call(this, ops);
@@ -32849,6 +32912,10 @@ function Trackers(ops) {
 
 Trackers.prototype = _jquery["default"].extend({}, _pageEs["default"].prototype, {
   pageName: 'popup',
+
+  /**
+   * @this {Trackers}
+   */
   ready: function ready() {
     _pageEs["default"].prototype.ready.call(this);
 
@@ -33970,30 +34037,10 @@ function unreachable(x) {
 },{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],105:[function(require,module,exports){
 "use strict";
 
-var isSiteWithOnlyOwnTrackers = function isSiteWithOnlyOwnTrackers(_ref) {
-  var trackersCount = _ref.trackersCount,
-      tab = _ref.tab;
-
-  if (trackersCount === 0) {
-    return false;
-  }
-
-  for (var _i = 0, _Object$keys = Object.keys(tab.trackers); _i < _Object$keys.length; _i++) {
-    var companyName = _Object$keys[_i];
-
-    if (!isSameEntity(tab.trackers[companyName], tab.parentEntity)) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-var isSameEntity = function isSameEntity(tracker, parentEntity) {
-  var parent = (parentEntity === null || parentEntity === void 0 ? void 0 : parentEntity.displayName) || null;
-  return parent === tracker.displayName;
-};
-
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getColorId = getColorId;
 var offset = 'a'.charCodeAt(0);
 var colorCount = 16;
 
@@ -34004,12 +34051,6 @@ function getColorId(value) {
   }, 0);
   return Math.abs(sum % colorCount + 1);
 }
-
-module.exports = {
-  isSiteWithOnlyOwnTrackers: isSiteWithOnlyOwnTrackers,
-  isSameEntity: isSameEntity,
-  getColorId: getColorId
-};
 
 },{}],106:[function(require,module,exports){
 "use strict";

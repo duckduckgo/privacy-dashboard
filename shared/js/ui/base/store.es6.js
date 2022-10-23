@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Base application `store`.
  *
@@ -38,7 +37,7 @@
 import { isPlainObject } from 'is-plain-object'
 import deepFreeze from 'deep-freeze'
 import EventEmitter2 from 'eventemitter2'
-import notifiers from './notifiers.es6.js'
+import * as notifiers from './notifiers.es6.js'
 
 /**
  * .register() creates a notifier function for each caller.
@@ -83,6 +82,7 @@ function publish(notification) {
  * Broadcasts state change events out to subscribers
  * @api private, but exposed as `store.subscribe()` for clarity
  */
+// @ts-ignore
 const _publisher = new EventEmitter2()
 _publisher.setMaxListeners(100) // EventEmitter2 default of 10 is too low
 
@@ -167,9 +167,9 @@ function _createStore(notifier) {
 }
 
 // Public api
-module.exports = {
-    register: register, // registers a new notifier to the store (likely a model)
-    publish: publish, // publish a notification from notifier to subscribers
-    subscribe: _publisher, // subscribe to notifiers' notifications
-    remove: remove, // remove a notifier from the store
+export {
+    register, // registers a new notifier to the store (likely a model)
+    publish, // publish a notification from notifier to subscribers
+    remove, // remove a notifier from the store
 }
+export const subscribe = _publisher // subscribe to notifiers' notifications

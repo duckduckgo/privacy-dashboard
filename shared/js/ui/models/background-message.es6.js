@@ -1,4 +1,3 @@
-// @ts-nocheck
 import $ from 'jquery'
 import Parent from '../base/model.es6'
 import browserUIWrapper from '../../browser/communication.es6.js'
@@ -20,6 +19,7 @@ import browserUIWrapper from '../../browser/communication.es6.js'
  *  Listeners must be registered in the background to respond to messages with this 'name'.
  *
  *  The common fetch method is defined in base/model.es6.js
+ *  @this {any}
  */
 function BackgroundMessage(attrs) {
     Parent.call(this, attrs)

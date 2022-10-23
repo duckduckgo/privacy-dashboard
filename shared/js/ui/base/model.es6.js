@@ -1,10 +1,15 @@
-// @ts-nocheck
 import $ from 'jquery'
 import browserUIWrapper from '../../browser/communication.es6.js'
-import mixins from './mixins/index.es6.js'
-import store from './store.es6.js'
+import * as mixins from './mixins/index.es6.js'
+import * as store from './store.es6.js'
 
+/**
+ * @param attrs
+ * @constructor
+ */
 function BaseModel(attrs) {
+    // this.modelName = null
+
     // attributes are applied directly
     // onto the instance:
     $.extend(this, attrs)
@@ -12,10 +17,12 @@ function BaseModel(attrs) {
     // register model with `store` of
     // global notifications
     // (after checking `modelName` property)
+    // @ts-ignore
     if (!this.modelName || typeof this.modelName !== 'string') {
         throw new Error('cannot init model without `modelName` property')
     } else {
         this.store = store
+        // @ts-ignore
         this.store.register(this.modelName)
     }
 }
@@ -32,9 +39,10 @@ BaseModel.prototype = $.extend({}, mixins.events, {
      * to any UI components that might want to observe
      * changes and update their state.
      *
-     * @param {string or object} attr
+     * @param {string | object} attr
      * @param {*} val
      * @api public
+     * @this {any}
      */
     set: function (attr, val) {
         /*
@@ -104,7 +112,7 @@ BaseModel.prototype = $.extend({}, mixins.events, {
      * Broadcasts an action to other UI components
      * via notification store
      * @param action {string}
-     * @param data {could be a jquery event or other data is optional}
+     * @param data - could be a jquery event or other data is optional
      */
     send: function (action, data) {
         if (!action) throw new Error('model.send() requires an action argument')

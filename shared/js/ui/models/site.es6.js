@@ -1,9 +1,8 @@
 import $ from 'jquery'
 import Parent from '../base/model.es6'
-import constants from '../../../data/constants'
+import { httpsMessages } from '../../../data/constants'
 import browserUIWrapper from '../../browser/communication.es6.js'
 import { i18n } from '../base/localize.es6'
-const httpsMessages = constants.httpsMessages
 
 // We consider major tracker networks as those found on this percentage of sites
 // that we crawl
@@ -117,21 +116,24 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         this.httpsStatusText = i18n.t(httpsMessages[this.httpsState])
     },
-
+    timeout: null,
     /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
     handleBackgroundMsg: function (message) {
         if (!this.tab) return
         if (message.action && message.action === 'updateTabData') {
-            browserUIWrapper
-                .getBackgroundTabData()
-                .then(({ tab, emailProtectionUserData }) => {
-                    this.tab = tab
-                    this.emailProtectionUserData = emailProtectionUserData
-                    this.update()
-                })
-                .catch((e) => {
-                    console.log('❌ [models/site.es6.js:handleBackgroundMsg()] --> ', e)
-                })
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(() => {
+                browserUIWrapper
+                    .getBackgroundTabData()
+                    .then(({ tab, emailProtectionUserData }) => {
+                        this.tab = tab
+                        this.emailProtectionUserData = emailProtectionUserData
+                        this.update()
+                    })
+                    .catch((e) => {
+                        console.log('❌ [models/site.es6.js:handleBackgroundMsg()] --> ', e)
+                    })
+            }, 100)
         }
     },
 
