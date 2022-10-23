@@ -794,6 +794,7 @@
   --mdc-ripple-fg-translate-start: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   will-change: transform, opacity;
+  overflow: hidden;
 }
 .material-design-ripple::before, .material-design-ripple::after {
   position: absolute;
@@ -1616,13 +1617,15 @@ a.link-secondary {
 }
 a.link-action {
   white-space: nowrap;
-  color: #333333;
-}
-.body--theme-dark a.link-action {
-  color: rgba(255, 255, 255, 0.9);
 }
 a.link-action:hover {
   text-decoration: none;
+}
+a.link-action--dark {
+  color: #333333;
+}
+.body--theme-dark a.link-action--dark {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /**

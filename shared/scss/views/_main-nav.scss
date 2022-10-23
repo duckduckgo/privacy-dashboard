@@ -1,0 +1,125 @@
+.main-nav {
+}
+
+.main-nav__row {
+    position: relative;
+
+    &:nth-child(1) {
+        .main-nav__item {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+    }
+
+    &:last-child {
+        .main-nav__item {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            border-bottom: 0;
+        }
+    }
+}
+
+// for none-links
+.main-nav__item {
+}
+
+// for links
+.main-nav__item {
+    z-index: 10;
+    position: relative;
+    display: flex;
+    height: 44px;
+    align-items: center;
+    border-bottom: 1px solid $color-gray-20;
+    -webkit-touch-callout: none;
+
+    .body--theme-dark & {
+        border-color: $color--dark-theme-border;
+    }
+
+    // taller on ios/android
+    .environment--ios &,
+    .environment--android & {
+        height: 48px;
+    }
+}
+
+.main-nav__item--link {
+    .environment--browser &,
+    .environment--macos &,
+    .environment--windows & {
+        &:hover {
+            background: $color-gray-20;
+        }
+    }
+}
+
+.main-nav__item--link {
+    .body--theme-dark.environment--browser &,
+    .body--theme-dark.environment--macos &,
+    .body--theme-dark.environment--windows & {
+        &:hover {
+            background: $color--dark-theme-border;
+        }
+    }
+}
+
+.main-nav__icon {
+    width: 18px;
+    height: 18px;
+    z-index: 1;
+    margin-left: 19px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-nav__text {
+    display: block;
+    z-index: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-nav__chev {
+    width: 7px;
+    height: 18px;
+    margin-left: auto;
+    margin-right: 16px;
+    background-repeat: no-repeat;
+    background-size: 7px;
+    background-position: center center;
+    opacity: 60%;
+    @include cross_platform_bg_image('refresh-assets/chevron.svg');
+
+    .body--theme-dark & {
+        @include cross_platform_bg_image('refresh-assets/chevron--light.svg');
+    }
+
+    .environment--ios &,
+    .environment--android {
+        opacity: 24%;
+    }
+}
+
+.icon-small--secure {
+    @include cross_platform_bg_image($status--good);
+}
+
+.icon-small--insecure {
+    @include cross_platform_bg_image($status--bad);
+}
+
+.icon-small--info {
+    @include cross_platform_bg_image('status--info.svg');
+}
+
+.icon-small--blocked {
+    @include cross_platform_bg_image($status--good);
+}
+
+.icon-small--warning {
+    @include cross_platform_bg_image($status--bad);
+}

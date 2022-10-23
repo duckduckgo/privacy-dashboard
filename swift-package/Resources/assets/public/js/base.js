@@ -28593,7 +28593,10 @@ function onChangeRequestData(tabUrl, rawRequestData) {
   // eslint-disable-next-line no-unused-vars
   var requestData = _schema.requestDataSchema.safeParse(rawRequestData);
 
-  if (!protections) throw new Error('protections status not set');
+  if (!protections) {
+    console.error('protections status not set');
+    return;
+  }
 
   if (!requestData.success) {
     console.error('could not parse incoming request data from `onChangeRequestData`');
@@ -33549,7 +33552,7 @@ function largeHeroIcon(ops) {
 function topNav() {
   var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var variant = (0, _environmentCheck.isIOS)() || (0, _environmentCheck.isAndroid)() ? 'tall' : 'short';
-  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
+  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action link-action--dark\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
 }
 
 },{"../../base/localize.es6":74,"../../environment-check":82,"./about-link":98,"./thirdparty-text.es6":102,"./tracker-networks-text.es6":104,"bel":31}],100:[function(require,module,exports){
@@ -34051,7 +34054,8 @@ function _default() {
     return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info site-info--main\">\n                ", "\n                <div class=\"list-wrapper\" id=\"cta-rotation\"></div>\n                ", "\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
   }
 
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n        ", "\n        ", "\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list\">\n                ", "\n            </ul>\n        </div>\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list card-list--bordered token-body-em\">\n                <li class=\"link-item js-site-show-page-connection\">\n                    ", "\n                </li>\n                <li class=\"link-item js-site-tracker-networks js-site-show-page-trackers\">\n                    ", "\n                </li>\n                <li class=\"link-item js-site-show-page-non-trackers\">\n                    ", "\n                </li>\n                ", "\n            </ul>\n        </div>\n        ", "\n        ", "\n        <div class=\"list-wrapper card-list--last\">\n            <ul class=\"default-list\">\n                <li class=\"js-site-manage-allowlist-li site-info__li--report border-light--top\">\n                    ", "\n                </li>\n            </ul>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<li class=\"link-item js-site-show-consent-managed\">\n                    ", "\n                </li>"])), renderCookieConsentManaged(this.model)) : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), renderManagePermissions(this.model));
+  var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n        ", "\n        ", "\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list\">\n                ", "\n            </ul>\n        </div>\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list card-list--bordered main-nav token-body-em\">\n                <li class=\"main-nav__row js-site-show-page-connection\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-tracker-networks js-site-show-page-trackers\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-show-page-non-trackers\">\n                    ", "\n                </li>\n                ", "\n            </ul>\n        </div>\n        ", "\n        ", "\n        <div class=\"list-wrapper card-list--last\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), renderManagePermissions(this.model));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34084,7 +34088,7 @@ function renderEmailWrapper(model) {
 
 function renderConnection(model) {
   var icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure';
-  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\" draggable=\"false\">\n            <span class=\"link-action__icon ", "\"></span>\n            <span class=\"link-action__text\">", "</span>\n            <span class=\"link-action__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
+  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34096,7 +34100,7 @@ function renderTrackerNetworksNew(model) {
       title = _trackerNetworksText.title,
       icon = _trackerNetworksText.icon;
 
-  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\" draggable=\"false\">\n            <span class=\"link-action__icon icon-small--", "\"></span>\n            <span class=\"link-action__text\">", "</span>\n            <span class=\"link-action__chev\"></span>\n        </a>"])), icon, title);
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34108,7 +34112,7 @@ function renderThirdPartyNew(model) {
       title = _thirdpartyText.title,
       icon = _thirdpartyText.icon;
 
-  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"link-action\" role=\"button\" draggable=\"false\">\n            <span class=\"link-action__icon icon-small--", "\"></span>\n            <span class=\"link-action__text\">", "</span>\n            <span class=\"link-action__chev\"></span>\n        </a>"])), icon, title);
+  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34137,7 +34141,7 @@ function renderManagePermissions(model) {
 }
 
 function renderReportButton() {
-  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<div class=\"report-breakage\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken report-breakage__link\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
+  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<div class=\"report-breakage border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action report-breakage__link\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34153,7 +34157,7 @@ function renderCookieConsentManaged(model) {
       optoutFailed = _model$tab$consentMan.optoutFailed;
 
   if (consentManaged && !optoutFailed) {
-    return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n            <div class=\"link-action\">\n                <span class=\"link-action__icon icon-small--secure\"></span>\n                <span class=\"link-action__text\">", "</span>\n            </div>\n            "])), _localize.i18n.t('site:cookiesMinimized.title'));
+    return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n            <div class=\"main-nav__item\">\n                <span class=\"main-nav__icon icon-small--secure\"></span>\n                <span class=\"main-nav__text\">", "</span>\n            </div>\n        "])), _localize.i18n.t('site:cookiesMinimized.title'));
   }
 
   return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral([""])));
@@ -34628,7 +34632,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
         );
       } // eslint-disable-line no-new
       );
-      (0, _utils.setupMaterialDesignRipple)('.js-site-show-page-connection', '.js-site-show-page-trackers', '.js-site-done');
+      (0, _utils.setupMaterialDesignRipple)('.link-action');
     }
 
     this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$showpageconnection, 'click', this._showPageConnection], [this.$showpagetrackers, 'click', this._showPageTrackers], [this.$showpagenontrackers, 'click', this._showPageNonTrackers], [this.$reportbroken, 'click', this._onReportBrokenSiteClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.store.subscribe, 'change:site', this.rerender]]);
@@ -34802,7 +34806,7 @@ SlidingSubview.prototype = _jquery["default"].extend({}, _viewEs["default"].prot
     this.bindEvents([[this.$close, 'click', this._destroy], [this.$done, 'click', this._done]]); // Set up Material design features on Android
 
     if ((0, _environmentCheck.isAndroid)()) {
-      (0, _utils.setupMaterialDesignRipple)('.js-site-done');
+      (0, _utils.setupMaterialDesignRipple)('.link-action');
     }
   },
   setupNavigationSupport: function setupNavigationSupport() {

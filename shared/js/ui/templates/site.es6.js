@@ -22,6 +22,7 @@ export default function () {
             </div>
         `
     }
+    const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(this.model)}</li>`
 
     return bel`
     <div class="site-info site-info--main">
@@ -33,33 +34,23 @@ export default function () {
             </ul>
         </div>
         <div class="list-wrapper">
-            <ul class="default-list card-list card-list--bordered token-body-em">
-                <li class="link-item js-site-show-page-connection">
+            <ul class="default-list card-list card-list--bordered main-nav token-body-em">
+                <li class="main-nav__row js-site-show-page-connection">
                     ${renderConnection(this.model)}
                 </li>
-                <li class="link-item js-site-tracker-networks js-site-show-page-trackers">
+                <li class="main-nav__row js-site-tracker-networks js-site-show-page-trackers">
                     ${renderTrackerNetworksNew(this.model)}
                 </li>
-                <li class="link-item js-site-show-page-non-trackers">
+                <li class="main-nav__row js-site-show-page-non-trackers">
                     ${renderThirdPartyNew(this.model)}
                 </li>
-                ${
-                    this.model.tab?.consentManaged?.consentManaged
-                        ? bel`<li class="link-item js-site-show-consent-managed">
-                    ${renderCookieConsentManaged(this.model)}
-                </li>`
-                        : null
-                }
+                ${this.model.tab?.consentManaged?.consentManaged ? consentRow : null}
             </ul>
         </div>
         ${protectionToggle(this.model)}
         ${renderEmailWrapper(this.model)}
         <div class="list-wrapper card-list--last">
-            <ul class="default-list">
-                <li class="js-site-manage-allowlist-li site-info__li--report border-light--top">
-                    ${renderReportButton()}
-                </li>
-            </ul>
+            ${renderReportButton()}
         </div>
         ${renderManagePermissions(this.model)}
     </div>`
@@ -90,10 +81,10 @@ function renderConnection(model) {
     const icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure'
 
     return bel`
-        <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
-            <span class="link-action__icon ${icon}"></span>
-            <span class="link-action__text">${model.httpsStatusText}</span>
-            <span class="link-action__chev"></span>
+        <a href="javascript:void(0)" class="main-nav__item main-nav__item--link link-action link-action--dark" role="button" draggable="false">
+            <span class="main-nav__icon ${icon}"></span>
+            <span class="main-nav__text">${model.httpsStatusText}</span>
+            <span class="main-nav__chev"></span>
         </a>`
 }
 
@@ -103,10 +94,10 @@ function renderConnection(model) {
 function renderTrackerNetworksNew(model) {
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
-        <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
-            <span class="link-action__icon icon-small--${icon}"></span>
-            <span class="link-action__text">${title}</span>
-            <span class="link-action__chev"></span>
+        <a href="javascript:void(0)" class="main-nav__item main-nav__item--link link-action link-action--dark" role="button" draggable="false">
+            <span class="main-nav__icon icon-small--${icon}"></span>
+            <span class="main-nav__text">${title}</span>
+            <span class="main-nav__chev"></span>
         </a>`
 }
 
@@ -116,10 +107,10 @@ function renderTrackerNetworksNew(model) {
 function renderThirdPartyNew(model) {
     const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
-        <a href="javascript:void(0)" class="link-action" role="button" draggable="false">
-            <span class="link-action__icon icon-small--${icon}"></span>
-            <span class="link-action__text">${title}</span>
-            <span class="link-action__chev"></span>
+        <a href="javascript:void(0)" class="main-nav__item main-nav__item--link link-action link-action--dark" role="button" draggable="false">
+            <span class="main-nav__icon icon-small--${icon}"></span>
+            <span class="main-nav__text">${title}</span>
+            <span class="main-nav__chev"></span>
         </a>`
 }
 
@@ -158,8 +149,8 @@ function renderManagePermissions(model) {
 }
 
 function renderReportButton() {
-    return bel`<div class="report-breakage">
-            <a href="javascript:void(0)" class="js-site-report-broken report-breakage__link" draggable="false">
+    return bel`<div class="report-breakage border-light--top">
+            <a href="javascript:void(0)" class="js-site-report-broken link-action report-breakage__link" draggable="false">
                 ${i18n.t('site:websiteNotWorkingQ.title')}
             </a>
         </div>`
@@ -174,11 +165,11 @@ function renderCookieConsentManaged(model) {
     const { consentManaged, optoutFailed } = model.tab.consentManaged
     if (consentManaged && !optoutFailed) {
         return bel`
-            <div class="link-action">
-                <span class="link-action__icon icon-small--secure"></span>
-                <span class="link-action__text">${i18n.t('site:cookiesMinimized.title')}</span>
+            <div class="main-nav__item">
+                <span class="main-nav__icon icon-small--secure"></span>
+                <span class="main-nav__text">${i18n.t('site:cookiesMinimized.title')}</span>
             </div>
-            `
+        `
     }
     return bel``
 }

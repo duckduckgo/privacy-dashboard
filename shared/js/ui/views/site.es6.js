@@ -91,7 +91,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
                     // @ts-ignore
                     new MDCSwitch($el) // eslint-disable-line no-new
             )
-            setupMaterialDesignRipple('.js-site-show-page-connection', '.js-site-show-page-trackers', '.js-site-done')
+            setupMaterialDesignRipple('.link-action')
         }
 
         this.bindEvents([

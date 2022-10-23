@@ -77,7 +77,7 @@ export function topNav(opts = {}) {
     <div>
         <div class="top-nav top-nav--${variant}">
             <a href="javascript:void(0)"
-                class="top-nav__close js-sliding-subview-close js-site-done link-action"
+                class="top-nav__close js-sliding-subview-close js-site-done link-action link-action--dark"
                 role="button"
                 aria-label="${i18n.t('site:navigationBack.title')}"
                 data-test-id="back-button"
@@ -85,7 +85,7 @@ export function topNav(opts = {}) {
                 <span class="icon icon__back-arrow" data-icon-text="${i18n.t('site:navigationBack.title')}"></span>
             </a>
             <a href="javascript:void(0)"
-                class="top-nav__done js-sliding-subview-done js-site-done link-action"
+                class="top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark"
                 role="button"
             >
                 ${i18n.t('site:navigationComplete.title')}

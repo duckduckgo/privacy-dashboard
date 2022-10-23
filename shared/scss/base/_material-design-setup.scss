@@ -9,6 +9,7 @@
     @include ripple.surface;
     @include ripple.radius-bounded;
     @include ripple.states;
+    overflow: hidden;
 }
 
 .body--theme-light .material-design-ripple {

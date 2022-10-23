@@ -128,14 +128,18 @@ a {
 
     &.link-action {
         white-space: nowrap;
-        color: $slate;
-
-        .body--theme-dark & {
-            color: $color--off-white;
-        }
 
         &:hover {
             text-decoration: none;
+        }
+    }
+
+    // only apply darker color when explicit
+    // this allows .link-action to be used for binding 'ripples' on android
+    &.link-action--dark {
+        color: $slate;
+        .body--theme-dark & {
+            color: $color--off-white;
         }
     }
 }

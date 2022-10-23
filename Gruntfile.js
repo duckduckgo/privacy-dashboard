@@ -44,7 +44,7 @@ module.exports = function (grunt) {
         browserify: {
             options: {
                 browserifyOptions: {
-                    debug: Boolean(watch),
+                    debug: false,
                 },
                 transform: [['babelify'], ['require-globify']],
             },
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
         sass: {
             options: {
                 implementation: sass,
-                sourceMap: Boolean(watch),
+                sourceMap: false,
                 includePaths: [path.resolve(process.cwd(), 'node_modules')],
             },
             dist: {

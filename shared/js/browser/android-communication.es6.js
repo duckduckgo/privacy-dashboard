@@ -90,7 +90,10 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
     // note: this will fail currently, but is added here to enable the wiring of the documentation/schema
     // eslint-disable-next-line no-unused-vars
     const requestData = requestDataSchema.safeParse(rawRequestData)
-    if (!protections) throw new Error('protections status not set')
+    if (!protections) {
+        console.error('protections status not set')
+        return
+    }
     if (!requestData.success) {
         console.error('could not parse incoming request data from `onChangeRequestData`')
         console.log(requestData.error)

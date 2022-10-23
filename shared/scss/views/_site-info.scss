@@ -202,22 +202,18 @@
     }
 }
 
-.site-info__li--report {
+.report-breakage {
     text-align: center;
+}
+
+.report-breakage__link {
+    position: relative;
     padding: 16px 0;
+    display: block;
 
     .environment--browser & {
         padding: 10px 0;
     }
-
-    .is-disabled & {
-        @include is_disabled();
-    }
-}
-
-.report-breakage {
-}
-.report-breakage__link {
     .environment--ios &,
     .environment--android & {
         &:visited,

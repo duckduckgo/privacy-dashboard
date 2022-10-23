@@ -26,7 +26,7 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
 
         // Set up Material design features on Android
         if (isAndroid()) {
-            setupMaterialDesignRipple('.js-site-done')
+            setupMaterialDesignRipple('.link-action')
         }
     },
 
