@@ -21,11 +21,19 @@ body {
 
     &.body--theme-light {
         background: $color--dark-platinum;
+
+        &.environment--ios {
+            background: $white;
+        }
     }
 
     &.body--theme-dark {
-        background-color: $color--dark-theme-border;
+        background: $color--dark-theme-border;
         color: $color--off-white;
+
+        &.environment--ios {
+            background: $slate;
+        }
     }
 }
 
@@ -39,11 +47,6 @@ p,
 div {
     margin: 0;
     padding: 0;
-
-    .environment--ios &,
-    .environment--android & {
-        //font-size: $font__size--mobile;
-    }
 }
 
 h1,
@@ -83,9 +86,6 @@ input,
 textarea,
 select {
     color: $slate;
-    .environment--ios &,
-    .environment--android & {
-    }
 }
 
 input,
