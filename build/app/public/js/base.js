@@ -30318,7 +30318,8 @@ function getOverrides(searchString) {
         userName: 'daxtheduck'
       };
     }
-  }
+  } // overrides.tab.permissions = []
+
 
   return overrides;
 }
@@ -31226,7 +31227,7 @@ function loadCssFile(file) {
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
-  link.href = '../public/css/' + file + '.css';
+  link.href = 'http://localhost:3000/public/css/' + file + '.css' + '?=v' + Math.random();
   head.appendChild(link);
 }
 
@@ -33740,7 +33741,7 @@ function protectionToggle(model) {
   }
 
   var protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : (0, _toggleButton.toggleButton)(active, 'js-site-toggle pull-right', disabled);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"list-wrapper site-info__protection-wrapper\" data-test-id=\"protection-toggle\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"list-wrapper site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
 }
 
 },{"../../base/localize.es6":74,"../../environment-check":82,"./toggle-button.es6":103,"bel":31,"bel/raw":32}],102:[function(require,module,exports){
@@ -34135,7 +34136,7 @@ function _default() {
   }
 
   var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n        ", "\n        ", "\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list\">\n                ", "\n            </ul>\n        </div>\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list card-list--bordered main-nav token-body-em\">\n                <li class=\"main-nav__row js-site-show-page-connection\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-tracker-networks js-site-show-page-trackers\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-show-page-non-trackers\">\n                    ", "\n                </li>\n                ", "\n            </ul>\n        </div>\n        ", "\n        ", "\n        <div class=\"list-wrapper card-list--last\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), renderManagePermissions(this.model));
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n        ", "\n        ", "\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list\">\n                ", "\n            </ul>\n        </div>\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list card-list--bordered main-nav token-body-em\">\n                <li class=\"main-nav__row js-site-show-page-connection\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-show-page-trackers\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-show-page-non-trackers\">\n                    ", "\n                </li>\n                ", "\n            </ul>\n        </div>\n        ", "\n        ", "\n        <div class=\"list-wrapper card-list--last\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), renderManagePermissions(this.model));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model

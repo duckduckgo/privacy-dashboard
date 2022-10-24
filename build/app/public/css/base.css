@@ -1452,14 +1452,11 @@ th {
 }
 .environment--android .token-title-3-em {
   font-size: 16px;
-  font-weight: 700;
   line-height: 20px;
-  letter-spacing: 0em;
 }
 .environment--browser .token-title-3-em {
   font-family: "Proxima Nova";
   font-style: normal;
-  font-weight: 600;
   font-size: 16px;
   line-height: 20px;
 }

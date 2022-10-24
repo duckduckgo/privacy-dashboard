@@ -38,7 +38,7 @@ export default function () {
                 <li class="main-nav__row js-site-show-page-connection">
                     ${renderConnection(this.model)}
                 </li>
-                <li class="main-nav__row js-site-tracker-networks js-site-show-page-trackers">
+                <li class="main-nav__row js-site-show-page-trackers">
                     ${renderTrackerNetworksNew(this.model)}
                 </li>
                 <li class="main-nav__row js-site-show-page-non-trackers">
