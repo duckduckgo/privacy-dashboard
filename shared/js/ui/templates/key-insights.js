@@ -131,40 +131,75 @@ function generateCompanyNamesList(model) {
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderCompanyIconsList(model) {
-    const companyNames = model.tab.requestDetails.blockedCompanyNames()
+    const companyNames = model.tab.requestDetails.blockedCompanyNames().slice(0, 5)
 
     if (companyNames.length === 0) return ''
 
     const topCompanies = companyNames.slice(0, 4)
     const remainingCount = companyNames.length - topCompanies.length
-    const remainingCountIcon =
-        remainingCount <= 0
-            ? ''
-            : bel`
-            <span class="icon-positioner">
-                <span class="site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--count">
-                    <span class="site-info__tracker__count">+${remainingCount}</span>
-                </span>
-            </div>
-            `
-    const topCompaniesIcons = topCompanies.map((name, index) => {
-        const slug = normalizeCompanyName(name)
-        const locationClass = index === topCompanies.length - 1 ? 'first' : 'other'
 
-        return bel`
-            <span class="icon-positioner">
-                <span class="site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--${locationClass}">
-                    <span class="site-info__tracker__icon ${slug[0].toUpperCase()} color-${getColorId(slug)} ${slug}"></span>
-                    <span class="site-info__tracker__blocked-icon"></span>
+    const items = ['large', 'medium', 'medium', 'small', 'small']
+    const positions = {
+        1: [1],
+        2: [2, 1],
+        3: [2, 1, 3],
+        4: [3, 2, 4, 1],
+        5: [3, 2, 4, 1, 5],
+    }
+
+    /**
+     * @type {Array<{
+     *   kind: "icon",
+     *   slug: string,
+     *   colorId: number,
+     *   letter: string,
+     *   size: string,
+     * } | { kind: 'more', count: number, size: string }>}
+     */
+    const processed = topCompanies.map((name, index) => {
+        const slug = normalizeCompanyName(name)
+        return {
+            kind: 'icon',
+            slug,
+            colorId: getColorId(slug),
+            letter: slug[0].toUpperCase(),
+            size: items[index],
+        }
+    })
+
+    if (remainingCount > 0) {
+        processed.push({
+            kind: 'more',
+            count: remainingCount,
+            size: items[4],
+        })
+    }
+
+    const positionMap = positions[processed.length]
+
+    const list = processed.map((item, index) => {
+        if (item.kind === 'icon') {
+            return bel`
+                <span class="icon-list__item" style='order: ${positionMap[index]}' data-company-icon-position=${positionMap[index]}>
+                    <span class="icon-list__wrapper" data-company-icon-size=${item.size}>
+                        <span class="icon-list__icon ${item.letter} color-${item.colorId} ${item.slug}"></span>
+                        <span class="icon-list__blocked-icon"></span>
+                    </span>
                 </span>
-            </span>
             `
+        }
+        return bel`
+            <span class='icon-list__item' style='order: ${positionMap[index]}' data-company-icon-position='${positionMap[index]}'>
+                <span class='icon-list__wrapper icon-list__wrapper--count' 
+                    data-company-icon-size='${item.size}'>
+                    <span class='icon-list__count'>+${item.count}</span>
+                </span>
+            </div>`
     })
 
     return bel`
-            <div class="large-icon-container tracker-icons">
-                ${topCompaniesIcons}
-                ${remainingCountIcon}
-            </div>
-        `
+        <div class='large-icon-container icon-list' data-company-count='${processed.length}'>
+            ${list}
+        </div>
+    `
 }

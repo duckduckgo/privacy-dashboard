@@ -4,3 +4,4 @@ build
 swift-package
 .idea
 playwright-report
+**/*.snap

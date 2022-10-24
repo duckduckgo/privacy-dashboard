@@ -9,7 +9,7 @@
         "build.watch": "grunt dev --watch",
         "docs": "typedoc",
         "docs.watch": "npm run docs -- --watch",
-        "preview": "npm run build && http-server build/app -o html/popup.html?state=02 -c-1",
+        "preview": "npm run build && http-server build/app -o html/popup.html?state=02&platform=browser -c-1",
         "serve": "http-server -c-1 --port 3210 ./",
         "lint": "eslint .",
         "lint.fix": "eslint . --fix",

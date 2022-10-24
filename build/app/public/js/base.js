@@ -33213,17 +33213,56 @@ function generateCompanyNamesList(model) {
 
 
 function renderCompanyIconsList(model) {
-  var companyNames = model.tab.requestDetails.blockedCompanyNames();
+  var companyNames = model.tab.requestDetails.blockedCompanyNames().slice(0, 5);
   if (companyNames.length === 0) return '';
   var topCompanies = companyNames.slice(0, 4);
   var remainingCount = companyNames.length - topCompanies.length;
-  var remainingCountIcon = remainingCount <= 0 ? '' : (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n            <span class=\"icon-positioner\">\n                <span class=\"site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--count\">\n                    <span class=\"site-info__tracker__count\">+", "</span>\n                </span>\n            </div>\n            "])), remainingCount);
-  var topCompaniesIcons = topCompanies.map(function (name, index) {
+  var items = ['large', 'medium', 'medium', 'small', 'small'];
+  var positions = {
+    1: [1],
+    2: [2, 1],
+    3: [2, 1, 3],
+    4: [3, 2, 4, 1],
+    5: [3, 2, 4, 1, 5]
+  };
+  /**
+   * @type {Array<{
+   *   kind: "icon",
+   *   slug: string,
+   *   colorId: number,
+   *   letter: string,
+   *   size: string,
+   * } | { kind: 'more', count: number, size: string }>}
+   */
+
+  var processed = topCompanies.map(function (name, index) {
     var slug = (0, _normalizeCompanyName.normalizeCompanyName)(name);
-    var locationClass = index === topCompanies.length - 1 ? 'first' : 'other';
-    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n            <span class=\"icon-positioner\">\n                <span class=\"site-info__tracker__icon-wrapper site-info__tracker__icon-wrapper--", "\">\n                    <span class=\"site-info__tracker__icon ", " color-", " ", "\"></span>\n                    <span class=\"site-info__tracker__blocked-icon\"></span>\n                </span>\n            </span>\n            "])), locationClass, slug[0].toUpperCase(), (0, _utils.getColorId)(slug), slug);
+    return {
+      kind: 'icon',
+      slug: slug,
+      colorId: (0, _utils.getColorId)(slug),
+      letter: slug[0].toUpperCase(),
+      size: items[index]
+    };
   });
-  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n            <div class=\"large-icon-container tracker-icons\">\n                ", "\n                ", "\n            </div>\n        "])), topCompaniesIcons, remainingCountIcon);
+
+  if (remainingCount > 0) {
+    processed.push({
+      kind: 'more',
+      count: remainingCount,
+      size: items[4]
+    });
+  }
+
+  var positionMap = positions[processed.length];
+  var list = processed.map(function (item, index) {
+    if (item.kind === 'icon') {
+      return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n                <span class=\"icon-list__item\" style='order: ", "' data-company-icon-position=", ">\n                    <span class=\"icon-list__wrapper\" data-company-icon-size=", ">\n                        <span class=\"icon-list__icon ", " color-", " ", "\"></span>\n                        <span class=\"icon-list__blocked-icon\"></span>\n                    </span>\n                </span>\n            "])), positionMap[index], positionMap[index], item.size, item.letter, item.colorId, item.slug);
+    }
+
+    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n            <span class='icon-list__item' style='order: ", "' data-company-icon-position='", "'>\n                <span class='icon-list__wrapper icon-list__wrapper--count' \n                    data-company-icon-size='", "'>\n                    <span class='icon-list__count'>+", "</span>\n                </span>\n            </div>"])), positionMap[index], positionMap[index], item.size, item.count);
+  });
+  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n        <div class='large-icon-container icon-list' data-company-count='", "'>\n            ", "\n        </div>\n    "])), processed.length, list);
 }
 
 },{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":105,"bel":31,"bel/raw":32}],95:[function(require,module,exports){
