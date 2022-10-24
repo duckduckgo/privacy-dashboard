@@ -60,18 +60,6 @@
     height: 24px !important;
 }
 
-.icon-list__blocked-icon {
-    @include icon_display();
-    @include cross_platform_bg_image('refresh-assets/blocked-icon.svg');
-    background-color: $white;
-    border-radius: 100%;
-    position: absolute;
-
-    .body--theme-dark & {
-        background-color: $color-gray-90;
-    }
-}
-
 .tracker-networks h1.site-info__domain {
     overflow: hidden;
     text-overflow: ellipsis;

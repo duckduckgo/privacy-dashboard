@@ -33,6 +33,18 @@ $small-wrapper: 48px;
     height: $small-icon;
 }
 
+.icon-list__blocked-icon {
+    @include icon_display();
+    @include cross_platform_bg_image('refresh-assets/blocked-icon.svg');
+    background-color: $white;
+    border-radius: 100%;
+    position: absolute;
+
+    .body--theme-dark & {
+        background-color: $color-gray-90;
+    }
+}
+
 // ignoring the first element (the middle one), offset odd items to the left to create the overlap
 [data-company-icon-position]:nth-child(n + 2):nth-child(odd) {
     margin-left: -10px;
@@ -87,6 +99,8 @@ $small-wrapper: 48px;
         height: $medium-icon;
     }
     .icon-list__blocked-icon {
+        width: 24px;
+        height: 24px;
         bottom: 8px;
         right: 8px;
         border: 3px solid $white;

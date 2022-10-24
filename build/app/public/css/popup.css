@@ -1722,6 +1722,22 @@ body.is-disabled .site-info .link-secondary:hover {
   background-color: transparent;
 }
 
+.icon-list__blocked-icon {
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/blocked-icon.svg");
+  background-color: #ffffff;
+  border-radius: 100%;
+  position: absolute;
+}
+.body--theme-dark .icon-list__blocked-icon {
+  background-color: #222;
+}
+
 [data-company-icon-position]:nth-child(n+2):nth-child(odd) {
   margin-left: -10px;
 }
@@ -1770,6 +1786,8 @@ body.is-disabled .site-info .link-secondary:hover {
   height: 32px;
 }
 [data-company-icon-size=medium] .icon-list__blocked-icon {
+  width: 24px;
+  height: 24px;
   bottom: 8px;
   right: 8px;
   border: 3px solid #ffffff;
@@ -2724,22 +2742,6 @@ body.is-disabled .site-info .link-secondary:hover {
 .site-info__tracker__icon--company {
   width: 24px !important;
   height: 24px !important;
-}
-
-.icon-list__blocked-icon {
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  background-image: url("../../img/refresh-assets/blocked-icon.svg");
-  background-color: #ffffff;
-  border-radius: 100%;
-  position: absolute;
-}
-.body--theme-dark .icon-list__blocked-icon {
-  background-color: #222;
 }
 
 .tracker-networks h1.site-info__domain {
