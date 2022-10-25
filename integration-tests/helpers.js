@@ -2,28 +2,12 @@ import { dataStates } from '../shared/js/ui/views/tests/generate-data'
 
 /**
  * @param {import('@playwright/test').Page} page
- * @param {import('../schema/__generated__/schema.types').RequestData} requestData
- * @param {Partial<import('../schema/__generated__/schema.types').Tab>} tab
+ * @param {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} privacyDashboardData
  */
-export async function withExtensionRequests(page, requestData, tab = {}) {
+export async function withExtensionRequests(page, privacyDashboardData) {
     const messages = {
         submitBrokenSiteReport: {},
-        /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
-        getPrivacyDashboardData: {
-            tab: {
-                id: 1533,
-                url: 'https://example.com',
-                upgradedHttps: false,
-                protections: {
-                    unprotectedTemporary: false,
-                    enabledFeatures: ['contentBlocking'],
-                    denylisted: false,
-                    allowlisted: false,
-                },
-                ...tab,
-            },
-            requestData: requestData,
-        },
+        getPrivacyDashboardData: privacyDashboardData,
         setList: {},
     }
     await page.addInitScript((messages) => {

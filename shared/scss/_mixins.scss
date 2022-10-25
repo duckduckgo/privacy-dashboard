@@ -62,8 +62,6 @@
 @mixin toggle_button() {
     .toggle-button {
         z-index: 0;
-        position: absolute;
-        right: 14px;
         width: 32px;
         height: 18px;
         margin: 0;
@@ -71,9 +69,9 @@
         border: none;
         background-color: transparent;
         text-align: left;
+        position: relative;
 
         .environment--ios & {
-            right: 21px;
             width: 51px;
             height: 31px;
         }

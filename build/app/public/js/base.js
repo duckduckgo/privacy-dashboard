@@ -29571,7 +29571,7 @@ var isPendingUpdates = false; // Modify state after render
 // setTimeout(() => tweakSecureStatus(), 10000)
 
 function fetch() {
-  var _args$, _args$2;
+  var _args$, _args$2, _args$3;
 
   for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
@@ -29615,6 +29615,12 @@ function fetch() {
   if (((_args$2 = args[0]) === null || _args$2 === void 0 ? void 0 : _args$2.messageType) === 'getBrowser') {
     if (overrides.platform === 'browser') {
       return Promise.resolve('chrome');
+    }
+  }
+
+  if ((_args$3 = args[0]) !== null && _args$3 !== void 0 && _args$3.checkBrokenSiteReportHandled) {
+    if (overrides.platform === 'ios' || overrides.platform === 'android') {
+      return true;
     }
   }
 
@@ -30278,7 +30284,7 @@ function getOverrides(searchString) {
     overrides.tab.protections = new _requestDetails.Protections(false, ['contentBlocking'], true, false);
   }
 
-  if (params.get('specialDomainName')) {
+  if (params.get('specialDomainName') || params.get('specialDomain')) {
     overrides.tab.specialDomainName = 'extensions';
   }
 
@@ -33877,7 +33883,7 @@ function protectionToggle(model) {
     }
   }
 
-  var protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : (0, _toggleButton.toggleButton)(active, 'js-site-toggle pull-right', disabled);
+  var protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : (0, _toggleButton.toggleButton)(active, 'js-site-toggle', disabled);
   return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
 }
 
@@ -34269,7 +34275,7 @@ function _default() {
   var supportsCtaScreens = Boolean((_this$model$tab = this.model.tab) === null || _this$model$tab === void 0 ? void 0 : _this$model$tab.ctaScreens);
 
   if (this.model.disabled && supportsCtaScreens) {
-    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                ", "\n                <div class=\"padding-x\" id=\"cta-rotation\"></div>\n                ", "\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                <div class=\"page-inner\">\n                    ", "\n                    <div class=\"padding-x\">\n                        <div id=\"cta-rotation\"></div>\n                    </div>\n                    <div class=\"padding-x\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
   }
 
   var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
@@ -34357,7 +34363,7 @@ function renderManagePermissions(model) {
         options = _ref.options;
     if (!model.permissions) return ''; // todo(Shane): typescript issue
 
-    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission ", "\">\n                        <label>\n                            <div>\n                                <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                                ", "\n                            </div>\n                            <select class=\"js-site-permission\" name=\"", "\">\n                                ", "\n                            </select>\n                        </label>\n                    </div>"])), index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : '', permissionId, title, permissionId, options.map(function (_ref2) {
+    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission\">\n                        <label>\n                            <div>\n                                <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                                ", "\n                            </div>\n                            <select class=\"js-site-permission\" name=\"", "\">\n                                ", "\n                            </select>\n                        </label>\n                    </div>"])), permissionId, title, permissionId, options.map(function (_ref2) {
       var id = _ref2.id,
           title = _ref2.title;
       return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);

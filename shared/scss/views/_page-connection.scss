@@ -30,10 +30,10 @@
     }
 
     + .page-connection__certificate-details {
-        border-top: $border--separator-light;
+        border-top: 1px solid var(--color-lines-lighter);
 
         .body--theme-dark & {
-            border-top: $border--separator-dark-mode;
+            border-top: 1px solid var(--color-lines-lighter);
         }
     }
 }

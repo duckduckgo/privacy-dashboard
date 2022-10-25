@@ -1,15 +1,25 @@
 .page {
     display: flex;
     flex-direction: column;
-    height: 100%;
+
+    .environment--browser &,
+    .environment--ios &,
+    .environment--android & {
+        height: 100%;
+    }
 }
 
 .page-inner {
     display: flex;
     flex-direction: column;
     flex-flow: column;
-    height: 100%;
     z-index: 1;
+
+    .environment--browser &,
+    .environment--ios &,
+    .environment--android & {
+        height: 100%;
+    }
 
     background: var(--page-bg);
 

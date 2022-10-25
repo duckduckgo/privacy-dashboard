@@ -54,6 +54,12 @@ export function fetch(...args) {
         }
     }
 
+    if (args[0]?.checkBrokenSiteReportHandled) {
+        if (overrides.platform === 'ios' || overrides.platform === 'android') {
+            return true
+        }
+    }
+
     console.log('fetch - Not implemented', args)
 }
 

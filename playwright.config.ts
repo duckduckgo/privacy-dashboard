@@ -47,7 +47,11 @@ const config: PlaywrightTestConfig = {
         {
             name: 'browser',
             use: {
-                ...devices['Desktop Chrome'],
+                ...devices['Galaxy S8'],
+                viewport: {
+                    height: 600,
+                    width: 350,
+                },
             },
             testMatch: /browser\.spec-int\.js$/,
         },

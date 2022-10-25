@@ -33,9 +33,7 @@ export function protectionToggle(model) {
         }
     }
 
-    const protectionToggle = model.tab.isPendingUpdates
-        ? renderUpdatingSpinner()
-        : toggleButton(active, 'js-site-toggle pull-right', disabled)
+    const protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : toggleButton(active, 'js-site-toggle', disabled)
 
     return bel`<div class="site-info__protection-wrapper">
         <ul class="default-list">

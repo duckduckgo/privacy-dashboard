@@ -16,9 +16,15 @@ export default function () {
     if (this.model.disabled && supportsCtaScreens) {
         return bel`
             <div class="site-info">
-                ${renderSearchWrapper(this.model)}
-                <div class="padding-x" id="cta-rotation"></div>
-                ${renderEmailWrapper(this.model)}
+                <div class="page-inner">
+                    ${renderSearchWrapper(this.model)}
+                    <div class="padding-x">
+                        <div id="cta-rotation"></div>
+                    </div>
+                    <div class="padding-x">
+                        ${renderEmailWrapper(this.model)}
+                    </div>
+                </div>
             </div>
         `
     }
@@ -134,9 +140,7 @@ function renderManagePermissions(model) {
             <li class="site-info__li--manage-permissions">
                 ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
                     if (!model.permissions) return '' // todo(Shane): typescript issue
-                    return bel`<div class="site-info__page-permission ${
-                        index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : ''
-                    }">
+                    return bel`<div class="site-info__page-permission">
                         <label>
                             <div>
                                 <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>

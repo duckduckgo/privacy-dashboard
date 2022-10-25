@@ -9,21 +9,11 @@
 }
 
 .section-list-header {
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--text-color-secondary);
     padding: 12px 0;
     text-align: center;
-    border-top: $border--separator;
-    border-bottom: $border--separator;
-
-    .body--theme-dark & {
-        color: rgba(255, 255, 255, 0.5);
-        border-top: $border--separator-dark-mode;
-        border-bottom: $border--separator-dark-mode;
-
-        &--not-found {
-            color: $color--alert-red;
-        }
-    }
+    border-top: 1px solid var(--color-lines-light);
+    border-bottom: 1px solid var(--color-lines-light);
 }
 
 .icon-major-networks-blocked {
@@ -63,7 +53,7 @@
 }
 
 .site-info__trackers__company-list--bordered {
-    border-top: $border--separator;
+    border-top: 1px solid var(--color-lines-light);
 }
 
 .site-info__trackers__company-list-item {
@@ -73,7 +63,7 @@
 
 .site-info__trackers__company-list-item + .site-info__trackers__company-list-item {
     padding-top: 16px;
-    border-top: $border--separator-light;
+    border-top: 1px solid var(--color-lines-lighter);
 
     .body--theme-dark & {
         border-top: 1px solid rgba(255, 255, 255, 0.06);

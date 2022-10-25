@@ -15,7 +15,24 @@ const test = baseTest.extend({
     extensionMocks: [
         async ({ page }, use) => {
             const requests = await withExtensionRequests(page, {
-                requests: [],
+                tab: {
+                    id: 1533,
+                    url: 'https://example.com',
+                    upgradedHttps: false,
+                    protections: {
+                        unprotectedTemporary: false,
+                        enabledFeatures: ['contentBlocking'],
+                        denylisted: false,
+                        allowlisted: false,
+                    },
+                },
+                requestData: { requests: [] },
+                emailProtectionUserData: {
+                    cohort: 'private_beta_dax',
+                    nextAlias: '123456_next',
+                    token: '123456',
+                    userName: 'daxtheduck',
+                },
             })
             await page.goto(HTML)
             await use(requests)
@@ -35,12 +52,17 @@ test.describe('initial page data', () => {
                 options: { tabId: 0 },
             },
         ])
+        // await page.pause()
+        await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 500 })
+        await expect(page).toHaveScreenshot('no-requests.png')
     })
 })
 
 test.describe('breakage form', () => {
     test('should submit with no values', async ({ page, extensionMocks }) => {
         await page.locator('"Website not working as expected?"').click()
+        await page.locator('"Send Report"').waitFor({ timeout: 600 })
+        await expect(page).toHaveScreenshot('send-report.png')
         await page.locator('"Send Report"').click()
         // @ts-ignore
         const out = await extensionMocks.outgoing({
@@ -122,21 +144,23 @@ test.describe('Protections toggle', () => {
     })
     test.describe('When the site is already allowlisted', () => {
         test('then pressing the toggle re-enables protections', async ({ page }) => {
-            const requests = await withExtensionRequests(
-                page,
-                {
-                    requests: [],
-                },
-                {
+            const requests = await withExtensionRequests(page, {
+                requestData: { requests: [] },
+                tab: {
+                    id: 1533,
+                    url: 'https://example.com',
+                    upgradedHttps: false,
                     protections: {
                         denylisted: false,
                         allowlisted: true,
                         enabledFeatures: ['contentBlocking'],
                         unprotectedTemporary: false,
                     },
-                }
-            )
+                },
+            })
             await page.goto(HTML)
+            await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
+            await expect(page).toHaveScreenshot('allow-listed.png')
             await page.locator('[aria-pressed="false"]').click()
             await page.waitForTimeout(1000)
             // @ts-ignore
@@ -163,21 +187,23 @@ test.describe('Protections toggle', () => {
     })
     test.describe('When the site has content blocking disabled', () => {
         test('then pressing the toggle re-enables protections (overriding our decision)', async ({ page }) => {
-            const requests = await withExtensionRequests(
-                page,
-                {
-                    requests: [],
-                },
-                {
+            const requests = await withExtensionRequests(page, {
+                requestData: { requests: [] },
+                tab: {
+                    id: 1533,
+                    url: 'https://example.com',
+                    upgradedHttps: false,
                     protections: {
                         denylisted: false,
                         allowlisted: false,
                         enabledFeatures: [],
                         unprotectedTemporary: false,
                     },
-                }
-            )
+                },
+            })
             await page.goto(HTML)
+            await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
+            await expect(page).toHaveScreenshot('content-blocking-disabled.png')
             await page.locator('[aria-pressed="false"]').click()
             await page.waitForTimeout(1000)
             // @ts-ignore
@@ -193,5 +219,34 @@ test.describe('Protections toggle', () => {
                 },
             ])
         })
+    })
+})
+
+test.describe('special page (cta)', () => {
+    test('should render correctly', async ({ page }) => {
+        await withExtensionRequests(page, {
+            tab: {
+                id: 1533,
+                url: 'https://example.com',
+                upgradedHttps: false,
+                protections: {
+                    unprotectedTemporary: false,
+                    enabledFeatures: ['contentBlocking'],
+                    denylisted: false,
+                    allowlisted: false,
+                },
+                specialDomainName: 'extensions',
+            },
+            requestData: { requests: [] },
+            emailProtectionUserData: {
+                cohort: 'private_beta_dax',
+                nextAlias: '123456_next',
+                token: '123456',
+                userName: 'daxtheduck',
+            },
+        })
+        await page.goto(HTML)
+        await page.locator('"Love using DuckDuckGo?"').waitFor({ timeout: 500 })
+        await expect(page).toHaveScreenshot('cta.png')
     })
 })

@@ -161,7 +161,7 @@ $small-wrapper: 48px;
 }
 
 .icon-list__wrapper--count {
-    border: 1px solid $color-gray-20;
+    border: 1px solid var(--color-lines-light);
     height: $small-wrapper - 2;
     width: $small-wrapper - 2;
     background: #fafafa;

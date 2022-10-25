@@ -5,8 +5,8 @@
 .email-alias__button {
     display: block;
     padding: 5px 10px;
-    background: $platinum-light;
-    border: 1px solid $platinum-light;
+    background: var(--color-lines-lighter);
+    border: 1px solid transparent;
     width: 100%;
     border-radius: 8px;
     vertical-align: middle;
@@ -24,15 +24,15 @@
     &:hover,
     &:focus,
     &:active {
-        background: $platinum;
+        background: var(--color-lines-light);
     }
 
     &[data-state='added'] {
         background: white;
+        border-color: var(--color-lines-lighter);
     }
 
     .body--theme-dark & {
-        background: rgba(255, 255, 255, 0.18);
         border: 1px solid transparent;
 
         &:hover,

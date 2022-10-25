@@ -92,7 +92,7 @@ export function getOverrides(searchString) {
         overrides.tab.protections = new Protections(false, ['contentBlocking'], true, false)
     }
 
-    if (params.get('specialDomainName')) {
+    if (params.get('specialDomainName') || params.get('specialDomain')) {
         overrides.tab.specialDomainName = 'extensions'
     }
 
