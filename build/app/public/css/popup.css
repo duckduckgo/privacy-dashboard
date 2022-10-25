@@ -162,13 +162,12 @@ body {
   width: var(--width);
   height: var(--height);
 }
-.environment--android body {
+body.environment--android {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0em;
 }
-.environment--browser body {
+body.environment--browser {
   font-family: "Proxima Nova";
   font-style: normal;
   font-weight: 400;
@@ -847,8 +846,12 @@ body.is-disabled .site-info .link-secondary:hover {
   top: 7px;
   border-radius: 100%;
   display: flex;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 400;
   color: var(--text-color-primary);
+}
+.top-nav__close:hover, .top-nav__close:focus, .top-nav__close:active {
+  text-decoration: none;
 }
 .environment--ios .top-nav__close {
   left: 0;
@@ -876,9 +879,12 @@ body.is-disabled .site-info .link-secondary:hover {
   right: 14px;
   height: 56px;
   line-height: 56px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 600;
   color: var(--text-color-primary);
+}
+.top-nav__done:hover, .top-nav__done:focus, .top-nav__done:active {
+  text-decoration: none;
 }
 .environment--ios .top-nav__done {
   display: block;

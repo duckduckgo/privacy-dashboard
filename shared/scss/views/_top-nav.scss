@@ -36,8 +36,15 @@ $nav-height-short: 32px;
     top: 7px;
     border-radius: 100%;
     display: flex;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 400;
     color: var(--text-color-primary);
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
 
     .environment--ios & {
         left: 0;
@@ -69,9 +76,15 @@ $nav-height-short: 32px;
     right: 14px;
     height: $nav-height;
     line-height: $nav-height;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 600;
     color: var(--text-color-primary);
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
 
     .environment--ios & {
         display: block;
