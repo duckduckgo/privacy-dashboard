@@ -30592,15 +30592,21 @@ var AggregatedCompanyResponseData = /*#__PURE__*/function () {
         hostname = request.url;
       }
 
-      var companyKey = request.entityName || request.eTLDplus1 || request.url;
+      var displayName;
 
-      if (!this.entities[companyKey]) {
-        var _request$prevalence;
-
-        this.entities[companyKey] = new AggregateCompanyData(request.ownerName, companyKey, (_request$prevalence = request.prevalence) !== null && _request$prevalence !== void 0 ? _request$prevalence : 0);
+      if (request.entityName) {
+        displayName = (0, _normalizeCompanyNameEs.removeTLD)(request.entityName);
+      } else {
+        displayName = request.eTLDplus1 || request.url;
       }
 
-      this.entities[companyKey].addUrl(hostname, request.category);
+      if (!this.entities[displayName]) {
+        var _request$prevalence;
+
+        this.entities[displayName] = new AggregateCompanyData(request.ownerName, displayName, (_request$prevalence = request.prevalence) !== null && _request$prevalence !== void 0 ? _request$prevalence : 0);
+      }
+
+      this.entities[displayName].addUrl(hostname, request.category);
       this.entitiesCount = Object.keys(this.entities).length;
       this.requestCount += 1;
     }
@@ -32397,13 +32403,22 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.normalizeCompanyName = normalizeCompanyName;
+exports.removeTLD = removeTLD;
 
 function normalizeCompanyName(companyName) {
   return (companyName || '').toLowerCase() // Remove TLD suffixes
   // e.g. Fixes cases like "amazon.com" -> "amazon"
-  .replace(/\.[a-z]+$/, '') // Remove non-alphanumeric characters
+  .replace(/\.[a-z]+$/i, '') // Remove non-alphanumeric characters
   // e.g. Fixes cases like "new relic" -> "newrelic"
   .replace(/[^a-z0-9]/g, '');
+}
+/**
+ * @param {string | ""} entityName
+ */
+
+
+function removeTLD(entityName) {
+  return entityName.replace(/\.[a-z]+$/i, '');
 }
 
 },{}],87:[function(require,module,exports){
@@ -34259,7 +34274,7 @@ function _default() {
 
   var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
   var permissions = localizePermissions(this.model.permissions);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x'>\n                <ul class='default-list'>\n                    ", "\n                </ul>\n                <ul class='default-list card-list--bordered main-nav token-body-em'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), Boolean(permissions.length) ? outer({
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x'>\n                <ul class='default-list'>\n                    ", "\n                </ul>\n                <ul class='default-list card-list--bordered main-nav token-body-em'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
     children: renderManagePermissions(this.model)
   }) : null);
 }

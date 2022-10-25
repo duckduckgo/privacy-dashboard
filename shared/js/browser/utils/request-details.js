@@ -1,4 +1,4 @@
-import { normalizeCompanyName } from '../../ui/models/mixins/normalize-company-name.es6.js'
+import { normalizeCompanyName, removeTLD } from '../../ui/models/mixins/normalize-company-name.es6.js'
 import { requestDataSchema } from '../../../../schema/__generated__/schema.parsers'
 
 export class Protections {
@@ -180,13 +180,19 @@ export class AggregatedCompanyResponseData {
             hostname = request.url
         }
 
-        const companyKey = request.entityName || request.eTLDplus1 || request.url
+        let displayName
 
-        if (!this.entities[companyKey]) {
-            this.entities[companyKey] = new AggregateCompanyData(request.ownerName, companyKey, request.prevalence ?? 0)
+        if (request.entityName) {
+            displayName = removeTLD(request.entityName)
+        } else {
+            displayName = request.eTLDplus1 || request.url
         }
 
-        this.entities[companyKey].addUrl(hostname, request.category)
+        if (!this.entities[displayName]) {
+            this.entities[displayName] = new AggregateCompanyData(request.ownerName, displayName, request.prevalence ?? 0)
+        }
+
+        this.entities[displayName].addUrl(hostname, request.category)
 
         this.entitiesCount = Object.keys(this.entities).length
         this.requestCount += 1

@@ -53,7 +53,7 @@ export default function () {
                 ${renderReportButton()}
             </div>
         </div>
-        ${Boolean(permissions.length) ? outer({ children: renderManagePermissions(this.model) }) : null}
+        ${permissions.length ? outer({ children: renderManagePermissions(this.model) }) : null}
     </div>`
 }
 

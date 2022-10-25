@@ -398,7 +398,7 @@ export async function withWebkitRequests(page, requestData, tab = {}) {
                             }
                         }
                         if (timelineKind === 'state:cnn') {
-                            const state = dataStates['cnn']
+                            const state = dataStates.cnn
                             /** @type {import('../schema/__generated__/schema.types').DetectedRequest[]} */
                             const payload = state.requests
                             window.onChangeParentEntity(state.parentEntity)
