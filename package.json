@@ -26,6 +26,7 @@
         "test.e2e.update": "npm run build && start-server-and-test 'npm run test.serve' 8080 'jest -c jest.e2e.config.js --runInBand --updateSnapshot'",
         "test.int": "playwright test",
         "test.int.headed": "playwright test --headed",
+        "test.int.update-screenshots": "npm run test.int -- --update-snapshots",
         "test.int-debug": "playwright test --headed --debug",
         "verify.local": "npm run lint.fix && npm run prettier.fix && npm run build && npm run docs && npm run test.int"
     },

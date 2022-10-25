@@ -1,6 +1,6 @@
 $large-icon: 64px;
 $medium-icon: 32px;
-$small-icon: 23px;
+$small-icon: 20px;
 
 $large-wrapper: 96px;
 $medium-wrapper: 64px;
@@ -47,18 +47,21 @@ $small-wrapper: 48px;
 
 // ignoring the first element (the middle one), offset odd items to the left to create the overlap
 [data-company-icon-position]:nth-child(n + 2):nth-child(odd) {
-    margin-left: -10px;
+    margin-left: -8px;
 }
 
 // ignoring the first element (the middle one), offset odd items to the right to create the overlap
 [data-company-icon-position]:nth-child(n + 2):nth-child(even) {
-    margin-right: -10px;
+    margin-right: -8px;
 }
 
 [data-company-icon-size='large'] {
     z-index: 4;
     display: block;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.08);
+    // the following line was the value from figma, it was converted to multiple box-shadows
+    // because that gave a closer result to the design.
+    // ▶️ [from figma:] filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.1)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.08));
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.08);
     height: $large-wrapper;
     width: $large-wrapper;
 
@@ -89,7 +92,8 @@ $small-wrapper: 48px;
 
 [data-company-icon-size='medium'] {
     z-index: 3;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.08);
+    // ▶️ [from figma:] filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.08)) drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.1);
     height: $medium-wrapper;
     width: $medium-wrapper;
 
@@ -112,7 +116,9 @@ $small-wrapper: 48px;
 }
 [data-company-icon-size='small'] {
     z-index: 2;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.1);
+    //box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f2f2f2;
+    box-shadow: 0px 1px 0px rgba(125, 125, 125, 0.06);
 
     height: $small-wrapper;
     width: $small-wrapper;
@@ -124,8 +130,10 @@ $small-wrapper: 48px;
     }
 
     .icon-list__blocked-icon {
-        bottom: 4px;
-        right: 4px;
+        width: 24px;
+        height: 24px;
+        bottom: 3px;
+        right: 3px;
         border: 3px solid $white;
 
         .body--theme-dark & {

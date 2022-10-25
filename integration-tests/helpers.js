@@ -375,7 +375,7 @@ export async function withWebkitRequests(page, requestData, tab = {}) {
             return result
         },
         /**
-         * @param {("new-requests" | "none")[]} kind
+         * @param {("new-requests" | "none" | "state:cnn")[]} kind
          * @returns {Promise<void>}
          */
         async playTimeline(kind) {
@@ -396,6 +396,15 @@ export async function withWebkitRequests(page, requestData, tab = {}) {
                                     requests: payload,
                                 })
                             }
+                        }
+                        if (timelineKind === 'state:cnn') {
+                            const state = dataStates['cnn']
+                            /** @type {import('../schema/__generated__/schema.types').DetectedRequest[]} */
+                            const payload = state.requests
+                            window.onChangeParentEntity(state.parentEntity)
+                            window.onChangeRequestData(state.url, {
+                                requests: payload,
+                            })
                         }
                     }
                 },

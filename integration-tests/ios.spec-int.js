@@ -18,7 +18,7 @@ const test = baseTest.extend({
     ],
 })
 
-test.describe('page data', () => {
+test.describe('page data (no trackers)', () => {
     test('should fetch initial data', async ({ page, iosMocks }) => {
         // @ts-ignore
         await iosMocks.outgoing({ names: [] })
@@ -44,6 +44,18 @@ test.describe('page data', () => {
         // @ts-ignore
         await iosMocks.playTimeline(['new-requests'])
         await expect(page).toHaveScreenshot('connection-before.png') // <- should be identical
+    })
+})
+
+test.describe('page data (with trackers)', () => {
+    test('should display correct primary screen', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        const requests = await withWebkitRequests(page, { requests: [] })
+        await requests.playTimeline(['state:cnn'])
+        // allow the page to re-render
+        await page.locator('.icon-list').waitFor({ timeout: 500 })
+        await expect(page).toHaveScreenshot('primary-screen.png')
     })
 })
 
