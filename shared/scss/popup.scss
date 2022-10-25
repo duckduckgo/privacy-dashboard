@@ -1,33 +1,65 @@
 @import 'vars';
 @import 'mixins';
+@import './base/tokens';
 
 /* Popup */
 body {
-    width: 350px;
+    @include token-body;
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
-}
 
-body.environment--ios,
-body.environment--android,
-body.environment--example {
-    width: 100%;
-}
+    --width: 350px;
+    --height: 100vh;
+    --bg: #{$color--dark-platinum};
+    --text: #{$black};
+    --page-bg: #{$white};
+    --page-outer-bg: #{$color--dark-platinum};
 
-body.environment--browser {
-    height: 600px;
-
+    // reset custom properties based on light-theme
     &.body--theme-light {
-        background: $white;
+        &.environment--ios,
+        &.environment--android {
+            --bg: #{$white};
+        }
     }
 
+    // reset custom properties based on dark-theme
     &.body--theme-dark {
-        background-color: $slate;
+        --text: #{$color--off-white};
+        --page-bg: #{$slate};
+        --bg: #{$slate-blue};
+        --page-outer-bg: #{$slate-blue};
+
+        &.environment--android {
+            --bg: #{$black};
+            --page-bg: #{$black};
+        }
+
+        &.environment--ios {
+            --bg: #{$slate};
+        }
     }
+
+    // mobile environments
+    &.environment--ios,
+    &.environment--android,
+    &.environment--example {
+        --width: 100%;
+    }
+
+    &.environment--browser {
+        --height: 600px;
+    }
+
+    color: var(--text);
+    background: var(--bg);
+    width: var(--width);
+    height: var(--height);
 }
 
+// browser environments
 #popup-container {
     display: block;
 
@@ -44,37 +76,17 @@ body.environment--browser {
         display: none;
     }
 
-    .failover.card {
-        position: absolute;
-        top: 14px;
-        right: 7px;
-        bottom: 63px;
-        left: 7px;
-
-        p {
-            padding: 7px 21px;
-            color: $platinum-darker;
-        }
-    }
-
     .text-line-after-icon {
         margin-left: 12px;
     }
 
     .sliding-subview {
-        background-color: $white;
+        background-color: var(--page-bg);
         overflow-y: auto;
-
-        .body--theme-dark & {
-            background-color: $slate;
-        }
-
-        .body--theme-dark.environment--android & {
-            background-color: $black;
-        }
     }
 }
 
+@import 'views/page';
 @import 'views/site-info';
 @import 'views/card-list';
 @import 'views/main-nav';
@@ -102,6 +114,6 @@ body.environment--browser {
 @include sliding_subview();
 
 .platform-limitations {
-    padding: 16px;
+    padding: 16px 0;
     text-align: center;
 }

@@ -15,45 +15,50 @@ export default function () {
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens)
     if (this.model.disabled && supportsCtaScreens) {
         return bel`
-            <div class="site-info site-info--main">
+            <div class="site-info">
                 ${renderSearchWrapper(this.model)}
-                <div class="list-wrapper" id="cta-rotation"></div>
+                <div class="padding-x" id="cta-rotation"></div>
                 ${renderEmailWrapper(this.model)}
             </div>
         `
     }
     const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(this.model)}</li>`
+    const permissions = localizePermissions(this.model.permissions)
 
     return bel`
-    <div class="site-info site-info--main">
+    <div class='site-info page'>
         ${renderSearchWrapper(this.model)}
         ${topNavSupported ? topNav() : null}
-        <div class="list-wrapper">
-            <ul class="default-list card-list">
-                ${renderKeyInsight(this.model)}
-            </ul>
+        <div class='page-inner' data-with-permissions=${permissions.length > 0}>
+            <div class='padding-x'>
+                <ul class='default-list'>
+                    ${renderKeyInsight(this.model)}
+                </ul>
+                <ul class='default-list card-list--bordered main-nav token-body-em'>
+                    <li class='main-nav__row js-site-show-page-connection'>
+                        ${renderConnection(this.model)}
+                    </li>
+                    <li class='main-nav__row js-site-show-page-trackers'>
+                        ${renderTrackerNetworksNew(this.model)}
+                    </li>
+                    <li class='main-nav__row js-site-show-page-non-trackers'>
+                        ${renderThirdPartyNew(this.model)}
+                    </li>
+                    ${this.model.tab?.consentManaged?.consentManaged ? consentRow : null}
+                </ul>
+                ${protectionToggle(this.model)}
+            </div>
+            <div class='padding-x'>
+                ${renderEmailWrapper(this.model)}
+                ${renderReportButton()}
+            </div>
         </div>
-        <div class="list-wrapper">
-            <ul class="default-list card-list card-list--bordered main-nav token-body-em">
-                <li class="main-nav__row js-site-show-page-connection">
-                    ${renderConnection(this.model)}
-                </li>
-                <li class="main-nav__row js-site-show-page-trackers">
-                    ${renderTrackerNetworksNew(this.model)}
-                </li>
-                <li class="main-nav__row js-site-show-page-non-trackers">
-                    ${renderThirdPartyNew(this.model)}
-                </li>
-                ${this.model.tab?.consentManaged?.consentManaged ? consentRow : null}
-            </ul>
-        </div>
-        ${protectionToggle(this.model)}
-        ${renderEmailWrapper(this.model)}
-        <div class="list-wrapper card-list--last">
-            ${renderReportButton()}
-        </div>
-        ${renderManagePermissions(this.model)}
+        ${Boolean(permissions.length) ? outer({ children: renderManagePermissions(this.model) }) : null}
     </div>`
+}
+
+function outer(props) {
+    return bel`<div class="page-outer">${props.children}</div>`
 }
 
 /**
@@ -70,7 +75,7 @@ function renderSearchWrapper(model) {
  */
 function renderEmailWrapper(model) {
     if (model.tab?.emailProtection) {
-        return bel`<div class="list-wrapper" id="email-alias-container"></div>`
+        return bel`<div id="email-alias-container"></div>`
     }
 }
 
@@ -124,28 +129,29 @@ function renderManagePermissions(model) {
 
     const localizedPerms = localizePermissions(model.permissions)
 
-    return bel`<ul class="default-list">
-        <li class="site-info__li--manage-permissions">
-            ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
-                if (!model.permissions) return '' // todo(Shane): typescript issue
-                return bel`<div class="site-info__page-permission ${
-                    index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : ''
-                }">
-                    <label>
-                        <div>
-                            <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
-                            ${title}
-                        </div>
-                        <select class="js-site-permission" name="${permissionId}">
-                            ${options.map(
-                                ({ id, title }) => bel`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`
-                            )}
-                        </select>
-                    </label>
-                </div>`
-            })}
-        </li>
-    </ul>`
+    return bel`
+        <ul class="default-list">
+            <li class="site-info__li--manage-permissions">
+                ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
+                    if (!model.permissions) return '' // todo(Shane): typescript issue
+                    return bel`<div class="site-info__page-permission ${
+                        index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : ''
+                    }">
+                        <label>
+                            <div>
+                                <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
+                                ${title}
+                            </div>
+                            <select class="js-site-permission" name="${permissionId}">
+                                ${options.map(
+                                    ({ id, title }) => bel`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`
+                                )}
+                            </select>
+                        </label>
+                    </div>`
+                })}
+            </li>
+        </ul>`
 }
 
 function renderReportButton() {
@@ -174,7 +180,14 @@ function renderCookieConsentManaged(model) {
     return bel``
 }
 
+/**
+ * @param permissions
+ * @returns {any[]}
+ */
 function localizePermissions(permissions) {
+    if (!Array.isArray(permissions) || permissions.length === 0) {
+        return []
+    }
     // deep copy before mutating
     const updatedPermissions = JSON.parse(JSON.stringify(permissions))
 

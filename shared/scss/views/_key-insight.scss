@@ -9,9 +9,9 @@
         background-color: transparent;
     }
 
+    // slight padding needed on ios to move this below the nav
     .environment--ios & {
         padding-top: 6px;
-        //outline: 1px solid black;
     }
 
     .is-disabled & {
@@ -19,12 +19,7 @@
     }
 
     .token-title-3-em {
-        //border: 1px solid red;
         margin-bottom: 8px;
-    }
-
-    .token-title-3 {
-        //border: 1px solid blue;
     }
 
     .about-link {

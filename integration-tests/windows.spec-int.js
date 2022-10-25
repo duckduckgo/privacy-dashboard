@@ -53,6 +53,6 @@ test.describe('setting the height', () => {
         await page.locator('"No Tracking Requests Found"').click()
         // @ts-ignore
         const calls = await windowsMocks.outgoing({ names: ['SetSize'] })
-        expect(calls.length).toBe(2)
+        expect(calls.length).toBe(1)
     })
 })

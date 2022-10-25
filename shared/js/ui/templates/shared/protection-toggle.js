@@ -37,7 +37,7 @@ export function protectionToggle(model) {
         ? renderUpdatingSpinner()
         : toggleButton(active, 'js-site-toggle pull-right', disabled)
 
-    return bel`<div class="list-wrapper site-info__protection-wrapper">
+    return bel`<div class="site-info__protection-wrapper">
         <ul class="default-list">
             <li class="site-info__li--toggle ${active ? 'is-active' : ''}">
                 <p class="site-info__protection js-site-protection"><span>${raw(text)}</span></p>

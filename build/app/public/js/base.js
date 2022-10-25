@@ -30318,8 +30318,15 @@ function getOverrides(searchString) {
         userName: 'daxtheduck'
       };
     }
-  } // overrides.tab.permissions = []
+  }
 
+  if (overrides.platform === 'ios' || overrides.platform === 'macos') {
+    overrides.tab.platformLimitations = true;
+  }
+
+  if (overrides.platform === 'ios' || overrides.platform === 'android') {
+    overrides.tab.permissions = [];
+  }
 
   return overrides;
 }
@@ -31227,7 +31234,7 @@ function loadCssFile(file) {
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
-  link.href = 'http://localhost:3000/public/css/' + file + '.css' + '?=v' + Math.random();
+  link.href = '../public/css/' + file + '.css';
   head.appendChild(link);
 }
 
@@ -32934,7 +32941,7 @@ function initPopup() {
   return new Trackers();
 }
 
-},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":106,"./../views/site.es6.js":112,"jquery":46}],91:[function(require,module,exports){
+},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":107,"./../views/site.es6.js":112,"jquery":46}],91:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32999,12 +33006,12 @@ function _default() {
   var icon = (0, _heroEs.largeHeroIcon)({
     status: 'breakage-form'
   });
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form\">\n        ", "\n        <div class=\"padded-sides js-breakage-form-element\" data-state=\"idle\">\n            <div class=\"key-insight\">\n                ", "\n                <div class=\"breakage-form__advise\">\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n                <div class=\"breakage-form__message\">\n                    <p class=\"token-title-3-em\">", "</p>\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n            </div>\n            <div class=\"breakage-form__content\">\n                <div class=\"breakage-form__element\">\n                    <div class=\"form__group\">\n                        <div class=\"form__select breakage-form__input--dropdown\">\n                            <select class=\"js-breakage-form-dropdown\">\n                                <option value=''>", "</option>\n                                ", "\n                                <option value='Other'>", "</option>\n                            </select>\n                        </div>\n                        <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                        <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                    </div>\n                    <div class=\"breakage-form__footer token-breakage-form-body\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    </section>"])), (0, _heroEs.topNav)(), icon, _localize.i18n.t('report:selectTheOptionDesc.title'), _localize.i18n.t('report:thankYou.title'), _localize.i18n.t('report:yourReportWillHelpDesc.title'), _localize.i18n.t('report:pickYourIssueFromTheList.title'), shuffle(categories()).map(function (item) {
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form\">\n        ", "\n        <div class=\"padding-x-double js-breakage-form-element\" data-state=\"idle\">\n            <div class=\"key-insight\">\n                ", "\n                <div class=\"breakage-form__advise\">\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n                <div class=\"breakage-form__message\">\n                    <p class=\"token-title-3-em\">", "</p>\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n            </div>\n            <div class=\"breakage-form__content\">\n                <div class=\"breakage-form__element\">\n                    <div class=\"form__group\">\n                        <div class=\"form__select breakage-form__input--dropdown\">\n                            <select class=\"js-breakage-form-dropdown\">\n                                <option value=''>", "</option>\n                                ", "\n                                <option value='Other'>", "</option>\n                            </select>\n                        </div>\n                        <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                        <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                    </div>\n                    <div class=\"breakage-form__footer token-breakage-form-body\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    </section>"])), (0, _heroEs.topNav)(), icon, _localize.i18n.t('report:selectTheOptionDesc.title'), _localize.i18n.t('report:thankYou.title'), _localize.i18n.t('report:yourReportWillHelpDesc.title'), _localize.i18n.t('report:pickYourIssueFromTheList.title'), shuffle(categories()).map(function (item) {
     return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<option value=", ">", "</option>"])), item.value, item.category);
   }), _localize.i18n.t('report:other.title'), _localize.i18n.t('report:tellUsMoreDesc.title'), _localize.i18n.t('report:sendReport.title'), _localize.i18n.t('report:reportsAreAnonymousDesc.title'));
 }
 
-},{"../base/localize.es6":74,"./shared/hero.es6.js":99,"bel":31}],92:[function(require,module,exports){
+},{"../base/localize.es6":74,"./shared/hero.es6.js":100,"bel":31}],92:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33266,104 +33273,7 @@ function renderCompanyIconsList(model) {
   return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n        <div class='large-icon-container icon-list' data-company-count='", "'>\n            ", "\n        </div>\n    "])), processed.length, list);
 }
 
-},{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":105,"bel":31,"bel/raw":32}],95:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.nonTrackersTemplate = nonTrackersTemplate;
-exports.sectionsFromSiteNonTracker = sectionsFromSiteNonTracker;
-
-var _bel = _interopRequireDefault(require("bel"));
-
-var _localizeEs = require("../base/localize.es6.js");
-
-var _requestDetails = require("../../browser/utils/request-details");
-
-var _heroEs = require("./shared/hero.es6.js");
-
-var _trackerNetworks = require("./tracker-networks.es6");
-
-var _aboutLink = require("./shared/about-link");
-
-var _platformLimitations = require("./shared/platform-limitations");
-
-var _templateObject, _templateObject2, _templateObject3;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-/** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
-function nonTrackersTemplate() {
-  if (!this.model) {
-    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
-  }
-
-  var sections = sectionsFromSiteNonTracker(this.model.site);
-  var hero = (0, _heroEs.heroFromTabNonTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} site
- */
-
-
-function sectionsFromSiteNonTracker(site) {
-  var requestDetails = site.tab.requestDetails;
-  var onlyAllowedNonTrackers = requestDetails.matches(site.protectionsEnabled, [_requestDetails.states.protectionsOn_allowedNonTrackers, _requestDetails.states.protectionsOff_allowedNonTrackers, _requestDetails.states.protectionsOn_blocked_allowedNonTrackers]); // when protections are protectionsOff, we just show every request
-
-  if (!site.protectionsEnabled) {
-    return (0, _trackerNetworks.renderSections)([{
-      name: 'protectionsDisabled',
-      heading: function heading() {
-        return null;
-      },
-      companies: requestDetails.all.sortedByPrevalence(),
-      bordered: true
-    }]);
-  } // when protections are ON, render all sections
-
-
-  return (0, _trackerNetworks.renderSections)([{
-    name: 'adAttribution',
-    heading: function heading() {
-      return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    <p class=\"padded--top-half\">", "</p>\n                </div>\n                "])), _localizeEs.ns.site('sectionHeadingAdAttribution.title', {
-        domain: site.tab.domain
-      }), (0, _aboutLink.adAttributionLink)());
-    },
-    companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence()
-  }, {
-    name: 'ignored (rule exceptions)',
-    heading: function heading() {
-      return _localizeEs.ns.site('sectionHeadingIgnore.title');
-    },
-    companies: requestDetails.allowed.ruleException.sortedByPrevalence()
-  }, {
-    name: 'firstParty',
-    heading: function heading() {
-      return _localizeEs.ns.site('sectionHeadingFirstParty.title', {
-        domain: site.tab.domain
-      });
-    },
-    companies: requestDetails.allowed.ownedByFirstParty.sortedByPrevalence()
-  }, {
-    name: 'thirdParty',
-    heading: function heading() {
-      // don't display the header if the only allowed requests are non-trackers
-      if (onlyAllowedNonTrackers) {
-        return null;
-      }
-
-      return _localizeEs.ns.site('sectionHeadingThirdParty.title');
-    },
-    companies: requestDetails.allowed.otherThirdPartyRequest.sortedByPrevalence(),
-    bordered: onlyAllowedNonTrackers
-  }]);
-}
-
-},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./shared/about-link":98,"./shared/hero.es6.js":99,"./shared/platform-limitations":100,"./tracker-networks.es6":107,"bel":31}],96:[function(require,module,exports){
+},{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":106,"bel":31,"bel/raw":32}],95:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33405,7 +33315,7 @@ function _default() {
     summary: summary,
     suffix: 'none'
   });
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides\">\n            ", "\n            ", "\n        </div>\n    </div>"])), (0, _heroEs.topNav)(), hero, renderCertificateDetails(this.model.site, this.model.tab));
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padding-x-double\">\n            ", "\n            ", "\n        </div>\n    </div>"])), (0, _heroEs.topNav)(), hero, renderCertificateDetails(this.model.site, this.model.tab));
 }
 
 function getKeyUsage(key) {
@@ -33502,7 +33412,219 @@ function renderConnectionDescription(site) {
   return _localizeEs.i18n.t('connection:secureConnectionDesc.title');
 }
 
-},{"../base/localize.es6.js":74,"./shared/hero.es6.js":99,"bel":31}],97:[function(require,module,exports){
+},{"../base/localize.es6.js":74,"./shared/hero.es6.js":100,"bel":31}],96:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.nonTrackersTemplate = nonTrackersTemplate;
+exports.sectionsFromSiteNonTracker = sectionsFromSiteNonTracker;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localizeEs = require("../base/localize.es6.js");
+
+var _requestDetails = require("../../browser/utils/request-details");
+
+var _heroEs = require("./shared/hero.es6.js");
+
+var _pageTrackersEs = require("./page-trackers.es6.js");
+
+var _aboutLink = require("./shared/about-link");
+
+var _platformLimitations = require("./shared/platform-limitations");
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+/** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
+function nonTrackersTemplate() {
+  if (!this.model) {
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
+  }
+
+  var sections = sectionsFromSiteNonTracker(this.model.site);
+  var hero = (0, _heroEs.heroFromTabNonTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
+  var limitations = this.model.site.tab.platformLimitations ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"padding-x-double\">", "</div>"])), (0, _platformLimitations.platformLimitations)()) : (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div></div>"])));
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, limitations);
+}
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} site
+ */
+
+
+function sectionsFromSiteNonTracker(site) {
+  var requestDetails = site.tab.requestDetails;
+  var onlyAllowedNonTrackers = requestDetails.matches(site.protectionsEnabled, [_requestDetails.states.protectionsOn_allowedNonTrackers, _requestDetails.states.protectionsOff_allowedNonTrackers, _requestDetails.states.protectionsOn_blocked_allowedNonTrackers]); // when protections are protectionsOff, we just show every request
+
+  if (!site.protectionsEnabled) {
+    return (0, _pageTrackersEs.renderSections)([{
+      name: 'protectionsDisabled',
+      heading: function heading() {
+        return null;
+      },
+      companies: requestDetails.all.sortedByPrevalence(),
+      bordered: true
+    }]);
+  } // when protections are ON, render all sections
+
+
+  return (0, _pageTrackersEs.renderSections)([{
+    name: 'adAttribution',
+    heading: function heading() {
+      return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    <p class=\"padded--top-half\">", "</p>\n                </div>\n                "])), _localizeEs.ns.site('sectionHeadingAdAttribution.title', {
+        domain: site.tab.domain
+      }), (0, _aboutLink.adAttributionLink)());
+    },
+    companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence()
+  }, {
+    name: 'ignored (rule exceptions)',
+    heading: function heading() {
+      return _localizeEs.ns.site('sectionHeadingIgnore.title');
+    },
+    companies: requestDetails.allowed.ruleException.sortedByPrevalence()
+  }, {
+    name: 'firstParty',
+    heading: function heading() {
+      return _localizeEs.ns.site('sectionHeadingFirstParty.title', {
+        domain: site.tab.domain
+      });
+    },
+    companies: requestDetails.allowed.ownedByFirstParty.sortedByPrevalence()
+  }, {
+    name: 'thirdParty',
+    heading: function heading() {
+      // don't display the header if the only allowed requests are non-trackers
+      if (onlyAllowedNonTrackers) {
+        return null;
+      }
+
+      return _localizeEs.ns.site('sectionHeadingThirdParty.title');
+    },
+    companies: requestDetails.allowed.otherThirdPartyRequest.sortedByPrevalence(),
+    bordered: onlyAllowedNonTrackers
+  }]);
+}
+
+},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./page-trackers.es6.js":97,"./shared/about-link":99,"./shared/hero.es6.js":100,"./shared/platform-limitations":101,"bel":31}],97:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderCompany = renderCompany;
+exports.renderSections = renderSections;
+exports.sectionsFromSiteTrackers = sectionsFromSiteTrackers;
+exports.trackerListWrapper = trackerListWrapper;
+exports.trackerNetworksTemplate = trackerNetworksTemplate;
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _constants = require("../../../data/constants");
+
+var _localize = require("../base/localize.es6");
+
+var _heroEs = require("./shared/hero.es6.js");
+
+var _utilsEs = require("./shared/utils.es6.js");
+
+var _platformLimitations = require("./shared/platform-limitations");
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+/** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
+function trackerNetworksTemplate() {
+  if (!this.model) {
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
+  }
+
+  var sections = sectionsFromSiteTrackers(this.model.site);
+  var hero = (0, _heroEs.heroFromTabTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
+  var limitations = this.model.site.tab.platformLimitations ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"padding-x-double\">", "</div>"])), (0, _platformLimitations.platformLimitations)()) : (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div></div>"])));
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, limitations);
+}
+/**
+ * This is exported so that the allowedRequests UI can re-use the template
+ * @param {string} name
+ * @param {any} heading
+ * @param {any[]} companiesList
+ * @param {boolean | undefined} bordered
+ */
+
+
+function trackerListWrapper(name, heading, companiesList, bordered) {
+  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\">\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-test-id=\"sectionHeading\">", "</li>"])), heading) : (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral([""]))), companiesList);
+}
+/**
+ * @param {import("../../browser/utils/request-details.js").AggregateCompanyData} company
+ */
+
+
+function renderCompany(company) {
+  if (company.displayName && company.displayName === 'unknown') {
+    company.displayName = "(".concat(_localize.i18n.t('site:trackerNetworkUnknown.title'), ")");
+  }
+
+  var slug = company.normalizedName;
+  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<li class=\"site-info__trackers__company-list-item\" data-test-id=\"entityListItem\">\n        <h1 title=\"", "\" class=\"site-info__domain block token-title-3-em\" data-test-id=\"entityTitle\">\n            <span class=\"site-info__tracker__icon site-info__tracker__icon--company ", " color-", " ", "\"></span>\n            ", "\n        </h1>\n        <ol class=\"default-list site-info__trackers__company-list__url-list\" aria-label=\"", "\">\n            ", "\n        </ol>\n    </li>"])), company.name || company.displayName, slug[0].toUpperCase(), (0, _utilsEs.getColorId)(slug), slug, company.displayName, _localize.i18n.t('site:trackerDomainsForCompany.title', {
+    companyName: company.displayName
+  }), Object.keys(company.urls).map(function (urlHostname) {
+    var url = company.urls[urlHostname];
+    var matched = _constants.displayCategories[url.category];
+    return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n                <li data-test-id=\"entityUrlListItem\" class=\"url-list-item\">\n                    <div class=\"url\" title=\"", "\">", "</div>\n                    ", "\n                </li>"])), urlHostname, urlHostname, matched ? (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["<div class=\"category\">", "</div>"])), _localize.i18n.t(matched)) : '');
+  }));
+}
+/**
+ * @param {{
+ *  heading: () => any | null,
+ *  companies: import("../../browser/utils/request-details.js").AggregateCompanyData[],
+ *  name: string,
+ *  bordered?: boolean,
+ *  }[]} sections
+ */
+
+
+function renderSections(sections) {
+  var output = sections // exclude all empty lists
+  .filter(function (section) {
+    return section.companies.length > 0;
+  }) // convert each 'section' into a heading + list of companies
+  .map(function (section) {
+    var companiesList = section.companies.map(function (company) {
+      return renderCompany(company);
+    });
+    var sectionHeading = section.heading();
+    return trackerListWrapper(section.name, sectionHeading, companiesList, section.bordered);
+  });
+  return output;
+}
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} site
+ */
+
+
+function sectionsFromSiteTrackers(site) {
+  var blocked = site.tab.requestDetails.blocked;
+  var sections = renderSections([{
+    name: 'blocked',
+    heading: function heading() {
+      return null;
+    },
+    companies: blocked.sortedByPrevalence(),
+    bordered: true
+  }]);
+  return sections;
+}
+
+},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/hero.es6.js":100,"./shared/platform-limitations":101,"./shared/utils.es6.js":106,"bel":31}],98:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33532,7 +33654,7 @@ function cogIcon() {
   return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n    <path class=\"settings-cog\" fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M3.43351 13.1462C3.06364 14.0391 3.48767 15.0628 4.3806 15.4327L5.30448 15.8154C6.19741 16.1853 7.2211 15.7612 7.59096 14.8683L7.84778 14.2483C7.89842 14.2495 7.94918 14.2501 8.00007 14.2501C8.05068 14.2501 8.10118 14.2495 8.15154 14.2483L8.40831 14.8682C8.77818 15.7611 9.80187 16.1852 10.6948 15.8153L11.6187 15.4326C12.5116 15.0628 12.9356 14.0391 12.5658 13.1461L12.3093 12.527C12.3828 12.457 12.4546 12.3853 12.5247 12.3118L13.1437 12.5682C14.0366 12.9381 15.0603 12.514 15.4302 11.6211L15.8129 10.6972C16.1827 9.8043 15.7587 8.7806 14.8658 8.41074L14.2482 8.15493C14.2494 8.10345 14.2501 8.05185 14.2501 8.00011C14.2501 7.94964 14.2495 7.89928 14.2483 7.84905L14.8659 7.59324C15.7588 7.22337 16.1828 6.19968 15.8129 5.30675L15.4303 4.38287C15.0604 3.48994 14.0367 3.06592 13.1438 3.43578L12.5273 3.69115C12.4568 3.61712 12.3845 3.54482 12.3105 3.47432L12.5658 2.85787C12.9357 1.96494 12.5117 0.94124 11.6188 0.571378L10.6949 0.188694C9.80195 -0.181168 8.77825 0.242858 8.40839 1.13579L8.15316 1.75196C8.10226 1.75073 8.05122 1.75011 8.00007 1.75011C7.94864 1.75011 7.89734 1.75074 7.84616 1.75198L7.59089 1.13569C7.22102 0.242766 6.19733 -0.181263 5.3044 0.1886L4.38052 0.571284C3.4876 0.941146 3.06357 1.96484 3.43343 2.85777L3.68905 3.47488C3.61513 3.54532 3.54293 3.61755 3.47254 3.69151L2.85533 3.43585C1.9624 3.06599 0.938705 3.49002 0.568843 4.38295L0.186159 5.30683C-0.183704 6.19975 0.240324 7.22345 1.13325 7.59331L1.75185 7.84955C1.75067 7.89961 1.75007 7.9498 1.75007 8.00011C1.75007 8.05168 1.7507 8.10312 1.75194 8.15443L1.13335 8.41066C0.240417 8.78052 -0.18361 9.80422 0.186252 10.6971L0.568936 11.621C0.938798 12.514 1.96249 12.938 2.85542 12.5681L3.47512 12.3114C3.54507 12.3848 3.6168 12.4565 3.69022 12.5265L3.43351 13.1462ZM1.61161 6.43846C1.35648 6.33279 1.23533 6.0403 1.34101 5.78518L1.72369 4.8613C1.82937 4.60618 2.12185 4.48503 2.37697 4.5907L3.47809 5.0468C3.69752 5.13769 3.94855 5.05988 4.09713 4.87459C4.32641 4.58865 4.58647 4.32845 4.87227 4.099C5.05738 3.95039 5.13507 3.69948 5.04422 3.48016L4.58828 2.37941C4.4826 2.12429 4.60375 1.83181 4.85888 1.72613L5.78276 1.34345C6.03788 1.23777 6.33036 1.35893 6.43604 1.61405L6.89159 2.71385C6.98246 2.93322 7.21488 3.05571 7.45092 3.02993C7.63126 3.01022 7.81448 3.00011 8.00007 3.00011C8.18541 3.00011 8.3684 3.0102 8.54851 3.02985C8.78452 3.0556 9.01691 2.93311 9.10776 2.71377L9.56324 1.61414C9.66891 1.35902 9.9614 1.23787 10.2165 1.34354L11.1404 1.72623C11.3955 1.8319 11.5167 2.12439 11.411 2.37951L10.9553 3.47967C10.8644 3.69901 10.9422 3.94995 11.1273 4.09856C11.4132 4.32802 11.6734 4.58826 11.9027 4.87425C12.0513 5.05952 12.3023 5.13731 12.5217 5.04642L13.6221 4.59063C13.8773 4.48495 14.1697 4.6061 14.2754 4.86122L14.6581 5.7851C14.7638 6.04023 14.6426 6.33271 14.3875 6.43839L13.2866 6.89438C13.0674 6.98521 12.9449 7.21748 12.9705 7.45343C12.99 7.63298 13.0001 7.81537 13.0001 8.00011C13.0001 8.18597 12.9899 8.36945 12.9702 8.55005C12.9443 8.78611 13.0668 9.01859 13.2862 9.10947L14.3874 9.56559C14.6425 9.67126 14.7637 9.96375 14.658 10.2189L14.2753 11.1427C14.1696 11.3979 13.8772 11.519 13.622 11.4133L12.5195 10.9566C12.3002 10.8658 12.0493 10.9435 11.9007 11.1285C11.6715 11.4139 11.4117 11.6736 11.1262 11.9026C10.941 12.0511 10.8632 12.3021 10.9541 12.5215L11.4109 13.6245C11.5166 13.8796 11.3954 14.1721 11.1403 14.2778L10.2164 14.6604C9.96132 14.7661 9.66884 14.645 9.56316 14.3898L9.1062 13.2866C9.01536 13.0673 8.78307 12.9449 8.54711 12.9705C8.36745 12.9901 8.18493 13.0001 8.00007 13.0001C7.81497 13.0001 7.63221 12.9901 7.45233 12.9705C7.21634 12.9447 6.984 13.0672 6.89316 13.2865L6.43611 14.3899C6.33044 14.6451 6.03796 14.7662 5.78283 14.6605L4.85895 14.2779C4.60383 14.1722 4.48268 13.8797 4.58836 13.6246L5.04545 12.521C5.13632 12.3017 5.05857 12.0507 4.87337 11.9021C4.58799 11.6731 4.32826 11.4135 4.09918 11.1282C3.95057 10.9431 3.69967 10.8654 3.48037 10.9563L2.37707 11.4133C2.12194 11.5189 1.82946 11.3978 1.72379 11.1427L1.3411 10.2188C1.23543 9.96367 1.35658 9.67119 1.6117 9.56551L2.71385 9.10898C2.93323 9.01811 3.05572 8.78566 3.02992 8.54962C3.01019 8.36916 3.00007 8.18582 3.00007 8.00011C3.00007 7.81552 3.01007 7.63327 3.02957 7.45386C3.0552 7.21793 2.93271 6.98568 2.71345 6.89486L1.61161 6.43846ZM6.12508 8.00008C6.12508 6.96455 6.96455 6.12508 8.00008 6.12508C9.03562 6.12508 9.87508 6.96455 9.87508 8.00008C9.87508 9.03562 9.03562 9.87508 8.00008 9.87508C6.96455 9.87508 6.12508 9.03562 6.12508 8.00008ZM8.00008 4.87508C6.27419 4.87508 4.87508 6.27419 4.87508 8.00008C4.87508 9.72597 6.27419 11.1251 8.00008 11.1251C9.72597 11.1251 11.1251 9.72597 11.1251 8.00008C11.1251 6.27419 9.72597 4.87508 8.00008 4.87508Z\"\n         fill-opacity=\"0.8\"\n     />\n</svg>\n"])));
 }
 
-},{"../base/localize.es6":74,"bel":31}],98:[function(require,module,exports){
+},{"../base/localize.es6":74,"bel":31}],99:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33563,7 +33685,7 @@ function adAttributionLink() {
   return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a class=\"ad-link\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection\" target=\"_blank\">", "</a>"])), text);
 }
 
-},{"../../base/localize.es6":74,"bel":31}],99:[function(require,module,exports){
+},{"../../base/localize.es6":74,"bel":31}],100:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33662,7 +33784,7 @@ function topNav() {
   return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action link-action--dark\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
 }
 
-},{"../../base/localize.es6":74,"../../environment-check":82,"./about-link":98,"./thirdparty-text.es6":102,"./tracker-networks-text.es6":104,"bel":31}],100:[function(require,module,exports){
+},{"../../base/localize.es6":74,"../../environment-check":82,"./about-link":99,"./thirdparty-text.es6":103,"./tracker-networks-text.es6":105,"bel":31}],101:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33681,10 +33803,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 function platformLimitations() {
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div class=\"padded-sides\">\n         <p class=\"platform-limitations border--top--inner\">", "</p>\n     </div>"])), _localize.ns.site('trackerLimitationsNote.title'));
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<p class=\"platform-limitations border--top--inner\">", "</p>"])), _localize.ns.site('trackerLimitationsNote.title'));
 }
 
-},{"../../base/localize.es6":74,"bel":31}],101:[function(require,module,exports){
+},{"../../base/localize.es6":74,"bel":31}],102:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33741,10 +33863,10 @@ function protectionToggle(model) {
   }
 
   var protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : (0, _toggleButton.toggleButton)(active, 'js-site-toggle pull-right', disabled);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"list-wrapper site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
 }
 
-},{"../../base/localize.es6":74,"../../environment-check":82,"./toggle-button.es6":103,"bel":31,"bel/raw":32}],102:[function(require,module,exports){
+},{"../../base/localize.es6":74,"../../environment-check":82,"./toggle-button.es6":104,"bel":31,"bel/raw":32}],103:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33877,7 +33999,7 @@ function unreachable(x) {
   throw new Error("Didn't expect to get here with value " + x);
 }
 
-},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],103:[function(require,module,exports){
+},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],104:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33914,7 +34036,7 @@ function toggleButton(isActiveBoolean, klass, disabled) {
   return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\">\n        </div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', disabled ? 'disabled' : '');
 }
 
-},{"../../environment-check":82,"bel":31}],104:[function(require,module,exports){
+},{"../../environment-check":82,"bel":31}],105:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34074,7 +34196,7 @@ function unreachable(x) {
   throw new Error("Didn't expect to get here with value" + x);
 }
 
-},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],105:[function(require,module,exports){
+},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],106:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34092,7 +34214,7 @@ function getColorId(value) {
   return Math.abs(sum % colorCount + 1);
 }
 
-},{}],106:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34116,7 +34238,7 @@ var _thirdpartyText2 = require("./shared/thirdparty-text.es6");
 
 var _keyInsights = require("./key-insights");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -34132,11 +34254,18 @@ function _default() {
   var supportsCtaScreens = Boolean((_this$model$tab = this.model.tab) === null || _this$model$tab === void 0 ? void 0 : _this$model$tab.ctaScreens);
 
   if (this.model.disabled && supportsCtaScreens) {
-    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info site-info--main\">\n                ", "\n                <div class=\"list-wrapper\" id=\"cta-rotation\"></div>\n                ", "\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                ", "\n                <div class=\"padding-x\" id=\"cta-rotation\"></div>\n                ", "\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
   }
 
   var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"site-info site-info--main\">\n        ", "\n        ", "\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list\">\n                ", "\n            </ul>\n        </div>\n        <div class=\"list-wrapper\">\n            <ul class=\"default-list card-list card-list--bordered main-nav token-body-em\">\n                <li class=\"main-nav__row js-site-show-page-connection\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-show-page-trackers\">\n                    ", "\n                </li>\n                <li class=\"main-nav__row js-site-show-page-non-trackers\">\n                    ", "\n                </li>\n                ", "\n            </ul>\n        </div>\n        ", "\n        ", "\n        <div class=\"list-wrapper card-list--last\">\n            ", "\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), renderManagePermissions(this.model));
+  var permissions = localizePermissions(this.model.permissions);
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x'>\n                <ul class='default-list'>\n                    ", "\n                </ul>\n                <ul class='default-list card-list--bordered main-nav token-body-em'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), Boolean(permissions.length) ? outer({
+    children: renderManagePermissions(this.model)
+  }) : null);
+}
+
+function outer(props) {
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<div class=\"page-outer\">", "</div>"])), props.children);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34147,7 +34276,7 @@ function renderSearchWrapper(model) {
   var _model$tab;
 
   if ((_model$tab = model.tab) !== null && _model$tab !== void 0 && _model$tab.search) {
-    return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
+    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
   }
 }
 /**
@@ -34159,7 +34288,7 @@ function renderEmailWrapper(model) {
   var _model$tab2;
 
   if ((_model$tab2 = model.tab) !== null && _model$tab2 !== void 0 && _model$tab2.emailProtection) {
-    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<div class=\"list-wrapper\" id=\"email-alias-container\"></div>"])));
+    return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<div id=\"email-alias-container\"></div>"])));
   }
 }
 /**
@@ -34169,7 +34298,7 @@ function renderEmailWrapper(model) {
 
 function renderConnection(model) {
   var icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure';
-  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34181,7 +34310,7 @@ function renderTrackerNetworksNew(model) {
       title = _trackerNetworksText.title,
       icon = _trackerNetworksText.icon;
 
-  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
+  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34193,7 +34322,7 @@ function renderThirdPartyNew(model) {
       title = _thirdpartyText.title,
       icon = _thirdpartyText.icon;
 
-  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
+  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34206,23 +34335,23 @@ function renderManagePermissions(model) {
   }
 
   var localizedPerms = localizePermissions(model.permissions);
-  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<ul class=\"default-list\">\n        <li class=\"site-info__li--manage-permissions\">\n            ", "\n        </li>\n    </ul>"])), localizedPerms.map(function (_ref, index) {
+  return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--manage-permissions\">\n                ", "\n            </li>\n        </ul>"])), localizedPerms.map(function (_ref, index) {
     var permissionId = _ref.key,
         title = _ref.title,
         permission = _ref.permission,
         options = _ref.options;
     if (!model.permissions) return ''; // todo(Shane): typescript issue
 
-    return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission ", "\">\n                    <label>\n                        <div>\n                            <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                            ", "\n                        </div>\n                        <select class=\"js-site-permission\" name=\"", "\">\n                            ", "\n                        </select>\n                    </label>\n                </div>"])), index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : '', permissionId, title, permissionId, options.map(function (_ref2) {
+    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission ", "\">\n                        <label>\n                            <div>\n                                <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                                ", "\n                            </div>\n                            <select class=\"js-site-permission\" name=\"", "\">\n                                ", "\n                            </select>\n                        </label>\n                    </div>"])), index !== model.permissions.length - 1 ? 'border-light--bottom--inner' : '', permissionId, title, permissionId, options.map(function (_ref2) {
       var id = _ref2.id,
           title = _ref2.title;
-      return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
+      return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
     }));
   }));
 }
 
 function renderReportButton() {
-  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<div class=\"report-breakage border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action report-breakage__link\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
+  return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["<div class=\"report-breakage border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action report-breakage__link\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34238,14 +34367,23 @@ function renderCookieConsentManaged(model) {
       optoutFailed = _model$tab$consentMan.optoutFailed;
 
   if (consentManaged && !optoutFailed) {
-    return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n            <div class=\"main-nav__item\">\n                <span class=\"main-nav__icon icon-small--secure\"></span>\n                <span class=\"main-nav__text\">", "</span>\n            </div>\n        "])), _localize.i18n.t('site:cookiesMinimized.title'));
+    return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n            <div class=\"main-nav__item\">\n                <span class=\"main-nav__icon icon-small--secure\"></span>\n                <span class=\"main-nav__text\">", "</span>\n            </div>\n        "])), _localize.i18n.t('site:cookiesMinimized.title'));
   }
 
-  return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral([""])));
+  return (0, _bel["default"])(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral([""])));
 }
+/**
+ * @param permissions
+ * @returns {any[]}
+ */
+
 
 function localizePermissions(permissions) {
-  // deep copy before mutating
+  if (!Array.isArray(permissions) || permissions.length === 0) {
+    return [];
+  } // deep copy before mutating
+
+
   var updatedPermissions = JSON.parse(JSON.stringify(permissions));
   return updatedPermissions.map(function (perm) {
     var permKey = "permissions:".concat(perm.key, ".title");
@@ -34267,120 +34405,7 @@ function localizePermissions(permissions) {
   });
 }
 
-},{"../base/localize.es6":74,"../environment-check":82,"./key-insights":94,"./shared/hero.es6.js":99,"./shared/protection-toggle":101,"./shared/thirdparty-text.es6":102,"./shared/tracker-networks-text.es6.js":104,"bel":31}],107:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderCompany = renderCompany;
-exports.renderSections = renderSections;
-exports.sectionsFromSiteTrackers = sectionsFromSiteTrackers;
-exports.trackerListWrapper = trackerListWrapper;
-exports.trackerNetworksTemplate = trackerNetworksTemplate;
-
-var _bel = _interopRequireDefault(require("bel"));
-
-var _constants = require("../../../data/constants");
-
-var _localize = require("../base/localize.es6");
-
-var _heroEs = require("./shared/hero.es6.js");
-
-var _utilsEs = require("./shared/utils.es6.js");
-
-var _platformLimitations = require("./shared/platform-limitations");
-
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-/** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
-function trackerNetworksTemplate() {
-  if (!this.model) {
-    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\"></section>"])));
-  }
-
-  var sections = sectionsFromSiteTrackers(this.model.site);
-  var hero = (0, _heroEs.heroFromTabTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padded-sides js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padded-sides js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, this.model.site.tab.platformLimitations ? (0, _platformLimitations.platformLimitations)() : null);
-}
-/**
- * This is exported so that the allowedRequests UI can re-use the template
- * @param {string} name
- * @param {any} heading
- * @param {any[]} companiesList
- * @param {boolean | undefined} bordered
- */
-
-
-function trackerListWrapper(name, heading, companiesList, bordered) {
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\">\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-test-id=\"sectionHeading\">", "</li>"])), heading) : (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral([""]))), companiesList);
-}
-/**
- * @param {import("../../browser/utils/request-details.js").AggregateCompanyData} company
- */
-
-
-function renderCompany(company) {
-  if (company.displayName && company.displayName === 'unknown') {
-    company.displayName = "(".concat(_localize.i18n.t('site:trackerNetworkUnknown.title'), ")");
-  }
-
-  var slug = company.normalizedName;
-  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<li class=\"site-info__trackers__company-list-item\" data-test-id=\"entityListItem\">\n        <h1 title=\"", "\" class=\"site-info__domain block token-title-3-em\" data-test-id=\"entityTitle\">\n            <span class=\"site-info__tracker__icon site-info__tracker__icon--company ", " color-", " ", "\"></span>\n            ", "\n        </h1>\n        <ol class=\"default-list site-info__trackers__company-list__url-list\" aria-label=\"", "\">\n            ", "\n        </ol>\n    </li>"])), company.name || company.displayName, slug[0].toUpperCase(), (0, _utilsEs.getColorId)(slug), slug, company.displayName, _localize.i18n.t('site:trackerDomainsForCompany.title', {
-    companyName: company.displayName
-  }), Object.keys(company.urls).map(function (urlHostname) {
-    var url = company.urls[urlHostname];
-    var matched = _constants.displayCategories[url.category];
-    return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n                <li data-test-id=\"entityUrlListItem\" class=\"url-list-item\">\n                    <div class=\"url\" title=\"", "\">", "</div>\n                    ", "\n                </li>"])), urlHostname, urlHostname, matched ? (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<div class=\"category\">", "</div>"])), _localize.i18n.t(matched)) : '');
-  }));
-}
-/**
- * @param {{
- *  heading: () => any | null,
- *  companies: import("../../browser/utils/request-details.js").AggregateCompanyData[],
- *  name: string,
- *  bordered?: boolean,
- *  }[]} sections
- */
-
-
-function renderSections(sections) {
-  var output = sections // exclude all empty lists
-  .filter(function (section) {
-    return section.companies.length > 0;
-  }) // convert each 'section' into a heading + list of companies
-  .map(function (section) {
-    var companiesList = section.companies.map(function (company) {
-      return renderCompany(company);
-    });
-    var sectionHeading = section.heading();
-    return trackerListWrapper(section.name, sectionHeading, companiesList, section.bordered);
-  });
-  return output;
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} site
- */
-
-
-function sectionsFromSiteTrackers(site) {
-  var blocked = site.tab.requestDetails.blocked;
-  var sections = renderSections([{
-    name: 'blocked',
-    heading: function heading() {
-      return null;
-    },
-    companies: blocked.sortedByPrevalence(),
-    bordered: true
-  }]);
-  return sections;
-}
-
-},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/hero.es6.js":99,"./shared/platform-limitations":100,"./shared/utils.es6.js":105,"bel":31}],108:[function(require,module,exports){
+},{"../base/localize.es6":74,"../environment-check":82,"./key-insights":94,"./shared/hero.es6.js":100,"./shared/protection-toggle":102,"./shared/thirdparty-text.es6":103,"./shared/tracker-networks-text.es6.js":105,"bel":31}],108:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34627,9 +34652,9 @@ var _ctaRotation2 = _interopRequireDefault(require("../templates/cta-rotation.es
 
 var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
 
-var _trackerNetworks = require("../templates/tracker-networks.es6");
+var _pageTrackersEs = require("../templates/page-trackers.es6.js");
 
-var _nonTrackers = require("../templates/non-trackers.es6");
+var _pageNonTrackersEs = require("../templates/page-non-trackers.es6.js");
 
 var _hero = require("../templates/shared/hero.es6");
 
@@ -34778,17 +34803,17 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   _showPageTrackers: function _showPageTrackers(e) {
     if (this.$body.hasClass('is-disabled')) return;
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
-      template: _trackerNetworks.trackerNetworksTemplate,
+      template: _pageTrackersEs.trackerNetworksTemplate,
       heroFn: _hero.heroFromTabTrackers,
-      detailsFn: _trackerNetworks.sectionsFromSiteTrackers
+      detailsFn: _pageTrackersEs.sectionsFromSiteTrackers
     });
   },
   _showPageNonTrackers: function _showPageNonTrackers(e) {
     if (this.$body.hasClass('is-disabled')) return;
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
-      template: _nonTrackers.nonTrackersTemplate,
+      template: _pageNonTrackersEs.nonTrackersTemplate,
       heroFn: _hero.heroFromTabNonTrackers,
-      detailsFn: _nonTrackers.sectionsFromSiteNonTracker
+      detailsFn: _pageNonTrackersEs.sectionsFromSiteNonTracker
     });
   },
   _showPageConnection: function _showPageConnection(e) {
@@ -34849,7 +34874,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 var _default = Site;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":92,"../templates/email-protection.es6":93,"../templates/non-trackers.es6":95,"../templates/search.es6":97,"../templates/shared/hero.es6":99,"../templates/tracker-networks.es6":107,"./../templates/breakage-form.es6.js":91,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":108,"./../views/tracker-networks.es6.js":115,"./cta-rotation.es6":109,"./email-protection.es6":110,"./search.es6":111,"./utils/utils.js":116,"@material/switch":29,"jquery":46}],113:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":92,"../templates/email-protection.es6":93,"../templates/page-non-trackers.es6.js":96,"../templates/page-trackers.es6.js":97,"../templates/search.es6":98,"../templates/shared/hero.es6":100,"./../templates/breakage-form.es6.js":91,"./../templates/page-connection.es6.js":95,"./../views/breakage-form.es6.js":108,"./../views/tracker-networks.es6.js":115,"./cta-rotation.es6":109,"./email-protection.es6":110,"./search.es6":111,"./utils/utils.js":116,"@material/switch":29,"jquery":46}],113:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35408,7 +35433,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
  * @param {object} opts
  * @param {any} opts.template
  * @param {import("../templates/shared/hero.es6").heroFromTabTrackers} [opts.heroFn]
- * @param {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers} [opts.detailsFn]
+ * @param {import("../templates/page-trackers.es6.js").sectionsFromSiteTrackers} [opts.detailsFn]
  * @constructor
  */
 function TrackerNetworks(opts) {
@@ -35429,7 +35454,7 @@ function TrackerNetworks(opts) {
 
   this.heroFn = opts.heroFn;
   /**
-   * @type {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers | undefined}
+   * @type {import("../templates/page-trackers.es6.js").sectionsFromSiteTrackers | undefined}
    */
 
   this.detailsFn = opts.detailsFn; // @ts-ignore

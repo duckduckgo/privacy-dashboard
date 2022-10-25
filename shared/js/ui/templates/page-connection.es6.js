@@ -29,7 +29,7 @@ export default function () {
     return bel`
     <div class="site-info card">
         ${topNav()}
-        <div class="padded-sides">
+        <div class="padding-x-double">
             ${hero}
             ${renderCertificateDetails(this.model.site, this.model.tab)}
         </div>

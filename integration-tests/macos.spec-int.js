@@ -64,6 +64,6 @@ test.describe('setting the height', () => {
         const calls = await macOSMocks.outgoing({
             names: ['privacyDashboardSetSize'],
         })
-        expect(calls.length).toBeGreaterThanOrEqual(2)
+        expect(calls.length).toBeGreaterThanOrEqual(1)
     })
 })

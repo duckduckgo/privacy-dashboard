@@ -35,7 +35,7 @@ export default function () {
     return bel`<section class="sliding-subview">
         <div class="breakage-form">
         ${topNav()}
-        <div class="padded-sides js-breakage-form-element" data-state="idle">
+        <div class="padding-x-double js-breakage-form-element" data-state="idle">
             <div class="key-insight">
                 ${icon}
                 <div class="breakage-form__advise">

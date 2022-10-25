@@ -8,35 +8,11 @@
 
 /* Normalize File */
 @import 'normalize.scss/normalize';
-
 @import 'forms';
-@import 'tokens';
 
 /**
  * DDG Extension Resets & Base Styles
  */
-
-body {
-    @include token-body;
-
-    &.body--theme-light {
-        background: $color--dark-platinum;
-
-        &.environment--ios {
-            background: $white;
-        }
-    }
-
-    &.body--theme-dark {
-        background: $color--dark-theme-border;
-        color: $color--off-white;
-
-        &.environment--ios {
-            background: $slate;
-        }
-    }
-}
-
 h1,
 h2,
 h3,
@@ -304,8 +280,18 @@ a {
     }
 }
 
-.padded-sides {
-    padding: 0 $card--padded--side;
+.padding-x {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.bg-primary {
+    background: white;
+}
+
+.padding-x-double {
+    padding-left: 32px;
+    padding-right: 32px;
 }
 
 .padded--top {
@@ -314,31 +300,6 @@ a {
 
 .padded--no-bottom-padding {
     padding-bottom: 0;
-}
-
-/* Card Display */
-.card {
-    background-color: $card__bg-color;
-    border-radius: $card__border-radius;
-    padding: $card__padding;
-    margin: $card__margin;
-
-    .body--theme-dark & {
-        background-color: $slate;
-    }
-
-    .body--theme-dark.environment--android & {
-        background-color: $black;
-    }
-
-    &.card--transparent {
-        background-color: transparent;
-        box-shadow: none;
-    }
-
-    &.card--no-top-margin {
-        margin-top: 0;
-    }
 }
 
 /* Icons */

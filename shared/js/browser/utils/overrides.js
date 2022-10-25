@@ -135,5 +135,13 @@ export function getOverrides(searchString) {
         }
     }
 
+    if (overrides.platform === 'ios' || overrides.platform === 'macos') {
+        overrides.tab.platformLimitations = true
+    }
+
+    if (overrides.platform === 'ios' || overrides.platform === 'android') {
+        overrides.tab.permissions = []
+    }
+
     return overrides
 }

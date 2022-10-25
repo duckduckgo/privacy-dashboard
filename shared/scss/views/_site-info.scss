@@ -33,20 +33,7 @@
     }
 
     .list-wrapper {
-        background-color: $white;
-        padding: 0 24px;
-
-        .environment--browser & {
-            padding: 0 16px;
-        }
-
-        .body--theme-dark & {
-            background-color: $slate;
-        }
-
-        .body--theme-dark.environment--android & {
-            background-color: $black;
-        }
+        background-color: var(--page-bg);
     }
 
     .default-list {
@@ -55,16 +42,6 @@
 
     .text-line-after-icon.privacy-on-off-message {
         margin-left: 2px;
-    }
-
-    .site-info--is-site-broken {
-        display: inline-block;
-        margin: 0 8px 0 3px;
-    }
-
-    .btn-pill {
-        @include btn-pill(12px);
-        margin: -2px 0 0 2px;
     }
 
     .link-secondary {
@@ -335,28 +312,4 @@
     //&.is-insecure { // none = insecure, http
     //    @include cross_platform_bg_image($status--bad);
     //}
-}
-
-.site-info--main {
-    .environment--ios &,
-    .environment--android & {
-        display: flex;
-        flex-flow: column;
-        height: 100%;
-
-        .site-info__protection-wrapper {
-            flex: 1;
-            padding-top: 10px;
-        }
-    }
-
-    .environment--browser & {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-
-        #email-alias-container {
-            margin-top: auto;
-        }
-    }
 }

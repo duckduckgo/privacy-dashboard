@@ -2,7 +2,7 @@ import bel from 'bel'
 import { ns } from '../base/localize.es6.js'
 import { states } from '../../browser/utils/request-details'
 import { heroFromTabNonTrackers, topNav } from './shared/hero.es6.js'
-import { renderSections } from './tracker-networks.es6'
+import { renderSections } from './page-trackers.es6.js'
 import { adAttributionLink } from './shared/about-link'
 import { platformLimitations } from './shared/platform-limitations'
 
@@ -14,17 +14,20 @@ export function nonTrackersTemplate() {
 
     const sections = sectionsFromSiteNonTracker(this.model.site)
     const hero = heroFromTabNonTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
+    const limitations = this.model.site.tab.platformLimitations
+        ? bel`<div class="padding-x-double">${platformLimitations()}</div>`
+        : bel`<div></div>`
 
     return bel`
-    <div class="site-info card">
+    <div class="site-info card page-inner">
         ${topNav()}
-        <div class="padded-sides js-tracker-networks-hero">
+        <div class="padding-x-double js-tracker-networks-hero">
             ${hero}
         </div>
-        <div class="padded-sides js-tracker-networks-details">
+        <div class="padding-x-double js-tracker-networks-details">
             ${sections}
         </div>
-        ${this.model.site.tab.platformLimitations ? platformLimitations() : null}
+        ${limitations}
     </div>`
 }
 

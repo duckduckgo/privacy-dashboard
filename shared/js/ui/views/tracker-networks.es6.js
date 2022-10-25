@@ -7,7 +7,7 @@ import SiteModel from './../models/site.es6.js'
  * @param {object} opts
  * @param {any} opts.template
  * @param {import("../templates/shared/hero.es6").heroFromTabTrackers} [opts.heroFn]
- * @param {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers} [opts.detailsFn]
+ * @param {import("../templates/page-trackers.es6.js").sectionsFromSiteTrackers} [opts.detailsFn]
  * @constructor
  */
 function TrackerNetworks(opts) {
@@ -29,7 +29,7 @@ function TrackerNetworks(opts) {
     this.heroFn = opts.heroFn
 
     /**
-     * @type {import("../templates/tracker-networks.es6").sectionsFromSiteTrackers | undefined}
+     * @type {import("../templates/page-trackers.es6.js").sectionsFromSiteTrackers | undefined}
      */
     this.detailsFn = opts.detailsFn
 
