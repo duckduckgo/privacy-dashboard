@@ -14,15 +14,8 @@ $color--blue: #007aff;
 $color--blue-20: #3969ef; // eg: buttons
 $color--blue-40: #2950bf; // eg: buttons + hover
 $color--icon-green: #21c000;
-$color--dark-green: #29521f;
-$color--orange: #f89f22;
-$color--red: #ce2929;
 $color--off-white: rgba(255, 255, 255, 0.9);
-$color--light-slate: #d2d4db;
-$color--medium-slate: #777;
 $color--medium-dark-slate: #5f5f5f;
-$color--light-grey: #a8a8ab;
-$color--silver: #f0f0f0;
 $color--dark-silver: #ddd;
 $color--medium-silver: #d8d8d8;
 $color--medium-dark-platinum: #e9e9eb;
@@ -34,11 +27,9 @@ $color--border-gray: rgba(0, 0, 0, 0.12);
 
 $color-yellow: #fff0c2;
 
-$color-gray-0: #fafafa;
 $color-gray-20: #eeeeee;
 $color-gray-90: #222;
 $color-gray-80: #444;
-$color-gray-85: #333;
 $color-blue-50: #3969ef;
 
 /* Dark theme */
@@ -46,7 +37,6 @@ $color--dark-theme-background: rgba(255, 255, 255, 0.06);
 $color--dark-theme-border: $color-gray-80;
 
 /* Neutral Colors */
-$color--neutral-bg: #f5f5f5;
 $color--grey: $grey-dark; /* #888 */
 $color--default-box-shadow: $platinum-dark; /* #d0d0d0 */
 $color--dark-grey: #4a4c4f;
@@ -55,22 +45,12 @@ $gray-fifty: #aaa;
 $gray-seventy: #666;
 
 /* Cards */
-$card__bg-color: $white;
-$card__border-radius: 0;
-$card__box-shadow: 0px 1px 1px $color--default-box-shadow;
-$card__padding: 0;
 $card--padded: 24px;
 $card--padded--side: 32px;
 $card--padded--top: 24px 0 0;
-$card__margin--top: 7.5px;
-$card__margin--right: 0;
-$card__margin--bottom: 0;
-$card__margin--left: 0;
-$card__margin: $card__margin--top $card__margin--right $card__margin--bottom $card__margin--left;
 
 /* CSS Arrow */
 $arrow__bg-color: $white;
-$arrow__border-radius: 3px;
 
 /* links */
 $link-color--blue: #7295f6;

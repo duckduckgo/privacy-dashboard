@@ -9,15 +9,11 @@
 }
 
 .section-list-header {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.6);
     padding: 12px 0;
     text-align: center;
     border-top: $border--separator;
     border-bottom: $border--separator;
-
-    &--not-found {
-        color: $color--alert-red;
-    }
 
     .body--theme-dark & {
         color: rgba(255, 255, 255, 0.5);

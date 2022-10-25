@@ -588,23 +588,17 @@ body.is-disabled .site-info .link-secondary:hover {
   opacity: 24%;
 }
 
-.icon-small--secure {
-  background-image: url("../../img/refresh-assets/Check-Color-16.svg");
-}
-
-.icon-small--insecure {
-  background-image: url("../../img/refresh-assets/Error-Color-16.svg");
-}
-
 .icon-small--info {
   background-image: url("../../img/status--info.svg");
 }
 
-.icon-small--blocked {
+.icon-small--blocked,
+.icon-small--secure {
   background-image: url("../../img/refresh-assets/Check-Color-16.svg");
 }
 
-.icon-small--warning {
+.icon-small--warning,
+.icon-small--insecure {
   background-image: url("../../img/refresh-assets/Error-Color-16.svg");
 }
 
@@ -1937,14 +1931,11 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .section-list-header {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
   padding: 12px 0;
   text-align: center;
   border-top: solid 1px rgba(0, 0, 0, 0.12);
   border-bottom: solid 1px rgba(0, 0, 0, 0.12);
-}
-.section-list-header--not-found {
-  color: #ee1025;
 }
 .body--theme-dark .section-list-header {
   color: rgba(255, 255, 255, 0.5);

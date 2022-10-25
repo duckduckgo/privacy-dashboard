@@ -300,16 +300,5 @@
 }
 
 .site-info__https-status__icon {
-    //@include icon_display();
-    //@include site_status_icons();
-    //
-    //&.is-secure, // default = secure, https
-    //&.is-upgraded {
     @include cross_platform_bg_image($status--good);
-    //}
-    //
-    //&.is-none,
-    //&.is-insecure { // none = insecure, http
-    //    @include cross_platform_bg_image($status--bad);
-    //}
 }

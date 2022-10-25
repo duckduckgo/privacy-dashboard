@@ -1357,50 +1357,6 @@ th {
   padding: 0;
 }
 
-.btn {
-  display: inline-block;
-  vertical-align: middle;
-  white-space: nowrap;
-  text-align: center;
-  position: relative;
-  text-decoration: none;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 0 1em;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  border-radius: 0.25em;
-  box-sizing: content-box;
-  user-select: none;
-  outline: none !important;
-  background-color: #60a5da;
-  border: 1px solid #60a5da;
-  line-height: 2;
-  font-weight: normal;
-  font-size: 1em;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  color: #ffffff;
-  -webkit-appearance: none !important;
-}
-.btn:hover, .btn:focus {
-  text-decoration: none !important;
-  color: #ffffff;
-  background-color: #4495d4;
-  border-color: #4495d4;
-}
-.btn:active {
-  color: #ffffff;
-  background-color: #3a7fb4;
-  border-color: #3a7fb4;
-}
-.btn.is-disabled {
-  border-color: #c3c3c3;
-  background-color: #c3c3c3;
-  cursor: default;
-  color: #eee;
-}
-
 /**
  * DDG Extension Resets & Base Styles
  */

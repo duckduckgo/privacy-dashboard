@@ -104,22 +104,16 @@
     }
 }
 
-.icon-small--secure {
-    @include cross_platform_bg_image($status--good);
-}
-
-.icon-small--insecure {
-    @include cross_platform_bg_image($status--bad);
-}
-
 .icon-small--info {
     @include cross_platform_bg_image('status--info.svg');
 }
 
-.icon-small--blocked {
+.icon-small--blocked,
+.icon-small--secure {
     @include cross_platform_bg_image($status--good);
 }
 
-.icon-small--warning {
+.icon-small--warning,
+.icon-small--insecure {
     @include cross_platform_bg_image($status--bad);
 }
