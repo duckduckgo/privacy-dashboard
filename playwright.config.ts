@@ -61,7 +61,7 @@ const config: PlaywrightTestConfig = {
         {
             name: 'android',
             use: {
-                ...devices['Desktop Chrome'],
+                ...devices['Galaxy S8'],
             },
             testMatch: /android\.spec-int\.js$/,
         },

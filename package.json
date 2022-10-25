@@ -19,7 +19,7 @@
         "schema": "node scripts/schema.js",
         "tsc": "tsc",
         "tsc:watch": "tsc --watch",
-        "test": "npm run test.unit && npm run test.e2e",
+        "test": "npm run tsc && npm run verify.local",
         "test.unit": "jest",
         "test.serve": "http-server -c-1 --port 8080 ./build/app",
         "test.e2e": "npm run build && start-server-and-test 'npm run test.serve' 8080 'jest -c jest.e2e.config.js --runInBand'",
@@ -28,7 +28,7 @@
         "test.int.headed": "playwright test --headed",
         "test.int.update-screenshots": "npm run test.int -- --update-snapshots",
         "test.int-debug": "playwright test --headed --debug",
-        "verify.local": "npm run lint.fix && npm run prettier.fix && npm run build && npm run docs && npm run test.int"
+        "verify.local": "npm run lint.fix && npm run prettier.fix && npm run test.unit && npm run build && npm run docs && npm run test.int"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.3",

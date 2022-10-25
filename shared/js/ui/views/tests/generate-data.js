@@ -1,14 +1,14 @@
-import { Protections, createTabData, states } from '../../../../browser/utils/request-details'
-import _google from '../../../../../../schema/__fixtures__/request-data-google.json'
-import _cnn from '../../../../../../schema/__fixtures__/request-data-cnn.json'
-import { detectedRequestSchema, requestDataSchema } from '../../../../../../schema/__generated__/schema.parsers'
+import { Protections, createTabData, states } from '../../../browser/utils/request-details'
+import _google from '../../../../../schema/__fixtures__/request-data-google.json'
+import _cnn from '../../../../../schema/__fixtures__/request-data-cnn.json'
+import { detectedRequestSchema, requestDataSchema } from '../../../../../schema/__generated__/schema.parsers'
 
 const google = requestDataSchema.parse(_google)
 const cnn = requestDataSchema.parse(_cnn)
 
 /**
- * @typedef {import('../../../../browser/utils/request-details').TabData} TabData
- * @typedef {import('../../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
+ * @typedef {import('../../../browser/utils/request-details').TabData} TabData
+ * @typedef {import('../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
  */
 
 /** @type {DetectedRequest} */

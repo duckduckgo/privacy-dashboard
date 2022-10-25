@@ -1,4 +1,4 @@
-import { dataStates, protectionsOff } from '../../ui/views/tests/mock-data/generate-data'
+import { dataStates, protectionsOff } from '../../ui/views/tests/generate-data'
 import { Protections } from './request-details'
 
 /**
@@ -12,7 +12,7 @@ import { Protections } from './request-details'
  */
 /**
  * @typedef Overrides
- * @property {Partial<import('../../ui/views/tests/mock-data/generate-data').TabData>} tab
+ * @property {Partial<import('../../ui/views/tests/generate-data').TabData>} tab
  * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
  * @property {string} state
  * @property {string} platform

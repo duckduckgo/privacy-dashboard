@@ -1,5 +1,5 @@
 import { test as baseTest, expect } from '@playwright/test'
-import { forwardConsole, withWebkitRequests } from './helpers'
+import { forwardConsole, playTimeline, withWebkitRequests } from './helpers'
 
 const HTML = '/build/app/html/ios.html'
 
@@ -28,21 +28,21 @@ test.describe('page data (no trackers)', () => {
         await page.locator('"No Tracking Requests Found"').click()
         await expect(page).toHaveScreenshot('tracker-list-before.png')
         // @ts-ignore
-        await iosMocks.playTimeline(['new-requests'])
+        await playTimeline(page, ['new-requests'])
         await expect(page).toHaveScreenshot('tracker-list-after.png')
     })
     test('should accept updates when on non-trackers list screen', async ({ page, iosMocks }) => {
         await page.locator('"No Third-Party Requests Found"').click()
         await expect(page).toHaveScreenshot('non-tracker-list-before.png')
         // @ts-ignore
-        await iosMocks.playTimeline(['new-requests'])
+        await playTimeline(page, ['new-requests'])
         await expect(page).toHaveScreenshot('non-tracker-list-after.png')
     })
     test('does not alter the appearance of connection panel', async ({ page, iosMocks }) => {
         await page.locator('"Connection Is Encrypted"').click()
         await expect(page).toHaveScreenshot('connection-before.png')
         // @ts-ignore
-        await iosMocks.playTimeline(['new-requests'])
+        await playTimeline(page, ['new-requests'])
         await expect(page).toHaveScreenshot('connection-before.png') // <- should be identical
     })
 })
@@ -51,8 +51,8 @@ test.describe('page data (with trackers)', () => {
     test('should display correct primary screen', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        const requests = await withWebkitRequests(page, { requests: [] })
-        await requests.playTimeline(['state:cnn'])
+        await withWebkitRequests(page, { requests: [] })
+        await playTimeline(page, ['state:cnn'])
         // allow the page to re-render
         await page.locator('.icon-list').waitFor({ timeout: 500 })
         await expect(page).toHaveScreenshot('primary-screen.png')

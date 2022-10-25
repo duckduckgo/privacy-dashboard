@@ -27,7 +27,7 @@ Array [
     },
   },
   AggregateCompanyData {
-    "displayName": "Amazon.com",
+    "displayName": "Amazon",
     "name": "Amazon Technologies, Inc.",
     "normalizedName": "amazon",
     "prevalence": 21.5,
@@ -48,7 +48,7 @@ Array [
 exports[`RequestDetails sorts by prevalence 1`] = `
 Array [
   AggregateCompanyData {
-    "displayName": "Amazon.com",
+    "displayName": "Amazon",
     "name": "Amazon Technologies, Inc.",
     "normalizedName": "amazon",
     "prevalence": 21.5,

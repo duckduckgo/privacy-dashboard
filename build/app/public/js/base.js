@@ -29536,7 +29536,7 @@ exports.openOptionsPage = openOptionsPage;
 exports.search = search;
 exports.setup = setup;
 
-var _generateData = _interopRequireWildcard(require("../ui/views/tests/mock-data/generate-data"));
+var _generateData = _interopRequireWildcard(require("../ui/views/tests/generate-data"));
 
 var _common = require("./common.es6");
 
@@ -29661,7 +29661,7 @@ function search(query) {
   console.warn('should open search for ', JSON.stringify(query));
 }
 
-},{"../ui/views/tests/mock-data/generate-data":114,"./common.es6":63,"./utils/overrides":68,"./utils/request-details":69}],66:[function(require,module,exports){
+},{"../ui/views/tests/generate-data":114,"./common.es6":63,"./utils/overrides":68,"./utils/request-details":69}],66:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30167,7 +30167,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getOverrides = getOverrides;
 
-var _generateData = require("../../ui/views/tests/mock-data/generate-data");
+var _generateData = require("../../ui/views/tests/generate-data");
 
 var _requestDetails = require("./request-details");
 
@@ -30189,7 +30189,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /**
  * @typedef Overrides
- * @property {Partial<import('../../ui/views/tests/mock-data/generate-data').TabData>} tab
+ * @property {Partial<import('../../ui/views/tests/generate-data').TabData>} tab
  * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
  * @property {string} state
  * @property {string} platform
@@ -30331,7 +30331,7 @@ function getOverrides(searchString) {
   return overrides;
 }
 
-},{"../../ui/views/tests/mock-data/generate-data":114,"./request-details":69}],69:[function(require,module,exports){
+},{"../../ui/views/tests/generate-data":114,"./request-details":69}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35007,13 +35007,13 @@ exports.dataStates = void 0;
 exports["default"] = _default;
 exports.protectionsOff = protectionsOff;
 
-var _requestDetails = require("../../../../browser/utils/request-details");
+var _requestDetails = require("../../../browser/utils/request-details");
 
-var _requestDataGoogle = _interopRequireDefault(require("../../../../../../schema/__fixtures__/request-data-google.json"));
+var _requestDataGoogle = _interopRequireDefault(require("../../../../../schema/__fixtures__/request-data-google.json"));
 
-var _requestDataCnn = _interopRequireDefault(require("../../../../../../schema/__fixtures__/request-data-cnn.json"));
+var _requestDataCnn = _interopRequireDefault(require("../../../../../schema/__fixtures__/request-data-cnn.json"));
 
-var _schema = require("../../../../../../schema/__generated__/schema.parsers");
+var _schema = require("../../../../../schema/__generated__/schema.parsers");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -35027,8 +35027,8 @@ var google = _schema.requestDataSchema.parse(_requestDataGoogle["default"]);
 
 var cnn = _schema.requestDataSchema.parse(_requestDataCnn["default"]);
 /**
- * @typedef {import('../../../../browser/utils/request-details').TabData} TabData
- * @typedef {import('../../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
+ * @typedef {import('../../../browser/utils/request-details').TabData} TabData
+ * @typedef {import('../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
  */
 
 /** @type {DetectedRequest} */
@@ -35426,7 +35426,7 @@ function protectionsOff(requests) {
   });
 }
 
-},{"../../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../../schema/__generated__/schema.parsers":59,"../../../../browser/utils/request-details":69}],115:[function(require,module,exports){
+},{"../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../schema/__generated__/schema.parsers":59,"../../../browser/utils/request-details":69}],115:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

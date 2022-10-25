@@ -1,4 +1,4 @@
-import generateData, { protectionsOff } from '../ui/views/tests/mock-data/generate-data'
+import generateData, { protectionsOff } from '../ui/views/tests/generate-data'
 import { setupColorScheme, setupMutationObserver } from './common.es6'
 import { getOverrides } from './utils/overrides'
 

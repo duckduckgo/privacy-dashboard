@@ -388,27 +388,27 @@
 }
 
 .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
-  background: #678fff;
+  background: #21c000;
   /* @alternate */
-  background: var(--mdc-switch-selected-handle-color, var(--mdc-theme-primary, #678fff));
+  background: var(--mdc-switch-selected-handle-color, var(--mdc-theme-primary, #21c000));
 }
 
 .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after {
-  background: #676d80;
+  background: #116000;
   /* @alternate */
-  background: var(--mdc-switch-selected-hover-handle-color, #676d80);
+  background: var(--mdc-switch-selected-hover-handle-color, #116000);
 }
 
 .mdc-switch.mdc-switch--selected:enabled:focus:not(:active) .mdc-switch__handle::after {
-  background: #676d80;
+  background: #116000;
   /* @alternate */
-  background: var(--mdc-switch-selected-focus-handle-color, #676d80);
+  background: var(--mdc-switch-selected-focus-handle-color, #116000);
 }
 
 .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__handle::after {
-  background: #676d80;
+  background: #116000;
   /* @alternate */
-  background: var(--mdc-switch-selected-pressed-handle-color, #676d80);
+  background: var(--mdc-switch-selected-pressed-handle-color, #116000);
 }
 
 .mdc-switch.mdc-switch--selected:disabled .mdc-switch__handle::after {
@@ -554,23 +554,23 @@
 
 .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus) .mdc-switch__ripple::before,
 .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus) .mdc-switch__ripple::after {
-  background-color: #678fff;
+  background-color: #21c000;
   /* @alternate */
-  background-color: var(--mdc-switch-selected-hover-state-layer-color, var(--mdc-theme-primary, #678fff));
+  background-color: var(--mdc-switch-selected-hover-state-layer-color, var(--mdc-theme-primary, #21c000));
 }
 
 .mdc-switch.mdc-switch--selected:enabled:focus .mdc-switch__ripple::before,
 .mdc-switch.mdc-switch--selected:enabled:focus .mdc-switch__ripple::after {
-  background-color: #678fff;
+  background-color: #21c000;
   /* @alternate */
-  background-color: var(--mdc-switch-selected-focus-state-layer-color, var(--mdc-theme-primary, #678fff));
+  background-color: var(--mdc-switch-selected-focus-state-layer-color, var(--mdc-theme-primary, #21c000));
 }
 
 .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__ripple::before,
 .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__ripple::after {
-  background-color: #678fff;
+  background-color: #21c000;
   /* @alternate */
-  background-color: var(--mdc-switch-selected-pressed-state-layer-color, var(--mdc-theme-primary, #678fff));
+  background-color: var(--mdc-switch-selected-pressed-state-layer-color, var(--mdc-theme-primary, #21c000));
 }
 
 .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus) .mdc-switch__ripple::before,
@@ -672,27 +672,27 @@
 }
 
 .mdc-switch:enabled .mdc-switch__track::after {
-  background: #d9e3ff;
+  background: #bdffb0;
   /* @alternate */
-  background: var(--mdc-switch-selected-track-color, #d9e3ff);
+  background: var(--mdc-switch-selected-track-color, #bdffb0);
 }
 
 .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::after {
-  background: #d9e3ff;
+  background: #bdffb0;
   /* @alternate */
-  background: var(--mdc-switch-selected-hover-track-color, #d9e3ff);
+  background: var(--mdc-switch-selected-hover-track-color, #bdffb0);
 }
 
 .mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after {
-  background: #d9e3ff;
+  background: #bdffb0;
   /* @alternate */
-  background: var(--mdc-switch-selected-focus-track-color, #d9e3ff);
+  background: var(--mdc-switch-selected-focus-track-color, #bdffb0);
 }
 
 .mdc-switch:enabled:active .mdc-switch__track::after {
-  background: #d9e3ff;
+  background: #bdffb0;
   /* @alternate */
-  background: var(--mdc-switch-selected-pressed-track-color, #d9e3ff);
+  background: var(--mdc-switch-selected-pressed-track-color, #bdffb0);
 }
 
 .mdc-switch:disabled .mdc-switch__track::after {

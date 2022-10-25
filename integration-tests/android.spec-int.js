@@ -1,5 +1,5 @@
 import { test as baseTest, expect } from '@playwright/test'
-import { forwardConsole, withAndroidRequests } from './helpers'
+import { forwardConsole, playTimeline, withAndroidRequests } from './helpers'
 
 const HTML = '/build/app/html/android.html'
 
@@ -23,6 +23,18 @@ test.describe('initial page data', () => {
         // @ts-ignore
         await androidMocks.outgoing({ names: [] })
         await page.locator('"No Tracking Requests Found"').waitFor()
+    })
+})
+
+test.describe('page data (with trackers)', () => {
+    test('should display correct primary screen', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        await withAndroidRequests(page, { requests: [] })
+        await playTimeline(page, ['state:cnn'])
+        // allow the page to re-render
+        await page.locator('.icon-list').waitFor({ timeout: 500 })
+        await expect(page).toHaveScreenshot('primary-screen.png')
     })
 })
 
