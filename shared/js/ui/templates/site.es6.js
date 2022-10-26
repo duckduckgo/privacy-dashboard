@@ -40,7 +40,7 @@ export default function () {
                 <ul class='default-list'>
                     ${renderKeyInsight(this.model)}
                 </ul>
-                <ul class='default-list card-list--bordered main-nav token-body-em'>
+                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>
                     <li class='main-nav__row js-site-show-page-connection'>
                         ${renderConnection(this.model)}
                     </li>

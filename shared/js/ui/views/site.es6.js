@@ -82,6 +82,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             'show-page-non-trackers',
             'report-broken',
             'permission',
+            'main-nav',
             'done',
         ])
 
@@ -102,6 +103,8 @@ Site.prototype = $.extend({}, Parent.prototype, {
             [this.$reportbroken, 'click', this._onReportBrokenSiteClick],
             [this.$done, 'click', this._done],
             [this.$permission, 'change', this._changePermission],
+            [this.$mainnav, 'mouseover', this._mouseover],
+            [this.$mainnav, 'mouseleave', this._mouseleave],
             [this.store.subscribe, 'change:site', this.rerender],
         ])
 
@@ -218,6 +221,21 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 appendTo: $('#email-alias-container'),
                 template: emailProtectionTemplate,
             })
+        }
+    },
+    _mouseover(e) {
+        const li = e.target?.closest('li')
+        if (li) {
+            const links = this.$mainnav.find('li').index(li)
+            this.$mainnav[0].dataset.hover = links
+        }
+    },
+    _mouseleave() {
+        try {
+            delete this.$mainnav[0].dataset.hover
+        } catch (e) {
+            console.warn('cannot delete data-hover')
+            // no-op
         }
     },
 })

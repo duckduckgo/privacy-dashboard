@@ -34273,7 +34273,7 @@ function _default() {
 
   var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
   var permissions = localizePermissions(this.model.permissions);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x'>\n                <ul class='default-list'>\n                    ", "\n                </ul>\n                <ul class='default-list card-list--bordered main-nav token-body-em'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x'>\n                <ul class='default-list'>\n                    ", "\n                </ul>\n                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
     children: renderManagePermissions(this.model)
   }) : null);
 }
@@ -34743,7 +34743,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   // NOTE: after ._setup() is called this view listens for changes to
   // site model and re-renders every time model properties change
   _setup: function _setup() {
-    this._cacheElems('.js-site', ['toggle', 'protection', 'show-page-connection', 'show-page-trackers', 'show-page-non-trackers', 'report-broken', 'permission', 'done']);
+    this._cacheElems('.js-site', ['toggle', 'protection', 'show-page-connection', 'show-page-trackers', 'show-page-non-trackers', 'report-broken', 'permission', 'main-nav', 'done']);
 
     if ((0, _environmentCheck.isAndroid)()) {
       document.querySelectorAll('.mdc-switch').forEach(function ($el) {
@@ -34755,7 +34755,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
       (0, _utils.setupMaterialDesignRipple)('.link-action');
     }
 
-    this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$showpageconnection, 'click', this._showPageConnection], [this.$showpagetrackers, 'click', this._showPageTrackers], [this.$showpagenontrackers, 'click', this._showPageNonTrackers], [this.$reportbroken, 'click', this._onReportBrokenSiteClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.store.subscribe, 'change:site', this.rerender]]);
+    this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$showpageconnection, 'click', this._showPageConnection], [this.$showpagetrackers, 'click', this._showPageTrackers], [this.$showpagenontrackers, 'click', this._showPageNonTrackers], [this.$reportbroken, 'click', this._onReportBrokenSiteClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.$mainnav, 'mouseover', this._mouseover], [this.$mainnav, 'mouseleave', this._mouseleave], [this.store.subscribe, 'change:site', this.rerender]]);
 
     this._setupFeatures();
 
@@ -34882,6 +34882,23 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
         appendTo: (0, _jquery["default"])('#email-alias-container'),
         template: _emailProtection2["default"]
       });
+    }
+  },
+  _mouseover: function _mouseover(e) {
+    var _e$target;
+
+    var li = (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.closest('li');
+
+    if (li) {
+      var links = this.$mainnav.find('li').index(li);
+      this.$mainnav[0].dataset.hover = links;
+    }
+  },
+  _mouseleave: function _mouseleave() {
+    try {
+      delete this.$mainnav[0].dataset.hover;
+    } catch (e) {
+      console.warn('cannot delete data-hover'); // no-op
     }
   }
 });
