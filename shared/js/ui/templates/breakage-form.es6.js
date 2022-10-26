@@ -2,31 +2,15 @@ import bel from 'bel'
 import { i18n } from '../base/localize.es6'
 import { largeHeroIcon, topNav } from './shared/hero.es6.js'
 
-function categories() {
-    return [
-        { category: i18n.t('report:videos.title'), value: 'videos' },
-        { category: i18n.t('report:images.title'), value: 'images' },
-        { category: i18n.t('report:comments.title'), value: 'comments' },
-        { category: i18n.t('report:content.title'), value: 'content' },
-        { category: i18n.t('report:links.title'), value: 'links' },
-        { category: i18n.t('report:login.title'), value: 'login' },
-        { category: i18n.t('report:paywall.title'), value: 'paywall' },
-    ]
-}
-
-function shuffle(arr) {
-    let len = arr.length
-    let temp
-    let index
-    while (len > 0) {
-        index = Math.floor(Math.random() * len)
-        len--
-        temp = arr[len]
-        arr[len] = arr[index]
-        arr[index] = temp
-    }
-    return arr
-}
+const categories = [
+    { category: i18n.t('report:videos.title'), value: 'videos' },
+    { category: i18n.t('report:images.title'), value: 'images' },
+    { category: i18n.t('report:comments.title'), value: 'comments' },
+    { category: i18n.t('report:content.title'), value: 'content' },
+    { category: i18n.t('report:links.title'), value: 'links' },
+    { category: i18n.t('report:login.title'), value: 'login' },
+    { category: i18n.t('report:paywall.title'), value: 'paywall' },
+]
 
 export default function () {
     const icon = largeHeroIcon({
@@ -52,7 +36,7 @@ export default function () {
                         <div class="form__select breakage-form__input--dropdown">
                             <select class="js-breakage-form-dropdown">
                                 <option value=''>${i18n.t('report:pickYourIssueFromTheList.title')}</option>
-                                ${shuffle(categories()).map(function (item) {
+                                ${categories.map(function (item) {
                                     return bel`<option value=${item.value}>${item.category}</option>`
                                 })}
                                 <option value='Other'>${i18n.t('report:other.title')}</option>

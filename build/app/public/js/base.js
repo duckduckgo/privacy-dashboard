@@ -32983,52 +32983,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-function categories() {
-  return [{
-    category: _localize.i18n.t('report:videos.title'),
-    value: 'videos'
-  }, {
-    category: _localize.i18n.t('report:images.title'),
-    value: 'images'
-  }, {
-    category: _localize.i18n.t('report:comments.title'),
-    value: 'comments'
-  }, {
-    category: _localize.i18n.t('report:content.title'),
-    value: 'content'
-  }, {
-    category: _localize.i18n.t('report:links.title'),
-    value: 'links'
-  }, {
-    category: _localize.i18n.t('report:login.title'),
-    value: 'login'
-  }, {
-    category: _localize.i18n.t('report:paywall.title'),
-    value: 'paywall'
-  }];
-}
-
-function shuffle(arr) {
-  var len = arr.length;
-  var temp;
-  var index;
-
-  while (len > 0) {
-    index = Math.floor(Math.random() * len);
-    len--;
-    temp = arr[len];
-    arr[len] = arr[index];
-    arr[index] = temp;
-  }
-
-  return arr;
-}
+var categories = [{
+  category: _localize.i18n.t('report:videos.title'),
+  value: 'videos'
+}, {
+  category: _localize.i18n.t('report:images.title'),
+  value: 'images'
+}, {
+  category: _localize.i18n.t('report:comments.title'),
+  value: 'comments'
+}, {
+  category: _localize.i18n.t('report:content.title'),
+  value: 'content'
+}, {
+  category: _localize.i18n.t('report:links.title'),
+  value: 'links'
+}, {
+  category: _localize.i18n.t('report:login.title'),
+  value: 'login'
+}, {
+  category: _localize.i18n.t('report:paywall.title'),
+  value: 'paywall'
+}];
 
 function _default() {
   var icon = (0, _heroEs.largeHeroIcon)({
     status: 'breakage-form'
   });
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form\">\n        ", "\n        <div class=\"padding-x-double js-breakage-form-element\" data-state=\"idle\">\n            <div class=\"key-insight\">\n                ", "\n                <div class=\"breakage-form__advise\">\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n                <div class=\"breakage-form__message\">\n                    <p class=\"token-title-3-em\">", "</p>\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n            </div>\n            <div class=\"breakage-form__content\">\n                <div class=\"breakage-form__element\">\n                    <div class=\"form__group\">\n                        <div class=\"form__select breakage-form__input--dropdown\">\n                            <select class=\"js-breakage-form-dropdown\">\n                                <option value=''>", "</option>\n                                ", "\n                                <option value='Other'>", "</option>\n                            </select>\n                        </div>\n                        <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                        <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                    </div>\n                    <div class=\"breakage-form__footer token-breakage-form-body\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    </section>"])), (0, _heroEs.topNav)(), icon, _localize.i18n.t('report:selectTheOptionDesc.title'), _localize.i18n.t('report:thankYou.title'), _localize.i18n.t('report:yourReportWillHelpDesc.title'), _localize.i18n.t('report:pickYourIssueFromTheList.title'), shuffle(categories()).map(function (item) {
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form\">\n        ", "\n        <div class=\"padding-x-double js-breakage-form-element\" data-state=\"idle\">\n            <div class=\"key-insight\">\n                ", "\n                <div class=\"breakage-form__advise\">\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n                <div class=\"breakage-form__message\">\n                    <p class=\"token-title-3-em\">", "</p>\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n            </div>\n            <div class=\"breakage-form__content\">\n                <div class=\"breakage-form__element\">\n                    <div class=\"form__group\">\n                        <div class=\"form__select breakage-form__input--dropdown\">\n                            <select class=\"js-breakage-form-dropdown\">\n                                <option value=''>", "</option>\n                                ", "\n                                <option value='Other'>", "</option>\n                            </select>\n                        </div>\n                        <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                        <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                    </div>\n                    <div class=\"breakage-form__footer token-breakage-form-body\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    </section>"])), (0, _heroEs.topNav)(), icon, _localize.i18n.t('report:selectTheOptionDesc.title'), _localize.i18n.t('report:thankYou.title'), _localize.i18n.t('report:yourReportWillHelpDesc.title'), _localize.i18n.t('report:pickYourIssueFromTheList.title'), categories.map(function (item) {
     return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<option value=", ">", "</option>"])), item.value, item.category);
   }), _localize.i18n.t('report:other.title'), _localize.i18n.t('report:tellUsMoreDesc.title'), _localize.i18n.t('report:sendReport.title'), _localize.i18n.t('report:reportsAreAnonymousDesc.title'));
 }
