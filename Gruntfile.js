@@ -95,6 +95,10 @@ module.exports = function (grunt) {
                 files: ['shared/js/**/*', 'shared/html/**/*', 'shared/locales/**/*', 'fixtures/**/*.json', 'schema/**/*.json'],
                 tasks: ['exec:schema', 'browserify:ui', 'copy:html', 'copy:index', 'exec:buildHtml'],
             },
+            images: {
+                files: ['shared/img/**/*'],
+                tasks: ['copy:images'],
+            },
         },
         exec: {
             schema: 'npm run schema',

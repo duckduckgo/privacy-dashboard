@@ -764,7 +764,7 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .hero-icon--breakage-form {
-  background-image: url("../../img/refresh-assets/Breakage-96.svg");
+  background-image: url("../../img/refresh-assets/Breakage-128.svg");
 }
 
 .hero-icon--tracker-network {
@@ -772,12 +772,9 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .hero-icon--insecure-connection,
-.hero-icon--trackers-blocked {
+.hero-icon--trackers-blocked,
+.hero-icon--connection-none {
   background-image: url("../../img/refresh-assets/Unlocked-128.svg");
-}
-
-.hero-icon--major-networks-mixed {
-  background-image: url("../../img/refresh-assets/Block-Allowed-96.svg");
 }
 
 .hero-icon--major-networks-blocked {
@@ -791,7 +788,7 @@ body.is-disabled .site-info .link-secondary:hover {
 
 .hero-icon--info,
 .hero-icon--major-networks-info {
-  background-image: url("../../img/refresh-assets/Block-Info.svg");
+  background-image: url("../../img/refresh-assets/Block-Info-128.svg");
 }
 
 .hero-icon--no-activity,
@@ -801,11 +798,7 @@ body.is-disabled .site-info .link-secondary:hover {
 
 .hero-icon--connection-secure,
 .hero-icon--connection-upgraded {
-  background-image: url("../../img/refresh-assets/Locked-96.svg");
-}
-
-.hero-icon--connection-none {
-  background-image: url("../../img/refresh-assets/Unlocked-96.svg");
+  background-image: url("../../img/refresh-assets/Locked-128.svg");
 }
 
 .key-insight {

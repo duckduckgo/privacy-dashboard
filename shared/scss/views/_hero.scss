@@ -1,6 +1,7 @@
 .large-icon-container {
     height: 96px;
-    // outline: 1px dashed grey;
+    //outline: 1px dashed grey;
+    //background-color: cyan;
     background-position: center center;
     background-repeat: no-repeat;
     margin-bottom: 24px;
@@ -18,19 +19,16 @@
 }
 
 .hero-icon--breakage-form {
-    @include cross_platform_bg_image('refresh-assets/Breakage-96.svg');
+    @include cross_platform_bg_image('refresh-assets/Breakage-128.svg');
 }
 .hero-icon--tracker-network {
     @include cross_platform_bg_image('refresh-assets/Network-128.svg');
 }
 
 .hero-icon--insecure-connection,
-.hero-icon--trackers-blocked {
+.hero-icon--trackers-blocked,
+.hero-icon--connection-none {
     @include cross_platform_bg_image('refresh-assets/Unlocked-128.svg');
-}
-
-.hero-icon--major-networks-mixed {
-    @include cross_platform_bg_image('refresh-assets/Block-Allowed-96.svg');
 }
 
 .hero-icon--major-networks-blocked {
@@ -44,7 +42,7 @@
 
 .hero-icon--info,
 .hero-icon--major-networks-info {
-    @include cross_platform_bg_image('refresh-assets/Block-Info.svg');
+    @include cross_platform_bg_image('refresh-assets/Block-Info-128.svg');
 }
 
 .hero-icon--no-activity,
@@ -54,9 +52,5 @@
 
 .hero-icon--connection-secure,
 .hero-icon--connection-upgraded {
-    @include cross_platform_bg_image('refresh-assets/Locked-96.svg');
-}
-
-.hero-icon--connection-none {
-    @include cross_platform_bg_image('refresh-assets/Unlocked-96.svg');
+    @include cross_platform_bg_image('refresh-assets/Locked-128.svg');
 }
