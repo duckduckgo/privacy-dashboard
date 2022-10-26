@@ -10,6 +10,7 @@ const categories = [
     { category: i18n.t('report:links.title'), value: 'links' },
     { category: i18n.t('report:login.title'), value: 'login' },
     { category: i18n.t('report:paywall.title'), value: 'paywall' },
+    { category: i18n.t('report:other.title'), value: 'other' },
 ]
 
 export default function () {
@@ -39,7 +40,6 @@ export default function () {
                                 ${categories.map(function (item) {
                                     return bel`<option value=${item.value}>${item.category}</option>`
                                 })}
-                                <option value='Other'>${i18n.t('report:other.title')}</option>
                             </select>
                         </div>
                         <textarea class="form__textarea js-breakage-form-description" placeholder="${i18n.t(
