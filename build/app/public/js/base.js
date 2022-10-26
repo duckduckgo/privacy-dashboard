@@ -30599,6 +30599,7 @@ var AggregatedCompanyResponseData = /*#__PURE__*/function () {
       }
 
       var displayName;
+      var urlHostname = hostname.replace(/^www\./, '');
 
       if (request.entityName) {
         displayName = (0, _normalizeCompanyNameEs.removeTLD)(request.entityName);
@@ -30612,7 +30613,7 @@ var AggregatedCompanyResponseData = /*#__PURE__*/function () {
         this.entities[displayName] = new AggregateCompanyData(request.ownerName, displayName, (_request$prevalence = request.prevalence) !== null && _request$prevalence !== void 0 ? _request$prevalence : 0);
       }
 
-      this.entities[displayName].addUrl(hostname, request.category);
+      this.entities[displayName].addUrl(urlHostname, request.category);
       this.entitiesCount = Object.keys(this.entities).length;
       this.requestCount += 1;
     }

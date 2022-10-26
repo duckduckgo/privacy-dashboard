@@ -181,6 +181,7 @@ export class AggregatedCompanyResponseData {
         }
 
         let displayName
+        const urlHostname = hostname.replace(/^www\./, '')
 
         if (request.entityName) {
             displayName = removeTLD(request.entityName)
@@ -192,7 +193,7 @@ export class AggregatedCompanyResponseData {
             this.entities[displayName] = new AggregateCompanyData(request.ownerName, displayName, request.prevalence ?? 0)
         }
 
-        this.entities[displayName].addUrl(hostname, request.category)
+        this.entities[displayName].addUrl(urlHostname, request.category)
 
         this.entitiesCount = Object.keys(this.entities).length
         this.requestCount += 1
