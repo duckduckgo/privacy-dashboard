@@ -198,7 +198,11 @@ function renderCompanyIconsList(model) {
     })
 
     return bel`
-        <div class='large-icon-container icon-list' data-company-count='${processed.length}'>
+        <div 
+            class='large-icon-container icon-list' 
+            data-company-count='${processed.length}'
+            aria-label="List of Blocked Company Icons"
+            >
             ${list}
         </div>
     `

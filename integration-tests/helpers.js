@@ -363,7 +363,7 @@ export async function withWebkitRequests(page, requestData, tab = {}) {
 
 /**
  * @param {import('@playwright/test').Page} page
- * @param {("new-requests" | "none" | "state:cnn")[]} kind
+ * @param {("new-requests" | "none" | `state:${string}`)[]} kind
  * @returns {Promise<void>}
  */
 export async function playTimeline(page, kind) {
@@ -372,11 +372,10 @@ export async function playTimeline(page, kind) {
             const { dataStates, kind } = params
             for (const timelineKind of kind) {
                 if (timelineKind === 'new-requests') {
-                    /** @type {import('../schema/__generated__/schema.types').DetectedRequest[]} */
                     const payload1 = dataStates['02'].requests.slice(0, 1)
                     const payload2 = dataStates['02'].requests.slice(0, 2)
                     const payload3 = dataStates['02'].requests.slice()
-                    const payload4 = dataStates['02'].requests.slice().concat(dataStates['03'].requests)
+                    const payload4 = [...dataStates['02'].requests, ...dataStates['03'].requests]
                     const payloads = [payload1, payload2, payload3, payload4]
                     for (const payload of payloads) {
                         await new Promise((resolve) => setTimeout(resolve, 100))
@@ -390,6 +389,14 @@ export async function playTimeline(page, kind) {
                     /** @type {import('../schema/__generated__/schema.types').DetectedRequest[]} */
                     const payload = state.requests
                     window.onChangeParentEntity(state.parentEntity)
+                    window.onChangeRequestData(state.url, {
+                        requests: payload,
+                    })
+                } else if (timelineKind.startsWith('state:')) {
+                    const num = timelineKind.slice(6)
+                    const state = dataStates[num]
+                    if (!state) throw new Error(`cannot use ${timelineKind} as an argument`)
+                    const payload = state.requests
                     window.onChangeRequestData(state.url, {
                         requests: payload,
                     })

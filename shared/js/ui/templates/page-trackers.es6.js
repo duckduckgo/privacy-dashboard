@@ -23,7 +23,7 @@ export function trackerNetworksTemplate() {
         <div class="padding-x-double js-tracker-networks-hero">
             ${hero}
         </div>
-        <div class="padding-x-double js-tracker-networks-details">
+        <div class="padding-x-double js-tracker-networks-details" aria-label="List of Tracker Companies">
             ${sections}
         </div>
         ${limitations}

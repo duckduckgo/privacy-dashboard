@@ -21,6 +21,15 @@ const allowedTracker = {
 }
 
 /** @type {DetectedRequest} */
+const allowedTrackerRule = {
+    entityName: 'example.com',
+    prevalence: 82.6,
+    url: 'https://example.com/a.js',
+    pageUrl: 'https://example.com',
+    state: { allowed: { reason: 'ruleException' } },
+}
+
+/** @type {DetectedRequest} */
 const allowedThirdParty = {
     entityName: 'Index Exchange',
     prevalence: 12.7,
@@ -279,27 +288,27 @@ export const dataStates = {
     '01': {
         state: states.protectionsOn,
         url: 'https://example.com',
-        requests: [],
+        requests: [blocked1, allowedTracker],
     },
     '02': {
         state: states.protectionsOn_blocked,
         url: 'https://example.com',
-        requests: [blocked1, blocked2, blocked3],
+        requests: [allowedTrackerRule],
     },
     '03': {
         state: states.protectionsOn_blocked_allowedTrackers,
         url: 'https://example.com',
-        requests: [blocked1, allowedTracker],
+        requests: [allowedThirdParty],
     },
     '04': {
         state: states.protectionsOn_blocked_allowedNonTrackers,
         url: 'https://example.com',
-        requests: [blocked1, allowedThirdParty],
+        requests: [],
     },
     '05': {
         state: states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers,
         url: 'https://example.com',
-        requests: [blocked1, allowedThirdParty, allowedTracker],
+        requests: [blocked1],
     },
     '06': {
         state: states.protectionsOn_allowedTrackers,

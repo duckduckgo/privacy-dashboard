@@ -10,17 +10,12 @@ export function trackerNetworksText(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
         case states.protectionsOn_blocked:
-        case states.protectionsOn_blocked_allowedNonTrackers: {
-            return {
-                title: ns.site('trackerNetworksDesc.title'),
-                icon: 'blocked',
-            }
-        }
         case states.protectionsOn_blocked_allowedTrackers:
+        case states.protectionsOn_blocked_allowedNonTrackers:
         case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
             return {
                 title: ns.site('trackerNetworksDesc.title'),
-                icon: 'info',
+                icon: 'blocked',
             }
         }
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
@@ -91,8 +86,6 @@ export function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
         case states.protectionsOn_allowedNonTrackers: {
             return 'major-networks-no-activity'
         }
-        case states.protectionsOn_blocked_allowedTrackers:
-        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedTrackers_allowedNonTrackers: {
             return 'major-networks-info'
@@ -101,6 +94,8 @@ export function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
         case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
             return 'major-networks-warning'
         }
+        case states.protectionsOn_blocked_allowedTrackers:
+        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_blocked:
         case states.protectionsOn_blocked_allowedNonTrackers: {
             return 'major-networks-blocked'

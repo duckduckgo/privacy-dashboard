@@ -33291,7 +33291,7 @@ function renderCompanyIconsList(model) {
 
     return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n            <span class='icon-list__item' style='order: ", "' data-company-icon-position='", "'>\n                <span class='icon-list__wrapper icon-list__wrapper--count' \n                    data-company-icon-size='", "'>\n                    <span class='icon-list__count'>+", "</span>\n                </span>\n            </div>"])), positionMap[index], positionMap[index], item.size, item.count);
   });
-  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n        <div class='large-icon-container icon-list' data-company-count='", "'>\n            ", "\n        </div>\n    "])), processed.length, list);
+  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n        <div \n            class='large-icon-container icon-list' \n            data-company-count='", "'\n            aria-label=\"List of Blocked Company Icons\"\n            >\n            ", "\n        </div>\n    "])), processed.length, list);
 }
 
 },{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":106,"bel":31,"bel/raw":32}],95:[function(require,module,exports){
@@ -33570,7 +33570,7 @@ function trackerNetworksTemplate() {
   var sections = sectionsFromSiteTrackers(this.model.site);
   var hero = (0, _heroEs.heroFromTabTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
   var limitations = this.model.site.tab.platformLimitations ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"padding-x-double\">", "</div>"])), (0, _platformLimitations.platformLimitations)()) : (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div></div>"])));
-  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, limitations);
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\" aria-label=\"List of Tracker Companies\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, limitations);
 }
 /**
  * This is exported so that the allowedRequests UI can re-use the template
@@ -34081,20 +34081,13 @@ function trackerNetworksText(requestDetails, protectionsEnabled) {
 
   switch (state) {
     case _requestDetails.states.protectionsOn_blocked:
-    case _requestDetails.states.protectionsOn_blocked_allowedNonTrackers:
-      {
-        return {
-          title: _localize.ns.site('trackerNetworksDesc.title'),
-          icon: 'blocked'
-        };
-      }
-
     case _requestDetails.states.protectionsOn_blocked_allowedTrackers:
+    case _requestDetails.states.protectionsOn_blocked_allowedNonTrackers:
     case _requestDetails.states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
       {
         return {
           title: _localize.ns.site('trackerNetworksDesc.title'),
-          icon: 'info'
+          icon: 'blocked'
         };
       }
 
@@ -34183,8 +34176,6 @@ function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
         return 'major-networks-no-activity';
       }
 
-    case _requestDetails.states.protectionsOn_blocked_allowedTrackers:
-    case _requestDetails.states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
     case _requestDetails.states.protectionsOn_allowedTrackers:
     case _requestDetails.states.protectionsOn_allowedTrackers_allowedNonTrackers:
       {
@@ -34197,6 +34188,8 @@ function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
         return 'major-networks-warning';
       }
 
+    case _requestDetails.states.protectionsOn_blocked_allowedTrackers:
+    case _requestDetails.states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
     case _requestDetails.states.protectionsOn_blocked:
     case _requestDetails.states.protectionsOn_blocked_allowedNonTrackers:
       {
@@ -34319,7 +34312,7 @@ function renderEmailWrapper(model) {
 
 function renderConnection(model) {
   var icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure';
-  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Connection Information\"\n            >\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34331,7 +34324,7 @@ function renderTrackerNetworksNew(model) {
       title = _trackerNetworksText.title,
       icon = _trackerNetworksText.icon;
 
-  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
+  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Tracker Companies\"\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34343,7 +34336,7 @@ function renderThirdPartyNew(model) {
       title = _thirdpartyText.title,
       icon = _thirdpartyText.icon;
 
-  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" class=\"main-nav__item main-nav__item--link link-action link-action--dark\" role=\"button\" draggable=\"false\">\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
+  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Non-Tracker Companies\"\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -35053,6 +35046,19 @@ var allowedTracker = {
 };
 /** @type {DetectedRequest} */
 
+var allowedTrackerRule = {
+  entityName: 'example.com',
+  prevalence: 82.6,
+  url: 'https://example.com/a.js',
+  pageUrl: 'https://example.com',
+  state: {
+    allowed: {
+      reason: 'ruleException'
+    }
+  }
+};
+/** @type {DetectedRequest} */
+
 var allowedThirdParty = {
   entityName: 'Index Exchange',
   prevalence: 12.7,
@@ -35295,27 +35301,27 @@ var dataStates = {
   '01': {
     state: _requestDetails.states.protectionsOn,
     url: 'https://example.com',
-    requests: []
+    requests: [blocked1, allowedTracker]
   },
   '02': {
     state: _requestDetails.states.protectionsOn_blocked,
     url: 'https://example.com',
-    requests: [blocked1, blocked2, blocked3]
+    requests: [allowedTrackerRule]
   },
   '03': {
     state: _requestDetails.states.protectionsOn_blocked_allowedTrackers,
     url: 'https://example.com',
-    requests: [blocked1, allowedTracker]
+    requests: [allowedThirdParty]
   },
   '04': {
     state: _requestDetails.states.protectionsOn_blocked_allowedNonTrackers,
     url: 'https://example.com',
-    requests: [blocked1, allowedThirdParty]
+    requests: []
   },
   '05': {
     state: _requestDetails.states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers,
     url: 'https://example.com',
-    requests: [blocked1, allowedThirdParty, allowedTracker]
+    requests: [blocked1]
   },
   '06': {
     state: _requestDetails.states.protectionsOn_allowedTrackers,

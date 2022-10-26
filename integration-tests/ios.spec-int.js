@@ -123,3 +123,79 @@ test.describe('localization', () => {
         await page.locator('"La connexion est chiffrée"').click()
     })
 })
+
+test.describe('states', () => {
+    test('01', async ({ page }) => {
+        const state = new StateTest(page, 'ios', '01')
+        await state.screenshots()
+    })
+    test('02', async ({ page }) => {
+        const p = new StateTest(page, 'ios', '02')
+        await p.screenshots()
+    })
+    test('03', async ({ page }) => {
+        const p = new StateTest(page, 'ios', '03')
+        await p.screenshots()
+    })
+    test('04', async ({ page }) => {
+        const p = new StateTest(page, 'ios', '04')
+        await p.screenshots()
+    })
+    test('05', async ({ page }) => {
+        const p = new StateTest(page, 'ios', '05')
+        await p.screenshots()
+    })
+    test('cnn', async ({ page }) => {
+        const p = new StateTest(page, 'ios', 'cnn')
+        await p.screenshots()
+    })
+})
+
+class StateTest {
+    page
+    platform
+    state
+    /**
+     * @param {import("@playwright/test").Page} page
+     * @param {"ios"} platform
+     * @param {"01" | "02" | "03" | "04" | "05" | "cnn"} state
+     */
+    constructor(page, platform, state) {
+        this.platform = platform
+        this.state = state
+        this.page = page
+    }
+
+    async init() {
+        forwardConsole(this.page)
+        await this.page.goto(HTML)
+        await withWebkitRequests(this.page, {
+            requests: [],
+        })
+    }
+
+    async screenshotPrimary() {
+        await playTimeline(this.page, [`state:${this.state}`])
+        await expect(this.page).toHaveScreenshot(`${this.state}-state-primary.png`)
+    }
+
+    async screenshotTrackers() {
+        const page = this.page
+        await page.locator('[aria-label="View Tracker Companies"]').click()
+        await expect(this.page).toHaveScreenshot(`${this.state}-state-trackers.png`)
+    }
+
+    async screenshotNonTrackers() {
+        const page = this.page
+        await page.locator('[aria-label="Back"]').nth(1).click()
+        await page.locator('[aria-label="View Non-Tracker Companies"]').click()
+        await expect(this.page).toHaveScreenshot(`${this.state}-state-non-trackers.png`)
+    }
+
+    async screenshots() {
+        await this.init()
+        await this.screenshotPrimary()
+        await this.screenshotTrackers()
+        await this.screenshotNonTrackers()
+    }
+}

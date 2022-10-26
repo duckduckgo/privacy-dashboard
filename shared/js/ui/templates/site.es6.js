@@ -92,7 +92,12 @@ function renderConnection(model) {
     const icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure'
 
     return bel`
-        <a href="javascript:void(0)" class="main-nav__item main-nav__item--link link-action link-action--dark" role="button" draggable="false">
+        <a href="javascript:void(0)" 
+            class="main-nav__item main-nav__item--link link-action link-action--dark" 
+            role="button" 
+            draggable="false"
+            aria-label="View Connection Information"
+            >
             <span class="main-nav__icon ${icon}"></span>
             <span class="main-nav__text">${model.httpsStatusText}</span>
             <span class="main-nav__chev"></span>
@@ -105,7 +110,12 @@ function renderConnection(model) {
 function renderTrackerNetworksNew(model) {
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
-        <a href="javascript:void(0)" class="main-nav__item main-nav__item--link link-action link-action--dark" role="button" draggable="false">
+        <a href="javascript:void(0)" 
+            class="main-nav__item main-nav__item--link link-action link-action--dark" 
+            role="button" 
+            draggable="false"
+            aria-label="View Tracker Companies"
+            >
             <span class="main-nav__icon icon-small--${icon}"></span>
             <span class="main-nav__text">${title}</span>
             <span class="main-nav__chev"></span>
@@ -118,7 +128,12 @@ function renderTrackerNetworksNew(model) {
 function renderThirdPartyNew(model) {
     const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
     return bel`
-        <a href="javascript:void(0)" class="main-nav__item main-nav__item--link link-action link-action--dark" role="button" draggable="false">
+        <a href="javascript:void(0)" 
+            class="main-nav__item main-nav__item--link link-action link-action--dark" 
+            role="button" 
+            draggable="false"
+            aria-label="View Non-Tracker Companies"
+            >
             <span class="main-nav__icon icon-small--${icon}"></span>
             <span class="main-nav__text">${title}</span>
             <span class="main-nav__chev"></span>
