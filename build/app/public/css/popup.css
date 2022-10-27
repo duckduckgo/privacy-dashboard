@@ -2961,6 +2961,7 @@ body.is-disabled .site-info .link-secondary:hover {
 
 .breakage-form {
   background: #ffffff;
+  padding-bottom: var(--size-unit);
 }
 .body--theme-dark .breakage-form {
   background: #333333;

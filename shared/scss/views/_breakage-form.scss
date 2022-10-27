@@ -1,5 +1,6 @@
 .breakage-form {
     background: $white;
+    padding-bottom: var(--size-unit);
 
     .body--theme-dark & {
         background: $slate;
