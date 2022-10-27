@@ -2872,6 +2872,7 @@ body.is-disabled .site-info .link-secondary:hover {
 .site-info__trackers__company-list__url-list .url-list-item {
   display: flex;
   margin-top: 7px;
+  align-items: baseline;
 }
 .site-info__trackers__company-list__url-list .url {
   width: 100%;
