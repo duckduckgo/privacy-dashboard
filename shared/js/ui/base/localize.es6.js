@@ -21,6 +21,11 @@ i18next.use(ICU).init({
     ns: ['shared', 'site', 'connection', 'report'],
     defaultNS: 'shared',
     resources,
+    i18nFormat: {
+        parseErrorHandler: (err, key, res, options) => {
+            console.warn('parseErrorHandler', err, key, res, options)
+        },
+    },
 })
 
 export const i18n = i18next

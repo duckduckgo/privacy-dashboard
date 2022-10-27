@@ -29351,14 +29351,24 @@ function updateTheme() {
 }
 
 function setupColorScheme() {
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  var query = window.matchMedia('(prefers-color-scheme: dark)');
+
+  if (query !== null && query !== void 0 && query.matches) {
     detectedTheme = DARK_THEME;
   }
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (event) {
-    detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME;
-    updateTheme();
-  });
+  if (query.addEventListener) {
+    query === null || query === void 0 ? void 0 : query.addEventListener('change', function (event) {
+      detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME;
+      updateTheme();
+    });
+  } else if ('addListener' in query) {
+    query.addListener(function (event) {
+      detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME;
+      updateTheme();
+    });
+  }
+
   updateTheme();
   return function () {
     var theme = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -31227,12 +31237,24 @@ function _default(uaString) {
 },{}],72:[function(require,module,exports){
 "use strict";
 
-var _popupEs = require("../pages/popup.es6.js");
+window.onunhandledrejection = function (event) {
+  console.warn("UNHANDLED PROMISE REJECTION: ".concat(event.reason));
+};
 
-var _loadcss = require("./loadcss.js");
+try {
+  var _require = require('../pages/popup.es6.js'),
+      initPopup = _require.initPopup;
 
-(0, _popupEs.initPopup)();
-(0, _loadcss.loadCss)();
+  var _require2 = require('./loadcss.js'),
+      loadCss = _require2.loadCss;
+
+  initPopup();
+  loadCss();
+} catch (
+/** @type {any} */
+e) {
+  console.error('start up error', e);
+}
 
 },{"../pages/popup.es6.js":90,"./loadcss.js":73}],73:[function(require,module,exports){
 "use strict";
@@ -31310,7 +31332,12 @@ _i18next["default"].use(_i18nextIcu["default"]).init({
   lng: 'en',
   ns: ['shared', 'site', 'connection', 'report'],
   defaultNS: 'shared',
-  resources: resources
+  resources: resources,
+  i18nFormat: {
+    parseErrorHandler: function parseErrorHandler(err, key, res, options) {
+      console.warn('parseErrorHandler', err, key, res, options);
+    }
+  }
 });
 
 var i18n = _i18next["default"];

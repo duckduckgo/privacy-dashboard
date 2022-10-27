@@ -144,14 +144,22 @@ function updateTheme() {
 }
 
 export function setupColorScheme() {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    const query = window.matchMedia('(prefers-color-scheme: dark)')
+    if (query?.matches) {
         detectedTheme = DARK_THEME
     }
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-        detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME
-        updateTheme()
-    })
+    if (query.addEventListener) {
+        query?.addEventListener('change', (event) => {
+            detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME
+            updateTheme()
+        })
+    } else if ('addListener' in query) {
+        query.addListener((event) => {
+            detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME
+            updateTheme()
+        })
+    }
 
     updateTheme()
 
