@@ -22,9 +22,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <style>
             /**
-         * CSS will load later, so hide content and set dark background color
-         * when using a dark theme until styles are loaded to display correctly.
-         */
+             * CSS will load later, so hide content and set dark background color
+             * when using a dark theme until styles are loaded to display correctly.
+             */
             #popup-container {
                 display: none;
             }
@@ -34,6 +34,29 @@
                 }
             }
         </style>
+        <script>
+            /**
+             * https://bugs.chromium.org/p/v8/issues/detail?id=10682
+             */
+            function hasIntlGetCanonicalLocalesBug() {
+                try {
+                    return new Intl.Locale('und-x-private').toString() === 'x-private'
+                } catch (e) {
+                    return true
+                }
+            }
+            function shouldPolyfill() {
+                return !('Locale' in Intl) || hasIntlGetCanonicalLocalesBug()
+            }
+            /**
+             * Load the Intl.Locale polyfill if needed
+             */
+            if (shouldPolyfill()) {
+                const script = document.createElement('script')
+                script.src = '../public/js/polyfills.js'
+                document.head.appendChild(script)
+            }
+        </script>
     </head>
 
     <body class="environment--windows">
@@ -48,6 +71,6 @@
         <!--        document.body.appendChild(s);-->
         <!--    </script>-->
 
-        <script src="../public/js/base.js" type="text/javascript"></script>
+        <script src="../public/js/base.js"></script>
     </body>
 </html>

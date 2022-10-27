@@ -19,6 +19,7 @@ module.exports = function (grunt) {
     const baseFileMap = {
         ui: {
             '<%= dirs.public.js %>/base.js': ['<%= dirs.src.js %>/ui/base/index.es6.js'],
+            '<%= dirs.public.js %>/polyfills.js': ['<%= dirs.src.js %>/polyfill.js'],
         },
         sass: {
             '<%= dirs.public.css %>/base.css': ['<%= dirs.src.scss %>/base/base.scss'],
