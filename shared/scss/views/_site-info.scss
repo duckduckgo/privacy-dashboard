@@ -208,6 +208,7 @@
         }
     }
 }
+
 .site-info__protection-wrapper {
     padding: 16px;
 }
@@ -254,37 +255,4 @@
             background-color: $color--medium-silver;
         }
     }
-}
-
-.site-info__li--https-status {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-
-    @include site_status_padding;
-
-    @media (hover: hover) {
-        &:hover {
-            border-radius: 12px;
-            background-color: rgba(0, 0, 0, 0.05);
-
-            .body--theme-dark & {
-                background-color: $color-gray-80;
-            }
-        }
-
-        &:hover,
-        &:hover + li {
-            border-color: transparent;
-        }
-    }
-}
-
-.site-info__li--consent-managed {
-    position: relative;
-    @include site_status_padding;
-}
-
-.site-info__https-status__icon {
-    @include cross_platform_bg_image($status--good);
 }

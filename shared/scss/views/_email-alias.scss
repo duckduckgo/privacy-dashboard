@@ -1,5 +1,5 @@
 .email-alias {
-    margin: 15px 0;
+    margin-bottom: var(--size-unit);
 }
 
 .email-alias__button {
@@ -32,6 +32,7 @@
         border-color: var(--color-lines-lighter);
     }
 
+    // todo(Shane): Remove this
     .body--theme-dark & {
         border: 1px solid transparent;
 

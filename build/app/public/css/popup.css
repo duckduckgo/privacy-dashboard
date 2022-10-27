@@ -149,14 +149,14 @@ body {
   --bg: #eee;
   --page-bg: #ffffff;
   --page-outer-bg: #eee;
-  --text-color-primary: rgba(0, 0, 0, 0.84);
-  --text-color-secondary: rgba(0, 0, 0, 0.6);
+  --color-text-primary: rgba(0, 0, 0, 0.84);
+  --color-text-secondary: rgba(0, 0, 0, 0.6);
   --color-accent-blue: #3969ef;
   --color-lines-light: rgba(0, 0, 0, 0.12);
   --color-lines-lighter: rgba(0, 0, 0, 0.06);
-  --color-hover-bg: rgba(217, 217, 217, 0.5);
-  --color-hover-text: #222222;
-  color: var(--text-color-primary);
+  --color-hover-bg: rgba(0, 0, 0, 0.06);
+  --size-unit: 16px;
+  color: var(--color-text-primary);
   background: var(--bg);
   width: var(--width);
   height: var(--height);
@@ -173,6 +173,12 @@ body.environment--browser {
   font-size: 14px;
   line-height: 18px;
 }
+body.environment--ios, body.environment--android, body.environment--example {
+  --width: 100%;
+}
+body.environment--browser {
+  --height: 600px;
+}
 body.body--theme-light.environment--ios, body.body--theme-light.environment--android {
   --bg: #ffffff;
 }
@@ -181,12 +187,12 @@ body.body--theme-dark {
   --page-bg: #333333;
   --bg: #34383b;
   --page-outer-bg: #34383b;
-  --text-color-primary: rgba(255, 255, 255, 0.84);
-  --text-color-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-primary: rgba(255, 255, 255, 0.84);
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
   --color-accent-blue: #7295f6;
   --color-lines-light: rgba(255, 255, 255, 0.18);
   --color-lines-lighter: rgba(255, 255, 255, 0.09);
-  --color-hover-bg: #34383b;
+  --color-hover-bg: rgba(255, 255, 255, 0.12);
 }
 body.body--theme-dark.environment--android {
   --bg: #111111;
@@ -194,12 +200,6 @@ body.body--theme-dark.environment--android {
 }
 body.body--theme-dark.environment--ios {
   --bg: #333333;
-}
-body.environment--ios, body.environment--android, body.environment--example {
-  --width: 100%;
-}
-body.environment--browser {
-  --height: 600px;
 }
 
 #popup-container {
@@ -541,46 +541,6 @@ body.is-disabled .site-info .link-secondary:hover {
   background-color: #d8d8d8;
 }
 
-.site-info__li--https-status {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  padding: 11px 48px 11px 46px;
-}
-.environment--browser .site-info__li--https-status {
-  padding: 11px 48px 11px 46px;
-}
-.environment--ios .site-info__li--https-status {
-  padding: 13px 48px 13px 46px;
-}
-@media (hover: hover) {
-  .site-info__li--https-status:hover {
-    border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  .body--theme-dark .site-info__li--https-status:hover {
-    background-color: #444;
-  }
-  .site-info__li--https-status:hover, .site-info__li--https-status:hover + li {
-    border-color: transparent;
-  }
-}
-
-.site-info__li--consent-managed {
-  position: relative;
-  padding: 11px 48px 11px 46px;
-}
-.environment--browser .site-info__li--consent-managed {
-  padding: 11px 48px 11px 46px;
-}
-.environment--ios .site-info__li--consent-managed {
-  padding: 13px 48px 13px 46px;
-}
-
-.site-info__https-status__icon {
-  background-image: url("../../img/refresh-assets/Check-Color-16.svg");
-}
-
 .card {
   background-color: var(--page-bg);
 }
@@ -596,8 +556,17 @@ body.is-disabled .site-info .link-secondary:hover {
   z-index: 0;
 }
 
+.main-nav {
+  overflow: hidden;
+}
+
 .main-nav__row {
   position: relative;
+  /*
+   The next 3 blocks are all about removing dividers on hover. It was
+   done this way to prevent any heights changing, or any lines bleeding
+   into the hover styles. I'm confident there's a better way, however :)
+   */
 }
 .main-nav__row:after {
   content: " ";
@@ -610,25 +579,16 @@ body.is-disabled .site-info .link-secondary:hover {
   left: 16px;
 }
 [data-hover="0"] .main-nav__row:nth-child(1):after {
-  background-color: #ffffff;
+  background-color: var(--page-bg);
 }
 [data-hover="1"] .main-nav__row:nth-child(1):after, [data-hover="1"] .main-nav__row:nth-child(2):after {
-  background-color: #ffffff;
+  background-color: var(--page-bg);
 }
 [data-hover="2"] .main-nav__row:nth-child(2):after, [data-hover="2"] .main-nav__row:nth-child(3):after {
-  background-color: #ffffff;
-}
-.main-nav__row:nth-child(1) .main-nav__item {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  background-color: var(--page-bg);
 }
 .main-nav__row:last-child {
   border-bottom: none;
-}
-.main-nav__row:last-child .main-nav__item {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  border-bottom: 0;
 }
 .main-nav__row:last-child:after {
   display: none;
@@ -647,8 +607,7 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .main-nav__item--link {
-  border-radius: 12px;
-  color: var(--text-color-primary);
+  color: var(--color-text-primary);
 }
 .main-nav__item--link:visited, .main-nav__item--link:active, .main-nav__item--link:hover {
   text-decoration: none;
@@ -938,7 +897,7 @@ body.is-disabled .site-info .link-secondary:hover {
   display: flex;
   font-size: 17px;
   font-weight: 400;
-  color: var(--text-color-primary);
+  color: var(--color-text-primary);
 }
 .top-nav__close:hover, .top-nav__close:focus, .top-nav__close:active {
   text-decoration: none;
@@ -971,7 +930,7 @@ body.is-disabled .site-info .link-secondary:hover {
   line-height: 56px;
   font-size: 17px;
   font-weight: 600;
-  color: var(--text-color-primary);
+  color: var(--color-text-primary);
 }
 .top-nav__done:hover, .top-nav__done:focus, .top-nav__done:active {
   text-decoration: none;
@@ -2036,7 +1995,7 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .section-list-header {
-  color: var(--text-color-secondary);
+  color: var(--color-text-secondary);
   padding: 12px 0;
   text-align: center;
   border-top: 1px solid var(--color-lines-light);
@@ -3157,7 +3116,7 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .email-alias {
-  margin: 15px 0;
+  margin-bottom: var(--size-unit);
 }
 
 .email-alias__button {

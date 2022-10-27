@@ -1,4 +1,5 @@
 .main-nav {
+    overflow: hidden;
 }
 
 .main-nav__row {
@@ -15,10 +16,15 @@
         left: 16px;
     }
 
+    /*
+     The next 3 blocks are all about removing dividers on hover. It was
+     done this way to prevent any heights changing, or any lines bleeding
+     into the hover styles. I'm confident there's a better way, however :)
+     */
     [data-hover='0'] & {
         &:nth-child(1) {
             &:after {
-                background-color: $white;
+                background-color: var(--page-bg);
             }
         }
     }
@@ -26,7 +32,7 @@
         &:nth-child(1),
         &:nth-child(2) {
             &:after {
-                background-color: $white;
+                background-color: var(--page-bg);
             }
         }
     }
@@ -34,34 +40,16 @@
         &:nth-child(2),
         &:nth-child(3) {
             &:after {
-                background-color: $white;
+                background-color: var(--page-bg);
             }
         }
     }
-
-    &:nth-child(1) {
-        .main-nav__item {
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-        }
-    }
-
     &:last-child {
-        .main-nav__item {
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            border-bottom: 0;
-        }
         &:after {
             display: none;
         }
-
         border-bottom: none;
     }
-}
-
-// for none-links
-.main-nav__item {
 }
 
 // for links
@@ -81,9 +69,8 @@
 }
 
 .main-nav__item--link {
-    border-radius: 12px;
-    color: var(--text-color-primary);
-
+    color: var(--color-text-primary);
+    //background: red !important;
     &:visited,
     &:active,
     &:hover {

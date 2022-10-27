@@ -38,7 +38,7 @@ $nav-height-short: 32px;
     display: flex;
     font-size: 17px;
     font-weight: 400;
-    color: var(--text-color-primary);
+    color: var(--color-text-primary);
 
     &:hover,
     &:focus,
@@ -78,7 +78,7 @@ $nav-height-short: 32px;
     line-height: $nav-height;
     font-size: 17px;
     font-weight: 600;
-    color: var(--text-color-primary);
+    color: var(--color-text-primary);
 
     &:hover,
     &:focus,

@@ -16,13 +16,13 @@ Array [
         "category": "Content Delivery",
         "url": "fonts.gstatic.com",
       },
-      "www.google.com": TrackerUrl {
+      "google.com": TrackerUrl {
         "category": "Advertising",
-        "url": "www.google.com",
+        "url": "google.com",
       },
-      "www.gstatic.com": TrackerUrl {
+      "gstatic.com": TrackerUrl {
         "category": "Content Delivery",
-        "url": "www.gstatic.com",
+        "url": "gstatic.com",
       },
     },
   },

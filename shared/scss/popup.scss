@@ -16,13 +16,24 @@ body {
     --bg: #{$color--dark-platinum};
     --page-bg: #{$white};
     --page-outer-bg: #{$color--dark-platinum};
-    --text-color-primary: rgba(0, 0, 0, 0.84);
-    --text-color-secondary: rgba(0, 0, 0, 0.6);
+    --color-text-primary: rgba(0, 0, 0, 0.84);
+    --color-text-secondary: rgba(0, 0, 0, 0.6);
     --color-accent-blue: #3969ef;
     --color-lines-light: rgba(0, 0, 0, 0.12);
     --color-lines-lighter: rgba(0, 0, 0, 0.06);
-    --color-hover-bg: rgba(217, 217, 217, 0.5);
-    --color-hover-text: #222222;
+    --color-hover-bg: rgba(0, 0, 0, 0.06);
+    --size-unit: 16px;
+
+    // mobile environments
+    &.environment--ios,
+    &.environment--android,
+    &.environment--example {
+        --width: 100%;
+    }
+
+    &.environment--browser {
+        --height: 600px;
+    }
 
     // reset custom properties based on light-theme
     &.body--theme-light {
@@ -38,13 +49,13 @@ body {
         --page-bg: #{$slate};
         --bg: #{$slate-blue};
         --page-outer-bg: #{$slate-blue};
-        --text-color-primary: rgba(255, 255, 255, 0.84);
-        --text-color-secondary: rgba(255, 255, 255, 0.6);
+        --color-text-primary: rgba(255, 255, 255, 0.84);
+        --color-text-secondary: rgba(255, 255, 255, 0.6);
         --color-accent-blue: #7295f6;
         --color-lines-light: rgba(255, 255, 255, 0.18);
         // todo(Shane): is this correct?
         --color-lines-lighter: rgba(255, 255, 255, 0.09);
-        --color-hover-bg: #{$slate-blue};
+        --color-hover-bg: rgba(255, 255, 255, 0.12);
 
         &.environment--android {
             --bg: #{$black};
@@ -56,18 +67,7 @@ body {
         }
     }
 
-    // mobile environments
-    &.environment--ios,
-    &.environment--android,
-    &.environment--example {
-        --width: 100%;
-    }
-
-    &.environment--browser {
-        --height: 600px;
-    }
-
-    color: var(--text-color-primary);
+    color: var(--color-text-primary);
     background: var(--bg);
     width: var(--width);
     height: var(--height);
