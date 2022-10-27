@@ -233,17 +233,11 @@
 
 .site-info__toggle-container {
     margin-left: auto;
+    text-align: center;
 
-    .toggle-spinner {
-        height: 18px;
-        width: 18px;
-
-        .environment--ios & {
-            margin: 4px;
-            height: 26px;
-            width: 26px;
-        }
-    }
+    // including the size here to ensure the height does
+    // not alter when we go from spinner to toggle
+    @include togglesize;
 
     .toggle-button--is-active-true {
         .toggle-button__bg {

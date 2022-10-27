@@ -1,0 +1,93 @@
+@mixin togglesize {
+    width: 32px;
+    height: 18px;
+
+    .environment--ios & {
+        width: 51px;
+        height: 31px;
+    }
+
+    .environment--android & {
+        width: 36px;
+        height: 20px;
+    }
+}
+
+.toggle-spinner {
+    height: 18px;
+    width: 18px;
+
+    .environment--ios & {
+        height: 31px;
+        width: 31px;
+    }
+}
+
+.toggle-button {
+    z-index: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    position: relative;
+
+    @include togglesize;
+
+    .toggle-button__bg {
+        z-index: -1;
+        position: absolute;
+        right: 0;
+        width: 32px;
+        height: 18px;
+        overflow: visible;
+        border-radius: 100px;
+
+        .environment--ios & {
+            width: 51px;
+            height: 31px;
+        }
+    }
+
+    .toggle-button__knob {
+        z-index: 2;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 100px;
+        background-color: $white;
+        margin-top: 1px;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+        transition: margin 0.2s ease;
+
+        .environment--ios & {
+            width: 27px;
+            height: 27px;
+            margin-top: 2px;
+        }
+    }
+
+    &.toggle-button--is-active-false {
+        .toggle-button__knob {
+            margin-left: 1px;
+        }
+
+        .toggle-button__bg {
+            background-color: $color--medium-silver;
+        }
+    }
+
+    &.toggle-button--is-active-true {
+        .toggle-button__knob {
+            margin-left: 15px;
+
+            .environment--ios & {
+                margin-left: 22px;
+            }
+        }
+
+        .toggle-button__bg {
+            background-color: $color--blue;
+        }
+    }
+}

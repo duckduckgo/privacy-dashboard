@@ -88,15 +88,7 @@
     &:active,
     &:hover {
         text-decoration: none;
-    }
-
-    .environment--browser &,
-    .environment--macos &,
-    .environment--windows & {
-        //transition: background-color 0.2s;
-        &:hover {
-            background: var(--color-hover-bg);
-        }
+        background: var(--color-hover-bg);
     }
 }
 

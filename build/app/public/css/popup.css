@@ -30,7 +30,6 @@
 }
 
 /* Lists */
-/* Toggle buttons */
 /* Images & icons */
 /* Cross-platform background image */
 /* Sliding subviews */
@@ -222,6 +221,79 @@ body.environment--browser {
 #popup-container .sliding-subview {
   background-color: var(--page-bg);
   overflow-y: auto;
+}
+
+.toggle-spinner {
+  height: 18px;
+  width: 18px;
+}
+.environment--ios .toggle-spinner {
+  height: 31px;
+  width: 31px;
+}
+
+.toggle-button {
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  position: relative;
+  width: 32px;
+  height: 18px;
+}
+.environment--ios .toggle-button {
+  width: 51px;
+  height: 31px;
+}
+.environment--android .toggle-button {
+  width: 36px;
+  height: 20px;
+}
+.toggle-button .toggle-button__bg {
+  z-index: -1;
+  position: absolute;
+  right: 0;
+  width: 32px;
+  height: 18px;
+  overflow: visible;
+  border-radius: 100px;
+}
+.environment--ios .toggle-button .toggle-button__bg {
+  width: 51px;
+  height: 31px;
+}
+.toggle-button .toggle-button__knob {
+  z-index: 2;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 100px;
+  background-color: #ffffff;
+  margin-top: 1px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: margin 0.2s ease;
+}
+.environment--ios .toggle-button .toggle-button__knob {
+  width: 27px;
+  height: 27px;
+  margin-top: 2px;
+}
+.toggle-button.toggle-button--is-active-false .toggle-button__knob {
+  margin-left: 1px;
+}
+.toggle-button.toggle-button--is-active-false .toggle-button__bg {
+  background-color: #d8d8d8;
+}
+.toggle-button.toggle-button--is-active-true .toggle-button__knob {
+  margin-left: 15px;
+}
+.environment--ios .toggle-button.toggle-button--is-active-true .toggle-button__knob {
+  margin-left: 22px;
+}
+.toggle-button.toggle-button--is-active-true .toggle-button__bg {
+  background-color: #007aff;
 }
 
 .page {
@@ -447,15 +519,17 @@ body.is-disabled .site-info .link-secondary:hover {
 
 .site-info__toggle-container {
   margin-left: auto;
-}
-.site-info__toggle-container .toggle-spinner {
+  text-align: center;
+  width: 32px;
   height: 18px;
-  width: 18px;
 }
-.environment--ios .site-info__toggle-container .toggle-spinner {
-  margin: 4px;
-  height: 26px;
-  width: 26px;
+.environment--ios .site-info__toggle-container {
+  width: 51px;
+  height: 31px;
+}
+.environment--android .site-info__toggle-container {
+  width: 36px;
+  height: 20px;
 }
 .site-info__toggle-container .toggle-button--is-active-true .toggle-button__bg {
   background-color: #007aff;
@@ -578,8 +652,6 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 .main-nav__item--link:visited, .main-nav__item--link:active, .main-nav__item--link:hover {
   text-decoration: none;
-}
-.environment--browser .main-nav__item--link:hover, .environment--macos .main-nav__item--link:hover, .environment--windows .main-nav__item--link:hover {
   background: var(--color-hover-bg);
 }
 
@@ -3208,67 +3280,6 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 .environment--browser .default-list li .icon__arrow {
   right: 10px;
-}
-
-/* Generic toggle button styling */
-.toggle-button {
-  z-index: 0;
-  width: 32px;
-  height: 18px;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  text-align: left;
-  position: relative;
-}
-.environment--ios .toggle-button {
-  width: 51px;
-  height: 31px;
-}
-.toggle-button .toggle-button__bg {
-  z-index: -1;
-  position: absolute;
-  right: 0;
-  width: 32px;
-  height: 18px;
-  overflow: visible;
-  border-radius: 100px;
-}
-.environment--ios .toggle-button .toggle-button__bg {
-  width: 51px;
-  height: 31px;
-}
-.toggle-button .toggle-button__knob {
-  z-index: 2;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 100px;
-  background-color: #ffffff;
-  margin-top: 1px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-  transition: margin 0.2s ease;
-}
-.environment--ios .toggle-button .toggle-button__knob {
-  width: 27px;
-  height: 27px;
-  margin-top: 2px;
-}
-.toggle-button.toggle-button--is-active-false .toggle-button__knob {
-  margin-left: 1px;
-}
-.toggle-button.toggle-button--is-active-false .toggle-button__bg {
-  background-color: #d8d8d8;
-}
-.toggle-button.toggle-button--is-active-true .toggle-button__knob {
-  margin-left: 15px;
-}
-.environment--ios .toggle-button.toggle-button--is-active-true .toggle-button__knob {
-  margin-left: 22px;
-}
-.toggle-button.toggle-button--is-active-true .toggle-button__bg {
-  background-color: #007aff;
 }
 
 /* Sliding subviews */
