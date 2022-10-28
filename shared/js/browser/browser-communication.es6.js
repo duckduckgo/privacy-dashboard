@@ -123,7 +123,8 @@ export function backgroundMessage(_channel) {
  */
 export async function getBackgroundTabData() {
     // @ts-ignore
-    const tabId = chrome.devtools?.inspectedWindow?.tabId || parseInt(0 + new URL(document.location.href).searchParams.get('tabId'))
+    const tabIdParam = new URL(document.location.href).searchParams.get('tabId')
+    const tabId = tabIdParam || 0
     const resp = await fetch({ messageType: 'getPrivacyDashboardData', options: { tabId: tabId } })
     const parsedMessageData = extensionGetPrivacyDashboardDataSchema.safeParse(resp)
 

@@ -29055,10 +29055,9 @@ function getBackgroundTabData() {
 
 function _getBackgroundTabData() {
   _getBackgroundTabData = _asyncToGenerator(function* () {
-    var _chrome$devtools, _chrome$devtools$insp;
-
     // @ts-ignore
-    var tabId = ((_chrome$devtools = chrome.devtools) === null || _chrome$devtools === void 0 ? void 0 : (_chrome$devtools$insp = _chrome$devtools.inspectedWindow) === null || _chrome$devtools$insp === void 0 ? void 0 : _chrome$devtools$insp.tabId) || parseInt(0 + new URL(document.location.href).searchParams.get('tabId'));
+    var tabIdParam = new URL(document.location.href).searchParams.get('tabId');
+    var tabId = tabIdParam || 0;
     var resp = yield fetch({
       messageType: 'getPrivacyDashboardData',
       options: {
