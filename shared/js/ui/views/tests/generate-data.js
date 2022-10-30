@@ -40,6 +40,16 @@ const allowedThirdParty = {
 }
 
 /** @type {DetectedRequest} */
+const allowedAdClickAttribution = {
+    entityName: 'Index Exchange',
+    prevalence: 12.7,
+    url: 'https://bat.bing.com/1.js',
+    pageUrl: 'https://example.com',
+    category: 'Advertising',
+    state: { allowed: { reason: 'adClickAttribution' } },
+}
+
+/** @type {DetectedRequest} */
 const blocked1 = {
     entityName: 'Google',
     prevalence: 82.6,
@@ -231,6 +241,12 @@ const permissions = [
  * - http://localhost:8080/html/popup.html?state=cnn
  */
 export const dataStates = {
+    'ad-attribution': {
+        state: states.protectionsOn_blocked_allowedTrackers,
+        url: 'https://example.com',
+        requests: [blocked1, allowedAdClickAttribution],
+        certificates: [],
+    },
     'without-certificate': {
         state: states.protectionsOn,
         url: 'https://example.com',

@@ -19,7 +19,6 @@
 /* links */
 /** Separators */
 /* Logo */
-/* App states */
 /* Font groupings */
 .uppercase {
   font-size: 12px;
@@ -343,15 +342,6 @@ body.body--theme-dark.environment--ios {
 .site-info .default-list {
   padding-bottom: 0;
 }
-.site-info .text-line-after-icon.privacy-on-off-message {
-  margin-left: 2px;
-}
-body.is-disabled .site-info .link-secondary {
-  cursor: default;
-}
-body.is-disabled .site-info .link-secondary:hover {
-  text-decoration: none;
-}
 
 .site-info__page-permission label {
   display: flex;
@@ -425,77 +415,6 @@ body.is-disabled .site-info .link-secondary:hover {
   background-image: url("../../img/refresh-assets/permissions-notification-light.svg");
 }
 
-.site-info__li--trackers {
-  position: relative;
-  padding: 24px 44px;
-  cursor: pointer;
-  overflow: hidden;
-  padding: 11px 48px 11px 46px;
-}
-.environment--browser .site-info__li--trackers {
-  padding: 11px 48px 11px 46px;
-}
-.environment--ios .site-info__li--trackers {
-  padding: 13px 48px 13px 46px;
-}
-@media (hover: hover) {
-  .site-info__li--trackers:hover {
-    border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  .body--theme-dark .site-info__li--trackers:hover {
-    background-color: #444;
-  }
-  .site-info__li--trackers:hover, .site-info__li--trackers:hover + li {
-    border-color: transparent;
-  }
-}
-.is-disabled .site-info__li--trackers {
-  opacity: 0.5;
-}
-.site-info__li--trackers .site-info__trackers .site-info__trackers-status__icon {
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  position: absolute;
-  top: 12px;
-  left: 16px;
-}
-.environment--browser .site-info__li--trackers .site-info__trackers .site-info__trackers-status__icon {
-  top: 12px;
-}
-.environment--ios .site-info__li--trackers .site-info__trackers .site-info__trackers-status__icon {
-  top: 15px;
-}
-.site-info__li--trackers .site-info__trackers .float-right {
-  max-width: 140px;
-  text-align: right;
-  color: #888888;
-  line-height: 20px;
-}
-.site-info__li--trackers .site-info__trackers .float-right.is-active {
-  color: #3fa248;
-}
-
-.report-breakage {
-  text-align: center;
-}
-
-.report-breakage__link {
-  position: relative;
-  padding: 16px 0;
-  display: block;
-}
-.environment--browser .report-breakage__link {
-  padding: 10px 0;
-}
-.environment--ios .report-breakage__link:visited, .environment--ios .report-breakage__link:active, .environment--ios .report-breakage__link:hover, .environment--android .report-breakage__link:visited, .environment--android .report-breakage__link:active, .environment--android .report-breakage__link:hover {
-  text-decoration: none;
-}
-
 .site-info__protection-wrapper {
   padding: 16px;
 }
@@ -512,9 +431,6 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 .body--theme-dark .site-info__li--toggle {
   color: rgba(255, 255, 255, 0.9);
-}
-.is-disabled .site-info__li--toggle {
-  opacity: 0.5;
 }
 
 .site-info__toggle-container {
@@ -838,21 +754,17 @@ body.is-disabled .site-info .link-secondary:hover {
   padding-bottom: 24px;
   text-align: center;
 }
+.key-insight[data-suffix=about-link] {
+  padding-bottom: 12px;
+}
 .environment--browser .key-insight {
   background-color: transparent;
 }
 .environment--ios .key-insight {
   padding-top: 6px;
 }
-.is-disabled .key-insight {
-  opacity: 0.5;
-}
 .key-insight .token-title-3-em {
   margin-bottom: 8px;
-}
-.key-insight .about-link {
-  display: block;
-  margin-top: 12px;
 }
 
 .environment--macos .key-insight--main, .environment--windows .key-insight--main {
@@ -2001,6 +1913,9 @@ body.is-disabled .site-info .link-secondary:hover {
   border-top: 1px solid var(--color-lines-light);
   border-bottom: 1px solid var(--color-lines-light);
 }
+.section-list-header[data-section-name=adAttribution] {
+  padding-bottom: 4px;
+}
 
 .icon-major-networks-blocked {
   background-image: url("../../img/refresh-assets/Check-Color-16.svg");
@@ -2960,21 +2875,13 @@ body.is-disabled .site-info .link-secondary:hover {
 }
 
 .breakage-form {
-  background: #ffffff;
   padding-bottom: var(--size-unit);
-}
-.body--theme-dark .breakage-form {
-  background: #333333;
 }
 
 .breakage-form__content {
   z-index: 1;
   position: relative;
-  background-color: #ffffff;
   text-align: center;
-}
-.body--theme-dark .breakage-form__content {
-  background-color: #333333;
 }
 [data-state=sent] .breakage-form__content {
   display: none;
@@ -3043,9 +2950,6 @@ body.is-disabled .site-info .link-secondary:hover {
 
 .form__group {
   margin-bottom: 20px;
-}
-.body--theme-dark .form__group {
-  background-color: #444;
 }
 
 .form__select {

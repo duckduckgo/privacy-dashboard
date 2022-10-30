@@ -149,6 +149,10 @@ test.describe('states', () => {
         const p = new StateTest(page, 'ios', 'cnn')
         await p.screenshots()
     })
+    test('ad-attribution', async ({ page }) => {
+        const p = new StateTest(page, 'ios', 'ad-attribution')
+        await p.screenshots()
+    })
 })
 
 class StateTest {
@@ -158,7 +162,7 @@ class StateTest {
     /**
      * @param {import("@playwright/test").Page} page
      * @param {"ios"} platform
-     * @param {"01" | "02" | "03" | "04" | "05" | "cnn"} state
+     * @param {"01" | "02" | "03" | "04" | "05" | "cnn" | "ad-attribution"} state
      */
     constructor(page, platform, state) {
         this.platform = platform

@@ -12,21 +12,6 @@
     background-size: contain;
 }
 
-/* App states */
-@mixin is_disabled() {
-    opacity: 0.5;
-}
-
-@mixin is_disableable_link() {
-    body.is-disabled & {
-        cursor: default;
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
-}
-
 /* Font groupings */
 @mixin uppercase_label() {
     font-size: 12px;

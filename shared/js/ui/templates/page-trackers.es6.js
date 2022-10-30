@@ -41,7 +41,7 @@ export function trackerListWrapper(name, heading, companiesList, bordered) {
     return bel`
         <ol class="default-list site-info__trackers__company-list ${bordered ? 'border--top' : ''}" 
              aria-label="List of tracker networks">
-            ${heading ? bel`<li class="section-list-header" data-test-id="sectionHeading">${heading}</li>` : bel``}
+            ${heading ? bel`<li class="section-list-header" data-section-name=${name}>${heading}</li>` : bel``}
             ${companiesList}
         </ol>
     `

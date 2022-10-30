@@ -14,10 +14,10 @@ import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.es6'
  */
 export function heroTemplate(opts) {
     return bel`
-        <div class="key-insight">
+        <div class="key-insight" data-suffix=${opts.suffix}>
             ${opts.icon}
             ${opts.summary ? bel`<p class="token-title-3">${opts.summary}</p>` : null}
-            ${opts.suffix === 'about-link' ? bel`<p>${aboutLink()}</p>` : null}
+            ${opts.suffix === 'about-link' ? aboutLink() : null}
             ${opts.children ? opts.children : null}
         </div>
     `

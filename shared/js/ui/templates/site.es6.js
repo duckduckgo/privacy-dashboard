@@ -174,8 +174,8 @@ function renderManagePermissions(model) {
 }
 
 function renderReportButton() {
-    return bel`<div class="report-breakage border-light--top">
-            <a href="javascript:void(0)" class="js-site-report-broken link-action report-breakage__link" draggable="false">
+    return bel`<div class="text--center border-light--top">
+            <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
                 ${i18n.t('site:websiteNotWorkingQ.title')}
             </a>
         </div>`

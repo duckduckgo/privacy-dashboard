@@ -96,6 +96,28 @@ a {
 
     &.link-action {
         white-space: nowrap;
+
+        .environment--ios &,
+        .environment--android & {
+            &:visited,
+            &:active,
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &.link-action--text {
+        padding: 16px 0;
+        display: block;
+    }
+    &.link-action--text-short {
+        display: block;
+        padding: 12px 0;
+    }
+    &.link-action--text-micro {
+        display: block;
+        padding: 8px 0;
     }
 }
 

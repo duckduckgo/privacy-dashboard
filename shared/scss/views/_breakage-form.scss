@@ -1,21 +1,11 @@
 .breakage-form {
-    background: $white;
     padding-bottom: var(--size-unit);
-
-    .body--theme-dark & {
-        background: $slate;
-    }
 }
 
 .breakage-form__content {
     z-index: 1;
     position: relative;
-    background-color: $white;
     text-align: center;
-
-    .body--theme-dark & {
-        background-color: $slate;
-    }
 
     [data-state='sent'] & {
         display: none;
@@ -87,10 +77,6 @@
 
 .form__group {
     margin-bottom: 20px;
-
-    .body--theme-dark & {
-        background-color: $color-gray-80;
-    }
 }
 
 .form__select {

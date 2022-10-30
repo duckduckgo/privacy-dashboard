@@ -61,7 +61,7 @@ export function sectionsFromSiteNonTracker(site) {
             heading: () => bel`
                 <div>
                     <p>${ns.site('sectionHeadingAdAttribution.title', { domain: site.tab.domain })}</p>
-                    <p class="padded--top-half">${adAttributionLink()}</p>
+                    ${adAttributionLink()}
                 </div>
                 `,
             companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence(),

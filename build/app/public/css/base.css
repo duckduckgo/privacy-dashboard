@@ -955,7 +955,6 @@
 /* links */
 /** Separators */
 /* Logo */
-/* App states */
 /* Font groupings */
 .uppercase {
   font-size: 12px;
@@ -1437,6 +1436,21 @@ a:hover {
 }
 a.link-action {
   white-space: nowrap;
+}
+.environment--ios a.link-action:visited, .environment--ios a.link-action:active, .environment--ios a.link-action:hover, .environment--android a.link-action:visited, .environment--android a.link-action:active, .environment--android a.link-action:hover {
+  text-decoration: none;
+}
+a.link-action--text {
+  padding: 16px 0;
+  display: block;
+}
+a.link-action--text-short {
+  display: block;
+  padding: 12px 0;
+}
+a.link-action--text-micro {
+  display: block;
+  padding: 8px 0;
 }
 
 /**

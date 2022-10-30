@@ -5,6 +5,10 @@
     text-align: center;
     //outline: 1px dotted orange;
 
+    &[data-suffix='about-link'] {
+        padding-bottom: 12px;
+    }
+
     .environment--browser & {
         background-color: transparent;
     }
@@ -14,17 +18,8 @@
         padding-top: 6px;
     }
 
-    .is-disabled & {
-        @include is_disabled();
-    }
-
     .token-title-3-em {
         margin-bottom: 8px;
-    }
-
-    .about-link {
-        display: block;
-        margin-top: 12px;
     }
 }
 

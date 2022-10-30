@@ -33509,7 +33509,7 @@ function sectionsFromSiteNonTracker(site) {
   return (0, _pageTrackersEs.renderSections)([{
     name: 'adAttribution',
     heading: function heading() {
-      return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    <p class=\"padded--top-half\">", "</p>\n                </div>\n                "])), _localizeEs.ns.site('sectionHeadingAdAttribution.title', {
+      return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n                <div>\n                    <p>", "</p>\n                    ", "\n                </div>\n                "])), _localizeEs.ns.site('sectionHeadingAdAttribution.title', {
         domain: site.tab.domain
       }), (0, _aboutLink.adAttributionLink)());
     },
@@ -33594,7 +33594,7 @@ function trackerNetworksTemplate() {
 
 
 function trackerListWrapper(name, heading, companiesList, bordered) {
-  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\">\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-test-id=\"sectionHeading\">", "</li>"])), heading) : (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral([""]))), companiesList);
+  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n        <ol class=\"default-list site-info__trackers__company-list ", "\" \n             aria-label=\"List of tracker networks\">\n            ", "\n            ", "\n        </ol>\n    "])), bordered ? 'border--top' : '', heading ? (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<li class=\"section-list-header\" data-section-name=", ">", "</li>"])), name, heading) : (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral([""]))), companiesList);
 }
 /**
  * @param {import("../../browser/utils/request-details.js").AggregateCompanyData} company
@@ -33709,13 +33709,13 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 function aboutLink() {
   var text = _localize.ns.site('trackerAboutLink.title');
 
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<a class=\"about-link\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/\" target=\"_blank\">", "</a>"])), text);
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<a class=\"about-link link-action link-action--text-short\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/\" target=\"_blank\">", "</a>"])), text);
 }
 
 function adAttributionLink() {
   var text = _localize.ns.site('trackerAdLink.title');
 
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a class=\"ad-link\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection\" target=\"_blank\">", "</a>"])), text);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a class=\"ad-link link-action link-action--text-micro\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection\" target=\"_blank\">", "</a>"])), text);
 }
 
 },{"../../base/localize.es6":74,"bel":31}],100:[function(require,module,exports){
@@ -33742,7 +33742,7 @@ var _trackerNetworksText = require("./tracker-networks-text.es6");
 
 var _thirdpartyText = require("./thirdparty-text.es6");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -33756,7 +33756,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
  * @param {HTMLElement} [opts.children]
  */
 function heroTemplate(opts) {
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"key-insight\">\n            ", "\n            ", "\n            ", "\n            ", "\n        </div>\n    "])), opts.icon, opts.summary ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<p class=\"token-title-3\">", "</p>"])), opts.summary) : null, opts.suffix === 'about-link' ? (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<p>", "</p>"])), (0, _aboutLink.aboutLink)()) : null, opts.children ? opts.children : null);
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div class=\"key-insight\" data-suffix=", ">\n            ", "\n            ", "\n            ", "\n            ", "\n        </div>\n    "])), opts.suffix, opts.icon, opts.summary ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<p class=\"token-title-3\">", "</p>"])), opts.summary) : null, opts.suffix === 'about-link' ? (0, _aboutLink.aboutLink)() : null, opts.children ? opts.children : null);
 }
 /**
  * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
@@ -33803,7 +33803,7 @@ function heroFromTabNonTrackers(requestDetails, protectionsEnabled) {
 
 
 function largeHeroIcon(ops) {
-  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<div class=\"large-icon-container hero-icon--", "\"></div>"])), ops.status);
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div class=\"large-icon-container hero-icon--", "\"></div>"])), ops.status);
 }
 /**
  * @param {object} opts
@@ -33814,7 +33814,7 @@ function largeHeroIcon(ops) {
 function topNav() {
   var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var variant = (0, _environmentCheck.isIOS)() || (0, _environmentCheck.isAndroid)() ? 'tall' : 'short';
-  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action link-action--dark\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action link-action--dark\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
 }
 
 },{"../../base/localize.es6":74,"../../environment-check":82,"./about-link":99,"./thirdparty-text.es6":103,"./tracker-networks-text.es6":105,"bel":31}],101:[function(require,module,exports){
@@ -34377,7 +34377,7 @@ function renderManagePermissions(model) {
 }
 
 function renderReportButton() {
-  return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["<div class=\"report-breakage border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action report-breakage__link\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
+  return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["<div class=\"text--center border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action link-action--text\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -35102,6 +35102,20 @@ var allowedThirdParty = {
 };
 /** @type {DetectedRequest} */
 
+var allowedAdClickAttribution = {
+  entityName: 'Index Exchange',
+  prevalence: 12.7,
+  url: 'https://bat.bing.com/1.js',
+  pageUrl: 'https://example.com',
+  category: 'Advertising',
+  state: {
+    allowed: {
+      reason: 'adClickAttribution'
+    }
+  }
+};
+/** @type {DetectedRequest} */
+
 var blocked1 = {
   entityName: 'Google',
   prevalence: 82.6,
@@ -35273,6 +35287,12 @@ var permissions = [{
  */
 
 var dataStates = {
+  'ad-attribution': {
+    state: _requestDetails.states.protectionsOn_blocked_allowedTrackers,
+    url: 'https://example.com',
+    requests: [blocked1, allowedAdClickAttribution],
+    certificates: []
+  },
   'without-certificate': {
     state: _requestDetails.states.protectionsOn,
     url: 'https://example.com',
@@ -35603,6 +35623,8 @@ exports.setupMaterialDesignRipple = setupMaterialDesignRipple;
 
 var _ripple = require("@material/ripple");
 
+var seen = new WeakSet();
+
 function setupMaterialDesignRipple() {
   for (var _len = arguments.length, selectors = new Array(_len), _key = 0; _key < _len; _key++) {
     selectors[_key] = arguments[_key];
@@ -35611,6 +35633,11 @@ function setupMaterialDesignRipple() {
   selectors.forEach(function (selector) {
     var $matches = document.querySelectorAll(selector);
     $matches.forEach(function ($el) {
+      if (seen.has($el)) {
+        return;
+      }
+
+      seen.add($el);
       $el.classList.add('material-design-ripple');
 
       _ripple.MDCRipple.attachTo($el);
