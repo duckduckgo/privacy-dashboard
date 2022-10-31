@@ -1,0 +1,69 @@
+@use '@material/theme' with (
+    $primary: #3969ef,
+    $secondary: rgba(#3969ef, 0.38)
+);
+@use '@material/switch';
+@use '@material/switch/styles';
+@use '@material/ripple';
+
+// some tweaks to the switch on android
+.mdc-switch {
+    @include switch.theme(
+        (
+            selected-track-color: rgba(#3969ef, 0.38),
+            unselected-handle-color: white,
+            unselected-track-color: rgba(#666666, 0.3),
+        )
+    );
+    .body--theme-dark & {
+        @include switch.theme(
+            (
+                selected-hover-handle-color: #7295f6,
+                selected-handle-color: #7295f6,
+                selected-pressed-handle-color: #7295f6,
+                selected-focus-handle-color: #7295f6,
+                selected-track-color: rgba(#7295f6, 0.38),
+                selected-hover-track-color: rgba(#7295f6, 0.38),
+                selected-focus-track-color: rgba(#7295f6, 0.38),
+                unselected-pressed-handle-color: white,
+                unselected-handle-color: white,
+                unselected-hover-handle-color: white,
+                unselected-track-color: #666666,
+                unselected-hover-track-color: #666666,
+                unselected-focus-handle-color: white,
+                unselected-focus-track-color: #666666,
+                disabled-selected-handle-color: red,
+                disabled-unselected-handle-color: green,
+            )
+        );
+    }
+}
+
+.material-design-ripple {
+    @include ripple.surface;
+    @include ripple.radius-bounded;
+    @include ripple.states;
+    overflow: hidden;
+}
+
+.body--theme-light .material-design-ripple {
+    @include ripple.states-base-color(black);
+    @include ripple.states-opacities(
+        (
+            hover: 0,
+            focus: 0.08,
+            press: 0.08,
+        )
+    );
+}
+
+.body--theme-dark .material-design-ripple {
+    @include ripple.states-base-color(white);
+    @include ripple.states-opacities(
+        (
+            hover: 0,
+            focus: 0.3,
+            press: 0.3,
+        )
+    );
+}

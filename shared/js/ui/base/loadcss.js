@@ -1,3 +1,5 @@
+import { isAndroid } from '../environment-check'
+
 function loadCssFile(file) {
     const head = document.getElementsByTagName('head')[0]
     const link = document.createElement('link')
@@ -9,6 +11,9 @@ function loadCssFile(file) {
 
 export function loadCss() {
     setTimeout(() => {
+        if (isAndroid()) {
+            loadCssFile('android')
+        }
         loadCssFile('base')
         loadCssFile('popup')
     }, 5)

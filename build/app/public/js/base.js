@@ -31263,6 +31263,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.loadCss = loadCss;
 
+var _environmentCheck = require("../environment-check");
+
 function loadCssFile(file) {
   var head = document.getElementsByTagName('head')[0];
   var link = document.createElement('link');
@@ -31274,12 +31276,16 @@ function loadCssFile(file) {
 
 function loadCss() {
   setTimeout(function () {
+    if ((0, _environmentCheck.isAndroid)()) {
+      loadCssFile('android');
+    }
+
     loadCssFile('base');
     loadCssFile('popup');
   }, 5);
 }
 
-},{}],74:[function(require,module,exports){
+},{"../environment-check":82}],74:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
