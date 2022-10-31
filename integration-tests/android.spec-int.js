@@ -36,6 +36,14 @@ test.describe('page data (with trackers)', () => {
         await page.locator('.icon-list').waitFor({ timeout: 500 })
         await expect(page).toHaveScreenshot('primary-screen.png')
     })
+    test('should display correct tracker screen + ripple effect on about link', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        await withAndroidRequests(page, { requests: [] })
+        await page.locator('[aria-label="View Tracker Companies"]').click()
+        await playTimeline(page, ['state:cnn'])
+        await expect(page.locator('"About our Web Tracking Protections"')).toHaveClass(/mdc-ripple-upgraded/)
+    })
 })
 
 test.describe('breakage form', () => {
