@@ -384,19 +384,22 @@ export async function playTimeline(page, kind) {
                         })
                     }
                 }
-                if (timelineKind === 'state:cnn') {
-                    const state = dataStates.cnn
-                    /** @type {import('../schema/__generated__/schema.types').DetectedRequest[]} */
-                    const payload = state.requests
-                    window.onChangeParentEntity(state.parentEntity)
-                    window.onChangeRequestData(state.url, {
-                        requests: payload,
-                    })
-                } else if (timelineKind.startsWith('state:')) {
+                if (timelineKind.startsWith('state:')) {
                     const num = timelineKind.slice(6)
                     const state = dataStates[num]
                     if (!state) throw new Error(`cannot use ${timelineKind} as an argument`)
                     const payload = state.requests
+                    if (state.parentEntity) {
+                        window.onChangeParentEntity(state.parentEntity)
+                    }
+                    if (state.contentBlockingException) {
+                        window.onChangeProtectionStatus({
+                            unprotectedTemporary: false,
+                            allowlisted: false,
+                            denylisted: false,
+                            enabledFeatures: [],
+                        })
+                    }
                     window.onChangeRequestData(state.url, {
                         requests: payload,
                     })

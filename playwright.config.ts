@@ -50,7 +50,7 @@ const config: PlaywrightTestConfig = {
                 ...devices['Galaxy S8'],
                 viewport: {
                     height: 600,
-                    width: 350,
+                    width: 360,
                 },
             },
             testMatch: /browser\.spec-int\.js$/,

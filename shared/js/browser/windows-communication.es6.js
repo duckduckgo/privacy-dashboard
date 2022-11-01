@@ -150,10 +150,6 @@ const fetch = (message) => {
         } else {
             windowsPostMessage('AddToAllowListCommand')
         }
-
-        // Call as if this was an outside change. This will trigger events to
-        // have all models re-request data from background state.
-        window.onChangeProtectionStatus(isProtected)
     }
 
     if (message.updatePermission) {

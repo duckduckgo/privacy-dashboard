@@ -8,16 +8,6 @@
     background-size: contain;
 }
 
-.hero-icon--protections-off {
-    @include cross_platform_bg_image('refresh-assets/Block-Disabled-128.svg');
-
-    // pull the note out of the parent's padding to prevent needing to change the DOM order
-    .note {
-        margin-left: -12px;
-        margin-right: -12px;
-    }
-}
-
 .hero-icon--breakage-form {
     @include cross_platform_bg_image('refresh-assets/Breakage-128.svg');
 }
@@ -35,6 +25,7 @@
     @include cross_platform_bg_image('refresh-assets/Shield-128.svg');
 }
 
+.hero-icon--protections-off,
 .hero-icon--major-networks-warning,
 .hero-icon--major-networks-protections-off {
     @include cross_platform_bg_image('refresh-assets/Block-Disabled-128.svg');

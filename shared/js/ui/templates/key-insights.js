@@ -9,13 +9,14 @@ import { getColorId } from './shared/utils.es6'
  */
 export function renderKeyInsight(model) {
     const title = (text) => bel`<h1 class="token-title-3-em">${text}</h1>`
+    const description = (text) => bel`<div class="token-title-3">${text}</div>`
     if (model.httpsState === 'none') {
         return bel`
-                <li class="key-insight key-insight--main">
+                <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--insecure-connection"></div>
                     ${title(model.tab.domain)}
                     <div class="token-title-3">${raw(i18n.t('site:connectionDescriptionUnencrypted.title'))}</div>
-                </li>
+                </div>
             `
     }
 
@@ -26,26 +27,22 @@ export function renderKeyInsight(model) {
             text = i18n.t('site:protectionsDisabledRemoteOverride.title')
         }
         return bel`
-        <li class="key-insight key-insight--main">
+        <div class="key-insight key-insight--main">
             <div class="large-icon-container hero-icon--protections-off"></div>
             ${title(model.tab.domain)}
-            <div class="note token-title-3">
-               ${text}
-            </div>
-        </li>
+            ${description(bel`<p class='note note--key-insight'>${text}</p>`)}
+        </div>
     `
     }
 
     // user allow-listed
     if (!model.protectionsEnabled) {
         return bel`
-            <li class="key-insight key-insight--main">
+            <div class="key-insight key-insight--main">
                 <div class="large-icon-container hero-icon--protections-off"></div>
                 ${title(model.tab.domain)}
-                <div class="token-title-3">
-                   ${raw(i18n.t('site:protectionsDisabled.title'))}
-                </div>
-            </li>
+                ${description(raw(i18n.t('site:protectionsDisabled.title')))}
+            </div>
             `
     }
 
@@ -53,62 +50,59 @@ export function renderKeyInsight(model) {
         const company = model.tab.parentEntity
 
         return bel`
-                <li class="key-insight key-insight--main">
+                <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--tracker-network"></div>
                         ${title(model.tab.domain)}
-                        <div class="token-title-3">
-                            ${raw(
+                        ${description(
+                            raw(
                                 i18n.t('site:majorTrackingNetworkDesc.title', {
                                     companyDisplayName: company.displayName,
                                     companyPrevalence: Math.round(company.prevalence),
                                     blocked: model.tab.requestDetails.blocked.entitiesCount > 0,
                                 })
-                            )}
-                    </div>
-                </li>
+                            )
+                        )}
+                </div>
             `
     }
 
     if (model.tab.requestDetails.blocked.requestCount === 0) {
         if (model.tab.requestDetails.allowedSpecialCount() > 0) {
             return bel`
-                <li class="key-insight key-insight--main">
+                <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--info"></div>
                     ${title(model.tab.domain)}
-                    <div class="token-title-3">${i18n.t('site:trackerNetworksSummaryAllowedOnly.title')}</div>
-                </li>
+                    ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
+                </div>
             `
         }
         return bel`
-                <li class="key-insight key-insight--main">
+                <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--no-activity"></div>
                     ${title(model.tab.domain)}
-                    <div class="token-title-3">${raw(i18n.t('site:trackerNetworksSummaryNone.title'))}</div>
-                </li>
+                    ${description(raw(i18n.t('site:trackerNetworksSummaryNone.title')))}
+                </div>
             `
     }
 
+    // todo(Shane): Is this state possible?
     const companyNames = model.tab.requestDetails.blockedCompanyNames()
     if (companyNames.length === 0) {
         return bel`
-                <li class="key-insight key-insight--main">
+                <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
-                    <div class="token-title-3"><span>${raw(
-                        i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))
-                    )}</span></div>
-                </li>
+                    ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
+                </div>
             `
     }
 
     return bel`
-            <li class="key-insight key-insight--main">
-                ${renderCompanyIconsList(model)}
-                ${title(model.tab.domain)}
-                <div class="token-title-3"><span>${raw(
-                    i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))
-                )}</span></div>
-            </li>
+        <div class="key-insight key-insight--main">
+            ${renderCompanyIconsList(model)}
+            ${title(model.tab.domain)}
+            ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
+        </div>
         `
 }
 
@@ -131,7 +125,7 @@ function generateCompanyNamesList(model) {
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderCompanyIconsList(model) {
-    const companyNames = model.tab.requestDetails.blockedCompanyNames().slice(0, 5)
+    const companyNames = model.tab.requestDetails.blockedCompanyNames()
 
     if (companyNames.length === 0) return ''
 

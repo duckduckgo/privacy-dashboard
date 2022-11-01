@@ -36,10 +36,10 @@ export default function () {
         ${renderSearchWrapper(this.model)}
         ${topNavSupported ? topNav() : null}
         <div class='page-inner' data-with-permissions=${permissions.length > 0}>
+            <div class='padding-x-double'>
+                ${renderKeyInsight(this.model)}
+            </div>
             <div class='padding-x'>
-                <ul class='default-list'>
-                    ${renderKeyInsight(this.model)}
-                </ul>
                 <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>
                     <li class='main-nav__row js-site-show-page-connection'>
                         ${renderConnection(this.model)}

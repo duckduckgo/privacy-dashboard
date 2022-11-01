@@ -1,9 +1,17 @@
 .note {
     background: $color-yellow;
     border-radius: 12px;
-    padding: 12px;
+    padding: 12px 16px;
 
+    // this will override any other margins and ensure there's enough space
     .body--theme-dark & {
         background: rgba(255, 214, 92, 0.2);
     }
+}
+
+// this solves the case where the note is embedded inside the key-insight component
+.note--key-insight {
+    margin-top: 12px;
+    margin-left: -16px;
+    margin-right: -16px;
 }

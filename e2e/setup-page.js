@@ -4,8 +4,8 @@ import { getContentHeightForScreenShot } from '../shared/js/browser/common.es6'
 
 expect.extend({ toMatchImageSnapshot })
 
-const defaultPageWidth = 350
-const defaultPageHeight = 550
+const defaultPageWidth = 360
+const defaultPageHeight = 600
 let browser
 let context
 

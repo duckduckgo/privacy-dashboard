@@ -30007,10 +30007,7 @@ var fetch = function fetch(message) {
 
 
     var isProtected = value === false;
-    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected); // Call as if this was an outside change. This will trigger events to
-    // have all models re-request data from background state.
-
-    window.onChangeProtectionStatus(isProtected);
+    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected);
   }
 
   if (message.updatePermission) {
@@ -31061,11 +31058,7 @@ var fetch = function fetch(message) {
       windowsPostMessage('RemoveFromAllowListCommand');
     } else {
       windowsPostMessage('AddToAllowListCommand');
-    } // Call as if this was an outside change. This will trigger events to
-    // have all models re-request data from background state.
-
-
-    window.onChangeProtectionStatus(isProtected);
+    }
   }
 
   if (message.updatePermission) {
@@ -33178,7 +33171,7 @@ var _normalizeCompanyName = require("../models/mixins/normalize-company-name.es6
 
 var _utils = require("./shared/utils.es6");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -33192,8 +33185,12 @@ function renderKeyInsight(model) {
     return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<h1 class=\"token-title-3-em\">", "</h1>"])), text);
   };
 
+  var description = function description(text) {
+    return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"token-title-3\">", "</div>"])), text);
+  };
+
   if (model.httpsState === 'none') {
-    return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n                <li class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--insecure-connection\"></div>\n                    ", "\n                    <div class=\"token-title-3\">", "</div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:connectionDescriptionUnencrypted.title')));
+    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--insecure-connection\"></div>\n                    ", "\n                    <div class=\"token-title-3\">", "</div>\n                </div>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:connectionDescriptionUnencrypted.title')));
   } // remote disabled
 
 
@@ -33204,38 +33201,39 @@ function renderKeyInsight(model) {
       text = _localize.i18n.t('site:protectionsDisabledRemoteOverride.title');
     }
 
-    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        <li class=\"key-insight key-insight--main\">\n            <div class=\"large-icon-container hero-icon--protections-off\"></div>\n            ", "\n            <div class=\"note token-title-3\">\n               ", "\n            </div>\n        </li>\n    "])), title(model.tab.domain), text);
+    return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n        <div class=\"key-insight key-insight--main\">\n            <div class=\"large-icon-container hero-icon--protections-off\"></div>\n            ", "\n            ", "\n        </div>\n    "])), title(model.tab.domain), description((0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<p class='note note--key-insight'>", "</p>"])), text)));
   } // user allow-listed
 
 
   if (!model.protectionsEnabled) {
-    return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n            <li class=\"key-insight key-insight--main\">\n                <div class=\"large-icon-container hero-icon--protections-off\"></div>\n                ", "\n                <div class=\"token-title-3\">\n                   ", "\n                </div>\n            </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:protectionsDisabled.title')));
+    return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n            <div class=\"key-insight key-insight--main\">\n                <div class=\"large-icon-container hero-icon--protections-off\"></div>\n                ", "\n                ", "\n            </div>\n            "])), title(model.tab.domain), description((0, _raw["default"])(_localize.i18n.t('site:protectionsDisabled.title'))));
   }
 
   if (model.isaMajorTrackingNetwork && model.tab.parentEntity) {
     var company = model.tab.parentEntity;
-    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n                <li class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--tracker-network\"></div>\n                        ", "\n                        <div class=\"token-title-3\">\n                            ", "\n                    </div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:majorTrackingNetworkDesc.title', {
+    return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--tracker-network\"></div>\n                        ", "\n                        ", "\n                </div>\n            "])), title(model.tab.domain), description((0, _raw["default"])(_localize.i18n.t('site:majorTrackingNetworkDesc.title', {
       companyDisplayName: company.displayName,
       companyPrevalence: Math.round(company.prevalence),
       blocked: model.tab.requestDetails.blocked.entitiesCount > 0
-    })));
+    }))));
   }
 
   if (model.tab.requestDetails.blocked.requestCount === 0) {
     if (model.tab.requestDetails.allowedSpecialCount() > 0) {
-      return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n                <li class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--info\"></div>\n                    ", "\n                    <div class=\"token-title-3\">", "</div>\n                </li>\n            "])), title(model.tab.domain), _localize.i18n.t('site:trackerNetworksSummaryAllowedOnly.title'));
+      return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--info\"></div>\n                    ", "\n                    ", "\n                </div>\n            "])), title(model.tab.domain), description(_localize.i18n.t('site:trackerNetworksSummaryAllowedOnly.title')));
     }
 
-    return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n                <li class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--no-activity\"></div>\n                    ", "\n                    <div class=\"token-title-3\">", "</div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:trackerNetworksSummaryNone.title')));
-  }
+    return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--no-activity\"></div>\n                    ", "\n                    ", "\n                </div>\n            "])), title(model.tab.domain), description((0, _raw["default"])(_localize.i18n.t('site:trackerNetworksSummaryNone.title'))));
+  } // todo(Shane): Is this state possible?
+
 
   var companyNames = model.tab.requestDetails.blockedCompanyNames();
 
   if (companyNames.length === 0) {
-    return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n                <li class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--trackers-blocked\"></div>\n                    ", "\n                    <div class=\"token-title-3\"><span>", "</span></div>\n                </li>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))));
+    return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--trackers-blocked\"></div>\n                    ", "\n                    ", "\n                </div>\n            "])), title(model.tab.domain), description((0, _raw["default"])(_localize.i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))));
   }
 
-  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n            <li class=\"key-insight key-insight--main\">\n                ", "\n                ", "\n                <div class=\"token-title-3\"><span>", "</span></div>\n            </li>\n        "])), renderCompanyIconsList(model), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))));
+  return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n        <div class=\"key-insight key-insight--main\">\n            ", "\n            ", "\n            ", "\n        </div>\n        "])), renderCompanyIconsList(model), title(model.tab.domain), description((0, _raw["default"])(_localize.i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model)))));
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -33260,7 +33258,7 @@ function generateCompanyNamesList(model) {
 
 
 function renderCompanyIconsList(model) {
-  var companyNames = model.tab.requestDetails.blockedCompanyNames().slice(0, 5);
+  var companyNames = model.tab.requestDetails.blockedCompanyNames();
   if (companyNames.length === 0) return '';
   var topCompanies = companyNames.slice(0, 4);
   var remainingCount = companyNames.length - topCompanies.length;
@@ -33304,12 +33302,12 @@ function renderCompanyIconsList(model) {
   var positionMap = positions[processed.length];
   var list = processed.map(function (item, index) {
     if (item.kind === 'icon') {
-      return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n                <span class=\"icon-list__item\" style='order: ", "' data-company-icon-position=", ">\n                    <span class=\"icon-list__wrapper\" data-company-icon-size=", ">\n                        <span class=\"icon-list__icon ", " color-", " ", "\"></span>\n                        <span class=\"icon-list__blocked-icon\"></span>\n                    </span>\n                </span>\n            "])), positionMap[index], positionMap[index], item.size, item.letter, item.colorId, item.slug);
+      return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n                <span class=\"icon-list__item\" style='order: ", "' data-company-icon-position=", ">\n                    <span class=\"icon-list__wrapper\" data-company-icon-size=", ">\n                        <span class=\"icon-list__icon ", " color-", " ", "\"></span>\n                        <span class=\"icon-list__blocked-icon\"></span>\n                    </span>\n                </span>\n            "])), positionMap[index], positionMap[index], item.size, item.letter, item.colorId, item.slug);
     }
 
-    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n            <span class='icon-list__item' style='order: ", "' data-company-icon-position='", "'>\n                <span class='icon-list__wrapper icon-list__wrapper--count' \n                    data-company-icon-size='", "'>\n                    <span class='icon-list__count'>+", "</span>\n                </span>\n            </div>"])), positionMap[index], positionMap[index], item.size, item.count);
+    return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n            <span class='icon-list__item' style='order: ", "' data-company-icon-position='", "'>\n                <span class='icon-list__wrapper icon-list__wrapper--count' \n                    data-company-icon-size='", "'>\n                    <span class='icon-list__count'>+", "</span>\n                </span>\n            </div>"])), positionMap[index], positionMap[index], item.size, item.count);
   });
-  return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n        <div \n            class='large-icon-container icon-list' \n            data-company-count='", "'\n            aria-label=\"List of Blocked Company Icons\"\n            >\n            ", "\n        </div>\n    "])), processed.length, list);
+  return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n        <div \n            class='large-icon-container icon-list' \n            data-company-count='", "'\n            aria-label=\"List of Blocked Company Icons\"\n            >\n            ", "\n        </div>\n    "])), processed.length, list);
 }
 
 },{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":106,"bel":31,"bel/raw":32}],95:[function(require,module,exports){
@@ -34291,7 +34289,7 @@ function _default() {
 
   var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
   var permissions = localizePermissions(this.model.permissions);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x'>\n                <ul class='default-list'>\n                    ", "\n                </ul>\n                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                ", "\n            </div>\n            <div class='padding-x'>\n                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
     children: renderManagePermissions(this.model)
   }) : null);
 }

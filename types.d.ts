@@ -13,7 +13,7 @@ interface Window {
     onChangeLocale: any
     onChangeAllowedPermissions: any
     onChangeUpgradedHttps: any
-    onChangeProtectionStatus: any
+    onChangeProtectionStatus: (protections: import('./shared/js/browser/utils/request-details').Protections) => void
     onChangeCertificateData: any
     onIsPendingUpdates: any
 

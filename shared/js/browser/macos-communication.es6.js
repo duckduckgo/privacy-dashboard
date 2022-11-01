@@ -181,10 +181,6 @@ const fetch = (message) => {
         // so `isProtected` is the opposite of `allowlisted`.
         const isProtected = value === false
         window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
-
-        // Call as if this was an outside change. This will trigger events to
-        // have all models re-request data from background state.
-        window.onChangeProtectionStatus(isProtected)
     }
 
     if (message.updatePermission) {
