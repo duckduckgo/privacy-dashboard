@@ -471,11 +471,6 @@ select {
   color: #333333;
 }
 
-.body--theme-dark input,
-.body--theme-dark textarea {
-  color: rgba(255, 255, 255, 0.9);
-}
-
 .body--theme-dark.environment--windows select {
   background-color: rgba(255, 255, 255, 0.06);
   border-color: #444;

@@ -64,9 +64,7 @@ select {
 
 input,
 textarea {
-    .body--theme-dark & {
-        color: $color--off-white;
-    }
+    // todo(Shane): base styles for dark mode?
 }
 
 .body--theme-dark.environment--windows select {
