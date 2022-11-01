@@ -250,3 +250,31 @@ test.describe('special page (cta)', () => {
         await expect(page).toHaveScreenshot('cta.png')
     })
 })
+
+test.describe('search', () => {
+    test.skip('should not lose text when re-render occurs', async ({ page }) => {
+        await withExtensionRequests(page, {
+            requestData: { requests: [] },
+            tab: {
+                id: 1533,
+                url: 'https://example.com',
+                upgradedHttps: false,
+                protections: {
+                    denylisted: false,
+                    allowlisted: false,
+                    enabledFeatures: [],
+                    unprotectedTemporary: false,
+                },
+            },
+        })
+        await page.goto(HTML)
+        await page.locator('[placeholder="Search DuckDuckGo"]').type('nike')
+        await page.evaluate(async () => {
+            for (let listener of window.__playwright?.listeners || []) {
+                listener({ updateTabData: true }, { id: 'test' })
+            }
+        })
+        await page.waitForTimeout(500) // allow time for a re-render
+        await expect(page.locator('[placeholder="Search DuckDuckGo"]')).toHaveValue('nike')
+    })
+})

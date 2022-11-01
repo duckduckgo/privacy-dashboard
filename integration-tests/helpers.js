@@ -12,7 +12,6 @@ export async function withExtensionRequests(page, privacyDashboardData) {
     }
     await page.addInitScript((messages) => {
         try {
-            const listeners = []
             if (!window.chrome) {
                 // @ts-ignore
                 window.chrome = {}
@@ -24,6 +23,7 @@ export async function withExtensionRequests(page, privacyDashboardData) {
                     incoming: [],
                 },
                 calls: [],
+                listeners: [],
             }
 
             // override some methods on window.chrome.tabs that the extension might call
@@ -57,6 +57,7 @@ export async function withExtensionRequests(page, privacyDashboardData) {
 
             // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
             window.chrome.runtime = {
+                id: 'test',
                 async sendMessage(message, cb) {
                     function send(fn, timeout = 100) {
                         setTimeout(() => {
@@ -77,7 +78,7 @@ export async function withExtensionRequests(page, privacyDashboardData) {
                 // @ts-ignore
                 onMessage: {
                     addListener(listener) {
-                        listeners.push(listener)
+                        window.__playwright.listeners?.push(listener)
                     },
                 },
             }

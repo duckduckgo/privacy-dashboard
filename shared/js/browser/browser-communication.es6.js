@@ -102,17 +102,11 @@ export function backgroundMessage(_channel) {
     // listen for messages from background and
     // notify subscribers
     window.chrome.runtime.onMessage.addListener((req, sender) => {
-        if (sender.id !== window.chrome.runtime.id) return
-        console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req)
-        // todo(Shane): We are explicit about closing the PD now, so is this needed?
-        if (req.allowlistChanged) {
-            // force the toggles or any other UI to go into a 'pending state'
-            // console.log('EXTENSION SAID SOMETHING CHANGED', req)
-            // isPendingUpdates = true
-            // channel.send('updateTabData')
+        if (sender.id !== window.chrome.runtime.id) {
+            return
         }
+        console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req)
         if (req.updateTabData) channel.send('updateTabData')
-        // todo(Shane): verify if these are both still needed?
         if (req.didResetTrackersData) channel.send('didResetTrackersData', req.didResetTrackersData)
         if (req.closePopup) window.close()
     })
