@@ -2971,6 +2971,10 @@ body.body--theme-dark.environment--ios {
   padding: 8px;
   outline-color: #6e90f7;
 }
+.body--theme-dark .form__textarea {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-lines-light);
+}
 .form__textarea .body--theme-dark.environment--windows {
   background-color: rgba(255, 255, 255, 0.06);
   border-color: #444;

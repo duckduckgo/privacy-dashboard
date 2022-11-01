@@ -104,7 +104,12 @@
     box-sizing: border-box;
     margin-bottom: 8px;
     padding: 8px;
+
     outline-color: #6e90f7;
+    .body--theme-dark & {
+        background-color: $dark-mode-white;
+        border-color: var(--color-lines-light);
+    }
 
     .body--theme-dark.environment--windows {
         background-color: $color--dark-theme-background;
