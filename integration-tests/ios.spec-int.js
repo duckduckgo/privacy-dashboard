@@ -195,7 +195,7 @@ class StateTest {
 
     async screenshotNonTrackers() {
         const page = this.page
-        await page.locator('[aria-label="Back"]').nth(1).click()
+        await page.locator('[aria-label="Back"]').click()
         await page.locator('[aria-label="View Non-Tracker Companies"]').click()
         await expect(this.page).toHaveScreenshot(`${this.state}-state-non-trackers.png`)
     }

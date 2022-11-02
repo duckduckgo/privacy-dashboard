@@ -10,7 +10,7 @@ const overrides = getOverrides(window.location.search)
 
 let channel = null
 const isSecure = true
-let isPendingUpdates = false
+const isPendingUpdates = false
 
 // Modify state after render
 // eslint-disable-next-line no-unused-vars

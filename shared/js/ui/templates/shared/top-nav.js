@@ -1,5 +1,5 @@
-import { platformSwitch } from '../../environment-check'
 import bel from 'bel'
+import { platformSwitch } from '../../environment-check'
 import { ns } from '../../base/localize.es6'
 
 /**

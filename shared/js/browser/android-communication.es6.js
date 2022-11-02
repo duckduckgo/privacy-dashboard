@@ -335,13 +335,13 @@ export function setup() {
 }
 export const getBackgroundTabData = new Proxy(getBackgroundTabDataAndroid, {
     apply(target, thisArg, argArray) {
-        console.log('🚀 getBackgroundTabData...', JSON.stringify(argArray))
+        // console.log('🚀 getBackgroundTabData...', JSON.stringify(argArray))
         return Reflect.apply(target, thisArg, argArray)
     },
 })
 export const fetch = new Proxy(fetchAndroid, {
     apply(target, thisArg, argArray) {
-        console.log('🚀 fetch...', JSON.stringify(argArray))
+        // console.log('🚀 fetch...', JSON.stringify(argArray))
         return Reflect.apply(target, thisArg, argArray)
     },
 })

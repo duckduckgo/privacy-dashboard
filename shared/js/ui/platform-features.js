@@ -3,7 +3,12 @@
  */
 
 /**
- * @param {import("./environment-check").Platform} platform
+ * @typedef Platform
+ * @property {"ios" | "android" | "macos" | "browser" | "windows" | "example"} name
+ */
+
+/**
+ * @param {Platform} platform
  * @return {PlatformFeatures}
  */
 export function createPlatformFeatures(platform) {

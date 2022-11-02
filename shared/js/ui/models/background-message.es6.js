@@ -26,7 +26,7 @@ function BackgroundMessage(attrs) {
     const thisModel = this
     thisModel.send = new Proxy(thisModel.send, {
         apply(target, thisArg, argArray) {
-            console.log('🤒 channel.send...', JSON.stringify(argArray))
+            // console.log('🤒 channel.send...', JSON.stringify(argArray))
             return Reflect.apply(target, thisArg, argArray)
         },
     })

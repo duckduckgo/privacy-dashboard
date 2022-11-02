@@ -1,8 +1,4 @@
 /**
- * @typedef Platform
- * @property {"ios" | "android" | "macos" | "browser" | "windows" | "example"} name
- */
-/**
  * @param {string} platform
  * @returns {boolean}
  */
@@ -19,14 +15,14 @@ export const isWindows = () => isEnvironment('windows')
 export const isMacos = () => isEnvironment('macos')
 
 /**
- * @returns {Platform["name"] | null}
+ * @returns {import("./platform-features").Platform["name"] | null}
  */
 export function currentPlatform() {
     const windowVar = window.environmentOverride
-    if (isValidPlatform(windowVar)) return windowVar
+    if (windowVar && isValidPlatform(windowVar)) return windowVar
     const matchingClass = [...document.body.classList].find((x) => x.startsWith('environment--'))
     if (matchingClass) {
-        let platform = matchingClass.slice(13)
+        const platform = matchingClass.slice(13)
         if (isValidPlatform(platform)) {
             return platform
         }
@@ -34,13 +30,13 @@ export function currentPlatform() {
     return null
 }
 /**
- * @param {Platform["name"] | string | null | undefined} name
- * @returns {name is Platform["name"]}
+ * @param {import("./platform-features").Platform["name"] | string | null | undefined} name
+ * @returns {name is import("./platform-features").Platform["name"]}
  */
 export function isValidPlatform(name) {
-    if (!name) throw new Error('not a valid platform name')
-    /** @type {Platform["name"][]} */
-    let names = ['ios', 'android', 'macos', 'browser', 'windows', 'example']
+    if (!name) throw new Error(`not a valid platform name ${name}`)
+    /** @type {import("./platform-features").Platform["name"][]} */
+    const names = ['ios', 'android', 'macos', 'browser', 'windows', 'example']
     // @ts-ignore
     if (names.includes(name)) {
         return true
@@ -48,8 +44,8 @@ export function isValidPlatform(name) {
     throw new Error('nope!')
 }
 
-/** @type {Platform["name"] | undefined | null} */
-let _curr
+/** @type {import("./platform-features").Platform["name"] | undefined | null} */
+let lastKnownPlatformName
 
 /**
  * @template T - return value
@@ -57,13 +53,13 @@ let _curr
  * @returns {T}
  */
 export function platformSwitch(mapping) {
-    if (!_curr) _curr = currentPlatform() // caching
-    if (!_curr) throw new Error('could not determine the current platform.')
-    if (mapping.hasOwnProperty(_curr)) {
-        return mapping[_curr]()
+    if (!lastKnownPlatformName) lastKnownPlatformName = currentPlatform() // for caching
+    if (!lastKnownPlatformName) throw new Error('could not determine the current platform.')
+    if (lastKnownPlatformName in mapping) {
+        return mapping[lastKnownPlatformName]()
     }
-    if (mapping.hasOwnProperty('default')) {
-        return mapping['default']()
+    if ('default' in mapping) {
+        return mapping.default()
     }
     throw new Error('did not expect to get here - use a default!')
 }

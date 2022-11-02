@@ -1,6 +1,6 @@
 import { dataStates, protectionsOff } from '../../ui/views/tests/generate-data'
-import { Protections } from './request-details'
 import { isValidPlatform } from '../../ui/environment-check'
+import { Protections } from './request-details'
 
 /**
  * The purpose of this function is to allow URL parameters to override
@@ -16,7 +16,7 @@ import { isValidPlatform } from '../../ui/environment-check'
  * @property {Partial<import('../../ui/views/tests/generate-data').TabData>} tab
  * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
  * @property {string} state
- * @property {import('../../ui/environment-check').Platform["name"]} platform
+ * @property {import('../../ui/platform-features').Platform["name"]} platform
  * @property {any | undefined} emailProtectionUserData
  * @property {("dark" | "light") | undefined} theme
  * @param {string} searchString

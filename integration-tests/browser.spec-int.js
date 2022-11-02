@@ -270,7 +270,7 @@ test.describe('search', () => {
         await page.goto(HTML)
         await page.locator('[placeholder="Search DuckDuckGo"]').type('nike')
         await page.evaluate(async () => {
-            for (let listener of window.__playwright?.listeners || []) {
+            for (const listener of window.__playwright?.listeners || []) {
                 listener({ updateTabData: true }, { id: 'test' })
             }
         })

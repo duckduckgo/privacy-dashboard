@@ -9,8 +9,8 @@ import { getOverrides } from './utils/overrides'
 
 let defaultComms
 
-/** @type {import('../ui/environment-check').Platform} */
-let platform = { name: 'example' }
+/** @type {import('../ui/platform-features').Platform} */
+const platform = { name: 'example' }
 
 const overrides = getOverrides(window.location.search)
 if (overrides.platform && overrides.platform !== 'example') {

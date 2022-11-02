@@ -28899,14 +28899,14 @@ function setup() {
 
 var getBackgroundTabData = new Proxy(getBackgroundTabDataAndroid, {
   apply: function apply(target, thisArg, argArray) {
-    console.log('🚀 getBackgroundTabData...', JSON.stringify(argArray));
+    // console.log('🚀 getBackgroundTabData...', JSON.stringify(argArray))
     return Reflect.apply(target, thisArg, argArray);
   }
 });
 exports.getBackgroundTabData = getBackgroundTabData;
 var fetch = new Proxy(fetchAndroid, {
   apply: function apply(target, thisArg, argArray) {
-    console.log('🚀 fetch...', JSON.stringify(argArray));
+    // console.log('🚀 fetch...', JSON.stringify(argArray))
     return Reflect.apply(target, thisArg, argArray);
   }
 });
@@ -29518,7 +29518,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var defaultComms;
-/** @type {import('../ui/environment-check').Platform} */
+/** @type {import('../ui/platform-features').Platform} */
 
 var platform = {
   name: 'example'
@@ -30215,9 +30215,9 @@ exports.getOverrides = getOverrides;
 
 var _generateData = require("../../ui/views/tests/generate-data");
 
-var _requestDetails = require("./request-details");
-
 var _environmentCheck = require("../../ui/environment-check");
+
+var _requestDetails = require("./request-details");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -30240,7 +30240,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * @property {Partial<import('../../ui/views/tests/generate-data').TabData>} tab
  * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
  * @property {string} state
- * @property {import('../../ui/environment-check').Platform["name"]} platform
+ * @property {import('../../ui/platform-features').Platform["name"]} platform
  * @property {any | undefined} emailProtectionUserData
  * @property {("dark" | "light") | undefined} theme
  * @param {string} searchString
@@ -32240,11 +32240,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 /**
- * @typedef Platform
- * @property {"ios" | "android" | "macos" | "browser" | "windows" | "example"} name
- */
-
-/**
  * @param {string} platform
  * @returns {boolean}
  */
@@ -32284,7 +32279,7 @@ var isMacos = function isMacos() {
   return isEnvironment('macos');
 };
 /**
- * @returns {Platform["name"] | null}
+ * @returns {import("./platform-features").Platform["name"] | null}
  */
 
 
@@ -32292,7 +32287,7 @@ exports.isMacos = isMacos;
 
 function currentPlatform() {
   var windowVar = window.environmentOverride;
-  if (isValidPlatform(windowVar)) return windowVar;
+  if (windowVar && isValidPlatform(windowVar)) return windowVar;
 
   var matchingClass = _toConsumableArray(document.body.classList).find(function (x) {
     return x.startsWith('environment--');
@@ -32309,14 +32304,14 @@ function currentPlatform() {
   return null;
 }
 /**
- * @param {Platform["name"] | string | null | undefined} name
- * @returns {name is Platform["name"]}
+ * @param {import("./platform-features").Platform["name"] | string | null | undefined} name
+ * @returns {name is import("./platform-features").Platform["name"]}
  */
 
 
 function isValidPlatform(name) {
-  if (!name) throw new Error('not a valid platform name');
-  /** @type {Platform["name"][]} */
+  if (!name) throw new Error("not a valid platform name ".concat(name));
+  /** @type {import("./platform-features").Platform["name"][]} */
 
   var names = ['ios', 'android', 'macos', 'browser', 'windows', 'example']; // @ts-ignore
 
@@ -32326,28 +32321,27 @@ function isValidPlatform(name) {
 
   throw new Error('nope!');
 }
-/** @type {Platform["name"] | undefined | null} */
+/** @type {import("./platform-features").Platform["name"] | undefined | null} */
 
 
-var _curr;
+var lastKnownPlatformName;
 /**
  * @template T - return value
  * @param {Record<string, () => T>} mapping
  * @returns {T}
  */
 
-
 function platformSwitch(mapping) {
-  if (!_curr) _curr = currentPlatform(); // caching
+  if (!lastKnownPlatformName) lastKnownPlatformName = currentPlatform(); // for caching
 
-  if (!_curr) throw new Error('could not determine the current platform.');
+  if (!lastKnownPlatformName) throw new Error('could not determine the current platform.');
 
-  if (mapping.hasOwnProperty(_curr)) {
-    return mapping[_curr]();
+  if (lastKnownPlatformName in mapping) {
+    return mapping[lastKnownPlatformName]();
   }
 
-  if (mapping.hasOwnProperty('default')) {
-    return mapping['default']();
+  if ('default' in mapping) {
+    return mapping["default"]();
   }
 
   throw new Error('did not expect to get here - use a default!');
@@ -32394,7 +32388,7 @@ function BackgroundMessage(attrs) {
   var thisModel = this;
   thisModel.send = new Proxy(thisModel.send, {
     apply: function apply(target, thisArg, argArray) {
-      console.log('🤒 channel.send...', JSON.stringify(argArray));
+      // console.log('🤒 channel.send...', JSON.stringify(argArray))
       return Reflect.apply(target, thisArg, argArray);
     }
   });
@@ -33177,7 +33171,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 /**
- * @param {import("./environment-check").Platform} platform
+ * @typedef Platform
+ * @property {"ios" | "android" | "macos" | "browser" | "windows" | "example"} name
+ */
+
+/**
+ * @param {Platform} platform
  * @return {PlatformFeatures}
  */
 function createPlatformFeatures(platform) {
@@ -34310,9 +34309,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.topNav = topNav;
 
-var _environmentCheck = require("../../environment-check");
-
 var _bel = _interopRequireDefault(require("bel"));
+
+var _environmentCheck = require("../../environment-check");
 
 var _localize = require("../../base/localize.es6");
 
