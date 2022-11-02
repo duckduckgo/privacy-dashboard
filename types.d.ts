@@ -22,7 +22,7 @@ interface Window {
      * TODO: type these methods
      */
     PrivacyDashboard: {
-        toggleAllowlist: (isProtected) => boolean
+        toggleAllowlist: (isProtected) => void
         close: (...args: any[]) => any
         showBreakageForm: (...args: any[]) => any
         openInNewTab: (payload: string) => void

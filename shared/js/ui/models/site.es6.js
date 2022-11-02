@@ -1,8 +1,9 @@
 import $ from 'jquery'
 import Parent from '../base/model.es6'
 import { httpsMessages } from '../../../data/constants'
-import browserUIWrapper from '../../browser/communication.es6.js'
+import browserUIWrapper, { platform } from '../../browser/communication.es6.js'
 import { i18n } from '../base/localize.es6'
+import { createPlatformFeatures } from '../platform-features'
 
 // We consider major tracker networks as those found on this percentage of sites
 // that we crawl
@@ -11,24 +12,25 @@ const MAJOR_TRACKER_THRESHOLD_PCT = 25
 /** @this {any} */
 function Site(attrs) {
     attrs = attrs || {}
-    attrs.disabled = true // disabled by default
-    attrs.tab = null
-    attrs.permissions = null
-    attrs.domain = '-'
-    attrs.protectionsEnabled = false
-    attrs.isBroken = false
-    attrs.displayBrokenUI = false
-    attrs.isAllowlisted = false
-    attrs.isDenylisted = false
-    attrs.httpsState = 'none'
-    attrs.httpsStatusText = ''
-    attrs.trackersCount = 0 // unique trackers count
-    attrs.majorTrackerNetworksCount = 0
-    attrs.totalTrackerNetworksCount = 0
-    attrs.trackerNetworks = []
-    attrs.isaMajorTrackingNetwork = false
-    attrs.emailProtectionUserData = null
-    attrs.acceptingUpdates = true
+    this.disabled = true // disabled by default
+    this.tab = null
+    this.permissions = null
+    this.domain = '-'
+    this.protectionsEnabled = false
+    this.isBroken = false
+    this.displayBrokenUI = false
+    this.isAllowlisted = false
+    this.isDenylisted = false
+    this.httpsState = 'none'
+    this.httpsStatusText = ''
+    this.trackersCount = 0 // unique trackers count
+    this.majorTrackerNetworksCount = 0
+    this.totalTrackerNetworksCount = 0
+    this.trackerNetworks = []
+    this.isaMajorTrackingNetwork = false
+    this.emailProtectionUserData = null
+    this.acceptingUpdates = true
+    this.features = createPlatformFeatures(platform)
     Parent.call(this, attrs)
 
     this.bindEvents([[this.store.subscribe, 'action:backgroundMessage', this.handleBackgroundMsg]])
@@ -148,7 +150,12 @@ Site.prototype = $.extend({}, Parent.prototype, {
         const updatedPermissions = JSON.parse(JSON.stringify(this.permissions))
         updatedPermissions[permissionIndex].permission = value
         this.set('permissions', updatedPermissions)
-        this.fetch({ updatePermission: { id, value } })
+
+        try {
+            this.fetch({ updatePermission: { id, value } })
+        } catch (e) {
+            console.error('updatePermission error', e)
+        }
     },
 
     // calls `this.set()` to trigger view re-rendering
@@ -253,7 +260,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.set('protectionsEnabled', this.protectionsEnabled)
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & Site} */
     toggleAllowlist: function () {
         const fetches = []
         if (this.tab && this.tab.domain) {
@@ -267,7 +274,9 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 fetches.push(this.setList('allowlisted', this.tab.domain, !this.isAllowlisted))
             }
         }
-        if (fetches.length > 0) {
+        // if the platform supports showing a spinner, make it display
+        console.log(this.features.spinnerFollowingProtectionsToggle)
+        if (this.features.spinnerFollowingProtectionsToggle && fetches.length > 0) {
             this.tab.isPendingUpdates = true
             // force a re-render without fetching new data
             this.set('disabled', false)
@@ -282,13 +291,18 @@ Site.prototype = $.extend({}, Parent.prototype, {
     },
 
     setList(list, domain, value) {
-        return this.fetch({
-            setList: {
-                list,
-                domain,
-                value,
-            },
-        })
+        try {
+            return this.fetch({
+                setList: {
+                    list,
+                    domain,
+                    value,
+                },
+            })
+        } catch (e) {
+            console.error('setList error', e)
+            return false
+        }
     },
     /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
     companyNames: function () {
@@ -300,19 +314,27 @@ Site.prototype = $.extend({}, Parent.prototype, {
         try {
             return this.fetch({ checkBrokenSiteReportHandled: true })
         } catch (e) {
-            console.log('erm?', e)
+            console.error('checkBrokenSiteReportHandled error', e)
             return false
         }
     },
     /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
     submitBreakageForm: function (category, description) {
         if (!this.tab) return
-        this.fetch({ submitBrokenSiteReport: { category, description } })
+        try {
+            this.fetch({ submitBrokenSiteReport: { category, description } })
+        } catch (e) {
+            console.error('submitBreakageForm error', e)
+        }
     },
 
     /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
     close: function () {
-        this.fetch({ closePrivacyDashboard: true })
+        try {
+            this.fetch({ closePrivacyDashboard: true })
+        } catch (e) {
+            console.error('close error', e)
+        }
     },
 })
 

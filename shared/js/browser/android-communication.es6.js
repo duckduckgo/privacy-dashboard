@@ -57,7 +57,7 @@ const resolveInitialRender = function () {
     }
 
     getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()))
-    channel?.send('updateTabData')
+    channel?.send('updateTabData', { via: 'resolveInitialRender' })
 }
 
 // Integration APIs
@@ -153,7 +153,7 @@ export function onChangeLocale(payload) {
         return
     }
     locale = parsed.data.locale
-    channel?.send('updateTabData')
+    channel?.send('updateTabData', { via: 'onChangeLocale' })
 }
 
 /**
@@ -236,7 +236,7 @@ let privacyDashboardApi
 
 // -----------------------------------------------------------------------------
 
-const fetch = (message) => {
+const fetchAndroid = (message) => {
     if (!window.PrivacyDashboard) {
         console.error('window.PrivacyDashboard not available')
         return
@@ -266,7 +266,7 @@ const fetch = (message) => {
     }
 }
 
-const getBackgroundTabData = () => {
+const getBackgroundTabDataAndroid = () => {
     return new Promise((resolve) => {
         if (trackerBlockingData) {
             resolve(combineSources())
@@ -288,7 +288,7 @@ export function setup() {
 
     window.onChangeAllowedPermissions = function (data) {
         permissionsData = data
-        channel?.send('updateTabData')
+        channel?.send('updateTabData', { via: 'onChangeAllowedPermissions' })
     }
 
     window.onChangeUpgradedHttps = function (data) {
@@ -299,22 +299,22 @@ export function setup() {
     }
     window.onChangeCertificateData = function (data) {
         certificateData = data.secCertificateViewModels
-        channel?.send('updateTabData')
+        channel?.send('updateTabData', { via: 'onChangeCertificateData' })
     }
 
     window.onIsPendingUpdates = function (data) {
         isPendingUpdates = data
-        channel?.send('updateTabData')
+        channel?.send('updateTabData', { via: 'onIsPendingUpdates' })
     }
 
     window.onChangeParentEntity = function (data) {
         parentEntity = data
-        channel?.send('updateTabData')
+        channel?.send('updateTabData', { via: 'onChangeParentEntity' })
     }
 
     window.onChangeConsentManaged = function (data) {
         consentManaged = data
-        channel?.send('updateTabData')
+        channel?.send('updateTabData', { via: 'onChangeConsentManaged' })
     }
     privacyDashboardApi = new PrivacyDashboardJavascriptInterface()
     /**
@@ -333,5 +333,17 @@ export function setup() {
         }
     })
 }
+export const getBackgroundTabData = new Proxy(getBackgroundTabDataAndroid, {
+    apply(target, thisArg, argArray) {
+        console.log('🚀 getBackgroundTabData...', JSON.stringify(argArray))
+        return Reflect.apply(target, thisArg, argArray)
+    },
+})
+export const fetch = new Proxy(fetchAndroid, {
+    apply(target, thisArg, argArray) {
+        console.log('🚀 fetch...', JSON.stringify(argArray))
+        return Reflect.apply(target, thisArg, argArray)
+    },
+})
 
-export { fetch, backgroundMessage, getBackgroundTabData }
+export { backgroundMessage }

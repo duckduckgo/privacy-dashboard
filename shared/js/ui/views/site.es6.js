@@ -115,7 +115,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }, 100)
     },
 
-    rerender: function () {
+    rerender: function (values) {
         // Prevent rerenders when confirmation form is active,
         // otherwise form will disappear on rerender.
         if (this.$body.hasClass('confirmation-active')) return
@@ -142,7 +142,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
 
         const isHandledExternally = this.model.checkBrokenSiteReportHandled()
-        console.log('', { isHandledExternally: JSON.stringify(isHandledExternally) })
         if (!isHandledExternally) {
             this.showBreakageForm('reportBrokenSite')
         }

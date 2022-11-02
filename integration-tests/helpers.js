@@ -231,13 +231,18 @@ export async function withAndroidRequests(page, requestData, tab = {}) {
                 },
                 calls: [],
             }
-            // @ts-ignore
             window.PrivacyDashboard = {
                 showBreakageForm(arg) {
                     window.__playwright.mocks.outgoing.push(['showBreakageForm', arg])
                 },
                 openInNewTab(arg) {
                     window.__playwright.mocks.outgoing.push(['openInNewTab', arg])
+                },
+                close(arg) {
+                    window.__playwright.mocks.outgoing.push(['close', arg])
+                },
+                toggleAllowlist(arg) {
+                    window.__playwright.mocks.outgoing.push(['toggleAllowlist', arg])
                 },
             }
             window.onChangeUpgradedHttps(false)

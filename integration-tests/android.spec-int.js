@@ -14,7 +14,7 @@ const test = baseTest.extend({
             await use(requests)
         },
         // @ts-ignore
-        { auto: true },
+        { auto: false },
     ],
 })
 

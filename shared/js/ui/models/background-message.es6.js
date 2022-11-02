@@ -24,6 +24,12 @@ import browserUIWrapper from '../../browser/communication.es6.js'
 function BackgroundMessage(attrs) {
     Parent.call(this, attrs)
     const thisModel = this
+    thisModel.send = new Proxy(thisModel.send, {
+        apply(target, thisArg, argArray) {
+            console.log('🤒 channel.send...', JSON.stringify(argArray))
+            return Reflect.apply(target, thisArg, argArray)
+        },
+    })
     browserUIWrapper.backgroundMessage(thisModel)
 }
 

@@ -1,5 +1,6 @@
 import { dataStates, protectionsOff } from '../../ui/views/tests/generate-data'
 import { Protections } from './request-details'
+import { isValidPlatform } from '../../ui/environment-check'
 
 /**
  * The purpose of this function is to allow URL parameters to override
@@ -15,7 +16,7 @@ import { Protections } from './request-details'
  * @property {Partial<import('../../ui/views/tests/generate-data').TabData>} tab
  * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
  * @property {string} state
- * @property {string} platform
+ * @property {import('../../ui/environment-check').Platform["name"]} platform
  * @property {any | undefined} emailProtectionUserData
  * @property {("dark" | "light") | undefined} theme
  * @param {string} searchString
@@ -29,7 +30,7 @@ export function getOverrides(searchString) {
             parentEntity: undefined,
         },
         requests: [],
-        platform: 'n/a',
+        platform: 'example',
         state: 'unknown',
         emailProtectionUserData: undefined,
         theme: undefined,
@@ -60,12 +61,15 @@ export function getOverrides(searchString) {
             }
         }
     }
-    if (params.has('platform')) {
-        overrides.platform = params.get('platform') || 'n/a'
+    const platformParam = params.get('platform')
+    if (platformParam && isValidPlatform(platformParam)) {
+        overrides.platform = platformParam
         document.body.classList.remove('environment--example')
         document.body.classList.add(`environment--${overrides.platform}`)
         window.environmentOverride = overrides.platform
     }
+
+    console.log(overrides.platform)
 
     // emulate a different theme
     if (params.has('theme')) {

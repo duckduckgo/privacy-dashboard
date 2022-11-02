@@ -1,14 +1,14 @@
-import generateData, { protectionsOff } from '../ui/views/tests/generate-data'
+import generateData from '../ui/views/tests/generate-data'
 import { setupColorScheme, setupMutationObserver } from './common.es6'
 import { getOverrides } from './utils/overrides'
 
 // This is am example interface purely for previewing the panel
-import { Protections } from './utils/request-details'
+// import { Protections } from './utils/request-details'
 
 // Overrides based on URL params
 const overrides = getOverrides(window.location.search)
 
-let channel = null
+// let channel = null
 const isSecure = true
 let isPendingUpdates = false
 
@@ -22,22 +22,7 @@ let isPendingUpdates = false
 
 export function fetch(...args) {
     if (args[0].setList) {
-        console.log('fetch - Updating in memory overrides for setList', args)
-        const { list, value } = args[0].setList
-        isPendingUpdates = true
-        channel?.send('updateTabData')
-        setTimeout(() => {
-            isPendingUpdates = false
-            if (list === 'allowlisted') {
-                overrides.tab.protections = new Protections(false, ['contentBlocking'], value, false)
-                overrides.requests = protectionsOff(overrides.requests)
-            }
-            // if (list === 'denylisted') {
-            //     overrides.tab.site.denylisted = value
-            // }
-            channel?.send('updateTabData')
-        }, 2000)
-        return
+        console.warn('doing nothing by default with `setList`')
     }
 
     if (args[0]?.messageType === 'refreshAlias') {
@@ -65,7 +50,7 @@ export function fetch(...args) {
 
 export function backgroundMessage(backgroundModel) {
     console.log('backgroundMessage - setting local channel')
-    channel = backgroundModel
+    // channel = backgroundModel
 }
 
 export async function getBackgroundTabData() {
