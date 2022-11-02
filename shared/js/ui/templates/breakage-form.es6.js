@@ -1,6 +1,7 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6'
-import { largeHeroIcon, topNav } from './shared/hero.es6.js'
+import { largeHeroIcon } from './shared/hero.es6.js'
+import { topNav } from './shared/top-nav'
 
 const categories = [
     { category: i18n.t('report:videos.title'), value: 'videos' },
@@ -19,7 +20,7 @@ export default function () {
     })
     return bel`<section class="sliding-subview">
         <div class="breakage-form">
-        ${topNav()}
+        ${topNav({ view: 'secondary' })}
         <div class="padding-x-double js-breakage-form-element" data-state="idle">
             <div class="key-insight">
                 ${icon}

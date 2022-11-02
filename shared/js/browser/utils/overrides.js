@@ -69,8 +69,6 @@ export function getOverrides(searchString) {
         window.environmentOverride = overrides.platform
     }
 
-    console.log(overrides.platform)
-
     // emulate a different theme
     if (params.has('theme')) {
         if (params.get('theme') === 'light') {

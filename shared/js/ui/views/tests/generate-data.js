@@ -79,7 +79,7 @@ const blocked3 = {
 }
 
 /** @type {DetectedRequest[]} */
-const defaultRequests = [allowedTracker, allowedThirdParty, blocked1, blocked2, blocked3]
+export const defaultRequests = [allowedTracker, allowedThirdParty, blocked1, blocked2, blocked3]
 
 // eslint-disable-next-line no-unused-vars
 const defaultCertificates = [

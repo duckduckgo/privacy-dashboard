@@ -1,6 +1,7 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6.js'
-import { heroTemplate, largeHeroIcon, topNav } from './shared/hero.es6.js'
+import { heroTemplate, largeHeroIcon } from './shared/hero.es6.js'
+import { topNav } from './shared/top-nav'
 
 /**
  * @this {{
@@ -28,7 +29,7 @@ export default function () {
 
     return bel`
     <div class="site-info card">
-        ${topNav()}
+        ${topNav({ view: 'secondary' })}
         <div class="padding-x-double">
             ${hero}
             ${renderCertificateDetails(this.model.site, this.model.tab)}

@@ -29650,16 +29650,33 @@ function backgroundMessage(backgroundModel) {
   channel = backgroundModel;
 }
 
+var count = 0;
+
 function getBackgroundTabData() {
   return _getBackgroundTabData.apply(this, arguments);
 }
 
 function _getBackgroundTabData() {
   _getBackgroundTabData = _asyncToGenerator(function* () {
-    var output = (0, _generateData["default"])(_objectSpread({
+    var requests = overrides.requests;
+
+    if (new URLSearchParams(window.location.search).has('continuous')) {
+      requests = _generateData.defaultRequests.slice(0, count);
+    }
+
+    var output = (0, _generateData["default"])(_objectSpread(_objectSpread({
       isSecure: isSecure,
       isPendingUpdates: isPendingUpdates
-    }, overrides)); // @ts-ignore
+    }, overrides), {}, {
+      requests: requests
+    }));
+
+    if (count === 5) {
+      count = 0;
+    } else {
+      count += 1;
+    } // @ts-ignore
+
 
     output.emailProtectionUserData = overrides.emailProtectionUserData;
     console.log('✅', output);
@@ -29685,7 +29702,15 @@ function search(query) {
   console.warn('should open search for ', JSON.stringify(query));
 }
 
-},{"../ui/views/tests/generate-data":115,"./common.es6":63,"./utils/overrides":68}],66:[function(require,module,exports){
+if (new URLSearchParams(window.location.search).has('continuous')) {
+  setInterval(function () {
+    var _channel;
+
+    (_channel = channel) === null || _channel === void 0 ? void 0 : _channel.send('updateTabData');
+  }, 1000);
+}
+
+},{"../ui/views/tests/generate-data":116,"./common.es6":63,"./utils/overrides":68}],66:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30273,9 +30298,8 @@ function getOverrides(searchString) {
     document.body.classList.remove('environment--example');
     document.body.classList.add("environment--".concat(overrides.platform));
     window.environmentOverride = overrides.platform;
-  }
+  } // emulate a different theme
 
-  console.log(overrides.platform); // emulate a different theme
 
   if (params.has('theme')) {
     var _overrides$theme;
@@ -30357,7 +30381,7 @@ function getOverrides(searchString) {
   return overrides;
 }
 
-},{"../../ui/environment-check":82,"../../ui/views/tests/generate-data":115,"./request-details":69}],69:[function(require,module,exports){
+},{"../../ui/environment-check":82,"../../ui/views/tests/generate-data":116,"./request-details":69}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31372,7 +31396,7 @@ var ns = {
 };
 exports.ns = ns;
 
-},{"../../../locales/bg/connection.json":118,"../../../locales/bg/ctascreens.json":119,"../../../locales/bg/permissions.json":120,"../../../locales/bg/report.json":121,"../../../locales/bg/shared.json":122,"../../../locales/bg/site.json":123,"../../../locales/cs/connection.json":124,"../../../locales/cs/ctascreens.json":125,"../../../locales/cs/permissions.json":126,"../../../locales/cs/report.json":127,"../../../locales/cs/shared.json":128,"../../../locales/cs/site.json":129,"../../../locales/da/connection.json":130,"../../../locales/da/ctascreens.json":131,"../../../locales/da/permissions.json":132,"../../../locales/da/report.json":133,"../../../locales/da/shared.json":134,"../../../locales/da/site.json":135,"../../../locales/de/connection.json":136,"../../../locales/de/ctascreens.json":137,"../../../locales/de/permissions.json":138,"../../../locales/de/report.json":139,"../../../locales/de/shared.json":140,"../../../locales/de/site.json":141,"../../../locales/el/connection.json":142,"../../../locales/el/ctascreens.json":143,"../../../locales/el/permissions.json":144,"../../../locales/el/report.json":145,"../../../locales/el/shared.json":146,"../../../locales/el/site.json":147,"../../../locales/en/connection.json":148,"../../../locales/en/ctascreens.json":149,"../../../locales/en/permissions.json":150,"../../../locales/en/report.json":151,"../../../locales/en/shared.json":152,"../../../locales/en/site.json":153,"../../../locales/es/connection.json":154,"../../../locales/es/ctascreens.json":155,"../../../locales/es/permissions.json":156,"../../../locales/es/report.json":157,"../../../locales/es/shared.json":158,"../../../locales/es/site.json":159,"../../../locales/et/connection.json":160,"../../../locales/et/ctascreens.json":161,"../../../locales/et/permissions.json":162,"../../../locales/et/report.json":163,"../../../locales/et/shared.json":164,"../../../locales/et/site.json":165,"../../../locales/fi/connection.json":166,"../../../locales/fi/ctascreens.json":167,"../../../locales/fi/permissions.json":168,"../../../locales/fi/report.json":169,"../../../locales/fi/shared.json":170,"../../../locales/fi/site.json":171,"../../../locales/fr/connection.json":172,"../../../locales/fr/ctascreens.json":173,"../../../locales/fr/permissions.json":174,"../../../locales/fr/report.json":175,"../../../locales/fr/shared.json":176,"../../../locales/fr/site.json":177,"../../../locales/hr/connection.json":178,"../../../locales/hr/ctascreens.json":179,"../../../locales/hr/permissions.json":180,"../../../locales/hr/report.json":181,"../../../locales/hr/shared.json":182,"../../../locales/hr/site.json":183,"../../../locales/hu/connection.json":184,"../../../locales/hu/ctascreens.json":185,"../../../locales/hu/permissions.json":186,"../../../locales/hu/report.json":187,"../../../locales/hu/shared.json":188,"../../../locales/hu/site.json":189,"../../../locales/it/connection.json":190,"../../../locales/it/ctascreens.json":191,"../../../locales/it/permissions.json":192,"../../../locales/it/report.json":193,"../../../locales/it/shared.json":194,"../../../locales/it/site.json":195,"../../../locales/lt/connection.json":196,"../../../locales/lt/ctascreens.json":197,"../../../locales/lt/permissions.json":198,"../../../locales/lt/report.json":199,"../../../locales/lt/shared.json":200,"../../../locales/lt/site.json":201,"../../../locales/lv/connection.json":202,"../../../locales/lv/ctascreens.json":203,"../../../locales/lv/permissions.json":204,"../../../locales/lv/report.json":205,"../../../locales/lv/shared.json":206,"../../../locales/lv/site.json":207,"../../../locales/nb/connection.json":208,"../../../locales/nb/ctascreens.json":209,"../../../locales/nb/permissions.json":210,"../../../locales/nb/report.json":211,"../../../locales/nb/shared.json":212,"../../../locales/nb/site.json":213,"../../../locales/nl/connection.json":214,"../../../locales/nl/ctascreens.json":215,"../../../locales/nl/permissions.json":216,"../../../locales/nl/report.json":217,"../../../locales/nl/shared.json":218,"../../../locales/nl/site.json":219,"../../../locales/pl/connection.json":220,"../../../locales/pl/ctascreens.json":221,"../../../locales/pl/permissions.json":222,"../../../locales/pl/report.json":223,"../../../locales/pl/shared.json":224,"../../../locales/pl/site.json":225,"../../../locales/pt/connection.json":226,"../../../locales/pt/ctascreens.json":227,"../../../locales/pt/permissions.json":228,"../../../locales/pt/report.json":229,"../../../locales/pt/shared.json":230,"../../../locales/pt/site.json":231,"../../../locales/ro/connection.json":232,"../../../locales/ro/ctascreens.json":233,"../../../locales/ro/permissions.json":234,"../../../locales/ro/report.json":235,"../../../locales/ro/shared.json":236,"../../../locales/ro/site.json":237,"../../../locales/ru/connection.json":238,"../../../locales/ru/ctascreens.json":239,"../../../locales/ru/permissions.json":240,"../../../locales/ru/report.json":241,"../../../locales/ru/shared.json":242,"../../../locales/ru/site.json":243,"../../../locales/sk/connection.json":244,"../../../locales/sk/ctascreens.json":245,"../../../locales/sk/permissions.json":246,"../../../locales/sk/report.json":247,"../../../locales/sk/shared.json":248,"../../../locales/sk/site.json":249,"../../../locales/sl/connection.json":250,"../../../locales/sl/ctascreens.json":251,"../../../locales/sl/permissions.json":252,"../../../locales/sl/report.json":253,"../../../locales/sl/shared.json":254,"../../../locales/sl/site.json":255,"../../../locales/sv/connection.json":256,"../../../locales/sv/ctascreens.json":257,"../../../locales/sv/permissions.json":258,"../../../locales/sv/report.json":259,"../../../locales/sv/shared.json":260,"../../../locales/sv/site.json":261,"../../../locales/tr/connection.json":262,"../../../locales/tr/ctascreens.json":263,"../../../locales/tr/permissions.json":264,"../../../locales/tr/report.json":265,"../../../locales/tr/shared.json":266,"../../../locales/tr/site.json":267,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
+},{"../../../locales/bg/connection.json":119,"../../../locales/bg/ctascreens.json":120,"../../../locales/bg/permissions.json":121,"../../../locales/bg/report.json":122,"../../../locales/bg/shared.json":123,"../../../locales/bg/site.json":124,"../../../locales/cs/connection.json":125,"../../../locales/cs/ctascreens.json":126,"../../../locales/cs/permissions.json":127,"../../../locales/cs/report.json":128,"../../../locales/cs/shared.json":129,"../../../locales/cs/site.json":130,"../../../locales/da/connection.json":131,"../../../locales/da/ctascreens.json":132,"../../../locales/da/permissions.json":133,"../../../locales/da/report.json":134,"../../../locales/da/shared.json":135,"../../../locales/da/site.json":136,"../../../locales/de/connection.json":137,"../../../locales/de/ctascreens.json":138,"../../../locales/de/permissions.json":139,"../../../locales/de/report.json":140,"../../../locales/de/shared.json":141,"../../../locales/de/site.json":142,"../../../locales/el/connection.json":143,"../../../locales/el/ctascreens.json":144,"../../../locales/el/permissions.json":145,"../../../locales/el/report.json":146,"../../../locales/el/shared.json":147,"../../../locales/el/site.json":148,"../../../locales/en/connection.json":149,"../../../locales/en/ctascreens.json":150,"../../../locales/en/permissions.json":151,"../../../locales/en/report.json":152,"../../../locales/en/shared.json":153,"../../../locales/en/site.json":154,"../../../locales/es/connection.json":155,"../../../locales/es/ctascreens.json":156,"../../../locales/es/permissions.json":157,"../../../locales/es/report.json":158,"../../../locales/es/shared.json":159,"../../../locales/es/site.json":160,"../../../locales/et/connection.json":161,"../../../locales/et/ctascreens.json":162,"../../../locales/et/permissions.json":163,"../../../locales/et/report.json":164,"../../../locales/et/shared.json":165,"../../../locales/et/site.json":166,"../../../locales/fi/connection.json":167,"../../../locales/fi/ctascreens.json":168,"../../../locales/fi/permissions.json":169,"../../../locales/fi/report.json":170,"../../../locales/fi/shared.json":171,"../../../locales/fi/site.json":172,"../../../locales/fr/connection.json":173,"../../../locales/fr/ctascreens.json":174,"../../../locales/fr/permissions.json":175,"../../../locales/fr/report.json":176,"../../../locales/fr/shared.json":177,"../../../locales/fr/site.json":178,"../../../locales/hr/connection.json":179,"../../../locales/hr/ctascreens.json":180,"../../../locales/hr/permissions.json":181,"../../../locales/hr/report.json":182,"../../../locales/hr/shared.json":183,"../../../locales/hr/site.json":184,"../../../locales/hu/connection.json":185,"../../../locales/hu/ctascreens.json":186,"../../../locales/hu/permissions.json":187,"../../../locales/hu/report.json":188,"../../../locales/hu/shared.json":189,"../../../locales/hu/site.json":190,"../../../locales/it/connection.json":191,"../../../locales/it/ctascreens.json":192,"../../../locales/it/permissions.json":193,"../../../locales/it/report.json":194,"../../../locales/it/shared.json":195,"../../../locales/it/site.json":196,"../../../locales/lt/connection.json":197,"../../../locales/lt/ctascreens.json":198,"../../../locales/lt/permissions.json":199,"../../../locales/lt/report.json":200,"../../../locales/lt/shared.json":201,"../../../locales/lt/site.json":202,"../../../locales/lv/connection.json":203,"../../../locales/lv/ctascreens.json":204,"../../../locales/lv/permissions.json":205,"../../../locales/lv/report.json":206,"../../../locales/lv/shared.json":207,"../../../locales/lv/site.json":208,"../../../locales/nb/connection.json":209,"../../../locales/nb/ctascreens.json":210,"../../../locales/nb/permissions.json":211,"../../../locales/nb/report.json":212,"../../../locales/nb/shared.json":213,"../../../locales/nb/site.json":214,"../../../locales/nl/connection.json":215,"../../../locales/nl/ctascreens.json":216,"../../../locales/nl/permissions.json":217,"../../../locales/nl/report.json":218,"../../../locales/nl/shared.json":219,"../../../locales/nl/site.json":220,"../../../locales/pl/connection.json":221,"../../../locales/pl/ctascreens.json":222,"../../../locales/pl/permissions.json":223,"../../../locales/pl/report.json":224,"../../../locales/pl/shared.json":225,"../../../locales/pl/site.json":226,"../../../locales/pt/connection.json":227,"../../../locales/pt/ctascreens.json":228,"../../../locales/pt/permissions.json":229,"../../../locales/pt/report.json":230,"../../../locales/pt/shared.json":231,"../../../locales/pt/site.json":232,"../../../locales/ro/connection.json":233,"../../../locales/ro/ctascreens.json":234,"../../../locales/ro/permissions.json":235,"../../../locales/ro/report.json":236,"../../../locales/ro/shared.json":237,"../../../locales/ro/site.json":238,"../../../locales/ru/connection.json":239,"../../../locales/ru/ctascreens.json":240,"../../../locales/ru/permissions.json":241,"../../../locales/ru/report.json":242,"../../../locales/ru/shared.json":243,"../../../locales/ru/site.json":244,"../../../locales/sk/connection.json":245,"../../../locales/sk/ctascreens.json":246,"../../../locales/sk/permissions.json":247,"../../../locales/sk/report.json":248,"../../../locales/sk/shared.json":249,"../../../locales/sk/site.json":250,"../../../locales/sl/connection.json":251,"../../../locales/sl/ctascreens.json":252,"../../../locales/sl/permissions.json":253,"../../../locales/sl/report.json":254,"../../../locales/sl/shared.json":255,"../../../locales/sl/site.json":256,"../../../locales/sv/connection.json":257,"../../../locales/sv/ctascreens.json":258,"../../../locales/sv/permissions.json":259,"../../../locales/sv/report.json":260,"../../../locales/sv/shared.json":261,"../../../locales/sv/site.json":262,"../../../locales/tr/connection.json":263,"../../../locales/tr/ctascreens.json":264,"../../../locales/tr/permissions.json":265,"../../../locales/tr/report.json":266,"../../../locales/tr/shared.json":267,"../../../locales/tr/site.json":268,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32195,11 +32219,25 @@ exports["default"] = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.currentPlatform = currentPlatform;
 exports.isBrowser = exports.isAndroid = void 0;
 exports.isEnvironment = isEnvironment;
 exports.isMacos = exports.isIOS = void 0;
 exports.isValidPlatform = isValidPlatform;
 exports.isWindows = void 0;
+exports.platformSwitch = platformSwitch;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 /**
  * @typedef Platform
@@ -32246,12 +32284,35 @@ var isMacos = function isMacos() {
   return isEnvironment('macos');
 };
 /**
- * @param {Platform["name"] | string | null | undefined} name
- * @returns {name is Platform["name"]}
+ * @returns {Platform["name"] | null}
  */
 
 
 exports.isMacos = isMacos;
+
+function currentPlatform() {
+  var windowVar = window.environmentOverride;
+  if (isValidPlatform(windowVar)) return windowVar;
+
+  var matchingClass = _toConsumableArray(document.body.classList).find(function (x) {
+    return x.startsWith('environment--');
+  });
+
+  if (matchingClass) {
+    var platform = matchingClass.slice(13);
+
+    if (isValidPlatform(platform)) {
+      return platform;
+    }
+  }
+
+  return null;
+}
+/**
+ * @param {Platform["name"] | string | null | undefined} name
+ * @returns {name is Platform["name"]}
+ */
+
 
 function isValidPlatform(name) {
   if (!name) throw new Error('not a valid platform name');
@@ -32264,6 +32325,32 @@ function isValidPlatform(name) {
   }
 
   throw new Error('nope!');
+}
+/** @type {Platform["name"] | undefined | null} */
+
+
+var _curr;
+/**
+ * @template T - return value
+ * @param {Record<string, () => T>} mapping
+ * @returns {T}
+ */
+
+
+function platformSwitch(mapping) {
+  if (!_curr) _curr = currentPlatform(); // caching
+
+  if (!_curr) throw new Error('could not determine the current platform.');
+
+  if (mapping.hasOwnProperty(_curr)) {
+    return mapping[_curr]();
+  }
+
+  if (mapping.hasOwnProperty('default')) {
+    return mapping['default']();
+  }
+
+  throw new Error('did not expect to get here - use a default!');
 }
 
 },{}],83:[function(require,module,exports){
@@ -32798,7 +32885,11 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
 
   /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
   update: function update(ops) {
-    if (!this.acceptingUpdates) return;
+    if (!this.acceptingUpdates) {
+      console.log('not updating because acceptingUpdates was false');
+      return;
+    }
+
     this.setSiteProperties();
     this.setHttpsMessage();
 
@@ -32925,12 +33016,14 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     } // if the platform supports showing a spinner, make it display
 
 
-    console.log(this.features.spinnerFollowingProtectionsToggle);
-
     if (this.features.spinnerFollowingProtectionsToggle && fetches.length > 0) {
       this.tab.isPendingUpdates = true; // force a re-render without fetching new data
 
       this.set('disabled', false);
+    }
+
+    if (this.features.freezeUIFollowingProtectionsToggle) {
+      this.acceptingUpdates = false;
     }
 
     Promise.all(fetches).then(function () {
@@ -33064,12 +33157,13 @@ function initPopup() {
   return new Trackers();
 }
 
-},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":108,"./../views/site.es6.js":113,"jquery":46}],91:[function(require,module,exports){
+},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":109,"./../views/site.es6.js":114,"jquery":46}],91:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.PlatformFeatures = void 0;
 exports.createPlatformFeatures = createPlatformFeatures;
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -33079,12 +33173,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
+ * @module PlatformFeatures
+ */
+
+/**
  * @param {import("./environment-check").Platform} platform
  * @return {PlatformFeatures}
  */
 function createPlatformFeatures(platform) {
   return new PlatformFeatures({
-    spinnerFollowingProtectionsToggle: platform.name !== 'android'
+    spinnerFollowingProtectionsToggle: platform.name !== 'android',
+    freezeUIFollowingProtectionsToggle: platform.name !== 'ios'
   });
 }
 /**
@@ -33097,6 +33196,7 @@ var PlatformFeatures = /*#__PURE__*/_createClass(
 /**
  * @param {object} params
  * @param {boolean} params.spinnerFollowingProtectionsToggle
+ * @param {boolean} params.freezeUIFollowingProtectionsToggle
  */
 function PlatformFeatures(params) {
   _classCallCheck(this, PlatformFeatures);
@@ -33106,7 +33206,16 @@ function PlatformFeatures(params) {
    * @type {boolean}
    */
   this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
+  /**
+   * Should the UI be 'frozen' when the Toggle is changed.
+   * Note: currently this is only needed because iOS doesn't implement auto-close
+   * @type {boolean}
+   */
+
+  this.freezeUIFollowingProtectionsToggle = params.freezeUIFollowingProtectionsToggle;
 });
+
+exports.PlatformFeatures = PlatformFeatures;
 
 },{}],92:[function(require,module,exports){
 "use strict";
@@ -33121,6 +33230,8 @@ var _bel = _interopRequireDefault(require("bel"));
 var _localize = require("../base/localize.es6");
 
 var _heroEs = require("./shared/hero.es6.js");
+
+var _topNav = require("./shared/top-nav");
 
 var _templateObject, _templateObject2;
 
@@ -33158,12 +33269,14 @@ function _default() {
   var icon = (0, _heroEs.largeHeroIcon)({
     status: 'breakage-form'
   });
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form\">\n        ", "\n        <div class=\"padding-x-double js-breakage-form-element\" data-state=\"idle\">\n            <div class=\"key-insight\">\n                ", "\n                <div class=\"breakage-form__advise\">\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n                <div class=\"breakage-form__message\">\n                    <p class=\"token-title-3-em\">", "</p>\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n            </div>\n            <div class=\"breakage-form__content\">\n                <div class=\"breakage-form__element\">\n                    <div class=\"form__group\">\n                        <div class=\"form__select breakage-form__input--dropdown\">\n                            <select class=\"js-breakage-form-dropdown\">\n                                <option value=''>", "</option>\n                                ", "\n                            </select>\n                        </div>\n                        <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                        <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                    </div>\n                    <div class=\"breakage-form__footer token-breakage-form-body\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    </section>"])), (0, _heroEs.topNav)(), icon, _localize.i18n.t('report:selectTheOptionDesc.title'), _localize.i18n.t('report:thankYou.title'), _localize.i18n.t('report:yourReportWillHelpDesc.title'), _localize.i18n.t('report:pickYourIssueFromTheList.title'), categories.map(function (item) {
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<section class=\"sliding-subview\">\n        <div class=\"breakage-form\">\n        ", "\n        <div class=\"padding-x-double js-breakage-form-element\" data-state=\"idle\">\n            <div class=\"key-insight\">\n                ", "\n                <div class=\"breakage-form__advise\">\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n                <div class=\"breakage-form__message\">\n                    <p class=\"token-title-3-em\">", "</p>\n                    <p class=\"token-title-3\">", "</p>\n                </div>\n            </div>\n            <div class=\"breakage-form__content\">\n                <div class=\"breakage-form__element\">\n                    <div class=\"form__group\">\n                        <div class=\"form__select breakage-form__input--dropdown\">\n                            <select class=\"js-breakage-form-dropdown\">\n                                <option value=''>", "</option>\n                                ", "\n                            </select>\n                        </div>\n                        <textarea class=\"form__textarea js-breakage-form-description\" placeholder=\"", "\"></textarea>\n                        <button class=\"form__submit token-label-em js-breakage-form-submit\" role=\"button\">", "</button>\n                    </div>\n                    <div class=\"breakage-form__footer token-breakage-form-body\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    </section>"])), (0, _topNav.topNav)({
+    view: 'secondary'
+  }), icon, _localize.i18n.t('report:selectTheOptionDesc.title'), _localize.i18n.t('report:thankYou.title'), _localize.i18n.t('report:yourReportWillHelpDesc.title'), _localize.i18n.t('report:pickYourIssueFromTheList.title'), categories.map(function (item) {
     return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<option value=", ">", "</option>"])), item.value, item.category);
   }), _localize.i18n.t('report:tellUsMoreDesc.title'), _localize.i18n.t('report:sendReport.title'), _localize.i18n.t('report:reportsAreAnonymousDesc.title'));
 }
 
-},{"../base/localize.es6":74,"./shared/hero.es6.js":101,"bel":31}],93:[function(require,module,exports){
+},{"../base/localize.es6":74,"./shared/hero.es6.js":101,"./shared/top-nav":106,"bel":31}],93:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33430,7 +33543,7 @@ function renderCompanyIconsList(model) {
   return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n        <div \n            class='large-icon-container icon-list' \n            data-company-count='", "'\n            aria-label=\"List of Blocked Company Icons\"\n            >\n            ", "\n        </div>\n    "])), processed.length, list);
 }
 
-},{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":107,"bel":31,"bel/raw":32}],96:[function(require,module,exports){
+},{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":108,"bel":31,"bel/raw":32}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33443,6 +33556,8 @@ var _bel = _interopRequireDefault(require("bel"));
 var _localizeEs = require("../base/localize.es6.js");
 
 var _heroEs = require("./shared/hero.es6.js");
+
+var _topNav = require("./shared/top-nav");
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
 
@@ -33472,7 +33587,9 @@ function _default() {
     summary: summary,
     suffix: 'none'
   });
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padding-x-double\">\n            ", "\n            ", "\n        </div>\n    </div>"])), (0, _heroEs.topNav)(), hero, renderCertificateDetails(this.model.site, this.model.tab));
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class=\"site-info card\">\n        ", "\n        <div class=\"padding-x-double\">\n            ", "\n            ", "\n        </div>\n    </div>"])), (0, _topNav.topNav)({
+    view: 'secondary'
+  }), hero, renderCertificateDetails(this.model.site, this.model.tab));
 }
 
 function getKeyUsage(key) {
@@ -33569,7 +33686,7 @@ function renderConnectionDescription(site) {
   return _localizeEs.i18n.t('connection:secureConnectionDesc.title');
 }
 
-},{"../base/localize.es6.js":74,"./shared/hero.es6.js":101,"bel":31}],97:[function(require,module,exports){
+},{"../base/localize.es6.js":74,"./shared/hero.es6.js":101,"./shared/top-nav":106,"bel":31}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33592,6 +33709,8 @@ var _aboutLink = require("./shared/about-link");
 
 var _platformLimitations = require("./shared/platform-limitations");
 
+var _topNav = require("./shared/top-nav");
+
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -33607,7 +33726,9 @@ function nonTrackersTemplate() {
   var sections = sectionsFromSiteNonTracker(this.model.site);
   var hero = (0, _heroEs.heroFromTabNonTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
   var limitations = this.model.site.tab.platformLimitations ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"padding-x-double\">", "</div>"])), (0, _platformLimitations.platformLimitations)()) : (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div></div>"])));
-  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, limitations);
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _topNav.topNav)({
+    view: 'secondary'
+  }), hero, sections, limitations);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
@@ -33667,7 +33788,7 @@ function sectionsFromSiteNonTracker(site) {
   }]);
 }
 
-},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./page-trackers.es6.js":98,"./shared/about-link":100,"./shared/hero.es6.js":101,"./shared/platform-limitations":102,"bel":31}],98:[function(require,module,exports){
+},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./page-trackers.es6.js":98,"./shared/about-link":100,"./shared/hero.es6.js":101,"./shared/platform-limitations":102,"./shared/top-nav":106,"bel":31}],98:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33691,6 +33812,8 @@ var _utilsEs = require("./shared/utils.es6.js");
 
 var _platformLimitations = require("./shared/platform-limitations");
 
+var _topNav = require("./shared/top-nav");
+
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -33706,7 +33829,9 @@ function trackerNetworksTemplate() {
   var sections = sectionsFromSiteTrackers(this.model.site);
   var hero = (0, _heroEs.heroFromTabTrackers)(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
   var limitations = this.model.site.tab.platformLimitations ? (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"padding-x-double\">", "</div>"])), (0, _platformLimitations.platformLimitations)()) : (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div></div>"])));
-  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\" aria-label=\"List of Tracker Companies\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _heroEs.topNav)(), hero, sections, limitations);
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div class=\"site-info card page-inner\">\n        ", "\n        <div class=\"padding-x-double js-tracker-networks-hero\">\n            ", "\n        </div>\n        <div class=\"padding-x-double js-tracker-networks-details\" aria-label=\"List of Tracker Companies\">\n            ", "\n        </div>\n        ", "\n    </div>"])), (0, _topNav.topNav)({
+    view: 'secondary'
+  }), hero, sections, limitations);
 }
 /**
  * This is exported so that the allowedRequests UI can re-use the template
@@ -33781,7 +33906,7 @@ function sectionsFromSiteTrackers(site) {
   return sections;
 }
 
-},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/hero.es6.js":101,"./shared/platform-limitations":102,"./shared/utils.es6.js":107,"bel":31}],99:[function(require,module,exports){
+},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/hero.es6.js":101,"./shared/platform-limitations":102,"./shared/top-nav":106,"./shared/utils.es6.js":108,"bel":31}],99:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33852,13 +33977,8 @@ exports.heroFromTabNonTrackers = heroFromTabNonTrackers;
 exports.heroFromTabTrackers = heroFromTabTrackers;
 exports.heroTemplate = heroTemplate;
 exports.largeHeroIcon = largeHeroIcon;
-exports.topNav = topNav;
 
 var _bel = _interopRequireDefault(require("bel"));
-
-var _localize = require("../../base/localize.es6");
-
-var _environmentCheck = require("../../environment-check");
 
 var _aboutLink = require("./about-link");
 
@@ -33866,7 +33986,7 @@ var _trackerNetworksText = require("./tracker-networks-text.es6");
 
 var _thirdpartyText = require("./thirdparty-text.es6");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -33929,19 +34049,8 @@ function heroFromTabNonTrackers(requestDetails, protectionsEnabled) {
 function largeHeroIcon(ops) {
   return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div class=\"large-icon-container hero-icon--", "\"></div>"])), ops.status);
 }
-/**
- * @param {object} opts
- * @param {"tall" | "short"} [opts.variant]
- */
 
-
-function topNav() {
-  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var variant = (0, _environmentCheck.isIOS)() || (0, _environmentCheck.isAndroid)() ? 'tall' : 'short';
-  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    <div>\n        <div class=\"top-nav top-nav--", "\">\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__close js-sliding-subview-close js-site-done link-action link-action--dark\"\n                role=\"button\"\n                aria-label=\"", "\"\n                data-test-id=\"back-button\"\n            >\n                <span class=\"icon icon__back-arrow\" data-icon-text=\"", "\"></span>\n            </a>\n            <a href=\"javascript:void(0)\"\n                class=\"top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark\"\n                role=\"button\"\n            >\n                ", "\n            </a>\n        </div>    \n        <div class=\"top-nav__spacer\"></div>\n    </div>\n"])), variant, _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationBack.title'), _localize.i18n.t('site:navigationComplete.title'));
-}
-
-},{"../../base/localize.es6":74,"../../environment-check":82,"./about-link":100,"./thirdparty-text.es6":104,"./tracker-networks-text.es6":106,"bel":31}],102:[function(require,module,exports){
+},{"./about-link":100,"./thirdparty-text.es6":104,"./tracker-networks-text.es6":107,"bel":31}],102:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34199,6 +34308,87 @@ function toggleButton(isActiveBoolean, klass, disabled) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.topNav = topNav;
+
+var _environmentCheck = require("../../environment-check");
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _localize = require("../../base/localize.es6");
+
+var _templateObject, _templateObject2, _templateObject3;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+/**
+ * @param {object} opts
+ * @param {"primary" | "secondary"} [opts.view] - certain platforms show different things depending on view
+ */
+function topNav() {
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var _opts$view = opts.view,
+      view = _opts$view === void 0 ? 'primary' : _opts$view;
+  var variant = (0, _environmentCheck.platformSwitch)({
+    ios: function ios() {
+      return 'tall';
+    },
+    android: function android() {
+      return 'tall';
+    },
+    "default": function _default() {
+      return 'short';
+    }
+  });
+  var elements;
+
+  if (view === 'primary') {
+    elements = (0, _environmentCheck.platformSwitch)({
+      ios: function ios() {
+        return [close()];
+      },
+      android: function android() {
+        return [back()];
+      },
+      "default": function _default() {
+        return [];
+      }
+    });
+  } else {
+    // here, must be 'secondary' view
+    elements = (0, _environmentCheck.platformSwitch)({
+      ios: function ios() {
+        return [back(), close()];
+      },
+      "default": function _default() {
+        return [back()];
+      }
+    });
+  }
+
+  if (!elements.length) return null;
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"top-nav top-nav--", "\">\n                ", "\n            </div>    \n            <div class=\"top-nav__spacer\"></div>\n        </div>\n    "])), variant, elements);
+}
+
+function back() {
+  var textLabel = _localize.ns.site('navigationBack.title');
+
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n        <a href='javascript:void(0)'\n            class='top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark'\n            role='button'\n            aria-label='", "'\n            data-test-id='back-button'\n        >\n            <span class='icon icon__back-arrow' data-icon-text='", "'></span>\n        </a>"])), textLabel, textLabel);
+}
+
+function close() {
+  var textLabel = _localize.ns.site('navigationComplete.title');
+
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\"\n            class=\"top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark\"\n            role=\"button\"\n        >\n            ", "\n        </a>"])), textLabel);
+}
+
+},{"../../base/localize.es6":74,"../../environment-check":82,"bel":31}],107:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.trackerNetworkSummary = trackerNetworkSummary;
 exports.trackerNetworksHeroIcon = trackerNetworksHeroIcon;
 exports.trackerNetworksText = trackerNetworksText;
@@ -34346,7 +34536,7 @@ function unreachable(x) {
   throw new Error("Didn't expect to get here with value" + x);
 }
 
-},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],107:[function(require,module,exports){
+},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],108:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34364,7 +34554,7 @@ function getColorId(value) {
   return Math.abs(sum % colorCount + 1);
 }
 
-},{}],108:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34376,10 +34566,6 @@ var _bel = _interopRequireDefault(require("bel"));
 
 var _localize = require("../base/localize.es6");
 
-var _environmentCheck = require("../environment-check");
-
-var _heroEs = require("./shared/hero.es6.js");
-
 var _trackerNetworksTextEs = require("./shared/tracker-networks-text.es6.js");
 
 var _protectionToggle = require("./shared/protection-toggle");
@@ -34388,15 +34574,15 @@ var _thirdpartyText2 = require("./shared/thirdparty-text.es6");
 
 var _keyInsights = require("./key-insights");
 
+var _topNav = require("./shared/top-nav");
+
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var topNavSupported = (0, _environmentCheck.isIOS)() || (0, _environmentCheck.isAndroid)();
 /** @this {{model: import('../models/site.es6.js').PublicSiteModel}} */
-
 function _default() {
   var _this$model$tab, _this$model$tab2, _this$model$tab2$cons;
 
@@ -34409,7 +34595,9 @@ function _default() {
 
   var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
   var permissions = localizePermissions(this.model.permissions);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                ", "\n            </div>\n            <div class='padding-x'>\n                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), topNavSupported ? (0, _heroEs.topNav)() : null, permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                ", "\n            </div>\n            <div class='padding-x'>\n                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), (0, _topNav.topNav)({
+    view: 'primary'
+  }), permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
     children: renderManagePermissions(this.model)
   }) : null);
 }
@@ -34555,7 +34743,7 @@ function localizePermissions(permissions) {
   });
 }
 
-},{"../base/localize.es6":74,"../environment-check":82,"./key-insights":95,"./shared/hero.es6.js":101,"./shared/protection-toggle":103,"./shared/thirdparty-text.es6":104,"./shared/tracker-networks-text.es6.js":106,"bel":31}],109:[function(require,module,exports){
+},{"../base/localize.es6":74,"./key-insights":95,"./shared/protection-toggle":103,"./shared/thirdparty-text.es6":104,"./shared/top-nav":106,"./shared/tracker-networks-text.es6.js":107,"bel":31}],110:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34616,7 +34804,7 @@ _slidingSubviewEs["default"].prototype, {
 var _default = BreakageForm;
 exports["default"] = _default;
 
-},{"./sliding-subview.es6.js":114,"jquery":46}],110:[function(require,module,exports){
+},{"./sliding-subview.es6.js":115,"jquery":46}],111:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34642,7 +34830,7 @@ CtaRotationView.prototype = _jquery["default"].extend({}, _viewEs["default"].pro
 var _default = CtaRotationView;
 exports["default"] = _default;
 
-},{"../base/view.es6.js":81,"jquery":46}],111:[function(require,module,exports){
+},{"../base/view.es6.js":81,"jquery":46}],112:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34704,7 +34892,7 @@ EmailProtectionView.prototype = _jquery["default"].extend({}, _viewEs["default"]
 var _default = EmailProtectionView;
 exports["default"] = _default;
 
-},{"../base/view.es6.js":81,"jquery":46}],112:[function(require,module,exports){
+},{"../base/view.es6.js":81,"jquery":46}],113:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34772,7 +34960,7 @@ Search.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 var _default = Search;
 exports["default"] = _default;
 
-},{"../base/view.es6":81,"jquery":46}],113:[function(require,module,exports){
+},{"../base/view.es6":81,"jquery":46}],114:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35038,7 +35226,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 var _default = Site;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":93,"../templates/email-protection.es6":94,"../templates/page-non-trackers.es6.js":97,"../templates/page-trackers.es6.js":98,"../templates/search.es6":99,"../templates/shared/hero.es6":101,"./../templates/breakage-form.es6.js":92,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":109,"./../views/tracker-networks.es6.js":116,"./cta-rotation.es6":110,"./email-protection.es6":111,"./search.es6":112,"./utils/utils.js":117,"@material/switch":29,"jquery":46}],114:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":93,"../templates/email-protection.es6":94,"../templates/page-non-trackers.es6.js":97,"../templates/page-trackers.es6.js":98,"../templates/search.es6":99,"../templates/shared/hero.es6":101,"./../templates/breakage-form.es6.js":92,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":110,"./../views/tracker-networks.es6.js":117,"./cta-rotation.es6":111,"./email-protection.es6":112,"./search.es6":113,"./utils/utils.js":118,"@material/switch":29,"jquery":46}],115:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35146,7 +35334,7 @@ SlidingSubview.prototype = _jquery["default"].extend({}, _viewEs["default"].prot
 var _default = SlidingSubview;
 exports["default"] = _default;
 
-},{"../base/view.es6.js":81,"../environment-check.js":82,"./utils/utils.js":117,"jquery":46}],115:[function(require,module,exports){
+},{"../base/view.es6.js":81,"../environment-check.js":82,"./utils/utils.js":118,"jquery":46}],116:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35154,6 +35342,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.dataStates = void 0;
 exports["default"] = _default;
+exports.defaultRequests = void 0;
 exports.protectionsOff = protectionsOff;
 
 var _requestDetails = require("../../../browser/utils/request-details");
@@ -35275,6 +35464,7 @@ var blocked3 = {
 
 var defaultRequests = [allowedTracker, allowedThirdParty, blocked1, blocked2, blocked3]; // eslint-disable-next-line no-unused-vars
 
+exports.defaultRequests = defaultRequests;
 var defaultCertificates = [{
   commonName: 'sni.cloudflaressl.com',
   publicKey: {
@@ -35608,7 +35798,7 @@ function protectionsOff(requests) {
   });
 }
 
-},{"../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../schema/__generated__/schema.parsers":59,"../../../browser/utils/request-details":69}],116:[function(require,module,exports){
+},{"../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../schema/__generated__/schema.parsers":59,"../../../browser/utils/request-details":69}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35734,7 +35924,7 @@ _slidingSubviewEs["default"].prototype, {
 var _default = TrackerNetworks;
 exports["default"] = _default;
 
-},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./sliding-subview.es6.js":114,"jquery":46}],117:[function(require,module,exports){
+},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./sliding-subview.es6.js":115,"jquery":46}],118:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35766,7 +35956,7 @@ function setupMaterialDesignRipple() {
   });
 }
 
-},{"@material/ripple":28}],118:[function(require,module,exports){
+},{"@material/ripple":28}],119:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35863,7 +36053,7 @@ module.exports={
   }
 }
 
-},{}],119:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35900,7 +36090,7 @@ module.exports={
   }
 }
 
-},{}],120:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -35944,7 +36134,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],121:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36017,7 +36207,7 @@ module.exports={
   }
 }
 
-},{}],122:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36034,7 +36224,7 @@ module.exports={
   }
 }
 
-},{}],123:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36270,7 +36460,7 @@ module.exports={
   }
 }
 
-},{}],124:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36367,7 +36557,7 @@ module.exports={
   }
 }
 
-},{}],125:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36404,7 +36594,7 @@ module.exports={
   }
 }
 
-},{}],126:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36448,7 +36638,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],127:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36521,7 +36711,7 @@ module.exports={
   }
 }
 
-},{}],128:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36538,7 +36728,7 @@ module.exports={
   }
 }
 
-},{}],129:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36774,7 +36964,7 @@ module.exports={
   }
 }
 
-},{}],130:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36871,7 +37061,7 @@ module.exports={
   }
 }
 
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36908,7 +37098,7 @@ module.exports={
   }
 }
 
-},{}],132:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36952,7 +37142,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],133:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37025,7 +37215,7 @@ module.exports={
   }
 }
 
-},{}],134:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37042,7 +37232,7 @@ module.exports={
   }
 }
 
-},{}],135:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37278,7 +37468,7 @@ module.exports={
   }
 }
 
-},{}],136:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37375,7 +37565,7 @@ module.exports={
   }
 }
 
-},{}],137:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37412,7 +37602,7 @@ module.exports={
   }
 }
 
-},{}],138:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37456,7 +37646,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37529,7 +37719,7 @@ module.exports={
   }
 }
 
-},{}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37546,7 +37736,7 @@ module.exports={
   }
 }
 
-},{}],141:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37782,7 +37972,7 @@ module.exports={
   }
 }
 
-},{}],142:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37879,7 +38069,7 @@ module.exports={
   }
 }
 
-},{}],143:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37916,7 +38106,7 @@ module.exports={
   }
 }
 
-},{}],144:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37960,7 +38150,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],145:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38033,7 +38223,7 @@ module.exports={
   }
 }
 
-},{}],146:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38050,7 +38240,7 @@ module.exports={
   }
 }
 
-},{}],147:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38286,7 +38476,7 @@ module.exports={
   }
 }
 
-},{}],148:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38382,7 +38572,7 @@ module.exports={
     }
 }
 
-},{}],149:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38418,7 +38608,7 @@ module.exports={
     }
 }
 
-},{}],150:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38461,7 +38651,7 @@ module.exports={
         "note": "A permission setting that always blocks the website from using this permission"
     }
 }
-},{}],151:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38533,7 +38723,7 @@ module.exports={
     }
 }
 
-},{}],152:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38545,7 +38735,7 @@ module.exports={
     }
 }
 
-},{}],153:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38780,7 +38970,7 @@ module.exports={
     }
 }
 
-},{}],154:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38877,7 +39067,7 @@ module.exports={
   }
 }
 
-},{}],155:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38914,7 +39104,7 @@ module.exports={
   }
 }
 
-},{}],156:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38958,7 +39148,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],157:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39031,7 +39221,7 @@ module.exports={
   }
 }
 
-},{}],158:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39048,7 +39238,7 @@ module.exports={
   }
 }
 
-},{}],159:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39284,7 +39474,7 @@ module.exports={
   }
 }
 
-},{}],160:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39381,7 +39571,7 @@ module.exports={
   }
 }
 
-},{}],161:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39418,7 +39608,7 @@ module.exports={
   }
 }
 
-},{}],162:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39462,7 +39652,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],163:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39535,7 +39725,7 @@ module.exports={
   }
 }
 
-},{}],164:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39552,7 +39742,7 @@ module.exports={
   }
 }
 
-},{}],165:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39788,7 +39978,7 @@ module.exports={
   }
 }
 
-},{}],166:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39885,7 +40075,7 @@ module.exports={
   }
 }
 
-},{}],167:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39922,7 +40112,7 @@ module.exports={
   }
 }
 
-},{}],168:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39966,7 +40156,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],169:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40039,7 +40229,7 @@ module.exports={
   }
 }
 
-},{}],170:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40056,7 +40246,7 @@ module.exports={
   }
 }
 
-},{}],171:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40292,7 +40482,7 @@ module.exports={
   }
 }
 
-},{}],172:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40389,7 +40579,7 @@ module.exports={
   }
 }
 
-},{}],173:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40426,7 +40616,7 @@ module.exports={
   }
 }
 
-},{}],174:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40470,7 +40660,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],175:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40543,7 +40733,7 @@ module.exports={
   }
 }
 
-},{}],176:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40560,7 +40750,7 @@ module.exports={
   }
 }
 
-},{}],177:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40796,7 +40986,7 @@ module.exports={
   }
 }
 
-},{}],178:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40893,7 +41083,7 @@ module.exports={
   }
 }
 
-},{}],179:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40930,7 +41120,7 @@ module.exports={
   }
 }
 
-},{}],180:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40974,7 +41164,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],181:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41047,7 +41237,7 @@ module.exports={
   }
 }
 
-},{}],182:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41064,7 +41254,7 @@ module.exports={
   }
 }
 
-},{}],183:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41300,7 +41490,7 @@ module.exports={
   }
 }
 
-},{}],184:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41397,7 +41587,7 @@ module.exports={
   }
 }
 
-},{}],185:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41434,7 +41624,7 @@ module.exports={
   }
 }
 
-},{}],186:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41478,7 +41668,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],187:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41551,7 +41741,7 @@ module.exports={
   }
 }
 
-},{}],188:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41568,7 +41758,7 @@ module.exports={
   }
 }
 
-},{}],189:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41804,7 +41994,7 @@ module.exports={
   }
 }
 
-},{}],190:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41901,7 +42091,7 @@ module.exports={
   }
 }
 
-},{}],191:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41938,7 +42128,7 @@ module.exports={
   }
 }
 
-},{}],192:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41982,7 +42172,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],193:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42055,7 +42245,7 @@ module.exports={
   }
 }
 
-},{}],194:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42072,7 +42262,7 @@ module.exports={
   }
 }
 
-},{}],195:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42308,7 +42498,7 @@ module.exports={
   }
 }
 
-},{}],196:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42405,7 +42595,7 @@ module.exports={
   }
 }
 
-},{}],197:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42442,7 +42632,7 @@ module.exports={
   }
 }
 
-},{}],198:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42486,7 +42676,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],199:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42559,7 +42749,7 @@ module.exports={
   }
 }
 
-},{}],200:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42576,7 +42766,7 @@ module.exports={
   }
 }
 
-},{}],201:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42812,7 +43002,7 @@ module.exports={
   }
 }
 
-},{}],202:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42909,7 +43099,7 @@ module.exports={
   }
 }
 
-},{}],203:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42946,7 +43136,7 @@ module.exports={
   }
 }
 
-},{}],204:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42990,7 +43180,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],205:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43063,7 +43253,7 @@ module.exports={
   }
 }
 
-},{}],206:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43080,7 +43270,7 @@ module.exports={
   }
 }
 
-},{}],207:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43316,7 +43506,7 @@ module.exports={
   }
 }
 
-},{}],208:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43413,7 +43603,7 @@ module.exports={
   }
 }
 
-},{}],209:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43450,7 +43640,7 @@ module.exports={
   }
 }
 
-},{}],210:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43494,7 +43684,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],211:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43567,7 +43757,7 @@ module.exports={
   }
 }
 
-},{}],212:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43584,7 +43774,7 @@ module.exports={
   }
 }
 
-},{}],213:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43820,7 +44010,7 @@ module.exports={
   }
 }
 
-},{}],214:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43917,7 +44107,7 @@ module.exports={
   }
 }
 
-},{}],215:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43954,7 +44144,7 @@ module.exports={
   }
 }
 
-},{}],216:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43998,7 +44188,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],217:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44071,7 +44261,7 @@ module.exports={
   }
 }
 
-},{}],218:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44088,7 +44278,7 @@ module.exports={
   }
 }
 
-},{}],219:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44324,7 +44514,7 @@ module.exports={
   }
 }
 
-},{}],220:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44421,7 +44611,7 @@ module.exports={
   }
 }
 
-},{}],221:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44458,7 +44648,7 @@ module.exports={
   }
 }
 
-},{}],222:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44502,7 +44692,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],223:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44575,7 +44765,7 @@ module.exports={
   }
 }
 
-},{}],224:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44592,7 +44782,7 @@ module.exports={
   }
 }
 
-},{}],225:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44828,7 +45018,7 @@ module.exports={
   }
 }
 
-},{}],226:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44925,7 +45115,7 @@ module.exports={
   }
 }
 
-},{}],227:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44962,7 +45152,7 @@ module.exports={
   }
 }
 
-},{}],228:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45006,7 +45196,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],229:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45079,9 +45269,9 @@ module.exports={
   }
 }
 
-},{}],230:[function(require,module,exports){
-arguments[4][158][0].apply(exports,arguments)
-},{"dup":158}],231:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"dup":159}],232:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45317,7 +45507,7 @@ module.exports={
   }
 }
 
-},{}],232:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45414,7 +45604,7 @@ module.exports={
   }
 }
 
-},{}],233:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45451,7 +45641,7 @@ module.exports={
   }
 }
 
-},{}],234:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45495,7 +45685,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],235:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45568,7 +45758,7 @@ module.exports={
   }
 }
 
-},{}],236:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45585,7 +45775,7 @@ module.exports={
   }
 }
 
-},{}],237:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45821,7 +46011,7 @@ module.exports={
   }
 }
 
-},{}],238:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45918,7 +46108,7 @@ module.exports={
   }
 }
 
-},{}],239:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45955,7 +46145,7 @@ module.exports={
   }
 }
 
-},{}],240:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45999,7 +46189,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],241:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46072,7 +46262,7 @@ module.exports={
   }
 }
 
-},{}],242:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46089,7 +46279,7 @@ module.exports={
   }
 }
 
-},{}],243:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46325,7 +46515,7 @@ module.exports={
   }
 }
 
-},{}],244:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46422,7 +46612,7 @@ module.exports={
   }
 }
 
-},{}],245:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46459,7 +46649,7 @@ module.exports={
   }
 }
 
-},{}],246:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46503,7 +46693,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],247:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46576,7 +46766,7 @@ module.exports={
   }
 }
 
-},{}],248:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46593,7 +46783,7 @@ module.exports={
   }
 }
 
-},{}],249:[function(require,module,exports){
+},{}],250:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46829,7 +47019,7 @@ module.exports={
   }
 }
 
-},{}],250:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46926,7 +47116,7 @@ module.exports={
   }
 }
 
-},{}],251:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46963,7 +47153,7 @@ module.exports={
   }
 }
 
-},{}],252:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47007,7 +47197,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],253:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47080,7 +47270,7 @@ module.exports={
   }
 }
 
-},{}],254:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47097,7 +47287,7 @@ module.exports={
   }
 }
 
-},{}],255:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47333,7 +47523,7 @@ module.exports={
   }
 }
 
-},{}],256:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47430,7 +47620,7 @@ module.exports={
   }
 }
 
-},{}],257:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47467,7 +47657,7 @@ module.exports={
   }
 }
 
-},{}],258:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47511,7 +47701,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],259:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47584,7 +47774,7 @@ module.exports={
   }
 }
 
-},{}],260:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47601,7 +47791,7 @@ module.exports={
   }
 }
 
-},{}],261:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47837,7 +48027,7 @@ module.exports={
   }
 }
 
-},{}],262:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47934,7 +48124,7 @@ module.exports={
   }
 }
 
-},{}],263:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47971,7 +48161,7 @@ module.exports={
   }
 }
 
-},{}],264:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48015,7 +48205,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],265:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48088,7 +48278,7 @@ module.exports={
   }
 }
 
-},{}],266:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48105,7 +48295,7 @@ module.exports={
   }
 }
 
-},{}],267:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",

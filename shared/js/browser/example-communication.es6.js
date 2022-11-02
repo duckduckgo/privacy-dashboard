@@ -1,4 +1,4 @@
-import generateData from '../ui/views/tests/generate-data'
+import generateData, { defaultRequests } from '../ui/views/tests/generate-data'
 import { setupColorScheme, setupMutationObserver } from './common.es6'
 import { getOverrides } from './utils/overrides'
 
@@ -8,7 +8,7 @@ import { getOverrides } from './utils/overrides'
 // Overrides based on URL params
 const overrides = getOverrides(window.location.search)
 
-// let channel = null
+let channel = null
 const isSecure = true
 let isPendingUpdates = false
 
@@ -50,15 +50,26 @@ export function fetch(...args) {
 
 export function backgroundMessage(backgroundModel) {
     console.log('backgroundMessage - setting local channel')
-    // channel = backgroundModel
+    channel = backgroundModel
 }
-
+let count = 0
 export async function getBackgroundTabData() {
+    let requests = overrides.requests
+    if (new URLSearchParams(window.location.search).has('continuous')) {
+        requests = defaultRequests.slice(0, count)
+    }
     const output = generateData({
         isSecure,
         isPendingUpdates,
         ...overrides,
+        requests,
     })
+
+    if (count === 5) {
+        count = 0
+    } else {
+        count += 1
+    }
 
     // @ts-ignore
     output.emailProtectionUserData = overrides.emailProtectionUserData
@@ -83,4 +94,10 @@ export function openOptionsPage() {
 
 export function search(query) {
     console.warn('should open search for ', JSON.stringify(query))
+}
+
+if (new URLSearchParams(window.location.search).has('continuous')) {
+    setInterval(() => {
+        channel?.send('updateTabData')
+    }, 1000)
 }

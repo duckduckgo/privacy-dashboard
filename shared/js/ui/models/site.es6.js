@@ -161,7 +161,10 @@ Site.prototype = $.extend({}, Parent.prototype, {
     // calls `this.set()` to trigger view re-rendering
     /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
     update: function (ops) {
-        if (!this.acceptingUpdates) return
+        if (!this.acceptingUpdates) {
+            console.log('not updating because acceptingUpdates was false')
+            return
+        }
         this.setSiteProperties()
         this.setHttpsMessage()
 
@@ -275,11 +278,13 @@ Site.prototype = $.extend({}, Parent.prototype, {
             }
         }
         // if the platform supports showing a spinner, make it display
-        console.log(this.features.spinnerFollowingProtectionsToggle)
         if (this.features.spinnerFollowingProtectionsToggle && fetches.length > 0) {
             this.tab.isPendingUpdates = true
             // force a re-render without fetching new data
             this.set('disabled', false)
+        }
+        if (this.features.freezeUIFollowingProtectionsToggle) {
+            this.acceptingUpdates = false
         }
         Promise.all(fetches)
             .then(() => {

@@ -1,13 +1,10 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6'
-import { isAndroid, isIOS } from '../environment-check'
-import { topNav } from './shared/hero.es6.js'
 import { trackerNetworksText } from './shared/tracker-networks-text.es6.js'
 import { protectionToggle } from './shared/protection-toggle'
 import { thirdpartyText } from './shared/thirdparty-text.es6'
 import { renderKeyInsight } from './key-insights'
-
-const topNavSupported = isIOS() || isAndroid()
+import { topNav } from './shared/top-nav'
 
 /** @this {{model: import('../models/site.es6.js').PublicSiteModel}} */
 export default function () {
@@ -34,7 +31,7 @@ export default function () {
     return bel`
     <div class='site-info page'>
         ${renderSearchWrapper(this.model)}
-        ${topNavSupported ? topNav() : null}
+        ${topNav({ view: 'primary' })}
         <div class='page-inner' data-with-permissions=${permissions.length > 0}>
             <div class='padding-x-double'>
                 ${renderKeyInsight(this.model)}

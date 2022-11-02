@@ -1,10 +1,11 @@
 import bel from 'bel'
 import { ns } from '../base/localize.es6.js'
 import { states } from '../../browser/utils/request-details'
-import { heroFromTabNonTrackers, topNav } from './shared/hero.es6.js'
+import { heroFromTabNonTrackers } from './shared/hero.es6.js'
 import { renderSections } from './page-trackers.es6.js'
 import { adAttributionLink } from './shared/about-link'
 import { platformLimitations } from './shared/platform-limitations'
+import { topNav } from './shared/top-nav'
 
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
 export function nonTrackersTemplate() {
@@ -20,7 +21,7 @@ export function nonTrackersTemplate() {
 
     return bel`
     <div class="site-info card page-inner">
-        ${topNav()}
+        ${topNav({ view: 'secondary' })}
         <div class="padding-x-double js-tracker-networks-hero">
             ${hero}
         </div>

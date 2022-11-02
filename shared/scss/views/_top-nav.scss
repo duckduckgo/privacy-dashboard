@@ -29,7 +29,7 @@ $nav-height-short: 32px;
     height: $nav-height-short;
 }
 
-.top-nav__close {
+.top-nav__back {
     position: absolute;
     padding: 10px;
     left: 14px;
@@ -48,6 +48,9 @@ $nav-height-short: 32px;
 
     .environment--ios & {
         left: 0;
+        &:active {
+            opacity: 0.5;
+        }
     }
 
     .top-nav--short & {
@@ -70,7 +73,6 @@ $nav-height-short: 32px;
 }
 
 .top-nav__done {
-    display: none;
     position: absolute;
     padding: 0 6px;
     right: 14px;
@@ -87,9 +89,6 @@ $nav-height-short: 32px;
     }
 
     .environment--ios & {
-        display: block;
-        font-size: 17px;
-
         &:active {
             opacity: 0.5;
         }

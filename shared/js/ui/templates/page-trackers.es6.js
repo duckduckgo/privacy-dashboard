@@ -1,9 +1,10 @@
 import bel from 'bel'
 import { displayCategories } from '../../../data/constants'
 import { i18n } from '../base/localize.es6'
-import { heroFromTabTrackers, topNav } from './shared/hero.es6.js'
+import { heroFromTabTrackers } from './shared/hero.es6.js'
 import { getColorId } from './shared/utils.es6.js'
 import { platformLimitations } from './shared/platform-limitations'
+import { topNav } from './shared/top-nav'
 
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
 export function trackerNetworksTemplate() {
@@ -19,7 +20,7 @@ export function trackerNetworksTemplate() {
 
     return bel`
     <div class="site-info card page-inner">
-        ${topNav()}
+        ${topNav({ view: 'secondary' })}
         <div class="padding-x-double js-tracker-networks-hero">
             ${hero}
         </div>
