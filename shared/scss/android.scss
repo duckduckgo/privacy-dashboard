@@ -6,34 +6,65 @@
 @use '@material/switch/styles';
 @use '@material/ripple';
 
+// https://www.figma.com/file/BOHDESHODUXK7wSRNBOHdu/Android-Components?node-id=72%3A14
+//
+// LIGHT handle, state=on,  #3969EF
+// LIGHT track, state=on,  #3969EF, 0.38
+// LIGHT handle, state=off,  #FFFFFF
+// LIGHT track, state=off,  #666666 0.3
+
+// DARK handle, state=on,  #7295F6
+// DARK track, state=on,  #7295F6, 0.38
+// DARK handle, state=off,  #FFFFFF
+// DARK track, state=off,  #666666 0.3
+
 // some tweaks to the switch on android
 .mdc-switch {
     @include switch.theme(
         (
-            selected-track-color: rgba(#3969ef, 0.38),
+            selected-handle-color: #3969ef,
+            selected-hover-handle-color: #3969ef,
+            selected-pressed-handle-color: #3969ef,
+            selected-focus-handle-color: #3969ef,
+            //
             unselected-handle-color: white,
+            unselected-hover-handle-color: white,
+            unselected-pressed-handle-color: white,
+            unselected-focus-handle-color: white,
+            //
+            selected-track-color: rgba(#3969ef, 0.38),
+            selected-hover-track-color: rgba(#3969ef, 0.38),
+            selected-focus-track-color: rgba(#3969ef, 0.38),
+            selected-pressed-track-color: rgba(#3969ef, 0.38),
+            //
             unselected-track-color: rgba(#666666, 0.3),
+            unselected-hover-track-color: rgba(#666666, 0.3),
+            unselected-focus-track-color: rgba(#666666, 0.3),
+            unselected-pressed-track-color: rgba(#666666, 0.3),
         )
     );
     .body--theme-dark & {
         @include switch.theme(
             (
-                selected-hover-handle-color: #7295f6,
                 selected-handle-color: #7295f6,
+                selected-hover-handle-color: #7295f6,
                 selected-pressed-handle-color: #7295f6,
                 selected-focus-handle-color: #7295f6,
+                //
+                unselected-handle-color: white,
+                unselected-hover-handle-color: white,
+                unselected-pressed-handle-color: white,
+                unselected-focus-handle-color: white,
+                //
                 selected-track-color: rgba(#7295f6, 0.38),
                 selected-hover-track-color: rgba(#7295f6, 0.38),
                 selected-focus-track-color: rgba(#7295f6, 0.38),
-                unselected-pressed-handle-color: white,
-                unselected-handle-color: white,
-                unselected-hover-handle-color: white,
-                unselected-track-color: #666666,
-                unselected-hover-track-color: #666666,
-                unselected-focus-handle-color: white,
-                unselected-focus-track-color: #666666,
-                disabled-selected-handle-color: red,
-                disabled-unselected-handle-color: green,
+                selected-pressed-track-color: rgba(#7295f6, 0.38),
+                //
+                unselected-track-color: rgba(#666666, 0.3),
+                unselected-hover-track-color: rgba(#666666, 0.3),
+                unselected-focus-track-color: rgba(#666666, 0.3),
+                unselected-pressed-track-color: rgba(#666666, 0.3),
             )
         );
     }
