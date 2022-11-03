@@ -149,18 +149,20 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
     // pass clickSource to specify whether page should reload
     // after submitting breakage form.
-    showBreakageForm: function (clickSource) {
+    showBreakageForm: function (e) {
+        blur(e.target)
         this.views.breakageForm = new BreakageFormView({
             siteView: this,
             template: breakageFormTemplate,
             model: this.model,
             appendTo: this.$body,
-            clickSource: clickSource,
+            clickSource: e,
         })
     },
 
     _showPageTrackers: function (e) {
         if (this.$body.hasClass('is-disabled')) return
+        blur(e.target)
         this.views.slidingSubview = new TrackerNetworksView({
             template: trackerNetworksTemplate,
             heroFn: heroFromTabTrackers,
@@ -170,6 +172,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
     _showPageNonTrackers: function (e) {
         if (this.$body.hasClass('is-disabled')) return
+        blur(e.target)
         this.views.slidingSubview = new TrackerNetworksView({
             template: nonTrackersTemplate,
             heroFn: heroFromTabNonTrackers,
@@ -179,6 +182,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
     _showPageConnection: function (e) {
         if (this.$body.hasClass('is-disabled')) return
+        blur(e.target)
         this.views.slidingSubview = new TrackerNetworksView({
             template: pageConnectionTemplate,
         })
@@ -238,5 +242,15 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
     },
 })
+
+/**
+ * @param {HTMLElement | null} target
+ */
+function blur(target) {
+    const closest = target?.closest('a')
+    if (closest && typeof closest.blur === 'function') {
+        closest.blur()
+    }
+}
 
 export default Site

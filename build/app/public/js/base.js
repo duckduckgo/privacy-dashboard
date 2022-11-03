@@ -35118,17 +35118,19 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   },
   // pass clickSource to specify whether page should reload
   // after submitting breakage form.
-  showBreakageForm: function showBreakageForm(clickSource) {
+  showBreakageForm: function showBreakageForm(e) {
+    blur(e.target);
     this.views.breakageForm = new _breakageFormEs["default"]({
       siteView: this,
       template: _breakageFormEs2["default"],
       model: this.model,
       appendTo: this.$body,
-      clickSource: clickSource
+      clickSource: e
     });
   },
   _showPageTrackers: function _showPageTrackers(e) {
     if (this.$body.hasClass('is-disabled')) return;
+    blur(e.target);
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _pageTrackersEs.trackerNetworksTemplate,
       heroFn: _hero.heroFromTabTrackers,
@@ -35137,6 +35139,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   },
   _showPageNonTrackers: function _showPageNonTrackers(e) {
     if (this.$body.hasClass('is-disabled')) return;
+    blur(e.target);
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _pageNonTrackersEs.nonTrackersTemplate,
       heroFn: _hero.heroFromTabNonTrackers,
@@ -35145,6 +35148,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   },
   _showPageConnection: function _showPageConnection(e) {
     if (this.$body.hasClass('is-disabled')) return;
+    blur(e.target);
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _pageConnectionEs["default"]
     });
@@ -35215,6 +35219,18 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     }
   }
 });
+/**
+ * @param {HTMLElement | null} target
+ */
+
+function blur(target) {
+  var closest = target === null || target === void 0 ? void 0 : target.closest('a');
+
+  if (closest && typeof closest.blur === 'function') {
+    closest.blur();
+  }
+}
+
 var _default = Site;
 exports["default"] = _default;
 
