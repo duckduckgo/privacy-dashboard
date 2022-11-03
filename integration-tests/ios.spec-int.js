@@ -157,6 +157,12 @@ test.describe('states', () => {
         const p = new StateTest(page, 'ios', 'google-off')
         await p.screenshots()
     })
+    test('upgraded+secure', async ({ page }) => {
+        const p = new StateTest(page, 'ios', 'upgraded+secure')
+        await p.init()
+        await p.screenshotPrimary()
+        await p.screenshotConnection()
+    })
 })
 
 class StateTest {
@@ -166,7 +172,7 @@ class StateTest {
     /**
      * @param {import("@playwright/test").Page} page
      * @param {"ios"} platform
-     * @param {"01" | "02" | "03" | "04" | "05" | "cnn" | "ad-attribution" | "google-off"} state
+     * @param {"01" | "02" | "03" | "04" | "05" | "cnn" | "ad-attribution" | "google-off" | "upgraded+secure"} state
      */
     constructor(page, platform, state) {
         this.platform = platform
@@ -185,6 +191,12 @@ class StateTest {
     async screenshotPrimary() {
         await playTimeline(this.page, [`state:${this.state}`])
         await expect(this.page).toHaveScreenshot(`${this.state}-state-primary.png`)
+    }
+
+    async screenshotConnection() {
+        const page = this.page
+        await page.locator('[aria-label="View Connection Information"]').click()
+        await expect(this.page).toHaveScreenshot(`${this.state}-state-connection.png`)
     }
 
     async screenshotTrackers() {

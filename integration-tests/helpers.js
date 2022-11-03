@@ -398,6 +398,14 @@ export async function playTimeline(page, kind) {
                     if (state.parentEntity) {
                         window.onChangeParentEntity(state.parentEntity)
                     }
+                    if (typeof state.upgradedHttps === 'boolean') {
+                        window.onChangeUpgradedHttps(state.upgradedHttps)
+                    }
+                    if (state.certificates) {
+                        window.onChangeCertificateData({
+                            secCertificateViewModels: state.certificates,
+                        })
+                    }
                     if (state.contentBlockingException) {
                         window.onChangeProtectionStatus({
                             unprotectedTemporary: false,

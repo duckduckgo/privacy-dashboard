@@ -292,6 +292,17 @@ export const dataStates = {
             prevalence: 80.1,
         },
     },
+    'upgraded+secure': {
+        state: states.protectionsOn_blocked_allowedTrackers,
+        requests: [],
+        url: 'https://google.com',
+        upgradedHttps: true,
+        parentEntity: {
+            displayName: 'Google',
+            prevalence: 80.1,
+        },
+        certificates: defaultCertificates,
+    },
     cnn: {
         state: states.protectionsOn,
         url: 'https://edition.cnn.com',

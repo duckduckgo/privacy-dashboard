@@ -86,7 +86,19 @@ function renderEmailWrapper(model) {
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderConnection(model) {
-    const icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure'
+    let icon = 'icon-small--insecure'
+    if (model.httpsState === 'secure') {
+        icon = 'icon-small--secure'
+    }
+    // sometimes we're 'upgraded', but still are secure with a certificate - if so, make it a green tick
+    if (
+        model.httpsState === 'upgraded' &&
+        /^https/.exec(model.tab.url) &&
+        Array.isArray(model.tab.certificate) &&
+        model.tab.certificate.length > 0
+    ) {
+        icon = 'icon-small--secure'
+    }
 
     return bel`
         <a href="javascript:void(0)" 

@@ -34627,7 +34627,17 @@ function renderEmailWrapper(model) {
 
 
 function renderConnection(model) {
-  var icon = model.httpsState === 'secure' ? 'icon-small--secure' : 'icon-small--insecure';
+  var icon = 'icon-small--insecure';
+
+  if (model.httpsState === 'secure') {
+    icon = 'icon-small--secure';
+  } // sometimes we're 'upgraded', but still are secure with a certificate - if so, make it a green tick
+
+
+  if (model.httpsState === 'upgraded' && /^https/.exec(model.tab.url) && Array.isArray(model.tab.certificate) && model.tab.certificate.length > 0) {
+    icon = 'icon-small--secure';
+  }
+
   return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Connection Information\"\n            >\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
 }
 /**
@@ -35656,6 +35666,17 @@ var dataStates = {
       displayName: 'Google',
       prevalence: 80.1
     }
+  },
+  'upgraded+secure': {
+    state: _requestDetails.states.protectionsOn_blocked_allowedTrackers,
+    requests: [],
+    url: 'https://google.com',
+    upgradedHttps: true,
+    parentEntity: {
+      displayName: 'Google',
+      prevalence: 80.1
+    },
+    certificates: defaultCertificates
   },
   cnn: {
     state: _requestDetails.states.protectionsOn,
