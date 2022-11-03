@@ -537,6 +537,7 @@ body.body--theme-dark.environment--ios {
   margin-left: 19px;
   background-repeat: no-repeat;
   background-size: cover;
+  flex-shrink: 0;
 }
 
 .main-nav__text {
