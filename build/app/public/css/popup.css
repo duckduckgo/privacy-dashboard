@@ -547,6 +547,7 @@ body.body--theme-dark.environment--ios {
   margin-right: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .main-nav__chev {
