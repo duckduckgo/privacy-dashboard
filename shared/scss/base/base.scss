@@ -97,8 +97,6 @@ a {
     }
 
     &.link-action {
-        white-space: nowrap;
-
         .environment--ios &,
         .environment--android & {
             &:visited,
