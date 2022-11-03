@@ -1,8 +1,6 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6'
-import { trackerNetworksText } from './shared/tracker-networks-text.es6.js'
 import { protectionToggle } from './shared/protection-toggle'
-import { thirdpartyText } from './shared/thirdparty-text.es6'
 import { renderKeyInsight } from './key-insights'
 import { topNav } from './shared/top-nav'
 
@@ -25,7 +23,6 @@ export default function () {
             </div>
         `
     }
-    const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(this.model)}</li>`
     const permissions = localizePermissions(this.model.permissions)
 
     return bel`
@@ -34,21 +31,10 @@ export default function () {
         ${topNav({ view: 'primary' })}
         <div class='page-inner' data-with-permissions=${permissions.length > 0}>
             <div class='padding-x-double'>
-                ${renderKeyInsight(this.model)}
+                <div id='key-insight'></div>
             </div>
             <div class='padding-x'>
-                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>
-                    <li class='main-nav__row js-site-show-page-connection'>
-                        ${renderConnection(this.model)}
-                    </li>
-                    <li class='main-nav__row js-site-show-page-trackers'>
-                        ${renderTrackerNetworksNew(this.model)}
-                    </li>
-                    <li class='main-nav__row js-site-show-page-non-trackers'>
-                        ${renderThirdPartyNew(this.model)}
-                    </li>
-                    ${this.model.tab?.consentManaged?.consentManaged ? consentRow : null}
-                </ul>
+                <div id='main-nav'></div>
                 ${protectionToggle(this.model)}
             </div>
             <div class='padding-x'>
@@ -80,73 +66,6 @@ function renderEmailWrapper(model) {
     if (model.tab?.emailProtection) {
         return bel`<div id="email-alias-container"></div>`
     }
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-function renderConnection(model) {
-    let icon = 'icon-small--insecure'
-    if (model.httpsState === 'secure') {
-        icon = 'icon-small--secure'
-    }
-    // sometimes we're 'upgraded', but still are secure with a certificate - if so, make it a green tick
-    if (
-        model.httpsState === 'upgraded' &&
-        /^https/.exec(model.tab.url) &&
-        Array.isArray(model.tab.certificate) &&
-        model.tab.certificate.length > 0
-    ) {
-        icon = 'icon-small--secure'
-    }
-
-    return bel`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Connection Information"
-            >
-            <span class="main-nav__icon ${icon}"></span>
-            <span class="main-nav__text">${model.httpsStatusText}</span>
-            <span class="main-nav__chev"></span>
-        </a>`
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-function renderTrackerNetworksNew(model) {
-    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
-    return bel`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Tracker Companies"
-            >
-            <span class="main-nav__icon icon-small--${icon}"></span>
-            <span class="main-nav__text">${title}</span>
-            <span class="main-nav__chev"></span>
-        </a>`
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-function renderThirdPartyNew(model) {
-    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
-    return bel`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Non-Tracker Companies"
-            >
-            <span class="main-nav__icon icon-small--${icon}"></span>
-            <span class="main-nav__text">${title}</span>
-            <span class="main-nav__chev"></span>
-        </a>`
 }
 
 /**
@@ -188,24 +107,6 @@ function renderReportButton() {
                 ${i18n.t('site:websiteNotWorkingQ.title')}
             </a>
         </div>`
-}
-
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-function renderCookieConsentManaged(model) {
-    if (!model.tab?.consentManaged) return null
-
-    const { consentManaged, optoutFailed } = model.tab.consentManaged
-    if (consentManaged && !optoutFailed) {
-        return bel`
-            <div class="main-nav__item">
-                <span class="main-nav__icon icon-small--secure"></span>
-                <span class="main-nav__text">${i18n.t('site:cookiesMinimized.title')}</span>
-            </div>
-        `
-    }
-    return bel``
 }
 
 /**

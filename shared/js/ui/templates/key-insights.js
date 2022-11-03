@@ -3,11 +3,42 @@ import raw from 'bel/raw'
 import { i18n } from '../base/localize.es6'
 import { normalizeCompanyName } from '../models/mixins/normalize-company-name.es6'
 import { getColorId } from './shared/utils.es6'
+import Parent from '../base/view.es6'
+import $ from 'jquery'
 
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {object} ops
+ * @param {import("../models/site.es6.js").default} ops.model
+ * @param {import("jquery")} ops.appendTo
+ * @param {any} ops.store
+ * @constructor
  */
-export function renderKeyInsight(model) {
+export function KeyInsightView(ops) {
+    this.model = ops.model
+    this.store = ops.store
+    this.template = renderKeyInsight
+    Parent.call(this, ops)
+    this._setup()
+}
+
+KeyInsightView.prototype = $.extend({}, Parent.prototype, {
+    /**
+     * @this {KeyInsightView}
+     * @private
+     */
+    _setup: function () {
+        this.bindEvents([[this.store.subscribe, 'change:site', this.rerender]])
+    },
+    rerender() {
+        this._rerender()
+    },
+})
+
+/**
+ * @this {KeyInsightView}
+ */
+export function renderKeyInsight() {
+    const model = this.model
     const title = (text) => bel`<h1 class="token-title-3-em">${text}</h1>`
     const description = (text) => bel`<div class="token-title-3">${text}</div>`
     if (model.httpsState === 'none') {

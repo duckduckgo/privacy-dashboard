@@ -29683,8 +29683,8 @@ function _getBackgroundTabData() {
     } // @ts-ignore
 
 
-    output.emailProtectionUserData = overrides.emailProtectionUserData;
-    console.log('✅', output);
+    output.emailProtectionUserData = overrides.emailProtectionUserData; // console.log('✅', output)
+
     return output;
   });
   return _getBackgroundTabData.apply(this, arguments);
@@ -29712,10 +29712,10 @@ if (new URLSearchParams(window.location.search).has('continuous')) {
     var _channel;
 
     (_channel = channel) === null || _channel === void 0 ? void 0 : _channel.send('updateTabData');
-  }, 1000);
+  }, 200);
 }
 
-},{"../ui/views/tests/generate-data":116,"./common.es6":63,"./utils/overrides":68}],66:[function(require,module,exports){
+},{"../ui/views/tests/generate-data":117,"./common.es6":63,"./utils/overrides":68}],66:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30386,7 +30386,7 @@ function getOverrides(searchString) {
   return overrides;
 }
 
-},{"../../ui/environment-check":82,"../../ui/views/tests/generate-data":116,"./request-details":69}],69:[function(require,module,exports){
+},{"../../ui/environment-check":82,"../../ui/views/tests/generate-data":117,"./request-details":69}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31401,7 +31401,7 @@ var ns = {
 };
 exports.ns = ns;
 
-},{"../../../locales/bg/connection.json":119,"../../../locales/bg/ctascreens.json":120,"../../../locales/bg/permissions.json":121,"../../../locales/bg/report.json":122,"../../../locales/bg/shared.json":123,"../../../locales/bg/site.json":124,"../../../locales/cs/connection.json":125,"../../../locales/cs/ctascreens.json":126,"../../../locales/cs/permissions.json":127,"../../../locales/cs/report.json":128,"../../../locales/cs/shared.json":129,"../../../locales/cs/site.json":130,"../../../locales/da/connection.json":131,"../../../locales/da/ctascreens.json":132,"../../../locales/da/permissions.json":133,"../../../locales/da/report.json":134,"../../../locales/da/shared.json":135,"../../../locales/da/site.json":136,"../../../locales/de/connection.json":137,"../../../locales/de/ctascreens.json":138,"../../../locales/de/permissions.json":139,"../../../locales/de/report.json":140,"../../../locales/de/shared.json":141,"../../../locales/de/site.json":142,"../../../locales/el/connection.json":143,"../../../locales/el/ctascreens.json":144,"../../../locales/el/permissions.json":145,"../../../locales/el/report.json":146,"../../../locales/el/shared.json":147,"../../../locales/el/site.json":148,"../../../locales/en/connection.json":149,"../../../locales/en/ctascreens.json":150,"../../../locales/en/permissions.json":151,"../../../locales/en/report.json":152,"../../../locales/en/shared.json":153,"../../../locales/en/site.json":154,"../../../locales/es/connection.json":155,"../../../locales/es/ctascreens.json":156,"../../../locales/es/permissions.json":157,"../../../locales/es/report.json":158,"../../../locales/es/shared.json":159,"../../../locales/es/site.json":160,"../../../locales/et/connection.json":161,"../../../locales/et/ctascreens.json":162,"../../../locales/et/permissions.json":163,"../../../locales/et/report.json":164,"../../../locales/et/shared.json":165,"../../../locales/et/site.json":166,"../../../locales/fi/connection.json":167,"../../../locales/fi/ctascreens.json":168,"../../../locales/fi/permissions.json":169,"../../../locales/fi/report.json":170,"../../../locales/fi/shared.json":171,"../../../locales/fi/site.json":172,"../../../locales/fr/connection.json":173,"../../../locales/fr/ctascreens.json":174,"../../../locales/fr/permissions.json":175,"../../../locales/fr/report.json":176,"../../../locales/fr/shared.json":177,"../../../locales/fr/site.json":178,"../../../locales/hr/connection.json":179,"../../../locales/hr/ctascreens.json":180,"../../../locales/hr/permissions.json":181,"../../../locales/hr/report.json":182,"../../../locales/hr/shared.json":183,"../../../locales/hr/site.json":184,"../../../locales/hu/connection.json":185,"../../../locales/hu/ctascreens.json":186,"../../../locales/hu/permissions.json":187,"../../../locales/hu/report.json":188,"../../../locales/hu/shared.json":189,"../../../locales/hu/site.json":190,"../../../locales/it/connection.json":191,"../../../locales/it/ctascreens.json":192,"../../../locales/it/permissions.json":193,"../../../locales/it/report.json":194,"../../../locales/it/shared.json":195,"../../../locales/it/site.json":196,"../../../locales/lt/connection.json":197,"../../../locales/lt/ctascreens.json":198,"../../../locales/lt/permissions.json":199,"../../../locales/lt/report.json":200,"../../../locales/lt/shared.json":201,"../../../locales/lt/site.json":202,"../../../locales/lv/connection.json":203,"../../../locales/lv/ctascreens.json":204,"../../../locales/lv/permissions.json":205,"../../../locales/lv/report.json":206,"../../../locales/lv/shared.json":207,"../../../locales/lv/site.json":208,"../../../locales/nb/connection.json":209,"../../../locales/nb/ctascreens.json":210,"../../../locales/nb/permissions.json":211,"../../../locales/nb/report.json":212,"../../../locales/nb/shared.json":213,"../../../locales/nb/site.json":214,"../../../locales/nl/connection.json":215,"../../../locales/nl/ctascreens.json":216,"../../../locales/nl/permissions.json":217,"../../../locales/nl/report.json":218,"../../../locales/nl/shared.json":219,"../../../locales/nl/site.json":220,"../../../locales/pl/connection.json":221,"../../../locales/pl/ctascreens.json":222,"../../../locales/pl/permissions.json":223,"../../../locales/pl/report.json":224,"../../../locales/pl/shared.json":225,"../../../locales/pl/site.json":226,"../../../locales/pt/connection.json":227,"../../../locales/pt/ctascreens.json":228,"../../../locales/pt/permissions.json":229,"../../../locales/pt/report.json":230,"../../../locales/pt/shared.json":231,"../../../locales/pt/site.json":232,"../../../locales/ro/connection.json":233,"../../../locales/ro/ctascreens.json":234,"../../../locales/ro/permissions.json":235,"../../../locales/ro/report.json":236,"../../../locales/ro/shared.json":237,"../../../locales/ro/site.json":238,"../../../locales/ru/connection.json":239,"../../../locales/ru/ctascreens.json":240,"../../../locales/ru/permissions.json":241,"../../../locales/ru/report.json":242,"../../../locales/ru/shared.json":243,"../../../locales/ru/site.json":244,"../../../locales/sk/connection.json":245,"../../../locales/sk/ctascreens.json":246,"../../../locales/sk/permissions.json":247,"../../../locales/sk/report.json":248,"../../../locales/sk/shared.json":249,"../../../locales/sk/site.json":250,"../../../locales/sl/connection.json":251,"../../../locales/sl/ctascreens.json":252,"../../../locales/sl/permissions.json":253,"../../../locales/sl/report.json":254,"../../../locales/sl/shared.json":255,"../../../locales/sl/site.json":256,"../../../locales/sv/connection.json":257,"../../../locales/sv/ctascreens.json":258,"../../../locales/sv/permissions.json":259,"../../../locales/sv/report.json":260,"../../../locales/sv/shared.json":261,"../../../locales/sv/site.json":262,"../../../locales/tr/connection.json":263,"../../../locales/tr/ctascreens.json":264,"../../../locales/tr/permissions.json":265,"../../../locales/tr/report.json":266,"../../../locales/tr/shared.json":267,"../../../locales/tr/site.json":268,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
+},{"../../../locales/bg/connection.json":120,"../../../locales/bg/ctascreens.json":121,"../../../locales/bg/permissions.json":122,"../../../locales/bg/report.json":123,"../../../locales/bg/shared.json":124,"../../../locales/bg/site.json":125,"../../../locales/cs/connection.json":126,"../../../locales/cs/ctascreens.json":127,"../../../locales/cs/permissions.json":128,"../../../locales/cs/report.json":129,"../../../locales/cs/shared.json":130,"../../../locales/cs/site.json":131,"../../../locales/da/connection.json":132,"../../../locales/da/ctascreens.json":133,"../../../locales/da/permissions.json":134,"../../../locales/da/report.json":135,"../../../locales/da/shared.json":136,"../../../locales/da/site.json":137,"../../../locales/de/connection.json":138,"../../../locales/de/ctascreens.json":139,"../../../locales/de/permissions.json":140,"../../../locales/de/report.json":141,"../../../locales/de/shared.json":142,"../../../locales/de/site.json":143,"../../../locales/el/connection.json":144,"../../../locales/el/ctascreens.json":145,"../../../locales/el/permissions.json":146,"../../../locales/el/report.json":147,"../../../locales/el/shared.json":148,"../../../locales/el/site.json":149,"../../../locales/en/connection.json":150,"../../../locales/en/ctascreens.json":151,"../../../locales/en/permissions.json":152,"../../../locales/en/report.json":153,"../../../locales/en/shared.json":154,"../../../locales/en/site.json":155,"../../../locales/es/connection.json":156,"../../../locales/es/ctascreens.json":157,"../../../locales/es/permissions.json":158,"../../../locales/es/report.json":159,"../../../locales/es/shared.json":160,"../../../locales/es/site.json":161,"../../../locales/et/connection.json":162,"../../../locales/et/ctascreens.json":163,"../../../locales/et/permissions.json":164,"../../../locales/et/report.json":165,"../../../locales/et/shared.json":166,"../../../locales/et/site.json":167,"../../../locales/fi/connection.json":168,"../../../locales/fi/ctascreens.json":169,"../../../locales/fi/permissions.json":170,"../../../locales/fi/report.json":171,"../../../locales/fi/shared.json":172,"../../../locales/fi/site.json":173,"../../../locales/fr/connection.json":174,"../../../locales/fr/ctascreens.json":175,"../../../locales/fr/permissions.json":176,"../../../locales/fr/report.json":177,"../../../locales/fr/shared.json":178,"../../../locales/fr/site.json":179,"../../../locales/hr/connection.json":180,"../../../locales/hr/ctascreens.json":181,"../../../locales/hr/permissions.json":182,"../../../locales/hr/report.json":183,"../../../locales/hr/shared.json":184,"../../../locales/hr/site.json":185,"../../../locales/hu/connection.json":186,"../../../locales/hu/ctascreens.json":187,"../../../locales/hu/permissions.json":188,"../../../locales/hu/report.json":189,"../../../locales/hu/shared.json":190,"../../../locales/hu/site.json":191,"../../../locales/it/connection.json":192,"../../../locales/it/ctascreens.json":193,"../../../locales/it/permissions.json":194,"../../../locales/it/report.json":195,"../../../locales/it/shared.json":196,"../../../locales/it/site.json":197,"../../../locales/lt/connection.json":198,"../../../locales/lt/ctascreens.json":199,"../../../locales/lt/permissions.json":200,"../../../locales/lt/report.json":201,"../../../locales/lt/shared.json":202,"../../../locales/lt/site.json":203,"../../../locales/lv/connection.json":204,"../../../locales/lv/ctascreens.json":205,"../../../locales/lv/permissions.json":206,"../../../locales/lv/report.json":207,"../../../locales/lv/shared.json":208,"../../../locales/lv/site.json":209,"../../../locales/nb/connection.json":210,"../../../locales/nb/ctascreens.json":211,"../../../locales/nb/permissions.json":212,"../../../locales/nb/report.json":213,"../../../locales/nb/shared.json":214,"../../../locales/nb/site.json":215,"../../../locales/nl/connection.json":216,"../../../locales/nl/ctascreens.json":217,"../../../locales/nl/permissions.json":218,"../../../locales/nl/report.json":219,"../../../locales/nl/shared.json":220,"../../../locales/nl/site.json":221,"../../../locales/pl/connection.json":222,"../../../locales/pl/ctascreens.json":223,"../../../locales/pl/permissions.json":224,"../../../locales/pl/report.json":225,"../../../locales/pl/shared.json":226,"../../../locales/pl/site.json":227,"../../../locales/pt/connection.json":228,"../../../locales/pt/ctascreens.json":229,"../../../locales/pt/permissions.json":230,"../../../locales/pt/report.json":231,"../../../locales/pt/shared.json":232,"../../../locales/pt/site.json":233,"../../../locales/ro/connection.json":234,"../../../locales/ro/ctascreens.json":235,"../../../locales/ro/permissions.json":236,"../../../locales/ro/report.json":237,"../../../locales/ro/shared.json":238,"../../../locales/ro/site.json":239,"../../../locales/ru/connection.json":240,"../../../locales/ru/ctascreens.json":241,"../../../locales/ru/permissions.json":242,"../../../locales/ru/report.json":243,"../../../locales/ru/shared.json":244,"../../../locales/ru/site.json":245,"../../../locales/sk/connection.json":246,"../../../locales/sk/ctascreens.json":247,"../../../locales/sk/permissions.json":248,"../../../locales/sk/report.json":249,"../../../locales/sk/shared.json":250,"../../../locales/sk/site.json":251,"../../../locales/sl/connection.json":252,"../../../locales/sl/ctascreens.json":253,"../../../locales/sl/permissions.json":254,"../../../locales/sl/report.json":255,"../../../locales/sl/shared.json":256,"../../../locales/sl/site.json":257,"../../../locales/sv/connection.json":258,"../../../locales/sv/ctascreens.json":259,"../../../locales/sv/permissions.json":260,"../../../locales/sv/report.json":261,"../../../locales/sv/shared.json":262,"../../../locales/sv/site.json":263,"../../../locales/tr/connection.json":264,"../../../locales/tr/ctascreens.json":265,"../../../locales/tr/permissions.json":266,"../../../locales/tr/report.json":267,"../../../locales/tr/shared.json":268,"../../../locales/tr/site.json":269,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33001,6 +33001,7 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     var _this3 = this;
 
     var fetches = [];
+    this.acceptingUpdates = false;
 
     if (this.tab && this.tab.domain) {
       if (this.isBroken) {
@@ -33021,7 +33022,6 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
       this.set('disabled', false);
     }
 
-    this.acceptingUpdates = false;
     Promise.all(fetches).then(function () {
       if (_this3.tab.id) {
         return _this3.fetch({
@@ -33153,7 +33153,7 @@ function initPopup() {
   return new Trackers();
 }
 
-},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":109,"./../views/site.es6.js":114,"jquery":46}],91:[function(require,module,exports){
+},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":89,"./../templates/site.es6.js":109,"./../views/site.es6.js":115,"jquery":46}],91:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33384,6 +33384,7 @@ function checkMarkIcon() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.KeyInsightView = KeyInsightView;
 exports.renderKeyInsight = renderKeyInsight;
 
 var _bel = _interopRequireDefault(require("bel"));
@@ -33396,6 +33397,10 @@ var _normalizeCompanyName = require("../models/mixins/normalize-company-name.es6
 
 var _utils = require("./shared/utils.es6");
 
+var _view = _interopRequireDefault(require("../base/view.es6"));
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -33403,9 +33408,41 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {object} ops
+ * @param {import("../models/site.es6.js").default} ops.model
+ * @param {import("jquery")} ops.appendTo
+ * @param {any} ops.store
+ * @constructor
  */
-function renderKeyInsight(model) {
+function KeyInsightView(ops) {
+  this.model = ops.model;
+  this.store = ops.store;
+  this.template = renderKeyInsight;
+
+  _view["default"].call(this, ops);
+
+  this._setup();
+}
+
+KeyInsightView.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
+  /**
+   * @this {KeyInsightView}
+   * @private
+   */
+  _setup: function _setup() {
+    this.bindEvents([[this.store.subscribe, 'change:site', this.rerender]]);
+  },
+  rerender: function rerender() {
+    this._rerender();
+  }
+});
+/**
+ * @this {KeyInsightView}
+ */
+
+function renderKeyInsight() {
+  var model = this.model;
+
   var title = function title(text) {
     return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<h1 class=\"token-title-3-em\">", "</h1>"])), text);
   };
@@ -33535,7 +33572,7 @@ function renderCompanyIconsList(model) {
   return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n        <div \n            class='large-icon-container icon-list' \n            data-company-count='", "'\n            aria-label=\"List of Blocked Company Icons\"\n            >\n            ", "\n        </div>\n    "])), processed.length, list);
 }
 
-},{"../base/localize.es6":74,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":108,"bel":31,"bel/raw":32}],96:[function(require,module,exports){
+},{"../base/localize.es6":74,"../base/view.es6":81,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":108,"bel":31,"bel/raw":32,"jquery":46}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34558,17 +34595,13 @@ var _bel = _interopRequireDefault(require("bel"));
 
 var _localize = require("../base/localize.es6");
 
-var _trackerNetworksTextEs = require("./shared/tracker-networks-text.es6.js");
-
 var _protectionToggle = require("./shared/protection-toggle");
-
-var _thirdpartyText2 = require("./shared/thirdparty-text.es6");
 
 var _keyInsights = require("./key-insights");
 
 var _topNav = require("./shared/top-nav");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -34576,7 +34609,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 /** @this {{model: import('../models/site.es6.js').PublicSiteModel}} */
 function _default() {
-  var _this$model$tab, _this$model$tab2, _this$model$tab2$cons;
+  var _this$model$tab;
 
   // here we'll show CTAs when the tab is disabled
   var supportsCtaScreens = Boolean((_this$model$tab = this.model.tab) === null || _this$model$tab === void 0 ? void 0 : _this$model$tab.ctaScreens);
@@ -34585,17 +34618,16 @@ function _default() {
     return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                <div class=\"page-inner\">\n                    ", "\n                    <div class=\"padding-x\">\n                        <div id=\"cta-rotation\"></div>\n                    </div>\n                    <div class=\"padding-x\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
   }
 
-  var consentRow = (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
   var permissions = localizePermissions(this.model.permissions);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                ", "\n            </div>\n            <div class='padding-x'>\n                <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n                    <li class='main-nav__row js-site-show-page-connection'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-trackers'>\n                        ", "\n                    </li>\n                    <li class='main-nav__row js-site-show-page-non-trackers'>\n                        ", "\n                    </li>\n                    ", "\n                </ul>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), (0, _topNav.topNav)({
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                <div id='key-insight'></div>\n            </div>\n            <div class='padding-x'>\n                <div id='main-nav'></div>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), (0, _topNav.topNav)({
     view: 'primary'
-  }), permissions.length > 0, (0, _keyInsights.renderKeyInsight)(this.model), renderConnection(this.model), renderTrackerNetworksNew(this.model), renderThirdPartyNew(this.model), (_this$model$tab2 = this.model.tab) !== null && _this$model$tab2 !== void 0 && (_this$model$tab2$cons = _this$model$tab2.consentManaged) !== null && _this$model$tab2$cons !== void 0 && _this$model$tab2$cons.consentManaged ? consentRow : null, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
+  }), permissions.length > 0, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
     children: renderManagePermissions(this.model)
   }) : null);
 }
 
 function outer(props) {
-  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<div class=\"page-outer\">", "</div>"])), props.children);
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div class=\"page-outer\">", "</div>"])), props.children);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34606,7 +34638,7 @@ function renderSearchWrapper(model) {
   var _model$tab;
 
   if ((_model$tab = model.tab) !== null && _model$tab !== void 0 && _model$tab.search) {
-    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
+    return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
   }
 }
 /**
@@ -34618,51 +34650,8 @@ function renderEmailWrapper(model) {
   var _model$tab2;
 
   if ((_model$tab2 = model.tab) !== null && _model$tab2 !== void 0 && _model$tab2.emailProtection) {
-    return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<div id=\"email-alias-container\"></div>"])));
+    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<div id=\"email-alias-container\"></div>"])));
   }
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-
-
-function renderConnection(model) {
-  var icon = 'icon-small--insecure';
-
-  if (model.httpsState === 'secure') {
-    icon = 'icon-small--secure';
-  } // sometimes we're 'upgraded', but still are secure with a certificate - if so, make it a green tick
-
-
-  if (model.httpsState === 'upgraded' && /^https/.exec(model.tab.url) && Array.isArray(model.tab.certificate) && model.tab.certificate.length > 0) {
-    icon = 'icon-small--secure';
-  }
-
-  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Connection Information\"\n            >\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, model.httpsStatusText);
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-
-
-function renderTrackerNetworksNew(model) {
-  var _trackerNetworksText = (0, _trackerNetworksTextEs.trackerNetworksText)(model.tab.requestDetails, model.protectionsEnabled),
-      title = _trackerNetworksText.title,
-      icon = _trackerNetworksText.icon;
-
-  return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Tracker Companies\"\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-
-
-function renderThirdPartyNew(model) {
-  var _thirdpartyText = (0, _thirdpartyText2.thirdpartyText)(model.tab.requestDetails, model.protectionsEnabled),
-      title = _thirdpartyText.title,
-      icon = _thirdpartyText.icon;
-
-  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Non-Tracker Companies\"\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), icon, title);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34675,42 +34664,23 @@ function renderManagePermissions(model) {
   }
 
   var localizedPerms = localizePermissions(model.permissions);
-  return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--manage-permissions\">\n                ", "\n            </li>\n        </ul>"])), localizedPerms.map(function (_ref, index) {
+  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--manage-permissions\">\n                ", "\n            </li>\n        </ul>"])), localizedPerms.map(function (_ref, index) {
     var permissionId = _ref.key,
         title = _ref.title,
         permission = _ref.permission,
         options = _ref.options;
     if (!model.permissions) return ''; // todo(Shane): typescript issue
 
-    return (0, _bel["default"])(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission\">\n                        <label>\n                            <div>\n                                <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                                ", "\n                            </div>\n                            <select class=\"js-site-permission\" name=\"", "\">\n                                ", "\n                            </select>\n                        </label>\n                    </div>"])), permissionId, title, permissionId, options.map(function (_ref2) {
+    return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission\">\n                        <label>\n                            <div>\n                                <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                                ", "\n                            </div>\n                            <select class=\"js-site-permission\" name=\"", "\">\n                                ", "\n                            </select>\n                        </label>\n                    </div>"])), permissionId, title, permissionId, options.map(function (_ref2) {
       var id = _ref2.id,
           title = _ref2.title;
-      return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
+      return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
     }));
   }));
 }
 
 function renderReportButton() {
-  return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["<div class=\"text--center border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action link-action--text\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
-}
-/**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
- */
-
-
-function renderCookieConsentManaged(model) {
-  var _model$tab3;
-
-  if (!((_model$tab3 = model.tab) !== null && _model$tab3 !== void 0 && _model$tab3.consentManaged)) return null;
-  var _model$tab$consentMan = model.tab.consentManaged,
-      consentManaged = _model$tab$consentMan.consentManaged,
-      optoutFailed = _model$tab$consentMan.optoutFailed;
-
-  if (consentManaged && !optoutFailed) {
-    return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n            <div class=\"main-nav__item\">\n                <span class=\"main-nav__icon icon-small--secure\"></span>\n                <span class=\"main-nav__text\">", "</span>\n            </div>\n        "])), _localize.i18n.t('site:cookiesMinimized.title'));
-  }
-
-  return (0, _bel["default"])(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral([""])));
+  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<div class=\"text--center border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action link-action--text\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
 }
 /**
  * @param permissions
@@ -34745,7 +34715,7 @@ function localizePermissions(permissions) {
   });
 }
 
-},{"../base/localize.es6":74,"./key-insights":95,"./shared/protection-toggle":103,"./shared/thirdparty-text.es6":104,"./shared/top-nav":106,"./shared/tracker-networks-text.es6.js":107,"bel":31}],110:[function(require,module,exports){
+},{"../base/localize.es6":74,"./key-insights":95,"./shared/protection-toggle":103,"./shared/top-nav":106,"bel":31}],110:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34806,7 +34776,7 @@ _slidingSubviewEs["default"].prototype, {
 var _default = BreakageForm;
 exports["default"] = _default;
 
-},{"./sliding-subview.es6.js":115,"jquery":46}],111:[function(require,module,exports){
+},{"./sliding-subview.es6.js":116,"jquery":46}],111:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34900,6 +34870,156 @@ exports["default"] = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.MainNavView = MainNavView;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _viewEs = _interopRequireDefault(require("../base/view.es6.js"));
+
+var _bel = _interopRequireDefault(require("bel"));
+
+var _trackerNetworksText2 = require("../templates/shared/tracker-networks-text.es6");
+
+var _thirdpartyText2 = require("../templates/shared/thirdparty-text.es6");
+
+var _localize = require("../base/localize.es6");
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+/**
+ * @param {object} ops
+ * @param {import("../models/site.es6.js").default} ops.model
+ * @param {import("jquery")} ops.appendTo
+ * @param {any} ops.store
+ * @constructor
+ */
+function MainNavView(ops) {
+  var _this = this;
+
+  this.model = ops.model;
+  this.store = ops.store;
+  this.template = template;
+  this.nav = {
+    connection: function connection() {
+      return _this.model.send('navigate', {
+        target: 'connection'
+      });
+    },
+    trackers: function trackers() {
+      return _this.model.send('navigate', {
+        target: 'trackers'
+      });
+    },
+    nonTrackers: function nonTrackers() {
+      return _this.model.send('navigate', {
+        target: 'nonTrackers'
+      });
+    }
+  };
+
+  this.action = function (action) {};
+
+  _viewEs["default"].call(this, ops);
+
+  this._setup();
+}
+
+MainNavView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototype, {
+  /**
+   * @this {MainNavView}
+   * @private
+   */
+  _setup: function _setup() {
+    this.bindEvents([[this.store.subscribe, 'change:site', this.rerender]]);
+  },
+  rerender: function rerender() {
+    this._rerender();
+  }
+});
+/**
+ * @this {MainNavView}
+ * @returns {HTMLElement}
+ */
+
+function template() {
+  var _this$model$tab, _this$model$tab$conse;
+
+  var consentRow = (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        <li class='main-nav__row js-site-show-page-trackers'>\n            ", "\n        </li>\n        <li class='main-nav__row js-site-show-page-non-trackers'>\n            ", "\n        </li>\n        ", "\n    </ul>\n\n    "])), renderConnection(this.model, this.nav.connection), renderTrackerNetworksNew(this.model, this.nav.trackers), renderThirdPartyNew(this.model, this.nav.nonTrackers), (_this$model$tab = this.model.tab) !== null && _this$model$tab !== void 0 && (_this$model$tab$conse = _this$model$tab.consentManaged) !== null && _this$model$tab$conse !== void 0 && _this$model$tab$conse.consentManaged ? consentRow : null);
+}
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} model
+ */
+
+
+function renderCookieConsentManaged(model) {
+  var _model$tab;
+
+  if (!((_model$tab = model.tab) !== null && _model$tab !== void 0 && _model$tab.consentManaged)) return null;
+  var _model$tab$consentMan = model.tab.consentManaged,
+      consentManaged = _model$tab$consentMan.consentManaged,
+      optoutFailed = _model$tab$consentMan.optoutFailed;
+
+  if (consentManaged && !optoutFailed) {
+    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n            <div class=\"main-nav__item\">\n                <span class=\"main-nav__icon icon-small--secure\"></span>\n                <span class=\"main-nav__text\">", "</span>\n            </div>\n        "])), _localize.i18n.t('site:cookiesMinimized.title'));
+  }
+
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral([""])));
+}
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} model
+ */
+
+
+function renderConnection(model, cb) {
+  var icon = 'icon-small--insecure';
+
+  if (model.httpsState === 'secure') {
+    icon = 'icon-small--secure';
+  } // sometimes we're 'upgraded', but still are secure with a certificate - if so, make it a green tick
+
+
+  if (model.httpsState === 'upgraded' && /^https/.exec(model.tab.url) && Array.isArray(model.tab.certificate) && model.tab.certificate.length > 0) {
+    icon = 'icon-small--secure';
+  }
+
+  return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Connection Information\"\n            onclick=", "\n            >\n            <span class=\"main-nav__icon ", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), cb, icon, model.httpsStatusText);
+}
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} model
+ */
+
+
+function renderTrackerNetworksNew(model, cb) {
+  var _trackerNetworksText = (0, _trackerNetworksText2.trackerNetworksText)(model.tab.requestDetails, model.protectionsEnabled),
+      title = _trackerNetworksText.title,
+      icon = _trackerNetworksText.icon;
+
+  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Tracker Companies\"\n            onclick=", "\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), cb, icon, title);
+}
+/**
+ * @param {import('../models/site.es6.js').PublicSiteModel} model
+ */
+
+
+function renderThirdPartyNew(model, cb) {
+  var _thirdpartyText = (0, _thirdpartyText2.thirdpartyText)(model.tab.requestDetails, model.protectionsEnabled),
+      title = _thirdpartyText.title,
+      icon = _thirdpartyText.icon;
+
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Non-Tracker Companies\"\n            onclick=", "\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), cb, icon, title);
+}
+
+},{"../base/localize.es6":74,"../base/view.es6.js":81,"../templates/shared/thirdparty-text.es6":104,"../templates/shared/tracker-networks-text.es6":107,"bel":31,"jquery":46}],114:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports["default"] = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
@@ -34962,15 +35082,13 @@ Search.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 var _default = Search;
 exports["default"] = _default;
 
-},{"../base/view.es6":81,"jquery":46}],114:[function(require,module,exports){
+},{"../base/view.es6":81,"jquery":46}],115:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
-
-var _switch = require("@material/switch");
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
@@ -35014,6 +35132,10 @@ var _ctaRotation3 = _interopRequireDefault(require("./cta-rotation.es6"));
 
 var _trackerNetworksEs = _interopRequireDefault(require("./../views/tracker-networks.es6.js"));
 
+var _mainNav = require("./main-nav");
+
+var _keyInsights = require("../templates/key-insights");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // @ts-ignore
@@ -35052,16 +35174,18 @@ function Site(ops) {
 
 Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   _onAllowlistClick: function _onAllowlistClick(e) {
-    var _this2 = this;
+    var _e$target;
 
     if (this.$body.hasClass('is-disabled')) return; // Provide visual feedback of change
 
     this.$toggle.toggleClass('toggle-button--is-active-true');
     this.$toggle.toggleClass('toggle-button--is-active-false'); // Complete the update once the animation has completed
 
-    setTimeout(function () {
-      _this2.model.toggleAllowlist();
-    }, 250);
+    (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    this.model.toggleAllowlist();
   },
   _changePermission: function _changePermission(e) {
     this.model.updatePermission(e.target.name, e.target.value);
@@ -35072,16 +35196,11 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     this._cacheElems('.js-site', ['toggle', 'protection', 'show-page-connection', 'show-page-trackers', 'show-page-non-trackers', 'report-broken', 'permission', 'main-nav', 'done']);
 
     if ((0, _environmentCheck.isAndroid)()) {
-      document.querySelectorAll('.mdc-switch').forEach(function ($el) {
-        return (// @ts-ignore
-          new _switch.MDCSwitch($el)
-        );
-      } // eslint-disable-line no-new
-      );
+      (0, _utils.setupSwitch)('.mdc-switch');
       (0, _utils.setupMaterialDesignRipple)('.link-action');
     }
 
-    this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$showpageconnection, 'click', this._showPageConnection], [this.$showpagetrackers, 'click', this._showPageTrackers], [this.$showpagenontrackers, 'click', this._showPageNonTrackers], [this.$reportbroken, 'click', this._onReportBrokenSiteClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.$mainnav, 'mouseover', this._mouseover], [this.$mainnav, 'mouseleave', this._mouseleave], [this.store.subscribe, 'change:site', this.rerender]]);
+    this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.$mainnav, 'mouseover', this._mouseover], [this.$mainnav, 'mouseleave', this._mouseleave], [this.store.subscribe, 'action:site', this.oops]]);
 
     this._setupFeatures();
 
@@ -35091,26 +35210,21 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
       (_browserUIWrapper$fir = _communicationEs["default"].firstRenderComplete) === null || _browserUIWrapper$fir === void 0 ? void 0 : _browserUIWrapper$fir.call(_communicationEs["default"]);
     }, 100);
   },
-  rerender: function rerender(values) {
-    // Prevent rerenders when confirmation form is active,
-    // otherwise form will disappear on rerender.
-    if (this.$body.hasClass('confirmation-active')) return;
+  oops: function oops(event) {
+    if (event.action === 'navigate') {
+      var _event$data, _event$data2, _event$data3;
 
-    if (this.model && this.model.disabled) {
-      if (!this.$body.hasClass('is-disabled')) {
-        this.$body.addClass('is-disabled');
-
-        this._rerender();
-
-        this._setup();
+      if (((_event$data = event.data) === null || _event$data === void 0 ? void 0 : _event$data.target) === 'connection') {
+        this._showPageConnection();
       }
-    } else {
-      this.$body.removeClass('is-disabled');
-      this.unbindEvents();
 
-      this._rerender();
+      if (((_event$data2 = event.data) === null || _event$data2 === void 0 ? void 0 : _event$data2.target) === 'trackers') {
+        this._showPageTrackers();
+      }
 
-      this._setup();
+      if (((_event$data3 = event.data) === null || _event$data3 === void 0 ? void 0 : _event$data3.target) === 'nonTrackers') {
+        this._showPageNonTrackers();
+      }
     }
   },
   _onReportBrokenSiteClick: function _onReportBrokenSiteClick(e) {
@@ -35138,27 +35252,24 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
       clickSource: e
     });
   },
-  _showPageTrackers: function _showPageTrackers(e) {
+  _showPageTrackers: function _showPageTrackers() {
     if (this.$body.hasClass('is-disabled')) return;
-    blur(e.target);
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _pageTrackersEs.trackerNetworksTemplate,
       heroFn: _hero.heroFromTabTrackers,
       detailsFn: _pageTrackersEs.sectionsFromSiteTrackers
     });
   },
-  _showPageNonTrackers: function _showPageNonTrackers(e) {
+  _showPageNonTrackers: function _showPageNonTrackers() {
     if (this.$body.hasClass('is-disabled')) return;
-    blur(e.target);
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _pageNonTrackersEs.nonTrackersTemplate,
       heroFn: _hero.heroFromTabNonTrackers,
       detailsFn: _pageNonTrackersEs.sectionsFromSiteNonTracker
     });
   },
-  _showPageConnection: function _showPageConnection(e) {
+  _showPageConnection: function _showPageConnection() {
     if (this.$body.hasClass('is-disabled')) return;
-    blur(e.target);
     this.views.slidingSubview = new _trackerNetworksEs["default"]({
       template: _pageConnectionEs["default"]
     });
@@ -35168,6 +35279,17 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   },
   _setupFeatures: function _setupFeatures() {
     var _this$model$tab, _this$model$tab2, _this$model$tab3;
+
+    this.views.mainNav = new _mainNav.MainNavView({
+      model: this.model,
+      appendTo: (0, _jquery["default"])('#main-nav'),
+      store: this.store
+    });
+    this.views.keyInsight = new _keyInsights.KeyInsightView({
+      model: this.model,
+      appendTo: (0, _jquery["default"])('#key-insight'),
+      store: this.store
+    });
 
     if ((_this$model$tab = this.model.tab) !== null && _this$model$tab !== void 0 && _this$model$tab.search) {
       if (this.views.search) {
@@ -35212,9 +35334,9 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     }
   },
   _mouseover: function _mouseover(e) {
-    var _e$target;
+    var _e$target2;
 
-    var li = (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.closest('li');
+    var li = (_e$target2 = e.target) === null || _e$target2 === void 0 ? void 0 : _e$target2.closest('li');
 
     if (li) {
       var links = this.$mainnav.find('li').index(li);
@@ -35244,7 +35366,7 @@ function blur(target) {
 var _default = Site;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":93,"../templates/email-protection.es6":94,"../templates/page-non-trackers.es6.js":97,"../templates/page-trackers.es6.js":98,"../templates/search.es6":99,"../templates/shared/hero.es6":101,"./../templates/breakage-form.es6.js":92,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":110,"./../views/tracker-networks.es6.js":117,"./cta-rotation.es6":111,"./email-protection.es6":112,"./search.es6":113,"./utils/utils.js":118,"@material/switch":29,"jquery":46}],115:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../templates/cta-rotation.es6":93,"../templates/email-protection.es6":94,"../templates/key-insights":95,"../templates/page-non-trackers.es6.js":97,"../templates/page-trackers.es6.js":98,"../templates/search.es6":99,"../templates/shared/hero.es6":101,"./../templates/breakage-form.es6.js":92,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":110,"./../views/tracker-networks.es6.js":118,"./cta-rotation.es6":111,"./email-protection.es6":112,"./main-nav":113,"./search.es6":114,"./utils/utils.js":119,"jquery":46}],116:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35352,7 +35474,7 @@ SlidingSubview.prototype = _jquery["default"].extend({}, _viewEs["default"].prot
 var _default = SlidingSubview;
 exports["default"] = _default;
 
-},{"../base/view.es6.js":81,"../environment-check.js":82,"./utils/utils.js":118,"jquery":46}],116:[function(require,module,exports){
+},{"../base/view.es6.js":81,"../environment-check.js":82,"./utils/utils.js":119,"jquery":46}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35827,7 +35949,7 @@ function protectionsOff(requests) {
   });
 }
 
-},{"../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../schema/__generated__/schema.parsers":59,"../../../browser/utils/request-details":69}],117:[function(require,module,exports){
+},{"../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../schema/__generated__/schema.parsers":59,"../../../browser/utils/request-details":69}],118:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35953,15 +36075,18 @@ _slidingSubviewEs["default"].prototype, {
 var _default = TrackerNetworks;
 exports["default"] = _default;
 
-},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./sliding-subview.es6.js":115,"jquery":46}],118:[function(require,module,exports){
+},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./sliding-subview.es6.js":116,"jquery":46}],119:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setupMaterialDesignRipple = setupMaterialDesignRipple;
+exports.setupSwitch = setupSwitch;
 
 var _ripple = require("@material/ripple");
+
+var _switch = require("@material/switch");
 
 var seen = new WeakSet();
 
@@ -35985,7 +36110,26 @@ function setupMaterialDesignRipple() {
   });
 }
 
-},{"@material/ripple":28}],119:[function(require,module,exports){
+var seenSwitch = new WeakSet();
+/**
+ * @param {string} selector
+ */
+
+function setupSwitch(selector) {
+  document.querySelectorAll(selector).forEach(function ($el) {
+    if (seenSwitch.has($el)) {
+      return;
+    }
+
+    if ($el instanceof HTMLButtonElement) {
+      seenSwitch.add($el);
+
+      var _switchInstance = new _switch.MDCSwitch($el);
+    }
+  });
+}
+
+},{"@material/ripple":28,"@material/switch":29}],120:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36082,7 +36226,7 @@ module.exports={
   }
 }
 
-},{}],120:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36119,7 +36263,7 @@ module.exports={
   }
 }
 
-},{}],121:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36163,7 +36307,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],122:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36236,7 +36380,7 @@ module.exports={
   }
 }
 
-},{}],123:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36253,7 +36397,7 @@ module.exports={
   }
 }
 
-},{}],124:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36489,7 +36633,7 @@ module.exports={
   }
 }
 
-},{}],125:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36586,7 +36730,7 @@ module.exports={
   }
 }
 
-},{}],126:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36623,7 +36767,7 @@ module.exports={
   }
 }
 
-},{}],127:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36667,7 +36811,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],128:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36740,7 +36884,7 @@ module.exports={
   }
 }
 
-},{}],129:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36757,7 +36901,7 @@ module.exports={
   }
 }
 
-},{}],130:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36993,7 +37137,7 @@ module.exports={
   }
 }
 
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37090,7 +37234,7 @@ module.exports={
   }
 }
 
-},{}],132:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37127,7 +37271,7 @@ module.exports={
   }
 }
 
-},{}],133:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37171,7 +37315,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],134:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37244,7 +37388,7 @@ module.exports={
   }
 }
 
-},{}],135:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37261,7 +37405,7 @@ module.exports={
   }
 }
 
-},{}],136:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37497,7 +37641,7 @@ module.exports={
   }
 }
 
-},{}],137:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37594,7 +37738,7 @@ module.exports={
   }
 }
 
-},{}],138:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37631,7 +37775,7 @@ module.exports={
   }
 }
 
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37675,7 +37819,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37748,7 +37892,7 @@ module.exports={
   }
 }
 
-},{}],141:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37765,7 +37909,7 @@ module.exports={
   }
 }
 
-},{}],142:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38001,7 +38145,7 @@ module.exports={
   }
 }
 
-},{}],143:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38098,7 +38242,7 @@ module.exports={
   }
 }
 
-},{}],144:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38135,7 +38279,7 @@ module.exports={
   }
 }
 
-},{}],145:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38179,7 +38323,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],146:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38252,7 +38396,7 @@ module.exports={
   }
 }
 
-},{}],147:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38269,7 +38413,7 @@ module.exports={
   }
 }
 
-},{}],148:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38505,7 +38649,7 @@ module.exports={
   }
 }
 
-},{}],149:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38601,7 +38745,7 @@ module.exports={
     }
 }
 
-},{}],150:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38637,7 +38781,7 @@ module.exports={
     }
 }
 
-},{}],151:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38680,7 +38824,7 @@ module.exports={
         "note": "A permission setting that always blocks the website from using this permission"
     }
 }
-},{}],152:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38752,7 +38896,7 @@ module.exports={
     }
 }
 
-},{}],153:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38764,7 +38908,7 @@ module.exports={
     }
 }
 
-},{}],154:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38999,7 +39143,7 @@ module.exports={
     }
 }
 
-},{}],155:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39096,7 +39240,7 @@ module.exports={
   }
 }
 
-},{}],156:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39133,7 +39277,7 @@ module.exports={
   }
 }
 
-},{}],157:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39177,7 +39321,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],158:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39250,7 +39394,7 @@ module.exports={
   }
 }
 
-},{}],159:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39267,7 +39411,7 @@ module.exports={
   }
 }
 
-},{}],160:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39503,7 +39647,7 @@ module.exports={
   }
 }
 
-},{}],161:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39600,7 +39744,7 @@ module.exports={
   }
 }
 
-},{}],162:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39637,7 +39781,7 @@ module.exports={
   }
 }
 
-},{}],163:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39681,7 +39825,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],164:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39754,7 +39898,7 @@ module.exports={
   }
 }
 
-},{}],165:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39771,7 +39915,7 @@ module.exports={
   }
 }
 
-},{}],166:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40007,7 +40151,7 @@ module.exports={
   }
 }
 
-},{}],167:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40104,7 +40248,7 @@ module.exports={
   }
 }
 
-},{}],168:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40141,7 +40285,7 @@ module.exports={
   }
 }
 
-},{}],169:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40185,7 +40329,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],170:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40258,7 +40402,7 @@ module.exports={
   }
 }
 
-},{}],171:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40275,7 +40419,7 @@ module.exports={
   }
 }
 
-},{}],172:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40511,7 +40655,7 @@ module.exports={
   }
 }
 
-},{}],173:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40608,7 +40752,7 @@ module.exports={
   }
 }
 
-},{}],174:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40645,7 +40789,7 @@ module.exports={
   }
 }
 
-},{}],175:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40689,7 +40833,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],176:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40762,7 +40906,7 @@ module.exports={
   }
 }
 
-},{}],177:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40779,7 +40923,7 @@ module.exports={
   }
 }
 
-},{}],178:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41015,7 +41159,7 @@ module.exports={
   }
 }
 
-},{}],179:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41112,7 +41256,7 @@ module.exports={
   }
 }
 
-},{}],180:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41149,7 +41293,7 @@ module.exports={
   }
 }
 
-},{}],181:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41193,7 +41337,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],182:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41266,7 +41410,7 @@ module.exports={
   }
 }
 
-},{}],183:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41283,7 +41427,7 @@ module.exports={
   }
 }
 
-},{}],184:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41519,7 +41663,7 @@ module.exports={
   }
 }
 
-},{}],185:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41616,7 +41760,7 @@ module.exports={
   }
 }
 
-},{}],186:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41653,7 +41797,7 @@ module.exports={
   }
 }
 
-},{}],187:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41697,7 +41841,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],188:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41770,7 +41914,7 @@ module.exports={
   }
 }
 
-},{}],189:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41787,7 +41931,7 @@ module.exports={
   }
 }
 
-},{}],190:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42023,7 +42167,7 @@ module.exports={
   }
 }
 
-},{}],191:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42120,7 +42264,7 @@ module.exports={
   }
 }
 
-},{}],192:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42157,7 +42301,7 @@ module.exports={
   }
 }
 
-},{}],193:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42201,7 +42345,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],194:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42274,7 +42418,7 @@ module.exports={
   }
 }
 
-},{}],195:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42291,7 +42435,7 @@ module.exports={
   }
 }
 
-},{}],196:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42527,7 +42671,7 @@ module.exports={
   }
 }
 
-},{}],197:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42624,7 +42768,7 @@ module.exports={
   }
 }
 
-},{}],198:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42661,7 +42805,7 @@ module.exports={
   }
 }
 
-},{}],199:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42705,7 +42849,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],200:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42778,7 +42922,7 @@ module.exports={
   }
 }
 
-},{}],201:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42795,7 +42939,7 @@ module.exports={
   }
 }
 
-},{}],202:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43031,7 +43175,7 @@ module.exports={
   }
 }
 
-},{}],203:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43128,7 +43272,7 @@ module.exports={
   }
 }
 
-},{}],204:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43165,7 +43309,7 @@ module.exports={
   }
 }
 
-},{}],205:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43209,7 +43353,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],206:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43282,7 +43426,7 @@ module.exports={
   }
 }
 
-},{}],207:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43299,7 +43443,7 @@ module.exports={
   }
 }
 
-},{}],208:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43535,7 +43679,7 @@ module.exports={
   }
 }
 
-},{}],209:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43632,7 +43776,7 @@ module.exports={
   }
 }
 
-},{}],210:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43669,7 +43813,7 @@ module.exports={
   }
 }
 
-},{}],211:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43713,7 +43857,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],212:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43786,7 +43930,7 @@ module.exports={
   }
 }
 
-},{}],213:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43803,7 +43947,7 @@ module.exports={
   }
 }
 
-},{}],214:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44039,7 +44183,7 @@ module.exports={
   }
 }
 
-},{}],215:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44136,7 +44280,7 @@ module.exports={
   }
 }
 
-},{}],216:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44173,7 +44317,7 @@ module.exports={
   }
 }
 
-},{}],217:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44217,7 +44361,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],218:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44290,7 +44434,7 @@ module.exports={
   }
 }
 
-},{}],219:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44307,7 +44451,7 @@ module.exports={
   }
 }
 
-},{}],220:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44543,7 +44687,7 @@ module.exports={
   }
 }
 
-},{}],221:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44640,7 +44784,7 @@ module.exports={
   }
 }
 
-},{}],222:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44677,7 +44821,7 @@ module.exports={
   }
 }
 
-},{}],223:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44721,7 +44865,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],224:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44794,7 +44938,7 @@ module.exports={
   }
 }
 
-},{}],225:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44811,7 +44955,7 @@ module.exports={
   }
 }
 
-},{}],226:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45047,7 +45191,7 @@ module.exports={
   }
 }
 
-},{}],227:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45144,7 +45288,7 @@ module.exports={
   }
 }
 
-},{}],228:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45181,7 +45325,7 @@ module.exports={
   }
 }
 
-},{}],229:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45225,7 +45369,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],230:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45298,9 +45442,9 @@ module.exports={
   }
 }
 
-},{}],231:[function(require,module,exports){
-arguments[4][159][0].apply(exports,arguments)
-},{"dup":159}],232:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],233:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45536,7 +45680,7 @@ module.exports={
   }
 }
 
-},{}],233:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45633,7 +45777,7 @@ module.exports={
   }
 }
 
-},{}],234:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45670,7 +45814,7 @@ module.exports={
   }
 }
 
-},{}],235:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45714,7 +45858,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],236:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45787,7 +45931,7 @@ module.exports={
   }
 }
 
-},{}],237:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45804,7 +45948,7 @@ module.exports={
   }
 }
 
-},{}],238:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46040,7 +46184,7 @@ module.exports={
   }
 }
 
-},{}],239:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46137,7 +46281,7 @@ module.exports={
   }
 }
 
-},{}],240:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46174,7 +46318,7 @@ module.exports={
   }
 }
 
-},{}],241:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46218,7 +46362,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],242:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46291,7 +46435,7 @@ module.exports={
   }
 }
 
-},{}],243:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46308,7 +46452,7 @@ module.exports={
   }
 }
 
-},{}],244:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46544,7 +46688,7 @@ module.exports={
   }
 }
 
-},{}],245:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46641,7 +46785,7 @@ module.exports={
   }
 }
 
-},{}],246:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46678,7 +46822,7 @@ module.exports={
   }
 }
 
-},{}],247:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46722,7 +46866,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],248:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46795,7 +46939,7 @@ module.exports={
   }
 }
 
-},{}],249:[function(require,module,exports){
+},{}],250:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46812,7 +46956,7 @@ module.exports={
   }
 }
 
-},{}],250:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47048,7 +47192,7 @@ module.exports={
   }
 }
 
-},{}],251:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47145,7 +47289,7 @@ module.exports={
   }
 }
 
-},{}],252:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47182,7 +47326,7 @@ module.exports={
   }
 }
 
-},{}],253:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47226,7 +47370,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],254:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47299,7 +47443,7 @@ module.exports={
   }
 }
 
-},{}],255:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47316,7 +47460,7 @@ module.exports={
   }
 }
 
-},{}],256:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47552,7 +47696,7 @@ module.exports={
   }
 }
 
-},{}],257:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47649,7 +47793,7 @@ module.exports={
   }
 }
 
-},{}],258:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47686,7 +47830,7 @@ module.exports={
   }
 }
 
-},{}],259:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47730,7 +47874,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],260:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47803,7 +47947,7 @@ module.exports={
   }
 }
 
-},{}],261:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47820,7 +47964,7 @@ module.exports={
   }
 }
 
-},{}],262:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48056,7 +48200,7 @@ module.exports={
   }
 }
 
-},{}],263:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48153,7 +48297,7 @@ module.exports={
   }
 }
 
-},{}],264:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48190,7 +48334,7 @@ module.exports={
   }
 }
 
-},{}],265:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48234,7 +48378,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],266:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48307,7 +48451,7 @@ module.exports={
   }
 }
 
-},{}],267:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48324,7 +48468,7 @@ module.exports={
   }
 }
 
-},{}],268:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",

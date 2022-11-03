@@ -74,7 +74,7 @@ export async function getBackgroundTabData() {
     // @ts-ignore
     output.emailProtectionUserData = overrides.emailProtectionUserData
 
-    console.log('✅', output)
+    // console.log('✅', output)
     return output
 }
 
@@ -99,5 +99,5 @@ export function search(query) {
 if (new URLSearchParams(window.location.search).has('continuous')) {
     setInterval(() => {
         channel?.send('updateTabData')
-    }, 1000)
+    }, 200)
 }

@@ -266,6 +266,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & Site} */
     toggleAllowlist: function () {
         const fetches = []
+        this.acceptingUpdates = false
         if (this.tab && this.tab.domain) {
             if (this.isBroken) {
                 // this.initAllowlisted(this.isAllowlisted, !this.isDenylisted)
@@ -283,8 +284,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
             // force a re-render without fetching new data
             this.set('disabled', false)
         }
-
-        this.acceptingUpdates = false
 
         Promise.all(fetches)
             .then(() => {

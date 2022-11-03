@@ -1,4 +1,3 @@
-import { MDCSwitch } from '@material/switch'
 // @ts-ignore
 import $ from 'jquery'
 import { isAndroid } from '../environment-check.js'
@@ -13,7 +12,7 @@ import browserUIWrapper from '../../browser/communication.es6.js'
 import { sectionsFromSiteTrackers, trackerNetworksTemplate } from '../templates/page-trackers.es6.js'
 import { nonTrackersTemplate, sectionsFromSiteNonTracker } from '../templates/page-non-trackers.es6.js'
 import { heroFromTabNonTrackers, heroFromTabTrackers } from '../templates/shared/hero.es6'
-import { setupMaterialDesignRipple } from './utils/utils.js'
+import { setupMaterialDesignRipple, setupSwitch } from './utils/utils.js'
 import BreakageFormView from './../views/breakage-form.es6.js'
 import pageConnectionTemplate from './../templates/page-connection.es6.js'
 import breakageFormTemplate from './../templates/breakage-form.es6.js'
@@ -22,6 +21,8 @@ import SearchView from './search.es6'
 import CtaRotationView from './cta-rotation.es6'
 /** @type {import('../../browser/communication.es6.js').Communication} */
 import TrackerNetworksView from './../views/tracker-networks.es6.js'
+import { MainNavView } from './main-nav'
+import { KeyInsightView } from '../templates/key-insights'
 
 function Site(ops) {
     this.model = ops.model
@@ -62,9 +63,11 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.$toggle.toggleClass('toggle-button--is-active-false')
 
         // Complete the update once the animation has completed
-        setTimeout(() => {
-            this.model.toggleAllowlist()
-        }, 250)
+        e.target?.addEventListener('click', (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+        })
+        this.model.toggleAllowlist()
     },
 
     _changePermission: function (e) {
@@ -87,25 +90,17 @@ Site.prototype = $.extend({}, Parent.prototype, {
         ])
 
         if (isAndroid()) {
-            document.querySelectorAll('.mdc-switch').forEach(
-                ($el) =>
-                    // @ts-ignore
-                    new MDCSwitch($el) // eslint-disable-line no-new
-            )
+            setupSwitch('.mdc-switch')
             setupMaterialDesignRipple('.link-action')
         }
 
         this.bindEvents([
             [this.$toggle, 'click', this._onAllowlistClick],
-            [this.$showpageconnection, 'click', this._showPageConnection],
-            [this.$showpagetrackers, 'click', this._showPageTrackers],
-            [this.$showpagenontrackers, 'click', this._showPageNonTrackers],
-            [this.$reportbroken, 'click', this._onReportBrokenSiteClick],
             [this.$done, 'click', this._done],
             [this.$permission, 'change', this._changePermission],
             [this.$mainnav, 'mouseover', this._mouseover],
             [this.$mainnav, 'mouseleave', this._mouseleave],
-            [this.store.subscribe, 'change:site', this.rerender],
+            [this.store.subscribe, 'action:site', this.oops],
         ])
 
         this._setupFeatures()
@@ -114,23 +109,17 @@ Site.prototype = $.extend({}, Parent.prototype, {
             browserUIWrapper.firstRenderComplete?.()
         }, 100)
     },
-
-    rerender: function (values) {
-        // Prevent rerenders when confirmation form is active,
-        // otherwise form will disappear on rerender.
-        if (this.$body.hasClass('confirmation-active')) return
-
-        if (this.model && this.model.disabled) {
-            if (!this.$body.hasClass('is-disabled')) {
-                this.$body.addClass('is-disabled')
-                this._rerender()
-                this._setup()
+    oops(event) {
+        if (event.action === 'navigate') {
+            if (event.data?.target === 'connection') {
+                this._showPageConnection()
             }
-        } else {
-            this.$body.removeClass('is-disabled')
-            this.unbindEvents()
-            this._rerender()
-            this._setup()
+            if (event.data?.target === 'trackers') {
+                this._showPageTrackers()
+            }
+            if (event.data?.target === 'nonTrackers') {
+                this._showPageNonTrackers()
+            }
         }
     },
 
@@ -160,9 +149,8 @@ Site.prototype = $.extend({}, Parent.prototype, {
         })
     },
 
-    _showPageTrackers: function (e) {
+    _showPageTrackers: function () {
         if (this.$body.hasClass('is-disabled')) return
-        blur(e.target)
         this.views.slidingSubview = new TrackerNetworksView({
             template: trackerNetworksTemplate,
             heroFn: heroFromTabTrackers,
@@ -170,9 +158,8 @@ Site.prototype = $.extend({}, Parent.prototype, {
         })
     },
 
-    _showPageNonTrackers: function (e) {
+    _showPageNonTrackers: function () {
         if (this.$body.hasClass('is-disabled')) return
-        blur(e.target)
         this.views.slidingSubview = new TrackerNetworksView({
             template: nonTrackersTemplate,
             heroFn: heroFromTabNonTrackers,
@@ -180,9 +167,8 @@ Site.prototype = $.extend({}, Parent.prototype, {
         })
     },
 
-    _showPageConnection: function (e) {
+    _showPageConnection: function () {
         if (this.$body.hasClass('is-disabled')) return
-        blur(e.target)
         this.views.slidingSubview = new TrackerNetworksView({
             template: pageConnectionTemplate,
         })
@@ -192,6 +178,16 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.model.close()
     },
     _setupFeatures() {
+        this.views.mainNav = new MainNavView({
+            model: this.model,
+            appendTo: $('#main-nav'),
+            store: this.store,
+        })
+        this.views.keyInsight = new KeyInsightView({
+            model: this.model,
+            appendTo: $('#key-insight'),
+            store: this.store,
+        })
         if (this.model.tab?.search) {
             if (this.views.search) {
                 this.views.search.destroy()

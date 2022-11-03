@@ -1,4 +1,5 @@
 import { MDCRipple } from '@material/ripple'
+import { MDCSwitch } from '@material/switch'
 
 const seen = new WeakSet()
 export function setupMaterialDesignRipple(...selectors) {
@@ -12,5 +13,22 @@ export function setupMaterialDesignRipple(...selectors) {
             $el.classList.add('material-design-ripple')
             MDCRipple.attachTo($el)
         })
+    })
+}
+
+const seenSwitch = new WeakSet()
+
+/**
+ * @param {string} selector
+ */
+export function setupSwitch(selector) {
+    document.querySelectorAll(selector).forEach(($el) => {
+        if (seenSwitch.has($el)) {
+            return
+        }
+        if ($el instanceof HTMLButtonElement) {
+            seenSwitch.add($el)
+            const _switchInstance = new MDCSwitch($el)
+        }
     })
 }
