@@ -7,7 +7,7 @@ import { i18n } from '../base/localize.es6'
 
 /**
  * @param {object} ops
- * @param {import("../models/site.es6.js").default} ops.model
+ * @param {import("../models/site.es6.js").default & import("../base/model.es6.js").baseModelMethods} ops.model
  * @param {import("jquery")} ops.appendTo
  * @param {any} ops.store
  * @constructor
@@ -17,12 +17,22 @@ export function MainNavView(ops) {
     this.store = ops.store
     this.template = template
     this.nav = {
-        connection: () => this.model.send('navigate', { target: 'connection' }),
-        trackers: () => this.model.send('navigate', { target: 'trackers' }),
-        nonTrackers: () => this.model.send('navigate', { target: 'nonTrackers' }),
+        connection: (e) => {
+            e.target?.blur()
+            return this.model.send('navigate', { target: 'connection' })
+        },
+        trackers: (e) => {
+            e.target?.blur()
+            return this.model.send('navigate', { target: 'trackers' })
+        },
+        nonTrackers: (e) => {
+            e.target?.blur()
+            return this.model.send('navigate', { target: 'nonTrackers' })
+        },
     }
     this.action = (action) => {}
     Parent.call(this, ops)
+    // @ts-ignore
     this._setup()
 }
 
@@ -32,7 +42,30 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
      * @private
      */
     _setup: function () {
-        this.bindEvents([[this.store.subscribe, 'change:site', this.rerender]])
+        // @ts-ignore
+        this.bindEvents([
+            // @ts-ignore
+            [this.store.subscribe, 'change:site', this.rerender],
+            // @ts-ignore
+            [this.$parent, 'mouseover', this._mouseover],
+            // @ts-ignore
+            [this.$parent, 'mouseleave', this._mouseleave],
+        ])
+    },
+    _mouseover(e) {
+        const li = e.target?.closest('li')
+        if (li) {
+            const links = this.$parent.find('li').index(li)
+            this.$parent[0].dataset.hover = links
+        }
+    },
+    _mouseleave() {
+        try {
+            delete this.$parent[0].dataset.hover
+        } catch (e) {
+            console.warn('cannot delete data-hover')
+            // no-op
+        }
     },
     rerender() {
         this._rerender()
@@ -58,7 +91,6 @@ function template() {
         </li>
         ${this.model.tab?.consentManaged?.consentManaged ? consentRow : null}
     </ul>
-
     `
 }
 /**

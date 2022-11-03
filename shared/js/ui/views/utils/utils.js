@@ -28,6 +28,7 @@ export function setupSwitch(selector) {
         }
         if ($el instanceof HTMLButtonElement) {
             seenSwitch.add($el)
+            // @ts-ignore
             const _switchInstance = new MDCSwitch($el)
         }
     })

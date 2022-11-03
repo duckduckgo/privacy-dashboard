@@ -31483,7 +31483,8 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.BaseModel = BaseModel;
+exports["default"] = exports.baseModelMethods = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
@@ -31524,7 +31525,7 @@ function BaseModel(attrs) {
   }
 }
 
-BaseModel.prototype = _jquery["default"].extend({}, mixins.events, {
+var baseModelMethods = {
   /**
    * Setter method for modifying attributes
    * on the model. Since the attributes
@@ -31642,7 +31643,9 @@ BaseModel.prototype = _jquery["default"].extend({}, mixins.events, {
     if (attributes.store) delete attributes.store;
     return JSON.parse(JSON.stringify(attributes));
   }
-});
+};
+exports.baseModelMethods = baseModelMethods;
+BaseModel.prototype = _jquery["default"].extend({}, mixins.events, baseModelMethods);
 var _default = BaseModel;
 exports["default"] = _default;
 
@@ -32012,7 +32015,7 @@ exports["default"] = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
-var mixins = _interopRequireWildcard(require("./mixins/index.es6.js"));
+var events = _interopRequireWildcard(require("./mixins/events.es6"));
 
 var store = _interopRequireWildcard(require("./store.es6.js"));
 
@@ -32054,7 +32057,7 @@ function BaseView(ops) {
   this._render(ops);
 }
 
-BaseView.prototype = _jquery["default"].extend({}, mixins.events, {
+BaseView.prototype = _jquery["default"].extend({}, events, {
   /***
    * Each view should define a template
    * if it wants to be rendered and added to the DOM.
@@ -32218,7 +32221,7 @@ BaseView.prototype = _jquery["default"].extend({}, mixins.events, {
 var _default = BaseView;
 exports["default"] = _default;
 
-},{"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],82:[function(require,module,exports){
+},{"./mixins/events.es6":75,"./store.es6.js":80,"jquery":46}],82:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33419,18 +33422,20 @@ function KeyInsightView(ops) {
   this.store = ops.store;
   this.template = renderKeyInsight;
 
-  _view["default"].call(this, ops);
+  _view["default"].call(this, ops); // @ts-ignore
+
 
   this._setup();
 }
 
 KeyInsightView.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   /**
-   * @this {KeyInsightView}
+   * @this {KeyInsightView & Parent}
    * @private
    */
   _setup: function _setup() {
-    this.bindEvents([[this.store.subscribe, 'change:site', this.rerender]]);
+    // @ts-ignore
+    this.bindEvents([[this.store.subscribe, 'change:site', this._rerender]]);
   },
   rerender: function rerender() {
     this._rerender();
@@ -33452,7 +33457,7 @@ function renderKeyInsight() {
   };
 
   if (model.httpsState === 'none') {
-    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--insecure-connection\"></div>\n                    ", "\n                    <div class=\"token-title-3\">", "</div>\n                </div>\n            "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:connectionDescriptionUnencrypted.title')));
+    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n            <div class=\"key-insight key-insight--main\">\n                <div class=\"large-icon-container hero-icon--insecure-connection\"></div>\n                ", "\n                <div class=\"token-title-3\">", "</div>\n            </div>\n        "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:connectionDescriptionUnencrypted.title')));
   } // remote disabled
 
 
@@ -34597,8 +34602,6 @@ var _localize = require("../base/localize.es6");
 
 var _protectionToggle = require("./shared/protection-toggle");
 
-var _keyInsights = require("./key-insights");
-
 var _topNav = require("./shared/top-nav");
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
@@ -34715,7 +34718,7 @@ function localizePermissions(permissions) {
   });
 }
 
-},{"../base/localize.es6":74,"./key-insights":95,"./shared/protection-toggle":103,"./shared/top-nav":106,"bel":31}],110:[function(require,module,exports){
+},{"../base/localize.es6":74,"./shared/protection-toggle":103,"./shared/top-nav":106,"bel":31}],110:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34892,7 +34895,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 /**
  * @param {object} ops
- * @param {import("../models/site.es6.js").default} ops.model
+ * @param {import("../models/site.es6.js").default & import("../base/model.es6.js").baseModelMethods} ops.model
  * @param {import("jquery")} ops.appendTo
  * @param {any} ops.store
  * @constructor
@@ -34904,17 +34907,26 @@ function MainNavView(ops) {
   this.store = ops.store;
   this.template = template;
   this.nav = {
-    connection: function connection() {
+    connection: function connection(e) {
+      var _e$target;
+
+      (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.blur();
       return _this.model.send('navigate', {
         target: 'connection'
       });
     },
-    trackers: function trackers() {
+    trackers: function trackers(e) {
+      var _e$target2;
+
+      (_e$target2 = e.target) === null || _e$target2 === void 0 ? void 0 : _e$target2.blur();
       return _this.model.send('navigate', {
         target: 'trackers'
       });
     },
-    nonTrackers: function nonTrackers() {
+    nonTrackers: function nonTrackers(e) {
+      var _e$target3;
+
+      (_e$target3 = e.target) === null || _e$target3 === void 0 ? void 0 : _e$target3.blur();
       return _this.model.send('navigate', {
         target: 'nonTrackers'
       });
@@ -34923,7 +34935,8 @@ function MainNavView(ops) {
 
   this.action = function (action) {};
 
-  _viewEs["default"].call(this, ops);
+  _viewEs["default"].call(this, ops); // @ts-ignore
+
 
   this._setup();
 }
@@ -34934,7 +34947,28 @@ MainNavView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototy
    * @private
    */
   _setup: function _setup() {
-    this.bindEvents([[this.store.subscribe, 'change:site', this.rerender]]);
+    // @ts-ignore
+    this.bindEvents([// @ts-ignore
+    [this.store.subscribe, 'change:site', this.rerender], // @ts-ignore
+    [this.$parent, 'mouseover', this._mouseover], // @ts-ignore
+    [this.$parent, 'mouseleave', this._mouseleave]]);
+  },
+  _mouseover: function _mouseover(e) {
+    var _e$target4;
+
+    var li = (_e$target4 = e.target) === null || _e$target4 === void 0 ? void 0 : _e$target4.closest('li');
+
+    if (li) {
+      var links = this.$parent.find('li').index(li);
+      this.$parent[0].dataset.hover = links;
+    }
+  },
+  _mouseleave: function _mouseleave() {
+    try {
+      delete this.$parent[0].dataset.hover;
+    } catch (e) {
+      console.warn('cannot delete data-hover'); // no-op
+    }
   },
   rerender: function rerender() {
     this._rerender();
@@ -34949,7 +34983,7 @@ function template() {
   var _this$model$tab, _this$model$tab$conse;
 
   var consentRow = (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(this.model));
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        <li class='main-nav__row js-site-show-page-trackers'>\n            ", "\n        </li>\n        <li class='main-nav__row js-site-show-page-non-trackers'>\n            ", "\n        </li>\n        ", "\n    </ul>\n\n    "])), renderConnection(this.model, this.nav.connection), renderTrackerNetworksNew(this.model, this.nav.trackers), renderThirdPartyNew(this.model, this.nav.nonTrackers), (_this$model$tab = this.model.tab) !== null && _this$model$tab !== void 0 && (_this$model$tab$conse = _this$model$tab.consentManaged) !== null && _this$model$tab$conse !== void 0 && _this$model$tab$conse.consentManaged ? consentRow : null);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        <li class='main-nav__row js-site-show-page-trackers'>\n            ", "\n        </li>\n        <li class='main-nav__row js-site-show-page-non-trackers'>\n            ", "\n        </li>\n        ", "\n    </ul>\n    "])), renderConnection(this.model, this.nav.connection), renderTrackerNetworksNew(this.model, this.nav.trackers), renderThirdPartyNew(this.model, this.nav.nonTrackers), (_this$model$tab = this.model.tab) !== null && _this$model$tab !== void 0 && (_this$model$tab$conse = _this$model$tab.consentManaged) !== null && _this$model$tab$conse !== void 0 && _this$model$tab$conse.consentManaged ? consentRow : null);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -35174,17 +35208,15 @@ function Site(ops) {
 
 Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   _onAllowlistClick: function _onAllowlistClick(e) {
-    var _e$target;
-
     if (this.$body.hasClass('is-disabled')) return; // Provide visual feedback of change
 
     this.$toggle.toggleClass('toggle-button--is-active-true');
     this.$toggle.toggleClass('toggle-button--is-active-false'); // Complete the update once the animation has completed
+    // e.target?.addEventListener('click', (e) => {
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    // })
 
-    (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    });
     this.model.toggleAllowlist();
   },
   _changePermission: function _changePermission(e) {
@@ -35193,14 +35225,14 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   // NOTE: after ._setup() is called this view listens for changes to
   // site model and re-renders every time model properties change
   _setup: function _setup() {
-    this._cacheElems('.js-site', ['toggle', 'protection', 'show-page-connection', 'show-page-trackers', 'show-page-non-trackers', 'report-broken', 'permission', 'main-nav', 'done']);
+    this._cacheElems('.js-site', ['toggle', 'protection', 'report-broken', 'permission', 'done']);
 
     if ((0, _environmentCheck.isAndroid)()) {
       (0, _utils.setupSwitch)('.mdc-switch');
       (0, _utils.setupMaterialDesignRipple)('.link-action');
     }
 
-    this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.$mainnav, 'mouseover', this._mouseover], [this.$mainnav, 'mouseleave', this._mouseleave], [this.store.subscribe, 'action:site', this.oops]]);
+    this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$reportbroken, 'click', this._onReportBrokenSiteClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.store.subscribe, 'action:site', this.oops]]);
 
     this._setupFeatures();
 
@@ -35331,23 +35363,6 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
         appendTo: (0, _jquery["default"])('#email-alias-container'),
         template: _emailProtection2["default"]
       });
-    }
-  },
-  _mouseover: function _mouseover(e) {
-    var _e$target2;
-
-    var li = (_e$target2 = e.target) === null || _e$target2 === void 0 ? void 0 : _e$target2.closest('li');
-
-    if (li) {
-      var links = this.$mainnav.find('li').index(li);
-      this.$mainnav[0].dataset.hover = links;
-    }
-  },
-  _mouseleave: function _mouseleave() {
-    try {
-      delete this.$mainnav[0].dataset.hover;
-    } catch (e) {
-      console.warn('cannot delete data-hover'); // no-op
     }
   }
 });
@@ -36122,7 +36137,7 @@ function setupSwitch(selector) {
     }
 
     if ($el instanceof HTMLButtonElement) {
-      seenSwitch.add($el);
+      seenSwitch.add($el); // @ts-ignore
 
       var _switchInstance = new _switch.MDCSwitch($el);
     }

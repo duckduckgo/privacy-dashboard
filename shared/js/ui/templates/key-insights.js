@@ -18,16 +18,18 @@ export function KeyInsightView(ops) {
     this.store = ops.store
     this.template = renderKeyInsight
     Parent.call(this, ops)
+    // @ts-ignore
     this._setup()
 }
 
 KeyInsightView.prototype = $.extend({}, Parent.prototype, {
     /**
-     * @this {KeyInsightView}
+     * @this {KeyInsightView & Parent}
      * @private
      */
     _setup: function () {
-        this.bindEvents([[this.store.subscribe, 'change:site', this.rerender]])
+        // @ts-ignore
+        this.bindEvents([[this.store.subscribe, 'change:site', this._rerender]])
     },
     rerender() {
         this._rerender()
@@ -43,12 +45,12 @@ export function renderKeyInsight() {
     const description = (text) => bel`<div class="token-title-3">${text}</div>`
     if (model.httpsState === 'none') {
         return bel`
-                <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--insecure-connection"></div>
-                    ${title(model.tab.domain)}
-                    <div class="token-title-3">${raw(i18n.t('site:connectionDescriptionUnencrypted.title'))}</div>
-                </div>
-            `
+            <div class="key-insight key-insight--main">
+                <div class="large-icon-container hero-icon--insecure-connection"></div>
+                ${title(model.tab.domain)}
+                <div class="token-title-3">${raw(i18n.t('site:connectionDescriptionUnencrypted.title'))}</div>
+            </div>
+        `
     }
 
     // remote disabled

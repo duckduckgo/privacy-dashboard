@@ -1,7 +1,6 @@
 import bel from 'bel'
 import { i18n } from '../base/localize.es6'
 import { protectionToggle } from './shared/protection-toggle'
-import { renderKeyInsight } from './key-insights'
 import { topNav } from './shared/top-nav'
 
 /** @this {{model: import('../models/site.es6.js').PublicSiteModel}} */

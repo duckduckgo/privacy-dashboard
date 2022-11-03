@@ -63,10 +63,10 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.$toggle.toggleClass('toggle-button--is-active-false')
 
         // Complete the update once the animation has completed
-        e.target?.addEventListener('click', (e) => {
-            e.preventDefault()
-            e.stopPropagation()
-        })
+        // e.target?.addEventListener('click', (e) => {
+        //     e.preventDefault()
+        //     e.stopPropagation()
+        // })
         this.model.toggleAllowlist()
     },
 
@@ -77,17 +77,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     // NOTE: after ._setup() is called this view listens for changes to
     // site model and re-renders every time model properties change
     _setup: function () {
-        this._cacheElems('.js-site', [
-            'toggle',
-            'protection',
-            'show-page-connection',
-            'show-page-trackers',
-            'show-page-non-trackers',
-            'report-broken',
-            'permission',
-            'main-nav',
-            'done',
-        ])
+        this._cacheElems('.js-site', ['toggle', 'protection', 'report-broken', 'permission', 'done'])
 
         if (isAndroid()) {
             setupSwitch('.mdc-switch')
@@ -96,10 +86,9 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         this.bindEvents([
             [this.$toggle, 'click', this._onAllowlistClick],
+            [this.$reportbroken, 'click', this._onReportBrokenSiteClick],
             [this.$done, 'click', this._done],
             [this.$permission, 'change', this._changePermission],
-            [this.$mainnav, 'mouseover', this._mouseover],
-            [this.$mainnav, 'mouseleave', this._mouseleave],
             [this.store.subscribe, 'action:site', this.oops],
         ])
 
@@ -220,21 +209,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 appendTo: $('#email-alias-container'),
                 template: emailProtectionTemplate,
             })
-        }
-    },
-    _mouseover(e) {
-        const li = e.target?.closest('li')
-        if (li) {
-            const links = this.$mainnav.find('li').index(li)
-            this.$mainnav[0].dataset.hover = links
-        }
-    },
-    _mouseleave() {
-        try {
-            delete this.$mainnav[0].dataset.hover
-        } catch (e) {
-            console.warn('cannot delete data-hover')
-            // no-op
         }
     },
 })

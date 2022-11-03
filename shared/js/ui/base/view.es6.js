@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import * as mixins from './mixins/index.es6.js'
+import * as events from './mixins/events.es6'
 import * as store from './store.es6.js'
 
 /**
@@ -34,7 +34,7 @@ function BaseView(ops) {
     this._render(ops)
 }
 
-BaseView.prototype = $.extend({}, mixins.events, {
+BaseView.prototype = $.extend({}, events, {
     /***
      * Each view should define a template
      * if it wants to be rendered and added to the DOM.

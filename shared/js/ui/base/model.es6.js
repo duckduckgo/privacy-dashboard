@@ -27,7 +27,7 @@ function BaseModel(attrs) {
     }
 }
 
-BaseModel.prototype = $.extend({}, mixins.events, {
+const baseModelMethods = {
     /**
      * Setter method for modifying attributes
      * on the model. Since the attributes
@@ -142,6 +142,10 @@ BaseModel.prototype = $.extend({}, mixins.events, {
         if (attributes.store) delete attributes.store
         return JSON.parse(JSON.stringify(attributes))
     },
-})
+}
+
+BaseModel.prototype = $.extend({}, mixins.events, baseModelMethods)
 
 export default BaseModel
+
+export { BaseModel, baseModelMethods }
