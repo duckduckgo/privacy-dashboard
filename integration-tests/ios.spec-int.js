@@ -1,44 +1,46 @@
 import { test as baseTest, expect } from '@playwright/test'
-import { forwardConsole, playTimeline, withWebkitRequests } from './helpers'
+import { forwardConsole, playTimeline, withWebkitMocks } from './helpers'
 
 const HTML = '/build/app/html/ios.html'
 
-const test = baseTest.extend({
-    iosMocks: [
-        async ({ page }, use) => {
-            forwardConsole(page)
-            await page.goto(HTML)
-            const requests = await withWebkitRequests(page, {
-                requests: [],
-            })
-            await use(requests)
-        },
-        // @ts-ignore
-        { auto: true },
-    ],
-})
+const test = baseTest.extend({})
 
 test.describe('page data (no trackers)', () => {
-    test('should fetch initial data', async ({ page, iosMocks }) => {
+    test('should fetch initial data', async ({ page }) => {
         // @ts-ignore
-        await iosMocks.outgoing({ names: [] })
+        forwardConsole(page)
+        await page.goto(HTML)
+        await withWebkitMocks(page)
+        await playTimeline(page, ['state:04'])
         await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 500 })
     })
-    test('should accept updates when on trackers list screen', async ({ page, iosMocks }) => {
+    test('should accept updates when on trackers list screen', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        await withWebkitMocks(page)
+        await playTimeline(page, ['state:04'])
         await page.locator('"No Tracking Requests Found"').click()
         await expect(page).toHaveScreenshot('tracker-list-before.png')
         // @ts-ignore
         await playTimeline(page, ['new-requests'])
         await expect(page).toHaveScreenshot('tracker-list-after.png')
     })
-    test('should accept updates when on non-trackers list screen', async ({ page, iosMocks }) => {
+    test('should accept updates when on non-trackers list screen', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        await withWebkitMocks(page)
+        await playTimeline(page, ['state:04'])
         await page.locator('"No Third-Party Requests Found"').click()
         await expect(page).toHaveScreenshot('non-tracker-list-before.png')
         // @ts-ignore
         await playTimeline(page, ['new-requests'])
         await expect(page).toHaveScreenshot('non-tracker-list-after.png')
     })
-    test('does not alter the appearance of connection panel', async ({ page, iosMocks }) => {
+    test('does not alter the appearance of connection panel', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        await withWebkitMocks(page)
+        await playTimeline(page, ['state:04'])
         await page.locator('"Connection Is Encrypted"').click()
         await expect(page).toHaveScreenshot('connection-before.png')
         // @ts-ignore
@@ -51,7 +53,7 @@ test.describe('page data (with trackers)', () => {
     test('should display correct primary screen', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        await withWebkitRequests(page, { requests: [] })
+        await withWebkitMocks(page)
         await playTimeline(page, ['state:cnn'])
         // allow the page to re-render
         await page.locator('.icon-list').waitFor({ timeout: 500 })
@@ -60,10 +62,13 @@ test.describe('page data (with trackers)', () => {
 })
 
 test.describe('breakage form', () => {
-    test('should call webkit interface and not use HTML form', async ({ page, iosMocks }) => {
+    test('should call webkit interface and not use HTML form', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        const requests = await withWebkitMocks(page)
+        await playTimeline(page, ['state:01'])
         await page.locator('"Website not working as expected?"').click()
-        // @ts-ignore
-        const calls = await iosMocks.outgoing({
+        const calls = await requests.outgoing({
             names: ['privacyDashboardShowReportBrokenSite'],
         })
         expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]])
@@ -71,11 +76,15 @@ test.describe('breakage form', () => {
 })
 
 test.describe('open external links', () => {
-    test('should call android interface for links', async ({ page, iosMocks }) => {
+    test('should call android interface for links', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        const requests = await withWebkitMocks(page)
+        await playTimeline(page, ['state:04'])
         await page.locator('"No Tracking Requests Found"').click()
         await page.locator('"About our Web Tracking Protections"').click()
         // @ts-ignore
-        const calls = await iosMocks.outgoing({
+        const calls = await requests.outgoing({
             names: ['privacyDashboardOpenUrlInNewTab'],
         })
         expect(calls).toMatchObject([
@@ -93,34 +102,16 @@ test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        await withWebkitRequests(
-            page,
-            {
-                requests: [],
-            },
-            {
-                localeSettings: {
-                    locale: 'pl',
-                },
-            }
-        )
+        await withWebkitMocks(page)
+        await playTimeline(page, ['state:locale-pl'])
         await page.locator('"Połączenie jest szyfrowane"').click()
     })
     test('should load with `fr` locale', async ({ page }) => {
         forwardConsole(page)
         await page.goto(HTML)
-        await withWebkitRequests(
-            page,
-            {
-                requests: [],
-            },
-            {
-                localeSettings: {
-                    locale: 'fr',
-                },
-            }
-        )
-        await page.locator('"La connexion est chiffrée"').click()
+        await withWebkitMocks(page)
+        await playTimeline(page, ['state:locale-fr'])
+        await page.locator('"La connexion est chiffrée"').click({ timeout: 500 })
     })
 })
 
@@ -183,9 +174,7 @@ class StateTest {
     async init() {
         forwardConsole(this.page)
         await this.page.goto(HTML)
-        await withWebkitRequests(this.page, {
-            requests: [],
-        })
+        await withWebkitMocks(this.page)
     }
 
     async screenshotPrimary() {

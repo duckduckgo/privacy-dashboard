@@ -1,4 +1,4 @@
-import { dataStates } from '../shared/js/ui/views/tests/generate-data'
+import { dataStates, defaultCertificates } from '../shared/js/ui/views/tests/generate-data'
 
 /**
  * @param {import('@playwright/test').Page} page
@@ -274,39 +274,13 @@ export async function withAndroidRequests(page, requestData, tab = {}) {
 
 /**
  * @param {import('@playwright/test').Page} page
- * @param {import('../schema/__generated__/schema.types').RequestData} requestData
- * @param {Partial<import('../schema/__generated__/schema.types').Tab>} tab
  */
-export async function withWebkitRequests(page, requestData, tab = {}) {
-    const messages = {
-        submitBrokenSiteReport: {},
-        /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
-        getPrivacyDashboardData: {
-            /** @type {import('../schema/__generated__/schema.types').Tab} */
-            tab: {
-                id: 1533,
-                url: 'https://example.com',
-                upgradedHttps: false,
-                protections: {
-                    unprotectedTemporary: false,
-                    enabledFeatures: ['contentBlocking'],
-                    denylisted: false,
-                    allowlisted: false,
-                },
-                localeSettings: {
-                    locale: 'en',
-                },
-                ...tab,
-            },
-            requestData: requestData,
-        },
-        setList: {},
-    }
+export async function withWebkitMocks(page) {
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function')
-    await page.evaluate((messages) => {
+    await page.evaluate(() => {
         try {
             window.__playwright = {
-                messages: messages,
+                messages: {},
                 mocks: {
                     outgoing: [],
                     incoming: [],
@@ -337,20 +311,11 @@ export async function withWebkitRequests(page, requestData, tab = {}) {
                     },
                 },
             }
-            window.onChangeLocale(messages.getPrivacyDashboardData.tab.localeSettings)
-            window.onChangeUpgradedHttps(false)
-            window.onChangeProtectionStatus({
-                unprotectedTemporary: false,
-                enabledFeatures: ['contentBlocking'],
-                allowlisted: false,
-                denylisted: false,
-            })
-            window.onChangeRequestData(messages.getPrivacyDashboardData.tab.url, messages.getPrivacyDashboardData.requestData)
         } catch (e) {
             console.error("❌couldn't set up mocks")
             console.error(e)
         }
-    }, messages)
+    })
 
     return {
         /**
@@ -375,7 +340,7 @@ export async function withWebkitRequests(page, requestData, tab = {}) {
 export async function playTimeline(page, kind) {
     await page.evaluate(
         async (params) => {
-            const { dataStates, kind } = params
+            const { dataStates, kind, defaultCertificates } = params
             for (const timelineKind of kind) {
                 if (timelineKind === 'new-requests') {
                     const payload1 = dataStates['02'].requests.slice(0, 1)
@@ -394,16 +359,21 @@ export async function playTimeline(page, kind) {
                     const num = timelineKind.slice(6)
                     const state = dataStates[num]
                     if (!state) throw new Error(`cannot use ${timelineKind} as an argument`)
-                    const payload = state.requests
                     if (state.parentEntity) {
                         window.onChangeParentEntity(state.parentEntity)
                     }
                     if (typeof state.upgradedHttps === 'boolean') {
                         window.onChangeUpgradedHttps(state.upgradedHttps)
+                    } else {
+                        window.onChangeUpgradedHttps(false)
                     }
                     if (state.certificates) {
                         window.onChangeCertificateData({
                             secCertificateViewModels: state.certificates,
+                        })
+                    } else {
+                        window.onChangeCertificateData({
+                            secCertificateViewModels: defaultCertificates,
                         })
                     }
                     if (state.contentBlockingException) {
@@ -413,13 +383,25 @@ export async function playTimeline(page, kind) {
                             denylisted: false,
                             enabledFeatures: [],
                         })
+                    } else {
+                        window.onChangeProtectionStatus({
+                            unprotectedTemporary: false,
+                            allowlisted: false,
+                            denylisted: false,
+                            enabledFeatures: ['contentBlocking'],
+                        })
+                    }
+                    if (state.localSettings) {
+                        window.onChangeLocale(state.localSettings)
+                    } else {
+                        window.onChangeLocale({ locale: 'en' })
                     }
                     window.onChangeRequestData(state.url, {
-                        requests: payload,
+                        requests: state.requests,
                     })
                 }
             }
         },
-        { dataStates, kind }
+        { dataStates, kind, defaultCertificates }
     )
 }

@@ -82,7 +82,7 @@ const blocked3 = {
 export const defaultRequests = [allowedTracker, allowedThirdParty, blocked1, blocked2, blocked3]
 
 // eslint-disable-next-line no-unused-vars
-const defaultCertificates = [
+export const defaultCertificates = [
     {
         commonName: 'sni.cloudflaressl.com',
         publicKey: {
@@ -241,6 +241,20 @@ const permissions = [
  * - http://localhost:8080/html/popup.html?state=cnn
  */
 export const dataStates = {
+    'locale-pl': {
+        localSettings: {
+            locale: 'pl',
+        },
+        url: 'https://example.com',
+        requests: [],
+    },
+    'locale-fr': {
+        localSettings: {
+            locale: 'fr',
+        },
+        url: 'https://example.com',
+        requests: [],
+    },
     'ad-attribution': {
         state: states.protectionsOn_blocked_allowedTrackers,
         url: 'https://example.com',

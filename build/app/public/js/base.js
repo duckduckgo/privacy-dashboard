@@ -35503,7 +35503,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.dataStates = void 0;
 exports["default"] = _default;
-exports.defaultRequests = void 0;
+exports.defaultRequests = exports.defaultCertificates = void 0;
 exports.protectionsOff = protectionsOff;
 
 var _requestDetails = require("../../../browser/utils/request-details");
@@ -35687,6 +35687,7 @@ var defaultCertificates = [{
   emails: [],
   summary: 'Baltimore CyberTrust Root'
 }];
+exports.defaultCertificates = defaultCertificates;
 var permissions = [{
   key: 'camera',
   paused: false,
@@ -35759,6 +35760,20 @@ var permissions = [{
  */
 
 var dataStates = {
+  'locale-pl': {
+    localSettings: {
+      locale: 'pl'
+    },
+    url: 'https://example.com',
+    requests: []
+  },
+  'locale-fr': {
+    localSettings: {
+      locale: 'fr'
+    },
+    url: 'https://example.com',
+    requests: []
+  },
   'ad-attribution': {
     state: _requestDetails.states.protectionsOn_blocked_allowedTrackers,
     url: 'https://example.com',
