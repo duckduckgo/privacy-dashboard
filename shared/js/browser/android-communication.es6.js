@@ -316,9 +316,15 @@ export function setup() {
         consentManaged = data
         channel?.send('updateTabData', { via: 'onChangeConsentManaged' })
     }
-    privacyDashboardApi = new PrivacyDashboardJavascriptInterface()
+
     /**
-     * on macOS, respond to all clicks on links with target="_blank"
+     * This matches what Android injects into the webview
+     * @type {PrivacyDashboardJavascriptInterface}
+     */
+    privacyDashboardApi = new PrivacyDashboardJavascriptInterface()
+
+    /**
+     * on Android, respond to all clicks on links with target="_blank"
      * by forwarding to the native side.
      */
     document.addEventListener('click', (e) => {

@@ -28876,10 +28876,15 @@ function setup() {
       via: 'onChangeConsentManaged'
     });
   };
+  /**
+   * This matches what Android injects into the webview
+   * @type {PrivacyDashboardJavascriptInterface}
+   */
+
 
   privacyDashboardApi = new PrivacyDashboardJavascriptInterface();
   /**
-   * on macOS, respond to all clicks on links with target="_blank"
+   * on Android, respond to all clicks on links with target="_blank"
    * by forwarding to the native side.
    */
 
@@ -33016,10 +33021,7 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
       this.set('disabled', false);
     }
 
-    if (this.features.freezeUIFollowingProtectionsToggle) {
-      this.acceptingUpdates = false;
-    }
-
+    this.acceptingUpdates = false;
     Promise.all(fetches).then(function () {
       if (_this3.tab.id) {
         return _this3.fetch({
@@ -33181,8 +33183,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 function createPlatformFeatures(platform) {
   return new PlatformFeatures({
-    spinnerFollowingProtectionsToggle: platform.name !== 'android',
-    freezeUIFollowingProtectionsToggle: platform.name !== 'ios'
+    spinnerFollowingProtectionsToggle: platform.name !== 'android'
   });
 }
 /**
@@ -33195,7 +33196,6 @@ var PlatformFeatures = /*#__PURE__*/_createClass(
 /**
  * @param {object} params
  * @param {boolean} params.spinnerFollowingProtectionsToggle
- * @param {boolean} params.freezeUIFollowingProtectionsToggle
  */
 function PlatformFeatures(params) {
   _classCallCheck(this, PlatformFeatures);
@@ -33205,13 +33205,6 @@ function PlatformFeatures(params) {
    * @type {boolean}
    */
   this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
-  /**
-   * Should the UI be 'frozen' when the Toggle is changed.
-   * Note: currently this is only needed because iOS doesn't implement auto-close
-   * @type {boolean}
-   */
-
-  this.freezeUIFollowingProtectionsToggle = params.freezeUIFollowingProtectionsToggle;
 });
 
 exports.PlatformFeatures = PlatformFeatures;

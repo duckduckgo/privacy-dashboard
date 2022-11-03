@@ -7,6 +7,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch')
 
     const watch = grunt.option('watch')
+    const debug = grunt.option('debug')
 
     // only add `iframe.html` when we're in watch mode
     const htmlFiles = ['popup.html']
@@ -46,7 +47,7 @@ module.exports = function (grunt) {
         browserify: {
             options: {
                 browserifyOptions: {
-                    debug: false,
+                    debug: Boolean(watch) && Boolean(debug),
                 },
                 transform: [['babelify'], ['require-globify']],
             },
@@ -58,7 +59,7 @@ module.exports = function (grunt) {
         sass: {
             options: {
                 implementation: sass,
-                sourceMap: false,
+                sourceMap: Boolean(watch) && Boolean(debug),
                 includePaths: [path.resolve(process.cwd(), 'node_modules')],
             },
             dist: {

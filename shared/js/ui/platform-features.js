@@ -14,7 +14,6 @@
 export function createPlatformFeatures(platform) {
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android',
-        freezeUIFollowingProtectionsToggle: platform.name !== 'ios',
     })
 }
 
@@ -26,7 +25,6 @@ export class PlatformFeatures {
     /**
      * @param {object} params
      * @param {boolean} params.spinnerFollowingProtectionsToggle
-     * @param {boolean} params.freezeUIFollowingProtectionsToggle
      */
     constructor(params) {
         /**
@@ -34,11 +32,5 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle
-        /**
-         * Should the UI be 'frozen' when the Toggle is changed.
-         * Note: currently this is only needed because iOS doesn't implement auto-close
-         * @type {boolean}
-         */
-        this.freezeUIFollowingProtectionsToggle = params.freezeUIFollowingProtectionsToggle
     }
 }

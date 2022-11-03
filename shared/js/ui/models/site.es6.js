@@ -283,9 +283,9 @@ Site.prototype = $.extend({}, Parent.prototype, {
             // force a re-render without fetching new data
             this.set('disabled', false)
         }
-        if (this.features.freezeUIFollowingProtectionsToggle) {
-            this.acceptingUpdates = false
-        }
+
+        this.acceptingUpdates = false
+
         Promise.all(fetches)
             .then(() => {
                 if (this.tab.id) {
