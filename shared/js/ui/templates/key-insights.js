@@ -1,10 +1,10 @@
 import bel from 'bel'
 import raw from 'bel/raw'
+import $ from 'jquery'
 import { i18n } from '../base/localize.es6'
 import { normalizeCompanyName } from '../models/mixins/normalize-company-name.es6'
-import { getColorId } from './shared/utils.es6'
 import Parent from '../base/view.es6'
-import $ from 'jquery'
+import { getColorId } from './shared/utils.es6'
 
 /**
  * @param {object} ops

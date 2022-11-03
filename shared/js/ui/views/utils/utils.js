@@ -29,6 +29,7 @@ export function setupSwitch(selector) {
         if ($el instanceof HTMLButtonElement) {
             seenSwitch.add($el)
             // @ts-ignore
+            // eslint-disable-next-line no-unused-vars
             const _switchInstance = new MDCSwitch($el)
         }
     })

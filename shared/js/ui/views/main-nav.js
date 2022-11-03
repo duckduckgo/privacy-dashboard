@@ -1,6 +1,6 @@
 import $ from 'jquery'
-import Parent from '../base/view.es6.js'
 import bel from 'bel'
+import Parent from '../base/view.es6.js'
 import { trackerNetworksText } from '../templates/shared/tracker-networks-text.es6'
 import { thirdpartyText } from '../templates/shared/thirdparty-text.es6'
 import { i18n } from '../base/localize.es6'
@@ -19,18 +19,17 @@ export function MainNavView(ops) {
     this.nav = {
         connection: (e) => {
             e.target?.blur()
-            return this.model.send('navigate', { target: 'connection' })
+            this.model.send('navigate', { target: 'connection' })
         },
         trackers: (e) => {
             e.target?.blur()
-            return this.model.send('navigate', { target: 'trackers' })
+            this.model.send('navigate', { target: 'trackers' })
         },
         nonTrackers: (e) => {
             e.target?.blur()
-            return this.model.send('navigate', { target: 'nonTrackers' })
+            this.model.send('navigate', { target: 'nonTrackers' })
         },
     }
-    this.action = (action) => {}
     Parent.call(this, ops)
     // @ts-ignore
     this._setup()

@@ -323,16 +323,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
     },
     /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
-    submitBreakageForm: function (category, description) {
-        if (!this.tab) return
-        try {
-            this.fetch({ submitBrokenSiteReport: { category, description } })
-        } catch (e) {
-            console.error('submitBreakageForm error', e)
-        }
-    },
-
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
     close: function () {
         try {
             this.fetch({ closePrivacyDashboard: true })

@@ -12,6 +12,8 @@ import browserUIWrapper from '../../browser/communication.es6.js'
 import { sectionsFromSiteTrackers, trackerNetworksTemplate } from '../templates/page-trackers.es6.js'
 import { nonTrackersTemplate, sectionsFromSiteNonTracker } from '../templates/page-non-trackers.es6.js'
 import { heroFromTabNonTrackers, heroFromTabTrackers } from '../templates/shared/hero.es6'
+import { KeyInsightView } from '../templates/key-insights'
+import { BreakageFormModel } from '../models/breakage-form.es6'
 import { setupMaterialDesignRipple, setupSwitch } from './utils/utils.js'
 import BreakageFormView from './../views/breakage-form.es6.js'
 import pageConnectionTemplate from './../templates/page-connection.es6.js'
@@ -22,7 +24,6 @@ import CtaRotationView from './cta-rotation.es6'
 /** @type {import('../../browser/communication.es6.js').Communication} */
 import TrackerNetworksView from './../views/tracker-networks.es6.js'
 import { MainNavView } from './main-nav'
-import { KeyInsightView } from '../templates/key-insights'
 
 function Site(ops) {
     this.model = ops.model
@@ -89,7 +90,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             [this.$reportbroken, 'click', this._onReportBrokenSiteClick],
             [this.$done, 'click', this._done],
             [this.$permission, 'change', this._changePermission],
-            [this.store.subscribe, 'action:site', this.oops],
+            [this.store.subscribe, 'action:site', this._handleEvents],
         ])
 
         this._setupFeatures()
@@ -98,7 +99,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             browserUIWrapper.firstRenderComplete?.()
         }, 100)
     },
-    oops(event) {
+    _handleEvents(event) {
         if (event.action === 'navigate') {
             if (event.data?.target === 'connection') {
                 this._showPageConnection()
@@ -129,12 +130,9 @@ Site.prototype = $.extend({}, Parent.prototype, {
     // after submitting breakage form.
     showBreakageForm: function (e) {
         blur(e.target)
-        this.views.breakageForm = new BreakageFormView({
-            siteView: this,
+        this.views.slidingSubview = new BreakageFormView({
             template: breakageFormTemplate,
-            model: this.model,
-            appendTo: this.$body,
-            clickSource: e,
+            model: new BreakageFormModel(),
         })
     },
 
@@ -178,9 +176,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
             store: this.store,
         })
         if (this.model.tab?.search) {
-            if (this.views.search) {
-                this.views.search.destroy()
-            }
             this.views.search = new SearchView({
                 pageView: this,
                 model: new SearchModel({ searchText: '' }),
@@ -201,9 +196,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         // does the device support Email Protection?
         if (this.model.tab?.emailProtection) {
-            if (this.views.emailProtection) {
-                this.views.emailProtection.destroy()
-            }
             this.views.emailProtection = new EmailProtectionView({
                 model: new EmailProtectionModel({ emailProtectionUserData: this.model.emailProtectionUserData }),
                 appendTo: $('#email-alias-container'),
