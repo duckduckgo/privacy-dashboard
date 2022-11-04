@@ -390,6 +390,50 @@ export const dataStates = {
         requests: [allowedThirdParty, allowedTracker],
         contentBlockingException: true,
     },
+    'new-entities': {
+        url: 'https://m.youtube.com',
+        requests: [
+            {
+                eTLDplus1: 'ytimg.com',
+                entityName: 'Youtube (Google)',
+                ownerName: 'Youtube',
+                pageUrl: 'https://m.youtube.com/',
+                prevalence: 0.5,
+                state: { state: 'blocked', blocked: {} },
+                url: 'https://i.ytimg.com/vi/AD6OPCFxmJM/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSEbyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBsqqvey-tZ8K3peu7cavrfnR0zDA',
+            },
+            {
+                category: 'Advertising',
+                eTLDplus1: 'doubleclick.net',
+                entityName: 'Google Ads (Google)',
+                ownerName: 'Google Ads',
+                pageUrl: 'https://m.youtube.com/',
+                prevalence: 0.5,
+                state: { state: 'blocked', blocked: {} },
+                url: 'https://googleads.g.doubleclick.net/pagead/id',
+            },
+            {
+                category: 'Advertising',
+                eTLDplus1: 'doubleclick.net',
+                entityName: 'Google Analytics (Google)',
+                ownerName: 'Google Ads',
+                pageUrl: 'https://m.youtube.com/',
+                prevalence: 0.5,
+                state: { state: 'blocked', blocked: {} },
+                url: 'https://static.doubleclick.net/instream/ad_status.js',
+            },
+            {
+                category: 'Advertising',
+                eTLDplus1: 'google.com',
+                entityName: 'Instagram (Facebook)',
+                ownerName: 'Google LLC',
+                pageUrl: 'https://m.youtube.com/',
+                prevalence: 80.5,
+                state: { state: 'blocked', blocked: {} },
+                url: 'https://www.google.com/js/th/EWuoZ_9LU3hL76PT3YFLg_EjKJdTpZ6rgtgTJA98OBY.js',
+            },
+        ],
+    },
 }
 
 /**

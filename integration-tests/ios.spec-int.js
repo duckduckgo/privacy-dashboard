@@ -154,6 +154,10 @@ test.describe('states', () => {
         await p.screenshotPrimary()
         await p.screenshotConnection()
     })
+    test('new-entities', async ({ page }) => {
+        const p = new StateTest(page, 'ios', 'new-entities')
+        await p.screenshots()
+    })
 })
 
 class StateTest {
@@ -163,7 +167,7 @@ class StateTest {
     /**
      * @param {import("@playwright/test").Page} page
      * @param {"ios"} platform
-     * @param {"01" | "02" | "03" | "04" | "05" | "cnn" | "ad-attribution" | "google-off" | "upgraded+secure"} state
+     * @param {"01" | "02" | "03" | "04" | "05" | "cnn" | "ad-attribution" | "google-off" | "upgraded+secure" | "new-entities"} state
      */
     constructor(page, platform, state) {
         this.platform = platform

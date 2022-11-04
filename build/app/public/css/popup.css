@@ -1395,6 +1395,28 @@ body.body--theme-dark.environment--ios {
   background-image: url("../../img/refresh-assets/tracker-icons/logos/google.svg");
   background-color: transparent;
 }
+.icon-list__icon.googleadsgoogle {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/googleadsgoogle.svg");
+  background-color: transparent;
+}
+.icon-list__icon.googleanalyticsgoogle {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/googleanalyticsgoogle.svg");
+  background-color: transparent;
+}
 .icon-list__icon.indexexchange {
   margin: 0 4px 0 0;
   background-repeat: no-repeat;
@@ -1415,6 +1437,17 @@ body.body--theme-dark.environment--ios {
   height: 18px;
   vertical-align: middle;
   background-image: url("../../img/refresh-assets/tracker-icons/logos/iponweb.svg");
+  background-color: transparent;
+}
+.icon-list__icon.instagramfacebook {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/instagramfacebook.svg");
   background-color: transparent;
 }
 .icon-list__icon.kochava {
@@ -1756,6 +1789,17 @@ body.body--theme-dark.environment--ios {
   height: 18px;
   vertical-align: middle;
   background-image: url("../../img/refresh-assets/tracker-icons/logos/yandex.svg");
+  background-color: transparent;
+}
+.icon-list__icon.youtubegoogle {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/youtubegoogle.svg");
   background-color: transparent;
 }
 .icon-list__icon.zeotap {
@@ -2406,6 +2450,28 @@ body.body--theme-dark.environment--ios {
   background-image: url("../../img/refresh-assets/tracker-icons/logos/google.svg");
   background-color: transparent;
 }
+.site-info__tracker__icon.googleadsgoogle {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/googleadsgoogle.svg");
+  background-color: transparent;
+}
+.site-info__tracker__icon.googleanalyticsgoogle {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/googleanalyticsgoogle.svg");
+  background-color: transparent;
+}
 .site-info__tracker__icon.indexexchange {
   margin: 0 4px 0 0;
   background-repeat: no-repeat;
@@ -2426,6 +2492,17 @@ body.body--theme-dark.environment--ios {
   height: 18px;
   vertical-align: middle;
   background-image: url("../../img/refresh-assets/tracker-icons/logos/iponweb.svg");
+  background-color: transparent;
+}
+.site-info__tracker__icon.instagramfacebook {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/instagramfacebook.svg");
   background-color: transparent;
 }
 .site-info__tracker__icon.kochava {
@@ -2767,6 +2844,17 @@ body.body--theme-dark.environment--ios {
   height: 18px;
   vertical-align: middle;
   background-image: url("../../img/refresh-assets/tracker-icons/logos/yandex.svg");
+  background-color: transparent;
+}
+.site-info__tracker__icon.youtubegoogle {
+  margin: 0 4px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  background-image: url("../../img/refresh-assets/tracker-icons/logos/youtubegoogle.svg");
   background-color: transparent;
 }
 .site-info__tracker__icon.zeotap {
