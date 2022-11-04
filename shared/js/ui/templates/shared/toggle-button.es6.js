@@ -1,7 +1,7 @@
 import bel from 'bel'
 import { isAndroid } from '../../environment-check'
 
-const generateMaterialDesignToggle = (isActiveBoolean, klass, disabled) => {
+function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
     return bel`
     <button
         id="basic-switch"
@@ -44,8 +44,7 @@ export function toggleButton(isActiveBoolean, klass, disabled) {
         aria-pressed="${isActiveBoolean ? 'true' : 'false'}"
         ${disabled ? 'disabled' : ''}
     >
-        <div class="toggle-button__bg">
-        </div>
+        <div class="toggle-button__bg"></div>
         <div class="toggle-button__knob"></div>
     </button>`
 }

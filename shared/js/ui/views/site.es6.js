@@ -8,12 +8,14 @@ import searchTemplate from '../templates/search.es6'
 import Parent from '../base/view.es6'
 import { CtaRotationModel } from '../models/cta-rotation.es6'
 import ctaRotationView from '../templates/cta-rotation.es6'
-import browserUIWrapper from '../../browser/communication.es6.js'
+import browserUIWrapper, { platform } from '../../browser/communication.es6.js'
 import { sectionsFromSiteTrackers, trackerNetworksTemplate } from '../templates/page-trackers.es6.js'
 import { nonTrackersTemplate, sectionsFromSiteNonTracker } from '../templates/page-non-trackers.es6.js'
 import { heroFromTabNonTrackers, heroFromTabTrackers } from '../templates/shared/hero.es6'
 import { KeyInsightView } from '../templates/key-insights'
 import { BreakageFormModel } from '../models/breakage-form.es6'
+import { renderUpdatingSpinner } from '../templates/shared/protection-toggle'
+import { createPlatformFeatures } from '../platform-features'
 import { setupMaterialDesignRipple, setupSwitch } from './utils/utils.js'
 import BreakageFormView from './../views/breakage-form.es6.js'
 import pageConnectionTemplate from './../templates/page-connection.es6.js'
@@ -21,14 +23,18 @@ import breakageFormTemplate from './../templates/breakage-form.es6.js'
 import EmailProtectionView from './email-protection.es6'
 import SearchView from './search.es6'
 import CtaRotationView from './cta-rotation.es6'
-/** @type {import('../../browser/communication.es6.js').Communication} */
 import TrackerNetworksView from './../views/tracker-networks.es6.js'
 import { MainNavView } from './main-nav'
 
+/**
+ * @constructor
+ */
 function Site(ops) {
     this.model = ops.model
     this.pageView = ops.pageView
     this.template = ops.template
+    this.features = createPlatformFeatures(platform)
+    this.updateInProgress = false
 
     // cache 'body' selector
     this.$body = $('body')
@@ -56,18 +62,30 @@ function Site(ops) {
 }
 
 Site.prototype = $.extend({}, Parent.prototype, {
+    /**
+     * @this {Site & Record<string, any>}
+     * @param e
+     * @private
+     */
     _onAllowlistClick: function (e) {
         if (this.$body.hasClass('is-disabled')) return
 
-        // Provide visual feedback of change
+        // this can only ever be interacted with once
+        if (this.updateInProgress) return
+        this.updateInProgress = true
+
+        // Provide visual feedback of the change
         this.$toggle.toggleClass('toggle-button--is-active-true')
         this.$toggle.toggleClass('toggle-button--is-active-false')
 
+        // on platforms that support spinners, just replace the HTML
+        if (this.features.spinnerFollowingProtectionsToggle) {
+            setTimeout(() => {
+                this.$toggleparent.html(renderUpdatingSpinner())
+            }, 300)
+        }
+
         // Complete the update once the animation has completed
-        // e.target?.addEventListener('click', (e) => {
-        //     e.preventDefault()
-        //     e.stopPropagation()
-        // })
         this.model.toggleAllowlist()
     },
 
@@ -78,7 +96,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     // NOTE: after ._setup() is called this view listens for changes to
     // site model and re-renders every time model properties change
     _setup: function () {
-        this._cacheElems('.js-site', ['toggle', 'protection', 'report-broken', 'permission', 'done'])
+        this._cacheElems('.js-site', ['toggle', 'toggle-parent', 'report-broken', 'permission', 'done'])
 
         if (isAndroid()) {
             setupSwitch('.mdc-switch')

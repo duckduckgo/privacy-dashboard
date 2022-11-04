@@ -31,6 +31,10 @@ export function setupSwitch(selector) {
             // @ts-ignore
             // eslint-disable-next-line no-unused-vars
             const _switchInstance = new MDCSwitch($el)
+            // don't allow more than a single click on the switch
+            $el.addEventListener('click', () => {
+                _switchInstance.destroy()
+            })
         }
     })
 }

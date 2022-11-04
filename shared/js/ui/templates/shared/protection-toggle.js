@@ -4,7 +4,7 @@ import { isBrowser } from '../../environment-check'
 import { i18n } from '../../base/localize.es6'
 import { toggleButton } from './toggle-button.es6'
 
-const renderUpdatingSpinner = () => {
+export const renderUpdatingSpinner = () => {
     return bel`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t('site:updatingProtectionList.title')}" />`
 }
 
@@ -33,13 +33,13 @@ export function protectionToggle(model) {
         }
     }
 
-    const protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : toggleButton(active, 'js-site-toggle', disabled)
+    const protectionToggle = toggleButton(active, 'js-site-toggle', disabled)
 
     return bel`<div class="site-info__protection-wrapper">
         <ul class="default-list">
             <li class="site-info__li--toggle ${active ? 'is-active' : ''}">
-                <p class="site-info__protection js-site-protection"><span>${raw(text)}</span></p>
-                <div class="site-info__toggle-container">${protectionToggle}</div>
+                <p class="site-info__protection"><span>${raw(text)}</span></p>
+                <div class="site-info__toggle-container js-site-toggle-parent">${protectionToggle}</div>
             </li>
         </ul>
     </div>`

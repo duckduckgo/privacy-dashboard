@@ -34136,6 +34136,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.protectionToggle = protectionToggle;
+exports.renderUpdatingSpinner = void 0;
 
 var _bel = _interopRequireDefault(require("bel"));
 
@@ -34162,6 +34163,8 @@ var renderUpdatingSpinner = function renderUpdatingSpinner() {
  */
 
 
+exports.renderUpdatingSpinner = renderUpdatingSpinner;
+
 function protectionToggle(model) {
   var text = _localize.i18n.t('site:protectionsEnabled.title');
 
@@ -34185,8 +34188,8 @@ function protectionToggle(model) {
     }
   }
 
-  var protectionToggle = model.tab.isPendingUpdates ? renderUpdatingSpinner() : (0, _toggleButton.toggleButton)(active, 'js-site-toggle', disabled);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection js-site-protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
+  var protectionToggle = (0, _toggleButton.toggleButton)(active, 'js-site-toggle', disabled);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container js-site-toggle-parent\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
 }
 
 },{"../../base/localize.es6":74,"../../environment-check":82,"./toggle-button.es6":106,"bel":31,"bel/raw":32}],105:[function(require,module,exports){
@@ -34340,9 +34343,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var generateMaterialDesignToggle = function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
+function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
   return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    <button\n        id=\"basic-switch\"\n        class=\"mdc-switch mdc-switch--", " ", "\"\n        type=\"button\"\n        role=\"switch\"\n        aria-checked=\"false\"\n        ", "\n    >\n        <div class=\"mdc-switch__track\"></div>\n        <div class=\"mdc-switch__handle-track\">\n            <div class=\"mdc-switch__handle\">\n            <div class=\"mdc-switch__shadow\">\n                <div class=\"mdc-elevation-overlay\"></div>\n            </div>\n            <div class=\"mdc-switch__ripple\"></div>\n            </div>\n        </div>\n        <span class=\"mdc-switch__focus-ring-wrapper\">\n            <div class=\"mdc-switch__focus-ring\"></div>\n        </span>\n    </button>\n        "])), isActiveBoolean ? 'selected' : 'unselected', klass, disabled ? 'disabled' : '');
-};
+}
 /**
  * @param {boolean} isActiveBoolean
  * @param {string} klass
@@ -34356,7 +34359,7 @@ function toggleButton(isActiveBoolean, klass, disabled) {
     return generateMaterialDesignToggle(isActiveBoolean, klass, disabled);
   }
 
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\">\n        </div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', disabled ? 'disabled' : '');
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\"></div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', disabled ? 'disabled' : '');
 }
 
 },{"../../environment-check":82,"bel":31}],107:[function(require,module,exports){
@@ -35134,6 +35137,8 @@ exports["default"] = _default;
 },{"../base/view.es6":81,"jquery":46}],116:[function(require,module,exports){
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -35157,7 +35162,7 @@ var _ctaRotation = require("../models/cta-rotation.es6");
 
 var _ctaRotation2 = _interopRequireDefault(require("../templates/cta-rotation.es6"));
 
-var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
+var _communicationEs = _interopRequireWildcard(require("../../browser/communication.es6.js"));
 
 var _pageTrackersEs = require("../templates/page-trackers.es6.js");
 
@@ -35168,6 +35173,10 @@ var _hero = require("../templates/shared/hero.es6");
 var _keyInsights = require("../templates/key-insights");
 
 var _breakageForm = require("../models/breakage-form.es6");
+
+var _protectionToggle = require("../templates/shared/protection-toggle");
+
+var _platformFeatures = require("../platform-features");
 
 var _utils = require("./utils/utils.js");
 
@@ -35187,17 +35196,25 @@ var _trackerNetworksEs = _interopRequireDefault(require("./../views/tracker-netw
 
 var _mainNav = require("./main-nav");
 
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // @ts-ignore
 
-/** @type {import('../../browser/communication.es6.js').Communication} */
+/**
+ * @constructor
+ */
 function Site(ops) {
   var _this = this;
 
   this.model = ops.model;
   this.pageView = ops.pageView;
-  this.template = ops.template; // cache 'body' selector
+  this.template = ops.template;
+  this.features = (0, _platformFeatures.createPlatformFeatures)(_communicationEs.platform);
+  this.updateInProgress = false; // cache 'body' selector
 
   this.$body = (0, _jquery["default"])('body'); // get data from background process, then re-render template with it
 
@@ -35224,15 +35241,28 @@ function Site(ops) {
 }
 
 Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
+  /**
+   * @this {Site & Record<string, any>}
+   * @param e
+   * @private
+   */
   _onAllowlistClick: function _onAllowlistClick(e) {
-    if (this.$body.hasClass('is-disabled')) return; // Provide visual feedback of change
+    var _this2 = this;
+
+    if (this.$body.hasClass('is-disabled')) return; // this can only ever be interacted with once
+
+    if (this.updateInProgress) return;
+    this.updateInProgress = true; // Provide visual feedback of the change
 
     this.$toggle.toggleClass('toggle-button--is-active-true');
-    this.$toggle.toggleClass('toggle-button--is-active-false'); // Complete the update once the animation has completed
-    // e.target?.addEventListener('click', (e) => {
-    //     e.preventDefault()
-    //     e.stopPropagation()
-    // })
+    this.$toggle.toggleClass('toggle-button--is-active-false'); // on platforms that support spinners, just replace the HTML
+
+    if (this.features.spinnerFollowingProtectionsToggle) {
+      setTimeout(function () {
+        _this2.$toggleparent.html((0, _protectionToggle.renderUpdatingSpinner)());
+      }, 300);
+    } // Complete the update once the animation has completed
+
 
     this.model.toggleAllowlist();
   },
@@ -35242,7 +35272,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   // NOTE: after ._setup() is called this view listens for changes to
   // site model and re-renders every time model properties change
   _setup: function _setup() {
-    this._cacheElems('.js-site', ['toggle', 'protection', 'report-broken', 'permission', 'done']);
+    this._cacheElems('.js-site', ['toggle', 'toggle-parent', 'report-broken', 'permission', 'done']);
 
     if ((0, _environmentCheck.isAndroid)()) {
       (0, _utils.setupSwitch)('.mdc-switch');
@@ -35387,7 +35417,7 @@ function blur(target) {
 var _default = Site;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/breakage-form.es6":84,"../models/cta-rotation.es6":85,"../models/email-protection.es6":86,"../models/search.es6":88,"../templates/cta-rotation.es6":94,"../templates/email-protection.es6":95,"../templates/key-insights":96,"../templates/page-non-trackers.es6.js":98,"../templates/page-trackers.es6.js":99,"../templates/search.es6":100,"../templates/shared/hero.es6":102,"./../templates/breakage-form.es6.js":93,"./../templates/page-connection.es6.js":97,"./../views/breakage-form.es6.js":111,"./../views/tracker-networks.es6.js":119,"./cta-rotation.es6":112,"./email-protection.es6":113,"./main-nav":114,"./search.es6":115,"./utils/utils.js":120,"jquery":46}],117:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/breakage-form.es6":84,"../models/cta-rotation.es6":85,"../models/email-protection.es6":86,"../models/search.es6":88,"../platform-features":92,"../templates/cta-rotation.es6":94,"../templates/email-protection.es6":95,"../templates/key-insights":96,"../templates/page-non-trackers.es6.js":98,"../templates/page-trackers.es6.js":99,"../templates/search.es6":100,"../templates/shared/hero.es6":102,"../templates/shared/protection-toggle":104,"./../templates/breakage-form.es6.js":93,"./../templates/page-connection.es6.js":97,"./../views/breakage-form.es6.js":111,"./../views/tracker-networks.es6.js":119,"./cta-rotation.es6":112,"./email-protection.es6":113,"./main-nav":114,"./search.es6":115,"./utils/utils.js":120,"jquery":46}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36161,7 +36191,12 @@ function setupSwitch(selector) {
       seenSwitch.add($el); // @ts-ignore
       // eslint-disable-next-line no-unused-vars
 
-      var _switchInstance = new _switch.MDCSwitch($el);
+      var _switchInstance = new _switch.MDCSwitch($el); // don't allow more than a single click on the switch
+
+
+      $el.addEventListener('click', function () {
+        _switchInstance.destroy();
+      });
     }
   });
 }
