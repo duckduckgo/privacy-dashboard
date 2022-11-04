@@ -525,9 +525,12 @@ body.body--theme-dark.environment--ios {
 .main-nav__item--link {
   color: var(--color-text-primary);
 }
-.main-nav__item--link:visited, .main-nav__item--link:active, .main-nav__item--link:hover {
+.environment--browser .main-nav__item--link:visited, .environment--browser .main-nav__item--link:active, .environment--browser .main-nav__item--link:hover, .environment--windows .main-nav__item--link:visited, .environment--windows .main-nav__item--link:active, .environment--windows .main-nav__item--link:hover, .environment--macos .main-nav__item--link:visited, .environment--macos .main-nav__item--link:active, .environment--macos .main-nav__item--link:hover {
   text-decoration: none;
   background: var(--color-hover-bg);
+}
+.environment--ios .main-nav__item--link:active {
+  opacity: 0.5;
 }
 
 .main-nav__icon {

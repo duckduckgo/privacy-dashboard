@@ -70,11 +70,20 @@
 
 .main-nav__item--link {
     color: var(--color-text-primary);
-    &:visited,
-    &:active,
-    &:hover {
-        text-decoration: none;
-        background: var(--color-hover-bg);
+    .environment--browser &,
+    .environment--windows &,
+    .environment--macos & {
+        &:visited,
+        &:active,
+        &:hover {
+            text-decoration: none;
+            background: var(--color-hover-bg);
+        }
+    }
+    .environment--ios & {
+        &:active {
+            opacity: 0.5;
+        }
     }
 }
 

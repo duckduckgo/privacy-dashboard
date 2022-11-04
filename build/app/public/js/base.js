@@ -33208,8 +33208,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @return {PlatformFeatures}
  */
 function createPlatformFeatures(platform) {
+  /** @type {Platform["name"][]} */
+  var desktop = ['windows', 'macos', 'browser', 'example'];
   return new PlatformFeatures({
-    spinnerFollowingProtectionsToggle: platform.name !== 'android'
+    spinnerFollowingProtectionsToggle: platform.name !== 'android',
+    supportsHover: desktop.includes(platform.name)
   });
 }
 /**
@@ -33222,6 +33225,7 @@ var PlatformFeatures = /*#__PURE__*/_createClass(
 /**
  * @param {object} params
  * @param {boolean} params.spinnerFollowingProtectionsToggle
+ * @param {boolean} params.supportsHover
  */
 function PlatformFeatures(params) {
   _classCallCheck(this, PlatformFeatures);
@@ -33231,6 +33235,12 @@ function PlatformFeatures(params) {
    * @type {boolean}
    */
   this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
+  /**
+   * Does the current platform support hover interactions?
+   * @type {boolean}
+   */
+
+  this.supportsHover = params.supportsHover;
 });
 
 exports.PlatformFeatures = PlatformFeatures;
@@ -34904,6 +34914,14 @@ var _thirdpartyText2 = require("../templates/shared/thirdparty-text.es6");
 
 var _localize = require("../base/localize.es6");
 
+var _platformFeatures = require("../platform-features");
+
+var _communication = require("../../browser/communication.es6");
+
+var _environmentCheck = require("../environment-check");
+
+var _utils = require("./utils/utils");
+
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -34923,30 +34941,19 @@ function MainNavView(ops) {
   this.model = ops.model;
   this.store = ops.store;
   this.template = template;
+  this.features = (0, _platformFeatures.createPlatformFeatures)(_communication.platform);
   this.nav = {
     connection: function connection(e) {
-      var _e$target;
-
-      (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.blur();
-
       _this.model.send('navigate', {
         target: 'connection'
       });
     },
     trackers: function trackers(e) {
-      var _e$target2;
-
-      (_e$target2 = e.target) === null || _e$target2 === void 0 ? void 0 : _e$target2.blur();
-
       _this.model.send('navigate', {
         target: 'trackers'
       });
     },
     nonTrackers: function nonTrackers(e) {
-      var _e$target3;
-
-      (_e$target3 = e.target) === null || _e$target3 === void 0 ? void 0 : _e$target3.blur();
-
       _this.model.send('navigate', {
         target: 'nonTrackers'
       });
@@ -34970,18 +34977,32 @@ MainNavView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototy
     [this.store.subscribe, 'change:site', this.rerender], // @ts-ignore
     [this.$parent, 'mouseover', this._mouseover], // @ts-ignore
     [this.$parent, 'mouseleave', this._mouseleave]]);
-  },
-  _mouseover: function _mouseover(e) {
-    var _e$target4;
 
-    var li = (_e$target4 = e.target) === null || _e$target4 === void 0 ? void 0 : _e$target4.closest('li');
+    if ((0, _environmentCheck.isAndroid)()) {
+      (0, _utils.setupMaterialDesignRipple)('.link-action');
+    }
+  },
+
+  /**
+   * @this {MainNavView}
+   * @private
+   */
+  _mouseover: function _mouseover(e) {
+    var _e$target;
+
+    if (!this.features.supportsHover) return;
+    var li = (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.closest('li');
 
     if (li) {
-      var links = this.$parent.find('li').index(li);
+      // @ts-ignore
+      var links = this.$parent.find('li').index(li); // @ts-ignore
+
       this.$parent[0].dataset.hover = links;
     }
   },
   _mouseleave: function _mouseleave() {
+    if (!this.features.supportsHover) return;
+
     try {
       delete this.$parent[0].dataset.hover;
     } catch (e) {
@@ -35066,7 +35087,7 @@ function renderThirdPartyNew(model, cb) {
   return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Non-Tracker Companies\"\n            onclick=", "\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), cb, icon, title);
 }
 
-},{"../base/localize.es6":74,"../base/view.es6.js":81,"../templates/shared/thirdparty-text.es6":105,"../templates/shared/tracker-networks-text.es6":108,"bel":31,"jquery":46}],115:[function(require,module,exports){
+},{"../../browser/communication.es6":64,"../base/localize.es6":74,"../base/view.es6.js":81,"../environment-check":82,"../platform-features":92,"../templates/shared/thirdparty-text.es6":105,"../templates/shared/tracker-networks-text.es6":108,"./utils/utils":120,"bel":31,"jquery":46}],115:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

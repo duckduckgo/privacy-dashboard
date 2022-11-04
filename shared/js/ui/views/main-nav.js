@@ -4,6 +4,10 @@ import Parent from '../base/view.es6.js'
 import { trackerNetworksText } from '../templates/shared/tracker-networks-text.es6'
 import { thirdpartyText } from '../templates/shared/thirdparty-text.es6'
 import { i18n } from '../base/localize.es6'
+import { createPlatformFeatures } from '../platform-features'
+import { platform } from '../../browser/communication.es6'
+import { isAndroid } from '../environment-check'
+import { setupMaterialDesignRipple } from './utils/utils'
 
 /**
  * @param {object} ops
@@ -16,17 +20,15 @@ export function MainNavView(ops) {
     this.model = ops.model
     this.store = ops.store
     this.template = template
+    this.features = createPlatformFeatures(platform)
     this.nav = {
         connection: (e) => {
-            e.target?.blur()
             this.model.send('navigate', { target: 'connection' })
         },
         trackers: (e) => {
-            e.target?.blur()
             this.model.send('navigate', { target: 'trackers' })
         },
         nonTrackers: (e) => {
-            e.target?.blur()
             this.model.send('navigate', { target: 'nonTrackers' })
         },
     }
@@ -50,15 +52,27 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
             // @ts-ignore
             [this.$parent, 'mouseleave', this._mouseleave],
         ])
+
+        if (isAndroid()) {
+            setupMaterialDesignRipple('.link-action')
+        }
     },
+    /**
+     * @this {MainNavView}
+     * @private
+     */
     _mouseover(e) {
+        if (!this.features.supportsHover) return
         const li = e.target?.closest('li')
         if (li) {
+            // @ts-ignore
             const links = this.$parent.find('li').index(li)
+            // @ts-ignore
             this.$parent[0].dataset.hover = links
         }
     },
     _mouseleave() {
+        if (!this.features.supportsHover) return
         try {
             delete this.$parent[0].dataset.hover
         } catch (e) {

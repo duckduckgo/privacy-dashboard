@@ -12,8 +12,11 @@
  * @return {PlatformFeatures}
  */
 export function createPlatformFeatures(platform) {
+    /** @type {Platform["name"][]} */
+    const desktop = ['windows', 'macos', 'browser', 'example']
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android',
+        supportsHover: desktop.includes(platform.name),
     })
 }
 
@@ -25,6 +28,7 @@ export class PlatformFeatures {
     /**
      * @param {object} params
      * @param {boolean} params.spinnerFollowingProtectionsToggle
+     * @param {boolean} params.supportsHover
      */
     constructor(params) {
         /**
@@ -32,5 +36,10 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle
+        /**
+         * Does the current platform support hover interactions?
+         * @type {boolean}
+         */
+        this.supportsHover = params.supportsHover
     }
 }
