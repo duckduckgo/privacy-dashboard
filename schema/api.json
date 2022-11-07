@@ -10,9 +10,17 @@
         "extension-message-get-privacy-dashboard-data": {
             "$ref": "./extension-message-get-privacy-dashboard-data.json"
         },
+        "get-privacy-dashboard-data": {
+            "$ref": "./get-privacy-dashboard-data.json"
+        },
+        "search-message": {
+            "$ref": "./search-message.json"
+        },
         "breakage-report": { "$ref": "./breakage-report.json" },
         "set-list": { "$ref": "./set-list-options.json" },
         "windows-view-model": { "$ref": "./windows-view-model.json" },
-        "locale-settings": { "$ref": "./locale.json" }
+        "locale-settings": { "$ref": "./locale.json" },
+        "refresh-alias-response": { "$ref": "./refresh-alias-response.json" },
+        "exe": { "$ref": "./extension-message-set-list-options.json" }
     }
 }

@@ -1,5 +1,11 @@
 import generateData, { defaultRequests } from '../ui/views/tests/generate-data'
-import { setupColorScheme, setupMutationObserver } from './common.es6'
+import {
+    CheckBrokenSiteReportHandledMessage,
+    RefreshEmailAliasMessage,
+    SetListsMessage,
+    setupColorScheme,
+    setupMutationObserver,
+} from './common.es6'
 import { getOverrides } from './utils/overrides'
 
 // This is am example interface purely for previewing the panel
@@ -20,12 +26,15 @@ const isPendingUpdates = false
 // }
 // setTimeout(() => tweakSecureStatus(), 10000)
 
-export function fetch(...args) {
-    if (args[0].setList) {
+/**
+ * @type {import("./common.es6").fetcher}
+ */
+export async function fetch(message) {
+    if (message instanceof SetListsMessage) {
         console.warn('doing nothing by default with `setList`')
     }
 
-    if (args[0]?.messageType === 'refreshAlias') {
+    if (message instanceof RefreshEmailAliasMessage) {
         if (overrides.platform === 'browser') {
             return Promise.resolve({
                 privateAddress: 'dax123456',
@@ -33,19 +42,15 @@ export function fetch(...args) {
         }
     }
 
-    if (args[0]?.messageType === 'getBrowser') {
-        if (overrides.platform === 'browser') {
-            return Promise.resolve('chrome')
-        }
-    }
-
-    if (args[0]?.checkBrokenSiteReportHandled) {
+    if (message instanceof CheckBrokenSiteReportHandledMessage) {
         if (overrides.platform === 'ios' || overrides.platform === 'android') {
             return true
+        } else {
+            return false
         }
     }
 
-    console.log('fetch - Not implemented', args)
+    console.log('fetch - Not implemented', message)
 }
 
 export function backgroundMessage(backgroundModel) {

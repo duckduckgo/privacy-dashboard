@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import Parent from '../base/model.es6'
+import { SubmitBrokenSiteReportMessage } from '../../browser/common.es6'
 
 /** @this {any} */
 function BreakageFormModel(attrs) {
@@ -9,10 +10,15 @@ function BreakageFormModel(attrs) {
 
 BreakageFormModel.prototype = $.extend({}, Parent.prototype, {
     modelName: 'breakageForm',
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {import('./site.es6').LocalThis} */
     submitBreakageForm: function (category, description) {
         try {
-            this.fetch({ submitBrokenSiteReport: { category, description } })
+            this.fetch(
+                new SubmitBrokenSiteReportMessage({
+                    category,
+                    description,
+                })
+            )
         } catch (e) {
             console.error('submitBreakageForm error', e)
         }

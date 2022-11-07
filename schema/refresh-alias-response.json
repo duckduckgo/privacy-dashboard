@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "RefreshAliasResponse",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["personalAddress", "privateAddress"],
+    "properties": {
+        "personalAddress": {
+            "type": "string"
+        },
+        "privateAddress": {
+            "type": "string"
+        }
+    }
+}

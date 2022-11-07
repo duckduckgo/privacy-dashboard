@@ -1,92 +1,6 @@
 /**
  * @module common
  */
-const getHostname = (url) => {
-    if (url.indexOf('//') === 0) {
-        url = `http:${url}`
-    }
-
-    try {
-        return new URL(url).hostname
-    } catch (e) {
-        return null
-    }
-}
-
-const convertTrackers = (trackerList) => {
-    return trackerList.reduce((mapping, tracker) => {
-        if (!tracker.knownTracker) return mapping
-
-        const key = tracker.knownTracker.owner.name
-
-        if (!mapping[key]) {
-            mapping[key] = {
-                displayName: tracker.entity.displayName,
-                prevalence: tracker.entity.prevalence,
-                urls: {},
-            }
-        }
-
-        const urlKey = getHostname(tracker.url)
-        if (!urlKey) return mapping
-
-        mapping[key].urls[urlKey] = {
-            isBlocked: tracker.blocked,
-            categories: tracker.knownTracker.categories,
-        }
-        mapping[key].count = Object.keys(mapping[key].urls).length
-
-        return mapping
-    }, {})
-}
-
-export const convertTrackerDataPayload = (tabUrl, upgradedHttps, allowlisted, data) => {
-    const allTrackers = data.trackersDetected.concat(data.trackersBlocked)
-    const trackers = convertTrackers(allTrackers)
-    const trackersBlocked = convertTrackers(data.trackersBlocked)
-    const tabDomain = new URL(tabUrl).host.replace(/^www\./, '')
-
-    return {
-        url: tabUrl,
-        status: 'complete',
-        upgradedHttps,
-        site: {
-            url: tabUrl,
-            domain: tabDomain,
-            allowlisted,
-            enabledFeatures: ['contentBlocking'],
-        },
-        trackers,
-        trackersBlocked,
-    }
-}
-
-export function concatParams(args) {
-    args = args || []
-
-    let paramString = ''
-    let objParamString = ''
-    let resultString = ''
-    const randomNum = Math.ceil(Math.random() * 1e7)
-
-    args.forEach((arg) => {
-        // append keys if object
-        if (typeof arg === 'object') {
-            objParamString += Object.keys(arg).reduce((params, key) => {
-                const val = arg[key]
-                if (val || val === 0) return `${params}&${key}=${val}`
-                return params
-            }, '')
-        } else if (arg) {
-            // otherwise just add args separated by _
-            paramString += `_${arg}`
-        }
-    })
-
-    resultString = `${paramString}?${randomNum}${objParamString}`
-
-    return resultString
-}
 
 export const getContentHeight = () => {
     const $openSubview = window.document.querySelector('#popup-container.sliding-subview--open > section:last-child > div')
@@ -248,4 +162,112 @@ export function submitBrokenSiteReport(report) {}
 /**
  * @param {import('../../../schema/__generated__/schema.types').SetListOptions} options
  */
-export function setList(options) {}
+export function setLists(options) {}
+
+/**
+ * Refresh the email alias
+ * @param options
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').RefreshAliasResponse>}
+ */
+export async function refreshAlias(options) {
+    throw new Error('base impl')
+}
+
+/**
+ * @param {import('../../../schema/__generated__/schema.types').Search} options
+ */
+export function search(options) {}
+
+class Msg {
+    toJSON() {
+        return {
+            ...this,
+            kind: this.constructor.name,
+        }
+    }
+}
+
+/**
+ * Indicate to open the options page.
+ */
+export function openOptions() {}
+
+export class SetListsMessage extends Msg {
+    /**
+     * @param {object} params
+     * @param {Array<{ list: "allowlisted" | "denylisted", domain: string, value: boolean}>} params.lists
+     */
+    constructor(params) {
+        super()
+        /**
+         * @type {Array<{list: "allowlisted" | "denylisted", domain: string, value: boolean}>}
+         */
+        this.lists = params.lists
+    }
+}
+
+export class SubmitBrokenSiteReportMessage extends Msg {
+    /**
+     * @param {object} params
+     * @param {string} params.category
+     * @param {string} params.description
+     */
+    constructor(params) {
+        super()
+        this.category = params.category
+        this.description = params.description
+    }
+}
+
+export class UpdatePermissionMessage extends Msg {
+    /**
+     * @param {object} params
+     * @param {string} params.id
+     * @param {string} params.value
+     */
+    constructor(params) {
+        super()
+        this.id = params.id
+        this.value = params.value
+    }
+}
+
+export class CloseMessage extends Msg {}
+
+export class CheckBrokenSiteReportHandledMessage extends Msg {}
+
+/**
+ * Use this Message to request a fresh email alias for a logged-in user.
+ */
+export class RefreshEmailAliasMessage extends Msg {}
+
+/**
+ * Use this message to indicate that a native platform should open
+ * the 'options' page.
+ */
+export class OpenOptionsMessage extends Msg {}
+
+/**
+ * Use this message to indicate that a native platform should open a search window with
+ * the given term.
+ */
+export class SearchMessage extends Msg {
+    /**
+     * @param {object} params
+     * @param {string} params.term
+     */
+    constructor(params) {
+        super()
+        this.term = params.term
+    }
+}
+
+/**
+ * @template {SetListsMessage|SubmitBrokenSiteReportMessage|UpdatePermissionMessage|CheckBrokenSiteReportHandledMessage|CloseMessage|RefreshEmailAliasMessage|OpenOptionsMessage} T
+ * @template {unknown} [Response=unknown]
+ * @param {T} message
+ * @returns {Promise<any>}
+ */
+export async function fetcher(message) {
+    throw new Error('must implement')
+}

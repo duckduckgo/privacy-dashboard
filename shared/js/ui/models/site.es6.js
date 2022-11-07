@@ -4,6 +4,7 @@ import { httpsMessages } from '../../../data/constants'
 import browserUIWrapper, { platform } from '../../browser/communication.es6.js'
 import { i18n } from '../base/localize.es6'
 import { createPlatformFeatures } from '../platform-features'
+import { CheckBrokenSiteReportHandledMessage, CloseMessage, SetListsMessage, UpdatePermissionMessage } from '../../browser/common.es6'
 
 // We consider major tracker networks as those found on this percentage of sites
 // that we crawl
@@ -49,6 +50,10 @@ function Site(attrs) {
  * @property {boolean} disabled
  * @property {any[] | null} permissions
  * @property {import('../../browser/utils/request-details').TabData} tab
+ */
+
+/**
+ * @typedef {{ tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} LocalThis
  */
 
 Site.prototype = $.extend({}, Parent.prototype, {
@@ -139,7 +144,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{ tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} */
     updatePermission: function (id, value) {
         if (!this.permissions) return
 
@@ -152,7 +157,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.set('permissions', updatedPermissions)
 
         try {
-            this.fetch({ updatePermission: { id, value } })
+            this.fetch(new UpdatePermissionMessage({ id, value }))
         } catch (e) {
             console.error('updatePermission error', e)
         }
@@ -243,7 +248,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         })
         return names
     },
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {LocalThis} */
     initAllowlisted: function (allowListValue, denyListValue) {
         this.isAllowlisted = allowListValue
         this.isDenylisted = denyListValue
@@ -263,46 +268,42 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.set('protectionsEnabled', this.protectionsEnabled)
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & Site} */
+    /** @this {LocalThis} */
     toggleAllowlist: function () {
-        const fetches = []
-        this.acceptingUpdates = false
+        /** @type {SetListsMessage["lists"]} */
+        const lists = []
+        this.set('acceptingUpdates', false)
         if (this.tab && this.tab.domain) {
             if (this.isBroken) {
-                // this.initAllowlisted(this.isAllowlisted, !this.isDenylisted)
-                fetches.push(this.setList('denylisted', this.tab.domain, !this.isDenylisted))
+                lists.push({
+                    list: 'denylisted',
+                    domain: this.tab.domain,
+                    value: !this.isDenylisted,
+                })
             } else {
                 // Explicitly remove all denylisting if the site is isn't broken. This covers the case when the site has been removed from the list.
-                fetches.push(this.setList('denylisted', this.tab.domain, false))
-                // this.initAllowlisted(!this.isAllowlisted)
-                fetches.push(this.setList('allowlisted', this.tab.domain, !this.isAllowlisted))
+                lists.push({
+                    list: 'denylisted',
+                    domain: this.tab.domain,
+                    value: false,
+                })
+                lists.push({
+                    list: 'allowlisted',
+                    domain: this.tab.domain,
+                    value: !this.isAllowlisted,
+                })
             }
         }
-        // if the platform supports showing a spinner, make it display
-        if (this.features.spinnerFollowingProtectionsToggle && fetches.length > 0) {
-            this.tab.isPendingUpdates = true
-            // force a re-render without fetching new data
-            this.set('disabled', false)
-        }
-
-        Promise.all(fetches)
-            .then(() => {
-                if (this.tab.id) {
-                    return this.fetch({ postToggleAllowlist: { id: this.tab.id } })
-                }
-            })
-            .catch((e) => console.error(e))
+        this.setLists(lists).catch((e) => console.error(e))
     },
 
-    setList(list, domain, value) {
+    /**
+     * @param {SetListsMessage["lists"]} lists
+     * @returns {Promise<boolean>}
+     */
+    async setLists(lists) {
         try {
-            return this.fetch({
-                setList: {
-                    list,
-                    domain,
-                    value,
-                },
-            })
+            return this.fetch(new SetListsMessage({ lists }))
         } catch (e) {
             console.error('setList error', e)
             return false
@@ -313,19 +314,22 @@ Site.prototype = $.extend({}, Parent.prototype, {
         return []
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /**
+     * @this {LocalThis}
+     * @return {Promise<boolean>}
+     */
     checkBrokenSiteReportHandled: function () {
         try {
-            return this.fetch({ checkBrokenSiteReportHandled: true })
+            return this.fetch(new CheckBrokenSiteReportHandledMessage())
         } catch (e) {
             console.error('checkBrokenSiteReportHandled error', e)
-            return false
+            return Promise.resolve(false)
         }
     },
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {LocalThis} */
     close: function () {
         try {
-            this.fetch({ closePrivacyDashboard: true })
+            this.fetch(new CloseMessage())
         } catch (e) {
             console.error('close error', e)
         }

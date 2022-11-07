@@ -18,9 +18,6 @@ function Search(ops) {
         [this.$form, 'submit', this._handleSubmit],
         [this.$cogbutton, 'click', this._handleCogClick],
     ])
-
-    // todo(Shane): Should we still auto-focus this field?
-    // window.setTimeout(() => this.$input.focus(), 200)
 }
 
 Search.prototype = $.extend({}, Parent.prototype, {

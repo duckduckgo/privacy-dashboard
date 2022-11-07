@@ -106,3 +106,22 @@ test.describe('localization', () => {
         await page.locator('"La connexion est chiffrée"').click()
     })
 })
+
+test.describe('Protections toggle', () => {
+    test('pressing toggle should disable protections', async ({ page, androidMocks }) => {
+        await page.locator('[aria-checked="true"]').click()
+        await page.waitForTimeout(500)
+        // @ts-ignore
+        const calls = await androidMocks.outgoing()
+        expect(calls).toMatchObject([['toggleAllowlist', false]])
+    })
+})
+
+test.describe('Close', () => {
+    test('pressing close should call native API', async ({ page, androidMocks }) => {
+        await page.locator('[aria-label="Back"]').click()
+        // @ts-ignore
+        const calls = await androidMocks.outgoing()
+        expect(calls).toMatchObject([['close', undefined]])
+    })
+})

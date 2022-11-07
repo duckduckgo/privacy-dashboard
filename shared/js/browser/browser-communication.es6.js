@@ -8,14 +8,20 @@
  */
 import {
     breakageReportRequestSchema,
-    extensionGetPrivacyDashboardDataSchema,
+    getPrivacyDashboardDataSchema,
+    refreshAliasResponseSchema,
     setListOptionsSchema,
 } from '../../../schema/__generated__/schema.parsers'
-import parseUserAgentString from '../shared-utils/parse-user-agent-string.es6'
-import { setupColorScheme } from './common.es6'
+import {
+    CheckBrokenSiteReportHandledMessage,
+    OpenOptionsMessage,
+    RefreshEmailAliasMessage,
+    SearchMessage,
+    SetListsMessage,
+    setupColorScheme,
+    SubmitBrokenSiteReportMessage,
+} from './common.es6'
 import { Protections, createTabData } from './utils/request-details'
-
-const browserInfo = parseUserAgentString()
 
 let channel
 const isPendingUpdates = false
@@ -24,26 +30,54 @@ export function setup() {
     setupColorScheme()
 }
 
-export function fetch(message) {
-    console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2))
+/**
+ * @type {import("./common.es6").fetcher}
+ */
+export async function fetch(message) {
+    // console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2))
     // ensure the HTML form is shown for the extension
-    if (message.checkBrokenSiteReportHandled) {
+    if (message instanceof CheckBrokenSiteReportHandledMessage) {
         return false
     }
-    if (message.submitBrokenSiteReport) {
-        return submitBrokenSiteReport(message.submitBrokenSiteReport)
+    if (message instanceof SubmitBrokenSiteReportMessage) {
+        return submitBrokenSiteReport(message)
     }
-    if (message.setList) {
-        return setList(message.setList)
+    if (message instanceof SetListsMessage) {
+        return setLists(message)
     }
-    return new Promise((resolve, reject) => {
-        if (message.postToggleAllowlist) {
-            postToggleAllowlist(message.postToggleAllowlist.id)
-            return
-        }
-        console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
+    if (message instanceof SearchMessage) {
+        return search(message)
+    }
+    if (message instanceof RefreshEmailAliasMessage) {
+        return refreshAlias()
+    }
+    if (message instanceof OpenOptionsMessage) {
+        return openOptions()
+    }
+    return new Promise((resolve) => {
+        // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
         window.chrome.runtime.sendMessage(message, (result) => {
-            console.log('🚀✅ [RESPONSE]', JSON.stringify(result, null, 2))
+            // console.log('🚀✅ [RESPONSE]', JSON.stringify(result, null, 2))
+            resolve(result)
+        })
+    })
+}
+
+/**
+ * @param {string} name
+ * @param [data]
+ * @returns {Promise<any>}
+ */
+function toExtensionMessage(name, data) {
+    const outgoing = {
+        messageType: name,
+        options: data,
+    }
+    return new Promise((resolve) => {
+        window.chrome.runtime.sendMessage(outgoing, (result) => {
+            if (window.chrome.runtime.lastError) {
+                console.error('window.chrome.runtime.lastError', window.chrome.runtime.lastError)
+            }
             resolve(result)
         })
     })
@@ -65,36 +99,110 @@ export function fetch(message) {
  */
 export async function submitBrokenSiteReport(report) {
     const parsedInput = breakageReportRequestSchema.parse(report)
-    await window.chrome.runtime.sendMessage({
-        messageType: 'submitBrokenSiteReport',
-        options: parsedInput,
-    })
+    toExtensionMessage('submitBrokenSiteReport', parsedInput)
 }
 
 /**
- * {@inheritDoc common.setList}
- * @type {import("./common.es6").setList}
+ * {@inheritDoc common.setLists}
+ * @type {import("./common.es6").setLists}
  * @category Extension Messages
  *
  * @example
  *
  * ```javascript
  * window.chrome.runtime.sendMessage({
- *    messageType: 'setList',
+ *    messageType: 'setLists',
  *    options: {
- *        list: 'allowlist',
- *        domain: 'https://example.com',
- *        value: true
+ *      lists: [
+ *        {
+ *          list: 'allowlist',
+ *          domain: 'https://example.com',
+ *          value: true
+ *        },
+ *        {
+ *          list: 'denylist',
+ *          domain: 'https://example.com',
+ *          value: false
+ *        },
+ *      ]
  *    }
  * })
  * ```
  */
-export async function setList(options) {
+export async function setLists(options) {
     const parsedInput = setListOptionsSchema.parse(options)
-    await window.chrome.runtime.sendMessage({
-        messageType: 'setList',
-        options: parsedInput,
-    })
+    return toExtensionMessage('setLists', parsedInput)
+}
+
+/**
+ * {@inheritDoc common.refreshAlias}
+ * @type {import("./common.es6").refreshAlias}
+ * @category Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'refreshAlias',
+ * })
+ * ```
+ */
+export async function refreshAlias() {
+    const result = await toExtensionMessage('refreshAlias')
+    return refreshAliasResponseSchema.parse(result)
+}
+
+/**
+ * {@inheritDoc common.search}
+ * @type {import("./common.es6").search}
+ * @category Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'search',
+ *    options: {
+ *        term: 'nike'
+ *    }
+ * })
+ * ```
+ */
+export async function search(options) {
+    return toExtensionMessage('search', options)
+}
+
+/**
+ * {@inheritDoc common.openOptions}
+ * @type {import("./common.es6").openOptions}
+ * @category Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'openOptions'
+ * })
+ * ```
+ */
+export async function openOptions() {
+    return toExtensionMessage('openOptions')
+}
+
+/**
+ * @param {number|null} tabId
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').GetPrivacyDashboardData>}
+ * @category Extension Messages
+ *
+ * @example
+ * ```js
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'getPrivacyDashboardData',
+ *    options: {
+ *        tabId: 99234
+ *    }
+ * })
+ * ```
+ */
+export async function getPrivacyDashboardData(tabId) {
+    return toExtensionMessage('getPrivacyDashboardData', { tabId })
 }
 
 export function backgroundMessage(_channel) {
@@ -118,9 +226,10 @@ export function backgroundMessage(_channel) {
 export async function getBackgroundTabData() {
     // @ts-ignore
     const tabIdParam = new URL(document.location.href).searchParams.get('tabId')
-    const tabId = tabIdParam || 0
-    const resp = await fetch({ messageType: 'getPrivacyDashboardData', options: { tabId: tabId } })
-    const parsedMessageData = extensionGetPrivacyDashboardDataSchema.safeParse(resp)
+    const isNumeric = !Number.isNaN(Number(tabIdParam))
+    const tabId = isNumeric ? Number(tabIdParam) : null
+    const resp = await getPrivacyDashboardData(tabId)
+    const parsedMessageData = getPrivacyDashboardDataSchema.safeParse(resp)
 
     if (parsedMessageData.success === true) {
         const { tab, emailProtectionUserData, requestData } = parsedMessageData.data
@@ -159,60 +268,4 @@ export async function getBackgroundTabData() {
     return {
         tab: createTabData('https://example.com', false, protections, { requests: [] }),
     }
-}
-
-const getExtensionURL = (path) => {
-    return window.chrome.runtime.getURL(path)
-}
-
-const openExtensionPage = (path) => {
-    window.chrome.tabs.create({ url: getExtensionURL(path) })
-}
-
-export const openOptionsPage = (browser) => {
-    if (browser === 'moz') {
-        openExtensionPage('/html/options.html')
-        window.close()
-    } else {
-        window.chrome.runtime.openOptionsPage()
-    }
-}
-
-export const search = (url) => {
-    if (browserInfo?.os) {
-        window.chrome.tabs.create({ url: `https://duckduckgo.com/?q=${url}&bext=${browserInfo.os}cr` })
-    }
-}
-
-const reloadTab = (id) => {
-    try {
-        window.chrome.tabs.reload(id)
-    } catch (e) {
-        console.error(e)
-    }
-    // window.chrome.tabs.reload(id)
-}
-
-const closePopup = () => {
-    try {
-        const w = window.chrome.extension.getViews({ type: 'popup' })[0]
-        w.close()
-    } catch (e) {
-        console.error(e)
-    }
-}
-
-export const openNewTab = (url) => {
-    try {
-        window.chrome.tabs.create({ url })
-    } catch (e) {
-        console.error(e)
-    }
-}
-
-const postToggleAllowlist = (tabId) => {
-    setTimeout(() => {
-        reloadTab(tabId)
-        closePopup()
-    }, 500)
 }

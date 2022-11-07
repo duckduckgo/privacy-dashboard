@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ExtensionMessageSetListOptions",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["messageType", "options"],
+    "properties": {
+        "messageType": {
+            "type": "string",
+            "const": "setLists"
+        },
+        "options": {
+            "$ref": "./set-list-options.json"
+        }
+    }
+}

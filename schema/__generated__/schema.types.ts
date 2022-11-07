@@ -44,11 +44,15 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
  */
 export interface API {
   "request-data": RequestData;
-  "extension-message-get-privacy-dashboard-data": ExtensionGetPrivacyDashboardData;
+  "extension-message-get-privacy-dashboard-data": ExtensionMessageGetPrivacyDashboardData;
+  "get-privacy-dashboard-data"?: GetPrivacyDashboardData;
+  "search-message"?: Search;
   "breakage-report": BreakageReport;
   "set-list"?: SetListOptions;
   "windows-view-model": WindowsViewModel;
   "locale-settings"?: LocaleSettings;
+  "refresh-alias-response"?: RefreshAliasResponse;
+  exe?: ExtensionMessageSetListOptions;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -173,7 +177,19 @@ export interface StateAllowed {
 /**
  * This describes the data that the extension needs to provide
  */
-export interface ExtensionGetPrivacyDashboardData {
+export interface ExtensionMessageGetPrivacyDashboardData {
+  messageType: "getPrivacyDashboardData";
+  options: {
+    /**
+     * If we send a tabId, it's likely because the dashboard was loaded for debugging. But if we send `null` we expect the extension to figure out the correct tab
+     */
+    tabId?: number | null;
+  };
+}
+/**
+ * This describes the data that the extension needs to provide
+ */
+export interface GetPrivacyDashboardData {
   requestData: RequestData;
   emailProtectionUserData?: EmailProtectionUserData;
   tab: Tab;
@@ -236,6 +252,9 @@ export interface ParentEntity {
   displayName: string;
   prevalence: number;
 }
+export interface Search {
+  term: string;
+}
 /**
  * The data sent in a Breakage Report
  */
@@ -255,16 +274,15 @@ export interface BreakageReportRequest {
    */
   description?: string;
 }
-/**
- * The data sent when setting a list
- */
 export interface SetListOptions {
-  /**
-   * `allowlist` if this domain should be added/removed from the users allowlist. `denylist` if this domain should be added/removed from the users denylist (remote overrides)
-   */
-  list: "allowlisted" | "denylisted";
-  domain: string;
-  value: boolean;
+  lists: {
+    /**
+     * `allowlist` if this domain should be added/removed from the users allowlist. `denylist` if this domain should be added/removed from the users denylist (remote overrides)
+     */
+    list: "allowlisted" | "denylisted";
+    domain: string;
+    value: boolean;
+  }[];
 }
 /**
  * This describes the required data for the dashboard
@@ -277,5 +295,13 @@ export interface WindowsViewModel {
   parentEntity?: ParentEntity;
   permissions?: unknown[];
   certificates?: unknown[];
+}
+export interface RefreshAliasResponse {
+  personalAddress: string;
+  privateAddress: string;
+}
+export interface ExtensionMessageSetListOptions {
+  messageType: "setLists";
+  options: SetListOptions;
 }
 

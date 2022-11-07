@@ -17,7 +17,14 @@
  */
 import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
 import { isIOS } from '../ui/environment-check'
-import { getContentHeight, setupColorScheme, setupMutationObserver } from './common.es6'
+import {
+    getContentHeight,
+    SetListsMessage,
+    setupColorScheme,
+    setupMutationObserver,
+    SubmitBrokenSiteReportMessage,
+    UpdatePermissionMessage,
+} from './common.es6'
 import { createTabData } from './utils/request-details'
 
 let channel = null
@@ -153,40 +160,35 @@ export function onChangeLocale(payload) {
 
 /**
  * @category Internal API
- * @param message
- * @returns {any}
+ * @type {import("./common.es6").fetcher}
  */
-const fetch = (message) => {
-    if (!window.webkit) {
-        console.error('window.webkit not available')
-        return
-    }
-
-    if (message.submitBrokenSiteReport) {
+async function fetch(message) {
+    if (message instanceof SubmitBrokenSiteReportMessage) {
         privacyDashboardSubmitBrokenSiteReport({
-            category: message.submitBrokenSiteReport.category,
-            description: message.submitBrokenSiteReport.description,
+            category: message.category,
+            description: message.description,
         })
         return
     }
 
-    if (message.setList) {
-        const { list, value } = message.setList
-        if (list !== 'allowlisted') {
-            console.warn('only `allowlisted` is currently supported on macos')
-            return
+    if (message instanceof SetListsMessage) {
+        for (const listItem of message.lists) {
+            const { list, value } = listItem
+            if (list !== 'allowlisted') {
+                console.warn('only `allowlisted` is currently supported on macos')
+                continue
+            }
+            // `allowlisted: true` means the user disabled protections.
+            // so `isProtected` is the opposite of `allowlisted`.
+            const isProtected = value === false
+            window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
         }
-
-        // `allowlisted: true` means the user disabled protections.
-        // so `isProtected` is the opposite of `allowlisted`.
-        const isProtected = value === false
-        window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
     }
 
-    if (message.updatePermission) {
+    if (message instanceof UpdatePermissionMessage) {
         window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
-            permission: message.updatePermission.id,
-            value: message.updatePermission.value,
+            permission: message.id,
+            value: message.value,
         })
     }
 }

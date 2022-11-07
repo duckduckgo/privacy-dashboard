@@ -79,6 +79,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.$toggle.toggleClass('toggle-button--is-active-false')
 
         // on platforms that support spinners, just replace the HTML
+        // after allowing 300ms for the animation
         if (this.features.spinnerFollowingProtectionsToggle) {
             setTimeout(() => {
                 this.$toggleparent.html(renderUpdatingSpinner())
@@ -138,10 +139,16 @@ Site.prototype = $.extend({}, Parent.prototype, {
             return
         }
 
-        const isHandledExternally = this.model.checkBrokenSiteReportHandled()
-        if (!isHandledExternally) {
-            this.showBreakageForm('reportBrokenSite')
-        }
+        this.model
+            .checkBrokenSiteReportHandled()
+            .then((handled) => {
+                if (!handled) {
+                    this.showBreakageForm('reportBrokenSite')
+                }
+            })
+            .catch((e) => {
+                console.error('could not check')
+            })
     },
 
     // pass clickSource to specify whether page should reload

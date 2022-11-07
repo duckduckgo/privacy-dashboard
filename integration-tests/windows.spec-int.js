@@ -56,3 +56,19 @@ test.describe('setting the height', () => {
         expect(calls.length).toBe(2)
     })
 })
+
+test.describe('Protections toggle', () => {
+    test('pressing toggle should disable protections', async ({ page, windowsMocks }) => {
+        await page.locator('[aria-pressed="true"]').click()
+        await page.waitForTimeout(500)
+        // @ts-ignore
+        const calls = await windowsMocks.outgoing({ names: ['AddToAllowListCommand'] })
+        expect(calls).toMatchObject([
+            {
+                Feature: 'PrivacyDashboard',
+                Name: 'AddToAllowListCommand',
+                Data: undefined,
+            },
+        ])
+    })
+})

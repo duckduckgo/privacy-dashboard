@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Search",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["term"],
+    "properties": {
+        "term": {
+            "type": "string"
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import $ from 'jquery'
-import browserUIWrapper from '../../browser/communication.es6.js'
 import Parent from '../base/model.es6'
+import { OpenOptionsMessage, SearchMessage } from '../../browser/common.es6'
 
 /** @this {any} */
 function Search(attrs) {
@@ -10,20 +10,20 @@ function Search(attrs) {
 Search.prototype = $.extend({}, Parent.prototype, {
     modelName: 'search',
 
+    /**
+     * @this {import('./site.es6').LocalThis}
+     * @param searchTerm
+     */
     doSearch: function (searchTerm) {
         this.searchText = searchTerm
-        searchTerm = encodeURIComponent(searchTerm)
-        browserUIWrapper.search(searchTerm)
+        this.fetch(new SearchMessage({ term: searchTerm }))
     },
 
+    /**
+     * @this {import('./site.es6').LocalThis}
+     */
     openOptionsPage: function () {
-        this.fetch({ messageType: 'getBrowser' })
-            .then((browserName) => {
-                browserUIWrapper.openOptionsPage(browserName)
-            })
-            .catch((e) => {
-                console.error('openOptionsPage', e)
-            })
+        this.fetch(new OpenOptionsMessage())
     },
 })
 

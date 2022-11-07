@@ -21,7 +21,7 @@
  *
  * @category integrations
  */
-import { setupColorScheme } from './common.es6'
+import { CheckBrokenSiteReportHandledMessage, CloseMessage, setupColorScheme } from './common.es6'
 import {
     backgroundMessage,
     getBackgroundTabData,
@@ -70,26 +70,20 @@ export function privacyDashboardShowReportBrokenSite(args) {
 
 /**
  * @category Internal API
- * @param message
- * @returns {boolean|undefined}
+ * @type {import("./common.es6").fetcher}
  */
-const fetch = (message) => {
-    if (!window.webkit) {
-        console.error('window.webkit not available')
-        return
-    }
-
-    if (message.closePrivacyDashboard) {
+async function fetch(message) {
+    if (message instanceof CloseMessage) {
         privacyDashboardClose({})
         return
     }
 
-    if (message.checkBrokenSiteReportHandled) {
+    if (message instanceof CheckBrokenSiteReportHandledMessage) {
         privacyDashboardShowReportBrokenSite({})
         return true // Return true to prevent HTML form from showing
     }
 
-    macosFetch(message)
+    return macosFetch(message)
 }
 
 export { backgroundMessage, getBackgroundTabData, fetch }

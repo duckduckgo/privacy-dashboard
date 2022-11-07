@@ -31,7 +31,14 @@
  * @category integrations
  */
 import { windowsViewModelSchema } from '../../../schema/__generated__/schema.parsers'
-import { assert, setupColorScheme, setupMutationObserver } from './common.es6'
+import {
+    assert,
+    SetListsMessage,
+    setupColorScheme,
+    setupMutationObserver,
+    SubmitBrokenSiteReportMessage,
+    UpdatePermissionMessage,
+} from './common.es6'
 import { createTabData } from './utils/request-details'
 
 let channel = null
@@ -120,42 +127,42 @@ function windowsPostMessage(name, data) {
     })
 }
 
-const fetch = (message) => {
-    if (!window.chrome.webview) {
-        console.error('window.chrome.webview not available')
-        return
-    }
-
-    if (message.submitBrokenSiteReport) {
+/**
+ * @type {import("./common.es6").fetcher}
+ */
+async function fetch(message) {
+    if (message instanceof SubmitBrokenSiteReportMessage) {
         SubmitBrokenSiteReport({
-            category: message.submitBrokenSiteReport.category,
-            description: message.submitBrokenSiteReport.description,
+            category: message.category,
+            description: message.description,
         })
         return
     }
 
-    if (message.setList) {
-        const { list, value } = message.setList
-        if (list !== 'allowlisted') {
-            console.warn('only `allowlisted` is currently supported on windows')
-            return
-        }
+    if (message instanceof SetListsMessage) {
+        for (const listItem of message.lists) {
+            const { list, value } = listItem
+            if (list !== 'allowlisted') {
+                console.warn('only `allowlisted` is currently supported on windows')
+                continue
+            }
 
-        // `allowlisted: true` means the user disabled protections.
-        // so `isProtected` is the opposite of `allowlisted`.
-        const isProtected = value === false
+            // `allowlisted: true` means the user disabled protections.
+            // so `isProtected` is the opposite of `allowlisted`.
+            const isProtected = value === false
 
-        if (isProtected) {
-            windowsPostMessage('RemoveFromAllowListCommand')
-        } else {
-            windowsPostMessage('AddToAllowListCommand')
+            if (isProtected) {
+                windowsPostMessage('RemoveFromAllowListCommand')
+            } else {
+                windowsPostMessage('AddToAllowListCommand')
+            }
         }
     }
 
-    if (message.updatePermission) {
+    if (message instanceof UpdatePermissionMessage) {
         windowsPostMessage('SetPermissionCommand', {
-            permission: message.updatePermission.id,
-            value: message.updatePermission.value,
+            permission: message.id,
+            value: message.value,
         })
     }
 }
@@ -234,6 +241,10 @@ const getBackgroundTabData = () => {
 }
 
 export function setup() {
+    if (!window.chrome.webview) {
+        console.error('window.chrome.webview not available')
+        return
+    }
     setupColorScheme()
     assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required')
     window.chrome.webview.addEventListener('message', (event) => handleViewModelUpdate(event.data))

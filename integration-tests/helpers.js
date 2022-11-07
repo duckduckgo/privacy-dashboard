@@ -2,13 +2,15 @@ import { dataStates, defaultCertificates } from '../shared/js/ui/views/tests/gen
 
 /**
  * @param {import('@playwright/test').Page} page
- * @param {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} privacyDashboardData
+ * @param {import('../schema/__generated__/schema.types').GetPrivacyDashboardData} privacyDashboardData
  */
 export async function withExtensionRequests(page, privacyDashboardData) {
     const messages = {
         submitBrokenSiteReport: {},
         getPrivacyDashboardData: privacyDashboardData,
-        setList: {},
+        setLists: {},
+        search: {},
+        openOptions: {},
     }
     await page.addInitScript((messages) => {
         try {
@@ -69,7 +71,7 @@ export async function withExtensionRequests(page, privacyDashboardData) {
                     const matchingMessage = window.__playwright.messages[message.messageType]
                     if (matchingMessage) {
                         window.__playwright.mocks.outgoing.push(message)
-                        console.log(`addInitScript.sendMessage -> ${JSON.stringify(message)}`)
+                        // console.log(`addInitScript.sendMessage -> ${JSON.stringify(message)}`)
                         send(() => cb(matchingMessage), 200)
                     } else {
                         console.log(`❌ [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`)
@@ -198,7 +200,7 @@ export function forwardConsole(page) {
 export async function withAndroidRequests(page, requestData, tab = {}) {
     const messages = {
         submitBrokenSiteReport: {},
-        /** @type {import('../schema/__generated__/schema.types').ExtensionGetPrivacyDashboardData} */
+        /** @type {import('../schema/__generated__/schema.types').GetPrivacyDashboardData} */
         getPrivacyDashboardData: {
             /** @type {import('../schema/__generated__/schema.types').Tab} */
             tab: {
@@ -307,6 +309,11 @@ export async function withWebkitMocks(page) {
                     privacyDashboardSetSize: {
                         postMessage: (arg) => {
                             window.__playwright.mocks.outgoing.push(['privacyDashboardSetSize', arg])
+                        },
+                    },
+                    privacyDashboardClose: {
+                        postMessage: (arg) => {
+                            window.__playwright.mocks.outgoing.push(['privacyDashboardClose', arg])
                         },
                     },
                 },

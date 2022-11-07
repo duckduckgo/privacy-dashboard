@@ -52,7 +52,6 @@ test.describe('initial page data', () => {
                 options: { tabId: 0 },
             },
         ])
-        // await page.pause()
         await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 500 })
         await expect(page).toHaveScreenshot('no-requests.png')
     })
@@ -112,33 +111,18 @@ test.describe('Protections toggle', () => {
     test.describe('when a site is NOT allowlisted', () => {
         test('then pressing toggle should disable protections', async ({ page, extensionMocks }) => {
             await page.locator('[aria-pressed="true"]').click()
-            await page.waitForTimeout(1000)
             // @ts-ignore
-            const out = await extensionMocks.outgoing({ names: ['setList'] })
+            const out = await extensionMocks.outgoing({ names: ['setLists'] })
             expect(out).toMatchObject([
                 {
-                    messageType: 'setList',
+                    messageType: 'setLists',
                     options: {
-                        list: 'denylisted',
-                        domain: 'example.com',
-                        value: false,
+                        lists: [
+                            { list: 'denylisted', domain: 'example.com', value: false },
+                            { list: 'allowlisted', domain: 'example.com', value: true },
+                        ],
                     },
                 },
-                {
-                    messageType: 'setList',
-                    options: {
-                        list: 'allowlisted',
-                        domain: 'example.com',
-                        value: true, // <-- this turns off protections
-                    },
-                },
-            ])
-            // @ts-ignore
-            const calls = await extensionMocks.calls()
-            expect(calls).toMatchObject([
-                ['reload', 1533],
-                ['getViews', { type: 'popup' }],
-                ['close', undefined],
             ])
         })
     })
@@ -162,24 +146,16 @@ test.describe('Protections toggle', () => {
             await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
             await expect(page).toHaveScreenshot('allow-listed.png')
             await page.locator('[aria-pressed="false"]').click()
-            await page.waitForTimeout(1000)
             // @ts-ignore
-            const out = await requests.outgoing({ names: ['setList'] })
+            const out = await requests.outgoing({ names: ['setLists'] })
             expect(out).toMatchObject([
                 {
-                    messageType: 'setList',
+                    messageType: 'setLists',
                     options: {
-                        list: 'denylisted',
-                        domain: 'example.com',
-                        value: false,
-                    },
-                },
-                {
-                    messageType: 'setList',
-                    options: {
-                        list: 'allowlisted',
-                        domain: 'example.com',
-                        value: false, // <-- This is protections being re-enabled
+                        lists: [
+                            { list: 'denylisted', domain: 'example.com', value: false },
+                            { list: 'allowlisted', domain: 'example.com', value: false },
+                        ],
                     },
                 },
             ])
@@ -205,17 +181,12 @@ test.describe('Protections toggle', () => {
             await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
             await expect(page).toHaveScreenshot('content-blocking-disabled.png')
             await page.locator('[aria-pressed="false"]').click()
-            await page.waitForTimeout(1000)
             // @ts-ignore
-            const out = await requests.outgoing({ names: ['setList'] })
+            const out = await requests.outgoing({ names: ['setLists'] })
             expect(out).toMatchObject([
                 {
-                    messageType: 'setList',
-                    options: {
-                        list: 'denylisted',
-                        domain: 'example.com',
-                        value: true, // <-- This is protections being re-enabled by the user, overriding us
-                    },
+                    messageType: 'setLists',
+                    options: { lists: [{ list: 'denylisted', domain: 'example.com', value: true }] },
                 },
             ])
         })
@@ -252,8 +223,8 @@ test.describe('special page (cta)', () => {
 })
 
 test.describe('search', () => {
-    test.skip('should not lose text when re-render occurs', async ({ page }) => {
-        await withExtensionRequests(page, {
+    test('should not lose text when re-render occurs', async ({ page }) => {
+        const requests = await withExtensionRequests(page, {
             requestData: { requests: [] },
             tab: {
                 id: 1533,
@@ -276,5 +247,31 @@ test.describe('search', () => {
         })
         await page.waitForTimeout(500) // allow time for a re-render
         await expect(page.locator('[placeholder="Search DuckDuckGo"]')).toHaveValue('nike')
+        await page.locator('[type="submit"]').click()
+        const outgoing = await requests.outgoing({ names: ['search'] })
+        expect(outgoing).toMatchObject([{ messageType: 'search', options: { term: 'nike' } }])
+    })
+})
+
+test.describe('options', () => {
+    test('should open options page', async ({ page }) => {
+        const requests = await withExtensionRequests(page, {
+            requestData: { requests: [] },
+            tab: {
+                id: 1533,
+                url: 'https://example.com',
+                upgradedHttps: false,
+                protections: {
+                    denylisted: false,
+                    allowlisted: false,
+                    enabledFeatures: [],
+                    unprotectedTemporary: false,
+                },
+            },
+        })
+        await page.goto(HTML)
+        await page.locator('[aria-label="More options"]').click()
+        const outgoing = await requests.outgoing({ names: ['openOptions'] })
+        expect(outgoing).toMatchObject([{ messageType: 'openOptions' }])
     })
 })

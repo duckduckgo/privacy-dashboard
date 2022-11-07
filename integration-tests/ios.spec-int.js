@@ -115,6 +115,18 @@ test.describe('localization', () => {
     })
 })
 
+test.describe('Close', () => {
+    test('pressing close should call native API on iOS', async ({ page }) => {
+        forwardConsole(page)
+        await page.goto(HTML)
+        const requests = await withWebkitMocks(page)
+        await playTimeline(page, ['state:04'])
+        await page.locator('"Done"').click()
+        const calls = await requests.outgoing({ names: ['privacyDashboardClose'] })
+        expect(calls).toMatchObject([['privacyDashboardClose', {}]])
+    })
+})
+
 test.describe('states', () => {
     test('01', async ({ page }) => {
         const state = new StateTest(page, 'ios', '01')

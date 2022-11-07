@@ -28308,7 +28308,7 @@ module.exports={
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.windowsViewModelSchema = exports.tabSchema = exports.stateBlockedSchema = exports.stateAllowedSchema = exports.setListOptionsSchema = exports.ruleExceptionReasonSchema = exports.requestDataSchema = exports.protectionsStatusSchema = exports.protectionsDisabledReasonSchema = exports.parentEntitySchema = exports.ownedByFirstPartyReasonSchema = exports.otherThirdPartyRequestReasonSchema = exports.localeSettingsSchema = exports.extensionGetPrivacyDashboardDataSchema = exports.emailProtectionUserDataSchema = exports.detectedRequestSchema = exports.breakageReportSchema = exports.breakageReportRequestSchema = exports.apiSchema = exports.adClickAttributionReasonSchema = void 0;
+exports.windowsViewModelSchema = exports.tabSchema = exports.stateBlockedSchema = exports.stateAllowedSchema = exports.setListOptionsSchema = exports.searchSchema = exports.ruleExceptionReasonSchema = exports.requestDataSchema = exports.refreshAliasResponseSchema = exports.protectionsStatusSchema = exports.protectionsDisabledReasonSchema = exports.parentEntitySchema = exports.ownedByFirstPartyReasonSchema = exports.otherThirdPartyRequestReasonSchema = exports.localeSettingsSchema = exports.getPrivacyDashboardDataSchema = exports.extensionMessageSetListOptionsSchema = exports.extensionMessageGetPrivacyDashboardDataSchema = exports.emailProtectionUserDataSchema = exports.detectedRequestSchema = exports.breakageReportSchema = exports.breakageReportRequestSchema = exports.apiSchema = exports.adClickAttributionReasonSchema = void 0;
 
 var _zod = require("zod");
 
@@ -28347,6 +28347,15 @@ var stateAllowedSchema = _zod.z.object({
 
 exports.stateAllowedSchema = stateAllowedSchema;
 
+var extensionMessageGetPrivacyDashboardDataSchema = _zod.z.object({
+  messageType: _zod.z.literal("getPrivacyDashboardData"),
+  options: _zod.z.object({
+    tabId: _zod.z.number().optional().nullable()
+  })
+});
+
+exports.extensionMessageGetPrivacyDashboardDataSchema = extensionMessageGetPrivacyDashboardDataSchema;
+
 var emailProtectionUserDataSchema = _zod.z.object({
   cohort: _zod.z.string(),
   nextAlias: _zod.z.string(),
@@ -28378,6 +28387,12 @@ var parentEntitySchema = _zod.z.object({
 
 exports.parentEntitySchema = parentEntitySchema;
 
+var searchSchema = _zod.z.object({
+  term: _zod.z.string()
+});
+
+exports.searchSchema = searchSchema;
+
 var breakageReportRequestSchema = _zod.z.object({
   category: _zod.z.string().optional(),
   description: _zod.z.string().optional()
@@ -28386,12 +28401,28 @@ var breakageReportRequestSchema = _zod.z.object({
 exports.breakageReportRequestSchema = breakageReportRequestSchema;
 
 var setListOptionsSchema = _zod.z.object({
-  list: _zod.z.union([_zod.z.literal("allowlisted"), _zod.z.literal("denylisted")]),
-  domain: _zod.z.string(),
-  value: _zod.z["boolean"]()
+  lists: _zod.z.array(_zod.z.object({
+    list: _zod.z.union([_zod.z.literal("allowlisted"), _zod.z.literal("denylisted")]),
+    domain: _zod.z.string(),
+    value: _zod.z["boolean"]()
+  }))
 });
 
 exports.setListOptionsSchema = setListOptionsSchema;
+
+var refreshAliasResponseSchema = _zod.z.object({
+  personalAddress: _zod.z.string(),
+  privateAddress: _zod.z.string()
+});
+
+exports.refreshAliasResponseSchema = refreshAliasResponseSchema;
+
+var extensionMessageSetListOptionsSchema = _zod.z.object({
+  messageType: _zod.z.literal("setLists"),
+  options: setListOptionsSchema
+});
+
+exports.extensionMessageSetListOptionsSchema = extensionMessageSetListOptionsSchema;
 
 var detectedRequestSchema = _zod.z.object({
   url: _zod.z.string(),
@@ -28432,13 +28463,13 @@ var requestDataSchema = _zod.z.object({
 
 exports.requestDataSchema = requestDataSchema;
 
-var extensionGetPrivacyDashboardDataSchema = _zod.z.object({
+var getPrivacyDashboardDataSchema = _zod.z.object({
   requestData: requestDataSchema,
   emailProtectionUserData: emailProtectionUserDataSchema.optional(),
   tab: tabSchema
 });
 
-exports.extensionGetPrivacyDashboardDataSchema = extensionGetPrivacyDashboardDataSchema;
+exports.getPrivacyDashboardDataSchema = getPrivacyDashboardDataSchema;
 
 var windowsViewModelSchema = _zod.z.object({
   protections: protectionsStatusSchema,
@@ -28454,11 +28485,15 @@ exports.windowsViewModelSchema = windowsViewModelSchema;
 
 var apiSchema = _zod.z.object({
   "request-data": requestDataSchema,
-  "extension-message-get-privacy-dashboard-data": extensionGetPrivacyDashboardDataSchema,
+  "extension-message-get-privacy-dashboard-data": extensionMessageGetPrivacyDashboardDataSchema,
+  "get-privacy-dashboard-data": getPrivacyDashboardDataSchema.optional(),
+  "search-message": searchSchema.optional(),
   "breakage-report": breakageReportSchema,
   "set-list": setListOptionsSchema.optional(),
   "windows-view-model": windowsViewModelSchema,
-  "locale-settings": localeSettingsSchema.optional()
+  "locale-settings": localeSettingsSchema.optional(),
+  "refresh-alias-response": refreshAliasResponseSchema.optional(),
+  exe: extensionMessageSetListOptionsSchema.optional()
 });
 
 exports.apiSchema = apiSchema;
@@ -28502,6 +28537,16 @@ var _schema = require("../../../schema/__generated__/schema.parsers");
 var _common = require("./common.es6");
 
 var _requestDetails = require("./utils/request-details");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -28772,37 +28817,54 @@ var PrivacyDashboardJavascriptInterface = /*#__PURE__*/function () {
 exports.PrivacyDashboardJavascriptInterface = PrivacyDashboardJavascriptInterface;
 var privacyDashboardApi; // -----------------------------------------------------------------------------
 
-var fetchAndroid = function fetchAndroid(message) {
-  if (!window.PrivacyDashboard) {
-    console.error('window.PrivacyDashboard not available');
-    return;
-  }
+/**
+ * @type {import("./common.es6").fetcher}
+ */
 
-  if (message.setList) {
-    var _message$setList = message.setList,
-        list = _message$setList.list,
-        value = _message$setList.value;
+function fetchAndroid(_x) {
+  return _fetchAndroid.apply(this, arguments);
+}
 
-    if (list !== 'allowlisted') {
-      console.warn('only `allowlisted` is currently supported on android');
-      return;
-    } // `allowlisted: true` means the user disabled protections.
-    // so `isProtected` is the opposite of `allowlisted`.
+function _fetchAndroid() {
+  _fetchAndroid = _asyncToGenerator(function* (message) {
+    if (message instanceof _common.SetListsMessage) {
+      var _iterator = _createForOfIteratorHelper(message.lists),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var listItem = _step.value;
+          var list = listItem.list,
+              value = listItem.value;
+
+          if (list !== 'allowlisted') {
+            console.warn('only `allowlisted` is currently supported on android');
+            continue;
+          } // `allowlisted: true` means the user disabled protections.
+          // so `isProtected` is the opposite of `allowlisted`.
 
 
-    var isProtected = value === false;
-    privacyDashboardApi.toggleAllowlist(isProtected);
-  }
+          var isProtected = value === false;
+          privacyDashboardApi.toggleAllowlist(isProtected);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
 
-  if (message.closePrivacyDashboard) {
-    privacyDashboardApi.close();
-  }
+    if (message instanceof _common.CloseMessage) {
+      privacyDashboardApi.close();
+    }
 
-  if (message.checkBrokenSiteReportHandled) {
-    privacyDashboardApi.showBreakageForm();
-    return true; // Return true to prevent HTML form from showing
-  }
-};
+    if (message instanceof _common.CheckBrokenSiteReportHandledMessage) {
+      privacyDashboardApi.showBreakageForm();
+      return true; // Return true to prevent HTML form from showing
+    }
+  });
+  return _fetchAndroid.apply(this, arguments);
+}
 
 var getBackgroundTabDataAndroid = function getBackgroundTabDataAndroid() {
   return new Promise(function (resolve) {
@@ -28926,20 +28988,19 @@ Object.defineProperty(exports, "__esModule", {
 exports.backgroundMessage = backgroundMessage;
 exports.fetch = fetch;
 exports.getBackgroundTabData = getBackgroundTabData;
-exports.search = exports.openOptionsPage = exports.openNewTab = void 0;
-exports.setList = setList;
+exports.getPrivacyDashboardData = getPrivacyDashboardData;
+exports.openOptions = openOptions;
+exports.refreshAlias = refreshAlias;
+exports.search = search;
+exports.setLists = setLists;
 exports.setup = setup;
 exports.submitBrokenSiteReport = submitBrokenSiteReport;
 
 var _schema = require("../../../schema/__generated__/schema.parsers");
 
-var _parseUserAgentString = _interopRequireDefault(require("../shared-utils/parse-user-agent-string.es6"));
-
 var _common = require("./common.es6");
 
 var _requestDetails = require("./utils/request-details");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -28951,38 +29012,77 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var browserInfo = (0, _parseUserAgentString["default"])();
 var channel;
 var isPendingUpdates = false;
 
 function setup() {
   (0, _common.setupColorScheme)();
 }
+/**
+ * @type {import("./common.es6").fetcher}
+ */
 
-function fetch(message) {
-  console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2)); // ensure the HTML form is shown for the extension
 
-  if (message.checkBrokenSiteReportHandled) {
-    return false;
-  }
+function fetch(_x) {
+  return _fetch.apply(this, arguments);
+}
+/**
+ * @param {string} name
+ * @param [data]
+ * @returns {Promise<any>}
+ */
 
-  if (message.submitBrokenSiteReport) {
-    return submitBrokenSiteReport(message.submitBrokenSiteReport);
-  }
 
-  if (message.setList) {
-    return setList(message.setList);
-  }
-
-  return new Promise(function (resolve, reject) {
-    if (message.postToggleAllowlist) {
-      postToggleAllowlist(message.postToggleAllowlist.id);
-      return;
+function _fetch() {
+  _fetch = _asyncToGenerator(function* (message) {
+    // console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2))
+    // ensure the HTML form is shown for the extension
+    if (message instanceof _common.CheckBrokenSiteReportHandledMessage) {
+      return false;
     }
 
-    console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2));
-    window.chrome.runtime.sendMessage(message, function (result) {
-      console.log('🚀✅ [RESPONSE]', JSON.stringify(result, null, 2));
+    if (message instanceof _common.SubmitBrokenSiteReportMessage) {
+      return submitBrokenSiteReport(message);
+    }
+
+    if (message instanceof _common.SetListsMessage) {
+      return setLists(message);
+    }
+
+    if (message instanceof _common.SearchMessage) {
+      return search(message);
+    }
+
+    if (message instanceof _common.RefreshEmailAliasMessage) {
+      return refreshAlias();
+    }
+
+    if (message instanceof _common.OpenOptionsMessage) {
+      return openOptions();
+    }
+
+    return new Promise(function (resolve) {
+      // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
+      window.chrome.runtime.sendMessage(message, function (result) {
+        // console.log('🚀✅ [RESPONSE]', JSON.stringify(result, null, 2))
+        resolve(result);
+      });
+    });
+  });
+  return _fetch.apply(this, arguments);
+}
+
+function toExtensionMessage(name, data) {
+  var outgoing = {
+    messageType: name,
+    options: data
+  };
+  return new Promise(function (resolve) {
+    window.chrome.runtime.sendMessage(outgoing, function (result) {
+      if (window.chrome.runtime.lastError) {
+        console.error('window.chrome.runtime.lastError', window.chrome.runtime.lastError);
+      }
+
       resolve(result);
     });
   });
@@ -29003,23 +29103,32 @@ function fetch(message) {
  */
 
 
-function submitBrokenSiteReport(_x) {
+function submitBrokenSiteReport(_x2) {
   return _submitBrokenSiteReport.apply(this, arguments);
 }
 /**
- * {@inheritDoc common.setList}
- * @type {import("./common.es6").setList}
+ * {@inheritDoc common.setLists}
+ * @type {import("./common.es6").setLists}
  * @category Extension Messages
  *
  * @example
  *
  * ```javascript
  * window.chrome.runtime.sendMessage({
- *    messageType: 'setList',
+ *    messageType: 'setLists',
  *    options: {
- *        list: 'allowlist',
- *        domain: 'https://example.com',
- *        value: true
+ *      lists: [
+ *        {
+ *          list: 'allowlist',
+ *          domain: 'https://example.com',
+ *          value: true
+ *        },
+ *        {
+ *          list: 'denylist',
+ *          domain: 'https://example.com',
+ *          value: false
+ *        },
+ *      ]
  *    }
  * })
  * ```
@@ -29030,28 +29139,127 @@ function _submitBrokenSiteReport() {
   _submitBrokenSiteReport = _asyncToGenerator(function* (report) {
     var parsedInput = _schema.breakageReportRequestSchema.parse(report);
 
-    yield window.chrome.runtime.sendMessage({
-      messageType: 'submitBrokenSiteReport',
-      options: parsedInput
-    });
+    toExtensionMessage('submitBrokenSiteReport', parsedInput);
   });
   return _submitBrokenSiteReport.apply(this, arguments);
 }
 
-function setList(_x2) {
-  return _setList.apply(this, arguments);
+function setLists(_x3) {
+  return _setLists.apply(this, arguments);
 }
+/**
+ * {@inheritDoc common.refreshAlias}
+ * @type {import("./common.es6").refreshAlias}
+ * @category Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'refreshAlias',
+ * })
+ * ```
+ */
 
-function _setList() {
-  _setList = _asyncToGenerator(function* (options) {
+
+function _setLists() {
+  _setLists = _asyncToGenerator(function* (options) {
     var parsedInput = _schema.setListOptionsSchema.parse(options);
 
-    yield window.chrome.runtime.sendMessage({
-      messageType: 'setList',
-      options: parsedInput
+    return toExtensionMessage('setLists', parsedInput);
+  });
+  return _setLists.apply(this, arguments);
+}
+
+function refreshAlias() {
+  return _refreshAlias.apply(this, arguments);
+}
+/**
+ * {@inheritDoc common.search}
+ * @type {import("./common.es6").search}
+ * @category Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'search',
+ *    options: {
+ *        term: 'nike'
+ *    }
+ * })
+ * ```
+ */
+
+
+function _refreshAlias() {
+  _refreshAlias = _asyncToGenerator(function* () {
+    var result = yield toExtensionMessage('refreshAlias');
+    return _schema.refreshAliasResponseSchema.parse(result);
+  });
+  return _refreshAlias.apply(this, arguments);
+}
+
+function search(_x4) {
+  return _search.apply(this, arguments);
+}
+/**
+ * {@inheritDoc common.openOptions}
+ * @type {import("./common.es6").openOptions}
+ * @category Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'openOptions'
+ * })
+ * ```
+ */
+
+
+function _search() {
+  _search = _asyncToGenerator(function* (options) {
+    return toExtensionMessage('search', options);
+  });
+  return _search.apply(this, arguments);
+}
+
+function openOptions() {
+  return _openOptions.apply(this, arguments);
+}
+/**
+ * @param {number|null} tabId
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').GetPrivacyDashboardData>}
+ * @category Extension Messages
+ *
+ * @example
+ * ```js
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'getPrivacyDashboardData',
+ *    options: {
+ *        tabId: 99234
+ *    }
+ * })
+ * ```
+ */
+
+
+function _openOptions() {
+  _openOptions = _asyncToGenerator(function* () {
+    return toExtensionMessage('openOptions');
+  });
+  return _openOptions.apply(this, arguments);
+}
+
+function getPrivacyDashboardData(_x5) {
+  return _getPrivacyDashboardData.apply(this, arguments);
+}
+
+function _getPrivacyDashboardData() {
+  _getPrivacyDashboardData = _asyncToGenerator(function* (tabId) {
+    return toExtensionMessage('getPrivacyDashboardData', {
+      tabId: tabId
     });
   });
-  return _setList.apply(this, arguments);
+  return _getPrivacyDashboardData.apply(this, arguments);
 }
 
 function backgroundMessage(_channel) {
@@ -29082,15 +29290,11 @@ function _getBackgroundTabData() {
   _getBackgroundTabData = _asyncToGenerator(function* () {
     // @ts-ignore
     var tabIdParam = new URL(document.location.href).searchParams.get('tabId');
-    var tabId = tabIdParam || 0;
-    var resp = yield fetch({
-      messageType: 'getPrivacyDashboardData',
-      options: {
-        tabId: tabId
-      }
-    });
+    var isNumeric = !Number.isNaN(Number(tabIdParam));
+    var tabId = isNumeric ? Number(tabIdParam) : null;
+    var resp = yield getPrivacyDashboardData(tabId);
 
-    var parsedMessageData = _schema.extensionGetPrivacyDashboardDataSchema.safeParse(resp);
+    var parsedMessageData = _schema.getPrivacyDashboardDataSchema.safeParse(resp);
 
     if (parsedMessageData.success === true) {
       var _parsedMessageData$da = parsedMessageData.data,
@@ -29136,89 +29340,25 @@ function _getBackgroundTabData() {
   return _getBackgroundTabData.apply(this, arguments);
 }
 
-var getExtensionURL = function getExtensionURL(path) {
-  return window.chrome.runtime.getURL(path);
-};
-
-var openExtensionPage = function openExtensionPage(path) {
-  window.chrome.tabs.create({
-    url: getExtensionURL(path)
-  });
-};
-
-var openOptionsPage = function openOptionsPage(browser) {
-  if (browser === 'moz') {
-    openExtensionPage('/html/options.html');
-    window.close();
-  } else {
-    window.chrome.runtime.openOptionsPage();
-  }
-};
-
-exports.openOptionsPage = openOptionsPage;
-
-var search = function search(url) {
-  if (browserInfo !== null && browserInfo !== void 0 && browserInfo.os) {
-    window.chrome.tabs.create({
-      url: "https://duckduckgo.com/?q=".concat(url, "&bext=").concat(browserInfo.os, "cr")
-    });
-  }
-};
-
-exports.search = search;
-
-var reloadTab = function reloadTab(id) {
-  try {
-    window.chrome.tabs.reload(id);
-  } catch (e) {
-    console.error(e);
-  } // window.chrome.tabs.reload(id)
-
-};
-
-var closePopup = function closePopup() {
-  try {
-    var w = window.chrome.extension.getViews({
-      type: 'popup'
-    })[0];
-    w.close();
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-var openNewTab = function openNewTab(url) {
-  try {
-    window.chrome.tabs.create({
-      url: url
-    });
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-exports.openNewTab = openNewTab;
-
-var postToggleAllowlist = function postToggleAllowlist(tabId) {
-  setTimeout(function () {
-    reloadTab(tabId);
-    closePopup();
-  }, 500);
-};
-
-},{"../../../schema/__generated__/schema.parsers":59,"../shared-utils/parse-user-agent-string.es6":71,"./common.es6":63,"./utils/request-details":69}],63:[function(require,module,exports){
+},{"../../../schema/__generated__/schema.parsers":59,"./common.es6":63,"./utils/request-details":69}],63:[function(require,module,exports){
 "use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.UpdatePermissionMessage = exports.SubmitBrokenSiteReportMessage = exports.SetListsMessage = exports.SearchMessage = exports.RefreshEmailAliasMessage = exports.OpenOptionsMessage = exports.CloseMessage = exports.CheckBrokenSiteReportHandledMessage = void 0;
 exports.assert = assert;
-exports.concatParams = concatParams;
-exports.getContentHeightForScreenShot = exports.getContentHeight = exports.convertTrackerDataPayload = void 0;
+exports.fetcher = fetcher;
+exports.getContentHeightForScreenShot = exports.getContentHeight = void 0;
 exports.onChangeLocale = onChangeLocale;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.openInNewTab = openInNewTab;
-exports.setList = setList;
+exports.openOptions = openOptions;
+exports.refreshAlias = refreshAlias;
+exports.search = search;
+exports.setLists = setLists;
 exports.setSize = setSize;
 exports.setupColorScheme = setupColorScheme;
 exports.setupMutationObserver = setupMutationObserver;
@@ -29226,94 +29366,39 @@ exports.submitBrokenSiteReport = submitBrokenSiteReport;
 
 var _oppositeTheme;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
  * @module common
  */
-var getHostname = function getHostname(url) {
-  if (url.indexOf('//') === 0) {
-    url = "http:".concat(url);
-  }
-
-  try {
-    return new URL(url).hostname;
-  } catch (e) {
-    return null;
-  }
-};
-
-var convertTrackers = function convertTrackers(trackerList) {
-  return trackerList.reduce(function (mapping, tracker) {
-    if (!tracker.knownTracker) return mapping;
-    var key = tracker.knownTracker.owner.name;
-
-    if (!mapping[key]) {
-      mapping[key] = {
-        displayName: tracker.entity.displayName,
-        prevalence: tracker.entity.prevalence,
-        urls: {}
-      };
-    }
-
-    var urlKey = getHostname(tracker.url);
-    if (!urlKey) return mapping;
-    mapping[key].urls[urlKey] = {
-      isBlocked: tracker.blocked,
-      categories: tracker.knownTracker.categories
-    };
-    mapping[key].count = Object.keys(mapping[key].urls).length;
-    return mapping;
-  }, {});
-};
-
-var convertTrackerDataPayload = function convertTrackerDataPayload(tabUrl, upgradedHttps, allowlisted, data) {
-  var allTrackers = data.trackersDetected.concat(data.trackersBlocked);
-  var trackers = convertTrackers(allTrackers);
-  var trackersBlocked = convertTrackers(data.trackersBlocked);
-  var tabDomain = new URL(tabUrl).host.replace(/^www\./, '');
-  return {
-    url: tabUrl,
-    status: 'complete',
-    upgradedHttps: upgradedHttps,
-    site: {
-      url: tabUrl,
-      domain: tabDomain,
-      allowlisted: allowlisted,
-      enabledFeatures: ['contentBlocking']
-    },
-    trackers: trackers,
-    trackersBlocked: trackersBlocked
-  };
-};
-
-exports.convertTrackerDataPayload = convertTrackerDataPayload;
-
-function concatParams(args) {
-  args = args || [];
-  var paramString = '';
-  var objParamString = '';
-  var resultString = '';
-  var randomNum = Math.ceil(Math.random() * 1e7);
-  args.forEach(function (arg) {
-    // append keys if object
-    if (_typeof(arg) === 'object') {
-      objParamString += Object.keys(arg).reduce(function (params, key) {
-        var val = arg[key];
-        if (val || val === 0) return "".concat(params, "&").concat(key, "=").concat(val);
-        return params;
-      }, '');
-    } else if (arg) {
-      // otherwise just add args separated by _
-      paramString += "_".concat(arg);
-    }
-  });
-  resultString = "".concat(paramString, "?").concat(randomNum).concat(objParamString);
-  return resultString;
-}
-
 var getContentHeight = function getContentHeight() {
   var _ref;
 
@@ -29490,7 +29575,253 @@ function submitBrokenSiteReport(report) {}
  */
 
 
-function setList(options) {}
+function setLists(options) {}
+/**
+ * Refresh the email alias
+ * @param options
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').RefreshAliasResponse>}
+ */
+
+
+function refreshAlias(_x) {
+  return _refreshAlias.apply(this, arguments);
+}
+/**
+ * @param {import('../../../schema/__generated__/schema.types').Search} options
+ */
+
+
+function _refreshAlias() {
+  _refreshAlias = _asyncToGenerator(function* (options) {
+    throw new Error('base impl');
+  });
+  return _refreshAlias.apply(this, arguments);
+}
+
+function search(options) {}
+
+var Msg = /*#__PURE__*/function () {
+  function Msg() {
+    _classCallCheck(this, Msg);
+  }
+
+  _createClass(Msg, [{
+    key: "toJSON",
+    value: function toJSON() {
+      return _objectSpread(_objectSpread({}, this), {}, {
+        kind: this.constructor.name
+      });
+    }
+  }]);
+
+  return Msg;
+}();
+/**
+ * Indicate to open the options page.
+ */
+
+
+function openOptions() {}
+
+var SetListsMessage = /*#__PURE__*/function (_Msg) {
+  _inherits(SetListsMessage, _Msg);
+
+  var _super = _createSuper(SetListsMessage);
+
+  /**
+   * @param {object} params
+   * @param {Array<{ list: "allowlisted" | "denylisted", domain: string, value: boolean}>} params.lists
+   */
+  function SetListsMessage(params) {
+    var _this;
+
+    _classCallCheck(this, SetListsMessage);
+
+    _this = _super.call(this);
+    /**
+     * @type {Array<{list: "allowlisted" | "denylisted", domain: string, value: boolean}>}
+     */
+
+    _this.lists = params.lists;
+    return _this;
+  }
+
+  return _createClass(SetListsMessage);
+}(Msg);
+
+exports.SetListsMessage = SetListsMessage;
+
+var SubmitBrokenSiteReportMessage = /*#__PURE__*/function (_Msg2) {
+  _inherits(SubmitBrokenSiteReportMessage, _Msg2);
+
+  var _super2 = _createSuper(SubmitBrokenSiteReportMessage);
+
+  /**
+   * @param {object} params
+   * @param {string} params.category
+   * @param {string} params.description
+   */
+  function SubmitBrokenSiteReportMessage(params) {
+    var _this2;
+
+    _classCallCheck(this, SubmitBrokenSiteReportMessage);
+
+    _this2 = _super2.call(this);
+    _this2.category = params.category;
+    _this2.description = params.description;
+    return _this2;
+  }
+
+  return _createClass(SubmitBrokenSiteReportMessage);
+}(Msg);
+
+exports.SubmitBrokenSiteReportMessage = SubmitBrokenSiteReportMessage;
+
+var UpdatePermissionMessage = /*#__PURE__*/function (_Msg3) {
+  _inherits(UpdatePermissionMessage, _Msg3);
+
+  var _super3 = _createSuper(UpdatePermissionMessage);
+
+  /**
+   * @param {object} params
+   * @param {string} params.id
+   * @param {string} params.value
+   */
+  function UpdatePermissionMessage(params) {
+    var _this3;
+
+    _classCallCheck(this, UpdatePermissionMessage);
+
+    _this3 = _super3.call(this);
+    _this3.id = params.id;
+    _this3.value = params.value;
+    return _this3;
+  }
+
+  return _createClass(UpdatePermissionMessage);
+}(Msg);
+
+exports.UpdatePermissionMessage = UpdatePermissionMessage;
+
+var CloseMessage = /*#__PURE__*/function (_Msg4) {
+  _inherits(CloseMessage, _Msg4);
+
+  var _super4 = _createSuper(CloseMessage);
+
+  function CloseMessage() {
+    _classCallCheck(this, CloseMessage);
+
+    return _super4.apply(this, arguments);
+  }
+
+  return _createClass(CloseMessage);
+}(Msg);
+
+exports.CloseMessage = CloseMessage;
+
+var CheckBrokenSiteReportHandledMessage = /*#__PURE__*/function (_Msg5) {
+  _inherits(CheckBrokenSiteReportHandledMessage, _Msg5);
+
+  var _super5 = _createSuper(CheckBrokenSiteReportHandledMessage);
+
+  function CheckBrokenSiteReportHandledMessage() {
+    _classCallCheck(this, CheckBrokenSiteReportHandledMessage);
+
+    return _super5.apply(this, arguments);
+  }
+
+  return _createClass(CheckBrokenSiteReportHandledMessage);
+}(Msg);
+/**
+ * Use this Message to request a fresh email alias for a logged-in user.
+ */
+
+
+exports.CheckBrokenSiteReportHandledMessage = CheckBrokenSiteReportHandledMessage;
+
+var RefreshEmailAliasMessage = /*#__PURE__*/function (_Msg6) {
+  _inherits(RefreshEmailAliasMessage, _Msg6);
+
+  var _super6 = _createSuper(RefreshEmailAliasMessage);
+
+  function RefreshEmailAliasMessage() {
+    _classCallCheck(this, RefreshEmailAliasMessage);
+
+    return _super6.apply(this, arguments);
+  }
+
+  return _createClass(RefreshEmailAliasMessage);
+}(Msg);
+/**
+ * Use this message to indicate that a native platform should open
+ * the 'options' page.
+ */
+
+
+exports.RefreshEmailAliasMessage = RefreshEmailAliasMessage;
+
+var OpenOptionsMessage = /*#__PURE__*/function (_Msg7) {
+  _inherits(OpenOptionsMessage, _Msg7);
+
+  var _super7 = _createSuper(OpenOptionsMessage);
+
+  function OpenOptionsMessage() {
+    _classCallCheck(this, OpenOptionsMessage);
+
+    return _super7.apply(this, arguments);
+  }
+
+  return _createClass(OpenOptionsMessage);
+}(Msg);
+/**
+ * Use this message to indicate that a native platform should open a search window with
+ * the given term.
+ */
+
+
+exports.OpenOptionsMessage = OpenOptionsMessage;
+
+var SearchMessage = /*#__PURE__*/function (_Msg8) {
+  _inherits(SearchMessage, _Msg8);
+
+  var _super8 = _createSuper(SearchMessage);
+
+  /**
+   * @param {object} params
+   * @param {string} params.term
+   */
+  function SearchMessage(params) {
+    var _this4;
+
+    _classCallCheck(this, SearchMessage);
+
+    _this4 = _super8.call(this);
+    _this4.term = params.term;
+    return _this4;
+  }
+
+  return _createClass(SearchMessage);
+}(Msg);
+/**
+ * @template {SetListsMessage|SubmitBrokenSiteReportMessage|UpdatePermissionMessage|CheckBrokenSiteReportHandledMessage|CloseMessage|RefreshEmailAliasMessage|OpenOptionsMessage} T
+ * @template {unknown} [Response=unknown]
+ * @param {T} message
+ * @returns {Promise<any>}
+ */
+
+
+exports.SearchMessage = SearchMessage;
+
+function fetcher(_x2) {
+  return _fetcher.apply(this, arguments);
+}
+
+function _fetcher() {
+  _fetcher = _asyncToGenerator(function* (message) {
+    throw new Error('must implement');
+  });
+  return _fetcher.apply(this, arguments);
+}
 
 },{}],64:[function(require,module,exports){
 "use strict";
@@ -29567,7 +29898,7 @@ var _default = defaultComms;
 
 exports["default"] = _default;
 
-},{"../ui/environment-check":82,"./android-communication.es6.js":61,"./browser-communication.es6.js":62,"./example-communication.es6.js":65,"./ios-communication.es6.js":66,"./macos-communication.es6.js":67,"./utils/overrides":68,"./windows-communication.es6.js":70}],65:[function(require,module,exports){
+},{"../ui/environment-check":81,"./android-communication.es6.js":61,"./browser-communication.es6.js":62,"./example-communication.es6.js":65,"./ios-communication.es6.js":66,"./macos-communication.es6.js":67,"./utils/overrides":68,"./windows-communication.es6.js":70}],65:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -29616,38 +29947,39 @@ var isPendingUpdates = false; // Modify state after render
 // }
 // setTimeout(() => tweakSecureStatus(), 10000)
 
-function fetch() {
-  var _args$, _args$2, _args$3;
+/**
+ * @type {import("./common.es6").fetcher}
+ */
 
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
+function fetch(_x) {
+  return _fetch.apply(this, arguments);
+}
 
-  if (args[0].setList) {
-    console.warn('doing nothing by default with `setList`');
-  }
-
-  if (((_args$ = args[0]) === null || _args$ === void 0 ? void 0 : _args$.messageType) === 'refreshAlias') {
-    if (overrides.platform === 'browser') {
-      return Promise.resolve({
-        privateAddress: 'dax123456'
-      });
+function _fetch() {
+  _fetch = _asyncToGenerator(function* (message) {
+    if (message instanceof _common.SetListsMessage) {
+      console.warn('doing nothing by default with `setList`');
     }
-  }
 
-  if (((_args$2 = args[0]) === null || _args$2 === void 0 ? void 0 : _args$2.messageType) === 'getBrowser') {
-    if (overrides.platform === 'browser') {
-      return Promise.resolve('chrome');
+    if (message instanceof _common.RefreshEmailAliasMessage) {
+      if (overrides.platform === 'browser') {
+        return Promise.resolve({
+          privateAddress: 'dax123456'
+        });
+      }
     }
-  }
 
-  if ((_args$3 = args[0]) !== null && _args$3 !== void 0 && _args$3.checkBrokenSiteReportHandled) {
-    if (overrides.platform === 'ios' || overrides.platform === 'android') {
-      return true;
+    if (message instanceof _common.CheckBrokenSiteReportHandledMessage) {
+      if (overrides.platform === 'ios' || overrides.platform === 'android') {
+        return true;
+      } else {
+        return false;
+      }
     }
-  }
 
-  console.log('fetch - Not implemented', args);
+    console.log('fetch - Not implemented', message);
+  });
+  return _fetch.apply(this, arguments);
 }
 
 function backgroundMessage(backgroundModel) {
@@ -29715,7 +30047,7 @@ if (new URLSearchParams(window.location.search).has('continuous')) {
   }, 200);
 }
 
-},{"../ui/views/tests/generate-data":118,"./common.es6":63,"./utils/overrides":68}],66:[function(require,module,exports){
+},{"../ui/views/tests/generate-data":117,"./common.es6":63,"./utils/overrides":68}],66:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29727,7 +30059,7 @@ Object.defineProperty(exports, "backgroundMessage", {
     return _macosCommunication.backgroundMessage;
   }
 });
-exports.fetch = void 0;
+exports.fetch = fetch;
 Object.defineProperty(exports, "getBackgroundTabData", {
   enumerable: true,
   get: function get() {
@@ -29742,29 +30074,10 @@ var _common = require("./common.es6");
 
 var _macosCommunication = require("./macos-communication.es6");
 
-/**
- * @module iOS integration
- *
- * @description
- * iOS shares the majority of functionality from {@link "macOS integration"}, with the exception
- * of the webkit handlers listed below.
- *
- * **Incoming data**
- *
- * Please see the links under the heading 'macOS -> JavaScript Interface' from {@link "macOS integration"}
- *
- * Examples from the macOS integration:
- * - {@link "macOS integration".onChangeProtectionStatus}
- * - {@link "macOS integration".onChangeRequestData}
- * - {@link "macOS integration".onChangeLocale}
- *
- * **Outgoing messages**
- *
- * Although iOS uses the outgoing messages from the {@link "macOS integration"} - there are some that are iOS-only,
- * those are listed below under `"Webkit Message Handlers"`
- *
- * @category integrations
- */
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function setup() {
   var setColorScheme = (0, _common.setupColorScheme)();
 
@@ -29808,31 +30121,30 @@ function privacyDashboardShowReportBrokenSite(args) {
 }
 /**
  * @category Internal API
- * @param message
- * @returns {boolean|undefined}
+ * @type {import("./common.es6").fetcher}
  */
 
 
-var fetch = function fetch(message) {
-  if (!window.webkit) {
-    console.error('window.webkit not available');
-    return;
-  }
+function fetch(_x) {
+  return _fetch.apply(this, arguments);
+}
 
-  if (message.closePrivacyDashboard) {
-    privacyDashboardClose({});
-    return;
-  }
+function _fetch() {
+  _fetch = _asyncToGenerator(function* (message) {
+    if (message instanceof _common.CloseMessage) {
+      privacyDashboardClose({});
+      return;
+    }
 
-  if (message.checkBrokenSiteReportHandled) {
-    privacyDashboardShowReportBrokenSite({});
-    return true; // Return true to prevent HTML form from showing
-  }
+    if (message instanceof _common.CheckBrokenSiteReportHandledMessage) {
+      privacyDashboardShowReportBrokenSite({});
+      return true; // Return true to prevent HTML form from showing
+    }
 
-  (0, _macosCommunication.fetch)(message);
-};
-
-exports.fetch = fetch;
+    return (0, _macosCommunication.fetch)(message);
+  });
+  return _fetch.apply(this, arguments);
+}
 
 },{"./common.es6":63,"./macos-communication.es6":67}],67:[function(require,module,exports){
 "use strict";
@@ -29840,7 +30152,8 @@ exports.fetch = fetch;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetch = exports.backgroundMessage = void 0;
+exports.backgroundMessage = void 0;
+exports.fetch = fetch;
 exports.firstRenderComplete = firstRenderComplete;
 exports.getBackgroundTabData = void 0;
 exports.onChangeLocale = onChangeLocale;
@@ -29860,6 +30173,16 @@ var _environmentCheck = require("../ui/environment-check");
 var _common = require("./common.es6");
 
 var _requestDetails = require("./utils/request-details");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -30014,55 +30337,65 @@ function onChangeLocale(payload) {
 
 /**
  * @category Internal API
- * @param message
- * @returns {any}
+ * @type {import("./common.es6").fetcher}
  */
 
 
-var fetch = function fetch(message) {
-  if (!window.webkit) {
-    console.error('window.webkit not available');
-    return;
-  }
-
-  if (message.submitBrokenSiteReport) {
-    privacyDashboardSubmitBrokenSiteReport({
-      category: message.submitBrokenSiteReport.category,
-      description: message.submitBrokenSiteReport.description
-    });
-    return;
-  }
-
-  if (message.setList) {
-    var _message$setList = message.setList,
-        list = _message$setList.list,
-        value = _message$setList.value;
-
-    if (list !== 'allowlisted') {
-      console.warn('only `allowlisted` is currently supported on macos');
-      return;
-    } // `allowlisted: true` means the user disabled protections.
-    // so `isProtected` is the opposite of `allowlisted`.
-
-
-    var isProtected = value === false;
-    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected);
-  }
-
-  if (message.updatePermission) {
-    window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
-      permission: message.updatePermission.id,
-      value: message.updatePermission.value
-    });
-  }
-};
+function fetch(_x) {
+  return _fetch.apply(this, arguments);
+}
 /**
  * @category Internal API
  * @returns {Promise<unknown>}
  */
 
 
-exports.fetch = fetch;
+function _fetch() {
+  _fetch = _asyncToGenerator(function* (message) {
+    if (message instanceof _common.SubmitBrokenSiteReportMessage) {
+      privacyDashboardSubmitBrokenSiteReport({
+        category: message.category,
+        description: message.description
+      });
+      return;
+    }
+
+    if (message instanceof _common.SetListsMessage) {
+      var _iterator = _createForOfIteratorHelper(message.lists),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var listItem = _step.value;
+          var list = listItem.list,
+              value = listItem.value;
+
+          if (list !== 'allowlisted') {
+            console.warn('only `allowlisted` is currently supported on macos');
+            continue;
+          } // `allowlisted: true` means the user disabled protections.
+          // so `isProtected` is the opposite of `allowlisted`.
+
+
+          var isProtected = value === false;
+          window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+
+    if (message instanceof _common.UpdatePermissionMessage) {
+      window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
+        permission: message.id,
+        value: message.value
+      });
+    }
+  });
+  return _fetch.apply(this, arguments);
+}
 
 var getBackgroundTabData = function getBackgroundTabData() {
   return new Promise(function (resolve) {
@@ -30210,7 +30543,7 @@ function setupClickEventHandlers() {
   });
 }
 
-},{"../../../schema/__generated__/schema.parsers":59,"../ui/environment-check":82,"./common.es6":63,"./utils/request-details":69}],68:[function(require,module,exports){
+},{"../../../schema/__generated__/schema.parsers":59,"../ui/environment-check":81,"./common.es6":63,"./utils/request-details":69}],68:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30386,7 +30719,7 @@ function getOverrides(searchString) {
   return overrides;
 }
 
-},{"../../ui/environment-check":82,"../../ui/views/tests/generate-data":118,"./request-details":69}],69:[function(require,module,exports){
+},{"../../ui/environment-check":81,"../../ui/views/tests/generate-data":117,"./request-details":69}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30955,7 +31288,7 @@ function TrackerUrl(url, category) {
 
 exports.TrackerUrl = TrackerUrl;
 
-},{"../../../../schema/__generated__/schema.parsers":59,"../../ui/models/mixins/normalize-company-name.es6.js":87}],70:[function(require,module,exports){
+},{"../../../../schema/__generated__/schema.parsers":59,"../../ui/models/mixins/normalize-company-name.es6.js":86}],70:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30964,7 +31297,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.OpenInNewTab = OpenInNewTab;
 exports.SetSize = SetSize;
 exports.SubmitBrokenSiteReport = SubmitBrokenSiteReport;
-exports.getBackgroundTabData = exports.fetch = exports.backgroundMessage = void 0;
+exports.backgroundMessage = void 0;
+exports.fetch = fetch;
+exports.getBackgroundTabData = void 0;
 exports.handleViewModelUpdate = handleViewModelUpdate;
 exports.setup = setup;
 
@@ -30973,6 +31308,16 @@ var _schema = require("../../../schema/__generated__/schema.parsers");
 var _common = require("./common.es6");
 
 var _requestDetails = require("./utils/request-details");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -31068,49 +31413,14 @@ function windowsPostMessage(name, data) {
     Data: data
   });
 }
-
-var fetch = function fetch(message) {
-  if (!window.chrome.webview) {
-    console.error('window.chrome.webview not available');
-    return;
-  }
-
-  if (message.submitBrokenSiteReport) {
-    SubmitBrokenSiteReport({
-      category: message.submitBrokenSiteReport.category,
-      description: message.submitBrokenSiteReport.description
-    });
-    return;
-  }
-
-  if (message.setList) {
-    var _message$setList = message.setList,
-        list = _message$setList.list,
-        value = _message$setList.value;
-
-    if (list !== 'allowlisted') {
-      console.warn('only `allowlisted` is currently supported on windows');
-      return;
-    } // `allowlisted: true` means the user disabled protections.
-    // so `isProtected` is the opposite of `allowlisted`.
+/**
+ * @type {import("./common.es6").fetcher}
+ */
 
 
-    var isProtected = value === false;
-
-    if (isProtected) {
-      windowsPostMessage('RemoveFromAllowListCommand');
-    } else {
-      windowsPostMessage('AddToAllowListCommand');
-    }
-  }
-
-  if (message.updatePermission) {
-    windowsPostMessage('SetPermissionCommand', {
-      permission: message.updatePermission.id,
-      value: message.updatePermission.value
-    });
-  }
-};
+function fetch(_x) {
+  return _fetch.apply(this, arguments);
+}
 /**
  * {@inheritDoc common.submitBrokenSiteReport}
  * @type {import("./common.es6").submitBrokenSiteReport}
@@ -31128,7 +31438,57 @@ var fetch = function fetch(message) {
  */
 
 
-exports.fetch = fetch;
+function _fetch() {
+  _fetch = _asyncToGenerator(function* (message) {
+    if (message instanceof _common.SubmitBrokenSiteReportMessage) {
+      SubmitBrokenSiteReport({
+        category: message.category,
+        description: message.description
+      });
+      return;
+    }
+
+    if (message instanceof _common.SetListsMessage) {
+      var _iterator = _createForOfIteratorHelper(message.lists),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var listItem = _step.value;
+          var list = listItem.list,
+              value = listItem.value;
+
+          if (list !== 'allowlisted') {
+            console.warn('only `allowlisted` is currently supported on windows');
+            continue;
+          } // `allowlisted: true` means the user disabled protections.
+          // so `isProtected` is the opposite of `allowlisted`.
+
+
+          var isProtected = value === false;
+
+          if (isProtected) {
+            windowsPostMessage('RemoveFromAllowListCommand');
+          } else {
+            windowsPostMessage('AddToAllowListCommand');
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+
+    if (message instanceof _common.UpdatePermissionMessage) {
+      windowsPostMessage('SetPermissionCommand', {
+        permission: message.id,
+        value: message.value
+      });
+    }
+  });
+  return _fetch.apply(this, arguments);
+}
 
 function SubmitBrokenSiteReport(report) {
   windowsPostMessage('SubmitBrokenSiteReport', {
@@ -31195,6 +31555,11 @@ exports.getBackgroundTabData = getBackgroundTabData;
 function setup() {
   var _window$chrome$webvie2;
 
+  if (!window.chrome.webview) {
+    console.error('window.chrome.webview not available');
+    return;
+  }
+
   (0, _common.setupColorScheme)();
   (0, _common.assert)(typeof ((_window$chrome$webvie2 = window.chrome.webview) === null || _window$chrome$webvie2 === void 0 ? void 0 : _window$chrome$webvie2.addEventListener) === 'function', 'window.chrome.webview.addEventListener is required');
   window.chrome.webview.addEventListener('message', function (event) {
@@ -31228,50 +31593,6 @@ function setup() {
 },{"../../../schema/__generated__/schema.parsers":59,"./common.es6":63,"./utils/request-details":69}],71:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = _default;
-
-function _default(uaString) {
-  if (!globalThis.navigator) return;
-  if (!uaString) uaString = globalThis.navigator.userAgent;
-  var browser;
-  var version;
-
-  try {
-    var parsedUaParts = uaString.match(/(Firefox|Chrome|Edg)\/([0-9]+)/);
-
-    if (uaString.match(/(Edge?)\/([0-9]+)/)) {
-      // Above regex matches on Chrome first, so check if this is really Edge
-      parsedUaParts = uaString.match(/(Edge?)\/([0-9]+)/);
-    }
-
-    browser = parsedUaParts[1];
-    version = parsedUaParts[2]; // Brave doesn't include any information in the UserAgent
-
-    if (globalThis.navigator.brave) {
-      browser = 'Brave';
-    }
-  } catch (e) {
-    // unlikely, prevent extension from exploding if we don't recognize the UA
-    browser = version = '';
-  }
-
-  var os = 'o';
-  if (globalThis.navigator.userAgent.indexOf('Windows') !== -1) os = 'w';
-  if (globalThis.navigator.userAgent.indexOf('Mac') !== -1) os = 'm';
-  if (globalThis.navigator.userAgent.indexOf('Linux') !== -1) os = 'l';
-  return {
-    os: os,
-    browser: browser,
-    version: version
-  };
-}
-
-},{}],72:[function(require,module,exports){
-"use strict";
-
 window.onunhandledrejection = function (event) {
   console.warn("UNHANDLED PROMISE REJECTION: ".concat(event.reason));
 };
@@ -31291,7 +31612,7 @@ e) {
   console.error('start up error', e);
 }
 
-},{"../pages/popup.es6.js":91,"./loadcss.js":73}],73:[function(require,module,exports){
+},{"../pages/popup.es6.js":90,"./loadcss.js":72}],72:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31321,7 +31642,7 @@ function loadCss() {
   }, 5);
 }
 
-},{"../environment-check":82}],74:[function(require,module,exports){
+},{"../environment-check":81}],73:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31401,7 +31722,7 @@ var ns = {
 };
 exports.ns = ns;
 
-},{"../../../locales/bg/connection.json":121,"../../../locales/bg/ctascreens.json":122,"../../../locales/bg/permissions.json":123,"../../../locales/bg/report.json":124,"../../../locales/bg/shared.json":125,"../../../locales/bg/site.json":126,"../../../locales/cs/connection.json":127,"../../../locales/cs/ctascreens.json":128,"../../../locales/cs/permissions.json":129,"../../../locales/cs/report.json":130,"../../../locales/cs/shared.json":131,"../../../locales/cs/site.json":132,"../../../locales/da/connection.json":133,"../../../locales/da/ctascreens.json":134,"../../../locales/da/permissions.json":135,"../../../locales/da/report.json":136,"../../../locales/da/shared.json":137,"../../../locales/da/site.json":138,"../../../locales/de/connection.json":139,"../../../locales/de/ctascreens.json":140,"../../../locales/de/permissions.json":141,"../../../locales/de/report.json":142,"../../../locales/de/shared.json":143,"../../../locales/de/site.json":144,"../../../locales/el/connection.json":145,"../../../locales/el/ctascreens.json":146,"../../../locales/el/permissions.json":147,"../../../locales/el/report.json":148,"../../../locales/el/shared.json":149,"../../../locales/el/site.json":150,"../../../locales/en/connection.json":151,"../../../locales/en/ctascreens.json":152,"../../../locales/en/permissions.json":153,"../../../locales/en/report.json":154,"../../../locales/en/shared.json":155,"../../../locales/en/site.json":156,"../../../locales/es/connection.json":157,"../../../locales/es/ctascreens.json":158,"../../../locales/es/permissions.json":159,"../../../locales/es/report.json":160,"../../../locales/es/shared.json":161,"../../../locales/es/site.json":162,"../../../locales/et/connection.json":163,"../../../locales/et/ctascreens.json":164,"../../../locales/et/permissions.json":165,"../../../locales/et/report.json":166,"../../../locales/et/shared.json":167,"../../../locales/et/site.json":168,"../../../locales/fi/connection.json":169,"../../../locales/fi/ctascreens.json":170,"../../../locales/fi/permissions.json":171,"../../../locales/fi/report.json":172,"../../../locales/fi/shared.json":173,"../../../locales/fi/site.json":174,"../../../locales/fr/connection.json":175,"../../../locales/fr/ctascreens.json":176,"../../../locales/fr/permissions.json":177,"../../../locales/fr/report.json":178,"../../../locales/fr/shared.json":179,"../../../locales/fr/site.json":180,"../../../locales/hr/connection.json":181,"../../../locales/hr/ctascreens.json":182,"../../../locales/hr/permissions.json":183,"../../../locales/hr/report.json":184,"../../../locales/hr/shared.json":185,"../../../locales/hr/site.json":186,"../../../locales/hu/connection.json":187,"../../../locales/hu/ctascreens.json":188,"../../../locales/hu/permissions.json":189,"../../../locales/hu/report.json":190,"../../../locales/hu/shared.json":191,"../../../locales/hu/site.json":192,"../../../locales/it/connection.json":193,"../../../locales/it/ctascreens.json":194,"../../../locales/it/permissions.json":195,"../../../locales/it/report.json":196,"../../../locales/it/shared.json":197,"../../../locales/it/site.json":198,"../../../locales/lt/connection.json":199,"../../../locales/lt/ctascreens.json":200,"../../../locales/lt/permissions.json":201,"../../../locales/lt/report.json":202,"../../../locales/lt/shared.json":203,"../../../locales/lt/site.json":204,"../../../locales/lv/connection.json":205,"../../../locales/lv/ctascreens.json":206,"../../../locales/lv/permissions.json":207,"../../../locales/lv/report.json":208,"../../../locales/lv/shared.json":209,"../../../locales/lv/site.json":210,"../../../locales/nb/connection.json":211,"../../../locales/nb/ctascreens.json":212,"../../../locales/nb/permissions.json":213,"../../../locales/nb/report.json":214,"../../../locales/nb/shared.json":215,"../../../locales/nb/site.json":216,"../../../locales/nl/connection.json":217,"../../../locales/nl/ctascreens.json":218,"../../../locales/nl/permissions.json":219,"../../../locales/nl/report.json":220,"../../../locales/nl/shared.json":221,"../../../locales/nl/site.json":222,"../../../locales/pl/connection.json":223,"../../../locales/pl/ctascreens.json":224,"../../../locales/pl/permissions.json":225,"../../../locales/pl/report.json":226,"../../../locales/pl/shared.json":227,"../../../locales/pl/site.json":228,"../../../locales/pt/connection.json":229,"../../../locales/pt/ctascreens.json":230,"../../../locales/pt/permissions.json":231,"../../../locales/pt/report.json":232,"../../../locales/pt/shared.json":233,"../../../locales/pt/site.json":234,"../../../locales/ro/connection.json":235,"../../../locales/ro/ctascreens.json":236,"../../../locales/ro/permissions.json":237,"../../../locales/ro/report.json":238,"../../../locales/ro/shared.json":239,"../../../locales/ro/site.json":240,"../../../locales/ru/connection.json":241,"../../../locales/ru/ctascreens.json":242,"../../../locales/ru/permissions.json":243,"../../../locales/ru/report.json":244,"../../../locales/ru/shared.json":245,"../../../locales/ru/site.json":246,"../../../locales/sk/connection.json":247,"../../../locales/sk/ctascreens.json":248,"../../../locales/sk/permissions.json":249,"../../../locales/sk/report.json":250,"../../../locales/sk/shared.json":251,"../../../locales/sk/site.json":252,"../../../locales/sl/connection.json":253,"../../../locales/sl/ctascreens.json":254,"../../../locales/sl/permissions.json":255,"../../../locales/sl/report.json":256,"../../../locales/sl/shared.json":257,"../../../locales/sl/site.json":258,"../../../locales/sv/connection.json":259,"../../../locales/sv/ctascreens.json":260,"../../../locales/sv/permissions.json":261,"../../../locales/sv/report.json":262,"../../../locales/sv/shared.json":263,"../../../locales/sv/site.json":264,"../../../locales/tr/connection.json":265,"../../../locales/tr/ctascreens.json":266,"../../../locales/tr/permissions.json":267,"../../../locales/tr/report.json":268,"../../../locales/tr/shared.json":269,"../../../locales/tr/site.json":270,"i18next":40,"i18next-icu":39}],75:[function(require,module,exports){
+},{"../../../locales/bg/connection.json":120,"../../../locales/bg/ctascreens.json":121,"../../../locales/bg/permissions.json":122,"../../../locales/bg/report.json":123,"../../../locales/bg/shared.json":124,"../../../locales/bg/site.json":125,"../../../locales/cs/connection.json":126,"../../../locales/cs/ctascreens.json":127,"../../../locales/cs/permissions.json":128,"../../../locales/cs/report.json":129,"../../../locales/cs/shared.json":130,"../../../locales/cs/site.json":131,"../../../locales/da/connection.json":132,"../../../locales/da/ctascreens.json":133,"../../../locales/da/permissions.json":134,"../../../locales/da/report.json":135,"../../../locales/da/shared.json":136,"../../../locales/da/site.json":137,"../../../locales/de/connection.json":138,"../../../locales/de/ctascreens.json":139,"../../../locales/de/permissions.json":140,"../../../locales/de/report.json":141,"../../../locales/de/shared.json":142,"../../../locales/de/site.json":143,"../../../locales/el/connection.json":144,"../../../locales/el/ctascreens.json":145,"../../../locales/el/permissions.json":146,"../../../locales/el/report.json":147,"../../../locales/el/shared.json":148,"../../../locales/el/site.json":149,"../../../locales/en/connection.json":150,"../../../locales/en/ctascreens.json":151,"../../../locales/en/permissions.json":152,"../../../locales/en/report.json":153,"../../../locales/en/shared.json":154,"../../../locales/en/site.json":155,"../../../locales/es/connection.json":156,"../../../locales/es/ctascreens.json":157,"../../../locales/es/permissions.json":158,"../../../locales/es/report.json":159,"../../../locales/es/shared.json":160,"../../../locales/es/site.json":161,"../../../locales/et/connection.json":162,"../../../locales/et/ctascreens.json":163,"../../../locales/et/permissions.json":164,"../../../locales/et/report.json":165,"../../../locales/et/shared.json":166,"../../../locales/et/site.json":167,"../../../locales/fi/connection.json":168,"../../../locales/fi/ctascreens.json":169,"../../../locales/fi/permissions.json":170,"../../../locales/fi/report.json":171,"../../../locales/fi/shared.json":172,"../../../locales/fi/site.json":173,"../../../locales/fr/connection.json":174,"../../../locales/fr/ctascreens.json":175,"../../../locales/fr/permissions.json":176,"../../../locales/fr/report.json":177,"../../../locales/fr/shared.json":178,"../../../locales/fr/site.json":179,"../../../locales/hr/connection.json":180,"../../../locales/hr/ctascreens.json":181,"../../../locales/hr/permissions.json":182,"../../../locales/hr/report.json":183,"../../../locales/hr/shared.json":184,"../../../locales/hr/site.json":185,"../../../locales/hu/connection.json":186,"../../../locales/hu/ctascreens.json":187,"../../../locales/hu/permissions.json":188,"../../../locales/hu/report.json":189,"../../../locales/hu/shared.json":190,"../../../locales/hu/site.json":191,"../../../locales/it/connection.json":192,"../../../locales/it/ctascreens.json":193,"../../../locales/it/permissions.json":194,"../../../locales/it/report.json":195,"../../../locales/it/shared.json":196,"../../../locales/it/site.json":197,"../../../locales/lt/connection.json":198,"../../../locales/lt/ctascreens.json":199,"../../../locales/lt/permissions.json":200,"../../../locales/lt/report.json":201,"../../../locales/lt/shared.json":202,"../../../locales/lt/site.json":203,"../../../locales/lv/connection.json":204,"../../../locales/lv/ctascreens.json":205,"../../../locales/lv/permissions.json":206,"../../../locales/lv/report.json":207,"../../../locales/lv/shared.json":208,"../../../locales/lv/site.json":209,"../../../locales/nb/connection.json":210,"../../../locales/nb/ctascreens.json":211,"../../../locales/nb/permissions.json":212,"../../../locales/nb/report.json":213,"../../../locales/nb/shared.json":214,"../../../locales/nb/site.json":215,"../../../locales/nl/connection.json":216,"../../../locales/nl/ctascreens.json":217,"../../../locales/nl/permissions.json":218,"../../../locales/nl/report.json":219,"../../../locales/nl/shared.json":220,"../../../locales/nl/site.json":221,"../../../locales/pl/connection.json":222,"../../../locales/pl/ctascreens.json":223,"../../../locales/pl/permissions.json":224,"../../../locales/pl/report.json":225,"../../../locales/pl/shared.json":226,"../../../locales/pl/site.json":227,"../../../locales/pt/connection.json":228,"../../../locales/pt/ctascreens.json":229,"../../../locales/pt/permissions.json":230,"../../../locales/pt/report.json":231,"../../../locales/pt/shared.json":232,"../../../locales/pt/site.json":233,"../../../locales/ro/connection.json":234,"../../../locales/ro/ctascreens.json":235,"../../../locales/ro/permissions.json":236,"../../../locales/ro/report.json":237,"../../../locales/ro/shared.json":238,"../../../locales/ro/site.json":239,"../../../locales/ru/connection.json":240,"../../../locales/ru/ctascreens.json":241,"../../../locales/ru/permissions.json":242,"../../../locales/ru/report.json":243,"../../../locales/ru/shared.json":244,"../../../locales/ru/site.json":245,"../../../locales/sk/connection.json":246,"../../../locales/sk/ctascreens.json":247,"../../../locales/sk/permissions.json":248,"../../../locales/sk/report.json":249,"../../../locales/sk/shared.json":250,"../../../locales/sk/site.json":251,"../../../locales/sl/connection.json":252,"../../../locales/sl/ctascreens.json":253,"../../../locales/sl/permissions.json":254,"../../../locales/sl/report.json":255,"../../../locales/sl/shared.json":256,"../../../locales/sl/site.json":257,"../../../locales/sv/connection.json":258,"../../../locales/sv/ctascreens.json":259,"../../../locales/sv/permissions.json":260,"../../../locales/sv/report.json":261,"../../../locales/sv/shared.json":262,"../../../locales/sv/site.json":263,"../../../locales/tr/connection.json":264,"../../../locales/tr/ctascreens.json":265,"../../../locales/tr/permissions.json":266,"../../../locales/tr/report.json":267,"../../../locales/tr/shared.json":268,"../../../locales/tr/site.json":269,"i18next":40,"i18next-icu":39}],74:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31459,7 +31780,7 @@ function unbindEvents() {
   this._bEvents = null;
 }
 
-},{}],76:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -31477,7 +31798,7 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-},{"./events.es6.js":75}],77:[function(require,module,exports){
+},{"./events.es6.js":74}],76:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31649,7 +31970,7 @@ BaseModel.prototype = _jquery["default"].extend({}, mixins.events, baseModelMeth
 var _default = BaseModel;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],78:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"./mixins/index.es6.js":75,"./store.es6.js":79,"jquery":46}],77:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31754,7 +32075,7 @@ function remove(notifier) {
   }
 } // Public api
 
-},{}],79:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -31794,7 +32115,7 @@ BasePage.prototype = _jquery["default"].extend({}, mixins.events, {
 var _default = BasePage;
 exports["default"] = _default;
 
-},{"./mixins/index.es6.js":76,"./store.es6.js":80,"jquery":46}],80:[function(require,module,exports){
+},{"./mixins/index.es6.js":75,"./store.es6.js":79,"jquery":46}],79:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -32003,7 +32324,7 @@ var subscribe = _publisher; // subscribe to notifiers' notifications
 
 exports.subscribe = subscribe;
 
-},{"./notifiers.es6.js":78,"deep-freeze":33,"eventemitter2":34,"is-plain-object":45}],81:[function(require,module,exports){
+},{"./notifiers.es6.js":77,"deep-freeze":33,"eventemitter2":34,"is-plain-object":45}],80:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -32221,7 +32542,7 @@ BaseView.prototype = _jquery["default"].extend({}, events, {
 var _default = BaseView;
 exports["default"] = _default;
 
-},{"./mixins/events.es6":75,"./store.es6.js":80,"jquery":46}],82:[function(require,module,exports){
+},{"./mixins/events.es6":74,"./store.es6.js":79,"jquery":46}],81:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32355,7 +32676,7 @@ function platformSwitch(mapping) {
   throw new Error('did not expect to get here - use a default!');
 }
 
-},{}],83:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32410,7 +32731,7 @@ BackgroundMessage.prototype = _jquery["default"].extend({}, _model["default"].pr
 var _default = BackgroundMessage;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/model.es6":77,"jquery":46}],84:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/model.es6":76,"jquery":46}],83:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32421,6 +32742,8 @@ exports.BreakageFormModel = BreakageFormModel;
 var _jquery = _interopRequireDefault(require("jquery"));
 
 var _model = _interopRequireDefault(require("../base/model.es6"));
+
+var _common = require("../../browser/common.es6");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -32434,22 +32757,20 @@ function BreakageFormModel(attrs) {
 BreakageFormModel.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
   modelName: 'breakageForm',
 
-  /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+  /** @this {import('./site.es6').LocalThis} */
   submitBreakageForm: function submitBreakageForm(category, description) {
     try {
-      this.fetch({
-        submitBrokenSiteReport: {
-          category: category,
-          description: description
-        }
-      });
+      this.fetch(new _common.SubmitBrokenSiteReportMessage({
+        category: category,
+        description: description
+      }));
     } catch (e) {
       console.error('submitBreakageForm error', e);
     }
   }
 });
 
-},{"../base/model.es6":77,"jquery":46}],85:[function(require,module,exports){
+},{"../../browser/common.es6":63,"../base/model.es6":76,"jquery":46}],84:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32516,7 +32837,7 @@ CtaRotationModel.prototype = _jquery["default"].extend({}, _model["default"].pro
   }
 });
 
-},{"../base/model.es6":77,"../templates/cta-rotation.es6":94,"jquery":46}],86:[function(require,module,exports){
+},{"../base/model.es6":76,"../templates/cta-rotation.es6":93,"jquery":46}],85:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32526,7 +32847,11 @@ exports["default"] = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
+var _zod = require("zod");
+
 var _model = _interopRequireDefault(require("../base/model.es6"));
+
+var _common = require("../../browser/common.es6");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -32581,19 +32906,26 @@ EmailProtectionModel.prototype = _jquery["default"].extend({}, _model["default"]
       this.state = 'idle';
     }
   },
+
+  /**
+   * @this {import('./site.es6').LocalThis}
+   * @returns {*}
+   */
   refreshAlias: function refreshAlias() {
     var _this = this;
 
-    return this.fetch({
-      messageType: 'refreshAlias',
-      options: {}
-    }).then(function (resp) {
-      // not using 'this.set()' here as there's no expected UI response to this.
-      if (typeof resp.privateAddress === 'string') {
-        _this.emailProtectionUserData.nextAlias = resp.privateAddress;
-      } else {
-        console.warn('response did not contain a private address', resp);
+    return this.fetch(new _common.RefreshEmailAliasMessage()).then(function (resp) {
+      var response = _zod.z.object({
+        privateAddress: _zod.z.string().optional()
+      });
+
+      var parsed = response.safeParse(resp);
+
+      if (!parsed.success) {
+        console.warn('response did not contain a valid private address', resp);
         _this.emailProtectionUserData.nextAlias = null;
+      } else {
+        _this.emailProtectionUserData.nextAlias = parsed.data.privateAddress;
       }
     });
   }
@@ -32601,7 +32933,7 @@ EmailProtectionModel.prototype = _jquery["default"].extend({}, _model["default"]
 var _default = EmailProtectionModel;
 exports["default"] = _default;
 
-},{"../base/model.es6":77,"jquery":46}],87:[function(require,module,exports){
+},{"../../browser/common.es6":63,"../base/model.es6":76,"jquery":46,"zod":55}],86:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32626,7 +32958,7 @@ function removeTLD(entityName) {
   return entityName.replace(/\.[a-z]+$/i, '');
 }
 
-},{}],88:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32636,9 +32968,9 @@ exports["default"] = void 0;
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
-var _communicationEs = _interopRequireDefault(require("../../browser/communication.es6.js"));
-
 var _model = _interopRequireDefault(require("../base/model.es6"));
+
+var _common = require("../../browser/common.es6");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -32649,26 +32981,29 @@ function Search(attrs) {
 
 Search.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
   modelName: 'search',
+
+  /**
+   * @this {import('./site.es6').LocalThis}
+   * @param searchTerm
+   */
   doSearch: function doSearch(searchTerm) {
     this.searchText = searchTerm;
-    searchTerm = encodeURIComponent(searchTerm);
-
-    _communicationEs["default"].search(searchTerm);
+    this.fetch(new _common.SearchMessage({
+      term: searchTerm
+    }));
   },
+
+  /**
+   * @this {import('./site.es6').LocalThis}
+   */
   openOptionsPage: function openOptionsPage() {
-    this.fetch({
-      messageType: 'getBrowser'
-    }).then(function (browserName) {
-      _communicationEs["default"].openOptionsPage(browserName);
-    })["catch"](function (e) {
-      console.error('openOptionsPage', e);
-    });
+    this.fetch(new _common.OpenOptionsMessage());
   }
 });
 var _default = Search;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/model.es6":77,"jquery":46}],89:[function(require,module,exports){
+},{"../../browser/common.es6":63,"../base/model.es6":76,"jquery":46}],88:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32718,7 +33053,7 @@ SiteCompanyList.prototype = _jquery["default"].extend({}, _model["default"].prot
 var _default = SiteCompanyList;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/model.es6":77,"./mixins/normalize-company-name.es6":87,"jquery":46}],90:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/model.es6":76,"./mixins/normalize-company-name.es6":86,"jquery":46}],89:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -32740,11 +33075,17 @@ var _localize = require("../base/localize.es6");
 
 var _platformFeatures = require("../platform-features");
 
+var _common = require("../../browser/common.es6");
+
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // We consider major tracker networks as those found on this percentage of sites
 // that we crawl
@@ -32792,6 +33133,10 @@ function Site(attrs) {
  * @property {boolean} disabled
  * @property {any[] | null} permissions
  * @property {import('../../browser/utils/request-details').TabData} tab
+ */
+
+/**
+ * @typedef {{ tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} LocalThis
  */
 
 
@@ -32898,7 +33243,7 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     }
   },
 
-  /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+  /** @this {{ tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} */
   updatePermission: function updatePermission(id, value) {
     if (!this.permissions) return;
     var permissionIndex = this.permissions.findIndex(function (_ref3) {
@@ -32912,12 +33257,10 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     this.set('permissions', updatedPermissions);
 
     try {
-      this.fetch({
-        updatePermission: {
-          id: id,
-          value: value
-        }
-      });
+      this.fetch(new _common.UpdatePermissionMessage({
+        id: id,
+        value: value
+      }));
     } catch (e) {
       console.error('updatePermission error', e);
     }
@@ -33018,7 +33361,7 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     return names;
   },
 
-  /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+  /** @this {LocalThis} */
   initAllowlisted: function initAllowlisted(allowListValue, denyListValue) {
     var _this$tab$protections;
 
@@ -33038,57 +33381,56 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     this.set('protectionsEnabled', this.protectionsEnabled);
   },
 
-  /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & Site} */
+  /** @this {LocalThis} */
   toggleAllowlist: function toggleAllowlist() {
-    var _this3 = this;
-
-    var fetches = [];
-    this.acceptingUpdates = false;
+    /** @type {SetListsMessage["lists"]} */
+    var lists = [];
+    this.set('acceptingUpdates', false);
 
     if (this.tab && this.tab.domain) {
       if (this.isBroken) {
-        // this.initAllowlisted(this.isAllowlisted, !this.isDenylisted)
-        fetches.push(this.setList('denylisted', this.tab.domain, !this.isDenylisted));
+        lists.push({
+          list: 'denylisted',
+          domain: this.tab.domain,
+          value: !this.isDenylisted
+        });
       } else {
         // Explicitly remove all denylisting if the site is isn't broken. This covers the case when the site has been removed from the list.
-        fetches.push(this.setList('denylisted', this.tab.domain, false)); // this.initAllowlisted(!this.isAllowlisted)
-
-        fetches.push(this.setList('allowlisted', this.tab.domain, !this.isAllowlisted));
-      }
-    } // if the platform supports showing a spinner, make it display
-
-
-    if (this.features.spinnerFollowingProtectionsToggle && fetches.length > 0) {
-      this.tab.isPendingUpdates = true; // force a re-render without fetching new data
-
-      this.set('disabled', false);
-    }
-
-    Promise.all(fetches).then(function () {
-      if (_this3.tab.id) {
-        return _this3.fetch({
-          postToggleAllowlist: {
-            id: _this3.tab.id
-          }
+        lists.push({
+          list: 'denylisted',
+          domain: this.tab.domain,
+          value: false
+        });
+        lists.push({
+          list: 'allowlisted',
+          domain: this.tab.domain,
+          value: !this.isAllowlisted
         });
       }
-    })["catch"](function (e) {
+    }
+
+    this.setLists(lists)["catch"](function (e) {
       return console.error(e);
     });
   },
-  setList: function setList(list, domain, value) {
-    try {
-      return this.fetch({
-        setList: {
-          list: list,
-          domain: domain,
-          value: value
-        }
-      });
-    } catch (e) {
-      console.error('setList error', e);
-      return false;
-    }
+
+  /**
+   * @param {SetListsMessage["lists"]} lists
+   * @returns {Promise<boolean>}
+   */
+  setLists: function setLists(lists) {
+    var _this3 = this;
+
+    return _asyncToGenerator(function* () {
+      try {
+        return _this3.fetch(new _common.SetListsMessage({
+          lists: lists
+        }));
+      } catch (e) {
+        console.error('setList error', e);
+        return false;
+      }
+    })();
   },
 
   /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
@@ -33096,24 +33438,23 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
     return [];
   },
 
-  /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+  /**
+   * @this {LocalThis}
+   * @return {Promise<boolean>}
+   */
   checkBrokenSiteReportHandled: function checkBrokenSiteReportHandled() {
     try {
-      return this.fetch({
-        checkBrokenSiteReportHandled: true
-      });
+      return this.fetch(new _common.CheckBrokenSiteReportHandledMessage());
     } catch (e) {
       console.error('checkBrokenSiteReportHandled error', e);
-      return false;
+      return Promise.resolve(false);
     }
   },
 
-  /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+  /** @this {LocalThis} */
   close: function close() {
     try {
-      this.fetch({
-        closePrivacyDashboard: true
-      });
+      this.fetch(new _common.CloseMessage());
     } catch (e) {
       console.error('close error', e);
     }
@@ -33122,7 +33463,7 @@ Site.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
 var _default = Site;
 exports["default"] = _default;
 
-},{"../../../data/constants":60,"../../browser/communication.es6.js":64,"../base/localize.es6":74,"../base/model.es6":77,"../platform-features":92,"jquery":46}],91:[function(require,module,exports){
+},{"../../../data/constants":60,"../../browser/common.es6":63,"../../browser/communication.es6.js":64,"../base/localize.es6":73,"../base/model.es6":76,"../platform-features":91,"jquery":46}],90:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33179,7 +33520,7 @@ function initPopup() {
   return new Trackers();
 }
 
-},{"../base/page.es6.js":79,"./../models/background-message.es6.js":83,"./../models/site.es6.js":90,"./../templates/site.es6.js":110,"./../views/site.es6.js":116,"jquery":46}],92:[function(require,module,exports){
+},{"../base/page.es6.js":78,"./../models/background-message.es6.js":82,"./../models/site.es6.js":89,"./../templates/site.es6.js":109,"./../views/site.es6.js":115,"jquery":46}],91:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33245,7 +33586,7 @@ function PlatformFeatures(params) {
 
 exports.PlatformFeatures = PlatformFeatures;
 
-},{}],93:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33304,7 +33645,7 @@ function _default() {
   }), _localize.i18n.t('report:tellUsMoreDesc.title'), _localize.i18n.t('report:sendReport.title'), _localize.i18n.t('report:reportsAreAnonymousDesc.title'));
 }
 
-},{"../base/localize.es6":74,"./shared/hero.es6.js":102,"./shared/top-nav":107,"bel":31}],94:[function(require,module,exports){
+},{"../base/localize.es6":73,"./shared/hero.es6.js":101,"./shared/top-nav":106,"bel":31}],93:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33368,7 +33709,7 @@ function emailSvg() {
 var _default = ctaRotationView;
 exports["default"] = _default;
 
-},{"../base/localize.es6":74,"bel":31,"bel/raw":32}],95:[function(require,module,exports){
+},{"../base/localize.es6":73,"bel":31,"bel/raw":32}],94:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33414,7 +33755,7 @@ function checkMarkIcon() {
   return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\">\n        <path d=\"M11.809 6.2501C12.0851 5.94141 12.0588 5.46727 11.7501 5.19108C11.4414 4.91488 10.9673 4.94122 10.6911 5.24991L7.0255 9.34675L5.33049 7.27508C5.06819 6.9545 4.59568 6.90724 4.27509 7.16954C3.95451 7.43183 3.90726 7.90435 4.16955 8.22494L6.41955 10.9749C6.55833 11.1446 6.76436 11.245 6.98346 11.2498C7.20256 11.2547 7.41282 11.1634 7.55895 11.0001L11.809 6.2501Z\" />\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8Z\" />\n    </svg>"])));
 }
 
-},{"../base/localize.es6":74,"bel":31}],96:[function(require,module,exports){
+},{"../base/localize.es6":73,"bel":31}],95:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33610,7 +33951,7 @@ function renderCompanyIconsList(model) {
   return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n        <div \n            class='large-icon-container icon-list' \n            data-company-count='", "'\n            aria-label=\"List of Blocked Company Icons\"\n            >\n            ", "\n        </div>\n    "])), processed.length, list);
 }
 
-},{"../base/localize.es6":74,"../base/view.es6":81,"../models/mixins/normalize-company-name.es6":87,"./shared/utils.es6":109,"bel":31,"bel/raw":32,"jquery":46}],97:[function(require,module,exports){
+},{"../base/localize.es6":73,"../base/view.es6":80,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":108,"bel":31,"bel/raw":32,"jquery":46}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33753,7 +34094,7 @@ function renderConnectionDescription(site) {
   return _localizeEs.i18n.t('connection:secureConnectionDesc.title');
 }
 
-},{"../base/localize.es6.js":74,"./shared/hero.es6.js":102,"./shared/top-nav":107,"bel":31}],98:[function(require,module,exports){
+},{"../base/localize.es6.js":73,"./shared/hero.es6.js":101,"./shared/top-nav":106,"bel":31}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33855,7 +34196,7 @@ function sectionsFromSiteNonTracker(site) {
   }]);
 }
 
-},{"../../browser/utils/request-details":69,"../base/localize.es6.js":74,"./page-trackers.es6.js":99,"./shared/about-link":101,"./shared/hero.es6.js":102,"./shared/platform-limitations":103,"./shared/top-nav":107,"bel":31}],99:[function(require,module,exports){
+},{"../../browser/utils/request-details":69,"../base/localize.es6.js":73,"./page-trackers.es6.js":98,"./shared/about-link":100,"./shared/hero.es6.js":101,"./shared/platform-limitations":102,"./shared/top-nav":106,"bel":31}],98:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33973,7 +34314,7 @@ function sectionsFromSiteTrackers(site) {
   return sections;
 }
 
-},{"../../../data/constants":60,"../base/localize.es6":74,"./shared/hero.es6.js":102,"./shared/platform-limitations":103,"./shared/top-nav":107,"./shared/utils.es6.js":109,"bel":31}],100:[function(require,module,exports){
+},{"../../../data/constants":60,"../base/localize.es6":73,"./shared/hero.es6.js":101,"./shared/platform-limitations":102,"./shared/top-nav":106,"./shared/utils.es6.js":108,"bel":31}],99:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34003,7 +34344,7 @@ function cogIcon() {
   return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n    <path class=\"settings-cog\" fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M3.43351 13.1462C3.06364 14.0391 3.48767 15.0628 4.3806 15.4327L5.30448 15.8154C6.19741 16.1853 7.2211 15.7612 7.59096 14.8683L7.84778 14.2483C7.89842 14.2495 7.94918 14.2501 8.00007 14.2501C8.05068 14.2501 8.10118 14.2495 8.15154 14.2483L8.40831 14.8682C8.77818 15.7611 9.80187 16.1852 10.6948 15.8153L11.6187 15.4326C12.5116 15.0628 12.9356 14.0391 12.5658 13.1461L12.3093 12.527C12.3828 12.457 12.4546 12.3853 12.5247 12.3118L13.1437 12.5682C14.0366 12.9381 15.0603 12.514 15.4302 11.6211L15.8129 10.6972C16.1827 9.8043 15.7587 8.7806 14.8658 8.41074L14.2482 8.15493C14.2494 8.10345 14.2501 8.05185 14.2501 8.00011C14.2501 7.94964 14.2495 7.89928 14.2483 7.84905L14.8659 7.59324C15.7588 7.22337 16.1828 6.19968 15.8129 5.30675L15.4303 4.38287C15.0604 3.48994 14.0367 3.06592 13.1438 3.43578L12.5273 3.69115C12.4568 3.61712 12.3845 3.54482 12.3105 3.47432L12.5658 2.85787C12.9357 1.96494 12.5117 0.94124 11.6188 0.571378L10.6949 0.188694C9.80195 -0.181168 8.77825 0.242858 8.40839 1.13579L8.15316 1.75196C8.10226 1.75073 8.05122 1.75011 8.00007 1.75011C7.94864 1.75011 7.89734 1.75074 7.84616 1.75198L7.59089 1.13569C7.22102 0.242766 6.19733 -0.181263 5.3044 0.1886L4.38052 0.571284C3.4876 0.941146 3.06357 1.96484 3.43343 2.85777L3.68905 3.47488C3.61513 3.54532 3.54293 3.61755 3.47254 3.69151L2.85533 3.43585C1.9624 3.06599 0.938705 3.49002 0.568843 4.38295L0.186159 5.30683C-0.183704 6.19975 0.240324 7.22345 1.13325 7.59331L1.75185 7.84955C1.75067 7.89961 1.75007 7.9498 1.75007 8.00011C1.75007 8.05168 1.7507 8.10312 1.75194 8.15443L1.13335 8.41066C0.240417 8.78052 -0.18361 9.80422 0.186252 10.6971L0.568936 11.621C0.938798 12.514 1.96249 12.938 2.85542 12.5681L3.47512 12.3114C3.54507 12.3848 3.6168 12.4565 3.69022 12.5265L3.43351 13.1462ZM1.61161 6.43846C1.35648 6.33279 1.23533 6.0403 1.34101 5.78518L1.72369 4.8613C1.82937 4.60618 2.12185 4.48503 2.37697 4.5907L3.47809 5.0468C3.69752 5.13769 3.94855 5.05988 4.09713 4.87459C4.32641 4.58865 4.58647 4.32845 4.87227 4.099C5.05738 3.95039 5.13507 3.69948 5.04422 3.48016L4.58828 2.37941C4.4826 2.12429 4.60375 1.83181 4.85888 1.72613L5.78276 1.34345C6.03788 1.23777 6.33036 1.35893 6.43604 1.61405L6.89159 2.71385C6.98246 2.93322 7.21488 3.05571 7.45092 3.02993C7.63126 3.01022 7.81448 3.00011 8.00007 3.00011C8.18541 3.00011 8.3684 3.0102 8.54851 3.02985C8.78452 3.0556 9.01691 2.93311 9.10776 2.71377L9.56324 1.61414C9.66891 1.35902 9.9614 1.23787 10.2165 1.34354L11.1404 1.72623C11.3955 1.8319 11.5167 2.12439 11.411 2.37951L10.9553 3.47967C10.8644 3.69901 10.9422 3.94995 11.1273 4.09856C11.4132 4.32802 11.6734 4.58826 11.9027 4.87425C12.0513 5.05952 12.3023 5.13731 12.5217 5.04642L13.6221 4.59063C13.8773 4.48495 14.1697 4.6061 14.2754 4.86122L14.6581 5.7851C14.7638 6.04023 14.6426 6.33271 14.3875 6.43839L13.2866 6.89438C13.0674 6.98521 12.9449 7.21748 12.9705 7.45343C12.99 7.63298 13.0001 7.81537 13.0001 8.00011C13.0001 8.18597 12.9899 8.36945 12.9702 8.55005C12.9443 8.78611 13.0668 9.01859 13.2862 9.10947L14.3874 9.56559C14.6425 9.67126 14.7637 9.96375 14.658 10.2189L14.2753 11.1427C14.1696 11.3979 13.8772 11.519 13.622 11.4133L12.5195 10.9566C12.3002 10.8658 12.0493 10.9435 11.9007 11.1285C11.6715 11.4139 11.4117 11.6736 11.1262 11.9026C10.941 12.0511 10.8632 12.3021 10.9541 12.5215L11.4109 13.6245C11.5166 13.8796 11.3954 14.1721 11.1403 14.2778L10.2164 14.6604C9.96132 14.7661 9.66884 14.645 9.56316 14.3898L9.1062 13.2866C9.01536 13.0673 8.78307 12.9449 8.54711 12.9705C8.36745 12.9901 8.18493 13.0001 8.00007 13.0001C7.81497 13.0001 7.63221 12.9901 7.45233 12.9705C7.21634 12.9447 6.984 13.0672 6.89316 13.2865L6.43611 14.3899C6.33044 14.6451 6.03796 14.7662 5.78283 14.6605L4.85895 14.2779C4.60383 14.1722 4.48268 13.8797 4.58836 13.6246L5.04545 12.521C5.13632 12.3017 5.05857 12.0507 4.87337 11.9021C4.58799 11.6731 4.32826 11.4135 4.09918 11.1282C3.95057 10.9431 3.69967 10.8654 3.48037 10.9563L2.37707 11.4133C2.12194 11.5189 1.82946 11.3978 1.72379 11.1427L1.3411 10.2188C1.23543 9.96367 1.35658 9.67119 1.6117 9.56551L2.71385 9.10898C2.93323 9.01811 3.05572 8.78566 3.02992 8.54962C3.01019 8.36916 3.00007 8.18582 3.00007 8.00011C3.00007 7.81552 3.01007 7.63327 3.02957 7.45386C3.0552 7.21793 2.93271 6.98568 2.71345 6.89486L1.61161 6.43846ZM6.12508 8.00008C6.12508 6.96455 6.96455 6.12508 8.00008 6.12508C9.03562 6.12508 9.87508 6.96455 9.87508 8.00008C9.87508 9.03562 9.03562 9.87508 8.00008 9.87508C6.96455 9.87508 6.12508 9.03562 6.12508 8.00008ZM8.00008 4.87508C6.27419 4.87508 4.87508 6.27419 4.87508 8.00008C4.87508 9.72597 6.27419 11.1251 8.00008 11.1251C9.72597 11.1251 11.1251 9.72597 11.1251 8.00008C11.1251 6.27419 9.72597 4.87508 8.00008 4.87508Z\"\n         fill-opacity=\"0.8\"\n     />\n</svg>\n"])));
 }
 
-},{"../base/localize.es6":74,"bel":31}],101:[function(require,module,exports){
+},{"../base/localize.es6":73,"bel":31}],100:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34034,7 +34375,7 @@ function adAttributionLink() {
   return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a class=\"ad-link link-action link-action--text-micro\" href=\"https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection\" target=\"_blank\">", "</a>"])), text);
 }
 
-},{"../../base/localize.es6":74,"bel":31}],102:[function(require,module,exports){
+},{"../../base/localize.es6":73,"bel":31}],101:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34117,7 +34458,7 @@ function largeHeroIcon(ops) {
   return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div class=\"large-icon-container hero-icon--", "\"></div>"])), ops.status);
 }
 
-},{"./about-link":101,"./thirdparty-text.es6":105,"./tracker-networks-text.es6":108,"bel":31}],103:[function(require,module,exports){
+},{"./about-link":100,"./thirdparty-text.es6":104,"./tracker-networks-text.es6":107,"bel":31}],102:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34139,7 +34480,7 @@ function platformLimitations() {
   return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<p class=\"platform-limitations border--top--inner\">", "</p>"])), _localize.ns.site('trackerLimitationsNote.title'));
 }
 
-},{"../../base/localize.es6":74,"bel":31}],104:[function(require,module,exports){
+},{"../../base/localize.es6":73,"bel":31}],103:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34202,7 +34543,7 @@ function protectionToggle(model) {
   return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container js-site-toggle-parent\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
 }
 
-},{"../../base/localize.es6":74,"../../environment-check":82,"./toggle-button.es6":106,"bel":31,"bel/raw":32}],105:[function(require,module,exports){
+},{"../../base/localize.es6":73,"../../environment-check":81,"./toggle-button.es6":105,"bel":31,"bel/raw":32}],104:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34335,7 +34676,7 @@ function unreachable(x) {
   throw new Error("Didn't expect to get here with value " + x);
 }
 
-},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],106:[function(require,module,exports){
+},{"../../../browser/utils/request-details":69,"../../base/localize.es6":73}],105:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34372,7 +34713,7 @@ function toggleButton(isActiveBoolean, klass, disabled) {
   return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\"></div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', disabled ? 'disabled' : '');
 }
 
-},{"../../environment-check":82,"bel":31}],107:[function(require,module,exports){
+},{"../../environment-check":81,"bel":31}],106:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34453,7 +34794,7 @@ function close() {
   return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\"\n            class=\"top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark\"\n            role=\"button\"\n        >\n            ", "\n        </a>"])), textLabel);
 }
 
-},{"../../base/localize.es6":74,"../../environment-check":82,"bel":31}],108:[function(require,module,exports){
+},{"../../base/localize.es6":73,"../../environment-check":81,"bel":31}],107:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34606,7 +34947,7 @@ function unreachable(x) {
   throw new Error("Didn't expect to get here with value" + x);
 }
 
-},{"../../../browser/utils/request-details":69,"../../base/localize.es6":74}],109:[function(require,module,exports){
+},{"../../../browser/utils/request-details":69,"../../base/localize.es6":73}],108:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34624,7 +34965,7 @@ function getColorId(value) {
   return Math.abs(sum % colorCount + 1);
 }
 
-},{}],110:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34754,7 +35095,7 @@ function localizePermissions(permissions) {
   });
 }
 
-},{"../base/localize.es6":74,"./shared/protection-toggle":104,"./shared/top-nav":107,"bel":31}],111:[function(require,module,exports){
+},{"../base/localize.es6":73,"./shared/protection-toggle":103,"./shared/top-nav":106,"bel":31}],110:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34806,7 +35147,7 @@ _slidingSubviewEs["default"].prototype, {
 var _default = BreakageForm;
 exports["default"] = _default;
 
-},{"./sliding-subview.es6.js":117,"jquery":46}],112:[function(require,module,exports){
+},{"./sliding-subview.es6.js":116,"jquery":46}],111:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34832,7 +35173,7 @@ CtaRotationView.prototype = _jquery["default"].extend({}, _viewEs["default"].pro
 var _default = CtaRotationView;
 exports["default"] = _default;
 
-},{"../base/view.es6.js":81,"jquery":46}],113:[function(require,module,exports){
+},{"../base/view.es6.js":80,"jquery":46}],112:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34894,7 +35235,7 @@ EmailProtectionView.prototype = _jquery["default"].extend({}, _viewEs["default"]
 var _default = EmailProtectionView;
 exports["default"] = _default;
 
-},{"../base/view.es6.js":81,"jquery":46}],114:[function(require,module,exports){
+},{"../base/view.es6.js":80,"jquery":46}],113:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35087,7 +35428,7 @@ function renderThirdPartyNew(model, cb) {
   return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <a href=\"javascript:void(0)\" \n            class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n            role=\"button\" \n            draggable=\"false\"\n            aria-label=\"View Non-Tracker Companies\"\n            onclick=", "\n            >\n            <span class=\"main-nav__icon icon-small--", "\"></span>\n            <span class=\"main-nav__text\">", "</span>\n            <span class=\"main-nav__chev\"></span>\n        </a>"])), cb, icon, title);
 }
 
-},{"../../browser/communication.es6":64,"../base/localize.es6":74,"../base/view.es6.js":81,"../environment-check":82,"../platform-features":92,"../templates/shared/thirdparty-text.es6":105,"../templates/shared/tracker-networks-text.es6":108,"./utils/utils":120,"bel":31,"jquery":46}],115:[function(require,module,exports){
+},{"../../browser/communication.es6":64,"../base/localize.es6":73,"../base/view.es6.js":80,"../environment-check":81,"../platform-features":91,"../templates/shared/thirdparty-text.es6":104,"../templates/shared/tracker-networks-text.es6":107,"./utils/utils":119,"bel":31,"jquery":46}],114:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35113,8 +35454,7 @@ function Search(ops) {
 
   this._cacheElems('.js-search', ['form', 'input', 'go', 'cog-button']);
 
-  this.bindEvents([[this.$input, 'input', this._handleInput], [this.$input, 'blur', this._handleBlur], [this.$go, 'click', this._handleSubmit], [this.$form, 'submit', this._handleSubmit], [this.$cogbutton, 'click', this._handleCogClick]]); // todo(Shane): Should we still auto-focus this field?
-  // window.setTimeout(() => this.$input.focus(), 200)
+  this.bindEvents([[this.$input, 'input', this._handleInput], [this.$input, 'blur', this._handleBlur], [this.$go, 'click', this._handleSubmit], [this.$form, 'submit', this._handleSubmit], [this.$cogbutton, 'click', this._handleCogClick]]);
 }
 
 Search.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
@@ -35155,7 +35495,7 @@ Search.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 var _default = Search;
 exports["default"] = _default;
 
-},{"../base/view.es6":81,"jquery":46}],116:[function(require,module,exports){
+},{"../base/view.es6":80,"jquery":46}],115:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -35277,6 +35617,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 
     this.$toggle.toggleClass('toggle-button--is-active-true');
     this.$toggle.toggleClass('toggle-button--is-active-false'); // on platforms that support spinners, just replace the HTML
+    // after allowing 300ms for the animation
 
     if (this.features.spinnerFollowingProtectionsToggle) {
       setTimeout(function () {
@@ -35328,17 +35669,21 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     }
   },
   _onReportBrokenSiteClick: function _onReportBrokenSiteClick(e) {
+    var _this3 = this;
+
     e.preventDefault();
 
     if (this.model && this.model.disabled) {
       return;
     }
 
-    var isHandledExternally = this.model.checkBrokenSiteReportHandled();
-
-    if (!isHandledExternally) {
-      this.showBreakageForm('reportBrokenSite');
-    }
+    this.model.checkBrokenSiteReportHandled().then(function (handled) {
+      if (!handled) {
+        _this3.showBreakageForm('reportBrokenSite');
+      }
+    })["catch"](function (e) {
+      console.error('could not check');
+    });
   },
   // pass clickSource to specify whether page should reload
   // after submitting breakage form.
@@ -35438,7 +35783,7 @@ function blur(target) {
 var _default = Site;
 exports["default"] = _default;
 
-},{"../../browser/communication.es6.js":64,"../base/view.es6":81,"../environment-check.js":82,"../models/breakage-form.es6":84,"../models/cta-rotation.es6":85,"../models/email-protection.es6":86,"../models/search.es6":88,"../platform-features":92,"../templates/cta-rotation.es6":94,"../templates/email-protection.es6":95,"../templates/key-insights":96,"../templates/page-non-trackers.es6.js":98,"../templates/page-trackers.es6.js":99,"../templates/search.es6":100,"../templates/shared/hero.es6":102,"../templates/shared/protection-toggle":104,"./../templates/breakage-form.es6.js":93,"./../templates/page-connection.es6.js":97,"./../views/breakage-form.es6.js":111,"./../views/tracker-networks.es6.js":119,"./cta-rotation.es6":112,"./email-protection.es6":113,"./main-nav":114,"./search.es6":115,"./utils/utils.js":120,"jquery":46}],117:[function(require,module,exports){
+},{"../../browser/communication.es6.js":64,"../base/view.es6":80,"../environment-check.js":81,"../models/breakage-form.es6":83,"../models/cta-rotation.es6":84,"../models/email-protection.es6":85,"../models/search.es6":87,"../platform-features":91,"../templates/cta-rotation.es6":93,"../templates/email-protection.es6":94,"../templates/key-insights":95,"../templates/page-non-trackers.es6.js":97,"../templates/page-trackers.es6.js":98,"../templates/search.es6":99,"../templates/shared/hero.es6":101,"../templates/shared/protection-toggle":103,"./../templates/breakage-form.es6.js":92,"./../templates/page-connection.es6.js":96,"./../views/breakage-form.es6.js":110,"./../views/tracker-networks.es6.js":118,"./cta-rotation.es6":111,"./email-protection.es6":112,"./main-nav":113,"./search.es6":114,"./utils/utils.js":119,"jquery":46}],116:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35546,7 +35891,7 @@ SlidingSubview.prototype = _jquery["default"].extend({}, _viewEs["default"].prot
 var _default = SlidingSubview;
 exports["default"] = _default;
 
-},{"../base/view.es6.js":81,"../environment-check.js":82,"./utils/utils.js":120,"jquery":46}],118:[function(require,module,exports){
+},{"../base/view.es6.js":80,"../environment-check.js":81,"./utils/utils.js":119,"jquery":46}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36087,7 +36432,7 @@ function protectionsOff(requests) {
   });
 }
 
-},{"../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../schema/__generated__/schema.parsers":59,"../../../browser/utils/request-details":69}],119:[function(require,module,exports){
+},{"../../../../../schema/__fixtures__/request-data-cnn.json":57,"../../../../../schema/__fixtures__/request-data-google.json":58,"../../../../../schema/__generated__/schema.parsers":59,"../../../browser/utils/request-details":69}],118:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36213,7 +36558,7 @@ _slidingSubviewEs["default"].prototype, {
 var _default = TrackerNetworks;
 exports["default"] = _default;
 
-},{"./../models/site-company-list.es6.js":89,"./../models/site.es6.js":90,"./sliding-subview.es6.js":117,"jquery":46}],120:[function(require,module,exports){
+},{"./../models/site-company-list.es6.js":88,"./../models/site.es6.js":89,"./sliding-subview.es6.js":116,"jquery":46}],119:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36273,7 +36618,7 @@ function setupSwitch(selector) {
   });
 }
 
-},{"@material/ripple":28,"@material/switch":29}],121:[function(require,module,exports){
+},{"@material/ripple":28,"@material/switch":29}],120:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36370,7 +36715,7 @@ module.exports={
   }
 }
 
-},{}],122:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36407,7 +36752,7 @@ module.exports={
   }
 }
 
-},{}],123:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36451,7 +36796,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],124:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36524,7 +36869,7 @@ module.exports={
   }
 }
 
-},{}],125:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36541,7 +36886,7 @@ module.exports={
   }
 }
 
-},{}],126:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36777,7 +37122,7 @@ module.exports={
   }
 }
 
-},{}],127:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36874,7 +37219,7 @@ module.exports={
   }
 }
 
-},{}],128:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36911,7 +37256,7 @@ module.exports={
   }
 }
 
-},{}],129:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -36955,7 +37300,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],130:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37028,7 +37373,7 @@ module.exports={
   }
 }
 
-},{}],131:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37045,7 +37390,7 @@ module.exports={
   }
 }
 
-},{}],132:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37281,7 +37626,7 @@ module.exports={
   }
 }
 
-},{}],133:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37378,7 +37723,7 @@ module.exports={
   }
 }
 
-},{}],134:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37415,7 +37760,7 @@ module.exports={
   }
 }
 
-},{}],135:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37459,7 +37804,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],136:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37532,7 +37877,7 @@ module.exports={
   }
 }
 
-},{}],137:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37549,7 +37894,7 @@ module.exports={
   }
 }
 
-},{}],138:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37785,7 +38130,7 @@ module.exports={
   }
 }
 
-},{}],139:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37882,7 +38227,7 @@ module.exports={
   }
 }
 
-},{}],140:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37919,7 +38264,7 @@ module.exports={
   }
 }
 
-},{}],141:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -37963,7 +38308,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],142:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38036,7 +38381,7 @@ module.exports={
   }
 }
 
-},{}],143:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38053,7 +38398,7 @@ module.exports={
   }
 }
 
-},{}],144:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38289,7 +38634,7 @@ module.exports={
   }
 }
 
-},{}],145:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38386,7 +38731,7 @@ module.exports={
   }
 }
 
-},{}],146:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38423,7 +38768,7 @@ module.exports={
   }
 }
 
-},{}],147:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38467,7 +38812,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],148:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38540,7 +38885,7 @@ module.exports={
   }
 }
 
-},{}],149:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38557,7 +38902,7 @@ module.exports={
   }
 }
 
-},{}],150:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -38793,7 +39138,7 @@ module.exports={
   }
 }
 
-},{}],151:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38889,7 +39234,7 @@ module.exports={
     }
 }
 
-},{}],152:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38925,7 +39270,7 @@ module.exports={
     }
 }
 
-},{}],153:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -38968,7 +39313,7 @@ module.exports={
         "note": "A permission setting that always blocks the website from using this permission"
     }
 }
-},{}],154:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -39040,7 +39385,7 @@ module.exports={
     }
 }
 
-},{}],155:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -39052,7 +39397,7 @@ module.exports={
     }
 }
 
-},{}],156:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports={
     "smartling": {
         "string_format" : "icu",
@@ -39287,7 +39632,7 @@ module.exports={
     }
 }
 
-},{}],157:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39384,7 +39729,7 @@ module.exports={
   }
 }
 
-},{}],158:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39421,7 +39766,7 @@ module.exports={
   }
 }
 
-},{}],159:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39465,7 +39810,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],160:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39538,7 +39883,7 @@ module.exports={
   }
 }
 
-},{}],161:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39555,7 +39900,7 @@ module.exports={
   }
 }
 
-},{}],162:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39791,7 +40136,7 @@ module.exports={
   }
 }
 
-},{}],163:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39888,7 +40233,7 @@ module.exports={
   }
 }
 
-},{}],164:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39925,7 +40270,7 @@ module.exports={
   }
 }
 
-},{}],165:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -39969,7 +40314,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],166:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40042,7 +40387,7 @@ module.exports={
   }
 }
 
-},{}],167:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40059,7 +40404,7 @@ module.exports={
   }
 }
 
-},{}],168:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40295,7 +40640,7 @@ module.exports={
   }
 }
 
-},{}],169:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40392,7 +40737,7 @@ module.exports={
   }
 }
 
-},{}],170:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40429,7 +40774,7 @@ module.exports={
   }
 }
 
-},{}],171:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40473,7 +40818,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],172:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40546,7 +40891,7 @@ module.exports={
   }
 }
 
-},{}],173:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40563,7 +40908,7 @@ module.exports={
   }
 }
 
-},{}],174:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40799,7 +41144,7 @@ module.exports={
   }
 }
 
-},{}],175:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40896,7 +41241,7 @@ module.exports={
   }
 }
 
-},{}],176:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40933,7 +41278,7 @@ module.exports={
   }
 }
 
-},{}],177:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -40977,7 +41322,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],178:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41050,7 +41395,7 @@ module.exports={
   }
 }
 
-},{}],179:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41067,7 +41412,7 @@ module.exports={
   }
 }
 
-},{}],180:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41303,7 +41648,7 @@ module.exports={
   }
 }
 
-},{}],181:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41400,7 +41745,7 @@ module.exports={
   }
 }
 
-},{}],182:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41437,7 +41782,7 @@ module.exports={
   }
 }
 
-},{}],183:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41481,7 +41826,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],184:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41554,7 +41899,7 @@ module.exports={
   }
 }
 
-},{}],185:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41571,7 +41916,7 @@ module.exports={
   }
 }
 
-},{}],186:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41807,7 +42152,7 @@ module.exports={
   }
 }
 
-},{}],187:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41904,7 +42249,7 @@ module.exports={
   }
 }
 
-},{}],188:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41941,7 +42286,7 @@ module.exports={
   }
 }
 
-},{}],189:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -41985,7 +42330,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],190:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42058,7 +42403,7 @@ module.exports={
   }
 }
 
-},{}],191:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42075,7 +42420,7 @@ module.exports={
   }
 }
 
-},{}],192:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42311,7 +42656,7 @@ module.exports={
   }
 }
 
-},{}],193:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42408,7 +42753,7 @@ module.exports={
   }
 }
 
-},{}],194:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42445,7 +42790,7 @@ module.exports={
   }
 }
 
-},{}],195:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42489,7 +42834,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],196:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42562,7 +42907,7 @@ module.exports={
   }
 }
 
-},{}],197:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42579,7 +42924,7 @@ module.exports={
   }
 }
 
-},{}],198:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42815,7 +43160,7 @@ module.exports={
   }
 }
 
-},{}],199:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42912,7 +43257,7 @@ module.exports={
   }
 }
 
-},{}],200:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42949,7 +43294,7 @@ module.exports={
   }
 }
 
-},{}],201:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -42993,7 +43338,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],202:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43066,7 +43411,7 @@ module.exports={
   }
 }
 
-},{}],203:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43083,7 +43428,7 @@ module.exports={
   }
 }
 
-},{}],204:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43319,7 +43664,7 @@ module.exports={
   }
 }
 
-},{}],205:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43416,7 +43761,7 @@ module.exports={
   }
 }
 
-},{}],206:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43453,7 +43798,7 @@ module.exports={
   }
 }
 
-},{}],207:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43497,7 +43842,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],208:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43570,7 +43915,7 @@ module.exports={
   }
 }
 
-},{}],209:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43587,7 +43932,7 @@ module.exports={
   }
 }
 
-},{}],210:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43823,7 +44168,7 @@ module.exports={
   }
 }
 
-},{}],211:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43920,7 +44265,7 @@ module.exports={
   }
 }
 
-},{}],212:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -43957,7 +44302,7 @@ module.exports={
   }
 }
 
-},{}],213:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44001,7 +44346,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],214:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44074,7 +44419,7 @@ module.exports={
   }
 }
 
-},{}],215:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44091,7 +44436,7 @@ module.exports={
   }
 }
 
-},{}],216:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44327,7 +44672,7 @@ module.exports={
   }
 }
 
-},{}],217:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44424,7 +44769,7 @@ module.exports={
   }
 }
 
-},{}],218:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44461,7 +44806,7 @@ module.exports={
   }
 }
 
-},{}],219:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44505,7 +44850,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],220:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44578,7 +44923,7 @@ module.exports={
   }
 }
 
-},{}],221:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44595,7 +44940,7 @@ module.exports={
   }
 }
 
-},{}],222:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44831,7 +45176,7 @@ module.exports={
   }
 }
 
-},{}],223:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44928,7 +45273,7 @@ module.exports={
   }
 }
 
-},{}],224:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -44965,7 +45310,7 @@ module.exports={
   }
 }
 
-},{}],225:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45009,7 +45354,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],226:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45082,7 +45427,7 @@ module.exports={
   }
 }
 
-},{}],227:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45099,7 +45444,7 @@ module.exports={
   }
 }
 
-},{}],228:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45335,7 +45680,7 @@ module.exports={
   }
 }
 
-},{}],229:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45432,7 +45777,7 @@ module.exports={
   }
 }
 
-},{}],230:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45469,7 +45814,7 @@ module.exports={
   }
 }
 
-},{}],231:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45513,7 +45858,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],232:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45586,9 +45931,9 @@ module.exports={
   }
 }
 
-},{}],233:[function(require,module,exports){
-arguments[4][161][0].apply(exports,arguments)
-},{"dup":161}],234:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"dup":160}],233:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45824,7 +46169,7 @@ module.exports={
   }
 }
 
-},{}],235:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45921,7 +46266,7 @@ module.exports={
   }
 }
 
-},{}],236:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -45958,7 +46303,7 @@ module.exports={
   }
 }
 
-},{}],237:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46002,7 +46347,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],238:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46075,7 +46420,7 @@ module.exports={
   }
 }
 
-},{}],239:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46092,7 +46437,7 @@ module.exports={
   }
 }
 
-},{}],240:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46328,7 +46673,7 @@ module.exports={
   }
 }
 
-},{}],241:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46425,7 +46770,7 @@ module.exports={
   }
 }
 
-},{}],242:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46462,7 +46807,7 @@ module.exports={
   }
 }
 
-},{}],243:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46506,7 +46851,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],244:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46579,7 +46924,7 @@ module.exports={
   }
 }
 
-},{}],245:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46596,7 +46941,7 @@ module.exports={
   }
 }
 
-},{}],246:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46832,7 +47177,7 @@ module.exports={
   }
 }
 
-},{}],247:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46929,7 +47274,7 @@ module.exports={
   }
 }
 
-},{}],248:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -46966,7 +47311,7 @@ module.exports={
   }
 }
 
-},{}],249:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47010,7 +47355,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],250:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47083,7 +47428,7 @@ module.exports={
   }
 }
 
-},{}],251:[function(require,module,exports){
+},{}],250:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47100,7 +47445,7 @@ module.exports={
   }
 }
 
-},{}],252:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47336,7 +47681,7 @@ module.exports={
   }
 }
 
-},{}],253:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47433,7 +47778,7 @@ module.exports={
   }
 }
 
-},{}],254:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47470,7 +47815,7 @@ module.exports={
   }
 }
 
-},{}],255:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47514,7 +47859,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],256:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47587,7 +47932,7 @@ module.exports={
   }
 }
 
-},{}],257:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47604,7 +47949,7 @@ module.exports={
   }
 }
 
-},{}],258:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47840,7 +48185,7 @@ module.exports={
   }
 }
 
-},{}],259:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47937,7 +48282,7 @@ module.exports={
   }
 }
 
-},{}],260:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -47974,7 +48319,7 @@ module.exports={
   }
 }
 
-},{}],261:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48018,7 +48363,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],262:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48091,7 +48436,7 @@ module.exports={
   }
 }
 
-},{}],263:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48108,7 +48453,7 @@ module.exports={
   }
 }
 
-},{}],264:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48344,7 +48689,7 @@ module.exports={
   }
 }
 
-},{}],265:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48441,7 +48786,7 @@ module.exports={
   }
 }
 
-},{}],266:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48478,7 +48823,7 @@ module.exports={
   }
 }
 
-},{}],267:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48522,7 +48867,7 @@ module.exports={
     "note" : "A permission setting that always blocks the website from using this permission"
   }
 }
-},{}],268:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48595,7 +48940,7 @@ module.exports={
   }
 }
 
-},{}],269:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48612,7 +48957,7 @@ module.exports={
   }
 }
 
-},{}],270:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 module.exports={
   "smartling" : {
     "string_format" : "icu",
@@ -48848,4 +49193,4 @@ module.exports={
   }
 }
 
-},{}]},{},[72]);
+},{}]},{},[71]);

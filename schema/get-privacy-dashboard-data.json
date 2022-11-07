@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "GetPrivacyDashboardData",
+    "type": "object",
+    "description": "This describes the data that the extension needs to provide",
+    "required": ["tab", "requestData"],
+    "additionalProperties": false,
+    "properties": {
+        "requestData": {
+            "$ref": "./request-data.json"
+        },
+        "emailProtectionUserData": {
+            "$ref": "#/definitions/emailProtectionUserData"
+        },
+        "tab": {
+            "$ref": "#/definitions/tab"
+        }
+    },
+    "definitions": {
+        "emailProtectionUserData": {
+            "additionalProperties": false,
+            "type": "object",
+            "required": ["cohort", "nextAlias", "token", "userName"],
+            "properties": {
+                "cohort": {
+                    "type": "string"
+                },
+                "nextAlias": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "userName": {
+                    "type": "string"
+                }
+            }
+        },
+        "tab": {
+            "additionalProperties": false,
+            "type": "object",
+            "required": ["url", "upgradedHttps", "protections"],
+            "properties": {
+                "id": {
+                    "description": "Optional Tab ID - mostly used in the extensions",
+                    "type": "number"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "upgradedHttps": {
+                    "type": "boolean"
+                },
+                "protections": {
+                    "$ref": "./protections.json"
+                },
+                "localeSettings": {
+                    "$ref": "./locale.json"
+                },
+                "parentEntity": { "$ref": "./parent-entity.json" },
+                "specialDomainName": {
+                    "description": "Provide this if the current tab is a domain that we cannot provide regular dashboard features for (like new tab, about://blank etc)",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

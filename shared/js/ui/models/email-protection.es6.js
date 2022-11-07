@@ -1,5 +1,7 @@
 import $ from 'jquery'
+import { z } from 'zod'
 import Parent from '../base/model.es6'
+import { RefreshEmailAliasMessage } from '../../browser/common.es6'
 
 /** @this {any} */
 function EmailProtectionModel(attrs) {
@@ -46,14 +48,21 @@ EmailProtectionModel.prototype = $.extend({}, Parent.prototype, {
         }
     },
 
+    /**
+     * @this {import('./site.es6').LocalThis}
+     * @returns {*}
+     */
     refreshAlias: function () {
-        return this.fetch({ messageType: 'refreshAlias', options: {} }).then((resp) => {
-            // not using 'this.set()' here as there's no expected UI response to this.
-            if (typeof resp.privateAddress === 'string') {
-                this.emailProtectionUserData.nextAlias = resp.privateAddress
-            } else {
-                console.warn('response did not contain a private address', resp)
+        return this.fetch(new RefreshEmailAliasMessage()).then((resp) => {
+            const response = z.object({
+                privateAddress: z.string().optional(),
+            })
+            const parsed = response.safeParse(resp)
+            if (!parsed.success) {
+                console.warn('response did not contain a valid private address', resp)
                 this.emailProtectionUserData.nextAlias = null
+            } else {
+                this.emailProtectionUserData.nextAlias = parsed.data.privateAddress
             }
         })
     },

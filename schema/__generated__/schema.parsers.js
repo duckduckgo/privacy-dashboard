@@ -21,6 +21,13 @@ export const stateAllowedSchema = z.object({
     })
 });
 
+export const extensionMessageGetPrivacyDashboardDataSchema = z.object({
+    messageType: z.literal("getPrivacyDashboardData"),
+    options: z.object({
+        tabId: z.number().optional().nullable()
+    })
+});
+
 export const emailProtectionUserDataSchema = z.object({
     cohort: z.string(),
     nextAlias: z.string(),
@@ -44,15 +51,31 @@ export const parentEntitySchema = z.object({
     prevalence: z.number()
 });
 
+export const searchSchema = z.object({
+    term: z.string()
+});
+
 export const breakageReportRequestSchema = z.object({
     category: z.string().optional(),
     description: z.string().optional()
 });
 
 export const setListOptionsSchema = z.object({
-    list: z.union([z.literal("allowlisted"), z.literal("denylisted")]),
-    domain: z.string(),
-    value: z.boolean()
+    lists: z.array(z.object({
+        list: z.union([z.literal("allowlisted"), z.literal("denylisted")]),
+        domain: z.string(),
+        value: z.boolean()
+    }))
+});
+
+export const refreshAliasResponseSchema = z.object({
+    personalAddress: z.string(),
+    privateAddress: z.string()
+});
+
+export const extensionMessageSetListOptionsSchema = z.object({
+    messageType: z.literal("setLists"),
+    options: setListOptionsSchema
 });
 
 export const detectedRequestSchema = z.object({
@@ -86,7 +109,7 @@ export const requestDataSchema = z.object({
     installedSurrogates: z.array(z.string()).optional()
 });
 
-export const extensionGetPrivacyDashboardDataSchema = z.object({
+export const getPrivacyDashboardDataSchema = z.object({
     requestData: requestDataSchema,
     emailProtectionUserData: emailProtectionUserDataSchema.optional(),
     tab: tabSchema
@@ -104,10 +127,14 @@ export const windowsViewModelSchema = z.object({
 
 export const apiSchema = z.object({
     "request-data": requestDataSchema,
-    "extension-message-get-privacy-dashboard-data": extensionGetPrivacyDashboardDataSchema,
+    "extension-message-get-privacy-dashboard-data": extensionMessageGetPrivacyDashboardDataSchema,
+    "get-privacy-dashboard-data": getPrivacyDashboardDataSchema.optional(),
+    "search-message": searchSchema.optional(),
     "breakage-report": breakageReportSchema,
     "set-list": setListOptionsSchema.optional(),
     "windows-view-model": windowsViewModelSchema,
-    "locale-settings": localeSettingsSchema.optional()
+    "locale-settings": localeSettingsSchema.optional(),
+    "refresh-alias-response": refreshAliasResponseSchema.optional(),
+    exe: extensionMessageSetListOptionsSchema.optional()
 });
 

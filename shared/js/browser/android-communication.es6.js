@@ -10,7 +10,7 @@
  * @category integrations
  */
 import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
-import { setupColorScheme } from './common.es6'
+import { CheckBrokenSiteReportHandledMessage, CloseMessage, SetListsMessage, setupColorScheme } from './common.es6'
 import { createTabData } from './utils/request-details'
 
 let channel = null
@@ -236,31 +236,30 @@ let privacyDashboardApi
 
 // -----------------------------------------------------------------------------
 
-const fetchAndroid = (message) => {
-    if (!window.PrivacyDashboard) {
-        console.error('window.PrivacyDashboard not available')
-        return
-    }
+/**
+ * @type {import("./common.es6").fetcher}
+ */
+async function fetchAndroid(message) {
+    if (message instanceof SetListsMessage) {
+        for (const listItem of message.lists) {
+            const { list, value } = listItem
+            if (list !== 'allowlisted') {
+                console.warn('only `allowlisted` is currently supported on android')
+                continue
+            }
 
-    if (message.setList) {
-        const { list, value } = message.setList
-        if (list !== 'allowlisted') {
-            console.warn('only `allowlisted` is currently supported on android')
-            return
+            // `allowlisted: true` means the user disabled protections.
+            // so `isProtected` is the opposite of `allowlisted`.
+            const isProtected = value === false
+            privacyDashboardApi.toggleAllowlist(isProtected)
         }
-
-        // `allowlisted: true` means the user disabled protections.
-        // so `isProtected` is the opposite of `allowlisted`.
-        const isProtected = value === false
-
-        privacyDashboardApi.toggleAllowlist(isProtected)
     }
 
-    if (message.closePrivacyDashboard) {
+    if (message instanceof CloseMessage) {
         privacyDashboardApi.close()
     }
 
-    if (message.checkBrokenSiteReportHandled) {
+    if (message instanceof CheckBrokenSiteReportHandledMessage) {
         privacyDashboardApi.showBreakageForm()
         return true // Return true to prevent HTML form from showing
     }
