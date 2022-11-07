@@ -78,6 +78,16 @@ module.exports = function (grunt) {
                 src: 'shared/html/index.html',
                 dest: `${appBuildPath}/index.html`,
             },
+            polyfillLoader: {
+                src: 'shared/js/polyfill-loader.js',
+                dest: `${appBuildPath}/public/js/polyfill-loader.js`,
+            },
+            font: {
+                expand: true,
+                cwd: 'shared',
+                src: 'font/**',
+                dest: `${appBuildPath}/`,
+            },
             images: {
                 expand: true,
                 cwd: 'shared',
@@ -96,7 +106,7 @@ module.exports = function (grunt) {
             },
             scripts: {
                 files: ['shared/js/**/*', 'shared/html/**/*', 'shared/locales/**/*', 'fixtures/**/*.json', 'schema/**/*.json'],
-                tasks: ['exec:schema', 'browserify:ui', 'copy:html', 'copy:index', 'exec:buildHtml'],
+                tasks: ['exec:schema', 'browserify:ui', 'copy:html', 'copy:font', 'copy:index', 'copy:polyfillLoader', 'exec:buildHtml'],
             },
             images: {
                 files: ['shared/img/**/*'],
@@ -114,7 +124,9 @@ module.exports = function (grunt) {
         'sass',
         'browserify:ui',
         'copy:html',
+        'copy:font',
         'copy:index',
+        'copy:polyfillLoader',
         'copy:images',
         'exec:buildHtml',
     ])

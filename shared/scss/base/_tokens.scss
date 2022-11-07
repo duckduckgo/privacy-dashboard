@@ -1,3 +1,20 @@
+/**
+ * We are using a subset of DDG fonts that are compatible with Chrome:
+ */
+@font-face {
+    font-family: 'DDG_ProximaNova';
+    src: url('../../font/ProximaNova-Reg-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DDG_ProximaNova';
+    src: url('../../font/ProximaNova-Sbold-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: bold;
+}
+
 @mixin token-body {
     font-family: $font__face--default;
 
