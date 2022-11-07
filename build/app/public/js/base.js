@@ -29255,6 +29255,7 @@ function getPrivacyDashboardData(_x5) {
 
 function _getPrivacyDashboardData() {
   _getPrivacyDashboardData = _asyncToGenerator(function* (tabId) {
+    console.log('senfing', [tabId]);
     return toExtensionMessage('getPrivacyDashboardData', {
       tabId: tabId
     });
@@ -29269,9 +29270,9 @@ function backgroundMessage(_channel) {
   window.chrome.runtime.onMessage.addListener(function (req, sender) {
     if (sender.id !== window.chrome.runtime.id) {
       return;
-    }
+    } // console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req)
 
-    console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req);
+
     if (req.updateTabData) channel.send('updateTabData');
     if (req.didResetTrackersData) channel.send('didResetTrackersData', req.didResetTrackersData);
     if (req.closePopup) window.close();
@@ -29290,7 +29291,7 @@ function _getBackgroundTabData() {
   _getBackgroundTabData = _asyncToGenerator(function* () {
     // @ts-ignore
     var tabIdParam = new URL(document.location.href).searchParams.get('tabId');
-    var isNumeric = !Number.isNaN(Number(tabIdParam));
+    var isNumeric = tabIdParam && !Number.isNaN(Number(tabIdParam));
     var tabId = isNumeric ? Number(tabIdParam) : null;
     var resp = yield getPrivacyDashboardData(tabId);
 
@@ -29332,8 +29333,12 @@ function _getBackgroundTabData() {
       unprotectedTemporary: false
     };
     return {
-      tab: (0, _requestDetails.createTabData)('https://example.com', false, protections, {
+      tab: _objectSpread(_objectSpread({}, (0, _requestDetails.createTabData)('unknown', false, protections, {
         requests: []
+      })), {}, {
+        error: parsedMessageData.error.message,
+        search: {},
+        ctaScreens: {}
       })
     };
   });
@@ -30813,8 +30818,9 @@ var TabData = /*#__PURE__*/_createClass(
  * @param {Record<string, any> | null | undefined} search
  * @param {Record<string, any> | null | undefined} emailProtection
  * @param {{prevalence: number, displayName: string} | null | undefined} parentEntity
+ * @param {string | null | undefined} error
  */
-function TabData(id, url, domain, specialDomainName, status, upgradedHttps, protections, permissions, requestDetails, consentManaged, ctaScreens, search, emailProtection, parentEntity) {
+function TabData(id, url, domain, specialDomainName, status, upgradedHttps, protections, permissions, requestDetails, consentManaged, ctaScreens, search, emailProtection, parentEntity, error) {
   _classCallCheck(this, TabData);
 
   _defineProperty(this, "locale", void 0);
@@ -30839,6 +30845,7 @@ function TabData(id, url, domain, specialDomainName, status, upgradedHttps, prot
   this.search = search;
   this.emailProtection = emailProtection;
   this.parentEntity = parentEntity;
+  this.error = error;
 });
 /**
  * @param {string} tabUrl
@@ -30852,13 +30859,21 @@ function TabData(id, url, domain, specialDomainName, status, upgradedHttps, prot
 exports.TabData = TabData;
 
 var createTabData = function createTabData(tabUrl, upgradedHttps, protections, rawRequestData) {
+  var domain;
+
+  try {
+    domain = new URL(tabUrl).host.replace(/^www\./, '');
+  } catch (e) {
+    domain = 'unknown';
+  }
+
   return {
     id: undefined,
     url: tabUrl,
     status: 'complete',
     upgradedHttps: upgradedHttps,
     specialDomainName: undefined,
-    domain: new URL(tabUrl).host.replace(/^www\./, ''),
+    domain: domain,
     protections: protections,
     locale: null,
     requestDetails: createRequestDetails(rawRequestData.requests, rawRequestData.installedSurrogates || []),
@@ -30870,7 +30885,8 @@ var createTabData = function createTabData(tabUrl, upgradedHttps, protections, r
     emailProtection: undefined,
     isPendingUpdates: undefined,
     certificate: undefined,
-    platformLimitations: undefined
+    platformLimitations: undefined,
+    error: undefined
   };
 };
 /**
@@ -34981,7 +34997,7 @@ var _protectionToggle = require("./shared/protection-toggle");
 
 var _topNav = require("./shared/top-nav");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -34994,12 +35010,16 @@ function _default() {
   // here we'll show CTAs when the tab is disabled
   var supportsCtaScreens = Boolean((_this$model$tab = this.model.tab) === null || _this$model$tab === void 0 ? void 0 : _this$model$tab.ctaScreens);
 
+  if (this.model.tab.error) {
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                <div class=\"page-inner\">\n                    ", "\n                    <div class=\"padding-x\">\n                        <div class='cta-screen'>\n                            <p class=\"note token-title-3 text--center\">\n                            Something went wrong and we couldn't load the dashboard. Try reloading the browser tab.\n                            </p>\n                        </div> \n                    </div>\n                    <div class=\"padding-x\"></div>\n                </div>\n            </div>\n        "])), renderSearchWrapper(this.model));
+  }
+
   if (this.model.disabled && supportsCtaScreens) {
-    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                <div class=\"page-inner\">\n                    ", "\n                    <div class=\"padding-x\">\n                        <div id=\"cta-rotation\"></div>\n                    </div>\n                    <div class=\"padding-x\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
+    return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                <div class=\"page-inner\">\n                    ", "\n                    <div class=\"padding-x\">\n                        <div id=\"cta-rotation\"></div>\n                    </div>\n                    <div class=\"padding-x\">\n                        ", "\n                    </div>\n                </div>\n            </div>\n        "])), renderSearchWrapper(this.model), renderEmailWrapper(this.model));
   }
 
   var permissions = localizePermissions(this.model.permissions);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                <div id='key-insight'></div>\n            </div>\n            <div class='padding-x'>\n                <div id='main-nav'></div>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), (0, _topNav.topNav)({
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                <div id='key-insight'></div>\n            </div>\n            <div class='padding-x'>\n                <div id='main-nav'></div>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), (0, _topNav.topNav)({
     view: 'primary'
   }), permissions.length > 0, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
     children: renderManagePermissions(this.model)
@@ -35007,7 +35027,7 @@ function _default() {
 }
 
 function outer(props) {
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div class=\"page-outer\">", "</div>"])), props.children);
+  return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<div class=\"page-outer\">", "</div>"])), props.children);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -35018,7 +35038,7 @@ function renderSearchWrapper(model) {
   var _model$tab;
 
   if ((_model$tab = model.tab) !== null && _model$tab !== void 0 && _model$tab.search) {
-    return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
+    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<section id=\"search-form-container\"></section>"])));
   }
 }
 /**
@@ -35030,7 +35050,7 @@ function renderEmailWrapper(model) {
   var _model$tab2;
 
   if ((_model$tab2 = model.tab) !== null && _model$tab2 !== void 0 && _model$tab2.emailProtection) {
-    return (0, _bel["default"])(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["<div id=\"email-alias-container\"></div>"])));
+    return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["<div id=\"email-alias-container\"></div>"])));
   }
 }
 /**
@@ -35044,23 +35064,23 @@ function renderManagePermissions(model) {
   }
 
   var localizedPerms = localizePermissions(model.permissions);
-  return (0, _bel["default"])(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--manage-permissions\">\n                ", "\n            </li>\n        </ul>"])), localizedPerms.map(function (_ref, index) {
+  return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--manage-permissions\">\n                ", "\n            </li>\n        </ul>"])), localizedPerms.map(function (_ref, index) {
     var permissionId = _ref.key,
         title = _ref.title,
         permission = _ref.permission,
         options = _ref.options;
     if (!model.permissions) return ''; // todo(Shane): typescript issue
 
-    return (0, _bel["default"])(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission\">\n                        <label>\n                            <div>\n                                <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                                ", "\n                            </div>\n                            <select class=\"js-site-permission\" name=\"", "\">\n                                ", "\n                            </select>\n                        </label>\n                    </div>"])), permissionId, title, permissionId, options.map(function (_ref2) {
+    return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<div class=\"site-info__page-permission\">\n                        <label>\n                            <div>\n                                <div class=\"site-info__page-permission__icon\" data-icon=", "></div>\n                                ", "\n                            </div>\n                            <select class=\"js-site-permission\" name=\"", "\">\n                                ", "\n                            </select>\n                        </label>\n                    </div>"])), permissionId, title, permissionId, options.map(function (_ref2) {
       var id = _ref2.id,
           title = _ref2.title;
-      return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
+      return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<option value=\"", "\" ", ">", "</option>"])), id, permission === id ? 'selected' : '', title);
     }));
   }));
 }
 
 function renderReportButton() {
-  return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["<div class=\"text--center border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action link-action--text\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
+  return (0, _bel["default"])(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["<div class=\"text--center border-light--top\">\n            <a href=\"javascript:void(0)\" class=\"js-site-report-broken link-action link-action--text\" draggable=\"false\">\n                ", "\n            </a>\n        </div>"])), _localize.i18n.t('site:websiteNotWorkingQ.title'));
 }
 /**
  * @param permissions
@@ -35580,22 +35600,11 @@ function Site(ops) {
   this.$body = (0, _jquery["default"])('body'); // get data from background process, then re-render template with it
 
   this.model.getBackgroundTabData().then(function () {
-    if (_this.model.tab && (_this.model.tab.status === 'complete' || _this.model.domain === 'new tab')) {
-      // render template for the first time here
-      _view["default"].call(_this, ops); // @ts-ignore
+    // render template for the first time here
+    _view["default"].call(_this, ops); // @ts-ignore
 
 
-      _this._setup();
-    } else {
-      // the timeout helps buffer the re-render cycle during heavy
-      // page loads with lots of trackers
-      _view["default"].call(_this, ops); // @ts-ignore
-
-
-      setTimeout(function () {
-        return _this.rerender();
-      }, 750);
-    }
+    _this._setup();
   })["catch"](function (e) {
     console.log('❌ [views/site.es6.js] --> ', e);
   });
@@ -35611,22 +35620,22 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     var _this2 = this;
 
     if (this.$body.hasClass('is-disabled')) return; // this can only ever be interacted with once
+    // so we return if set, otherwise we immediately set this value to prevent further updates
 
     if (this.updateInProgress) return;
     this.updateInProgress = true; // Provide visual feedback of the change
 
     this.$toggle.toggleClass('toggle-button--is-active-true');
-    this.$toggle.toggleClass('toggle-button--is-active-false'); // on platforms that support spinners, just replace the HTML
-    // after allowing 300ms for the animation
+    this.$toggle.toggleClass('toggle-button--is-active-false'); // allow 300ms for the animation
 
-    if (this.features.spinnerFollowingProtectionsToggle) {
-      setTimeout(function () {
+    setTimeout(function () {
+      _this2.model.toggleAllowlist(); // on platforms that support spinners, just replace the HTML
+
+
+      if (_this2.features.spinnerFollowingProtectionsToggle) {
         _this2.$toggleparent.html((0, _protectionToggle.renderUpdatingSpinner)());
-      }, 300);
-    } // Complete the update once the animation has completed
-
-
-    this.model.toggleAllowlist();
+      }
+    }, 300);
   },
   _changePermission: function _changePermission(e) {
     this.model.updatePermission(e.target.name, e.target.value);
@@ -35734,6 +35743,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     });
 
     if ((_this$model$tab = this.model.tab) !== null && _this$model$tab !== void 0 && _this$model$tab.search) {
+      console.log('this.model.tab?.search');
       this.views.search = new _search3["default"]({
         pageView: this,
         model: new _search["default"]({

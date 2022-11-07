@@ -43,18 +43,10 @@ function Site(ops) {
     this.model
         .getBackgroundTabData()
         .then(() => {
-            if (this.model.tab && (this.model.tab.status === 'complete' || this.model.domain === 'new tab')) {
-                // render template for the first time here
-                Parent.call(this, ops)
-                // @ts-ignore
-                this._setup()
-            } else {
-                // the timeout helps buffer the re-render cycle during heavy
-                // page loads with lots of trackers
-                Parent.call(this, ops)
-                // @ts-ignore
-                setTimeout(() => this.rerender(), 750)
-            }
+            // render template for the first time here
+            Parent.call(this, ops)
+            // @ts-ignore
+            this._setup()
         })
         .catch((e) => {
             console.log('❌ [views/site.es6.js] --> ', e)
@@ -71,6 +63,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         if (this.$body.hasClass('is-disabled')) return
 
         // this can only ever be interacted with once
+        // so we return if set, otherwise we immediately set this value to prevent further updates
         if (this.updateInProgress) return
         this.updateInProgress = true
 
@@ -78,16 +71,15 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.$toggle.toggleClass('toggle-button--is-active-true')
         this.$toggle.toggleClass('toggle-button--is-active-false')
 
-        // on platforms that support spinners, just replace the HTML
-        // after allowing 300ms for the animation
-        if (this.features.spinnerFollowingProtectionsToggle) {
-            setTimeout(() => {
-                this.$toggleparent.html(renderUpdatingSpinner())
-            }, 300)
-        }
+        // allow 300ms for the animation
+        setTimeout(() => {
+            this.model.toggleAllowlist()
 
-        // Complete the update once the animation has completed
-        this.model.toggleAllowlist()
+            // on platforms that support spinners, just replace the HTML
+            if (this.features.spinnerFollowingProtectionsToggle) {
+                this.$toggleparent.html(renderUpdatingSpinner())
+            }
+        }, 300)
     },
 
     _changePermission: function (e) {
@@ -201,6 +193,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             store: this.store,
         })
         if (this.model.tab?.search) {
+            console.log('this.model.tab?.search')
             this.views.search = new SearchView({
                 pageView: this,
                 model: new SearchModel({ searchText: '' }),

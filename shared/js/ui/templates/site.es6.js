@@ -7,6 +7,23 @@ import { topNav } from './shared/top-nav'
 export default function () {
     // here we'll show CTAs when the tab is disabled
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens)
+    if (this.model.tab.error) {
+        return bel`
+            <div class="site-info">
+                <div class="page-inner">
+                    ${renderSearchWrapper(this.model)}
+                    <div class="padding-x">
+                        <div class='cta-screen'>
+                            <p class="note token-title-3 text--center">
+                            Something went wrong and we couldn't load the dashboard. Try reloading the browser tab.
+                            </p>
+                        </div> 
+                    </div>
+                    <div class="padding-x"></div>
+                </div>
+            </div>
+        `
+    }
     if (this.model.disabled && supportsCtaScreens) {
         return bel`
             <div class="site-info">

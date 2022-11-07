@@ -44,6 +44,7 @@ export class TabData {
      * @param {Record<string, any> | null | undefined} search
      * @param {Record<string, any> | null | undefined} emailProtection
      * @param {{prevalence: number, displayName: string} | null | undefined} parentEntity
+     * @param {string | null | undefined} error
      */
     constructor(
         id,
@@ -59,7 +60,8 @@ export class TabData {
         ctaScreens,
         search,
         emailProtection,
-        parentEntity
+        parentEntity,
+        error
     ) {
         this.url = url
         this.id = id
@@ -75,6 +77,7 @@ export class TabData {
         this.search = search
         this.emailProtection = emailProtection
         this.parentEntity = parentEntity
+        this.error = error
     }
 }
 
@@ -86,13 +89,19 @@ export class TabData {
  * @returns {TabData}
  */
 export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData) => {
+    let domain
+    try {
+        domain = new URL(tabUrl).host.replace(/^www\./, '')
+    } catch (e) {
+        domain = 'unknown'
+    }
     return {
         id: undefined,
         url: tabUrl,
         status: 'complete',
         upgradedHttps,
         specialDomainName: undefined,
-        domain: new URL(tabUrl).host.replace(/^www\./, ''),
+        domain,
         protections,
         locale: null,
         requestDetails: createRequestDetails(rawRequestData.requests, rawRequestData.installedSurrogates || []),
@@ -105,6 +114,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         isPendingUpdates: undefined,
         certificate: undefined,
         platformLimitations: undefined,
+        error: undefined,
     }
 }
 

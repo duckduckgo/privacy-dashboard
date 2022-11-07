@@ -49,7 +49,7 @@ test.describe('initial page data', () => {
         expect(out).toMatchObject([
             {
                 messageType: 'getPrivacyDashboardData',
-                options: { tabId: 0 },
+                options: { tabId: null },
             },
         ])
         await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 500 })
@@ -111,6 +111,7 @@ test.describe('Protections toggle', () => {
     test.describe('when a site is NOT allowlisted', () => {
         test('then pressing toggle should disable protections', async ({ page, extensionMocks }) => {
             await page.locator('[aria-pressed="true"]').click()
+            await page.waitForTimeout(300)
             // @ts-ignore
             const out = await extensionMocks.outgoing({ names: ['setLists'] })
             expect(out).toMatchObject([
@@ -146,6 +147,7 @@ test.describe('Protections toggle', () => {
             await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
             await expect(page).toHaveScreenshot('allow-listed.png')
             await page.locator('[aria-pressed="false"]').click()
+            await page.waitForTimeout(300)
             // @ts-ignore
             const out = await requests.outgoing({ names: ['setLists'] })
             expect(out).toMatchObject([
@@ -181,6 +183,7 @@ test.describe('Protections toggle', () => {
             await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
             await expect(page).toHaveScreenshot('content-blocking-disabled.png')
             await page.locator('[aria-pressed="false"]').click()
+            await page.waitForTimeout(300)
             // @ts-ignore
             const out = await requests.outgoing({ names: ['setLists'] })
             expect(out).toMatchObject([
@@ -273,5 +276,29 @@ test.describe('options', () => {
         await page.locator('[aria-label="More options"]').click()
         const outgoing = await requests.outgoing({ names: ['openOptions'] })
         expect(outgoing).toMatchObject([{ messageType: 'openOptions' }])
+    })
+})
+
+test.describe('tab data error', () => {
+    test('should show an error screen', async ({ page }) => {
+        await withExtensionRequests(page, {
+            // @ts-expect-error
+            requestData: { requests: [{ foo: 'bar' }] },
+            tab: {
+                id: 1533,
+                url: 'https://example.com',
+                upgradedHttps: false,
+                protections: {
+                    denylisted: false,
+                    allowlisted: false,
+                    enabledFeatures: [],
+                    unprotectedTemporary: false,
+                },
+            },
+        })
+        await page.goto(HTML)
+        await page
+            .locator('"Something went wrong and we couldn\'t load the dashboard. Try reloading the browser tab."')
+            .waitFor({ timeout: 500 })
     })
 })

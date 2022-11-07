@@ -202,6 +202,7 @@ export async function openOptions() {
  * ```
  */
 export async function getPrivacyDashboardData(tabId) {
+    console.log('senfing', [tabId])
     return toExtensionMessage('getPrivacyDashboardData', { tabId })
 }
 
@@ -213,7 +214,7 @@ export function backgroundMessage(_channel) {
         if (sender.id !== window.chrome.runtime.id) {
             return
         }
-        console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req)
+        // console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req)
         if (req.updateTabData) channel.send('updateTabData')
         if (req.didResetTrackersData) channel.send('didResetTrackersData', req.didResetTrackersData)
         if (req.closePopup) window.close()
@@ -226,7 +227,7 @@ export function backgroundMessage(_channel) {
 export async function getBackgroundTabData() {
     // @ts-ignore
     const tabIdParam = new URL(document.location.href).searchParams.get('tabId')
-    const isNumeric = !Number.isNaN(Number(tabIdParam))
+    const isNumeric = tabIdParam && !Number.isNaN(Number(tabIdParam))
     const tabId = isNumeric ? Number(tabIdParam) : null
     const resp = await getPrivacyDashboardData(tabId)
     const parsedMessageData = getPrivacyDashboardDataSchema.safeParse(resp)
@@ -266,6 +267,11 @@ export async function getBackgroundTabData() {
         unprotectedTemporary: false,
     }
     return {
-        tab: createTabData('https://example.com', false, protections, { requests: [] }),
+        tab: {
+            ...createTabData('unknown', false, protections, { requests: [] }),
+            error: parsedMessageData.error.message,
+            search: {},
+            ctaScreens: {},
+        },
     }
 }
