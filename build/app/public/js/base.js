@@ -33842,11 +33842,11 @@ function renderKeyInsight() {
   };
 
   var description = function description(text) {
-    return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"token-title-3\">", "</div>"])), text);
+    return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"token-title-3\"><span role=\"text\">", "</span></div>"])), text);
   };
 
   if (model.httpsState === 'none') {
-    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n            <div class=\"key-insight key-insight--main\">\n                <div class=\"large-icon-container hero-icon--insecure-connection\"></div>\n                ", "\n                <div class=\"token-title-3\">", "</div>\n            </div>\n        "])), title(model.tab.domain), (0, _raw["default"])(_localize.i18n.t('site:connectionDescriptionUnencrypted.title')));
+    return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n            <div class=\"key-insight key-insight--main\">\n                <div class=\"large-icon-container hero-icon--insecure-connection\"></div>\n                ", "\n                ", "\n            </div>\n        "])), title(model.tab.domain), description((0, _raw["default"])(_localize.i18n.t('site:connectionDescriptionUnencrypted.title'))));
   } // remote disabled
 
 
@@ -34555,7 +34555,7 @@ function protectionToggle(model) {
   }
 
   var protectionToggle = (0, _toggleButton.toggleButton)(active, 'js-site-toggle', disabled);
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection\"><span>", "</span></p>\n                <div class=\"site-info__toggle-container js-site-toggle-parent\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"site-info__protection-wrapper\">\n        <ul class=\"default-list\">\n            <li class=\"site-info__li--toggle ", "\">\n                <p class=\"site-info__protection\"><span role=\"text\">", "</span></p>\n                <div class=\"site-info__toggle-container js-site-toggle-parent\">", "</div>\n            </li>\n        </ul>\n    </div>"])), active ? 'is-active' : '', (0, _raw["default"])(text), protectionToggle);
 }
 
 },{"../../base/localize.es6":73,"../../environment-check":81,"./toggle-button.es6":105,"bel":31,"bel/raw":32}],104:[function(require,module,exports){

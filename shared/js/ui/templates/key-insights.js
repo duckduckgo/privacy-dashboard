@@ -42,13 +42,13 @@ KeyInsightView.prototype = $.extend({}, Parent.prototype, {
 export function renderKeyInsight() {
     const model = this.model
     const title = (text) => bel`<h1 class="token-title-3-em">${text}</h1>`
-    const description = (text) => bel`<div class="token-title-3">${text}</div>`
+    const description = (text) => bel`<div class="token-title-3"><span role="text">${text}</span></div>`
     if (model.httpsState === 'none') {
         return bel`
             <div class="key-insight key-insight--main">
                 <div class="large-icon-container hero-icon--insecure-connection"></div>
                 ${title(model.tab.domain)}
-                <div class="token-title-3">${raw(i18n.t('site:connectionDescriptionUnencrypted.title'))}</div>
+                ${description(raw(i18n.t('site:connectionDescriptionUnencrypted.title')))}
             </div>
         `
     }

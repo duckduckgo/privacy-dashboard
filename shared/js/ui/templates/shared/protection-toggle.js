@@ -38,7 +38,7 @@ export function protectionToggle(model) {
     return bel`<div class="site-info__protection-wrapper">
         <ul class="default-list">
             <li class="site-info__li--toggle ${active ? 'is-active' : ''}">
-                <p class="site-info__protection"><span>${raw(text)}</span></p>
+                <p class="site-info__protection"><span role="text">${raw(text)}</span></p>
                 <div class="site-info__toggle-container js-site-toggle-parent">${protectionToggle}</div>
             </li>
         </ul>
