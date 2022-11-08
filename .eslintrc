@@ -3,7 +3,9 @@
     "parser": "@babel/eslint-parser",
     "rules": {
         "indent": "off",
-        "import/order": "error"
+        "import/order": "error",
+        "comma-dangle": "off",
+        "space-before-function-paren": "off"
     },
     "env": {
         "webextensions": true,
