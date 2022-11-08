@@ -35026,7 +35026,7 @@ function _default() {
   }
 
   var permissions = localizePermissions(this.model.permissions);
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                <div id='key-insight'></div>\n            </div>\n            <div class='padding-x'>\n                <div id='main-nav'></div>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), (0, _topNav.topNav)({
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class='site-info page'>\n        ", "\n        ", "\n        <div class='page-inner' data-with-permissions=", ">\n            <div class='padding-x-double'>\n                <div id='key-insight'></div>\n            </div>\n            <div class='padding-x'>\n                <nav id='main-nav'></nav>\n                ", "\n            </div>\n            <div class='padding-x'>\n                ", "\n                ", "\n            </div>\n        </div>\n        ", "\n    </div>"])), renderSearchWrapper(this.model), (0, _topNav.topNav)({
     view: 'primary'
   }), permissions.length > 0, (0, _protectionToggle.protectionToggle)(this.model), renderEmailWrapper(this.model), renderReportButton(), permissions.length ? outer({
     children: renderManagePermissions(this.model)
@@ -35296,6 +35296,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /**
  * @param {object} ops
  * @param {import("../models/site.es6.js").default & import("../base/model.es6.js").baseModelMethods} ops.model
@@ -35310,6 +35324,7 @@ function MainNavView(ops) {
   this.store = ops.store;
   this.template = template;
   this.features = (0, _platformFeatures.createPlatformFeatures)(_communication.platform);
+  this.cleanups = [];
   this.nav = {
     connection: function connection(e) {
       _this.model.send('navigate', {
@@ -35347,7 +35362,10 @@ MainNavView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototy
     [this.$parent, 'mouseleave', this._mouseleave]]);
 
     if ((0, _environmentCheck.isAndroid)()) {
-      (0, _utils.setupMaterialDesignRipple)('.link-action');
+      var _this$cleanups;
+
+      // @ts-ignore
+      (_this$cleanups = this.cleanups).push.apply(_this$cleanups, _toConsumableArray((0, _utils.setupMaterialDesignRipple)(this.$parent[0], '.link-action')));
     }
   },
 
@@ -35377,8 +35395,33 @@ MainNavView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototy
       console.warn('cannot delete data-hover'); // no-op
     }
   },
+  cleanup: function cleanup() {
+    var _iterator = _createForOfIteratorHelper(this.cleanups),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var cleanup = _step.value;
+        cleanup();
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    this.cleanups = [];
+  },
   rerender: function rerender() {
+    this.cleanup();
+
     this._rerender();
+
+    if ((0, _environmentCheck.isAndroid)()) {
+      var _this$cleanups2;
+
+      (_this$cleanups2 = this.cleanups).push.apply(_this$cleanups2, _toConsumableArray((0, _utils.setupMaterialDesignRipple)(this.$parent[0], '.link-action')));
+    }
   }
 });
 /**
@@ -35654,7 +35697,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
 
     if ((0, _environmentCheck.isAndroid)()) {
       (0, _utils.setupSwitch)('.mdc-switch');
-      (0, _utils.setupMaterialDesignRipple)('.link-action');
+      (0, _utils.setupMaterialDesignRipple)(this.$parent[0], '.js-site-report-broken');
     }
 
     this.bindEvents([[this.$toggle, 'click', this._onAllowlistClick], [this.$reportbroken, 'click', this._onReportBrokenSiteClick], [this.$done, 'click', this._done], [this.$permission, 'change', this._changePermission], [this.store.subscribe, 'action:site', this._handleEvents]]);
@@ -35750,7 +35793,6 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
     });
 
     if ((_this$model$tab = this.model.tab) !== null && _this$model$tab !== void 0 && _this$model$tab.search) {
-      console.log('this.model.tab?.search');
       this.views.search = new _search3["default"]({
         pageView: this,
         model: new _search["default"]({
@@ -35838,7 +35880,7 @@ SlidingSubview.prototype = _jquery["default"].extend({}, _viewEs["default"].prot
     this.bindEvents([[this.$close, 'click', this._destroy], [this.$done, 'click', this._done]]); // Set up Material design features on Android
 
     if ((0, _environmentCheck.isAndroid)()) {
-      (0, _utils.setupMaterialDesignRipple)('.link-action');
+      (0, _utils.setupMaterialDesignRipple)(this.$parent[0], '.link-action');
     }
   },
   setupNavigationSupport: function setupNavigationSupport() {
@@ -36590,13 +36632,15 @@ var _switch = require("@material/switch");
 
 var seen = new WeakSet();
 
-function setupMaterialDesignRipple() {
-  for (var _len = arguments.length, selectors = new Array(_len), _key = 0; _key < _len; _key++) {
-    selectors[_key] = arguments[_key];
+function setupMaterialDesignRipple(parent) {
+  var cleanups = [];
+
+  for (var _len = arguments.length, selectors = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    selectors[_key - 1] = arguments[_key];
   }
 
   selectors.forEach(function (selector) {
-    var $matches = document.querySelectorAll(selector);
+    var $matches = parent.querySelectorAll(selector);
     $matches.forEach(function ($el) {
       if (seen.has($el)) {
         return;
@@ -36605,9 +36649,21 @@ function setupMaterialDesignRipple() {
       seen.add($el);
       $el.classList.add('material-design-ripple');
 
-      _ripple.MDCRipple.attachTo($el);
+      var instance = _ripple.MDCRipple.attachTo($el); // only
+
+
+      instance.listen('click', function (e) {
+        var _e$target, _e$target$closest;
+
+        // @ts-ignore
+        (_e$target = e.target) === null || _e$target === void 0 ? void 0 : (_e$target$closest = _e$target.closest) === null || _e$target$closest === void 0 ? void 0 : _e$target$closest.call(_e$target, 'a').blur();
+      });
+      cleanups.push(function () {
+        return instance.destroy();
+      });
     });
   });
+  return cleanups;
 }
 
 var seenSwitch = new WeakSet();
@@ -36625,11 +36681,10 @@ function setupSwitch(selector) {
       seenSwitch.add($el); // @ts-ignore
       // eslint-disable-next-line no-unused-vars
 
-      var _switchInstance = new _switch.MDCSwitch($el); // don't allow more than a single click on the switch
+      var switchInstance = new _switch.MDCSwitch($el); // don't allow more than a single click on the switch
 
-
-      $el.addEventListener('click', function () {
-        _switchInstance.destroy();
+      switchInstance.listen('click', function () {
+        switchInstance.destroy();
       });
     }
   });

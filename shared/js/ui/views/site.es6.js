@@ -93,7 +93,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         if (isAndroid()) {
             setupSwitch('.mdc-switch')
-            setupMaterialDesignRipple('.link-action')
+            setupMaterialDesignRipple(this.$parent[0], '.js-site-report-broken')
         }
 
         this.bindEvents([
@@ -193,7 +193,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
             store: this.store,
         })
         if (this.model.tab?.search) {
-            console.log('this.model.tab?.search')
             this.views.search = new SearchView({
                 pageView: this,
                 model: new SearchModel({ searchText: '' }),

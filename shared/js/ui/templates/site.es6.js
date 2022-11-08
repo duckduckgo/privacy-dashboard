@@ -50,7 +50,7 @@ export default function () {
                 <div id='key-insight'></div>
             </div>
             <div class='padding-x'>
-                <div id='main-nav'></div>
+                <nav id='main-nav'></nav>
                 ${protectionToggle(this.model)}
             </div>
             <div class='padding-x'>

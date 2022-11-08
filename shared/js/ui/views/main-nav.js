@@ -21,6 +21,7 @@ export function MainNavView(ops) {
     this.store = ops.store
     this.template = template
     this.features = createPlatformFeatures(platform)
+    this.cleanups = []
     this.nav = {
         connection: (e) => {
             this.model.send('navigate', { target: 'connection' })
@@ -54,7 +55,8 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
         ])
 
         if (isAndroid()) {
-            setupMaterialDesignRipple('.link-action')
+            // @ts-ignore
+            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], '.link-action'))
         }
     },
     /**
@@ -80,8 +82,19 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
             // no-op
         }
     },
+    cleanup() {
+        for (const cleanup of this.cleanups) {
+            cleanup()
+        }
+        this.cleanups = []
+    },
     rerender() {
+        this.cleanup()
         this._rerender()
+
+        if (isAndroid()) {
+            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], '.link-action'))
+        }
     },
 })
 
