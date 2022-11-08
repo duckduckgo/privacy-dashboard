@@ -20,10 +20,14 @@ test.describe('page data (no trackers)', () => {
         await withWebkitMocks(page)
         await playTimeline(page, ['state:04'])
         await page.locator('"No Tracking Requests Found"').click()
-        await expect(page).toHaveScreenshot('tracker-list-before.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('tracker-list-before.png')
+        }
         // @ts-ignore
         await playTimeline(page, ['new-requests'])
-        await expect(page).toHaveScreenshot('tracker-list-after.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('tracker-list-after.png')
+        }
     })
     test('should accept updates when on non-trackers list screen', async ({ page }) => {
         forwardConsole(page)
@@ -31,10 +35,14 @@ test.describe('page data (no trackers)', () => {
         await withWebkitMocks(page)
         await playTimeline(page, ['state:04'])
         await page.locator('"No Third-Party Requests Found"').click()
-        await expect(page).toHaveScreenshot('non-tracker-list-before.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('non-tracker-list-before.png')
+        }
         // @ts-ignore
         await playTimeline(page, ['new-requests'])
-        await expect(page).toHaveScreenshot('non-tracker-list-after.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('non-tracker-list-after.png')
+        }
     })
     test('does not alter the appearance of connection panel', async ({ page }) => {
         forwardConsole(page)
@@ -42,10 +50,14 @@ test.describe('page data (no trackers)', () => {
         await withWebkitMocks(page)
         await playTimeline(page, ['state:04'])
         await page.locator('"Connection Is Encrypted"').click()
-        await expect(page).toHaveScreenshot('connection-before.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('connection-before.png')
+        }
         // @ts-ignore
         await playTimeline(page, ['new-requests'])
-        await expect(page).toHaveScreenshot('connection-before.png') // <- should be identical
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('connection-before.png') // <- should be identical
+        }
     })
 })
 
@@ -57,7 +69,9 @@ test.describe('page data (with trackers)', () => {
         await playTimeline(page, ['state:cnn'])
         // allow the page to re-render
         await page.locator('.icon-list').waitFor({ timeout: 500 })
-        await expect(page).toHaveScreenshot('primary-screen.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('primary-screen.png')
+        }
     })
 })
 
@@ -127,50 +141,52 @@ test.describe('Close', () => {
     })
 })
 
-test.describe('states', () => {
-    test('01', async ({ page }) => {
-        const state = new StateTest(page, 'ios', '01')
-        await state.screenshots()
+if (!process.env.CI) {
+    test.describe('states', () => {
+        test('01', async ({ page }) => {
+            const state = new StateTest(page, 'ios', '01')
+            await state.screenshots()
+        })
+        test('02', async ({ page }) => {
+            const p = new StateTest(page, 'ios', '02')
+            await p.screenshots()
+        })
+        test('03', async ({ page }) => {
+            const p = new StateTest(page, 'ios', '03')
+            await p.screenshots()
+        })
+        test('04', async ({ page }) => {
+            const p = new StateTest(page, 'ios', '04')
+            await p.screenshots()
+        })
+        test('05', async ({ page }) => {
+            const p = new StateTest(page, 'ios', '05')
+            await p.screenshots()
+        })
+        test('cnn', async ({ page }) => {
+            const p = new StateTest(page, 'ios', 'cnn')
+            await p.screenshots()
+        })
+        test('ad-attribution', async ({ page }) => {
+            const p = new StateTest(page, 'ios', 'ad-attribution')
+            await p.screenshots()
+        })
+        test('google-off', async ({ page }) => {
+            const p = new StateTest(page, 'ios', 'google-off')
+            await p.screenshots()
+        })
+        test('upgraded+secure', async ({ page }) => {
+            const p = new StateTest(page, 'ios', 'upgraded+secure')
+            await p.init()
+            await p.screenshotPrimary()
+            await p.screenshotConnection()
+        })
+        test('new-entities', async ({ page }) => {
+            const p = new StateTest(page, 'ios', 'new-entities')
+            await p.screenshots()
+        })
     })
-    test('02', async ({ page }) => {
-        const p = new StateTest(page, 'ios', '02')
-        await p.screenshots()
-    })
-    test('03', async ({ page }) => {
-        const p = new StateTest(page, 'ios', '03')
-        await p.screenshots()
-    })
-    test('04', async ({ page }) => {
-        const p = new StateTest(page, 'ios', '04')
-        await p.screenshots()
-    })
-    test('05', async ({ page }) => {
-        const p = new StateTest(page, 'ios', '05')
-        await p.screenshots()
-    })
-    test('cnn', async ({ page }) => {
-        const p = new StateTest(page, 'ios', 'cnn')
-        await p.screenshots()
-    })
-    test('ad-attribution', async ({ page }) => {
-        const p = new StateTest(page, 'ios', 'ad-attribution')
-        await p.screenshots()
-    })
-    test('google-off', async ({ page }) => {
-        const p = new StateTest(page, 'ios', 'google-off')
-        await p.screenshots()
-    })
-    test('upgraded+secure', async ({ page }) => {
-        const p = new StateTest(page, 'ios', 'upgraded+secure')
-        await p.init()
-        await p.screenshotPrimary()
-        await p.screenshotConnection()
-    })
-    test('new-entities', async ({ page }) => {
-        const p = new StateTest(page, 'ios', 'new-entities')
-        await p.screenshots()
-    })
-})
+}
 
 class StateTest {
     page

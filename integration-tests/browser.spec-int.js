@@ -53,7 +53,9 @@ test.describe('initial page data', () => {
             },
         ])
         await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 500 })
-        await expect(page).toHaveScreenshot('no-requests.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('no-requests.png')
+        }
     })
 })
 
@@ -61,7 +63,9 @@ test.describe('breakage form', () => {
     test('should submit with no values', async ({ page, extensionMocks }) => {
         await page.locator('"Website not working as expected?"').click()
         await page.locator('"Send Report"').waitFor({ timeout: 600 })
-        await expect(page).toHaveScreenshot('send-report.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('send-report.png')
+        }
         await page.locator('"Send Report"').click()
         // @ts-ignore
         const out = await extensionMocks.outgoing({
@@ -145,7 +149,9 @@ test.describe('Protections toggle', () => {
             })
             await page.goto(HTML)
             await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
-            await expect(page).toHaveScreenshot('allow-listed.png')
+            if (!process.env.CI) {
+                await expect(page).toHaveScreenshot('allow-listed.png')
+            }
             await page.locator('[aria-pressed="false"]').click()
             await page.waitForTimeout(300)
             // @ts-ignore
@@ -181,7 +187,9 @@ test.describe('Protections toggle', () => {
             })
             await page.goto(HTML)
             await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
-            await expect(page).toHaveScreenshot('content-blocking-disabled.png')
+            if (!process.env.CI) {
+                await expect(page).toHaveScreenshot('content-blocking-disabled.png')
+            }
             await page.locator('[aria-pressed="false"]').click()
             await page.waitForTimeout(300)
             // @ts-ignore
@@ -221,7 +229,9 @@ test.describe('special page (cta)', () => {
         })
         await page.goto(HTML)
         await page.locator('"Love using DuckDuckGo?"').waitFor({ timeout: 500 })
-        await expect(page).toHaveScreenshot('cta.png')
+        if (!process.env.CI) {
+            await expect(page).toHaveScreenshot('cta.png')
+        }
     })
 })
 
