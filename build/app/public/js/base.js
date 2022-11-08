@@ -29255,7 +29255,6 @@ function getPrivacyDashboardData(_x5) {
 
 function _getPrivacyDashboardData() {
   _getPrivacyDashboardData = _asyncToGenerator(function* (tabId) {
-    console.log('senfing', [tabId]);
     return toExtensionMessage('getPrivacyDashboardData', {
       tabId: tabId
     });
@@ -34702,6 +34701,8 @@ exports.toggleButton = toggleButton;
 
 var _bel = _interopRequireDefault(require("bel"));
 
+var _localize = require("../../base/localize.es6");
+
 var _environmentCheck = require("../../environment-check");
 
 var _templateObject, _templateObject2;
@@ -34710,8 +34711,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
+var labelEnabled = _localize.ns.site('enableProtectionsSwitch.title');
+
+var labelDisabled = _localize.ns.site('disableProtectionsSwitch.title');
+
 function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    <button\n        id=\"basic-switch\"\n        class=\"mdc-switch mdc-switch--", " ", "\"\n        type=\"button\"\n        role=\"switch\"\n        aria-checked=\"false\"\n        ", "\n    >\n        <div class=\"mdc-switch__track\"></div>\n        <div class=\"mdc-switch__handle-track\">\n            <div class=\"mdc-switch__handle\">\n            <div class=\"mdc-switch__shadow\">\n                <div class=\"mdc-elevation-overlay\"></div>\n            </div>\n            <div class=\"mdc-switch__ripple\"></div>\n            </div>\n        </div>\n        <span class=\"mdc-switch__focus-ring-wrapper\">\n            <div class=\"mdc-switch__focus-ring\"></div>\n        </span>\n    </button>\n        "])), isActiveBoolean ? 'selected' : 'unselected', klass, disabled ? 'disabled' : '');
+  var label = isActiveBoolean ? labelDisabled : labelEnabled;
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    <button\n        id=\"basic-switch\"\n        class=\"mdc-switch mdc-switch--", " ", "\"\n        type=\"button\"\n        role=\"switch\"\n        aria-checked=\"false\"\n        aria-label=\"", "\"\n        ", "\n    >\n        <div class=\"mdc-switch__track\"></div>\n        <div class=\"mdc-switch__handle-track\">\n            <div class=\"mdc-switch__handle\">\n            <div class=\"mdc-switch__shadow\">\n                <div class=\"mdc-elevation-overlay\"></div>\n            </div>\n            <div class=\"mdc-switch__ripple\"></div>\n            </div>\n        </div>\n        <span class=\"mdc-switch__focus-ring-wrapper\">\n            <div class=\"mdc-switch__focus-ring\"></div>\n        </span>\n    </button>\n        "])), isActiveBoolean ? 'selected' : 'unselected', klass, label, disabled ? 'disabled' : '');
 }
 /**
  * @param {boolean} isActiveBoolean
@@ -34726,10 +34732,11 @@ function toggleButton(isActiveBoolean, klass, disabled) {
     return generateMaterialDesignToggle(isActiveBoolean, klass, disabled);
   }
 
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\"></div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', disabled ? 'disabled' : '');
+  var label = isActiveBoolean ? labelDisabled : labelEnabled;
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <button class=\"toggle-button toggle-button--is-active-", " ", "\"\n        type=\"button\"\n        aria-pressed=\"", "\"\n        aria-label=\"", "\"\n        ", "\n    >\n        <div class=\"toggle-button__bg\"></div>\n        <div class=\"toggle-button__knob\"></div>\n    </button>"])), isActiveBoolean, klass, isActiveBoolean ? 'true' : 'false', label, disabled ? 'disabled' : '');
 }
 
-},{"../../environment-check":81,"bel":31}],106:[function(require,module,exports){
+},{"../../base/localize.es6":73,"../../environment-check":81,"bel":31}],106:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39639,6 +39646,14 @@ module.exports={
     "navigationBack": {
         "title": "Back",
         "note": "Aria label and visible text for iOS on top bar navigation"
+    },
+    "enableProtectionsSwitch": {
+        "title": "Enable Protections",
+        "note": "Aria label for the switch that allows the user to turn protections on"
+    },
+    "disableProtectionsSwitch": {
+        "title": "Disable Protections",
+        "note": "Aria label for the switch that allows the user to turn protections off"
     }
 }
 

@@ -229,5 +229,13 @@
     "navigationBack": {
         "title": "Back",
         "note": "Aria label and visible text for iOS on top bar navigation"
+    },
+    "enableProtectionsSwitch": {
+        "title": "Enable Protections",
+        "note": "Aria label for the switch that allows the user to turn protections on"
+    },
+    "disableProtectionsSwitch": {
+        "title": "Disable Protections",
+        "note": "Aria label for the switch that allows the user to turn protections off"
     }
 }

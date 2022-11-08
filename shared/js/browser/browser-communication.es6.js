@@ -202,7 +202,6 @@ export async function openOptions() {
  * ```
  */
 export async function getPrivacyDashboardData(tabId) {
-    console.log('senfing', [tabId])
     return toExtensionMessage('getPrivacyDashboardData', { tabId })
 }
 
