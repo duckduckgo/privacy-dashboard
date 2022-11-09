@@ -17,6 +17,7 @@
  */
 import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
 import { isIOS } from '../ui/environment-check'
+import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     getContentHeight,
     SetListsMessage,
@@ -242,6 +243,9 @@ export function privacyDashboardSetSize(payload) {
     }
 }
 
+/**
+ * These side-effects are used on both ios/macos
+ */
 export function setupShared() {
     window.onChangeRequestData = onChangeRequestData
     window.onChangeAllowedPermissions = function (data) {
@@ -271,15 +275,22 @@ export function setupShared() {
         consentManaged = data
         channel?.send('updateTabData')
     }
+    setupGlobalOpenerListener((href) => {
+        privacyDashboardOpenUrlInNewTab({
+            url: href,
+        })
+    })
 }
 
+/**
+ * macOS specific setup
+ */
 export function setup() {
     setupColorScheme()
     setupShared()
     setupMutationObserver((height) => {
         privacyDashboardSetSize({ height })
     })
-    setupClickEventHandlers()
 }
 
 /**
@@ -294,24 +305,6 @@ function firstRenderComplete() {
     if (typeof height === 'number') {
         privacyDashboardSetSize({ height })
     }
-}
-
-export function setupClickEventHandlers() {
-    /**
-     * on macOS + iOS, respond to all clicks on links with target="_blank"
-     * by forwarding to the native side.
-     */
-    document.addEventListener('click', (e) => {
-        const targetElem = e.target
-        if (targetElem instanceof HTMLAnchorElement) {
-            if (targetElem.target === '_blank' && targetElem.origin) {
-                e.preventDefault()
-                privacyDashboardOpenUrlInNewTab({
-                    url: targetElem.href,
-                })
-            }
-        }
-    })
 }
 
 export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete }

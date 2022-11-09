@@ -41,6 +41,10 @@
             unselected-hover-track-color: rgba(#666666, 0.3),
             unselected-focus-track-color: rgba(#666666, 0.3),
             unselected-pressed-track-color: rgba(#666666, 0.3),
+            // These 2 are specifically to prevent a lingering
+            // background color when a .blur() is called following a long-press
+            selected-hover-state-layer-opacity: 0,
+            unselected-hover-state-layer-opacity: 0,
         )
     );
     .body--theme-dark & {
@@ -65,6 +69,10 @@
                 unselected-hover-track-color: rgba(#666666, 0.3),
                 unselected-focus-track-color: rgba(#666666, 0.3),
                 unselected-pressed-track-color: rgba(#666666, 0.3),
+                // These 2 are specifically to prevent a lingering
+                // background color when a .blur() is called following a long-press
+                selected-hover-state-layer-opacity: 0,
+                unselected-hover-state-layer-opacity: 0,
             )
         );
     }

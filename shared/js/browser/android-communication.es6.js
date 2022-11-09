@@ -10,6 +10,7 @@
  * @category integrations
  */
 import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
+import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, SetListsMessage, setupColorScheme } from './common.es6'
 import { createTabData } from './utils/request-details'
 
@@ -322,20 +323,12 @@ export function setup() {
      */
     privacyDashboardApi = new PrivacyDashboardJavascriptInterface()
 
-    /**
-     * on Android, respond to all clicks on links with target="_blank"
-     * by forwarding to the native side.
-     */
-    document.addEventListener('click', (e) => {
-        const targetElem = e.target
-        if (targetElem instanceof HTMLAnchorElement) {
-            if (targetElem.target === '_blank' && targetElem.origin) {
-                e.preventDefault()
-                privacyDashboardApi.openInNewTab({
-                    url: targetElem.href,
-                })
-            }
-        }
+    // Blur elements on Android when a long-press is detected
+    setupBlurOnLongPress()
+    setupGlobalOpenerListener((href) => {
+        privacyDashboardApi.openInNewTab({
+            url: href,
+        })
     })
 }
 export const getBackgroundTabData = new Proxy(getBackgroundTabDataAndroid, {

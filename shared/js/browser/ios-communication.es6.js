@@ -22,21 +22,17 @@
  * @category integrations
  */
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, setupColorScheme } from './common.es6'
-import {
-    backgroundMessage,
-    getBackgroundTabData,
-    fetch as macosFetch,
-    setupClickEventHandlers,
-    setupShared,
-} from './macos-communication.es6'
+import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShared } from './macos-communication.es6'
 
+/**
+ * iOS specific setup
+ */
 export function setup() {
     const setColorScheme = setupColorScheme()
     window.onChangeTheme = function (themeName) {
         setColorScheme(themeName)
     }
     window.history.replaceState({}, '', window.location.href)
-    setupClickEventHandlers()
     setupShared()
 }
 

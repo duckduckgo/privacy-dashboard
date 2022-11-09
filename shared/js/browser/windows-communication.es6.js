@@ -31,6 +31,7 @@
  * @category integrations
  */
 import { windowsViewModelSchema } from '../../../schema/__generated__/schema.parsers'
+import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     assert,
     SetListsMessage,
@@ -252,20 +253,10 @@ export function setup() {
     setupMutationObserver((height) => {
         SetSize({ height })
     })
-    /**
-     * on macOS, respond to all clicks on links with target="_blank"
-     * by forwarding to the native side.
-     */
-    document.addEventListener('click', (e) => {
-        const targetElem = e.target
-        if (targetElem instanceof HTMLAnchorElement) {
-            if (targetElem.target === '_blank' && targetElem.origin) {
-                e.preventDefault()
-                OpenInNewTab({
-                    url: targetElem.href,
-                })
-            }
-        }
+    setupGlobalOpenerListener((href) => {
+        OpenInNewTab({
+            url: href,
+        })
     })
 }
 
