@@ -71,7 +71,6 @@ export function setupBlurOnLongPress() {
             const trigger = target.closest('a,button')
             if (trigger instanceof HTMLElement) {
                 if (seen.has(trigger) || seenSwitch.has(trigger)) {
-                    console.log('trigger.blur()', trigger)
                     trigger?.blur()
                 }
             }

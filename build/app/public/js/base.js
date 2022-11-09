@@ -36696,7 +36696,6 @@ function setupBlurOnLongPress() {
 
       if (trigger instanceof HTMLElement) {
         if (seen.has(trigger) || seenSwitch.has(trigger)) {
-          console.log('trigger.blur()', trigger);
           trigger === null || trigger === void 0 ? void 0 : trigger.blur();
         }
       }
