@@ -33,7 +33,7 @@ Most bug fixes are handled internally, but we will except pull requests for bug 
 
 The Privacy Dashboard can be built for all supported environments using
 `npm run build`. To preview the application using mock data, use
-`npm run preview.example` to view it in your default browser.
+`npm run preview` to view it in your default browser.
 
 The browser will open at `/html/popup.html` - if you want to see multiple variants
 open at once, visit `/html/iframe.html` instead.
@@ -48,19 +48,19 @@ in the browser that opens.
 
 -   `platform` - setting this will ensure that CSS for the selected platform is applied.
     -   Values can be: `browser`, `ios`, `macos`, `windows` or `android`
-    -   Example: [http://localhost:8080/html/popup.html?platform=ios](http://localhost:8080/html/popup.html?platform=ios)
+    -   Example: [http://localhost:3210/html/popup.html?platform=ios](http://localhost:3210/html/popup.html?platform=ios)
 -   `theme` - for overriding dark mode
     -   Values can be: `dark` or `light`
-    -   Example: [http://localhost:8080/html/popup.html?theme=dark](http://localhost:8080/html/popup.html?theme=dark)
-    -   Example Combined: [http://localhost:8080/html/popup.html?platform=ios&theme=dark](http://localhost:8080/html/popup.html?platform=ios&theme=dark)
+    -   Example: [http://localhost:3210/html/popup.html?theme=dark](http://localhost:3210/html/popup.html?theme=dark)
+    -   Example Combined: [http://localhost:3210/html/popup.html?platform=ios&theme=dark](http://localhost:3210/html/popup.html?platform=ios&theme=dark)
 -   `denylisted` - settings this to `true` would simulate the extension marking the current webpage
     as broken, but the user has overridden the choice and wants to keep protections enabled.
     -   Values can be `true` or `false`
-    -   Example: [http://localhost:8080/html/popup.html?platform=browser&isBroken=true&denylisted=true](http://localhost:8080/html/popup.html?platform=browser&isBroken=true&denylisted=true)
+    -   Example: [http://localhost:3210/html/popup.html?platform=browser&isBroken=true&denylisted=true](http://localhost:3210/html/popup.html?platform=browser&isBroken=true&denylisted=true)
 -   `contentBlockingException` - settings this to `true` would simulate an exception to the `contentBlocking` feature - this means DDG has remotely
     disabled content blocking for the current webpage. This is another way of determining if the current site is deemed to be 'broken'.
     -   Values can be `true` or `false`
-    -   Example: [http://localhost:8080/html/popup.html?platform=browser&contentBlockingException=true](http://localhost:8080/html/popup.html?platform=browser&contentBlockingException=true)
+    -   Example: [http://localhost:3210/html/popup.html?platform=browser&contentBlockingException=true](http://localhost:3210/html/popup.html?platform=browser&contentBlockingException=true)
 
 ## Browser/Extension specific overrides
 
@@ -71,7 +71,7 @@ they will be documented above.
 
 -   `emailUser` - setting this to 'true' would simulate a user being signed in to DDG Email Protection
     -   Values can be `true` or `false`
-    -   Example: [http://localhost:8080/html/popup.html?platform=browser&emailUser=true](http://localhost:8080/html/popup.html?platform=browser&emailUser=true)
+    -   Example: [http://localhost:3210/html/popup.html?platform=browser&emailUser=true](http://localhost:3210/html/popup.html?platform=browser&emailUser=true)
 
 ## Building Docs
 
@@ -104,26 +104,12 @@ tests.
 
 ### Unit Tests
 
-These run in Jest, using JSDOM. Test files can be found co-located with the
-corresponding code under test, using a `tests/` directory and `.test.js`
-filename suffix.
-
-ℹ️ Note: Not all code is covered with unit tests.
-
-### End-to-end Tests
-
-These run in Jest, using Playwright to run a Safari instance. Test files can be
-found under the `e2e/` directory with a `.e2e.js` filename suffix.
-
-Included with the end-to-end tests is a visual regression testing setup. Tests
-can use the `testScreenshot` helper to confirm that the page looks as expected,
-by comparing it against a saved screenshot and failing the test if it differs.
-Saved screenshot files can be found under `__image_snapshots__`, and show the
-Privacy Dashboard in both light and dark themes.
+Test files can be found co-located with the corresponding code under test, using a `tests/` directory and `.test.js`
+filename suffix. These run in Jest currently. The bulk of the testing is done via Integration testing.
 
 ### Integration Tests
 
-To verify the platform-specific communications, run the integration tests.
+To verify the platform-specific communications, run the integration tests
 
 -   first, you need to build all platforms with `npm run build`
 -   now run `npm run test.int` to have all platforms tested

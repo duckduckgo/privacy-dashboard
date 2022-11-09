@@ -36262,12 +36262,8 @@ var dataStates = {
   'upgraded+secure': {
     state: _requestDetails.states.protectionsOn_blocked_allowedTrackers,
     requests: [],
-    url: 'https://google.com',
+    url: 'https://example.com',
     upgradedHttps: true,
-    parentEntity: {
-      displayName: 'Google',
-      prevalence: 80.1
-    },
     certificates: defaultCertificates
   },
   cnn: {
