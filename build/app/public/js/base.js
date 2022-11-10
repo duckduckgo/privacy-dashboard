@@ -34606,13 +34606,15 @@ function thirdpartySummary(requestDetails, protectionsEnabled) {
     case _requestDetails.states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
     case _requestDetails.states.protectionsOn_allowedTrackers_allowedNonTrackers:
     case _requestDetails.states.protectionsOn_allowedTrackers:
-    case _requestDetails.states.protectionsOff_allowedTrackers:
     case _requestDetails.states.protectionsOn_allowedNonTrackers:
-    case _requestDetails.states.protectionsOff_allowedTrackers_allowedNonTrackers:
     case _requestDetails.states.protectionsOff_allowedNonTrackers:
       {
         return _localize.ns.site('thirdPartiesSummaryProtectionsOff.title');
       }
+
+    case _requestDetails.states.protectionsOff_allowedTrackers:
+    case _requestDetails.states.protectionsOff_allowedTrackers_allowedNonTrackers:
+      return _localize.ns.site('trackerNetworksSummaryProtectionsOff.title');
 
     case _requestDetails.states.protectionsOn:
     case _requestDetails.states.protectionsOff:
