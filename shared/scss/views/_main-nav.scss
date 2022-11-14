@@ -102,9 +102,8 @@
     z-index: 1;
     margin-left: 10px;
     margin-right: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    // when text wraps on this buttons (for different languages) this prevents the layout looking broken
+    line-height: 1;
 }
 
 .main-nav__chev {
