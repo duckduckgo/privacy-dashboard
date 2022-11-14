@@ -50,13 +50,12 @@ export function thirdpartySummary(requestDetails, protectionsEnabled) {
         case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedTrackers:
+        case states.protectionsOff_allowedTrackers:
         case states.protectionsOn_allowedNonTrackers:
+        case states.protectionsOff_allowedTrackers_allowedNonTrackers:
         case states.protectionsOff_allowedNonTrackers: {
             return ns.site('thirdPartiesSummaryProtectionsOff.title')
         }
-        case states.protectionsOff_allowedTrackers:
-        case states.protectionsOff_allowedTrackers_allowedNonTrackers:
-            return ns.site('trackerNetworksSummaryProtectionsOff.title')
         case states.protectionsOn:
         case states.protectionsOff:
         case states.protectionsOn_blocked: {
