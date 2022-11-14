@@ -48,9 +48,9 @@ export function sectionsFromSiteNonTracker(site) {
         return renderSections([
             {
                 name: 'protectionsDisabled',
-                heading: () => null,
+                heading: () => ns.site('sectionHeadingProtectionsDisabled.title'),
                 companies: requestDetails.all.sortedByPrevalence(),
-                bordered: true,
+                bordered: false,
             },
         ])
     }
