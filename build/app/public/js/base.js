@@ -34145,10 +34145,10 @@ function sectionsFromSiteNonTracker(site) {
     return (0, _pageTrackersEs.renderSections)([{
       name: 'protectionsDisabled',
       heading: function heading() {
-        return null;
+        return _localizeEs.ns.site('sectionHeadingProtectionsDisabled.title');
       },
       companies: requestDetails.all.sortedByPrevalence(),
-      bordered: true
+      bordered: false
     }]);
   } // when protections are ON, render all sections
 
