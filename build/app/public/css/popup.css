@@ -1835,19 +1835,17 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 
 .icon-list__blocked-icon {
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  vertical-align: middle;
-  background-image: url("../../img/refresh-assets/blocked-icon.svg");
-  background-color: #ffffff;
   border-radius: 100%;
   position: absolute;
 }
-.body--theme-dark .icon-list__blocked-icon {
-  background-color: #222;
+.icon-list__blocked-icon svg path {
+  shape-rendering: geometricPrecision;
+}
+.icon-list__blocked-icon svg circle {
+  shape-rendering: geometricPrecision;
+}
+.body--theme-dark .icon-list__blocked-icon circle {
+  fill: #222;
 }
 
 [data-company-icon-position]:nth-child(n+2):nth-child(odd) {
@@ -1873,17 +1871,12 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 [data-company-icon-size=large] .icon-list__blocked-icon {
   bottom: 14px;
   right: 14px;
-  width: 28px;
-  height: 28px;
-  border: 2px solid #ffffff;
-}
-.body--theme-dark [data-company-icon-size=large] .icon-list__blocked-icon {
-  border-color: #222;
+  width: 30px;
+  height: 30px;
 }
 .environment--browser [data-company-icon-size=large] .icon-list__blocked-icon {
   bottom: 10px;
   right: 10px;
-  border-width: 4px;
 }
 
 [data-company-icon-size=medium] {
@@ -1902,10 +1895,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   height: 24px;
   bottom: 8px;
   right: 8px;
-  border: 3px solid #ffffff;
-}
-.body--theme-dark [data-company-icon-size=medium] .icon-list__blocked-icon {
-  border-color: #222;
 }
 
 [data-company-icon-size=small] {
@@ -1925,10 +1914,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   height: 24px;
   bottom: 3px;
   right: 3px;
-  border: 3px solid #ffffff;
-}
-.body--theme-dark [data-company-icon-size=small] .icon-list__blocked-icon {
-  border-color: #222;
 }
 
 .icon-list__wrapper {
@@ -1936,8 +1921,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   border-radius: 50%;
   position: relative;
   display: flex;
-  font-size: 18px;
-  font-weight: 400;
   color: rgba(0, 0, 0, 0.85);
   align-items: center;
   justify-content: center;

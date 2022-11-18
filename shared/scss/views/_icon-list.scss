@@ -34,14 +34,19 @@ $small-wrapper: 48px;
 }
 
 .icon-list__blocked-icon {
-    @include icon_display();
-    @include cross_platform_bg_image('refresh-assets/blocked-icon.svg');
-    background-color: $white;
     border-radius: 100%;
     position: absolute;
 
+    svg path {
+        shape-rendering: geometricPrecision;
+    }
+    svg circle {
+        shape-rendering: geometricPrecision;
+    }
     .body--theme-dark & {
-        background-color: $color-gray-90;
+        circle {
+            fill: #222
+        }
     }
 }
 
@@ -74,18 +79,12 @@ $small-wrapper: 48px;
     .icon-list__blocked-icon {
         bottom: 14px;
         right: 14px;
-        width: 28px;
-        height: 28px;
-        border: 2px solid $white;
-
-        .body--theme-dark & {
-            border-color: $color-gray-90;
-        }
+        width: 30px;
+        height: 30px;
 
         .environment--browser & {
             bottom: 10px;
             right: 10px;
-            border-width: 4px;
         }
     }
 }
@@ -107,11 +106,6 @@ $small-wrapper: 48px;
         height: 24px;
         bottom: 8px;
         right: 8px;
-        border: 3px solid $white;
-
-        .body--theme-dark & {
-            border-color: $color-gray-90;
-        }
     }
 }
 [data-company-icon-size='small'] {
@@ -130,15 +124,10 @@ $small-wrapper: 48px;
     }
 
     .icon-list__blocked-icon {
-        width: 24px;
+        width:  24px;
         height: 24px;
         bottom: 3px;
         right: 3px;
-        border: 3px solid $white;
-
-        .body--theme-dark & {
-            border-color: $color-gray-90;
-        }
     }
 }
 
@@ -147,8 +136,6 @@ $small-wrapper: 48px;
     border-radius: 50%;
     position: relative;
     display: flex;
-    font-size: 18px;
-    font-weight: 400;
     color: rgba(0, 0, 0, 0.85);
     align-items: center;
     justify-content: center;

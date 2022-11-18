@@ -33772,7 +33772,7 @@ var _view = _interopRequireDefault(require("../base/view.es6"));
 
 var _utils = require("./shared/utils.es6");
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -33937,12 +33937,16 @@ function renderCompanyIconsList(model) {
   var positionMap = positions[processed.length];
   var list = processed.map(function (item, index) {
     if (item.kind === 'icon') {
-      return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n                <span class=\"icon-list__item\" style='order: ", "' data-company-icon-position=", ">\n                    <span class=\"icon-list__wrapper\" data-company-icon-size=", ">\n                        <span class=\"icon-list__icon ", " color-", " ", "\"></span>\n                        <span class=\"icon-list__blocked-icon\"></span>\n                    </span>\n                </span>\n            "])), positionMap[index], positionMap[index], item.size, item.letter, item.colorId, item.slug);
+      return (0, _bel["default"])(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n                <span class=\"icon-list__item\" style='order: ", "' data-company-icon-position=", ">\n                    <span class=\"icon-list__wrapper\" data-company-icon-size=", ">\n                        <span class=\"icon-list__icon ", " color-", " ", "\"></span>\n                        <span class=\"icon-list__blocked-icon\">\n                            ", "\n                        </span>\n                    </span>\n                </span>\n            "])), positionMap[index], positionMap[index], item.size, item.letter, item.colorId, item.slug, blockSvg());
     }
 
     return (0, _bel["default"])(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n            <span class='icon-list__item' style='order: ", "' data-company-icon-position='", "'>\n                <span class='icon-list__wrapper icon-list__wrapper--count' \n                    data-company-icon-size='", "'>\n                    <span class='icon-list__count'>+", "</span>\n                </span>\n            </div>"])), positionMap[index], positionMap[index], item.size, item.count);
   });
   return (0, _bel["default"])(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n        <div \n            class='large-icon-container icon-list' \n            data-company-count='", "'\n            aria-label=\"List of Blocked Company Icons\"\n            >\n            ", "\n        </div>\n    "])), processed.length, list);
+}
+
+function blockSvg() {
+  return (0, _bel["default"])(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n        <svg viewBox=\"0 0 32 32\" fill=\"none\">\n            <circle fill=\"white\" cx=\"16\" cy=\"16\" r=\"15\" />\n            <path fill=\"#EE1025\" fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M28 16C28 22.6274 22.6274 28 16 28C9.37258 28 4 22.6274 4 16C4 9.37258 9.37258 4 16 4C22.6274 4 28 9.37258 28 16ZM24 16C24 20.4183 20.4183 24 16 24C14.5164 24 13.1271 23.5961 11.9361 22.8924L22.8924 11.9361C23.5961 13.1271 24 14.5164 24 16ZM9.10763 20.0639L20.0639 9.10763C18.8729 8.40386 17.4836 8 16 8C11.5817 8 8 11.5817 8 16C8 17.4836 8.40386 18.8729 9.10763 20.0639Z\"/>\n        </svg>\n    "])));
 }
 
 },{"../base/localize.es6":73,"../base/view.es6":80,"../models/mixins/normalize-company-name.es6":86,"./shared/utils.es6":108,"bel":31,"bel/raw":32,"jquery":46}],96:[function(require,module,exports){
