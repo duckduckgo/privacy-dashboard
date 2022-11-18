@@ -45,7 +45,7 @@ $small-wrapper: 48px;
     }
     .body--theme-dark & {
         circle {
-            fill: #222
+            fill: #222;
         }
     }
 }
@@ -124,7 +124,7 @@ $small-wrapper: 48px;
     }
 
     .icon-list__blocked-icon {
-        width:  24px;
+        width: 24px;
         height: 24px;
         bottom: 3px;
         right: 3px;

@@ -214,8 +214,9 @@ export function backgroundMessage(_channel) {
             return
         }
         // console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req)
+        // todo(Shane): document these extension -> dashboard messages
         if (req.updateTabData) channel.send('updateTabData')
-        if (req.didResetTrackersData) channel.send('didResetTrackersData', req.didResetTrackersData)
+        if (req.didResetTrackersData) channel.send('updateTabData')
         if (req.closePopup) window.close()
     })
 }
