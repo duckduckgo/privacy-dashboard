@@ -170,6 +170,8 @@ body {
   --color-lines-lighter: rgba(0, 0, 0, 0.06);
   --color-hover-bg: rgba(0, 0, 0, 0.06);
   --size-unit: 16px;
+  --size-unit-half: calc(var(--size-unit) / 2);
+  --size-unit-double: calc(var(--size-unit) * 2);
   color: var(--color-text-primary);
   background: var(--bg);
   width: var(--width);
@@ -785,12 +787,19 @@ body.body--theme-dark.environment--ios {
   padding-top: 6px;
 }
 
+body {
+  --nav-height: 56px;
+}
+body.environment--macos, body.environment--browser, body.environment--windows, body.environment--example {
+  --nav-height: var(--size-unit-double);
+}
+
 .top-nav {
   text-align: center;
   position: fixed;
   z-index: 5;
   width: 100%;
-  height: 56px;
+  height: var(--nav-height);
   background: white;
 }
 .body--theme-dark .top-nav {
@@ -801,45 +810,40 @@ body.body--theme-dark.environment--ios {
 }
 
 .top-nav__spacer {
-  height: 56px;
-}
-.top-nav--short + .top-nav__spacer {
-  height: 32px;
-}
-
-.top-nav--short {
-  height: 32px;
+  height: var(--nav-height);
 }
 
 .top-nav__back {
   position: absolute;
-  padding: 10px;
-  left: 14px;
-  top: 7px;
-  border-radius: 100%;
+  padding: var(--size-unit-half);
+  left: var(--size-unit-half);
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  font-size: 17px;
-  font-weight: 400;
   color: var(--color-text-primary);
 }
 .top-nav__back:hover, .top-nav__back:focus, .top-nav__back:active {
   text-decoration: none;
 }
+.environment--android .top-nav__back {
+  border-radius: 100%;
+}
 .environment--ios .top-nav__back {
+  font-size: 17px;
+  font-weight: 400;
   left: 0;
 }
 .environment--ios .top-nav__back:active {
   opacity: 0.5;
 }
-.top-nav--short .top-nav__back {
+.environment--macos .top-nav__back, .environment--browser .top-nav__back, .environment--windows .top-nav__back, .environment--example .top-nav__back {
   border-radius: 0;
   bottom: 0;
-  top: 0;
   padding: 0;
   height: 32px;
   width: 32px;
 }
-.top-nav--short .top-nav__back .icon {
+.environment--macos .top-nav__back .icon, .environment--browser .top-nav__back .icon, .environment--windows .top-nav__back .icon, .environment--example .top-nav__back .icon {
   position: absolute;
   left: 50%;
   transform: translateX(-50%) translateY(100%);
@@ -849,16 +853,18 @@ body.body--theme-dark.environment--ios {
 
 .top-nav__done {
   position: absolute;
-  padding: 0 6px;
-  right: 14px;
-  height: 56px;
-  line-height: 56px;
-  font-size: 17px;
-  font-weight: 600;
+  padding: 0 var(--size-unit-half);
+  right: var(--size-unit-half);
+  height: var(--nav-height);
+  line-height: var(--nav-height);
   color: var(--color-text-primary);
 }
 .top-nav__done:hover, .top-nav__done:focus, .top-nav__done:active {
   text-decoration: none;
+}
+.environment--ios .top-nav__done {
+  font-size: 17px;
+  font-weight: 600;
 }
 .environment--ios .top-nav__done:active {
   opacity: 0.5;

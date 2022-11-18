@@ -34743,17 +34743,6 @@ function topNav() {
   var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var _opts$view = opts.view,
       view = _opts$view === void 0 ? 'primary' : _opts$view;
-  var variant = (0, _environmentCheck.platformSwitch)({
-    ios: function ios() {
-      return 'tall';
-    },
-    android: function android() {
-      return 'tall';
-    },
-    "default": function _default() {
-      return 'short';
-    }
-  });
   var elements;
 
   if (view === 'primary') {
@@ -34781,7 +34770,7 @@ function topNav() {
   }
 
   if (!elements.length) return null;
-  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"top-nav top-nav--", "\">\n                ", "\n            </div>    \n            <div class=\"top-nav__spacer\"></div>\n        </div>\n    "])), variant, elements);
+  return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        <div>\n            <div class=\"top-nav\">\n                ", "\n            </div>    \n            <div class=\"top-nav__spacer\"></div>\n        </div>\n    "])), elements);
 }
 
 function back() {

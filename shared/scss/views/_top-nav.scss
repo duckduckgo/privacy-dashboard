@@ -1,11 +1,20 @@
-$nav-height: 56px;
-$nav-height-short: 32px;
+body {
+    --nav-height: 56px;
+
+    &.environment--macos,
+    &.environment--browser,
+    &.environment--windows,
+    &.environment--example {
+        --nav-height: var(--size-unit-double);
+    }
+}
+
 .top-nav {
     text-align: center;
     position: fixed;
     z-index: 5;
     width: 100%;
-    height: $nav-height;
+    height: var(--nav-height);
     background: white;
 
     .body--theme-dark & {
@@ -18,26 +27,16 @@ $nav-height-short: 32px;
 }
 
 .top-nav__spacer {
-    height: $nav-height;
-
-    .top-nav--short + & {
-        height: $nav-height-short;
-    }
-}
-
-.top-nav--short {
-    height: $nav-height-short;
+    height: var(--nav-height);
 }
 
 .top-nav__back {
     position: absolute;
-    padding: 10px;
-    left: 14px;
-    top: 7px;
-    border-radius: 100%;
+    padding: var(--size-unit-half); // <-- this padding ids for creating a larger tap area
+    left: var(--size-unit-half);
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    font-size: 17px;
-    font-weight: 400;
     color: var(--color-text-primary);
 
     &:hover,
@@ -46,22 +45,32 @@ $nav-height-short: 32px;
         text-decoration: none;
     }
 
+    // rounded corners on android because of the ripple effect
+    .environment--android & {
+        border-radius: 100%;
+    }
+
     .environment--ios & {
+        // todo(Shane): remove these hard-coded value, replace with tokens
+        font-size: 17px;
+        font-weight: 400;
         left: 0;
         &:active {
             opacity: 0.5;
         }
     }
 
-    .top-nav--short & {
+    .environment--macos &,
+    .environment--browser &,
+    .environment--windows &,
+    .environment--example & {
         border-radius: 0;
         bottom: 0;
-        top: 0;
         padding: 0;
         height: 32px;
         width: 32px;
 
-        // this is for aligning the arrow to the bottom of the container
+        // this is for visually aligning the arrow to the bottom of the container
         .icon {
             position: absolute;
             left: 50%;
@@ -74,12 +83,10 @@ $nav-height-short: 32px;
 
 .top-nav__done {
     position: absolute;
-    padding: 0 6px;
-    right: 14px;
-    height: $nav-height;
-    line-height: $nav-height;
-    font-size: 17px;
-    font-weight: 600;
+    padding: 0 var(--size-unit-half);
+    right: var(--size-unit-half);
+    height: var(--nav-height);
+    line-height: var(--nav-height);
     color: var(--color-text-primary);
 
     &:hover,
@@ -89,6 +96,9 @@ $nav-height-short: 32px;
     }
 
     .environment--ios & {
+        // todo(Shane): remove these hard-coded value, replace with tokens
+        font-size: 17px;
+        font-weight: 600;
         &:active {
             opacity: 0.5;
         }

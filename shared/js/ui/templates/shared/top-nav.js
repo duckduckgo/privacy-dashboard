@@ -8,11 +8,6 @@ import { ns } from '../../base/localize.es6'
  */
 export function topNav(opts = {}) {
     const { view = 'primary' } = opts
-    const variant = platformSwitch({
-        ios: () => 'tall',
-        android: () => 'tall',
-        default: () => 'short',
-    })
     let elements
     if (view === 'primary') {
         elements = platformSwitch({
@@ -30,7 +25,7 @@ export function topNav(opts = {}) {
     if (!elements.length) return null
     return bel`
         <div>
-            <div class="top-nav top-nav--${variant}">
+            <div class="top-nav">
                 ${elements}
             </div>    
             <div class="top-nav__spacer"></div>

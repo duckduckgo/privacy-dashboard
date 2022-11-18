@@ -23,6 +23,8 @@ body {
     --color-lines-lighter: rgba(0, 0, 0, 0.06);
     --color-hover-bg: rgba(0, 0, 0, 0.06);
     --size-unit: 16px;
+    --size-unit-half: calc(var(--size-unit) / 2);
+    --size-unit-double: calc(var(--size-unit) * 2);
 
     // mobile environments
     &.environment--ios,
