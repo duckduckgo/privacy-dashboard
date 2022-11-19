@@ -29082,7 +29082,7 @@ function toExtensionMessage(name, data) {
 /**
  * {@inheritDoc common.submitBrokenSiteReport}
  * @type {import("./common.es6").submitBrokenSiteReport}
- * @category Extension Messages
+ * @category Dashboard -> Extension Messages
  *
  * @example
  *
@@ -29101,7 +29101,7 @@ function submitBrokenSiteReport(_x2) {
 /**
  * {@inheritDoc common.setLists}
  * @type {import("./common.es6").setLists}
- * @category Extension Messages
+ * @category Dashboard -> Extension Messages
  *
  * @example
  *
@@ -29142,7 +29142,7 @@ function setLists(_x3) {
 /**
  * {@inheritDoc common.refreshAlias}
  * @type {import("./common.es6").refreshAlias}
- * @category Extension Messages
+ * @category Dashboard -> Extension Messages
  *
  * @example
  * ```javascript
@@ -29168,7 +29168,7 @@ function refreshAlias() {
 /**
  * {@inheritDoc common.search}
  * @type {import("./common.es6").search}
- * @category Extension Messages
+ * @category Dashboard -> Extension Messages
  *
  * @example
  * ```javascript
@@ -29196,7 +29196,7 @@ function search(_x4) {
 /**
  * {@inheritDoc common.openOptions}
  * @type {import("./common.es6").openOptions}
- * @category Extension Messages
+ * @category Dashboard -> Extension Messages
  *
  * @example
  * ```javascript
@@ -29220,7 +29220,7 @@ function openOptions() {
 /**
  * @param {number|null} tabId
  * @returns {Promise<import('../../../schema/__generated__/schema.types').GetPrivacyDashboardData>}
- * @category Extension Messages
+ * @category Dashboard -> Extension Messages
  *
  * @example
  * ```js
