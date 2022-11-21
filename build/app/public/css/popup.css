@@ -2928,6 +2928,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 
 .page-connection__certificate-value {
+  text-align: right;
   color: #666;
 }
 .body--theme-dark .page-connection__certificate-value {
