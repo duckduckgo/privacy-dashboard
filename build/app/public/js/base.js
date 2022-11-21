@@ -34991,7 +34991,9 @@ function _default() {
   var supportsCtaScreens = Boolean((_this$model$tab = this.model.tab) === null || _this$model$tab === void 0 ? void 0 : _this$model$tab.ctaScreens);
 
   if (this.model.tab.error) {
-    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                <div class=\"page-inner\">\n                    ", "\n                    <div class=\"padding-x\">\n                        <div class='cta-screen'>\n                            <p class=\"note token-title-3 text--center\">\n                            Something went wrong and we couldn't load the dashboard. Try reloading the browser tab.\n                            </p>\n                        </div> \n                    </div>\n                    <div class=\"padding-x\"></div>\n                </div>\n            </div>\n        "])), renderSearchWrapper(this.model));
+    var errorText = _localize.i18n.t('site:errorMessage.title');
+
+    return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n            <div class=\"site-info\">\n                <div class=\"page-inner\">\n                    ", "\n                    <div class=\"padding-x\">\n                        <div class='cta-screen'>\n                            <p class=\"note token-title-3 text--center\">", "</p>\n                        </div> \n                    </div>\n                    <div class=\"padding-x\"></div>\n                </div>\n            </div>\n        "])), renderSearchWrapper(this.model), errorText);
   }
 
   if (this.model.disabled && supportsCtaScreens) {
@@ -39732,6 +39734,10 @@ module.exports={
     "disableProtectionsSwitch": {
         "title": "Disable Protections",
         "note": "Aria label for the switch that allows the user to turn protections off"
+    },
+    "errorMessage": {
+        "title": "Something went wrong, and we couldn't load this content. Try reloading the page.",
+        "note": "Message shown to the user when an error has occurred and the UI cannot be displayed"
     }
 }
 

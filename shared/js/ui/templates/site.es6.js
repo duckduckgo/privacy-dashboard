@@ -8,15 +8,14 @@ export default function () {
     // here we'll show CTAs when the tab is disabled
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens)
     if (this.model.tab.error) {
+        const errorText = i18n.t('site:errorMessage.title')
         return bel`
             <div class="site-info">
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
                     <div class="padding-x">
                         <div class='cta-screen'>
-                            <p class="note token-title-3 text--center">
-                            Something went wrong and we couldn't load the dashboard. Try reloading the browser tab.
-                            </p>
+                            <p class="note token-title-3 text--center">${errorText}</p>
                         </div> 
                     </div>
                     <div class="padding-x"></div>

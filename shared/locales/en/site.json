@@ -237,5 +237,9 @@
     "disableProtectionsSwitch": {
         "title": "Disable Protections",
         "note": "Aria label for the switch that allows the user to turn protections off"
+    },
+    "errorMessage": {
+        "title": "Something went wrong, and we couldn't load this content. Try reloading the page.",
+        "note": "Message shown to the user when an error has occurred and the UI cannot be displayed"
     }
 }

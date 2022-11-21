@@ -307,8 +307,6 @@ test.describe('tab data error', () => {
             },
         })
         await page.goto(HTML)
-        await page
-            .locator('"Something went wrong and we couldn\'t load the dashboard. Try reloading the browser tab."')
-            .waitFor({ timeout: 500 })
+        await page.locator('"Something went wrong, and we couldn\'t load this content. Try reloading the page."').waitFor({ timeout: 500 })
     })
 })
