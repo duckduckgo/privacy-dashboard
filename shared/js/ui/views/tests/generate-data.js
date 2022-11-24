@@ -1,4 +1,4 @@
-import { Protections, createTabData, states } from '../../../browser/utils/request-details'
+import { Protections } from '../../../browser/utils/request-details'
 import _google from '../../../../../schema/__fixtures__/request-data-google.json'
 import _cnn from '../../../../../schema/__fixtures__/request-data-cnn.json'
 import { detectedRequestSchema, requestDataSchema } from '../../../../../schema/__generated__/schema.parsers'
@@ -9,6 +9,7 @@ const cnn = requestDataSchema.parse(_cnn)
 /**
  * @typedef {import('../../../browser/utils/request-details').TabData} TabData
  * @typedef {import('../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
+ * @typedef {import('../../../../../schema/__generated__/schema.types').ParentEntity} ParentEntity
  */
 
 /** @type {DetectedRequest} */
@@ -149,7 +150,7 @@ export const defaultCertificates = [
     },
 ]
 
-const permissions = [
+export const permissions = [
     {
         key: 'camera',
         paused: false,
@@ -234,61 +235,154 @@ const permissions = [
 
 /**
  * These can be used when previewing the dashboard by adding the 'state' parameter, such as
- *
  * - http://localhost:8080/html/popup.html?state=01
  * - http://localhost:8080/html/popup.html?state=02
  * - http://localhost:8080/html/popup.html?state=google
  * - http://localhost:8080/html/popup.html?state=cnn
  */
+
+export class MockData {
+    /**
+     * @param {object} params
+     * @param {string} [params.state] - any string identifier for this mock state
+     * @param {string} params.url
+     * @param {{locale: string}} [params.localeSettings]
+     * @param {DetectedRequest[]} [params.requests]
+     * @param {any[]} [params.certificate]
+     * @param {ParentEntity} [params.parentEntity]
+     * @param {boolean} [params.upgradedHttps]
+     * @param {boolean} [params.contentBlockingException]
+     * @param {boolean} [params.allowlisted]
+     * @param {any[]} [params.permissions]
+     * @param {boolean} [params.specialDomainName]
+     * @param {boolean} [params.emailUser]
+     */
+    constructor(params) {
+        this.url = params.url
+        this.requests = params.requests || []
+        this.state = params.state
+        this.localeSettings = params.localeSettings || { locale: 'en' }
+        this.certificate = params.certificate || defaultCertificates
+        this.upgradedHttps = params.upgradedHttps ?? false
+        this.contentBlockingException = params.contentBlockingException
+        this.parentEntity = params.parentEntity
+        this.permissions = params.permissions
+        this.allowlisted = params.allowlisted
+        this.specialDomainName = params.specialDomainName
+        this.emailUser = params.emailUser
+
+        /** @type {Protections} */
+        this.protections = Protections.default()
+
+        if (this.allowlisted) {
+            this.protections.allowlisted = true
+        }
+        if (this.contentBlockingException) {
+            this.protections.enabledFeatures = []
+        }
+
+        if (this.protections.allowlisted || this.contentBlockingException) {
+            this.requests = protectionsOff(this.requests)
+        }
+    }
+
+    /**
+     * @param {Partial<MockData> & {url: string}} mock
+     * @returns {MockData}
+     */
+    static default(mock) {
+        return new MockData({
+            ...mock,
+        })
+    }
+}
+
+/**
+ * @param {MockData} mock
+ * @returns {{getPrivacyDashboardData: import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData}}
+ */
+export function mockToExtensionDashboardMessage(mock) {
+    /** @type {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData} */
+    const msg = {
+        tab: {
+            id: 123,
+            url: mock.url,
+            protections: mock.protections,
+            upgradedHttps: mock.upgradedHttps,
+            localeSettings: mock.localeSettings,
+            parentEntity: mock.parentEntity,
+        },
+        requestData: { requests: mock.requests },
+        emailProtectionUserData: undefined,
+    }
+    if (mock.specialDomainName) {
+        msg.tab.specialDomainName = 'extensions'
+    }
+    if (mock.emailUser) {
+        msg.emailProtectionUserData = {
+            cohort: 'private_beta_dax',
+            nextAlias: '123456_next',
+            token: '123456',
+            userName: 'daxtheduck',
+        }
+    }
+    return {
+        getPrivacyDashboardData: msg,
+    }
+}
+
+/** @type {Record<string, MockData>} */
 export const dataStates = {
-    'locale-pl': {
-        localSettings: {
+    'locale-pl': new MockData({
+        localeSettings: {
             locale: 'pl',
         },
         url: 'https://example.com',
         requests: [],
-    },
-    'locale-fr': {
-        localSettings: {
+    }),
+    'locale-fr': new MockData({
+        localeSettings: {
             locale: 'fr',
         },
         url: 'https://example.com',
         requests: [],
-    },
-    'ad-attribution': {
-        state: states.protectionsOn_blocked_allowedTrackers,
+    }),
+    'ad-attribution': new MockData({
         url: 'https://example.com',
         requests: [blocked1, allowedAdClickAttribution],
-        certificates: [],
-    },
-    'without-certificate': {
-        state: states.protectionsOn,
+        certificate: [],
+    }),
+    'without-certificate': new MockData({
         url: 'https://example.com',
         requests: [],
-        certificates: [],
-    },
-    insecure: {
-        state: states.protectionsOn,
+        certificate: [],
+        localeSettings: undefined,
+        parentEntity: undefined,
+        upgradedHttps: false,
+    }),
+    insecure: new MockData({
         url: 'http://example.com',
         requests: [],
-    },
-    upgraded: {
-        state: states.protectionsOn,
-        url: 'http://example.com',
+        certificate: [],
+        localeSettings: undefined,
+        parentEntity: undefined,
+    }),
+    upgraded: new MockData({
+        url: 'https://example.com',
         upgradedHttps: true,
         requests: [],
-    },
-    google: {
-        state: states.protectionsOn_allowedTrackers,
+        localeSettings: undefined,
+        parentEntity: undefined,
+    }),
+    google: new MockData({
         requests: google.requests,
         url: 'https://google.com',
         parentEntity: {
             displayName: 'Google',
             prevalence: 80.1,
         },
-    },
-    'google-off': {
-        state: states.protectionsOff_allowedTrackers,
+    }),
+    'google-off': new MockData({
         requests: protectionsOff(google.requests),
         contentBlockingException: true,
         url: 'https://google.com',
@@ -296,97 +390,82 @@ export const dataStates = {
             displayName: 'Google',
             prevalence: 80.1,
         },
-    },
-    'google-with-blocked': {
-        state: states.protectionsOn_blocked_allowedTrackers,
+    }),
+    'google-with-blocked': new MockData({
         requests: google.requests.concat(blocked1),
         url: 'https://google.com',
         parentEntity: {
             displayName: 'Google',
             prevalence: 80.1,
         },
-    },
-    'upgraded+secure': {
-        state: states.protectionsOn_blocked_allowedTrackers,
+    }),
+    'upgraded+secure': new MockData({
         requests: [],
         url: 'https://example.com',
         upgradedHttps: true,
-        certificates: defaultCertificates,
-    },
-    cnn: {
-        state: states.protectionsOn,
+        certificate: defaultCertificates,
+    }),
+    cnn: new MockData({
         url: 'https://edition.cnn.com',
         requests: cnn.requests,
         parentEntity: {
             displayName: 'WarnerMedia, LLC',
             prevalence: 0.401,
         },
-    },
-    '01': {
-        state: states.protectionsOn,
+    }),
+    '01': new MockData({
         url: 'https://example.com',
         requests: [blocked1, allowedTracker],
-    },
-    '02': {
-        state: states.protectionsOn_blocked,
+    }),
+    '02': new MockData({
         url: 'https://example.com',
         requests: [allowedTrackerRule],
-    },
-    '03': {
-        state: states.protectionsOn_blocked_allowedTrackers,
+    }),
+    '03': new MockData({
         url: 'https://example.com',
         requests: [allowedThirdParty],
-    },
-    '04': {
-        state: states.protectionsOn_blocked_allowedNonTrackers,
+    }),
+    '04': new MockData({
         url: 'https://example.com',
         requests: [],
-    },
-    '05': {
-        state: states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers,
+    }),
+    '05': new MockData({
         url: 'https://example.com',
         requests: [blocked1],
-    },
-    '06': {
-        state: states.protectionsOn_allowedTrackers,
+    }),
+    '06': new MockData({
         url: 'https://example.com',
         requests: [allowedTracker],
-    },
-    '07': {
-        state: states.protectionsOn_allowedNonTrackers,
+    }),
+    '07': new MockData({
         url: 'https://example.com',
         requests: [allowedThirdParty],
-    },
-    '08': {
-        state: states.protectionsOn_allowedTrackers_allowedNonTrackers,
+    }),
+    '08': new MockData({
         url: 'https://example.com',
         requests: [allowedThirdParty, allowedTracker],
-    },
-    '09': {
-        state: states.protectionsOff,
+    }),
+    '09': new MockData({
         url: 'https://example.com',
         requests: [],
         contentBlockingException: true,
-    },
-    10: {
-        state: states.protectionsOff_allowedTrackers,
+    }),
+    10: new MockData({
         url: 'https://example.com',
         requests: [allowedTracker],
         contentBlockingException: true,
-    },
-    11: {
-        state: states.protectionsOff_allowedNonTrackers,
+    }),
+    11: new MockData({
         url: 'https://example.com',
         requests: [allowedThirdParty],
         contentBlockingException: true,
-    },
-    12: {
-        state: states.protectionsOff_allowedTrackers_allowedNonTrackers,
+    }),
+    12: new MockData({
         url: 'https://example.com',
         requests: [allowedThirdParty, allowedTracker],
         contentBlockingException: true,
-    },
-    'new-entities': {
+    }),
+    'new-entities': new MockData({
         url: 'https://m.youtube.com',
         requests: [
             {
@@ -395,7 +474,7 @@ export const dataStates = {
                 ownerName: 'Youtube',
                 pageUrl: 'https://m.youtube.com/',
                 prevalence: 0.5,
-                state: { state: 'blocked', blocked: {} },
+                state: { blocked: {} },
                 url: 'https://i.ytimg.com/vi/AD6OPCFxmJM/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSEbyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBsqqvey-tZ8K3peu7cavrfnR0zDA',
             },
             {
@@ -405,7 +484,7 @@ export const dataStates = {
                 ownerName: 'Google Ads',
                 pageUrl: 'https://m.youtube.com/',
                 prevalence: 0.5,
-                state: { state: 'blocked', blocked: {} },
+                state: { blocked: {} },
                 url: 'https://googleads.g.doubleclick.net/pagead/id',
             },
             {
@@ -415,7 +494,7 @@ export const dataStates = {
                 ownerName: 'Google Ads',
                 pageUrl: 'https://m.youtube.com/',
                 prevalence: 0.5,
-                state: { state: 'blocked', blocked: {} },
+                state: { blocked: {} },
                 url: 'https://static.doubleclick.net/instream/ad_status.js',
             },
             {
@@ -425,40 +504,11 @@ export const dataStates = {
                 ownerName: 'Google LLC',
                 pageUrl: 'https://m.youtube.com/',
                 prevalence: 80.5,
-                state: { state: 'blocked', blocked: {} },
+                state: { blocked: {} },
                 url: 'https://www.google.com/js/th/EWuoZ_9LU3hL76PT3YFLg_EjKJdTpZ6rgtgTJA98OBY.js',
             },
         ],
-    },
-}
-
-/**
- * @param {Partial<{
- *      isSecure?: boolean,
- *      requests?: DetectedRequest[],
- *      tab?: Partial<TabData>,
- *      parentEntity?: { displayName: string, prevalence: number},
- *      certificate?: any[],
- *      isPendingUpdates?: boolean | null | undefined
- *  }>} [overrides]
- * @returns {{tab: TabData} & Record<string, any>}
- */
-export default function (overrides = {}) {
-    const { isSecure = true, requests = defaultRequests, isPendingUpdates = false, certificate = defaultCertificates, tab = {} } = overrides
-
-    const url = tab.url ? tab.url : `http${isSecure ? 's' : ''}://www.example.com/`
-    const protections = new Protections(false, ['contentBlocking'], false, false)
-    const tabData = createTabData(url, false, protections, { requests: requests })
-
-    return {
-        tab: {
-            ...tabData,
-            isPendingUpdates,
-            permissions,
-            certificate,
-            ...tab,
-        },
-    }
+    }),
 }
 
 /**

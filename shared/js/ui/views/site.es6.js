@@ -68,8 +68,9 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.updateInProgress = true
 
         // Provide visual feedback of the change
-        this.$toggle.toggleClass('toggle-button--is-active-true')
-        this.$toggle.toggleClass('toggle-button--is-active-false')
+        const pressed = this.$toggle.attr('aria-checked')
+        const next = pressed === 'true' ? 'false' : 'true'
+        this.$toggle.attr('aria-checked', next)
 
         // allow 300ms for the animation
         setTimeout(() => {

@@ -70,9 +70,14 @@
 
 .main-nav__item--link {
     color: var(--color-text-primary);
+    .environment--example &,
     .environment--browser &,
     .environment--windows &,
     .environment--macos & {
+        &:focus {
+            outline: 0;
+            text-decoration: underline;
+        }
         &:visited,
         &:active,
         &:hover {

@@ -53,6 +53,7 @@ export function setupSwitch(selector) {
  */
 export function setupBlurOnLongPress() {
     let pressedTime = 0
+    // @ts-ignore
     const hasPointerEvents = 'PointerEvent' in window || (window.navigator && 'msPointerEnabled' in window.navigator)
     // @ts-ignore
     const isTouch = 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0

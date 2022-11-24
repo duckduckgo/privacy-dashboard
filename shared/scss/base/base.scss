@@ -37,15 +37,18 @@ li {
     position: relative;
 }
 
-form,
-input,
-select,
-option,
-button {
-    outline: none;
-
-    * {
+.environment--android,
+.environment--ios {
+    form,
+    input,
+    select,
+    option,
+    button {
         outline: none;
+
+        * {
+            outline: none;
+        }
     }
 }
 

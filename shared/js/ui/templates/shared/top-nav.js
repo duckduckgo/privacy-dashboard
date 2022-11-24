@@ -40,7 +40,6 @@ function back() {
             class='top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark'
             role='button'
             aria-label='${textLabel}'
-            data-test-id='back-button'
         >
             <span class='icon icon__back-arrow' data-icon-text='${textLabel}'></span>
         </a>`

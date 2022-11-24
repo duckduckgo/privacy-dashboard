@@ -1,25 +1,56 @@
-@mixin togglesize {
-    width: 32px;
-    height: 18px;
+body {
+    /* 'toggle' here means the wrapping container, a button element */
+    --toggle-width: 32px;
+    --toggle-height: 18px;
+    --toggle-opacity: 1;
+    --toggle-opacity-disabled: 1;
 
-    .environment--ios & {
-        width: 51px;
-        height: 31px;
+    /* the 'knob', also referred to as the 'handle' */
+    --handle-size: 16px;
+    --handle-offset: 1px; // <- how far does the
+    --handle-color: #{$white};
+    --handle-color-off: #{$white};
+    --handle-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+
+    /* the 'track' is the underlying colored background */
+    --track-color: #{$color--blue};
+    --track-outline: none;
+    --track-outline-off: none;
+    --track-color-off: #{$color--medium-silver};
+
+    /* the 'spinner' is only used on ios/macos */
+    --toggle-spinner-size: 18px;
+
+    &.environment--ios {
+        --toggle-width: 51px;
+        --toggle-height: 31px;
+        --toggle-spinner-size: 31px;
+
+        --handle-size: 27px;
+        --handle-offset: 2px;
+
+        --track-color: #{$color--icon-green};
     }
 
-    .environment--android & {
-        width: 36px;
-        height: 20px;
+    &.environment--android {
+        --toggle-width: 36px;
+        --toggle-height: 20px;
     }
-}
 
-.toggle-spinner {
-    height: 18px;
-    width: 18px;
+    &.environment--windows {
+        --toggle-width: 40px;
+        --toggle-height: 20px;
 
-    .environment--ios & {
-        height: 31px;
-        width: 31px;
+        --handle-size: 10px;
+        --handle-offset: 5px;
+        --handle-color-off: rgba(0, 0, 0, 0.9);
+        --handle-shadow: none;
+
+        --track-color: #3969ef;
+        --track-color-off: #{$white};
+        --track-outline: 1px solid var(--track-color);
+        --track-outline-off: 1px solid rgba(0, 0, 0, 0.48);
+        --toggle-opacity-disabled: 0.6;
     }
 }
 
@@ -31,63 +62,58 @@
     background-color: transparent;
     text-align: left;
     position: relative;
+    border-radius: 100px;
 
-    @include togglesize;
+    opacity: var(--toggle-opacity);
+    width: var(--toggle-width);
+    height: var(--toggle-height);
 
-    .toggle-button__bg {
-        z-index: -1;
-        position: absolute;
-        right: 0;
-        width: 32px;
-        height: 18px;
-        overflow: visible;
-        border-radius: 100px;
-
-        .environment--ios & {
-            width: 51px;
-            height: 31px;
-        }
+    &[disabled] {
+        opacity: var(--toggle-opacity-disabled);
     }
+}
 
-    .toggle-button__knob {
-        z-index: 2;
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        border-radius: 100px;
-        background-color: $white;
-        margin-top: 1px;
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-        transition: margin 0.2s ease;
+.toggle-button__track {
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: visible;
+    border-radius: 100px;
 
-        .environment--ios & {
-            width: 27px;
-            height: 27px;
-            margin-top: 2px;
-        }
+    border: var(--track-outline);
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    background-color: var(--track-color);
+
+    [aria-checked='false'] & {
+        background-color: var(--track-color-off);
+        border: var(--track-outline-off);
     }
+}
 
-    &.toggle-button--is-active-false {
-        .toggle-button__knob {
-            margin-left: 1px;
-        }
+.toggle-button__handle {
+    z-index: 2;
+    position: absolute;
+    border-radius: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s ease;
 
-        .toggle-button__bg {
-            background-color: $color--medium-silver;
-        }
+    box-shadow: var(--handle-shadow);
+    background-color: var(--handle-color);
+    width: var(--handle-size);
+    height: var(--handle-size);
+    right: var(--handle-offset);
+
+    [aria-checked='false'] & {
+        right: calc(100% - var(--handle-size) - var(--handle-offset));
+        background-color: var(--handle-color-off);
     }
+}
 
-    &.toggle-button--is-active-true {
-        .toggle-button__knob {
-            margin-left: 15px;
-
-            .environment--ios & {
-                margin-left: 22px;
-            }
-        }
-
-        .toggle-button__bg {
-            background-color: $color--blue;
-        }
-    }
+.toggle-spinner {
+    margin: 0 auto;
+    height: var(--toggle-spinner-size);
+    width: var(--toggle-spinner-size);
 }

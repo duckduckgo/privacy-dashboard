@@ -113,3 +113,4 @@ To verify the platform-specific communications, run the integration tests
 
 -   first, you need to build all platforms with `npm run build`
 -   now run `npm run test.int` to have all platforms tested
+-   run `npm run test.int.update-screenshots` to also update screenshots (if you've made changes to anything visual)

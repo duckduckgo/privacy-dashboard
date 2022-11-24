@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "WindowsIncomingViewModel",
+    "type": "object",
+    "description": "This message contains the Windows View Model that's used to provide all data to the Dashboard",
+    "additionalProperties": false,
+    "required": ["Name", "Data", "Feature"],
+    "properties": {
+        "Feature": {
+            "type": "string",
+            "const": "PrivacyDashboard"
+        },
+        "Name": {
+            "type": "string",
+            "const": "ViewModelUpdated"
+        },
+        "Data": {
+            "$ref": "./windows-view-model.json"
+        }
+    }
+}

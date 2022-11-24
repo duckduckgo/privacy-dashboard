@@ -59,6 +59,10 @@ const config: PlaywrightTestConfig = {
             name: 'windows',
             use: {
                 ...devices['Desktop Chrome'],
+                viewport: {
+                    height: 600,
+                    width: 360,
+                },
             },
             testMatch: /windows\.spec-int\.js$/,
         },
@@ -80,6 +84,10 @@ const config: PlaywrightTestConfig = {
             name: 'macos',
             use: {
                 ...devices['Desktop Safari'],
+                viewport: {
+                    height: 600,
+                    width: 360,
+                },
             },
             testMatch: /macos\.spec-int\.js$/,
         },

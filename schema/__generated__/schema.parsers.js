@@ -65,6 +65,14 @@ export const setListOptionsSchema = z.object({
     }))
 });
 
+export const windowsIncomingVisibilitySchema = z.object({
+    Feature: z.literal("PrivacyDashboard"),
+    Name: z.literal("VisibilityChanged"),
+    Data: z.object({
+        isVisible: z.boolean()
+    })
+});
+
 export const refreshAliasResponseSchema = z.object({
     personalAddress: z.string(),
     privateAddress: z.string()
@@ -122,6 +130,14 @@ export const windowsViewModelSchema = z.object({
     certificates: z.array(z.unknown()).optional()
 });
 
+export const windowsIncomingViewModelSchema = z.object({
+    Feature: z.literal("PrivacyDashboard"),
+    Name: z.literal("ViewModelUpdated"),
+    Data: windowsViewModelSchema
+});
+
+export const windowsIncomingMessageSchema = z.union([windowsIncomingVisibilitySchema, windowsIncomingViewModelSchema]);
+
 export const apiSchema = z.object({
     "request-data": requestDataSchema,
     "extension-message-get-privacy-dashboard-data": extensionMessageGetPrivacyDashboardDataSchema,
@@ -129,7 +145,7 @@ export const apiSchema = z.object({
     "search-message": searchSchema.optional(),
     "breakage-report": breakageReportSchema,
     "set-list": setListOptionsSchema.optional(),
-    "windows-view-model": windowsViewModelSchema,
+    "windows-incoming-message": windowsIncomingMessageSchema.optional(),
     "locale-settings": localeSettingsSchema.optional(),
     "refresh-alias-response": refreshAliasResponseSchema.optional(),
     exe: extensionMessageSetListOptionsSchema.optional()

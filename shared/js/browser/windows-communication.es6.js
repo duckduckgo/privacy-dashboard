@@ -3,7 +3,7 @@
  *
  * @description
  *
- * **Incoming data**
+ * **Incoming Messages**
  *
  * The Dashboard receives data from Windows by registering a listener on `window.chrome.webview`
  *
@@ -11,7 +11,7 @@
  * window.chrome.webview.addEventListener('message', (event) => handleViewModelUpdate(event.data))
  * ```
  *
- * Tip: See {@link handleViewModelUpdate} for details of what that message should contain
+ * Tip: See {@link "Windows integration".handleIncomingMessage} for details of supported messages.
  *
  * **Outgoing messages**
  *
@@ -25,15 +25,17 @@
  * })
  * ```
  *
- * ... where `name` will be one of the known message names, such as `"AddToAllowListCommand"`. See "Windows Webview Messages"
- * below for documented messages.
+ * ... where `name` will be one of the known message names, such as `"AddToAllowListCommand"`. See "JavaScript -> Windows Messages
+ * OpenInNewTab" below for documented messages.
  *
  * @category integrations
  */
-import { windowsViewModelSchema } from '../../../schema/__generated__/schema.parsers'
+import { z } from 'zod'
+import { windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema } from '../../../schema/__generated__/schema.parsers'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     assert,
+    getContentHeight,
     SetListsMessage,
     setupColorScheme,
     setupMutationObserver,
@@ -93,24 +95,16 @@ const resolveInitialRender = function () {
  * window.chrome.webview.addEventListener('message', event => handleViewModelUpdate(event.data))
  * ```
  *
- * @group Windows -> JavaScript Interface
- * @param {import('../../../schema/__generated__/schema.types').WindowsViewModel} rawViewModel
+ * @param {import('../../../schema/__generated__/schema.types').WindowsViewModel} viewModel
  */
-export function handleViewModelUpdate(rawViewModel) {
-    const parsed = windowsViewModelSchema.safeParse(rawViewModel)
-    if (!parsed.success) {
-        console.error('rawViewModel parsing failed')
-        console.error(parsed.error)
-        return
-    }
-    const viewModel = parsed.data
+function handleViewModelUpdate(viewModel) {
     upgradedHttps = viewModel.upgradedHttps
     parentEntity = viewModel.parentEntity || {}
     permissionsData = viewModel.permissions || []
     certificateData = viewModel.certificates || []
     protections = viewModel.protections
 
-    trackerBlockingData = createTabData(rawViewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData)
+    trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData)
 
     if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
 
@@ -171,7 +165,7 @@ async function fetch(message) {
 /**
  * {@inheritDoc common.submitBrokenSiteReport}
  * @type {import("./common.es6").submitBrokenSiteReport}
- * @category Windows Webview Messages
+ * @group JavaScript -> Windows Messages
  *
  * @example
  *
@@ -193,7 +187,7 @@ export function SubmitBrokenSiteReport(report) {
 /**
  * {@inheritDoc common.openInNewTab}
  * @type {import("./common.es6").openInNewTab}
- * @category Windows Webview Messages
+ * @group JavaScript -> Windows Messages
  *
  * @example
  *
@@ -214,7 +208,7 @@ export function OpenInNewTab(args) {
 /**
  * {@inheritDoc common.setSize}
  * @type {import("./common.es6").setSize}
- * @category Windows Webview Messages
+ * @group JavaScript -> Windows Messages
  *
  * @example
  *
@@ -241,6 +235,42 @@ const getBackgroundTabData = () => {
     })
 }
 
+/**
+ * A list of the known messages we can handle from the windows layer.
+ * Uses the key 'Name' to quickly differentiate between the messages
+ */
+const eventShape = z.discriminatedUnion('Name', [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema])
+
+/**
+ * Handle all messages sent from Windows via `window.chrome.webview.addEventListener`
+ *
+ * Currently accepted messages:
+ * - {@link "Generated Schema Definitions".WindowsIncomingViewModel}
+ * - {@link "Generated Schema Definitions".WindowsIncomingVisibility}
+ *
+ * @group Windows -> JavaScript Messages
+ * @param {import('../../../schema/__generated__/schema.types').WindowsIncomingMessage} message
+ */
+export function handleIncomingMessage(message) {
+    const parsed = eventShape.safeParse(message)
+    if (!parsed.success) {
+        console.error('cannot handle incoming message from event data', message)
+        console.error(parsed.error)
+        return
+    }
+    switch (parsed.data.Name) {
+        case 'VisibilityChanged': {
+            if (parsed.data.Data.isVisible === false) {
+                document.body.innerHTML = ''
+            }
+            break
+        }
+        case 'ViewModelUpdated': {
+            handleViewModelUpdate(parsed.data.Data)
+        }
+    }
+}
+
 export function setup() {
     if (!window.chrome.webview) {
         console.error('window.chrome.webview not available')
@@ -248,8 +278,9 @@ export function setup() {
     }
     setupColorScheme()
     assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required')
-    window.chrome.webview.addEventListener('message', (event) => handleViewModelUpdate(event.data))
-    // todo(Shane): does this fire early enough on Windows
+    window.chrome.webview.addEventListener('message', (event) => {
+        handleIncomingMessage(event.data)
+    })
     setupMutationObserver((height) => {
         SetSize({ height })
     })
@@ -260,4 +291,18 @@ export function setup() {
     })
 }
 
-export { fetch, backgroundMessage, getBackgroundTabData }
+/**
+ * Called when the DOM has been rendered for the first time. This is
+ * helpful on platforms that need to update their window size immediately
+ *
+ * @type {NonNullable<import('./communication.es6').Communication['firstRenderComplete']>}
+ * @category Internal API
+ */
+function firstRenderComplete() {
+    const height = getContentHeight()
+    if (typeof height === 'number') {
+        SetSize({ height })
+    }
+}
+
+export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete }

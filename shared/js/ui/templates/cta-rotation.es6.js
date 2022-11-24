@@ -32,7 +32,7 @@ function ctaRotationView() {
         return ''
     }
     return bel`
-    <div class="cta-screen" data-test-id="cta-screens">
+    <div class="cta-screen">
         <p class="note token-title-3 text--center">${i18n.t('ctascreens:protectionsUnavailableNote.title')}</p>
         <div class="cta text--center">
             <div class="cta__icon">${cta.icon()}</div>

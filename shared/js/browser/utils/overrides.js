@@ -1,6 +1,6 @@
 import { dataStates, protectionsOff } from '../../ui/views/tests/generate-data'
 import { isValidPlatform } from '../../ui/environment-check'
-import { Protections } from './request-details'
+import { createRequestDetails, createTabData, Protections } from './request-details'
 
 /**
  * The purpose of this function is to allow URL parameters to override
@@ -13,11 +13,10 @@ import { Protections } from './request-details'
  */
 /**
  * @typedef Overrides
- * @property {Partial<import('../../ui/views/tests/generate-data').TabData>} tab
+ * @property {import('../../ui/views/tests/generate-data').TabData} tab
  * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
- * @property {string} state
  * @property {import('../../ui/platform-features').Platform["name"]} platform
- * @property {any | undefined} emailProtectionUserData
+ * @property {import('../../../../schema/__generated__/schema.types').EmailProtectionUserData | undefined} emailProtectionUserData
  * @property {("dark" | "light") | undefined} theme
  * @param {string} searchString
  * @returns {Overrides}
@@ -25,40 +24,25 @@ import { Protections } from './request-details'
 export function getOverrides(searchString) {
     /** @type {Overrides} */
     const overrides = {
-        tab: {
-            consentManaged: undefined,
-            parentEntity: undefined,
-        },
         requests: [],
+        tab: createTabData('https://example.com', false, Protections.default(), { requests: [] }),
         platform: 'example',
-        state: 'unknown',
         emailProtectionUserData: undefined,
         theme: undefined,
     }
 
     const params = new URLSearchParams(searchString)
 
-    if (params.has('state')) {
-        const match = dataStates[params.get('state')]
+    const stateKey = params.get('state')
+    if (stateKey) {
+        const match = dataStates[stateKey]
         if (match) {
             overrides.requests = match.requests
-            overrides.state = match.state
-            if ('parentEntity' in match) {
-                overrides.tab.parentEntity = { ...match.parentEntity }
-            }
-            if ('url' in match) {
-                overrides.tab.url = match.url
-            }
-            if ('contentBlockingException' in match) {
-                overrides.requests = protectionsOff(overrides.requests)
-                overrides.tab.protections = new Protections(false, [], false, false)
-            }
-            if ('upgradedHttps' in match) {
-                overrides.tab.upgradedHttps = true
-            }
-            if ('certificates' in match) {
-                overrides.tab.certificate = match.certificates
-            }
+            overrides.tab.requestDetails = createRequestDetails(match.requests, [])
+            overrides.tab.parentEntity = match.parentEntity
+            overrides.tab.url = match.url
+            overrides.tab.upgradedHttps = match.upgradedHttps
+            overrides.tab.certificate = match.certificate
         }
     }
     const platformParam = params.get('platform')
@@ -86,11 +70,13 @@ export function getOverrides(searchString) {
     // emulate a 'contentBlockingException'
     if (params.get('contentBlockingException') === 'true') {
         overrides.requests = protectionsOff(overrides.requests)
+        overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
         overrides.tab.protections = new Protections(false, [], false, false)
     }
 
     if (params.get('allowlisted')) {
         overrides.requests = protectionsOff(overrides.requests)
+        overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
         overrides.tab.protections = new Protections(false, ['contentBlocking'], true, false)
     }
 
@@ -104,6 +90,7 @@ export function getOverrides(searchString) {
 
     if (params.get('denylisted')) {
         overrides.requests = protectionsOff(overrides.requests)
+        overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
         overrides.tab.protections = new Protections(false, [], false, true)
     }
 

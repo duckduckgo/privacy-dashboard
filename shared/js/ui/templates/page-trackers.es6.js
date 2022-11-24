@@ -19,7 +19,7 @@ export function trackerNetworksTemplate() {
         : bel`<div></div>`
 
     return bel`
-    <div class="site-info card page-inner">
+    <div class="site-info card page-inner" data-page='trackers'>
         ${topNav({ view: 'secondary' })}
         <div class="padding-x-double js-tracker-networks-hero">
             ${hero}
@@ -56,23 +56,30 @@ export function renderCompany(company) {
         company.displayName = `(${i18n.t('site:trackerNetworkUnknown.title')})`
     }
     const slug = company.normalizedName
+    const title = company.name || company.displayName
+    const titleClasses = [
+        'site-info__tracker__icon',
+        'site-info__tracker__icon--company',
+        slug[0].toUpperCase(),
+        'color-' + getColorId(slug),
+        slug,
+    ]
+    const listLabel = i18n.t('site:trackerDomainsForCompany.title', {
+        companyName: company.displayName,
+    })
 
-    return bel`<li class="site-info__trackers__company-list-item" data-test-id="entityListItem">
-        <h1 title="${company.name || company.displayName}" class="site-info__domain block token-title-3-em" data-test-id="entityTitle">
-            <span class="site-info__tracker__icon site-info__tracker__icon--company ${slug[0].toUpperCase()} color-${getColorId(
-        slug
-    )} ${slug}"></span>
+    return bel`<li class="site-info__trackers__company-list-item">
+        <p title=${title} class="site-info__domain block token-title-3-em">
+            <span class=${titleClasses.join(' ')}></span>
             ${company.displayName}
-        </h1>
-        <ol class="default-list site-info__trackers__company-list__url-list" aria-label="${i18n.t('site:trackerDomainsForCompany.title', {
-            companyName: company.displayName,
-        })}">
+        </p>
+        <ol class="default-list site-info__trackers__company-list__url-list" aria-label=${listLabel}>
             ${Object.keys(company.urls).map((urlHostname) => {
                 const url = company.urls[urlHostname]
                 const matched = displayCategories[url.category]
                 return bel`
-                <li data-test-id="entityUrlListItem" class="url-list-item">
-                    <div class="url" title="${urlHostname}">${urlHostname}</div>
+                <li class="url-list-item">
+                    <p class="url" title=${urlHostname}>${urlHostname}</p>
                     ${matched ? bel`<div class="category">${i18n.t(matched)}</div>` : ''}
                 </li>`
             })}

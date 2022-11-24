@@ -1,4 +1,3 @@
-import generateData, { defaultRequests } from '../ui/views/tests/generate-data'
 import {
     CheckBrokenSiteReportHandledMessage,
     RefreshEmailAliasMessage,
@@ -8,23 +7,10 @@ import {
 } from './common.es6'
 import { getOverrides } from './utils/overrides'
 
-// This is am example interface purely for previewing the panel
-// import { Protections } from './utils/request-details'
-
 // Overrides based on URL params
 const overrides = getOverrides(window.location.search)
 
 let channel = null
-const isSecure = true
-const isPendingUpdates = false
-
-// Modify state after render
-// eslint-disable-next-line no-unused-vars
-// const tweakSecureStatus = () => {
-//     isSecure = false
-//     channel?.send('updateTabData')
-// }
-// setTimeout(() => tweakSecureStatus(), 10000)
 
 /**
  * @type {import("./common.es6").fetcher}
@@ -57,30 +43,19 @@ export function backgroundMessage(backgroundModel) {
     console.log('backgroundMessage - setting local channel')
     channel = backgroundModel
 }
-let count = 0
+
+/**
+ * @returns {Promise<{
+ *    tab: import('./utils/request-details').TabData,
+ *    emailProtectionUserData: import('../../../schema/__generated__/schema.types').EmailProtectionUserData | undefined,
+ * }>}
+ */
 export async function getBackgroundTabData() {
-    let requests = overrides.requests
-    if (new URLSearchParams(window.location.search).has('continuous')) {
-        requests = defaultRequests.slice(0, count)
+    console.log(overrides.requests)
+    return {
+        tab: overrides.tab,
+        emailProtectionUserData: overrides.emailProtectionUserData,
     }
-    const output = generateData({
-        isSecure,
-        isPendingUpdates,
-        ...overrides,
-        requests,
-    })
-
-    if (count === 5) {
-        count = 0
-    } else {
-        count += 1
-    }
-
-    // @ts-ignore
-    output.emailProtectionUserData = overrides.emailProtectionUserData
-
-    // console.log('✅', output)
-    return output
 }
 
 export function setup() {

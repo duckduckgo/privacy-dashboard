@@ -14,7 +14,7 @@ function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
         type="button"
         role="switch"
         aria-checked="false"
-        aria-label="${label}"
+        aria-label=${label}
         ${disabled ? 'disabled' : ''}
     >
         <div class="mdc-switch__track"></div>
@@ -47,13 +47,14 @@ export function toggleButton(isActiveBoolean, klass, disabled) {
     const label = isActiveBoolean ? labelDisabled : labelEnabled
 
     return bel`
-    <button class="toggle-button toggle-button--is-active-${isActiveBoolean} ${klass}"
-        type="button"
-        aria-pressed="${isActiveBoolean ? 'true' : 'false'}"
-        aria-label="${label}"
+    <button class='toggle-button ${klass}'
+        type='button'
+        role="switch"
+        aria-checked='${isActiveBoolean}'
+        aria-label='${label}'
         ${disabled ? 'disabled' : ''}
     >
-        <div class="toggle-button__bg"></div>
-        <div class="toggle-button__knob"></div>
+        <div class='toggle-button__track'></div>
+        <div class='toggle-button__handle'></div>
     </button>`
 }

@@ -166,10 +166,9 @@ export function setLists(options) {}
 
 /**
  * Refresh the email alias
- * @param options
  * @returns {Promise<import('../../../schema/__generated__/schema.types').RefreshAliasResponse>}
  */
-export async function refreshAlias(options) {
+export async function refreshAlias() {
     throw new Error('base impl')
 }
 

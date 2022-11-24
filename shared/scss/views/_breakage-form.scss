@@ -86,67 +86,70 @@
 
 .form__select select {
     cursor: pointer;
-    margin: 0;
     display: block;
-    min-width: 9em;
+    width: 100%;
     min-height: 2em;
-    width: 100% !important;
-    height: 2em !important;
+    border: 1px solid var(--color-lines-light);
+    border-radius: 4px;
+    margin: 0;
+    margin-bottom: var(--size-unit);
 }
 
 .form__textarea {
     resize: none;
     width: 100%;
     height: 110px;
-    border: 1px solid $color--dark-silver;
-    border-radius: 6px;
     display: block;
     box-sizing: border-box;
-    margin-bottom: 8px;
-    padding: 8px;
+    margin-bottom: var(--size-unit);
+    padding: var(--size-unit-half);
+    border: 1px solid var(--color-lines-light);
+    border-radius: 4px;
 
-    outline-color: #6e90f7;
     .body--theme-dark & {
         background-color: $dark-mode-white;
         border-color: var(--color-lines-light);
-    }
-
-    .body--theme-dark.environment--windows {
-        background-color: $color--dark-theme-background;
-        border-color: $color--dark-theme-border;
-        color: $white;
-
-        &::placeholder {
-            color: rgba(255, 255, 255, 0.24);
-        }
     }
 }
 
 .form__submit {
     text-align: center;
-    color: $white;
     padding: 10px 12px;
     cursor: pointer;
     display: block;
     text-decoration: none;
     width: 100%;
 
-    /* Controls/Mac/System (Light) */
-    border: 0.5px solid rgba(40, 145, 255, 0.05);
-    background: linear-gradient(180deg, #4690f7 0%, #307bf7 100%);
-    box-shadow: 0px 0px 1px rgba(40, 145, 255, 0.05), 0px 1px 1px rgba(40, 145, 255, 0.1);
+    box-shadow: var(--btn-accent-shadow);
+    border-radius: var(--btn-accent-border-radius);
+    border: var(--btn-accent-border);
+    color: var(--btn-accent-color);
+    background: var(--btn-accent-bg);
 
-    /* Mac/Button (Accent) */
-    border-radius: 8px;
+    &:hover {
+        background: var(--btn-accent-bg-hover);
+    }
+    &:active {
+        background: var(--btn-accent-bg-active);
+    }
 
-    &.btn-disabled {
-        background-color: #e3e3e3;
-        color: $grey;
-        cursor: default;
+    /* https://www.figma.com/file/DBZiXJRgTTJTuBeWAPyE5h/Desktop-Components?node-id=9113%3A130956&t=de8DMDVt8GbRBQub-0 */
+    .environment--windows & {
+        /* Windows/Label */
+        box-shadow: none;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        border-radius: 4px;
 
-        .body--theme-dark.environment--windows {
-            background-color: rgba(255, 255, 255, 0.06);
-            color: rgba(255, 255, 255, 0.36);
+        &:focus {
+            /* todo(Shane): where does this live? */
+            box-shadow: 0px 0px 0px 1px #ffffff, 0px 0px 0px 3px #3969ef;
+        }
+
+        &:active {
+            box-shadow: none;
         }
     }
 }

@@ -37,6 +37,10 @@ export type AdClickAttributionReason = "adClickAttribution";
  * This indicates that the request was allowed because it was to a third party, but was not classified to be a tracker
  */
 export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
+/**
+ * A helper list of messages that the Dashboard accepts from Windows
+ */
+export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
 
 /**
  * This describes all of the top-level generated types
@@ -49,7 +53,7 @@ export interface API {
   "search-message"?: Search;
   "breakage-report": BreakageReport;
   "set-list"?: SetListOptions;
-  "windows-view-model": WindowsViewModel;
+  "windows-incoming-message"?: WindowsIncomingMessage;
   "locale-settings"?: LocaleSettings;
   "refresh-alias-response"?: RefreshAliasResponse;
   exe?: ExtensionMessageSetListOptions;
@@ -280,6 +284,24 @@ export interface SetListOptions {
     domain: string;
     value: boolean;
   }[];
+}
+/**
+ * This message is used by Windows to indicate when the visibility of the Dashboard should change
+ */
+export interface WindowsIncomingVisibility {
+  Feature: "PrivacyDashboard";
+  Name: "VisibilityChanged";
+  Data: {
+    isVisible: boolean;
+  };
+}
+/**
+ * This message contains the Windows View Model that's used to provide all data to the Dashboard
+ */
+export interface WindowsIncomingViewModel {
+  Feature: "PrivacyDashboard";
+  Name: "ViewModelUpdated";
+  Data: WindowsViewModel;
 }
 /**
  * This describes the required data for the dashboard
