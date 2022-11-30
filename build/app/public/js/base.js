@@ -28357,10 +28357,10 @@ var extensionMessageGetPrivacyDashboardDataSchema = _zod.z.object({
 exports.extensionMessageGetPrivacyDashboardDataSchema = extensionMessageGetPrivacyDashboardDataSchema;
 
 var emailProtectionUserDataSchema = _zod.z.object({
-  cohort: _zod.z.string(),
+  cohort: _zod.z.string().optional(),
   nextAlias: _zod.z.string(),
-  token: _zod.z.string(),
-  userName: _zod.z.string()
+  token: _zod.z.string().optional(),
+  userName: _zod.z.string().optional()
 });
 
 exports.emailProtectionUserDataSchema = emailProtectionUserDataSchema;

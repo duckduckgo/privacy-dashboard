@@ -29,10 +29,10 @@ export const extensionMessageGetPrivacyDashboardDataSchema = z.object({
 });
 
 export const emailProtectionUserDataSchema = z.object({
-    cohort: z.string(),
+    cohort: z.string().optional(),
     nextAlias: z.string(),
-    token: z.string(),
-    userName: z.string()
+    token: z.string().optional(),
+    userName: z.string().optional()
 });
 
 export const protectionsStatusSchema = z.object({
