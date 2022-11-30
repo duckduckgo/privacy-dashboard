@@ -28357,10 +28357,7 @@ var extensionMessageGetPrivacyDashboardDataSchema = _zod.z.object({
 exports.extensionMessageGetPrivacyDashboardDataSchema = extensionMessageGetPrivacyDashboardDataSchema;
 
 var emailProtectionUserDataSchema = _zod.z.object({
-  cohort: _zod.z.string().optional(),
-  nextAlias: _zod.z.string(),
-  token: _zod.z.string().optional(),
-  userName: _zod.z.string().optional()
+  nextAlias: _zod.z.string()
 });
 
 exports.emailProtectionUserDataSchema = emailProtectionUserDataSchema;

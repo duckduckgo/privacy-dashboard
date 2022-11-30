@@ -22,16 +22,7 @@
             "type": "object",
             "required": ["nextAlias"],
             "properties": {
-                "cohort": {
-                    "type": "string"
-                },
                 "nextAlias": {
-                    "type": "string"
-                },
-                "token": {
-                    "type": "string"
-                },
-                "userName": {
                     "type": "string"
                 }
             }

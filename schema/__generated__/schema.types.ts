@@ -195,10 +195,7 @@ export interface GetPrivacyDashboardData {
   tab: Tab;
 }
 export interface EmailProtectionUserData {
-  cohort?: string;
   nextAlias: string;
-  token?: string;
-  userName?: string;
 }
 export interface Tab {
   /**
