@@ -28,10 +28,7 @@ const test = baseTest.extend({
                 },
                 requestData: { requests: [] },
                 emailProtectionUserData: {
-                    cohort: 'private_beta_dax',
                     nextAlias: '123456_next',
-                    token: '123456',
-                    userName: 'daxtheduck',
                 },
             })
             await page.goto(HTML)
@@ -221,10 +218,7 @@ test.describe('special page (cta)', () => {
             },
             requestData: { requests: [] },
             emailProtectionUserData: {
-                cohort: 'private_beta_dax',
                 nextAlias: '123456_next',
-                token: '123456',
-                userName: 'daxtheduck',
             },
         })
         await page.goto(HTML)
