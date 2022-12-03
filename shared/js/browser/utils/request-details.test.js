@@ -65,4 +65,31 @@ describe('RequestDetails', () => {
         const state = requestDetails.state(true)
         expect(state).toBe(states.protectionsOn_blocked)
     })
+    /**
+     * In this case, 'entityName' and 'eTLDplus1' match - our logic
+     * was always running `removeTLD` when the entity name was present.
+     * This behaviour was intended to prevent Entity names like "Amazon.com" from displaying,
+     * but it accidentally also stripped `.uk` from the example below.
+     *
+     * This test ensures that the following is true:
+     *    "displayName": "bbci.co.uk"
+     */
+    it('uses correct display name with EntityName matches ETLD+1', () => {
+        const requestDetails = fromJson({
+            requests: [
+                {
+                    pageUrl: 'https://www.bbc.co.uk/',
+                    state: {
+                        allowed: {
+                            reason: 'otherThirdPartyRequest',
+                        },
+                    },
+                    url: 'https://static.files.bbci.co.uk/core/bundle-defaultVendors.99d08071a5c40316d056.js',
+                    eTLDplus1: 'bbci.co.uk',
+                    entityName: 'bbci.co.uk',
+                },
+            ],
+        })
+        expect(requestDetails.all).toMatchSnapshot()
+    })
 })

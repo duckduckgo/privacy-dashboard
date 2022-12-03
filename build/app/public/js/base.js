@@ -30547,7 +30547,12 @@ var AggregatedCompanyResponseData = /*#__PURE__*/function () {
       var displayName;
       var urlHostname = hostname.replace(/^www\./, '');
       if (request.entityName) {
-        displayName = (0, _normalizeCompanyNameEs.removeTLD)(request.entityName);
+        // if 'entityName' + 'eTLDplus1' match, just use 'request.eTLDplus1' un-modified
+        if (request.entityName === request.eTLDplus1) {
+          displayName = request.eTLDplus1;
+        } else {
+          displayName = (0, _normalizeCompanyNameEs.removeTLD)(request.entityName);
+        }
       } else {
         displayName = request.eTLDplus1 || request.url;
       }

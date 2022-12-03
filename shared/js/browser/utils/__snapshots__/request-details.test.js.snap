@@ -65,3 +65,24 @@ Array [
   },
 ]
 `;
+
+exports[`RequestDetails uses correct display name with EntityName matches ETLD+1 1`] = `
+AggregatedCompanyResponseData {
+  "entities": Object {
+    "bbci.co.uk": AggregateCompanyData {
+      "displayName": "bbci.co.uk",
+      "name": undefined,
+      "normalizedName": "bbcico",
+      "prevalence": 0,
+      "urls": Object {
+        "static.files.bbci.co.uk": TrackerUrl {
+          "category": undefined,
+          "url": "static.files.bbci.co.uk",
+        },
+      },
+    },
+  },
+  "entitiesCount": 1,
+  "requestCount": 1,
+}
+`;
