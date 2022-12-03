@@ -21,7 +21,6 @@ export default function emailProtectionTemplate() {
             <button class="email-alias__button"
                     type="button"
                     data-state=${state}
-                    data-test-id="email-alias-button"
                     disabled=${state === 'added'}
                     onclick=${(e) => this.copyAlias(e)}>
                 ${icon}

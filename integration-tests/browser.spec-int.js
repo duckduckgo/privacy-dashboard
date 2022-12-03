@@ -1,306 +1,152 @@
-import { test as baseTest, expect } from '@playwright/test'
-import { forwardConsole, withExtensionRequests } from './helpers'
-
-const HTML = '/build/app/html/browser.html'
-
-const test = baseTest.extend({
-    extensionMessages: [
-        async ({ page }, use) => {
-            forwardConsole(page)
-            await use()
-        },
-        // @ts-ignore
-        { auto: true },
-    ],
-    extensionMocks: [
-        async ({ page }, use) => {
-            const requests = await withExtensionRequests(page, {
-                tab: {
-                    id: 1533,
-                    url: 'https://example.com',
-                    upgradedHttps: false,
-                    protections: {
-                        unprotectedTemporary: false,
-                        enabledFeatures: ['contentBlocking'],
-                        denylisted: false,
-                        allowlisted: false,
-                    },
-                },
-                requestData: { requests: [] },
-                emailProtectionUserData: {
-                    nextAlias: '123456_next',
-                },
-            })
-            await page.goto(HTML)
-            await use(requests)
-        },
-        // @ts-ignore
-        { auto: true },
-    ],
-})
+import { test } from '@playwright/test'
+import { dataStates, MockData, mockToExtensionDashboardMessage } from '../shared/js/ui/views/tests/generate-data'
+import { DashboardPage } from './DashboardPage'
 
 test.describe('initial page data', () => {
-    test('should fetch initial data', async ({ page, extensionMocks }) => {
-        // @ts-ignore
-        const out = await extensionMocks.outgoing({ names: [] })
-        expect(out).toMatchObject([
-            {
-                messageType: 'getPrivacyDashboardData',
-                options: { tabId: null },
-            },
-        ])
-        await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 500 })
-        if (!process.env.CI) {
-            await expect(page).toHaveScreenshot('no-requests.png')
-        }
+    test('should fetch initial data', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.showsPrimaryScreen()
+        await dash.mocks.calledForInitialExtensionMessage()
     })
 })
 
 test.describe('breakage form', () => {
-    test('should submit with no values', async ({ page, extensionMocks }) => {
-        await page.locator('"Website not working as expected?"').click()
-        await page.locator('"Send Report"').waitFor({ timeout: 600 })
-        if (!process.env.CI) {
-            await expect(page).toHaveScreenshot('send-report.png')
-        }
-        await page.locator('"Send Report"').click()
-        // @ts-ignore
-        const out = await extensionMocks.outgoing({
-            names: ['submitBrokenSiteReport'],
-        })
-        expect(out).toMatchObject([
-            {
-                messageType: 'submitBrokenSiteReport',
-                options: { category: '', description: '' },
-            },
-        ])
+    test('should submit with no values', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.addStates([dataStates['04']])
+        await dash.clickReportBreakage()
+        await dash.screenshot('breakage-form.png')
+        await dash.submitBreakageForm()
+        await dash.mocks.calledForSubmitBreakageForm()
+        await dash.screenshot('breakage-form-message.png')
     })
-    test('should submit with description', async ({ page, extensionMocks }) => {
-        await page.locator('"Website not working as expected?"').click()
-        await page.locator('textarea').type('Video not playing')
-        await page.locator('"Send Report"').click()
-        // @ts-ignore
-        const out = await extensionMocks.outgoing({
-            names: ['submitBrokenSiteReport'],
+    test('should submit with description', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.addStates([dataStates['04']])
+        await dash.clickReportBreakage()
+        await dash.enterBreakageSubscription('Video not playing')
+        await dash.submitBreakageForm()
+        await dash.mocks.calledForSubmitBreakageForm({
+            category: '',
+            description: 'Video not playing',
         })
-        expect(out).toMatchObject([
-            {
-                messageType: 'submitBrokenSiteReport',
-                options: { category: '', description: 'Video not playing' },
-            },
-        ])
     })
-    test('should submit with category', async ({ page, extensionMocks }) => {
-        await page.locator('"Website not working as expected?"').click()
+    test('should submit with category', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.addStates([dataStates['04']])
         const optionToSelect = "Video didn't play"
-        await page.locator('select').selectOption({ label: optionToSelect })
-        await page.locator('"Send Report"').click()
-        // @ts-ignore
-        const out = await extensionMocks.outgoing({
-            names: ['submitBrokenSiteReport'],
+        await dash.clickReportBreakage()
+        await dash.selectBreakageCategory(optionToSelect)
+        await dash.submitBreakageForm()
+        await dash.mocks.calledForSubmitBreakageForm({
+            category: 'videos',
+            description: '',
         })
-        expect(out).toMatchObject([
-            {
-                messageType: 'submitBrokenSiteReport',
-                options: { category: 'videos', description: '' },
-            },
-        ])
     })
 })
 
 test.describe('Protections toggle', () => {
     test.describe('when a site is NOT allowlisted', () => {
-        test('then pressing toggle should disable protections', async ({ page, extensionMocks }) => {
-            await page.locator('[aria-pressed="true"]').click()
-            await page.waitForTimeout(300)
-            // @ts-ignore
-            const out = await extensionMocks.outgoing({ names: ['setLists'] })
-            expect(out).toMatchObject([
-                {
-                    messageType: 'setLists',
-                    options: {
-                        lists: [
-                            { list: 'denylisted', domain: 'example.com', value: false },
-                            { list: 'allowlisted', domain: 'example.com', value: true },
-                        ],
-                    },
-                },
-            ])
+        test('then pressing toggle should disable protections', async ({ page }) => {
+            const mock = new MockData({ url: 'https://example.com' })
+            const messages = mockToExtensionDashboardMessage(mock)
+            const dash = await DashboardPage.browser(page, messages)
+            await dash.addStates([dataStates['04']])
+            await dash.toggleProtectionsOff()
+            await page.waitForTimeout(500) // todo(Shane): remove this
+            await dash.mocks.calledForToggleAllowList('protections-off')
         })
     })
     test.describe('When the site is already allowlisted', () => {
         test('then pressing the toggle re-enables protections', async ({ page }) => {
-            const requests = await withExtensionRequests(page, {
-                requestData: { requests: [] },
-                tab: {
-                    id: 1533,
-                    url: 'https://example.com',
-                    upgradedHttps: false,
-                    protections: {
-                        denylisted: false,
-                        allowlisted: true,
-                        enabledFeatures: ['contentBlocking'],
-                        unprotectedTemporary: false,
-                    },
-                },
-            })
-            await page.goto(HTML)
-            await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
-            if (!process.env.CI) {
-                await expect(page).toHaveScreenshot('allow-listed.png')
-            }
-            await page.locator('[aria-pressed="false"]').click()
-            await page.waitForTimeout(300)
-            // @ts-ignore
-            const out = await requests.outgoing({ names: ['setLists'] })
-            expect(out).toMatchObject([
-                {
-                    messageType: 'setLists',
-                    options: {
-                        lists: [
-                            { list: 'denylisted', domain: 'example.com', value: false },
-                            { list: 'allowlisted', domain: 'example.com', value: false },
-                        ],
-                    },
-                },
-            ])
+            const mock = new MockData({ url: 'https://example.com', allowlisted: true })
+            const messages = mockToExtensionDashboardMessage(mock)
+            const dash = await DashboardPage.browser(page, messages)
+            await dash.addStates([dataStates['04']])
+            await dash.toggleProtectionsOn()
+            await page.waitForTimeout(500) // todo(Shane): remove this
+            await dash.mocks.calledForToggleAllowList('protections-on')
         })
     })
     test.describe('When the site has content blocking disabled', () => {
         test('then pressing the toggle re-enables protections (overriding our decision)', async ({ page }) => {
-            const requests = await withExtensionRequests(page, {
-                requestData: { requests: [] },
-                tab: {
-                    id: 1533,
-                    url: 'https://example.com',
-                    upgradedHttps: false,
-                    protections: {
-                        denylisted: false,
-                        allowlisted: false,
-                        enabledFeatures: [],
-                        unprotectedTemporary: false,
-                    },
-                },
-            })
-            await page.goto(HTML)
-            await page.locator('"No Tracking Requests Found"').waitFor({ timeout: 1000 })
-            if (!process.env.CI) {
-                await expect(page).toHaveScreenshot('content-blocking-disabled.png')
-            }
-            await page.locator('[aria-pressed="false"]').click()
-            await page.waitForTimeout(300)
-            // @ts-ignore
-            const out = await requests.outgoing({ names: ['setLists'] })
-            expect(out).toMatchObject([
-                {
-                    messageType: 'setLists',
-                    options: { lists: [{ list: 'denylisted', domain: 'example.com', value: true }] },
-                },
-            ])
+            const mock = new MockData({ url: 'https://example.com', contentBlockingException: true })
+            const messages = mockToExtensionDashboardMessage(mock)
+            const dash = await DashboardPage.browser(page, messages)
+            await dash.addStates([dataStates['04']])
+            await dash.toggleProtectionsOn()
+            await page.waitForTimeout(500) // todo(Shane): remove this
+            await dash.mocks.calledForToggleAllowList('protections-on-override')
         })
     })
 })
 
 test.describe('special page (cta)', () => {
     test('should render correctly', async ({ page }) => {
-        await withExtensionRequests(page, {
-            tab: {
-                id: 1533,
-                url: 'https://example.com',
-                upgradedHttps: false,
-                protections: {
-                    unprotectedTemporary: false,
-                    enabledFeatures: ['contentBlocking'],
-                    denylisted: false,
-                    allowlisted: false,
-                },
-                specialDomainName: 'extensions',
-            },
-            requestData: { requests: [] },
-            emailProtectionUserData: {
-                nextAlias: '123456_next',
-            },
-        })
-        await page.goto(HTML)
-        await page.locator('"Love using DuckDuckGo?"').waitFor({ timeout: 500 })
-        if (!process.env.CI) {
-            await expect(page).toHaveScreenshot('cta.png')
-        }
+        const mock = new MockData({ url: 'https://example.com', specialDomainName: true, emailUser: true })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.showingCTA()
     })
 })
 
 test.describe('search', () => {
     test('should not lose text when re-render occurs', async ({ page }) => {
-        const requests = await withExtensionRequests(page, {
-            requestData: { requests: [] },
-            tab: {
-                id: 1533,
-                url: 'https://example.com',
-                upgradedHttps: false,
-                protections: {
-                    denylisted: false,
-                    allowlisted: false,
-                    enabledFeatures: [],
-                    unprotectedTemporary: false,
-                },
-            },
-        })
-        await page.goto(HTML)
-        await page.locator('[placeholder="Search DuckDuckGo"]').type('nike')
-        await page.evaluate(async () => {
-            for (const listener of window.__playwright?.listeners || []) {
-                listener({ updateTabData: true }, { id: 'test' })
-            }
-        })
-        await page.waitForTimeout(500) // allow time for a re-render
-        await expect(page.locator('[placeholder="Search DuckDuckGo"]')).toHaveValue('nike')
-        await page.locator('[type="submit"]').click()
-        const outgoing = await requests.outgoing({ names: ['search'] })
-        expect(outgoing).toMatchObject([{ messageType: 'search', options: { term: 'nike' } }])
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        const term = 'nike'
+        await dash.enterSearchText(term)
+        await dash.addStates([dataStates['04']])
+        await dash.searchContainsText(term)
+        await dash.submitSearch()
+        await dash.mocks.calledForSearch(term)
     })
 })
 
 test.describe('options', () => {
     test('should open options page', async ({ page }) => {
-        const requests = await withExtensionRequests(page, {
-            requestData: { requests: [] },
-            tab: {
-                id: 1533,
-                url: 'https://example.com',
-                upgradedHttps: false,
-                protections: {
-                    denylisted: false,
-                    allowlisted: false,
-                    enabledFeatures: [],
-                    unprotectedTemporary: false,
-                },
-            },
-        })
-        await page.goto(HTML)
-        await page.locator('[aria-label="More options"]').click()
-        const outgoing = await requests.outgoing({ names: ['openOptions'] })
-        expect(outgoing).toMatchObject([{ messageType: 'openOptions' }])
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.selectOptionsCog()
+        await dash.mocks.calledForOptions()
     })
 })
 
 test.describe('tab data error', () => {
     test('should show an error screen', async ({ page }) => {
-        await withExtensionRequests(page, {
-            // @ts-expect-error
-            requestData: { requests: [{ foo: 'bar' }] },
-            tab: {
-                id: 1533,
-                url: 'https://example.com',
-                upgradedHttps: false,
-                protections: {
-                    denylisted: false,
-                    allowlisted: false,
-                    enabledFeatures: [],
-                    unprotectedTemporary: false,
-                },
-            },
-        })
-        await page.goto(HTML)
-        await page.locator('"Something went wrong, and we couldn\'t load this content. Try reloading the page."').waitFor({ timeout: 500 })
+        // @ts-expect-error - this SHOULD error, that's the test
+        const mock = new MockData({ url: 'https://example.com', requests: [{ foo: 'bar' }] })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.displayingError()
     })
 })
+
+if (!process.env.CI) {
+    const states = [
+        { name: 'ad-attribution', state: dataStates['ad-attribution'] },
+        { name: 'new-entities', state: dataStates['new-entities'] },
+        { name: 'upgraded+secure', state: dataStates['upgraded+secure'] },
+        { name: 'google-off', state: dataStates['google-off'] },
+        { name: 'cnn', state: dataStates.cnn },
+    ]
+    test.describe('screenshots', () => {
+        for (const { name, state } of states) {
+            test(name, async ({ page }) => {
+                const messages = mockToExtensionDashboardMessage(state)
+                const dash = await DashboardPage.browser(page, messages)
+                await dash.screenshotEachScreenForState(name, state)
+            })
+        }
+    })
+}

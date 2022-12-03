@@ -1,129 +1,95 @@
-import { test as baseTest, expect } from '@playwright/test'
-import { forwardConsole, playTimeline, withAndroidRequests } from './helpers'
-
-const HTML = '/build/app/html/android.html'
-
-const test = baseTest.extend({
-    androidMocks: [
-        async ({ page }, use) => {
-            forwardConsole(page)
-            await page.goto(HTML)
-            const requests = await withAndroidRequests(page, {
-                requests: [],
-            })
-            await use(requests)
-        },
-        // @ts-ignore
-        { auto: false },
-    ],
-})
+import { test } from '@playwright/test'
+import { dataStates } from '../shared/js/ui/views/tests/generate-data'
+import { DashboardPage } from './DashboardPage'
 
 test.describe('initial page data', () => {
-    test('should fetch initial data', async ({ page, androidMocks }) => {
-        // @ts-ignore
-        await androidMocks.outgoing({ names: [] })
-        await page.locator('"No Tracking Requests Found"').waitFor()
+    test('should fetch initial data', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates['04']])
+        await dash.showsPrimaryScreen()
     })
 })
 
 test.describe('page data (with trackers)', () => {
     test('should display correct primary screen', async ({ page }) => {
-        forwardConsole(page)
-        await page.goto(HTML)
-        await withAndroidRequests(page, { requests: [] })
-        await playTimeline(page, ['state:cnn'])
-        // allow the page to re-render
-        await page.locator('.icon-list').waitFor({ timeout: 500 })
-        if (!process.env.CI) {
-            await expect(page).toHaveScreenshot('primary-screen.png')
-        }
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates.cnn])
+        await dash.showsPrimaryScreen()
+        await dash.screenshot('primary-cnn.png')
     })
     test('should display correct tracker screen + ripple effect on about link', async ({ page }) => {
-        forwardConsole(page)
-        await page.goto(HTML)
-        await withAndroidRequests(page, { requests: [] })
-        await page.locator('[aria-label="View Tracker Companies"]').click()
-        await playTimeline(page, ['state:cnn'])
-        await expect(page.locator('"About our Web Tracking Protections"')).toHaveClass(/mdc-ripple-upgraded/)
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates.cnn])
+        await dash.viewTrackerCompanies()
+        await dash.aboutLinkHasRipple()
     })
 })
 
 test.describe('breakage form', () => {
-    test('should call android interface', async ({ page, androidMocks }) => {
-        await page.locator('"Website not working as expected?"').click()
-        // @ts-ignore
-        const calls = await androidMocks.outgoing()
-        expect(calls).toMatchObject([['showBreakageForm', undefined]])
+    test('should call android interface', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates.cnn])
+        await dash.clickReportBreakage()
+        await dash.mocks.calledForShowBreakageForm()
     })
 })
 
 test.describe('open external links', () => {
-    test('should call android interface for links', async ({ page, androidMocks }) => {
-        await page.locator('"No Tracking Requests Found"').click()
-        await page.locator('"About our Web Tracking Protections"').click()
-        // @ts-ignore
-        const calls = await androidMocks.outgoing()
-        expect(calls).toMatchObject([
-            [
-                'openInNewTab',
-                JSON.stringify({
-                    url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
-                }),
-            ],
-        ])
+    test('should call android interface for links', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates['04']])
+        await dash.viewTrackerCompanies()
+        await dash.clickAboutLink()
+        await dash.mocks.calledForAboutLink()
     })
 })
 
 test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
-        forwardConsole(page)
-        await page.goto(HTML)
-        await withAndroidRequests(
-            page,
-            {
-                requests: [],
-            },
-            {
-                localeSettings: {
-                    locale: 'pl',
-                },
-            }
-        )
-        await page.locator('"Połączenie jest szyfrowane"').click()
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates['locale-pl']])
+        await dash.hasPolishLinkTextForConnectionInfo()
     })
     test('should load with `fr` locale', async ({ page }) => {
-        forwardConsole(page)
-        await page.goto(HTML)
-        await withAndroidRequests(
-            page,
-            {
-                requests: [],
-            },
-            {
-                localeSettings: {
-                    locale: 'fr',
-                },
-            }
-        )
-        await page.locator('"La connexion est chiffrée"').click()
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates['locale-fr']])
+        await dash.hasFrenchLinkTextForConnectionInfo()
     })
 })
 
 test.describe('Protections toggle', () => {
-    test('pressing toggle should disable protections', async ({ page, androidMocks }) => {
-        await page.locator('[aria-checked="true"]').click()
-        await page.waitForTimeout(500)
-        // @ts-ignore
-        const calls = await androidMocks.outgoing()
-        expect(calls).toMatchObject([['toggleAllowlist', false]])
+    test('pressing toggle should disable protections', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates['04']])
+        await dash.toggleProtectionsOff()
+        await page.waitForTimeout(500) // todo(Shane): remove this
+        await dash.mocks.calledForToggleAllowList()
     })
 })
 
 test.describe('Close', () => {
-    test('pressing close should call native API', async ({ page, androidMocks }) => {
-        await page.locator('[aria-label="Back"]').click()
-        // @ts-ignore
-        const calls = await androidMocks.outgoing()
-        expect(calls).toMatchObject([['close', undefined]])
+    test('pressing close should call native API', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addStates([dataStates['04']])
+        await dash.clickClose()
+        await dash.mocks.calledForClose()
     })
 })
+
+if (!process.env.CI) {
+    const states = [
+        { name: 'ad-attribution', state: dataStates['ad-attribution'] },
+        { name: 'new-entities', state: dataStates['new-entities'] },
+        { name: 'upgraded+secure', state: dataStates['upgraded+secure'] },
+        { name: 'google-off', state: dataStates['google-off'] },
+        { name: 'cnn', state: dataStates.cnn },
+    ]
+    test.describe('screenshots', () => {
+        for (const { name, state } of states) {
+            test(name, async ({ page }) => {
+                const dash = await DashboardPage.android(page)
+                await dash.screenshotEachScreenForState(name, state)
+            })
+        }
+    })
+}

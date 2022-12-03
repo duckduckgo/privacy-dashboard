@@ -113,7 +113,6 @@ $tracker-network-icons: (
 @mixin tracker_network_icons_subview() {
     @each $name in $tracker-letter-fallbacks {
         &.#{$name} {
-            margin: 0 4px 0 0;
             @include icon_display();
             @include cross_platform_bg_image('refresh-assets/tracker-icons/letters/#{$name}.svg');
         }
@@ -121,7 +120,6 @@ $tracker-network-icons: (
 
     @each $name in $tracker-network-icons {
         &.#{$name} {
-            margin: 0 4px 0 0;
             @include icon_display();
             @include cross_platform_bg_image('refresh-assets/tracker-icons/logos/#{$name}.svg');
             background-color: transparent;

@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "WindowsIncomingVisibility",
+    "type": "object",
+    "description": "This message is used by Windows to indicate when the visibility of the Dashboard should change",
+    "additionalProperties": false,
+    "required": ["Name", "Data", "Feature"],
+    "properties": {
+        "Feature": {
+            "type": "string",
+            "const": "PrivacyDashboard"
+        },
+        "Name": {
+            "type": "string",
+            "const": "VisibilityChanged"
+        },
+        "Data": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["isVisible"],
+            "properties": {
+                "isVisible": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

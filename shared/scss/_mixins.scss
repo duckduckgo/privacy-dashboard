@@ -74,6 +74,10 @@
             left: 0;
             transition: left 0.3s ease-in-out;
 
+            @media (prefers-reduced-motion) {
+                transition: none;
+            }
+
             &.sliding-subview--immediate {
                 transition: none;
             }

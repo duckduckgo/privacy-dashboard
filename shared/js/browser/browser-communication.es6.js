@@ -24,7 +24,6 @@ import {
 import { Protections, createTabData } from './utils/request-details'
 
 let channel
-const isPendingUpdates = false
 
 export function setup() {
     setupColorScheme()
@@ -250,7 +249,6 @@ export async function getBackgroundTabData() {
                 search: {},
                 emailProtection: {},
                 ctaScreens: {},
-                isPendingUpdates,
                 parentEntity,
                 specialDomainName,
             },

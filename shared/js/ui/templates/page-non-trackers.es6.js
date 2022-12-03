@@ -20,7 +20,7 @@ export function nonTrackersTemplate() {
         : bel`<div></div>`
 
     return bel`
-    <div class="site-info card page-inner">
+    <div class="site-info card page-inner" data-page='non-trackers'>
         ${topNav({ view: 'secondary' })}
         <div class="padding-x-double js-tracker-networks-hero">
             ${hero}

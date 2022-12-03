@@ -130,24 +130,11 @@
 .site-info__toggle-container {
     margin-left: auto;
     text-align: center;
+    display: flex;
 
     // including the size here to ensure the height does
     // not alter when we go from spinner to toggle
-    @include togglesize;
-
-    .toggle-button--is-active-true {
-        .toggle-button__bg {
-            background-color: $color--blue;
-
-            .environment--ios & {
-                background-color: $color--icon-green;
-            }
-        }
-    }
-
-    .toggle-button--is-active-false {
-        .toggle-button__bg {
-            background-color: $color--medium-silver;
-        }
-    }
+    // CSS custom properties defined in: shared/scss/views/_toggle-button.scss
+    width: var(--toggle-width);
+    height: var(--toggle-height);
 }

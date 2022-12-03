@@ -32,7 +32,7 @@
 }
 .cta__button {
     display: inline-block;
-    background: $color--blue-20;
+    background: var(--color-accent-blue);
     border-radius: 8px;
     padding: 10px 16px;
     max-width: 165px;
@@ -49,7 +49,6 @@
     }
 
     .body--theme-dark & {
-        background: $link-color--blue;
         color: #222222;
 
         &:hover,

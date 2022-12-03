@@ -18,7 +18,7 @@
         },
         "breakage-report": { "$ref": "./breakage-report.json" },
         "set-list": { "$ref": "./set-list-options.json" },
-        "windows-view-model": { "$ref": "./windows-view-model.json" },
+        "windows-incoming-message": { "$ref": "./windows-incoming-message.json" },
         "locale-settings": { "$ref": "./locale.json" },
         "refresh-alias-response": { "$ref": "./refresh-alias-response.json" },
         "exe": { "$ref": "./extension-message-set-list-options.json" }

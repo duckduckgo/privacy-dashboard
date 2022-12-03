@@ -43,6 +43,7 @@
     border-radius: 50%;
     overflow: hidden;
     background-size: contain;
+    margin-right: 8px;
 }
 
 /* todo(Shane): remove these */
@@ -51,10 +52,12 @@
     height: 24px !important;
 }
 
-.tracker-networks h1.site-info__domain {
+.site-info__domain {
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 12px;
+    display: flex;
+    align-items: center;
 }
 
 .site-info__trackers__company-list--bordered {
@@ -78,7 +81,7 @@
 .site-info__trackers__company-list__url-list {
     .url-list-item {
         display: flex;
-        margin-top: 7px;
+        margin-top: 8px;
         align-items: baseline;
     }
     .url {
@@ -88,18 +91,14 @@
         white-space: nowrap;
         direction: rtl;
         padding-right: 10px;
+        line-height: 18px;
     }
     .category {
         padding: 1px 8px;
-        background-color: $color--dark-platinum;
         border-radius: 33px;
-        color: rgba(0, 0, 0, 0.5);
+        color: var(--color-text-secondary);
+        background-color: var(--color-lines-lighter);
         white-space: nowrap;
         text-align: right;
-
-        .body--theme-dark & {
-            background-color: $color--medium-dark-slate;
-            color: rgba(255, 255, 255, 0.5);
-        }
     }
 }

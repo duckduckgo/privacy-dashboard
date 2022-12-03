@@ -72,11 +72,18 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
         }
 
         this.$root.removeClass('sliding-subview--open')
-        window.setTimeout(() => {
+        const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches === true
+        if (isReduced) {
             this.destroy()
             // @ts-ignore
             window.history.replaceState({}, '', window.location)
-        }, 325) // 325ms = 0.3s in .sliding-subview--root transition + 25ms padding
+        } else {
+            window.setTimeout(() => {
+                this.destroy()
+                // @ts-ignore
+                window.history.replaceState({}, '', window.location)
+            }, 325) // 325ms = 0.3s in .sliding-subview--root transition + 25ms padding
+        }
     },
 
     _done: function () {

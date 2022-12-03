@@ -26,6 +26,15 @@ body {
     --size-unit-half: calc(var(--size-unit) / 2);
     --size-unit-double: calc(var(--size-unit) * 2);
 
+    --btn-accent-border-radius: 8px;
+    --btn-accent-border: 0.5px solid rgba(40, 145, 255, 0.05);
+    --btn-accent-bg: linear-gradient(180deg, #4690f7 0%, #307bf7 100%);
+    --btn-accent-bg-hover: linear-gradient(180deg, #4690f7 0%, #307bf7 100%);
+    --btn-accent-bg-active: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)),
+        linear-gradient(180deg, #1f8aff 0%, #0173ff 100%);
+    --btn-accent-color: #ffffff;
+    --btn-accent-shadow: 0px 0px 1px rgba(40, 145, 255, 0.05), 0px 1px 1px rgba(40, 145, 255, 0.1);
+
     // mobile environments
     &.environment--ios,
     &.environment--android,
@@ -35,6 +44,16 @@ body {
 
     &.environment--browser {
         --height: 600px;
+    }
+
+    &.environment--windows {
+        --bg: #{$white};
+        --btn-accent-border-radius: none;
+        --btn-accent-border: 0.5px solid rgba(40, 145, 255, 0.05);
+        --btn-accent-bg: #3969ef;
+        --btn-accent-bg-hover: #2b55ca;
+        --btn-accent-bg-active: #1e42a4;
+        --btn-accent-shadow: none;
     }
 
     // reset custom properties based on light-theme
@@ -58,6 +77,14 @@ body {
         // todo(Shane): is this correct?
         --color-lines-lighter: rgba(255, 255, 255, 0.09);
         --color-hover-bg: rgba(255, 255, 255, 0.12);
+
+        // windows uses slightly different colors for buttons
+        &.environment--windows {
+            --btn-accent-color: #000000;
+            --btn-accent-bg: #7295f6;
+            --btn-accent-bg-hover: #557ff3;
+            --btn-accent-bg-active: #3969ef;
+        }
 
         &.environment--android {
             --bg: #{$black};

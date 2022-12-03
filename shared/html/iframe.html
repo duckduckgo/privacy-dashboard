@@ -54,6 +54,7 @@
                     <option value="11">11 protections Off + allowedNonTrackers</option>
                     <option value="12">12 protections Off + allowedTrackers + allowedNonTrackers</option>
                     <option value="google">google</option>
+                    <option value="google-off">Content Blocking Exception</option>
                     <option value="locale-pl">locale-pl</option>
                     <option value="google-with-blocked">google + blocked</option>
                     <option value="cnn">cnn</option>
@@ -130,7 +131,7 @@
             function apply() {
                 document.querySelector('.frames').innerHTML = items
                     .map((config) => {
-                        const state = config.state || '02'
+                        const state = config.state || '04'
                         const params = new URLSearchParams(Object.entries({ ...config, state })).toString()
                         const src = 'popup.html?' + params.toString()
                         const height = config.height ?? 600

@@ -15,7 +15,7 @@ export function createPlatformFeatures(platform) {
     /** @type {Platform["name"][]} */
     const desktop = ['windows', 'macos', 'browser', 'example']
     return new PlatformFeatures({
-        spinnerFollowingProtectionsToggle: platform.name !== 'android',
+        spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
     })
 }

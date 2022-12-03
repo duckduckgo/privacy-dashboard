@@ -28,7 +28,7 @@ export default function () {
     })
 
     return bel`
-    <div class="site-info card">
+    <div class="site-info card" data-page='connection'>
         ${topNav({ view: 'secondary' })}
         <div class="padding-x-double">
             ${hero}
