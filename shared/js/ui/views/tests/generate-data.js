@@ -320,10 +320,7 @@ export function mockToExtensionDashboardMessage(mock) {
     }
     if (mock.emailUser) {
         msg.emailProtectionUserData = {
-            cohort: 'private_beta_dax',
             nextAlias: '123456_next',
-            token: '123456',
-            userName: 'daxtheduck',
         }
     }
     return {

@@ -116,10 +116,7 @@ export function getOverrides(searchString) {
         // emulate a user being signed in to email protection
         if (params.get('emailUser') === 'true') {
             overrides.emailProtectionUserData = {
-                cohort: 'private_beta_dax',
                 nextAlias: '123456_next',
-                token: '123456',
-                userName: 'daxtheduck',
             }
         }
     }
