@@ -194,7 +194,12 @@ export class AggregatedCompanyResponseData {
         const urlHostname = hostname.replace(/^www\./, '')
 
         if (request.entityName) {
-            displayName = removeTLD(request.entityName)
+            // if 'entityName' + 'eTLDplus1' match, just use 'request.eTLDplus1' un-modified
+            if (request.entityName === request.eTLDplus1) {
+                displayName = request.eTLDplus1
+            } else {
+                displayName = removeTLD(request.entityName)
+            }
         } else {
             displayName = request.eTLDplus1 || request.url
         }
