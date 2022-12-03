@@ -31172,11 +31172,26 @@ var resources = localeResources.reduce(function (mapping, _ref) {
   mapping[locale][namespace] = module;
   return mapping;
 }, {});
+function getDefaultLocale() {
+  // default to browser locale
+  var locale = 'en';
+
+  // prefer i18n.getUILanguage() if it exists
+  if (typeof chrome !== 'undefined') {
+    var _chrome$i18n;
+    var extensionLang = (_chrome$i18n = chrome.i18n) === null || _chrome$i18n === void 0 ? void 0 : _chrome$i18n.getUILanguage();
+    if (extensionLang) {
+      locale = extensionLang;
+    }
+  }
+  return locale.split('-')[0]; // drop country suffix
+}
+
 _i18next["default"].use(_i18nextIcu["default"]).init({
   // debug: true,
   initImmediate: false,
   fallbackLng: 'en',
-  lng: 'en',
+  lng: getDefaultLocale(),
   ns: ['shared', 'site', 'connection', 'report'],
   defaultNS: 'shared',
   resources: resources,

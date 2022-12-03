@@ -13,11 +13,26 @@ const resources = localeResources.reduce((mapping, { name, module }) => {
     return mapping
 }, {})
 
+function getDefaultLocale() {
+    // default to browser locale
+    let locale = 'en'
+
+    // prefer i18n.getUILanguage() if it exists
+    if (typeof chrome !== 'undefined') {
+        const extensionLang = chrome.i18n?.getUILanguage()
+        if (extensionLang) {
+            locale = extensionLang
+        }
+    }
+
+    return locale.split('-')[0] // drop country suffix
+}
+
 i18next.use(ICU).init({
     // debug: true,
     initImmediate: false,
     fallbackLng: 'en',
-    lng: 'en',
+    lng: getDefaultLocale(),
     ns: ['shared', 'site', 'connection', 'report'],
     defaultNS: 'shared',
     resources,

@@ -13,7 +13,12 @@ export class Mocks {
         this.platform = platform
     }
 
-    async install() {
+    /**
+     * @param {Object} [opts]
+     * @param {string} [opts.locale]
+     * @returns {Promise<void|*|string>}
+     */
+    async install(opts) {
         switch (this.platform.name) {
             case 'android':
                 return installAndroidMocks(this.page)
@@ -25,7 +30,7 @@ export class Mocks {
             case 'example':
                 return '/build/app/html/example.html'
             case 'browser':
-                return installBrowserMocks(this.page)
+                return installBrowserMocks(this.page, opts)
             default: {
                 /** @type {never} */
                 const n = this.platform.name

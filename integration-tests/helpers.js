@@ -253,10 +253,12 @@ export async function installWebkitMocks(page) {
 
 /**
  * @param {import("@playwright/test").Page} page
+ * @param {Object} [opts]
+ * @param {string} [opts.locale]
  * @returns {Promise<void>}
  */
-export async function installBrowserMocks(page) {
-    return page.addInitScript(() => {
+export async function installBrowserMocks(page, opts = { locale: 'en' }) {
+    return page.addInitScript((opts) => {
         const messages = {
             submitBrokenSiteReport: {},
             setLists: {},
@@ -276,6 +278,13 @@ export async function installBrowserMocks(page) {
                 },
                 calls: [],
                 listeners: [],
+            }
+
+            // @ts-ignore
+            window.chrome.i18n = {
+                getUILanguage() {
+                    return opts?.locale || 'en'
+                },
             }
 
             // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
@@ -310,5 +319,5 @@ export async function installBrowserMocks(page) {
             console.error("❌couldn't set up browser mocks")
             console.error(e)
         }
-    })
+    }, opts)
 }

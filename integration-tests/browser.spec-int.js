@@ -132,6 +132,15 @@ test.describe('tab data error', () => {
     })
 })
 
+test.describe('localization', () => {
+    test('should load with `pl` locale', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages, 'pl')
+        await dash.hasPolishLinkTextForConnectionInfo()
+    })
+})
+
 if (!process.env.CI) {
     const states = [
         { name: 'ad-attribution', state: dataStates['ad-attribution'] },
