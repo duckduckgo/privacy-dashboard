@@ -34395,7 +34395,6 @@ Search.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   _handleSubmit: function _handleSubmit(e) {
     e.preventDefault();
     this.model.doSearch(this.$input.val());
-    window.close();
   },
   _handleCogClick: function _handleCogClick(e) {
     e.preventDefault();
