@@ -52,7 +52,6 @@ Search.prototype = $.extend({}, Parent.prototype, {
     _handleSubmit: function (e) {
         e.preventDefault()
         this.model.doSearch(this.$input.val())
-        window.close()
     },
 
     _handleCogClick: function (e) {
