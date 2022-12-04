@@ -25,7 +25,7 @@ let package = Package(
         .target(
             name: "PrivacyDashboard-resources",
             path: "build",
-            exclude: ["app/font"],
+            exclude: ["app/font", "build/app/font", "app/font/ProximaNova-Bold-webfont.woff2", "build/app/font/ProximaNova-Sbold-webfont.woff2"],
             resources: [.copy("app")]),
 
         .testTarget(
