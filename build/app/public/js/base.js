@@ -31180,22 +31180,6 @@ var resources = localeResources.reduce(function (mapping, _ref) {
   mapping[locale][namespace] = module;
   return mapping;
 }, {});
-
-// function getDefaultLocale() {
-//     // default to browser locale
-//     let locale = 'en'
-//
-//     // prefer i18n.getUILanguage() if it exists
-//     if (typeof chrome !== 'undefined') {
-//         const extensionLang = chrome.i18n?.getUILanguage()
-//         if (extensionLang) {
-//             locale = extensionLang
-//         }
-//     }
-//
-//     return locale.split('-')[0] // drop country suffix
-// }
-
 _i18next["default"].use(_i18nextIcu["default"]).init({
   // debug: true,
   initImmediate: false,
