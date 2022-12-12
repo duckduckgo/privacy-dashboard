@@ -146,12 +146,11 @@ export class DashboardPage {
      * @param {{
      *     getPrivacyDashboardData?: import('../schema/__generated__/schema.types').GetPrivacyDashboardData,
      * }} messages
-     * @param {string} locale
      * @returns {Promise<DashboardPage>}
      */
-    static async browser(page, messages, locale = 'en') {
+    static async browser(page, messages) {
         const dash = new DashboardPage(page, { name: 'browser' })
-        await dash.withMocks({ locale })
+        await dash.withMocks()
         await page.addInitScript((messages) => {
             window.__playwright.messages = Object.assign(window.__playwright.messages, messages)
         }, messages)
@@ -169,12 +168,10 @@ export class DashboardPage {
     }
 
     /**
-     * @param {Object} [opts]
-     * @param {string} [opts.locale]
      * @returns {Promise<DashboardPage>}
      */
-    async withMocks(opts) {
-        await this.mocks.install(opts)
+    async withMocks() {
+        await this.mocks.install()
         return this
     }
 

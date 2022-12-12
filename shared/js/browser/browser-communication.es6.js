@@ -221,7 +221,10 @@ export function backgroundMessage(_channel) {
 }
 
 /**
- * @returns {Promise<{tab: import('./utils/request-details').TabData} & Record<string, any>>}
+ * @returns {Promise<{
+ *   tab: import('./utils/request-details').TabData,
+ *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
+ * }>}
  */
 export async function getBackgroundTabData() {
     // @ts-ignore
@@ -233,9 +236,8 @@ export async function getBackgroundTabData() {
 
     if (parsedMessageData.success === true) {
         const { tab, emailProtectionUserData, requestData } = parsedMessageData.data
-        const { upgradedHttps, url, parentEntity, specialDomainName, id } = tab
+        const { upgradedHttps, url, parentEntity, specialDomainName, id, localeSettings } = tab
 
-        // const { allowlisted } = resp.tab.site;
         const protections = new Protections(
             tab.protections.unprotectedTemporary,
             tab.protections.enabledFeatures,
@@ -246,6 +248,8 @@ export async function getBackgroundTabData() {
             tab: {
                 ...createTabData(url, upgradedHttps, protections, requestData),
                 id,
+                // if the extension sends this value, then use it as-is. Otherwise, the default of 'en' will take effect
+                locale: localeSettings?.locale,
                 search: {},
                 emailProtection: {},
                 ctaScreens: {},

@@ -20,6 +20,10 @@ export class Protections {
     }
 }
 
+/**
+ * This represents the 'internal' data, eg: a normalized format without
+ * cross-platform differences
+ */
 export class TabData {
     /** @type {string | null | undefined} */
     locale
