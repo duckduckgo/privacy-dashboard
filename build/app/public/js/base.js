@@ -29175,7 +29175,10 @@ function backgroundMessage(_channel) {
 }
 
 /**
- * @returns {Promise<{tab: import('./utils/request-details').TabData} & Record<string, any>>}
+ * @returns {Promise<{
+ *   tab: import('./utils/request-details').TabData,
+ *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
+ * }>}
  */
 function getBackgroundTabData() {
   return _getBackgroundTabData.apply(this, arguments);
@@ -29197,13 +29200,14 @@ function _getBackgroundTabData() {
         url = tab.url,
         parentEntity = tab.parentEntity,
         specialDomainName = tab.specialDomainName,
-        id = tab.id;
-
-      // const { allowlisted } = resp.tab.site;
+        id = tab.id,
+        localeSettings = tab.localeSettings;
       var _protections = new _requestDetails.Protections(tab.protections.unprotectedTemporary, tab.protections.enabledFeatures, tab.protections.allowlisted, tab.protections.denylisted);
       return {
         tab: _objectSpread(_objectSpread({}, (0, _requestDetails.createTabData)(url, upgradedHttps, _protections, requestData)), {}, {
           id: id,
+          // if the extension sends this value, then use it as-is. Otherwise, the default of 'en' will take effect
+          locale: localeSettings === null || localeSettings === void 0 ? void 0 : localeSettings.locale,
           search: {},
           emailProtection: {},
           ctaScreens: {},
@@ -30372,6 +30376,10 @@ var Protections = /*#__PURE__*/function () {
   }]);
   return Protections;
 }();
+/**
+ * This represents the 'internal' data, eg: a normalized format without
+ * cross-platform differences
+ */
 exports.Protections = Protections;
 var TabData = /*#__PURE__*/_createClass( /** @type {string | null | undefined} */
 
@@ -31172,26 +31180,11 @@ var resources = localeResources.reduce(function (mapping, _ref) {
   mapping[locale][namespace] = module;
   return mapping;
 }, {});
-function getDefaultLocale() {
-  // default to browser locale
-  var locale = 'en';
-
-  // prefer i18n.getUILanguage() if it exists
-  if (typeof chrome !== 'undefined') {
-    var _chrome$i18n;
-    var extensionLang = (_chrome$i18n = chrome.i18n) === null || _chrome$i18n === void 0 ? void 0 : _chrome$i18n.getUILanguage();
-    if (extensionLang) {
-      locale = extensionLang;
-    }
-  }
-  return locale.split('-')[0]; // drop country suffix
-}
-
 _i18next["default"].use(_i18nextIcu["default"]).init({
   // debug: true,
   initImmediate: false,
   fallbackLng: 'en',
-  lng: getDefaultLocale(),
+  lng: 'en',
   ns: ['shared', 'site', 'connection', 'report'],
   defaultNS: 'shared',
   resources: resources,
@@ -35101,6 +35094,9 @@ function mockToExtensionDashboardMessage(mock) {
     msg.emailProtectionUserData = {
       nextAlias: '123456_next'
     };
+  }
+  if (mock.localeSettings) {
+    msg.tab.localeSettings = mock.localeSettings;
   }
   return {
     getPrivacyDashboardData: msg

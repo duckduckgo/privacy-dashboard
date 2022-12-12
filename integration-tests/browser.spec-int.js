@@ -134,9 +134,9 @@ test.describe('tab data error', () => {
 
 test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
-        const mock = new MockData({ url: 'https://example.com' })
+        const mock = new MockData({ url: 'https://example.com', localeSettings: { locale: 'pl' } })
         const messages = mockToExtensionDashboardMessage(mock)
-        const dash = await DashboardPage.browser(page, messages, 'pl')
+        const dash = await DashboardPage.browser(page, messages)
         await dash.hasPolishLinkTextForConnectionInfo()
     })
 })

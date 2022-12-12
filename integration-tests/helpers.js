@@ -1,52 +1,11 @@
 /**
  * @param {import('@playwright/test').Page} page
- * @param {import('../schema/__generated__/schema.types').GetPrivacyDashboardData} privacyDashboardData
- */
-export async function withExtensionRequests(page, privacyDashboardData) {
-    return {
-        /**
-         * @param {{names: string[]}} [opts]
-         * @returns {Promise<any[]>}
-         */
-        async outgoing(opts = { names: [] }) {
-            const result = await page.evaluate(() => window.__playwright.mocks.outgoing)
-            /** @type {any[]} */
-            if (opts.names.length === 0) return result
-            return result.filter((item) => opts.names.includes(item.messageType))
-        },
-        async calls() {
-            return page.evaluate(() => window.__playwright.calls)
-        },
-    }
-}
-
-/**
- * @param {import('@playwright/test').Page} page
  */
 export function forwardConsole(page) {
     page.on('console', (msg, other) => {
         const replaced = msg.text().replace(/http:\/\/localhost:3210/g, './build/browser')
         console.log('->', msg.type(), replaced)
     })
-}
-
-/**
- * @param {import('@playwright/test').Page} page
- */
-export async function withWebkitMocks(page) {
-    return {
-        /**
-         * @param {{names: string[]}} [opts]
-         * @returns {Promise<any[]>}
-         */
-        async outgoing(opts = { names: [] }) {
-            const result = await page.evaluate(() => window.__playwright.mocks.outgoing)
-            if (Array.isArray(opts.names) && opts.names.length > 0) {
-                return result.filter(([name]) => opts.names.includes(name))
-            }
-            return result
-        },
-    }
 }
 
 /**
@@ -253,12 +212,10 @@ export async function installWebkitMocks(page) {
 
 /**
  * @param {import("@playwright/test").Page} page
- * @param {Object} [opts]
- * @param {string} [opts.locale]
  * @returns {Promise<void>}
  */
-export async function installBrowserMocks(page, opts = { locale: 'en' }) {
-    return page.addInitScript((opts) => {
+export async function installBrowserMocks(page) {
+    return page.addInitScript(() => {
         const messages = {
             submitBrokenSiteReport: {},
             setLists: {},
@@ -278,13 +235,6 @@ export async function installBrowserMocks(page, opts = { locale: 'en' }) {
                 },
                 calls: [],
                 listeners: [],
-            }
-
-            // @ts-ignore
-            window.chrome.i18n = {
-                getUILanguage() {
-                    return opts?.locale || 'en'
-                },
             }
 
             // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
@@ -319,5 +269,5 @@ export async function installBrowserMocks(page, opts = { locale: 'en' }) {
             console.error("❌couldn't set up browser mocks")
             console.error(e)
         }
-    }, opts)
+    })
 }

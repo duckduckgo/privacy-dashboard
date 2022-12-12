@@ -323,6 +323,9 @@ export function mockToExtensionDashboardMessage(mock) {
             nextAlias: '123456_next',
         }
     }
+    if (mock.localeSettings) {
+        msg.tab.localeSettings = mock.localeSettings
+    }
     return {
         getPrivacyDashboardData: msg,
     }
