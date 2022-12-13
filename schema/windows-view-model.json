@@ -24,6 +24,7 @@
         },
         "certificates": {
             "type": "array"
-        }
+        },
+        "cookiePromptManagementStatus": { "$ref": "./cookie-prompt-management-status.json" }
     }
 }

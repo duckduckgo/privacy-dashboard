@@ -202,6 +202,10 @@ export class DashboardPage {
         await this.page.getByRole('switch', { name: 'Disable Protections' }).click()
     }
 
+    async indicatesCookiesWereManaged() {
+        await this.page.getByText('Cookies Managed').waitFor({ timeout: 500 })
+    }
+
     async toggleProtectionsOn() {
         await this.page.locator('[aria-checked="false"]').click()
     }

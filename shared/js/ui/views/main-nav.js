@@ -103,19 +103,21 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
  * @returns {HTMLElement}
  */
 function template() {
-    const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(this.model)}</li>`
+    /** @type {import('../models/site.es6.js').PublicSiteModel} */
+    const model = this.model
+    const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(model)}</li>`
     return bel`
     <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>
         <li class='main-nav__row'>
-            ${renderConnection(this.model, this.nav.connection)}
+            ${renderConnection(model, this.nav.connection)}
         </li>
         <li class='main-nav__row js-site-show-page-trackers'>
-            ${renderTrackerNetworksNew(this.model, this.nav.trackers)}
+            ${renderTrackerNetworksNew(model, this.nav.trackers)}
         </li>
         <li class='main-nav__row js-site-show-page-non-trackers'>
-            ${renderThirdPartyNew(this.model, this.nav.nonTrackers)}
+            ${renderThirdPartyNew(model, this.nav.nonTrackers)}
         </li>
-        ${this.model.tab?.consentManaged?.consentManaged ? consentRow : null}
+        ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
     </ul>
     `
 }
@@ -123,9 +125,9 @@ function template() {
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
 function renderCookieConsentManaged(model) {
-    if (!model.tab?.consentManaged) return null
+    if (!model.tab?.cookiePromptManagementStatus) return null
 
-    const { consentManaged, optoutFailed } = model.tab.consentManaged
+    const { consentManaged, optoutFailed } = model.tab.cookiePromptManagementStatus
     if (consentManaged && !optoutFailed) {
         return bel`
             <div class="main-nav__item">

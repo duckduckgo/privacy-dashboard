@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CookiePromptManagementStatus",
+    "type": "object",
+    "description": "This describes the fields needed for the dashboard to display the status of CPM (Cookie Prompt Management)",
+    "required": ["consentManaged"],
+    "additionalProperties": false,
+    "properties": {
+        "consentManaged": {
+            "description": "A required boolean flag to indicate if consent was managed automatically by the browser",
+            "type": "boolean"
+        },
+        "optoutFailed": {
+            "description": "An optional boolean flag to indicate if our attempts to optout automatically failed",
+            "type": "boolean"
+        },
+        "selftestFailed": {
+            "description": "An optional boolean to indicate that a \"self-test\" verification failed. Self-test is an optional \"double-checking\" that a browser can execute to confirm that the popup was indeed dismissed. It's mostly to catch rule regressions",
+            "type": "boolean"
+        }
+    }
+}

@@ -1,6 +1,10 @@
 import { normalizeCompanyName, removeTLD } from '../../ui/models/mixins/normalize-company-name.es6.js'
 import { requestDataSchema } from '../../../../schema/__generated__/schema.parsers'
 
+/**
+ * @typedef {import('../../../../schema/__generated__/schema.types.js').CookiePromptManagementStatus} CookiePromptManagementStatus
+ */
+
 export class Protections {
     /**
      * @param {boolean} unprotectedTemporary
@@ -43,7 +47,7 @@ export class TabData {
      * @param {Protections} protections
      * @param {any[] | null | undefined} permissions
      * @param {RequestDetails} requestDetails
-     * @param {{consentManaged, optoutFailed, selftestFailed} | null | undefined} consentManaged
+     * @param {CookiePromptManagementStatus | undefined | null} cookiePromptManagementStatus
      * @param {Record<string, any> | null | undefined} ctaScreens
      * @param {Record<string, any> | null | undefined} search
      * @param {Record<string, any> | null | undefined} emailProtection
@@ -60,7 +64,7 @@ export class TabData {
         protections,
         permissions,
         requestDetails,
-        consentManaged,
+        cookiePromptManagementStatus,
         ctaScreens,
         search,
         emailProtection,
@@ -76,7 +80,7 @@ export class TabData {
         this.protections = protections
         this.permissions = permissions
         this.requestDetails = requestDetails
-        this.consentManaged = consentManaged
+        this.cookiePromptManagementStatus = cookiePromptManagementStatus
         this.ctaScreens = ctaScreens
         this.search = search
         this.emailProtection = emailProtection
@@ -111,7 +115,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         requestDetails: createRequestDetails(rawRequestData.requests, rawRequestData.installedSurrogates || []),
         parentEntity: undefined,
         permissions: undefined,
-        consentManaged: undefined,
+        cookiePromptManagementStatus: undefined,
         ctaScreens: undefined,
         search: undefined,
         emailProtection: undefined,

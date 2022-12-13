@@ -26,12 +26,14 @@ export async function playTimeline(page, states, platform) {
                 const nextProtections = state.protections
                 const nextLocale = state.localeSettings
                 const nextPermissions = state.permissions
+                const nextCookiePromptManagementStatus = state.cookiePromptManagementStatus
                 const nextRequestData = { requests: state.requests }
 
                 if (platform?.name === 'windows') {
                     for (const listener of window.__playwright.listeners || []) {
                         // todo(Shane): Centralise this so that it's shared in the comms file
                         listener({
+                            /** @type {import('../schema/__generated__/schema.types').WindowsIncomingViewModel} */
                             data: {
                                 Feature: 'PrivacyDashboard',
                                 Name: 'ViewModelUpdated',
@@ -43,6 +45,7 @@ export async function playTimeline(page, states, platform) {
                                     parentEntity: nextParentEntity,
                                     permissions: nextPermissions,
                                     certificates: nextCerts,
+                                    cookiePromptManagementStatus: nextCookiePromptManagementStatus,
                                 },
                             },
                         })
@@ -72,6 +75,9 @@ export async function playTimeline(page, states, platform) {
                         listener({ updateTabData: true }, { id: 'test' })
                     }
                     return
+                }
+                if (nextCookiePromptManagementStatus) {
+                    window.onChangeConsentManaged(nextCookiePromptManagementStatus)
                 }
                 window.onChangeParentEntity(nextParentEntity)
                 window.onChangeProtectionStatus(nextProtections)

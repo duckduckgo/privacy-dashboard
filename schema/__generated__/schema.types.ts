@@ -314,6 +314,24 @@ export interface WindowsViewModel {
   parentEntity?: ParentEntity;
   permissions?: unknown[];
   certificates?: unknown[];
+  cookiePromptManagementStatus?: CookiePromptManagementStatus;
+}
+/**
+ * This describes the fields needed for the dashboard to display the status of CPM (Cookie Prompt Management)
+ */
+export interface CookiePromptManagementStatus {
+  /**
+   * A required boolean flag to indicate if consent was managed automatically by the browser
+   */
+  consentManaged: boolean;
+  /**
+   * An optional boolean flag to indicate if our attempts to optout automatically failed
+   */
+  optoutFailed?: boolean;
+  /**
+   * An optional boolean to indicate that a "self-test" verification failed. Self-test is an optional "double-checking" that a browser can execute to confirm that the popup was indeed dismissed. It's mostly to catch rule regressions
+   */
+  selftestFailed?: boolean;
 }
 export interface RefreshAliasResponse {
   personalAddress: string;

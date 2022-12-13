@@ -105,6 +105,7 @@ function handleViewModelUpdate(viewModel) {
     protections = viewModel.protections
 
     trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData)
+    trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus
 
     if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
 
