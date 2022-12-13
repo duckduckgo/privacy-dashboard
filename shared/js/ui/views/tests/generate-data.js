@@ -256,6 +256,7 @@ export class MockData {
      * @param {any[]} [params.permissions]
      * @param {boolean} [params.specialDomainName]
      * @param {boolean} [params.emailUser]
+     * @param {boolean} [params.consentManaged]
      */
     constructor(params) {
         this.url = params.url
@@ -270,6 +271,16 @@ export class MockData {
         this.allowlisted = params.allowlisted
         this.specialDomainName = params.specialDomainName
         this.emailUser = params.emailUser
+        this.consentManaged = params.consentManaged
+
+        if (this.consentManaged) {
+            /** @type {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} */
+            this.cookiePromptManagementStatus = {
+                consentManaged: true,
+                optoutFailed: false,
+                selftestFailed: false,
+            }
+        }
 
         /** @type {Protections} */
         this.protections = Protections.default()
@@ -333,6 +344,11 @@ export function mockToExtensionDashboardMessage(mock) {
 
 /** @type {Record<string, MockData>} */
 export const dataStates = {
+    'consent-managed': new MockData({
+        url: 'https://example.com',
+        requests: [],
+        consentManaged: true,
+    }),
     'locale-pl': new MockData({
         localeSettings: {
             locale: 'pl',

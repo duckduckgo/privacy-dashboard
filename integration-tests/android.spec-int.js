@@ -92,4 +92,12 @@ if (!process.env.CI) {
             })
         }
     })
+    test.describe('screenshots for cookies', () => {
+        test('primary screen', async ({ page }) => {
+            const dash = await DashboardPage.android(page)
+            await dash.addStates([dataStates['consent-managed']])
+            await dash.indicatesCookiesWereManaged()
+            await dash.screenshot('consent-managed.png')
+        })
+    })
 }

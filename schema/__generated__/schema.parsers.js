@@ -73,6 +73,12 @@ export const windowsIncomingVisibilitySchema = z.object({
     })
 });
 
+export const cookiePromptManagementStatusSchema = z.object({
+    consentManaged: z.boolean(),
+    optoutFailed: z.boolean().optional(),
+    selftestFailed: z.boolean().optional()
+});
+
 export const refreshAliasResponseSchema = z.object({
     personalAddress: z.string(),
     privateAddress: z.string()
@@ -127,7 +133,8 @@ export const windowsViewModelSchema = z.object({
     upgradedHttps: z.boolean(),
     parentEntity: parentEntitySchema.optional(),
     permissions: z.array(z.unknown()).optional(),
-    certificates: z.array(z.unknown()).optional()
+    certificates: z.array(z.unknown()).optional(),
+    cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
 });
 
 export const windowsIncomingViewModelSchema = z.object({

@@ -47,7 +47,7 @@ let upgradedHttps
 let protections
 let isPendingUpdates
 let parentEntity
-let consentManaged
+let cookiePromptManagementStatus
 
 /** @type {string | undefined} */
 let locale
@@ -59,7 +59,7 @@ const combineSources = () => ({
         {
             isPendingUpdates,
             parentEntity,
-            consentManaged,
+            cookiePromptManagementStatus,
             platformLimitations: true,
             locale,
         },
@@ -272,7 +272,7 @@ export function setupShared() {
         channel?.send('updateTabData')
     }
     window.onChangeConsentManaged = function (data) {
-        consentManaged = data
+        cookiePromptManagementStatus = data
         channel?.send('updateTabData')
     }
     setupGlobalOpenerListener((href) => {

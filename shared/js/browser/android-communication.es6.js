@@ -28,7 +28,7 @@ let upgradedHttps
 let protections
 let isPendingUpdates
 let parentEntity
-let consentManaged
+let cookiePromptManagementStatus
 
 /** @type {string | undefined} */
 let locale
@@ -40,7 +40,7 @@ const combineSources = () => ({
         {
             isPendingUpdates,
             parentEntity,
-            consentManaged,
+            cookiePromptManagementStatus,
             locale,
         },
         permissionsData ? { permissions: permissionsData } : {},
@@ -313,7 +313,7 @@ export function setup() {
     }
 
     window.onChangeConsentManaged = function (data) {
-        consentManaged = data
+        cookiePromptManagementStatus = data
         channel?.send('updateTabData', { via: 'onChangeConsentManaged' })
     }
 
