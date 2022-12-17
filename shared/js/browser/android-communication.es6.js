@@ -5,13 +5,13 @@
  * On Android, all data for the dashboard is delivered via methods that have been
  * attached to the global `window` object.
  *
- * Please see the links below under the heading 'Integration API'
+ * Please see the aboutLink below under the heading 'Integration API'
  *
  * @category integrations
  */
 import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
 import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils'
-import { CheckBrokenSiteReportHandledMessage, CloseMessage, SetListsMessage, setupColorScheme } from './common.es6'
+import { CheckBrokenSiteReportHandledMessage, CloseMessage, OpenSettingsMessages, SetListsMessage, setupColorScheme } from './common.es6'
 import { createTabData } from './utils/request-details'
 
 let channel = null
@@ -231,8 +231,25 @@ export class PrivacyDashboardJavascriptInterface {
     openInNewTab(payload) {
         window.PrivacyDashboard.openInNewTab(JSON.stringify(payload))
     }
+
+    /**
+     * {@inheritDoc common.openSettings}
+     * @type {import("./common.es6").openSettings}
+     * ```js
+     * const payload = JSON.stringify({
+     *     "target": "cpm"
+     * });
+     * window.PrivacyDashboard.openSettings(payload)
+     * ```
+     */
+    openSettings(payload) {
+        window.PrivacyDashboard.openSettings(JSON.stringify(payload))
+    }
 }
 
+/**
+ * @type {PrivacyDashboardJavascriptInterface}
+ */
 let privacyDashboardApi
 
 // -----------------------------------------------------------------------------
@@ -263,6 +280,12 @@ async function fetchAndroid(message) {
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
         privacyDashboardApi.showBreakageForm()
         return true // Return true to prevent HTML form from showing
+    }
+
+    if (message instanceof OpenSettingsMessages) {
+        privacyDashboardApi.openSettings({
+            target: message.target,
+        })
     }
 }
 

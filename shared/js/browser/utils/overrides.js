@@ -43,6 +43,7 @@ export function getOverrides(searchString) {
             overrides.tab.url = match.url
             overrides.tab.upgradedHttps = match.upgradedHttps
             overrides.tab.certificate = match.certificate
+            overrides.tab.cookiePromptManagementStatus = match.cookiePromptManagementStatus
         }
     }
     const platformParam = params.get('platform')
@@ -99,6 +100,10 @@ export function getOverrides(searchString) {
             consentManaged: true,
             optoutFailed: false,
             selftestFailed: false,
+            configurable: false,
+        }
+        if (params.get('consentConfigurable')) {
+            overrides.tab.cookiePromptManagementStatus.configurable = true
         }
     }
 

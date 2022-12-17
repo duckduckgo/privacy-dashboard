@@ -26,6 +26,7 @@ interface Window {
         close: (...args: any[]) => any
         showBreakageForm: (...args: any[]) => any
         openInNewTab: (payload: string) => void
+        openSettings: (payload: string) => void
     }
     /**
      * Overrides
@@ -48,6 +49,7 @@ interface Window {
             privacyDashboardSetSize?: any
             privacyDashboardShowReportBrokenSite?: any
             privacyDashboardClose?: any
+            privacyDashboardOpenSettings?: any
         }
     }
 }

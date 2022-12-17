@@ -132,6 +132,17 @@ export function onChangeLocale(payload) {}
 export function openInNewTab(payload) {}
 
 /**
+ * Calling this method should open the settings at the 'target' provided
+ *
+ * Supported targets:
+ *
+ * - `cpm` - used from the Cookie Prompt Management screen when user taps 'disable in settings'
+ *
+ * @param {{target: 'cpm'}} payload
+ */
+export function openSettings(payload) {}
+
+/**
  * Communicate the size of the dashboard so that native sides can
  * alter the height of their webview
  *
@@ -258,6 +269,21 @@ export class SearchMessage extends Msg {
     constructor(params) {
         super()
         this.term = params.term
+    }
+}
+
+export class OpenSettingsMessages extends Msg {
+    /**
+     * @param {object} params
+     * @param {'cpm'} params.target
+     */
+    constructor(params) {
+        super()
+        /**
+         * A string representing different settings screens that can be opened
+         * @type {'cpm'}
+         */
+        this.target = params.target
     }
 }
 

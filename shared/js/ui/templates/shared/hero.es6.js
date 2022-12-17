@@ -1,5 +1,5 @@
 import bel from 'bel'
-import { aboutLink } from './about-link'
+import { aboutLink } from './links'
 import { trackerNetworksHeroIcon, trackerNetworkSummary } from './tracker-networks-text.es6'
 import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.es6'
 

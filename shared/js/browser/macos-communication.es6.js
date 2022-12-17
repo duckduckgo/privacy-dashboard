@@ -6,7 +6,7 @@
  * **Incoming data**
  *
  * On macOS, all data for the dashboard is delivered via methods that have been
- * attached to the global `window` object. Please see the links below under the heading 'macOS -> JavaScript Interface' for examples.
+ * attached to the global `window` object. Please see the aboutLink below under the heading 'macOS -> JavaScript Interface' for examples.
  *
  * **Outgoing messages**
  *
@@ -20,6 +20,7 @@ import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     getContentHeight,
+    OpenSettingsMessages,
     SetListsMessage,
     setupColorScheme,
     setupMutationObserver,
@@ -185,6 +186,12 @@ async function fetch(message) {
             window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
         }
     }
+    if (message instanceof OpenSettingsMessages) {
+        privacyDashboardOpenSettings({
+            target: message.target,
+        })
+        return
+    }
 
     if (message instanceof UpdatePermissionMessage) {
         window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
@@ -217,6 +224,17 @@ const getBackgroundTabData = () => {
 export function privacyDashboardOpenUrlInNewTab(args) {
     window.webkit.messageHandlers.privacyDashboardOpenUrlInNewTab.postMessage({
         url: args.url,
+    })
+}
+
+/**
+ * {@inheritDoc common.openSettings}
+ * @type {import("./common.es6").openSettings}
+ * @category Webkit Message Handlers
+ */
+export function privacyDashboardOpenSettings(args) {
+    window.webkit.messageHandlers.privacyDashboardOpenSettings.postMessage({
+        target: args.target,
     })
 }
 

@@ -32,6 +32,9 @@ export function MainNavView(ops) {
         nonTrackers: (e) => {
             this.model.send('navigate', { target: 'nonTrackers' })
         },
+        consentManaged: (e) => {
+            this.model.send('navigate', { target: 'consentManaged' })
+        },
     }
     Parent.call(this, ops)
     // @ts-ignore
@@ -105,16 +108,16 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
 function template() {
     /** @type {import('../models/site.es6.js').PublicSiteModel} */
     const model = this.model
-    const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(model)}</li>`
+    const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(model, this.nav.consentManaged)}</li>`
     return bel`
     <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>
         <li class='main-nav__row'>
             ${renderConnection(model, this.nav.connection)}
         </li>
-        <li class='main-nav__row js-site-show-page-trackers'>
+        <li class='main-nav__row'>
             ${renderTrackerNetworksNew(model, this.nav.trackers)}
         </li>
-        <li class='main-nav__row js-site-show-page-non-trackers'>
+        <li class='main-nav__row'>
             ${renderThirdPartyNew(model, this.nav.nonTrackers)}
         </li>
         ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
@@ -124,18 +127,36 @@ function template() {
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
  */
-function renderCookieConsentManaged(model) {
+function renderCookieConsentManaged(model, cb) {
     if (!model.tab?.cookiePromptManagementStatus) return null
 
-    const { consentManaged, optoutFailed } = model.tab.cookiePromptManagementStatus
+    const { consentManaged, optoutFailed, configurable } = model.tab.cookiePromptManagementStatus
+
     if (consentManaged && !optoutFailed) {
-        return bel`
+        const text = i18n.t('site:cookiesMinimized.title')
+        if (configurable) {
+            return bel`
+                <a href="javascript:void(0)" 
+                    class="main-nav__item main-nav__item--link link-action link-action--dark" 
+                    role="button" 
+                    draggable="false"
+                    onclick=${cb}
+                    >
+                    <span class="main-nav__icon icon-small--secure"></span>
+                    <span class="main-nav__text">${text}</span>
+                    <span class="main-nav__chev"></span>
+                </a>
+            `
+        } else {
+            return bel`
             <div class="main-nav__item">
                 <span class="main-nav__icon icon-small--secure"></span>
-                <span class="main-nav__text">${i18n.t('site:cookiesMinimized.title')}</span>
+                <span class="main-nav__text">${text}</span>
             </div>
         `
+        }
     }
+
     return bel``
 }
 /**
