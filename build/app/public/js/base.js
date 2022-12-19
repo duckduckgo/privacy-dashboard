@@ -38731,7 +38731,7 @@ module.exports={
         "note": "Title for when we have set the cookie privacy settings on this website to maximize privacy"
     },
     "cookiesMinimizedSummary": {
-        "title": "We set your cookie preferences to maximize privacy and closed the consent pop-up.",
+        "title": "On some sites we will automatically set your cookie preferences to minimize cookies, maximize privacy, and hide the pop-ups.",
         "note": "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
     },
     "cookiesMinimizedSettings": {
