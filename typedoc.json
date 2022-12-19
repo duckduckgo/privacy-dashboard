@@ -8,7 +8,8 @@
         "shared/js/browser/windows-communication.es6.js",
         "shared/js/browser/common.es6.js",
         "shared/js/browser/utils/request-details.js",
-        "shared/js/ui/platform-features.js"
+        "shared/js/ui/platform-features.js",
+        "shared/js/features.doc.js"
     ],
     "out": "build/docs",
     "media": "schema/__fixtures__",
@@ -16,5 +17,6 @@
     "readme": "DOCS.md",
     "categoryOrder": ["Webkit Message Handlers", "References", "*"],
     "treatWarningsAsErrors": true,
-    "searchInComments": true
+    "searchInComments": true,
+    "includes": "schema/__fixtures__"
 }

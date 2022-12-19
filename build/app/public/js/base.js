@@ -28420,7 +28420,6 @@ exports.windowsIncomingVisibilitySchema = windowsIncomingVisibilitySchema;
 var cookiePromptManagementStatusSchema = _zod.z.object({
   consentManaged: _zod.z["boolean"](),
   optoutFailed: _zod.z["boolean"]().optional(),
-  selftestFailed: _zod.z["boolean"]().optional(),
   configurable: _zod.z["boolean"]().optional()
 });
 exports.cookiePromptManagementStatusSchema = cookiePromptManagementStatusSchema;
@@ -28533,6 +28532,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getBackgroundTabData = exports.fetch = exports.backgroundMessage = exports.PrivacyDashboardJavascriptInterface = void 0;
+exports.onChangeConsentManaged = onChangeConsentManaged;
 exports.onChangeLocale = onChangeLocale;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.onChangeRequestData = onChangeRequestData;
@@ -28700,6 +28700,29 @@ function onChangeLocale(payload) {
 }
 
 /**
+ * {@inheritDoc common.onChangeConsentManaged}
+ * @type {import("./common.es6").onChangeConsentManaged}
+ * @group Android -> JavaScript Interface
+ * @example On Android, it might look something like this:
+ *
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeConsentManaged(${cookiePromptManagementStatusAsJsonString});", null)
+ * ```
+ */
+function onChangeConsentManaged(payload) {
+  var _channel3;
+  var parsed = _schema.cookiePromptManagementStatusSchema.safeParse(payload);
+  if (!parsed.success) {
+    console.error('could not parse incoming data from onChangeConsentManaged');
+    console.error(parsed.error);
+    return;
+  }
+  cookiePromptManagementStatus = parsed.data;
+  (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
+}
+
+/**
  * This describes the JavaScript Interface, `PrivacyDashboard`, that gets added to the `window` object by Android.
  *
  * The Privacy Dashboard communicates with Android by calling methods on that global object.
@@ -28789,6 +28812,7 @@ var PrivacyDashboardJavascriptInterface = /*#__PURE__*/function () {
     /**
      * {@inheritDoc common.openSettings}
      * @type {import("./common.es6").openSettings}
+     * @example
      * ```js
      * const payload = JSON.stringify({
      *     "target": "cpm"
@@ -28877,10 +28901,11 @@ function setup() {
   window.onChangeProtectionStatus = onChangeProtectionStatus;
   window.onChangeLocale = onChangeLocale;
   window.onChangeRequestData = onChangeRequestData;
+  window.onChangeConsentManaged = onChangeConsentManaged;
   window.onChangeAllowedPermissions = function (data) {
-    var _channel3;
+    var _channel4;
     permissionsData = data;
-    (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData', {
+    (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData', {
       via: 'onChangeAllowedPermissions'
     });
   };
@@ -28890,31 +28915,24 @@ function setup() {
     resolveInitialRender();
   };
   window.onChangeCertificateData = function (data) {
-    var _channel4;
+    var _channel5;
     certificateData = data.secCertificateViewModels;
-    (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData', {
+    (_channel5 = channel) === null || _channel5 === void 0 ? void 0 : _channel5.send('updateTabData', {
       via: 'onChangeCertificateData'
     });
   };
   window.onIsPendingUpdates = function (data) {
-    var _channel5;
+    var _channel6;
     isPendingUpdates = data;
-    (_channel5 = channel) === null || _channel5 === void 0 ? void 0 : _channel5.send('updateTabData', {
+    (_channel6 = channel) === null || _channel6 === void 0 ? void 0 : _channel6.send('updateTabData', {
       via: 'onIsPendingUpdates'
     });
   };
   window.onChangeParentEntity = function (data) {
-    var _channel6;
-    parentEntity = data;
-    (_channel6 = channel) === null || _channel6 === void 0 ? void 0 : _channel6.send('updateTabData', {
-      via: 'onChangeParentEntity'
-    });
-  };
-  window.onChangeConsentManaged = function (data) {
     var _channel7;
-    cookiePromptManagementStatus = data;
+    parentEntity = data;
     (_channel7 = channel) === null || _channel7 === void 0 ? void 0 : _channel7.send('updateTabData', {
-      via: 'onChangeConsentManaged'
+      via: 'onChangeParentEntity'
     });
   };
 
@@ -29281,6 +29299,7 @@ exports.UpdatePermissionMessage = exports.SubmitBrokenSiteReportMessage = export
 exports.assert = assert;
 exports.fetcher = fetcher;
 exports.getContentHeightForScreenShot = exports.getContentHeight = void 0;
+exports.onChangeConsentManaged = onChangeConsentManaged;
 exports.onChangeLocale = onChangeLocale;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.openInNewTab = openInNewTab;
@@ -29432,6 +29451,39 @@ function assert(condition) {
  * @param {import('../../../schema/__generated__/schema.types').LocaleSettings} payload
  */
 function onChangeLocale(payload) {}
+
+/**
+ * Sets the current status of the Cookie Prompt Management.
+ *
+ * Platforms can provide this data to indicate that a Cookie Prompt was managed successfully.
+ *
+ * Note: if {@link "Generated Schema Definitions".CookiePromptManagementStatus.configurable} is `true`
+ * in the payload, the dashboard will use the secondary screen. If it is absent, or `false`, it will
+ * only show the row in the main nav, but it will not be clickable
+ *
+ * ### Example Payloads:
+ *
+ * Please see the schema definition for {@link "Generated Schema Definitions".CookiePromptManagementStatus}
+ *
+ * **None-Configurable**
+ *
+ * This would show the 4th row in the dashboard, but it would not be clickable
+ *
+ * ```
+ * [[include:cpm.json]]```
+ *
+ * **Configurable**
+ *
+ * This would allow the link to be clicked, and it would show the secondary screen
+ *
+ * ```
+ * [[include:cpm-secondary.json]]```
+ *
+ *
+ *
+ * @param {import('../../../schema/__generated__/schema.types').CookiePromptManagementStatus} payload
+ */
+function onChangeConsentManaged(payload) {}
 
 /**
  * Calling this method should close the dashboard and open the given URL in a **new tab**.
@@ -29941,6 +29993,7 @@ exports.backgroundMessage = void 0;
 exports.fetch = fetch;
 exports.firstRenderComplete = firstRenderComplete;
 exports.getBackgroundTabData = void 0;
+exports.onChangeConsentManaged = onChangeConsentManaged;
 exports.onChangeLocale = onChangeLocale;
 exports.onChangeProtectionStatus = onChangeProtectionStatus;
 exports.onChangeRequestData = onChangeRequestData;
@@ -30092,6 +30145,29 @@ function onChangeLocale(payload) {
   (_channel2 = channel) === null || _channel2 === void 0 ? void 0 : _channel2.send('updateTabData');
 }
 
+/**
+ * {@inheritDoc common.onChangeConsentManaged}
+ * @type {import("./common.es6").onChangeConsentManaged}
+ * @group macOS -> JavaScript Interface
+ * @example On macOS and iOS, it might look something like this:
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangeConsentManaged(\(cookiePromptManagementStatus))", in: webView)
+ * ```
+ */
+function onChangeConsentManaged(payload) {
+  var _channel3;
+  var parsed = _schema.cookiePromptManagementStatusSchema.safeParse(payload);
+  if (!parsed.success) {
+    console.error('could not parse incoming data from onChangeConsentManaged');
+    console.error(parsed.error);
+    return;
+  }
+  cookiePromptManagementStatus = parsed.data;
+  (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
+}
+
 // -----------------------------------------------------------------------------
 
 /**
@@ -30214,9 +30290,9 @@ function privacyDashboardSetSize(payload) {
 function setupShared() {
   window.onChangeRequestData = onChangeRequestData;
   window.onChangeAllowedPermissions = function (data) {
-    var _channel3;
+    var _channel4;
     permissionsData = data;
-    (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
+    (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData');
   };
   window.onChangeUpgradedHttps = function (data) {
     upgradedHttps = data;
@@ -30226,25 +30302,21 @@ function setupShared() {
   window.onChangeProtectionStatus = onChangeProtectionStatus;
   window.onChangeLocale = onChangeLocale;
   window.onChangeCertificateData = function (data) {
-    var _channel4;
-    certificateData = data.secCertificateViewModels;
-    (_channel4 = channel) === null || _channel4 === void 0 ? void 0 : _channel4.send('updateTabData');
-  };
-  window.onIsPendingUpdates = function (data) {
     var _channel5;
-    isPendingUpdates = data;
+    certificateData = data.secCertificateViewModels;
     (_channel5 = channel) === null || _channel5 === void 0 ? void 0 : _channel5.send('updateTabData');
   };
-  window.onChangeParentEntity = function (data) {
+  window.onIsPendingUpdates = function (data) {
     var _channel6;
-    parentEntity = data;
+    isPendingUpdates = data;
     (_channel6 = channel) === null || _channel6 === void 0 ? void 0 : _channel6.send('updateTabData');
   };
-  window.onChangeConsentManaged = function (data) {
+  window.onChangeParentEntity = function (data) {
     var _channel7;
-    cookiePromptManagementStatus = data;
+    parentEntity = data;
     (_channel7 = channel) === null || _channel7 === void 0 ? void 0 : _channel7.send('updateTabData');
   };
+  window.onChangeConsentManaged = onChangeConsentManaged;
   (0, _utils.setupGlobalOpenerListener)(function (href) {
     privacyDashboardOpenUrlInNewTab({
       url: href
@@ -30384,7 +30456,6 @@ function getOverrides(searchString) {
     overrides.tab.cookiePromptManagementStatus = {
       consentManaged: true,
       optoutFailed: false,
-      selftestFailed: false,
       configurable: false
     };
     if (params.get('consentConfigurable')) {

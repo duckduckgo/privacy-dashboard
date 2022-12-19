@@ -15,7 +15,12 @@
 
  * @category integrations
  */
-import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
+import {
+    cookiePromptManagementStatusSchema,
+    localeSettingsSchema,
+    protectionsStatusSchema,
+    requestDataSchema,
+} from '../../../schema/__generated__/schema.parsers'
 import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
@@ -158,6 +163,28 @@ export function onChangeLocale(payload) {
     channel?.send('updateTabData')
 }
 
+/**
+ * {@inheritDoc common.onChangeConsentManaged}
+ * @type {import("./common.es6").onChangeConsentManaged}
+ * @group macOS -> JavaScript Interface
+ * @example On macOS and iOS, it might look something like this:
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangeConsentManaged(\(cookiePromptManagementStatus))", in: webView)
+ * ```
+ */
+export function onChangeConsentManaged(payload) {
+    const parsed = cookiePromptManagementStatusSchema.safeParse(payload)
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangeConsentManaged')
+        console.error(parsed.error)
+        return
+    }
+    cookiePromptManagementStatus = parsed.data
+    channel?.send('updateTabData')
+}
+
 // -----------------------------------------------------------------------------
 
 /**
@@ -289,10 +316,7 @@ export function setupShared() {
         parentEntity = data
         channel?.send('updateTabData')
     }
-    window.onChangeConsentManaged = function (data) {
-        cookiePromptManagementStatus = data
-        channel?.send('updateTabData')
-    }
+    window.onChangeConsentManaged = onChangeConsentManaged
     setupGlobalOpenerListener((href) => {
         privacyDashboardOpenUrlInNewTab({
             url: href,

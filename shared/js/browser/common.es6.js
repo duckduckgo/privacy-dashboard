@@ -126,6 +126,39 @@ export function assert(condition, message = '') {
 export function onChangeLocale(payload) {}
 
 /**
+ * Sets the current status of the Cookie Prompt Management.
+ *
+ * Platforms can provide this data to indicate that a Cookie Prompt was managed successfully.
+ *
+ * Note: if {@link "Generated Schema Definitions".CookiePromptManagementStatus.configurable} is `true`
+ * in the payload, the dashboard will use the secondary screen. If it is absent, or `false`, it will
+ * only show the row in the main nav, but it will not be clickable
+ *
+ * ### Example Payloads:
+ *
+ * Please see the schema definition for {@link "Generated Schema Definitions".CookiePromptManagementStatus}
+ *
+ * **None-Configurable**
+ *
+ * This would show the 4th row in the dashboard, but it would not be clickable
+ *
+ * ```
+ * [[include:cpm.json]]```
+ *
+ * **Configurable**
+ *
+ * This would allow the link to be clicked, and it would show the secondary screen
+ *
+ * ```
+ * [[include:cpm-secondary.json]]```
+ *
+ *
+ *
+ * @param {import('../../../schema/__generated__/schema.types').CookiePromptManagementStatus} payload
+ */
+export function onChangeConsentManaged(payload) {}
+
+/**
  * Calling this method should close the dashboard and open the given URL in a **new tab**.
  * @param {{url: string}} payload
  */

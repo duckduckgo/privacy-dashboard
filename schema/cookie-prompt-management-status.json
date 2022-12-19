@@ -11,11 +11,7 @@
             "type": "boolean"
         },
         "optoutFailed": {
-            "description": "An optional boolean flag to indicate if our attempts to optout automatically failed",
-            "type": "boolean"
-        },
-        "selftestFailed": {
-            "description": "An optional boolean to indicate that a \"self-test\" verification failed. Self-test is an optional \"double-checking\" that a browser can execute to confirm that the popup was indeed dismissed. It's mostly to catch rule regressions",
+            "description": "An optional boolean flag to indicate if our attempts to optout automatically failed. Not currently used in the dashboard",
             "type": "boolean"
         },
         "configurable": {
