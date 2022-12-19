@@ -36,6 +36,7 @@ import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     assert,
     getContentHeight,
+    OpenSettingsMessages,
     SetListsMessage,
     setupColorScheme,
     setupMutationObserver,
@@ -135,6 +136,13 @@ async function fetch(message) {
         return
     }
 
+    if (message instanceof OpenSettingsMessages) {
+        OpenSettings({
+            target: message.target,
+        })
+        return
+    }
+
     if (message instanceof SetListsMessage) {
         for (const listItem of message.lists) {
             const { list, value } = listItem
@@ -223,6 +231,25 @@ export function OpenInNewTab(args) {
  */
 export function SetSize(payload) {
     windowsPostMessage('SetSize', payload)
+}
+
+/**
+ * {@inheritDoc common.openSettings}
+ * @type {import("./common.es6").openSettings}
+ * @group JavaScript -> Windows Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.webview.postMessage({
+ *     Feature: 'PrivacyDashboard',
+ *     Name: 'OpenSettings',
+ *     Data: { target: 'cpm' }
+ * })
+ * ```
+ */
+export function OpenSettings(args) {
+    windowsPostMessage('OpenSettings', args)
 }
 
 const getBackgroundTabData = () => {
