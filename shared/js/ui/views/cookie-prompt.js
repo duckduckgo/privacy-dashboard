@@ -3,6 +3,7 @@ import bel from 'bel'
 import { topNav } from '../templates/shared/top-nav'
 import { heroTemplate, largeHeroIcon } from '../templates/shared/hero.es6'
 import { disableInSettingsLink } from '../templates/shared/links'
+import { ns } from '../base/localize.es6'
 import ParentSlidingSubview from './sliding-subview.es6.js'
 
 /**
@@ -33,7 +34,7 @@ CookiePromptView.prototype = $.extend(
  * @returns {HTMLElement}
  */
 function template() {
-    const summary = 'We set your cookie preferences to maximize privacy and closed the consent pop-up.'
+    const summary = ns.site('cookiesMinimizedSummary.title')
     const icon = largeHeroIcon({
         status: 'cookies-managed',
     })

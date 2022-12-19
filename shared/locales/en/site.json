@@ -80,8 +80,16 @@
         "note": "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
     },
     "cookiesMinimized": {
-        "title": "Cookies Managed",
+        "title": "Cookie Pop-Up Managed",
         "note": "Title for when we have set the cookie privacy settings on this website to maximize privacy"
+    },
+    "cookiesMinimizedSummary": {
+        "title": "We set your cookie preferences to maximize privacy and closed the consent pop-up.",
+        "note": "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+    },
+    "cookiesMinimizedSettings": {
+        "title": "Change in Settings",
+        "note": "Button text for allowing the settings to be opened"
     },
     "connectionSecure": {
         "title": "Connection Is Encrypted",

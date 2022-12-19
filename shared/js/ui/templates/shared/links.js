@@ -16,6 +16,6 @@ export function adAttributionLink() {
  * @returns {HTMLElement}
  */
 export function disableInSettingsLink(cb) {
-    const text = 'Disable in Settings'
+    const text = ns.site('cookiesMinimizedSettings.title')
     return bel`<a class="link-action link-action--text-micro" href="javascript:void(0)"  onclick=${cb}>${text}</a>`
 }
