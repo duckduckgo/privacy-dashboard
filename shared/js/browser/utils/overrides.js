@@ -98,6 +98,7 @@ export function getOverrides(searchString) {
     if (params.get('consentManaged')) {
         overrides.tab.cookiePromptManagementStatus = {
             consentManaged: true,
+            cosmetic: false,
             optoutFailed: false,
             configurable: false,
         }

@@ -53,7 +53,7 @@ let upgradedHttps
 let protections
 let isPendingUpdates
 let parentEntity
-let cookiePromptManagementStatus
+const cookiePromptManagementStatus = {}
 
 /** @type {string | undefined} */
 let locale
@@ -181,7 +181,7 @@ export function onChangeConsentManaged(payload) {
         console.error(parsed.error)
         return
     }
-    cookiePromptManagementStatus = parsed.data
+    Object.assign(cookiePromptManagementStatus, parsed.data)
     channel?.send('updateTabData')
 }
 

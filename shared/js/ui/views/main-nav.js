@@ -130,15 +130,15 @@ function template() {
 function renderCookieConsentManaged(model, cb) {
     if (!model.tab?.cookiePromptManagementStatus) return null
 
-    const { consentManaged, optoutFailed, configurable } = model.tab.cookiePromptManagementStatus
+    const { consentManaged, cosmetic, optoutFailed, configurable } = model.tab.cookiePromptManagementStatus
 
     if (consentManaged && !optoutFailed) {
-        const text = i18n.t('site:cookiesMinimized.title')
+        const text = cosmetic ? i18n.t('site:cookiesHidden.title') : i18n.t('site:cookiesMinimized.title')
         if (configurable) {
             return bel`
-                <a href="javascript:void(0)" 
-                    class="main-nav__item main-nav__item--link link-action link-action--dark" 
-                    role="button" 
+                <a href="javascript:void(0)"
+                    class="main-nav__item main-nav__item--link link-action link-action--dark"
+                    role="button"
                     draggable="false"
                     onclick=${cb}
                     >
