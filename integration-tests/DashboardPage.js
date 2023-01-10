@@ -203,7 +203,15 @@ export class DashboardPage {
     }
 
     async indicatesCookiesWereManaged() {
-        await this.page.getByText('Cookies Managed').waitFor({ timeout: 500 })
+        await this.page.getByText('Cookie Pop-Up Managed').waitFor({ timeout: 500 })
+    }
+
+    async viewCookiePromptManagement() {
+        await this.page.getByRole('button', { name: 'Cookie Pop-Up Managed' }).click({ timeout: 500 })
+    }
+
+    async disableCookiesInSettings() {
+        await this.page.getByRole('link', { name: 'Change in Settings' }).click()
     }
 
     async toggleProtectionsOn() {
@@ -213,6 +221,9 @@ export class DashboardPage {
     async clickClose() {
         if (this.platform.name === 'android') {
             return this.backButton().click()
+        }
+        if (this.platform.name === 'ios') {
+            return await this.page.getByRole('button', { name: 'Done' }).click()
         }
         throw new Error('unreachable. clickClose must be handled')
     }

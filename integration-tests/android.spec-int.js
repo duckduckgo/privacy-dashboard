@@ -76,6 +76,30 @@ test.describe('Close', () => {
     })
 })
 
+test.describe('cookie prompt management', () => {
+    test.describe('none-configurable', () => {
+        test('primary screen', async ({ page }) => {
+            const dash = await DashboardPage.android(page)
+            await dash.addStates([dataStates['consent-managed']])
+            await dash.indicatesCookiesWereManaged()
+        })
+    })
+    test.describe('configurable', () => {
+        test('primary screen', async ({ page }) => {
+            const dash = await DashboardPage.android(page)
+            await dash.addStates([dataStates['consent-managed-configurable']])
+            await dash.indicatesCookiesWereManaged()
+        })
+        test('secondary screen', async ({ page }) => {
+            const dash = await DashboardPage.android(page)
+            await dash.addStates([dataStates['consent-managed-configurable']])
+            await dash.viewCookiePromptManagement()
+            await dash.disableCookiesInSettings()
+            await dash.mocks.calledForOpenSettings()
+        })
+    })
+})
+
 if (!process.env.CI) {
     const states = [
         { name: 'ad-attribution', state: dataStates['ad-attribution'] },

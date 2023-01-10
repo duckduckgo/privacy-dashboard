@@ -6,7 +6,7 @@
  * **Incoming data**
  *
  * On macOS, all data for the dashboard is delivered via methods that have been
- * attached to the global `window` object. Please see the links below under the heading 'macOS -> JavaScript Interface' for examples.
+ * attached to the global `window` object. Please see the aboutLink below under the heading 'macOS -> JavaScript Interface' for examples.
  *
  * **Outgoing messages**
  *
@@ -15,11 +15,17 @@
 
  * @category integrations
  */
-import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
+import {
+    cookiePromptManagementStatusSchema,
+    localeSettingsSchema,
+    protectionsStatusSchema,
+    requestDataSchema,
+} from '../../../schema/__generated__/schema.parsers'
 import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     getContentHeight,
+    OpenSettingsMessages,
     SetListsMessage,
     setupColorScheme,
     setupMutationObserver,
@@ -47,7 +53,7 @@ let upgradedHttps
 let protections
 let isPendingUpdates
 let parentEntity
-let cookiePromptManagementStatus
+const cookiePromptManagementStatus = {}
 
 /** @type {string | undefined} */
 let locale
@@ -157,6 +163,28 @@ export function onChangeLocale(payload) {
     channel?.send('updateTabData')
 }
 
+/**
+ * {@inheritDoc common.onChangeConsentManaged}
+ * @type {import("./common.es6").onChangeConsentManaged}
+ * @group macOS -> JavaScript Interface
+ * @example On macOS and iOS, it might look something like this:
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangeConsentManaged(\(cookiePromptManagementStatus))", in: webView)
+ * ```
+ */
+export function onChangeConsentManaged(payload) {
+    const parsed = cookiePromptManagementStatusSchema.safeParse(payload)
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangeConsentManaged')
+        console.error(parsed.error)
+        return
+    }
+    Object.assign(cookiePromptManagementStatus, parsed.data)
+    channel?.send('updateTabData')
+}
+
 // -----------------------------------------------------------------------------
 
 /**
@@ -184,6 +212,12 @@ async function fetch(message) {
             const isProtected = value === false
             window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
         }
+    }
+    if (message instanceof OpenSettingsMessages) {
+        privacyDashboardOpenSettings({
+            target: message.target,
+        })
+        return
     }
 
     if (message instanceof UpdatePermissionMessage) {
@@ -217,6 +251,17 @@ const getBackgroundTabData = () => {
 export function privacyDashboardOpenUrlInNewTab(args) {
     window.webkit.messageHandlers.privacyDashboardOpenUrlInNewTab.postMessage({
         url: args.url,
+    })
+}
+
+/**
+ * {@inheritDoc common.openSettings}
+ * @type {import("./common.es6").openSettings}
+ * @category Webkit Message Handlers
+ */
+export function privacyDashboardOpenSettings(args) {
+    window.webkit.messageHandlers.privacyDashboardOpenSettings.postMessage({
+        target: args.target,
     })
 }
 
@@ -271,10 +316,7 @@ export function setupShared() {
         parentEntity = data
         channel?.send('updateTabData')
     }
-    window.onChangeConsentManaged = function (data) {
-        cookiePromptManagementStatus = data
-        channel?.send('updateTabData')
-    }
+    window.onChangeConsentManaged = onChangeConsentManaged
     setupGlobalOpenerListener((href) => {
         privacyDashboardOpenUrlInNewTab({
             url: href,

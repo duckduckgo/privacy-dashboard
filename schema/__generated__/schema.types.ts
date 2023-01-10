@@ -325,13 +325,21 @@ export interface CookiePromptManagementStatus {
    */
   consentManaged: boolean;
   /**
-   * An optional boolean flag to indicate if our attempts to optout automatically failed
+   * An optional boolean to indicate that the cookie popup was hidden cosmetically, without active tracking rejection
+   */
+  cosmetic?: boolean;
+  /**
+   * An optional boolean flag to indicate if our attempts to optout automatically failed. Not currently used in the dashboard
    */
   optoutFailed?: boolean;
   /**
-   * An optional boolean to indicate that a "self-test" verification failed. Self-test is an optional "double-checking" that a browser can execute to confirm that the popup was indeed dismissed. It's mostly to catch rule regressions
+   * An optional boolean flag to indicate if the self-test verification failed. Not currently used in the dashboard
    */
   selftestFailed?: boolean;
+  /**
+   * An optional boolean to indicate whether the platform supports showing the secondary screen with a link to settings
+   */
+  configurable?: boolean;
 }
 export interface RefreshAliasResponse {
   personalAddress: string;

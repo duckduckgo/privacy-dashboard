@@ -3,7 +3,7 @@ import { ns } from '../base/localize.es6.js'
 import { states } from '../../browser/utils/request-details'
 import { heroFromTabNonTrackers } from './shared/hero.es6.js'
 import { renderSections } from './page-trackers.es6.js'
-import { adAttributionLink } from './shared/about-link'
+import { adAttributionLink } from './shared/links'
 import { platformLimitations } from './shared/platform-limitations'
 import { topNav } from './shared/top-nav'
 
