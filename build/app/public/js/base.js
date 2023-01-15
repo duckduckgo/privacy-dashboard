@@ -34895,7 +34895,9 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   },
   _showPageConsent: function _showPageConsent(e) {
     this.views.slidingSubview = new _cookiePrompt2.CookiePromptView({
-      model: new _cookiePrompt.CookiePromptModel()
+      model: new _cookiePrompt.CookiePromptModel({
+        site: this.model
+      })
     });
   },
   _done: function _done() {

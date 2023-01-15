@@ -228,6 +228,23 @@ export class DashboardPage {
         throw new Error('unreachable. clickClose must be handled')
     }
 
+    /**
+     * This is not ideal, but I've added it because our implementation leaves elements around
+     * on the first screen when we navigate to the second.
+     *
+     * This means on iOS, when the secondary screen is present the selector `getByRole('button', { name: 'Done' })`
+     * would yield 2 elements. That's why we have this `.nth(1)` modifier to ensure we're only
+     * selecting the second of the 'Done' buttons
+     *
+     * @returns {Promise<*>}
+     */
+    async clickCloseFromSecondaryScreen() {
+        if (this.platform.name === 'ios') {
+            return await this.page.getByRole('button', { name: 'Done' }).nth(1).click()
+        }
+        throw new Error(`unreachable. clickCloseFromSecondaryScreen must be handled on ${this.platform.name}`)
+    }
+
     async goBack() {
         if (this.platform.name === 'android') {
             await this.page.getByRole('button', { name: 'Back' }).nth(1).click()

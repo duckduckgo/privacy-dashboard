@@ -106,6 +106,8 @@ test.describe('cookie prompt management', () => {
             await dash.viewCookiePromptManagement()
             await dash.disableCookiesInSettings()
             await dash.mocks.calledForOpenSettings()
+            await dash.clickCloseFromSecondaryScreen()
+            await dash.mocks.calledForClose()
         })
     })
 })

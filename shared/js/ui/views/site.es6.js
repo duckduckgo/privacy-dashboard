@@ -186,7 +186,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
     _showPageConsent: function (e) {
         this.views.slidingSubview = new CookiePromptView({
-            model: new CookiePromptModel(),
+            model: new CookiePromptModel({ site: this.model }),
         })
     },
 
