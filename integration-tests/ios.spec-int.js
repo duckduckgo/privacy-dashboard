@@ -95,19 +95,38 @@ test.describe('cookie prompt management', () => {
         })
     })
     test.describe('configurable', () => {
-        test('primary screen', async ({ page }) => {
-            const dash = await DashboardPage.ios(page)
-            await dash.addStates([dataStates['consent-managed-configurable']])
-            await dash.indicatesCookiesWereManaged()
+        test.describe('non-cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.ios(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.indicatesCookiesWereManaged()
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.ios(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.viewCookiePromptManagement()
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+                await dash.clickCloseFromSecondaryScreen()
+                await dash.mocks.calledForClose()
+            })
         })
-        test('secondary screen', async ({ page }) => {
-            const dash = await DashboardPage.ios(page)
-            await dash.addStates([dataStates['consent-managed-configurable']])
-            await dash.viewCookiePromptManagement()
-            await dash.disableCookiesInSettings()
-            await dash.mocks.calledForOpenSettings()
-            await dash.clickCloseFromSecondaryScreen()
-            await dash.mocks.calledForClose()
+
+        test.describe('cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.ios(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.indicatesCookiesWereHidden()
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.ios(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.viewCookiePromptManagement()
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+                await dash.clickCloseFromSecondaryScreen()
+                await dash.mocks.calledForClose()
+            })
         })
     })
 })

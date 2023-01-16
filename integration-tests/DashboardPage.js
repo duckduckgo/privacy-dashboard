@@ -203,11 +203,15 @@ export class DashboardPage {
     }
 
     async indicatesCookiesWereManaged() {
-        await this.page.getByText('Cookie Pop-Up Managed').waitFor({ timeout: 500 })
+        await this.page.getByText('Cookies Managed').waitFor({ timeout: 500 })
+    }
+
+    async indicatesCookiesWereHidden() {
+        await this.page.getByText('Pop-up Hidden').waitFor({ timeout: 500 })
     }
 
     async viewCookiePromptManagement() {
-        await this.page.getByRole('button', { name: 'Cookie Pop-Up Managed' }).click({ timeout: 500 })
+        await this.page.getByRole('button', { name: /Cookies Managed|Pop-up Hidden/ }).click({ timeout: 500 })
     }
 
     async disableCookiesInSettings() {

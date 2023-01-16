@@ -85,17 +85,33 @@ test.describe('cookie prompt management', () => {
         })
     })
     test.describe('configurable', () => {
-        test('primary screen', async ({ page }) => {
-            const dash = await DashboardPage.android(page)
-            await dash.addStates([dataStates['consent-managed-configurable']])
-            await dash.indicatesCookiesWereManaged()
+        test.describe('non-cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.android(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.indicatesCookiesWereManaged()
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.android(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.viewCookiePromptManagement()
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+            })
         })
-        test('secondary screen', async ({ page }) => {
-            const dash = await DashboardPage.android(page)
-            await dash.addStates([dataStates['consent-managed-configurable']])
-            await dash.viewCookiePromptManagement()
-            await dash.disableCookiesInSettings()
-            await dash.mocks.calledForOpenSettings()
+        test.describe('cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.android(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.indicatesCookiesWereHidden()
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.android(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.viewCookiePromptManagement()
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+            })
         })
     })
 })
@@ -116,12 +132,46 @@ if (!process.env.CI) {
             })
         }
     })
-    test.describe('screenshots for cookies', () => {
+    test.describe('screenshots for cookies (non-configurable)', () => {
         test('primary screen', async ({ page }) => {
             const dash = await DashboardPage.android(page)
             await dash.addStates([dataStates['consent-managed']])
             await dash.indicatesCookiesWereManaged()
             await dash.screenshot('consent-managed.png')
+        })
+    })
+    test.describe('screenshots for cookies (configurable)', () => {
+        test.describe('non-cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.macos(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.indicatesCookiesWereManaged()
+                await dash.screenshot('consent-managed-configurable.png')
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.macos(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.viewCookiePromptManagement()
+                await dash.screenshot('consent-managed-configurable-secondary.png')
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+            })
+        })
+        test.describe('cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.macos(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.indicatesCookiesWereHidden()
+                await dash.screenshot('consent-managed-configurable-primary-cosmetic.png')
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.macos(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.viewCookiePromptManagement()
+                await dash.screenshot('consent-managed-configurable-secondary-cosmetic.png')
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+            })
         })
     })
 }

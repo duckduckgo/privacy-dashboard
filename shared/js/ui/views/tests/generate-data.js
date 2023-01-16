@@ -350,6 +350,15 @@ export const dataStates = {
             configurable: true,
         },
     }),
+    'consent-managed-configurable-cosmetic': new MockData({
+        url: 'https://example.com',
+        requests: [],
+        cookiePromptManagementStatus: {
+            consentManaged: true,
+            configurable: true,
+            cosmetic: true,
+        },
+    }),
     'locale-pl': new MockData({
         localeSettings: {
             locale: 'pl',
