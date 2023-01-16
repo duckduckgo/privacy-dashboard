@@ -28419,7 +28419,9 @@ var windowsIncomingVisibilitySchema = _zod.z.object({
 exports.windowsIncomingVisibilitySchema = windowsIncomingVisibilitySchema;
 var cookiePromptManagementStatusSchema = _zod.z.object({
   consentManaged: _zod.z["boolean"](),
+  cosmetic: _zod.z["boolean"]().optional(),
   optoutFailed: _zod.z["boolean"]().optional(),
+  selftestFailed: _zod.z["boolean"]().optional(),
   configurable: _zod.z["boolean"]().optional()
 });
 exports.cookiePromptManagementStatusSchema = cookiePromptManagementStatusSchema;
@@ -30033,7 +30035,7 @@ var upgradedHttps;
 var protections;
 var isPendingUpdates;
 var parentEntity;
-var cookiePromptManagementStatus;
+var cookiePromptManagementStatus = {};
 
 /** @type {string | undefined} */
 var locale;
@@ -30164,7 +30166,7 @@ function onChangeConsentManaged(payload) {
     console.error(parsed.error);
     return;
   }
-  cookiePromptManagementStatus = parsed.data;
+  Object.assign(cookiePromptManagementStatus, parsed.data);
   (_channel3 = channel) === null || _channel3 === void 0 ? void 0 : _channel3.send('updateTabData');
 }
 
@@ -30455,6 +30457,7 @@ function getOverrides(searchString) {
   if (params.get('consentManaged')) {
     overrides.tab.cookiePromptManagementStatus = {
       consentManaged: true,
+      cosmetic: false,
       optoutFailed: false,
       configurable: false
     };
@@ -34615,12 +34618,13 @@ function renderCookieConsentManaged(model, cb) {
   if (!((_model$tab2 = model.tab) !== null && _model$tab2 !== void 0 && _model$tab2.cookiePromptManagementStatus)) return null;
   var _model$tab$cookieProm2 = model.tab.cookiePromptManagementStatus,
     consentManaged = _model$tab$cookieProm2.consentManaged,
+    cosmetic = _model$tab$cookieProm2.cosmetic,
     optoutFailed = _model$tab$cookieProm2.optoutFailed,
     configurable = _model$tab$cookieProm2.configurable;
   if (consentManaged && !optoutFailed) {
-    var text = _localize.i18n.t('site:cookiesMinimized.title');
+    var text = cosmetic ? _localize.i18n.t('site:cookiesHidden.title') : _localize.i18n.t('site:cookiesMinimized.title');
     if (configurable) {
-      return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <a href=\"javascript:void(0)\" \n                    class=\"main-nav__item main-nav__item--link link-action link-action--dark\" \n                    role=\"button\" \n                    draggable=\"false\"\n                    onclick=", "\n                    >\n                    <span class=\"main-nav__icon icon-small--secure\"></span>\n                    <span class=\"main-nav__text\">", "</span>\n                    <span class=\"main-nav__chev\"></span>\n                </a>\n            "])), cb, text);
+      return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <a href=\"javascript:void(0)\"\n                    class=\"main-nav__item main-nav__item--link link-action link-action--dark\"\n                    role=\"button\"\n                    draggable=\"false\"\n                    onclick=", "\n                    >\n                    <span class=\"main-nav__icon icon-small--secure\"></span>\n                    <span class=\"main-nav__text\">", "</span>\n                    <span class=\"main-nav__chev\"></span>\n                </a>\n            "])), cb, text);
     } else {
       return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n            <div class=\"main-nav__item\">\n                <span class=\"main-nav__icon icon-small--secure\"></span>\n                <span class=\"main-nav__text\">", "</span>\n            </div>\n        "])), text);
     }
@@ -38731,6 +38735,10 @@ module.exports={
     "cookiesMinimized": {
         "title": "Cookie Pop-Up Managed",
         "note": "Title for when we have set the cookie privacy settings on this website to maximize privacy"
+    },
+    "cookiesHidden": {
+        "title": "Cookie Pop-Up Hidden",
+        "note": "Title for when we have cosmetically hidden a cookie banner"
     },
     "cookiesMinimizedSummary": {
         "title": "On some sites we will automatically set your cookie preferences to minimize cookies, maximize privacy, and hide the pop-ups.",

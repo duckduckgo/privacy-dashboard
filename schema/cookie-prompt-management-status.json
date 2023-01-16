@@ -10,8 +10,16 @@
             "description": "A required boolean flag to indicate if consent was managed automatically by the browser",
             "type": "boolean"
         },
+        "cosmetic": {
+            "description": "An optional boolean to indicate that the cookie popup was hidden cosmetically, without active tracking rejection",
+            "type": "boolean"
+        },
         "optoutFailed": {
             "description": "An optional boolean flag to indicate if our attempts to optout automatically failed. Not currently used in the dashboard",
+            "type": "boolean"
+        },
+        "selftestFailed": {
+            "description": "An optional boolean flag to indicate if the self-test verification failed. Not currently used in the dashboard",
             "type": "boolean"
         },
         "configurable": {
