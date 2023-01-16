@@ -4,7 +4,7 @@ import { OpenSettingsMessages } from '../../browser/common.es6'
 
 /** @this {any} */
 export function CookiePromptModel(attrs) {
-    attrs = attrs || {}
+    this.isCosmetic = attrs.isCosmetic
     Parent.call(this, attrs)
 }
 

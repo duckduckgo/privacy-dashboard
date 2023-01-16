@@ -34,9 +34,9 @@ CookiePromptView.prototype = $.extend(
  * @returns {HTMLElement}
  */
 function template() {
-    const summary = ns.site('cookiesMinimizedSummary.title')
+    const summary = this.model.isCosmetic ? ns.site('cookiesHiddenSummary.title') : ns.site('cookiesMinimizedSummary.title')
     const icon = largeHeroIcon({
-        status: 'cookies-managed',
+        status: this.model.isCosmetic ? 'cookies-hidden' : 'cookies-managed',
     })
 
     const hero = heroTemplate({

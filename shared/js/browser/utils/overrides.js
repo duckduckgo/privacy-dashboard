@@ -105,6 +105,9 @@ export function getOverrides(searchString) {
         if (params.get('consentConfigurable')) {
             overrides.tab.cookiePromptManagementStatus.configurable = true
         }
+        if (params.get('consentCosmetic')) {
+            overrides.tab.cookiePromptManagementStatus.cosmetic = true
+        }
     }
 
     // browser-specific overrides

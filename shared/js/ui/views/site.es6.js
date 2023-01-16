@@ -125,7 +125,10 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 this._showPageNonTrackers()
             }
             if (event.data?.target === 'consentManaged') {
-                this._showPageConsent()
+                this._showPageConsent(false)
+            }
+            if (event.data?.target === 'cookieHidden') {
+                this._showPageConsent(true)
             }
         }
     },
@@ -184,9 +187,15 @@ Site.prototype = $.extend({}, Parent.prototype, {
         })
     },
 
-    _showPageConsent: function (e) {
+    /**
+     * @param {boolean} isCosmetic
+     */
+    _showPageConsent: function (isCosmetic) {
         this.views.slidingSubview = new CookiePromptView({
-            model: new CookiePromptModel({ site: this.model }),
+            model: new CookiePromptModel({
+                site: this.model,
+                isCosmetic,
+            }),
         })
     },
 

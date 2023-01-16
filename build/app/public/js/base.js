@@ -30464,6 +30464,9 @@ function getOverrides(searchString) {
     if (params.get('consentConfigurable')) {
       overrides.tab.cookiePromptManagementStatus.configurable = true;
     }
+    if (params.get('consentCosmetic')) {
+      overrides.tab.cookiePromptManagementStatus.cosmetic = true;
+    }
   }
 
   // browser-specific overrides
@@ -32317,7 +32320,7 @@ var _common = require("../../browser/common.es6");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 /** @this {any} */
 function CookiePromptModel(attrs) {
-  attrs = attrs || {};
+  this.isCosmetic = attrs.isCosmetic;
   _model["default"].call(this, attrs);
 }
 CookiePromptModel.prototype = _jquery["default"].extend({}, _model["default"].prototype, {
@@ -34373,9 +34376,9 @@ _slidingSubviewEs["default"].prototype);
  * @returns {HTMLElement}
  */
 function template() {
-  var summary = _localize.ns.site('cookiesMinimizedSummary.title');
+  var summary = this.model.isCosmetic ? _localize.ns.site('cookiesHiddenSummary.title') : _localize.ns.site('cookiesMinimizedSummary.title');
   var icon = (0, _hero.largeHeroIcon)({
-    status: 'cookies-managed'
+    status: this.model.isCosmetic ? 'cookies-hidden' : 'cookies-managed'
   });
   var hero = (0, _hero.heroTemplate)({
     icon: icon,
@@ -34524,6 +34527,11 @@ function MainNavView(ops) {
       _this.model.send('navigate', {
         target: 'consentManaged'
       });
+    },
+    cookieHidden: function cookieHidden(e) {
+      _this.model.send('navigate', {
+        target: 'cookieHidden'
+      });
     }
   };
   _viewEs["default"].call(this, ops);
@@ -34604,11 +34612,12 @@ MainNavView.prototype = _jquery["default"].extend({}, _viewEs["default"].prototy
  * @returns {HTMLElement}
  */
 function template() {
-  var _model$tab, _model$tab$cookieProm;
+  var _model$tab$cookieProm, _model$tab, _model$tab$cookieProm2;
   /** @type {import('../models/site.es6.js').PublicSiteModel} */
   var model = this.model;
-  var consentRow = (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(model, this.nav.consentManaged));
-  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        ", "\n    </ul>\n    "])), renderConnection(model, this.nav.connection), renderTrackerNetworksNew(model, this.nav.trackers), renderThirdPartyNew(model, this.nav.nonTrackers), (_model$tab = model.tab) !== null && _model$tab !== void 0 && (_model$tab$cookieProm = _model$tab.cookiePromptManagementStatus) !== null && _model$tab$cookieProm !== void 0 && _model$tab$cookieProm.consentManaged ? consentRow : null);
+  var consentCb = (_model$tab$cookieProm = model.tab.cookiePromptManagementStatus) !== null && _model$tab$cookieProm !== void 0 && _model$tab$cookieProm.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged;
+  var consentRow = (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<li class=\"main-nav__row\">", "</li>"])), renderCookieConsentManaged(model, consentCb));
+  return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        <li class='main-nav__row'>\n            ", "\n        </li>\n        ", "\n    </ul>\n    "])), renderConnection(model, this.nav.connection), renderTrackerNetworksNew(model, this.nav.trackers), renderThirdPartyNew(model, this.nav.nonTrackers), (_model$tab = model.tab) !== null && _model$tab !== void 0 && (_model$tab$cookieProm2 = _model$tab.cookiePromptManagementStatus) !== null && _model$tab$cookieProm2 !== void 0 && _model$tab$cookieProm2.consentManaged ? consentRow : null);
 }
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} model
@@ -34616,15 +34625,15 @@ function template() {
 function renderCookieConsentManaged(model, cb) {
   var _model$tab2;
   if (!((_model$tab2 = model.tab) !== null && _model$tab2 !== void 0 && _model$tab2.cookiePromptManagementStatus)) return null;
-  var _model$tab$cookieProm2 = model.tab.cookiePromptManagementStatus,
-    consentManaged = _model$tab$cookieProm2.consentManaged,
-    cosmetic = _model$tab$cookieProm2.cosmetic,
-    optoutFailed = _model$tab$cookieProm2.optoutFailed,
-    configurable = _model$tab$cookieProm2.configurable;
+  var _model$tab$cookieProm3 = model.tab.cookiePromptManagementStatus,
+    consentManaged = _model$tab$cookieProm3.consentManaged,
+    cosmetic = _model$tab$cookieProm3.cosmetic,
+    optoutFailed = _model$tab$cookieProm3.optoutFailed,
+    configurable = _model$tab$cookieProm3.configurable;
   if (consentManaged && !optoutFailed) {
     var text = cosmetic ? _localize.i18n.t('site:cookiesHidden.title') : _localize.i18n.t('site:cookiesMinimized.title');
     if (configurable) {
-      return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <a href=\"javascript:void(0)\"\n                    class=\"main-nav__item main-nav__item--link link-action link-action--dark\"\n                    role=\"button\"\n                    draggable=\"false\"\n                    onclick=", "\n                    >\n                    <span class=\"main-nav__icon icon-small--secure\"></span>\n                    <span class=\"main-nav__text\">", "</span>\n                    <span class=\"main-nav__chev\"></span>\n                </a>\n            "])), cb, text);
+      return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n                <a href=\"javascript:void(0)\"\n                    class=\"main-nav__item main-nav__item--link link-action link-action--dark\"\n                    role=\"button\"\n                    draggable=\"false\"\n                    onclick=", "\n                    >\n                    <span class=\"main-nav__icon ", "\"></span>\n                    <span class=\"main-nav__text\">", "</span>\n                    <span class=\"main-nav__chev\"></span>\n                </a>\n            "])), cb, cosmetic ? 'icon-small--info' : 'icon-small--secure', text);
     } else {
       return (0, _bel["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n            <div class=\"main-nav__item\">\n                <span class=\"main-nav__icon icon-small--secure\"></span>\n                <span class=\"main-nav__text\">", "</span>\n            </div>\n        "])), text);
     }
@@ -34837,7 +34846,7 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
   },
   _handleEvents: function _handleEvents(event) {
     if (event.action === 'navigate') {
-      var _event$data, _event$data2, _event$data3, _event$data4;
+      var _event$data, _event$data2, _event$data3, _event$data4, _event$data5;
       if (((_event$data = event.data) === null || _event$data === void 0 ? void 0 : _event$data.target) === 'connection') {
         this._showPageConnection();
       }
@@ -34848,7 +34857,10 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
         this._showPageNonTrackers();
       }
       if (((_event$data4 = event.data) === null || _event$data4 === void 0 ? void 0 : _event$data4.target) === 'consentManaged') {
-        this._showPageConsent();
+        this._showPageConsent(false);
+      }
+      if (((_event$data5 = event.data) === null || _event$data5 === void 0 ? void 0 : _event$data5.target) === 'cookieHidden') {
+        this._showPageConsent(true);
       }
     }
   },
@@ -34897,10 +34909,14 @@ Site.prototype = _jquery["default"].extend({}, _view["default"].prototype, {
       template: _pageConnectionEs["default"]
     });
   },
-  _showPageConsent: function _showPageConsent(e) {
+  /**
+   * @param {boolean} isCosmetic
+   */
+  _showPageConsent: function _showPageConsent(isCosmetic) {
     this.views.slidingSubview = new _cookiePrompt2.CookiePromptView({
       model: new _cookiePrompt.CookiePromptModel({
-        site: this.model
+        site: this.model,
+        isCosmetic: isCosmetic
       })
     });
   },
@@ -38733,15 +38749,19 @@ module.exports={
         "note": "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
     },
     "cookiesMinimized": {
-        "title": "Cookie Pop-Up Managed",
+        "title": "Cookies Managed",
         "note": "Title for when we have set the cookie privacy settings on this website to maximize privacy"
     },
     "cookiesHidden": {
-        "title": "Cookie Pop-Up Hidden",
+        "title": "Cookie Pop-up Hidden",
         "note": "Title for when we have cosmetically hidden a cookie banner"
     },
+    "cookiesHiddenSummary": {
+        "title": "We were only able to hide the cookie consent pop-up on this site because no options were provided to manage cookie preferences. Our other Web Tracking Protections still apply.",
+        "note": "A longer explanation that we have cosmetically hidden a cookie banner"
+    },
     "cookiesMinimizedSummary": {
-        "title": "On some sites we will automatically set your cookie preferences to minimize cookies, maximize privacy, and hide the pop-ups.",
+        "title": "We set your cookie preferences to maximize privacy and closed the consent pop-up.",
         "note": "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
     },
     "cookiesMinimizedSettings": {
