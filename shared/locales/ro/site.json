@@ -84,6 +84,22 @@
     "title" : "Modulele cookie au fost gestionate",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Fereastră pop-up privind modulele cookie ascunsă",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Am reușit să ascundem pe acest site fereastra pop-up privind consimțământul aferent modulelor cookie, deoarece nu au fost oferite opțiuni pentru gestionarea preferințelor privind modulele cookie. Se aplică în continuare celelalte instrumente ale noastre de protecție cu privire la urmărirea pe internet.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Am setat preferințele tale privind modulele cookie pentru a maximiza confidențialitatea și am închis fereastra pop-up de consimțământ.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Schimbă în setări",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Conexiunea este criptată",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Înapoi",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Activează protecțiile",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Dezactivează protecțiile",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Ceva nu a mers bine și nu am putut încărca acest conținut. Încearcă să reîncarci pagina.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

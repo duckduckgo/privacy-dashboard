@@ -84,6 +84,22 @@
     "title" : "Διαχειριζόμενα cookies",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Κρυφό αναδυόμενο παράθυρο cookie",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Μπορέσαμε να αποκρύψουμε μόνο το αναδυόμενο παράθυρο συναίνεσης cookie στον ιστότοπο αυτό επειδή δεν παρέχονται επιλογές για διαχείριση των προτιμήσεων cookie. Οι άλλες Προστασίες παρακολούθησης ιστού εξακολουθούν να ισχύουν.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Ρυθμίσαμε τις προτιμήσεις σας σχετικά με τα cookies ώστε να μεγιστοποιήσουμε το απόρρητο και κλείσαμε το αναδυόμενο παράθυρο συγκατάθεσης.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Αλλαγή στις ρυθμίσεις",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Η σύνδεση είναι κρυπτογραφημένη",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Πίσω",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Ενεργοποίηση προστασίας",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Απενεργοποίηση προστασίας",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Κάτι πήγε λάθος και δεν μπορέσαμε να φορτώσουμε το περιεχόμενο αυτό. Προσπαθήστε να επαναλάβετε τη φόρτωση της σελίδας.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

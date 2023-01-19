@@ -84,6 +84,22 @@
     "title" : "Бисквитките са настроени",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Изскачащият прозорец за бисквитки е скрит",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Успяхме само да скрием изскачащия прозорец за съгласие за бисквитките на този сайт, тъй като не бяха предоставени опции за управление на предпочитанията за бисквитките. Останалите ни защити срещу проследяване в мрежата все още са в сила.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Настроихме предпочитанията Ви за бисквитките, за да увеличим поверителността, и затворихме изскачащия прозорец за съгласие.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Промяна в настройките",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Връзката е криптирана",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Обратно",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Активиране на защити",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Деактивиране на защити",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Възникна проблем и не успяхме да заредим това съдържание. Опитайте да презаредите страницата.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

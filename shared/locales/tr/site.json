@@ -84,6 +84,22 @@
     "title" : "Yönetilen Çerezler",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Çerez Açılır Penceresi Gizli",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Çerez tercihlerini yönetmek için herhangi bir seçenek sunulmadığından, bu sitede yalnızca çerez onayı açılır penceresini gizleyebildik. Diğer Web İzleme Korumalarımız hâlâ geçerlidir.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Çerez tercihlerinizi gizliliği en üst düzeye çıkaracak şekilde ayarladık ve onay açılır penceresini kapattık.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Ayarlarda Değişiklik",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Bağlantı Şifrelenmiştir",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Geri",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Korumaları Etkinleştir",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Korumaları Devre Dışı Bırak",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Bir şeyler ters gitti ve bu içeriği yükleyemedik. Sayfayı yeniden yüklemeyi deneyin.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

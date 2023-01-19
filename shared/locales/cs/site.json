@@ -84,6 +84,22 @@
     "title" : "O cookies je postaráno!",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Skryté vyskakovací okno pro souhlas s cookies",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Na tomto webu se nám povedlo vyskakovací okno pro souhlas s cookies jen skrýt, protože neobsahovalo žádné možnosti pro nastavení předvoleb souborů cookie. Naše další ochranné prvky proti sledování na webu ale běží dál.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Tvoje předvolby souborů cookie jsme nastavili na co největší ochranu soukromí a vyskakovací okno se žádostí o souhlas jsme zavřeli.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Změnit nastavení",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Připojení je šifrované",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Zpět",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Zapnout ochranné prvky",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Vypnout ochranné prvky",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Něco se pokazilo a nepodařilo se nám tento obsah načíst. Zkus stránku načíst znovu.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

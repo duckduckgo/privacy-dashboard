@@ -84,6 +84,22 @@
     "title" : "Hallatavad küpsised",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Küpsiste hüpikaken peidetud",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Me saime sellel saidil küpsiste nõusoleku hüpikakna ainult peita, sest küpsise-eelistuste haldamiseks ei antud mingeid valikuid. Meie muud veebijälgimise kaitsemeetodid toimivad endiselt.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Me seadistasime sinu küpsiste eelistused maksimeerima privaatsust ja sulgesime nõusoleku hüpikakna.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Muuda seadetes",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Ühendus on krüptitud",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Tagasi",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Luba kaitse",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Keela kaitse",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Midagi läks valesti ja me ei saanud seda sisu laadida. Proovi leht uuesti laadida.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

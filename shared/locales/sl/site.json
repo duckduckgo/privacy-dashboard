@@ -84,6 +84,22 @@
     "title" : "Upravljani piškotki",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Pojavno okno za piškotke je skrito",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Na tem spletnem mestu smo lahko le skrili pojavno okno s soglasjem za piškotke, ker ni bilo na voljo nobenih možnosti za upravljanje nastavitev piškotkov. Naša preostala zaščita pred spletnim sledenjem se še vedno izvaja.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Nastavili smo vaše nastavitve piškotkov za čim večjo zasebnost in zaprli pojavno okno za soglasje.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Sprememba nastavitev",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Povezava je šifrirana",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Nazaj",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Omogoči zaščito",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Onemogoči zaščito",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Nekaj je šlo narobe in te vsebine nismo mogli naložiti. Poskusite znova naložiti stran.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

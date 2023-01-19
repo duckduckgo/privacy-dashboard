@@ -84,6 +84,22 @@
     "title" : "Pārvaldītie sīkfaili",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Sīkfailu uznirstošais logs paslēpts",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Šajā vietnē mēs varējām tikai paslēpt sīkfailu piekrišanas uznirstošo logu, jo nebija pieejamas sīkfailu preferenču pārvaldīšanas opcijas. Joprojām ir spēkā citi mūsu tīmekļa izsekošanas aizsardzības līdzekļi.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Mēs esam iestatījuši sīkfailu preferences, lai maksimāli palielinātu konfidencialitāti, un aizvēruši piekrišanas uznirstošo logu.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Mainīt iestatījumos",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Savienojums ir šifrēts",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Atpakaļ",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Iespējot aizsardzību",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Atspējot aizsardzību",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Radās problēma, un mums neizdevās ielādēt šo saturu. Mēģiniet pārlādēt lapu.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }
