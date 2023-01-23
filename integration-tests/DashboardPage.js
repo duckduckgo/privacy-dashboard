@@ -215,7 +215,7 @@ export class DashboardPage {
     }
 
     async disableCookiesInSettings() {
-        await this.page.getByRole('link', { name: 'Change in Settings' }).click()
+        await this.page.getByRole('link', { name: 'Disable in Settings' }).click()
     }
 
     async toggleProtectionsOn() {

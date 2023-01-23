@@ -38914,7 +38914,7 @@ module.exports={
         "note": "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
     },
     "cookiesMinimizedSettings": {
-        "title": "Change in Settings",
+        "title": "Disable in Settings",
         "note": "Button text for allowing the settings to be opened"
     },
     "connectionSecure": {
