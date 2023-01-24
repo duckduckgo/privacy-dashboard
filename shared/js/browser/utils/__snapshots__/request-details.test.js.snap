@@ -86,3 +86,139 @@ AggregatedCompanyResponseData {
   "requestCount": 1,
 }
 `;
+
+exports[`createTabData creates a TabData object 1`] = `
+Object {
+  "certificate": undefined,
+  "cookiePromptManagementStatus": undefined,
+  "ctaScreens": undefined,
+  "domain": "example.com",
+  "emailProtection": undefined,
+  "error": undefined,
+  "id": undefined,
+  "isPendingUpdates": undefined,
+  "locale": null,
+  "parentEntity": undefined,
+  "permissions": undefined,
+  "platformLimitations": undefined,
+  "protections": Protections {
+    "allowlisted": false,
+    "denylisted": false,
+    "enabledFeatures": Array [],
+    "unprotectedTemporary": false,
+  },
+  "requestDetails": RequestDetails {
+    "all": AggregatedCompanyResponseData {
+      "entities": Object {},
+      "entitiesCount": 0,
+      "requestCount": 0,
+    },
+    "allowed": Object {
+      "adClickAttribution": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "otherThirdPartyRequest": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "ownedByFirstParty": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "protectionDisabled": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "ruleException": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+    },
+    "blocked": AggregatedCompanyResponseData {
+      "entities": Object {},
+      "entitiesCount": 0,
+      "requestCount": 0,
+    },
+    "surrogates": Array [],
+  },
+  "search": undefined,
+  "specialDomainName": undefined,
+  "status": "complete",
+  "upgradedHttps": true,
+  "url": "https://www.example.com/",
+}
+`;
+
+exports[`createTabData removes port from the site domain 1`] = `
+Object {
+  "certificate": undefined,
+  "cookiePromptManagementStatus": undefined,
+  "ctaScreens": undefined,
+  "domain": "example.com",
+  "emailProtection": undefined,
+  "error": undefined,
+  "id": undefined,
+  "isPendingUpdates": undefined,
+  "locale": null,
+  "parentEntity": undefined,
+  "permissions": undefined,
+  "platformLimitations": undefined,
+  "protections": Protections {
+    "allowlisted": false,
+    "denylisted": false,
+    "enabledFeatures": Array [],
+    "unprotectedTemporary": false,
+  },
+  "requestDetails": RequestDetails {
+    "all": AggregatedCompanyResponseData {
+      "entities": Object {},
+      "entitiesCount": 0,
+      "requestCount": 0,
+    },
+    "allowed": Object {
+      "adClickAttribution": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "otherThirdPartyRequest": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "ownedByFirstParty": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "protectionDisabled": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+      "ruleException": AggregatedCompanyResponseData {
+        "entities": Object {},
+        "entitiesCount": 0,
+        "requestCount": 0,
+      },
+    },
+    "blocked": AggregatedCompanyResponseData {
+      "entities": Object {},
+      "entitiesCount": 0,
+      "requestCount": 0,
+    },
+    "surrogates": Array [],
+  },
+  "search": undefined,
+  "specialDomainName": undefined,
+  "status": "complete",
+  "upgradedHttps": true,
+  "url": "https://www.example.com:8080/",
+}
+`;

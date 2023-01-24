@@ -99,7 +99,7 @@ export class TabData {
 export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData) => {
     let domain
     try {
-        domain = new URL(tabUrl).host.replace(/^www\./, '')
+        domain = new URL(tabUrl).hostname.replace(/^www\./, '')
     } catch (e) {
         domain = 'unknown'
     }
