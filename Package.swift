@@ -25,7 +25,11 @@ let package = Package(
         .target(
             name: "PrivacyDashboard-resources",
             path: "build",
-            resources: [.copy("app")]),
+            exclude: ["app/font"], 
+            resources: [.copy ("app/html"),
+                        .copy("app/img"),
+                        .copy ("app/public"),
+                        .copy ("app/index.html")]),
 
         .testTarget(
             name: "PrivacyDashboardTests",
