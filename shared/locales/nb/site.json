@@ -84,6 +84,22 @@
     "title" : "Informasjonskapsler administrert",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Popup-vindu om informasjonskapsler skjult",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Popup-vinduet om informasjonskapselsamtykke på dette nettstedet ga ingen alternativer for preferanser, så vi har bare skjult det. Våre andre nettsporingsbeskyttelser gjelder fortsatt.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Vi har angitt informasjonskapselpreferansene dine for å maksimere personvernet, og lukket samtykke-popupen.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Endre i innstillinger",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Tilkoblingen er kryptert",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Tilbake",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Aktiver beskyttelse",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Deaktiver beskyttelse",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Noe gikk galt, så vi kunne ikke laste dette innholdet. Prøv å laste siden på nytt.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

@@ -16,6 +16,7 @@ import { KeyInsightView } from '../templates/key-insights'
 import { BreakageFormModel } from '../models/breakage-form.es6'
 import { renderUpdatingSpinner } from '../templates/shared/protection-toggle'
 import { createPlatformFeatures } from '../platform-features'
+import { CookiePromptModel } from '../models/cookie-prompt.es6'
 import { setupMaterialDesignRipple, setupSwitch } from './utils/utils.js'
 import BreakageFormView from './../views/breakage-form.es6.js'
 import pageConnectionTemplate from './../templates/page-connection.es6.js'
@@ -25,6 +26,7 @@ import SearchView from './search.es6'
 import CtaRotationView from './cta-rotation.es6'
 import TrackerNetworksView from './../views/tracker-networks.es6.js'
 import { MainNavView } from './main-nav'
+import { CookiePromptView } from './cookie-prompt'
 
 /**
  * @constructor
@@ -122,6 +124,12 @@ Site.prototype = $.extend({}, Parent.prototype, {
             if (event.data?.target === 'nonTrackers') {
                 this._showPageNonTrackers()
             }
+            if (event.data?.target === 'consentManaged') {
+                this._showPageConsent(false)
+            }
+            if (event.data?.target === 'cookieHidden') {
+                this._showPageConsent(true)
+            }
         }
     },
 
@@ -176,6 +184,18 @@ Site.prototype = $.extend({}, Parent.prototype, {
         if (this.$body.hasClass('is-disabled')) return
         this.views.slidingSubview = new TrackerNetworksView({
             template: pageConnectionTemplate,
+        })
+    },
+
+    /**
+     * @param {boolean} isCosmetic
+     */
+    _showPageConsent: function (isCosmetic) {
+        this.views.slidingSubview = new CookiePromptView({
+            model: new CookiePromptModel({
+                site: this.model,
+                isCosmetic,
+            }),
         })
     },
 

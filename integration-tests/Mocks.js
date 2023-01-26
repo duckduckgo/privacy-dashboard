@@ -271,4 +271,42 @@ export class Mocks {
         }
         throw new Error('unreachable: must handle `mockCalledForSearch` on platform ' + this.platform.name)
     }
+
+    async calledForOpenSettings() {
+        /**
+         * @type {Record<import('../shared/js/ui/platform-features.js').Platform['name'], any>}
+         */
+        const implementations = {
+            windows: async () => {
+                const calls = await this.outgoing({ names: ['OpenSettings'] })
+                expect(calls).toMatchObject([
+                    [
+                        'OpenSettings',
+                        {
+                            Feature: 'PrivacyDashboard',
+                            Name: 'OpenSettings',
+                            Data: { target: 'cpm' },
+                        },
+                    ],
+                ])
+            },
+            ios: async () => {
+                const calls = await this.outgoing({ names: ['privacyDashboardOpenSettings'] })
+                expect(calls).toMatchObject([['privacyDashboardOpenSettings', { target: 'cpm' }]])
+            },
+            macos: async () => {
+                const calls = await this.outgoing({ names: ['privacyDashboardOpenSettings'] })
+                expect(calls).toMatchObject([['privacyDashboardOpenSettings', { target: 'cpm' }]])
+            },
+            android: async () => {
+                const calls = await this.outgoing({ names: ['openSettings'] })
+                expect(calls).toMatchObject([['openSettings', JSON.stringify({ target: 'cpm' })]])
+            },
+            browser: undefined,
+            example: undefined,
+        }
+        const impl = implementations[this.platform.name]
+        if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name)
+        await impl()
+    }
 }

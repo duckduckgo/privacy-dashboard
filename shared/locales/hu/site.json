@@ -84,6 +84,22 @@
     "title" : "Kezelt sütik",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Felugró sütiablak elrejtve",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Ezen a webhelyen csak a sütik elfogadására szolgáló felugró ablakot tudtuk elrejteni, mert nem volt lehetőség a sütikre vonatkozó beállítások kezelésére. A webes követés elleni egyéb védelmi módszereink továbbra is működnek.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "A sütibeállításokat az adatvédelem maximalizálására állítottuk be, és bezártuk a beleegyezést kérő felugró ablakot.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Módosítás a beállításokban",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "A kapcsolat titkosított",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Vissza",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Védelmek engedélyezése",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Védelmek letiltása",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Hiba történt, ezért nem tudtuk betölteni a tartalmat. Próbálkozz az oldal újbóli betöltésével.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

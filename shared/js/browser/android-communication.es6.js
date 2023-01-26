@@ -5,13 +5,18 @@
  * On Android, all data for the dashboard is delivered via methods that have been
  * attached to the global `window` object.
  *
- * Please see the links below under the heading 'Integration API'
+ * Please see the aboutLink below under the heading 'Integration API'
  *
  * @category integrations
  */
-import { localeSettingsSchema, protectionsStatusSchema, requestDataSchema } from '../../../schema/__generated__/schema.parsers'
+import {
+    cookiePromptManagementStatusSchema,
+    localeSettingsSchema,
+    protectionsStatusSchema,
+    requestDataSchema,
+} from '../../../schema/__generated__/schema.parsers'
 import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils'
-import { CheckBrokenSiteReportHandledMessage, CloseMessage, SetListsMessage, setupColorScheme } from './common.es6'
+import { CheckBrokenSiteReportHandledMessage, CloseMessage, OpenSettingsMessages, SetListsMessage, setupColorScheme } from './common.es6'
 import { createTabData } from './utils/request-details'
 
 let channel = null
@@ -28,7 +33,7 @@ let upgradedHttps
 let protections
 let isPendingUpdates
 let parentEntity
-let cookiePromptManagementStatus
+const cookiePromptManagementStatus = {}
 
 /** @type {string | undefined} */
 let locale
@@ -158,6 +163,28 @@ export function onChangeLocale(payload) {
 }
 
 /**
+ * {@inheritDoc common.onChangeConsentManaged}
+ * @type {import("./common.es6").onChangeConsentManaged}
+ * @group Android -> JavaScript Interface
+ * @example On Android, it might look something like this:
+ *
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeConsentManaged(${cookiePromptManagementStatusAsJsonString});", null)
+ * ```
+ */
+export function onChangeConsentManaged(payload) {
+    const parsed = cookiePromptManagementStatusSchema.safeParse(payload)
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangeConsentManaged')
+        console.error(parsed.error)
+        return
+    }
+    Object.assign(cookiePromptManagementStatus, parsed.data)
+    channel?.send('updateTabData')
+}
+
+/**
  * This describes the JavaScript Interface, `PrivacyDashboard`, that gets added to the `window` object by Android.
  *
  * The Privacy Dashboard communicates with Android by calling methods on that global object.
@@ -231,8 +258,26 @@ export class PrivacyDashboardJavascriptInterface {
     openInNewTab(payload) {
         window.PrivacyDashboard.openInNewTab(JSON.stringify(payload))
     }
+
+    /**
+     * {@inheritDoc common.openSettings}
+     * @type {import("./common.es6").openSettings}
+     * @example
+     * ```js
+     * const payload = JSON.stringify({
+     *     "target": "cpm"
+     * });
+     * window.PrivacyDashboard.openSettings(payload)
+     * ```
+     */
+    openSettings(payload) {
+        window.PrivacyDashboard.openSettings(JSON.stringify(payload))
+    }
 }
 
+/**
+ * @type {PrivacyDashboardJavascriptInterface}
+ */
 let privacyDashboardApi
 
 // -----------------------------------------------------------------------------
@@ -264,6 +309,12 @@ async function fetchAndroid(message) {
         privacyDashboardApi.showBreakageForm()
         return true // Return true to prevent HTML form from showing
     }
+
+    if (message instanceof OpenSettingsMessages) {
+        privacyDashboardApi.openSettings({
+            target: message.target,
+        })
+    }
 }
 
 const getBackgroundTabDataAndroid = () => {
@@ -285,15 +336,14 @@ export function setup() {
     window.onChangeProtectionStatus = onChangeProtectionStatus
     window.onChangeLocale = onChangeLocale
     window.onChangeRequestData = onChangeRequestData
+    window.onChangeConsentManaged = onChangeConsentManaged
 
     window.onChangeAllowedPermissions = function (data) {
         permissionsData = data
         channel?.send('updateTabData', { via: 'onChangeAllowedPermissions' })
     }
-
     window.onChangeUpgradedHttps = function (data) {
         upgradedHttps = data
-
         if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
         resolveInitialRender()
     }
@@ -301,20 +351,13 @@ export function setup() {
         certificateData = data.secCertificateViewModels
         channel?.send('updateTabData', { via: 'onChangeCertificateData' })
     }
-
     window.onIsPendingUpdates = function (data) {
         isPendingUpdates = data
         channel?.send('updateTabData', { via: 'onIsPendingUpdates' })
     }
-
     window.onChangeParentEntity = function (data) {
         parentEntity = data
         channel?.send('updateTabData', { via: 'onChangeParentEntity' })
-    }
-
-    window.onChangeConsentManaged = function (data) {
-        cookiePromptManagementStatus = data
-        channel?.send('updateTabData', { via: 'onChangeConsentManaged' })
     }
 
     /**

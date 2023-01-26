@@ -84,6 +84,22 @@
     "title" : "Slapukai valdomi",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Iškylantysis slapukų langas paslėptas",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Sutikimo su slapukais iškylantįjį langą šioje svetainėje galėjome paslėpti tik todėl, kad nepateikta jokių parinkčių slapukų nuostatoms tvarkyti. Kitos mūsų žiniatinklio stebėjimo apsaugos priemonės vis dar taikomos.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Nustatėme slapukų nuostatas, kad būtų užtikrintas kuo didesnis privatumas, ir uždarėme iššokantįjį sutikimo langą.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Nustatymų keitimas",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Ryšys užšifruotas",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Atgal",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Įjungti apsaugos priemones",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Išjungti apsaugos priemones",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Kažkas nepavyko ir negalėjome įkelti šio turinio. Pabandykite iš naujo įkelti puslapį.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

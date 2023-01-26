@@ -1,5 +1,6 @@
 import {
     CheckBrokenSiteReportHandledMessage,
+    OpenSettingsMessages,
     RefreshEmailAliasMessage,
     SetListsMessage,
     setupColorScheme,
@@ -36,6 +37,14 @@ export async function fetch(message) {
         }
     }
 
+    if (message instanceof OpenSettingsMessages) {
+        if (overrides.platform === 'ios' || overrides.platform === 'android') {
+            return true
+        } else {
+            return false
+        }
+    }
+
     console.log('fetch - Not implemented', message)
 }
 
@@ -51,7 +60,6 @@ export function backgroundMessage(backgroundModel) {
  * }>}
  */
 export async function getBackgroundTabData() {
-    console.log(overrides.requests)
     return {
         tab: overrides.tab,
         emailProtectionUserData: overrides.emailProtectionUserData,

@@ -84,6 +84,22 @@
     "title" : "Spravované súbory cookie",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Kontextové okno pre súbory cookie je skryté",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Na tejto lokalite sme mohli kontextové okno so súhlasom pre súbory cookie iba skryť, pretože k dispozícii neboli žiadne možnosti na správu preferencií súborov cookie. Naša ďalšia ochrana pred sledovaním webu stále platí.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Nastavili sme vaše nastavenia súborov cookie na maximalizáciu ochrany súkromia a zatvorili sme automaticky zobrazované okno so súhlasom.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Zmena nastavení",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Pripojenie je šifrované",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Späť",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Povolenie ochrany",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Zakázanie ochrany",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Došlo k chybe a my sme nemohli načítať tento obsah. Skúste znovu načítať stránku.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

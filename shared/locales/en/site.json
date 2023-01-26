@@ -83,6 +83,22 @@
         "title": "Cookies Managed",
         "note": "Title for when we have set the cookie privacy settings on this website to maximize privacy"
     },
+    "cookiesHidden": {
+        "title": "Cookie Pop-up Hidden",
+        "note": "Title for when we have cosmetically hidden a cookie banner"
+    },
+    "cookiesHiddenSummary": {
+        "title": "We were only able to hide the cookie consent pop-up on this site because no options were provided to manage cookie preferences. Our other Web Tracking Protections still apply.",
+        "note": "A longer explanation that we have cosmetically hidden a cookie banner"
+    },
+    "cookiesMinimizedSummary": {
+        "title": "We set your cookie preferences to maximize privacy and closed the consent pop-up.",
+        "note": "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+    },
+    "cookiesMinimizedSettings": {
+        "title": "Disable in Settings",
+        "note": "Button text for allowing the settings to be opened"
+    },
     "connectionSecure": {
         "title": "Connection Is Encrypted",
         "note": "The connection to the website is secure (HTTPS)"

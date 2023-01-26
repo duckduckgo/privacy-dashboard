@@ -75,8 +75,10 @@ export const windowsIncomingVisibilitySchema = z.object({
 
 export const cookiePromptManagementStatusSchema = z.object({
     consentManaged: z.boolean(),
+    cosmetic: z.boolean().optional(),
     optoutFailed: z.boolean().optional(),
-    selftestFailed: z.boolean().optional()
+    selftestFailed: z.boolean().optional(),
+    configurable: z.boolean().optional()
 });
 
 export const refreshAliasResponseSchema = z.object({

@@ -84,6 +84,22 @@
     "title" : "Hallitut evästeet",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Evästeponnahdusikkuna piilotettu",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Pystyimme vain piilottamaan tämän sivuston evästeponnahdusikkunan, koska evästeasetusten hallintaan ei tarjottu vaihtoehtoja. Muut verkkoseurantasuojamme ovat edelleen käytössä.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Olemme asettaneet evästeasetukset maksimoimaan tietosuojan ja sulkeneet suostumuksen ponnahdusikkunan.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Muuta asetuksissa",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Yhteys on salattu",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Takaisin",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Ota suojaukset käyttöön",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Poista suojaukset käytöstä",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Jokin meni vikaan, emmekä voineet ladata tätä sisältöä. Yritä ladata sivu uudelleen.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

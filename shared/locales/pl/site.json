@@ -84,6 +84,22 @@
     "title" : "Zarządzane pliki cookie",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Ukryte wyskakujące okienka dotyczące plików cookie",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Na tej stronie udało nam się ukryć okienko z prośbą o zgodę na używanie plików cookie, ponieważ nie zawierało ono opcji pozwalających na zarządzanie preferencjami dotyczącymi plików cookie. Pozostałe zabezpieczenia dotyczące śledzenia w sieci nadal działają.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Ustawiliśmy preferencje dotyczące plików cookie, aby zmaksymalizować prywatność, i zamknęliśmy wyskakujące okienko zgody.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Zmiana ustawień",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Połączenie jest szyfrowane",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Wstecz",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Włącz ochronę",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Wyłącz ochronę",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Coś poszło nie tak i nie udało się załadować tej zawartości. Spróbuj ponownie załadować stronę.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

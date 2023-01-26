@@ -84,6 +84,22 @@
     "title" : "Cookies verwaltet",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Cookie-Pop-up ausgeblendet",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Wir konnten das Pop-up-Fenster mit der Cookie-Zustimmung auf dieser Website nur ausblenden, weil es keine Optionen zur Verwaltung der Cookie-Einstellungen gab. Unsere anderen Web-Tracking-Schutzmaßnahmen werden weiterhin angewendet.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Wir haben deine Cookie-Einstellungen so eingestellt, dass die Privatsphäre maximiert wird, und das Zustimmungs-Pop-up geschlossen.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "In Einstellungen ändern",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Die Verbindung ist verschlüsselt",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Zurück",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Schutz aktivieren",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Schutz deaktivieren",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Etwas ist schiefgelaufen und wir konnten diesen Inhalt nicht laden. Versuche, die Seite neu zu laden.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

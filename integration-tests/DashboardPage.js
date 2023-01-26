@@ -206,6 +206,18 @@ export class DashboardPage {
         await this.page.getByText('Cookies Managed').waitFor({ timeout: 500 })
     }
 
+    async indicatesCookiesWereHidden() {
+        await this.page.getByText('Pop-up Hidden').waitFor({ timeout: 500 })
+    }
+
+    async viewCookiePromptManagement() {
+        await this.page.getByRole('button', { name: /Cookies Managed|Pop-up Hidden/ }).click({ timeout: 500 })
+    }
+
+    async disableCookiesInSettings() {
+        await this.page.getByRole('link', { name: 'Disable in Settings' }).click()
+    }
+
     async toggleProtectionsOn() {
         await this.page.locator('[aria-checked="false"]').click()
     }
@@ -214,7 +226,27 @@ export class DashboardPage {
         if (this.platform.name === 'android') {
             return this.backButton().click()
         }
+        if (this.platform.name === 'ios') {
+            return await this.page.getByRole('button', { name: 'Done' }).click()
+        }
         throw new Error('unreachable. clickClose must be handled')
+    }
+
+    /**
+     * This is not ideal, but I've added it because our implementation leaves elements around
+     * on the first screen when we navigate to the second.
+     *
+     * This means on iOS, when the secondary screen is present the selector `getByRole('button', { name: 'Done' })`
+     * would yield 2 elements. That's why we have this `.nth(1)` modifier to ensure we're only
+     * selecting the second of the 'Done' buttons
+     *
+     * @returns {Promise<*>}
+     */
+    async clickCloseFromSecondaryScreen() {
+        if (this.platform.name === 'ios') {
+            return await this.page.getByRole('button', { name: 'Done' }).nth(1).click()
+        }
+        throw new Error(`unreachable. clickCloseFromSecondaryScreen must be handled on ${this.platform.name}`)
     }
 
     async goBack() {

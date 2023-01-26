@@ -40,6 +40,46 @@ test.describe('Protections toggle', () => {
     })
 })
 
+test.describe('cookie prompt management', () => {
+    test.describe('none-configurable', () => {
+        test('primary screen', async ({ page }) => {
+            const dash = await DashboardPage.windows(page)
+            await dash.addStates([dataStates['consent-managed']])
+            await dash.indicatesCookiesWereManaged()
+        })
+    })
+    test.describe('configurable', () => {
+        test.describe('non-cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.windows(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.indicatesCookiesWereManaged()
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.windows(page)
+                await dash.addStates([dataStates['consent-managed-configurable']])
+                await dash.viewCookiePromptManagement()
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+            })
+        })
+        test.describe('cosmetic', () => {
+            test('primary screen', async ({ page }) => {
+                const dash = await DashboardPage.windows(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.indicatesCookiesWereHidden()
+            })
+            test('secondary screen', async ({ page }) => {
+                const dash = await DashboardPage.windows(page)
+                await dash.addStates([dataStates['consent-managed-configurable-cosmetic']])
+                await dash.viewCookiePromptManagement()
+                await dash.disableCookiesInSettings()
+                await dash.mocks.calledForOpenSettings()
+            })
+        })
+    })
+})
+
 if (!process.env.CI) {
     const states = [
         { name: 'ad-attribution', state: dataStates['ad-attribution'] },
@@ -55,13 +95,5 @@ if (!process.env.CI) {
                 await dash.screenshotEachScreenForState(name, state)
             })
         }
-    })
-    test.describe('screenshots for cookies', () => {
-        test('primary screen', async ({ page }) => {
-            const dash = await DashboardPage.windows(page)
-            await dash.addStates([dataStates['consent-managed']])
-            await dash.indicatesCookiesWereManaged()
-            await dash.screenshot('consent-managed.png')
-        })
     })
 }

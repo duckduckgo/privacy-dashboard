@@ -10,7 +10,7 @@ import ParentSlidingSubview from './sliding-subview.es6.js'
 function BreakageForm(ops) {
     this.model = ops.model
     this.template = ops.template
-    this.$root = $('.js-breakage-form')
+    // this.$root = $('.js-breakage-form')
     // @ts-ignore
     ParentSlidingSubview.call(this, ops)
     // @ts-ignore

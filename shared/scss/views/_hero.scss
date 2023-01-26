@@ -45,3 +45,10 @@
 .hero-icon--connection-upgraded {
     @include cross_platform_bg_image('refresh-assets/Locked-128.svg');
 }
+
+.hero-icon--cookies-managed {
+    @include cross_platform_bg_image('refresh-assets/Cookies-Managed-128.svg');
+}
+.hero-icon--cookies-hidden {
+    @include cross_platform_bg_image('refresh-assets/Cookies-Hidden-128.svg');
+}

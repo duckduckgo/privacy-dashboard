@@ -84,6 +84,22 @@
     "title" : "Kуки-файлы выбраны",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
   },
+  "cookiesHidden" : {
+    "title" : "Всплывающее окно куки-файлов скрыто",
+    "note" : "Title for when we have cosmetically hidden a cookie banner"
+  },
+  "cookiesHiddenSummary" : {
+    "title" : "Всплывающее окно куки-файлов скрыто, поскольку не предусмотрена возможность выбора куки. Остальные средства защиты от отслеживания онлайн по-прежнему активны.",
+    "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
+  },
+  "cookiesMinimizedSummary" : {
+    "title" : "Заданные нами параметры максимально защищают вашу конфиденциальность и блокируют всплывающее окно настроек куки-файлов.",
+    "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
+  },
+  "cookiesMinimizedSettings" : {
+    "title" : "Изменить в «Настройках»",
+    "note" : "Button text for allowing the settings to be opened"
+  },
   "connectionSecure" : {
     "title" : "Соединение зашифровано",
     "note" : "The connection to the website is secure (HTTPS)"
@@ -230,5 +246,17 @@
   "navigationBack" : {
     "title" : "Назад",
     "note" : "Aria label and visible text for iOS on top bar navigation"
+  },
+  "enableProtectionsSwitch" : {
+    "title" : "Включить защиту",
+    "note" : "Aria label for the switch that allows the user to turn protections on"
+  },
+  "disableProtectionsSwitch" : {
+    "title" : "Отключить защиту",
+    "note" : "Aria label for the switch that allows the user to turn protections off"
+  },
+  "errorMessage" : {
+    "title" : "Что-то сработало не так: не удалось загрузить этот контент. Перезагрузите страницу.",
+    "note" : "Message shown to the user when an error has occurred and the UI cannot be displayed"
   }
 }

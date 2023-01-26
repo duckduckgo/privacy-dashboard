@@ -112,6 +112,9 @@ export async function installAndroidMocks(page) {
                 openInNewTab(arg) {
                     window.__playwright.mocks.outgoing.push(['openInNewTab', arg])
                 },
+                openSettings(arg) {
+                    window.__playwright.mocks.outgoing.push(['openSettings', arg])
+                },
                 close(arg) {
                     window.__playwright.mocks.outgoing.push(['close', arg])
                 },
@@ -190,6 +193,11 @@ export async function installWebkitMocks(page) {
                     privacyDashboardOpenUrlInNewTab: {
                         postMessage: (arg) => {
                             window.__playwright.mocks.outgoing.push(['privacyDashboardOpenUrlInNewTab', arg])
+                        },
+                    },
+                    privacyDashboardOpenSettings: {
+                        postMessage: (arg) => {
+                            window.__playwright.mocks.outgoing.push(['privacyDashboardOpenSettings', arg])
                         },
                     },
                     privacyDashboardSubmitBrokenSiteReport: {
