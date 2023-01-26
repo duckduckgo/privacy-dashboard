@@ -97,7 +97,7 @@
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Ändra inställningar",
+    "title" : "Inaktivera i inställningar",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
