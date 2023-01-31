@@ -1,7 +1,7 @@
 import amazon from '../../../../schema/__fixtures__/request-data-amazon.json'
 import google from '../../../../schema/__fixtures__/request-data-google.json'
 import cnn from '../../../../schema/__fixtures__/request-data-cnn.json'
-import { createRequestDetails, fromJson, fromMultiJson, states } from './request-details'
+import { createRequestDetails, createTabData, fromJson, fromMultiJson, Protections, states } from './request-details'
 
 describe('RequestDetails', () => {
     it('accepts zero requests', () => {
@@ -91,5 +91,19 @@ describe('RequestDetails', () => {
             ],
         })
         expect(requestDetails.all).toMatchSnapshot()
+    })
+})
+
+describe('createTabData', () => {
+    it('creates a TabData object', () => {
+        const url = 'https://www.example.com/'
+        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] })
+        expect(tabData).toMatchSnapshot()
+    })
+
+    it('removes port from the site domain', () => {
+        const url = 'https://www.example.com:8080/'
+        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] })
+        expect(tabData).toMatchSnapshot()
     })
 })

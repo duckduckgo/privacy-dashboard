@@ -30614,7 +30614,7 @@ exports.TabData = TabData;
 var createTabData = function createTabData(tabUrl, upgradedHttps, protections, rawRequestData) {
   var domain;
   try {
-    domain = new URL(tabUrl).host.replace(/^www\./, '');
+    domain = new URL(tabUrl).hostname.replace(/^www\./, '');
   } catch (e) {
     domain = 'unknown';
   }
