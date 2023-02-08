@@ -33753,7 +33753,7 @@ function adAttributionLink() {
  */
 function disableInSettingsLink(cb) {
   var text = _localize.ns.site('cookiesMinimizedSettings.title');
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<a class=\"link-action link-action--text-micro\" href=\"javascript:void(0)\"  onclick=", ">", "</a>"])), cb, text);
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<a class=\"link-action link-action--text-micro\" draggable=\"false\" href=\"javascript:void(0)\"  onclick=", ">", "</a>"])), cb, text);
 }
 
 },{"../../base/localize.es6":75,"bel":31}],105:[function(require,module,exports){
@@ -36264,7 +36264,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Промяна в настройките",
+    "title" : "Деактивиране в Настройки",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -36796,7 +36796,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Změnit nastavení",
+    "title" : "Zakázat v nastavení",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -37328,7 +37328,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Ændring i indstillinger",
+    "title" : "Deaktiver i indstillinger",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -37860,7 +37860,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "In Einstellungen ändern",
+    "title" : "In den Einstellungen deaktivieren",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -38392,7 +38392,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Αλλαγή στις ρυθμίσεις",
+    "title" : "Απενεργοποίηση από τις Ρυθμίσεις",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -39446,7 +39446,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Cambio en los ajustes",
+    "title" : "Desactivar en Ajustes",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -39978,7 +39978,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Muuda seadetes",
+    "title" : "Keela seadetes",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -40510,7 +40510,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Muuta asetuksissa",
+    "title" : "Poista käytöstä asetuksissa",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -41042,7 +41042,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Modifier dans les paramètres",
+    "title" : "Désactiver dans les paramètres",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -41574,7 +41574,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Promjena postavki",
+    "title" : "Onemogući u postavkama",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -42106,7 +42106,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Módosítás a beállításokban",
+    "title" : "Letiltás a beállításokban",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -42638,7 +42638,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Modifica in Impostazioni",
+    "title" : "Disabilita in Impostazioni",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -43170,7 +43170,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Nustatymų keitimas",
+    "title" : "Išjungti nustatymuose",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -43702,7 +43702,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Mainīt iestatījumos",
+    "title" : "Atspējot iestatījumos",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -44234,7 +44234,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Endre i innstillinger",
+    "title" : "Deaktiver i innstillingene",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -44766,7 +44766,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Wijzigen in Instellingen",
+    "title" : "Uitschakelen in Instellingen",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -45298,7 +45298,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Zmiana ustawień",
+    "title" : "Wyłącz w ustawieniach",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -45815,7 +45815,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Alterar nas Definições",
+    "title" : "Desativar nas definições",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -46347,7 +46347,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Schimbă în setări",
+    "title" : "Dezactivează din Setări",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -46879,7 +46879,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Изменить в «Настройках»",
+    "title" : "Отключить в настройках",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -47411,7 +47411,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Zmena nastavení",
+    "title" : "Zakázať v nastaveniach",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -47943,7 +47943,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Sprememba nastavitev",
+    "title" : "Onemogoči v nastavitvah",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -48475,7 +48475,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Ändra inställningar",
+    "title" : "Inaktivera i inställningar",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
@@ -49007,7 +49007,7 @@ module.exports={
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
-    "title" : "Ayarlarda Değişiklik",
+    "title" : "Ayarlar'da Devre Dışı Bırak",
     "note" : "Button text for allowing the settings to be opened"
   },
   "connectionSecure" : {
