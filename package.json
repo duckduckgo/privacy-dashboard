@@ -27,6 +27,7 @@
         "test.int.headed": "playwright test --headed",
         "test.int.update-screenshots": "npm run test.int -- --update-snapshots",
         "test.int-debug": "playwright test --headed --debug",
+        "test.clean-tree": "npm run build && sh scripts/check-for-changes.sh",
         "verify.local": "npm run lint.fix; npm run prettier.fix; npm run test.unit; npm run build; npm run docs; npm run test.int"
     },
     "devDependencies": {
