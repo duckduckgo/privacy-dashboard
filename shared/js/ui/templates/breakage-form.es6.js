@@ -45,7 +45,7 @@ export default function () {
                         </div>
                         <textarea class="form__textarea js-breakage-form-description" placeholder="${i18n.t(
                             'report:tellUsMoreDesc.title'
-                        )}"></textarea>
+                        )}" maxlength="2500"></textarea>
                         <button class="form__submit token-label-em js-breakage-form-submit" role="button">${i18n.t(
                             'report:sendReport.title'
                         )}</button>
