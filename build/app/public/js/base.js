@@ -38906,11 +38906,11 @@ module.exports={
         "note": "Title for when we have cosmetically hidden a cookie banner"
     },
     "cookiesHiddenSummary": {
-        "title": "We were only able to hide the cookie consent pop-up on this site because no options were provided to manage cookie preferences. Our other Web Tracking Protections still apply.",
+        "title": "We were only able to hide the cookie pop-up on this site because no options were provided to manage cookie preferences. Our other Web Tracking Protections still apply.",
         "note": "A longer explanation that we have cosmetically hidden a cookie banner"
     },
     "cookiesMinimizedSummary": {
-        "title": "We set your cookie preferences to maximize privacy and closed the consent pop-up.",
+        "title": "We set your cookie preferences to maximize privacy and closed the pop-up.",
         "note": "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
     },
     "cookiesMinimizedSettings": {
