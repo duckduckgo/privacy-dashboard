@@ -33,27 +33,27 @@
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Następujące żądania domen innych firm zostały zablokowane przed załadowaniem, ponieważ zostały zidentyfikowane jako żądania śledzenia. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
+    "title" : "Następujące żądania domen innych firm zostały zablokowane przed załadowaniem, ponieważ zostały zidentyfikowane jako żądania ze śledzeniem. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Na tej stronie nie zablokowano ładowania żadnych żądań śledzenia. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
+    "title" : "Na tej stronie nie zablokowano ładowania żadnych żądań ze śledzeniem. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Nie wykryliśmy żadnych żądań śledzenia na tej stronie.",
+    "title" : "Nie wykryliśmy żadnych żądań ze śledzeniem na tej stronie.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania śledzenia.",
+    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania ze śledzeniem.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Nie zablokowaliśmy żadnym firmom możliwości ładowania żądań śledzenia na tej stronie, aby zapobiec jej uszkodzeniu.",
+    "title" : "Nie zablokowaliśmy żadnym firmom możliwości ładowania żądań ze śledzeniem na tej stronie, aby zapobiec jej uszkodzeniu.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Żadne żądania śledzenia nie zostały zablokowane przed załadowaniem, ponieważ zabezpieczenia są wyłączone dla tej witryny. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
+    "title" : "Żadne żądania ze śledzeniem nie zostały zablokowane przed załadowaniem, ponieważ zabezpieczenia są wyłączone dla tej witryny. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Zablokowaliśmy ładowanie żądań śledzenia wysyłanych przez niektóre firmy na tej stronie.} =2 {Zablokowaliśmy firmom <b>{firstCompany}</b> oraz <b>{secondCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =3 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b> oraz <b>{thirdCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =4 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> oraz <b>{fourthCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =5 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> oraz <b>1 innej firmie</b> możliwość umieszczania na tej stronie żądań śledzenia.} one {Zablokowaliśmy firmie <b>{firstCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} few {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i<b> {othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} many {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} other {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.}}",
+    "title" : "{companyCount, plural, =0 {Zablokowaliśmy ładowanie żądań śledzenia wysyłanych przez niektóre firmy na tej stronie.} =2 {Zablokowaliśmy firmom <b>{firstCompany}</b> oraz <b>{secondCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} =3 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b> oraz <b>{thirdCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} =4 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> oraz <b>{fourthCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} =5 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> oraz <b>1 innej firmie</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} one {Zablokowaliśmy firmie <b>{firstCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} few {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i<b> {othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} many {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} other {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Na tej stronie udało nam się ukryć okienko z prośbą o zgodę na używanie plików cookie, ponieważ nie zawierało ono opcji pozwalających na zarządzanie preferencjami dotyczącymi plików cookie. Pozostałe zabezpieczenia dotyczące śledzenia w sieci nadal działają.",
+    "title" : "Na tej stronie udało nam się tylko ukryć wyskakujące okienko dotyczące plików cookie, ponieważ nie zawierało ono opcji umożliwiających zarządzanie preferencjami dotyczącymi takich plików. Pozostałe zabezpieczenia przed śledzeniem w sieci nadal działają.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Ustawiliśmy preferencje dotyczące plików cookie, aby zmaksymalizować prywatność, i zamknęliśmy wyskakujące okienko zgody.",
+    "title" : "Ustawiliśmy preferencje dotyczące plików cookie, aby zmaksymalizować prywatność i zamknęliśmy wyskakujące okienko.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -113,11 +113,11 @@
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Brak zablokowanych żądań śledzenia",
+    "title" : "Brak zablokowanych żądań ze śledzeniem",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Nie znaleziono żądań śledzenia",
+    "title" : "Nie znaleziono żądań ze śledzeniem",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -133,7 +133,7 @@
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania śledzenia.",
+    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania ze śledzeniem.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {

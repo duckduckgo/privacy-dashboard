@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Siamo riusciti a nascondere solo il popup per il consenso ai cookie su questo sito, perché non erano disponibili le opzioni di gestione delle preferenze sui cookie. Le altre nostre protezioni dal tracciamento web restano comunque valide.",
+    "title" : "Siamo riusciti solo a nascondere il popup sui cookie di questo sito perché non era prevista alcuna opzione che consentisse di gestire le preferenze relative ai cookie. Le altre nostre protezioni contro il tracciamento web sono ancora valide.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Abbiamo configurato le preferenze dei cookie in modo da massimizzare la privacy e abbiamo chiuso il pop-up di consenso.",
+    "title" : "Abbiamo configurato le preferenze dei cookie in modo da massimizzare la privacy e abbiamo chiuso il popup.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {

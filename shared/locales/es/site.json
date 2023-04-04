@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "En este sitio solo hemos podido ocultar la ventana emergente de consentimiento de cookies porque no se han proporcionado opciones para gestionar las preferencias de cookies. Nuestras otras protecciones de rastreo web siguen en funcionamiento.",
+    "title" : "En este sitio solo hemos podido ocultar la ventana emergente de cookies porque no se han proporcionado opciones para gestionar las preferencias de cookies. Nuestras otras protecciones de rastreo web siguen en funcionamiento.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Hemos configurado tus preferencias de cookies para maximizar la privacidad y hemos cerrado la ventana emergente de consentimiento.",
+    "title" : "Hemos configurado tus preferencias de cookies para maximizar la privacidad y hemos cerrado la ventana emergente.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {

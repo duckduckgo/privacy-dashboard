@@ -33,27 +33,27 @@
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Блокирано е зареждането на заявки от следните домейни на трети страни, тъй като са идентифицирани като заявки за проследяване. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "title" : "Блокирано е зареждането на заявки от следните домейни на трети страни, тъй като са идентифицирани като заявки с проследяване. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Няма блокирано зареждане на заявки проследяване на тази страница. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "title" : "Няма блокирано зареждане на заявки с проследяване на тази страница. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Не идентифицирахме заявки за проследяване на тази страница.",
+    "title" : "Не идентифицирахме заявки с проследяване на тази страница.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Не открихме компании, които да се опитват да зареждат заявки за проследяване на тази страница.",
+    "title" : "Не открихме компании, които да се опитват да зареждат заявки с проследяване на тази страница.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "За да предотвратим срив на сайта, не сме блокирали зареждането на заявки за проследяване на тази страница от други компании.",
+    "title" : "За да предотвратим срив на сайта, не сме блокирали зареждането на заявки с проследяване на тази страница от други компании.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Няма блокирано зареждане на заявки проследяване, тъй като защитите за този сайт са изключени. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "title" : "Няма блокирано зареждане на заявки с проследяване, тъй като защитите за този сайт са изключени. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Блокирахме зареждането на заявки за проследяване на тази страница от няколко компании.} =2 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> .} =5 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>още 1 друга компания</b>.} one {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>.} other {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и още <b>{othersCount} други компании</b>.}}",
+    "title" : "{companyCount, plural, =0 {Блокирахме зареждането на заявки за проследяване на тази страница от няколко компании.} =2 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> .} =5 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>още 1 друга компания</b>.} one {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>.} other {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и още <b>{othersCount} други компании</b>.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Успяхме само да скрием изскачащия прозорец за съгласие за бисквитките на този сайт, тъй като не бяха предоставени опции за управление на предпочитанията за бисквитките. Останалите ни защити срещу проследяване в мрежата все още са в сила.",
+    "title" : "Успяхме само да скрием изскачащия прозорец за бисквитките на този сайт, тъй като не бяха предоставени опции за управление на предпочитанията за бисквитките. Останалите ни защити срещу проследяване в мрежата все още са в сила.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Настроихме предпочитанията Ви за бисквитките, за да увеличим поверителността, и затворихме изскачащия прозорец за съгласие.",
+    "title" : "Настроихме предпочитанията Ви за бисквитките, за да увеличим поверителността, и затворихме изскачащия прозорец.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -113,11 +113,11 @@
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Няма блокирани заявки за проследяване",
+    "title" : "Няма блокирани заявки с проследяване",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Няма открити заявки за проследяване",
+    "title" : "Няма открити заявки с проследяване",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -133,7 +133,7 @@
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Не открихме компании, които да се опитват да зареждат заявки за проследяване на тази страница.",
+    "title" : "Не открихме компании, които да се опитват да зареждат заявки с проследяване на тази страница.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {

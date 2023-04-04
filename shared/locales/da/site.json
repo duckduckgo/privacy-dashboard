@@ -77,7 +77,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Vi har blokeret nogle virksomheder fra at indlæse sporingsanmodninger på denne side.} =2 {Vi blokerede <b>{firstCompany}</b> og <b>{secondCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =3 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b> og <b>{thirdCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =4 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> og <b>{fourthCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =5 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>1 anden</b> fra at indlæse sporingsanmodninger på denne side.} one {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>{othersCount} andre</b> fra at indlæse sporingsanmodninger på denne side.} other {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>{othersCount} andre</b> fra at indlæse sporingsanmodninger på denne side.}}",
+    "title" : "{companyCount, plural, =0 {Vi har blokeret nogle virksomheder fra at indlæse sporingsanmodninger på denne side.} =2 {Vi blokerede <b>{firstCompany}</b> og <b>{secondCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =3 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b> og <b>{thirdCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =4 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> og <b>{fourthCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =5 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>1 anden</b> fra at indlæse sporingsanmodninger på denne side.} one {Vi har blokeret <b>{firstCompany}</b> fra at indlæse sporingsanmodninger på denne side.} other {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>{othersCount} andre</b> fra at indlæse sporingsanmodninger på denne side.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Vi var kun i stand til at skjule pop op-vinduet med samtykke til cookies på dette websted, fordi der ikke var nogen muligheder for at administrere cookiepræferencer. Vores andre beskyttelser mod sporing gælder stadig.",
+    "title" : "Vi var kun i stand til at skjule pop op-vinduet på dette websted, fordi der ikke var nogen muligheder for at administrere cookiepræferencer. Vores andre beskyttelser mod sporing gælder stadig.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Vi har sat dine cookie-indstillinger til at maksimere fortrolighed og lukket pop op-vinduet med samtykke.",
+    "title" : "Vi har sat dine cookie-indstillinger til at maksimere fortrolighed og lukket pop op-vinduet.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {

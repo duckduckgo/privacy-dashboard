@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Nous n'avons pu masquer que la fenêtre contextuelle de consentement aux cookies sur ce site car aucune option n'a été fournie pour gérer les préférences en matière de cookies. Nos autres protections contre le suivi Web s'appliquent toujours.",
+    "title" : "Nous n'avons pu masquer que la fenêtre contextuelle des cookies sur ce site car aucune option n'a été fournie pour gérer les préférences en matière de cookies. Nos autres protections contre le pistage Web s'appliquent toujours.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Nous avons défini vos préférences en matière de cookies pour renforcer la confidentialité de vos données et nous avons fermé la fenêtre contextuelle de consentement.",
+    "title" : "Nous avons défini vos préférences en matière de cookies de façon à renforcer la confidentialité de vos données et nous avons fermé la fenêtre contextuelle.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {

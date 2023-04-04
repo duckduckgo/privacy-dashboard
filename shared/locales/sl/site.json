@@ -41,7 +41,7 @@
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Na tej strani nismo odkrili nobenih zahtev za sledenje.",
+    "title" : "Na tej strani nismo odkrili nobenih zahtevkov za sledenje.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
@@ -49,7 +49,7 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Da bi preprečili okvare spletnega mesta, na tej strani nismo blokirali nobenih podjetij, ki bi nalagala zahteve za sledenje.",
+    "title" : "Da bi preprečili okvare spletnega mesta, na tej strani nismo blokirali nobenih podjetij, ki bi nalagala zahtevke za sledenje.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Na tem spletnem mestu smo lahko le skrili pojavno okno s soglasjem za piškotke, ker ni bilo na voljo nobenih možnosti za upravljanje nastavitev piškotkov. Naša preostala zaščita pred spletnim sledenjem se še vedno izvaja.",
+    "title" : "Na tem spletnem mestu smo lahko le skrili pojavno okno za piškotke, ker ni bilo na voljo nobenih možnosti za upravljanje nastavitev piškotkov. Naša preostala zaščita pred spletnim sledenjem se še vedno izvaja.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Nastavili smo vaše nastavitve piškotkov za čim večjo zasebnost in zaprli pojavno okno za soglasje.",
+    "title" : "Nastavili smo vaše nastavitve piškotkov za čim večjo zasebnost in zaprli pojavno okno.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {

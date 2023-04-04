@@ -53,7 +53,7 @@
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Verzoeken met tracking werden niet verhinderd om te laden omdat beschermingen zijn uitgeschakeld voor deze site. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",
+    "title" : "Verzoeken met tracking werden niet verhinderd om te laden omdat beschermingen zijn uitgeschakeld voor deze site. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "We konden de pop-up voor cookietoestemming op deze site alleen verbergen omdat er geen opties waren om cookievoorkeuren te beheren. De rest van onze bescherming tegen webtracking is nog steeds van toepassing.",
+    "title" : "We konden de cookiepop-up op deze site alleen verbergen omdat er geen opties waren om cookievoorkeuren te beheren. De rest van onze bescherming tegen webtracking is nog steeds van toepassing.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "We hebben je cookievoorkeuren ingesteld voor maximale privacy en het pop-upvenster waarin om toestemming wordt gevraagd gesloten.",
+    "title" : "We hebben je cookievoorkeuren ingesteld voor maximale privacy en de pop-up gesloten.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {

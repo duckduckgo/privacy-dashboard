@@ -53,7 +53,7 @@
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Bu site için Korumalar kapalı olduğundan hiçbir izleme isteğinin yüklenmesi engellenmedi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",
+    "title" : "Bu site için Korumalar kapalı olduğundan, hiçbir izleme isteğinin yüklenmesi engellenmedi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Çerez tercihlerini yönetmek için herhangi bir seçenek sunulmadığından, bu sitede yalnızca çerez onayı açılır penceresini gizleyebildik. Diğer Web İzleme Korumalarımız hâlâ geçerlidir.",
+    "title" : "Çerez tercihlerini yönetmek için herhangi bir seçenek sunulmadığından, bu sitede yalnızca çerez açılır penceresini gizleyebildik. Diğer Web İzleme Korumalarımız hala geçerli.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Çerez tercihlerinizi gizliliği en üst düzeye çıkaracak şekilde ayarladık ve onay açılır penceresini kapattık.",
+    "title" : "Çerez tercihlerinizi gizliliği en üst düzeye çıkaracak şekilde ayarladık ve açılır pencereyi kapattık.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
