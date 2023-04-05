@@ -89,11 +89,11 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Me saime sellel saidil küpsiste nõusoleku hüpikakna ainult peita, sest küpsise-eelistuste haldamiseks ei antud mingeid valikuid. Meie muud veebijälgimise kaitsemeetodid toimivad endiselt.",
+    "title" : "Me saime sellel saidil küpsiste hüpikakna ainult peita, sest küpsise-eelistuste haldamiseks ei antud mingeid valikuid. Meie muud veebijälgimise kaitsemeetodid toimivad endiselt.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Me seadistasime sinu küpsiste eelistused maksimeerima privaatsust ja sulgesime nõusoleku hüpikakna.",
+    "title" : "Me seadistasime sinu küpsiste eelistused maksimeerima privaatsust ja sulgesime hüpikakna.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {

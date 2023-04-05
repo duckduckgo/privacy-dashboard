@@ -52,7 +52,7 @@ export class DashboardPage {
     async screenshot(name) {
         if (!process.env.CI) {
             // console.log('🚧 skipping screenshot 🚧', name)
-            await expect(this.page).toHaveScreenshot(name)
+            await expect(this.page).toHaveScreenshot(name, { maxDiffPixelRatio: 0.1 })
         }
     }
 

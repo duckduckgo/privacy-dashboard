@@ -36200,27 +36200,27 @@ module.exports={
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Блокирано е зареждането на заявки от следните домейни на трети страни, тъй като са идентифицирани като заявки за проследяване. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "title" : "Блокирано е зареждането на заявки от следните домейни на трети страни, тъй като са идентифицирани като заявки с проследяване. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Няма блокирано зареждане на заявки проследяване на тази страница. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "title" : "Няма блокирано зареждане на заявки с проследяване на тази страница. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Не идентифицирахме заявки за проследяване на тази страница.",
+    "title" : "Не идентифицирахме заявки с проследяване на тази страница.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Не открихме компании, които да се опитват да зареждат заявки за проследяване на тази страница.",
+    "title" : "Не открихме компании, които да се опитват да зареждат заявки с проследяване на тази страница.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "За да предотвратим срив на сайта, не сме блокирали зареждането на заявки за проследяване на тази страница от други компании.",
+    "title" : "За да предотвратим срив на сайта, не сме блокирали зареждането на заявки с проследяване на тази страница от други компании.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Няма блокирано зареждане на заявки проследяване, тъй като защитите за този сайт са изключени. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
+    "title" : "Няма блокирано зареждане на заявки с проследяване, тъй като защитите за този сайт са изключени. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -36244,7 +36244,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Блокирахме зареждането на заявки за проследяване на тази страница от няколко компании.} =2 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> .} =5 {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>още 1 друга компания</b>.} one {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>.} other {Блокирахме зареждането на заявки за проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и още <b>{othersCount} други компании</b>.}}",
+    "title" : "{companyCount, plural, =0 {Блокирахме зареждането на заявки за проследяване на тази страница от няколко компании.} =2 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> .} =5 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>още 1 друга компания</b>.} one {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>.} other {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и още <b>{othersCount} други компании</b>.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -36256,11 +36256,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Успяхме само да скрием изскачащия прозорец за съгласие за бисквитките на този сайт, тъй като не бяха предоставени опции за управление на предпочитанията за бисквитките. Останалите ни защити срещу проследяване в мрежата все още са в сила.",
+    "title" : "Успяхме само да скрием изскачащия прозорец за бисквитките на този сайт, тъй като не бяха предоставени опции за управление на предпочитанията за бисквитките. Останалите ни защити срещу проследяване в мрежата все още са в сила.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Настроихме предпочитанията Ви за бисквитките, за да увеличим поверителността, и затворихме изскачащия прозорец за съгласие.",
+    "title" : "Настроихме предпочитанията Ви за бисквитките, за да увеличим поверителността, и затворихме изскачащия прозорец.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -36280,11 +36280,11 @@ module.exports={
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Няма блокирани заявки за проследяване",
+    "title" : "Няма блокирани заявки с проследяване",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Няма открити заявки за проследяване",
+    "title" : "Няма открити заявки с проследяване",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -36300,7 +36300,7 @@ module.exports={
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Не открихме компании, които да се опитват да зареждат заявки за проследяване на тази страница.",
+    "title" : "Не открихме компании, които да се опитват да зареждат заявки с проследяване на тази страница.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
@@ -36788,11 +36788,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Na tomto webu se nám povedlo vyskakovací okno pro souhlas s cookies jen skrýt, protože neobsahovalo žádné možnosti pro nastavení předvoleb souborů cookie. Naše další ochranné prvky proti sledování na webu ale běží dál.",
+    "title" : "Na tomto webu se nám povedlo vyskakovací okno ohledně cookies jen skrýt, protože neobsahovalo žádné možnosti pro nastavení předvoleb souborů cookie. Naše další ochranné prvky proti sledování na webu ale běží dál.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Tvoje předvolby souborů cookie jsme nastavili na co největší ochranu soukromí a vyskakovací okno se žádostí o souhlas jsme zavřeli.",
+    "title" : "Tvoje předvolby pro cookies jsme nastavili na co nejvyšší ochranu soukromí a vyskakovací okno jsme zavřeli.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -37308,7 +37308,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Vi har blokeret nogle virksomheder fra at indlæse sporingsanmodninger på denne side.} =2 {Vi blokerede <b>{firstCompany}</b> og <b>{secondCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =3 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b> og <b>{thirdCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =4 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> og <b>{fourthCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =5 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>1 anden</b> fra at indlæse sporingsanmodninger på denne side.} one {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>{othersCount} andre</b> fra at indlæse sporingsanmodninger på denne side.} other {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>{othersCount} andre</b> fra at indlæse sporingsanmodninger på denne side.}}",
+    "title" : "{companyCount, plural, =0 {Vi har blokeret nogle virksomheder fra at indlæse sporingsanmodninger på denne side.} =2 {Vi blokerede <b>{firstCompany}</b> og <b>{secondCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =3 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b> og <b>{thirdCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =4 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> og <b>{fourthCompany}</b> fra at indlæse sporingsanmodninger på denne side.} =5 {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>1 anden</b> fra at indlæse sporingsanmodninger på denne side.} one {Vi har blokeret <b>{firstCompany}</b> fra at indlæse sporingsanmodninger på denne side.} other {Vi har blokeret <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> og <b>{othersCount} andre</b> fra at indlæse sporingsanmodninger på denne side.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -37320,11 +37320,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Vi var kun i stand til at skjule pop op-vinduet med samtykke til cookies på dette websted, fordi der ikke var nogen muligheder for at administrere cookiepræferencer. Vores andre beskyttelser mod sporing gælder stadig.",
+    "title" : "Vi var kun i stand til at skjule pop op-vinduet på dette websted, fordi der ikke var nogen muligheder for at administrere cookiepræferencer. Vores andre beskyttelser mod sporing gælder stadig.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Vi har sat dine cookie-indstillinger til at maksimere fortrolighed og lukket pop op-vinduet med samtykke.",
+    "title" : "Vi har sat dine cookie-indstillinger til at maksimere fortrolighed og lukket pop op-vinduet.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -37800,7 +37800,7 @@ module.exports={
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Es wurden keine Tracking-Anfragen für das Laden auf dieser Seite blockiert. Wenn die Anfragen eines Unternehmens geladen werden, kann ihm dies ermöglichen, ein Profil von dir zu erstellen.",
+    "title" : "Das Laden von Tracking-Anfragen wurde auf dieser Seite nicht blockiert. Wenn die Anfragen eines Unternehmens geladen werden, kann ihm dies ermöglichen, ein Profil von dir zu erstellen.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
@@ -37840,7 +37840,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Wir haben einige Unternehmen daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =2 {Wir haben <b>{firstCompany}</b> und <b>{secondCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =3 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b> und <b>{thirdCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =4 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> und <b>{fourthCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =5 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> und <b>1 andere</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} one {Wir haben das Laden <b>{firstCompany}</b>von Tracking-Anfragen auf dieser Seite blockiert.} other {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}<b>{thirdCompany}</b></b>, <b>{fourthCompany}</b>und <b>{othersCount}andere</b> daran gehindert, Tracking-Anfragen auf diese Seite zu laden.}}",
+    "title" : "{companyCount, plural, =0 {Wir haben einige Unternehmen daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =2 {Wir haben <b>{firstCompany}</b> und <b>{secondCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =3 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b> und <b>{thirdCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =4 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> und <b>{fourthCompany}</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} =5 {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> und <b>1 weiteres Unternehmen</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} one {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> und <b>{othersCount} weiteres Unternehmen</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.} other {Wir haben <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> und <b>{othersCount} andere</b> daran gehindert, Tracking-Anfragen auf dieser Seite zu laden.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -37852,11 +37852,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Wir konnten das Pop-up-Fenster mit der Cookie-Zustimmung auf dieser Website nur ausblenden, weil es keine Optionen zur Verwaltung der Cookie-Einstellungen gab. Unsere anderen Web-Tracking-Schutzmaßnahmen werden weiterhin angewendet.",
+    "title" : "Wir konnten das Pop-up-Fenster für Cookies auf dieser Website nur ausblenden, weil es keine Optionen zur Verwaltung der Cookie-Einstellungen gab. Unsere anderen Web-Tracking-Schutzmaßnahmen werden weiterhin angewendet.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Wir haben deine Cookie-Einstellungen so eingestellt, dass die Privatsphäre maximiert wird, und das Zustimmungs-Pop-up geschlossen.",
+    "title" : "Wir haben deine Cookie-Einstellungen so eingestellt, dass deine Privatsphäre maximal geschützt wird, und das Pop-up geschlossen.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -38384,11 +38384,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Μπορέσαμε να αποκρύψουμε μόνο το αναδυόμενο παράθυρο συναίνεσης cookie στον ιστότοπο αυτό επειδή δεν παρέχονται επιλογές για διαχείριση των προτιμήσεων cookie. Οι άλλες Προστασίες παρακολούθησης ιστού εξακολουθούν να ισχύουν.",
+    "title" : "Μπορέσαμε να αποκρύψουμε μόνο το αναδυόμενο παράθυρο cookie στον ιστότοπο αυτόν επειδή δεν παρέχονται επιλογές για διαχείριση των προτιμήσεων cookie. Οι άλλες Προστασίες παρακολούθησης ιστού εξακολουθούν να ισχύουν.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Ρυθμίσαμε τις προτιμήσεις σας σχετικά με τα cookies ώστε να μεγιστοποιήσουμε το απόρρητο και κλείσαμε το αναδυόμενο παράθυρο συγκατάθεσης.",
+    "title" : "Ρυθμίσαμε τις προτιμήσεις σας σχετικά με τα cookie ώστε να μεγιστοποιήσουμε το απόρρητο και κλείσαμε το αναδυόμενο παράθυρο.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -38906,11 +38906,11 @@ module.exports={
         "note": "Title for when we have cosmetically hidden a cookie banner"
     },
     "cookiesHiddenSummary": {
-        "title": "We were only able to hide the cookie consent pop-up on this site because no options were provided to manage cookie preferences. Our other Web Tracking Protections still apply.",
+        "title": "We were only able to hide the cookie pop-up on this site because no options were provided to manage cookie preferences. Our other Web Tracking Protections still apply.",
         "note": "A longer explanation that we have cosmetically hidden a cookie banner"
     },
     "cookiesMinimizedSummary": {
-        "title": "We set your cookie preferences to maximize privacy and closed the consent pop-up.",
+        "title": "We set your cookie preferences to maximize privacy and closed the pop-up.",
         "note": "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
     },
     "cookiesMinimizedSettings": {
@@ -39438,11 +39438,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "En este sitio solo hemos podido ocultar la ventana emergente de consentimiento de cookies porque no se han proporcionado opciones para gestionar las preferencias de cookies. Nuestras otras protecciones de rastreo web siguen en funcionamiento.",
+    "title" : "En este sitio solo hemos podido ocultar la ventana emergente de cookies porque no se han proporcionado opciones para gestionar las preferencias de cookies. Nuestras otras protecciones de rastreo web siguen en funcionamiento.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Hemos configurado tus preferencias de cookies para maximizar la privacidad y hemos cerrado la ventana emergente de consentimiento.",
+    "title" : "Hemos configurado tus preferencias de cookies para maximizar la privacidad y hemos cerrado la ventana emergente.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -39970,11 +39970,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Me saime sellel saidil küpsiste nõusoleku hüpikakna ainult peita, sest küpsise-eelistuste haldamiseks ei antud mingeid valikuid. Meie muud veebijälgimise kaitsemeetodid toimivad endiselt.",
+    "title" : "Me saime sellel saidil küpsiste hüpikakna ainult peita, sest küpsise-eelistuste haldamiseks ei antud mingeid valikuid. Meie muud veebijälgimise kaitsemeetodid toimivad endiselt.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Me seadistasime sinu küpsiste eelistused maksimeerima privaatsust ja sulgesime nõusoleku hüpikakna.",
+    "title" : "Me seadistasime sinu küpsiste eelistused maksimeerima privaatsust ja sulgesime hüpikakna.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -40506,7 +40506,7 @@ module.exports={
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Olemme asettaneet evästeasetukset maksimoimaan tietosuojan ja sulkeneet suostumuksen ponnahdusikkunan.",
+    "title" : "Olemme asettaneet evästeasetukset maksimoimaan tietosuojan ja sulkeneet ponnahdusikkunan.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -41034,11 +41034,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Nous n'avons pu masquer que la fenêtre contextuelle de consentement aux cookies sur ce site car aucune option n'a été fournie pour gérer les préférences en matière de cookies. Nos autres protections contre le suivi Web s'appliquent toujours.",
+    "title" : "Nous n'avons pu masquer que la fenêtre contextuelle des cookies sur ce site car aucune option n'a été fournie pour gérer les préférences en matière de cookies. Nos autres protections contre le pistage Web s'appliquent toujours.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Nous avons défini vos préférences en matière de cookies pour renforcer la confidentialité de vos données et nous avons fermé la fenêtre contextuelle de consentement.",
+    "title" : "Nous avons défini vos préférences en matière de cookies de façon à renforcer la confidentialité de vos données et nous avons fermé la fenêtre contextuelle.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -41566,11 +41566,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Uspjeli smo sakriti skočni prozor pristanka na kolačiće samo na ovoj web lokaciji, jer nisu pružene opcije za upravljanje preferencijama kolačića. Ostale naše zaštite od web-praćenja i dalje vrijede.",
+    "title" : "Uspjeli smo sakriti skočni prozor za kolačiće na ovoj web lokaciji jer nisu pružene opcije za upravljanje preferencijama kolačića. Ostale naše zaštite od praćenja na webu i dalje vrijede.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Odredili smo tvoje postavke kolačića kako bismo maksimizirali privatnost te smo zatvorili skočni prozor za pristanak.",
+    "title" : "Odredili smo tvoje postavke kolačića kako bismo maksimizirali privatnost te smo zatvorili skočni prozor.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -42042,27 +42042,27 @@ module.exports={
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "A következő harmadik fél tartományok kéréseinek betöltése blokkolva van, mivel nyomkövető kérésként lettek beazonosítva. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
+    "title" : "A következő harmadik fél tartományok kéréseinek betöltése blokkolva van, mivel nyomon követő kérésként lettek beazonosítva. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Ezen az oldalon nyomkövető kérés betöltése nem lett blokkolva. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
+    "title" : "Ezen az oldalon nem lett blokkolva nyomon követő kérés. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Ezen az oldalon nem észleltünk nyomkövető kérést.",
+    "title" : "Ezen az oldalon nem észleltünk nyomon követő kérést.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Nem található olyan cég, amely megpróbált volna nyomkövető kérést betölteni ezen az oldalon.",
+    "title" : "Nem található olyan cég, amely megpróbált volna nyomon követő kérést betölteni ezen az oldalon.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "A webhely helytelen működésének kiküszöböléséhez nem blokkoltuk egyetlen cég nyomkövető kérésének betöltését sem ezen az oldalon.",
+    "title" : "A webhely helytelen működésének megelőzéséért nem blokkoltuk egyetlen cég nyomon követő kérésének betöltését sem ezen az oldalon.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "A nyomkövető kérések betöltése nincs blokkolva, mert a védelem ki van kapcsolva ehhez a webhelyhez. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
+    "title" : "A nyomon követő kérések betöltése nincs blokkolva, mert a védelem ki van kapcsolva ehhez a webhelyhez. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -42086,7 +42086,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Blokkoltuk néhány cég nyomkövető kéréseinek betöltését ezen az oldalon.} =2 {Blokkoltuk a(z) <b>{firstCompany}</b> és a(z) <b>{secondCompany}</b> nyomkövető kéréseinek betöltését ezen az oldalon.} =3 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b> és a(z) <b>{thirdCompany}</b> nyomkövető kéréseinek betöltését ezen az oldalon.} =4 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b> és a(z) <b>{fourthCompany}</b> nyomkövető kéréseinek betöltését ezen az oldalon.} =5 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>1 másik</b> cég nyomkövető kéréseinek betöltését ezen az oldalon.} one {Blokkoltuk a(z) <b>{firstCompany}</b> nyomkövető kérésének betöltését ezen az oldalon.} other {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>{othersCount} másik</b> cég nyomkövető kéréseinek betöltését ezen az oldalon.}}",
+    "title" : "{companyCount, plural, =0 {Blokkoltuk néhány cég nyomkövető kéréseinek betöltését ezen az oldalon.} =2 {Blokkoltuk a(z) <b>{firstCompany}</b> és a(z) <b>{secondCompany}</b> nyomon követő kéréseinek betöltését ezen az oldalon.} =3 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b> és a(z) <b>{thirdCompany}</b> nyomon követő kéréseinek betöltését ezen az oldalon.} =4 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b> és a(z) <b>{fourthCompany}</b> nyomon követő kéréseinek betöltését ezen az oldalon.} =5 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>1 másik</b> cég nyomon követő kéréseinek betöltését ezen az oldalon.} one {Blokkoltuk a(z) <b>{firstCompany}</b> nyomon követő kérésének betöltését ezen az oldalon.} other {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>{othersCount} másik</b> cég nyomon követő kéréseinek betöltését ezen az oldalon.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -42098,11 +42098,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Ezen a webhelyen csak a sütik elfogadására szolgáló felugró ablakot tudtuk elrejteni, mert nem volt lehetőség a sütikre vonatkozó beállítások kezelésére. A webes követés elleni egyéb védelmi módszereink továbbra is működnek.",
+    "title" : "Ezen a webhelyen csak a sütik felugró ablakát tudtuk elrejteni, mert nem volt lehetőség a sütikre vonatkozó beállítások kezelésére. A webes követés elleni egyéb védelmi módszereink továbbra is működnek.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "A sütibeállításokat az adatvédelem maximalizálására állítottuk be, és bezártuk a beleegyezést kérő felugró ablakot.",
+    "title" : "A sütibeállításokat az adatvédelem maximalizálására állítottuk be, és bezártuk a felugró ablakot.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -42122,11 +42122,11 @@ module.exports={
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Nincsenek nyomkövető kérések blokkolva",
+    "title" : "Nincsenek nyomon követő kérések blokkolva",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Nem találhatók nyomkövető kérések",
+    "title" : "Nem találhatók nyomon követő kérések",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -42142,7 +42142,7 @@ module.exports={
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Nem található olyan cég, amely megpróbált volna nyomkövető kérést betölteni ezen az oldalon.",
+    "title" : "Nem található olyan cég, amely megpróbált volna nyomon követő kérést betölteni ezen az oldalon.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
@@ -42630,11 +42630,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Siamo riusciti a nascondere solo il popup per il consenso ai cookie su questo sito, perché non erano disponibili le opzioni di gestione delle preferenze sui cookie. Le altre nostre protezioni dal tracciamento web restano comunque valide.",
+    "title" : "Siamo riusciti solo a nascondere il popup sui cookie di questo sito perché non era prevista alcuna opzione che consentisse di gestire le preferenze relative ai cookie. Le altre nostre protezioni contro il tracciamento web sono ancora valide.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Abbiamo configurato le preferenze dei cookie in modo da massimizzare la privacy e abbiamo chiuso il pop-up di consenso.",
+    "title" : "Abbiamo configurato le preferenze dei cookie in modo da massimizzare la privacy e abbiamo chiuso il popup.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -43162,11 +43162,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Sutikimo su slapukais iškylantįjį langą šioje svetainėje galėjome paslėpti tik todėl, kad nepateikta jokių parinkčių slapukų nuostatoms tvarkyti. Kitos mūsų žiniatinklio stebėjimo apsaugos priemonės vis dar taikomos.",
+    "title" : "Slapukų iškylantįjį langą šioje svetainėje galėjome paslėpti tik todėl, kad nepateikta jokių parinkčių slapukų nuostatoms tvarkyti. Kitos mūsų žiniatinklio stebėjimo apsaugos priemonės vis dar taikomos.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Nustatėme slapukų nuostatas, kad būtų užtikrintas kuo didesnis privatumas, ir uždarėme iššokantįjį sutikimo langą.",
+    "title" : "Nustatėme slapukų nuostatas, kad būtų užtikrintas kuo didesnis privatumas, ir uždarėme slapukų iškylantįjį langą.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -43638,27 +43638,27 @@ module.exports={
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Šo trešo pušu domēnu pieprasījumu ielāde tika bloķēta, jo tie tika identificēti kā izsekošanas pieprasījumi. Ja uzņēmuma pieprasījumi tiek ielādēti, tas var ļaut uzņēmumam veidot tavu profilu.",
+    "title" : "Šo trešo pušu domēnu pieprasījumu ielāde tika bloķēta, jo tie tika atpazīti kā izsekoši pieprasījumi. Uzņēmuma pieprasījumu ielāde, var ļaut tam veidot tavu profilu.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Šajā lapā netika bloķēta neviena izsekošanas pieprasījuma ielāde. Uzņēmuma pieprasījumu ielāde var ļaut tam veidot tavu profilu.",
+    "title" : "Šajā lapā netika bloķēta neviena izsekojoša pieprasījuma ielāde. Uzņēmuma pieprasījumu ielāde var ļaut tam veidot tavu profilu.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Mēs šajā lapā neatradām nevienu izsekošanas pieprasījumu.",
+    "title" : "Mēs šajā lapā neatradām nevienu izsekojošo pieprasījumu.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Šajā lapā neatradām nevienu uzņēmumu, kas mēģinātu ielādēt izsekošanas pieprasījumus.",
+    "title" : "Šajā lapā neatradām nevienu uzņēmumu, kas mēģinātu ielādēt izsekojošus pieprasījumus.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Lai nepieļautu vietnes darbības traucējumus, mēs nebloķējām neviena uzņēmuma izsekošanas pieprasījumus šajā lapā.",
+    "title" : "Lai nepieļautu vietnes darbības traucējumus, mēs nebloķējām neviena uzņēmuma izsekojošos pieprasījumus šajā lapā.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Netika bloķēta neviena izsekošanas pieprasījuma ielāde, jo šai vietnei ir izslēgta aizsardzība. Uzņēmuma pieprasījumu ielādes gadījumā uzņēmums var veidot tavu profilu.",
+    "title" : "Netika bloķēta neviena izsekojoša pieprasījuma ielāde, jo šai vietnei ir izslēgta aizsardzība. Uzņēmuma pieprasījumu ielādes gadījumā uzņēmums var veidot tavu profilu.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -43682,7 +43682,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Mēs bloķējām dažu uzņēmumu izsekošanas pieprasījumu ielādēšanu šajā lapā.} =2 {Mēs bloķējām <b>{firstCompany}</b> un <b>{secondCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} =3 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b> un <b>{thirdCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} =4 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> un <b>{fourthCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} =5 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>1 cita uzņēmuma</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} zero {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} one {Mēs bloķējām <b>{firstCompany}</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.} other {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekošanas pieprasījumu ielādēšanu šajā lapā.}}",
+    "title" : "{companyCount, plural, =0 {Mēs bloķējām dažu uzņēmumu izsekošanas pieprasījumu ielādēšanu šajā lapā.} =2 {Mēs bloķējām <b>{firstCompany}</b> un <b>{secondCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} =3 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b> un <b>{thirdCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} =4 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> un <b>{fourthCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} =5 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>1 cita uzņēmuma</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} zero {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} one {Mēs bloķējām <b>{firstCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} other {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -43694,11 +43694,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Šajā vietnē mēs varējām tikai paslēpt sīkfailu piekrišanas uznirstošo logu, jo nebija pieejamas sīkfailu preferenču pārvaldīšanas opcijas. Joprojām ir spēkā citi mūsu tīmekļa izsekošanas aizsardzības līdzekļi.",
+    "title" : "Šajā vietnē mēs varējām tikai paslēpt sīkfailu uznirstošo logu, jo nebija pieejamas sīkfailu preferenču pārvaldīšanas opcijas. Joprojām ir spēkā citi mūsu tīmekļa izsekošanas aizsardzības līdzekļi.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Mēs esam iestatījuši sīkfailu preferences, lai maksimāli palielinātu konfidencialitāti, un aizvēruši piekrišanas uznirstošo logu.",
+    "title" : "Mēs esam iestatījuši sīkfailu preferences maksimālai konfidencialitātei un aizvēruši uznirstošo logu.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -43718,11 +43718,11 @@ module.exports={
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Nav bloķēts neviens izsekošanas pieprasījums",
+    "title" : "Nav bloķēts neviens izsekojošais pieprasījums",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Nav atrasts neviens izsekošanas pieprasījums",
+    "title" : "Nav atrasts neviens izsekojošais pieprasījums",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -43738,7 +43738,7 @@ module.exports={
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Šajā lapā neatradām nevienu uzņēmumu, kas mēģinātu ielādēt izsekošanas pieprasījumus.",
+    "title" : "Šajā lapā neatradām nevienu uzņēmumu, kas mēģinātu ielādēt izsekojošus pieprasījumus.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
@@ -44226,11 +44226,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Popup-vinduet om informasjonskapselsamtykke på dette nettstedet ga ingen alternativer for preferanser, så vi har bare skjult det. Våre andre nettsporingsbeskyttelser gjelder fortsatt.",
+    "title" : "Popup-vinduet om informasjonskapsler på dette nettstedet ga ingen alternativer for preferanser, så vi har bare skjult det. Våre andre nettsporingsbeskyttelser gjelder fortsatt.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Vi har angitt informasjonskapselpreferansene dine for å maksimere personvernet, og lukket samtykke-popupen.",
+    "title" : "Vi har angitt informasjonskapselpreferansene dine for å maksimere personvernet, og lukket popupen.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -44722,7 +44722,7 @@ module.exports={
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Verzoeken met tracking werden niet verhinderd om te laden omdat beschermingen zijn uitgeschakeld voor deze site. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",
+    "title" : "Verzoeken met tracking werden niet verhinderd om te laden omdat beschermingen zijn uitgeschakeld voor deze site. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -44758,11 +44758,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "We konden de pop-up voor cookietoestemming op deze site alleen verbergen omdat er geen opties waren om cookievoorkeuren te beheren. De rest van onze bescherming tegen webtracking is nog steeds van toepassing.",
+    "title" : "We konden de cookiepop-up op deze site alleen verbergen omdat er geen opties waren om cookievoorkeuren te beheren. De rest van onze bescherming tegen webtracking is nog steeds van toepassing.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "We hebben je cookievoorkeuren ingesteld voor maximale privacy en het pop-upvenster waarin om toestemming wordt gevraagd gesloten.",
+    "title" : "We hebben je cookievoorkeuren ingesteld voor maximale privacy en de pop-up gesloten.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -45234,27 +45234,27 @@ module.exports={
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Następujące żądania domen innych firm zostały zablokowane przed załadowaniem, ponieważ zostały zidentyfikowane jako żądania śledzenia. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
+    "title" : "Następujące żądania domen innych firm zostały zablokowane przed załadowaniem, ponieważ zostały zidentyfikowane jako żądania ze śledzeniem. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Na tej stronie nie zablokowano ładowania żadnych żądań śledzenia. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
+    "title" : "Na tej stronie nie zablokowano ładowania żadnych żądań ze śledzeniem. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Nie wykryliśmy żadnych żądań śledzenia na tej stronie.",
+    "title" : "Nie wykryliśmy żadnych żądań ze śledzeniem na tej stronie.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania śledzenia.",
+    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania ze śledzeniem.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Nie zablokowaliśmy żadnym firmom możliwości ładowania żądań śledzenia na tej stronie, aby zapobiec jej uszkodzeniu.",
+    "title" : "Nie zablokowaliśmy żadnym firmom możliwości ładowania żądań ze śledzeniem na tej stronie, aby zapobiec jej uszkodzeniu.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Żadne żądania śledzenia nie zostały zablokowane przed załadowaniem, ponieważ zabezpieczenia są wyłączone dla tej witryny. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
+    "title" : "Żadne żądania ze śledzeniem nie zostały zablokowane przed załadowaniem, ponieważ zabezpieczenia są wyłączone dla tej witryny. Załadowanie żądań firmy może umożliwić jej profilowanie użytkownika.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -45278,7 +45278,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Zablokowaliśmy ładowanie żądań śledzenia wysyłanych przez niektóre firmy na tej stronie.} =2 {Zablokowaliśmy firmom <b>{firstCompany}</b> oraz <b>{secondCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =3 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b> oraz <b>{thirdCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =4 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> oraz <b>{fourthCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} =5 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> oraz <b>1 innej firmie</b> możliwość umieszczania na tej stronie żądań śledzenia.} one {Zablokowaliśmy firmie <b>{firstCompany}</b> możliwość umieszczania na tej stronie żądań śledzenia.} few {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i<b> {othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} many {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.} other {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań śledzenia.}}",
+    "title" : "{companyCount, plural, =0 {Zablokowaliśmy ładowanie żądań śledzenia wysyłanych przez niektóre firmy na tej stronie.} =2 {Zablokowaliśmy firmom <b>{firstCompany}</b> oraz <b>{secondCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} =3 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b> oraz <b>{thirdCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} =4 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> oraz <b>{fourthCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} =5 {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> oraz <b>1 innej firmie</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} one {Zablokowaliśmy firmie <b>{firstCompany}</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} few {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i<b> {othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} many {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.} other {Zablokowaliśmy firmom <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> i <b>{othersCount} innym firmom</b> możliwość umieszczania na tej stronie żądań ze śledzeniem.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -45290,11 +45290,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Na tej stronie udało nam się ukryć okienko z prośbą o zgodę na używanie plików cookie, ponieważ nie zawierało ono opcji pozwalających na zarządzanie preferencjami dotyczącymi plików cookie. Pozostałe zabezpieczenia dotyczące śledzenia w sieci nadal działają.",
+    "title" : "Na tej stronie udało nam się tylko ukryć wyskakujące okienko dotyczące plików cookie, ponieważ nie zawierało ono opcji umożliwiających zarządzanie preferencjami dotyczącymi takich plików. Pozostałe zabezpieczenia przed śledzeniem w sieci nadal działają.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Ustawiliśmy preferencje dotyczące plików cookie, aby zmaksymalizować prywatność, i zamknęliśmy wyskakujące okienko zgody.",
+    "title" : "Ustawiliśmy preferencje dotyczące plików cookie, aby zmaksymalizować prywatność i zamknęliśmy wyskakujące okienko.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -45314,11 +45314,11 @@ module.exports={
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Brak zablokowanych żądań śledzenia",
+    "title" : "Brak zablokowanych żądań ze śledzeniem",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Nie znaleziono żądań śledzenia",
+    "title" : "Nie znaleziono żądań ze śledzeniem",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -45334,7 +45334,7 @@ module.exports={
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania śledzenia.",
+    "title" : "Nie zauważyliśmy, żeby jakieś firmy próbowały umieścić na tej stronie żądania ze śledzeniem.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
@@ -45751,11 +45751,11 @@ module.exports={
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
   "trackerNetworksSummaryBlocked" : {
-    "title" : "Foi bloqueado o carregamento dos pedidos dos seguintes domínios de terceiros porque foram identificados como pedidos de rastreamento. Se os pedidos de uma empresa forem carregados, a empresa pode conseguir criar um perfil sobre ti.",
+    "title" : "Foi bloqueado o carregamento dos pedidos dos seguintes domínios de terceiros porque foram identificados como pedidos com rastreamento. Se os pedidos de uma empresa forem carregados, a empresa pode conseguir criar um perfil sobre ti.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
   },
   "trackerNetworksSummaryNoneBlocked" : {
-    "title" : "Não foi bloqueado o carregamento de nenhum pedido de rastreamento nesta página. Se os pedidos de uma empresa forem carregados, a empresa pode conseguir criar um perfil sobre ti.",
+    "title" : "Não foi bloqueado o carregamento de nenhum pedido com rastreamento nesta página. Se os pedidos de uma empresa forem carregados, a empresa pode conseguir criar um perfil sobre ti.",
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
@@ -45763,11 +45763,11 @@ module.exports={
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
-    "title" : "Não encontrámos nenhuma empresa a tentar carregar pedidos de rastreamento nesta página.",
+    "title" : "Não encontrámos nenhuma empresa a tentar carregar pedidos com rastreamento nesta página.",
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Para que o site funcione corretamente, não bloqueámos o carregamento de pedidos de rastreamento de nenhuma empresa.",
+    "title" : "Para que o site funcione corretamente, não bloqueámos o carregamento de pedidos com rastreamento de nenhuma empresa.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
@@ -45795,7 +45795,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Bloqueámos algumas empresas de carregarem solicitações de rastreamento nesta página.} =2 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b> e da <b>{secondCompany}</b> nesta página.} =3 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b> e da <b>{thirdCompany}</b> nesta página.} =4 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b> e da <b>{fourthCompany}</b> nesta página.} =5 {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais 1 empresa</b> nesta página.} one {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b> nesta página.} other {Bloqueámos o carregamento de pedidos de rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais {othersCount} empresas</b> nesta página.}}",
+    "title" : "{companyCount, plural, =0 {Bloqueámos algumas empresas de carregarem solicitações de rastreamento nesta página.} =2 {Bloqueámos o carregamento de pedidos com rastreamento da <b>{firstCompany}</b> e da <b>{secondCompany}</b> nesta página.} =3 {Bloqueámos o carregamento de pedidos com rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b> e da <b>{thirdCompany}</b> nesta página.} =4 {Bloqueámos o carregamento de pedidos com rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b> e da <b>{fourthCompany}</b> nesta página.} =5 {Bloqueámos o carregamento de pedidos com rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais 1 empresa</b> nesta página.} one {Bloqueámos o carregamento de pedidos com rastreamento da <b>{firstCompany}</b> nesta página.} other {Bloqueámos o carregamento de pedidos com rastreamento da <b>{firstCompany}</b>, da <b>{secondCompany}</b>, da <b>{thirdCompany}</b>, da <b>{fourthCompany}</b> e de <b>mais {othersCount} empresas</b> nesta página.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -45807,11 +45807,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Só conseguimos ocultar o pop-up de consentimento de cookies neste site porque não foi disponibilizada nenhuma opção para gerir preferências de cookies. As nossas restantes proteções contra o rastreamento na Internet ainda se aplicam.",
+    "title" : "Só conseguimos ocultar o pop-up de cookies neste site porque não foram disponibilizadas opções para gerir as preferências de cookies. As nossas restantes proteções contra o rastreamento na Internet ainda se aplicam.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Definimos as tuas preferências de cookies para maximizar a privacidade e fechamos o pop-up de consentimento.",
+    "title" : "Definimos as tuas preferências de cookies para maximizar a privacidade e fechámos o pop-up.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -45831,11 +45831,11 @@ module.exports={
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Nenhum pedido de rastreamento bloqueado",
+    "title" : "Nenhum pedido com rastreamento bloqueado",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Nenhum pedido de rastreamento encontrado",
+    "title" : "Nenhum pedido com rastreamento encontrado",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -45851,7 +45851,7 @@ module.exports={
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
-    "title" : "Não encontrámos nenhuma empresa a tentar carregar pedidos de rastreamento nesta página.",
+    "title" : "Não encontrámos nenhuma empresa a tentar carregar pedidos com rastreamento nesta página.",
     "note" : "We did not find any trackers on this page"
   },
   "trackersFoundForAllowlisted" : {
@@ -46339,11 +46339,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Am reușit să ascundem pe acest site fereastra pop-up privind consimțământul aferent modulelor cookie, deoarece nu au fost oferite opțiuni pentru gestionarea preferințelor privind modulele cookie. Se aplică în continuare celelalte instrumente ale noastre de protecție cu privire la urmărirea pe internet.",
+    "title" : "Am reușit să ascundem fereastra pop-up privind modulele cookie numai pe acest site, deoarece nu au fost oferite opțiuni pentru gestionarea preferințelor privind modulele cookie. Se aplică în continuare celelalte instrumente ale noastre de protecție cu privire la urmărirea pe internet.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Am setat preferințele tale privind modulele cookie pentru a maximiza confidențialitatea și am închis fereastra pop-up de consimțământ.",
+    "title" : "Am setat preferințele tale privind modulele cookie pentru a maximiza confidențialitatea și am închis fereastra pop-up.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -46835,7 +46835,7 @@ module.exports={
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Мы не заблокировали ни одного трекинг-запроса, так как защита на этом сайте отключена. Загруженные запросы позволяют компаниям вас профилировать.",
+    "title" : "Мы не заблокировали ни одного запроса на отслеживание, так как защита на этом сайте отключена. Загруженные запросы позволяют компаниям вас профилировать.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -46859,7 +46859,7 @@ module.exports={
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Мы остановили загрузку трекинг-запросов некоторых компаний на этой странице.} =2 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b>.} =5 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще одной</b> компании.} one {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b> на этом сайте.} few {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> и еще <b>{othersCount}</b> на этом сайте.} many {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> на этом сайте.} other {Мы предотвратили загрузку трекинг-запросов от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> на этом сайте.}}",
+    "title" : "{companyCount, plural, =0 {Мы остановили загрузку трекинг-запросов некоторых компаний на этой странице.} =2 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b>.} =5 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще одной</b> компании.} one {Мы предотвратили загрузку запроса на отслеживание от <b>{firstCompany}</b> на этом сайте.} few {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> и еще <b>{othersCount}</b> других на этом сайте.} many {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> других на этом сайте.} other {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> других на этом сайте.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -46871,11 +46871,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Всплывающее окно куки-файлов скрыто, поскольку не предусмотрена возможность выбора куки. Остальные средства защиты от отслеживания онлайн по-прежнему активны.",
+    "title" : "На этом сайте не предусмотрена настройка куки-файлов, поэтому мы просто скрыли их всплывающее окно. Остальные средства защиты от отслеживания онлайн по-прежнему активны.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Заданные нами параметры максимально защищают вашу конфиденциальность и блокируют всплывающее окно настроек куки-файлов.",
+    "title" : "Мы выбрали настройки куки-файлов, обеспечивающие максимальную защиту ваших данных, и закрыли всплывающее окно.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -46895,11 +46895,11 @@ module.exports={
     "note" : "This indicates that 1 or more trackers were blocked."
   },
   "trackerNetworksNotBlocked" : {
-    "title" : "Трекинг-запросы не заблокированы",
+    "title" : "Запросы на отслеживание не блокировались",
     "note" : "This indicates that no trackers were blocked."
   },
   "trackerNetworksNotFound" : {
-    "title" : "Трекинг-запросы не обнаружены",
+    "title" : "Запросы на отслеживание не обнаружены",
     "note" : "This is an alternative heading for when there were no Trackers but there WAS at least 1 non-special request loaded"
   },
   "thirdPartiesLoaded" : {
@@ -47403,11 +47403,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Na tejto lokalite sme mohli kontextové okno so súhlasom pre súbory cookie iba skryť, pretože k dispozícii neboli žiadne možnosti na správu preferencií súborov cookie. Naša ďalšia ochrana pred sledovaním webu stále platí.",
+    "title" : "Na tejto lokalite sme mohli vyskakovacie okno so súhlasom pre súbory cookie iba skryť, pretože k dispozícii neboli žiadne možnosti na správu preferencií súborov cookie. Naša ostatná ochrana proti sledovaniu z webu stále funguje.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Nastavili sme vaše nastavenia súborov cookie na maximalizáciu ochrany súkromia a zatvorili sme automaticky zobrazované okno so súhlasom.",
+    "title" : "Nastavili sme vaše preferencie pre súbory cookie na maximalizáciu ochrany súkromia a zatvorili sme automaticky otvárané okno.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -47887,7 +47887,7 @@ module.exports={
     "note" : "The message shown when we detected trackers, but none were blocked"
   },
   "trackerNetworksSummaryNoneFound" : {
-    "title" : "Na tej strani nismo odkrili nobenih zahtev za sledenje.",
+    "title" : "Na tej strani nismo odkrili nobenih zahtevkov za sledenje.",
     "note" : "The message shown when we didn't detect any trackers"
   },
   "trackerNetworksSummaryNone" : {
@@ -47895,7 +47895,7 @@ module.exports={
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Da bi preprečili okvare spletnega mesta, na tej strani nismo blokirali nobenih podjetij, ki bi nalagala zahteve za sledenje.",
+    "title" : "Da bi preprečili okvare spletnega mesta, na tej strani nismo blokirali nobenih podjetij, ki bi nalagala zahtevke za sledenje.",
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
@@ -47935,11 +47935,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Na tem spletnem mestu smo lahko le skrili pojavno okno s soglasjem za piškotke, ker ni bilo na voljo nobenih možnosti za upravljanje nastavitev piškotkov. Naša preostala zaščita pred spletnim sledenjem se še vedno izvaja.",
+    "title" : "Na tem spletnem mestu smo lahko le skrili pojavno okno za piškotke, ker ni bilo na voljo nobenih možnosti za upravljanje nastavitev piškotkov. Naša preostala zaščita pred spletnim sledenjem se še vedno izvaja.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Nastavili smo vaše nastavitve piškotkov za čim večjo zasebnost in zaprli pojavno okno za soglasje.",
+    "title" : "Nastavili smo vaše nastavitve piškotkov za čim večjo zasebnost in zaprli pojavno okno.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -48467,11 +48467,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Vi kunde dölja popup-fönstret för samtycke till cookies på den här webbplatsen eftersom det inte erbjöds några alternativ för att hantera inställningar för cookies. Våra övriga webbspårningsskydd gäller fortfarande.",
+    "title" : "Vi kunde bara dölja popup-fönstret för cookies på den här webbplatsen eftersom det inte erbjöds några alternativ för att hantera inställningar för cookies. Våra övriga webbspårningsskydd gäller fortfarande.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Vi har konfigurerat dina cookieinställningar för att maximera din integritet och stängt popup-fönstret för samtycke.",
+    "title" : "Vi har konfigurerat dina cookieinställningar för att maximera din integritet och stängt popup-fönstret.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
@@ -48963,7 +48963,7 @@ module.exports={
     "note" : "The message shown when we allowed some trackers to load."
   },
   "trackerNetworksSummaryProtectionsOff" : {
-    "title" : "Bu site için Korumalar kapalı olduğundan hiçbir izleme isteğinin yüklenmesi engellenmedi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",
+    "title" : "Bu site için Korumalar kapalı olduğundan, hiçbir izleme isteğinin yüklenmesi engellenmedi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",
     "note" : "We found trackers, but protections were disabled"
   },
   "createNewDuckAddress" : {
@@ -48999,11 +48999,11 @@ module.exports={
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "Çerez tercihlerini yönetmek için herhangi bir seçenek sunulmadığından, bu sitede yalnızca çerez onayı açılır penceresini gizleyebildik. Diğer Web İzleme Korumalarımız hâlâ geçerlidir.",
+    "title" : "Çerez tercihlerini yönetmek için herhangi bir seçenek sunulmadığından, bu sitede yalnızca çerez açılır penceresini gizleyebildik. Diğer Web İzleme Korumalarımız hala geçerli.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
-    "title" : "Çerez tercihlerinizi gizliliği en üst düzeye çıkaracak şekilde ayarladık ve onay açılır penceresini kapattık.",
+    "title" : "Çerez tercihlerinizi gizliliği en üst düzeye çıkaracak şekilde ayarladık ve açılır pencereyi kapattık.",
     "note" : "A longer explanation that we have set the cookie privacy settings on this website to maximize privacy"
   },
   "cookiesMinimizedSettings" : {
