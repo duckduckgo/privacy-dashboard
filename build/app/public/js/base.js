@@ -31387,7 +31387,7 @@ _i18next["default"].use(_i18nextIcu["default"]).init({
   initImmediate: false,
   fallbackLng: 'en',
   lng: 'en',
-  ns: ['shared', 'site', 'connection', 'report'],
+  ns: ['shared', 'site', 'connection', 'report', 'ctascreens'],
   defaultNS: 'shared',
   resources: resources,
   i18nFormat: {
