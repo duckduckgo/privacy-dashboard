@@ -4,8 +4,8 @@ import { i18n } from '../base/localize.es6'
 
 const ctas = {
     spread: {
-        title: i18n.t('ctascreens:spreadTitle.title'),
-        text: i18n.t('ctascreens:spreadText.title'),
+        title: () => i18n.t('ctascreens:spreadTitle.title'),
+        text: () => i18n.t('ctascreens:spreadText.title'),
         icon: heartArrowSvg,
         action: () => {
             return bel`<a href="https://duckduckgo.com/spread" target="_blank" class="cta__button">${i18n.t(
@@ -14,8 +14,8 @@ const ctas = {
         },
     },
     email: {
-        title: i18n.t('ctascreens:emailTitle.title'),
-        text: i18n.t('ctascreens:emailText.title'),
+        title: () => i18n.t('ctascreens:emailTitle.title'),
+        text: () => i18n.t('ctascreens:emailText.title'),
         icon: emailSvg,
         action: () => {
             return bel`<a href="https://duckduckgo.com/email" target="_blank" class="cta__button">${i18n.t(
@@ -36,8 +36,8 @@ function ctaRotationView() {
         <p class="note token-title-3 text--center">${i18n.t('ctascreens:protectionsUnavailableNote.title')}</p>
         <div class="cta text--center">
             <div class="cta__icon">${cta.icon()}</div>
-            <h1 class="cta__title">${cta.title}</h1>
-            <h2 class="cta__text">${cta.text}</h2>
+            <h1 class="cta__title">${cta.title()}</h1>
+            <h2 class="cta__text">${cta.text()}</h2>
             <div class="cta__action">${cta.action()}</div>
         </div>  
     </div>
