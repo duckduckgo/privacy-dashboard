@@ -1,6 +1,6 @@
 $font__face--default: system, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-$font__face--browser-alt: 'DDG_ProximaNova';
+$font__face--browser-alt: 'DDG_ProximaNova', $font__face--default;
 
 /* Status icons */
 $status--good: 'refresh-assets/Check-Color-16.svg';

@@ -63,7 +63,7 @@
   line-height: 22px;
 }
 .environment--browser .token-body-em {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -86,7 +86,7 @@
   letter-spacing: 0;
 }
 .environment--browser .token-title-3 {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   line-height: 20px;
 }
@@ -101,7 +101,7 @@
   line-height: 20px;
 }
 .environment--browser .token-title-3-em {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
@@ -191,7 +191,7 @@ body.environment--android {
   line-height: 20px;
 }
 body.environment--browser {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
