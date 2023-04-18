@@ -31387,7 +31387,7 @@ _i18next["default"].use(_i18nextIcu["default"]).init({
   initImmediate: false,
   fallbackLng: 'en',
   lng: 'en',
-  ns: ['shared', 'site', 'connection', 'report'],
+  ns: ['shared', 'site', 'connection', 'report', 'ctascreens'],
   defaultNS: 'shared',
   resources: resources,
   i18nFormat: {
@@ -33077,16 +33077,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 var ctas = {
   spread: {
-    title: _localize.i18n.t('ctascreens:spreadTitle.title'),
-    text: _localize.i18n.t('ctascreens:spreadText.title'),
+    title: function title() {
+      return _localize.i18n.t('ctascreens:spreadTitle.title');
+    },
+    text: function text() {
+      return _localize.i18n.t('ctascreens:spreadText.title');
+    },
     icon: heartArrowSvg,
     action: function action() {
       return (0, _bel["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["<a href=\"https://duckduckgo.com/spread\" target=\"_blank\" class=\"cta__button\">", "</a>"])), _localize.i18n.t('ctascreens:spreadButton.title'));
     }
   },
   email: {
-    title: _localize.i18n.t('ctascreens:emailTitle.title'),
-    text: _localize.i18n.t('ctascreens:emailText.title'),
+    title: function title() {
+      return _localize.i18n.t('ctascreens:emailTitle.title');
+    },
+    text: function text() {
+      return _localize.i18n.t('ctascreens:emailText.title');
+    },
     icon: emailSvg,
     action: function action() {
       return (0, _bel["default"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<a href=\"https://duckduckgo.com/email\" target=\"_blank\" class=\"cta__button\">", "</a>"])), _localize.i18n.t('ctascreens:spreadButton.title'));
@@ -33101,7 +33109,7 @@ function ctaRotationView() {
     console.warn('unreachable - selected CTA not available ' + this.model.currentCta);
     return '';
   }
-  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"cta-screen\">\n        <p class=\"note token-title-3 text--center\">", "</p>\n        <div class=\"cta text--center\">\n            <div class=\"cta__icon\">", "</div>\n            <h1 class=\"cta__title\">", "</h1>\n            <h2 class=\"cta__text\">", "</h2>\n            <div class=\"cta__action\">", "</div>\n        </div>  \n    </div>\n    "])), _localize.i18n.t('ctascreens:protectionsUnavailableNote.title'), cta.icon(), cta.title, cta.text, cta.action());
+  return (0, _bel["default"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    <div class=\"cta-screen\">\n        <p class=\"note token-title-3 text--center\">", "</p>\n        <div class=\"cta text--center\">\n            <div class=\"cta__icon\">", "</div>\n            <h1 class=\"cta__title\">", "</h1>\n            <h2 class=\"cta__text\">", "</h2>\n            <div class=\"cta__action\">", "</div>\n        </div>  \n    </div>\n    "])), _localize.i18n.t('ctascreens:protectionsUnavailableNote.title'), cta.icon(), cta.title(), cta.text(), cta.action());
 }
 function heartArrowSvg() {
   return (0, _raw["default"])(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["<svg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M78.5138 21L71.5098 28.003V34.003L78.5138 27V21Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M78.505 27.0034L71.51 33.9614H77.51L84.505 27.0034H78.505Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M66.339 42.0032L63.51 39.1742L76.684 26.0012L79.512 28.8302L66.339 42.0032Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M64.755 32.1171C58.769 31.3911 53.4 34.2001 50.505 38.6781C47.61 34.2001 42.241 31.3911 36.255 32.1171C29.715 32.9091 24.444 38.0531 23.619 44.4181C23.577 44.7471 23.546 45.0751 23.526 45.4001C23.293 49.2851 24.979 53.0491 27.799 55.8071L50.505 78.0031L73.211 55.8071C76.031 53.0491 77.717 49.2851 77.484 45.4001C77.464 45.0751 77.433 44.7471 77.391 44.4181C76.566 38.0531 71.295 32.9091 64.755 32.1171Z\" fill=\"#DE5833\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M77.3909 44.4179C76.5659 38.0529 71.2949 32.9099 64.7549 32.1169C62.5109 31.8449 60.3539 32.0699 58.3809 32.6929C63.6639 34.3599 67.6819 38.9309 68.3929 44.4179C68.4359 44.7479 68.4669 45.0749 68.4869 45.3999C68.7189 49.2849 67.0349 53.0489 64.2129 55.8069L46.0059 73.6049L50.5049 78.0029L73.2109 55.8069C76.0319 53.0489 77.7169 49.2849 77.4839 45.3999C77.4639 45.0749 77.4329 44.7479 77.3909 44.4179Z\" fill=\"#BC4726\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M31.51 66.0034L27.51 78.0034L39.51 74.0034L31.51 66.0034Z\" fill=\"#C0C0C0\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M33.51 74.0034C32.998 74.0034 32.487 73.8084 32.096 73.4174C31.315 72.6364 31.315 71.3704 32.096 70.5894L44.096 58.5894C44.876 57.8084 46.144 57.8084 46.924 58.5894C47.705 59.3704 47.705 60.6364 46.924 61.4174L34.924 73.4174C34.534 73.8084 34.022 74.0034 33.51 74.0034Z\" fill=\"#C0C0C0\"/>\n<path d=\"M86.4922 44L90.5052 41\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M88.5049 52.5H94.5099\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M14.5176 44L10.5046 41\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M12.505 52.5H6.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M86.4922 61.5L90.5052 64.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path d=\"M14.5176 61.5L10.5046 64.5\" stroke=\"#AAAAAA\" stroke-opacity=\"0.6\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M27.9544 15.0818C26.3303 14.4357 24.6178 14.8261 23.4753 15.8672C22.995 14.398 21.6978 13.2137 19.9664 12.9746C18.0748 12.7131 16.2171 13.7652 15.5153 15.4882C15.4792 15.5773 15.4462 15.6669 15.4166 15.7565C15.0641 16.8282 15.2583 18.0079 15.8448 18.9894L20.5677 26.8894L28.5729 22.3469C29.5672 21.7824 30.318 20.8521 30.54 19.7459C30.5584 19.6534 30.574 19.5591 30.5865 19.4638C30.8259 17.6188 29.7289 15.7873 27.9544 15.0818Z\" fill=\"#E2E2E2\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M77.945 75.9298C76.9297 76.1112 76.1926 76.8398 75.9437 77.7173C75.2457 77.1301 74.2269 76.94 73.2844 77.3588C72.2546 77.8163 71.6506 78.9218 71.8348 80.004C71.8444 80.0599 71.8558 80.1151 71.8688 80.1693C72.0255 80.8163 72.49 81.3473 73.0894 81.6569L77.9155 84.1482L80.5157 79.3799C80.8385 78.7875 80.9255 78.0875 80.6926 77.4638C80.673 77.4117 80.6515 77.3596 80.6282 77.3079C80.1741 76.3084 79.0542 75.7314 77.945 75.9298Z\" fill=\"#E2E2E2\"/>\n</svg>\n\n"])));

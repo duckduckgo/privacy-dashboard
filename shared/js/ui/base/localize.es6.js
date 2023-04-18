@@ -18,7 +18,7 @@ i18next.use(ICU).init({
     initImmediate: false,
     fallbackLng: 'en',
     lng: 'en',
-    ns: ['shared', 'site', 'connection', 'report'],
+    ns: ['shared', 'site', 'connection', 'report', 'ctascreens'],
     defaultNS: 'shared',
     resources,
     i18nFormat: {
