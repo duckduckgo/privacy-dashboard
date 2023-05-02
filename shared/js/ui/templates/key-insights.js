@@ -100,7 +100,7 @@ export function renderKeyInsight() {
     }
 
     if (model.tab.requestDetails.blocked.requestCount === 0) {
-        if (model.tab.requestDetails.allowedSpecialCount() > 0) {
+        if (model.tab.requestDetails.allowedTrackerCount() > 0) {
             return bel`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--info"></div>

@@ -308,6 +308,19 @@ export class RequestDetails {
     }
 
     /**
+     * The number of actual trackers that we allowed
+     *
+     * @returns {number}
+     */
+    allowedTrackerCount() {
+        return (
+            this.allowed.adClickAttribution.entitiesCount +
+            this.allowed.ruleException.entitiesCount +
+            this.allowed.protectionDisabled.entitiesCount
+        )
+    }
+
+    /**
      * The number of entities observed that had 'non-special' requests.
      *
      * 'non-special' means a request that was observed, but it was *not* classified as a tracker

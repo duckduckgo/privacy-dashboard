@@ -30843,6 +30843,17 @@ var RequestDetails = /*#__PURE__*/function () {
     }
 
     /**
+     * The number of actual trackers that we allowed
+     *
+     * @returns {number}
+     */
+  }, {
+    key: "allowedTrackerCount",
+    value: function allowedTrackerCount() {
+      return this.allowed.adClickAttribution.entitiesCount + this.allowed.ruleException.entitiesCount + this.allowed.protectionDisabled.entitiesCount;
+    }
+
+    /**
      * The number of entities observed that had 'non-special' requests.
      *
      * 'non-special' means a request that was observed, but it was *not* classified as a tracker
@@ -33239,7 +33250,7 @@ function renderKeyInsight() {
     }))));
   }
   if (model.tab.requestDetails.blocked.requestCount === 0) {
-    if (model.tab.requestDetails.allowedSpecialCount() > 0) {
+    if (model.tab.requestDetails.allowedTrackerCount() > 0) {
       return (0, _bel["default"])(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--info\"></div>\n                    ", "\n                    ", "\n                </div>\n            "])), title(model.tab.domain), description(_localize.i18n.t('site:trackerNetworksSummaryAllowedOnly.title')));
     }
     return (0, _bel["default"])(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n                <div class=\"key-insight key-insight--main\">\n                    <div class=\"large-icon-container hero-icon--no-activity\"></div>\n                    ", "\n                    ", "\n                </div>\n            "])), title(model.tab.domain), description((0, _raw["default"])(_localize.i18n.t('site:trackerNetworksSummaryNone.title'))));
