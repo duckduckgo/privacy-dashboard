@@ -3,18 +3,17 @@ import { i18n } from '../base/localize.es6'
 import { largeHeroIcon } from './shared/hero.es6.js'
 import { topNav } from './shared/top-nav'
 
-const categories = [
-    { category: i18n.t('report:videos.title'), value: 'videos' },
-    { category: i18n.t('report:images.title'), value: 'images' },
-    { category: i18n.t('report:comments.title'), value: 'comments' },
-    { category: i18n.t('report:content.title'), value: 'content' },
-    { category: i18n.t('report:links.title'), value: 'links' },
-    { category: i18n.t('report:login.title'), value: 'login' },
-    { category: i18n.t('report:paywall.title'), value: 'paywall' },
-    { category: i18n.t('report:other.title'), value: 'other' },
-]
-
 export default function () {
+    const categories = [
+        { category: i18n.t('report:videos.title'), value: 'videos' },
+        { category: i18n.t('report:images.title'), value: 'images' },
+        { category: i18n.t('report:comments.title'), value: 'comments' },
+        { category: i18n.t('report:content.title'), value: 'content' },
+        { category: i18n.t('report:links.title'), value: 'links' },
+        { category: i18n.t('report:login.title'), value: 'login' },
+        { category: i18n.t('report:paywall.title'), value: 'paywall' },
+        { category: i18n.t('report:other.title'), value: 'other' },
+    ]
     const icon = largeHeroIcon({
         status: 'breakage-form',
     })

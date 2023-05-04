@@ -33026,32 +33026,32 @@ var _topNav = require("./shared/top-nav");
 var _templateObject, _templateObject2;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-var categories = [{
-  category: _localize.i18n.t('report:videos.title'),
-  value: 'videos'
-}, {
-  category: _localize.i18n.t('report:images.title'),
-  value: 'images'
-}, {
-  category: _localize.i18n.t('report:comments.title'),
-  value: 'comments'
-}, {
-  category: _localize.i18n.t('report:content.title'),
-  value: 'content'
-}, {
-  category: _localize.i18n.t('report:links.title'),
-  value: 'links'
-}, {
-  category: _localize.i18n.t('report:login.title'),
-  value: 'login'
-}, {
-  category: _localize.i18n.t('report:paywall.title'),
-  value: 'paywall'
-}, {
-  category: _localize.i18n.t('report:other.title'),
-  value: 'other'
-}];
 function _default() {
+  var categories = [{
+    category: _localize.i18n.t('report:videos.title'),
+    value: 'videos'
+  }, {
+    category: _localize.i18n.t('report:images.title'),
+    value: 'images'
+  }, {
+    category: _localize.i18n.t('report:comments.title'),
+    value: 'comments'
+  }, {
+    category: _localize.i18n.t('report:content.title'),
+    value: 'content'
+  }, {
+    category: _localize.i18n.t('report:links.title'),
+    value: 'links'
+  }, {
+    category: _localize.i18n.t('report:login.title'),
+    value: 'login'
+  }, {
+    category: _localize.i18n.t('report:paywall.title'),
+    value: 'paywall'
+  }, {
+    category: _localize.i18n.t('report:other.title'),
+    value: 'other'
+  }];
   var icon = (0, _heroEs.largeHeroIcon)({
     status: 'breakage-form'
   });
