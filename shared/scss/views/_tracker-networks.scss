@@ -46,10 +46,10 @@
     margin-right: 8px;
 }
 
-/* todo(Shane): remove these */
 .site-info__tracker__icon--company {
     width: 24px !important;
     height: 24px !important;
+    flex-shrink: 0;
 }
 
 .site-info__domain {
