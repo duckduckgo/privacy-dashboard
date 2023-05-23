@@ -240,6 +240,7 @@ export function backgroundMessage(_channel) {
  * @returns {Promise<{
  *   tab: import('./utils/request-details.mjs').TabData,
  *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
+ *   fireButton?: import('../../../schema/__generated__/schema.types').FireButtonData
  * }>}
  */
 export async function getBackgroundTabData() {
@@ -251,7 +252,7 @@ export async function getBackgroundTabData() {
     const parsedMessageData = getPrivacyDashboardDataSchema.safeParse(resp)
 
     if (parsedMessageData.success === true) {
-        const { tab, emailProtectionUserData, requestData } = parsedMessageData.data
+        const { tab, emailProtectionUserData, requestData, fireButton } = parsedMessageData.data
         const { upgradedHttps, url, parentEntity, specialDomainName, id, localeSettings } = tab
 
         const protections = new Protections(
@@ -273,6 +274,7 @@ export async function getBackgroundTabData() {
                 specialDomainName,
             },
             emailProtectionUserData,
+            fireButton,
         }
     }
 

@@ -216,7 +216,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         if (this.model.tab?.search) {
             this.views.search = new SearchView({
                 pageView: this,
-                model: new SearchModel({ searchText: '', showFireButton: true }),
+                model: new SearchModel({ searchText: '', showFireButton: this.model.fireButton?.enabled }),
                 appendTo: $('#search-form-container'),
                 template: searchTemplate,
             })

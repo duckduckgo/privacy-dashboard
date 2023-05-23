@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "FireButtonData",
+    "type": "object",
+    "description": "This describes settings for the FireButton in the dashboard UI",
+    "required": ["enabled"],
+    "additionalProperties": false,
+    "properties": {
+        "enabled": {
+            "type": "boolean"
+        }
+    }
+}

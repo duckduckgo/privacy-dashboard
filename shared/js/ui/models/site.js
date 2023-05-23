@@ -64,7 +64,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         return new Promise((resolve) => {
             browserUIWrapper
                 .getBackgroundTabData()
-                .then(({ tab, emailProtectionUserData }) => {
+                .then(({ tab, emailProtectionUserData, fireButton }) => {
                     if (tab) {
                         if (tab.locale) {
                             // @ts-ignore
@@ -84,6 +84,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
                     }
 
                     this.emailProtectionUserData = emailProtectionUserData
+                    this.fireButton = fireButton
 
                     this.update()
                     resolve(null)
