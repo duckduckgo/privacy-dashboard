@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import Parent from '../base/model.js'
-import { OpenOptionsMessage, SearchMessage } from '../../browser/common.js'
+import { BurnMessage, OpenOptionsMessage, SearchMessage } from '../../browser/common.js'
 
 /** @this {any} */
 function Search(attrs) {
@@ -24,6 +24,10 @@ Search.prototype = $.extend({}, Parent.prototype, {
      */
     openOptionsPage: function () {
         this.fetch(new OpenOptionsMessage())
+    },
+
+    doBurn: function () {
+        this.fetch(new BurnMessage())
     },
 })
 

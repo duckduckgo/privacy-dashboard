@@ -13,6 +13,7 @@ import {
     setListOptionsSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import {
+    BurnMessage,
     CheckBrokenSiteReportHandledMessage,
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
@@ -53,6 +54,9 @@ export async function fetch(message) {
     }
     if (message instanceof OpenOptionsMessage) {
         return openOptions()
+    }
+    if (message instanceof BurnMessage) {
+        return doBurn(message)
     }
     return new Promise((resolve) => {
         // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
@@ -184,6 +188,17 @@ export async function search(options) {
  */
 export async function openOptions() {
     return toExtensionMessage('openOptions')
+}
+
+export async function doBurn(message) {
+    const browsingDataPermissions = {
+        permissions: ['browsingData']
+    }
+    const permissionRequestGranted = await new Promise((resolve) => chrome.permissions.request(browsingDataPermissions, resolve))
+    if (!permissionRequestGranted) {
+        throw new Error('Permission not granted')
+    }
+    return toExtensionMessage('doBurn', message)
 }
 
 /**

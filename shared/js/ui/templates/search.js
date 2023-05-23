@@ -1,7 +1,13 @@
 import html from 'nanohtml'
 import { i18n } from '../base/localize.js'
 
+/**
+ * @this {any}
+ * @returns {null|HTMLElement}
+ */
 export default function () {
+    const { showFireButton } = this.model
+    const fireButton = showFireButton ? html`<button type="button" class="fire-button js-search-fire-button">🔥</button>` : bel``
     return html`
         <div class="search token-search-input">
             <form class="search-form js-search-form" name="x" data-test-id="search-form">
@@ -18,6 +24,7 @@ export default function () {
                     ${loupeIcon()}
                 </button>
             </form>
+            ${fireButton}
             <button type="button" class="cog-button js-search-cog-button" aria-label="${i18n.t('site:optionsButton.title')}">
                 ${cogIcon()}
             </button>

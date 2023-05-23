@@ -320,6 +320,13 @@ export class OpenSettingsMessages extends Msg {
     }
 }
 
+export class BurnMessage extends Msg {
+    constructor(params) {
+        super()
+        this.since = 0
+    }
+}
+
 /**
  * @template {SetListsMessage|SubmitBrokenSiteReportMessage|UpdatePermissionMessage|CheckBrokenSiteReportHandledMessage|CloseMessage|RefreshEmailAliasMessage|OpenOptionsMessage} T
  * @template {unknown} [Response=unknown]
