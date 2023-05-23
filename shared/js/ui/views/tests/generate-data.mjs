@@ -294,6 +294,9 @@ export function mockToExtensionDashboardMessage(mock) {
         },
         requestData: { requests: mock.requests },
         emailProtectionUserData: undefined,
+        fireButton: {
+            enabled: true
+        }
     }
     if (mock.specialDomainName) {
         msg.tab.specialDomainName = 'extensions'

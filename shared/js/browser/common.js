@@ -321,9 +321,9 @@ export class OpenSettingsMessages extends Msg {
 }
 
 export class BurnMessage extends Msg {
-    constructor(params) {
+    constructor(opts) {
         super()
-        this.since = 0
+        Object.assign(this, opts)
     }
 }
 

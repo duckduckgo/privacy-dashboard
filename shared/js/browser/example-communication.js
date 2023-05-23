@@ -57,12 +57,16 @@ export function backgroundMessage(backgroundModel) {
  * @returns {Promise<{
  *    tab: import('./utils/request-details.mjs').TabData,
  *    emailProtectionUserData: import('../../../schema/__generated__/schema.types').EmailProtectionUserData | undefined,
+ *    fireButton: import('../../../schema/__generated__/schema.types').FireButtonData
  * }>}
  */
 export async function getBackgroundTabData() {
     return {
         tab: overrides.tab,
         emailProtectionUserData: overrides.emailProtectionUserData,
+        fireButton: {
+            enabled: true
+        }
     }
 }
 

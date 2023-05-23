@@ -27,6 +27,7 @@ import CtaRotationView from './cta-rotation.js'
 import TrackerNetworksView from './../views/tracker-networks.js'
 import { MainNavView } from './main-nav'
 import { CookiePromptView } from './cookie-prompt'
+import { FireDialog } from './fire-dialog.js'
 
 /**
  * @constructor
@@ -130,6 +131,9 @@ Site.prototype = $.extend({}, Parent.prototype, {
             if (event.data?.target === 'cookieHidden') {
                 this._showPageConsent(true)
             }
+            if (event.data?.target === 'fireButton') {
+                this._showFireModal()
+            }
         }
     },
 
@@ -196,6 +200,13 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 site: this.model,
                 isCosmetic,
             }),
+        })
+    },
+
+    _showFireModal() {
+        this.dialog = new FireDialog({
+            model: this.model,
+            appendTo: $('#site-info-container')
         })
     },
 

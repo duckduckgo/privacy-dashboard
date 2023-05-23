@@ -61,9 +61,8 @@ Search.prototype = $.extend({}, Parent.prototype, {
     },
 
     _handleFireClick: function (e) {
-        console.log('fire click')
         e.preventDefault()
-        this.model.doBurn()
+        this.pageView.model.send('navigate', { target: 'fireButton' })
     }
 })
 
