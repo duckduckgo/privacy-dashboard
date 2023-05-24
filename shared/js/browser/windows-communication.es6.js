@@ -31,7 +31,7 @@
  * @category integrations
  */
 import { z } from 'zod'
-import { windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema } from '../../../schema/__generated__/schema.parsers'
+import { windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema } from '../../../schema/__generated__/schema.parsers.mjs'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     assert,

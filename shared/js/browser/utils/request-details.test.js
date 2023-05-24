@@ -1,7 +1,8 @@
 import amazon from '../../../../schema/__fixtures__/request-data-amazon.json'
 import google from '../../../../schema/__fixtures__/request-data-google.json'
 import cnn from '../../../../schema/__fixtures__/request-data-cnn.json'
-import { createRequestDetails, createTabData, fromJson, fromMultiJson, Protections, states } from './request-details'
+import { createRequestDetails, createTabData, fromJson, fromMultiJson, states } from './request-details'
+import { Protections } from './protections.mjs'
 
 describe('RequestDetails', () => {
     it('accepts zero requests', () => {

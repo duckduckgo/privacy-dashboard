@@ -8,6 +8,7 @@
         "shared/js/browser/windows-communication.es6.js",
         "shared/js/browser/common.es6.js",
         "shared/js/browser/utils/request-details.js",
+        "shared/js/browser/utils/protections.mjs",
         "shared/js/ui/platform-features.js",
         "shared/js/features.doc.js"
     ],

@@ -1,10 +1,5 @@
-import { Protections } from '../../../browser/utils/request-details'
-import _google from '../../../../../schema/__fixtures__/request-data-google.json'
-import _cnn from '../../../../../schema/__fixtures__/request-data-cnn.json'
-import { detectedRequestSchema, requestDataSchema } from '../../../../../schema/__generated__/schema.parsers'
-
-const google = requestDataSchema.parse(_google)
-const cnn = requestDataSchema.parse(_cnn)
+import { Protections } from '../../../browser/utils/protections.mjs'
+import { protectionsOff } from './toggle-protections.mjs'
 
 /**
  * @typedef {import('../../../browser/utils/request-details').TabData} TabData
@@ -59,28 +54,6 @@ const blocked1 = {
     category: 'Advertising',
     state: { blocked: {} },
 }
-/** @type {DetectedRequest} */
-const blocked2 = {
-    entityName: 'Google',
-    prevalence: 82.6,
-    url: 'pagead2.googlesyndication.com',
-    pageUrl: 'https://example.com',
-    category: 'Advertising',
-    state: { blocked: {} },
-}
-
-/** @type {DetectedRequest} */
-const blocked3 = {
-    entityName: 'Index Exchange',
-    prevalence: 12.7,
-    url: 'htlb.casalemedia.com',
-    pageUrl: 'https://example.com',
-    category: 'Advertising',
-    state: { blocked: {} },
-}
-
-/** @type {DetectedRequest[]} */
-export const defaultRequests = [allowedTracker, allowedThirdParty, blocked1, blocked2, blocked3]
 
 // eslint-disable-next-line no-unused-vars
 export const defaultCertificates = [
@@ -253,6 +226,7 @@ export class MockData {
      * @param {boolean} [params.upgradedHttps]
      * @param {boolean} [params.contentBlockingException]
      * @param {boolean} [params.allowlisted]
+     * @param {boolean} [params.denylisted]
      * @param {any[]} [params.permissions]
      * @param {boolean} [params.specialDomainName]
      * @param {boolean} [params.emailUser]
@@ -269,6 +243,7 @@ export class MockData {
         this.parentEntity = params.parentEntity
         this.permissions = params.permissions
         this.allowlisted = params.allowlisted
+        this.denylisted = params.denylisted
         this.specialDomainName = params.specialDomainName
         this.emailUser = params.emailUser
         this.cookiePromptManagementStatus = params.cookiePromptManagementStatus
@@ -279,10 +254,13 @@ export class MockData {
         if (this.allowlisted) {
             this.protections.allowlisted = true
         }
+        if (this.denylisted) {
+            this.protections.denylisted = true
+            this.contentBlockingException = true
+        }
         if (this.contentBlockingException) {
             this.protections.enabledFeatures = []
         }
-
         if (this.protections.allowlisted || this.contentBlockingException) {
             this.requests = protectionsOff(this.requests)
         }
@@ -333,231 +311,227 @@ export function mockToExtensionDashboardMessage(mock) {
     }
 }
 
-/** @type {Record<string, MockData>} */
-export const dataStates = {
-    'consent-managed': new MockData({
-        url: 'https://example.com',
-        requests: [],
-        cookiePromptManagementStatus: {
-            consentManaged: true,
-        },
-    }),
-    'consent-managed-configurable': new MockData({
-        url: 'https://example.com',
-        requests: [],
-        cookiePromptManagementStatus: {
-            consentManaged: true,
-            configurable: true,
-        },
-    }),
-    'consent-managed-configurable-cosmetic': new MockData({
-        url: 'https://example.com',
-        requests: [],
-        cookiePromptManagementStatus: {
-            consentManaged: true,
-            configurable: true,
-            cosmetic: true,
-        },
-    }),
-    'locale-pl': new MockData({
-        localeSettings: {
-            locale: 'pl',
-        },
-        url: 'https://example.com',
-        requests: [],
-    }),
-    'locale-fr': new MockData({
-        localeSettings: {
-            locale: 'fr',
-        },
-        url: 'https://example.com',
-        requests: [],
-    }),
-    'ad-attribution': new MockData({
-        url: 'https://example.com',
-        requests: [blocked1, allowedAdClickAttribution],
-        certificate: [],
-    }),
-    'without-certificate': new MockData({
-        url: 'https://example.com',
-        requests: [],
-        certificate: [],
-        localeSettings: undefined,
-        parentEntity: undefined,
-        upgradedHttps: false,
-    }),
-    insecure: new MockData({
-        url: 'http://example.com',
-        requests: [],
-        certificate: [],
-        localeSettings: undefined,
-        parentEntity: undefined,
-    }),
-    upgraded: new MockData({
-        url: 'https://example.com',
-        upgradedHttps: true,
-        requests: [],
-        localeSettings: undefined,
-        parentEntity: undefined,
-    }),
-    google: new MockData({
-        requests: google.requests,
-        url: 'https://google.com',
-        parentEntity: {
-            displayName: 'Google',
-            prevalence: 80.1,
-        },
-    }),
-    'google-off': new MockData({
-        requests: protectionsOff(google.requests),
-        contentBlockingException: true,
-        url: 'https://google.com',
-        parentEntity: {
-            displayName: 'Google',
-            prevalence: 80.1,
-        },
-    }),
-    'google-with-blocked': new MockData({
-        requests: google.requests.concat(blocked1),
-        url: 'https://google.com',
-        parentEntity: {
-            displayName: 'Google',
-            prevalence: 80.1,
-        },
-    }),
-    'upgraded+secure': new MockData({
-        requests: [],
-        url: 'https://example.com',
-        upgradedHttps: true,
-        certificate: defaultCertificates,
-    }),
-    cnn: new MockData({
-        url: 'https://edition.cnn.com',
-        requests: cnn.requests,
-        parentEntity: {
-            displayName: 'WarnerMedia, LLC',
-            prevalence: 0.401,
-        },
-    }),
-    '01': new MockData({
-        url: 'https://example.com',
-        requests: [blocked1, allowedTracker],
-    }),
-    '02': new MockData({
-        url: 'https://example.com',
-        requests: [allowedTrackerRule],
-    }),
-    '03': new MockData({
-        url: 'https://example.com',
-        requests: [allowedThirdParty],
-    }),
-    '04': new MockData({
-        url: 'https://example.com',
-        requests: [],
-    }),
-    '05': new MockData({
-        url: 'https://example.com',
-        requests: [blocked1],
-    }),
-    '06': new MockData({
-        url: 'https://example.com',
-        requests: [allowedTracker],
-    }),
-    '07': new MockData({
-        url: 'https://example.com',
-        requests: [allowedThirdParty],
-    }),
-    '08': new MockData({
-        url: 'https://example.com',
-        requests: [allowedThirdParty, allowedTracker],
-    }),
-    '09': new MockData({
-        url: 'https://example.com',
-        requests: [],
-        contentBlockingException: true,
-    }),
-    10: new MockData({
-        url: 'https://example.com',
-        requests: [allowedTracker],
-        contentBlockingException: true,
-    }),
-    11: new MockData({
-        url: 'https://example.com',
-        requests: [allowedThirdParty],
-        contentBlockingException: true,
-    }),
-    12: new MockData({
-        url: 'https://example.com',
-        requests: [allowedThirdParty, allowedTracker],
-        contentBlockingException: true,
-    }),
-    'new-entities': new MockData({
-        url: 'https://m.youtube.com',
-        requests: [
-            {
-                eTLDplus1: 'ytimg.com',
-                entityName: 'Youtube (Google)',
-                ownerName: 'Youtube',
-                pageUrl: 'https://m.youtube.com/',
-                prevalence: 0.5,
-                state: { blocked: {} },
-                url: 'https://i.ytimg.com/vi/AD6OPCFxmJM/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSEbyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBsqqvey-tZ8K3peu7cavrfnR0zDA',
+/**
+ * @param {import('../../../../../schema/__generated__/schema.types').RequestData} google
+ * @param {import('../../../../../schema/__generated__/schema.types').RequestData} cnn
+ */
+export const createDataStates = (google, cnn) => {
+    return {
+        'consent-managed': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            cookiePromptManagementStatus: {
+                consentManaged: true,
             },
-            {
-                category: 'Advertising',
-                eTLDplus1: 'doubleclick.net',
-                entityName: 'Google Ads (Google)',
-                ownerName: 'Google Ads',
-                pageUrl: 'https://m.youtube.com/',
-                prevalence: 0.5,
-                state: { blocked: {} },
-                url: 'https://googleads.g.doubleclick.net/pagead/id',
+        }),
+        'consent-managed-configurable': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            cookiePromptManagementStatus: {
+                consentManaged: true,
+                configurable: true,
             },
-            {
-                category: 'Advertising',
-                eTLDplus1: 'doubleclick.net',
-                entityName: 'Google Analytics (Google)',
-                ownerName: 'Google Ads',
-                pageUrl: 'https://m.youtube.com/',
-                prevalence: 0.5,
-                state: { blocked: {} },
-                url: 'https://static.doubleclick.net/instream/ad_status.js',
+        }),
+        'consent-managed-configurable-cosmetic': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            cookiePromptManagementStatus: {
+                consentManaged: true,
+                configurable: true,
+                cosmetic: true,
             },
-            {
-                category: 'Advertising',
-                eTLDplus1: 'google.com',
-                entityName: 'Instagram (Facebook)',
-                ownerName: 'Google LLC',
-                pageUrl: 'https://m.youtube.com/',
-                prevalence: 80.5,
-                state: { blocked: {} },
-                url: 'https://www.google.com/js/th/EWuoZ_9LU3hL76PT3YFLg_EjKJdTpZ6rgtgTJA98OBY.js',
+        }),
+        'locale-pl': new MockData({
+            localeSettings: {
+                locale: 'pl',
             },
-        ],
-    }),
+            url: 'https://example.com',
+            requests: [],
+        }),
+        'locale-fr': new MockData({
+            localeSettings: {
+                locale: 'fr',
+            },
+            url: 'https://example.com',
+            requests: [],
+        }),
+        'ad-attribution': new MockData({
+            url: 'https://example.com',
+            requests: [blocked1, allowedAdClickAttribution],
+            certificate: [],
+        }),
+        'without-certificate': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            certificate: [],
+            localeSettings: undefined,
+            parentEntity: undefined,
+            upgradedHttps: false,
+        }),
+        insecure: new MockData({
+            url: 'http://example.com',
+            requests: [],
+            certificate: [],
+            localeSettings: undefined,
+            parentEntity: undefined,
+        }),
+        upgraded: new MockData({
+            url: 'https://example.com',
+            upgradedHttps: true,
+            requests: [],
+            localeSettings: undefined,
+            parentEntity: undefined,
+        }),
+        google: new MockData({
+            requests: google.requests,
+            url: 'https://google.com',
+            parentEntity: {
+                displayName: 'Google',
+                prevalence: 80.1,
+            },
+        }),
+        'google-off': new MockData({
+            requests: protectionsOff(google.requests),
+            contentBlockingException: true,
+            url: 'https://google.com',
+            parentEntity: {
+                displayName: 'Google',
+                prevalence: 80.1,
+            },
+        }),
+        'google-with-blocked': new MockData({
+            requests: google.requests.concat(blocked1),
+            url: 'https://google.com',
+            parentEntity: {
+                displayName: 'Google',
+                prevalence: 80.1,
+            },
+        }),
+        'upgraded+secure': new MockData({
+            requests: [],
+            url: 'https://example.com',
+            upgradedHttps: true,
+            certificate: defaultCertificates,
+        }),
+        cnn: new MockData({
+            url: 'https://edition.cnn.com',
+            requests: cnn.requests,
+            parentEntity: {
+                displayName: 'WarnerMedia, LLC',
+                prevalence: 0.401,
+            },
+        }),
+        '01': new MockData({
+            url: 'https://example.com',
+            requests: [blocked1, allowedTracker],
+        }),
+        '02': new MockData({
+            url: 'https://example.com',
+            requests: [allowedTrackerRule],
+        }),
+        '03': new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty],
+        }),
+        '04': new MockData({
+            url: 'https://example.com',
+            requests: [],
+        }),
+        '05': new MockData({
+            url: 'https://example.com',
+            requests: [blocked1],
+        }),
+        '06': new MockData({
+            url: 'https://example.com',
+            requests: [allowedTracker],
+        }),
+        '07': new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty],
+        }),
+        '08': new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty, allowedTracker],
+        }),
+        '09': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            contentBlockingException: true,
+        }),
+        10: new MockData({
+            url: 'https://example.com',
+            requests: [allowedTracker],
+            contentBlockingException: true,
+        }),
+        11: new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty],
+            contentBlockingException: true,
+        }),
+        12: new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty, allowedTracker],
+            contentBlockingException: true,
+        }),
+        'allowlisted': new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty, allowedTracker],
+            allowlisted: true,
+        }),
+        'denylisted': new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty, allowedTracker],
+            denylisted: true,
+        }),
+        'remote-disabled': new MockData({
+            url: 'https://example.com',
+            requests: [allowedThirdParty, allowedTracker],
+            contentBlockingException: true,
+        }),
+        'new-entities': new MockData({
+            url: 'https://m.youtube.com',
+            requests: [
+                {
+                    eTLDplus1: 'ytimg.com',
+                    entityName: 'Youtube (Google)',
+                    ownerName: 'Youtube',
+                    pageUrl: 'https://m.youtube.com/',
+                    prevalence: 0.5,
+                    state: { blocked: {} },
+                    url: 'https://i.ytimg.com/vi/AD6OPCFxmJM/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSEbyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBsqqvey-tZ8K3peu7cavrfnR0zDA',
+                },
+                {
+                    category: 'Advertising',
+                    eTLDplus1: 'doubleclick.net',
+                    entityName: 'Google Ads (Google)',
+                    ownerName: 'Google Ads',
+                    pageUrl: 'https://m.youtube.com/',
+                    prevalence: 0.5,
+                    state: { blocked: {} },
+                    url: 'https://googleads.g.doubleclick.net/pagead/id',
+                },
+                {
+                    category: 'Advertising',
+                    eTLDplus1: 'doubleclick.net',
+                    entityName: 'Google Analytics (Google)',
+                    ownerName: 'Google Ads',
+                    pageUrl: 'https://m.youtube.com/',
+                    prevalence: 0.5,
+                    state: { blocked: {} },
+                    url: 'https://static.doubleclick.net/instream/ad_status.js',
+                },
+                {
+                    category: 'Advertising',
+                    eTLDplus1: 'google.com',
+                    entityName: 'Instagram (Facebook)',
+                    ownerName: 'Google LLC',
+                    pageUrl: 'https://m.youtube.com/',
+                    prevalence: 80.5,
+                    state: { blocked: {} },
+                    url: 'https://www.google.com/js/th/EWuoZ_9LU3hL76PT3YFLg_EjKJdTpZ6rgtgTJA98OBY.js',
+                },
+            ],
+        }),
+    }
 }
 
-/**
- * @param {DetectedRequest[]} requests
- * @returns {DetectedRequest[]}
- */
-export function protectionsOff(requests) {
-    return requests.map((r) => {
-        if ('blocked' in r.state) {
-            return detectedRequestSchema.parse({
-                ...r,
-                state: { allowed: { reason: 'protectionDisabled' } },
-            })
-        }
-        if ('allowed' in r.state) {
-            if (r.state.allowed.reason === 'otherThirdPartyRequest') {
-                return r
-            }
-            return detectedRequestSchema.parse({
-                ...r,
-                state: { allowed: { reason: 'protectionDisabled' } },
-            })
-        }
-        return r
-    })
-}

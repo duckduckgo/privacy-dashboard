@@ -36,6 +36,17 @@ KeyInsightView.prototype = $.extend({}, Parent.prototype, {
     },
 })
 
+const keyInsightsState = /** @type {const} */ ({
+    /* 01 */ insecure: 'insecure',
+    /* 02 */ broken: 'broken',
+    /* 03 */ userAllowListed: 'userAllowListed',
+    /* 04 */ majorTrackingNetwork: 'majorTrackingNetwork',
+    /* 05 */ noneBlocked_someSpecialAllowed: 'noneBlocked_someSpecialAllowed',
+    /* 06 */ noneBlocked: 'noneBlocked',
+    /* 07 */ emptyCompaniesList: 'emptyCompaniesList',
+    /* 08 */ blocked: 'blocked',
+})
+
 /**
  * @this {KeyInsightView}
  */
@@ -43,46 +54,61 @@ export function renderKeyInsight() {
     const model = this.model
     const title = (text) => bel`<h1 class="token-title-3-em">${text}</h1>`
     const description = (text) => bel`<div class="token-title-3"><span role="text">${text}</span></div>`
-    if (model.httpsState === 'none') {
-        return bel`
-            <div class="key-insight key-insight--main">
-                <div class="large-icon-container hero-icon--insecure-connection"></div>
-                ${title(model.tab.domain)}
-                ${description(raw(i18n.t('site:connectionDescriptionUnencrypted.title')))}
-            </div>
-        `
-    }
 
-    // remote disabled
-    if (model.isBroken) {
-        let text = i18n.t('site:protectionsDisabledRemote.title')
-        if (model.isDenylisted) {
-            text = i18n.t('site:protectionsDisabledRemoteOverride.title')
+    /** @type {keyInsightsState[keyof keyInsightsState]} */
+    const state = (() => {
+        if (model.httpsState === 'none') return keyInsightsState.insecure
+        if (model.isBroken) return keyInsightsState.broken
+        if (!model.protectionsEnabled) return keyInsightsState.userAllowListed
+        if (model.isaMajorTrackingNetwork && model.tab.parentEntity) return keyInsightsState.majorTrackingNetwork
+        if (model.tab.requestDetails.blocked.requestCount === 0) {
+            if (model.tab.requestDetails.allowedSpecialCount() > 0) {
+                return keyInsightsState.noneBlocked_someSpecialAllowed
+            }
+            return keyInsightsState.noneBlocked
         }
-        return bel`
-        <div class="key-insight key-insight--main">
-            <div class="large-icon-container hero-icon--protections-off"></div>
-            ${title(model.tab.domain)}
-            ${description(bel`<p class='note note--key-insight'>${text}</p>`)}
-        </div>
-    `
-    }
+        const companyNames = model.tab.requestDetails.blockedCompanyNames()
+        if (companyNames.length === 0) return keyInsightsState.emptyCompaniesList
+        return keyInsightsState.blocked
+    })()
 
-    // user allow-listed
-    if (!model.protectionsEnabled) {
-        return bel`
-            <div class="key-insight key-insight--main">
-                <div class="large-icon-container hero-icon--protections-off"></div>
-                ${title(model.tab.domain)}
-                ${description(raw(i18n.t('site:protectionsDisabled.title')))}
-            </div>
+    /** @type {Record<keyof keyInsightsState, any>} */
+    return {
+        insecure: () => {
+            return bel`
+                <div class="key-insight key-insight--main">
+                    <div class="large-icon-container hero-icon--insecure-connection"></div>
+                    ${title(model.tab.domain)}
+                    ${description(raw(i18n.t('site:connectionDescriptionUnencrypted.title')))}
+                </div>
             `
-    }
+        },
+        broken: () => {
+            let text = i18n.t('site:protectionsDisabledRemote.title')
+            if (model.isDenylisted) {
+                text = i18n.t('site:protectionsDisabledRemoteOverride.title')
+            }
+            return bel`
+                <div class="key-insight key-insight--main">
+                    <div class="large-icon-container hero-icon--protections-off"></div>
+                    ${title(model.tab.domain)}
+                    ${description(bel`<p class='note note--key-insight'>${text}</p>`)}
+                </div>
+            `
+        },
+        userAllowListed: () => {
+            return bel`
+                <div class="key-insight key-insight--main">
+                    <div class="large-icon-container hero-icon--protections-off"></div>
+                    ${title(model.tab.domain)}
+                    ${description(raw(i18n.t('site:protectionsDisabled.title')))}
+                </div>
+            `
+        },
+        majorTrackingNetwork: () => {
+            const company = model.tab.parentEntity
 
-    if (model.isaMajorTrackingNetwork && model.tab.parentEntity) {
-        const company = model.tab.parentEntity
-
-        return bel`
+            return bel`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--tracker-network"></div>
                         ${title(model.tab.domain)}
@@ -97,10 +123,8 @@ export function renderKeyInsight() {
                         )}
                 </div>
             `
-    }
-
-    if (model.tab.requestDetails.blocked.requestCount === 0) {
-        if (model.tab.requestDetails.allowedSpecialCount() > 0) {
+        },
+        noneBlocked_someSpecialAllowed: () => {
             return bel`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--info"></div>
@@ -108,35 +132,35 @@ export function renderKeyInsight() {
                     ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
                 </div>
             `
-        }
-        return bel`
+        },
+        noneBlocked: () => {
+            return bel`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--no-activity"></div>
                     ${title(model.tab.domain)}
                     ${description(raw(i18n.t('site:trackerNetworksSummaryNone.title')))}
                 </div>
             `
-    }
-
-    // todo(Shane): Is this state possible?
-    const companyNames = model.tab.requestDetails.blockedCompanyNames()
-    if (companyNames.length === 0) {
-        return bel`
+        },
+        emptyCompaniesList: () => {
+            return bel`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
                     ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
                 </div>
             `
-    }
-
-    return bel`
-        <div class="key-insight key-insight--main">
-            ${renderCompanyIconsList(model)}
-            ${title(model.tab.domain)}
-            ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
-        </div>
-        `
+        },
+        blocked: () => {
+            return bel`
+                <div class="key-insight key-insight--main">
+                    ${renderCompanyIconsList(model)}
+                    ${title(model.tab.domain)}
+                    ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
+                </div>
+            `
+        },
+    }[state]()
 }
 
 /**

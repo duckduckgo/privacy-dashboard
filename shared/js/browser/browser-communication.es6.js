@@ -11,7 +11,7 @@ import {
     getPrivacyDashboardDataSchema,
     refreshAliasResponseSchema,
     setListOptionsSchema,
-} from '../../../schema/__generated__/schema.parsers'
+} from '../../../schema/__generated__/schema.parsers.mjs'
 import {
     CheckBrokenSiteReportHandledMessage,
     OpenOptionsMessage,
@@ -21,7 +21,8 @@ import {
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
 } from './common.es6'
-import { Protections, createTabData } from './utils/request-details'
+import { createTabData } from './utils/request-details'
+import { Protections } from './utils/protections.mjs'
 
 let channel
 

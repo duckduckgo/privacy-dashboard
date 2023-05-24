@@ -14,7 +14,7 @@ import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
-} from '../../../schema/__generated__/schema.parsers'
+} from '../../../schema/__generated__/schema.parsers.mjs'
 import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, OpenSettingsMessages, SetListsMessage, setupColorScheme } from './common.es6'
 import { createTabData } from './utils/request-details'
@@ -29,7 +29,7 @@ let trackerBlockingData
 let permissionsData
 let certificateData
 let upgradedHttps
-/** @type {import("./utils/request-details").Protections | undefined} */
+/** @type {import("./utils/protections.mjs").Protections | undefined} */
 let protections
 let isPendingUpdates
 let parentEntity

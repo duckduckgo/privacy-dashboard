@@ -56,9 +56,16 @@ export class DashboardPage {
         }
     }
 
+    async screenshotPrimary(name, state) {
+        await this.page.emulateMedia({ reducedMotion: 'reduce' })
+        await this.addStates([state])
+        await this.showsPrimaryScreen()
+        return this.page.screenshot({ path: `screenshots/primary-${name}.png` })
+    }
+
     /**
      * @param {string} name
-     * @param {import("../shared/js/ui/views/tests/generate-data").MockData} state
+     * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
      */
     async screenshotEachScreenForState(name, state) {
         await this.page.emulateMedia({ reducedMotion: 'reduce' })
@@ -176,7 +183,7 @@ export class DashboardPage {
     }
 
     /**
-     * @param {import("../shared/js/ui/views/tests/generate-data").MockData[]} states
+     * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData[]} states
      */
     async addStates(states) {
         await playTimeline(this.page, states, this.platform)

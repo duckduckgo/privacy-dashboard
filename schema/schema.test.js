@@ -3,7 +3,7 @@ import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
-} from './__generated__/schema.parsers'
+} from './__generated__/schema.parsers.mjs'
 import amazon from './__fixtures__/request-data-amazon.json'
 import cnn from './__fixtures__/request-data-cnn.json'
 import google from './__fixtures__/request-data-google.json'

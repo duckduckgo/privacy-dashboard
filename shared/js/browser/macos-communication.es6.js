@@ -20,7 +20,7 @@ import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
-} from '../../../schema/__generated__/schema.parsers'
+} from '../../../schema/__generated__/schema.parsers.mjs'
 import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
@@ -49,7 +49,7 @@ let trackerBlockingData
 let permissionsData
 let certificateData
 let upgradedHttps
-/** @type {import("./utils/request-details").Protections | undefined} */
+/** @type {import("./utils/protections.mjs").Protections | undefined} */
 let protections
 let isPendingUpdates
 let parentEntity

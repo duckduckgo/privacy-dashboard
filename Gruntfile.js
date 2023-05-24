@@ -8,13 +8,6 @@ module.exports = function (grunt) {
 
     const watch = grunt.option('watch')
     const debug = grunt.option('debug')
-
-    // only add `iframe.html` when we're in watch mode
-    const htmlFiles = ['popup.html']
-    if (watch) {
-        htmlFiles.push('iframe.html')
-    }
-
     const appBuildPath = path.join('build', 'app')
 
     const baseFileMap = {
@@ -71,7 +64,7 @@ module.exports = function (grunt) {
             html: {
                 expand: true,
                 cwd: 'shared/html',
-                src: htmlFiles,
+                src: ['popup.html'],
                 dest: `${appBuildPath}/html`,
             },
             index: {
@@ -112,14 +105,19 @@ module.exports = function (grunt) {
                 files: ['shared/img/**/*'],
                 tasks: ['copy:images'],
             },
+            html: {
+                files: ['shared/html/**'],
+                tasks: ['copy:html', 'exec:buildHtml', 'exec:buildIframe'],
+            },
         },
         exec: {
             schema: 'npm run schema',
             buildHtml: 'node scripts/duplicate-html.js',
+            buildIframe: 'node scripts/iframe.mjs',
         },
     })
 
-    grunt.registerTask('build', 'Build project(s)css, templates, js', [
+    const buildTasks = [
         'exec:schema',
         'sass',
         'browserify:ui',
@@ -129,7 +127,11 @@ module.exports = function (grunt) {
         'copy:polyfillLoader',
         'copy:images',
         'exec:buildHtml',
-    ])
+    ]
+    if (debug || watch) {
+        buildTasks.push('exec:buildIframe')
+    }
+    grunt.registerTask('build', 'Build project(s)css, templates, js', buildTasks)
     grunt.registerTask('default', 'build')
     grunt.registerTask('dev', ['default', 'watch'])
 }
