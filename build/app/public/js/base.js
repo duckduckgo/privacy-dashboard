@@ -30410,6 +30410,7 @@ function getOverrides(searchString) {
       overrides.tab.upgradedHttps = match.upgradedHttps;
       overrides.tab.certificate = match.certificate;
       overrides.tab.cookiePromptManagementStatus = match.cookiePromptManagementStatus;
+      overrides.tab.locale = match.localeSettings.locale;
       if (match.allowlisted) {
         overrides.requests = (0, _toggleProtections.protectionsOff)(overrides.requests);
         overrides.tab.requestDetails = (0, _requestDetails.createRequestDetails)(overrides.requests, []);
@@ -35568,54 +35569,54 @@ var createDataStates = function createDataStates(google, cnn) {
         prevalence: 0.401
       }
     }),
-    '01': new MockData({
-      url: 'https://example.com',
-      requests: [blocked1, allowedTracker]
-    }),
-    '02': new MockData({
-      url: 'https://example.com',
-      requests: [allowedTrackerRule]
-    }),
-    '03': new MockData({
-      url: 'https://example.com',
-      requests: [allowedThirdParty]
-    }),
-    '04': new MockData({
+    'protectionsOn': new MockData({
       url: 'https://example.com',
       requests: []
     }),
-    '05': new MockData({
+    'protectionsOn_blocked': new MockData({
       url: 'https://example.com',
       requests: [blocked1]
     }),
-    '06': new MockData({
+    protectionsOn_blocked_allowedTrackers: new MockData({
+      url: 'https://example.com',
+      requests: [blocked1, allowedTracker]
+    }),
+    protectionsOn_blocked_allowedNonTrackers: new MockData({
+      url: 'https://example.com',
+      requests: [blocked1, allowedThirdParty]
+    }),
+    protectionsOn_blocked_allowedTrackers_allowedNonTrackers: new MockData({
+      url: 'https://example.com',
+      requests: [blocked1, allowedThirdParty, allowedTracker]
+    }),
+    protectionsOn_allowedTrackers: new MockData({
       url: 'https://example.com',
       requests: [allowedTracker]
     }),
-    '07': new MockData({
+    protectionsOn_allowedNonTrackers: new MockData({
       url: 'https://example.com',
       requests: [allowedThirdParty]
     }),
-    '08': new MockData({
+    protectionsOn_allowedTrackers_allowedNonTrackers: new MockData({
       url: 'https://example.com',
-      requests: [allowedThirdParty, allowedTracker]
+      requests: [allowedTracker, allowedThirdParty]
     }),
-    '09': new MockData({
+    protectionsOff: new MockData({
       url: 'https://example.com',
       requests: [],
       contentBlockingException: true
     }),
-    10: new MockData({
+    protectionsOff_allowedTrackers: new MockData({
       url: 'https://example.com',
       requests: [allowedTracker],
       contentBlockingException: true
     }),
-    11: new MockData({
+    protectionsOff_allowedNonTrackers: new MockData({
       url: 'https://example.com',
       requests: [allowedThirdParty],
       contentBlockingException: true
     }),
-    12: new MockData({
+    protectionsOff_allowedTrackers_allowedNonTrackers: new MockData({
       url: 'https://example.com',
       requests: [allowedThirdParty, allowedTracker],
       contentBlockingException: true

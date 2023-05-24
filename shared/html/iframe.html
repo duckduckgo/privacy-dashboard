@@ -24,6 +24,12 @@
                 flex-wrap: wrap;
                 padding: 1rem;
             }
+            .json-preview {
+                width: 360px;
+                height: 900px;
+                overflow: scroll;
+                border-right: 1rem solid white;
+            }
             .frames iframe {
                 margin: 0 1rem 1rem 0;
                 box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
@@ -36,17 +42,21 @@
 
     <body>
         <div class="sticky">
-            <p>
+            <div>
                 <button type="button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
                 <label for=""></label
-                ><select name="" id="" onchange="state(this.value)">
+                ><select name="" id="state-select" onchange="onStateChanged(this.value)">
                     <option selected disabled>Select a state</option>
                     <!-- states -->
                 </select>
-            </p>
+            </div>
         </div>
         <div class="frames"></div>
         <script>
+            const initialState = new URLSearchParams(window.location.search).get('state') || 'protectionsOn_blocked';
+            document.querySelector('#state-select').value = initialState
+
+            const json = {};
             const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
             const items = [
                 {
@@ -91,38 +101,45 @@
                 },
             ]
 
-            function apply() {
-                document.querySelector('.frames').innerHTML = items
+            function loadFrames(stateName = initialState) {
+                const frames = items
                     .map((config) => {
-                        const state = config.state || '04'
+                        const state = config.state || 'protectionsOn_blocked'
                         const params = new URLSearchParams(Object.entries({ ...config, state })).toString()
                         const src = 'popup.html?' + params.toString()
                         const height = config.height ?? 600
+                        const { state: _, ...restConfig } = config
                         return `
                 <div>
                     <p><a href="${src}" target="_blank">Open in new tab</a></p>
-                    <pre class="data-preview"><code>${JSON.stringify(config, null, 2)}</code></pre>
+                    <pre class="data-preview"><code>${JSON.stringify(restConfig, null, 2)}</code></pre>
                     <iframe src="${src}" frameborder="0" style="width: 360px; height: ${height}px;"></iframe>
                 </div>
                 `
                     })
                     .join('')
+                const previewJSON = json[stateName]
+                const { certificate, ...rest } = previewJSON;
+                rest.certificate = certificate;
+                const escapedJsonForHTML = JSON.stringify(rest, null, 2).replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                const preview = `<div class='json-preview'><pre><code>${escapedJsonForHTML}</code></pre></div>`;
+                document.querySelector('.frames').innerHTML = preview + frames;
             }
 
-            apply()
+            loadFrames(initialState)
 
             const toggleDarkMode = () => {
                 for (let item of items) {
                     item.theme = item.theme === 'dark' ? 'light' : 'dark'
                 }
-                apply()
+                loadFrames()
             }
 
-            const state = (stateName) => {
+            const onStateChanged = (stateName) => {
                 for (let item of items) {
                     item.state = stateName
                 }
-                apply()
+                loadFrames(stateName)
             }
         </script>
     </body>

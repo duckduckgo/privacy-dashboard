@@ -15,7 +15,20 @@ for (let key of keys) {
     optionList += `<option value=${JSON.stringify(key)}>${key}</option>\n`
 }
 
-const newSrc = iframeSrc.replace('<!-- states -->', optionList);
+
+// iframe json
+const cleaned = {};
+for (let [key, mockData] of Object.entries(iframe)) {
+    // const { certificate, ...rest } = mockData;
+    cleaned[key] = mockData;
+}
+const json = JSON.stringify(cleaned, null, 2);
+
+const newSrc = iframeSrc
+    .replace('<!-- states -->', optionList)
+    .replace('const json = {};', `const json = ${json}`)
+
+writeFileSync(join(ROOT, 'build/app/html/states.json'), json)
 writeFileSync(join(ROOT, 'build/app/html/iframe.html'), newSrc)
 
 

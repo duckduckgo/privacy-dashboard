@@ -46,6 +46,7 @@ export function getOverrides(searchString) {
             overrides.tab.upgradedHttps = match.upgradedHttps
             overrides.tab.certificate = match.certificate
             overrides.tab.cookiePromptManagementStatus = match.cookiePromptManagementStatus
+            overrides.tab.locale = match.localeSettings.locale
             if (match.allowlisted) {
                 overrides.requests = protectionsOff(overrides.requests)
                 overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
