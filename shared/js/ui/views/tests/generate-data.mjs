@@ -443,7 +443,15 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOn_allowedTrackers: new MockData({
             url: 'https://example.com',
-            requests: [allowedTracker],
+            requests: [
+                allowedTracker,
+                allowedTrackerRule,
+                allowedAdClickAttribution,
+                {
+                    ...allowedTracker,
+                    state: {allowed: {reason: "protectionDisabled"}}
+                },
+            ],
         }),
         protectionsOn_allowedNonTrackers: new MockData({
             url: 'https://example.com',

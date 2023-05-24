@@ -73,6 +73,8 @@ jobs:
                   retention-days: 30
             - name: Build docs
               run: npm run docs
+            - name: copy-to-docs
+              run: cp -r build/app/ build/docs/app
     deploy:
         runs-on: ubuntu-20.04
         needs: build

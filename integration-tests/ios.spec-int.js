@@ -176,7 +176,7 @@ if (!process.env.CI) {
                 state: testDataStates['google-with-blocked'],
             },
             {
-                name: 'primary-none-blocked-some-special-allowed',
+                name: 'primary-none-blocked-some-trackers-allowed',
                 state: testDataStates['protectionsOn_allowedTrackers'],
             },
             {
@@ -186,6 +186,10 @@ if (!process.env.CI) {
             {
                 name: 'primary-none-blocked',
                 state: testDataStates['protectionsOn'],
+            },
+            {
+                name: 'primary-blocked',
+                state: testDataStates['cnn'],
             },
         ]
         for (const { name, state } of states) {
