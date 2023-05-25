@@ -57,6 +57,7 @@ export interface API {
   "locale-settings"?: LocaleSettings;
   "refresh-alias-response"?: RefreshAliasResponse;
   exe?: ExtensionMessageSetListOptions;
+  "fire-button"?: FireButtonData;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -197,6 +198,7 @@ export interface GetPrivacyDashboardData {
   requestData: RequestData;
   emailProtectionUserData?: EmailProtectionUserData;
   tab: Tab;
+  fireButton?: FireButton;
 }
 export interface EmailProtectionUserData {
   nextAlias: string;
@@ -252,6 +254,9 @@ export interface LocaleSettings {
 export interface ParentEntity {
   displayName: string;
   prevalence: number;
+}
+export interface FireButton {
+  enabled: boolean;
 }
 export interface Search {
   term: string;
@@ -348,5 +353,23 @@ export interface RefreshAliasResponse {
 export interface ExtensionMessageSetListOptions {
   messageType: "setLists";
   options: SetListOptions;
+}
+/**
+ * This describes settings for the FireButton in the dashboard UI
+ */
+export interface FireButtonData {
+  options: FireOption[];
+}
+export interface FireOption {
+  name: string;
+  options: {
+    [k: string]: unknown;
+  };
+  descriptionStats: {
+    history?: string;
+    openTabs?: number;
+    cookies?: number;
+  };
+  [k: string]: unknown;
 }
 

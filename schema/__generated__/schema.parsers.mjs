@@ -48,6 +48,10 @@ export const parentEntitySchema = z.object({
     prevalence: z.number()
 });
 
+export const fireButtonSchema = z.object({
+    enabled: z.boolean()
+});
+
 export const searchSchema = z.object({
     term: z.string()
 });
@@ -91,6 +95,16 @@ export const extensionMessageSetListOptionsSchema = z.object({
     options: setListOptionsSchema
 });
 
+export const fireOptionSchema = z.record(z.unknown()).and(z.object({
+    name: z.string(),
+    options: z.record(z.unknown()),
+    descriptionStats: z.object({
+        history: z.string().optional(),
+        openTabs: z.number().optional(),
+        cookies: z.number().optional()
+    })
+}));
+
 export const detectedRequestSchema = z.object({
     url: z.string(),
     eTLDplus1: z.string().optional(),
@@ -117,6 +131,10 @@ export const breakageReportSchema = z.object({
     response: z.record(z.unknown()).optional()
 });
 
+export const fireButtonDataSchema = z.object({
+    options: z.array(fireOptionSchema)
+});
+
 export const requestDataSchema = z.object({
     requests: z.array(detectedRequestSchema),
     installedSurrogates: z.array(z.string()).optional()
@@ -125,7 +143,8 @@ export const requestDataSchema = z.object({
 export const getPrivacyDashboardDataSchema = z.object({
     requestData: requestDataSchema,
     emailProtectionUserData: emailProtectionUserDataSchema.optional(),
-    tab: tabSchema
+    tab: tabSchema,
+    fireButton: fireButtonSchema.optional()
 });
 
 export const windowsViewModelSchema = z.object({
@@ -157,6 +176,7 @@ export const apiSchema = z.object({
     "windows-incoming-message": windowsIncomingMessageSchema.optional(),
     "locale-settings": localeSettingsSchema.optional(),
     "refresh-alias-response": refreshAliasResponseSchema.optional(),
-    exe: extensionMessageSetListOptionsSchema.optional()
+    exe: extensionMessageSetListOptionsSchema.optional(),
+    "fire-button": fireButtonDataSchema.optional()
 });
 
