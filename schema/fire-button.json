@@ -3,11 +3,43 @@
     "title": "FireButtonData",
     "type": "object",
     "description": "This describes settings for the FireButton in the dashboard UI",
-    "required": ["enabled"],
+    "required": ["options"],
     "additionalProperties": false,
     "properties": {
-        "enabled": {
-            "type": "boolean"
+        "options": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/fireOption"
+            }
+        }
+    },
+    "definitions": {
+        "fireOption": {
+            "required": ["name", "options", "descriptionStats"],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "options": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "descriptionStats": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "history": {
+                            "type": "string"
+                        },
+                        "openTabs": {
+                            "type": "number"
+                        },
+                        "cookies": {
+                            "type": "number"
+                        }
+                    }
+                }
+            }
         }
     }
 }

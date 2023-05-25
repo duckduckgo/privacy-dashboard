@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import bel from 'bel'
 import Parent from '../base/view.es6.js'
-import { BurnMessage } from '../../browser/common.es6.js'
+import { BurnMessage, FetchBurnOptions } from '../../browser/common.es6.js'
 
 /**
  * @param {object} ops 
@@ -11,8 +11,17 @@ export function FireDialog(ops) {
     this.model = ops.model
     this.template = template
     Parent.call(this, ops)
-    // @ts-ignore
-    this._setup()
+
+    // fetch all the options for the model from the extension.
+    // This tells us what options should be shown in the dropdown and what stats to display with
+    // them.
+    this.model.fetch(new FetchBurnOptions()).then((resp) => {
+        this.model.fireOptions = resp.options
+        // @ts-ignore
+        this._rerender()
+        // @ts-ignore
+        this._setup()
+    })
 }
 
 FireDialog.prototype = $.extend({}, Parent.prototype, {
@@ -20,31 +29,45 @@ FireDialog.prototype = $.extend({}, Parent.prototype, {
         this._cacheElems('#fire-button', ['burn', 'cancel', 'opts'])
         this.bindEvents([
             [this.$burn, 'click', this._onBurn],
-            [this.$cancel, 'click', this._close]
+            [this.$cancel, 'click', this._close],
+            [this.$opts, 'change', this._updateSummary],
         ])
     },
 
     _onBurn: function () {
         const selectedOption = this.$opts[0].selectedIndex
-        const opts = fireOptions[selectedOption][1]
+        const opts = this.model.fireOptions[selectedOption].options
         this.model.fetch(new BurnMessage(opts))
     },
 
     _close: function () {
         document.getElementById('fire-button-container')?.remove()
+    },
+
+    _updateSummary: function (ev) {
+        const selectedOption = this.$opts[0].selectedIndex
+        const opts = this.model.fireOptions[selectedOption]
+        const summaryElement = $('#fire-button-summary')
+        summaryElement.replaceWith(fireSummaryTemplate(opts))
     }
 })
 
-const ONE_HOUR = 60 * 60 * 1000
-const fireOptions = [
-    ['All time', {}],
-    ['Last hour', { since: Date.now() - ONE_HOUR }],
-    ['Last 24 hours', { since: Date.now() - (ONE_HOUR * 24) }],
-    // ['Current site only', { currentSiteOnly: true }]
-]
-
+/**
+ * @this {any}
+ * @returns {null|HTMLElement}
+ */
 function template() {
-    const selectOptions = fireOptions.map((opt) => bel`<option>${opt[0]}</option>`)
+    /**
+     * @type {{
+     *  fireOptions: import('../../../../schema/__generated__/schema.types.js').FireOption[]
+     * }}
+     */
+    const { fireOptions } = this.model
+    if (!fireOptions) {
+        return bel`<dialog id="fire-button-container"></dialog>`
+    }
+    const selectOptions = fireOptions.map(({ name }) => bel`<option>${name}</option>`)
+    const summary = fireSummaryTemplate(fireOptions[0])
     return bel`
     <dialog id="fire-button-container" open>
         <div id="fire-button-content">
@@ -55,8 +78,19 @@ function template() {
             <select id="fire-button-opts">
                 ${selectOptions}
             </select>
+            ${summary}
             <button id="fire-button-burn">🔥 Close tabs and clear data</button>
             <button id="fire-button-cancel">Cancel</button>
         </div>
     </dialog>`
+}
+
+/**
+ * Generate a string to describe what will be burned.
+ * @param {import('../../../../schema/__generated__/schema.types.js').FireOption} selectedOption
+ * @returns {null|HTMLElement}
+ */
+function fireSummaryTemplate(selectedOption) {
+    const { descriptionStats } = selectedOption
+    return bel`<p id="fire-button-summary">Close <b>${descriptionStats.openTabs} tabs</b>, clear <b>${descriptionStats.history} browsing history</b> and cookies on ${descriptionStats.cookies} sites?</p>`
 }

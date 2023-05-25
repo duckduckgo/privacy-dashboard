@@ -16,7 +16,7 @@
             "$ref": "#/definitions/tab"
         },
         "fireButton": {
-            "$ref": "./fire-button.json"
+            "$ref": "#/definitions/fireButton"
         }
     },
     "definitions": {
@@ -55,6 +55,15 @@
                 "specialDomainName": {
                     "description": "Provide this if the current tab is a domain that we cannot provide regular dashboard features for (like new tab, about://blank etc)",
                     "type": "string"
+                }
+            }
+        },
+        "fireButton": {
+            "required": ["enabled"],
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
                 }
             }
         }

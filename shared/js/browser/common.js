@@ -327,6 +327,8 @@ export class BurnMessage extends Msg {
     }
 }
 
+export class FetchBurnOptions extends Msg {}
+
 /**
  * @template {SetListsMessage|SubmitBrokenSiteReportMessage|UpdatePermissionMessage|CheckBrokenSiteReportHandledMessage|CloseMessage|RefreshEmailAliasMessage|OpenOptionsMessage} T
  * @template {unknown} [Response=unknown]
