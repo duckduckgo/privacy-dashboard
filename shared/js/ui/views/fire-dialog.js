@@ -37,7 +37,9 @@ FireDialog.prototype = $.extend({}, Parent.prototype, {
     _onBurn: function () {
         const selectedOption = this.$opts[0].selectedIndex
         const opts = this.model.fireOptions[selectedOption].options
-        this.model.fetch(new BurnMessage(opts))
+        this.model.fetch(new BurnMessage(opts)).then(() => {
+            this._close()
+        })
     },
 
     _close: function () {
@@ -92,5 +94,10 @@ function template() {
  */
 function fireSummaryTemplate(selectedOption) {
     const { descriptionStats } = selectedOption
-    return bel`<p id="fire-button-summary">Close <b>${descriptionStats.openTabs} tabs</b>, clear <b>${descriptionStats.history} browsing history</b> and cookies on ${descriptionStats.cookies} sites?</p>`
+    return bel`<p id="fire-button-summary">
+        ${descriptionStats.openTabs ? `Close ${descriptionStats.openTabs} tabs, ` : ''}
+        ${descriptionStats.history ? `clear ${descriptionStats.history} browsing history ` : ''}
+        ${descriptionStats.openTabs || descriptionStats.history ? 'and ' : ''}
+        delete cookies on ${descriptionStats.cookies} sites?
+    </p>`
 }
