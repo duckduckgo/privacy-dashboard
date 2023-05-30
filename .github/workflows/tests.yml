@@ -10,10 +10,10 @@ jobs:
         runs-on: ubuntu-20.04
         steps:
             - uses: actions/checkout@v2
-            - name: Use Node.js 16
+            - name: Use Node.js 18
               uses: actions/setup-node@v2
               with:
-                  node-version: 16.x
+                  node-version: 18.x
             - name: Cache node modules
               id: cache-npm
               uses: actions/cache@v3
@@ -41,10 +41,10 @@ jobs:
         needs: test
         steps:
             - uses: actions/checkout@v2
-            - name: Use Node.js 16
+            - name: Use Node.js 18
               uses: actions/setup-node@v1
               with:
-                  node-version: 16.x
+                  node-version: 18.x
             - name: Cache node modules
               id: cache-npm
               uses: actions/cache@v3
@@ -84,10 +84,10 @@ jobs:
             url: ${{ steps.deployment.outputs.page_url }}
         steps:
             - uses: actions/checkout@v2
-            - name: Use Node.js 16
+            - name: Use Node.js 18
               uses: actions/setup-node@v1
               with:
-                  node-version: 16.x
+                  node-version: 18.x
             - name: Cache build outputs
               id: build-output
               uses: actions/cache@v3

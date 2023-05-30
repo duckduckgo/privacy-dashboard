@@ -87,8 +87,9 @@ serve the `build/docs` folder (or just open the file directly in the browser)
 
 ## Watch mode
 
-You can build the 'example' variant in watch mode by running `npm run watch.example`.
-If you also want to serve the content, in a separate terminal run `npm run watch.serve`.
+To run the build every time you edit files, run `npm run watch.build`. 
+
+If you also want to serve the content, in a separate terminal run `npm run preview`.
 
 CSS, JS & HTML will be processed on each file change - you'll just need to reload manually in the browser.
 
