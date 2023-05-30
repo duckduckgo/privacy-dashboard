@@ -1,11 +1,11 @@
 import { test } from '@playwright/test'
-import { DashboardPage } from './DashboardPage'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
+import { DashboardPage } from './DashboardPage'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
     })
 })
@@ -13,7 +13,7 @@ test.describe('initial page data', () => {
 test.describe('breakage form', () => {
     test('should submit with no values', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.screenshot('breakage-form.png')
         await dash.submitBreakageForm()
@@ -25,7 +25,7 @@ test.describe('breakage form', () => {
 test.describe('setting the height', () => {
     test('should send the initial height to native', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.mocks.calledForInitialHeight()
     })
 })
@@ -33,7 +33,7 @@ test.describe('setting the height', () => {
 test.describe('Protections toggle', () => {
     test('pressing toggle should disable protections', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.toggleProtectionsOff()
         await page.waitForTimeout(500) // todo(Shane): remove this
         await dash.mocks.calledForToggleAllowList()

@@ -1,8 +1,8 @@
 import { isValidPlatform } from '../../ui/environment-check'
-import { createRequestDetails, createTabData } from './request-details.mjs'
-import { Protections } from './protections.mjs'
 import { testDataStates } from '../../ui/views/tests/states-with-fixtures'
 import { protectionsOff } from '../../ui/views/tests/toggle-protections.mjs'
+import { createRequestDetails, createTabData } from './request-details.mjs'
+import { Protections } from './protections.mjs'
 
 /**
  * The purpose of this function is to allow URL parameters to override

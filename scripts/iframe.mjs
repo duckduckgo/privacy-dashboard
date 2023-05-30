@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 const ROOT = join(cwd(import.meta.url), '..')
 
 import { createDataStates } from '../shared/js/ui/views/tests/generate-data.mjs'
+import { cwd } from './utils.mjs'
 const google = JSON.parse(readFileSync(join(ROOT, 'schema/__fixtures__/request-data-google.json'), 'utf8'))
 const cnn = JSON.parse(readFileSync(join(ROOT, 'schema/__fixtures__/request-data-cnn.json'), 'utf8'))
 const iframeSrc = readFileSync(join(ROOT, 'shared/html/iframe.html'), 'utf8')
@@ -23,20 +24,9 @@ for (let [key, mockData] of Object.entries(iframe)) {
 }
 const json = JSON.stringify(cleaned, null, 2)
 
-const newSrc = iframeSrc.replace('<!-- states -->', optionList).replace('const json = {};', `const json = ${json}`)
+const newSrc = iframeSrc.replace('<!-- states -->', optionList).replace('const json = {}', `const json = ${json}`)
 
 writeFileSync(join(ROOT, 'build/app/html/states.json'), json)
+console.log(`✅ [json] build/app/html/states.json`)
 writeFileSync(join(ROOT, 'build/app/html/iframe.html'), newSrc)
-
-/**
- * Cross-platform absolute directory path for modules.
- *
- * On windows, 'pathname' has a leading `/` which needs removing
- */
-export function cwd(current) {
-    const pathname = new URL('.', current).pathname
-    if (process.platform === 'win32') {
-        return pathname.slice(1)
-    }
-    return pathname
-}
+console.log(`✅ [html] build/app/html/iframe.html`)

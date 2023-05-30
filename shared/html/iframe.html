@@ -53,10 +53,10 @@
         </div>
         <div class="frames"></div>
         <script>
-            const initialState = new URLSearchParams(window.location.search).get('state') || 'protectionsOn_blocked';
+            const initialState = new URLSearchParams(window.location.search).get('state') || 'protectionsOn_blocked'
             document.querySelector('#state-select').value = initialState
 
-            const json = {};
+            const json = {}
             const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
             const items = [
                 {
@@ -119,11 +119,11 @@
                     })
                     .join('')
                 const previewJSON = json[stateName]
-                const { certificate, ...rest } = previewJSON;
-                rest.certificate = certificate;
+                const { certificate, ...rest } = previewJSON
+                rest.certificate = certificate
                 const escapedJsonForHTML = JSON.stringify(rest, null, 2).replace(/</g, '&lt;').replace(/>/g, '&gt;')
-                const preview = `<div class='json-preview'><pre><code>${escapedJsonForHTML}</code></pre></div>`;
-                document.querySelector('.frames').innerHTML = preview + frames;
+                const preview = `<div class='json-preview'><pre><code>${escapedJsonForHTML}</code></pre></div>`
+                document.querySelector('.frames').innerHTML = preview + frames
             }
 
             loadFrames(initialState)

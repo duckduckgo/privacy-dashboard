@@ -242,7 +242,7 @@ export async function installBrowserMocks(page) {
                 window.chrome = {}
             }
             window.__playwright = {
-                messages: messages,
+                messages,
                 mocks: {
                     outgoing: [],
                     incoming: [],

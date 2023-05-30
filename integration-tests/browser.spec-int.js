@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { MockData, mockToExtensionDashboardMessage } from '../shared/js/ui/views/tests/generate-data.mjs'
-import { DashboardPage } from './DashboardPage'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
+import { DashboardPage } from './DashboardPage'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -18,7 +18,7 @@ test.describe('breakage form', () => {
         const mock = new MockData({ url: 'https://example.com' })
         const messages = mockToExtensionDashboardMessage(mock)
         const dash = await DashboardPage.browser(page, messages)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.screenshot('breakage-form.png')
         await dash.submitBreakageForm()
@@ -29,7 +29,7 @@ test.describe('breakage form', () => {
         const mock = new MockData({ url: 'https://example.com' })
         const messages = mockToExtensionDashboardMessage(mock)
         const dash = await DashboardPage.browser(page, messages)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.enterBreakageSubscription('Video not playing')
         await dash.submitBreakageForm()
@@ -42,7 +42,7 @@ test.describe('breakage form', () => {
         const mock = new MockData({ url: 'https://example.com' })
         const messages = mockToExtensionDashboardMessage(mock)
         const dash = await DashboardPage.browser(page, messages)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         const optionToSelect = "Video didn't play"
         await dash.clickReportBreakage()
         await dash.selectBreakageCategory(optionToSelect)
@@ -60,7 +60,7 @@ test.describe('Protections toggle', () => {
             const mock = new MockData({ url: 'https://example.com' })
             const messages = mockToExtensionDashboardMessage(mock)
             const dash = await DashboardPage.browser(page, messages)
-            await dash.addStates([testDataStates['protectionsOn']])
+            await dash.addStates([testDataStates.protectionsOn])
             await dash.toggleProtectionsOff()
             await page.waitForTimeout(500) // todo(Shane): remove this
             await dash.mocks.calledForToggleAllowList('protections-off')
@@ -71,7 +71,7 @@ test.describe('Protections toggle', () => {
             const mock = new MockData({ url: 'https://example.com', allowlisted: true })
             const messages = mockToExtensionDashboardMessage(mock)
             const dash = await DashboardPage.browser(page, messages)
-            await dash.addStates([testDataStates['protectionsOn']])
+            await dash.addStates([testDataStates.protectionsOn])
             await dash.toggleProtectionsOn()
             await page.waitForTimeout(500) // todo(Shane): remove this
             await dash.mocks.calledForToggleAllowList('protections-on')
@@ -82,7 +82,7 @@ test.describe('Protections toggle', () => {
             const mock = new MockData({ url: 'https://example.com', contentBlockingException: true })
             const messages = mockToExtensionDashboardMessage(mock)
             const dash = await DashboardPage.browser(page, messages)
-            await dash.addStates([testDataStates['protectionsOn']])
+            await dash.addStates([testDataStates.protectionsOn])
             await dash.toggleProtectionsOn()
             await page.waitForTimeout(500) // todo(Shane): remove this
             await dash.mocks.calledForToggleAllowList('protections-on-override')
@@ -106,7 +106,7 @@ test.describe('search', () => {
         const dash = await DashboardPage.browser(page, messages)
         const term = 'nike'
         await dash.enterSearchText(term)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.searchContainsText(term)
         await dash.submitSearch()
         await dash.mocks.calledForSearch(term)

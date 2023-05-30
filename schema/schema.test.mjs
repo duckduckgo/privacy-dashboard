@@ -6,14 +6,17 @@ import {
     requestDataSchema,
 } from './__generated__/schema.parsers.mjs'
 import { readFileSync } from 'node:fs'
+import { join } from 'path'
+import { cwd } from '../scripts/utils.mjs'
+const CWD = cwd(import.meta.url)
 
-const amazon = JSON.parse(readFileSync('./__fixtures__/request-data-amazon.json', 'utf8'))
-const cnn = JSON.parse(readFileSync('./__fixtures__/request-data-cnn.json', 'utf8'))
-const google = JSON.parse(readFileSync('./__fixtures__/request-data-google.json', 'utf8'))
-const protections = JSON.parse(readFileSync('./__fixtures__/protections.json', 'utf8'))
-const locale = JSON.parse(readFileSync('./__fixtures__/locale-settings.json', 'utf8'))
-const cpm = JSON.parse(readFileSync('./__fixtures__/cpm.json', 'utf8'))
-const cpmSecondary = JSON.parse(readFileSync('./__fixtures__/cpm-secondary.json', 'utf8'))
+const amazon = JSON.parse(readFileSync(join(CWD, '__fixtures__/request-data-amazon.json'), 'utf8'))
+const cnn = JSON.parse(readFileSync(join(CWD, '__fixtures__/request-data-cnn.json'), 'utf8'))
+const google = JSON.parse(readFileSync(join(CWD, '__fixtures__/request-data-google.json'), 'utf8'))
+const protections = JSON.parse(readFileSync(join(CWD, '__fixtures__/protections.json'), 'utf8'))
+const locale = JSON.parse(readFileSync(join(CWD, '__fixtures__/locale-settings.json'), 'utf8'))
+const cpm = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm.json'), 'utf8'))
+const cpmSecondary = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm-secondary.json'), 'utf8'))
 
 describe('__fixtures__', () => {
     it('validates request-data', () => {

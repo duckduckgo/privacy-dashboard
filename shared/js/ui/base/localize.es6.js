@@ -35,5 +35,5 @@ function site(key, options) {
 }
 
 export const ns = {
-    site: site,
+    site,
 }

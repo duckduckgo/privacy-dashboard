@@ -1,11 +1,11 @@
 import { test } from '@playwright/test'
-import { DashboardPage } from './DashboardPage'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
+import { DashboardPage } from './DashboardPage'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
     })
 })
@@ -13,7 +13,7 @@ test.describe('initial page data', () => {
 test.describe('breakage form', () => {
     test('should show HTML breakage form and submit fields', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.screenshot('breakage-form.png')
         await dash.submitBreakageForm()
@@ -25,7 +25,7 @@ test.describe('breakage form', () => {
 test.describe('open external links', () => {
     test('should call webkit interface for external links', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
         await dash.clickAboutLink()
         await dash.mocks.calledForAboutLink()
@@ -35,7 +35,7 @@ test.describe('open external links', () => {
 test.describe('setting the height', () => {
     test('should send the initial height to native', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.mocks.calledForInitialHeight()
     })
 })

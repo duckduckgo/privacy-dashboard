@@ -97,6 +97,10 @@ CSS, JS & HTML will be processed on each file change - you'll just need to reloa
 Code can be linted with `npm run lint`. Use `npm run lint.fix` to automatically
 fix supported issues.
 
+## Formatting (prettier)
+
+Code can be auto-formatted with `npm run pretter.fix`
+
 ## Testing
 
 All tests can be run with `npm test` - this runs both unit and end-to-end
@@ -104,8 +108,7 @@ tests.
 
 ### Unit Tests
 
-Test files can be found co-located with the corresponding code under test, using a `tests/` directory and `.test.js`
-filename suffix. These run in Jest currently. The bulk of the testing is done via Integration testing.
+Test files can be found co-located with the corresponding code using `.test.js` filename suffix. These run node's native test runner.
 
 ### Integration Tests
 

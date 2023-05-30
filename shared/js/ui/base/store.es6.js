@@ -160,9 +160,9 @@ function _createStore(notifier) {
     dispatch({ notifierName: '@@createStore/INIT' })
 
     return {
-        dispatch: dispatch,
-        subscribe: subscribe,
-        replaceNotifier: replaceNotifier,
+        dispatch,
+        subscribe,
+        replaceNotifier,
     }
 }
 

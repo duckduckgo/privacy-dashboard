@@ -11,4 +11,4 @@ function init() {
     cpSync(join(BASE, 'shared/js/polyfill-loader.js'), join(BASE, 'build/app/public/js/polyfill-loader.js'))
 }
 
-init();
+init()

@@ -105,7 +105,7 @@
           }
           return typeof obj === "object" || typeof obj === "function" ? class2type[toString.call(obj)] || "object" : typeof obj;
         }
-        var version = "3.6.1", jQuery = function(selector, context) {
+        var version = "3.6.2", jQuery = function(selector, context) {
           return new jQuery.fn.init(selector, context);
         };
         jQuery.fn = jQuery.prototype = {
@@ -348,14 +348,14 @@
         }
         var Sizzle = (
           /*!
-           * Sizzle CSS Selector Engine v2.3.6
+           * Sizzle CSS Selector Engine v2.3.8
            * https://sizzlejs.com/
            *
            * Copyright JS Foundation and other contributors
            * Released under the MIT license
            * https://js.foundation/
            *
-           * Date: 2021-02-16
+           * Date: 2022-11-16
            */
           function(window3) {
             var i, support2, Expr, getText, isXML, tokenize, compile, select, outermostContext, sortInput, hasDuplicate, setDocument, document3, docElem, documentIsHTML, rbuggyQSA, rbuggyMatches, matches2, contains, expando = "sizzle" + 1 * /* @__PURE__ */ new Date(), preferredDoc = window3.document, dirruns = 0, done = 0, classCache = createCache(), tokenCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), sortOrder = function(a, b) {
@@ -495,6 +495,10 @@
                       newSelector = groups.join(",");
                     }
                     try {
+                      if (support2.cssSupportsSelector && // eslint-disable-next-line no-undef
+                      !CSS.supports("selector(" + newSelector + ")")) {
+                        throw new Error();
+                      }
                       push2.apply(
                         results,
                         newContext.querySelectorAll(newSelector)
@@ -633,6 +637,17 @@
                 docElem.appendChild(el).appendChild(document3.createElement("div"));
                 return typeof el.querySelectorAll !== "undefined" && !el.querySelectorAll(":scope fieldset div").length;
               });
+              support2.cssSupportsSelector = assert2(function() {
+                return CSS.supports("selector(*)") && // Support: Firefox 78-81 only
+                // In old Firefox, `:is()` didn't use forgiving parsing. In that case,
+                // fail this test as there's no selector to test against that.
+                // `CSS.supports` uses unforgiving parsing
+                document3.querySelectorAll(":is(:jqfake)") && // `*` is needed as Safari & newer Chrome implemented something in between
+                // for `:has()` - it throws in `qSA` if it only contains an unsupported
+                // argument but multiple ones, one of which is supported, are fine.
+                // We want to play safe in case `:is()` gets the same treatment.
+                !CSS.supports("selector(:is(*,:jqfake))");
+              });
               support2.attributes = assert2(function(el) {
                 el.className = "i";
                 return !el.getAttribute("className");
@@ -767,11 +782,14 @@
                   rbuggyMatches.push("!=", pseudos);
                 });
               }
+              if (!support2.cssSupportsSelector) {
+                rbuggyQSA.push(":has");
+              }
               rbuggyQSA = rbuggyQSA.length && new RegExp(rbuggyQSA.join("|"));
               rbuggyMatches = rbuggyMatches.length && new RegExp(rbuggyMatches.join("|"));
               hasCompare = rnative.test(docElem.compareDocumentPosition);
               contains = hasCompare || rnative.test(docElem.contains) ? function(a, b) {
-                var adown = a.nodeType === 9 ? a.documentElement : a, bup = b && b.parentNode;
+                var adown = a.nodeType === 9 && a.documentElement || a, bup = b && b.parentNode;
                 return a === bup || !!(bup && bup.nodeType === 1 && (adown.contains ? adown.contains(bup) : a.compareDocumentPosition && a.compareDocumentPosition(bup) & 16));
               } : function(a, b) {
                 if (b) {
@@ -1195,7 +1213,7 @@
                 },
                 "text": function(elem) {
                   var attr;
-                  return elem.nodeName.toLowerCase() === "input" && elem.type === "text" && // Support: IE<8
+                  return elem.nodeName.toLowerCase() === "input" && elem.type === "text" && // Support: IE <10 only
                   // New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
                   ((attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text");
                 },
@@ -3841,8 +3859,8 @@
           computed = computed || getStyles(elem);
           if (computed) {
             ret = computed.getPropertyValue(name) || computed[name];
-            if (isCustomProp) {
-              ret = ret.replace(rtrimCSS, "$1");
+            if (isCustomProp && ret) {
+              ret = ret.replace(rtrimCSS, "$1") || void 0;
             }
             if (ret === "" && !isAttached(elem)) {
               ret = jQuery.style(elem, name);
@@ -10631,15 +10649,15 @@
     }
   });
 
-  // shared/js/ui/models/mixins/normalize-company-name.es6.js
+  // shared/js/ui/models/mixins/normalize-company-name.mjs
   function normalizeCompanyName(companyName) {
     return (companyName || "").toLowerCase().replace(/\.[a-z]+$/i, "").replace(/[^a-z0-9]/g, "");
   }
   function removeTLD(entityName) {
     return entityName.replace(/\.[a-z]+$/i, "");
   }
-  var init_normalize_company_name_es6 = __esm({
-    "shared/js/ui/models/mixins/normalize-company-name.es6.js"() {
+  var init_normalize_company_name = __esm({
+    "shared/js/ui/models/mixins/normalize-company-name.mjs"() {
       "use strict";
     }
   });
@@ -10669,7 +10687,7 @@
     }
   });
 
-  // shared/js/browser/utils/request-details.js
+  // shared/js/browser/utils/request-details.mjs
   function createRequestDetails(requests, installedSurrogates) {
     const output2 = new RequestDetails(installedSurrogates);
     for (const request of requests) {
@@ -10688,9 +10706,9 @@
   }
   var createTabData, AggregatedCompanyResponseData, states, RequestDetails, AggregateCompanyData, TrackerUrl;
   var init_request_details = __esm({
-    "shared/js/browser/utils/request-details.js"() {
+    "shared/js/browser/utils/request-details.mjs"() {
       "use strict";
-      init_normalize_company_name_es6();
+      init_normalize_company_name();
       init_schema_parsers();
       init_protections();
       createTabData = (tabUrl, upgradedHttps4, protections4, rawRequestData) => {
@@ -11100,17 +11118,17 @@
     if (forceRefresh === void 0) {
       forceRefresh = false;
     }
-    var CSS = windowObj.CSS;
+    var CSS2 = windowObj.CSS;
     var supportsCssVars = supportsCssVariables_;
     if (typeof supportsCssVariables_ === "boolean" && !forceRefresh) {
       return supportsCssVariables_;
     }
-    var supportsFunctionPresent = CSS && typeof CSS.supports === "function";
+    var supportsFunctionPresent = CSS2 && typeof CSS2.supports === "function";
     if (!supportsFunctionPresent) {
       return false;
     }
-    var explicitlySupportsCssVars = CSS.supports("--css-vars", "yes");
-    var weAreFeatureDetectingSafari10plus = CSS.supports("(--css-vars: yes)") && CSS.supports("color", "#00000000");
+    var explicitlySupportsCssVars = CSS2.supports("--css-vars", "yes");
+    var weAreFeatureDetectingSafari10plus = CSS2.supports("(--css-vars: yes)") && CSS2.supports("color", "#00000000");
     supportsCssVars = explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus;
     if (!forceRefresh) {
       supportsCssVariables_ = supportsCssVars;
@@ -14263,10 +14281,10 @@
     "shared/js/browser/utils/overrides.js"() {
       "use strict";
       init_environment_check();
-      init_request_details();
-      init_protections();
       init_states_with_fixtures();
       init_toggle_protections();
+      init_request_details();
+      init_protections();
     }
   });
 
@@ -23038,7 +23056,7 @@
       import_raw2 = __toESM(require_raw());
       import_jquery7 = __toESM(require_jquery());
       init_localize_es6();
-      init_normalize_company_name_es6();
+      init_normalize_company_name();
       init_view_es6();
       init_utils_es6();
       KeyInsightView.prototype = import_jquery7.default.extend({}, view_es6_default.prototype, {
@@ -23712,7 +23730,7 @@
       import_jquery15 = __toESM(require_jquery());
       init_model_es6();
       init_communication_es6();
-      init_normalize_company_name_es6();
+      init_normalize_company_name();
       SiteCompanyList.prototype = import_jquery15.default.extend({}, model_es6_default.prototype, normalizeCompanyName, {
         modelName: "siteCompanyList",
         /** @this {any} */
@@ -23770,7 +23788,7 @@
       MAJOR_TRACKER_THRESHOLD_PCT = 25;
       Site.prototype = import_jquery16.default.extend({}, model_es6_default.prototype, {
         modelName: "site",
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getBackgroundTabData: function() {
           return new Promise((resolve) => {
             communication_es6_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
@@ -23797,7 +23815,7 @@
             });
           });
         },
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         setSiteProperties: function() {
           if (!this.tab) {
             this.domain = "new tab";
@@ -23812,7 +23830,7 @@
           if (this.domain && this.domain === "-")
             this.set("disabled", true);
         },
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         setHttpsMessage: function() {
           if (!this.tab)
             return;
@@ -23826,7 +23844,7 @@
           this.httpsStatusText = i18n.t(httpsMessages[this.httpsState]);
         },
         timeout: null,
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         handleBackgroundMsg: function(message) {
           if (!this.tab)
             return;
@@ -23843,7 +23861,7 @@
             }, 100);
           }
         },
-        /** @this {{ tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} */
+        /** @this {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} */
         updatePermission: function(id, value) {
           if (!this.permissions)
             return;
@@ -23860,7 +23878,7 @@
           }
         },
         // calls `this.set()` to trigger view re-rendering
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         update: function(ops) {
           if (!this.acceptingUpdates) {
             console.log("not updating because acceptingUpdates was false");
@@ -23894,17 +23912,17 @@
           }
         },
         /**
-         * @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>}
+         * @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>}
          * @returns {number}
          */
         getUniqueTrackersCount: function() {
           return 0;
         },
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getUniqueTrackersBlockedCount: function() {
           return 0;
         },
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getUnknownTrackersCount: function() {
           let count = 0;
           const entities = this.tab.requestDetails.all.entities;
@@ -23914,7 +23932,7 @@
           }
           return count;
         },
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getMajorTrackerNetworksCount: function() {
           let total = 0;
           this.tab.requestDetails.forEachEntity((entity) => {
@@ -23923,7 +23941,7 @@
           });
           return total;
         },
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getTrackerNetworksOnPage: function() {
           const requests = this.tab.requestDetails;
           const names = [];
@@ -23989,7 +24007,7 @@
             return false;
           }
         },
-        /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         companyNames: function() {
           return [];
         },
@@ -24823,7 +24841,7 @@
 
 jquery/dist/jquery.js:
   (*!
-   * jQuery JavaScript Library v3.6.1
+   * jQuery JavaScript Library v3.6.2
    * https://jquery.com/
    *
    * Includes Sizzle.js
@@ -24833,7 +24851,7 @@ jquery/dist/jquery.js:
    * Released under the MIT license
    * https://jquery.org/license
    *
-   * Date: 2022-08-26T17:52Z
+   * Date: 2022-12-13T14:56Z
    *)
 
 is-plain-object/dist/is-plain-object.mjs:

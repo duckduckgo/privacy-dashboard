@@ -1,16 +1,16 @@
 import { test } from '@playwright/test'
-import { DashboardPage } from './DashboardPage'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
+import { DashboardPage } from './DashboardPage'
 
 test.describe('page data (no trackers)', () => {
     test('should fetch initial data', async ({ page }) => {
         const dash = await DashboardPage.ios(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
     })
     test('should accept updates when on trackers list screen', async ({ page }) => {
         const dash = await DashboardPage.ios(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
         await dash.screenshot('tracker-list-before.png')
         await dash.addStates([testDataStates.cnn])
@@ -19,7 +19,7 @@ test.describe('page data (no trackers)', () => {
     })
     test('should accept updates when on non-trackers list screen', async ({ page }) => {
         const dash = await DashboardPage.ios(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.viewThirdParties()
         await dash.screenshot('non-tracker-list-before.png')
         await dash.addStates([testDataStates.cnn])
@@ -28,7 +28,7 @@ test.describe('page data (no trackers)', () => {
     })
     test('does not alter the appearance of connection panel', async ({ page }) => {
         const dash = await DashboardPage.ios(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.viewConnection()
         await dash.screenshot('connection-before.png')
         await dash.addStates([testDataStates.cnn])
@@ -57,7 +57,7 @@ test.describe('breakage form', () => {
 test.describe('open external links', () => {
     test('should call ios interface for links', async ({ page }) => {
         const dash = await DashboardPage.ios(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
         await dash.clickAboutLink()
         await dash.mocks.calledForAboutLink()
@@ -80,7 +80,7 @@ test.describe('localization', () => {
 test.describe('Close', () => {
     test('pressing close should call native API on iOS', async ({ page }) => {
         const dash = await DashboardPage.ios(page)
-        await dash.addStates([testDataStates['protectionsOn']])
+        await dash.addStates([testDataStates.protectionsOn])
         await dash.clickClose()
         await dash.mocks.calledForClose()
     })
@@ -134,11 +134,11 @@ test.describe('cookie prompt management', () => {
 if (!process.env.CI) {
     test.describe('screenshots', () => {
         const states = [
-            { name: '01', state: testDataStates['protectionsOn'] },
-            { name: '02', state: testDataStates['protectionsOn_blocked'] },
-            { name: '03', state: testDataStates['protectionsOn_blocked_allowedTrackers'] },
-            { name: '04', state: testDataStates['protectionsOn_blocked_allowedNonTrackers'] },
-            { name: '05', state: testDataStates['protectionsOn_blocked_allowedTrackers_allowedNonTrackers'] },
+            { name: '01', state: testDataStates.protectionsOn },
+            { name: '02', state: testDataStates.protectionsOn_blocked },
+            { name: '03', state: testDataStates.protectionsOn_blocked_allowedTrackers },
+            { name: '04', state: testDataStates.protectionsOn_blocked_allowedNonTrackers },
+            { name: '05', state: testDataStates.protectionsOn_blocked_allowedTrackers_allowedNonTrackers },
             { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
             { name: 'new-entities', state: testDataStates['new-entities'] },
             { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
@@ -157,19 +157,19 @@ if (!process.env.CI) {
         const states = [
             {
                 name: 'primary-insecure',
-                state: testDataStates['insecure'],
+                state: testDataStates.insecure,
             },
             {
                 name: 'primary-broken',
-                state: testDataStates['protectionsOff'],
+                state: testDataStates.protectionsOff,
             },
             {
                 name: 'primary-user-allow-listed',
-                state: testDataStates['allowlisted'],
+                state: testDataStates.allowlisted,
             },
             {
                 name: 'primary-major-tracking-network',
-                state: testDataStates['google'],
+                state: testDataStates.google,
             },
             {
                 name: 'primary-major-tracking-network-blocked',
@@ -177,19 +177,19 @@ if (!process.env.CI) {
             },
             {
                 name: 'primary-none-blocked-some-trackers-allowed',
-                state: testDataStates['protectionsOn_allowedTrackers'],
+                state: testDataStates.protectionsOn_allowedTrackers,
             },
             {
                 name: 'primary-none-blocked-third-party-allowed',
-                state: testDataStates['protectionsOn_allowedNonTrackers'],
+                state: testDataStates.protectionsOn_allowedNonTrackers,
             },
             {
                 name: 'primary-none-blocked',
-                state: testDataStates['protectionsOn'],
+                state: testDataStates.protectionsOn,
             },
             {
                 name: 'primary-blocked',
-                state: testDataStates['cnn'],
+                state: testDataStates.cnn,
             },
         ]
         for (const { name, state } of states) {
