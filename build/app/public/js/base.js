@@ -42,17 +42,17 @@
   // node_modules/jquery/dist/jquery.js
   var require_jquery = __commonJS({
     "node_modules/jquery/dist/jquery.js"(exports, module) {
-      (function(global, factory) {
+      (function(global2, factory) {
         "use strict";
         if (typeof module === "object" && typeof module.exports === "object") {
-          module.exports = global.document ? factory(global, true) : function(w) {
+          module.exports = global2.document ? factory(global2, true) : function(w) {
             if (!w.document) {
               throw new Error("jQuery requires a window with a document");
             }
             return factory(w);
           };
         } else {
-          factory(global);
+          factory(global2);
         }
       })(typeof window !== "undefined" ? window : exports, function(window2, noGlobal) {
         "use strict";
@@ -1738,11 +1738,11 @@
         };
         jQuery.fn.extend({
           find: function(selector) {
-            var i, ret, len = this.length, self = this;
+            var i, ret, len = this.length, self2 = this;
             if (typeof selector !== "string") {
               return this.pushStack(jQuery(selector).filter(function() {
                 for (i = 0; i < len; i++) {
-                  if (jQuery.contains(self[i], this)) {
+                  if (jQuery.contains(self2[i], this)) {
                     return true;
                   }
                 }
@@ -1750,7 +1750,7 @@
             }
             ret = this.pushStack([]);
             for (i = 0; i < len; i++) {
-              jQuery.find(selector, self[i], ret);
+              jQuery.find(selector, self2[i], ret);
             }
             return len > 1 ? jQuery.uniqueSort(ret) : ret;
           },
@@ -1994,7 +1994,7 @@
                 list = "";
               }
             }
-          }, self = {
+          }, self2 = {
             // Add a callback or a collection of callbacks to the list
             add: function() {
               if (list) {
@@ -2005,7 +2005,7 @@
                 (function add2(args) {
                   jQuery.each(args, function(_23, arg) {
                     if (isFunction(arg)) {
-                      if (!options.unique || !self.has(arg)) {
+                      if (!options.unique || !self2.has(arg)) {
                         list.push(arg);
                       }
                     } else if (arg && arg.length && toType(arg) !== "string") {
@@ -2082,7 +2082,7 @@
             },
             // Call all the callbacks with the given arguments
             fire: function() {
-              self.fireWith(this, arguments);
+              self2.fireWith(this, arguments);
               return this;
             },
             // To know if the callbacks have already been called at least once
@@ -2090,7 +2090,7 @@
               return !!fired;
             }
           };
-          return self;
+          return self2;
         };
         function Identity(v) {
           return v;
@@ -3514,11 +3514,11 @@
           var fragment, first, scripts, hasScripts, node, doc, i = 0, l = collection.length, iNoClone = l - 1, value = args[0], valueIsFunction = isFunction(value);
           if (valueIsFunction || l > 1 && typeof value === "string" && !support.checkClone && rchecked.test(value)) {
             return collection.each(function(index) {
-              var self = collection.eq(index);
+              var self2 = collection.eq(index);
               if (valueIsFunction) {
-                args[0] = value.call(this, index, self.html());
+                args[0] = value.call(this, index, self2.html());
               }
-              domManip(self, args, callback, ignored);
+              domManip(self2, args, callback, ignored);
             });
           }
           if (l) {
@@ -4989,7 +4989,7 @@
             return this;
           },
           toggleClass: function(value, stateVal) {
-            var classNames, className, i, self, type = typeof value, isValidValue = type === "string" || Array.isArray(value);
+            var classNames, className, i, self2, type = typeof value, isValidValue = type === "string" || Array.isArray(value);
             if (isFunction(value)) {
               return this.each(function(i2) {
                 jQuery(this).toggleClass(
@@ -5004,13 +5004,13 @@
             classNames = classesToArray(value);
             return this.each(function() {
               if (isValidValue) {
-                self = jQuery(this);
+                self2 = jQuery(this);
                 for (i = 0; i < classNames.length; i++) {
                   className = classNames[i];
-                  if (self.hasClass(className)) {
-                    self.removeClass(className);
+                  if (self2.hasClass(className)) {
+                    self2.removeClass(className);
                   } else {
-                    self.addClass(className);
+                    self2.addClass(className);
                   }
                 }
               } else if (value === void 0 || type === "boolean") {
@@ -5914,11 +5914,11 @@
               });
             }
             return this.each(function() {
-              var self = jQuery(this), contents = self.contents();
+              var self2 = jQuery(this), contents = self2.contents();
               if (contents.length) {
                 contents.wrapAll(html17);
               } else {
-                self.append(html17);
+                self2.append(html17);
               }
             });
           },
@@ -6177,7 +6177,7 @@
           return jQuery.merge([], parsed.childNodes);
         };
         jQuery.fn.load = function(url, params, callback) {
-          var selector, type, response, self = this, off = url.indexOf(" ");
+          var selector, type, response, self2 = this, off = url.indexOf(" ");
           if (off > -1) {
             selector = stripAndCollapse(url.slice(off));
             url = url.slice(0, off);
@@ -6188,7 +6188,7 @@
           } else if (params && typeof params === "object") {
             type = "POST";
           }
-          if (self.length > 0) {
+          if (self2.length > 0) {
             jQuery.ajax({
               url,
               // If "type" variable is undefined, then "GET" method will be used.
@@ -6199,7 +6199,7 @@
               data: params
             }).done(function(responseText) {
               response = arguments;
-              self.html(selector ? (
+              self2.html(selector ? (
                 // If a selector was specified, locate the right elements in a dummy div
                 // Exclude scripts to avoid IE 'Permission Denied' errors
                 jQuery("<div>").append(jQuery.parseHTML(responseText)).find(selector)
@@ -6208,7 +6208,7 @@
                 responseText
               ));
             }).always(callback && function(jqXHR, status) {
-              self.each(function() {
+              self2.each(function() {
                 callback.apply(this, response || [jqXHR.responseText, status, jqXHR]);
               });
             });
@@ -6495,9 +6495,9 @@
     }
   });
 
-  // shared/js/ui/base/mixins/events.es6.js
-  var events_es6_exports = {};
-  __export(events_es6_exports, {
+  // shared/js/ui/base/mixins/events.js
+  var events_exports = {};
+  __export(events_exports, {
     bindEvents: () => bindEvents,
     unbindEvents: () => unbindEvents
   });
@@ -6536,17 +6536,17 @@
     }
     this._bEvents = null;
   }
-  var init_events_es6 = __esm({
-    "shared/js/ui/base/mixins/events.es6.js"() {
+  var init_events = __esm({
+    "shared/js/ui/base/mixins/events.js"() {
       "use strict";
     }
   });
 
-  // shared/js/ui/base/mixins/index.es6.js
-  var init_index_es6 = __esm({
-    "shared/js/ui/base/mixins/index.es6.js"() {
+  // shared/js/ui/base/mixins/index.js
+  var init_mixins = __esm({
+    "shared/js/ui/base/mixins/index.js"() {
       "use strict";
-      init_events_es6();
+      init_events();
     }
   });
 
@@ -6781,19 +6781,19 @@
           return this._many(event, ttl, fn, true);
         };
         EventEmitter3.prototype._many = function(event, ttl, fn, prepend) {
-          var self = this;
+          var self2 = this;
           if (typeof fn !== "function") {
             throw new Error("many only accepts instances of Function");
           }
           function listener() {
             if (--ttl === 0) {
-              self.off(event, listener);
+              self2.off(event, listener);
             }
             return fn.apply(this, arguments);
           }
           listener._origin = fn;
           this._on(event, listener, prepend);
-          return self;
+          return self2;
         };
         EventEmitter3.prototype.emit = function() {
           this._events || init2.call(this);
@@ -7193,7 +7193,7 @@
     }
   });
 
-  // shared/js/ui/base/notifiers.es6.js
+  // shared/js/ui/base/notifiers.js
   function add(notifierName) {
     registered[notifierName] = (state, notification) => {
       if (state === void 0)
@@ -7238,16 +7238,16 @@
     }
   }
   var registered;
-  var init_notifiers_es6 = __esm({
-    "shared/js/ui/base/notifiers.es6.js"() {
+  var init_notifiers = __esm({
+    "shared/js/ui/base/notifiers.js"() {
       "use strict";
       registered = {};
     }
   });
 
-  // shared/js/ui/base/store.es6.js
-  var store_es6_exports = {};
-  __export(store_es6_exports, {
+  // shared/js/ui/base/store.js
+  var store_exports = {};
+  __export(store_exports, {
     publish: () => publish,
     register: () => register,
     remove: () => remove2,
@@ -7328,13 +7328,13 @@
     };
   }
   var import_deep_freeze, import_eventemitter2, _publisher, _store, subscribe;
-  var init_store_es6 = __esm({
-    "shared/js/ui/base/store.es6.js"() {
+  var init_store = __esm({
+    "shared/js/ui/base/store.js"() {
       "use strict";
       init_is_plain_object();
       import_deep_freeze = __toESM(require_deep_freeze());
       import_eventemitter2 = __toESM(require_eventemitter2());
-      init_notifiers_es6();
+      init_notifiers();
       _publisher = new import_eventemitter2.default();
       _publisher.setMaxListeners(100);
       _store = null;
@@ -7342,25 +7342,25 @@
     }
   });
 
-  // shared/js/ui/base/page.es6.js
+  // shared/js/ui/base/page.js
   function BasePage(ops) {
     this.views = {};
-    this.store = store_es6_exports;
+    this.store = store_exports;
     this.ready();
   }
-  var import_jquery, page_es6_default;
-  var init_page_es6 = __esm({
-    "shared/js/ui/base/page.es6.js"() {
+  var import_jquery, page_default;
+  var init_page = __esm({
+    "shared/js/ui/base/page.js"() {
       "use strict";
       import_jquery = __toESM(require_jquery());
-      init_index_es6();
-      init_store_es6();
-      BasePage.prototype = import_jquery.default.extend({}, events_es6_exports, {
+      init_mixins();
+      init_store();
+      BasePage.prototype = import_jquery.default.extend({}, events_exports, {
         // pageName: '' - should be unique, defined by each page subclass
         ready: function() {
         }
       });
-      page_es6_default = BasePage;
+      page_default = BasePage;
     }
   });
 
@@ -10496,7 +10496,7 @@
     }
   });
 
-  // shared/js/browser/common.es6.js
+  // shared/js/browser/common.js
   function setupMutationObserver(callback) {
     const bufferHeight = 200;
     let lastHeight;
@@ -10560,8 +10560,8 @@
     }
   }
   var getContentHeight, DARK_THEME, LIGHT_THEME, explicitlySetTheme, detectedTheme, oppositeTheme, Msg, SetListsMessage, SubmitBrokenSiteReportMessage, UpdatePermissionMessage, CloseMessage, CheckBrokenSiteReportHandledMessage, RefreshEmailAliasMessage, OpenOptionsMessage, SearchMessage, OpenSettingsMessages;
-  var init_common_es6 = __esm({
-    "shared/js/browser/common.es6.js"() {
+  var init_common = __esm({
+    "shared/js/browser/common.js"() {
       "use strict";
       getContentHeight = () => {
         const $openSubview = window.document.querySelector("#popup-container.sliding-subview--open > section:last-child > div");
@@ -10965,9 +10965,9 @@
     }
   });
 
-  // shared/js/browser/browser-communication.es6.js
-  var browser_communication_es6_exports = {};
-  __export(browser_communication_es6_exports, {
+  // shared/js/browser/browser-communication.js
+  var browser_communication_exports = {};
+  __export(browser_communication_exports, {
     backgroundMessage: () => backgroundMessage,
     fetch: () => fetch,
     getBackgroundTabData: () => getBackgroundTabData,
@@ -11103,11 +11103,11 @@
     };
   }
   var channel;
-  var init_browser_communication_es6 = __esm({
-    "shared/js/browser/browser-communication.es6.js"() {
+  var init_browser_communication = __esm({
+    "shared/js/browser/browser-communication.js"() {
       "use strict";
       init_schema_parsers();
-      init_common_es6();
+      init_common();
       init_request_details();
       init_protections();
     }
@@ -11167,77 +11167,75 @@
     }
   });
 
-  // node_modules/tslib/tslib.es6.js
-  function __extends(d, b) {
-    if (typeof b !== "function" && b !== null)
-      throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-    extendStatics(d, b);
-    function __() {
-      this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  }
-  function __values(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m)
-      return m.call(o);
-    if (o && typeof o.length === "number")
-      return {
-        next: function() {
-          if (o && i >= o.length)
-            o = void 0;
-          return { value: o && o[i++], done: !o };
+  // node_modules/tslib/tslib.js
+  var require_tslib = __commonJS({
+    "node_modules/tslib/tslib.js"(exports, module) {
+      var __extends8;
+      var __assign8;
+      var __rest;
+      var __decorate;
+      var __param;
+      var __metadata;
+      var __awaiter;
+      var __generator;
+      var __exportStar;
+      var __values4;
+      var __read4;
+      var __spread;
+      var __spreadArrays;
+      var __spreadArray5;
+      var __await;
+      var __asyncGenerator;
+      var __asyncDelegator;
+      var __asyncValues;
+      var __makeTemplateObject;
+      var __importStar;
+      var __importDefault;
+      var __classPrivateFieldGet;
+      var __classPrivateFieldSet;
+      var __classPrivateFieldIn;
+      var __createBinding;
+      (function(factory) {
+        var root = typeof global === "object" ? global : typeof self === "object" ? self : typeof this === "object" ? this : {};
+        if (typeof define === "function" && define.amd) {
+          define("tslib", ["exports"], function(exports2) {
+            factory(createExporter(root, createExporter(exports2)));
+          });
+        } else if (typeof module === "object" && typeof module.exports === "object") {
+          factory(createExporter(root, createExporter(module.exports)));
+        } else {
+          factory(createExporter(root));
         }
-      };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-  }
-  function __read(o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m)
-      return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-      while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-        ar.push(r.value);
-    } catch (error2) {
-      e = { error: error2 };
-    } finally {
-      try {
-        if (r && !r.done && (m = i["return"]))
-          m.call(i);
-      } finally {
-        if (e)
-          throw e.error;
-      }
-    }
-    return ar;
-  }
-  function __spreadArray(to, from, pack) {
-    if (pack || arguments.length === 2)
-      for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-          if (!ar)
-            ar = Array.prototype.slice.call(from, 0, i);
-          ar[i] = from[i];
+        function createExporter(exports2, previous) {
+          if (exports2 !== root) {
+            if (typeof Object.create === "function") {
+              Object.defineProperty(exports2, "__esModule", { value: true });
+            } else {
+              exports2.__esModule = true;
+            }
+          }
+          return function(id, v) {
+            return exports2[id] = previous ? previous(id, v) : v;
+          };
         }
-      }
-    return to.concat(ar || Array.prototype.slice.call(from));
-  }
-  var extendStatics, __assign;
-  var init_tslib_es6 = __esm({
-    "node_modules/tslib/tslib.es6.js"() {
-      extendStatics = function(d, b) {
-        extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
-          d2.__proto__ = b2;
-        } || function(d2, b2) {
-          for (var p in b2)
-            if (Object.prototype.hasOwnProperty.call(b2, p))
-              d2[p] = b2[p];
+      })(function(exporter) {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d, b) {
+          d.__proto__ = b;
+        } || function(d, b) {
+          for (var p in b)
+            if (Object.prototype.hasOwnProperty.call(b, p))
+              d[p] = b[p];
         };
-        return extendStatics(d, b);
-      };
-      __assign = function() {
-        __assign = Object.assign || function __assign2(t2) {
+        __extends8 = function(d, b) {
+          if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+          extendStatics(d, b);
+          function __() {
+            this.constructor = d;
+          }
+          d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+        __assign8 = Object.assign || function(t2) {
           for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s)
@@ -11246,8 +11244,366 @@
           }
           return t2;
         };
-        return __assign.apply(this, arguments);
-      };
+        __rest = function(s, e) {
+          var t2 = {};
+          for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+              t2[p] = s[p];
+          if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+              if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t2[p[i]] = s[p[i]];
+            }
+          return t2;
+        };
+        __decorate = function(decorators, target, key, desc) {
+          var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+          if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+          else
+            for (var i = decorators.length - 1; i >= 0; i--)
+              if (d = decorators[i])
+                r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+          return c > 3 && r && Object.defineProperty(target, key, r), r;
+        };
+        __param = function(paramIndex, decorator) {
+          return function(target, key) {
+            decorator(target, key, paramIndex);
+          };
+        };
+        __metadata = function(metadataKey, metadataValue) {
+          if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+        };
+        __awaiter = function(thisArg, _arguments, P, generator) {
+          function adopt(value) {
+            return value instanceof P ? value : new P(function(resolve) {
+              resolve(value);
+            });
+          }
+          return new (P || (P = Promise))(function(resolve, reject) {
+            function fulfilled(value) {
+              try {
+                step(generator.next(value));
+              } catch (e) {
+                reject(e);
+              }
+            }
+            function rejected(value) {
+              try {
+                step(generator["throw"](value));
+              } catch (e) {
+                reject(e);
+              }
+            }
+            function step(result) {
+              result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+            }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+          });
+        };
+        __generator = function(thisArg, body) {
+          var _23 = { label: 0, sent: function() {
+            if (t2[0] & 1)
+              throw t2[1];
+            return t2[1];
+          }, trys: [], ops: [] }, f, y, t2, g;
+          return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
+            return this;
+          }), g;
+          function verb(n) {
+            return function(v) {
+              return step([n, v]);
+            };
+          }
+          function step(op) {
+            if (f)
+              throw new TypeError("Generator is already executing.");
+            while (_23)
+              try {
+                if (f = 1, y && (t2 = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t2 = y["return"]) && t2.call(y), 0) : y.next) && !(t2 = t2.call(y, op[1])).done)
+                  return t2;
+                if (y = 0, t2)
+                  op = [op[0] & 2, t2.value];
+                switch (op[0]) {
+                  case 0:
+                  case 1:
+                    t2 = op;
+                    break;
+                  case 4:
+                    _23.label++;
+                    return { value: op[1], done: false };
+                  case 5:
+                    _23.label++;
+                    y = op[1];
+                    op = [0];
+                    continue;
+                  case 7:
+                    op = _23.ops.pop();
+                    _23.trys.pop();
+                    continue;
+                  default:
+                    if (!(t2 = _23.trys, t2 = t2.length > 0 && t2[t2.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                      _23 = 0;
+                      continue;
+                    }
+                    if (op[0] === 3 && (!t2 || op[1] > t2[0] && op[1] < t2[3])) {
+                      _23.label = op[1];
+                      break;
+                    }
+                    if (op[0] === 6 && _23.label < t2[1]) {
+                      _23.label = t2[1];
+                      t2 = op;
+                      break;
+                    }
+                    if (t2 && _23.label < t2[2]) {
+                      _23.label = t2[2];
+                      _23.ops.push(op);
+                      break;
+                    }
+                    if (t2[2])
+                      _23.ops.pop();
+                    _23.trys.pop();
+                    continue;
+                }
+                op = body.call(thisArg, _23);
+              } catch (e) {
+                op = [6, e];
+                y = 0;
+              } finally {
+                f = t2 = 0;
+              }
+            if (op[0] & 5)
+              throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
+          }
+        };
+        __exportStar = function(m, o) {
+          for (var p in m)
+            if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p))
+              __createBinding(o, m, p);
+        };
+        __createBinding = Object.create ? function(o, m, k, k2) {
+          if (k2 === void 0)
+            k2 = k;
+          var desc = Object.getOwnPropertyDescriptor(m, k);
+          if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+            desc = { enumerable: true, get: function() {
+              return m[k];
+            } };
+          }
+          Object.defineProperty(o, k2, desc);
+        } : function(o, m, k, k2) {
+          if (k2 === void 0)
+            k2 = k;
+          o[k2] = m[k];
+        };
+        __values4 = function(o) {
+          var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+          if (m)
+            return m.call(o);
+          if (o && typeof o.length === "number")
+            return {
+              next: function() {
+                if (o && i >= o.length)
+                  o = void 0;
+                return { value: o && o[i++], done: !o };
+              }
+            };
+          throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+        };
+        __read4 = function(o, n) {
+          var m = typeof Symbol === "function" && o[Symbol.iterator];
+          if (!m)
+            return o;
+          var i = m.call(o), r, ar = [], e;
+          try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+              ar.push(r.value);
+          } catch (error2) {
+            e = { error: error2 };
+          } finally {
+            try {
+              if (r && !r.done && (m = i["return"]))
+                m.call(i);
+            } finally {
+              if (e)
+                throw e.error;
+            }
+          }
+          return ar;
+        };
+        __spread = function() {
+          for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read4(arguments[i]));
+          return ar;
+        };
+        __spreadArrays = function() {
+          for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+            s += arguments[i].length;
+          for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+              r[k] = a[j];
+          return r;
+        };
+        __spreadArray5 = function(to, from, pack) {
+          if (pack || arguments.length === 2)
+            for (var i = 0, l = from.length, ar; i < l; i++) {
+              if (ar || !(i in from)) {
+                if (!ar)
+                  ar = Array.prototype.slice.call(from, 0, i);
+                ar[i] = from[i];
+              }
+            }
+          return to.concat(ar || Array.prototype.slice.call(from));
+        };
+        __await = function(v) {
+          return this instanceof __await ? (this.v = v, this) : new __await(v);
+        };
+        __asyncGenerator = function(thisArg, _arguments, generator) {
+          if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
+          var g = generator.apply(thisArg, _arguments || []), i, q = [];
+          return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() {
+            return this;
+          }, i;
+          function verb(n) {
+            if (g[n])
+              i[n] = function(v) {
+                return new Promise(function(a, b) {
+                  q.push([n, v, a, b]) > 1 || resume(n, v);
+                });
+              };
+          }
+          function resume(n, v) {
+            try {
+              step(g[n](v));
+            } catch (e) {
+              settle(q[0][3], e);
+            }
+          }
+          function step(r) {
+            r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r);
+          }
+          function fulfill(value) {
+            resume("next", value);
+          }
+          function reject(value) {
+            resume("throw", value);
+          }
+          function settle(f, v) {
+            if (f(v), q.shift(), q.length)
+              resume(q[0][0], q[0][1]);
+          }
+        };
+        __asyncDelegator = function(o) {
+          var i, p;
+          return i = {}, verb("next"), verb("throw", function(e) {
+            throw e;
+          }), verb("return"), i[Symbol.iterator] = function() {
+            return this;
+          }, i;
+          function verb(n, f) {
+            i[n] = o[n] ? function(v) {
+              return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v;
+            } : f;
+          }
+        };
+        __asyncValues = function(o) {
+          if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
+          var m = o[Symbol.asyncIterator], i;
+          return m ? m.call(o) : (o = typeof __values4 === "function" ? __values4(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() {
+            return this;
+          }, i);
+          function verb(n) {
+            i[n] = o[n] && function(v) {
+              return new Promise(function(resolve, reject) {
+                v = o[n](v), settle(resolve, reject, v.done, v.value);
+              });
+            };
+          }
+          function settle(resolve, reject, d, v) {
+            Promise.resolve(v).then(function(v2) {
+              resolve({ value: v2, done: d });
+            }, reject);
+          }
+        };
+        __makeTemplateObject = function(cooked, raw4) {
+          if (Object.defineProperty) {
+            Object.defineProperty(cooked, "raw", { value: raw4 });
+          } else {
+            cooked.raw = raw4;
+          }
+          return cooked;
+        };
+        var __setModuleDefault = Object.create ? function(o, v) {
+          Object.defineProperty(o, "default", { enumerable: true, value: v });
+        } : function(o, v) {
+          o["default"] = v;
+        };
+        __importStar = function(mod2) {
+          if (mod2 && mod2.__esModule)
+            return mod2;
+          var result = {};
+          if (mod2 != null) {
+            for (var k in mod2)
+              if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k))
+                __createBinding(result, mod2, k);
+          }
+          __setModuleDefault(result, mod2);
+          return result;
+        };
+        __importDefault = function(mod2) {
+          return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+        };
+        __classPrivateFieldGet = function(receiver, state, kind, f) {
+          if (kind === "a" && !f)
+            throw new TypeError("Private accessor was defined without a getter");
+          if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+            throw new TypeError("Cannot read private member from an object whose class did not declare it");
+          return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+        };
+        __classPrivateFieldSet = function(receiver, state, value, kind, f) {
+          if (kind === "m")
+            throw new TypeError("Private method is not writable");
+          if (kind === "a" && !f)
+            throw new TypeError("Private accessor was defined without a setter");
+          if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+            throw new TypeError("Cannot write private member to an object whose class did not declare it");
+          return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
+        };
+        __classPrivateFieldIn = function(state, receiver) {
+          if (receiver === null || typeof receiver !== "object" && typeof receiver !== "function")
+            throw new TypeError("Cannot use 'in' operator on non-object");
+          return typeof state === "function" ? receiver === state : state.has(receiver);
+        };
+        exporter("__extends", __extends8);
+        exporter("__assign", __assign8);
+        exporter("__rest", __rest);
+        exporter("__decorate", __decorate);
+        exporter("__param", __param);
+        exporter("__metadata", __metadata);
+        exporter("__awaiter", __awaiter);
+        exporter("__generator", __generator);
+        exporter("__exportStar", __exportStar);
+        exporter("__createBinding", __createBinding);
+        exporter("__values", __values4);
+        exporter("__read", __read4);
+        exporter("__spread", __spread);
+        exporter("__spreadArrays", __spreadArrays);
+        exporter("__spreadArray", __spreadArray5);
+        exporter("__await", __await);
+        exporter("__asyncGenerator", __asyncGenerator);
+        exporter("__asyncDelegator", __asyncDelegator);
+        exporter("__asyncValues", __asyncValues);
+        exporter("__makeTemplateObject", __makeTemplateObject);
+        exporter("__importStar", __importStar);
+        exporter("__importDefault", __importDefault);
+        exporter("__classPrivateFieldGet", __classPrivateFieldGet);
+        exporter("__classPrivateFieldSet", __classPrivateFieldSet);
+        exporter("__classPrivateFieldIn", __classPrivateFieldIn);
+      });
     }
   });
 
@@ -11301,10 +11657,10 @@
   });
 
   // node_modules/@material/base/component.js
-  var MDCComponent;
+  var import_tslib, MDCComponent;
   var init_component = __esm({
     "node_modules/@material/base/component.js"() {
-      init_tslib_es6();
+      import_tslib = __toESM(require_tslib());
       init_foundation();
       MDCComponent = /** @class */
       function() {
@@ -11314,7 +11670,7 @@
             args[_i - 2] = arguments[_i];
           }
           this.root = root;
-          this.initialize.apply(this, __spreadArray([], __read(args)));
+          this.initialize.apply(this, (0, import_tslib.__spreadArray)([], (0, import_tslib.__read)(args)));
           this.foundation = foundation === void 0 ? this.getDefaultFoundation() : foundation;
           this.foundation.init();
           this.initialSyncWithDOM();
@@ -11393,7 +11749,7 @@
     }
     return passiveSupported;
   }
-  var init_events = __esm({
+  var init_events2 = __esm({
     "node_modules/@material/dom/events.js"() {
     }
   });
@@ -11442,10 +11798,10 @@
   });
 
   // node_modules/@material/ripple/foundation.js
-  var ACTIVATION_EVENT_TYPES, POINTER_DEACTIVATION_EVENT_TYPES, activatedTargets, MDCRippleFoundation;
+  var import_tslib2, ACTIVATION_EVENT_TYPES, POINTER_DEACTIVATION_EVENT_TYPES, activatedTargets, MDCRippleFoundation;
   var init_foundation2 = __esm({
     "node_modules/@material/ripple/foundation.js"() {
-      init_tslib_es6();
+      import_tslib2 = __toESM(require_tslib());
       init_foundation();
       init_constants();
       init_util();
@@ -11464,9 +11820,9 @@
       activatedTargets = [];
       MDCRippleFoundation = /** @class */
       function(_super) {
-        __extends(MDCRippleFoundation2, _super);
+        (0, import_tslib2.__extends)(MDCRippleFoundation2, _super);
         function MDCRippleFoundation2(adapter) {
-          var _this = _super.call(this, __assign(__assign({}, MDCRippleFoundation2.defaultAdapter), adapter)) || this;
+          var _this = _super.call(this, (0, import_tslib2.__assign)((0, import_tslib2.__assign)({}, MDCRippleFoundation2.defaultAdapter), adapter)) || this;
           _this.activationAnimationHasEnded = false;
           _this.activationTimer = 0;
           _this.fgDeactivationRemovalTimer = 0;
@@ -11666,7 +12022,7 @@
           var e_1, _a2;
           if (supportsPressRipple) {
             try {
-              for (var ACTIVATION_EVENT_TYPES_1 = __values(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next(); !ACTIVATION_EVENT_TYPES_1_1.done; ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next()) {
+              for (var ACTIVATION_EVENT_TYPES_1 = (0, import_tslib2.__values)(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next(); !ACTIVATION_EVENT_TYPES_1_1.done; ACTIVATION_EVENT_TYPES_1_1 = ACTIVATION_EVENT_TYPES_1.next()) {
                 var evtType = ACTIVATION_EVENT_TYPES_1_1.value;
                 this.adapter.registerInteractionHandler(evtType, this.activateHandler);
               }
@@ -11694,7 +12050,7 @@
             this.adapter.registerInteractionHandler("keyup", this.deactivateHandler);
           } else {
             try {
-              for (var POINTER_DEACTIVATION_EVENT_TYPES_1 = __values(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next(); !POINTER_DEACTIVATION_EVENT_TYPES_1_1.done; POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next()) {
+              for (var POINTER_DEACTIVATION_EVENT_TYPES_1 = (0, import_tslib2.__values)(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next(); !POINTER_DEACTIVATION_EVENT_TYPES_1_1.done; POINTER_DEACTIVATION_EVENT_TYPES_1_1 = POINTER_DEACTIVATION_EVENT_TYPES_1.next()) {
                 var evtType = POINTER_DEACTIVATION_EVENT_TYPES_1_1.value;
                 this.adapter.registerDocumentInteractionHandler(evtType, this.deactivateHandler);
               }
@@ -11714,7 +12070,7 @@
         MDCRippleFoundation2.prototype.deregisterRootHandlers = function() {
           var e_3, _a2;
           try {
-            for (var ACTIVATION_EVENT_TYPES_2 = __values(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next(); !ACTIVATION_EVENT_TYPES_2_1.done; ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next()) {
+            for (var ACTIVATION_EVENT_TYPES_2 = (0, import_tslib2.__values)(ACTIVATION_EVENT_TYPES), ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next(); !ACTIVATION_EVENT_TYPES_2_1.done; ACTIVATION_EVENT_TYPES_2_1 = ACTIVATION_EVENT_TYPES_2.next()) {
               var evtType = ACTIVATION_EVENT_TYPES_2_1.value;
               this.adapter.deregisterInteractionHandler(evtType, this.activateHandler);
             }
@@ -11739,7 +12095,7 @@
           var e_4, _a2;
           this.adapter.deregisterInteractionHandler("keyup", this.deactivateHandler);
           try {
-            for (var POINTER_DEACTIVATION_EVENT_TYPES_2 = __values(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next(); !POINTER_DEACTIVATION_EVENT_TYPES_2_1.done; POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next()) {
+            for (var POINTER_DEACTIVATION_EVENT_TYPES_2 = (0, import_tslib2.__values)(POINTER_DEACTIVATION_EVENT_TYPES), POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next(); !POINTER_DEACTIVATION_EVENT_TYPES_2_1.done; POINTER_DEACTIVATION_EVENT_TYPES_2_1 = POINTER_DEACTIVATION_EVENT_TYPES_2.next()) {
               var evtType = POINTER_DEACTIVATION_EVENT_TYPES_2_1.value;
               this.adapter.deregisterDocumentInteractionHandler(evtType, this.deactivateHandler);
             }
@@ -11893,7 +12249,7 @@
           if (!activationState.isActivated) {
             return;
           }
-          var state = __assign({}, activationState);
+          var state = (0, import_tslib2.__assign)({}, activationState);
           if (activationState.isProgrammatic) {
             requestAnimationFrame(function() {
               _this.animateDeactivation(state);
@@ -11951,18 +12307,18 @@
   });
 
   // node_modules/@material/ripple/component.js
-  var MDCRipple;
+  var import_tslib3, MDCRipple;
   var init_component2 = __esm({
     "node_modules/@material/ripple/component.js"() {
-      init_tslib_es6();
+      import_tslib3 = __toESM(require_tslib());
       init_component();
-      init_events();
+      init_events2();
       init_ponyfill();
       init_foundation2();
       init_util();
       MDCRipple = /** @class */
       function(_super) {
-        __extends(MDCRipple2, _super);
+        (0, import_tslib3.__extends)(MDCRipple2, _super);
         function MDCRipple2() {
           var _this = _super !== null && _super.apply(this, arguments) || this;
           _this.disabled = false;
@@ -12139,7 +12495,7 @@
       value: target[property],
       writable: true
     };
-    var observedDescriptor = __assign({}, descriptor);
+    var observedDescriptor = (0, import_tslib4.__assign)({}, descriptor);
     var descGet = descriptor.get, descSet = descriptor.set;
     if ("value" in descriptor) {
       delete observedDescriptor.value;
@@ -12166,7 +12522,7 @@
         descSet.call(this, newValue);
         if (targetObservers.isEnabled && (!descGet || newValue !== previous)) {
           try {
-            for (var _b = __values(targetObservers.getObservers(property)), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = (0, import_tslib4.__values)(targetObservers.getObservers(property)), _c = _b.next(); !_c.done; _c = _b.next()) {
               var observer = _c.value;
               observer(newValue, previous);
             }
@@ -12206,24 +12562,24 @@
       targetObservers.isEnabled = enabled;
     }
   }
-  var allTargetObservers;
+  var import_tslib4, allTargetObservers;
   var init_observer = __esm({
     "node_modules/@material/base/observer.js"() {
-      init_tslib_es6();
+      import_tslib4 = __toESM(require_tslib());
       allTargetObservers = /* @__PURE__ */ new WeakMap();
     }
   });
 
   // node_modules/@material/base/observer-foundation.js
-  var MDCObserverFoundation;
+  var import_tslib5, MDCObserverFoundation;
   var init_observer_foundation = __esm({
     "node_modules/@material/base/observer-foundation.js"() {
-      init_tslib_es6();
+      import_tslib5 = __toESM(require_tslib());
       init_foundation();
       init_observer();
       MDCObserverFoundation = /** @class */
       function(_super) {
-        __extends(MDCObserverFoundation2, _super);
+        (0, import_tslib5.__extends)(MDCObserverFoundation2, _super);
         function MDCObserverFoundation2(adapter) {
           var _this = _super.call(this, adapter) || this;
           _this.unobserves = /* @__PURE__ */ new Set();
@@ -12238,7 +12594,7 @@
           var _this = this;
           var cleanup = [];
           try {
-            for (var _b = __values(Object.keys(observers)), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = (0, import_tslib5.__values)(Object.keys(observers)), _c = _b.next(); !_c.done; _c = _b.next()) {
               var property = _c.value;
               var observer = observers[property].bind(this);
               cleanup.push(this.observeProperty(target, property, observer));
@@ -12257,7 +12613,7 @@
           var unobserve = function() {
             var e_2, _a3;
             try {
-              for (var cleanup_1 = __values(cleanup), cleanup_1_1 = cleanup_1.next(); !cleanup_1_1.done; cleanup_1_1 = cleanup_1.next()) {
+              for (var cleanup_1 = (0, import_tslib5.__values)(cleanup), cleanup_1_1 = cleanup_1.next(); !cleanup_1_1.done; cleanup_1_1 = cleanup_1.next()) {
                 var cleanupFn = cleanup_1_1.value;
                 cleanupFn();
               }
@@ -12286,7 +12642,7 @@
         MDCObserverFoundation2.prototype.unobserve = function() {
           var e_3, _a2;
           try {
-            for (var _b = __values(__spreadArray([], __read(this.unobserves))), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = (0, import_tslib5.__values)((0, import_tslib5.__spreadArray)([], (0, import_tslib5.__read)(this.unobserves))), _c = _b.next(); !_c.done; _c = _b.next()) {
               var unobserve = _c.value;
               unobserve();
             }
@@ -12308,15 +12664,15 @@
   });
 
   // node_modules/@material/switch/foundation.js
-  var MDCSwitchFoundation, MDCSwitchRenderFoundation;
+  var import_tslib6, MDCSwitchFoundation, MDCSwitchRenderFoundation;
   var init_foundation3 = __esm({
     "node_modules/@material/switch/foundation.js"() {
-      init_tslib_es6();
+      import_tslib6 = __toESM(require_tslib());
       init_observer_foundation();
       init_constants2();
       MDCSwitchFoundation = /** @class */
       function(_super) {
-        __extends(MDCSwitchFoundation2, _super);
+        (0, import_tslib6.__extends)(MDCSwitchFoundation2, _super);
         function MDCSwitchFoundation2(adapter) {
           var _this = _super.call(this, adapter) || this;
           _this.handleClick = _this.handleClick.bind(_this);
@@ -12343,7 +12699,7 @@
       }(MDCObserverFoundation);
       MDCSwitchRenderFoundation = /** @class */
       function(_super) {
-        __extends(MDCSwitchRenderFoundation2, _super);
+        (0, import_tslib6.__extends)(MDCSwitchRenderFoundation2, _super);
         function MDCSwitchRenderFoundation2() {
           return _super !== null && _super.apply(this, arguments) || this;
         }
@@ -12388,10 +12744,10 @@
   });
 
   // node_modules/@material/switch/component.js
-  var MDCSwitch;
+  var import_tslib7, MDCSwitch;
   var init_component3 = __esm({
     "node_modules/@material/switch/component.js"() {
-      init_tslib_es6();
+      import_tslib7 = __toESM(require_tslib());
       init_component();
       init_component2();
       init_foundation2();
@@ -12399,7 +12755,7 @@
       init_foundation3();
       MDCSwitch = /** @class */
       function(_super) {
-        __extends(MDCSwitch2, _super);
+        (0, import_tslib7.__extends)(MDCSwitch2, _super);
         function MDCSwitch2(root, foundation) {
           var _this = _super.call(this, root, foundation) || this;
           _this.root = root;
@@ -12457,7 +12813,7 @@
         };
         MDCSwitch2.prototype.createRippleAdapter = function() {
           var _this = this;
-          return __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function() {
+          return (0, import_tslib7.__assign)((0, import_tslib7.__assign)({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function() {
             return _this.rippleElement.getBoundingClientRect();
           }, isUnbounded: function() {
             return true;
@@ -12559,9 +12915,9 @@
     }
   });
 
-  // shared/js/browser/macos-communication.es6.js
-  var macos_communication_es6_exports = {};
-  __export(macos_communication_es6_exports, {
+  // shared/js/browser/macos-communication.js
+  var macos_communication_exports = {};
+  __export(macos_communication_exports, {
     backgroundMessage: () => backgroundMessage2,
     fetch: () => fetch2,
     firstRenderComplete: () => firstRenderComplete,
@@ -12719,13 +13075,13 @@
     }
   }
   var channel2, backgroundMessage2, getBackgroundTabDataPromises, trackerBlockingData, permissionsData, certificateData, upgradedHttps, protections, isPendingUpdates, parentEntity, cookiePromptManagementStatus, locale, combineSources, resolveInitialRender, getBackgroundTabData2;
-  var init_macos_communication_es6 = __esm({
-    "shared/js/browser/macos-communication.es6.js"() {
+  var init_macos_communication = __esm({
+    "shared/js/browser/macos-communication.js"() {
       "use strict";
       init_schema_parsers();
       init_environment_check();
       init_utils();
-      init_common_es6();
+      init_common();
       init_request_details();
       channel2 = null;
       backgroundMessage2 = (backgroundModel) => {
@@ -12771,9 +13127,9 @@
     }
   });
 
-  // shared/js/browser/ios-communication.es6.js
-  var ios_communication_es6_exports = {};
-  __export(ios_communication_es6_exports, {
+  // shared/js/browser/ios-communication.js
+  var ios_communication_exports = {};
+  __export(ios_communication_exports, {
     backgroundMessage: () => backgroundMessage2,
     fetch: () => fetch3,
     getBackgroundTabData: () => getBackgroundTabData2,
@@ -12806,17 +13162,17 @@
     }
     return fetch2(message);
   }
-  var init_ios_communication_es6 = __esm({
-    "shared/js/browser/ios-communication.es6.js"() {
+  var init_ios_communication = __esm({
+    "shared/js/browser/ios-communication.js"() {
       "use strict";
-      init_common_es6();
-      init_macos_communication_es6();
+      init_common();
+      init_macos_communication();
     }
   });
 
-  // shared/js/browser/android-communication.es6.js
-  var android_communication_es6_exports = {};
-  __export(android_communication_es6_exports, {
+  // shared/js/browser/android-communication.js
+  var android_communication_exports = {};
+  __export(android_communication_exports, {
     PrivacyDashboardJavascriptInterface: () => PrivacyDashboardJavascriptInterface,
     backgroundMessage: () => backgroundMessage3,
     fetch: () => fetch4,
@@ -12936,12 +13292,12 @@
     });
   }
   var channel3, backgroundMessage3, getBackgroundTabDataPromises2, trackerBlockingData2, permissionsData2, certificateData2, upgradedHttps2, protections2, isPendingUpdates2, parentEntity2, cookiePromptManagementStatus2, locale2, combineSources2, resolveInitialRender2, PrivacyDashboardJavascriptInterface, privacyDashboardApi, getBackgroundTabDataAndroid, getBackgroundTabData3, fetch4;
-  var init_android_communication_es6 = __esm({
-    "shared/js/browser/android-communication.es6.js"() {
+  var init_android_communication = __esm({
+    "shared/js/browser/android-communication.js"() {
       "use strict";
       init_schema_parsers();
       init_utils();
-      init_common_es6();
+      init_common();
       init_request_details();
       channel3 = null;
       backgroundMessage3 = (backgroundModel) => {
@@ -13015,7 +13371,7 @@
         }
         /**
          * {@inheritDoc common.openInNewTab}
-         * @type {import("./common.es6").openInNewTab}
+         * @type {import("./common.js").openInNewTab}
          *
          * ```js
          * const payload = JSON.stringify({
@@ -13029,7 +13385,7 @@
         }
         /**
          * {@inheritDoc common.openSettings}
-         * @type {import("./common.es6").openSettings}
+         * @type {import("./common.js").openSettings}
          * @example
          * ```js
          * const payload = JSON.stringify({
@@ -13064,9 +13420,9 @@
     }
   });
 
-  // shared/js/browser/windows-communication.es6.js
-  var windows_communication_es6_exports = {};
-  __export(windows_communication_es6_exports, {
+  // shared/js/browser/windows-communication.js
+  var windows_communication_exports = {};
+  __export(windows_communication_exports, {
     OpenInNewTab: () => OpenInNewTab,
     OpenSettings: () => OpenSettings,
     SetSize: () => SetSize,
@@ -13196,13 +13552,13 @@
     }
   }
   var channel4, backgroundMessage4, getBackgroundTabDataPromises3, trackerBlockingData3, permissionsData3, certificateData3, upgradedHttps3, protections3, isPendingUpdates3, parentEntity3, combineSources3, resolveInitialRender3, getBackgroundTabData4, eventShape;
-  var init_windows_communication_es6 = __esm({
-    "shared/js/browser/windows-communication.es6.js"() {
+  var init_windows_communication = __esm({
+    "shared/js/browser/windows-communication.js"() {
       "use strict";
       init_lib();
       init_schema_parsers();
       init_utils();
-      init_common_es6();
+      init_common();
       init_request_details();
       channel4 = null;
       backgroundMessage4 = (backgroundModel) => {
@@ -14288,9 +14644,9 @@
     }
   });
 
-  // shared/js/browser/example-communication.es6.js
-  var example_communication_es6_exports = {};
-  __export(example_communication_es6_exports, {
+  // shared/js/browser/example-communication.js
+  var example_communication_exports = {};
+  __export(example_communication_exports, {
     backgroundMessage: () => backgroundMessage5,
     fetch: () => fetch6,
     getBackgroundTabData: () => getBackgroundTabData5,
@@ -14349,10 +14705,10 @@
     console.warn("should open search for ", JSON.stringify(query));
   }
   var overrides, channel5;
-  var init_example_communication_es6 = __esm({
-    "shared/js/browser/example-communication.es6.js"() {
+  var init_example_communication = __esm({
+    "shared/js/browser/example-communication.js"() {
       "use strict";
-      init_common_es6();
+      init_common();
       init_overrides();
       overrides = getOverrides(window.location.search);
       channel5 = null;
@@ -14364,68 +14720,68 @@
     }
   });
 
-  // shared/js/browser/communication.es6.js
-  var defaultComms, platform, overrides2, communication_es6_default;
-  var init_communication_es6 = __esm({
-    "shared/js/browser/communication.es6.js"() {
+  // shared/js/browser/communication.js
+  var defaultComms, platform, overrides2, communication_default;
+  var init_communication = __esm({
+    "shared/js/browser/communication.js"() {
       "use strict";
       init_environment_check();
-      init_browser_communication_es6();
-      init_ios_communication_es6();
-      init_android_communication_es6();
-      init_windows_communication_es6();
-      init_macos_communication_es6();
-      init_example_communication_es6();
+      init_browser_communication();
+      init_ios_communication();
+      init_android_communication();
+      init_windows_communication();
+      init_macos_communication();
+      init_example_communication();
       init_overrides();
       platform = { name: "example" };
       overrides2 = getOverrides(window.location.search);
       if (overrides2.platform && overrides2.platform !== "example") {
         window.environmentOverride = overrides2.platform;
-        defaultComms = example_communication_es6_exports;
+        defaultComms = example_communication_exports;
         platform.name = overrides2.platform;
       } else if (isIOS()) {
-        defaultComms = ios_communication_es6_exports;
+        defaultComms = ios_communication_exports;
         platform.name = "ios";
       } else if (isBrowser()) {
-        defaultComms = browser_communication_es6_exports;
+        defaultComms = browser_communication_exports;
         platform.name = "browser";
       } else if (isAndroid()) {
-        defaultComms = android_communication_es6_exports;
+        defaultComms = android_communication_exports;
         platform.name = "android";
       } else if (isWindows()) {
-        defaultComms = windows_communication_es6_exports;
+        defaultComms = windows_communication_exports;
         platform.name = "windows";
       } else if (isMacos()) {
-        defaultComms = macos_communication_es6_exports;
+        defaultComms = macos_communication_exports;
         platform.name = "macos";
       } else {
-        defaultComms = example_communication_es6_exports;
+        defaultComms = example_communication_exports;
       }
       if (!defaultComms)
         throw new Error("unsupported environment");
       defaultComms.setup();
-      communication_es6_default = defaultComms;
+      communication_default = defaultComms;
     }
   });
 
-  // shared/js/ui/base/model.es6.js
+  // shared/js/ui/base/model.js
   function BaseModel(attrs) {
     import_jquery2.default.extend(this, attrs);
     if (!this.modelName || typeof this.modelName !== "string") {
       throw new Error("cannot init model without `modelName` property");
     } else {
-      this.store = store_es6_exports;
+      this.store = store_exports;
       this.store.register(this.modelName);
     }
   }
-  var import_jquery2, baseModelMethods, model_es6_default;
-  var init_model_es6 = __esm({
-    "shared/js/ui/base/model.es6.js"() {
+  var import_jquery2, baseModelMethods, model_default;
+  var init_model = __esm({
+    "shared/js/ui/base/model.js"() {
       "use strict";
       import_jquery2 = __toESM(require_jquery());
-      init_communication_es6();
-      init_index_es6();
-      init_store_es6();
+      init_communication();
+      init_mixins();
+      init_store();
       baseModelMethods = {
         /**
          * Setter method for modifying attributes
@@ -14487,7 +14843,7 @@
          * this.model.fetch({'messageName': messageValue}).then((response) ..
          **/
         fetch: function(message) {
-          return communication_es6_default.fetch(message);
+          return communication_default.fetch(message);
         },
         /**
          * Send a user action
@@ -14523,29 +14879,29 @@
           return JSON.parse(JSON.stringify(attributes));
         }
       };
-      BaseModel.prototype = import_jquery2.default.extend({}, events_es6_exports, baseModelMethods);
-      model_es6_default = BaseModel;
+      BaseModel.prototype = import_jquery2.default.extend({}, events_exports, baseModelMethods);
+      model_default = BaseModel;
     }
   });
 
-  // shared/js/ui/models/email-protection.es6.js
+  // shared/js/ui/models/email-protection.js
   function EmailProtectionModel(attrs) {
     attrs = attrs || {};
     if (!("emailProtectionUserData" in attrs)) {
       throw new Error("`emailProtectionUserData` is required for EmailProtectionModel");
     }
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
     this._setup();
   }
-  var import_jquery3, email_protection_es6_default;
-  var init_email_protection_es6 = __esm({
-    "shared/js/ui/models/email-protection.es6.js"() {
+  var import_jquery3, email_protection_default;
+  var init_email_protection = __esm({
+    "shared/js/ui/models/email-protection.js"() {
       "use strict";
       import_jquery3 = __toESM(require_jquery());
       init_lib();
-      init_model_es6();
-      init_common_es6();
-      EmailProtectionModel.prototype = import_jquery3.default.extend({}, model_es6_default.prototype, {
+      init_model();
+      init_common();
+      EmailProtectionModel.prototype = import_jquery3.default.extend({}, model_default.prototype, {
         modelName: "emailProtection",
         /**
          * @type {UserData | null}
@@ -14571,7 +14927,7 @@
           }
         },
         /**
-         * @this {import('./site.es6').LocalThis}
+         * @this {import('./site.js').LocalThis}
          * @returns {*}
          */
         refreshAlias: function() {
@@ -14589,7 +14945,7 @@
           });
         }
       });
-      email_protection_es6_default = EmailProtectionModel;
+      email_protection_default = EmailProtectionModel;
     }
   });
 
@@ -15390,11 +15746,11 @@
   });
 
   // node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
-  function _assertThisInitialized(self) {
-    if (self === void 0) {
+  function _assertThisInitialized(self2) {
+    if (self2 === void 0) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
     }
-    return self;
+    return self2;
   }
   var init_assertThisInitialized = __esm({
     "node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js"() {
@@ -15439,13 +15795,13 @@
   });
 
   // node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js
-  function _possibleConstructorReturn(self, call) {
+  function _possibleConstructorReturn(self2, call) {
     if (call && (_typeof(call) === "object" || typeof call === "function")) {
       return call;
     } else if (call !== void 0) {
       throw new TypeError("Derived constructors may only return object or undefined");
     }
-    return _assertThisInitialized(self);
+    return _assertThisInitialized(self2);
   }
   var init_possibleConstructorReturn = __esm({
     "node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js"() {
@@ -18830,13 +19186,13 @@
           result.compactDisplay = "long";
           continue;
         case "scientific":
-          result = __assign(__assign(__assign({}, result), { notation: "scientific" }), token.options.reduce(function(all, opt2) {
-            return __assign(__assign({}, all), parseNotationOptions(opt2));
+          result = (0, import_tslib8.__assign)((0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, result), { notation: "scientific" }), token.options.reduce(function(all, opt2) {
+            return (0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, all), parseNotationOptions(opt2));
           }, {}));
           continue;
         case "engineering":
-          result = __assign(__assign(__assign({}, result), { notation: "engineering" }), token.options.reduce(function(all, opt2) {
-            return __assign(__assign({}, all), parseNotationOptions(opt2));
+          result = (0, import_tslib8.__assign)((0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, result), { notation: "engineering" }), token.options.reduce(function(all, opt2) {
+            return (0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, all), parseNotationOptions(opt2));
           }, {}));
           continue;
         case "notation-simple":
@@ -18900,31 +19256,31 @@
         });
         var opt = token.options[0];
         if (opt === "w") {
-          result = __assign(__assign({}, result), { trailingZeroDisplay: "stripIfInteger" });
+          result = (0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, result), { trailingZeroDisplay: "stripIfInteger" });
         } else if (opt) {
-          result = __assign(__assign({}, result), parseSignificantPrecision(opt));
+          result = (0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, result), parseSignificantPrecision(opt));
         }
         continue;
       }
       if (SIGNIFICANT_PRECISION_REGEX.test(token.stem)) {
-        result = __assign(__assign({}, result), parseSignificantPrecision(token.stem));
+        result = (0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, result), parseSignificantPrecision(token.stem));
         continue;
       }
       var signOpts = parseSign(token.stem);
       if (signOpts) {
-        result = __assign(__assign({}, result), signOpts);
+        result = (0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, result), signOpts);
       }
       var conciseScientificAndEngineeringOpts = parseConciseScientificAndEngineeringStem(token.stem);
       if (conciseScientificAndEngineeringOpts) {
-        result = __assign(__assign({}, result), conciseScientificAndEngineeringOpts);
+        result = (0, import_tslib8.__assign)((0, import_tslib8.__assign)({}, result), conciseScientificAndEngineeringOpts);
       }
     }
     return result;
   }
-  var FRACTION_PRECISION_REGEX, SIGNIFICANT_PRECISION_REGEX, INTEGER_WIDTH_REGEX, CONCISE_INTEGER_WIDTH_REGEX;
+  var import_tslib8, FRACTION_PRECISION_REGEX, SIGNIFICANT_PRECISION_REGEX, INTEGER_WIDTH_REGEX, CONCISE_INTEGER_WIDTH_REGEX;
   var init_number = __esm({
     "node_modules/@formatjs/icu-skeleton-parser/lib/number.js"() {
-      init_tslib_es6();
+      import_tslib8 = __toESM(require_tslib());
       init_regex_generated2();
       FRACTION_PRECISION_REGEX = /^\.(?:(0+)(\*)?|(#+)|(0+)(#+))$/g;
       SIGNIFICANT_PRECISION_REGEX = /^(@+)?(\+|#+)?[rs]?$/g;
@@ -20374,10 +20730,10 @@
   function _isPatternSyntax(c) {
     return c >= 33 && c <= 35 || c === 36 || c >= 37 && c <= 39 || c === 40 || c === 41 || c === 42 || c === 43 || c === 44 || c === 45 || c >= 46 && c <= 47 || c >= 58 && c <= 59 || c >= 60 && c <= 62 || c >= 63 && c <= 64 || c === 91 || c === 92 || c === 93 || c === 94 || c === 96 || c === 123 || c === 124 || c === 125 || c === 126 || c === 161 || c >= 162 && c <= 165 || c === 166 || c === 167 || c === 169 || c === 171 || c === 172 || c === 174 || c === 176 || c === 177 || c === 182 || c === 187 || c === 191 || c === 215 || c === 247 || c >= 8208 && c <= 8213 || c >= 8214 && c <= 8215 || c === 8216 || c === 8217 || c === 8218 || c >= 8219 && c <= 8220 || c === 8221 || c === 8222 || c === 8223 || c >= 8224 && c <= 8231 || c >= 8240 && c <= 8248 || c === 8249 || c === 8250 || c >= 8251 && c <= 8254 || c >= 8257 && c <= 8259 || c === 8260 || c === 8261 || c === 8262 || c >= 8263 && c <= 8273 || c === 8274 || c === 8275 || c >= 8277 && c <= 8286 || c >= 8592 && c <= 8596 || c >= 8597 && c <= 8601 || c >= 8602 && c <= 8603 || c >= 8604 && c <= 8607 || c === 8608 || c >= 8609 && c <= 8610 || c === 8611 || c >= 8612 && c <= 8613 || c === 8614 || c >= 8615 && c <= 8621 || c === 8622 || c >= 8623 && c <= 8653 || c >= 8654 && c <= 8655 || c >= 8656 && c <= 8657 || c === 8658 || c === 8659 || c === 8660 || c >= 8661 && c <= 8691 || c >= 8692 && c <= 8959 || c >= 8960 && c <= 8967 || c === 8968 || c === 8969 || c === 8970 || c === 8971 || c >= 8972 && c <= 8991 || c >= 8992 && c <= 8993 || c >= 8994 && c <= 9e3 || c === 9001 || c === 9002 || c >= 9003 && c <= 9083 || c === 9084 || c >= 9085 && c <= 9114 || c >= 9115 && c <= 9139 || c >= 9140 && c <= 9179 || c >= 9180 && c <= 9185 || c >= 9186 && c <= 9254 || c >= 9255 && c <= 9279 || c >= 9280 && c <= 9290 || c >= 9291 && c <= 9311 || c >= 9472 && c <= 9654 || c === 9655 || c >= 9656 && c <= 9664 || c === 9665 || c >= 9666 && c <= 9719 || c >= 9720 && c <= 9727 || c >= 9728 && c <= 9838 || c === 9839 || c >= 9840 && c <= 10087 || c === 10088 || c === 10089 || c === 10090 || c === 10091 || c === 10092 || c === 10093 || c === 10094 || c === 10095 || c === 10096 || c === 10097 || c === 10098 || c === 10099 || c === 10100 || c === 10101 || c >= 10132 && c <= 10175 || c >= 10176 && c <= 10180 || c === 10181 || c === 10182 || c >= 10183 && c <= 10213 || c === 10214 || c === 10215 || c === 10216 || c === 10217 || c === 10218 || c === 10219 || c === 10220 || c === 10221 || c === 10222 || c === 10223 || c >= 10224 && c <= 10239 || c >= 10240 && c <= 10495 || c >= 10496 && c <= 10626 || c === 10627 || c === 10628 || c === 10629 || c === 10630 || c === 10631 || c === 10632 || c === 10633 || c === 10634 || c === 10635 || c === 10636 || c === 10637 || c === 10638 || c === 10639 || c === 10640 || c === 10641 || c === 10642 || c === 10643 || c === 10644 || c === 10645 || c === 10646 || c === 10647 || c === 10648 || c >= 10649 && c <= 10711 || c === 10712 || c === 10713 || c === 10714 || c === 10715 || c >= 10716 && c <= 10747 || c === 10748 || c === 10749 || c >= 10750 && c <= 11007 || c >= 11008 && c <= 11055 || c >= 11056 && c <= 11076 || c >= 11077 && c <= 11078 || c >= 11079 && c <= 11084 || c >= 11085 && c <= 11123 || c >= 11124 && c <= 11125 || c >= 11126 && c <= 11157 || c === 11158 || c >= 11159 && c <= 11263 || c >= 11776 && c <= 11777 || c === 11778 || c === 11779 || c === 11780 || c === 11781 || c >= 11782 && c <= 11784 || c === 11785 || c === 11786 || c === 11787 || c === 11788 || c === 11789 || c >= 11790 && c <= 11798 || c === 11799 || c >= 11800 && c <= 11801 || c === 11802 || c === 11803 || c === 11804 || c === 11805 || c >= 11806 && c <= 11807 || c === 11808 || c === 11809 || c === 11810 || c === 11811 || c === 11812 || c === 11813 || c === 11814 || c === 11815 || c === 11816 || c === 11817 || c >= 11818 && c <= 11822 || c === 11823 || c >= 11824 && c <= 11833 || c >= 11834 && c <= 11835 || c >= 11836 && c <= 11839 || c === 11840 || c === 11841 || c === 11842 || c >= 11843 && c <= 11855 || c >= 11856 && c <= 11857 || c === 11858 || c >= 11859 && c <= 11903 || c >= 12289 && c <= 12291 || c === 12296 || c === 12297 || c === 12298 || c === 12299 || c === 12300 || c === 12301 || c === 12302 || c === 12303 || c === 12304 || c === 12305 || c >= 12306 && c <= 12307 || c === 12308 || c === 12309 || c === 12310 || c === 12311 || c === 12312 || c === 12313 || c === 12314 || c === 12315 || c === 12316 || c === 12317 || c >= 12318 && c <= 12319 || c === 12320 || c === 12336 || c === 64830 || c === 64831 || c >= 65093 && c <= 65094;
   }
-  var _a, SPACE_SEPARATOR_START_REGEX, SPACE_SEPARATOR_END_REGEX, hasNativeStartsWith, hasNativeFromCodePoint, hasNativeFromEntries, hasNativeCodePointAt, hasTrimStart, hasTrimEnd, hasNativeIsSafeInteger, isSafeInteger, REGEX_SUPPORTS_U_AND_Y, re, startsWith, fromCodePoint, fromEntries, codePointAt, trimStart, trimEnd, matchIdentifierAtIndex, IDENTIFIER_PREFIX_RE_1, Parser;
+  var import_tslib9, _a, SPACE_SEPARATOR_START_REGEX, SPACE_SEPARATOR_END_REGEX, hasNativeStartsWith, hasNativeFromCodePoint, hasNativeFromEntries, hasNativeCodePointAt, hasTrimStart, hasTrimEnd, hasNativeIsSafeInteger, isSafeInteger, REGEX_SUPPORTS_U_AND_Y, re, startsWith, fromCodePoint, fromEntries, codePointAt, trimStart, trimEnd, matchIdentifierAtIndex, IDENTIFIER_PREFIX_RE_1, Parser;
   var init_parser = __esm({
     "node_modules/@formatjs/icu-messageformat-parser/lib/parser.js"() {
-      init_tslib_es6();
+      import_tslib9 = __toESM(require_tslib());
       init_error();
       init_types2();
       init_regex_generated();
@@ -20847,7 +21203,7 @@
               var typeEndPosition_1 = this.clonePosition();
               this.bumpSpace();
               if (!this.bumpIf(",")) {
-                return this.error(ErrorKind.EXPECT_SELECT_ARGUMENT_OPTIONS, createLocation(typeEndPosition_1, __assign({}, typeEndPosition_1)));
+                return this.error(ErrorKind.EXPECT_SELECT_ARGUMENT_OPTIONS, createLocation(typeEndPosition_1, (0, import_tslib9.__assign)({}, typeEndPosition_1)));
               }
               this.bumpSpace();
               var identifierAndLocation = this.parseIdentifierIfPossible();
@@ -21182,7 +21538,7 @@
     if (opts === void 0) {
       opts = {};
     }
-    opts = __assign({ shouldParseSkeletons: true, requiresOtherClause: true }, opts);
+    opts = (0, import_tslib10.__assign)({ shouldParseSkeletons: true, requiresOtherClause: true }, opts);
     var result = new Parser(message, opts).parse();
     if (result.err) {
       var error2 = SyntaxError(ErrorKind[result.err.kind]);
@@ -21195,9 +21551,10 @@
     }
     return result.val;
   }
+  var import_tslib10;
   var init_lib3 = __esm({
     "node_modules/@formatjs/icu-messageformat-parser/lib/index.js"() {
-      init_tslib_es6();
+      import_tslib10 = __toESM(require_tslib());
       init_error();
       init_parser();
       init_types2();
@@ -21278,10 +21635,10 @@
   });
 
   // node_modules/intl-messageformat/lib/src/error.js
-  var ErrorCode, FormatError, InvalidValueError, InvalidValueTypeError, MissingValueError;
+  var import_tslib11, ErrorCode, FormatError, InvalidValueError, InvalidValueTypeError, MissingValueError;
   var init_error2 = __esm({
     "node_modules/intl-messageformat/lib/src/error.js"() {
-      init_tslib_es6();
+      import_tslib11 = __toESM(require_tslib());
       (function(ErrorCode2) {
         ErrorCode2["MISSING_VALUE"] = "MISSING_VALUE";
         ErrorCode2["INVALID_VALUE"] = "INVALID_VALUE";
@@ -21289,7 +21646,7 @@
       })(ErrorCode || (ErrorCode = {}));
       FormatError = /** @class */
       function(_super) {
-        __extends(FormatError2, _super);
+        (0, import_tslib11.__extends)(FormatError2, _super);
         function FormatError2(msg, code, originalMessage) {
           var _this = _super.call(this, msg) || this;
           _this.code = code;
@@ -21303,7 +21660,7 @@
       }(Error);
       InvalidValueError = /** @class */
       function(_super) {
-        __extends(InvalidValueError2, _super);
+        (0, import_tslib11.__extends)(InvalidValueError2, _super);
         function InvalidValueError2(variableId, value, options, originalMessage) {
           return _super.call(this, 'Invalid values for "'.concat(variableId, '": "').concat(value, '". Options are "').concat(Object.keys(options).join('", "'), '"'), ErrorCode.INVALID_VALUE, originalMessage) || this;
         }
@@ -21311,7 +21668,7 @@
       }(FormatError);
       InvalidValueTypeError = /** @class */
       function(_super) {
-        __extends(InvalidValueTypeError2, _super);
+        (0, import_tslib11.__extends)(InvalidValueTypeError2, _super);
         function InvalidValueTypeError2(value, type, originalMessage) {
           return _super.call(this, 'Value for "'.concat(value, '" must be of type ').concat(type), ErrorCode.INVALID_VALUE, originalMessage) || this;
         }
@@ -21319,7 +21676,7 @@
       }(FormatError);
       MissingValueError = /** @class */
       function(_super) {
-        __extends(MissingValueError2, _super);
+        (0, import_tslib11.__extends)(MissingValueError2, _super);
         function MissingValueError2(variableId, originalMessage) {
           return _super.call(this, 'The intl string context variable "'.concat(variableId, '" was not provided to the string "').concat(originalMessage, '"'), ErrorCode.MISSING_VALUE, originalMessage) || this;
         }
@@ -21479,8 +21836,8 @@
     if (!c2) {
       return c1;
     }
-    return __assign(__assign(__assign({}, c1 || {}), c2 || {}), Object.keys(c1).reduce(function(all, k) {
-      all[k] = __assign(__assign({}, c1[k]), c2[k] || {});
+    return (0, import_tslib12.__assign)((0, import_tslib12.__assign)((0, import_tslib12.__assign)({}, c1 || {}), c2 || {}), Object.keys(c1).reduce(function(all, k) {
+      all[k] = (0, import_tslib12.__assign)((0, import_tslib12.__assign)({}, c1[k]), c2[k] || {});
       return all;
     }, {}));
   }
@@ -21491,7 +21848,7 @@
     return Object.keys(defaultConfig).reduce(function(all, k) {
       all[k] = mergeConfig(defaultConfig[k], configs[k]);
       return all;
-    }, __assign({}, defaultConfig));
+    }, (0, import_tslib12.__assign)({}, defaultConfig));
   }
   function createFastMemoizeCache(store) {
     return {
@@ -21522,7 +21879,7 @@
         for (var _i = 0; _i < arguments.length; _i++) {
           args[_i] = arguments[_i];
         }
-        return new ((_a2 = Intl.NumberFormat).bind.apply(_a2, __spreadArray([void 0], args, false)))();
+        return new ((_a2 = Intl.NumberFormat).bind.apply(_a2, (0, import_tslib12.__spreadArray)([void 0], args, false)))();
       }, {
         cache: createFastMemoizeCache(cache.number),
         strategy: strategies.variadic
@@ -21533,7 +21890,7 @@
         for (var _i = 0; _i < arguments.length; _i++) {
           args[_i] = arguments[_i];
         }
-        return new ((_a2 = Intl.DateTimeFormat).bind.apply(_a2, __spreadArray([void 0], args, false)))();
+        return new ((_a2 = Intl.DateTimeFormat).bind.apply(_a2, (0, import_tslib12.__spreadArray)([void 0], args, false)))();
       }, {
         cache: createFastMemoizeCache(cache.dateTime),
         strategy: strategies.variadic
@@ -21544,17 +21901,17 @@
         for (var _i = 0; _i < arguments.length; _i++) {
           args[_i] = arguments[_i];
         }
-        return new ((_a2 = Intl.PluralRules).bind.apply(_a2, __spreadArray([void 0], args, false)))();
+        return new ((_a2 = Intl.PluralRules).bind.apply(_a2, (0, import_tslib12.__spreadArray)([void 0], args, false)))();
       }, {
         cache: createFastMemoizeCache(cache.pluralRules),
         strategy: strategies.variadic
       })
     };
   }
-  var IntlMessageFormat;
+  var import_tslib12, IntlMessageFormat;
   var init_core = __esm({
     "node_modules/intl-messageformat/lib/src/core.js"() {
-      init_tslib_es6();
+      import_tslib12 = __toESM(require_tslib());
       init_lib3();
       init_lib4();
       init_formatters();
@@ -21875,13 +22232,13 @@
     }
   });
 
-  // shared/js/ui/base/localize.es6.js
+  // shared/js/ui/base/localize.js
   function site(key, options) {
     return i18next_default.t(`site:${key}`, options);
   }
   var i18n, ns;
-  var init_localize_es6 = __esm({
-    "shared/js/ui/base/localize.es6.js"() {
+  var init_localize = __esm({
+    "shared/js/ui/base/localize.js"() {
       "use strict";
       init_i18next();
       init_es();
@@ -21907,7 +22264,7 @@
     }
   });
 
-  // shared/js/ui/templates/email-protection.es6.js
+  // shared/js/ui/templates/email-protection.js
   function emailProtectionTemplate() {
     const state = this.model.state;
     if (state === "unknown") {
@@ -21972,29 +22329,29 @@
     </svg>`;
   }
   var import_nanohtml;
-  var init_email_protection_es62 = __esm({
-    "shared/js/ui/templates/email-protection.es6.js"() {
+  var init_email_protection2 = __esm({
+    "shared/js/ui/templates/email-protection.js"() {
       "use strict";
       import_nanohtml = __toESM(require_browser());
-      init_localize_es6();
+      init_localize();
     }
   });
 
-  // shared/js/ui/models/search.es6.js
+  // shared/js/ui/models/search.js
   function Search(attrs) {
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
   }
-  var import_jquery4, search_es6_default;
-  var init_search_es6 = __esm({
-    "shared/js/ui/models/search.es6.js"() {
+  var import_jquery4, search_default;
+  var init_search = __esm({
+    "shared/js/ui/models/search.js"() {
       "use strict";
       import_jquery4 = __toESM(require_jquery());
-      init_model_es6();
-      init_common_es6();
-      Search.prototype = import_jquery4.default.extend({}, model_es6_default.prototype, {
+      init_model();
+      init_common();
+      Search.prototype = import_jquery4.default.extend({}, model_default.prototype, {
         modelName: "search",
         /**
-         * @this {import('./site.es6').LocalThis}
+         * @this {import('./site.js').LocalThis}
          * @param searchTerm
          */
         doSearch: function(searchTerm) {
@@ -22002,18 +22359,18 @@
           this.fetch(new SearchMessage({ term: searchTerm }));
         },
         /**
-         * @this {import('./site.es6').LocalThis}
+         * @this {import('./site.js').LocalThis}
          */
         openOptionsPage: function() {
           this.fetch(new OpenOptionsMessage());
         }
       });
-      search_es6_default = Search;
+      search_default = Search;
     }
   });
 
-  // shared/js/ui/templates/search.es6.js
-  function search_es6_default2() {
+  // shared/js/ui/templates/search.js
+  function search_default2() {
     return import_nanohtml2.default`
         <div class="search token-search-input">
             <form class="search-form js-search-form" name="x" data-test-id="search-form">
@@ -22058,19 +22415,19 @@
     </svg> `;
   }
   var import_nanohtml2;
-  var init_search_es62 = __esm({
-    "shared/js/ui/templates/search.es6.js"() {
+  var init_search2 = __esm({
+    "shared/js/ui/templates/search.js"() {
       "use strict";
       import_nanohtml2 = __toESM(require_browser());
-      init_localize_es6();
+      init_localize();
     }
   });
 
-  // shared/js/ui/base/view.es6.js
+  // shared/js/ui/base/view.js
   function BaseView(ops) {
     this.model = ops.model;
     this.views = this.views || {};
-    this.store = store_es6_exports;
+    this.store = store_exports;
     this.$parent = typeof ops.appendTo === "string" ? (0, import_jquery5.default)(ops.appendTo) : ops.appendTo;
     this.$before = typeof ops.before === "string" ? (0, import_jquery5.default)(ops.before) : ops.before;
     this.$after = typeof ops.after === "string" ? (0, import_jquery5.default)(ops.after) : ops.after;
@@ -22081,14 +22438,14 @@
     }
     this._render(ops);
   }
-  var import_jquery5, view_es6_default;
-  var init_view_es6 = __esm({
-    "shared/js/ui/base/view.es6.js"() {
+  var import_jquery5, view_default;
+  var init_view = __esm({
+    "shared/js/ui/base/view.js"() {
       "use strict";
       import_jquery5 = __toESM(require_jquery());
-      init_events_es6();
-      init_store_es6();
-      BaseView.prototype = import_jquery5.default.extend({}, events_es6_exports, {
+      init_events();
+      init_store();
+      BaseView.prototype = import_jquery5.default.extend({}, events_exports, {
         /***
          * Each view should define a template
          * if it wants to be rendered and added to the DOM.
@@ -22226,7 +22583,7 @@
           }
         }
       });
-      view_es6_default = BaseView;
+      view_default = BaseView;
     }
   });
 
@@ -22246,7 +22603,7 @@
     }
   });
 
-  // shared/js/ui/templates/cta-rotation.es6.js
+  // shared/js/ui/templates/cta-rotation.js
   function ctaRotationView() {
     const cta = ctas[this.model.currentCta];
     if (!cta) {
@@ -22326,13 +22683,13 @@
 </svg>
 `;
   }
-  var import_nanohtml3, import_raw, ctas, cta_rotation_es6_default;
-  var init_cta_rotation_es6 = __esm({
-    "shared/js/ui/templates/cta-rotation.es6.js"() {
+  var import_nanohtml3, import_raw, ctas, cta_rotation_default;
+  var init_cta_rotation = __esm({
+    "shared/js/ui/templates/cta-rotation.js"() {
       "use strict";
       import_nanohtml3 = __toESM(require_browser());
       import_raw = __toESM(require_raw_browser());
-      init_localize_es6();
+      init_localize();
       ctas = {
         spread: {
           title: () => i18n.t("ctascreens:spreadTitle.title"),
@@ -22355,28 +22712,28 @@
           }
         }
       };
-      cta_rotation_es6_default = ctaRotationView;
+      cta_rotation_default = ctaRotationView;
     }
   });
 
-  // shared/js/ui/models/cta-rotation.es6.js
+  // shared/js/ui/models/cta-rotation.js
   function CtaRotationModel(attrs) {
     attrs = attrs || {};
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
     this._setup();
   }
   var import_jquery6, constants;
-  var init_cta_rotation_es62 = __esm({
-    "shared/js/ui/models/cta-rotation.es6.js"() {
+  var init_cta_rotation2 = __esm({
+    "shared/js/ui/models/cta-rotation.js"() {
       "use strict";
       import_jquery6 = __toESM(require_jquery());
-      init_model_es6();
-      init_cta_rotation_es6();
+      init_model();
+      init_cta_rotation();
       constants = {
         MODEL_NAME: "ctaRotation",
         CTA_SCREENS: Object.keys(ctas)
       };
-      CtaRotationModel.prototype = import_jquery6.default.extend({}, model_es6_default.prototype, {
+      CtaRotationModel.prototype = import_jquery6.default.extend({}, model_default.prototype, {
         modelName: constants.MODEL_NAME,
         /**
          * Which CTA screen is going to be shown next.
@@ -22455,11 +22812,11 @@
     "shared/js/ui/templates/shared/links.js"() {
       "use strict";
       import_nanohtml4 = __toESM(require_browser());
-      init_localize_es6();
+      init_localize();
     }
   });
 
-  // shared/js/ui/templates/shared/tracker-networks-text.es6.js
+  // shared/js/ui/templates/shared/tracker-networks-text.js
   function trackerNetworksText(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled);
     switch (state) {
@@ -22549,15 +22906,15 @@
   function unreachable(x) {
     throw new Error("Didn't expect to get here with value" + x);
   }
-  var init_tracker_networks_text_es6 = __esm({
-    "shared/js/ui/templates/shared/tracker-networks-text.es6.js"() {
+  var init_tracker_networks_text = __esm({
+    "shared/js/ui/templates/shared/tracker-networks-text.js"() {
       "use strict";
       init_request_details();
-      init_localize_es6();
+      init_localize();
     }
   });
 
-  // shared/js/ui/templates/shared/thirdparty-text.es6.js
+  // shared/js/ui/templates/shared/thirdparty-text.js
   function thirdpartyText(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled);
     switch (state) {
@@ -22636,15 +22993,15 @@
   function unreachable2(x) {
     throw new Error("Didn't expect to get here with value " + x);
   }
-  var init_thirdparty_text_es6 = __esm({
-    "shared/js/ui/templates/shared/thirdparty-text.es6.js"() {
+  var init_thirdparty_text = __esm({
+    "shared/js/ui/templates/shared/thirdparty-text.js"() {
       "use strict";
       init_request_details();
-      init_localize_es6();
+      init_localize();
     }
   });
 
-  // shared/js/ui/templates/shared/hero.es6.js
+  // shared/js/ui/templates/shared/hero.js
   function heroTemplate(opts) {
     return import_nanohtml5.default`
         <div class="key-insight" data-suffix=${opts.suffix}>
@@ -22681,25 +23038,25 @@
     return import_nanohtml5.default`<div class="large-icon-container hero-icon--${ops.status}"></div>`;
   }
   var import_nanohtml5;
-  var init_hero_es6 = __esm({
-    "shared/js/ui/templates/shared/hero.es6.js"() {
+  var init_hero = __esm({
+    "shared/js/ui/templates/shared/hero.js"() {
       "use strict";
       import_nanohtml5 = __toESM(require_browser());
       init_links();
-      init_tracker_networks_text_es6();
-      init_thirdparty_text_es6();
+      init_tracker_networks_text();
+      init_thirdparty_text();
     }
   });
 
-  // shared/js/ui/templates/shared/utils.es6.js
+  // shared/js/ui/templates/shared/utils.js
   function getColorId(value) {
     const characters = value.toLowerCase().split("");
     const sum = characters.reduce((total, character) => total + character.charCodeAt(0) - offset, 0);
     return Math.abs(sum % colorCount + 1);
   }
   var offset, colorCount;
-  var init_utils_es6 = __esm({
-    "shared/js/ui/templates/shared/utils.es6.js"() {
+  var init_utils3 = __esm({
+    "shared/js/ui/templates/shared/utils.js"() {
       "use strict";
       offset = "a".charCodeAt(0);
       colorCount = 16;
@@ -22715,7 +23072,7 @@
     "shared/js/ui/templates/shared/platform-limitations.js"() {
       "use strict";
       import_nanohtml6 = __toESM(require_browser());
-      init_localize_es6();
+      init_localize();
     }
   });
 
@@ -22771,11 +23128,11 @@
       "use strict";
       import_nanohtml7 = __toESM(require_browser());
       init_environment_check();
-      init_localize_es6();
+      init_localize();
     }
   });
 
-  // shared/js/ui/templates/page-trackers.es6.js
+  // shared/js/ui/templates/page-trackers.js
   function trackerNetworksTemplate() {
     if (!this.model) {
       return import_nanohtml8.default`<section class="sliding-subview"></section>`;
@@ -22851,20 +23208,20 @@
     return sections;
   }
   var import_nanohtml8;
-  var init_page_trackers_es6 = __esm({
-    "shared/js/ui/templates/page-trackers.es6.js"() {
+  var init_page_trackers = __esm({
+    "shared/js/ui/templates/page-trackers.js"() {
       "use strict";
       import_nanohtml8 = __toESM(require_browser());
       init_constants3();
-      init_localize_es6();
-      init_hero_es6();
-      init_utils_es6();
+      init_localize();
+      init_hero();
+      init_utils3();
       init_platform_limitations();
       init_top_nav();
     }
   });
 
-  // shared/js/ui/templates/page-non-trackers.es6.js
+  // shared/js/ui/templates/page-non-trackers.js
   function nonTrackersTemplate() {
     if (!this.model) {
       return import_nanohtml9.default`<section class="sliding-subview"></section>`;
@@ -22931,14 +23288,14 @@
     ]);
   }
   var import_nanohtml9;
-  var init_page_non_trackers_es6 = __esm({
-    "shared/js/ui/templates/page-non-trackers.es6.js"() {
+  var init_page_non_trackers = __esm({
+    "shared/js/ui/templates/page-non-trackers.js"() {
       "use strict";
       import_nanohtml9 = __toESM(require_browser());
-      init_localize_es6();
+      init_localize();
       init_request_details();
-      init_hero_es6();
-      init_page_trackers_es6();
+      init_hero();
+      init_page_trackers();
       init_links();
       init_platform_limitations();
       init_top_nav();
@@ -22950,7 +23307,7 @@
     this.model = ops.model;
     this.store = ops.store;
     this.template = renderKeyInsight;
-    view_es6_default.call(this, ops);
+    view_default.call(this, ops);
     this._setup();
   }
   function renderKeyInsight() {
@@ -23147,11 +23504,11 @@
       import_nanohtml10 = __toESM(require_browser());
       import_raw2 = __toESM(require_raw_browser());
       import_jquery7 = __toESM(require_jquery());
-      init_localize_es6();
+      init_localize();
       init_normalize_company_name();
-      init_view_es6();
-      init_utils_es6();
-      KeyInsightView.prototype = import_jquery7.default.extend({}, view_es6_default.prototype, {
+      init_view();
+      init_utils3();
+      KeyInsightView.prototype = import_jquery7.default.extend({}, view_default.prototype, {
         /**
          * @this {KeyInsightView & Parent}
          * @private
@@ -23185,21 +23542,21 @@
     }
   });
 
-  // shared/js/ui/models/breakage-form.es6.js
+  // shared/js/ui/models/breakage-form.js
   function BreakageFormModel(attrs) {
     attrs = attrs || {};
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
   }
   var import_jquery8;
-  var init_breakage_form_es6 = __esm({
-    "shared/js/ui/models/breakage-form.es6.js"() {
+  var init_breakage_form = __esm({
+    "shared/js/ui/models/breakage-form.js"() {
       "use strict";
       import_jquery8 = __toESM(require_jquery());
-      init_model_es6();
-      init_common_es6();
-      BreakageFormModel.prototype = import_jquery8.default.extend({}, model_es6_default.prototype, {
+      init_model();
+      init_common();
+      BreakageFormModel.prototype = import_jquery8.default.extend({}, model_default.prototype, {
         modelName: "breakageForm",
-        /** @this {import('./site.es6').LocalThis} */
+        /** @this {import('./site.js').LocalThis} */
         submitBreakageForm: function(category, description) {
           try {
             this.fetch(
@@ -23216,7 +23573,7 @@
     }
   });
 
-  // shared/js/ui/templates/shared/toggle-button.es6.js
+  // shared/js/ui/templates/shared/toggle-button.js
   function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
     const label = isActiveBoolean ? labelDisabled : labelEnabled;
     return import_nanohtml11.default`
@@ -23262,11 +23619,11 @@
     </button>`;
   }
   var import_nanohtml11, labelEnabled, labelDisabled;
-  var init_toggle_button_es6 = __esm({
-    "shared/js/ui/templates/shared/toggle-button.es6.js"() {
+  var init_toggle_button = __esm({
+    "shared/js/ui/templates/shared/toggle-button.js"() {
       "use strict";
       import_nanohtml11 = __toESM(require_browser());
-      init_localize_es6();
+      init_localize();
       init_environment_check();
       labelEnabled = ns.site("enableProtectionsSwitch.title");
       labelDisabled = ns.site("disableProtectionsSwitch.title");
@@ -23305,8 +23662,8 @@
       import_nanohtml12 = __toESM(require_browser());
       import_raw3 = __toESM(require_raw_browser());
       init_environment_check();
-      init_localize_es6();
-      init_toggle_button_es6();
+      init_localize();
+      init_toggle_button();
       renderUpdatingSpinner = () => {
         return import_nanohtml12.default`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t("site:updatingProtectionList.title")}" />`;
       };
@@ -23339,19 +23696,19 @@
     }
   });
 
-  // shared/js/ui/models/cookie-prompt.es6.js
+  // shared/js/ui/models/cookie-prompt.js
   function CookiePromptModel(attrs) {
     this.isCosmetic = attrs.isCosmetic;
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
   }
   var import_jquery9;
-  var init_cookie_prompt_es6 = __esm({
-    "shared/js/ui/models/cookie-prompt.es6.js"() {
+  var init_cookie_prompt = __esm({
+    "shared/js/ui/models/cookie-prompt.js"() {
       "use strict";
       import_jquery9 = __toESM(require_jquery());
-      init_model_es6();
-      init_common_es6();
-      CookiePromptModel.prototype = import_jquery9.default.extend({}, model_es6_default.prototype, {
+      init_model();
+      init_common();
+      CookiePromptModel.prototype = import_jquery9.default.extend({}, model_default.prototype, {
         modelName: "cookiePrompt",
         openSettings: function(category) {
           this.fetch(
@@ -23364,24 +23721,24 @@
     }
   });
 
-  // shared/js/ui/views/sliding-subview.es6.js
+  // shared/js/ui/views/sliding-subview.js
   function SlidingSubview(ops) {
     ops.appendTo = (0, import_jquery10.default)(".sliding-subview--root");
-    view_es6_default.call(this, ops);
+    view_default.call(this, ops);
     this.$root = (0, import_jquery10.default)(".sliding-subview--root");
     this.$root.addClass("sliding-subview--open");
     this.setupNavigationSupport();
     this.setupClose();
   }
-  var import_jquery10, sliding_subview_es6_default;
-  var init_sliding_subview_es6 = __esm({
-    "shared/js/ui/views/sliding-subview.es6.js"() {
+  var import_jquery10, sliding_subview_default;
+  var init_sliding_subview = __esm({
+    "shared/js/ui/views/sliding-subview.js"() {
       "use strict";
       import_jquery10 = __toESM(require_jquery());
       init_environment_check();
-      init_view_es6();
+      init_view();
       init_utils();
-      SlidingSubview.prototype = import_jquery10.default.extend({}, view_es6_default.prototype, {
+      SlidingSubview.prototype = import_jquery10.default.extend({}, view_default.prototype, {
         setupClose: function() {
           this._cacheElems(".js-sliding-subview", ["close", "done"]);
           this.bindEvents([
@@ -23439,27 +23796,27 @@
           this.model.site.close();
         }
       });
-      sliding_subview_es6_default = SlidingSubview;
+      sliding_subview_default = SlidingSubview;
     }
   });
 
-  // shared/js/ui/views/breakage-form.es6.js
+  // shared/js/ui/views/breakage-form.js
   function BreakageForm(ops) {
     this.model = ops.model;
     this.template = ops.template;
-    sliding_subview_es6_default.call(this, ops);
+    sliding_subview_default.call(this, ops);
     this._setup();
   }
-  var import_jquery11, breakage_form_es6_default;
-  var init_breakage_form_es62 = __esm({
-    "shared/js/ui/views/breakage-form.es6.js"() {
+  var import_jquery11, breakage_form_default;
+  var init_breakage_form2 = __esm({
+    "shared/js/ui/views/breakage-form.js"() {
       "use strict";
       import_jquery11 = __toESM(require_jquery());
-      init_sliding_subview_es6();
+      init_sliding_subview();
       BreakageForm.prototype = import_jquery11.default.extend(
         {},
         // @ts-ignore
-        sliding_subview_es6_default.prototype,
+        sliding_subview_default.prototype,
         {
           _setup: function() {
             this._cacheElems(".js-breakage-form", ["close", "submit", "element", "dropdown", "description"]);
@@ -23476,12 +23833,12 @@
           }
         }
       );
-      breakage_form_es6_default = BreakageForm;
+      breakage_form_default = BreakageForm;
     }
   });
 
-  // shared/js/ui/templates/page-connection.es6.js
-  function page_connection_es6_default() {
+  // shared/js/ui/templates/page-connection.js
+  function page_connection_default() {
     if (!this.model) {
       return import_nanohtml13.default`<section class="sliding-subview"></section>`;
     }
@@ -23611,18 +23968,18 @@
     return i18n.t("connection:secureConnectionDesc.title");
   }
   var import_nanohtml13;
-  var init_page_connection_es6 = __esm({
-    "shared/js/ui/templates/page-connection.es6.js"() {
+  var init_page_connection = __esm({
+    "shared/js/ui/templates/page-connection.js"() {
       "use strict";
       import_nanohtml13 = __toESM(require_browser());
-      init_localize_es6();
-      init_hero_es6();
+      init_localize();
+      init_hero();
       init_top_nav();
     }
   });
 
-  // shared/js/ui/templates/breakage-form.es6.js
-  function breakage_form_es6_default2() {
+  // shared/js/ui/templates/breakage-form.js
+  function breakage_form_default2() {
     const categories = [
       { category: i18n.t("report:videos.title"), value: "videos" },
       { category: i18n.t("report:images.title"), value: "images" },
@@ -23678,32 +24035,32 @@
     </section>`;
   }
   var import_nanohtml14;
-  var init_breakage_form_es63 = __esm({
-    "shared/js/ui/templates/breakage-form.es6.js"() {
+  var init_breakage_form3 = __esm({
+    "shared/js/ui/templates/breakage-form.js"() {
       "use strict";
       import_nanohtml14 = __toESM(require_browser());
-      init_localize_es6();
-      init_hero_es6();
+      init_localize();
+      init_hero();
       init_top_nav();
     }
   });
 
-  // shared/js/ui/views/email-protection.es6.js
+  // shared/js/ui/views/email-protection.js
   function EmailProtectionView(ops) {
     this.model = ops.model;
     this.pageView = ops.pageView;
     this.template = ops.template;
-    view_es6_default.call(this, ops);
+    view_default.call(this, ops);
     this._setup();
   }
-  var import_jquery12, formatAddress, email_protection_es6_default2;
-  var init_email_protection_es63 = __esm({
-    "shared/js/ui/views/email-protection.es6.js"() {
+  var import_jquery12, formatAddress, email_protection_default2;
+  var init_email_protection3 = __esm({
+    "shared/js/ui/views/email-protection.js"() {
       "use strict";
       import_jquery12 = __toESM(require_jquery());
-      init_view_es6();
+      init_view();
       formatAddress = (address) => address + "@duck.com";
-      EmailProtectionView.prototype = import_jquery12.default.extend({}, view_es6_default.prototype, {
+      EmailProtectionView.prototype = import_jquery12.default.extend({}, view_default.prototype, {
         _setup: function() {
           this.bindEvents([[this.store.subscribe, `change:${this.model.modelName}`, this._rerender]]);
         },
@@ -23717,16 +24074,16 @@
           this.model.refreshAlias().catch((e) => console.error(e));
         }
       });
-      email_protection_es6_default2 = EmailProtectionView;
+      email_protection_default2 = EmailProtectionView;
     }
   });
 
-  // shared/js/ui/views/search.es6.js
+  // shared/js/ui/views/search.js
   function Search2(ops) {
     this.model = ops.model;
     this.pageView = ops.pageView;
     this.template = ops.template;
-    view_es6_default.call(this, ops);
+    view_default.call(this, ops);
     this._cacheElems(".js-search", ["form", "input", "go", "cog-button"]);
     this.bindEvents([
       [this.$input, "input", this._handleInput],
@@ -23736,14 +24093,14 @@
       [this.$cogbutton, "click", this._handleCogClick]
     ]);
   }
-  var import_jquery13, FOCUS_CLASS, search_es6_default3;
-  var init_search_es63 = __esm({
-    "shared/js/ui/views/search.es6.js"() {
+  var import_jquery13, FOCUS_CLASS, search_default3;
+  var init_search3 = __esm({
+    "shared/js/ui/views/search.js"() {
       "use strict";
       import_jquery13 = __toESM(require_jquery());
-      init_view_es6();
+      init_view();
       FOCUS_CLASS = "go--focused";
-      Search2.prototype = import_jquery13.default.extend({}, view_es6_default.prototype, {
+      Search2.prototype = import_jquery13.default.extend({}, view_default.prototype, {
         // Hover effect on search button while typing
         _addHoverEffect: function() {
           if (!this.$go.hasClass(FOCUS_CLASS)) {
@@ -23776,49 +24133,49 @@
           this.model.openOptionsPage();
         }
       });
-      search_es6_default3 = Search2;
+      search_default3 = Search2;
     }
   });
 
-  // shared/js/ui/views/cta-rotation.es6.js
+  // shared/js/ui/views/cta-rotation.js
   function CtaRotationView(ops) {
     this.model = ops.model;
     this.pageView = ops.pageView;
     this.template = ops.template;
-    view_es6_default.call(this, ops);
+    view_default.call(this, ops);
   }
-  var import_jquery14, cta_rotation_es6_default2;
-  var init_cta_rotation_es63 = __esm({
-    "shared/js/ui/views/cta-rotation.es6.js"() {
+  var import_jquery14, cta_rotation_default2;
+  var init_cta_rotation3 = __esm({
+    "shared/js/ui/views/cta-rotation.js"() {
       "use strict";
       import_jquery14 = __toESM(require_jquery());
-      init_view_es6();
-      CtaRotationView.prototype = import_jquery14.default.extend({}, view_es6_default.prototype, {});
-      cta_rotation_es6_default2 = CtaRotationView;
+      init_view();
+      CtaRotationView.prototype = import_jquery14.default.extend({}, view_default.prototype, {});
+      cta_rotation_default2 = CtaRotationView;
     }
   });
 
-  // shared/js/ui/models/site-company-list.es6.js
+  // shared/js/ui/models/site-company-list.js
   function SiteCompanyList(attrs) {
     attrs = attrs || {};
     attrs.tab = null;
     attrs.companyList = [];
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
   }
-  var import_jquery15, site_company_list_es6_default;
-  var init_site_company_list_es6 = __esm({
-    "shared/js/ui/models/site-company-list.es6.js"() {
+  var import_jquery15, site_company_list_default;
+  var init_site_company_list = __esm({
+    "shared/js/ui/models/site-company-list.js"() {
       "use strict";
       import_jquery15 = __toESM(require_jquery());
-      init_model_es6();
-      init_communication_es6();
+      init_model();
+      init_communication();
       init_normalize_company_name();
-      SiteCompanyList.prototype = import_jquery15.default.extend({}, model_es6_default.prototype, normalizeCompanyName, {
+      SiteCompanyList.prototype = import_jquery15.default.extend({}, model_default.prototype, normalizeCompanyName, {
         modelName: "siteCompanyList",
         /** @this {any} */
         fetchAsyncData: function() {
           return new Promise((resolve, reject) => {
-            communication_es6_default.getBackgroundTabData().then(({ tab }) => {
+            communication_default.getBackgroundTabData().then(({ tab }) => {
               if (tab) {
                 this.tab = tab;
               }
@@ -23827,11 +24184,11 @@
           });
         }
       });
-      site_company_list_es6_default = SiteCompanyList;
+      site_company_list_default = SiteCompanyList;
     }
   });
 
-  // shared/js/ui/models/site.es6.js
+  // shared/js/ui/models/site.js
   function Site(attrs) {
     attrs = attrs || {};
     this.disabled = true;
@@ -23853,27 +24210,27 @@
     this.emailProtectionUserData = null;
     this.acceptingUpdates = true;
     this.features = createPlatformFeatures(platform);
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
     this.bindEvents([[this.store.subscribe, "action:backgroundMessage", this.handleBackgroundMsg]]);
   }
-  var import_jquery16, MAJOR_TRACKER_THRESHOLD_PCT, site_es6_default;
-  var init_site_es6 = __esm({
-    "shared/js/ui/models/site.es6.js"() {
+  var import_jquery16, MAJOR_TRACKER_THRESHOLD_PCT, site_default;
+  var init_site = __esm({
+    "shared/js/ui/models/site.js"() {
       "use strict";
       import_jquery16 = __toESM(require_jquery());
-      init_model_es6();
+      init_model();
       init_constants3();
-      init_communication_es6();
-      init_localize_es6();
+      init_communication();
+      init_localize();
       init_platform_features();
-      init_common_es6();
+      init_common();
       MAJOR_TRACKER_THRESHOLD_PCT = 25;
-      Site.prototype = import_jquery16.default.extend({}, model_es6_default.prototype, {
+      Site.prototype = import_jquery16.default.extend({}, model_default.prototype, {
         modelName: "site",
         /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getBackgroundTabData: function() {
           return new Promise((resolve) => {
-            communication_es6_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
+            communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
               if (tab) {
                 if (tab.locale) {
                   if (Object.keys(i18n.options.resources).includes(tab.locale)) {
@@ -23933,7 +24290,7 @@
           if (message.action && message.action === "updateTabData") {
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
-              communication_es6_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
+              communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
                 this.tab = tab;
                 this.emailProtectionUserData = emailProtectionUserData;
                 this.update();
@@ -23943,7 +24300,7 @@
             }, 100);
           }
         },
-        /** @this {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} */
+        /** @this {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.js").fetcher}} */
         updatePermission: function(id, value) {
           if (!this.permissions)
             return;
@@ -24114,11 +24471,11 @@
           }
         }
       });
-      site_es6_default = Site;
+      site_default = Site;
     }
   });
 
-  // shared/js/ui/views/tracker-networks.es6.js
+  // shared/js/ui/views/tracker-networks.js
   function TrackerNetworks(opts) {
     this.$hero = null;
     this.$details = null;
@@ -24128,21 +24485,21 @@
     this.template = opts.template;
     this.heroFn = opts.heroFn;
     this.detailsFn = opts.detailsFn;
-    sliding_subview_es6_default.call(this, opts);
+    sliding_subview_default.call(this, opts);
     this.renderAsyncContent();
   }
-  var import_jquery17, tracker_networks_es6_default;
-  var init_tracker_networks_es6 = __esm({
-    "shared/js/ui/views/tracker-networks.es6.js"() {
+  var import_jquery17, tracker_networks_default;
+  var init_tracker_networks = __esm({
+    "shared/js/ui/views/tracker-networks.js"() {
       "use strict";
       import_jquery17 = __toESM(require_jquery());
-      init_sliding_subview_es6();
-      init_site_company_list_es6();
-      init_site_es6();
+      init_sliding_subview();
+      init_site_company_list();
+      init_site();
       TrackerNetworks.prototype = import_jquery17.default.extend(
         {},
         // @ts-ignore
-        sliding_subview_es6_default.prototype,
+        sliding_subview_default.prototype,
         {
           /** @this {any} */
           setup: function() {
@@ -24154,11 +24511,11 @@
             const random = Math.round(Math.random() * 1e5);
             this.currentModelName = "siteCompanyList" + random;
             this.currentSiteModelName = "site" + random;
-            this.model = new site_company_list_es6_default({
+            this.model = new site_company_list_default({
               modelName: this.currentModelName
             });
             this.model.fetchAsyncData().then(() => {
-              this.model.site = new site_es6_default({
+              this.model.site = new site_default({
                 modelName: this.currentSiteModelName
               });
               this.model.site.getBackgroundTabData().then(() => {
@@ -24196,7 +24553,7 @@
           }
         }
       );
-      tracker_networks_es6_default = TrackerNetworks;
+      tracker_networks_default = TrackerNetworks;
     }
   });
 
@@ -24224,7 +24581,7 @@
         this.model.send("navigate", { target: "cookieHidden" });
       }
     };
-    view_es6_default.call(this, ops);
+    view_default.call(this, ops);
     this._setup();
   }
   function template() {
@@ -24328,15 +24685,15 @@
       "use strict";
       import_jquery18 = __toESM(require_jquery());
       import_nanohtml15 = __toESM(require_browser());
-      init_view_es6();
-      init_tracker_networks_text_es6();
-      init_thirdparty_text_es6();
-      init_localize_es6();
+      init_view();
+      init_tracker_networks_text();
+      init_thirdparty_text();
+      init_localize();
       init_platform_features();
-      init_communication_es6();
+      init_communication();
       init_environment_check();
       init_utils();
-      MainNavView.prototype = import_jquery18.default.extend({}, view_es6_default.prototype, {
+      MainNavView.prototype = import_jquery18.default.extend({}, view_default.prototype, {
         /**
          * @this {MainNavView}
          * @private
@@ -24403,7 +24760,7 @@
         this.model.openSettings("cpm");
       }
     };
-    sliding_subview_es6_default.call(this, ops);
+    sliding_subview_default.call(this, ops);
   }
   function template2() {
     const summary = this.model.isCosmetic ? ns.site("cookiesHiddenSummary.title") : ns.site("cookiesMinimizedSummary.title");
@@ -24426,25 +24783,25 @@
     </section> `;
   }
   var import_jquery19, import_nanohtml16;
-  var init_cookie_prompt = __esm({
+  var init_cookie_prompt2 = __esm({
     "shared/js/ui/views/cookie-prompt.js"() {
       "use strict";
       import_jquery19 = __toESM(require_jquery());
       import_nanohtml16 = __toESM(require_browser());
       init_top_nav();
-      init_hero_es6();
+      init_hero();
       init_links();
-      init_localize_es6();
-      init_sliding_subview_es6();
+      init_localize();
+      init_sliding_subview();
       CookiePromptView.prototype = import_jquery19.default.extend(
         {},
         // @ts-ignore
-        sliding_subview_es6_default.prototype
+        sliding_subview_default.prototype
       );
     }
   });
 
-  // shared/js/ui/views/site.es6.js
+  // shared/js/ui/views/site.js
   function Site2(ops) {
     this.model = ops.model;
     this.pageView = ops.pageView;
@@ -24453,7 +24810,7 @@
     this.updateInProgress = false;
     this.$body = (0, import_jquery20.default)("body");
     this.model.getBackgroundTabData().then(() => {
-      view_es6_default.call(this, ops);
+      view_default.call(this, ops);
       this._setup();
     }).catch((e) => {
       console.log("\u274C [views/site.es6.js] --> ", e);
@@ -24465,39 +24822,39 @@
       closest.blur();
     }
   }
-  var import_jquery20, site_es6_default2;
-  var init_site_es62 = __esm({
-    "shared/js/ui/views/site.es6.js"() {
+  var import_jquery20, site_default2;
+  var init_site2 = __esm({
+    "shared/js/ui/views/site.js"() {
       "use strict";
       import_jquery20 = __toESM(require_jquery());
       init_environment_check();
-      init_email_protection_es6();
-      init_email_protection_es62();
-      init_search_es6();
-      init_search_es62();
-      init_view_es6();
-      init_cta_rotation_es62();
-      init_cta_rotation_es6();
-      init_communication_es6();
-      init_page_trackers_es6();
-      init_page_non_trackers_es6();
-      init_hero_es6();
+      init_email_protection();
+      init_email_protection2();
+      init_search();
+      init_search2();
+      init_view();
+      init_cta_rotation2();
+      init_cta_rotation();
+      init_communication();
+      init_page_trackers();
+      init_page_non_trackers();
+      init_hero();
       init_key_insights();
-      init_breakage_form_es6();
+      init_breakage_form();
       init_protection_toggle();
       init_platform_features();
-      init_cookie_prompt_es6();
-      init_utils();
-      init_breakage_form_es62();
-      init_page_connection_es6();
-      init_breakage_form_es63();
-      init_email_protection_es63();
-      init_search_es63();
-      init_cta_rotation_es63();
-      init_tracker_networks_es6();
-      init_main_nav();
       init_cookie_prompt();
-      Site2.prototype = import_jquery20.default.extend({}, view_es6_default.prototype, {
+      init_utils();
+      init_breakage_form2();
+      init_page_connection();
+      init_breakage_form3();
+      init_email_protection3();
+      init_search3();
+      init_cta_rotation3();
+      init_tracker_networks();
+      init_main_nav();
+      init_cookie_prompt2();
+      Site2.prototype = import_jquery20.default.extend({}, view_default.prototype, {
         /**
          * @this {Site & Record<string, any>}
          * @param e
@@ -24539,7 +24896,7 @@
           ]);
           this._setupFeatures();
           setTimeout(() => {
-            communication_es6_default.firstRenderComplete?.();
+            communication_default.firstRenderComplete?.();
           }, 100);
         },
         _handleEvents(event) {
@@ -24578,15 +24935,15 @@
         // after submitting breakage form.
         showBreakageForm: function(e) {
           blur(e.target);
-          this.views.slidingSubview = new breakage_form_es6_default({
-            template: breakage_form_es6_default2,
+          this.views.slidingSubview = new breakage_form_default({
+            template: breakage_form_default2,
             model: new BreakageFormModel()
           });
         },
         _showPageTrackers: function() {
           if (this.$body.hasClass("is-disabled"))
             return;
-          this.views.slidingSubview = new tracker_networks_es6_default({
+          this.views.slidingSubview = new tracker_networks_default({
             template: trackerNetworksTemplate,
             heroFn: heroFromTabTrackers,
             detailsFn: sectionsFromSiteTrackers
@@ -24595,7 +24952,7 @@
         _showPageNonTrackers: function() {
           if (this.$body.hasClass("is-disabled"))
             return;
-          this.views.slidingSubview = new tracker_networks_es6_default({
+          this.views.slidingSubview = new tracker_networks_default({
             template: nonTrackersTemplate,
             heroFn: heroFromTabNonTrackers,
             detailsFn: sectionsFromSiteNonTracker
@@ -24604,8 +24961,8 @@
         _showPageConnection: function() {
           if (this.$body.hasClass("is-disabled"))
             return;
-          this.views.slidingSubview = new tracker_networks_es6_default({
-            template: page_connection_es6_default
+          this.views.slidingSubview = new tracker_networks_default({
+            template: page_connection_default
           });
         },
         /**
@@ -24634,61 +24991,61 @@
             store: this.store
           });
           if (this.model.tab?.search) {
-            this.views.search = new search_es6_default3({
+            this.views.search = new search_default3({
               pageView: this,
-              model: new search_es6_default({ searchText: "" }),
+              model: new search_default({ searchText: "" }),
               appendTo: (0, import_jquery20.default)("#search-form-container"),
-              template: search_es6_default2
+              template: search_default2
             });
           }
           if (this.model.tab?.ctaScreens && !this.views.ctaRotations) {
-            this.views.ctaRotations = new cta_rotation_es6_default2({
+            this.views.ctaRotations = new cta_rotation_default2({
               pageView: this,
               model: new CtaRotationModel({ emailProtectionUserData: this.model.emailProtectionUserData }),
               appendTo: (0, import_jquery20.default)("#cta-rotation"),
-              template: cta_rotation_es6_default
+              template: cta_rotation_default
             });
           }
           if (this.model.tab?.emailProtection) {
-            this.views.emailProtection = new email_protection_es6_default2({
-              model: new email_protection_es6_default({ emailProtectionUserData: this.model.emailProtectionUserData }),
+            this.views.emailProtection = new email_protection_default2({
+              model: new email_protection_default({ emailProtectionUserData: this.model.emailProtectionUserData }),
               appendTo: (0, import_jquery20.default)("#email-alias-container"),
               template: emailProtectionTemplate
             });
           }
         }
       });
-      site_es6_default2 = Site2;
+      site_default2 = Site2;
     }
   });
 
-  // shared/js/ui/models/background-message.es6.js
+  // shared/js/ui/models/background-message.js
   function BackgroundMessage(attrs) {
-    model_es6_default.call(this, attrs);
+    model_default.call(this, attrs);
     const thisModel = this;
     thisModel.send = new Proxy(thisModel.send, {
       apply(target, thisArg, argArray) {
         return Reflect.apply(target, thisArg, argArray);
       }
     });
-    communication_es6_default.backgroundMessage(thisModel);
+    communication_default.backgroundMessage(thisModel);
   }
-  var import_jquery21, background_message_es6_default;
-  var init_background_message_es6 = __esm({
-    "shared/js/ui/models/background-message.es6.js"() {
+  var import_jquery21, background_message_default;
+  var init_background_message = __esm({
+    "shared/js/ui/models/background-message.js"() {
       "use strict";
       import_jquery21 = __toESM(require_jquery());
-      init_model_es6();
-      init_communication_es6();
-      BackgroundMessage.prototype = import_jquery21.default.extend({}, model_es6_default.prototype, {
+      init_model();
+      init_communication();
+      BackgroundMessage.prototype = import_jquery21.default.extend({}, model_default.prototype, {
         modelName: "backgroundMessage"
       });
-      background_message_es6_default = BackgroundMessage;
+      background_message_default = BackgroundMessage;
     }
   });
 
-  // shared/js/ui/templates/site.es6.js
-  function site_es6_default3() {
+  // shared/js/ui/templates/site.js
+  function site_default3() {
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens);
     if (this.model.tab.error) {
       const errorText = i18n.t("site:errorMessage.title");
@@ -24811,19 +25168,19 @@
     });
   }
   var import_nanohtml17;
-  var init_site_es63 = __esm({
-    "shared/js/ui/templates/site.es6.js"() {
+  var init_site3 = __esm({
+    "shared/js/ui/templates/site.js"() {
       "use strict";
       import_nanohtml17 = __toESM(require_browser());
-      init_localize_es6();
+      init_localize();
       init_protection_toggle();
       init_top_nav();
     }
   });
 
-  // shared/js/ui/pages/popup.es6.js
-  var popup_es6_exports = {};
-  __export(popup_es6_exports, {
+  // shared/js/ui/pages/popup.js
+  var popup_exports = {};
+  __export(popup_exports, {
     initPopup: () => initPopup
   });
   function Trackers(ops) {
@@ -24833,34 +25190,34 @@
       site: null
     };
     this.$parent = (0, import_jquery22.default)("#popup-container");
-    page_es6_default.call(this, ops);
+    page_default.call(this, ops);
   }
   function initPopup() {
     return new Trackers();
   }
   var import_jquery22;
-  var init_popup_es6 = __esm({
-    "shared/js/ui/pages/popup.es6.js"() {
+  var init_popup = __esm({
+    "shared/js/ui/pages/popup.js"() {
       "use strict";
       import_jquery22 = __toESM(require_jquery());
-      init_page_es6();
-      init_site_es62();
-      init_site_es6();
-      init_background_message_es6();
-      init_site_es63();
-      Trackers.prototype = import_jquery22.default.extend({}, page_es6_default.prototype, {
+      init_page();
+      init_site2();
+      init_site();
+      init_background_message();
+      init_site3();
+      Trackers.prototype = import_jquery22.default.extend({}, page_default.prototype, {
         pageName: "popup",
         /**
          * @this {Trackers}
          */
         ready: function() {
-          page_es6_default.prototype.ready.call(this);
-          this.message = new background_message_es6_default();
-          this.views.site = new site_es6_default2({
+          page_default.prototype.ready.call(this);
+          this.message = new background_message_default();
+          this.views.site = new site_default2({
             pageView: this,
-            model: new site_es6_default(),
+            model: new site_default(),
             appendTo: (0, import_jquery22.default)("#site-info-container"),
-            template: site_es6_default3
+            template: site_default3
           });
         }
       });
@@ -24896,12 +25253,12 @@
     }
   });
 
-  // shared/js/ui/base/index.es6.js
+  // shared/js/ui/base/index.js
   window.onunhandledrejection = (event) => {
     console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`);
   };
   try {
-    const { initPopup: initPopup2 } = (init_popup_es6(), __toCommonJS(popup_es6_exports));
+    const { initPopup: initPopup2 } = (init_popup(), __toCommonJS(popup_exports));
     const { loadCss: loadCss2 } = (init_loadcss(), __toCommonJS(loadcss_exports));
     initPopup2();
     loadCss2();

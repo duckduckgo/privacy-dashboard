@@ -12,7 +12,7 @@ const LOCALES_BASE = join(BASE, 'shared/locales')
 async function init() {
     const manifest = {
         base: {
-            input: join(BASE, 'shared/js/ui/base/index.es6.js'),
+            input: join(BASE, 'shared/js/ui/base/index.js'),
             output: join(BASE, 'build/app/public/js/base.js'),
         },
         polyfills: {

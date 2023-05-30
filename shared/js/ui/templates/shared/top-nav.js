@@ -1,6 +1,6 @@
 import html from 'nanohtml'
 import { platformSwitch } from '../../environment-check'
-import { ns } from '../../base/localize.es6'
+import { ns } from '../../base/localize.js'
 
 /**
  * @param {object} opts

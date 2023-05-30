@@ -1,14 +1,14 @@
 import html from 'nanohtml'
 import raw from 'nanohtml/raw'
 import $ from 'jquery'
-import { i18n } from '../base/localize.es6'
+import { i18n } from '../base/localize.js'
 import { normalizeCompanyName } from '../models/mixins/normalize-company-name.mjs'
-import Parent from '../base/view.es6'
-import { getColorId } from './shared/utils.es6'
+import Parent from '../base/view.js'
+import { getColorId } from './shared/utils.js'
 
 /**
  * @param {object} ops
- * @param {import("../models/site.es6.js").default} ops.model
+ * @param {import("../models/site.js").default} ops.model
  * @param {import("jquery")} ops.appendTo
  * @param {any} ops.store
  * @constructor
@@ -158,7 +158,7 @@ export function renderKeyInsight() {
 }
 
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function generateCompanyNamesList(model) {
     // const companyNames = model.tab.requestDetails.companyNames();
@@ -173,7 +173,7 @@ function generateCompanyNamesList(model) {
     }
 }
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderCompanyIconsList(model) {
     const companyNames = model.tab.requestDetails.blockedCompanyNames()

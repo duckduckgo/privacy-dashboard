@@ -1,17 +1,17 @@
 import $ from 'jquery'
 import html from 'nanohtml'
-import Parent from '../base/view.es6.js'
-import { trackerNetworksText } from '../templates/shared/tracker-networks-text.es6'
-import { thirdpartyText } from '../templates/shared/thirdparty-text.es6'
-import { i18n } from '../base/localize.es6'
+import Parent from '../base/view.js'
+import { trackerNetworksText } from '../templates/shared/tracker-networks-text.js'
+import { thirdpartyText } from '../templates/shared/thirdparty-text.js'
+import { i18n } from '../base/localize.js'
 import { createPlatformFeatures } from '../platform-features'
-import { platform } from '../../browser/communication.es6'
+import { platform } from '../../browser/communication.js'
 import { isAndroid } from '../environment-check'
 import { setupMaterialDesignRipple } from './utils/utils'
 
 /**
  * @param {object} ops
- * @param {import("../models/site.es6.js").default & import("../base/model.es6.js").baseModelMethods} ops.model
+ * @param {import("../models/site.js").default & import("../base/model.js").baseModelMethods} ops.model
  * @param {import("jquery")} ops.appendTo
  * @param {any} ops.store
  * @constructor
@@ -109,7 +109,7 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
  * @returns {HTMLElement}
  */
 function template() {
-    /** @type {import('../models/site.es6.js').PublicSiteModel} */
+    /** @type {import('../models/site.js').PublicSiteModel} */
     const model = this.model
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
@@ -123,7 +123,7 @@ function template() {
     `
 }
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderCookieConsentManaged(model, cb) {
     if (!model.tab?.cookiePromptManagementStatus) return null
@@ -159,7 +159,7 @@ function renderCookieConsentManaged(model, cb) {
     return html``
 }
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderConnection(model, cb) {
     let icon = 'icon-small--insecure'
@@ -190,7 +190,7 @@ function renderConnection(model, cb) {
     </a>`
 }
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderTrackerNetworksNew(model, cb) {
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
@@ -209,7 +209,7 @@ function renderTrackerNetworksNew(model, cb) {
 }
 
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderThirdPartyNew(model, cb) {
     const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)

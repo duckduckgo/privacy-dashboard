@@ -1,14 +1,14 @@
 import $ from 'jquery'
 import html from 'nanohtml'
 import { topNav } from '../templates/shared/top-nav'
-import { heroTemplate, largeHeroIcon } from '../templates/shared/hero.es6'
+import { heroTemplate, largeHeroIcon } from '../templates/shared/hero.js'
 import { disableInSettingsLink } from '../templates/shared/links'
-import { ns } from '../base/localize.es6'
-import ParentSlidingSubview from './sliding-subview.es6.js'
+import { ns } from '../base/localize.js'
+import ParentSlidingSubview from './sliding-subview.js'
 
 /**
  * @param {object} ops
- * @param {import('../models/cookie-prompt.es6').CookiePromptModel & import("../base/model.es6.js").baseModelMethods} ops.model
+ * @param {import('../models/cookie-prompt.js').CookiePromptModel & import("../base/model.js").baseModelMethods} ops.model
  * @constructor
  */
 export function CookiePromptView(ops) {

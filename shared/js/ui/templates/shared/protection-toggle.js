@@ -1,15 +1,15 @@
 import html from 'nanohtml'
 import raw from 'nanohtml/raw'
 import { isBrowser } from '../../environment-check'
-import { i18n } from '../../base/localize.es6'
-import { toggleButton } from './toggle-button.es6'
+import { i18n } from '../../base/localize.js'
+import { toggleButton } from './toggle-button.js'
 
 export const renderUpdatingSpinner = () => {
     return html`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t('site:updatingProtectionList.title')}" />`
 }
 
 /**
- * @param {import('../../models/site.es6').PublicSiteModel} model
+ * @param {import('../../models/site.js').PublicSiteModel} model
  * @returns {HTMLElement}
  */
 export function protectionToggle(model) {

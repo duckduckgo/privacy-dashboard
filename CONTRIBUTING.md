@@ -87,7 +87,7 @@ serve the `build/docs` folder (or just open the file directly in the browser)
 
 ## Watch mode
 
-To run the build every time you edit files, run `npm run watch.build`. 
+To run the build every time you edit files, run `npm run watch.build`.
 
 If you also want to serve the content, in a separate terminal run `npm run preview`.
 

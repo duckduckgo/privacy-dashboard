@@ -1,12 +1,12 @@
 {
     "entryPoints": [
         "schema/__generated__/schema.types.ts",
-        "shared/js/browser/browser-communication.es6.js",
-        "shared/js/browser/macos-communication.es6.js",
-        "shared/js/browser/ios-communication.es6.js",
-        "shared/js/browser/android-communication.es6.js",
-        "shared/js/browser/windows-communication.es6.js",
-        "shared/js/browser/common.es6.js",
+        "shared/js/browser/browser-communication.js",
+        "shared/js/browser/macos-communication.js",
+        "shared/js/browser/ios-communication.js",
+        "shared/js/browser/android-communication.js",
+        "shared/js/browser/windows-communication.js",
+        "shared/js/browser/common.js",
         "shared/js/browser/utils/request-details.mjs",
         "shared/js/browser/utils/protections.mjs",
         "shared/js/ui/platform-features.js",

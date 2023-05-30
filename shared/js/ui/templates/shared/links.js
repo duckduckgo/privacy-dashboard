@@ -1,5 +1,5 @@
 import html from 'nanohtml'
-import { ns } from '../../base/localize.es6'
+import { ns } from '../../base/localize.js'
 
 export function aboutLink() {
     const text = ns.site('trackerAboutLink.title')
