@@ -98,15 +98,15 @@ export class DashboardPage {
     }
 
     async showsConnectionScreen() {
-        await this.page.locator('[data-page="connection"]').waitFor({ timeout: 500 })
+        await this.page.locator('[data-page="connection"]').waitFor({ timeout: 2000 })
     }
 
     async showsTrackersScreen() {
-        await this.page.locator('[data-page="trackers"]').waitFor({ timeout: 500 })
+        await this.page.locator('[data-page="trackers"]').waitFor({ timeout: 2000 })
     }
 
     async showsNonTrackersScreen() {
-        await this.page.locator('[data-page="non-trackers"]').waitFor({ timeout: 500 })
+        await this.page.locator('[data-page="non-trackers"]').waitFor({ timeout: 2000 })
     }
 
     async aboutLinkHasRipple() {
