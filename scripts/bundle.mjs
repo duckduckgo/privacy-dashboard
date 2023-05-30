@@ -6,6 +6,9 @@ const CWD = cwd(import.meta.url)
 const BASE = join(CWD, '..')
 const LOCALES_BASE = join(BASE, 'shared/locales')
 
+/**
+ * Bundle the base and polyfill files.
+ */
 async function init() {
     const manifest = {
         base: {
