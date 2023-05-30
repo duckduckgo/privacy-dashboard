@@ -1,4 +1,4 @@
-import bel from 'bel'
+import html from 'nanohtml'
 import { displayCategories } from '../../../data/constants'
 import { i18n } from '../base/localize.es6'
 import { heroFromTabTrackers } from './shared/hero.es6.js'
@@ -9,24 +9,19 @@ import { topNav } from './shared/top-nav'
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
 export function trackerNetworksTemplate() {
     if (!this.model) {
-        return bel`<section class="sliding-subview"></section>`
+        return html`<section class="sliding-subview"></section>`
     }
 
     const sections = sectionsFromSiteTrackers(this.model.site)
     const hero = heroFromTabTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
     const limitations = this.model.site.tab.platformLimitations
-        ? bel`<div class="padding-x-double">${platformLimitations()}</div>`
-        : bel`<div></div>`
+        ? html`<div class="padding-x-double">${platformLimitations()}</div>`
+        : html`<div></div>`
 
-    return bel`
-    <div class="site-info card page-inner" data-page='trackers'>
+    return html` <div class="site-info card page-inner" data-page="trackers">
         ${topNav({ view: 'secondary' })}
-        <div class="padding-x-double js-tracker-networks-hero">
-            ${hero}
-        </div>
-        <div class="padding-x-double js-tracker-networks-details" aria-label="List of Tracker Companies">
-            ${sections}
-        </div>
+        <div class="padding-x-double js-tracker-networks-hero">${hero}</div>
+        <div class="padding-x-double js-tracker-networks-details" aria-label="List of Tracker Companies">${sections}</div>
         ${limitations}
     </div>`
 }
@@ -39,11 +34,9 @@ export function trackerNetworksTemplate() {
  * @param {boolean | undefined} bordered
  */
 export function trackerListWrapper(name, heading, companiesList, bordered) {
-    return bel`
-        <ol class="default-list site-info__trackers__company-list ${bordered ? 'border--top' : ''}" 
-             aria-label="List of tracker networks">
-            ${heading ? bel`<li class="section-list-header" data-section-name=${name}>${heading}</li>` : bel``}
-            ${companiesList}
+    return html`
+        <ol class="default-list site-info__trackers__company-list ${bordered ? 'border--top' : ''}" aria-label="List of tracker networks">
+            ${heading ? html`<li class="section-list-header" data-section-name=${name}>${heading}</li>` : html``} ${companiesList}
         </ol>
     `
 }
@@ -68,7 +61,7 @@ export function renderCompany(company) {
         companyName: company.displayName,
     })
 
-    return bel`<li class="site-info__trackers__company-list-item">
+    return html`<li class="site-info__trackers__company-list-item">
         <p title=${title} class="site-info__domain block token-title-3-em">
             <span class=${titleClasses.join(' ')}></span>
             ${company.displayName}
@@ -77,10 +70,9 @@ export function renderCompany(company) {
             ${Object.keys(company.urls).map((urlHostname) => {
                 const url = company.urls[urlHostname]
                 const matched = displayCategories[url.category]
-                return bel`
-                <li class="url-list-item">
+                return html` <li class="url-list-item">
                     <p class="url" title=${urlHostname}>${urlHostname}</p>
-                    ${matched ? bel`<div class="category">${i18n.t(matched)}</div>` : ''}
+                    ${matched ? html`<div class="category">${i18n.t(matched)}</div>` : ''}
                 </li>`
             })}
         </ol>

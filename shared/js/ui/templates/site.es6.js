@@ -1,4 +1,4 @@
-import bel from 'bel'
+import bel from 'nanohtml'
 import { i18n } from '../base/localize.es6'
 import { protectionToggle } from './shared/protection-toggle'
 import { topNav } from './shared/top-nav'

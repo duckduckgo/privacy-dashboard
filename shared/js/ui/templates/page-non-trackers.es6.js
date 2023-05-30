@@ -1,4 +1,4 @@
-import bel from 'bel'
+import html from 'nanohtml'
 import { ns } from '../base/localize.es6.js'
 import { states } from '../../browser/utils/request-details.mjs'
 import { heroFromTabNonTrackers } from './shared/hero.es6.js'
@@ -10,24 +10,19 @@ import { topNav } from './shared/top-nav'
 /** @this {{ model: { site: import('../models/site.es6.js').PublicSiteModel }}} */
 export function nonTrackersTemplate() {
     if (!this.model) {
-        return bel`<section class="sliding-subview"></section>`
+        return html`<section class="sliding-subview"></section>`
     }
 
     const sections = sectionsFromSiteNonTracker(this.model.site)
     const hero = heroFromTabNonTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled)
     const limitations = this.model.site.tab.platformLimitations
-        ? bel`<div class="padding-x-double">${platformLimitations()}</div>`
-        : bel`<div></div>`
+        ? html`<div class="padding-x-double">${platformLimitations()}</div>`
+        : html`<div></div>`
 
-    return bel`
-    <div class="site-info card page-inner" data-page='non-trackers'>
+    return html` <div class="site-info card page-inner" data-page="non-trackers">
         ${topNav({ view: 'secondary' })}
-        <div class="padding-x-double js-tracker-networks-hero">
-            ${hero}
-        </div>
-        <div class="padding-x-double js-tracker-networks-details">
-            ${sections}
-        </div>
+        <div class="padding-x-double js-tracker-networks-hero">${hero}</div>
+        <div class="padding-x-double js-tracker-networks-details">${sections}</div>
         ${limitations}
     </div>`
 }
@@ -59,12 +54,12 @@ export function sectionsFromSiteNonTracker(site) {
     return renderSections([
         {
             name: 'adAttribution',
-            heading: () => bel`
+            heading: () => html`
                 <div>
                     <p>${ns.site('sectionHeadingAdAttribution.title', { domain: site.tab.domain })}</p>
                     ${adAttributionLink()}
                 </div>
-                `,
+            `,
             companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence(),
         },
         {

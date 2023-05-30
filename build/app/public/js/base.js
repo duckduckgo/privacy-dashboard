@@ -3578,8 +3578,8 @@
           return elem;
         }
         jQuery.extend({
-          htmlPrefilter: function(html) {
-            return html;
+          htmlPrefilter: function(html17) {
+            return html17;
           },
           clone: function(elem, dataAndEvents, deepDataAndEvents) {
             var i, l, srcElements, destElements, clone = elem.cloneNode(true), inPage = isAttached(elem);
@@ -5887,13 +5887,13 @@
           });
         };
         jQuery.fn.extend({
-          wrapAll: function(html) {
+          wrapAll: function(html17) {
             var wrap;
             if (this[0]) {
-              if (isFunction(html)) {
-                html = html.call(this[0]);
+              if (isFunction(html17)) {
+                html17 = html17.call(this[0]);
               }
-              wrap = jQuery(html, this[0].ownerDocument).eq(0).clone(true);
+              wrap = jQuery(html17, this[0].ownerDocument).eq(0).clone(true);
               if (this[0].parentNode) {
                 wrap.insertBefore(this[0]);
               }
@@ -5907,25 +5907,25 @@
             }
             return this;
           },
-          wrapInner: function(html) {
-            if (isFunction(html)) {
+          wrapInner: function(html17) {
+            if (isFunction(html17)) {
               return this.each(function(i) {
-                jQuery(this).wrapInner(html.call(this, i));
+                jQuery(this).wrapInner(html17.call(this, i));
               });
             }
             return this.each(function() {
               var self = jQuery(this), contents = self.contents();
               if (contents.length) {
-                contents.wrapAll(html);
+                contents.wrapAll(html17);
               } else {
-                self.append(html);
+                self.append(html17);
               }
             });
           },
-          wrap: function(html) {
-            var htmlIsFunction = isFunction(html);
+          wrap: function(html17) {
+            var htmlIsFunction = isFunction(html17);
             return this.each(function(i) {
-              jQuery(this).wrapAll(htmlIsFunction ? html.call(this, i) : html);
+              jQuery(this).wrapAll(htmlIsFunction ? html17.call(this, i) : html17);
             });
           },
           unwrap: function(selector) {
@@ -14991,9 +14991,10 @@
     }
   });
 
-  // node_modules/bel/appendChild.js
-  var require_appendChild = __commonJS({
-    "node_modules/bel/appendChild.js"(exports, module) {
+  // node_modules/nanohtml/lib/append-child.js
+  var require_append_child = __commonJS({
+    "node_modules/nanohtml/lib/append-child.js"(exports, module) {
+      "use strict";
       var trailingNewlineRegex = /\n[\s]+$/;
       var leadingNewlineRegex = /^\n[\s]+/;
       var trailingSpaceRegex = /[\s]+$/;
@@ -15056,7 +15057,7 @@
             if (lastChild && lastChild.nodeName === "#text") {
               lastChild.nodeValue += node;
             } else {
-              node = document.createTextNode(node);
+              node = el.ownerDocument.createTextNode(node);
               el.appendChild(node);
               lastChild = node;
             }
@@ -15079,14 +15080,14 @@
             if (hadText) {
               hadText = false;
               if (TEXT_TAGS.indexOf(nodeName) === -1 && VERBATIM_TAGS.indexOf(nodeName) === -1) {
-                value = lastChild.nodeValue.replace(leadingNewlineRegex, "").replace(trailingNewlineRegex, "").replace(multiSpaceRegex, " ");
+                value = lastChild.nodeValue.replace(leadingNewlineRegex, "").replace(trailingNewlineRegex, " ").replace(multiSpaceRegex, " ");
                 if (value === "") {
                   el.removeChild(lastChild);
                 } else {
                   lastChild.nodeValue = value;
                 }
               } else if (VERBATIM_TAGS.indexOf(nodeName) === -1) {
-                value = lastChild.nodeValue.replace(leadingSpaceRegex, " ").replace(leadingNewlineRegex, "").replace(trailingNewlineRegex, "").replace(multiSpaceRegex, " ");
+                value = lastChild.nodeValue.replace(leadingSpaceRegex, " ").replace(leadingNewlineRegex, "").replace(trailingNewlineRegex, " ").replace(multiSpaceRegex, " ");
                 lastChild.nodeValue = value;
               }
             }
@@ -15100,27 +15101,11 @@
     }
   });
 
-  // node_modules/bel/browser.js
-  var require_browser = __commonJS({
-    "node_modules/bel/browser.js"(exports, module) {
-      var hyperx = require_hyperx();
-      var appendChild = require_appendChild();
-      var SVGNS = "http://www.w3.org/2000/svg";
-      var XLINKNS = "http://www.w3.org/1999/xlink";
-      var BOOL_PROPS = [
-        "autofocus",
-        "checked",
-        "defaultchecked",
-        "disabled",
-        "formnovalidate",
-        "indeterminate",
-        "readonly",
-        "required",
-        "selected",
-        "willvalidate"
-      ];
-      var COMMENT_TAG = "!--";
-      var SVG_TAGS = [
+  // node_modules/nanohtml/lib/svg-tags.js
+  var require_svg_tags = __commonJS({
+    "node_modules/nanohtml/lib/svg-tags.js"(exports, module) {
+      "use strict";
+      module.exports = [
         "svg",
         "altGlyph",
         "altGlyphDef",
@@ -15199,62 +15184,157 @@
         "view",
         "vkern"
       ];
-      function belCreateElement(tag, props, children) {
-        var el;
-        if (SVG_TAGS.indexOf(tag) !== -1) {
-          props.namespace = SVGNS;
-        }
-        var ns2 = false;
-        if (props.namespace) {
-          ns2 = props.namespace;
-          delete props.namespace;
-        }
-        if (ns2) {
-          el = document.createElementNS(ns2, tag);
-        } else if (tag === COMMENT_TAG) {
-          return document.createComment(props.comment);
-        } else {
-          el = document.createElement(tag);
-        }
-        for (var p in props) {
-          if (props.hasOwnProperty(p)) {
-            var key = p.toLowerCase();
-            var val = props[p];
-            if (key === "classname") {
-              key = "class";
-              p = "class";
-            }
-            if (p === "htmlFor") {
-              p = "for";
-            }
-            if (BOOL_PROPS.indexOf(key) !== -1) {
-              if (val === "true")
-                val = key;
-              else if (val === "false")
-                continue;
-            }
-            if (key.slice(0, 2) === "on") {
-              el[p] = val;
+    }
+  });
+
+  // node_modules/nanohtml/lib/bool-props.js
+  var require_bool_props = __commonJS({
+    "node_modules/nanohtml/lib/bool-props.js"(exports, module) {
+      "use strict";
+      module.exports = [
+        "async",
+        "autofocus",
+        "autoplay",
+        "checked",
+        "controls",
+        "default",
+        "defaultchecked",
+        "defer",
+        "disabled",
+        "formnovalidate",
+        "hidden",
+        "ismap",
+        "loop",
+        "multiple",
+        "muted",
+        "novalidate",
+        "open",
+        "playsinline",
+        "readonly",
+        "required",
+        "reversed",
+        "selected"
+      ];
+    }
+  });
+
+  // node_modules/nanohtml/lib/direct-props.js
+  var require_direct_props = __commonJS({
+    "node_modules/nanohtml/lib/direct-props.js"(exports, module) {
+      "use strict";
+      module.exports = [
+        "indeterminate"
+      ];
+    }
+  });
+
+  // node_modules/nanohtml/lib/dom.js
+  var require_dom = __commonJS({
+    "node_modules/nanohtml/lib/dom.js"(exports, module) {
+      "use strict";
+      var hyperx = require_hyperx();
+      var appendChild = require_append_child();
+      var SVG_TAGS = require_svg_tags();
+      var BOOL_PROPS = require_bool_props();
+      var DIRECT_PROPS = require_direct_props();
+      var SVGNS = "http://www.w3.org/2000/svg";
+      var XLINKNS = "http://www.w3.org/1999/xlink";
+      var COMMENT_TAG = "!--";
+      module.exports = function(document2) {
+        function nanoHtmlCreateElement(tag, props, children) {
+          var el;
+          if (SVG_TAGS.indexOf(tag) !== -1) {
+            props.namespace = SVGNS;
+          }
+          var ns2 = false;
+          if (props.namespace) {
+            ns2 = props.namespace;
+            delete props.namespace;
+          }
+          var isCustomElement = false;
+          if (props.is) {
+            isCustomElement = props.is;
+            delete props.is;
+          }
+          if (ns2) {
+            if (isCustomElement) {
+              el = document2.createElementNS(ns2, tag, { is: isCustomElement });
             } else {
-              if (ns2) {
-                if (p === "xlink:href") {
-                  el.setAttributeNS(XLINKNS, p, val);
-                } else if (/^xmlns($|:)/i.test(p)) {
-                } else {
-                  el.setAttributeNS(null, p, val);
-                }
+              el = document2.createElementNS(ns2, tag);
+            }
+          } else if (tag === COMMENT_TAG) {
+            return document2.createComment(props.comment);
+          } else if (isCustomElement) {
+            el = document2.createElement(tag, { is: isCustomElement });
+          } else {
+            el = document2.createElement(tag);
+          }
+          for (var p in props) {
+            if (props.hasOwnProperty(p)) {
+              var key = p.toLowerCase();
+              var val = props[p];
+              if (key === "classname") {
+                key = "class";
+                p = "class";
+              }
+              if (p === "htmlFor") {
+                p = "for";
+              }
+              if (BOOL_PROPS.indexOf(key) !== -1) {
+                if (String(val) === "true")
+                  val = key;
+                else if (String(val) === "false")
+                  continue;
+              }
+              if (key.slice(0, 2) === "on" || DIRECT_PROPS.indexOf(key) !== -1) {
+                el[p] = val;
               } else {
-                el.setAttribute(p, val);
+                if (ns2) {
+                  if (p === "xlink:href") {
+                    el.setAttributeNS(XLINKNS, p, val);
+                  } else if (/^xmlns($|:)/i.test(p)) {
+                  } else {
+                    el.setAttributeNS(null, p, val);
+                  }
+                } else {
+                  el.setAttribute(p, val);
+                }
               }
             }
           }
+          appendChild(el, children);
+          return el;
         }
-        appendChild(el, children);
-        return el;
-      }
-      module.exports = hyperx(belCreateElement, { comments: true });
-      module.exports.default = module.exports;
-      module.exports.createElement = belCreateElement;
+        function createFragment(nodes) {
+          var fragment = document2.createDocumentFragment();
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i] == null)
+              continue;
+            if (Array.isArray(nodes[i])) {
+              fragment.appendChild(createFragment(nodes[i]));
+            } else {
+              if (typeof nodes[i] === "string")
+                nodes[i] = document2.createTextNode(nodes[i]);
+              fragment.appendChild(nodes[i]);
+            }
+          }
+          return fragment;
+        }
+        var exports2 = hyperx(nanoHtmlCreateElement, {
+          comments: true,
+          createFragment
+        });
+        exports2.default = exports2;
+        exports2.createComment = nanoHtmlCreateElement;
+        return exports2;
+      };
+    }
+  });
+
+  // node_modules/nanohtml/lib/browser.js
+  var require_browser = __commonJS({
+    "node_modules/nanohtml/lib/browser.js"(exports, module) {
+      module.exports = require_dom()(document);
     }
   });
 
@@ -21835,42 +21915,67 @@
     }
     const text = state === "idle" ? i18n.t("site:createNewDuckAddress.title") : i18n.t("site:createNewDuckAddressCopied.title");
     const icon = state === "idle" ? wandIcon() : checkMarkIcon();
-    return import_bel.default`
-        <div class="js-email-alias email-alias token-body-em">
-            <button class="email-alias__button"
-                    type="button"
-                    data-state=${state}
-                    disabled=${state === "added"}
-                    onclick=${(e) => this.copyAlias(e)}>
-                ${icon}
-                <span class="email-alias__text">${text}</span>
-            </button>
-        </div>`;
+    return import_nanohtml.default` <div class="js-email-alias email-alias token-body-em">
+        <button
+            class="email-alias__button"
+            type="button"
+            data-state=${state}
+            disabled=${state === "added"}
+            onclick=${(e) => this.copyAlias(e)}
+        >
+            ${icon}
+            <span class="email-alias__text">${text}</span>
+        </button>
+    </div>`;
   }
   function wandIcon() {
-    return import_bel.default`<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M10.4998 0.75C10.4998 0.335786 10.164 0 9.74976 0C9.33554 0 8.99976 0.335786 8.99976 0.75V3.25C8.99976 3.66421 9.33554 4 9.74976 4C10.164 4 10.4998 3.66421 10.4998 3.25V0.75Z"/>
-        <path d="M10.4998 9.75C10.4998 9.33579 10.164 9 9.74976 9C9.33554 9 8.99976 9.33579 8.99976 9.75V12.25C8.99976 12.6642 9.33554 13 9.74976 13C10.164 13 10.4998 12.6642 10.4998 12.25V9.75Z"/>
-        <path d="M15.9998 6.25C15.9998 6.66421 15.664 7 15.2498 7H12.7498C12.3355 7 11.9998 6.66421 11.9998 6.25C11.9998 5.83579 12.3355 5.5 12.7498 5.5H15.2498C15.664 5.5 15.9998 5.83579 15.9998 6.25Z"/>
-        <path d="M6.24976 7C6.66397 7 6.99976 6.66421 6.99976 6.25C6.99976 5.83579 6.66397 5.5 6.24976 5.5H3.74976C3.33554 5.5 2.99976 5.83579 2.99976 6.25C2.99976 6.66421 3.33554 7 3.74976 7H6.24976Z"/>
-        <path d="M14.2801 10.7803C13.9872 11.0732 13.5123 11.0732 13.2194 10.7803L11.4694 9.03033C11.1765 8.73744 11.1765 8.26256 11.4694 7.96967C11.7623 7.67678 12.2372 7.67678 12.5301 7.96967L14.2801 9.71967C14.573 10.0126 14.573 10.4874 14.2801 10.7803Z"/>
-        <path d="M6.71942 4.28033C7.01231 4.57322 7.48719 4.57322 7.78008 4.28033C8.07297 3.98744 8.07297 3.51256 7.78008 3.21967L6.03008 1.46967C5.73719 1.17678 5.26231 1.17678 4.96942 1.46967C4.67653 1.76256 4.67653 2.23744 4.96942 2.53033L6.71942 4.28033Z"/>
-        <path d="M11.4694 4.53032C11.1765 4.23743 11.1765 3.76256 11.4694 3.46966L13.2194 1.71966C13.5123 1.42677 13.9872 1.42677 14.2801 1.71966C14.573 2.01256 14.573 2.48743 14.2801 2.78032L12.5301 4.53032C12.2372 4.82322 11.7623 4.82322 11.4694 4.53032Z"/>
-        <path d="M2.28296 12.658L9.24784 5.69307C9.54074 5.40018 10.0156 5.40018 10.3085 5.69307V5.69307C10.6014 5.98597 10.6014 6.46084 10.3085 6.75373L3.34362 13.7186L2.28296 12.658Z"/>
-        <path d="M0.243221 15.7588C-0.0496725 15.466 -0.0496726 14.9911 0.243221 14.6982L1.75195 13.1895L2.81261 14.2501L1.30388 15.7588C1.01099 16.0517 0.536114 16.0517 0.243221 15.7588V15.7588Z"/>
+    return import_nanohtml.default`<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path
+            d="M10.4998 0.75C10.4998 0.335786 10.164 0 9.74976 0C9.33554 0 8.99976 0.335786 8.99976 0.75V3.25C8.99976 3.66421 9.33554 4 9.74976 4C10.164 4 10.4998 3.66421 10.4998 3.25V0.75Z"
+        />
+        <path
+            d="M10.4998 9.75C10.4998 9.33579 10.164 9 9.74976 9C9.33554 9 8.99976 9.33579 8.99976 9.75V12.25C8.99976 12.6642 9.33554 13 9.74976 13C10.164 13 10.4998 12.6642 10.4998 12.25V9.75Z"
+        />
+        <path
+            d="M15.9998 6.25C15.9998 6.66421 15.664 7 15.2498 7H12.7498C12.3355 7 11.9998 6.66421 11.9998 6.25C11.9998 5.83579 12.3355 5.5 12.7498 5.5H15.2498C15.664 5.5 15.9998 5.83579 15.9998 6.25Z"
+        />
+        <path
+            d="M6.24976 7C6.66397 7 6.99976 6.66421 6.99976 6.25C6.99976 5.83579 6.66397 5.5 6.24976 5.5H3.74976C3.33554 5.5 2.99976 5.83579 2.99976 6.25C2.99976 6.66421 3.33554 7 3.74976 7H6.24976Z"
+        />
+        <path
+            d="M14.2801 10.7803C13.9872 11.0732 13.5123 11.0732 13.2194 10.7803L11.4694 9.03033C11.1765 8.73744 11.1765 8.26256 11.4694 7.96967C11.7623 7.67678 12.2372 7.67678 12.5301 7.96967L14.2801 9.71967C14.573 10.0126 14.573 10.4874 14.2801 10.7803Z"
+        />
+        <path
+            d="M6.71942 4.28033C7.01231 4.57322 7.48719 4.57322 7.78008 4.28033C8.07297 3.98744 8.07297 3.51256 7.78008 3.21967L6.03008 1.46967C5.73719 1.17678 5.26231 1.17678 4.96942 1.46967C4.67653 1.76256 4.67653 2.23744 4.96942 2.53033L6.71942 4.28033Z"
+        />
+        <path
+            d="M11.4694 4.53032C11.1765 4.23743 11.1765 3.76256 11.4694 3.46966L13.2194 1.71966C13.5123 1.42677 13.9872 1.42677 14.2801 1.71966C14.573 2.01256 14.573 2.48743 14.2801 2.78032L12.5301 4.53032C12.2372 4.82322 11.7623 4.82322 11.4694 4.53032Z"
+        />
+        <path
+            d="M2.28296 12.658L9.24784 5.69307C9.54074 5.40018 10.0156 5.40018 10.3085 5.69307V5.69307C10.6014 5.98597 10.6014 6.46084 10.3085 6.75373L3.34362 13.7186L2.28296 12.658Z"
+        />
+        <path
+            d="M0.243221 15.7588C-0.0496725 15.466 -0.0496726 14.9911 0.243221 14.6982L1.75195 13.1895L2.81261 14.2501L1.30388 15.7588C1.01099 16.0517 0.536114 16.0517 0.243221 15.7588V15.7588Z"
+        />
     </svg>`;
   }
   function checkMarkIcon() {
-    return import_bel.default`<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M11.809 6.2501C12.0851 5.94141 12.0588 5.46727 11.7501 5.19108C11.4414 4.91488 10.9673 4.94122 10.6911 5.24991L7.0255 9.34675L5.33049 7.27508C5.06819 6.9545 4.59568 6.90724 4.27509 7.16954C3.95451 7.43183 3.90726 7.90435 4.16955 8.22494L6.41955 10.9749C6.55833 11.1446 6.76436 11.245 6.98346 11.2498C7.20256 11.2547 7.41282 11.1634 7.55895 11.0001L11.809 6.2501Z" />
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8Z" />
+    return import_nanohtml.default`<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path
+            d="M11.809 6.2501C12.0851 5.94141 12.0588 5.46727 11.7501 5.19108C11.4414 4.91488 10.9673 4.94122 10.6911 5.24991L7.0255 9.34675L5.33049 7.27508C5.06819 6.9545 4.59568 6.90724 4.27509 7.16954C3.95451 7.43183 3.90726 7.90435 4.16955 8.22494L6.41955 10.9749C6.55833 11.1446 6.76436 11.245 6.98346 11.2498C7.20256 11.2547 7.41282 11.1634 7.55895 11.0001L11.809 6.2501Z"
+        />
+        <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8Z"
+        />
     </svg>`;
   }
-  var import_bel;
+  var import_nanohtml;
   var init_email_protection_es62 = __esm({
     "shared/js/ui/templates/email-protection.es6.js"() {
       "use strict";
-      import_bel = __toESM(require_browser());
+      import_nanohtml = __toESM(require_browser());
       init_localize_es6();
     }
   });
@@ -21909,42 +22014,54 @@
 
   // shared/js/ui/templates/search.es6.js
   function search_es6_default2() {
-    return import_bel2.default`
-    <div class="search token-search-input">
-        <form class="search-form js-search-form" name="x" data-test-id="search-form">
-            <input type="text" autocomplete="off" autofocus placeholder="${i18n.t("site:searchPlaceholder.title")}"
-                name="q" class="search-form__input js-search-input"
-                value="" />
-            <button class="search-form__go js-search-go" type="submit" aria-label="${i18n.t("site:searchGoButton.title")}">
-                ${loupeIcon()}
+    return import_nanohtml2.default`
+        <div class="search token-search-input">
+            <form class="search-form js-search-form" name="x" data-test-id="search-form">
+                <input
+                    type="text"
+                    autocomplete="off"
+                    autofocus
+                    placeholder="${i18n.t("site:searchPlaceholder.title")}"
+                    name="q"
+                    class="search-form__input js-search-input"
+                    value=""
+                />
+                <button class="search-form__go js-search-go" type="submit" aria-label="${i18n.t("site:searchGoButton.title")}">
+                    ${loupeIcon()}
+                </button>
+            </form>
+            <button type="button" class="cog-button js-search-cog-button" aria-label="${i18n.t("site:optionsButton.title")}">
+                ${cogIcon()}
             </button>
-        </form>
-        <button type="button" class="cog-button js-search-cog-button" aria-label="${i18n.t("site:optionsButton.title")}">
-        ${cogIcon()}
-        </button>
-    </div>
+        </div>
     `;
   }
   function loupeIcon() {
-    return import_bel2.default`<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect class="loupe-handle" x="11.5" y="12.9142" width="2" height="6" rx="1" transform="rotate(-45 11.5 12.9142)" />
-    <path class="loupe-glass" d="M12.6976 5.27292C14.7478 7.32317 14.7478 10.6473 12.6976 12.6975C10.6473 14.7478 7.32322 14.7478 5.27297 12.6975C3.22272 10.6473 3.22272 7.32317 5.27297 5.27292C7.32322 3.22267 10.6473 3.22267 12.6976 5.27292Z"
-          stroke-width="1.5"/>
-</svg>`;
+    return import_nanohtml2.default`<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="loupe-handle" x="11.5" y="12.9142" width="2" height="6" rx="1" transform="rotate(-45 11.5 12.9142)" />
+        <path
+            class="loupe-glass"
+            d="M12.6976 5.27292C14.7478 7.32317 14.7478 10.6473 12.6976 12.6975C10.6473 14.7478 7.32322 14.7478 5.27297 12.6975C3.22272 10.6473 3.22272 7.32317 5.27297 5.27292C7.32322 3.22267 10.6473 3.22267 12.6976 5.27292Z"
+            stroke-width="1.5"
+        />
+    </svg>`;
   }
   function cogIcon() {
-    return import_bel2.default`<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path class="settings-cog" fill-rule="evenodd" clip-rule="evenodd" d="M3.43351 13.1462C3.06364 14.0391 3.48767 15.0628 4.3806 15.4327L5.30448 15.8154C6.19741 16.1853 7.2211 15.7612 7.59096 14.8683L7.84778 14.2483C7.89842 14.2495 7.94918 14.2501 8.00007 14.2501C8.05068 14.2501 8.10118 14.2495 8.15154 14.2483L8.40831 14.8682C8.77818 15.7611 9.80187 16.1852 10.6948 15.8153L11.6187 15.4326C12.5116 15.0628 12.9356 14.0391 12.5658 13.1461L12.3093 12.527C12.3828 12.457 12.4546 12.3853 12.5247 12.3118L13.1437 12.5682C14.0366 12.9381 15.0603 12.514 15.4302 11.6211L15.8129 10.6972C16.1827 9.8043 15.7587 8.7806 14.8658 8.41074L14.2482 8.15493C14.2494 8.10345 14.2501 8.05185 14.2501 8.00011C14.2501 7.94964 14.2495 7.89928 14.2483 7.84905L14.8659 7.59324C15.7588 7.22337 16.1828 6.19968 15.8129 5.30675L15.4303 4.38287C15.0604 3.48994 14.0367 3.06592 13.1438 3.43578L12.5273 3.69115C12.4568 3.61712 12.3845 3.54482 12.3105 3.47432L12.5658 2.85787C12.9357 1.96494 12.5117 0.94124 11.6188 0.571378L10.6949 0.188694C9.80195 -0.181168 8.77825 0.242858 8.40839 1.13579L8.15316 1.75196C8.10226 1.75073 8.05122 1.75011 8.00007 1.75011C7.94864 1.75011 7.89734 1.75074 7.84616 1.75198L7.59089 1.13569C7.22102 0.242766 6.19733 -0.181263 5.3044 0.1886L4.38052 0.571284C3.4876 0.941146 3.06357 1.96484 3.43343 2.85777L3.68905 3.47488C3.61513 3.54532 3.54293 3.61755 3.47254 3.69151L2.85533 3.43585C1.9624 3.06599 0.938705 3.49002 0.568843 4.38295L0.186159 5.30683C-0.183704 6.19975 0.240324 7.22345 1.13325 7.59331L1.75185 7.84955C1.75067 7.89961 1.75007 7.9498 1.75007 8.00011C1.75007 8.05168 1.7507 8.10312 1.75194 8.15443L1.13335 8.41066C0.240417 8.78052 -0.18361 9.80422 0.186252 10.6971L0.568936 11.621C0.938798 12.514 1.96249 12.938 2.85542 12.5681L3.47512 12.3114C3.54507 12.3848 3.6168 12.4565 3.69022 12.5265L3.43351 13.1462ZM1.61161 6.43846C1.35648 6.33279 1.23533 6.0403 1.34101 5.78518L1.72369 4.8613C1.82937 4.60618 2.12185 4.48503 2.37697 4.5907L3.47809 5.0468C3.69752 5.13769 3.94855 5.05988 4.09713 4.87459C4.32641 4.58865 4.58647 4.32845 4.87227 4.099C5.05738 3.95039 5.13507 3.69948 5.04422 3.48016L4.58828 2.37941C4.4826 2.12429 4.60375 1.83181 4.85888 1.72613L5.78276 1.34345C6.03788 1.23777 6.33036 1.35893 6.43604 1.61405L6.89159 2.71385C6.98246 2.93322 7.21488 3.05571 7.45092 3.02993C7.63126 3.01022 7.81448 3.00011 8.00007 3.00011C8.18541 3.00011 8.3684 3.0102 8.54851 3.02985C8.78452 3.0556 9.01691 2.93311 9.10776 2.71377L9.56324 1.61414C9.66891 1.35902 9.9614 1.23787 10.2165 1.34354L11.1404 1.72623C11.3955 1.8319 11.5167 2.12439 11.411 2.37951L10.9553 3.47967C10.8644 3.69901 10.9422 3.94995 11.1273 4.09856C11.4132 4.32802 11.6734 4.58826 11.9027 4.87425C12.0513 5.05952 12.3023 5.13731 12.5217 5.04642L13.6221 4.59063C13.8773 4.48495 14.1697 4.6061 14.2754 4.86122L14.6581 5.7851C14.7638 6.04023 14.6426 6.33271 14.3875 6.43839L13.2866 6.89438C13.0674 6.98521 12.9449 7.21748 12.9705 7.45343C12.99 7.63298 13.0001 7.81537 13.0001 8.00011C13.0001 8.18597 12.9899 8.36945 12.9702 8.55005C12.9443 8.78611 13.0668 9.01859 13.2862 9.10947L14.3874 9.56559C14.6425 9.67126 14.7637 9.96375 14.658 10.2189L14.2753 11.1427C14.1696 11.3979 13.8772 11.519 13.622 11.4133L12.5195 10.9566C12.3002 10.8658 12.0493 10.9435 11.9007 11.1285C11.6715 11.4139 11.4117 11.6736 11.1262 11.9026C10.941 12.0511 10.8632 12.3021 10.9541 12.5215L11.4109 13.6245C11.5166 13.8796 11.3954 14.1721 11.1403 14.2778L10.2164 14.6604C9.96132 14.7661 9.66884 14.645 9.56316 14.3898L9.1062 13.2866C9.01536 13.0673 8.78307 12.9449 8.54711 12.9705C8.36745 12.9901 8.18493 13.0001 8.00007 13.0001C7.81497 13.0001 7.63221 12.9901 7.45233 12.9705C7.21634 12.9447 6.984 13.0672 6.89316 13.2865L6.43611 14.3899C6.33044 14.6451 6.03796 14.7662 5.78283 14.6605L4.85895 14.2779C4.60383 14.1722 4.48268 13.8797 4.58836 13.6246L5.04545 12.521C5.13632 12.3017 5.05857 12.0507 4.87337 11.9021C4.58799 11.6731 4.32826 11.4135 4.09918 11.1282C3.95057 10.9431 3.69967 10.8654 3.48037 10.9563L2.37707 11.4133C2.12194 11.5189 1.82946 11.3978 1.72379 11.1427L1.3411 10.2188C1.23543 9.96367 1.35658 9.67119 1.6117 9.56551L2.71385 9.10898C2.93323 9.01811 3.05572 8.78566 3.02992 8.54962C3.01019 8.36916 3.00007 8.18582 3.00007 8.00011C3.00007 7.81552 3.01007 7.63327 3.02957 7.45386C3.0552 7.21793 2.93271 6.98568 2.71345 6.89486L1.61161 6.43846ZM6.12508 8.00008C6.12508 6.96455 6.96455 6.12508 8.00008 6.12508C9.03562 6.12508 9.87508 6.96455 9.87508 8.00008C9.87508 9.03562 9.03562 9.87508 8.00008 9.87508C6.96455 9.87508 6.12508 9.03562 6.12508 8.00008ZM8.00008 4.87508C6.27419 4.87508 4.87508 6.27419 4.87508 8.00008C4.87508 9.72597 6.27419 11.1251 8.00008 11.1251C9.72597 11.1251 11.1251 9.72597 11.1251 8.00008C11.1251 6.27419 9.72597 4.87508 8.00008 4.87508Z"
-         fill-opacity="0.8"
-     />
-</svg>
-`;
+    return import_nanohtml2.default`<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            class="settings-cog"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M3.43351 13.1462C3.06364 14.0391 3.48767 15.0628 4.3806 15.4327L5.30448 15.8154C6.19741 16.1853 7.2211 15.7612 7.59096 14.8683L7.84778 14.2483C7.89842 14.2495 7.94918 14.2501 8.00007 14.2501C8.05068 14.2501 8.10118 14.2495 8.15154 14.2483L8.40831 14.8682C8.77818 15.7611 9.80187 16.1852 10.6948 15.8153L11.6187 15.4326C12.5116 15.0628 12.9356 14.0391 12.5658 13.1461L12.3093 12.527C12.3828 12.457 12.4546 12.3853 12.5247 12.3118L13.1437 12.5682C14.0366 12.9381 15.0603 12.514 15.4302 11.6211L15.8129 10.6972C16.1827 9.8043 15.7587 8.7806 14.8658 8.41074L14.2482 8.15493C14.2494 8.10345 14.2501 8.05185 14.2501 8.00011C14.2501 7.94964 14.2495 7.89928 14.2483 7.84905L14.8659 7.59324C15.7588 7.22337 16.1828 6.19968 15.8129 5.30675L15.4303 4.38287C15.0604 3.48994 14.0367 3.06592 13.1438 3.43578L12.5273 3.69115C12.4568 3.61712 12.3845 3.54482 12.3105 3.47432L12.5658 2.85787C12.9357 1.96494 12.5117 0.94124 11.6188 0.571378L10.6949 0.188694C9.80195 -0.181168 8.77825 0.242858 8.40839 1.13579L8.15316 1.75196C8.10226 1.75073 8.05122 1.75011 8.00007 1.75011C7.94864 1.75011 7.89734 1.75074 7.84616 1.75198L7.59089 1.13569C7.22102 0.242766 6.19733 -0.181263 5.3044 0.1886L4.38052 0.571284C3.4876 0.941146 3.06357 1.96484 3.43343 2.85777L3.68905 3.47488C3.61513 3.54532 3.54293 3.61755 3.47254 3.69151L2.85533 3.43585C1.9624 3.06599 0.938705 3.49002 0.568843 4.38295L0.186159 5.30683C-0.183704 6.19975 0.240324 7.22345 1.13325 7.59331L1.75185 7.84955C1.75067 7.89961 1.75007 7.9498 1.75007 8.00011C1.75007 8.05168 1.7507 8.10312 1.75194 8.15443L1.13335 8.41066C0.240417 8.78052 -0.18361 9.80422 0.186252 10.6971L0.568936 11.621C0.938798 12.514 1.96249 12.938 2.85542 12.5681L3.47512 12.3114C3.54507 12.3848 3.6168 12.4565 3.69022 12.5265L3.43351 13.1462ZM1.61161 6.43846C1.35648 6.33279 1.23533 6.0403 1.34101 5.78518L1.72369 4.8613C1.82937 4.60618 2.12185 4.48503 2.37697 4.5907L3.47809 5.0468C3.69752 5.13769 3.94855 5.05988 4.09713 4.87459C4.32641 4.58865 4.58647 4.32845 4.87227 4.099C5.05738 3.95039 5.13507 3.69948 5.04422 3.48016L4.58828 2.37941C4.4826 2.12429 4.60375 1.83181 4.85888 1.72613L5.78276 1.34345C6.03788 1.23777 6.33036 1.35893 6.43604 1.61405L6.89159 2.71385C6.98246 2.93322 7.21488 3.05571 7.45092 3.02993C7.63126 3.01022 7.81448 3.00011 8.00007 3.00011C8.18541 3.00011 8.3684 3.0102 8.54851 3.02985C8.78452 3.0556 9.01691 2.93311 9.10776 2.71377L9.56324 1.61414C9.66891 1.35902 9.9614 1.23787 10.2165 1.34354L11.1404 1.72623C11.3955 1.8319 11.5167 2.12439 11.411 2.37951L10.9553 3.47967C10.8644 3.69901 10.9422 3.94995 11.1273 4.09856C11.4132 4.32802 11.6734 4.58826 11.9027 4.87425C12.0513 5.05952 12.3023 5.13731 12.5217 5.04642L13.6221 4.59063C13.8773 4.48495 14.1697 4.6061 14.2754 4.86122L14.6581 5.7851C14.7638 6.04023 14.6426 6.33271 14.3875 6.43839L13.2866 6.89438C13.0674 6.98521 12.9449 7.21748 12.9705 7.45343C12.99 7.63298 13.0001 7.81537 13.0001 8.00011C13.0001 8.18597 12.9899 8.36945 12.9702 8.55005C12.9443 8.78611 13.0668 9.01859 13.2862 9.10947L14.3874 9.56559C14.6425 9.67126 14.7637 9.96375 14.658 10.2189L14.2753 11.1427C14.1696 11.3979 13.8772 11.519 13.622 11.4133L12.5195 10.9566C12.3002 10.8658 12.0493 10.9435 11.9007 11.1285C11.6715 11.4139 11.4117 11.6736 11.1262 11.9026C10.941 12.0511 10.8632 12.3021 10.9541 12.5215L11.4109 13.6245C11.5166 13.8796 11.3954 14.1721 11.1403 14.2778L10.2164 14.6604C9.96132 14.7661 9.66884 14.645 9.56316 14.3898L9.1062 13.2866C9.01536 13.0673 8.78307 12.9449 8.54711 12.9705C8.36745 12.9901 8.18493 13.0001 8.00007 13.0001C7.81497 13.0001 7.63221 12.9901 7.45233 12.9705C7.21634 12.9447 6.984 13.0672 6.89316 13.2865L6.43611 14.3899C6.33044 14.6451 6.03796 14.7662 5.78283 14.6605L4.85895 14.2779C4.60383 14.1722 4.48268 13.8797 4.58836 13.6246L5.04545 12.521C5.13632 12.3017 5.05857 12.0507 4.87337 11.9021C4.58799 11.6731 4.32826 11.4135 4.09918 11.1282C3.95057 10.9431 3.69967 10.8654 3.48037 10.9563L2.37707 11.4133C2.12194 11.5189 1.82946 11.3978 1.72379 11.1427L1.3411 10.2188C1.23543 9.96367 1.35658 9.67119 1.6117 9.56551L2.71385 9.10898C2.93323 9.01811 3.05572 8.78566 3.02992 8.54962C3.01019 8.36916 3.00007 8.18582 3.00007 8.00011C3.00007 7.81552 3.01007 7.63327 3.02957 7.45386C3.0552 7.21793 2.93271 6.98568 2.71345 6.89486L1.61161 6.43846ZM6.12508 8.00008C6.12508 6.96455 6.96455 6.12508 8.00008 6.12508C9.03562 6.12508 9.87508 6.96455 9.87508 8.00008C9.87508 9.03562 9.03562 9.87508 8.00008 9.87508C6.96455 9.87508 6.12508 9.03562 6.12508 8.00008ZM8.00008 4.87508C6.27419 4.87508 4.87508 6.27419 4.87508 8.00008C4.87508 9.72597 6.27419 11.1251 8.00008 11.1251C9.72597 11.1251 11.1251 9.72597 11.1251 8.00008C11.1251 6.27419 9.72597 4.87508 8.00008 4.87508Z"
+            fill-opacity="0.8"
+        />
+    </svg> `;
   }
-  var import_bel2;
+  var import_nanohtml2;
   var init_search_es62 = __esm({
     "shared/js/ui/templates/search.es6.js"() {
       "use strict";
-      import_bel2 = __toESM(require_browser());
+      import_nanohtml2 = __toESM(require_browser());
       init_localize_es6();
     }
   });
@@ -22113,30 +22230,19 @@
     }
   });
 
-  // node_modules/bel/raw.js
-  var require_raw = __commonJS({
-    "node_modules/bel/raw.js"(exports, module) {
-      function rawCreateElement(tag) {
-        if (typeof window !== "undefined") {
-          return browser();
-        } else {
-          return server();
-        }
-        function browser() {
-          var el = document.createElement("div");
-          el.innerHTML = tag;
-          return toArray(el.childNodes);
-        }
-        function server() {
-          var wrapper = new String(tag);
-          wrapper.__encoded = true;
-          return wrapper;
-        }
+  // node_modules/nanohtml/lib/raw-browser.js
+  var require_raw_browser = __commonJS({
+    "node_modules/nanohtml/lib/raw-browser.js"(exports, module) {
+      "use strict";
+      function nanohtmlRawBrowser(tag) {
+        var el = document.createElement("div");
+        el.innerHTML = tag;
+        return toArray(el.childNodes);
       }
       function toArray(arr2) {
         return Array.isArray(arr2) ? arr2 : [].slice.call(arr2);
       }
-      module.exports = rawCreateElement;
+      module.exports = nanohtmlRawBrowser;
     }
   });
 
@@ -22147,16 +22253,16 @@
       console.warn("unreachable - selected CTA not available " + this.model.currentCta);
       return "";
     }
-    return import_bel3.default`
-    <div class="cta-screen">
-        <p class="note token-title-3 text--center">${i18n.t("ctascreens:protectionsUnavailableNote.title")}</p>
-        <div class="cta text--center">
-            <div class="cta__icon">${cta.icon()}</div>
-            <h1 class="cta__title">${cta.title()}</h1>
-            <h2 class="cta__text">${cta.text()}</h2>
-            <div class="cta__action">${cta.action()}</div>
-        </div>  
-    </div>
+    return import_nanohtml3.default`
+        <div class="cta-screen">
+            <p class="note token-title-3 text--center">${i18n.t("ctascreens:protectionsUnavailableNote.title")}</p>
+            <div class="cta text--center">
+                <div class="cta__icon">${cta.icon()}</div>
+                <h1 class="cta__title">${cta.title()}</h1>
+                <h2 class="cta__text">${cta.text()}</h2>
+                <div class="cta__action">${cta.action()}</div>
+            </div>
+        </div>
     `;
   }
   function heartArrowSvg() {
@@ -22220,12 +22326,12 @@
 </svg>
 `;
   }
-  var import_bel3, import_raw, ctas, cta_rotation_es6_default;
+  var import_nanohtml3, import_raw, ctas, cta_rotation_es6_default;
   var init_cta_rotation_es6 = __esm({
     "shared/js/ui/templates/cta-rotation.es6.js"() {
       "use strict";
-      import_bel3 = __toESM(require_browser());
-      import_raw = __toESM(require_raw());
+      import_nanohtml3 = __toESM(require_browser());
+      import_raw = __toESM(require_raw_browser());
       init_localize_es6();
       ctas = {
         spread: {
@@ -22233,9 +22339,9 @@
           text: () => i18n.t("ctascreens:spreadText.title"),
           icon: heartArrowSvg,
           action: () => {
-            return import_bel3.default`<a href="https://duckduckgo.com/spread" target="_blank" class="cta__button">${i18n.t(
-              "ctascreens:spreadButton.title"
-            )}</a>`;
+            return import_nanohtml3.default`<a href="https://duckduckgo.com/spread" target="_blank" class="cta__button"
+                >${i18n.t("ctascreens:spreadButton.title")}</a
+            >`;
           }
         },
         email: {
@@ -22243,9 +22349,9 @@
           text: () => i18n.t("ctascreens:emailText.title"),
           icon: emailSvg,
           action: () => {
-            return import_bel3.default`<a href="https://duckduckgo.com/email" target="_blank" class="cta__button">${i18n.t(
-              "ctascreens:spreadButton.title"
-            )}</a>`;
+            return import_nanohtml3.default`<a href="https://duckduckgo.com/email" target="_blank" class="cta__button"
+                >${i18n.t("ctascreens:spreadButton.title")}</a
+            >`;
           }
         }
       };
@@ -22324,21 +22430,31 @@
   // shared/js/ui/templates/shared/links.js
   function aboutLink() {
     const text = ns.site("trackerAboutLink.title");
-    return import_bel4.default`<a class="about-link link-action link-action--text-short" href="https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/" target="_blank">${text}</a>`;
+    return import_nanohtml4.default`<a
+        class="about-link link-action link-action--text-short"
+        href="https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/"
+        target="_blank"
+        >${text}</a
+    >`;
   }
   function adAttributionLink() {
     const text = ns.site("trackerAdLink.title");
-    return import_bel4.default`<a class="link-action link-action--text-micro" href="https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection" target="_blank">${text}</a>`;
+    return import_nanohtml4.default`<a
+        class="link-action link-action--text-micro"
+        href="https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/#3rd-party-tracker-loading-protection"
+        target="_blank"
+        >${text}</a
+    >`;
   }
   function disableInSettingsLink(cb) {
     const text = ns.site("cookiesMinimizedSettings.title");
-    return import_bel4.default`<a class="link-action link-action--text-micro" draggable="false" href="javascript:void(0)"  onclick=${cb}>${text}</a>`;
+    return import_nanohtml4.default`<a class="link-action link-action--text-micro" draggable="false" href="javascript:void(0)" onclick=${cb}>${text}</a>`;
   }
-  var import_bel4;
+  var import_nanohtml4;
   var init_links = __esm({
     "shared/js/ui/templates/shared/links.js"() {
       "use strict";
-      import_bel4 = __toESM(require_browser());
+      import_nanohtml4 = __toESM(require_browser());
       init_localize_es6();
     }
   });
@@ -22530,12 +22646,10 @@
 
   // shared/js/ui/templates/shared/hero.es6.js
   function heroTemplate(opts) {
-    return import_bel5.default`
+    return import_nanohtml5.default`
         <div class="key-insight" data-suffix=${opts.suffix}>
-            ${opts.icon}
-            ${opts.summary ? import_bel5.default`<p class="token-title-3">${opts.summary}</p>` : null}
-            ${opts.suffix === "about-link" ? aboutLink() : null}
-            ${opts.children ? opts.children : null}
+            ${opts.icon} ${opts.summary ? import_nanohtml5.default`<p class="token-title-3">${opts.summary}</p>` : null}
+            ${opts.suffix === "about-link" ? aboutLink() : null} ${opts.children ? opts.children : null}
         </div>
     `;
   }
@@ -22564,13 +22678,13 @@
     });
   }
   function largeHeroIcon(ops) {
-    return import_bel5.default`<div class="large-icon-container hero-icon--${ops.status}"></div>`;
+    return import_nanohtml5.default`<div class="large-icon-container hero-icon--${ops.status}"></div>`;
   }
-  var import_bel5;
+  var import_nanohtml5;
   var init_hero_es6 = __esm({
     "shared/js/ui/templates/shared/hero.es6.js"() {
       "use strict";
-      import_bel5 = __toESM(require_browser());
+      import_nanohtml5 = __toESM(require_browser());
       init_links();
       init_tracker_networks_text_es6();
       init_thirdparty_text_es6();
@@ -22594,13 +22708,13 @@
 
   // shared/js/ui/templates/shared/platform-limitations.js
   function platformLimitations() {
-    return import_bel6.default`<p class="platform-limitations border--top--inner">${ns.site("trackerLimitationsNote.title")}</p>`;
+    return import_nanohtml6.default`<p class="platform-limitations border--top--inner">${ns.site("trackerLimitationsNote.title")}</p>`;
   }
-  var import_bel6;
+  var import_nanohtml6;
   var init_platform_limitations = __esm({
     "shared/js/ui/templates/shared/platform-limitations.js"() {
       "use strict";
-      import_bel6 = __toESM(require_browser());
+      import_nanohtml6 = __toESM(require_browser());
       init_localize_es6();
     }
   });
@@ -22623,41 +22737,39 @@
     }
     if (!elements.length)
       return null;
-    return import_bel7.default`
+    return import_nanohtml7.default`
         <div>
-            <div class="top-nav">
-                ${elements}
-            </div>    
+            <div class="top-nav">${elements}</div>
             <div class="top-nav__spacer"></div>
         </div>
     `;
   }
   function back() {
     const textLabel = ns.site("navigationBack.title");
-    return import_bel7.default`
-        <a href='javascript:void(0)'
-            class='top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark'
-            role='button'
-            aria-label='${textLabel}'
-        >
-            <span class='icon icon__back-arrow' data-icon-text='${textLabel}'></span>
-        </a>`;
+    return import_nanohtml7.default` <a
+        href="javascript:void(0)"
+        class="top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark"
+        role="button"
+        aria-label="${textLabel}"
+    >
+        <span class="icon icon__back-arrow" data-icon-text="${textLabel}"></span>
+    </a>`;
   }
   function close() {
     const textLabel = ns.site("navigationComplete.title");
-    return import_bel7.default`
-        <a href="javascript:void(0)"
-            class="top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark"
-            role="button"
-        >
-            ${textLabel}
-        </a>`;
+    return import_nanohtml7.default` <a
+        href="javascript:void(0)"
+        class="top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark"
+        role="button"
+    >
+        ${textLabel}
+    </a>`;
   }
-  var import_bel7;
+  var import_nanohtml7;
   var init_top_nav = __esm({
     "shared/js/ui/templates/shared/top-nav.js"() {
       "use strict";
-      import_bel7 = __toESM(require_browser());
+      import_nanohtml7 = __toESM(require_browser());
       init_environment_check();
       init_localize_es6();
     }
@@ -22666,29 +22778,22 @@
   // shared/js/ui/templates/page-trackers.es6.js
   function trackerNetworksTemplate() {
     if (!this.model) {
-      return import_bel8.default`<section class="sliding-subview"></section>`;
+      return import_nanohtml8.default`<section class="sliding-subview"></section>`;
     }
     const sections = sectionsFromSiteTrackers(this.model.site);
     const hero = heroFromTabTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-    const limitations = this.model.site.tab.platformLimitations ? import_bel8.default`<div class="padding-x-double">${platformLimitations()}</div>` : import_bel8.default`<div></div>`;
-    return import_bel8.default`
-    <div class="site-info card page-inner" data-page='trackers'>
+    const limitations = this.model.site.tab.platformLimitations ? import_nanohtml8.default`<div class="padding-x-double">${platformLimitations()}</div>` : import_nanohtml8.default`<div></div>`;
+    return import_nanohtml8.default` <div class="site-info card page-inner" data-page="trackers">
         ${topNav({ view: "secondary" })}
-        <div class="padding-x-double js-tracker-networks-hero">
-            ${hero}
-        </div>
-        <div class="padding-x-double js-tracker-networks-details" aria-label="List of Tracker Companies">
-            ${sections}
-        </div>
+        <div class="padding-x-double js-tracker-networks-hero">${hero}</div>
+        <div class="padding-x-double js-tracker-networks-details" aria-label="List of Tracker Companies">${sections}</div>
         ${limitations}
     </div>`;
   }
   function trackerListWrapper(name, heading, companiesList, bordered) {
-    return import_bel8.default`
-        <ol class="default-list site-info__trackers__company-list ${bordered ? "border--top" : ""}" 
-             aria-label="List of tracker networks">
-            ${heading ? import_bel8.default`<li class="section-list-header" data-section-name=${name}>${heading}</li>` : import_bel8.default``}
-            ${companiesList}
+    return import_nanohtml8.default`
+        <ol class="default-list site-info__trackers__company-list ${bordered ? "border--top" : ""}" aria-label="List of tracker networks">
+            ${heading ? import_nanohtml8.default`<li class="section-list-header" data-section-name=${name}>${heading}</li>` : import_nanohtml8.default``} ${companiesList}
         </ol>
     `;
   }
@@ -22708,7 +22813,7 @@
     const listLabel = i18n.t("site:trackerDomainsForCompany.title", {
       companyName: company.displayName
     });
-    return import_bel8.default`<li class="site-info__trackers__company-list-item">
+    return import_nanohtml8.default`<li class="site-info__trackers__company-list-item">
         <p title=${title} class="site-info__domain block token-title-3-em">
             <span class=${titleClasses.join(" ")}></span>
             ${company.displayName}
@@ -22717,10 +22822,9 @@
             ${Object.keys(company.urls).map((urlHostname) => {
       const url = company.urls[urlHostname];
       const matched = displayCategories[url.category];
-      return import_bel8.default`
-                <li class="url-list-item">
+      return import_nanohtml8.default` <li class="url-list-item">
                     <p class="url" title=${urlHostname}>${urlHostname}</p>
-                    ${matched ? import_bel8.default`<div class="category">${i18n.t(matched)}</div>` : ""}
+                    ${matched ? import_nanohtml8.default`<div class="category">${i18n.t(matched)}</div>` : ""}
                 </li>`;
     })}
         </ol>
@@ -22746,11 +22850,11 @@
     ]);
     return sections;
   }
-  var import_bel8;
+  var import_nanohtml8;
   var init_page_trackers_es6 = __esm({
     "shared/js/ui/templates/page-trackers.es6.js"() {
       "use strict";
-      import_bel8 = __toESM(require_browser());
+      import_nanohtml8 = __toESM(require_browser());
       init_constants3();
       init_localize_es6();
       init_hero_es6();
@@ -22763,20 +22867,15 @@
   // shared/js/ui/templates/page-non-trackers.es6.js
   function nonTrackersTemplate() {
     if (!this.model) {
-      return import_bel9.default`<section class="sliding-subview"></section>`;
+      return import_nanohtml9.default`<section class="sliding-subview"></section>`;
     }
     const sections = sectionsFromSiteNonTracker(this.model.site);
     const hero = heroFromTabNonTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-    const limitations = this.model.site.tab.platformLimitations ? import_bel9.default`<div class="padding-x-double">${platformLimitations()}</div>` : import_bel9.default`<div></div>`;
-    return import_bel9.default`
-    <div class="site-info card page-inner" data-page='non-trackers'>
+    const limitations = this.model.site.tab.platformLimitations ? import_nanohtml9.default`<div class="padding-x-double">${platformLimitations()}</div>` : import_nanohtml9.default`<div></div>`;
+    return import_nanohtml9.default` <div class="site-info card page-inner" data-page="non-trackers">
         ${topNav({ view: "secondary" })}
-        <div class="padding-x-double js-tracker-networks-hero">
-            ${hero}
-        </div>
-        <div class="padding-x-double js-tracker-networks-details">
-            ${sections}
-        </div>
+        <div class="padding-x-double js-tracker-networks-hero">${hero}</div>
+        <div class="padding-x-double js-tracker-networks-details">${sections}</div>
         ${limitations}
     </div>`;
   }
@@ -22800,12 +22899,12 @@
     return renderSections([
       {
         name: "adAttribution",
-        heading: () => import_bel9.default`
+        heading: () => import_nanohtml9.default`
                 <div>
                     <p>${ns.site("sectionHeadingAdAttribution.title", { domain: site2.tab.domain })}</p>
                     ${adAttributionLink()}
                 </div>
-                `,
+            `,
         companies: requestDetails.allowed.adClickAttribution.sortedByPrevalence()
       },
       {
@@ -22831,11 +22930,11 @@
       }
     ]);
   }
-  var import_bel9;
+  var import_nanohtml9;
   var init_page_non_trackers_es6 = __esm({
     "shared/js/ui/templates/page-non-trackers.es6.js"() {
       "use strict";
-      import_bel9 = __toESM(require_browser());
+      import_nanohtml9 = __toESM(require_browser());
       init_localize_es6();
       init_request_details();
       init_hero_es6();
@@ -22856,8 +22955,8 @@
   }
   function renderKeyInsight() {
     const model = this.model;
-    const title = (text) => import_bel10.default`<h1 class="token-title-3-em">${text}</h1>`;
-    const description = (text) => import_bel10.default`<div class="token-title-3"><span role="text">${text}</span></div>`;
+    const title = (text) => import_nanohtml10.default`<h1 class="token-title-3-em">${text}</h1>`;
+    const description = (text) => import_nanohtml10.default`<div class="token-title-3"><span role="text">${text}</span></div>`;
     const state = (() => {
       if (model.httpsState === "none")
         return keyInsightsState.insecure;
@@ -22880,11 +22979,10 @@
     })();
     return {
       insecure: () => {
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--insecure-connection"></div>
-                    ${title(model.tab.domain)}
-                    ${description((0, import_raw2.default)(i18n.t("site:connectionDescriptionUnencrypted.title")))}
+                    ${title(model.tab.domain)} ${description((0, import_raw2.default)(i18n.t("site:connectionDescriptionUnencrypted.title")))}
                 </div>
             `;
       },
@@ -22893,30 +22991,28 @@
         if (model.isDenylisted) {
           text = i18n.t("site:protectionsDisabledRemoteOverride.title");
         }
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--protections-off"></div>
-                    ${title(model.tab.domain)}
-                    ${description(import_bel10.default`<p class='note note--key-insight'>${text}</p>`)}
+                    ${title(model.tab.domain)} ${description(import_nanohtml10.default`<p class="note note--key-insight">${text}</p>`)}
                 </div>
             `;
       },
       userAllowListed: () => {
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--protections-off"></div>
-                    ${title(model.tab.domain)}
-                    ${description((0, import_raw2.default)(i18n.t("site:protectionsDisabled.title")))}
+                    ${title(model.tab.domain)} ${description((0, import_raw2.default)(i18n.t("site:protectionsDisabled.title")))}
                 </div>
             `;
       },
       majorTrackingNetwork: () => {
         const company = model.tab.parentEntity;
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--tracker-network"></div>
-                        ${title(model.tab.domain)}
-                        ${description(
+                    ${title(model.tab.domain)}
+                    ${description(
           (0, import_raw2.default)(
             i18n.t("site:majorTrackingNetworkDesc.title", {
               companyDisplayName: company.displayName,
@@ -22929,25 +23025,23 @@
             `;
       },
       noneBlocked_someSpecialAllowed: () => {
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--info"></div>
-                    ${title(model.tab.domain)}
-                    ${description(i18n.t("site:trackerNetworksSummaryAllowedOnly.title"))}
+                    ${title(model.tab.domain)} ${description(i18n.t("site:trackerNetworksSummaryAllowedOnly.title"))}
                 </div>
             `;
       },
       noneBlocked: () => {
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--no-activity"></div>
-                    ${title(model.tab.domain)}
-                    ${description((0, import_raw2.default)(i18n.t("site:trackerNetworksSummaryNone.title")))}
+                    ${title(model.tab.domain)} ${description((0, import_raw2.default)(i18n.t("site:trackerNetworksSummaryNone.title")))}
                 </div>
             `;
       },
       emptyCompaniesList: () => {
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
@@ -22956,10 +23050,9 @@
             `;
       },
       blocked: () => {
-        return import_bel10.default`
+        return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    ${renderCompanyIconsList(model)}
-                    ${title(model.tab.domain)}
+                    ${renderCompanyIconsList(model)} ${title(model.tab.domain)}
                     ${description((0, import_raw2.default)(i18n.t("site:trackersBlockedDesc.title", generateCompanyNamesList(model))))}
                 </div>
             `;
@@ -23011,18 +23104,16 @@
     const positionMap = positions[processed.length];
     const list = processed.map((item, index) => {
       if (item.kind === "icon") {
-        return import_bel10.default`
-                <span class="icon-list__item" style='order: ${positionMap[index]}' data-company-icon-position=${positionMap[index]}>
+        return import_nanohtml10.default`
+                <span class="icon-list__item" style="order: ${positionMap[index]}" data-company-icon-position=${positionMap[index]}>
                     <span class="icon-list__wrapper" data-company-icon-size=${item.size}>
                         <span class="icon-list__icon ${item.letter} color-${item.colorId} ${item.slug}"></span>
-                        <span class="icon-list__blocked-icon">
-                            ${blockSvg()}
-                        </span>
+                        <span class="icon-list__blocked-icon"> ${blockSvg()} </span>
                     </span>
                 </span>
             `;
       }
-      return import_bel10.default`
+      return import_nanohtml10.default`
             <span class='icon-list__item' style='order: ${positionMap[index]}' data-company-icon-position='${positionMap[index]}'>
                 <span class='icon-list__wrapper icon-list__wrapper--count' 
                     data-company-icon-size='${item.size}'>
@@ -23030,30 +23121,31 @@
                 </span>
             </div>`;
     });
-    return import_bel10.default`
-        <div 
-            class='large-icon-container icon-list' 
-            data-company-count='${processed.length}'
-            aria-label="List of Blocked Company Icons"
-            >
+    return import_nanohtml10.default`
+        <div class="large-icon-container icon-list" data-company-count="${processed.length}" aria-label="List of Blocked Company Icons">
             ${list}
         </div>
     `;
   }
   function blockSvg() {
-    return import_bel10.default`
+    return import_nanohtml10.default`
         <svg viewBox="0 0 32 32" fill="none">
             <circle fill="white" cx="16" cy="16" r="15" />
-            <path fill="#EE1025" fill-rule="evenodd" clip-rule="evenodd" d="M28 16C28 22.6274 22.6274 28 16 28C9.37258 28 4 22.6274 4 16C4 9.37258 9.37258 4 16 4C22.6274 4 28 9.37258 28 16ZM24 16C24 20.4183 20.4183 24 16 24C14.5164 24 13.1271 23.5961 11.9361 22.8924L22.8924 11.9361C23.5961 13.1271 24 14.5164 24 16ZM9.10763 20.0639L20.0639 9.10763C18.8729 8.40386 17.4836 8 16 8C11.5817 8 8 11.5817 8 16C8 17.4836 8.40386 18.8729 9.10763 20.0639Z"/>
+            <path
+                fill="#EE1025"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M28 16C28 22.6274 22.6274 28 16 28C9.37258 28 4 22.6274 4 16C4 9.37258 9.37258 4 16 4C22.6274 4 28 9.37258 28 16ZM24 16C24 20.4183 20.4183 24 16 24C14.5164 24 13.1271 23.5961 11.9361 22.8924L22.8924 11.9361C23.5961 13.1271 24 14.5164 24 16ZM9.10763 20.0639L20.0639 9.10763C18.8729 8.40386 17.4836 8 16 8C11.5817 8 8 11.5817 8 16C8 17.4836 8.40386 18.8729 9.10763 20.0639Z"
+            />
         </svg>
     `;
   }
-  var import_bel10, import_raw2, import_jquery7, keyInsightsState;
+  var import_nanohtml10, import_raw2, import_jquery7, keyInsightsState;
   var init_key_insights = __esm({
     "shared/js/ui/templates/key-insights.js"() {
       "use strict";
-      import_bel10 = __toESM(require_browser());
-      import_raw2 = __toESM(require_raw());
+      import_nanohtml10 = __toESM(require_browser());
+      import_raw2 = __toESM(require_raw_browser());
       import_jquery7 = __toESM(require_jquery());
       init_localize_es6();
       init_normalize_company_name();
@@ -23127,53 +23219,53 @@
   // shared/js/ui/templates/shared/toggle-button.es6.js
   function generateMaterialDesignToggle(isActiveBoolean, klass, disabled) {
     const label = isActiveBoolean ? labelDisabled : labelEnabled;
-    return import_bel11.default`
-    <button
-        id="basic-switch"
-        class="mdc-switch mdc-switch--${isActiveBoolean ? "selected" : "unselected"} ${klass}"
-        type="button"
-        role="switch"
-        aria-checked="false"
-        aria-label=${label}
-        ${disabled ? "disabled" : ""}
-    >
-        <div class="mdc-switch__track"></div>
-        <div class="mdc-switch__handle-track">
-            <div class="mdc-switch__handle">
-            <div class="mdc-switch__shadow">
-                <div class="mdc-elevation-overlay"></div>
+    return import_nanohtml11.default`
+        <button
+            id="basic-switch"
+            class="mdc-switch mdc-switch--${isActiveBoolean ? "selected" : "unselected"} ${klass}"
+            type="button"
+            role="switch"
+            aria-checked="false"
+            aria-label=${label}
+            ${disabled ? "disabled" : ""}
+        >
+            <div class="mdc-switch__track"></div>
+            <div class="mdc-switch__handle-track">
+                <div class="mdc-switch__handle">
+                    <div class="mdc-switch__shadow">
+                        <div class="mdc-elevation-overlay"></div>
+                    </div>
+                    <div class="mdc-switch__ripple"></div>
+                </div>
             </div>
-            <div class="mdc-switch__ripple"></div>
-            </div>
-        </div>
-        <span class="mdc-switch__focus-ring-wrapper">
-            <div class="mdc-switch__focus-ring"></div>
-        </span>
-    </button>
-        `;
+            <span class="mdc-switch__focus-ring-wrapper">
+                <div class="mdc-switch__focus-ring"></div>
+            </span>
+        </button>
+    `;
   }
   function toggleButton(isActiveBoolean, klass, disabled) {
     if (isAndroid()) {
       return generateMaterialDesignToggle(isActiveBoolean, klass, disabled);
     }
     const label = isActiveBoolean ? labelDisabled : labelEnabled;
-    return import_bel11.default`
-    <button class='toggle-button ${klass}'
-        type='button'
+    return import_nanohtml11.default` <button
+        class="toggle-button ${klass}"
+        type="button"
         role="switch"
-        aria-checked='${isActiveBoolean}'
-        aria-label='${label}'
+        aria-checked="${isActiveBoolean}"
+        aria-label="${label}"
         ${disabled ? "disabled" : ""}
     >
-        <div class='toggle-button__track'></div>
-        <div class='toggle-button__handle'></div>
+        <div class="toggle-button__track"></div>
+        <div class="toggle-button__handle"></div>
     </button>`;
   }
-  var import_bel11, labelEnabled, labelDisabled;
+  var import_nanohtml11, labelEnabled, labelDisabled;
   var init_toggle_button_es6 = __esm({
     "shared/js/ui/templates/shared/toggle-button.es6.js"() {
       "use strict";
-      import_bel11 = __toESM(require_browser());
+      import_nanohtml11 = __toESM(require_browser());
       init_localize_es6();
       init_environment_check();
       labelEnabled = ns.site("enableProtectionsSwitch.title");
@@ -23197,7 +23289,7 @@
       }
     }
     const protectionToggle2 = toggleButton(active, "js-site-toggle", disabled);
-    return import_bel12.default`<div class="site-info__protection-wrapper">
+    return import_nanohtml12.default`<div class="site-info__protection-wrapper">
         <ul class="default-list">
             <li class="site-info__li--toggle ${active ? "is-active" : ""}">
                 <p class="site-info__protection"><span role="text">${(0, import_raw3.default)(text)}</span></p>
@@ -23206,17 +23298,17 @@
         </ul>
     </div>`;
   }
-  var import_bel12, import_raw3, renderUpdatingSpinner;
+  var import_nanohtml12, import_raw3, renderUpdatingSpinner;
   var init_protection_toggle = __esm({
     "shared/js/ui/templates/shared/protection-toggle.js"() {
       "use strict";
-      import_bel12 = __toESM(require_browser());
-      import_raw3 = __toESM(require_raw());
+      import_nanohtml12 = __toESM(require_browser());
+      import_raw3 = __toESM(require_raw_browser());
       init_environment_check();
       init_localize_es6();
       init_toggle_button_es6();
       renderUpdatingSpinner = () => {
-        return import_bel12.default`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t("site:updatingProtectionList.title")}" />`;
+        return import_nanohtml12.default`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t("site:updatingProtectionList.title")}" />`;
       };
     }
   });
@@ -23391,7 +23483,7 @@
   // shared/js/ui/templates/page-connection.es6.js
   function page_connection_es6_default() {
     if (!this.model) {
-      return import_bel13.default`<section class="sliding-subview"></section>`;
+      return import_nanohtml13.default`<section class="sliding-subview"></section>`;
     }
     const summary = renderConnectionDescription(this.model.site);
     const icon = largeHeroIcon({
@@ -23402,13 +23494,9 @@
       summary,
       suffix: "none"
     });
-    return import_bel13.default`
-    <div class="site-info card" data-page='connection'>
+    return import_nanohtml13.default` <div class="site-info card" data-page="connection">
         ${topNav({ view: "secondary" })}
-        <div class="padding-x-double">
-            ${hero}
-            ${renderCertificateDetails(this.model.site, this.model.tab)}
-        </div>
+        <div class="padding-x-double">${hero} ${renderCertificateDetails(this.model.site, this.model.tab)}</div>
     </div>`;
   }
   function getKeyUsage(key) {
@@ -23431,7 +23519,7 @@
     if (site2.httpsState === "none" || !tab.certificate || tab.certificate.length === 0)
       return "";
     const certificate = tab.certificate[0];
-    return import_bel13.default`
+    return import_nanohtml13.default`
         <div>
             ${renderHeader(site2, tab)}
             <div class="page-connection__certificate">
@@ -23451,73 +23539,67 @@
   function renderCertificateSummary(certificate) {
     if (!certificate.summary)
       return "";
-    return import_bel13.default`<div>
-                <span>${i18n.t("connection:summary.title")}</span>
-                <span class="page-connection__certificate-value">${certificate.summary}</span>
-            </div>`;
+    return import_nanohtml13.default`<div>
+        <span>${i18n.t("connection:summary.title")}</span>
+        <span class="page-connection__certificate-value">${certificate.summary}</span>
+    </div>`;
   }
   function renderPublicKeyDetails(certificate) {
     if (!certificate.publicKey)
       return "";
-    return import_bel13.default`<div class="page-connection__certificate-details">
+    return import_nanohtml13.default`<div class="page-connection__certificate-details">
         <h3 class="token-body-em">${i18n.t("connection:publicKey.title")}</h3>
-        ${renderCertificateType(certificate.publicKey)}
-        ${renderCertificateBitSize(certificate.publicKey)}
-        ${renderCertificateEffectiveSize(certificate.publicKey)}
-        ${renderCertificateKeyUsage(certificate.publicKey)}
+        ${renderCertificateType(certificate.publicKey)} ${renderCertificateBitSize(certificate.publicKey)}
+        ${renderCertificateEffectiveSize(certificate.publicKey)} ${renderCertificateKeyUsage(certificate.publicKey)}
         ${renderCertificateIsPermanent(certificate.publicKey)}
     </div>`;
   }
   function renderCertificateType(publicKey) {
     if (!publicKey.type)
       return "";
-    return import_bel13.default`<div>
-                <span>${i18n.t("connection:algorithm.title")}</span>
-                <span class="page-connection__certificate-value">${publicKey.type}</span>
-            </div>`;
+    return import_nanohtml13.default`<div>
+        <span>${i18n.t("connection:algorithm.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.type}</span>
+    </div>`;
   }
   function renderCertificateBitSize(publicKey) {
     if (!publicKey.bitSize)
       return "";
-    return import_bel13.default`<div>
-                <span>${i18n.t("connection:keySize.title")}</span>
-                <span class="page-connection__certificate-value">${publicKey.bitSize} bits</span>
-            </div>`;
+    return import_nanohtml13.default`<div>
+        <span>${i18n.t("connection:keySize.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.bitSize} bits</span>
+    </div>`;
   }
   function renderCertificateIsPermanent(publicKey) {
     if (typeof publicKey.isPermanent !== "boolean")
       return "";
-    return import_bel13.default`<div>
-                <span>${i18n.t("connection:permanent.title")}</span>
-                <span class="page-connection__certificate-value">${publicKey.isPermanent ? "Yes" : "No"}</span>
-            </div>`;
+    return import_nanohtml13.default`<div>
+        <span>${i18n.t("connection:permanent.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.isPermanent ? "Yes" : "No"}</span>
+    </div>`;
   }
   function renderCertificateKeyUsage(publicKey) {
     const keyUsage = getKeyUsage(publicKey);
     if (keyUsage.length === 0)
       return "";
-    return import_bel13.default`<div>
-                <span>${i18n.t("connection:usage.title")}</span>
-                <span class="page-connection__certificate-value">${keyUsage.join(", ")}</span>
-            </div>`;
+    return import_nanohtml13.default`<div>
+        <span>${i18n.t("connection:usage.title")}</span>
+        <span class="page-connection__certificate-value">${keyUsage.join(", ")}</span>
+    </div>`;
   }
   function renderCertificateEffectiveSize(publicKey) {
     if (!publicKey.effectiveSize)
       return "";
-    return import_bel13.default`<div>
-                <span>${i18n.t("connection:effectiveSize.title")}</span>
-                <span class="page-connection__certificate-value">${publicKey.effectiveSize} bits</span>
-            </div>`;
+    return import_nanohtml13.default`<div>
+        <span>${i18n.t("connection:effectiveSize.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.effectiveSize} bits</span>
+    </div>`;
   }
   function renderHeader(site2, tab) {
     if (site2.httpsState === "none") {
-      return import_bel13.default`<div class="section-list-header certificate-header--not-found">
-            ${i18n.t("connection:certificateNotFound.title")}
-        </div>`;
+      return import_nanohtml13.default`<div class="section-list-header certificate-header--not-found">${i18n.t("connection:certificateNotFound.title")}</div>`;
     }
-    return import_bel13.default`<div class="section-list-header">
-        ${i18n.t("connection:certificateForDomain.title", { domain: tab.domain })}
-    </div>`;
+    return import_nanohtml13.default`<div class="section-list-header">${i18n.t("connection:certificateForDomain.title", { domain: tab.domain })}</div>`;
   }
   function renderConnectionDescription(site2) {
     if (site2.httpsState === "none") {
@@ -23528,11 +23610,11 @@
     }
     return i18n.t("connection:secureConnectionDesc.title");
   }
-  var import_bel13;
+  var import_nanohtml13;
   var init_page_connection_es6 = __esm({
     "shared/js/ui/templates/page-connection.es6.js"() {
       "use strict";
-      import_bel13 = __toESM(require_browser());
+      import_nanohtml13 = __toESM(require_browser());
       init_localize_es6();
       init_hero_es6();
       init_top_nav();
@@ -23554,52 +23636,52 @@
     const icon = largeHeroIcon({
       status: "breakage-form"
     });
-    return import_bel14.default`<section class="sliding-subview">
+    return import_nanohtml14.default`<section class="sliding-subview">
         <div class="breakage-form">
-        ${topNav({ view: "secondary" })}
-        <div class="padding-x-double js-breakage-form-element" data-state="idle">
-            <div class="key-insight">
-                ${icon}
-                <div class="breakage-form__advise">
-                    <p class="token-title-3">${i18n.t("report:selectTheOptionDesc.title")}</p>
-                </div>
-                <div class="breakage-form__message">
-                    <p class="token-title-3-em">${i18n.t("report:thankYou.title")}</p>
-                    <p class="token-title-3">${i18n.t("report:yourReportWillHelpDesc.title")}</p>
-                </div>
-            </div>
-            <div class="breakage-form__content">
-                <div class="breakage-form__element">
-                    <div class="form__group">
-                        <div class="form__select breakage-form__input--dropdown">
-                            <select class="js-breakage-form-dropdown">
-                                <option value=''>${i18n.t("report:pickYourIssueFromTheList.title")}</option>
-                                ${categories.map(function(item) {
-      return import_bel14.default`<option value=${item.value}>${item.category}</option>`;
-    })}
-                            </select>
-                        </div>
-                        <textarea class="form__textarea js-breakage-form-description" placeholder="${i18n.t(
-      "report:tellUsMoreDesc.title"
-    )}" maxlength="2500"></textarea>
-                        <button class="form__submit token-label-em js-breakage-form-submit" role="button">${i18n.t(
-      "report:sendReport.title"
-    )}</button>
+            ${topNav({ view: "secondary" })}
+            <div class="padding-x-double js-breakage-form-element" data-state="idle">
+                <div class="key-insight">
+                    ${icon}
+                    <div class="breakage-form__advise">
+                        <p class="token-title-3">${i18n.t("report:selectTheOptionDesc.title")}</p>
                     </div>
-                    <div class="breakage-form__footer token-breakage-form-body">
-                        ${i18n.t("report:reportsAreAnonymousDesc.title")}
+                    <div class="breakage-form__message">
+                        <p class="token-title-3-em">${i18n.t("report:thankYou.title")}</p>
+                        <p class="token-title-3">${i18n.t("report:yourReportWillHelpDesc.title")}</p>
+                    </div>
+                </div>
+                <div class="breakage-form__content">
+                    <div class="breakage-form__element">
+                        <div class="form__group">
+                            <div class="form__select breakage-form__input--dropdown">
+                                <select class="js-breakage-form-dropdown">
+                                    <option value="">${i18n.t("report:pickYourIssueFromTheList.title")}</option>
+                                    ${categories.map(function(item) {
+      return import_nanohtml14.default`<option value=${item.value}>${item.category}</option>`;
+    })}
+                                </select>
+                            </div>
+                            <textarea
+                                class="form__textarea js-breakage-form-description"
+                                placeholder="${i18n.t("report:tellUsMoreDesc.title")}"
+                                maxlength="2500"
+                            ></textarea>
+                            <button class="form__submit token-label-em js-breakage-form-submit" role="button">
+                                ${i18n.t("report:sendReport.title")}
+                            </button>
+                        </div>
+                        <div class="breakage-form__footer token-breakage-form-body">${i18n.t("report:reportsAreAnonymousDesc.title")}</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>`;
   }
-  var import_bel14;
+  var import_nanohtml14;
   var init_breakage_form_es63 = __esm({
     "shared/js/ui/templates/breakage-form.es6.js"() {
       "use strict";
-      import_bel14 = __toESM(require_browser());
+      import_nanohtml14 = __toESM(require_browser());
       init_localize_es6();
       init_hero_es6();
       init_top_nav();
@@ -24148,20 +24230,14 @@
   function template() {
     const model = this.model;
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged;
-    const consentRow = import_bel15.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
-    return import_bel15.default`
-    <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>
-        <li class='main-nav__row'>
-            ${renderConnection(model, this.nav.connection)}
-        </li>
-        <li class='main-nav__row'>
-            ${renderTrackerNetworksNew(model, this.nav.trackers)}
-        </li>
-        <li class='main-nav__row'>
-            ${renderThirdPartyNew(model, this.nav.nonTrackers)}
-        </li>
-        ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
-    </ul>
+    const consentRow = import_nanohtml15.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
+    return import_nanohtml15.default`
+        <ul class="default-list card-list--bordered main-nav token-body-em js-site-main-nav">
+            <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
+            <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
+            <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
+            ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
+        </ul>
     `;
   }
   function renderCookieConsentManaged(model, cb) {
@@ -24171,28 +24247,29 @@
     if (consentManaged && !optoutFailed) {
       const text = cosmetic ? i18n.t("site:cookiesHidden.title") : i18n.t("site:cookiesMinimized.title");
       if (configurable) {
-        return import_bel15.default`
-                <a href="javascript:void(0)"
+        return import_nanohtml15.default`
+                <a
+                    href="javascript:void(0)"
                     class="main-nav__item main-nav__item--link link-action link-action--dark"
                     role="button"
                     draggable="false"
                     onclick=${cb}
-                    >
+                >
                     <span class="main-nav__icon ${cosmetic ? "icon-small--info" : "icon-small--secure"}"></span>
                     <span class="main-nav__text">${text}</span>
                     <span class="main-nav__chev"></span>
                 </a>
             `;
       } else {
-        return import_bel15.default`
-            <div class="main-nav__item">
-                <span class="main-nav__icon icon-small--secure"></span>
-                <span class="main-nav__text">${text}</span>
-            </div>
-        `;
+        return import_nanohtml15.default`
+                <div class="main-nav__item">
+                    <span class="main-nav__icon icon-small--secure"></span>
+                    <span class="main-nav__text">${text}</span>
+                </div>
+            `;
       }
     }
-    return import_bel15.default``;
+    return import_nanohtml15.default``;
   }
   function renderConnection(model, cb) {
     let icon = "icon-small--insecure";
@@ -24202,55 +24279,55 @@
     if (model.httpsState === "upgraded" && /^https/.exec(model.tab.url) && Array.isArray(model.tab.certificate) && model.tab.certificate.length > 0) {
       icon = "icon-small--secure";
     }
-    return import_bel15.default`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Connection Information"
-            onclick=${cb}
-            >
-            <span class="main-nav__icon ${icon}"></span>
-            <span class="main-nav__text">${model.httpsStatusText}</span>
-            <span class="main-nav__chev"></span>
-        </a>`;
+    return import_nanohtml15.default` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Connection Information"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon ${icon}"></span>
+        <span class="main-nav__text">${model.httpsStatusText}</span>
+        <span class="main-nav__chev"></span>
+    </a>`;
   }
   function renderTrackerNetworksNew(model, cb) {
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled);
-    return import_bel15.default`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Tracker Companies"
-            onclick=${cb}
-            >
-            <span class="main-nav__icon icon-small--${icon}"></span>
-            <span class="main-nav__text">${title}</span>
-            <span class="main-nav__chev"></span>
-        </a>`;
+    return import_nanohtml15.default` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Tracker Companies"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon icon-small--${icon}"></span>
+        <span class="main-nav__text">${title}</span>
+        <span class="main-nav__chev"></span>
+    </a>`;
   }
   function renderThirdPartyNew(model, cb) {
     const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled);
-    return import_bel15.default`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Non-Tracker Companies"
-            onclick=${cb}
-            >
-            <span class="main-nav__icon icon-small--${icon}"></span>
-            <span class="main-nav__text">${title}</span>
-            <span class="main-nav__chev"></span>
-        </a>`;
+    return import_nanohtml15.default` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Non-Tracker Companies"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon icon-small--${icon}"></span>
+        <span class="main-nav__text">${title}</span>
+        <span class="main-nav__chev"></span>
+    </a>`;
   }
-  var import_jquery18, import_bel15;
+  var import_jquery18, import_nanohtml15;
   var init_main_nav = __esm({
     "shared/js/ui/views/main-nav.js"() {
       "use strict";
       import_jquery18 = __toESM(require_jquery());
-      import_bel15 = __toESM(require_browser());
+      import_nanohtml15 = __toESM(require_browser());
       init_view_es6();
       init_tracker_networks_text_es6();
       init_thirdparty_text_es6();
@@ -24338,27 +24415,22 @@
       summary,
       suffix: "none"
     });
-    return import_bel16.default`<section class='sliding-subview'>
-    <div class='card' data-page='cookie-prompt'>
-        ${topNav({ view: "secondary" })}
-        <div class='padding-x-double'>
-            ${hero}
-        </div>
-        <div class='padding-x-double'>        
-            <div class='padding-y border--top--inner text--center'>
-                ${disableInSettingsLink(this.links.disable)}
+    return import_nanohtml16.default`<section class="sliding-subview">
+        <div class="card" data-page="cookie-prompt">
+            ${topNav({ view: "secondary" })}
+            <div class="padding-x-double">${hero}</div>
+            <div class="padding-x-double">
+                <div class="padding-y border--top--inner text--center">${disableInSettingsLink(this.links.disable)}</div>
             </div>
         </div>
-    </div>
-</section>
-    `;
+    </section> `;
   }
-  var import_jquery19, import_bel16;
+  var import_jquery19, import_nanohtml16;
   var init_cookie_prompt = __esm({
     "shared/js/ui/views/cookie-prompt.js"() {
       "use strict";
       import_jquery19 = __toESM(require_jquery());
-      import_bel16 = __toESM(require_browser());
+      import_nanohtml16 = __toESM(require_browser());
       init_top_nav();
       init_hero_es6();
       init_links();
@@ -24620,7 +24692,7 @@
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens);
     if (this.model.tab.error) {
       const errorText = i18n.t("site:errorMessage.title");
-      return import_bel17.default`
+      return import_nanohtml17.default`
             <div class="site-info">
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
@@ -24635,7 +24707,7 @@
         `;
     }
     if (this.model.disabled && supportsCtaScreens) {
-      return import_bel17.default`
+      return import_nanohtml17.default`
             <div class="site-info">
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
@@ -24650,7 +24722,7 @@
         `;
     }
     const permissions = localizePermissions(this.model.permissions);
-    return import_bel17.default`
+    return import_nanohtml17.default`
     <div class='site-info page'>
         ${renderSearchWrapper(this.model)}
         ${topNav({ view: "primary" })}
@@ -24671,16 +24743,16 @@
     </div>`;
   }
   function outer(props) {
-    return import_bel17.default`<div class="page-outer">${props.children}</div>`;
+    return import_nanohtml17.default`<div class="page-outer">${props.children}</div>`;
   }
   function renderSearchWrapper(model) {
     if (model.tab?.search) {
-      return import_bel17.default`<section id="search-form-container"></section>`;
+      return import_nanohtml17.default`<section id="search-form-container"></section>`;
     }
   }
   function renderEmailWrapper(model) {
     if (model.tab?.emailProtection) {
-      return import_bel17.default`<div id="email-alias-container"></div>`;
+      return import_nanohtml17.default`<div id="email-alias-container"></div>`;
     }
   }
   function renderManagePermissions(model) {
@@ -24688,13 +24760,13 @@
       return "";
     }
     const localizedPerms = localizePermissions(model.permissions);
-    return import_bel17.default`
+    return import_nanohtml17.default`
         <ul class="default-list">
             <li class="site-info__li--manage-permissions">
                 ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
       if (!model.permissions)
         return "";
-      return import_bel17.default`<div class="site-info__page-permission">
+      return import_nanohtml17.default`<div class="site-info__page-permission">
                         <label>
                             <div>
                                 <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
@@ -24702,7 +24774,7 @@
                             </div>
                             <select class="js-site-permission" name="${permissionId}">
                                 ${options.map(
-        ({ id, title: title2 }) => import_bel17.default`<option value="${id}" ${permission === id ? "selected" : ""}>${title2}</option>`
+        ({ id, title: title2 }) => import_nanohtml17.default`<option value="${id}" ${permission === id ? "selected" : ""}>${title2}</option>`
       )}
                             </select>
                         </label>
@@ -24712,7 +24784,7 @@
         </ul>`;
   }
   function renderReportButton() {
-    return import_bel17.default`<div class="text--center border-light--top">
+    return import_nanohtml17.default`<div class="text--center border-light--top">
             <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
                 ${i18n.t("site:websiteNotWorkingQ.title")}
             </a>
@@ -24738,11 +24810,11 @@
       return perm;
     });
   }
-  var import_bel17;
+  var import_nanohtml17;
   var init_site_es63 = __esm({
     "shared/js/ui/templates/site.es6.js"() {
       "use strict";
-      import_bel17 = __toESM(require_browser());
+      import_nanohtml17 = __toESM(require_browser());
       init_localize_es6();
       init_protection_toggle();
       init_top_nav();

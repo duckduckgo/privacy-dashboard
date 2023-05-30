@@ -1,11 +1,11 @@
-import bel from 'bel'
-import raw from 'bel/raw'
+import html from 'nanohtml'
+import raw from 'nanohtml/raw'
 import { isBrowser } from '../../environment-check'
 import { i18n } from '../../base/localize.es6'
 import { toggleButton } from './toggle-button.es6'
 
 export const renderUpdatingSpinner = () => {
-    return bel`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t('site:updatingProtectionList.title')}" />`
+    return html`<img src="../img/spinner.svg" class="toggle-spinner" alt="${i18n.t('site:updatingProtectionList.title')}" />`
 }
 
 /**
@@ -35,7 +35,7 @@ export function protectionToggle(model) {
 
     const protectionToggle = toggleButton(active, 'js-site-toggle', disabled)
 
-    return bel`<div class="site-info__protection-wrapper">
+    return html`<div class="site-info__protection-wrapper">
         <ul class="default-list">
             <li class="site-info__li--toggle ${active ? 'is-active' : ''}">
                 <p class="site-info__protection"><span role="text">${raw(text)}</span></p>

@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import bel from 'bel'
+import html from 'nanohtml'
 import { topNav } from '../templates/shared/top-nav'
 import { heroTemplate, largeHeroIcon } from '../templates/shared/hero.es6'
 import { disableInSettingsLink } from '../templates/shared/links'
@@ -44,18 +44,13 @@ function template() {
         summary,
         suffix: 'none',
     })
-    return bel`<section class='sliding-subview'>
-    <div class='card' data-page='cookie-prompt'>
-        ${topNav({ view: 'secondary' })}
-        <div class='padding-x-double'>
-            ${hero}
-        </div>
-        <div class='padding-x-double'>        
-            <div class='padding-y border--top--inner text--center'>
-                ${disableInSettingsLink(this.links.disable)}
+    return html`<section class="sliding-subview">
+        <div class="card" data-page="cookie-prompt">
+            ${topNav({ view: 'secondary' })}
+            <div class="padding-x-double">${hero}</div>
+            <div class="padding-x-double">
+                <div class="padding-y border--top--inner text--center">${disableInSettingsLink(this.links.disable)}</div>
             </div>
         </div>
-    </div>
-</section>
-    `
+    </section> `
 }

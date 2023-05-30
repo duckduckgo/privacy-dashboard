@@ -40,7 +40,7 @@
         "@playwright/test": "^1.28.1",
         "@types/chrome": "^0.0.203",
         "@types/node": "18.16.16",
-        "bel": "6.0.0",
+        "nanohtml": "^1.10.0",
         "chokidar-cli": "^3.0.0",
         "deep-freeze": "0.0.1",
         "duckduckgo-colors": "0.0.1",

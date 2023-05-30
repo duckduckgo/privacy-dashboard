@@ -1,4 +1,4 @@
-import bel from 'bel'
+import html from 'nanohtml'
 import { i18n } from '../base/localize.es6.js'
 import { heroTemplate, largeHeroIcon } from './shared/hero.es6.js'
 import { topNav } from './shared/top-nav'
@@ -13,7 +13,7 @@ import { topNav } from './shared/top-nav'
  */
 export default function () {
     if (!this.model) {
-        return bel`<section class="sliding-subview"></section>`
+        return html`<section class="sliding-subview"></section>`
     }
 
     const summary = renderConnectionDescription(this.model.site)
@@ -27,13 +27,9 @@ export default function () {
         suffix: 'none',
     })
 
-    return bel`
-    <div class="site-info card" data-page='connection'>
+    return html` <div class="site-info card" data-page="connection">
         ${topNav({ view: 'secondary' })}
-        <div class="padding-x-double">
-            ${hero}
-            ${renderCertificateDetails(this.model.site, this.model.tab)}
-        </div>
+        <div class="padding-x-double">${hero} ${renderCertificateDetails(this.model.site, this.model.tab)}</div>
     </div>`
 }
 
@@ -62,7 +58,7 @@ function renderCertificateDetails(site, tab) {
     if (site.httpsState === 'none' || !tab.certificate || tab.certificate.length === 0) return ''
 
     const certificate = tab.certificate[0]
-    return bel`
+    return html`
         <div>
             ${renderHeader(site, tab)}
             <div class="page-connection__certificate">
@@ -83,21 +79,19 @@ function renderCertificateDetails(site, tab) {
 function renderCertificateSummary(certificate) {
     if (!certificate.summary) return ''
 
-    return bel`<div>
-                <span>${i18n.t('connection:summary.title')}</span>
-                <span class="page-connection__certificate-value">${certificate.summary}</span>
-            </div>`
+    return html`<div>
+        <span>${i18n.t('connection:summary.title')}</span>
+        <span class="page-connection__certificate-value">${certificate.summary}</span>
+    </div>`
 }
 
 function renderPublicKeyDetails(certificate) {
     if (!certificate.publicKey) return ''
 
-    return bel`<div class="page-connection__certificate-details">
+    return html`<div class="page-connection__certificate-details">
         <h3 class="token-body-em">${i18n.t('connection:publicKey.title')}</h3>
-        ${renderCertificateType(certificate.publicKey)}
-        ${renderCertificateBitSize(certificate.publicKey)}
-        ${renderCertificateEffectiveSize(certificate.publicKey)}
-        ${renderCertificateKeyUsage(certificate.publicKey)}
+        ${renderCertificateType(certificate.publicKey)} ${renderCertificateBitSize(certificate.publicKey)}
+        ${renderCertificateEffectiveSize(certificate.publicKey)} ${renderCertificateKeyUsage(certificate.publicKey)}
         ${renderCertificateIsPermanent(certificate.publicKey)}
     </div>`
 }
@@ -105,47 +99,47 @@ function renderPublicKeyDetails(certificate) {
 function renderCertificateType(publicKey) {
     if (!publicKey.type) return ''
 
-    return bel`<div>
-                <span>${i18n.t('connection:algorithm.title')}</span>
-                <span class="page-connection__certificate-value">${publicKey.type}</span>
-            </div>`
+    return html`<div>
+        <span>${i18n.t('connection:algorithm.title')}</span>
+        <span class="page-connection__certificate-value">${publicKey.type}</span>
+    </div>`
 }
 
 function renderCertificateBitSize(publicKey) {
     if (!publicKey.bitSize) return ''
 
-    return bel`<div>
-                <span>${i18n.t('connection:keySize.title')}</span>
-                <span class="page-connection__certificate-value">${publicKey.bitSize} bits</span>
-            </div>`
+    return html`<div>
+        <span>${i18n.t('connection:keySize.title')}</span>
+        <span class="page-connection__certificate-value">${publicKey.bitSize} bits</span>
+    </div>`
 }
 
 function renderCertificateIsPermanent(publicKey) {
     if (typeof publicKey.isPermanent !== 'boolean') return ''
 
-    return bel`<div>
-                <span>${i18n.t('connection:permanent.title')}</span>
-                <span class="page-connection__certificate-value">${publicKey.isPermanent ? 'Yes' : 'No'}</span>
-            </div>`
+    return html`<div>
+        <span>${i18n.t('connection:permanent.title')}</span>
+        <span class="page-connection__certificate-value">${publicKey.isPermanent ? 'Yes' : 'No'}</span>
+    </div>`
 }
 
 function renderCertificateKeyUsage(publicKey) {
     const keyUsage = getKeyUsage(publicKey)
     if (keyUsage.length === 0) return ''
 
-    return bel`<div>
-                <span>${i18n.t('connection:usage.title')}</span>
-                <span class="page-connection__certificate-value">${keyUsage.join(', ')}</span>
-            </div>`
+    return html`<div>
+        <span>${i18n.t('connection:usage.title')}</span>
+        <span class="page-connection__certificate-value">${keyUsage.join(', ')}</span>
+    </div>`
 }
 
 function renderCertificateEffectiveSize(publicKey) {
     if (!publicKey.effectiveSize) return ''
 
-    return bel`<div>
-                <span>${i18n.t('connection:effectiveSize.title')}</span>
-                <span class="page-connection__certificate-value">${publicKey.effectiveSize} bits</span>
-            </div>`
+    return html`<div>
+        <span>${i18n.t('connection:effectiveSize.title')}</span>
+        <span class="page-connection__certificate-value">${publicKey.effectiveSize} bits</span>
+    </div>`
 }
 
 /**
@@ -154,14 +148,10 @@ function renderCertificateEffectiveSize(publicKey) {
  */
 function renderHeader(site, tab) {
     if (site.httpsState === 'none') {
-        return bel`<div class="section-list-header certificate-header--not-found">
-            ${i18n.t('connection:certificateNotFound.title')}
-        </div>`
+        return html`<div class="section-list-header certificate-header--not-found">${i18n.t('connection:certificateNotFound.title')}</div>`
     }
 
-    return bel`<div class="section-list-header">
-        ${i18n.t('connection:certificateForDomain.title', { domain: tab.domain })}
-    </div>`
+    return html`<div class="section-list-header">${i18n.t('connection:certificateForDomain.title', { domain: tab.domain })}</div>`
 }
 
 /**
