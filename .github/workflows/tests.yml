@@ -9,11 +9,11 @@ jobs:
     test:
         runs-on: ubuntu-20.04
         steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js 18
-              uses: actions/setup-node@v2
+            - uses: actions/checkout@v3
+            - name: Use Node.js from .nvmrc
+              uses: actions/setup-node@v3
               with:
-                  node-version: 18.x
+                node-version-file: '.nvmrc'
             - name: Cache node modules
               id: cache-npm
               uses: actions/cache@v3
@@ -40,11 +40,11 @@ jobs:
         runs-on: ubuntu-20.04
         needs: test
         steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js 18
-              uses: actions/setup-node@v1
+            - uses: actions/checkout@v3
+            - name: Use Node.js from .nvmrc
+              uses: actions/setup-node@v3
               with:
-                  node-version: 18.x
+                node-version-file: '.nvmrc'
             - name: Cache node modules
               id: cache-npm
               uses: actions/cache@v3
@@ -83,11 +83,11 @@ jobs:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         steps:
-            - uses: actions/checkout@v2
-            - name: Use Node.js 18
-              uses: actions/setup-node@v1
+            - uses: actions/checkout@v3
+            - name: Use Node.js from .nvmrc
+              uses: actions/setup-node@v3
               with:
-                  node-version: 18.x
+                node-version-file: '.nvmrc'
             - name: Cache build outputs
               id: build-output
               uses: actions/cache@v3
