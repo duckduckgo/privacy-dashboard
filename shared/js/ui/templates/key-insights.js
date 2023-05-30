@@ -2,7 +2,7 @@ import bel from 'bel'
 import raw from 'bel/raw'
 import $ from 'jquery'
 import { i18n } from '../base/localize.es6'
-import { normalizeCompanyName } from '../models/mixins/normalize-company-name.es6'
+import { normalizeCompanyName } from '../models/mixins/normalize-company-name.mjs'
 import Parent from '../base/view.es6'
 import { getColorId } from './shared/utils.es6'
 

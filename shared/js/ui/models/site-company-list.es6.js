@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import Parent from '../base/model.es6'
 import browserUIWrapper from '../../browser/communication.es6.js'
-import { normalizeCompanyName } from './mixins/normalize-company-name.es6'
+import { normalizeCompanyName } from './mixins/normalize-company-name.mjs'
 
 /** @this {any} */
 function SiteCompanyList(attrs) {

@@ -1,4 +1,4 @@
-import { normalizeCompanyName, removeTLD } from '../../ui/models/mixins/normalize-company-name.es6.js'
+import { normalizeCompanyName, removeTLD } from '../../ui/models/mixins/normalize-company-name.mjs'
 import { requestDataSchema } from '../../../../schema/__generated__/schema.parsers.mjs'
 import { Protections } from './protections.mjs'
 

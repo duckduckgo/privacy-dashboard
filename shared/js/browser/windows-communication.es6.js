@@ -43,7 +43,7 @@ import {
     SubmitBrokenSiteReportMessage,
     UpdatePermissionMessage,
 } from './common.es6'
-import { createTabData } from './utils/request-details'
+import { createTabData } from './utils/request-details.mjs'
 
 let channel = null
 const backgroundMessage = (backgroundModel) => {

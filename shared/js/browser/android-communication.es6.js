@@ -17,7 +17,7 @@ import {
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, OpenSettingsMessages, SetListsMessage, setupColorScheme } from './common.es6'
-import { createTabData } from './utils/request-details'
+import { createTabData } from './utils/request-details.mjs'
 
 let channel = null
 const backgroundMessage = (backgroundModel) => {

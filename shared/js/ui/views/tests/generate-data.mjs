@@ -2,7 +2,7 @@ import { Protections } from '../../../browser/utils/protections.mjs'
 import { protectionsOff } from './toggle-protections.mjs'
 
 /**
- * @typedef {import('../../../browser/utils/request-details').TabData} TabData
+ * @typedef {import('../../../browser/utils/request-details.mjs').TabData} TabData
  * @typedef {import('../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
  * @typedef {import('../../../../../schema/__generated__/schema.types').ParentEntity} ParentEntity
  */
@@ -421,11 +421,11 @@ export const createDataStates = (google, cnn) => {
                 prevalence: 0.401,
             },
         }),
-        'protectionsOn': new MockData({
+        protectionsOn: new MockData({
             url: 'https://example.com',
             requests: [],
         }),
-        'protectionsOn_blocked': new MockData({
+        protectionsOn_blocked: new MockData({
             url: 'https://example.com',
             requests: [blocked1],
         }),
@@ -449,7 +449,7 @@ export const createDataStates = (google, cnn) => {
                 allowedAdClickAttribution,
                 {
                     ...allowedTracker,
-                    state: {allowed: {reason: "protectionDisabled"}}
+                    state: { allowed: { reason: 'protectionDisabled' } },
                 },
             ],
         }),
@@ -481,12 +481,12 @@ export const createDataStates = (google, cnn) => {
             requests: [allowedThirdParty, allowedTracker],
             contentBlockingException: true,
         }),
-        'allowlisted': new MockData({
+        allowlisted: new MockData({
             url: 'https://example.com',
             requests: [allowedThirdParty, allowedTracker],
             allowlisted: true,
         }),
-        'denylisted': new MockData({
+        denylisted: new MockData({
             url: 'https://example.com',
             requests: [allowedThirdParty, allowedTracker],
             denylisted: true,
@@ -542,4 +542,3 @@ export const createDataStates = (google, cnn) => {
         }),
     }
 }
-

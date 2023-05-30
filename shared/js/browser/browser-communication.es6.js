@@ -21,7 +21,7 @@ import {
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
 } from './common.es6'
-import { createTabData } from './utils/request-details'
+import { createTabData } from './utils/request-details.mjs'
 import { Protections } from './utils/protections.mjs'
 
 let channel
@@ -223,7 +223,7 @@ export function backgroundMessage(_channel) {
 
 /**
  * @returns {Promise<{
- *   tab: import('./utils/request-details').TabData,
+ *   tab: import('./utils/request-details.mjs').TabData,
  *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
  * }>}
  */

@@ -1,8 +1,8 @@
-import { states } from '../../../browser/utils/request-details'
+import { states } from '../../../browser/utils/request-details.mjs'
 import { ns } from '../../base/localize.es6'
 
 /**
- * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {any} protectionsEnabled
  * @returns {{title: string, icon: string}}
  */
@@ -48,7 +48,7 @@ export function trackerNetworksText(requestDetails, protectionsEnabled) {
 }
 
 /**
- * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {boolean} protectionsEnabled
  */
 export function trackerNetworkSummary(requestDetails, protectionsEnabled) {
@@ -73,7 +73,7 @@ export function trackerNetworkSummary(requestDetails, protectionsEnabled) {
 }
 
 /**
- * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {boolean} protectionsEnabled
  * @returns {string}
  */

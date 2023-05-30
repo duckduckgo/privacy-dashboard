@@ -1,16 +1,19 @@
+import { describe, it } from 'node:test'
 import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
 } from './__generated__/schema.parsers.mjs'
-import amazon from './__fixtures__/request-data-amazon.json'
-import cnn from './__fixtures__/request-data-cnn.json'
-import google from './__fixtures__/request-data-google.json'
-import protections from './__fixtures__/protections.json'
-import locale from './__fixtures__/locale-settings.json'
-import cpm from './__fixtures__/cpm.json'
-import cpmSecondary from './__fixtures__/cpm-secondary.json'
+import { readFileSync } from 'node:fs'
+
+const amazon = JSON.parse(readFileSync('./__fixtures__/request-data-amazon.json', 'utf8'))
+const cnn = JSON.parse(readFileSync('./__fixtures__/request-data-cnn.json', 'utf8'))
+const google = JSON.parse(readFileSync('./__fixtures__/request-data-google.json', 'utf8'))
+const protections = JSON.parse(readFileSync('./__fixtures__/protections.json', 'utf8'))
+const locale = JSON.parse(readFileSync('./__fixtures__/locale-settings.json', 'utf8'))
+const cpm = JSON.parse(readFileSync('./__fixtures__/cpm.json', 'utf8'))
+const cpmSecondary = JSON.parse(readFileSync('./__fixtures__/cpm-secondary.json', 'utf8'))
 
 describe('__fixtures__', () => {
     it('validates request-data', () => {

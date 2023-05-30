@@ -49,17 +49,17 @@ function Site(attrs) {
  * @property {boolean} isaMajorTrackingNetwork
  * @property {boolean} disabled
  * @property {any[] | null} permissions
- * @property {import('../../browser/utils/request-details').TabData} tab
+ * @property {import('../../browser/utils/request-details.mjs').TabData} tab
  */
 
 /**
- * @typedef {{ tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} LocalThis
+ * @typedef {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} LocalThis
  */
 
 Site.prototype = $.extend({}, Parent.prototype, {
     modelName: 'site',
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     getBackgroundTabData: function () {
         return new Promise((resolve) => {
             browserUIWrapper
@@ -93,7 +93,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 })
         })
     },
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     setSiteProperties: function () {
         if (!this.tab) {
             this.domain = 'new tab' // tab can be null for firefox new tabs
@@ -109,7 +109,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         if (this.domain && this.domain === '-') this.set('disabled', true)
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     setHttpsMessage: function () {
         if (!this.tab) return
 
@@ -124,7 +124,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.httpsStatusText = i18n.t(httpsMessages[this.httpsState])
     },
     timeout: null,
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     handleBackgroundMsg: function (message) {
         if (!this.tab) return
         if (message.action && message.action === 'updateTabData') {
@@ -144,7 +144,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
     },
 
-    /** @this {{ tab: import('../../browser/utils/request-details').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} */
+    /** @this {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.es6").fetcher}} */
     updatePermission: function (id, value) {
         if (!this.permissions) return
 
@@ -164,7 +164,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     },
 
     // calls `this.set()` to trigger view re-rendering
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     update: function (ops) {
         if (!this.acceptingUpdates) {
             console.log('not updating because acceptingUpdates was false')
@@ -204,19 +204,19 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
     },
     /**
-     * @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>}
+     * @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>}
      * @returns {number}
      */
     getUniqueTrackersCount: function () {
         return 0
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     getUniqueTrackersBlockedCount: function () {
         return 0
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     getUnknownTrackersCount: function () {
         let count = 0
         const entities = this.tab.requestDetails.all.entities
@@ -226,7 +226,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         return count
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     getMajorTrackerNetworksCount: function () {
         // Show only blocked major trackers count, unless site is allowlisted
         let total = 0
@@ -237,7 +237,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         return total
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     getTrackerNetworksOnPage: function () {
         const requests = this.tab.requestDetails
         const names = []
@@ -309,7 +309,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             return false
         }
     },
-    /** @this {{tab: import('../../browser/utils/request-details').TabData} & Record<string, any>} */
+    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
     companyNames: function () {
         return []
     },

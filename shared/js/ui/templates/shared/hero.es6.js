@@ -22,7 +22,7 @@ export function heroTemplate(opts) {
 }
 
 /**
- * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {boolean} protectionsEnabled
  * @returns {HTMLElement}
  */
@@ -40,7 +40,7 @@ export function heroFromTabTrackers(requestDetails, protectionsEnabled) {
 }
 
 /**
- * @param {import("../../../browser/utils/request-details").RequestDetails} requestDetails
+ * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {boolean} protectionsEnabled
  * @returns {HTMLElement}
  */

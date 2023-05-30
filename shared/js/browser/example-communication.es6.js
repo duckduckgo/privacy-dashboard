@@ -55,7 +55,7 @@ export function backgroundMessage(backgroundModel) {
 
 /**
  * @returns {Promise<{
- *    tab: import('./utils/request-details').TabData,
+ *    tab: import('./utils/request-details.mjs').TabData,
  *    emailProtectionUserData: import('../../../schema/__generated__/schema.types').EmailProtectionUserData | undefined,
  * }>}
  */

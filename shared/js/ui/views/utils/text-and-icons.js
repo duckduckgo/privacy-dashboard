@@ -1,4 +1,4 @@
-import { states } from '../../../browser/utils/request-details'
+import { states } from '../../../browser/utils/request-details.mjs'
 export const text = {
     'no trackers found': () => 'No Tracking Requests Found',
     'no trackers blocked': () => 'No Tracking Requests Blocked',

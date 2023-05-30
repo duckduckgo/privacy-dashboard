@@ -6,7 +6,7 @@ import { topNav } from './shared/top-nav'
 /**
  * @this {{
  *  model: {
- *      tab: import("../../browser/utils/request-details.js").TabData,
+ *      tab: import("../../browser/utils/request-details.mjs").TabData,
  *      site: import('../models/site.es6.js').PublicSiteModel
  *   }
  * }}
@@ -56,7 +56,7 @@ function getKeyUsage(key) {
 
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
- * @param {import("../../browser/utils/request-details.js").TabData} tab
+ * @param {import("../../browser/utils/request-details.mjs").TabData} tab
  */
 function renderCertificateDetails(site, tab) {
     if (site.httpsState === 'none' || !tab.certificate || tab.certificate.length === 0) return ''
@@ -150,7 +150,7 @@ function renderCertificateEffectiveSize(publicKey) {
 
 /**
  * @param {import('../models/site.es6.js').PublicSiteModel} site
- * @param {import("../../browser/utils/request-details.js").TabData} tab
+ * @param {import("../../browser/utils/request-details.mjs").TabData} tab
  */
 function renderHeader(site, tab) {
     if (site.httpsState === 'none') {

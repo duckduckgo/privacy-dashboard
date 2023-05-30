@@ -48,6 +48,6 @@ export default defaultComms
 /**
  * @typedef Communication
  * @property {any} fetch
- * @property {() => Promise<{tab: import('./utils/request-details').TabData} & Record<string, any>>} getBackgroundTabData
+ * @property {() => Promise<{tab: import('./utils/request-details.mjs').TabData} & Record<string, any>>} getBackgroundTabData
  * @property {() => void} [firstRenderComplete]
  */

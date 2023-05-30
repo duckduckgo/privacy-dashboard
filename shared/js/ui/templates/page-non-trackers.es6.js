@@ -1,6 +1,6 @@
 import bel from 'bel'
 import { ns } from '../base/localize.es6.js'
-import { states } from '../../browser/utils/request-details'
+import { states } from '../../browser/utils/request-details.mjs'
 import { heroFromTabNonTrackers } from './shared/hero.es6.js'
 import { renderSections } from './page-trackers.es6.js'
 import { adAttributionLink } from './shared/links'

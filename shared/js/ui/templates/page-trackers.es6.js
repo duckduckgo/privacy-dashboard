@@ -49,7 +49,7 @@ export function trackerListWrapper(name, heading, companiesList, bordered) {
 }
 
 /**
- * @param {import("../../browser/utils/request-details.js").AggregateCompanyData} company
+ * @param {import("../../browser/utils/request-details.mjs").AggregateCompanyData} company
  */
 export function renderCompany(company) {
     if (company.displayName && company.displayName === 'unknown') {
@@ -90,7 +90,7 @@ export function renderCompany(company) {
 /**
  * @param {{
  *  heading: () => any | null,
- *  companies: import("../../browser/utils/request-details.js").AggregateCompanyData[],
+ *  companies: import("../../browser/utils/request-details.mjs").AggregateCompanyData[],
  *  name: string,
  *  bordered?: boolean,
  *  }[]} sections

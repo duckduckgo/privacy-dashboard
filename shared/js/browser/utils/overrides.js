@@ -1,5 +1,5 @@
 import { isValidPlatform } from '../../ui/environment-check'
-import { createRequestDetails, createTabData } from './request-details'
+import { createRequestDetails, createTabData } from './request-details.mjs'
 import { Protections } from './protections.mjs'
 import { testDataStates } from '../../ui/views/tests/states-with-fixtures'
 import { protectionsOff } from '../../ui/views/tests/toggle-protections.mjs'

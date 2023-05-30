@@ -4,14 +4,7 @@ import ICU from 'i18next-icu'
 import siteTranslations from '../../../locales/en/site.json'
 
 // @ts-ignore
-const localeResources = require('../../../locales/*/*.json', { mode: 'list' })
-
-const resources = localeResources.reduce((mapping, { name, module }) => {
-    const [locale, namespace] = name.split('/')
-    mapping[locale] = mapping[locale] || {}
-    mapping[locale][namespace] = module
-    return mapping
-}, {})
+import localeResources from '../../../locales/*/*.json'
 
 i18next.use(ICU).init({
     // debug: true,
@@ -20,7 +13,7 @@ i18next.use(ICU).init({
     lng: 'en',
     ns: ['shared', 'site', 'connection', 'report', 'ctascreens'],
     defaultNS: 'shared',
-    resources,
+    resources: localeResources,
     i18nFormat: {
         parseErrorHandler: (err, key, res, options) => {
             console.warn('parseErrorHandler', err, key, res, options)
