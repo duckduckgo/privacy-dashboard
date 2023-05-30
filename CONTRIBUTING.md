@@ -73,6 +73,15 @@ they will be documented above.
     -   Values can be `true` or `false`
     -   Example: [http://localhost:3210/html/popup.html?platform=browser&emailUser=true](http://localhost:3210/html/popup.html?platform=browser&emailUser=true)
 
+## Translations
+
+Inside `shared/js/ui/base/localize.js` the following line is used to load the translations:
+
+```js
+// this is picked up by an esbuild plugin to load all locale files, see `scripts/bundle.mjs`
+import localeResources from '../../../locales/*/*.json'
+``` 
+
 ## Building Docs
 
 Documentation will be built using [Typedoc](https://typedoc.org/) on every Pull Request. The resulting static site will be deployed the

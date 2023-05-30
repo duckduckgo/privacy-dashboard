@@ -8,6 +8,8 @@ const LOCALES_BASE = join(BASE, 'shared/locales')
 
 /**
  * Bundle the base and polyfill files.
+ *
+ * Note: This will also bundle the JSON files for translation - see the plugin below
  */
 async function init() {
     const manifest = {
