@@ -35,7 +35,7 @@ The Privacy Dashboard can be built for all supported environments using
 `npm run build`. To preview the application using mock data, use
 `npm run preview` to view it in your default browser.
 
-The browser will open at `/html/iframe.html` - from there, you can click 'open in new tab' on 
+The browser will open at `/html/iframe.html` - from there, you can click 'open in new tab' on
 any of the test instances to work on that configuration exclusively
 
 ## Emulating different platforms/scenarios.
@@ -43,7 +43,7 @@ any of the test instances to work on that configuration exclusively
 When you are viewing the application in a browser, you can emulate certain environments
 by using query parameters.
 
-For example, first run `npm run preview` and then open one of the examples in a new tab. Then you alter the 
+For example, first run `npm run preview` and then open one of the examples in a new tab. Then you alter the
 query parameters in the browser that opens.
 
 -   `platform` - setting this will ensure that CSS for the selected platform is applied.
@@ -114,7 +114,7 @@ Code can be auto-formatted with `npm run pretter.fix`
 
 ## Testing
 
-All tests can be run with `npm test` - this runs unit tests, integration, linting, typechecking and documentation 
+All tests can be run with `npm test` - this runs unit tests, integration, linting, typechecking and documentation
 
 ### Unit Tests
 
