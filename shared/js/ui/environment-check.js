@@ -17,7 +17,7 @@ export const isMacos = () => isEnvironment('macos')
 /**
  * @returns {import("./platform-features").Platform["name"] | null}
  */
-export function currentPlatform() {
+function currentPlatform() {
     const windowVar = window.environmentOverride
     if (windowVar && isValidPlatform(windowVar)) return windowVar
     const matchingClass = [...document.body.classList].find((x) => x.startsWith('environment--'))

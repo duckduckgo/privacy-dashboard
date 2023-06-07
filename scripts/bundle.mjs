@@ -1,7 +1,7 @@
 import esbuild from 'esbuild'
 import { basename, join } from 'node:path'
 import { readdirSync, readFileSync } from 'node:fs'
-import { cwd } from './utils.mjs'
+import { cwd, debug } from './utils.mjs'
 const CWD = cwd(import.meta.url)
 const BASE = join(CWD, '..')
 const LOCALES_BASE = join(BASE, 'shared/locales')
@@ -26,6 +26,7 @@ async function init() {
         entryPoints: [manifest.base.input],
         bundle: true,
         outfile: manifest.base.output,
+        sourcemap: debug ? "linked" : undefined,
         plugins: [
             {
                 name: 'require-globify-shim',
@@ -48,6 +49,7 @@ async function init() {
         entryPoints: [manifest.polyfills.input],
         bundle: true,
         outfile: manifest.polyfills.output,
+        sourcemap: debug ? "linked" : undefined,
     })
 }
 
