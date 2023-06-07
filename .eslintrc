@@ -1,6 +1,5 @@
 {
     "extends": "standard",
-    "parser": "@babel/eslint-parser",
     "rules": {
         "indent": "off",
         "import/order": "error",

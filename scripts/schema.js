@@ -7,7 +7,7 @@ import { compile } from 'json-schema-to-typescript'
 const CWD = new URL('..', import.meta.url).pathname
 const BASE = join(CWD, 'schema')
 const SCHEMA_TYPES = join(BASE, '__generated__', 'schema.types.ts')
-const SCHEMA_PARSERS = join(BASE, '__generated__', 'schema.parsers.js')
+const SCHEMA_PARSERS = join(BASE, '__generated__', 'schema.parsers.mjs')
 const schema = JSON.parse(readFileSync(join(BASE, 'api.json'), 'utf8'))
 
 const bannerComment = `/**
@@ -29,7 +29,7 @@ create(schema)
     .then((tsContent) => createValidatorsOutput(tsContent))
     .then((parserContent) =>
         writeItem(SCHEMA_PARSERS, {
-            name: 'schema.parsers.js',
+            name: 'schema.parsers.mjs',
             content: parserContent,
         })
     )

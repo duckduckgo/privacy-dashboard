@@ -4,6 +4,5 @@ build
 swift-package
 .idea
 playwright-report
-**/*.snap
 schema/__generated__
 package-lock.json

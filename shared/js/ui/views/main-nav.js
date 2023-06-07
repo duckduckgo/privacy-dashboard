@@ -1,17 +1,17 @@
 import $ from 'jquery'
-import bel from 'bel'
-import Parent from '../base/view.es6.js'
-import { trackerNetworksText } from '../templates/shared/tracker-networks-text.es6'
-import { thirdpartyText } from '../templates/shared/thirdparty-text.es6'
-import { i18n } from '../base/localize.es6'
+import html from 'nanohtml'
+import Parent from '../base/view.js'
+import { trackerNetworksText } from '../templates/shared/tracker-networks-text.js'
+import { thirdpartyText } from '../templates/shared/thirdparty-text.js'
+import { i18n } from '../base/localize.js'
 import { createPlatformFeatures } from '../platform-features'
-import { platform } from '../../browser/communication.es6'
+import { platform } from '../../browser/communication.js'
 import { isAndroid } from '../environment-check'
 import { setupMaterialDesignRipple } from './utils/utils'
 
 /**
  * @param {object} ops
- * @param {import("../models/site.es6.js").default & import("../base/model.es6.js").baseModelMethods} ops.model
+ * @param {import("../models/site.js").default & import("../base/model.js").baseModelMethods} ops.model
  * @param {import("jquery")} ops.appendTo
  * @param {any} ops.store
  * @constructor
@@ -109,27 +109,21 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
  * @returns {HTMLElement}
  */
 function template() {
-    /** @type {import('../models/site.es6.js').PublicSiteModel} */
+    /** @type {import('../models/site.js').PublicSiteModel} */
     const model = this.model
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged
-    const consentRow = bel`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
-    return bel`
-    <ul class='default-list card-list--bordered main-nav token-body-em js-site-main-nav'>
-        <li class='main-nav__row'>
-            ${renderConnection(model, this.nav.connection)}
-        </li>
-        <li class='main-nav__row'>
-            ${renderTrackerNetworksNew(model, this.nav.trackers)}
-        </li>
-        <li class='main-nav__row'>
-            ${renderThirdPartyNew(model, this.nav.nonTrackers)}
-        </li>
-        ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
-    </ul>
+    const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
+    return html`
+        <ul class="default-list card-list--bordered main-nav token-body-em js-site-main-nav">
+            <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
+            <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
+            <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
+            ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
+        </ul>
     `
 }
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderCookieConsentManaged(model, cb) {
     if (!model.tab?.cookiePromptManagementStatus) return null
@@ -139,32 +133,33 @@ function renderCookieConsentManaged(model, cb) {
     if (consentManaged && !optoutFailed) {
         const text = cosmetic ? i18n.t('site:cookiesHidden.title') : i18n.t('site:cookiesMinimized.title')
         if (configurable) {
-            return bel`
-                <a href="javascript:void(0)"
+            return html`
+                <a
+                    href="javascript:void(0)"
                     class="main-nav__item main-nav__item--link link-action link-action--dark"
                     role="button"
                     draggable="false"
                     onclick=${cb}
-                    >
+                >
                     <span class="main-nav__icon ${cosmetic ? 'icon-small--info' : 'icon-small--secure'}"></span>
                     <span class="main-nav__text">${text}</span>
                     <span class="main-nav__chev"></span>
                 </a>
             `
         } else {
-            return bel`
-            <div class="main-nav__item">
-                <span class="main-nav__icon icon-small--secure"></span>
-                <span class="main-nav__text">${text}</span>
-            </div>
-        `
+            return html`
+                <div class="main-nav__item">
+                    <span class="main-nav__icon icon-small--secure"></span>
+                    <span class="main-nav__text">${text}</span>
+                </div>
+            `
         }
     }
 
-    return bel``
+    return html``
 }
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderConnection(model, cb) {
     let icon = 'icon-small--insecure'
@@ -181,53 +176,53 @@ function renderConnection(model, cb) {
         icon = 'icon-small--secure'
     }
 
-    return bel`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Connection Information"
-            onclick=${cb}
-            >
-            <span class="main-nav__icon ${icon}"></span>
-            <span class="main-nav__text">${model.httpsStatusText}</span>
-            <span class="main-nav__chev"></span>
-        </a>`
+    return html` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Connection Information"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon ${icon}"></span>
+        <span class="main-nav__text">${model.httpsStatusText}</span>
+        <span class="main-nav__chev"></span>
+    </a>`
 }
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderTrackerNetworksNew(model, cb) {
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
-    return bel`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Tracker Companies"
-            onclick=${cb}
-            >
-            <span class="main-nav__icon icon-small--${icon}"></span>
-            <span class="main-nav__text">${title}</span>
-            <span class="main-nav__chev"></span>
-        </a>`
+    return html` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Tracker Companies"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon icon-small--${icon}"></span>
+        <span class="main-nav__text">${title}</span>
+        <span class="main-nav__chev"></span>
+    </a>`
 }
 
 /**
- * @param {import('../models/site.es6.js').PublicSiteModel} model
+ * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderThirdPartyNew(model, cb) {
     const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
-    return bel`
-        <a href="javascript:void(0)" 
-            class="main-nav__item main-nav__item--link link-action link-action--dark" 
-            role="button" 
-            draggable="false"
-            aria-label="View Non-Tracker Companies"
-            onclick=${cb}
-            >
-            <span class="main-nav__icon icon-small--${icon}"></span>
-            <span class="main-nav__text">${title}</span>
-            <span class="main-nav__chev"></span>
-        </a>`
+    return html` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Non-Tracker Companies"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon icon-small--${icon}"></span>
+        <span class="main-nav__text">${title}</span>
+        <span class="main-nav__chev"></span>
+    </a>`
 }

@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "target": "es2021",
+        "module": "es2022",
         "moduleResolution": "node",
         "alwaysStrict": true,
         "allowJs": true,
@@ -15,7 +16,6 @@
         "noImplicitAny": false,
         "strictNullChecks": true,
         "maxNodeModuleJsDepth": 0,
-        "keyofStringsOnly": true,
         "skipLibCheck": true
     },
     "include": ["types.d.ts", "schema", "e2e", "scripts", "shared/js", "integration-tests"]

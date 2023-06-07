@@ -1,6 +1,6 @@
-import bel from 'bel'
+import html from 'nanohtml'
 import { platformSwitch } from '../../environment-check'
-import { ns } from '../../base/localize.es6'
+import { ns } from '../../base/localize.js'
 
 /**
  * @param {object} opts
@@ -23,11 +23,9 @@ export function topNav(opts = {}) {
         })
     }
     if (!elements.length) return null
-    return bel`
+    return html`
         <div>
-            <div class="top-nav">
-                ${elements}
-            </div>    
+            <div class="top-nav">${elements}</div>
             <div class="top-nav__spacer"></div>
         </div>
     `
@@ -35,23 +33,23 @@ export function topNav(opts = {}) {
 
 function back() {
     const textLabel = ns.site('navigationBack.title')
-    return bel`
-        <a href='javascript:void(0)'
-            class='top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark'
-            role='button'
-            aria-label='${textLabel}'
-        >
-            <span class='icon icon__back-arrow' data-icon-text='${textLabel}'></span>
-        </a>`
+    return html` <a
+        href="javascript:void(0)"
+        class="top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark"
+        role="button"
+        aria-label="${textLabel}"
+    >
+        <span class="icon icon__back-arrow" data-icon-text="${textLabel}"></span>
+    </a>`
 }
 
 function close() {
     const textLabel = ns.site('navigationComplete.title')
-    return bel`
-        <a href="javascript:void(0)"
-            class="top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark"
-            role="button"
-        >
-            ${textLabel}
-        </a>`
+    return html` <a
+        href="javascript:void(0)"
+        class="top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark"
+        role="button"
+    >
+        ${textLabel}
+    </a>`
 }

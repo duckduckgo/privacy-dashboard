@@ -10,7 +10,7 @@ export function forwardConsole(page) {
 
 /**
  * @param {import('@playwright/test').Page} page
- * @param {import("../shared/js/ui/views/tests/generate-data").MockData[]} states
+ * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData[]} states
  * @param {import('../shared/js/ui/platform-features').Platform} [platform]
  * @returns {Promise<void>}
  */
@@ -242,7 +242,7 @@ export async function installBrowserMocks(page) {
                 window.chrome = {}
             }
             window.__playwright = {
-                messages: messages,
+                messages,
                 mocks: {
                     outgoing: [],
                     incoming: [],

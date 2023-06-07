@@ -1,6 +1,8 @@
-import { dataStates, protectionsOff } from '../../ui/views/tests/generate-data'
 import { isValidPlatform } from '../../ui/environment-check'
-import { createRequestDetails, createTabData, Protections } from './request-details'
+import { testDataStates } from '../../ui/views/tests/states-with-fixtures'
+import { protectionsOff } from '../../ui/views/tests/toggle-protections.mjs'
+import { createRequestDetails, createTabData } from './request-details.mjs'
+import { Protections } from './protections.mjs'
 
 /**
  * The purpose of this function is to allow URL parameters to override
@@ -13,7 +15,7 @@ import { createRequestDetails, createTabData, Protections } from './request-deta
  */
 /**
  * @typedef Overrides
- * @property {import('../../ui/views/tests/generate-data').TabData} tab
+ * @property {import('../../ui/views/tests/generate-data.mjs').TabData} tab
  * @property {import('../../../../schema/__generated__/schema.types').DetectedRequest[]} requests
  * @property {import('../../ui/platform-features').Platform["name"]} platform
  * @property {import('../../../../schema/__generated__/schema.types').EmailProtectionUserData | undefined} emailProtectionUserData
@@ -35,7 +37,7 @@ export function getOverrides(searchString) {
 
     const stateKey = params.get('state')
     if (stateKey) {
-        const match = dataStates[stateKey]
+        const match = testDataStates[stateKey]
         if (match) {
             overrides.requests = match.requests
             overrides.tab.requestDetails = createRequestDetails(match.requests, [])
@@ -44,6 +46,22 @@ export function getOverrides(searchString) {
             overrides.tab.upgradedHttps = match.upgradedHttps
             overrides.tab.certificate = match.certificate
             overrides.tab.cookiePromptManagementStatus = match.cookiePromptManagementStatus
+            overrides.tab.locale = match.localeSettings.locale
+            if (match.allowlisted) {
+                overrides.requests = protectionsOff(overrides.requests)
+                overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
+                overrides.tab.protections = new Protections(false, ['contentBlocking'], true, false)
+            }
+            if (match.contentBlockingException) {
+                overrides.requests = protectionsOff(overrides.requests)
+                overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
+                overrides.tab.protections = new Protections(false, [], false, false)
+            }
+            if (match.denylisted) {
+                overrides.requests = protectionsOff(overrides.requests)
+                overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
+                overrides.tab.protections = new Protections(false, [], false, true)
+            }
         }
     }
     const platformParam = params.get('platform')
@@ -54,7 +72,6 @@ export function getOverrides(searchString) {
         window.environmentOverride = overrides.platform
     }
 
-    // emulate a different theme
     if (params.has('theme')) {
         if (params.get('theme') === 'light') {
             overrides.theme = 'light'
@@ -68,31 +85,12 @@ export function getOverrides(searchString) {
         }
     }
 
-    // emulate a 'contentBlockingException'
-    if (params.get('contentBlockingException') === 'true') {
-        overrides.requests = protectionsOff(overrides.requests)
-        overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
-        overrides.tab.protections = new Protections(false, [], false, false)
-    }
-
-    if (params.get('allowlisted')) {
-        overrides.requests = protectionsOff(overrides.requests)
-        overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
-        overrides.tab.protections = new Protections(false, ['contentBlocking'], true, false)
-    }
-
     if (params.get('specialDomainName') || params.get('specialDomain')) {
         overrides.tab.specialDomainName = 'extensions'
     }
 
     if (params.get('locale')) {
         overrides.tab.locale = params.get('locale')
-    }
-
-    if (params.get('denylisted')) {
-        overrides.requests = protectionsOff(overrides.requests)
-        overrides.tab.requestDetails = createRequestDetails(overrides.requests, [])
-        overrides.tab.protections = new Protections(false, [], false, true)
     }
 
     if (params.get('consentManaged')) {
