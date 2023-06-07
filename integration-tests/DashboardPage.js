@@ -11,17 +11,17 @@ export class DashboardPage {
     get htmlPage() {
         switch (this.platform.name) {
             case 'android':
-                return '/build/app/html/android.html'
+                return '/html/android.html'
             case 'ios':
-                return '/build/app/html/ios.html'
+                return '/html/ios.html'
             case 'macos':
-                return '/build/app/html/macos.html'
+                return '/html/macos.html'
             case 'windows':
-                return '/build/app/html/windows.html'
+                return '/html/windows.html'
             case 'example':
-                return '/build/app/html/example.html'
+                return '/html/example.html'
             case 'browser':
-                return '/build/app/html/browser.html'
+                return '/html/browser.html'
             default: {
                 /** @type {never} */
                 const n = this.platform.name

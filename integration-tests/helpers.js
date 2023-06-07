@@ -3,7 +3,7 @@
  */
 export function forwardConsole(page) {
     page.on('console', (msg, other) => {
-        const replaced = msg.text().replace(/http:\/\/localhost:3210/g, './build/browser')
+        const replaced = msg.text().replace(/http:\/\/localhost:3210/g, './build/app')
         console.log('->', msg.type(), replaced)
     })
 }
