@@ -25,7 +25,6 @@
         "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs",
         "test.serve": "http-server -c-1 --port 3210 ./",
         "test.int": "playwright test",
-        "pretest.int": "npm run build",
         "test.int.ui": "playwright test --ui",
         "test.int.headed": "playwright test --headed",
         "test.int.update-screenshots": "npm run test.int -- --update-snapshots",
