@@ -26,7 +26,7 @@ async function init() {
         entryPoints: [manifest.base.input],
         bundle: true,
         outfile: manifest.base.output,
-        sourcemap: debug ? "linked" : undefined,
+        sourcemap: debug ? 'linked' : undefined,
         plugins: [
             {
                 name: 'require-globify-shim',
@@ -49,7 +49,7 @@ async function init() {
         entryPoints: [manifest.polyfills.input],
         bundle: true,
         outfile: manifest.polyfills.output,
-        sourcemap: debug ? "linked" : undefined,
+        sourcemap: debug ? 'linked' : undefined,
     })
 }
 

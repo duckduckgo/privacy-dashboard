@@ -15,7 +15,7 @@ const env = {
 {
     console.time('sass+schema')
     // @ts-ignore
-    const schema = exec('node scripts/schema.js', { cwd: BASE, stdio: 'inherit', env: env })
+    const schema = exec('node scripts/schema.js', { cwd: BASE, stdio: 'inherit', env })
 
     // sass
     const output = 'build/app/public/css'
@@ -42,7 +42,7 @@ const env = {
 
 // bundle
 console.time('bundle')
-execSync(`node scripts/bundle.mjs`, { cwd: BASE, stdio: 'inherit', env })
+execSync('node scripts/bundle.mjs', { cwd: BASE, stdio: 'inherit', env })
 console.timeEnd('bundle')
 
 // copy assets
