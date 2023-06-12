@@ -15,6 +15,7 @@ $dark-mode-white-hover: rgba(255, 255, 255, 0.2);
 .search-form {
     flex: 1;
     display: flex;
+    margin-right: 8px;
 }
 
 .search-form__input {
@@ -108,7 +109,6 @@ $dark-mode-white-hover: rgba(255, 255, 255, 0.2);
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
-    margin-left: 10px;
     border-radius: 3px;
 
     &:hover,
@@ -121,6 +121,35 @@ $dark-mode-white-hover: rgba(255, 255, 255, 0.2);
     }
 
     .settings-cog {
+        fill: black;
+        .body--theme-dark & {
+            fill: white;
+            opacity: 0.8;
+        }
+    }
+}
+
+.fire-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border-radius: 3px;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: $color--dark-platinum;
+        .body--theme-dark & {
+            background-color: $color-gray-80;
+        }
+    }
+
+    .fire-icon {
         fill: black;
         .body--theme-dark & {
             fill: white;
