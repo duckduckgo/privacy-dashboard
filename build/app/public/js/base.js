@@ -3578,8 +3578,8 @@
           return elem;
         }
         jQuery.extend({
-          htmlPrefilter: function(html17) {
-            return html17;
+          htmlPrefilter: function(html18) {
+            return html18;
           },
           clone: function(elem, dataAndEvents, deepDataAndEvents) {
             var i, l, srcElements, destElements, clone = elem.cloneNode(true), inPage = isAttached(elem);
@@ -5887,13 +5887,13 @@
           });
         };
         jQuery.fn.extend({
-          wrapAll: function(html17) {
+          wrapAll: function(html18) {
             var wrap;
             if (this[0]) {
-              if (isFunction(html17)) {
-                html17 = html17.call(this[0]);
+              if (isFunction(html18)) {
+                html18 = html18.call(this[0]);
               }
-              wrap = jQuery(html17, this[0].ownerDocument).eq(0).clone(true);
+              wrap = jQuery(html18, this[0].ownerDocument).eq(0).clone(true);
               if (this[0].parentNode) {
                 wrap.insertBefore(this[0]);
               }
@@ -5907,25 +5907,25 @@
             }
             return this;
           },
-          wrapInner: function(html17) {
-            if (isFunction(html17)) {
+          wrapInner: function(html18) {
+            if (isFunction(html18)) {
               return this.each(function(i) {
-                jQuery(this).wrapInner(html17.call(this, i));
+                jQuery(this).wrapInner(html18.call(this, i));
               });
             }
             return this.each(function() {
               var self = jQuery(this), contents = self.contents();
               if (contents.length) {
-                contents.wrapAll(html17);
+                contents.wrapAll(html18);
               } else {
-                self.append(html17);
+                self.append(html18);
               }
             });
           },
-          wrap: function(html17) {
-            var htmlIsFunction = isFunction(html17);
+          wrap: function(html18) {
+            var htmlIsFunction = isFunction(html18);
             return this.each(function(i) {
-              jQuery(this).wrapAll(htmlIsFunction ? html17.call(this, i) : html17);
+              jQuery(this).wrapAll(htmlIsFunction ? html18.call(this, i) : html18);
             });
           },
           unwrap: function(selector) {
@@ -10357,7 +10357,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, detectedRequestSchema, tabSchema, breakageReportSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -10397,6 +10397,9 @@
         displayName: mod.string(),
         prevalence: mod.number()
       });
+      fireButtonSchema = mod.object({
+        enabled: mod.boolean()
+      });
       searchSchema = mod.object({
         term: mod.string()
       });
@@ -10433,6 +10436,15 @@
         messageType: mod.literal("setLists"),
         options: setListOptionsSchema
       });
+      fireOptionSchema = mod.record(mod.unknown()).and(mod.object({
+        name: mod.string(),
+        options: mod.record(mod.unknown()),
+        descriptionStats: mod.object({
+          history: mod.string().optional(),
+          openTabs: mod.number().optional(),
+          cookies: mod.number().optional()
+        })
+      }));
       detectedRequestSchema = mod.object({
         url: mod.string(),
         eTLDplus1: mod.string().optional(),
@@ -10456,6 +10468,9 @@
         request: breakageReportRequestSchema.optional(),
         response: mod.record(mod.unknown()).optional()
       });
+      fireButtonDataSchema = mod.object({
+        options: mod.array(fireOptionSchema)
+      });
       requestDataSchema = mod.object({
         requests: mod.array(detectedRequestSchema),
         installedSurrogates: mod.array(mod.string()).optional()
@@ -10463,7 +10478,8 @@
       getPrivacyDashboardDataSchema = mod.object({
         requestData: requestDataSchema,
         emailProtectionUserData: emailProtectionUserDataSchema.optional(),
-        tab: tabSchema
+        tab: tabSchema,
+        fireButton: fireButtonSchema.optional()
       });
       windowsViewModelSchema = mod.object({
         protections: protectionsStatusSchema,
@@ -10491,7 +10507,8 @@
         "windows-incoming-message": windowsIncomingMessageSchema.optional(),
         "locale-settings": localeSettingsSchema.optional(),
         "refresh-alias-response": refreshAliasResponseSchema.optional(),
-        exe: extensionMessageSetListOptionsSchema.optional()
+        exe: extensionMessageSetListOptionsSchema.optional(),
+        "fire-button": fireButtonDataSchema.optional()
       });
     }
   });
@@ -10559,7 +10576,7 @@
       throw new Error(message);
     }
   }
-  var getContentHeight, DARK_THEME, LIGHT_THEME, explicitlySetTheme, detectedTheme, oppositeTheme, Msg, SetListsMessage, SubmitBrokenSiteReportMessage, UpdatePermissionMessage, CloseMessage, CheckBrokenSiteReportHandledMessage, RefreshEmailAliasMessage, OpenOptionsMessage, SearchMessage, OpenSettingsMessages;
+  var getContentHeight, DARK_THEME, LIGHT_THEME, explicitlySetTheme, detectedTheme, oppositeTheme, Msg, SetListsMessage, SubmitBrokenSiteReportMessage, UpdatePermissionMessage, CloseMessage, CheckBrokenSiteReportHandledMessage, RefreshEmailAliasMessage, OpenOptionsMessage, SearchMessage, OpenSettingsMessages, BurnMessage, FetchBurnOptions;
   var init_common = __esm({
     "shared/js/browser/common.js"() {
       "use strict";
@@ -10645,6 +10662,14 @@
           super();
           this.target = params.target;
         }
+      };
+      BurnMessage = class extends Msg {
+        constructor(opts) {
+          super();
+          Object.assign(this, opts);
+        }
+      };
+      FetchBurnOptions = class extends Msg {
       };
     }
   });
@@ -10969,6 +10994,7 @@
   var browser_communication_exports = {};
   __export(browser_communication_exports, {
     backgroundMessage: () => backgroundMessage,
+    doBurn: () => doBurn,
     fetch: () => fetch,
     getBackgroundTabData: () => getBackgroundTabData,
     getPrivacyDashboardData: () => getPrivacyDashboardData,
@@ -11000,6 +11026,12 @@
     }
     if (message instanceof OpenOptionsMessage) {
       return openOptions();
+    }
+    if (message instanceof BurnMessage) {
+      return doBurn(message);
+    }
+    if (message instanceof FetchBurnOptions) {
+      return toExtensionMessage("getBurnOptions");
     }
     return new Promise((resolve) => {
       window.chrome.runtime.sendMessage(message, (result) => {
@@ -11039,6 +11071,16 @@
   async function openOptions() {
     return toExtensionMessage("openOptions");
   }
+  async function doBurn(message) {
+    const browsingDataPermissions = {
+      permissions: ["browsingData"]
+    };
+    const permissionRequestGranted = await new Promise((resolve) => chrome.permissions.request(browsingDataPermissions, resolve));
+    if (!permissionRequestGranted) {
+      throw new Error("Permission not granted");
+    }
+    return toExtensionMessage("doBurn", message);
+  }
   async function getPrivacyDashboardData(tabId) {
     return toExtensionMessage("getPrivacyDashboardData", { tabId });
   }
@@ -11063,7 +11105,7 @@
     const resp = await getPrivacyDashboardData(tabId);
     const parsedMessageData = getPrivacyDashboardDataSchema.safeParse(resp);
     if (parsedMessageData.success === true) {
-      const { tab, emailProtectionUserData, requestData } = parsedMessageData.data;
+      const { tab, emailProtectionUserData, requestData, fireButton } = parsedMessageData.data;
       const { upgradedHttps: upgradedHttps4, url, parentEntity: parentEntity4, specialDomainName, id, localeSettings } = tab;
       const protections5 = new Protections(
         tab.protections.unprotectedTemporary,
@@ -11083,7 +11125,8 @@
           parentEntity: parentEntity4,
           specialDomainName
         },
-        emailProtectionUserData
+        emailProtectionUserData,
+        fireButton
       };
     }
     console.log("\u{1F64F} getBackgroundTabData \u274C", parsedMessageData.error, resp);
@@ -14332,7 +14375,10 @@
   async function getBackgroundTabData5() {
     return {
       tab: overrides.tab,
-      emailProtectionUserData: overrides.emailProtectionUserData
+      emailProtectionUserData: overrides.emailProtectionUserData,
+      fireButton: {
+        enabled: true
+      }
     };
   }
   function setup6() {
@@ -22014,6 +22060,8 @@
 
   // shared/js/ui/templates/search.js
   function search_default2() {
+    const { showFireButton } = this.model;
+    const fireButton = showFireButton ? import_nanohtml2.default`<button type="button" class="fire-button js-search-fire-button">🔥</button>` : bel``;
     return import_nanohtml2.default`
         <div class="search token-search-input">
             <form class="search-form js-search-form" name="x" data-test-id="search-form">
@@ -22030,6 +22078,7 @@
                     ${loupeIcon()}
                 </button>
             </form>
+            ${fireButton}
             <button type="button" class="cog-button js-search-cog-button" aria-label="${i18n.t("site:optionsButton.title")}">
                 ${cogIcon()}
             </button>
@@ -23727,13 +23776,14 @@
     this.pageView = ops.pageView;
     this.template = ops.template;
     view_default.call(this, ops);
-    this._cacheElems(".js-search", ["form", "input", "go", "cog-button"]);
+    this._cacheElems(".js-search", ["form", "input", "go", "cog-button", "fire-button"]);
     this.bindEvents([
       [this.$input, "input", this._handleInput],
       [this.$input, "blur", this._handleBlur],
       [this.$go, "click", this._handleSubmit],
       [this.$form, "submit", this._handleSubmit],
-      [this.$cogbutton, "click", this._handleCogClick]
+      [this.$cogbutton, "click", this._handleCogClick],
+      [this.$firebutton, "click", this._handleFireClick]
     ]);
   }
   var import_jquery13, FOCUS_CLASS, search_default3;
@@ -23774,6 +23824,10 @@
         _handleCogClick: function(e) {
           e.preventDefault();
           this.model.openOptionsPage();
+        },
+        _handleFireClick: function(e) {
+          e.preventDefault();
+          this.pageView.model.send("navigate", { target: "fireButton" });
         }
       });
       search_default3 = Search2;
@@ -23873,7 +23927,7 @@
         /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getBackgroundTabData: function() {
           return new Promise((resolve) => {
-            communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
+            communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData, fireButton }) => {
               if (tab) {
                 if (tab.locale) {
                   if (Object.keys(i18n.options.resources).includes(tab.locale)) {
@@ -23890,6 +23944,7 @@
                 console.debug("Site model: no tab");
               }
               this.emailProtectionUserData = emailProtectionUserData;
+              this.fireButton = fireButton;
               this.update();
               resolve(null);
             }).catch((e) => {
@@ -24444,6 +24499,86 @@
     }
   });
 
+  // shared/js/ui/views/fire-dialog.js
+  function FireDialog(ops) {
+    this.model = ops.model;
+    this.template = template3;
+    view_default.call(this, ops);
+    this.model.fetch(new FetchBurnOptions()).then((resp) => {
+      this.model.fireOptions = resp.options;
+      this._rerender();
+      this._setup();
+    });
+  }
+  function template3() {
+    const { fireOptions } = this.model;
+    if (!fireOptions) {
+      return import_nanohtml17.default`<dialog id="fire-button-container"></dialog>`;
+    }
+    const selectOptions = fireOptions.map(({ name }) => import_nanohtml17.default`<option>${name}</option>`);
+    const summary = fireSummaryTemplate(fireOptions[0]);
+    return import_nanohtml17.default`
+    <dialog id="fire-button-container" open>
+        <div id="fire-button-content">
+            <span id="fire-button-header">
+                <img src="../img/fire-button-header.svg" />
+                <h3>Clear browsing history and data</h3>
+            </span>
+            <select id="fire-button-opts">
+                ${selectOptions}
+            </select>
+            ${summary}
+            <button id="fire-button-burn">🔥 Close tabs and clear data</button>
+            <button id="fire-button-cancel">Cancel</button>
+        </div>
+    </dialog>`;
+  }
+  function fireSummaryTemplate(selectedOption) {
+    const { descriptionStats } = selectedOption;
+    return import_nanohtml17.default`<p id="fire-button-summary">
+        ${descriptionStats.openTabs ? `Close ${descriptionStats.openTabs} tabs, ` : ""}
+        ${descriptionStats.history ? `clear ${descriptionStats.history} browsing history ` : ""}
+        ${descriptionStats.openTabs || descriptionStats.history ? "and " : ""}
+        delete cookies on ${descriptionStats.cookies} sites?
+    </p>`;
+  }
+  var import_jquery20, import_nanohtml17;
+  var init_fire_dialog = __esm({
+    "shared/js/ui/views/fire-dialog.js"() {
+      "use strict";
+      import_jquery20 = __toESM(require_jquery());
+      import_nanohtml17 = __toESM(require_browser());
+      init_view();
+      init_common();
+      FireDialog.prototype = import_jquery20.default.extend({}, view_default.prototype, {
+        _setup: function() {
+          this._cacheElems("#fire-button", ["burn", "cancel", "opts"]);
+          this.bindEvents([
+            [this.$burn, "click", this._onBurn],
+            [this.$cancel, "click", this._close],
+            [this.$opts, "change", this._updateSummary]
+          ]);
+        },
+        _onBurn: function() {
+          const selectedOption = this.$opts[0].selectedIndex;
+          const opts = this.model.fireOptions[selectedOption].options;
+          this.model.fetch(new BurnMessage(opts)).then(() => {
+            this._close();
+          });
+        },
+        _close: function() {
+          document.getElementById("fire-button-container")?.remove();
+        },
+        _updateSummary: function(ev) {
+          const selectedOption = this.$opts[0].selectedIndex;
+          const opts = this.model.fireOptions[selectedOption];
+          const summaryElement = (0, import_jquery20.default)("#fire-button-summary");
+          summaryElement.replaceWith(fireSummaryTemplate(opts));
+        }
+      });
+    }
+  });
+
   // shared/js/ui/views/site.js
   function Site2(ops) {
     this.model = ops.model;
@@ -24451,7 +24586,7 @@
     this.template = ops.template;
     this.features = createPlatformFeatures(platform);
     this.updateInProgress = false;
-    this.$body = (0, import_jquery20.default)("body");
+    this.$body = (0, import_jquery21.default)("body");
     this.model.getBackgroundTabData().then(() => {
       view_default.call(this, ops);
       this._setup();
@@ -24465,11 +24600,11 @@
       closest.blur();
     }
   }
-  var import_jquery20, site_default2;
+  var import_jquery21, site_default2;
   var init_site2 = __esm({
     "shared/js/ui/views/site.js"() {
       "use strict";
-      import_jquery20 = __toESM(require_jquery());
+      import_jquery21 = __toESM(require_jquery());
       init_environment_check();
       init_email_protection();
       init_email_protection2();
@@ -24497,7 +24632,8 @@
       init_tracker_networks();
       init_main_nav();
       init_cookie_prompt2();
-      Site2.prototype = import_jquery20.default.extend({}, view_default.prototype, {
+      init_fire_dialog();
+      Site2.prototype = import_jquery21.default.extend({}, view_default.prototype, {
         /**
          * @this {Site & Record<string, any>}
          * @param e
@@ -24559,6 +24695,9 @@
             if (event.data?.target === "cookieHidden") {
               this._showPageConsent(true);
             }
+            if (event.data?.target === "fireButton") {
+              this._showFireModal();
+            }
           }
         },
         _onReportBrokenSiteClick: function(e) {
@@ -24619,25 +24758,31 @@
             })
           });
         },
+        _showFireModal() {
+          this.dialog = new FireDialog({
+            model: this.model,
+            appendTo: (0, import_jquery21.default)("#site-info-container")
+          });
+        },
         _done: function() {
           this.model.close();
         },
         _setupFeatures() {
           this.views.mainNav = new MainNavView({
             model: this.model,
-            appendTo: (0, import_jquery20.default)("#main-nav"),
+            appendTo: (0, import_jquery21.default)("#main-nav"),
             store: this.store
           });
           this.views.keyInsight = new KeyInsightView({
             model: this.model,
-            appendTo: (0, import_jquery20.default)("#key-insight"),
+            appendTo: (0, import_jquery21.default)("#key-insight"),
             store: this.store
           });
           if (this.model.tab?.search) {
             this.views.search = new search_default3({
               pageView: this,
-              model: new search_default({ searchText: "" }),
-              appendTo: (0, import_jquery20.default)("#search-form-container"),
+              model: new search_default({ searchText: "", showFireButton: this.model.fireButton?.enabled }),
+              appendTo: (0, import_jquery21.default)("#search-form-container"),
               template: search_default2
             });
           }
@@ -24645,14 +24790,14 @@
             this.views.ctaRotations = new cta_rotation_default2({
               pageView: this,
               model: new CtaRotationModel({ emailProtectionUserData: this.model.emailProtectionUserData }),
-              appendTo: (0, import_jquery20.default)("#cta-rotation"),
+              appendTo: (0, import_jquery21.default)("#cta-rotation"),
               template: cta_rotation_default
             });
           }
           if (this.model.tab?.emailProtection) {
             this.views.emailProtection = new email_protection_default2({
               model: new email_protection_default({ emailProtectionUserData: this.model.emailProtectionUserData }),
-              appendTo: (0, import_jquery20.default)("#email-alias-container"),
+              appendTo: (0, import_jquery21.default)("#email-alias-container"),
               template: emailProtectionTemplate
             });
           }
@@ -24673,14 +24818,14 @@
     });
     communication_default.backgroundMessage(thisModel);
   }
-  var import_jquery21, background_message_default;
+  var import_jquery22, background_message_default;
   var init_background_message = __esm({
     "shared/js/ui/models/background-message.js"() {
       "use strict";
-      import_jquery21 = __toESM(require_jquery());
+      import_jquery22 = __toESM(require_jquery());
       init_model();
       init_communication();
-      BackgroundMessage.prototype = import_jquery21.default.extend({}, model_default.prototype, {
+      BackgroundMessage.prototype = import_jquery22.default.extend({}, model_default.prototype, {
         modelName: "backgroundMessage"
       });
       background_message_default = BackgroundMessage;
@@ -24692,7 +24837,7 @@
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens);
     if (this.model.tab.error) {
       const errorText = i18n.t("site:errorMessage.title");
-      return import_nanohtml17.default`
+      return import_nanohtml18.default`
             <div class="site-info">
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
@@ -24707,7 +24852,7 @@
         `;
     }
     if (this.model.disabled && supportsCtaScreens) {
-      return import_nanohtml17.default`
+      return import_nanohtml18.default`
             <div class="site-info">
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
@@ -24722,7 +24867,7 @@
         `;
     }
     const permissions = localizePermissions(this.model.permissions);
-    return import_nanohtml17.default`
+    return import_nanohtml18.default`
     <div class='site-info page'>
         ${renderSearchWrapper(this.model)}
         ${topNav({ view: "primary" })}
@@ -24743,16 +24888,16 @@
     </div>`;
   }
   function outer(props) {
-    return import_nanohtml17.default`<div class="page-outer">${props.children}</div>`;
+    return import_nanohtml18.default`<div class="page-outer">${props.children}</div>`;
   }
   function renderSearchWrapper(model) {
     if (model.tab?.search) {
-      return import_nanohtml17.default`<section id="search-form-container"></section>`;
+      return import_nanohtml18.default`<section id="search-form-container"></section>`;
     }
   }
   function renderEmailWrapper(model) {
     if (model.tab?.emailProtection) {
-      return import_nanohtml17.default`<div id="email-alias-container"></div>`;
+      return import_nanohtml18.default`<div id="email-alias-container"></div>`;
     }
   }
   function renderManagePermissions(model) {
@@ -24760,13 +24905,13 @@
       return "";
     }
     const localizedPerms = localizePermissions(model.permissions);
-    return import_nanohtml17.default`
+    return import_nanohtml18.default`
         <ul class="default-list">
             <li class="site-info__li--manage-permissions">
                 ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
       if (!model.permissions)
         return "";
-      return import_nanohtml17.default`<div class="site-info__page-permission">
+      return import_nanohtml18.default`<div class="site-info__page-permission">
                         <label>
                             <div>
                                 <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
@@ -24774,7 +24919,7 @@
                             </div>
                             <select class="js-site-permission" name="${permissionId}">
                                 ${options.map(
-        ({ id, title: title2 }) => import_nanohtml17.default`<option value="${id}" ${permission === id ? "selected" : ""}>${title2}</option>`
+        ({ id, title: title2 }) => import_nanohtml18.default`<option value="${id}" ${permission === id ? "selected" : ""}>${title2}</option>`
       )}
                             </select>
                         </label>
@@ -24784,7 +24929,7 @@
         </ul>`;
   }
   function renderReportButton() {
-    return import_nanohtml17.default`<div class="text--center border-light--top">
+    return import_nanohtml18.default`<div class="text--center border-light--top">
             <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
                 ${i18n.t("site:websiteNotWorkingQ.title")}
             </a>
@@ -24810,11 +24955,11 @@
       return perm;
     });
   }
-  var import_nanohtml17;
+  var import_nanohtml18;
   var init_site3 = __esm({
     "shared/js/ui/templates/site.js"() {
       "use strict";
-      import_nanohtml17 = __toESM(require_browser());
+      import_nanohtml18 = __toESM(require_browser());
       init_localize();
       init_protection_toggle();
       init_top_nav();
@@ -24832,23 +24977,23 @@
       /** @type {SiteView | null} */
       site: null
     };
-    this.$parent = (0, import_jquery22.default)("#popup-container");
+    this.$parent = (0, import_jquery23.default)("#popup-container");
     page_default.call(this, ops);
   }
   function initPopup() {
     return new Trackers();
   }
-  var import_jquery22;
+  var import_jquery23;
   var init_popup = __esm({
     "shared/js/ui/pages/popup.js"() {
       "use strict";
-      import_jquery22 = __toESM(require_jquery());
+      import_jquery23 = __toESM(require_jquery());
       init_page();
       init_site2();
       init_site();
       init_background_message();
       init_site3();
-      Trackers.prototype = import_jquery22.default.extend({}, page_default.prototype, {
+      Trackers.prototype = import_jquery23.default.extend({}, page_default.prototype, {
         pageName: "popup",
         /**
          * @this {Trackers}
@@ -24859,7 +25004,7 @@
           this.views.site = new site_default2({
             pageView: this,
             model: new site_default(),
-            appendTo: (0, import_jquery22.default)("#site-info-container"),
+            appendTo: (0, import_jquery23.default)("#site-info-container"),
             template: site_default3
           });
         }

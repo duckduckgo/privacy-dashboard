@@ -1,7 +1,7 @@
 import $ from 'jquery'
-import bel from 'bel'
-import Parent from '../base/view.es6.js'
-import { BurnMessage, FetchBurnOptions } from '../../browser/common.es6.js'
+import html from 'nanohtml'
+import Parent from '../base/view.js'
+import { BurnMessage, FetchBurnOptions } from '../../browser/common.js'
 
 /**
  * @param {object} ops 
@@ -66,11 +66,11 @@ function template() {
      */
     const { fireOptions } = this.model
     if (!fireOptions) {
-        return bel`<dialog id="fire-button-container"></dialog>`
+        return html`<dialog id="fire-button-container"></dialog>`
     }
-    const selectOptions = fireOptions.map(({ name }) => bel`<option>${name}</option>`)
+    const selectOptions = fireOptions.map(({ name }) => html`<option>${name}</option>`)
     const summary = fireSummaryTemplate(fireOptions[0])
-    return bel`
+    return html`
     <dialog id="fire-button-container" open>
         <div id="fire-button-content">
             <span id="fire-button-header">
@@ -94,7 +94,7 @@ function template() {
  */
 function fireSummaryTemplate(selectedOption) {
     const { descriptionStats } = selectedOption
-    return bel`<p id="fire-button-summary">
+    return html`<p id="fire-button-summary">
         ${descriptionStats.openTabs ? `Close ${descriptionStats.openTabs} tabs, ` : ''}
         ${descriptionStats.history ? `clear ${descriptionStats.history} browsing history ` : ''}
         ${descriptionStats.openTabs || descriptionStats.history ? 'and ' : ''}
