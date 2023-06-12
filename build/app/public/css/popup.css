@@ -657,6 +657,7 @@ body.environment--windows {
 .search-form {
   flex: 1;
   display: flex;
+  margin-right: 8px;
 }
 
 .search-form__input {
@@ -740,7 +741,6 @@ body.environment--windows {
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
-  margin-left: 10px;
   border-radius: 3px;
 }
 .cog-button:hover, .cog-button:active, .cog-button:focus {
@@ -753,6 +753,31 @@ body.environment--windows {
   fill: black;
 }
 .body--theme-dark .cog-button .settings-cog {
+  fill: white;
+  opacity: 0.8;
+}
+
+.fire-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border-radius: 3px;
+}
+.fire-button:hover, .fire-button:active, .fire-button:focus {
+  background-color: #eee;
+}
+.body--theme-dark .fire-button:hover, .body--theme-dark .fire-button:active, .body--theme-dark .fire-button:focus {
+  background-color: #444;
+}
+.fire-button .fire-icon {
+  fill: black;
+}
+.body--theme-dark .fire-button .fire-icon {
   fill: white;
   opacity: 0.8;
 }
