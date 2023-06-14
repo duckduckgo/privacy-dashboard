@@ -34,8 +34,6 @@ jobs:
               run: npm run prettier.check
             - name: Run tests
               run: npm run test.unit
-            - name: Clean tree
-              run: npm run test.clean-tree
     build:
         runs-on: ubuntu-20.04
         needs: test
@@ -61,10 +59,15 @@ jobs:
                   key: build-output-${{ github.run_id }}
             - name: Build all
               run: npm run build
+            ###
+            ###  Run clean-tree following the build - no changes should be present
+            ###
+            - name: Clean tree (build)
+              run: npm run test.clean-tree
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
-            - name: Run Playwright tests
-              run: npx playwright test
+            - name: Run Playwright (integration) tests
+              run: npm run test.int
             - uses: actions/upload-artifact@v3
               if: always()
               with:
