@@ -1,5 +1,6 @@
 import {
     CheckBrokenSiteReportHandledMessage,
+    FetchBurnOptions,
     OpenSettingsMessages,
     RefreshEmailAliasMessage,
     SetListsMessage,
@@ -45,6 +46,35 @@ export async function fetch(message) {
         }
     }
 
+    if (message instanceof FetchBurnOptions) {
+        return Promise.resolve({
+            options: [
+                {
+                    name: 'Current site only',
+                    options: {
+                        origins: ['https://example.com/']
+                    },
+                    descriptionStats: {
+                        history: 'current site',
+                        openTabs: 1,
+                        cookies: 1
+                    }
+                },
+                {
+                    name: 'Last hour',
+                    options: {
+                        since: Date.now(),
+                    },
+                    descriptionStats: {
+                        history: 'last hour',
+                        openTabs: 5,
+                        cookies: 23,
+                    },
+                },
+            ],
+        })
+    }
+
     console.log('fetch - Not implemented', message)
 }
 
@@ -65,8 +95,8 @@ export async function getBackgroundTabData() {
         tab: overrides.tab,
         emailProtectionUserData: overrides.emailProtectionUserData,
         fireButton: {
-            enabled: true
-        }
+            enabled: true,
+        },
     }
 }
 

@@ -2,6 +2,7 @@ import $ from 'jquery'
 import html from 'nanohtml'
 import Parent from '../base/view.js'
 import { BurnMessage, FetchBurnOptions } from '../../browser/common.js'
+import { fireIcon } from '../templates/search.js'
 
 /**
  * @param {object} ops 
@@ -81,7 +82,7 @@ function template() {
                 ${selectOptions}
             </select>
             ${summary}
-            <button id="fire-button-burn">🔥 Close tabs and clear data</button>
+            <button id="fire-button-burn">${fireIcon()} Close tabs and clear data</button>
             <button id="fire-button-cancel">Cancel</button>
         </div>
     </dialog>`
