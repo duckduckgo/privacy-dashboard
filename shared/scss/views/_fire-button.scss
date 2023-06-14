@@ -67,6 +67,14 @@
 }
 
 #fire-button-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+#fire-button-summary p {
     text-align: center;
     font-weight: 400;
     font-size: 15px;

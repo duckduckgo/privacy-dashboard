@@ -84,8 +84,8 @@ function template() {
                 ${selectOptions}
             </select>
             ${summary}
-            <button id="fire-button-burn">${fireIcon()} Close tabs and clear data</button>
-            <button id="fire-button-cancel">Cancel</button>
+            <button id="fire-button-burn">${fireIcon()} ${i18n.t('firebutton:closeTabsAndClearData.title')}</button>
+            <button id="fire-button-cancel">${i18n.t('firebutton:cancel.title')}</button>
         </div>
     </dialog>`
 }
@@ -115,10 +115,11 @@ function fireSummaryTemplate(selectedOption) {
         template += 'Duration'
     }
     template += '.title'
-    return html`<p id="fire-button-summary">
-        ${raw(i18n.t(template, {
+    return html`<div id="fire-button-summary">
+        <p>${raw(i18n.t(template, {
             durationDesc: i18n.t('firebutton:historyDuration.title', { duration: descriptionStats.duration }),
             ...descriptionStats,
-        }))}
-    </p>`
+        }))}</p>
+        ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? html`<p>${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}</p>` : html``}
+    </div>`
 }

@@ -73,5 +73,14 @@
     },
     "summaryClearCookiesSite": {
         "title": "Clear <b>all {site}</b> cookies?"
+    },
+    "summaryPinnedIgnored": {
+        "title": "<b>{tabs} pinned</b> {tabs, plural, =1 {tab} other {tabs}} will be ignored."
+    },
+    "closeTabsAndClearData": {
+        "title": "Close tabs and clear data"
+    },
+    "cancel": {
+        "title": "Cancel"
     }
 }

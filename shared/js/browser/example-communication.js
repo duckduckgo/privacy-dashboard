@@ -60,7 +60,8 @@ export async function fetch(message) {
                         clearHistory,
                         site: 'example.com',
                         openTabs: tabClearEnabled ? 1 : undefined,
-                        cookies: 1
+                        cookies: 1,
+                        pinnedTabs: 1,
                     }
                 },
                 {
@@ -73,6 +74,7 @@ export async function fetch(message) {
                         duration: 'hour',
                         openTabs: tabClearEnabled ? 5 : undefined,
                         cookies: 23,
+                        pinnedTabs: 1,
                     },
                 },
                 {
@@ -82,7 +84,8 @@ export async function fetch(message) {
                         clearHistory,
                         duration: 'all',
                         openTabs: tabClearEnabled ? 5 : undefined,
-                        cookies: 1000
+                        cookies: 1000,
+                        pinnedTabs: 1,
                     }
                 }
             ],
