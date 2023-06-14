@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import html from 'nanohtml'
+import raw from 'nanohtml/raw'
 import Parent from '../base/view.js'
+import { i18n } from '../base/localize.js'
 import { BurnMessage, FetchBurnOptions } from '../../browser/common.js'
 import { fireIcon } from '../templates/search.js'
 
@@ -69,14 +71,14 @@ function template() {
     if (!fireOptions) {
         return html`<dialog id="fire-button-container"></dialog>`
     }
-    const selectOptions = fireOptions.map(({ name }) => html`<option>${name}</option>`)
+    const selectOptions = fireOptions.map(({ name }) => html`<option>${i18n.t(`firebutton:option${name}.title`)}</option>`)
     const summary = fireSummaryTemplate(fireOptions[0])
     return html`
     <dialog id="fire-button-container" open>
         <div id="fire-button-content">
             <span id="fire-button-header">
                 <img src="../img/fire-button-header.svg" />
-                <h3>Clear browsing history and data</h3>
+                <h3>${i18n.t('firebutton:fireDialogHeader.title')}</h3>
             </span>
             <select id="fire-button-opts">
                 ${selectOptions}
@@ -95,10 +97,28 @@ function template() {
  */
 function fireSummaryTemplate(selectedOption) {
     const { descriptionStats } = selectedOption
+    let template = 'firebutton:summary'
+    if (descriptionStats.clearHistory && descriptionStats.openTabs) {
+        template += 'ClearTabsHistory'
+    } else if (descriptionStats.clearHistory && !descriptionStats.openTabs) {
+        template += 'ClearHistory'
+    } else if (!descriptionStats.clearHistory && descriptionStats.openTabs) {
+        template += 'ClearTabs'
+    } else {
+        template += 'ClearCookies'
+    }
+    if (descriptionStats.site) {
+        template += 'Site'
+    } else if (descriptionStats.duration === 'all') {
+        template += 'All'
+    } else {
+        template += 'Duration'
+    }
+    template += '.title'
     return html`<p id="fire-button-summary">
-        ${descriptionStats.openTabs ? `Close ${descriptionStats.openTabs} tabs, ` : ''}
-        ${descriptionStats.history ? `clear ${descriptionStats.history} browsing history ` : ''}
-        ${descriptionStats.openTabs || descriptionStats.history ? 'and ' : ''}
-        delete cookies on ${descriptionStats.cookies} sites?
+        ${raw(i18n.t(template, {
+            durationDesc: i18n.t('firebutton:historyDuration.title', { duration: descriptionStats.duration }),
+            ...descriptionStats,
+        }))}
     </p>`
 }

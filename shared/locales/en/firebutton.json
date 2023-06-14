@@ -1,0 +1,77 @@
+{
+    "smartling": {
+        "string_format" : "icu",
+        "translate_paths": [{
+            "path": "*/title",
+            "key": "{*}/title",
+            "instruction": "*/note"
+        }]
+    },
+    "fireDialogHeader": {
+        "title": "Clear browsing history and data",
+        "note": ""
+    },
+    "optionCurrentSite": {
+        "title": "Current site only",
+        "note": "Dropdown option to only clear data for the current active website"
+    },
+    "optionLastHour": {
+        "title": "Last hour",
+        "note": "Dropdown option to only clear data from the last hour"
+    },
+    "optionLast24Hour": {
+        "title": "Last 24 hours",
+        "note": "Dropdown option to only clear data from the last 24 hours"
+    },
+    "optionLast7days": {
+        "title": "Last 7 days",
+        "note": "Dropdown option to only clear data from the last 7 days"
+    },
+    "optionLast4Weeks": {
+        "title": "Last 4 weeks",
+        "note": "Dropdown option to only clear data from the last 4 weeks"
+    },
+    "optionAllTime": {
+        "title": "All time",
+        "note": "Dropdown option to clear all data"
+    },
+    "historyDuration": {
+        "title": "{duration, select, hour {one hour} day {24 hours} week {one week} month {4 weeks} other {all} }"
+    },
+    "summaryClearTabsHistoryDuration": {
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>{durationDesc}</b> of browsing history and cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+    },
+    "summaryClearTabsDuration": {
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>{durationDesc}</b> of cookies?"
+    },
+    "summaryClearHistoryDuration": {
+        "title": "Clear <b>{durationDesc}</b> of browsing history and cookies?"
+    },
+    "summaryClearCookiesDuration": {
+        "title": "Clear <b>{durationDesc}</b> of cookies?"
+    },
+    "summaryClearTabsHistoryAll": {
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all</b> browsing history and cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+    },
+    "summaryClearTabsAll": {
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all</b> cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+    },
+    "summaryClearHistoryAll": {
+        "title": "Clear <b>all</b> browsing history and cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+    },
+    "summaryClearCookiesAll": {
+        "title": "Clear <b>all</b> cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+    },
+    "summaryClearTabsHistorySite": {
+        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> browsing history and cookies?"
+    },
+    "summaryClearTabsSite": {
+        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> cookies?"
+    },
+    "summaryClearHistorySite": {
+        "title": "Clear <b>all {site}</b> browsing history and cookies?"
+    },
+    "summaryClearCookiesSite": {
+        "title": "Clear <b>all {site}</b> cookies?"
+    }
+}

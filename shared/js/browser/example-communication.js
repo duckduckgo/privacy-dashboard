@@ -47,30 +47,44 @@ export async function fetch(message) {
     }
 
     if (message instanceof FetchBurnOptions) {
+        const clearHistory = true
+        const tabClearEnabled = true
         return Promise.resolve({
             options: [
                 {
-                    name: 'Current site only',
+                    name: 'CurrentSite',
                     options: {
                         origins: ['https://example.com/']
                     },
                     descriptionStats: {
-                        history: 'current site',
-                        openTabs: 1,
+                        clearHistory,
+                        site: 'example.com',
+                        openTabs: tabClearEnabled ? 1 : undefined,
                         cookies: 1
                     }
                 },
                 {
-                    name: 'Last hour',
+                    name: 'LastHour',
                     options: {
                         since: Date.now(),
                     },
                     descriptionStats: {
-                        history: 'last hour',
-                        openTabs: 5,
+                        clearHistory,
+                        duration: 'hour',
+                        openTabs: tabClearEnabled ? 5 : undefined,
                         cookies: 23,
                     },
                 },
+                {
+                    name: 'AllTime',
+                    options: {},
+                    descriptionStats: {
+                        clearHistory,
+                        duration: 'all',
+                        openTabs: tabClearEnabled ? 5 : undefined,
+                        cookies: 1000
+                    }
+                }
             ],
         })
     }

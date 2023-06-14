@@ -18,7 +18,8 @@
             "required": ["name", "options", "descriptionStats"],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": ["CurrentSite", "LastHour", "Last24Hour", "Last7days", "last4Weeks", "AllTime"]
                 },
                 "options": {
                     "type": "object",
@@ -28,8 +29,15 @@
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
-                        "history": {
+                        "clearHistory": {
+                            "type": "boolean"
+                        },
+                        "site": {
                             "type": "string"
+                        },
+                        "duration": {
+                            "type": "string",
+                            "enum": ["hour", "day", "week", "month", "all"]
                         },
                         "openTabs": {
                             "type": "number"
