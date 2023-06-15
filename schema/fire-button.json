@@ -19,7 +19,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "enum": ["CurrentSite", "LastHour", "Last24Hour", "Last7days", "last4Weeks", "AllTime"]
+                    "enum": ["CurrentSite", "LastHour", "Last24Hour", "Last7days", "Last4Weeks", "AllTime"]
                 },
                 "options": {
                     "type": "object",
