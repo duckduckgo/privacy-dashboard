@@ -24584,8 +24584,9 @@
     if (!fireOptions) {
       return import_nanohtml17.default`<dialog id="fire-button-container"></dialog>`;
     }
+    const selectedOption = fireOptions.findIndex(({ selected }) => selected);
     const selectOptions = fireOptions.map(({ name, selected }) => import_nanohtml17.default`<option ${selected ? "selected" : ""}>${i18n.t(`firebutton:option${name}.title`)}</option>`);
-    const summary = fireSummaryTemplate(fireOptions[0]);
+    const summary = fireSummaryTemplate(fireOptions[selectedOption >= 0 ? selectedOption : 0]);
     return import_nanohtml17.default`
     <dialog id="fire-button-container" open>
         <div id="fire-button-content">
