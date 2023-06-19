@@ -96,12 +96,16 @@ export const extensionMessageSetListOptionsSchema = z.object({
 });
 
 export const fireOptionSchema = z.record(z.unknown()).and(z.object({
-    name: z.string(),
+    name: z.union([z.literal("CurrentSite"), z.literal("LastHour"), z.literal("Last24Hour"), z.literal("Last7days"), z.literal("Last4Weeks"), z.literal("AllTime")]),
+    selected: z.boolean().optional(),
     options: z.record(z.unknown()),
     descriptionStats: z.object({
-        history: z.string().optional(),
+        clearHistory: z.boolean().optional(),
+        site: z.string().optional(),
+        duration: z.union([z.literal("hour"), z.literal("day"), z.literal("week"), z.literal("month"), z.literal("all")]).optional(),
         openTabs: z.number().optional(),
-        cookies: z.number().optional()
+        cookies: z.number().optional(),
+        pinnedTabs: z.number().optional()
     })
 }));
 

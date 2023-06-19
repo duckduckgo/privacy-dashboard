@@ -3158,10 +3158,12 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.6);
   border: 0px;
+  color: rgba(0, 0, 0, 0.84);
 }
 
 #fire-button-header {
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 17px;
   text-align: center;
 }
 
@@ -3193,7 +3195,41 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   height: 32px;
   background: rgba(0, 0, 0, 0.06);
   border-radius: 8px;
-  color: #FF545A;
+  color: #EB102D;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+}
+#fire-button-burn svg {
+  fill: #EB102D;
+}
+
+#fire-button-opts {
+  width: 100%;
+  height: 30px;
+  gap: 8px;
+  font-size: 13px;
+  padding-left: 8px;
+}
+
+#fire-button-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+#fire-button-summary p {
+  text-align: center;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+#fire-button-cancel {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 /* Generic menu list styling */

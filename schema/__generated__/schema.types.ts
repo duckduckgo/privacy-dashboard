@@ -361,14 +361,18 @@ export interface FireButtonData {
   options: FireOption[];
 }
 export interface FireOption {
-  name: string;
+  name: "CurrentSite" | "LastHour" | "Last24Hour" | "Last7days" | "Last4Weeks" | "AllTime";
+  selected?: boolean;
   options: {
     [k: string]: unknown;
   };
   descriptionStats: {
-    history?: string;
+    clearHistory?: boolean;
+    site?: string;
+    duration?: "hour" | "day" | "week" | "month" | "all";
     openTabs?: number;
     cookies?: number;
+    pinnedTabs?: number;
   };
   [k: string]: unknown;
 }
