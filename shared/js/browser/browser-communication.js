@@ -200,7 +200,7 @@ export async function openOptions() {
 
 export async function doBurn(message) {
     const browsingDataPermissions = {
-        permissions: ['browsingData']
+        permissions: ['browsingData'],
     }
     const permissionRequestGranted = await new Promise((resolve) => chrome.permissions.request(browsingDataPermissions, resolve))
     if (!permissionRequestGranted) {

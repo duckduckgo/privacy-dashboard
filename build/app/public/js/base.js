@@ -24586,11 +24586,12 @@
     }
     const selectedOptionIndex = fireOptions.findIndex(({ selected }) => selected);
     const selectedOption = fireOptions[selectedOptionIndex >= 0 ? selectedOptionIndex : 0];
-    const selectOptions = fireOptions.map(({ name, selected }) => import_nanohtml17.default`<option ${selected ? "selected" : ""}>${i18n.t(`firebutton:option${name}.title`)}</option>`);
+    const selectOptions = fireOptions.map(
+      ({ name, selected }) => import_nanohtml17.default`<option ${selected ? "selected" : ""}>${i18n.t(`firebutton:option${name}.title`)}</option>`
+    );
     const summary = fireSummaryTemplate(selectedOption);
     const clearTextTemplate = selectedOption.descriptionStats.openTabs ? "firebutton:closeTabsAndClearData.title" : "firebutton:clearData.title";
-    return import_nanohtml17.default`
-    <dialog id="fire-button-container" open>
+    return import_nanohtml17.default` <dialog id="fire-button-container" open>
         <div id="fire-button-content">
             <span id="fire-button-header">
                 <img src="../img/fire-button-header.svg" />
@@ -24626,10 +24627,14 @@
     }
     template4 += ".title";
     return import_nanohtml17.default`<div id="fire-button-summary">
-        <p>${(0, import_raw4.default)(i18n.t(template4, {
-      durationDesc: i18n.t("firebutton:historyDuration.title", { duration: descriptionStats.duration }),
-      ...descriptionStats
-    }))}</p>
+        <p>
+            ${(0, import_raw4.default)(
+      i18n.t(template4, {
+        durationDesc: i18n.t("firebutton:historyDuration.title", { duration: descriptionStats.duration }),
+        ...descriptionStats
+      })
+    )}
+        </p>
         ${descriptionStats.site ? import_nanohtml17.default`<p>${i18n.t("firebutton:historyAndDownloadsNotAffected.title")}</p>` : import_nanohtml17.default``}
         ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? import_nanohtml17.default`<p>${(0, import_raw4.default)(i18n.t("firebutton:summaryPinnedIgnored.title", { tabs: descriptionStats.pinnedTabs }))}</p>` : import_nanohtml17.default``}
     </div>`;

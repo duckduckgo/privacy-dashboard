@@ -63,7 +63,7 @@ Search.prototype = $.extend({}, Parent.prototype, {
     _handleFireClick: function (e) {
         e.preventDefault()
         this.pageView.model.send('navigate', { target: 'fireButton' })
-    }
+    },
 })
 
 export default Search

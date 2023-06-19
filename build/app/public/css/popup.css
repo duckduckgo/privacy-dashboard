@@ -3176,7 +3176,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   align-items: center;
   padding: 16px;
   gap: 12px;
-  background: #FFFFFF;
+  background: #ffffff;
   /* Tints-Shades/Shade 12% */
   border: 1px solid rgba(0, 0, 0, 0.12);
   /* Shadows/On Light/Elevation 90 */
@@ -3195,13 +3195,13 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   height: 32px;
   background: rgba(0, 0, 0, 0.06);
   border-radius: 8px;
-  color: #EB102D;
+  color: #eb102d;
   font-weight: 600;
   font-size: 13px;
   line-height: 16px;
 }
 #fire-button-burn svg {
-  fill: #EB102D;
+  fill: #eb102d;
 }
 
 #fire-button-opts {

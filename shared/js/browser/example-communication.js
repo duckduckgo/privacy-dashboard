@@ -54,7 +54,7 @@ export async function fetch(message) {
                 {
                     name: 'CurrentSite',
                     options: {
-                        origins: ['https://example.com/']
+                        origins: ['https://example.com/'],
                     },
                     descriptionStats: {
                         clearHistory,
@@ -62,7 +62,7 @@ export async function fetch(message) {
                         openTabs: tabClearEnabled ? 1 : undefined,
                         cookies: 1,
                         pinnedTabs: 1,
-                    }
+                    },
                 },
                 {
                     name: 'LastHour',
@@ -86,8 +86,8 @@ export async function fetch(message) {
                         openTabs: tabClearEnabled ? 5 : undefined,
                         cookies: 1000,
                         pinnedTabs: 1,
-                    }
-                }
+                    },
+                },
             ],
         })
     }

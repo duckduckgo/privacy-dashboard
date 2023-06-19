@@ -206,7 +206,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     _showFireModal() {
         this.dialog = new FireDialog({
             model: this.model,
-            appendTo: $('#site-info-container')
+            appendTo: $('#site-info-container'),
         })
     },
 

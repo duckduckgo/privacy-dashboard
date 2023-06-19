@@ -7,7 +7,7 @@ import { BurnMessage, FetchBurnOptions, SetBurnDefaultOption } from '../../brows
 import { fireIcon } from '../templates/search.js'
 
 /**
- * @param {object} ops 
+ * @param {object} ops
  * @constructor
  */
 export function FireDialog(ops) {
@@ -55,7 +55,7 @@ FireDialog.prototype = $.extend({}, Parent.prototype, {
         this.model.fetch(new SetBurnDefaultOption(opts.name))
         const summaryElement = $('#fire-button-summary')
         summaryElement.replaceWith(fireSummaryTemplate(opts))
-    }
+    },
 })
 
 /**
@@ -74,11 +74,14 @@ function template() {
     }
     const selectedOptionIndex = fireOptions.findIndex(({ selected }) => selected)
     const selectedOption = fireOptions[selectedOptionIndex >= 0 ? selectedOptionIndex : 0]
-    const selectOptions = fireOptions.map(({ name, selected }) => html`<option ${selected ? 'selected' : ''}>${i18n.t(`firebutton:option${name}.title`)}</option>`)
+    const selectOptions = fireOptions.map(
+        ({ name, selected }) => html`<option ${selected ? 'selected' : ''}>${i18n.t(`firebutton:option${name}.title`)}</option>`
+    )
     const summary = fireSummaryTemplate(selectedOption)
-    const clearTextTemplate = selectedOption.descriptionStats.openTabs ? 'firebutton:closeTabsAndClearData.title' : 'firebutton:clearData.title'
-    return html`
-    <dialog id="fire-button-container" open>
+    const clearTextTemplate = selectedOption.descriptionStats.openTabs
+        ? 'firebutton:closeTabsAndClearData.title'
+        : 'firebutton:clearData.title'
+    return html` <dialog id="fire-button-container" open>
         <div id="fire-button-content">
             <span id="fire-button-header">
                 <img src="../img/fire-button-header.svg" />
@@ -120,11 +123,17 @@ function fireSummaryTemplate(selectedOption) {
     }
     template += '.title'
     return html`<div id="fire-button-summary">
-        <p>${raw(i18n.t(template, {
-            durationDesc: i18n.t('firebutton:historyDuration.title', { duration: descriptionStats.duration }),
-            ...descriptionStats,
-        }))}</p>
+        <p>
+            ${raw(
+                i18n.t(template, {
+                    durationDesc: i18n.t('firebutton:historyDuration.title', { duration: descriptionStats.duration }),
+                    ...descriptionStats,
+                })
+            )}
+        </p>
         ${descriptionStats.site ? html`<p>${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>` : html``}
-        ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? html`<p>${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}</p>` : html``}
+        ${descriptionStats.openTabs && descriptionStats.pinnedTabs
+            ? html`<p>${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}</p>`
+            : html``}
     </div>`
 }
