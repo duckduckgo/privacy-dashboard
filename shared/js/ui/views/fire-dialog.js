@@ -72,9 +72,11 @@ function template() {
     if (!fireOptions) {
         return html`<dialog id="fire-button-container"></dialog>`
     }
-    const selectedOption = fireOptions.findIndex(({ selected }) => selected)
+    const selectedOptionIndex = fireOptions.findIndex(({ selected }) => selected)
+    const selectedOption = fireOptions[selectedOptionIndex >= 0 ? selectedOptionIndex : 0]
     const selectOptions = fireOptions.map(({ name, selected }) => html`<option ${selected ? 'selected' : ''}>${i18n.t(`firebutton:option${name}.title`)}</option>`)
-    const summary = fireSummaryTemplate(fireOptions[selectedOption >= 0 ? selectedOption : 0])
+    const summary = fireSummaryTemplate(selectedOption)
+    const clearTextTemplate = selectedOption.descriptionStats.openTabs ? 'firebutton:closeTabsAndClearData.title' : 'firebutton:clearData.title'
     return html`
     <dialog id="fire-button-container" open>
         <div id="fire-button-content">
@@ -86,7 +88,7 @@ function template() {
                 ${selectOptions}
             </select>
             ${summary}
-            <button id="fire-button-burn">${fireIcon()} ${i18n.t('firebutton:closeTabsAndClearData.title')}</button>
+            <button id="fire-button-burn">${fireIcon()} ${i18n.t(clearTextTemplate)}</button>
             <button id="fire-button-cancel">${i18n.t('firebutton:cancel.title')}</button>
         </div>
     </dialog>`

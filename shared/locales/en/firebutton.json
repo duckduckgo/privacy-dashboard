@@ -80,6 +80,9 @@
     "closeTabsAndClearData": {
         "title": "Close tabs and clear data"
     },
+    "clearData": {
+        "title": "Clear data"
+    },
     "cancel": {
         "title": "Cancel"
     },
