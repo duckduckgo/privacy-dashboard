@@ -63,7 +63,7 @@
         "title": "Clear <b>all</b> cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
     },
     "summaryClearTabsHistorySite": {
-        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> browsing history and cookies?"
+        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> cookies?"
     },
     "summaryClearTabsSite": {
         "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> cookies?"
@@ -82,5 +82,8 @@
     },
     "cancel": {
         "title": "Cancel"
+    },
+    "historyAndDownloadsNotAffected": {
+        "title": "Your history and downloads will not be affected."
     }
 }

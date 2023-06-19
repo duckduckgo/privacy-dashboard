@@ -120,6 +120,7 @@ function fireSummaryTemplate(selectedOption) {
             durationDesc: i18n.t('firebutton:historyDuration.title', { duration: descriptionStats.duration }),
             ...descriptionStats,
         }))}</p>
+        ${descriptionStats.site ? html`<p>${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>` : html``}
         ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? html`<p>${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}</p>` : html``}
     </div>`
 }
