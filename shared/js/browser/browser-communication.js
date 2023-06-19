@@ -19,6 +19,7 @@ import {
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
     SearchMessage,
+    SetBurnDefaultOption,
     SetListsMessage,
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
@@ -61,6 +62,9 @@ export async function fetch(message) {
     }
     if (message instanceof FetchBurnOptions) {
         return toExtensionMessage('getBurnOptions')
+    }
+    if (message instanceof SetBurnDefaultOption) {
+        return toExtensionMessage('setBurnDefaultOption', message)
     }
     return new Promise((resolve) => {
         // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))

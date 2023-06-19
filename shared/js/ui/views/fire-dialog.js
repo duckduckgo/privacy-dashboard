@@ -3,7 +3,7 @@ import html from 'nanohtml'
 import raw from 'nanohtml/raw'
 import Parent from '../base/view.js'
 import { i18n } from '../base/localize.js'
-import { BurnMessage, FetchBurnOptions } from '../../browser/common.js'
+import { BurnMessage, FetchBurnOptions, SetBurnDefaultOption } from '../../browser/common.js'
 import { fireIcon } from '../templates/search.js'
 
 /**
@@ -52,6 +52,7 @@ FireDialog.prototype = $.extend({}, Parent.prototype, {
     _updateSummary: function (ev) {
         const selectedOption = this.$opts[0].selectedIndex
         const opts = this.model.fireOptions[selectedOption]
+        this.model.fetch(new SetBurnDefaultOption(opts.name))
         const summaryElement = $('#fire-button-summary')
         summaryElement.replaceWith(fireSummaryTemplate(opts))
     }
@@ -71,7 +72,7 @@ function template() {
     if (!fireOptions) {
         return html`<dialog id="fire-button-container"></dialog>`
     }
-    const selectOptions = fireOptions.map(({ name }) => html`<option>${i18n.t(`firebutton:option${name}.title`)}</option>`)
+    const selectOptions = fireOptions.map(({ name, selected }) => html`<option ${selected ? 'selected' : ''}>${i18n.t(`firebutton:option${name}.title`)}</option>`)
     const summary = fireSummaryTemplate(fireOptions[0])
     return html`
     <dialog id="fire-button-container" open>

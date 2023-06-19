@@ -21,6 +21,9 @@
                     "type": "string",
                     "enum": ["CurrentSite", "LastHour", "Last24Hour", "Last7days", "Last4Weeks", "AllTime"]
                 },
+                "selected": {
+                    "type": "boolean"
+                },
                 "options": {
                     "type": "object",
                     "additionalProperties": true

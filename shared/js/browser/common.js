@@ -329,6 +329,13 @@ export class BurnMessage extends Msg {
 
 export class FetchBurnOptions extends Msg {}
 
+export class SetBurnDefaultOption extends Msg {
+    constructor(name) {
+        super()
+        this.defaultOption = name
+    }
+}
+
 /**
  * @template {SetListsMessage|SubmitBrokenSiteReportMessage|UpdatePermissionMessage|CheckBrokenSiteReportHandledMessage|CloseMessage|RefreshEmailAliasMessage|OpenOptionsMessage} T
  * @template {unknown} [Response=unknown]
