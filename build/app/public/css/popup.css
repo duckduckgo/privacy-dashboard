@@ -3160,6 +3160,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   border: 0px;
   color: rgba(0, 0, 0, 0.84);
 }
+.body--theme-dark #fire-button-container {
+  color: rgba(255, 255, 255, 0.84);
+}
 
 #fire-button-header {
   font-weight: 600;
@@ -3183,6 +3186,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1), 0px 20px 40px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
 }
+.body--theme-dark #fire-button-content {
+  background-color: #333333;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
 
 #fire-button-burn {
   display: flex;
@@ -3203,6 +3210,13 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 #fire-button-burn svg {
   fill: #eb102d;
 }
+.body--theme-dark #fire-button-burn {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ff545a;
+}
+.body--theme-dark #fire-button-burn svg {
+  fill: #ff545a;
+}
 
 #fire-button-opts {
   width: 100%;
@@ -3210,6 +3224,14 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   gap: 8px;
   font-size: 13px;
   padding-left: 8px;
+  backdrop-filter: blur(25px);
+  border-radius: 8px;
+}
+.body--theme-dark #fire-button-opts {
+  background: rgba(106, 106, 106, 0.01);
+  border: 0.5px solid rgba(255, 255, 255, 0.24);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.08);
+  color: rgba(255, 255, 255, 0.84);
 }
 
 #fire-button-summary {
@@ -3230,6 +3252,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
+}
+.body--theme-dark #fire-button-cancel {
+  background-color: #333333;
 }
 
 /* Generic menu list styling */
