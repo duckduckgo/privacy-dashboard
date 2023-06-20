@@ -235,6 +235,7 @@ export async function installBrowserMocks(page) {
             setLists: {},
             search: {},
             openOptions: {},
+            setBurnDefaultOption: {},
         }
         try {
             if (!window.chrome) {

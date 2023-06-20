@@ -8,6 +8,7 @@ export class DashboardPage {
     thirdPartiesLink = () => this.page.locator('[aria-label="View Non-Tracker Companies"]')
     aboutLink = () => this.page.locator('"About our Web Tracking Protections"')
     backButton = () => this.page.locator('[aria-label="Back"]')
+    fireButton = () => this.page.locator('.fire-button')
     get htmlPage() {
         switch (this.platform.name) {
             case 'android':
@@ -152,6 +153,7 @@ export class DashboardPage {
      * @param {import("@playwright/test").Page} page
      * @param {{
      *     getPrivacyDashboardData?: import('../schema/__generated__/schema.types').GetPrivacyDashboardData,
+     *     getBurnOptions?: import('../schema/__generated__/schema.types').FireButtonData
      * }} messages
      * @returns {Promise<DashboardPage>}
      */

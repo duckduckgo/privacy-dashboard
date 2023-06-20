@@ -1,5 +1,5 @@
-import { test } from '@playwright/test'
-import { MockData, mockToExtensionDashboardMessage } from '../shared/js/ui/views/tests/generate-data.mjs'
+import { expect, test } from '@playwright/test'
+import { MockData, mockBurnOptions, mockToExtensionDashboardMessage } from '../shared/js/ui/views/tests/generate-data.mjs'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
 
@@ -139,6 +139,74 @@ test.describe('localization', () => {
         const messages = mockToExtensionDashboardMessage(mock)
         const dash = await DashboardPage.browser(page, messages)
         await dash.hasPolishLinkTextForConnectionInfo()
+    })
+})
+
+test.describe('fire button', () => {
+    test('by default no fire button is displayed', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.showsPrimaryScreen()
+        const buttons = await dash.fireButton().all()
+        expect(buttons).toHaveLength(0)
+    })
+
+    test('adding firebutton option to dashboard message shows fire button', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock, true)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.fireButton().waitFor()
+        expect(await dash.fireButton().isVisible()).toBeTruthy()
+    })
+
+    test('fire button menu: open and close', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock, true)
+        const getBurnOptions = mockBurnOptions({ clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 })
+        const dash = await DashboardPage.browser(page, {
+            ...messages,
+            getBurnOptions,
+        })
+        await dash.fireButton().click()
+        await page.locator('#fire-button-content').waitFor()
+        // test cancel button
+        await page.locator('#fire-button-cancel').click()
+        expect(page.locator('#fire-button-content')).not.toBeVisible()
+    })
+
+    test('fire button menu: history and tab clearing enabled', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock, true)
+        const getBurnOptions = mockBurnOptions({ clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 })
+        const dash = await DashboardPage.browser(page, {
+            ...messages,
+            getBurnOptions,
+        })
+        await dash.fireButton().click()
+        await page.locator('#fire-button-content').waitFor()
+        await expect(page.locator('#fire-button-burn')).toHaveText('Close tabs and clear data')
+
+        // check that dropdown options are populated
+        await expect(page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length)
+        // there should be two text sections: summary and a notice
+        await expect(page.locator('#fire-button-summary > p')).toHaveCount(2)
+
+        await page.locator('#fire-button-opts').selectOption({ index: 2 })
+        await expect(page.locator('#fire-button-summary > p')).toHaveCount(1)
+    })
+
+    test('fire button menu: history clearing enabled', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock, true)
+        const getBurnOptions = mockBurnOptions({ clearHistory: true, tabClearEnabled: false, pinnedTabs: 0 })
+        const dash = await DashboardPage.browser(page, {
+            ...messages,
+            getBurnOptions,
+        })
+        await dash.fireButton().click()
+        await page.locator('#fire-button-content').waitFor()
+        await expect(page.locator('#fire-button-burn')).toHaveText('Clear data')
     })
 })
 
