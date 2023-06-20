@@ -236,11 +236,18 @@ export async function installBrowserMocks(page) {
             search: {},
             openOptions: {},
             setBurnDefaultOption: {},
+            doBurn: {},
         }
         try {
             if (!window.chrome) {
                 // @ts-ignore
-                window.chrome = {}
+                window.chrome = {
+                    // @ts-ignore
+                    permissions: {
+                        // eslint-disable-next-line n/no-callback-literal
+                        request: (permissions, cb) => cb && cb(true),
+                    },
+                }
             }
             window.__playwright = {
                 messages,

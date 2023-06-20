@@ -208,6 +208,53 @@ test.describe('fire button', () => {
         await page.locator('#fire-button-content').waitFor()
         await expect(page.locator('#fire-button-burn')).toHaveText('Clear data')
     })
+
+    test('fire button menu: sends option parameters with burn message', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock, true)
+        const getBurnOptions = mockBurnOptions({ clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 })
+        const dash = await DashboardPage.browser(page, {
+            ...messages,
+            getBurnOptions,
+        })
+        await dash.fireButton().click()
+        await page.locator('#fire-button-content').waitFor()
+        await page.locator('#fire-button-burn').click()
+        const calls = await dash.mocks.outgoing({ names: ['doBurn'] })
+        expect(calls).toStrictEqual([
+            [
+                'doBurn',
+                {
+                    messageType: 'doBurn',
+                    options: getBurnOptions.options[0].options,
+                },
+            ],
+        ])
+    })
+
+    test('fire button menu: sends option parameters of selected burn option', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com' })
+        const messages = mockToExtensionDashboardMessage(mock, true)
+        const getBurnOptions = mockBurnOptions({ clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 })
+        const dash = await DashboardPage.browser(page, {
+            ...messages,
+            getBurnOptions,
+        })
+        await dash.fireButton().click()
+        await page.locator('#fire-button-content').waitFor()
+        await page.locator('#fire-button-opts').selectOption({ index: 1 })
+        await page.locator('#fire-button-burn').click()
+        const calls = await dash.mocks.outgoing({ names: ['doBurn'] })
+        expect(calls).toStrictEqual([
+            [
+                'doBurn',
+                {
+                    messageType: 'doBurn',
+                    options: getBurnOptions.options[1].options,
+                },
+            ],
+        ])
+    })
 })
 
 if (!process.env.CI) {
