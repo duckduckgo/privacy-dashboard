@@ -172,7 +172,7 @@ test.describe('fire button', () => {
         await page.locator('#fire-button-content').waitFor()
         // test cancel button
         await page.locator('#fire-button-cancel').click()
-        expect(page.locator('#fire-button-content')).not.toBeVisible()
+        expect(await page.$$('#fire-button-content')).toHaveLength(0)
     })
 
     test('fire button menu: history and tab clearing enabled', async ({ page }) => {
