@@ -44,7 +44,7 @@
     }
 }
 
-#fire-button-burn {
+#fire-button-content button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -53,8 +53,11 @@
     gap: 8px;
     width: 286px;
     height: 32px;
-    background: rgba(0, 0, 0, 0.06);
     border-radius: 8px;
+}
+
+#fire-button-burn {
+    background: rgba(0, 0, 0, 0.06);
     color: #eb102d;
     font-weight: 600;
     font-size: 13px;
@@ -71,6 +74,14 @@
         svg {
             fill: #ff545a;
         }
+    }
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.09);
+    }
+
+    &:active {
+        background: rgba(0, 0, 0, 0.12);
     }
 }
 
@@ -112,5 +123,12 @@
 
     .body--theme-dark & {
         background-color: #333333;
+    }
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.03);
+    }
+    &:active {
+        background: rgba(0, 0, 0, 0.06);
     }
 }

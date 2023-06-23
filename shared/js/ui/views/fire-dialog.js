@@ -85,7 +85,7 @@ function template() {
         <div id="fire-button-content">
             <span id="fire-button-header">
                 <img src="../img/fire-button-header.svg" />
-                <h3>${i18n.t('firebutton:fireDialogHeader.title')}</h3>
+                <h3>${selectedOption.descriptionStats.clearHistory ? i18n.t('firebutton:fireDialogHeader.title') : i18n.t('firebutton:clearData.title')}</h3>
             </span>
             <select id="fire-button-opts">
                 ${selectOptions}
