@@ -36,57 +36,75 @@
         "note": "Dropdown option to clear all data"
     },
     "historyDuration": {
-        "title": "{duration, select, hour {one hour} day {24 hours} week {one week} month {1 month} other {all} }"
+        "title": "{duration, select, hour {one hour} day {24 hours} week {one week} month {1 month} other {all} }",
+        "note": "Description of what period of history data should be deleted."
     },
     "summaryClearTabsHistoryDuration": {
-        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>{durationDesc}</b> of browsing history and cookies?"
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>{durationDesc}</b> of browsing history and cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearTabsDuration": {
-        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>{durationDesc}</b> of cookies?"
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>{durationDesc}</b> of cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearHistoryDuration": {
-        "title": "Clear <b>{durationDesc}</b> of browsing history and cookies?"
+        "title": "Clear <b>{durationDesc}</b> of browsing history and cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearCookiesDuration": {
-        "title": "Clear <b>{durationDesc}</b> of cookies?"
+        "title": "Clear <b>{durationDesc}</b> of cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearTabsHistoryAll": {
-        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all</b> browsing history and cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all</b> browsing history and cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearTabsAll": {
-        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all</b> cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+        "title": "Close <b>{openTabs} active</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all</b> cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearHistoryAll": {
-        "title": "Clear <b>all</b> browsing history and cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+        "title": "Clear <b>all</b> browsing history and cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearCookiesAll": {
-        "title": "Clear <b>all</b> cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?"
+        "title": "Clear <b>all</b> cookies ({cookies} {cookies, plural, =1 {site} other {sites}})?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearTabsHistorySite": {
-        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> cookies?"
+        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearTabsSite": {
-        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> cookies?"
+        "title": "Close <b>{openTabs} active {site}</b> {openTabs, plural, =1 {tab} other {tabs}}, and clear <b>all {site}</b> cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearHistorySite": {
-        "title": "Clear <b>all {site}</b> browsing history and cookies?"
+        "title": "Clear <b>all {site}</b> browsing history and cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryClearCookiesSite": {
-        "title": "Clear <b>all {site}</b> cookies?"
+        "title": "Clear <b>all {site}</b> cookies?",
+        "note": "Description of data to be removed after the user submits the form"
     },
     "summaryPinnedIgnored": {
-        "title": "<b>{tabs} pinned</b> {tabs, plural, =1 {tab} other {tabs}} will be ignored."
+        "title": "<b>{tabs} pinned</b> {tabs, plural, =1 {tab} other {tabs}} will be ignored.",
+        "note": "Notice to tell the user that some tabs will not be closed."
     },
     "closeTabsAndClearData": {
-        "title": "Close tabs and clear data"
+        "title": "Close tabs and clear data",
+        "note": "Button text to start the data clearing."
     },
     "clearData": {
-        "title": "Clear data"
+        "title": "Clear data",
+        "note": "Button text to start data clearing when the user has configure for tabs not to be closed."
     },
     "cancel": {
-        "title": "Cancel"
+        "title": "Cancel",
+        "note": "Button text to exit the fire button modal"
     },
     "historyAndDownloadsNotAffected": {
-        "title": "Your history and downloads will not be affected."
+        "title": "Your history and downloads will not be affected.",
+        "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads."
     }
 }
