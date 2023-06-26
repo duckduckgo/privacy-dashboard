@@ -3191,7 +3191,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-#fire-button-burn {
+#fire-button-content button {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -3200,8 +3200,11 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   gap: 8px;
   width: 286px;
   height: 32px;
-  background: rgba(0, 0, 0, 0.06);
   border-radius: 8px;
+}
+
+#fire-button-burn {
+  background: rgba(0, 0, 0, 0.06);
   color: #eb102d;
   font-weight: 600;
   font-size: 13px;
@@ -3216,6 +3219,12 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 .body--theme-dark #fire-button-burn svg {
   fill: #ff545a;
+}
+#fire-button-burn:hover {
+  background: rgba(0, 0, 0, 0.09);
+}
+#fire-button-burn:active {
+  background: rgba(0, 0, 0, 0.12);
 }
 
 #fire-button-opts {
@@ -3255,6 +3264,12 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 .body--theme-dark #fire-button-cancel {
   background-color: #333333;
+}
+#fire-button-cancel:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+#fire-button-cancel:active {
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Generic menu list styling */
