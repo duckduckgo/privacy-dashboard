@@ -13,15 +13,12 @@ import { fireIcon } from '../templates/search.js'
 export function FireDialog(ops) {
     this.model = ops.model
     this.template = template
-    Parent.call(this, ops)
-
     // fetch all the options for the model from the extension.
     // This tells us what options should be shown in the dropdown and what stats to display with
     // them.
     this.model.fetch(new FetchBurnOptions()).then((resp) => {
         this.model.fireOptions = resp.options
-        // @ts-ignore
-        this._rerender()
+        Parent.call(this, ops)
         // @ts-ignore
         this._setup()
     })
