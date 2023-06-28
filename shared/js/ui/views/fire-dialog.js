@@ -132,9 +132,13 @@ function fireSummaryTemplate(selectedOption) {
                 })
             )}
         </p>
-        ${descriptionStats.site ? html`<p>${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>` : html``}
+        ${descriptionStats.site
+            ? html`<p class="fire-button-disclaimer">${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>`
+            : html``}
         ${descriptionStats.openTabs && descriptionStats.pinnedTabs
-            ? html`<p>${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}</p>`
+            ? html`<p class="fire-button-disclaimer">
+                  ${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}
+              </p>`
             : html``}
     </div>`
 }

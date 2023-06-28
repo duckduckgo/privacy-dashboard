@@ -18,6 +18,7 @@
     font-weight: 600;
     font-size: 17px;
     text-align: center;
+    padding-bottom: 4px;
 }
 
 #fire-button-content {
@@ -49,10 +50,10 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0px 12px;
+    padding: 4px 12px;
     gap: 8px;
-    width: 286px;
-    height: 32px;
+    width: 100%;
+    height: 36px;
     border-radius: 8px;
 }
 
@@ -90,6 +91,8 @@
     height: 30px;
     gap: 8px;
     font-size: 13px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     padding-left: 8px;
     backdrop-filter: blur(25px);
     border-radius: 8px;
@@ -112,18 +115,25 @@
     justify-content: center;
     align-items: center;
     gap: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#fire-button-summary .fire-button-disclaimer {
+    font-size: 14px;
 }
 
 #fire-button-summary p {
     text-align: center;
     font-weight: 400;
     font-size: 15px;
+    line-height: 22px;
 }
 
 #fire-button-cancel {
     font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 13px;
+    line-height: 16px;
 
     .body--theme-dark & {
         background-color: #333333;
