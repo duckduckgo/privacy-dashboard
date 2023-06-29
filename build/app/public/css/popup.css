@@ -3168,6 +3168,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   font-weight: 600;
   font-size: 17px;
   text-align: center;
+  padding-bottom: 4px;
 }
 
 #fire-button-content {
@@ -3196,10 +3197,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0px 12px;
+  padding: 4px 12px;
   gap: 8px;
-  width: 286px;
-  height: 32px;
+  width: 100%;
+  height: 36px;
   border-radius: 8px;
 }
 
@@ -3232,6 +3233,8 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   height: 30px;
   gap: 8px;
   font-size: 13px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 8px;
   backdrop-filter: blur(25px);
   border-radius: 8px;
@@ -3242,6 +3245,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.08);
   color: rgba(255, 255, 255, 0.84);
 }
+.body--theme-dark #fire-button-opts option {
+  background: #1f1f1f;
+}
 
 #fire-button-summary {
   display: flex;
@@ -3249,18 +3255,25 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   justify-content: center;
   align-items: center;
   gap: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#fire-button-summary .fire-button-disclaimer {
+  font-size: 14px;
 }
 
 #fire-button-summary p {
   text-align: center;
   font-weight: 400;
   font-size: 15px;
+  line-height: 22px;
 }
 
 #fire-button-cancel {
   font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 13px;
+  line-height: 16px;
 }
 .body--theme-dark #fire-button-cancel {
   background-color: #333333;
