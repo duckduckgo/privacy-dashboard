@@ -185,7 +185,7 @@ test.describe('fire button', () => {
         })
         await dash.fireButton().click()
         await page.locator('#fire-button-content').waitFor()
-        await expect(page.locator('#fire-button-burn')).toHaveText('Close tabs and clear data')
+        await expect(page.locator('#fire-button-burn')).toHaveText('Close Tabs and Clear Data')
 
         // check that dropdown options are populated
         await expect(page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length)
@@ -206,7 +206,7 @@ test.describe('fire button', () => {
         })
         await dash.fireButton().click()
         await page.locator('#fire-button-content').waitFor()
-        await expect(page.locator('#fire-button-burn')).toHaveText('Clear data')
+        await expect(page.locator('#fire-button-burn')).toHaveText('Clear Data')
     })
 
     test('fire button menu: sends option parameters with burn message', async ({ page }) => {
