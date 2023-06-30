@@ -364,15 +364,16 @@ export interface FireOption {
   name: "CurrentSite" | "LastHour" | "Last24Hour" | "Last7days" | "Last4Weeks" | "AllTime";
   selected?: boolean;
   options: {
-    [k: string]: unknown;
+    since?: number;
+    origins?: string[];
   };
   descriptionStats: {
-    clearHistory?: boolean;
+    clearHistory: boolean;
     site?: string;
-    duration?: "hour" | "day" | "week" | "month" | "all";
-    openTabs?: number;
-    cookies?: number;
-    pinnedTabs?: number;
+    duration: "hour" | "day" | "week" | "month" | "all";
+    openTabs: number;
+    cookies: number;
+    pinnedTabs: number;
   };
   [k: string]: unknown;
 }

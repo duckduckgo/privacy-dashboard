@@ -10439,14 +10439,17 @@
       fireOptionSchema = mod.record(mod.unknown()).and(mod.object({
         name: mod.union([mod.literal("CurrentSite"), mod.literal("LastHour"), mod.literal("Last24Hour"), mod.literal("Last7days"), mod.literal("Last4Weeks"), mod.literal("AllTime")]),
         selected: mod.boolean().optional(),
-        options: mod.record(mod.unknown()),
+        options: mod.object({
+          since: mod.number().optional(),
+          origins: mod.array(mod.string()).optional()
+        }),
         descriptionStats: mod.object({
-          clearHistory: mod.boolean().optional(),
+          clearHistory: mod.boolean(),
           site: mod.string().optional(),
-          duration: mod.union([mod.literal("hour"), mod.literal("day"), mod.literal("week"), mod.literal("month"), mod.literal("all")]).optional(),
-          openTabs: mod.number().optional(),
-          cookies: mod.number().optional(),
-          pinnedTabs: mod.number().optional()
+          duration: mod.union([mod.literal("hour"), mod.literal("day"), mod.literal("week"), mod.literal("month"), mod.literal("all")]),
+          openTabs: mod.number(),
+          cookies: mod.number(),
+          pinnedTabs: mod.number()
         })
       }));
       detectedRequestSchema = mod.object({
@@ -13827,6 +13830,50 @@
   });
 
   // shared/js/ui/views/tests/generate-data.mjs
+  function mockBurnOptions({ clearHistory, tabClearEnabled, pinnedTabs }) {
+    return {
+      options: [
+        {
+          name: "CurrentSite",
+          options: {
+            origins: ["https://example.com/"]
+          },
+          descriptionStats: {
+            clearHistory,
+            site: "example.com",
+            duration: "all",
+            openTabs: tabClearEnabled ? 1 : 0,
+            cookies: 1,
+            pinnedTabs
+          }
+        },
+        {
+          name: "LastHour",
+          options: {
+            since: Date.now()
+          },
+          descriptionStats: {
+            clearHistory,
+            duration: "hour",
+            openTabs: tabClearEnabled ? 5 : 0,
+            cookies: 23,
+            pinnedTabs
+          }
+        },
+        {
+          name: "AllTime",
+          options: {},
+          descriptionStats: {
+            clearHistory,
+            duration: "all",
+            openTabs: tabClearEnabled ? 5 : 0,
+            cookies: 1e3,
+            pinnedTabs
+          }
+        }
+      ]
+    };
+  }
   var allowedTracker, allowedTrackerRule, allowedThirdParty, allowedAdClickAttribution, blocked1, defaultCertificates, MockData, createDataStates;
   var init_generate_data = __esm({
     "shared/js/ui/views/tests/generate-data.mjs"() {
@@ -13952,6 +13999,8 @@
          * @param {any[]} [params.permissions]
          * @param {boolean} [params.specialDomainName]
          * @param {boolean} [params.emailUser]
+         * @param {boolean} [params.fireButtonEnabled]
+         * @param {BurnConfig} [params.fireButtonOptions]
          * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
          */
         constructor(params) {
@@ -13969,6 +14018,10 @@
           this.specialDomainName = params.specialDomainName;
           this.emailUser = params.emailUser;
           this.cookiePromptManagementStatus = params.cookiePromptManagementStatus;
+          this.fireButtonEnabled = params.fireButtonEnabled || false;
+          if (params.fireButtonOptions) {
+            this.getBurnOptions = mockBurnOptions(params.fireButtonOptions);
+          }
           this.protections = Protections.default();
           if (this.allowlisted) {
             this.protections.allowlisted = true;
@@ -14218,6 +14271,16 @@
                 url: "https://www.google.com/js/th/EWuoZ_9LU3hL76PT3YFLg_EjKJdTpZ6rgtgTJA98OBY.js"
               }
             ]
+          }),
+          "fire-button": new MockData({
+            requests: google.requests,
+            url: "https://google.com",
+            parentEntity: {
+              displayName: "Google",
+              prevalence: 80.1
+            },
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 }
           })
         };
       };
@@ -14243,7 +14306,8 @@
       tab: createTabData("https://example.com", false, Protections.default(), { requests: [] }),
       platform: "example",
       emailProtectionUserData: void 0,
-      theme: void 0
+      theme: void 0,
+      fireButtonEnabled: false
     };
     const params = new URLSearchParams(searchString);
     const stateKey = params.get("state");
@@ -14323,6 +14387,9 @@
         overrides3.emailProtectionUserData = {
           nextAlias: "123456_next"
         };
+      }
+      if (params.get("fireButton") === "true") {
+        overrides3.fireButtonEnabled = true;
       }
     }
     if (overrides3.platform === "ios" || overrides3.platform === "macos") {
@@ -14435,7 +14502,7 @@
       tab: overrides.tab,
       emailProtectionUserData: overrides.emailProtectionUserData,
       fireButton: {
-        enabled: true
+        enabled: overrides.fireButtonEnabled
       }
     };
   }
@@ -22119,7 +22186,7 @@
   // shared/js/ui/templates/search.js
   function search_default2() {
     const { showFireButton } = this.model;
-    const fireButton = showFireButton ? import_nanohtml2.default`<button type="button" class="fire-button js-search-fire-button">${fireIcon()}</button>` : import_nanohtml2.default``;
+    const fireButton = showFireButton ? import_nanohtml2.default`<button type="button" class="fire-button js-search-fire-button">${fireIcon()}</button>` : null;
     return import_nanohtml2.default`
         <div class="search token-search-input">
             <form class="search-form js-search-form" name="x" data-test-id="search-form">
@@ -24636,10 +24703,10 @@
       })
     )}
         </p>
-        ${descriptionStats.site ? import_nanohtml17.default`<p class="fire-button-disclaimer">${i18n.t("firebutton:historyAndDownloadsNotAffected.title")}</p>` : import_nanohtml17.default``}
+        ${descriptionStats.site ? import_nanohtml17.default`<p class="fire-button-disclaimer">${i18n.t("firebutton:historyAndDownloadsNotAffected.title")}</p>` : null}
         ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? import_nanohtml17.default`<p class="fire-button-disclaimer">
                   ${(0, import_raw4.default)(i18n.t("firebutton:summaryPinnedIgnored.title", { tabs: descriptionStats.pinnedTabs }))}
-              </p>` : import_nanohtml17.default``}
+              </p>` : null}
     </div>`;
   }
   var import_jquery20, import_nanohtml17, import_raw4;
