@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { test } from '@playwright/test'
 import { MockData, mockBurnOptions, mockToExtensionDashboardMessage } from '../shared/js/ui/views/tests/generate-data.mjs'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
@@ -148,16 +148,14 @@ test.describe('fire button', () => {
         const messages = mockToExtensionDashboardMessage(mock)
         const dash = await DashboardPage.browser(page, messages)
         await dash.showsPrimaryScreen()
-        const buttons = await dash.fireButton().all()
-        expect(buttons).toHaveLength(0)
+        await dash.fireButtonDoesntShow()
     })
 
     test('adding firebutton option to dashboard message shows fire button', async ({ page }) => {
         const mock = new MockData({ url: 'https://example.com' })
         const messages = mockToExtensionDashboardMessage(mock, true)
         const dash = await DashboardPage.browser(page, messages)
-        await dash.fireButton().waitFor()
-        expect(await dash.fireButton().isVisible()).toBeTruthy()
+        await dash.fireButtonShows()
     })
 
     test('fire button menu: open and close', async ({ page }) => {
@@ -168,11 +166,8 @@ test.describe('fire button', () => {
             ...messages,
             getBurnOptions,
         })
-        await dash.fireButton().click()
-        await page.locator('#fire-button-content').waitFor()
-        // test cancel button
-        await page.locator('#fire-button-cancel').click()
-        expect(await page.$$('#fire-button-content')).toHaveLength(0)
+        await dash.clickFireButton()
+        await dash.fireButtonCancelClosesDialog()
     })
 
     test('fire button menu: history and tab clearing enabled', async ({ page }) => {
@@ -183,17 +178,8 @@ test.describe('fire button', () => {
             ...messages,
             getBurnOptions,
         })
-        await dash.fireButton().click()
-        await page.locator('#fire-button-content').waitFor()
-        await expect(page.locator('#fire-button-burn')).toHaveText('Close Tabs and Clear Data')
-
-        // check that dropdown options are populated
-        await expect(page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length)
-        // there should be two text sections: summary and a notice
-        await expect(page.locator('#fire-button-summary > p')).toHaveCount(2)
-
-        await page.locator('#fire-button-opts').selectOption({ index: 2 })
-        await expect(page.locator('#fire-button-summary > p')).toHaveCount(1)
+        await dash.clickFireButton()
+        await dash.fireDialogIsPopulatedFromOptions(getBurnOptions)
     })
 
     test('fire button menu: history clearing enabled', async ({ page }) => {
@@ -204,9 +190,8 @@ test.describe('fire button', () => {
             ...messages,
             getBurnOptions,
         })
-        await dash.fireButton().click()
-        await page.locator('#fire-button-content').waitFor()
-        await expect(page.locator('#fire-button-burn')).toHaveText('Clear Data')
+        await dash.clickFireButton()
+        await dash.fireDialogHistoryDisabled()
     })
 
     test('fire button menu: sends option parameters with burn message', async ({ page }) => {
@@ -217,19 +202,9 @@ test.describe('fire button', () => {
             ...messages,
             getBurnOptions,
         })
-        await dash.fireButton().click()
-        await page.locator('#fire-button-content').waitFor()
-        await page.locator('#fire-button-burn').click()
-        const calls = await dash.mocks.outgoing({ names: ['doBurn'] })
-        expect(calls).toStrictEqual([
-            [
-                'doBurn',
-                {
-                    messageType: 'doBurn',
-                    options: getBurnOptions.options[0].options,
-                },
-            ],
-        ])
+        await dash.clickFireButton()
+        await dash.clickFireButtonBurn()
+        await dash.sendsOptionsWithBurnMessage(getBurnOptions.options[0].options)
     })
 
     test('fire button menu: sends option parameters of selected burn option', async ({ page }) => {
@@ -240,20 +215,10 @@ test.describe('fire button', () => {
             ...messages,
             getBurnOptions,
         })
-        await dash.fireButton().click()
-        await page.locator('#fire-button-content').waitFor()
-        await page.locator('#fire-button-opts').selectOption({ index: 1 })
-        await page.locator('#fire-button-burn').click()
-        const calls = await dash.mocks.outgoing({ names: ['doBurn'] })
-        expect(calls).toStrictEqual([
-            [
-                'doBurn',
-                {
-                    messageType: 'doBurn',
-                    options: getBurnOptions.options[1].options,
-                },
-            ],
-        ])
+        await dash.clickFireButton()
+        await dash.chooseBurnOption(1)
+        await dash.clickFireButtonBurn()
+        await dash.sendsOptionsWithBurnMessage(getBurnOptions.options[1].options)
     })
 })
 

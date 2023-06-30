@@ -309,4 +309,60 @@ export class DashboardPage {
             .locator('"Something went wrong, and we couldn\'t load this content. Try reloading the page."')
             .waitFor({ timeout: 500 })
     }
+
+    async fireButtonDoesntShow() {
+        const buttons = await this.fireButton().all()
+        expect(buttons).toHaveLength(0)
+    }
+
+    async fireButtonShows() {
+        await this.fireButton().waitFor()
+        expect(await this.fireButton().isVisible()).toBeTruthy()
+    }
+
+    async clickFireButton() {
+        await this.fireButton().click()
+        await this.page.locator('#fire-button-content').waitFor()
+    }
+
+    async fireButtonCancelClosesDialog() {
+        await this.page.locator('#fire-button-cancel').click()
+        expect(await this.page.$$('#fire-button-content')).toHaveLength(0)
+    }
+
+    async fireDialogIsPopulatedFromOptions(getBurnOptions) {
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Close Tabs and Clear Data')
+        // check that dropdown options are populated
+        await expect(this.page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length)
+        // there should be two text sections: summary and a notice
+        await expect(this.page.locator('#fire-button-summary > p')).toHaveCount(2)
+
+        await this.page.locator('#fire-button-opts').selectOption({ index: 2 })
+        await expect(this.page.locator('#fire-button-summary > p')).toHaveCount(1)
+    }
+
+    async fireDialogHistoryDisabled() {
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear Data')
+    }
+
+    async clickFireButtonBurn() {
+        await this.page.locator('#fire-button-burn').click()
+    }
+
+    async sendsOptionsWithBurnMessage(options) {
+        const calls = await this.mocks.outgoing({ names: ['doBurn'] })
+        expect(calls).toStrictEqual([
+            [
+                'doBurn',
+                {
+                    messageType: 'doBurn',
+                    options,
+                },
+            ],
+        ])
+    }
+
+    async chooseBurnOption(index) {
+        await this.page.locator('#fire-button-opts').selectOption({ index })
+    }
 }
