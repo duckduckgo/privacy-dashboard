@@ -230,6 +230,8 @@ export class MockData {
      * @param {any[]} [params.permissions]
      * @param {boolean} [params.specialDomainName]
      * @param {boolean} [params.emailUser]
+     * @param {boolean} [params.fireButtonEnabled]
+     * @param {BurnConfig} [params.fireButtonOptions]
      * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
      */
     constructor(params) {
@@ -247,6 +249,10 @@ export class MockData {
         this.specialDomainName = params.specialDomainName
         this.emailUser = params.emailUser
         this.cookiePromptManagementStatus = params.cookiePromptManagementStatus
+        this.fireButtonEnabled = params.fireButtonEnabled || false
+        if (params.fireButtonOptions) {
+            this.getBurnOptions = mockBurnOptions(params.fireButtonOptions)
+        }
 
         /** @type {Protections} */
         this.protections = Protections.default()
@@ -279,9 +285,12 @@ export class MockData {
 
 /**
  * @param {MockData} mock
- * @returns {{getPrivacyDashboardData: import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData}}
+ * @returns {{
+ *  getPrivacyDashboardData: import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData,
+ *  getBurnOptions?: import('../../../../../schema/__generated__/schema.types.js').FireButtonData
+ * }}
  */
-export function mockToExtensionDashboardMessage(mock, withFireButton = false) {
+export function mockToExtensionDashboardMessage(mock) {
     /** @type {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData} */
     const msg = {
         tab: {
@@ -295,7 +304,7 @@ export function mockToExtensionDashboardMessage(mock, withFireButton = false) {
         requestData: { requests: mock.requests },
         emailProtectionUserData: undefined,
         fireButton: {
-            enabled: withFireButton,
+            enabled: mock.fireButtonEnabled,
         },
     }
     if (mock.specialDomainName) {
@@ -311,6 +320,7 @@ export function mockToExtensionDashboardMessage(mock, withFireButton = false) {
     }
     return {
         getPrivacyDashboardData: msg,
+        getBurnOptions: mock.getBurnOptions || undefined,
     }
 }
 
@@ -543,10 +553,24 @@ export const createDataStates = (google, cnn) => {
                 },
             ],
         }),
+        'fire-button': new MockData({
+            requests: google.requests,
+            url: 'https://google.com',
+            parentEntity: {
+                displayName: 'Google',
+                prevalence: 80.1,
+            },
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
+        }),
     }
 }
 
 /**
+ * @typedef {{ clearHistory: boolean, tabClearEnabled: boolean, pinnedTabs: number }} BurnConfig
+ */
+/**
+ * @param {BurnConfig} options
  * @returns {import('../../../../../schema/__generated__/schema.types.js').FireButtonData}
  */
 export function mockBurnOptions({ clearHistory, tabClearEnabled, pinnedTabs }) {
@@ -560,7 +584,8 @@ export function mockBurnOptions({ clearHistory, tabClearEnabled, pinnedTabs }) {
                 descriptionStats: {
                     clearHistory,
                     site: 'example.com',
-                    openTabs: tabClearEnabled ? 1 : undefined,
+                    duration: 'all',
+                    openTabs: tabClearEnabled ? 1 : 0,
                     cookies: 1,
                     pinnedTabs,
                 },
@@ -573,7 +598,7 @@ export function mockBurnOptions({ clearHistory, tabClearEnabled, pinnedTabs }) {
                 descriptionStats: {
                     clearHistory,
                     duration: 'hour',
-                    openTabs: tabClearEnabled ? 5 : undefined,
+                    openTabs: tabClearEnabled ? 5 : 0,
                     cookies: 23,
                     pinnedTabs,
                 },
@@ -584,7 +609,7 @@ export function mockBurnOptions({ clearHistory, tabClearEnabled, pinnedTabs }) {
                 descriptionStats: {
                     clearHistory,
                     duration: 'all',
-                    openTabs: tabClearEnabled ? 5 : undefined,
+                    openTabs: tabClearEnabled ? 5 : 0,
                     cookies: 1000,
                     pinnedTabs,
                 },

@@ -7,9 +7,7 @@ import { i18n } from '../base/localize.js'
  */
 export default function () {
     const { showFireButton } = this.model
-    const fireButton = showFireButton
-        ? html`<button type="button" class="fire-button js-search-fire-button">${fireIcon()}</button>`
-        : null
+    const fireButton = showFireButton ? html`<button type="button" class="fire-button js-search-fire-button">${fireIcon()}</button>` : null
     return html`
         <div class="search token-search-input">
             <form class="search-form js-search-form" name="x" data-test-id="search-form">

@@ -84,6 +84,11 @@ export class DashboardPage {
         await this.viewThirdParties()
         await this.showsNonTrackersScreen()
         await this.screenshot(name + '-state-non-trackers.png')
+        if (state.fireButtonEnabled) {
+            await this.goBack()
+            await this.clickFireButton()
+            await this.screenshot(name + '-state-fire-dialog.png')
+        }
     }
 
     async viewTrackerCompanies() {
