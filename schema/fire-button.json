@@ -30,6 +30,7 @@
                 },
                 "descriptionStats": {
                     "type": "object",
+                    "required": ["openTabs", "cookies", "pinnedTabs", "clearHistory", "duration"],
                     "additionalProperties": false,
                     "properties": {
                         "clearHistory": {
