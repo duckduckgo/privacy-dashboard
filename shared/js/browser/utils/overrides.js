@@ -20,6 +20,7 @@ import { Protections } from './protections.mjs'
  * @property {import('../../ui/platform-features').Platform["name"]} platform
  * @property {import('../../../../schema/__generated__/schema.types').EmailProtectionUserData | undefined} emailProtectionUserData
  * @property {("dark" | "light") | undefined} theme
+ * @property {boolean} fireButtonEnabled
  * @param {string} searchString
  * @returns {Overrides}
  */
@@ -31,6 +32,7 @@ export function getOverrides(searchString) {
         platform: 'example',
         emailProtectionUserData: undefined,
         theme: undefined,
+        fireButtonEnabled: false,
     }
 
     const params = new URLSearchParams(searchString)
@@ -124,6 +126,9 @@ export function getOverrides(searchString) {
             overrides.emailProtectionUserData = {
                 nextAlias: '123456_next',
             }
+        }
+        if (params.get('fireButton') === 'true') {
+            overrides.fireButtonEnabled = true
         }
     }
 

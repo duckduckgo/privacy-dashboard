@@ -112,7 +112,7 @@ export async function getBackgroundTabData() {
         tab: overrides.tab,
         emailProtectionUserData: overrides.emailProtectionUserData,
         fireButton: {
-            enabled: true,
+            enabled: overrides.fireButtonEnabled,
         },
     }
 }
