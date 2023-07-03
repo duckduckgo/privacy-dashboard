@@ -8,7 +8,7 @@
         }]
     },
     "fireDialogHeader": {
-        "title": "Clear Browsing History and Data",
+        "title": "Close Tabs and Clear Data",
         "note": ""
     },
     "optionCurrentSite": {
@@ -104,7 +104,7 @@
         "note": "Button text to exit the fire button modal"
     },
     "historyAndDownloadsNotAffected": {
-        "title": "History and downloads will not be affected.",
+        "title": "History & downloads will not be cleared.",
         "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads."
     }
 }
