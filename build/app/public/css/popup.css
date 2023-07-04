@@ -3208,7 +3208,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   background: rgba(0, 0, 0, 0.06);
   color: #eb102d;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 16px;
 }
 #fire-button-burn svg {
@@ -3239,7 +3239,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 
 #fire-button-summary .fire-button-disclaimer {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 #fire-button-summary p {
@@ -3251,7 +3251,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 
 #fire-button-cancel {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 16px;
 }
 .body--theme-dark #fire-button-cancel {
