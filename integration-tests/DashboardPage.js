@@ -336,7 +336,7 @@ export class DashboardPage {
     }
 
     async fireDialogIsPopulatedFromOptions(getBurnOptions) {
-        await expect(this.page.locator('#fire-button-burn')).toHaveText('Close Tabs and Clear Data')
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear')
         // check that dropdown options are populated
         await expect(this.page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length)
         // there should be two text sections: summary and a notice
@@ -347,7 +347,7 @@ export class DashboardPage {
     }
 
     async fireDialogHistoryDisabled() {
-        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear Data')
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear')
     }
 
     async clickFireButtonBurn() {

@@ -4,7 +4,6 @@ import raw from 'nanohtml/raw'
 import Parent from '../base/view.js'
 import { i18n } from '../base/localize.js'
 import { BurnMessage, FetchBurnOptions, SetBurnDefaultOption } from '../../browser/common.js'
-import { fireIcon } from '../templates/search.js'
 
 /**
  * @param {object} ops
@@ -75,9 +74,6 @@ function template() {
         ({ name, selected }) => html`<option ${selected ? 'selected' : ''}>${i18n.t(`firebutton:option${name}.title`)}</option>`
     )
     const summary = fireSummaryTemplate(selectedOption)
-    const clearTextTemplate = selectedOption.descriptionStats.openTabs
-        ? 'firebutton:closeTabsAndClearData.title'
-        : 'firebutton:clearData.title'
     return html` <dialog id="fire-button-container" open>
         <div id="fire-button-content">
             <span id="fire-button-header">
@@ -92,8 +88,10 @@ function template() {
                 ${selectOptions}
             </select>
             ${summary}
-            <button id="fire-button-burn">${fireIcon()} ${i18n.t(clearTextTemplate)}</button>
-            <button id="fire-button-cancel">${i18n.t('firebutton:cancel.title')}</button>
+            <div id="fire-button-row">
+                <button id="fire-button-cancel">${i18n.t('firebutton:cancel.title')}</button>
+                <button id="fire-button-burn">${i18n.t('firebutton:clearData.title')}</button>
+            </div>
         </div>
     </dialog>`
 }

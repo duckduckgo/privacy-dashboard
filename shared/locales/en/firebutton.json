@@ -91,13 +91,9 @@
         "title": "<b>{tabs} pinned</b> {tabs, plural, =1 {tab} other {tabs}} will be ignored.",
         "note": "Notice to tell the user that some tabs will not be closed."
     },
-    "closeTabsAndClearData": {
-        "title": "Close Tabs and Clear Data",
-        "note": "Button text to start the data clearing."
-    },
     "clearData": {
-        "title": "Clear Data",
-        "note": "Button text to start data clearing when the user has configure for tabs not to be closed."
+        "title": "Clear",
+        "note": "Button text to start data clearing."
     },
     "cancel": {
         "title": "Cancel",
