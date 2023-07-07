@@ -3192,40 +3192,56 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-#fire-button-content button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 4px 12px;
-  gap: 8px;
-  width: 100%;
-  height: 36px;
-  border-radius: 8px;
-}
-
 #fire-button-burn {
-  background: rgba(0, 0, 0, 0.06);
-  color: #eb102d;
+  background: #3969ef;
+  color: #fff;
   font-weight: 600;
   font-size: 15px;
   line-height: 16px;
 }
-#fire-button-burn svg {
-  fill: #eb102d;
-}
 .body--theme-dark #fire-button-burn {
-  background: rgba(255, 255, 255, 0.06);
-  color: #ff545a;
-}
-.body--theme-dark #fire-button-burn svg {
-  fill: #ff545a;
+  background: #7295f6;
+  color: rgba(0, 0, 0, 0.84);
 }
 #fire-button-burn:hover {
-  background: rgba(0, 0, 0, 0.09);
+  background: #2b55ca;
 }
 #fire-button-burn:active {
-  background: rgba(0, 0, 0, 0.12);
+  background: #1e42a4;
+}
+
+#fire-button-cancel {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 16px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+.body--theme-dark #fire-button-cancel {
+  background-color: rgba(0, 0, 0, 0.18);
+}
+#fire-button-cancel:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+#fire-button-cancel:active {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+#fire-button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+}
+
+#fire-button-row > button {
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  border-radius: 8px;
 }
 
 #fire-button-summary {
@@ -3247,21 +3263,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   font-weight: 400;
   font-size: 15px;
   line-height: 22px;
-}
-
-#fire-button-cancel {
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 16px;
-}
-.body--theme-dark #fire-button-cancel {
-  background-color: #333333;
-}
-#fire-button-cancel:hover {
-  background: rgba(0, 0, 0, 0.03);
-}
-#fire-button-cancel:active {
-  background: rgba(0, 0, 0, 0.06);
 }
 
 #fire-button-opts {
