@@ -24704,7 +24704,7 @@
       })
     )}
         </p>
-        ${descriptionStats.site ? import_nanohtml17.default`<p class="fire-button-disclaimer">${i18n.t("firebutton:historyAndDownloadsNotAffected.title")}</p>` : null}
+        ${descriptionStats.site && descriptionStats.clearHistory ? import_nanohtml17.default`<p class="fire-button-disclaimer">${i18n.t("firebutton:historyAndDownloadsNotAffected.title")}</p>` : null}
         ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? import_nanohtml17.default`<p class="fire-button-disclaimer">
                   ${(0, import_raw4.default)(i18n.t("firebutton:summaryPinnedIgnored.title", { tabs: descriptionStats.pinnedTabs }))}
               </p>` : null}
