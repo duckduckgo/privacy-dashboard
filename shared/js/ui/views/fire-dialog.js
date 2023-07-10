@@ -130,7 +130,7 @@ function fireSummaryTemplate(selectedOption) {
                 })
             )}
         </p>
-        ${descriptionStats.site
+        ${descriptionStats.site && descriptionStats.clearHistory
             ? html`<p class="fire-button-disclaimer">${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>`
             : null}
         ${descriptionStats.openTabs && descriptionStats.pinnedTabs
