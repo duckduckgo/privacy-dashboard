@@ -3219,6 +3219,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .body--theme-dark #fire-button-cancel {
   background-color: rgba(0, 0, 0, 0.18);
 }
+.body--theme-dark #fire-button-cancel:hover {
+  background: rgba(0, 0, 0, 0.09);
+}
 #fire-button-cancel:hover {
   background: rgba(0, 0, 0, 0.03);
 }
