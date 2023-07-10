@@ -100,7 +100,7 @@
         "note": "Button text to exit the fire button modal"
     },
     "historyAndDownloadsNotAffected": {
-        "title": "History & downloads will not be cleared.",
+        "title": "To also clear history, select a time period.",
         "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads."
     }
 }
