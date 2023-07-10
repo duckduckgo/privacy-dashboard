@@ -74,6 +74,9 @@
 
     .body--theme-dark & {
         background-color: rgba(0, 0, 0, 0.18);
+        &:hover {
+            background: rgba(0, 0, 0, 0.09);
+        }
     }
 
     &:hover {
