@@ -11,6 +11,10 @@
         "title": "Close Tabs and Clear Data",
         "note": ""
     },
+    "fireDialogHeaderNoTabs": {
+        "title": "Clear Data",
+        "note": ""
+    },
     "optionCurrentSite": {
         "title": "Current site only",
         "note": "Dropdown option to only clear data for the current active website"

@@ -79,9 +79,9 @@ function template() {
             <span id="fire-button-header">
                 <img src="../img/fire-button-header.svg" />
                 <h3>
-                    ${selectedOption.descriptionStats.clearHistory
+                    ${selectedOption.descriptionStats.openTabs > 0
                         ? i18n.t('firebutton:fireDialogHeader.title')
-                        : i18n.t('firebutton:clearData.title')}
+                        : i18n.t('firebutton:fireDialogHeaderNoTabs.title')}
                 </h3>
             </span>
             <select id="fire-button-opts">
