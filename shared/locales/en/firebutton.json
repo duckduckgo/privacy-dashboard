@@ -9,11 +9,11 @@
     },
     "fireDialogHeader": {
         "title": "Close Tabs and Clear Data",
-        "note": ""
+        "note": "Dialog header."
     },
     "fireDialogHeaderNoTabs": {
         "title": "Clear Data",
-        "note": ""
+        "note": "Dialog header when tab clearing is disabled."
     },
     "optionCurrentSite": {
         "title": "Current site only",
