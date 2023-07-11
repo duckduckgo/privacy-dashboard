@@ -13,10 +13,13 @@ import {
     setListOptionsSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import {
+    BurnMessage,
     CheckBrokenSiteReportHandledMessage,
+    FetchBurnOptions,
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
     SearchMessage,
+    SetBurnDefaultOption,
     SetListsMessage,
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
@@ -53,6 +56,15 @@ export async function fetch(message) {
     }
     if (message instanceof OpenOptionsMessage) {
         return openOptions()
+    }
+    if (message instanceof BurnMessage) {
+        return doBurn(message)
+    }
+    if (message instanceof FetchBurnOptions) {
+        return toExtensionMessage('getBurnOptions')
+    }
+    if (message instanceof SetBurnDefaultOption) {
+        return toExtensionMessage('setBurnDefaultOption', message)
     }
     return new Promise((resolve) => {
         // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
@@ -186,6 +198,17 @@ export async function openOptions() {
     return toExtensionMessage('openOptions')
 }
 
+export async function doBurn(message) {
+    const browsingDataPermissions = {
+        permissions: ['browsingData'],
+    }
+    const permissionRequestGranted = await new Promise((resolve) => chrome.permissions.request(browsingDataPermissions, resolve))
+    if (!permissionRequestGranted) {
+        throw new Error('Permission not granted')
+    }
+    return toExtensionMessage('doBurn', message)
+}
+
 /**
  * @param {number|null} tabId
  * @returns {Promise<import('../../../schema/__generated__/schema.types').GetPrivacyDashboardData>}
@@ -225,6 +248,7 @@ export function backgroundMessage(_channel) {
  * @returns {Promise<{
  *   tab: import('./utils/request-details.mjs').TabData,
  *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
+ *   fireButton?: { enabled: boolean }
  * }>}
  */
 export async function getBackgroundTabData() {
@@ -236,7 +260,7 @@ export async function getBackgroundTabData() {
     const parsedMessageData = getPrivacyDashboardDataSchema.safeParse(resp)
 
     if (parsedMessageData.success === true) {
-        const { tab, emailProtectionUserData, requestData } = parsedMessageData.data
+        const { tab, emailProtectionUserData, requestData, fireButton } = parsedMessageData.data
         const { upgradedHttps, url, parentEntity, specialDomainName, id, localeSettings } = tab
 
         const protections = new Protections(
@@ -258,6 +282,7 @@ export async function getBackgroundTabData() {
                 specialDomainName,
             },
             emailProtectionUserData,
+            fireButton,
         }
     }
 

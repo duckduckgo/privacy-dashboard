@@ -1,5 +1,6 @@
 import {
     CheckBrokenSiteReportHandledMessage,
+    FetchBurnOptions,
     OpenSettingsMessages,
     RefreshEmailAliasMessage,
     SetListsMessage,
@@ -45,6 +46,52 @@ export async function fetch(message) {
         }
     }
 
+    if (message instanceof FetchBurnOptions) {
+        const clearHistory = true
+        const tabClearEnabled = true
+        return Promise.resolve({
+            options: [
+                {
+                    name: 'CurrentSite',
+                    options: {
+                        origins: ['https://example.com/'],
+                    },
+                    descriptionStats: {
+                        clearHistory,
+                        site: 'example.com',
+                        openTabs: tabClearEnabled ? 1 : undefined,
+                        cookies: 1,
+                        pinnedTabs: 1,
+                    },
+                },
+                {
+                    name: 'LastHour',
+                    options: {
+                        since: Date.now(),
+                    },
+                    descriptionStats: {
+                        clearHistory,
+                        duration: 'hour',
+                        openTabs: tabClearEnabled ? 5 : undefined,
+                        cookies: 23,
+                        pinnedTabs: 1,
+                    },
+                },
+                {
+                    name: 'AllTime',
+                    options: {},
+                    descriptionStats: {
+                        clearHistory,
+                        duration: 'all',
+                        openTabs: tabClearEnabled ? 5 : undefined,
+                        cookies: 1000,
+                        pinnedTabs: 1,
+                    },
+                },
+            ],
+        })
+    }
+
     console.log('fetch - Not implemented', message)
 }
 
@@ -57,12 +104,16 @@ export function backgroundMessage(backgroundModel) {
  * @returns {Promise<{
  *    tab: import('./utils/request-details.mjs').TabData,
  *    emailProtectionUserData: import('../../../schema/__generated__/schema.types').EmailProtectionUserData | undefined,
+ *    fireButton: { enabled: boolean }
  * }>}
  */
 export async function getBackgroundTabData() {
     return {
         tab: overrides.tab,
         emailProtectionUserData: overrides.emailProtectionUserData,
+        fireButton: {
+            enabled: overrides.fireButtonEnabled,
+        },
     }
 }
 

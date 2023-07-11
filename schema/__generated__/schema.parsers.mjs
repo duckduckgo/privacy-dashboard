@@ -48,6 +48,10 @@ export const parentEntitySchema = z.object({
     prevalence: z.number()
 });
 
+export const fireButtonSchema = z.object({
+    enabled: z.boolean()
+});
+
 export const searchSchema = z.object({
     term: z.string()
 });
@@ -91,6 +95,23 @@ export const extensionMessageSetListOptionsSchema = z.object({
     options: setListOptionsSchema
 });
 
+export const fireOptionSchema = z.record(z.unknown()).and(z.object({
+    name: z.union([z.literal("CurrentSite"), z.literal("LastHour"), z.literal("Last24Hour"), z.literal("Last7days"), z.literal("Last4Weeks"), z.literal("AllTime")]),
+    selected: z.boolean().optional(),
+    options: z.object({
+        since: z.number().optional(),
+        origins: z.array(z.string()).optional()
+    }),
+    descriptionStats: z.object({
+        clearHistory: z.boolean(),
+        site: z.string().optional(),
+        duration: z.union([z.literal("hour"), z.literal("day"), z.literal("week"), z.literal("month"), z.literal("all")]),
+        openTabs: z.number(),
+        cookies: z.number(),
+        pinnedTabs: z.number()
+    })
+}));
+
 export const detectedRequestSchema = z.object({
     url: z.string(),
     eTLDplus1: z.string().optional(),
@@ -117,6 +138,10 @@ export const breakageReportSchema = z.object({
     response: z.record(z.unknown()).optional()
 });
 
+export const fireButtonDataSchema = z.object({
+    options: z.array(fireOptionSchema)
+});
+
 export const requestDataSchema = z.object({
     requests: z.array(detectedRequestSchema),
     installedSurrogates: z.array(z.string()).optional()
@@ -125,7 +150,8 @@ export const requestDataSchema = z.object({
 export const getPrivacyDashboardDataSchema = z.object({
     requestData: requestDataSchema,
     emailProtectionUserData: emailProtectionUserDataSchema.optional(),
-    tab: tabSchema
+    tab: tabSchema,
+    fireButton: fireButtonSchema.optional()
 });
 
 export const windowsViewModelSchema = z.object({
@@ -157,6 +183,7 @@ export const apiSchema = z.object({
     "windows-incoming-message": windowsIncomingMessageSchema.optional(),
     "locale-settings": localeSettingsSchema.optional(),
     "refresh-alias-response": refreshAliasResponseSchema.optional(),
-    exe: extensionMessageSetListOptionsSchema.optional()
+    exe: extensionMessageSetListOptionsSchema.optional(),
+    "fire-button": fireButtonDataSchema.optional()
 });
 

@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "FireButtonData",
+    "type": "object",
+    "description": "This describes settings for the FireButton in the dashboard UI",
+    "required": ["options"],
+    "additionalProperties": false,
+    "properties": {
+        "options": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/fireOption"
+            }
+        }
+    },
+    "definitions": {
+        "fireOption": {
+            "required": ["name", "options", "descriptionStats"],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "enum": ["CurrentSite", "LastHour", "Last24Hour", "Last7days", "Last4Weeks", "AllTime"]
+                },
+                "selected": {
+                    "type": "boolean"
+                },
+                "options": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "since": {
+                            "type": "number"
+                        },
+                        "origins": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "descriptionStats": {
+                    "type": "object",
+                    "required": ["openTabs", "cookies", "pinnedTabs", "clearHistory", "duration"],
+                    "additionalProperties": false,
+                    "properties": {
+                        "clearHistory": {
+                            "type": "boolean"
+                        },
+                        "site": {
+                            "type": "string"
+                        },
+                        "duration": {
+                            "type": "string",
+                            "enum": ["hour", "day", "week", "month", "all"]
+                        },
+                        "openTabs": {
+                            "type": "number"
+                        },
+                        "cookies": {
+                            "type": "number"
+                        },
+                        "pinnedTabs": {
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

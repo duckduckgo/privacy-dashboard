@@ -8,6 +8,7 @@ export class DashboardPage {
     thirdPartiesLink = () => this.page.locator('[aria-label="View Non-Tracker Companies"]')
     aboutLink = () => this.page.locator('"About our Web Tracking Protections"')
     backButton = () => this.page.locator('[aria-label="Back"]')
+    fireButton = () => this.page.locator('.fire-button')
     get htmlPage() {
         switch (this.platform.name) {
             case 'android':
@@ -83,6 +84,11 @@ export class DashboardPage {
         await this.viewThirdParties()
         await this.showsNonTrackersScreen()
         await this.screenshot(name + '-state-non-trackers.png')
+        if (state.fireButtonEnabled) {
+            await this.goBack()
+            await this.clickFireButton()
+            await this.screenshot(name + '-state-fire-dialog.png')
+        }
     }
 
     async viewTrackerCompanies() {
@@ -152,6 +158,7 @@ export class DashboardPage {
      * @param {import("@playwright/test").Page} page
      * @param {{
      *     getPrivacyDashboardData?: import('../schema/__generated__/schema.types').GetPrivacyDashboardData,
+     *     getBurnOptions?: import('../schema/__generated__/schema.types').FireButtonData
      * }} messages
      * @returns {Promise<DashboardPage>}
      */
@@ -306,5 +313,61 @@ export class DashboardPage {
         await this.page
             .locator('"Something went wrong, and we couldn\'t load this content. Try reloading the page."')
             .waitFor({ timeout: 500 })
+    }
+
+    async fireButtonDoesntShow() {
+        const buttons = await this.fireButton().all()
+        expect(buttons).toHaveLength(0)
+    }
+
+    async fireButtonShows() {
+        await this.fireButton().waitFor()
+        expect(await this.fireButton().isVisible()).toBeTruthy()
+    }
+
+    async clickFireButton() {
+        await this.fireButton().click()
+        await this.page.locator('#fire-button-content').waitFor()
+    }
+
+    async fireButtonCancelClosesDialog() {
+        await this.page.locator('#fire-button-cancel').click()
+        expect(await this.page.$$('#fire-button-content')).toHaveLength(0)
+    }
+
+    async fireDialogIsPopulatedFromOptions(getBurnOptions) {
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear')
+        // check that dropdown options are populated
+        await expect(this.page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length)
+        // there should be two text sections: summary and a notice
+        await expect(this.page.locator('#fire-button-summary > p')).toHaveCount(2)
+
+        await this.page.locator('#fire-button-opts').selectOption({ index: 2 })
+        await expect(this.page.locator('#fire-button-summary > p')).toHaveCount(1)
+    }
+
+    async fireDialogHistoryDisabled() {
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear')
+    }
+
+    async clickFireButtonBurn() {
+        await this.page.locator('#fire-button-burn').click()
+    }
+
+    async sendsOptionsWithBurnMessage(options) {
+        const calls = await this.mocks.outgoing({ names: ['doBurn'] })
+        expect(calls).toStrictEqual([
+            [
+                'doBurn',
+                {
+                    messageType: 'doBurn',
+                    options,
+                },
+            ],
+        ])
+    }
+
+    async chooseBurnOption(index) {
+        await this.page.locator('#fire-button-opts').selectOption({ index })
     }
 }

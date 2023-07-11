@@ -320,6 +320,22 @@ export class OpenSettingsMessages extends Msg {
     }
 }
 
+export class BurnMessage extends Msg {
+    constructor(opts) {
+        super()
+        Object.assign(this, opts)
+    }
+}
+
+export class FetchBurnOptions extends Msg {}
+
+export class SetBurnDefaultOption extends Msg {
+    constructor(name) {
+        super()
+        this.defaultOption = name
+    }
+}
+
 /**
  * @template {SetListsMessage|SubmitBrokenSiteReportMessage|UpdatePermissionMessage|CheckBrokenSiteReportHandledMessage|CloseMessage|RefreshEmailAliasMessage|OpenOptionsMessage} T
  * @template {unknown} [Response=unknown]

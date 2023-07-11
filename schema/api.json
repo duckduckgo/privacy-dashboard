@@ -21,6 +21,7 @@
         "windows-incoming-message": { "$ref": "./windows-incoming-message.json" },
         "locale-settings": { "$ref": "./locale.json" },
         "refresh-alias-response": { "$ref": "./refresh-alias-response.json" },
-        "exe": { "$ref": "./extension-message-set-list-options.json" }
+        "exe": { "$ref": "./extension-message-set-list-options.json" },
+        "fire-button": { "$ref": "./fire-button.json" }
     }
 }

@@ -9,7 +9,7 @@ function Search(ops) {
     this.template = ops.template
     Parent.call(this, ops)
 
-    this._cacheElems('.js-search', ['form', 'input', 'go', 'cog-button'])
+    this._cacheElems('.js-search', ['form', 'input', 'go', 'cog-button', 'fire-button'])
 
     this.bindEvents([
         [this.$input, 'input', this._handleInput],
@@ -17,6 +17,7 @@ function Search(ops) {
         [this.$go, 'click', this._handleSubmit],
         [this.$form, 'submit', this._handleSubmit],
         [this.$cogbutton, 'click', this._handleCogClick],
+        [this.$firebutton, 'click', this._handleFireClick],
     ])
 }
 
@@ -57,6 +58,11 @@ Search.prototype = $.extend({}, Parent.prototype, {
     _handleCogClick: function (e) {
         e.preventDefault()
         this.model.openOptionsPage()
+    },
+
+    _handleFireClick: function (e) {
+        e.preventDefault()
+        this.pageView.model.send('navigate', { target: 'fireButton' })
     },
 })
 

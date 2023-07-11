@@ -1,5 +1,5 @@
 import { test } from '@playwright/test'
-import { MockData, mockToExtensionDashboardMessage } from '../shared/js/ui/views/tests/generate-data.mjs'
+import { MockData, mockBurnOptions, mockToExtensionDashboardMessage } from '../shared/js/ui/views/tests/generate-data.mjs'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
 
@@ -142,6 +142,86 @@ test.describe('localization', () => {
     })
 })
 
+test.describe('fire button', () => {
+    test('by default no fire button is displayed', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com', fireButtonEnabled: false })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.showsPrimaryScreen()
+        await dash.fireButtonDoesntShow()
+    })
+
+    test('adding firebutton option to dashboard message shows fire button', async ({ page }) => {
+        const mock = new MockData({ url: 'https://example.com', fireButtonEnabled: true })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.fireButtonShows()
+    })
+
+    test('fire button menu: open and close', async ({ page }) => {
+        const mock = new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 },
+        })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.clickFireButton()
+        await dash.fireButtonCancelClosesDialog()
+    })
+
+    test('fire button menu: history and tab clearing enabled', async ({ page }) => {
+        const mock = new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 },
+        })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.clickFireButton()
+        await dash.fireDialogIsPopulatedFromOptions(mock.getBurnOptions)
+    })
+
+    test('fire button menu: history clearing enabled', async ({ page }) => {
+        const mock = new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: false, pinnedTabs: 0 },
+        })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.clickFireButton()
+        await dash.fireDialogHistoryDisabled()
+    })
+
+    test('fire button menu: sends option parameters with burn message', async ({ page }) => {
+        const mock = new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 },
+        })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.clickFireButton()
+        await dash.clickFireButtonBurn()
+        await dash.sendsOptionsWithBurnMessage(mock.getBurnOptions?.options[0].options)
+    })
+
+    test('fire button menu: sends option parameters of selected burn option', async ({ page }) => {
+        const mock = new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 },
+        })
+        const messages = mockToExtensionDashboardMessage(mock)
+        const dash = await DashboardPage.browser(page, messages)
+        await dash.clickFireButton()
+        await dash.chooseBurnOption(1)
+        await dash.clickFireButtonBurn()
+        await dash.sendsOptionsWithBurnMessage(mock.getBurnOptions?.options[1].options)
+    })
+})
+
 if (!process.env.CI) {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
@@ -149,6 +229,11 @@ if (!process.env.CI) {
         { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
         { name: 'google-off', state: testDataStates['google-off'] },
         { name: 'cnn', state: testDataStates.cnn },
+        {
+            name: 'fire-button',
+            state: testDataStates['fire-button'],
+            burnOptions: mockBurnOptions({ clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 }),
+        },
     ]
     test.describe('screenshots', () => {
         for (const { name, state } of states) {

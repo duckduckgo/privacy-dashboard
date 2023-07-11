@@ -27,6 +27,7 @@ import CtaRotationView from './cta-rotation.js'
 import TrackerNetworksView from './../views/tracker-networks.js'
 import { MainNavView } from './main-nav'
 import { CookiePromptView } from './cookie-prompt'
+import { FireDialog } from './fire-dialog.js'
 
 /**
  * @constructor
@@ -130,6 +131,9 @@ Site.prototype = $.extend({}, Parent.prototype, {
             if (event.data?.target === 'cookieHidden') {
                 this._showPageConsent(true)
             }
+            if (event.data?.target === 'fireButton') {
+                this._showFireModal()
+            }
         }
     },
 
@@ -199,6 +203,13 @@ Site.prototype = $.extend({}, Parent.prototype, {
         })
     },
 
+    _showFireModal() {
+        this.dialog = new FireDialog({
+            model: this.model,
+            appendTo: $('#site-info-container'),
+        })
+    },
+
     _done: function () {
         this.model.close()
     },
@@ -216,7 +227,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         if (this.model.tab?.search) {
             this.views.search = new SearchView({
                 pageView: this,
-                model: new SearchModel({ searchText: '' }),
+                model: new SearchModel({ searchText: '', showFireButton: this.model.fireButton?.enabled }),
                 appendTo: $('#search-form-container'),
                 template: searchTemplate,
             })
