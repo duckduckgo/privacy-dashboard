@@ -1,0 +1,111 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "fireDialogHeader" : {
+    "title" : "Κλείσιμο καρτελών και εκκαθάριση δεδομένων",
+    "note" : "Dialog header."
+  },
+  "fireDialogHeaderNoTabs" : {
+    "title" : "Εκκαθάριση δεδομένων",
+    "note" : "Dialog header when tab clearing is disabled."
+  },
+  "optionCurrentSite" : {
+    "title" : "Μόνο ο τρέχων ιστότοπος",
+    "note" : "Dropdown option to only clear data for the current active website"
+  },
+  "optionLastHour" : {
+    "title" : "Τελευταία ώρα",
+    "note" : "Dropdown option to only clear data from the past hour"
+  },
+  "optionLast24Hour" : {
+    "title" : "Τελευταίες 24 ώρες",
+    "note" : "Dropdown option to only clear data from the past 24 hours"
+  },
+  "optionLast7days" : {
+    "title" : "Τελευταίες 7 ημέρες",
+    "note" : "Dropdown option to only clear data from the past 7 days"
+  },
+  "optionLast4Weeks" : {
+    "title" : "Τελευταίες 4 εβδομάδες",
+    "note" : "Dropdown option to only clear data from the past 4 weeks"
+  },
+  "optionAllTime" : {
+    "title" : "Όλο",
+    "note" : "Dropdown option to clear all data, since recording started"
+  },
+  "historyDuration" : {
+    "title" : "{duration, select, hour {μία ώρα} day {24 ώρες} week {μία βδομάδα} month {4 εβδομάδες} other {Όλα}}",
+    "note" : "Description of what period of history data should be deleted."
+  },
+  "summaryClearTabsHistoryDuration" : {
+    "title" : "{openTabs, plural, one {Θέλετε να κλείσετε <b>{openTabs}</b> καρτέλα και να διαγράψετε <b>{durationDesc}</b> του ιστορικού περιήγησης και των cookies;} other {Θέλετε να κλείσετε <b>{openTabs}</b> καρτέλες και να διαγράψετε <b>{durationDesc}</b> του ιστορικού περιήγησης και των cookies;}}",
+    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
+  },
+  "summaryClearTabsDuration" : {
+    "title" : "{openTabs, plural, one {Θέλετε να κλείσετε <b>{openTabs}</b> καρτέλα και να διαγράψετε <b>{durationDesc}</b> από τα cookies;} other {Θέλετε να κλείσετε <b>{openTabs}</b> καρτέλες και να διαγράψετε <b>{durationDesc}</b> από τα cookies;}}",
+    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
+  },
+  "summaryClearHistoryDuration" : {
+    "title" : "Θέλετε να διαγράψετε <b>{durationDesc}</b> από το ιστορικό περιήγησης και τα cookies;",
+    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
+  },
+  "summaryClearCookiesDuration" : {
+    "title" : "Θέλετε να διαγράψετε <b>{durationDesc}</b> από τα cookies;",
+    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
+  },
+  "summaryClearTabsHistoryAll" : {
+    "title" : "Θέλετε να κλείσετε <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {tabs}} και να διαγράψετε <b>όλο</b> το ιστορικό περιήγησης και τα cookies ({cookies} {cookies, plural, =1 {site} other {sites}});",
+    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
+  },
+  "summaryClearTabsAll" : {
+    "title" : "Θέλετε να κλείσετε <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {tabs}} και να διαγράψετε <b>όλα</b> τα cookies ({cookies} {cookies, plural, =1 {site} other {sites}});",
+    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
+  },
+  "summaryClearHistoryAll" : {
+    "title" : "{cookies, plural, one {Θέλετε να διαγράψετε <b>όλο</b> το ιστορικό περιήγησης και τα cookies ({cookies} ιστότοπος);} other {Θέλετε να διαγράψετε <b>όλο</b> το ιστορικό περιήγησης και τα cookies ({cookies} ιστότοποι);}}",
+    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
+  },
+  "summaryClearCookiesAll" : {
+    "title" : "{cookies, plural, one {Θέλετε να διαγράψετε <b>όλα</b> τα cookies ({cookies} ιστότοπος);} other {Θέλετε να διαγράψετε <b>όλα</b> τα cookies ({cookies} ιστότοποι);}}",
+    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
+  },
+  "summaryClearTabsHistorySite" : {
+    "title" : "{openTabs, plural, one {Θέλετε να κλείσετε <b>{openTabs} {site}</b> καρτέλα και να διαγράψτε <b>όλα τα cookies του {site}</b>;} other {Θέλετε να κλείσετε <b>{openTabs} {site}</b> καρτέλες και να διαγράψτε <b>όλα τα cookies του {site}</b>;}}",
+    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  },
+  "summaryClearTabsSite" : {
+    "title" : "{openTabs, plural, one {Θέλετε να κλείσετε την καρτέλα <b>{openTabs} {site}</b> και να διαγράψτε <b>όλα τα cookies του {site}</b>;} other {Θέλετε να κλείσετε <b>{openTabs} {site}</b> καρτέλες και να διαγράψτε <b>όλα τα cookies του {site}</b>;}}",
+    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  },
+  "summaryClearHistorySite" : {
+    "title" : "Θέλετε να διαγράψετε <b> όλο το ιστορικό περιήγησης του {site}</b> και τα cookies;",
+    "note" : "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
+  },
+  "summaryClearCookiesSite" : {
+    "title" : "Θέλετε να διαγράψετε <b>όλα τα cookies του {site}</b>;",
+    "note" : "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
+  },
+  "summaryPinnedIgnored" : {
+    "title" : "{tabs, plural, one {<b>{tabs} καρφιτσωμένη</b> καρτέλα θα αγνοηθεί.} other {<b>{tabs} καρφιτσωμένες</b> καρτέλες θα αγνοηθούν.}}",
+    "note" : "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
+  },
+  "clearData" : {
+    "title" : "Διαγραφή",
+    "note" : "Button text to start data clearing."
+  },
+  "cancel" : {
+    "title" : "Ακύρωση",
+    "note" : "Button text to exit the fire button modal."
+  },
+  "historyAndDownloadsNotAffected" : {
+    "title" : "Για να διαγράψετε επίσης το ιστορικό, επιλέξτε μια χρονική περίοδο.",
+    "note" : "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
+  }
+}
