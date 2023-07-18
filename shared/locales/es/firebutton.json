@@ -77,7 +77,7 @@
     "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
   },
   "summaryClearTabsHistorySite" : {
-    "title" : "{openTabs, plural, one {¿Cerrar <b>{site} {openTabs}</b> pestaña y borrar <b>todas las cookies de{site}</b>?} other {¿Cerrar <b>{site} {openTabs} </b> pestañas y borrar <b>todas las cookies de{site}</b>?}}",
+    "title" : "{openTabs, plural, one {¿Cerrar <b>{site} {openTabs}</b> pestaña y borrar <b>todas las cookies de {site}</b>?} other {¿Cerrar <b>{site} {openTabs} </b> pestañas y borrar <b>todas las cookies de {site}</b>?}}",
     "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
   },
   "summaryClearTabsSite" : {
