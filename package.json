@@ -22,7 +22,7 @@
         "tsc": "tsc",
         "tsc.watch": "tsc --watch",
         "test": "npm run verify.local",
-        "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs",
+        "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs && node shared/locales/validate-locales.test.mjs",
         "test.int": "playwright test",
         "test.int.ui": "playwright test --ui",
         "test.int.headed": "playwright test --headed",
