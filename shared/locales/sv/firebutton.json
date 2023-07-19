@@ -1,111 +1,112 @@
 {
-  "smartling" : {
-    "string_format" : "icu",
-    "translate_paths" : [
-    {
-      "path" : "*/title",
-      "key" : "{*}/title",
-      "instruction" : "*/note"
-    }]
+  "smartling": {
+    "string_format": "icu",
+    "translate_paths": [
+      {
+        "path": "*/title",
+        "key": "{*}/title",
+        "instruction": "*/note"
+      }
+    ]
   },
-  "fireDialogHeader" : {
-    "title" : "Stäng flikar och rensa data",
-    "note" : "Dialog header."
+  "fireDialogHeader": {
+    "title": "Stäng flikar och rensa data",
+    "note": "Dialog header."
   },
-  "fireDialogHeaderNoTabs" : {
-    "title" : "Rensa data",
-    "note" : "Dialog header when tab clearing is disabled."
+  "fireDialogHeaderNoTabs": {
+    "title": "Rensa data",
+    "note": "Dialog header when tab clearing is disabled."
   },
-  "optionCurrentSite" : {
-    "title" : "Endast nuvarande webbplats",
-    "note" : "Dropdown option to only clear data for the current active website"
+  "optionCurrentSite": {
+    "title": "Endast nuvarande webbplats",
+    "note": "Dropdown option to only clear data for the current active website"
   },
-  "optionLastHour" : {
-    "title" : "Senaste timmen",
-    "note" : "Dropdown option to only clear data from the past hour"
+  "optionLastHour": {
+    "title": "Senaste timmen",
+    "note": "Dropdown option to only clear data from the past hour"
   },
-  "optionLast24Hour" : {
-    "title" : "Senaste 24 timmarna",
-    "note" : "Dropdown option to only clear data from the past 24 hours"
+  "optionLast24Hour": {
+    "title": "Senaste 24 timmarna",
+    "note": "Dropdown option to only clear data from the past 24 hours"
   },
-  "optionLast7days" : {
-    "title" : "Senaste 7 dagarna",
-    "note" : "Dropdown option to only clear data from the past 7 days"
+  "optionLast7days": {
+    "title": "Senaste 7 dagarna",
+    "note": "Dropdown option to only clear data from the past 7 days"
   },
-  "optionLast4Weeks" : {
-    "title" : "Senaste 4 veckorna",
-    "note" : "Dropdown option to only clear data from the past 4 weeks"
+  "optionLast4Weeks": {
+    "title": "Senaste 4 veckorna",
+    "note": "Dropdown option to only clear data from the past 4 weeks"
   },
-  "optionAllTime" : {
-    "title" : "För all tid",
-    "note" : "Dropdown option to clear all data, since recording started"
+  "optionAllTime": {
+    "title": "För all tid",
+    "note": "Dropdown option to clear all data, since recording started"
   },
-  "historyDuration" : {
-    "title" : "{duration, select, hour {en timmes} day {24 timmars} week {en veckas} month {4 veckors} other {Alla}}",
-    "note" : "Description of what period of history data should be deleted."
+  "historyDuration": {
+    "title": "{duration, select, hour {en timmes} day {24 timmars} week {en veckas} month {4 veckors} other {Alla}}",
+    "note": "Description of what period of history data should be deleted."
   },
-  "summaryClearTabsHistoryDuration" : {
-    "title" : "{openTabs, plural, one {Vill du stänga <b>{openTabs}</b> flik och rensa <b>{durationDesc}</b> surfhistorik och cookies?} other {Vill du stänga <b>{openTabs}</b> flikar och rensa <b>{durationDesc}</b> surfhistorik och cookies?}}",
-    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
+  "summaryClearTabsHistoryDuration": {
+    "title": "{openTabs, plural, one {Vill du stänga <b>{openTabs}</b> flik och rensa <b>{durationDesc}</b> surfhistorik och cookies?} other {Vill du stänga <b>{openTabs}</b> flikar och rensa <b>{durationDesc}</b> surfhistorik och cookies?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
   },
-  "summaryClearTabsDuration" : {
-    "title" : "{openTabs, plural, one {Vill du stänga <b>{openTabs}</b> flik och rensa <b>{durationDesc}</b> cookies?} other {Vill du stänga <b>{openTabs}</b> flikar och rensa <b>{durationDesc}</b> cookies?}}",
-    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
+  "summaryClearTabsDuration": {
+    "title": "{openTabs, plural, one {Vill du stänga <b>{openTabs}</b> flik och rensa <b>{durationDesc}</b> cookies?} other {Vill du stänga <b>{openTabs}</b> flikar och rensa <b>{durationDesc}</b> cookies?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
   },
-  "summaryClearHistoryDuration" : {
-    "title" : "Vill du rensa <b>{durationDesc}</b> surfhistorik och cookies?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
+  "summaryClearHistoryDuration": {
+    "title": "Vill du rensa <b>{durationDesc}</b> surfhistorik och cookies?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
   },
-  "summaryClearCookiesDuration" : {
-    "title" : "Vill du rensa <b>{durationDesc}</b> cookies?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
+  "summaryClearCookiesDuration": {
+    "title": "Vill du rensa <b>{durationDesc}</b> cookies?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
   },
-  "summaryClearTabsHistoryAll" : {
-    "title" : "Vill du stänga <b>{openTabs}</b> {openTabs, plural, =1 {flik} other {flikar}}, rensa <b>all</b> surfhistorik och alla ({cookies} {cookies, plural, =1 {webbplats} other {webbplatser}})?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
+  "summaryClearTabsHistoryAll": {
+    "title": "Vill du stänga <b>{openTabs}</b> {openTabs, plural, =1 {flik} other {flikar}}, rensa <b>all</b> surfhistorik och alla ({cookies} {cookies, plural, =1 {webbplats} other {webbplatser}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
   },
-  "summaryClearTabsAll" : {
-    "title" : "Vill du stänga <b>{openTabs}</b> {openTabs, plural, =1 {flik} other {flikar}} och rensa <b>alla</b> cookies ({cookies} {cookies, plural, =1 {webbplats} other {webbplatser}})?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
+  "summaryClearTabsAll": {
+    "title": "Vill du stänga <b>{openTabs}</b> {openTabs, plural, =1 {flik} other {flikar}} och rensa <b>alla</b> cookies ({cookies} {cookies, plural, =1 {webbplats} other {webbplatser}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
   },
-  "summaryClearHistoryAll" : {
-    "title" : "{cookies, plural, one {Vill du rensa <b>all</b> surfhistorik och alla cookies ({cookies} webbplats)?} other {Vill du rensa <b>all</b> surfhistorik och alla cookies ({cookies} webbplatser)?}}",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
+  "summaryClearHistoryAll": {
+    "title": "{cookies, plural, one {Vill du rensa <b>all</b> surfhistorik och alla cookies ({cookies} webbplats)?} other {Vill du rensa <b>all</b> surfhistorik och alla cookies ({cookies} webbplatser)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
   },
-  "summaryClearCookiesAll" : {
-    "title" : "{cookies, plural, one {Vill du rensa <b>alla</b> cookies ({cookies} webbplats)?} other {Vill du rensa <b>alla</b> cookies ({cookies} webbplatser)?}}",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
+  "summaryClearCookiesAll": {
+    "title": "{cookies, plural, one {Vill du rensa <b>alla</b> cookies ({cookies} webbplats)?} other {Vill du rensa <b>alla</b> cookies ({cookies} webbplatser)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
   },
-  "summaryClearTabsHistorySite" : {
-    "title" : "{openTabs, plural, one {Vill du stänga <b>{openTabs} flik för {site}</b> och rensa <b>alla cookies för {site}</b>?} other {Vill du stänga <b>{openTabs} flikar för {site}</b> och rensa <b>alla cookies för {site}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  "summaryClearTabsHistorySite": {
+    "title": "{openTabs, plural, one {Vill du stänga <b>{openTabs} flik för {site}</b> och rensa <b>alla cookies för {site}</b>?} other {Vill du stänga <b>{openTabs} flikar för {site}</b> och rensa <b>alla cookies för {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
   },
-  "summaryClearTabsSite" : {
-    "title" : "{openTabs, plural, one {Vill du stänga <b>{openTabs} flik för {site}</b> och rensa <b>alla cookies för {site}</b>?} other {Vill du stänga <b>{openTabs} flikar för {site}</b> och rensa <b>alla cookies för {site}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  "summaryClearTabsSite": {
+    "title": "{openTabs, plural, one {Vill du stänga <b>{openTabs} flik för {site}</b> och rensa <b>alla cookies för {site}</b>?} other {Vill du stänga <b>{openTabs} flikar för {site}</b> och rensa <b>alla cookies för {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
   },
-  "summaryClearHistorySite" : {
-    "title" : "Vill du rensa <b>all surfhistorik och alla cookies för {site}</b>?",
-    "note" : "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
+  "summaryClearHistorySite": {
+    "title": "Vill du rensa <b>all surfhistorik och alla cookies för {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
   },
-  "summaryClearCookiesSite" : {
-    "title" : "Vill du rensa <b>alla cookies för {site}</b>?",
-    "note" : "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
+  "summaryClearCookiesSite": {
+    "title": "Vill du rensa <b>alla cookies för {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
   },
-  "summaryPinnedIgnored" : {
-    "title" : "{tabs, plural, one {<b>{tabs} fäst</b> flik kommer att ignoreras.} other {<b>{tabs} fästa</b> flikar kommer att ignoreras.}}",
-    "note" : "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
+  "summaryPinnedIgnored": {
+    "title": "{tabs, plural, one {<b>{tabs} fäst</b> flik kommer att ignoreras.} other {<b>{tabs} fästa</b> flikar kommer att ignoreras.}}",
+    "note": "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
   },
-  "clearData" : {
-    "title" : "Klart",
-    "note" : "Button text to start data clearing."
+  "clearData": {
+    "title": "Klart",
+    "note": "Button text to start data clearing."
   },
-  "cancel" : {
-    "title" : "Avbryt",
-    "note" : "Button text to exit the fire button modal."
+  "cancel": {
+    "title": "Avbryt",
+    "note": "Button text to exit the fire button modal."
   },
-  "historyAndDownloadsNotAffected" : {
-    "title" : "Om du också vill rensa historiken väljer du en tidsperiod.",
-    "note" : "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
+  "historyAndDownloadsNotAffected": {
+    "title": "Om du också vill rensa historiken väljer du en tidsperiod.",
+    "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
   }
 }

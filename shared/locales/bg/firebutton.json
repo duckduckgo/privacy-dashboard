@@ -1,111 +1,112 @@
 {
-  "smartling" : {
-    "string_format" : "icu",
-    "translate_paths" : [
-    {
-      "path" : "*/title",
-      "key" : "{*}/title",
-      "instruction" : "*/note"
-    }]
+  "smartling": {
+    "string_format": "icu",
+    "translate_paths": [
+      {
+        "path": "*/title",
+        "key": "{*}/title",
+        "instruction": "*/note"
+      }
+    ]
   },
-  "fireDialogHeader" : {
-    "title" : "Затваряне на разделите и изчистване на данните",
-    "note" : "Dialog header."
+  "fireDialogHeader": {
+    "title": "Затваряне на разделите и изчистване на данните",
+    "note": "Dialog header."
   },
-  "fireDialogHeaderNoTabs" : {
-    "title" : "Изчистване на данни",
-    "note" : "Dialog header when tab clearing is disabled."
+  "fireDialogHeaderNoTabs": {
+    "title": "Изчистване на данни",
+    "note": "Dialog header when tab clearing is disabled."
   },
-  "optionCurrentSite" : {
-    "title" : "Само за текущия сайт",
-    "note" : "Dropdown option to only clear data for the current active website"
+  "optionCurrentSite": {
+    "title": "Само за текущия сайт",
+    "note": "Dropdown option to only clear data for the current active website"
   },
-  "optionLastHour" : {
-    "title" : "Последния час",
-    "note" : "Dropdown option to only clear data from the past hour"
+  "optionLastHour": {
+    "title": "Последния час",
+    "note": "Dropdown option to only clear data from the past hour"
   },
-  "optionLast24Hour" : {
-    "title" : "Последните 24 часа",
-    "note" : "Dropdown option to only clear data from the past 24 hours"
+  "optionLast24Hour": {
+    "title": "Последните 24 часа",
+    "note": "Dropdown option to only clear data from the past 24 hours"
   },
-  "optionLast7days" : {
-    "title" : "Последните 7 дни",
-    "note" : "Dropdown option to only clear data from the past 7 days"
+  "optionLast7days": {
+    "title": "Последните 7 дни",
+    "note": "Dropdown option to only clear data from the past 7 days"
   },
-  "optionLast4Weeks" : {
-    "title" : "Последните 4 седмици",
-    "note" : "Dropdown option to only clear data from the past 4 weeks"
+  "optionLast4Weeks": {
+    "title": "Последните 4 седмици",
+    "note": "Dropdown option to only clear data from the past 4 weeks"
   },
-  "optionAllTime" : {
-    "title" : "През цялото време",
-    "note" : "Dropdown option to clear all data, since recording started"
+  "optionAllTime": {
+    "title": "През цялото време",
+    "note": "Dropdown option to clear all data, since recording started"
   },
-  "historyDuration" : {
-    "title" : "{duration, select, hour {един час} day {24 часа} week {една седмица} month {4 седмици} other {Всички}}",
-    "note" : "Description of what period of history data should be deleted."
+  "historyDuration": {
+    "title": "{duration, select, hour {един час} day {24 часа} week {една седмица} month {4 седмици} other {Всички}}",
+    "note": "Description of what period of history data should be deleted."
   },
-  "summaryClearTabsHistoryDuration" : {
-    "title" : "{openTabs, plural, one {Затваряне на <b>{openTabs}</b> раздел и изчистване на <b>{durationDesc}</b> от историята на сърфиране и бисквитките?} other {Затваряне на <b>{openTabs}</b> раздела и изчистване на <b>{durationDesc}</b> от историята на сърфиране и бисквитките?}}",
-    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
+  "summaryClearTabsHistoryDuration": {
+    "title": "{openTabs, plural, one {Затваряне на <b>{openTabs}</b> раздел и изчистване на <b>{durationDesc}</b> от историята на сърфиране и бисквитките?} other {Затваряне на <b>{openTabs}</b> раздела и изчистване на <b>{durationDesc}</b> от историята на сърфиране и бисквитките?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
   },
-  "summaryClearTabsDuration" : {
-    "title" : "{openTabs, plural, one {Затваряне на <b>{openTabs}</b> раздел и изчистване на <b>{durationDesc}</b> от бисквитките?} other {Затваряне на <b>{openTabs}</b> раздела и изчистване на <b>{durationDesc}</b> от бисквитките?}}",
-    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
+  "summaryClearTabsDuration": {
+    "title": "{openTabs, plural, one {Затваряне на <b>{openTabs}</b> раздел и изчистване на <b>{durationDesc}</b> от бисквитките?} other {Затваряне на <b>{openTabs}</b> раздела и изчистване на <b>{durationDesc}</b> от бисквитките?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
   },
-  "summaryClearHistoryDuration" : {
-    "title" : "Изчистване на <b>{durationDesc}</b> от историята на сърфиране и бисквитките?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
+  "summaryClearHistoryDuration": {
+    "title": "Изчистване на <b>{durationDesc}</b> от историята на сърфиране и бисквитките?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
   },
-  "summaryClearCookiesDuration" : {
-    "title" : "Изчистване на <b>{durationDesc}</b> от бисквитките?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
+  "summaryClearCookiesDuration": {
+    "title": "Изчистване на <b>{durationDesc}</b> от бисквитките?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
   },
-  "summaryClearTabsHistoryAll" : {
-    "title" : "Затваряне на <b>{OpenTabs}</b> {OpenTabs, plural, =1 {раздел} other {{раздела}} и изчистване на <b>цялата</b> история на сърфиране и всички бисквитки ({cookies} {cookies, plural, =1 {сайт} other {сайта}})?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
+  "summaryClearTabsHistoryAll": {
+    "title": "Затваряне на <b>{OpenTabs}</b> {OpenTabs, plural, =1 {раздел} other {{раздела}} и изчистване на <b>цялата</b> история на сърфиране и всички бисквитки ({cookies} {cookies, plural, =1 {сайт} other {сайта}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
   },
-  "summaryClearTabsAll" : {
-    "title" : "Затваряне на <b>{OpenTabs}</b> {OpenTabs, plural, =1 {tab} other {{tabs}} и изчистване на <b>всички</b> бисквитки ({cookies} {cookies, plural, =1 {site} other {sites}})?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
+  "summaryClearTabsAll": {
+    "title": "Затваряне на <b>{OpenTabs}</b> {OpenTabs, plural, =1 {tab} other {{tabs}} и изчистване на <b>всички</b> бисквитки ({cookies} {cookies, plural, =1 {site} other {sites}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
   },
-  "summaryClearHistoryAll" : {
-    "title" : "{cookies, plural, one {Изчистване на <b>цялата</b> история на сърфиране и бисквитките ({cookies} сайт)?} other {Изчистване на <b>цялата</b> история на сърфиране и бисквитките ({cookies} сайта)?}}",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
+  "summaryClearHistoryAll": {
+    "title": "{cookies, plural, one {Изчистване на <b>цялата</b> история на сърфиране и бисквитките ({cookies} сайт)?} other {Изчистване на <b>цялата</b> история на сърфиране и бисквитките ({cookies} сайта)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
   },
-  "summaryClearCookiesAll" : {
-    "title" : "{cookies, plural, one {Изчистване на <b>всички</b> бисквитки ({cookies} сайт)?} other {Изчистване на <b>всички</b> бисквитки ({cookies} сайта)?}}",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
+  "summaryClearCookiesAll": {
+    "title": "{cookies, plural, one {Изчистване на <b>всички</b> бисквитки ({cookies} сайт)?} other {Изчистване на <b>всички</b> бисквитки ({cookies} сайта)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
   },
-  "summaryClearTabsHistorySite" : {
-    "title" : "{openTabs, plural, one {Затваряне на <b>{openTabs} раздел {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?} other {Затваряне на <b>{openTabs} раздела {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  "summaryClearTabsHistorySite": {
+    "title": "{openTabs, plural, one {Затваряне на <b>{openTabs} раздел {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?} other {Затваряне на <b>{openTabs} раздела {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
   },
-  "summaryClearTabsSite" : {
-    "title" : "{openTabs, plural, one {Затваряне на <b>{openTabs} раздел {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?} other {Затваряне на <b>{openTabs} раздела {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  "summaryClearTabsSite": {
+    "title": "{openTabs, plural, one {Затваряне на <b>{openTabs} раздел {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?} other {Затваряне на <b>{openTabs} раздела {site}</b> и изчистване на <b>всички бисквитки за {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
   },
-  "summaryClearHistorySite" : {
-    "title" : "Изчистване на <b>цялата история на сърфиране и всички бисквитки за {site}</b>?",
-    "note" : "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
+  "summaryClearHistorySite": {
+    "title": "Изчистване на <b>цялата история на сърфиране и всички бисквитки за {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
   },
-  "summaryClearCookiesSite" : {
-    "title" : "Изчистване на <b>всички бисквитки за {site}</b>?",
-    "note" : "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
+  "summaryClearCookiesSite": {
+    "title": "Изчистване на <b>всички бисквитки за {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
   },
-  "summaryPinnedIgnored" : {
-    "title" : "{tabs, plural, one {<b>{tabs} закачен</b> раздел ще бъде игнориран.} other {<b>{tabs} закачени</b> раздела ще бъдат игнорирани.}}",
-    "note" : "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
+  "summaryPinnedIgnored": {
+    "title": "{tabs, plural, one {<b>{tabs} закачен</b> раздел ще бъде игнориран.} other {<b>{tabs} закачени</b> раздела ще бъдат игнорирани.}}",
+    "note": "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
   },
-  "clearData" : {
-    "title" : "Ясно",
-    "note" : "Button text to start data clearing."
+  "clearData": {
+    "title": "Ясно",
+    "note": "Button text to start data clearing."
   },
-  "cancel" : {
-    "title" : "Отмени",
-    "note" : "Button text to exit the fire button modal."
+  "cancel": {
+    "title": "Отмени",
+    "note": "Button text to exit the fire button modal."
   },
-  "historyAndDownloadsNotAffected" : {
-    "title" : "За да изчистите и историята, изберете период от време.",
-    "note" : "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
+  "historyAndDownloadsNotAffected": {
+    "title": "За да изчистите и историята, изберете период от време.",
+    "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
   }
 }

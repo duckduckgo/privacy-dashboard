@@ -1,111 +1,112 @@
 {
-  "smartling" : {
-    "string_format" : "icu",
-    "translate_paths" : [
-    {
-      "path" : "*/title",
-      "key" : "{*}/title",
-      "instruction" : "*/note"
-    }]
+  "smartling": {
+    "string_format": "icu",
+    "translate_paths": [
+      {
+        "path": "*/title",
+        "key": "{*}/title",
+        "instruction": "*/note"
+      }
+    ]
   },
-  "fireDialogHeader" : {
-    "title" : "Închide filele și șterge datele",
-    "note" : "Dialog header."
+  "fireDialogHeader": {
+    "title": "Închide filele și șterge datele",
+    "note": "Dialog header."
   },
-  "fireDialogHeaderNoTabs" : {
-    "title" : "Ștergere date",
-    "note" : "Dialog header when tab clearing is disabled."
+  "fireDialogHeaderNoTabs": {
+    "title": "Ștergere date",
+    "note": "Dialog header when tab clearing is disabled."
   },
-  "optionCurrentSite" : {
-    "title" : "Numai de site-ul curent",
-    "note" : "Dropdown option to only clear data for the current active website"
+  "optionCurrentSite": {
+    "title": "Numai de site-ul curent",
+    "note": "Dropdown option to only clear data for the current active website"
   },
-  "optionLastHour" : {
-    "title" : "Ultima oră",
-    "note" : "Dropdown option to only clear data from the past hour"
+  "optionLastHour": {
+    "title": "Ultima oră",
+    "note": "Dropdown option to only clear data from the past hour"
   },
-  "optionLast24Hour" : {
-    "title" : "Ultimele 24 de ore",
-    "note" : "Dropdown option to only clear data from the past 24 hours"
+  "optionLast24Hour": {
+    "title": "Ultimele 24 de ore",
+    "note": "Dropdown option to only clear data from the past 24 hours"
   },
-  "optionLast7days" : {
-    "title" : "Ultimele 7 zile",
-    "note" : "Dropdown option to only clear data from the past 7 days"
+  "optionLast7days": {
+    "title": "Ultimele 7 zile",
+    "note": "Dropdown option to only clear data from the past 7 days"
   },
-  "optionLast4Weeks" : {
-    "title" : "Ultimele 4 săptămâni",
-    "note" : "Dropdown option to only clear data from the past 4 weeks"
+  "optionLast4Weeks": {
+    "title": "Ultimele 4 săptămâni",
+    "note": "Dropdown option to only clear data from the past 4 weeks"
   },
-  "optionAllTime" : {
-    "title" : "Totdeauna",
-    "note" : "Dropdown option to clear all data, since recording started"
+  "optionAllTime": {
+    "title": "Totdeauna",
+    "note": "Dropdown option to clear all data, since recording started"
   },
-  "historyDuration" : {
-    "title" : "{duration, select, hour {o oră} day {24 de ore} week {o săptămână} month {4 săptămâni} other {Toate}}",
-    "note" : "Description of what period of history data should be deleted."
+  "historyDuration": {
+    "title": "{duration, select, hour {o oră} day {24 de ore} week {o săptămână} month {4 săptămâni} other {Toate}}",
+    "note": "Description of what period of history data should be deleted."
   },
-  "summaryClearTabsHistoryDuration" : {
-    "title" : "{openTabs, plural, one {Închizi <b>{openTabs}</b> filă și ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?} few {Închizi <b>{openTabs}</b> file și ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?} other {Închizi <b>{openTabs}</b> de file și ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
+  "summaryClearTabsHistoryDuration": {
+    "title": "{openTabs, plural, one {Închizi <b>{openTabs}</b> filă și ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?} few {Închizi <b>{openTabs}</b> file și ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?} other {Închizi <b>{openTabs}</b> de file și ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
   },
-  "summaryClearTabsDuration" : {
-    "title" : "{openTabs, plural, one {Închizi <b>{openTabs}</b> filă și ștergi modulele cookie pentru <b>{durationDesc}</b>?} few {Închizi <b>{openTabs}</b> file și ștergi modulele cookie pentru <b>{durationDesc}</b>?} other {Închizi <b>{openTabs}</b> de file și ștergi modulele cookie pentru <b>{durationDesc}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
+  "summaryClearTabsDuration": {
+    "title": "{openTabs, plural, one {Închizi <b>{openTabs}</b> filă și ștergi modulele cookie pentru <b>{durationDesc}</b>?} few {Închizi <b>{openTabs}</b> file și ștergi modulele cookie pentru <b>{durationDesc}</b>?} other {Închizi <b>{openTabs}</b> de file și ștergi modulele cookie pentru <b>{durationDesc}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
   },
-  "summaryClearHistoryDuration" : {
-    "title" : "Ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
+  "summaryClearHistoryDuration": {
+    "title": "Ștergi istoricul de navigare și modulele cookie pentru <b>{durationDesc}</b>?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
   },
-  "summaryClearCookiesDuration" : {
-    "title" : "Ștergi modulele cookie pentru <b>{durationDesc}</b>?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
+  "summaryClearCookiesDuration": {
+    "title": "Ștergi modulele cookie pentru <b>{durationDesc}</b>?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
   },
-  "summaryClearTabsHistoryAll" : {
-    "title" : "Închizi <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {tabs}} și ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} {cookies, plural, =1 {site} other {sites}})?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
+  "summaryClearTabsHistoryAll": {
+    "title": "Închizi <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {tabs}} și ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} {cookies, plural, =1 {site} other {sites}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
   },
-  "summaryClearTabsAll" : {
-    "title" : "Închizi <b>{openTabs}</b> {openTabs, plural, =1 {filă} other {file}} și ștergi <b>toate</b> modulele cookie ({cookies} {cookies, plural, =1 {site} other {site-uri}})?",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
+  "summaryClearTabsAll": {
+    "title": "Închizi <b>{openTabs}</b> {openTabs, plural, =1 {filă} other {file}} și ștergi <b>toate</b> modulele cookie ({cookies} {cookies, plural, =1 {site} other {site-uri}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
   },
-  "summaryClearHistoryAll" : {
-    "title" : "{cookies, plural, one {Ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} site)?} few {Ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} site-uri)?} other {Ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} de site-uri)?}}",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
+  "summaryClearHistoryAll": {
+    "title": "{cookies, plural, one {Ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} site)?} few {Ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} site-uri)?} other {Ștergi <b>întregul</b> istoric de navigare și toate modulele cookie ({cookies} de site-uri)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
   },
-  "summaryClearCookiesAll" : {
-    "title" : "{cookies, plural, one {Ștergi <b>toate</b> modulele cookie ({cookies} site)?} few {Ștergi <b>toate</b> modulele cookie ({cookies} site-uri)?} other {Ștergi <b>toate</b> modulele cookie ({cookies} de site-uri)?}}",
-    "note" : "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
+  "summaryClearCookiesAll": {
+    "title": "{cookies, plural, one {Ștergi <b>toate</b> modulele cookie ({cookies} site)?} few {Ștergi <b>toate</b> modulele cookie ({cookies} site-uri)?} other {Ștergi <b>toate</b> modulele cookie ({cookies} de site-uri)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
   },
-  "summaryClearTabsHistorySite" : {
-    "title" : "{openTabs, plural, one {Închizi <b>{openTabs} filă {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} few {Închizi <b>{openTabs} file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} other {Închizi <b>{openTabs} de file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  "summaryClearTabsHistorySite": {
+    "title": "{openTabs, plural, one {Închizi <b>{openTabs} filă {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} few {Închizi <b>{openTabs} file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} other {Închizi <b>{openTabs} de file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
   },
-  "summaryClearTabsSite" : {
-    "title" : "{openTabs, plural, one {Închizi <b>{openTabs} filă {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} few {Închizi <b>{openTabs} file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} other {Închizi <b>{openTabs} file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?}}",
-    "note" : "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  "summaryClearTabsSite": {
+    "title": "{openTabs, plural, one {Închizi <b>{openTabs} filă {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} few {Închizi <b>{openTabs} file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?} other {Închizi <b>{openTabs} file {site}</b> și ștergi <b>toate modulele cookie {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
   },
-  "summaryClearHistorySite" : {
-    "title" : "Ștergi întregul istoric de navigare și modulele cookie aferente <b>{site}</b> ?",
-    "note" : "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
+  "summaryClearHistorySite": {
+    "title": "Ștergi întregul istoric de navigare și modulele cookie aferente <b>{site}</b> ?",
+    "note": "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
   },
-  "summaryClearCookiesSite" : {
-    "title" : "Ștergi toate modulele cookie aferente <b>{site}</b>?",
-    "note" : "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
+  "summaryClearCookiesSite": {
+    "title": "Ștergi toate modulele cookie aferente <b>{site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
   },
-  "summaryPinnedIgnored" : {
-    "title" : "{tabs, plural, one {<b>{tabs} filă fixată</b> va fi ignorată.} few {<b>{tabs} file fixate</b> vor fi ignorate.} other {<b>{tabs} de file fixate</b> vor fi ignorate.}}",
-    "note" : "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
+  "summaryPinnedIgnored": {
+    "title": "{tabs, plural, one {<b>{tabs} filă fixată</b> va fi ignorată.} few {<b>{tabs} file fixate</b> vor fi ignorate.} other {<b>{tabs} de file fixate</b> vor fi ignorate.}}",
+    "note": "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
   },
-  "clearData" : {
-    "title" : "Cer senin",
-    "note" : "Button text to start data clearing."
+  "clearData": {
+    "title": "Cer senin",
+    "note": "Button text to start data clearing."
   },
-  "cancel" : {
-    "title" : "Anulează",
-    "note" : "Button text to exit the fire button modal."
+  "cancel": {
+    "title": "Anulează",
+    "note": "Button text to exit the fire button modal."
   },
-  "historyAndDownloadsNotAffected" : {
-    "title" : "Pentru a șterge și istoricul, selectează o perioadă.",
-    "note" : "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
+  "historyAndDownloadsNotAffected": {
+    "title": "Pentru a șterge și istoricul, selectează o perioadă.",
+    "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
   }
 }
