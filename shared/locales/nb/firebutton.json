@@ -66,7 +66,7 @@
     "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
   },
   "summaryClearTabsAll": {
-    "title": "Vil du lukke <b>{openTabs}</b> {openTabs, plural, =1 {fane} other {faner}}, og fjerne <b>alle</b> informasjonskapsler ({cookies} {cookies, plural, =1 {nettsted} andre {nettsteder}})?",
+    "title": "Vil du lukke <b>{openTabs}</b> {openTabs, plural, =1 {fane} other {faner}}, og fjerne <b>alle</b> informasjonskapsler ({cookies} {cookies, plural, =1 {nettsted} other {nettsteder}})?",
     "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
   },
   "summaryClearHistoryAll": {

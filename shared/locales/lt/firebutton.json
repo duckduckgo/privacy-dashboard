@@ -62,7 +62,7 @@
     "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
   },
   "summaryClearTabsHistoryAll": {
-    "title": "Uždaryti <b>{openTabs}</b> {openTabs, plural, =1 {skirtuką} few {skirtukus} other {skirtukų}}, ir išvalyti <b>visą</b> naršymo istoriją ir slapukus ({cookies} {cookies, plural, =1 {svetainėje} {few} svetainėse other {svetainių}})?",
+    "title": "Uždaryti <b>{openTabs}</b> {openTabs, plural, =1 {skirtuką} few {skirtukus} other {skirtukų}}, ir išvalyti <b>visą</b> naršymo istoriją ir slapukus ({cookies} {cookies, plural, =1 {svetainėje} few {svetainėse} other {svetainių}})?",
     "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
   },
   "summaryClearTabsAll": {
