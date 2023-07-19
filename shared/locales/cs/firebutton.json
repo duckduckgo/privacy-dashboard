@@ -1,0 +1,112 @@
+{
+  "smartling": {
+    "string_format": "icu",
+    "translate_paths": [
+      {
+        "path": "*/title",
+        "key": "{*}/title",
+        "instruction": "*/note"
+      }
+    ]
+  },
+  "fireDialogHeader": {
+    "title": "Zavřít karty a vymazat data",
+    "note": "Dialog header."
+  },
+  "fireDialogHeaderNoTabs": {
+    "title": "Vymazat data",
+    "note": "Dialog header when tab clearing is disabled."
+  },
+  "optionCurrentSite": {
+    "title": "Jen aktuální stránka",
+    "note": "Dropdown option to only clear data for the current active website"
+  },
+  "optionLastHour": {
+    "title": "Poslední hodina",
+    "note": "Dropdown option to only clear data from the past hour"
+  },
+  "optionLast24Hour": {
+    "title": "Posledních 24 hodin",
+    "note": "Dropdown option to only clear data from the past 24 hours"
+  },
+  "optionLast7days": {
+    "title": "Posledních 7 dní",
+    "note": "Dropdown option to only clear data from the past 7 days"
+  },
+  "optionLast4Weeks": {
+    "title": "Poslední 4 týdny",
+    "note": "Dropdown option to only clear data from the past 4 weeks"
+  },
+  "optionAllTime": {
+    "title": "Po celou dobu",
+    "note": "Dropdown option to clear all data, since recording started"
+  },
+  "historyDuration": {
+    "title": "{duration, select, hour {jednu hodinu} day {24 hodin} week {jeden týden} month {4 týdny} other {Vše}}",
+    "note": "Description of what period of history data should be deleted."
+  },
+  "summaryClearTabsHistoryDuration": {
+    "title": "{openTabs, plural, one {Zavřít <b>{openTabs}</b> kartu a vymazat <b>{durationDesc}</b> historie procházení a souborů cookie?} few {Zavřít <b>{openTabs}</b> karty a vymazat <b>{durationDesc}</b> historie procházení a souborů cookie?} many {Zavřít <b>{openTabs}</b> karty a vymazat <b>{durationDesc}</b> historie procházení a souborů cookie?} other {Zavřít <b>{openTabs}</b> karet a vymazat <b>{durationDesc}</b> historie procházení a souborů cookie?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
+  },
+  "summaryClearTabsDuration": {
+    "title": "{openTabs, plural, one {Zavřít <b>{openTabs}</b> kartu a vymazat <b>{durationDesc}</b> souborů cookie?} few {Zavřít <b>{openTabs}</b> karty a vymazat <b>{durationDesc}</b> souborů cookie?} many {Zavřít <b>{openTabs}</b> karty a vymazat <b>{durationDesc}</b> souborů cookie?} other {Zavřít <b>{openTabs}</b> karet a vymazat <b>{durationDesc}</b> souborů cookie?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
+  },
+  "summaryClearHistoryDuration": {
+    "title": "Vymazat <b>{durationDesc}</b> historie procházení a souborů cookie?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
+  },
+  "summaryClearCookiesDuration": {
+    "title": "Vymazat <b>{durationDesc}</b> souborů cookie?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
+  },
+  "summaryClearTabsHistoryAll": {
+    "title": "Zavřít <b>{openTabs}</b> {openTabs, plural, =1 {záložku} few {záložky} other {záložek}} a vymazat <b>veškerou</b> historii procházení a všechny soubory cookie ({cookies} {cookies, plural, =1 {stránka} few {stránky} other {stránek}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
+  },
+  "summaryClearTabsAll": {
+    "title": "Zavřít <b>{openTabs}</b> {openTabs, plural, =1 {záložku} few {záložky} other {záložek}} a vymazat <b>všechny</b> soubory cookie ({cookies} {cookies, plural, =1 {stránka} few {stránky} other {stránek}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
+  },
+  "summaryClearHistoryAll": {
+    "title": "{cookies, plural, one {Vymazat <b>veškerou</b> historii prohlížení a všechny soubory cookie ({cookies} stránka)?} few {Vymazat <b>veškerou</b> historii prohlížení a všechny soubory cookie ({cookies} stránky)?} many {Vymazat <b>veškerou</b> historii prohlížení a všechny soubory cookie ({cookies} stránky)?} other {Vymazat <b>veškerou</b> historii prohlížení a všechny soubory cookie ({cookies} stránek)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
+  },
+  "summaryClearCookiesAll": {
+    "title": "{cookies, plural, one {Vymazat <b>všechny</b> soubory cookie ({cookies} stránka)?} few {Vymazat <b>všechny</b> soubory cookie ({cookies} stránky)?} many {Vymazat <b>všechny</b> soubory cookie ({cookies} stránky)?} other {Vymazat <b>všechny</b> soubory cookie ({cookies} stránek)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
+  },
+  "summaryClearTabsHistorySite": {
+    "title": "{openTabs, plural, one {Zavřít <b>{openTabs} kartu {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?} few {Zavřít <b>{openTabs} karty {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?} many {Zavřít <b>{openTabs} karty {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?} other {Zavřít <b>{openTabs} karet {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  },
+  "summaryClearTabsSite": {
+    "title": "{openTabs, plural, one {Zavřít <b>{openTabs} kartu {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?} few {Zavřít <b>{openTabs} karty {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?} many {Zavřít <b>{openTabs} karty {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?} other {Zavřít <b>{openTabs} karet {site}</b> a vymazat <b>všechny soubory cookie ze stránky {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  },
+  "summaryClearHistorySite": {
+    "title": "Vymazat <b>celou historii prohlížení a soubory cookie ze stránky {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
+  },
+  "summaryClearCookiesSite": {
+    "title": "Vymazat <b>všechny soubory cookie ze stránky {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
+  },
+  "summaryPinnedIgnored": {
+    "title": "{tabs, plural, one {<b>{tabs} připnutá</b> karta bude ignorována.} few {<b>{tabs} připnuté</b> karty budou ignorovány.} many {<b>{tabs} připnuté</b> karty bude ignorováno.} other {<b>{tabs} připnutých</b> karet bude ignorováno.}}",
+    "note": "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
+  },
+  "clearData": {
+    "title": "Vymazat",
+    "note": "Button text to start data clearing."
+  },
+  "cancel": {
+    "title": "Zrušit",
+    "note": "Button text to exit the fire button modal."
+  },
+  "historyAndDownloadsNotAffected": {
+    "title": "Pokud chceš vymazat i historii, vyber časové období.",
+    "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
+  }
+}

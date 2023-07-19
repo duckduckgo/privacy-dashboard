@@ -1,0 +1,112 @@
+{
+  "smartling": {
+    "string_format": "icu",
+    "translate_paths": [
+      {
+        "path": "*/title",
+        "key": "{*}/title",
+        "instruction": "*/note"
+      }
+    ]
+  },
+  "fireDialogHeader": {
+    "title": "Cerrar pestañas y borrar datos",
+    "note": "Dialog header."
+  },
+  "fireDialogHeaderNoTabs": {
+    "title": "Borrar datos",
+    "note": "Dialog header when tab clearing is disabled."
+  },
+  "optionCurrentSite": {
+    "title": "Solo sitio actual",
+    "note": "Dropdown option to only clear data for the current active website"
+  },
+  "optionLastHour": {
+    "title": "Última hora",
+    "note": "Dropdown option to only clear data from the past hour"
+  },
+  "optionLast24Hour": {
+    "title": "Últimas 24 horas",
+    "note": "Dropdown option to only clear data from the past 24 hours"
+  },
+  "optionLast7days": {
+    "title": "Últimos 7 días",
+    "note": "Dropdown option to only clear data from the past 7 days"
+  },
+  "optionLast4Weeks": {
+    "title": "Últimas 4 semanas",
+    "note": "Dropdown option to only clear data from the past 4 weeks"
+  },
+  "optionAllTime": {
+    "title": "Siempre",
+    "note": "Dropdown option to clear all data, since recording started"
+  },
+  "historyDuration": {
+    "title": "{duration, select, hour {una hora} day {24 horas} week {una semana} month {4 semanas} other {Todo}}",
+    "note": "Description of what period of history data should be deleted."
+  },
+  "summaryClearTabsHistoryDuration": {
+    "title": "{openTabs, plural, one {¿Cerrar <b>{openTabs}</b> pestaña y borrar <b>{durationDesc}</b> del historial de navegación y las cookies?} other {¿Cerrar <b>{openTabs}</b> pestañas y borrar <b>{durationDesc}</b> del historial de navegación y las cookies?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
+  },
+  "summaryClearTabsDuration": {
+    "title": "{openTabs, plural, one {¿Cerrar <b>{openTabs}</b> pestaña y borrar <b>{durationDesc}</b> de las cookies?} other {¿Cerrar <b>{openTabs}</b> pestañas y borrar <b>{durationDesc}</b> de las cookies?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
+  },
+  "summaryClearHistoryDuration": {
+    "title": "¿Borrar <b>{durationDesc}</b> del historial de navegación y las cookies?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
+  },
+  "summaryClearCookiesDuration": {
+    "title": "¿Borrar <b>{durationDesc}</b> de las cookies?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
+  },
+  "summaryClearTabsHistoryAll": {
+    "title": "¿Cerrar <b>{openTabs}</b> {openTabs, plural, =1 {pestaña} other {pestañas}} y borrar <b>todo</b> el historial de navegación y cookies ({cookies} {cookies, plural, =1 {sitio} other {sitios}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
+  },
+  "summaryClearTabsAll": {
+    "title": "¿Cerrar <b>{openTabs}</b> {openTabs, plural, =1 {pestaña} other {pestañas}} y borrar <b>todas</b> las cookies ({cookies} {cookies, plural, =1 {sitios} other {sitios}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
+  },
+  "summaryClearHistoryAll": {
+    "title": "{cookies, plural, one {¿Borrar <b>todo</b> el historial de navegación y las cookies ({cookies} sitios)?} other {¿Borrar <b>todo</b> el historial de navegación y las cookies (sitios de {cookies})?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
+  },
+  "summaryClearCookiesAll": {
+    "title": "{cookies, plural, one {¿Borrar <b>todas</b> las cookies (sitio de {cookies})?} other {¿Borrar <b>todas</b> las cookies (sitios de {cookies})?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
+  },
+  "summaryClearTabsHistorySite": {
+    "title": "{openTabs, plural, one {¿Cerrar <b>{site} {openTabs}</b> pestaña y borrar <b>todas las cookies de {site}</b>?} other {¿Cerrar <b>{site} {openTabs} </b> pestañas y borrar <b>todas las cookies de {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  },
+  "summaryClearTabsSite": {
+    "title": "{openTabs, plural, one {¿Cerrar <b>{openTabs} pestaña de {site}</b> y borrar <b>todas las cookies de {site}</b>?} other {¿Cerrar <b>{openTabs} pestañas de {site}</b> y borrar <b>todas las cookies de {site}</b>?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+  },
+  "summaryClearHistorySite": {
+    "title": "¿Borrar <b>todo el historial de navegación y las cookies de {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
+  },
+  "summaryClearCookiesSite": {
+    "title": "¿Borrar <b>todas las cookies de {site}</b>?",
+    "note": "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
+  },
+  "summaryPinnedIgnored": {
+    "title": "{tabs, plural, one {Se ignorará <b>{tabs} pestaña anclada</b>.} other {Se ignorarán<b>{tabs} pestañas ancladas</b>.}}",
+    "note": "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
+  },
+  "clearData": {
+    "title": "Borrar",
+    "note": "Button text to start data clearing."
+  },
+  "cancel": {
+    "title": "Cancelar",
+    "note": "Button text to exit the fire button modal."
+  },
+  "historyAndDownloadsNotAffected": {
+    "title": "Para borrar también el historial, selecciona un periodo de tiempo.",
+    "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
+  }
+}
