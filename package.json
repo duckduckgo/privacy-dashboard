@@ -36,7 +36,7 @@
         "@formatjs/intl-locale": "^3.0.7",
         "@material/ripple": "^14.0.0",
         "@material/switch": "^14.0.0",
-        "@playwright/test": "^1.34.3",
+        "@playwright/test": "^1.36.1",
         "@types/chrome": "^0.0.203",
         "@types/node": "18.16.16",
         "nanohtml": "^1.10.0",
