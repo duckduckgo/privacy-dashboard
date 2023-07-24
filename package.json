@@ -54,7 +54,7 @@
         "jquery": "3.6.2",
         "json-schema-to-typescript": "^11.0.2",
         "normalize.scss": "0.1.0",
-        "prettier": "^2.7.1",
+        "prettier": "^3.0.0",
         "sass": "^1.32.4",
         "standard": "^17.1.0",
         "ts-to-zod": "^1.13.1",
