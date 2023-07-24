@@ -47,7 +47,7 @@
         "eslint": "^8.41.0",
         "eslint-config-standard": "^17.1.0",
         "eventemitter2": "4.1.0",
-        "http-server": "^13.0.2",
+        "http-server": "^14.1.1",
         "i18next": "^21.6.14",
         "i18next-icu": "^2.0.3",
         "is-plain-object": "5.0.0",
