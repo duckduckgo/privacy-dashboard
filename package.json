@@ -43,7 +43,7 @@
         "chokidar-cli": "^3.0.0",
         "deep-freeze": "0.0.1",
         "duckduckgo-colors": "0.0.1",
-        "esbuild": "^0.17.19",
+        "esbuild": "^0.18.19",
         "eslint": "^8.41.0",
         "eslint-config-standard": "^17.1.0",
         "eventemitter2": "4.1.0",
