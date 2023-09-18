@@ -55,7 +55,7 @@
         "json-schema-to-typescript": "^11.0.2",
         "normalize.scss": "0.1.0",
         "prettier": "^2.7.1",
-        "sass": "^1.32.4",
+        "sass": "^1.67.0",
         "standard": "^17.1.0",
         "ts-to-zod": "^1.13.1",
         "typedoc": "^0.23.21",
