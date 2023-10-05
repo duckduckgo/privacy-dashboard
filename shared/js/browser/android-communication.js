@@ -23,7 +23,6 @@ let channel = null
 const backgroundMessage = (backgroundModel) => {
     channel = backgroundModel
 }
-
 const getBackgroundTabDataPromises = []
 let trackerBlockingData
 let permissionsData

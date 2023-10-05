@@ -29,6 +29,7 @@ const env = {
         const name = basename(job, '.scss')
         const outfile = join(output, name + '.css')
         const args = ['sass', job, outfile, '--load-path node_modules']
+        if (debug) args.push('--embed-sources')
         if (!debug) args.push('--no-source-map')
         return exec(args.join(' '), {
             cwd: BASE,

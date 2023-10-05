@@ -1,6 +1,6 @@
 import i18next from 'i18next'
 import ICU from 'i18next-icu'
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import siteTranslations from '../../../locales/en/site.json'
 
 // @ts-ignore

@@ -10,7 +10,7 @@ export function CookiePromptModel(attrs) {
 
 CookiePromptModel.prototype = $.extend({}, Parent.prototype, {
     modelName: 'cookiePrompt',
-    openSettings: function (category) {
+    openSettings: function (_category) {
         this.fetch(
             new OpenSettingsMessages({
                 target: 'cpm',

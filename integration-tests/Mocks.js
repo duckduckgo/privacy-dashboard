@@ -6,7 +6,7 @@ export class Mocks {
     platform
     /**
      * @param {import("@playwright/test").Page} page
-     * @param {import("../shared/js/ui/platform-features.js").Platform} platform
+     * @param {import("../shared/js/ui/platform-features.mjs").Platform} platform
      */
     constructor(page, platform) {
         this.page = page
@@ -25,8 +25,6 @@ export class Mocks {
                 return installWebkitMocks(this.page)
             case 'windows':
                 return installWindowsMocks(this.page)
-            case 'example':
-                return '/build/app/html/example.html'
             case 'browser':
                 return installBrowserMocks(this.page)
             default: {
@@ -49,7 +47,7 @@ export class Mocks {
         return result
     }
 
-    async calledForShowBreakageForm(s) {
+    async calledForShowBreakageForm() {
         const calls = await this.outgoing()
         if (this.platform.name === 'android') {
             expect(calls).toMatchObject([['showBreakageForm', undefined]])
@@ -274,7 +272,7 @@ export class Mocks {
 
     async calledForOpenSettings() {
         /**
-         * @type {Record<import('../shared/js/ui/platform-features.js').Platform['name'], any>}
+         * @type {Record<import('../shared/js/ui/platform-features.mjs').Platform['name'], any>}
          */
         const implementations = {
             windows: async () => {
@@ -303,7 +301,6 @@ export class Mocks {
                 expect(calls).toMatchObject([['openSettings', JSON.stringify({ target: 'cpm' })]])
             },
             browser: undefined,
-            example: undefined,
         }
         const impl = implementations[this.platform.name]
         if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name)

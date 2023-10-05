@@ -3,9 +3,6 @@
  * @returns {boolean}
  */
 export function isEnvironment(platform) {
-    if (platform === window.environmentOverride) {
-        return true
-    }
     return document.body.classList.contains(`environment--${platform}`)
 }
 export const isIOS = () => isEnvironment('ios')
@@ -15,11 +12,9 @@ export const isWindows = () => isEnvironment('windows')
 export const isMacos = () => isEnvironment('macos')
 
 /**
- * @returns {import("./platform-features").Platform["name"] | null}
+ * @returns {import("./platform-features.mjs").Platform["name"] | null}
  */
 function currentPlatform() {
-    const windowVar = window.environmentOverride
-    if (windowVar && isValidPlatform(windowVar)) return windowVar
     const matchingClass = [...document.body.classList].find((x) => x.startsWith('environment--'))
     if (matchingClass) {
         const platform = matchingClass.slice(13)
@@ -30,13 +25,13 @@ function currentPlatform() {
     return null
 }
 /**
- * @param {import("./platform-features").Platform["name"] | string | null | undefined} name
- * @returns {name is import("./platform-features").Platform["name"]}
+ * @param {import("./platform-features.mjs").Platform["name"] | string | null | undefined} name
+ * @returns {name is import("./platform-features.mjs").Platform["name"]}
  */
 export function isValidPlatform(name) {
     if (!name) throw new Error(`not a valid platform name ${name}`)
-    /** @type {import("./platform-features").Platform["name"][]} */
-    const names = ['ios', 'android', 'macos', 'browser', 'windows', 'example']
+    /** @type {import("./platform-features.mjs").Platform["name"][]} */
+    const names = ['ios', 'android', 'macos', 'browser', 'windows']
     // @ts-ignore
     if (names.includes(name)) {
         return true
@@ -44,7 +39,7 @@ export function isValidPlatform(name) {
     throw new Error('nope!')
 }
 
-/** @type {import("./platform-features").Platform["name"] | undefined | null} */
+/** @type {import("./platform-features.mjs").Platform["name"] | undefined | null} */
 let lastKnownPlatformName
 
 /**

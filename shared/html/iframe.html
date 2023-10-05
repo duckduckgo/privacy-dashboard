@@ -53,11 +53,17 @@
         </div>
         <div class="frames"></div>
         <script>
-            const initialState = new URLSearchParams(window.location.search).get('state') || 'protectionsOn_blocked'
+            const initialState = new URL(window.location).searchParams.get('state') || 'protectionsOn_blocked'
+
             document.querySelector('#state-select').value = initialState
 
+            // note: this line will be replaced by the build script
             const json = {}
-            const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+            const theme =
+                new URL(window.location).searchParams.get('theme') || window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark'
+                    : 'light'
+
             const items = [
                 {
                     platform: 'android',
@@ -99,20 +105,14 @@
                     specialDomainName: 'extensions',
                     emailUser: true,
                 },
-                {
-                    platform: 'browser',
-                    theme,
-                    specialDomainName: 'extensions',
-                    fireButton: true,
-                },
             ]
 
             function loadFrames(stateName = initialState) {
                 const frames = items
                     .map((config) => {
-                        const state = config.state || 'protectionsOn_blocked'
-                        const params = new URLSearchParams(Object.entries({ ...config, state })).toString()
-                        const src = 'popup.html?' + params.toString()
+                        const { platform, ...rest } = config
+                        const params = new URLSearchParams({ ...rest, state: initialState }).toString()
+                        const src = config.platform + '.html?' + params.toString()
                         const height = config.height ?? 600
                         const { state: _, ...restConfig } = config
                         return `
@@ -135,17 +135,15 @@
             loadFrames(initialState)
 
             const toggleDarkMode = () => {
-                for (let item of items) {
-                    item.theme = item.theme === 'dark' ? 'light' : 'dark'
-                }
-                loadFrames()
+                const url = new URL(window.location.href)
+                url.searchParams.set('theme', theme === 'light' ? 'dark' : 'light')
+                window.location = url
             }
 
             const onStateChanged = (stateName) => {
-                for (let item of items) {
-                    item.state = stateName
-                }
-                loadFrames(stateName)
+                const url = new URL(window.location.href)
+                url.searchParams.set('state', stateName)
+                window.location = url
             }
         </script>
     </body>

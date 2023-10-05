@@ -4,20 +4,16 @@ import * as iosComms from './ios-communication.js'
 import * as androidComms from './android-communication.js'
 import * as windowsComms from './windows-communication.js'
 import * as macosComms from './macos-communication.js'
-import * as exampleComms from './example-communication.js'
-import { getOverrides } from './utils/overrides'
+import { installMocks } from './utils/communication-mocks.mjs'
 
 let defaultComms
 
-/** @type {import('../ui/platform-features').Platform} */
-const platform = { name: 'example' }
+/** @type {import('../ui/platform-features.mjs').Platform} */
+const platform = {
+    name: 'browser',
+}
 
-const overrides = getOverrides(window.location.search)
-if (overrides.platform && overrides.platform !== 'example') {
-    window.environmentOverride = overrides.platform
-    defaultComms = exampleComms
-    platform.name = overrides.platform
-} else if (isIOS()) {
+if (isIOS()) {
     defaultComms = iosComms
     platform.name = 'ios'
 } else if (isBrowser()) {
@@ -32,13 +28,14 @@ if (overrides.platform && overrides.platform !== 'example') {
 } else if (isMacos()) {
     defaultComms = macosComms
     platform.name = 'macos'
-} else {
-    defaultComms = exampleComms
 }
 
 if (!defaultComms) throw new Error('unsupported environment')
 
-// @ts-ignore
+// in test environments, install mocks and deliver initial data
+// eslint-disable-next-line no-unused-labels
+$TEST: typeof window.__ddg_integration_test === 'undefined' && installMocks(platform).catch(console.error)
+
 defaultComms.setup()
 
 export { platform }

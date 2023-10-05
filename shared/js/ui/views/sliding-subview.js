@@ -39,7 +39,7 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
         if (this.popstateHandler) {
             window.removeEventListener('popstate', this.popstateHandler)
         }
-        this.popstateHandler = (e) => {
+        this.popstateHandler = () => {
             // @ts-ignore
             this._destroy(null, { fromNavigation: true })
         }

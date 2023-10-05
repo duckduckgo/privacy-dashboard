@@ -1,4 +1,4 @@
-import bel from 'nanohtml'
+import html from 'nanohtml'
 import { i18n } from '../base/localize.js'
 import { protectionToggle } from './shared/protection-toggle'
 import { topNav } from './shared/top-nav'
@@ -9,14 +9,14 @@ export default function () {
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens)
     if (this.model.tab.error) {
         const errorText = i18n.t('site:errorMessage.title')
-        return bel`
+        return html`
             <div class="site-info">
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
                     <div class="padding-x">
-                        <div class='cta-screen'>
+                        <div class="cta-screen">
                             <p class="note token-title-3 text--center">${errorText}</p>
-                        </div> 
+                        </div>
                     </div>
                     <div class="padding-x"></div>
                 </div>
@@ -24,45 +24,38 @@ export default function () {
         `
     }
     if (this.model.disabled && supportsCtaScreens) {
-        return bel`
+        return html`
             <div class="site-info">
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
                     <div class="padding-x">
                         <div id="cta-rotation"></div>
                     </div>
-                    <div class="padding-x">
-                        ${renderEmailWrapper(this.model)}
-                    </div>
+                    <div class="padding-x">${renderEmailWrapper(this.model)}</div>
                 </div>
             </div>
         `
     }
     const permissions = localizePermissions(this.model.permissions)
 
-    return bel`
-    <div class='site-info page'>
-        ${renderSearchWrapper(this.model)}
-        ${topNav({ view: 'primary' })}
-        <div class='page-inner' data-with-permissions=${permissions.length > 0}>
-            <div class='padding-x-double'>
-                <div id='key-insight'></div>
+    return html` <div class="site-info page">
+        ${renderSearchWrapper(this.model)} ${topNav({ view: 'primary' })}
+        <div class="page-inner" data-with-permissions=${permissions.length > 0}>
+            <div class="padding-x-double">
+                <div id="key-insight"></div>
             </div>
-            <div class='padding-x'>
-                <nav id='main-nav'></nav>
+            <div class="padding-x">
+                <nav id="main-nav"></nav>
                 ${protectionToggle(this.model)}
             </div>
-            <div class='padding-x'>
-                ${renderEmailWrapper(this.model)}
-                ${renderReportButton()}
-            </div>
+            <div class="padding-x">${renderEmailWrapper(this.model)} ${renderReportButton()}</div>
         </div>
         ${permissions.length ? outer({ children: renderManagePermissions(this.model) }) : null}
     </div>`
 }
 
 function outer(props) {
-    return bel`<div class="page-outer">${props.children}</div>`
+    return html`<div class="page-outer">${props.children}</div>`
 }
 
 /**
@@ -70,7 +63,7 @@ function outer(props) {
  */
 function renderSearchWrapper(model) {
     if (model.tab?.search) {
-        return bel`<section id="search-form-container"></section>`
+        return html`<section id="search-form-container"></section>`
     }
 }
 
@@ -79,7 +72,7 @@ function renderSearchWrapper(model) {
  */
 function renderEmailWrapper(model) {
     if (model.tab?.emailProtection) {
-        return bel`<div id="email-alias-container"></div>`
+        return html`<div id="email-alias-container"></div>`
     }
 }
 
@@ -93,35 +86,34 @@ function renderManagePermissions(model) {
 
     const localizedPerms = localizePermissions(model.permissions)
 
-    return bel`
-        <ul class="default-list">
-            <li class="site-info__li--manage-permissions">
-                ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
-                    if (!model.permissions) return '' // todo(Shane): typescript issue
-                    return bel`<div class="site-info__page-permission">
-                        <label>
-                            <div>
-                                <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
-                                ${title}
-                            </div>
-                            <select class="js-site-permission" name="${permissionId}">
-                                ${options.map(
-                                    ({ id, title }) => bel`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`
-                                )}
-                            </select>
-                        </label>
-                    </div>`
-                })}
-            </li>
-        </ul>`
+    return html` <ul class="default-list">
+        <li class="site-info__li--manage-permissions">
+            ${localizedPerms.map(({ key: permissionId, title, permission, options }) => {
+                if (!model.permissions) return '' // todo(Shane): typescript issue
+                return html`<div class="site-info__page-permission">
+                    <label>
+                        <div>
+                            <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
+                            ${title}
+                        </div>
+                        <select class="js-site-permission" name="${permissionId}">
+                            ${options.map(
+                                ({ id, title }) => html`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`
+                            )}
+                        </select>
+                    </label>
+                </div>`
+            })}
+        </li>
+    </ul>`
 }
 
 function renderReportButton() {
-    return bel`<div class="text--center border-light--top">
-            <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
-                ${i18n.t('site:websiteNotWorkingQ.title')}
-            </a>
-        </div>`
+    return html`<div class="text--center border-light--top">
+        <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
+            ${i18n.t('site:websiteNotWorkingQ.title')}
+        </a>
+    </div>`
 }
 
 /**

@@ -16,7 +16,10 @@
         "noImplicitAny": false,
         "strictNullChecks": true,
         "maxNodeModuleJsDepth": 0,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "jsx": "react",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment"
     },
-    "include": ["types.d.ts", "schema", "e2e", "scripts", "shared/js", "integration-tests"]
+    "include": ["types.ts", "schema", "e2e", "scripts", "shared/js", "integration-tests"]
 }

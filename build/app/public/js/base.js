@@ -6,7 +6,6 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
   var __esm = (fn, res) => function __init() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
@@ -34,10 +33,6 @@
     mod2
   ));
   var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
-  var __publicField = (obj, key, value) => {
-    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-    return value;
-  };
 
   // node_modules/jquery/dist/jquery.js
   var require_jquery = __commonJS({
@@ -3578,8 +3573,8 @@
           return elem;
         }
         jQuery.extend({
-          htmlPrefilter: function(html18) {
-            return html18;
+          htmlPrefilter: function(html19) {
+            return html19;
           },
           clone: function(elem, dataAndEvents, deepDataAndEvents) {
             var i, l, srcElements, destElements, clone = elem.cloneNode(true), inPage = isAttached(elem);
@@ -4143,18 +4138,18 @@
           margin: "",
           padding: "",
           border: "Width"
-        }, function(prefix, suffix) {
-          jQuery.cssHooks[prefix + suffix] = {
+        }, function(prefix2, suffix) {
+          jQuery.cssHooks[prefix2 + suffix] = {
             expand: function(value) {
               var i = 0, expanded = {}, parts = typeof value === "string" ? value.split(" ") : [value];
               for (; i < 4; i++) {
-                expanded[prefix + cssExpand[i] + suffix] = parts[i] || parts[i - 2] || parts[0];
+                expanded[prefix2 + cssExpand[i] + suffix] = parts[i] || parts[i - 2] || parts[0];
               }
               return expanded;
             }
           };
-          if (prefix !== "margin") {
-            jQuery.cssHooks[prefix + suffix].set = setPositiveNumber;
+          if (prefix2 !== "margin") {
+            jQuery.cssHooks[prefix2 + suffix].set = setPositiveNumber;
           }
         });
         jQuery.fn.extend({
@@ -5287,7 +5282,7 @@
             };
           });
         }
-        var location = window2.location;
+        var location2 = window2.location;
         var nonce = { guid: Date.now() };
         var rquery = /\?/;
         jQuery.parseXML = function(data) {
@@ -5308,15 +5303,15 @@
           return xml;
         };
         var rbracket = /\[\]$/, rCRLF = /\r?\n/g, rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i, rsubmittable = /^(?:input|select|textarea|keygen)/i;
-        function buildParams(prefix, obj, traditional, add2) {
+        function buildParams(prefix2, obj, traditional, add2) {
           var name;
           if (Array.isArray(obj)) {
             jQuery.each(obj, function(i, v) {
-              if (traditional || rbracket.test(prefix)) {
-                add2(prefix, v);
+              if (traditional || rbracket.test(prefix2)) {
+                add2(prefix2, v);
               } else {
                 buildParams(
-                  prefix + "[" + (typeof v === "object" && v != null ? i : "") + "]",
+                  prefix2 + "[" + (typeof v === "object" && v != null ? i : "") + "]",
                   v,
                   traditional,
                   add2
@@ -5325,14 +5320,14 @@
             });
           } else if (!traditional && toType(obj) === "object") {
             for (name in obj) {
-              buildParams(prefix + "[" + name + "]", obj[name], traditional, add2);
+              buildParams(prefix2 + "[" + name + "]", obj[name], traditional, add2);
             }
           } else {
-            add2(prefix, obj);
+            add2(prefix2, obj);
           }
         }
         jQuery.param = function(a, traditional) {
-          var prefix, s = [], add2 = function(key, valueOrFunction) {
+          var prefix2, s = [], add2 = function(key, valueOrFunction) {
             var value = isFunction(valueOrFunction) ? valueOrFunction() : valueOrFunction;
             s[s.length] = encodeURIComponent(key) + "=" + encodeURIComponent(value == null ? "" : value);
           };
@@ -5344,8 +5339,8 @@
               add2(this.name, this.value);
             });
           } else {
-            for (prefix in a) {
-              buildParams(prefix, a[prefix], traditional, add2);
+            for (prefix2 in a) {
+              buildParams(prefix2, a[prefix2], traditional, add2);
             }
           }
           return s.join("&");
@@ -5376,7 +5371,7 @@
           }
         });
         var r20 = /%20/g, rhash = /#.*$/, rantiCache = /([?&])_=[^&]*/, rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg, rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/, rnoContent = /^(?:GET|HEAD)$/, rprotocol = /^\/\//, prefilters = {}, transports = {}, allTypes = "*/".concat("*"), originAnchor = document2.createElement("a");
-        originAnchor.href = location.href;
+        originAnchor.href = location2.href;
         function addToPrefiltersOrTransports(structure) {
           return function(dataTypeExpression, func) {
             if (typeof dataTypeExpression !== "string") {
@@ -5529,9 +5524,9 @@
           lastModified: {},
           etag: {},
           ajaxSettings: {
-            url: location.href,
+            url: location2.href,
             type: "GET",
-            isLocal: rlocalProtocol.test(location.protocol),
+            isLocal: rlocalProtocol.test(location2.protocol),
             global: true,
             processData: true,
             async: true,
@@ -5666,7 +5661,7 @@
               }
             };
             deferred.promise(jqXHR);
-            s.url = ((url || s.url || location.href) + "").replace(rprotocol, location.protocol + "//");
+            s.url = ((url || s.url || location2.href) + "").replace(rprotocol, location2.protocol + "//");
             s.type = options.method || options.type || s.method || s.type;
             s.dataTypes = (s.dataType || "*").toLowerCase().match(rnothtmlwhite) || [""];
             if (s.crossDomain == null) {
@@ -5887,13 +5882,13 @@
           });
         };
         jQuery.fn.extend({
-          wrapAll: function(html18) {
+          wrapAll: function(html19) {
             var wrap;
             if (this[0]) {
-              if (isFunction(html18)) {
-                html18 = html18.call(this[0]);
+              if (isFunction(html19)) {
+                html19 = html19.call(this[0]);
               }
-              wrap = jQuery(html18, this[0].ownerDocument).eq(0).clone(true);
+              wrap = jQuery(html19, this[0].ownerDocument).eq(0).clone(true);
               if (this[0].parentNode) {
                 wrap.insertBefore(this[0]);
               }
@@ -5907,25 +5902,25 @@
             }
             return this;
           },
-          wrapInner: function(html18) {
-            if (isFunction(html18)) {
+          wrapInner: function(html19) {
+            if (isFunction(html19)) {
               return this.each(function(i) {
-                jQuery(this).wrapInner(html18.call(this, i));
+                jQuery(this).wrapInner(html19.call(this, i));
               });
             }
             return this.each(function() {
               var self = jQuery(this), contents = self.contents();
               if (contents.length) {
-                contents.wrapAll(html18);
+                contents.wrapAll(html19);
               } else {
-                self.append(html18);
+                self.append(html19);
               }
             });
           },
-          wrap: function(html18) {
-            var htmlIsFunction = isFunction(html18);
+          wrap: function(html19) {
+            var htmlIsFunction = isFunction(html19);
             return this.each(function(i) {
-              jQuery(this).wrapAll(htmlIsFunction ? html18.call(this, i) : html18);
+              jQuery(this).wrapAll(htmlIsFunction ? html19.call(this, i) : html19);
             });
           },
           unwrap: function(selector) {
@@ -7343,7 +7338,7 @@
   });
 
   // shared/js/ui/base/page.js
-  function BasePage(ops) {
+  function BasePage(_ops) {
     this.views = {};
     this.store = store_exports;
     this.ready();
@@ -7366,15 +7361,9 @@
 
   // shared/js/ui/environment-check.js
   function isEnvironment(platform2) {
-    if (platform2 === window.environmentOverride) {
-      return true;
-    }
     return document.body.classList.contains(`environment--${platform2}`);
   }
   function currentPlatform() {
-    const windowVar = window.environmentOverride;
-    if (windowVar && isValidPlatform(windowVar))
-      return windowVar;
     const matchingClass = [...document.body.classList].find((x) => x.startsWith("environment--"));
     if (matchingClass) {
       const platform2 = matchingClass.slice(13);
@@ -7387,7 +7376,7 @@
   function isValidPlatform(name) {
     if (!name)
       throw new Error(`not a valid platform name ${name}`);
-    const names = ["ios", "android", "macos", "browser", "windows", "example"];
+    const names = ["ios", "android", "macos", "browser", "windows"];
     if (names.includes(name)) {
       return true;
     }
@@ -7872,7 +7861,7 @@
         };
       };
       EMPTY_PATH = [];
-      ParseStatus = class {
+      ParseStatus = class _ParseStatus {
         constructor() {
           this.value = "valid";
         }
@@ -7903,7 +7892,7 @@
               value: await pair.value
             });
           }
-          return ParseStatus.mergeObjectSync(status, syncPairs);
+          return _ParseStatus.mergeObjectSync(status, syncPairs);
         }
         static mergeObjectSync(status, pairs) {
           const finalObject = {};
@@ -8182,7 +8171,7 @@
       cuidRegex = /^c[^\s-]{8,}$/i;
       uuidRegex = /^([a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}|00000000-0000-0000-0000-000000000000)$/i;
       emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      ZodString = class extends ZodType {
+      ZodString = class _ZodString extends ZodType {
         constructor() {
           super(...arguments);
           this._regex = (regex, validation, message) => this.refinement((data) => regex.test(data), {
@@ -8191,7 +8180,7 @@
             ...errorUtil.errToObj(message)
           });
           this.nonempty = (message) => this.min(1, errorUtil.errToObj(message));
-          this.trim = () => new ZodString({
+          this.trim = () => new _ZodString({
             ...this._def,
             checks: [...this._def.checks, { kind: "trim" }]
           });
@@ -8321,7 +8310,7 @@
           return { status: status.value, value: input.data };
         }
         _addCheck(check) {
-          return new ZodString({
+          return new _ZodString({
             ...this._def,
             checks: [...this._def.checks, check]
           });
@@ -8416,7 +8405,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodNumber = class extends ZodType {
+      ZodNumber = class _ZodNumber extends ZodType {
         constructor() {
           super(...arguments);
           this.min = this.gte;
@@ -8503,7 +8492,7 @@
           return this.setLimit("max", value, false, errorUtil.toString(message));
         }
         setLimit(kind, value, inclusive, message) {
-          return new ZodNumber({
+          return new _ZodNumber({
             ...this._def,
             checks: [
               ...this._def.checks,
@@ -8517,7 +8506,7 @@
           });
         }
         _addCheck(check) {
-          return new ZodNumber({
+          return new _ZodNumber({
             ...this._def,
             checks: [...this._def.checks, check]
           });
@@ -8640,7 +8629,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodDate = class extends ZodType {
+      ZodDate = class _ZodDate extends ZodType {
         _parse(input) {
           const parsedType = this._getType(input);
           if (parsedType !== ZodParsedType.date) {
@@ -8696,7 +8685,7 @@
           };
         }
         _addCheck(check) {
-          return new ZodDate({
+          return new _ZodDate({
             ...this._def,
             checks: [...this._def.checks, check]
           });
@@ -8853,7 +8842,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodArray = class extends ZodType {
+      ZodArray = class _ZodArray extends ZodType {
         _parse(input) {
           const { ctx, status } = this._processInputParams(input);
           const def = this._def;
@@ -8905,13 +8894,13 @@
           return this._def.type;
         }
         min(minLength, message) {
-          return new ZodArray({
+          return new _ZodArray({
             ...this._def,
             minLength: { value: minLength, message: errorUtil.toString(message) }
           });
         }
         max(maxLength, message) {
-          return new ZodArray({
+          return new _ZodArray({
             ...this._def,
             maxLength: { value: maxLength, message: errorUtil.toString(message) }
           });
@@ -8949,7 +8938,7 @@
           })
         });
       };
-      ZodObject = class extends ZodType {
+      ZodObject = class _ZodObject extends ZodType {
         constructor() {
           super(...arguments);
           this._cached = null;
@@ -9055,7 +9044,7 @@
         }
         strict(message) {
           errorUtil.errToObj;
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             unknownKeys: "strict",
             ...message !== void 0 ? {
@@ -9074,13 +9063,13 @@
           });
         }
         strip() {
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             unknownKeys: "strip"
           });
         }
         passthrough() {
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             unknownKeys: "passthrough"
           });
@@ -9094,7 +9083,7 @@
          * upgrade if you are experiencing issues.
          */
         merge(merging) {
-          const merged = new ZodObject({
+          const merged = new _ZodObject({
             unknownKeys: merging._def.unknownKeys,
             catchall: merging._def.catchall,
             shape: () => objectUtil.mergeShapes(this._def.shape(), merging._def.shape()),
@@ -9103,7 +9092,7 @@
           return merged;
         }
         catchall(index) {
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             catchall: index
           });
@@ -9114,7 +9103,7 @@
             if (this.shape[key])
               shape[key] = this.shape[key];
           });
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             shape: () => shape
           });
@@ -9126,7 +9115,7 @@
               shape[key] = this.shape[key];
             }
           });
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             shape: () => shape
           });
@@ -9144,7 +9133,7 @@
                 newShape[key] = this.shape[key].optional();
               }
             });
-            return new ZodObject({
+            return new _ZodObject({
               ...this._def,
               shape: () => newShape
             });
@@ -9154,7 +9143,7 @@
               newShape[key] = fieldSchema.optional();
             }
           }
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             shape: () => newShape
           });
@@ -9169,7 +9158,7 @@
             }
             newShape[key] = newField;
           }
-          return new ZodObject({
+          return new _ZodObject({
             ...this._def,
             shape: () => newShape
           });
@@ -9296,7 +9285,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodDiscriminatedUnion = class extends ZodType {
+      ZodDiscriminatedUnion = class _ZodDiscriminatedUnion extends ZodType {
         _parse(input) {
           const { ctx } = this._processInputParams(input);
           if (ctx.parsedType !== ZodParsedType.object) {
@@ -9362,7 +9351,7 @@
           if (options.size !== types.length) {
             throw new Error("Some of the discriminator values are not unique");
           }
-          return new ZodDiscriminatedUnion({
+          return new _ZodDiscriminatedUnion({
             typeName: ZodFirstPartyTypeKind.ZodDiscriminatedUnion,
             discriminator,
             options,
@@ -9423,7 +9412,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodTuple = class extends ZodType {
+      ZodTuple = class _ZodTuple extends ZodType {
         _parse(input) {
           const { status, ctx } = this._processInputParams(input);
           if (ctx.parsedType !== ZodParsedType.array) {
@@ -9471,7 +9460,7 @@
           return this._def.items;
         }
         rest(rest) {
-          return new ZodTuple({
+          return new _ZodTuple({
             ...this._def,
             rest
           });
@@ -9488,7 +9477,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodRecord = class extends ZodType {
+      ZodRecord = class _ZodRecord extends ZodType {
         get keySchema() {
           return this._def.keyType;
         }
@@ -9525,14 +9514,14 @@
         }
         static create(first, second, third) {
           if (second instanceof ZodType) {
-            return new ZodRecord({
+            return new _ZodRecord({
               keyType: first,
               valueType: second,
               typeName: ZodFirstPartyTypeKind.ZodRecord,
               ...processCreateParams(third)
             });
           }
-          return new ZodRecord({
+          return new _ZodRecord({
             keyType: ZodString.create(),
             valueType: first,
             typeName: ZodFirstPartyTypeKind.ZodRecord,
@@ -9600,7 +9589,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodSet = class extends ZodType {
+      ZodSet = class _ZodSet extends ZodType {
         _parse(input) {
           const { status, ctx } = this._processInputParams(input);
           if (ctx.parsedType !== ZodParsedType.set) {
@@ -9656,13 +9645,13 @@
           }
         }
         min(minSize, message) {
-          return new ZodSet({
+          return new _ZodSet({
             ...this._def,
             minSize: { value: minSize, message: errorUtil.toString(message) }
           });
         }
         max(maxSize, message) {
-          return new ZodSet({
+          return new _ZodSet({
             ...this._def,
             maxSize: { value: maxSize, message: errorUtil.toString(message) }
           });
@@ -9683,7 +9672,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodFunction = class extends ZodType {
+      ZodFunction = class _ZodFunction extends ZodType {
         constructor() {
           super(...arguments);
           this.validate = this.implement;
@@ -9768,13 +9757,13 @@
           return this._def.returns;
         }
         args(...items) {
-          return new ZodFunction({
+          return new _ZodFunction({
             ...this._def,
             args: ZodTuple.create(items).rest(ZodUnknown.create())
           });
         }
         returns(returnType) {
-          return new ZodFunction({
+          return new _ZodFunction({
             ...this._def,
             returns: returnType
           });
@@ -9788,7 +9777,7 @@
           return validatedFunc;
         }
         static create(args, returns, params) {
-          return new ZodFunction({
+          return new _ZodFunction({
             args: args ? args : ZodTuple.create([]).rest(ZodUnknown.create()),
             returns: returns || ZodUnknown.create(),
             typeName: ZodFirstPartyTypeKind.ZodFunction,
@@ -10705,7 +10694,7 @@
   var init_protections = __esm({
     "shared/js/browser/utils/protections.mjs"() {
       "use strict";
-      Protections = class {
+      Protections = class _Protections {
         /**
          * @param {boolean} unprotectedTemporary
          * @param {string[]} enabledFeatures
@@ -10719,7 +10708,7 @@
           this.denylisted = denylisted;
         }
         static default() {
-          return new Protections(false, ["contentBlocking"], false, false);
+          return new _Protections(false, ["contentBlocking"], false, false);
         }
       };
     }
@@ -10779,14 +10768,12 @@
         };
       };
       AggregatedCompanyResponseData = class {
-        constructor() {
-          /** @type {number} */
-          __publicField(this, "entitiesCount", 0);
-          /** @type {number} */
-          __publicField(this, "requestCount", 0);
-          /** @type {Record<string, AggregateCompanyData>} */
-          __publicField(this, "entities", {});
-        }
+        /** @type {number} */
+        entitiesCount = 0;
+        /** @type {number} */
+        requestCount = 0;
+        /** @type {Record<string, AggregateCompanyData>} */
+        entities = {};
         /**
          * @param {import('../../../../schema/__generated__/schema.types.js').DetectedRequest} request
          */
@@ -10851,20 +10838,20 @@
         protectionsOff_allowedTrackers_allowedNonTrackers: "protectionsOff_allowedTrackers_allowedNonTrackers"
       };
       RequestDetails = class {
+        surrogates;
+        all = new AggregatedCompanyResponseData();
+        blocked = new AggregatedCompanyResponseData();
+        allowed = {
+          adClickAttribution: new AggregatedCompanyResponseData(),
+          ownedByFirstParty: new AggregatedCompanyResponseData(),
+          ruleException: new AggregatedCompanyResponseData(),
+          protectionDisabled: new AggregatedCompanyResponseData(),
+          otherThirdPartyRequest: new AggregatedCompanyResponseData()
+        };
         /**
          * @param {string[]} surrogates - any installed surrogates, just the domains
          */
         constructor(surrogates) {
-          __publicField(this, "surrogates");
-          __publicField(this, "all", new AggregatedCompanyResponseData());
-          __publicField(this, "blocked", new AggregatedCompanyResponseData());
-          __publicField(this, "allowed", {
-            adClickAttribution: new AggregatedCompanyResponseData(),
-            ownedByFirstParty: new AggregatedCompanyResponseData(),
-            ruleException: new AggregatedCompanyResponseData(),
-            protectionDisabled: new AggregatedCompanyResponseData(),
-            otherThirdPartyRequest: new AggregatedCompanyResponseData()
-          });
           this.surrogates = surrogates;
         }
         /**
@@ -11169,6 +11156,26 @@
       init_common();
       init_request_details();
       init_protections();
+    }
+  });
+
+  // node_modules/tiny-invariant/dist/esm/tiny-invariant.js
+  function invariant(condition, message) {
+    if (condition) {
+      return;
+    }
+    if (isProduction) {
+      throw new Error(prefix);
+    }
+    var provided = typeof message === "function" ? message() : message;
+    var value = provided ? "".concat(prefix, ": ").concat(provided) : prefix;
+    throw new Error(value);
+  }
+  var isProduction, prefix;
+  var init_tiny_invariant = __esm({
+    "node_modules/tiny-invariant/dist/esm/tiny-invariant.js"() {
+      isProduction = false;
+      prefix = "Invariant failed";
     }
   });
 
@@ -12694,6 +12701,7 @@
           continue;
         }
         const isProtected = value === false;
+        invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
         window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected);
       }
     }
@@ -12704,6 +12712,7 @@
       return;
     }
     if (message instanceof UpdatePermissionMessage) {
+      invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
       window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
         permission: message.id,
         value: message.value
@@ -12711,16 +12720,19 @@
     }
   }
   function privacyDashboardOpenUrlInNewTab(args) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardOpenUrlInNewTab.postMessage({
       url: args.url
     });
   }
   function privacyDashboardOpenSettings(args) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardOpenSettings.postMessage({
       target: args.target
     });
   }
   function privacyDashboardSubmitBrokenSiteReport(report) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardSubmitBrokenSiteReport.postMessage({
       category: report.category,
       description: report.description
@@ -12728,6 +12740,7 @@
   }
   function privacyDashboardSetSize(payload) {
     if (!isIOS()) {
+      invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
       window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
     }
   }
@@ -12781,6 +12794,7 @@
   var init_macos_communication = __esm({
     "shared/js/browser/macos-communication.js"() {
       "use strict";
+      init_tiny_invariant();
       init_schema_parsers();
       init_environment_check();
       init_utils();
@@ -12849,9 +12863,11 @@
     setupShared();
   }
   function privacyDashboardClose(args) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
   }
   function privacyDashboardShowReportBrokenSite(args) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args);
   }
   async function fetch3(message) {
@@ -12868,6 +12884,7 @@
   var init_ios_communication = __esm({
     "shared/js/browser/ios-communication.js"() {
       "use strict";
+      init_tiny_invariant();
       init_common();
       init_macos_communication();
     }
@@ -13303,1240 +13320,15 @@
     }
   });
 
-  // schema/__fixtures__/request-data-google.json
-  var request_data_google_default;
-  var init_request_data_google = __esm({
-    "schema/__fixtures__/request-data-google.json"() {
-      request_data_google_default = {
-        requests: [
-          {
-            category: "Advertising",
-            url: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png",
-            pageUrl: "https://www.google.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              allowed: {
-                reason: "ownedByFirstParty"
-              }
-            },
-            prevalence: 80.1
-          },
-          {
-            category: "Advertising",
-            url: "https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.t9z7VPsEMFg.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo8oD_5FQW3kT3ksWwmXIWvhhqbKdw/cb=gapi.loaded_0",
-            pageUrl: "https://www.google.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              allowed: {
-                reason: "ownedByFirstParty"
-              }
-            },
-            prevalence: 80.1
-          },
-          {
-            category: "Content Delivery",
-            url: "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg",
-            pageUrl: "https://www.google.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              allowed: {
-                reason: "ownedByFirstParty"
-              }
-            },
-            prevalence: 80.1
-          },
-          {
-            category: "Content Delivery",
-            url: "https://www.gstatic.com/og/_/js/k=og.qtm.en_US.asUsweLQqwk.O/rt=j/m=qabr,q_dnp,qcwid,qapid/exm=qaaw,qadd,qaid,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhpr/d=1/ed=1/rs=AA2YrTvH37iHjvnJ7NPFbMaGY1OZ0tqdnw",
-            pageUrl: "https://www.google.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              allowed: {
-                reason: "ownedByFirstParty"
-              }
-            },
-            prevalence: 80.1
-          }
-        ]
-      };
-    }
-  });
-
-  // schema/__fixtures__/request-data-cnn.json
-  var request_data_cnn_default;
-  var init_request_data_cnn = __esm({
-    "schema/__fixtures__/request-data-cnn.json"() {
-      request_data_cnn_default = {
-        installedSurrogates: ["widgets.outbrain.com", "www.googletagservices.com", "sb.scorecardresearch.com"],
-        requests: [
-          {
-            category: "Advertising",
-            url: "https://cdn.krxd.net/",
-            eTLDplus1: "krxd.net",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Salesforce.com, Inc.",
-            entityName: "Salesforce.com",
-            state: {
-              blocked: {}
-            },
-            prevalence: 9.23
-          },
-          {
-            category: "Advertising",
-            url: "https://www.google.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              allowed: {
-                reason: "ruleException"
-              }
-            },
-            prevalence: 79.9
-          },
-          {
-            category: "Advertising",
-            url: "https://vrt.outbrain.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Outbrain",
-            entityName: "Outbrain",
-            state: {
-              blocked: {}
-            },
-            prevalence: 12.4
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "ownedByFirstParty"
-              }
-            },
-            prevalence: 21.6,
-            url: "https://www.ugdturner.com/",
-            ownerName: "WarnerMedia, LLC",
-            entityName: "WarnerMedia"
-          },
-          {
-            category: "Advertising",
-            url: "https://js-sec.indexww.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Index Exchange, Inc.",
-            entityName: "Index Exchange",
-            state: {
-              blocked: {}
-            },
-            prevalence: 17.3
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              blocked: {}
-            },
-            prevalence: 0.854,
-            url: "https://consent.truste.com/",
-            ownerName: "TrustArc Inc.",
-            entityName: "TrustArc"
-          },
-          {
-            category: "Advertising",
-            url: "https://as.casalemedia.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Index Exchange, Inc.",
-            entityName: "Index Exchange",
-            state: {
-              blocked: {}
-            },
-            prevalence: 17.3
-          },
-          {
-            category: "Advertising",
-            url: "https://c.amazon-adsystem.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Amazon Technologies, Inc.",
-            entityName: "Amazon.com",
-            state: {
-              blocked: {}
-            },
-            prevalence: 21.4
-          },
-          {
-            category: "Advertising",
-            url: "https://as-sec.casalemedia.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Index Exchange, Inc.",
-            entityName: "Index Exchange",
-            state: {
-              blocked: {}
-            },
-            prevalence: 17.3
-          },
-          {
-            category: "Advertising",
-            url: "https://ads.rubiconproject.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Magnite, Inc.",
-            entityName: "Magnite",
-            state: {
-              blocked: {}
-            },
-            prevalence: 18.3
-          },
-          {
-            category: "Advertising",
-            url: "https://aax.amazon-adsystem.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Amazon Technologies, Inc.",
-            entityName: "Amazon.com",
-            state: {
-              blocked: {}
-            },
-            prevalence: 21.4
-          },
-          {
-            category: "Advertising",
-            url: "https://dsum-sec.casalemedia.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Index Exchange, Inc.",
-            entityName: "Index Exchange",
-            state: {
-              blocked: {}
-            },
-            prevalence: 17.3
-          },
-          {
-            category: "Advertising",
-            url: "https://plus.google.com/+cnn/posts",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              allowed: {
-                reason: "ruleException"
-              }
-            },
-            prevalence: 79.9
-          },
-          {
-            category: "Advertising",
-            url: "https://tpc.googlesyndication.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              blocked: {}
-            },
-            prevalence: 79.9
-          },
-          {
-            category: "Advertising",
-            url: "https://fastlane.rubiconproject.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Magnite, Inc.",
-            entityName: "Magnite",
-            state: {
-              blocked: {}
-            },
-            prevalence: 18.3
-          },
-          {
-            category: "Advertising",
-            url: "https://partner.googleadservices.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              blocked: {}
-            },
-            prevalence: 79.9
-          },
-          {
-            category: "Advertising",
-            url: "https://pagead2.googlesyndication.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              blocked: {}
-            },
-            prevalence: 79.9
-          },
-          {
-            category: "Advertising",
-            url: "https://amplify.outbrain.com/cp/obtp.js",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Outbrain",
-            entityName: "Outbrain",
-            state: {
-              blocked: {}
-            },
-            prevalence: 12.4
-          },
-          {
-            category: "Advertising",
-            url: "https://tag.bounceexchange.com/340/i.js",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Bounce Exchange",
-            entityName: "Bounce Exchange",
-            state: {
-              blocked: {}
-            },
-            prevalence: 0.582
-          },
-          {
-            category: "Advertising",
-            url: "https://widgets.outbrain.com/outbrain.js",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Outbrain",
-            entityName: "Outbrain",
-            state: {
-              blocked: {}
-            },
-            prevalence: 12.4
-          },
-          {
-            category: "Advertising",
-            url: "https://fastlane-adv.rubiconproject.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Magnite, Inc.",
-            entityName: "Magnite",
-            state: {
-              blocked: {}
-            },
-            prevalence: 18.3
-          },
-          {
-            category: "Advertising",
-            url: "https://optimized-by.rubiconproject.com/",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Magnite, Inc.",
-            entityName: "Magnite",
-            state: {
-              blocked: {}
-            },
-            prevalence: 18.3
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "ruleException"
-              }
-            },
-            prevalence: 0.0468,
-            url: "https://www.dianomi.com/js/contextfeed.js",
-            ownerName: "Dianomi Ltd",
-            entityName: "Dianomi"
-          },
-          {
-            category: "Analytics",
-            url: "https://sb.scorecardresearch.com/beacon.js",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "comScore, Inc",
-            entityName: "comScore",
-            state: {
-              blocked: {}
-            },
-            prevalence: 9.99
-          },
-          {
-            category: "Advertising",
-            url: "https://c.amazon-adsystem.com/aax2/apstag.js",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Amazon Technologies, Inc.",
-            entityName: "Amazon.com",
-            state: {
-              allowed: {
-                reason: "ruleException"
-              }
-            },
-            prevalence: 21.4
-          },
-          {
-            category: "Advertising",
-            url: "https://www.googletagservices.com/tag/js/gpt.js",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Google LLC",
-            entityName: "Google",
-            state: {
-              blocked: {}
-            },
-            prevalence: 79.9
-          },
-          {
-            category: "Advertising",
-            url: "https://get.s-onetag.com/c15ddde9-ec7d-4a49-b8ca-7a21bc4b943b/tag.min.js",
-            pageUrl: "https://edition.cnn.com/",
-            ownerName: "Sovrn Holdings",
-            entityName: "Sovrn Holdings",
-            state: {
-              blocked: {}
-            },
-            prevalence: 10.5
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 21.6,
-            url: "https://data.api.cnn.io/",
-            entityName: "WarnerMedia"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 21.6,
-            url: "https://pmd.cdn.turner.com/",
-            entityName: "WarnerMedia"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 21.6,
-            url: "https://amd.cdn.turner.com/",
-            entityName: "WarnerMedia"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 21.6,
-            url: "https://registry.api.cnn.io/bundles/fave/latest-4.x/js",
-            entityName: "WarnerMedia"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            url: "android-app://com.cnn.mobile.android.phone/http/edition.cnn.com",
-            entityName: "android.phone"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            url: "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
-            entityName: "cookielaw.org"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 9.99,
-            url: "https://segment-data-us-east.zqtk.net/turner-47fcf6",
-            entityName: "comScore"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 21.4,
-            url: "https://d2uap9jskdzp2.cloudfront.net/script.js",
-            entityName: "Amazon.com"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 21.6,
-            url: "https://ht.cdn.turner.com/",
-            entityName: "WarnerMedia"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            url: "https://w.usabilla.com/",
-            entityName: "usabilla.com"
-          },
-          {
-            pageUrl: "https://edition.cnn.com/",
-            state: {
-              allowed: {
-                reason: "otherThirdPartyRequest"
-              }
-            },
-            prevalence: 21.6,
-            url: "https://s.cdn.turner.com/analytics/comscore/streamsense.5.2.0.160629.min.js",
-            entityName: "WarnerMedia"
-          }
-        ]
-      };
-    }
-  });
-
-  // shared/js/ui/views/tests/toggle-protections.mjs
-  function protectionsOff(requests) {
-    return requests.map((r) => {
-      if ("blocked" in r.state) {
-        return detectedRequestSchema.parse({
-          ...r,
-          state: { allowed: { reason: "protectionDisabled" } }
-        });
-      }
-      if ("allowed" in r.state) {
-        if (r.state.allowed.reason === "otherThirdPartyRequest") {
-          return r;
-        }
-        return detectedRequestSchema.parse({
-          ...r,
-          state: { allowed: { reason: "protectionDisabled" } }
-        });
-      }
-      return r;
-    });
-  }
-  var init_toggle_protections = __esm({
-    "shared/js/ui/views/tests/toggle-protections.mjs"() {
+  // shared/js/browser/utils/communication-mocks.mjs
+  var init_communication_mocks = __esm({
+    "shared/js/browser/utils/communication-mocks.mjs"() {
       "use strict";
-      init_schema_parsers();
-    }
-  });
-
-  // shared/js/ui/views/tests/generate-data.mjs
-  function mockBurnOptions({ clearHistory, tabClearEnabled, pinnedTabs }) {
-    return {
-      options: [
-        {
-          name: "CurrentSite",
-          options: {
-            origins: ["https://example.com/"]
-          },
-          descriptionStats: {
-            clearHistory,
-            site: "example.com",
-            duration: "all",
-            openTabs: tabClearEnabled ? 1 : 0,
-            cookies: 1,
-            pinnedTabs
-          }
-        },
-        {
-          name: "LastHour",
-          options: {
-            since: Date.now()
-          },
-          descriptionStats: {
-            clearHistory,
-            duration: "hour",
-            openTabs: tabClearEnabled ? 5 : 0,
-            cookies: 23,
-            pinnedTabs
-          }
-        },
-        {
-          name: "AllTime",
-          options: {},
-          descriptionStats: {
-            clearHistory,
-            duration: "all",
-            openTabs: tabClearEnabled ? 5 : 0,
-            cookies: 1e3,
-            pinnedTabs
-          }
-        }
-      ]
-    };
-  }
-  var allowedTracker, allowedTrackerRule, allowedThirdParty, allowedAdClickAttribution, blocked1, defaultCertificates, MockData, createDataStates;
-  var init_generate_data = __esm({
-    "shared/js/ui/views/tests/generate-data.mjs"() {
-      "use strict";
-      init_protections();
-      init_toggle_protections();
-      allowedTracker = {
-        entityName: "example.com",
-        prevalence: 82.6,
-        url: "https://example.com/a.js",
-        pageUrl: "https://example.com",
-        state: { allowed: { reason: "ownedByFirstParty" } }
-      };
-      allowedTrackerRule = {
-        entityName: "example.com",
-        prevalence: 82.6,
-        url: "https://example.com/a.js",
-        pageUrl: "https://example.com",
-        state: { allowed: { reason: "ruleException" } }
-      };
-      allowedThirdParty = {
-        entityName: "Index Exchange",
-        prevalence: 12.7,
-        url: "indexww.com",
-        pageUrl: "https://example.com",
-        category: "Advertising",
-        state: { allowed: { reason: "otherThirdPartyRequest" } }
-      };
-      allowedAdClickAttribution = {
-        entityName: "Index Exchange",
-        prevalence: 12.7,
-        url: "https://bat.bing.com/1.js",
-        pageUrl: "https://example.com",
-        category: "Advertising",
-        state: { allowed: { reason: "adClickAttribution" } }
-      };
-      blocked1 = {
-        entityName: "Google",
-        prevalence: 82.6,
-        url: "securepubads.g.doubleclick.net",
-        pageUrl: "https://example.com",
-        category: "Advertising",
-        state: { blocked: {} }
-      };
-      defaultCertificates = [
-        {
-          commonName: "sni.cloudflaressl.com",
-          publicKey: {
-            blockSize: 72,
-            canEncrypt: true,
-            bitSize: 256,
-            canSign: false,
-            canDerive: true,
-            canUnwrap: false,
-            canWrap: false,
-            canDecrypt: false,
-            effectiveSize: 256,
-            isPermanent: false,
-            type: "Elliptic Curve",
-            externalRepresentation: "BEO3YVjG8jpNVRlh9G10paEfrx9XnVG9GvNtOAYkZvuytfhKTZ9sW+MhQaFDAgKveZUDIMg7WvG8QXZGPNTWCKg=",
-            canVerify: true,
-            keyId: "Xbo6o2j/lA8zNZ/axcChz8ID2MM="
-          },
-          emails: [],
-          summary: "sni.cloudflaressl.com"
-        },
-        {
-          commonName: "Cloudflare Inc ECC CA-3",
-          publicKey: {
-            blockSize: 72,
-            canEncrypt: true,
-            bitSize: 256,
-            canSign: false,
-            canDerive: true,
-            canUnwrap: false,
-            canWrap: false,
-            canDecrypt: false,
-            effectiveSize: 256,
-            isPermanent: false,
-            type: "Elliptic Curve",
-            externalRepresentation: "BLmtTWaZFAtG7B+B0SpQHp0DFS80En0tlriIOJuFX4+/u03vYUbEyXPUJE/g7hzObLNRcS9q7kwFCXfTcmKkm9c=",
-            canVerify: true,
-            keyId: "pc436uuwdQ6UZ4i0RfrZJBCHlh8="
-          },
-          emails: [],
-          summary: "Cloudflare Inc ECC CA-3"
-        },
-        {
-          commonName: "Baltimore CyberTrust Root",
-          publicKey: {
-            blockSize: 256,
-            canEncrypt: false,
-            bitSize: 2048,
-            canSign: false,
-            canDerive: false,
-            canUnwrap: false,
-            canWrap: false,
-            canDecrypt: false,
-            effectiveSize: 2048,
-            isPermanent: false,
-            type: "RSA",
-            externalRepresentation: "MIIBCgKCAQEAowS7IquYPVfoJnKatXnUKeLh6JWAsbDjW44rKZpk36Fd7bAJBW3bKC7OYqJi/rSI2hLrOOshncBBKwFSe4h30xyPx7q5iLVqCedz6BFAp9HMymKNLeWPC6ZQ0qhQwyjq9aslh4qalhypZ7g/DNX3+VITL8Ib1XBw8I/AEsoGy5rh2cozenfW+Oy58WhEQkgT0sDCpK5eYP62pgX8tN0HWQLUWRiYY/WlY+CQDH1dsgZ684Xq69QDrl6EPl//Fe1pvPk5NnJ1z3dSTfPJkCy5PeXJI1M/HySYIVwHmSm9xjrs526GOmuXdGMzvWgYMfB4jXa//J6OXSqGp02Q3CcaOQIDAQAB",
-            canVerify: true,
-            keyId: "5Z1ZMIJHWMys+ghUNoZ7OrUETfA="
-          },
-          emails: [],
-          summary: "Baltimore CyberTrust Root"
-        }
-      ];
-      MockData = class {
-        /**
-         * @param {object} params
-         * @param {string} [params.state] - any string identifier for this mock state
-         * @param {string} params.url
-         * @param {{locale: string}} [params.localeSettings]
-         * @param {DetectedRequest[]} [params.requests]
-         * @param {any[]} [params.certificate]
-         * @param {ParentEntity} [params.parentEntity]
-         * @param {boolean} [params.upgradedHttps]
-         * @param {boolean} [params.contentBlockingException]
-         * @param {boolean} [params.allowlisted]
-         * @param {boolean} [params.denylisted]
-         * @param {any[]} [params.permissions]
-         * @param {boolean} [params.specialDomainName]
-         * @param {boolean} [params.emailUser]
-         * @param {boolean} [params.fireButtonEnabled]
-         * @param {BurnConfig} [params.fireButtonOptions]
-         * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
-         */
-        constructor(params) {
-          this.url = params.url;
-          this.requests = params.requests || [];
-          this.state = params.state;
-          this.localeSettings = params.localeSettings || { locale: "en" };
-          this.certificate = params.certificate || defaultCertificates;
-          this.upgradedHttps = params.upgradedHttps ?? false;
-          this.contentBlockingException = params.contentBlockingException;
-          this.parentEntity = params.parentEntity;
-          this.permissions = params.permissions;
-          this.allowlisted = params.allowlisted;
-          this.denylisted = params.denylisted;
-          this.specialDomainName = params.specialDomainName;
-          this.emailUser = params.emailUser;
-          this.cookiePromptManagementStatus = params.cookiePromptManagementStatus;
-          this.fireButtonEnabled = params.fireButtonEnabled || false;
-          if (params.fireButtonOptions) {
-            this.getBurnOptions = mockBurnOptions(params.fireButtonOptions);
-          }
-          this.protections = Protections.default();
-          if (this.allowlisted) {
-            this.protections.allowlisted = true;
-          }
-          if (this.denylisted) {
-            this.protections.denylisted = true;
-            this.contentBlockingException = true;
-          }
-          if (this.contentBlockingException) {
-            this.protections.enabledFeatures = [];
-          }
-          if (this.protections.allowlisted || this.contentBlockingException) {
-            this.requests = protectionsOff(this.requests);
-          }
-        }
-        /**
-         * @param {Partial<MockData> & {url: string}} mock
-         * @returns {MockData}
-         */
-        static default(mock) {
-          return new MockData({
-            ...mock
-          });
-        }
-      };
-      createDataStates = (google, cnn) => {
-        return {
-          "consent-managed": new MockData({
-            url: "https://example.com",
-            requests: [],
-            cookiePromptManagementStatus: {
-              consentManaged: true
-            }
-          }),
-          "consent-managed-configurable": new MockData({
-            url: "https://example.com",
-            requests: [],
-            cookiePromptManagementStatus: {
-              consentManaged: true,
-              configurable: true
-            }
-          }),
-          "consent-managed-configurable-cosmetic": new MockData({
-            url: "https://example.com",
-            requests: [],
-            cookiePromptManagementStatus: {
-              consentManaged: true,
-              configurable: true,
-              cosmetic: true
-            }
-          }),
-          "locale-pl": new MockData({
-            localeSettings: {
-              locale: "pl"
-            },
-            url: "https://example.com",
-            requests: []
-          }),
-          "locale-fr": new MockData({
-            localeSettings: {
-              locale: "fr"
-            },
-            url: "https://example.com",
-            requests: []
-          }),
-          "ad-attribution": new MockData({
-            url: "https://example.com",
-            requests: [blocked1, allowedAdClickAttribution],
-            certificate: []
-          }),
-          "without-certificate": new MockData({
-            url: "https://example.com",
-            requests: [],
-            certificate: [],
-            localeSettings: void 0,
-            parentEntity: void 0,
-            upgradedHttps: false
-          }),
-          insecure: new MockData({
-            url: "http://example.com",
-            requests: [],
-            certificate: [],
-            localeSettings: void 0,
-            parentEntity: void 0
-          }),
-          upgraded: new MockData({
-            url: "https://example.com",
-            upgradedHttps: true,
-            requests: [],
-            localeSettings: void 0,
-            parentEntity: void 0
-          }),
-          google: new MockData({
-            requests: google.requests,
-            url: "https://google.com",
-            parentEntity: {
-              displayName: "Google",
-              prevalence: 80.1
-            }
-          }),
-          "google-off": new MockData({
-            requests: protectionsOff(google.requests),
-            contentBlockingException: true,
-            url: "https://google.com",
-            parentEntity: {
-              displayName: "Google",
-              prevalence: 80.1
-            }
-          }),
-          "google-with-blocked": new MockData({
-            requests: google.requests.concat(blocked1),
-            url: "https://google.com",
-            parentEntity: {
-              displayName: "Google",
-              prevalence: 80.1
-            }
-          }),
-          "upgraded+secure": new MockData({
-            requests: [],
-            url: "https://example.com",
-            upgradedHttps: true,
-            certificate: defaultCertificates
-          }),
-          cnn: new MockData({
-            url: "https://edition.cnn.com",
-            requests: cnn.requests,
-            parentEntity: {
-              displayName: "WarnerMedia, LLC",
-              prevalence: 0.401
-            }
-          }),
-          protectionsOn: new MockData({
-            url: "https://example.com",
-            requests: []
-          }),
-          protectionsOn_blocked: new MockData({
-            url: "https://example.com",
-            requests: [blocked1]
-          }),
-          protectionsOn_blocked_allowedTrackers: new MockData({
-            url: "https://example.com",
-            requests: [blocked1, allowedTracker]
-          }),
-          protectionsOn_blocked_allowedNonTrackers: new MockData({
-            url: "https://example.com",
-            requests: [blocked1, allowedThirdParty]
-          }),
-          protectionsOn_blocked_allowedTrackers_allowedNonTrackers: new MockData({
-            url: "https://example.com",
-            requests: [blocked1, allowedThirdParty, allowedTracker]
-          }),
-          protectionsOn_allowedTrackers: new MockData({
-            url: "https://example.com",
-            requests: [
-              allowedTracker,
-              allowedTrackerRule,
-              allowedAdClickAttribution,
-              {
-                ...allowedTracker,
-                state: { allowed: { reason: "protectionDisabled" } }
-              }
-            ]
-          }),
-          protectionsOn_allowedNonTrackers: new MockData({
-            url: "https://example.com",
-            requests: [allowedThirdParty]
-          }),
-          protectionsOn_allowedTrackers_allowedNonTrackers: new MockData({
-            url: "https://example.com",
-            requests: [allowedTracker, allowedThirdParty]
-          }),
-          protectionsOff: new MockData({
-            url: "https://example.com",
-            requests: [],
-            contentBlockingException: true
-          }),
-          protectionsOff_allowedTrackers: new MockData({
-            url: "https://example.com",
-            requests: [allowedTracker],
-            contentBlockingException: true
-          }),
-          protectionsOff_allowedNonTrackers: new MockData({
-            url: "https://example.com",
-            requests: [allowedThirdParty],
-            contentBlockingException: true
-          }),
-          protectionsOff_allowedTrackers_allowedNonTrackers: new MockData({
-            url: "https://example.com",
-            requests: [allowedThirdParty, allowedTracker],
-            contentBlockingException: true
-          }),
-          allowlisted: new MockData({
-            url: "https://example.com",
-            requests: [allowedThirdParty, allowedTracker],
-            allowlisted: true
-          }),
-          denylisted: new MockData({
-            url: "https://example.com",
-            requests: [allowedThirdParty, allowedTracker],
-            denylisted: true
-          }),
-          "remote-disabled": new MockData({
-            url: "https://example.com",
-            requests: [allowedThirdParty, allowedTracker],
-            contentBlockingException: true
-          }),
-          "new-entities": new MockData({
-            url: "https://m.youtube.com",
-            requests: [
-              {
-                eTLDplus1: "ytimg.com",
-                entityName: "Youtube (Google)",
-                ownerName: "Youtube",
-                pageUrl: "https://m.youtube.com/",
-                prevalence: 0.5,
-                state: { blocked: {} },
-                url: "https://i.ytimg.com/vi/AD6OPCFxmJM/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSEbyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBsqqvey-tZ8K3peu7cavrfnR0zDA"
-              },
-              {
-                category: "Advertising",
-                eTLDplus1: "doubleclick.net",
-                entityName: "Google Ads (Google)",
-                ownerName: "Google Ads",
-                pageUrl: "https://m.youtube.com/",
-                prevalence: 0.5,
-                state: { blocked: {} },
-                url: "https://googleads.g.doubleclick.net/pagead/id"
-              },
-              {
-                category: "Advertising",
-                eTLDplus1: "doubleclick.net",
-                entityName: "Google Analytics (Google)",
-                ownerName: "Google Ads",
-                pageUrl: "https://m.youtube.com/",
-                prevalence: 0.5,
-                state: { blocked: {} },
-                url: "https://static.doubleclick.net/instream/ad_status.js"
-              },
-              {
-                category: "Advertising",
-                eTLDplus1: "google.com",
-                entityName: "Instagram (Facebook)",
-                ownerName: "Google LLC",
-                pageUrl: "https://m.youtube.com/",
-                prevalence: 80.5,
-                state: { blocked: {} },
-                url: "https://www.google.com/js/th/EWuoZ_9LU3hL76PT3YFLg_EjKJdTpZ6rgtgTJA98OBY.js"
-              }
-            ]
-          }),
-          "fire-button": new MockData({
-            requests: google.requests,
-            url: "https://google.com",
-            parentEntity: {
-              displayName: "Google",
-              prevalence: 80.1
-            },
-            fireButtonEnabled: true,
-            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 }
-          })
-        };
-      };
-    }
-  });
-
-  // shared/js/ui/views/tests/states-with-fixtures.js
-  var testDataStates;
-  var init_states_with_fixtures = __esm({
-    "shared/js/ui/views/tests/states-with-fixtures.js"() {
-      "use strict";
-      init_request_data_google();
-      init_request_data_cnn();
-      init_generate_data();
-      testDataStates = createDataStates(request_data_google_default, request_data_cnn_default);
-    }
-  });
-
-  // shared/js/browser/utils/overrides.js
-  function getOverrides(searchString) {
-    const overrides3 = {
-      requests: [],
-      tab: createTabData("https://example.com", false, Protections.default(), { requests: [] }),
-      platform: "example",
-      emailProtectionUserData: void 0,
-      theme: void 0,
-      fireButtonEnabled: false
-    };
-    const params = new URLSearchParams(searchString);
-    const stateKey = params.get("state");
-    if (stateKey) {
-      const match = testDataStates[stateKey];
-      if (match) {
-        overrides3.requests = match.requests;
-        overrides3.tab.requestDetails = createRequestDetails(match.requests, []);
-        overrides3.tab.parentEntity = match.parentEntity;
-        overrides3.tab.url = match.url;
-        overrides3.tab.upgradedHttps = match.upgradedHttps;
-        overrides3.tab.certificate = match.certificate;
-        overrides3.tab.cookiePromptManagementStatus = match.cookiePromptManagementStatus;
-        overrides3.tab.locale = match.localeSettings.locale;
-        if (match.allowlisted) {
-          overrides3.requests = protectionsOff(overrides3.requests);
-          overrides3.tab.requestDetails = createRequestDetails(overrides3.requests, []);
-          overrides3.tab.protections = new Protections(false, ["contentBlocking"], true, false);
-        }
-        if (match.contentBlockingException) {
-          overrides3.requests = protectionsOff(overrides3.requests);
-          overrides3.tab.requestDetails = createRequestDetails(overrides3.requests, []);
-          overrides3.tab.protections = new Protections(false, [], false, false);
-        }
-        if (match.denylisted) {
-          overrides3.requests = protectionsOff(overrides3.requests);
-          overrides3.tab.requestDetails = createRequestDetails(overrides3.requests, []);
-          overrides3.tab.protections = new Protections(false, [], false, true);
-        }
-      }
-    }
-    const platformParam = params.get("platform");
-    if (platformParam && isValidPlatform(platformParam)) {
-      overrides3.platform = platformParam;
-      document.body.classList.remove("environment--example");
-      document.body.classList.add(`environment--${overrides3.platform}`);
-      window.environmentOverride = overrides3.platform;
-    }
-    if (params.has("theme")) {
-      if (params.get("theme") === "light") {
-        overrides3.theme = "light";
-      } else if (params.get("theme") === "dark") {
-        overrides3.theme = "dark";
-      }
-      if (overrides3.theme?.toLowerCase() === "dark") {
-        document.body.classList.add("body--theme-dark");
-      } else {
-        document.body.classList.remove("body--theme-dark");
-      }
-    }
-    if (params.get("specialDomainName") || params.get("specialDomain")) {
-      overrides3.tab.specialDomainName = "extensions";
-    }
-    if (params.get("locale")) {
-      overrides3.tab.locale = params.get("locale");
-    }
-    if (params.get("consentManaged")) {
-      overrides3.tab.cookiePromptManagementStatus = {
-        consentManaged: true,
-        cosmetic: false,
-        optoutFailed: false,
-        configurable: false
-      };
-      if (params.get("consentConfigurable")) {
-        overrides3.tab.cookiePromptManagementStatus.configurable = true;
-      }
-      if (params.get("consentCosmetic")) {
-        overrides3.tab.cookiePromptManagementStatus.cosmetic = true;
-      }
-    }
-    if (overrides3.platform === "browser") {
-      overrides3.tab.emailProtection = {};
-      overrides3.tab.search = {};
-      overrides3.tab.ctaScreens = {};
-      overrides3.tab.permissions = [];
-      if (params.get("emailUser") === "true") {
-        overrides3.emailProtectionUserData = {
-          nextAlias: "123456_next"
-        };
-      }
-      if (params.get("fireButton") === "true") {
-        overrides3.fireButtonEnabled = true;
-      }
-    }
-    if (overrides3.platform === "ios" || overrides3.platform === "macos") {
-      overrides3.tab.platformLimitations = true;
-    }
-    if (overrides3.platform === "ios" || overrides3.platform === "android") {
-      overrides3.tab.permissions = [];
-    }
-    return overrides3;
-  }
-  var init_overrides = __esm({
-    "shared/js/browser/utils/overrides.js"() {
-      "use strict";
-      init_environment_check();
-      init_states_with_fixtures();
-      init_toggle_protections();
-      init_request_details();
-      init_protections();
-    }
-  });
-
-  // shared/js/browser/example-communication.js
-  var example_communication_exports = {};
-  __export(example_communication_exports, {
-    backgroundMessage: () => backgroundMessage5,
-    fetch: () => fetch6,
-    getBackgroundTabData: () => getBackgroundTabData5,
-    openOptionsPage: () => openOptionsPage,
-    search: () => search2,
-    setup: () => setup6
-  });
-  async function fetch6(message) {
-    if (message instanceof SetListsMessage) {
-      console.warn("doing nothing by default with `setList`");
-    }
-    if (message instanceof RefreshEmailAliasMessage) {
-      if (overrides.platform === "browser") {
-        return Promise.resolve({
-          privateAddress: "dax123456"
-        });
-      }
-    }
-    if (message instanceof CheckBrokenSiteReportHandledMessage) {
-      if (overrides.platform === "ios" || overrides.platform === "android") {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if (message instanceof OpenSettingsMessages) {
-      if (overrides.platform === "ios" || overrides.platform === "android") {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if (message instanceof FetchBurnOptions) {
-      const clearHistory = true;
-      const tabClearEnabled = true;
-      return Promise.resolve({
-        options: [
-          {
-            name: "CurrentSite",
-            options: {
-              origins: ["https://example.com/"]
-            },
-            descriptionStats: {
-              clearHistory,
-              site: "example.com",
-              openTabs: tabClearEnabled ? 1 : void 0,
-              cookies: 1,
-              pinnedTabs: 1
-            }
-          },
-          {
-            name: "LastHour",
-            options: {
-              since: Date.now()
-            },
-            descriptionStats: {
-              clearHistory,
-              duration: "hour",
-              openTabs: tabClearEnabled ? 5 : void 0,
-              cookies: 23,
-              pinnedTabs: 1
-            }
-          },
-          {
-            name: "AllTime",
-            options: {},
-            descriptionStats: {
-              clearHistory,
-              duration: "all",
-              openTabs: tabClearEnabled ? 5 : void 0,
-              cookies: 1e3,
-              pinnedTabs: 1
-            }
-          }
-        ]
-      });
-    }
-    console.log("fetch - Not implemented", message);
-  }
-  function backgroundMessage5(backgroundModel) {
-    console.log("backgroundMessage - setting local channel");
-    channel5 = backgroundModel;
-  }
-  async function getBackgroundTabData5() {
-    return {
-      tab: overrides.tab,
-      emailProtectionUserData: overrides.emailProtectionUserData,
-      fireButton: {
-        enabled: overrides.fireButtonEnabled
-      }
-    };
-  }
-  function setup6() {
-    const setColorScheme = setupColorScheme();
-    setColorScheme(overrides.theme);
-    setupMutationObserver((height) => {
-      console.log("Window height change:", height);
-    });
-  }
-  function openOptionsPage() {
-    console.warn("should open options page here");
-  }
-  function search2(query) {
-    console.warn("should open search for ", JSON.stringify(query));
-  }
-  var overrides, channel5;
-  var init_example_communication = __esm({
-    "shared/js/browser/example-communication.js"() {
-      "use strict";
-      init_common();
-      init_overrides();
-      overrides = getOverrides(window.location.search);
-      channel5 = null;
-      if (new URLSearchParams(window.location.search).has("continuous")) {
-        setInterval(() => {
-          channel5?.send("updateTabData");
-        }, 200);
-      }
     }
   });
 
   // shared/js/browser/communication.js
-  var defaultComms, platform, overrides2, communication_default;
+  var defaultComms, platform, communication_default;
   var init_communication = __esm({
     "shared/js/browser/communication.js"() {
       "use strict";
@@ -14546,15 +13338,11 @@
       init_android_communication();
       init_windows_communication();
       init_macos_communication();
-      init_example_communication();
-      init_overrides();
-      platform = { name: "example" };
-      overrides2 = getOverrides(window.location.search);
-      if (overrides2.platform && overrides2.platform !== "example") {
-        window.environmentOverride = overrides2.platform;
-        defaultComms = example_communication_exports;
-        platform.name = overrides2.platform;
-      } else if (isIOS()) {
+      init_communication_mocks();
+      platform = {
+        name: "browser"
+      };
+      if (isIOS()) {
         defaultComms = ios_communication_exports;
         platform.name = "ios";
       } else if (isBrowser()) {
@@ -14569,8 +13357,6 @@
       } else if (isMacos()) {
         defaultComms = macos_communication_exports;
         platform.name = "macos";
-      } else {
-        defaultComms = example_communication_exports;
       }
       if (!defaultComms)
         throw new Error("unsupported environment");
@@ -16447,11 +15233,11 @@
           }
         }, {
           key: "forward",
-          value: function forward(args, lvl, prefix, debugOnly) {
+          value: function forward(args, lvl, prefix2, debugOnly) {
             if (debugOnly && !this.debug)
               return null;
             if (typeof args[0] === "string")
-              args[0] = "".concat(prefix).concat(this.prefix, " ").concat(args[0]);
+              args[0] = "".concat(prefix2).concat(this.prefix, " ").concat(args[0]);
             return this.logger[lvl](args);
           }
         }, {
@@ -17073,9 +15859,9 @@
         }], [{
           key: "hasDefaultValue",
           value: function hasDefaultValue(options) {
-            var prefix = "defaultValue";
+            var prefix2 = "defaultValue";
             for (var option in options) {
-              if (Object.prototype.hasOwnProperty.call(options, option) && prefix === option.substring(0, prefix.length) && void 0 !== options[option]) {
+              if (Object.prototype.hasOwnProperty.call(options, option) && prefix2 === option.substring(0, prefix2.length) && void 0 !== options[option]) {
                 return true;
               }
             }
@@ -17986,15 +16772,15 @@
           key: "loadOne",
           value: function loadOne(name) {
             var _this5 = this;
-            var prefix = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "";
+            var prefix2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "";
             var s = name.split("|");
             var lng = s[0];
             var ns2 = s[1];
             this.read(lng, ns2, "read", void 0, void 0, function(err, data) {
               if (err)
-                _this5.logger.warn("".concat(prefix, "loading namespace ").concat(ns2, " for language ").concat(lng, " failed"), err);
+                _this5.logger.warn("".concat(prefix2, "loading namespace ").concat(ns2, " for language ").concat(lng, " failed"), err);
               if (!err && data)
-                _this5.logger.log("".concat(prefix, "loaded namespace ").concat(ns2, " for language ").concat(lng), data);
+                _this5.logger.log("".concat(prefix2, "loaded namespace ").concat(ns2, " for language ").concat(lng), data);
               _this5.loaded(name, err, data);
             });
           }
@@ -20575,13 +19361,13 @@
       }
       startsWith = hasNativeStartsWith ? (
         // Native
-        function startsWith2(s, search3, position) {
-          return s.startsWith(search3, position);
+        function startsWith2(s, search2, position) {
+          return s.startsWith(search2, position);
         }
       ) : (
         // For IE11
-        function startsWith3(s, search3, position) {
-          return s.slice(position, position + search3.length) === search3;
+        function startsWith3(s, search2, position) {
+          return s.slice(position, position + search2.length) === search2;
         }
       );
       fromCodePoint = hasNativeFromCodePoint ? String.fromCodePoint : (
@@ -20816,9 +19602,9 @@
             }
             break;
           }
-          var location = createLocation(start, this.clonePosition());
+          var location2 = createLocation(start, this.clonePosition());
           return {
-            val: { type: TYPE.literal, value, location },
+            val: { type: TYPE.literal, value, location: location2 },
             err: null
           };
         };
@@ -20935,8 +19721,8 @@
           var endOffset = startOffset + value.length;
           this.bumpTo(endOffset);
           var endPosition = this.clonePosition();
-          var location = createLocation(startingPosition, endPosition);
-          return { value, location };
+          var location2 = createLocation(startingPosition, endPosition);
+          return { value, location: location2 };
         };
         Parser2.prototype.parseArgumentOptions = function(nestingLevel, expectingCloseTag, value, openingBracePosition) {
           var _a2;
@@ -21121,18 +19907,18 @@
             err: null
           };
         };
-        Parser2.prototype.parseNumberSkeletonFromString = function(skeleton, location) {
+        Parser2.prototype.parseNumberSkeletonFromString = function(skeleton, location2) {
           var tokens = [];
           try {
             tokens = parseNumberSkeletonFromString(skeleton);
           } catch (e) {
-            return this.error(ErrorKind.INVALID_NUMBER_SKELETON, location);
+            return this.error(ErrorKind.INVALID_NUMBER_SKELETON, location2);
           }
           return {
             val: {
               type: SKELETON_TYPE.number,
               tokens,
-              location,
+              location: location2,
               parsedOptions: this.shouldParseSkeletons ? parseNumberSkeleton(tokens) : {}
             },
             err: null
@@ -21215,13 +20001,13 @@
               break;
             }
           }
-          var location = createLocation(startingPosition, this.clonePosition());
+          var location2 = createLocation(startingPosition, this.clonePosition());
           if (!hasDigits) {
-            return this.error(expectNumberError, location);
+            return this.error(expectNumberError, location2);
           }
           decimal *= sign;
           if (!isSafeInteger(decimal)) {
-            return this.error(invalidNumberError, location);
+            return this.error(invalidNumberError, location2);
           }
           return { val: decimal, err: null };
         };
@@ -21249,13 +20035,13 @@
           }
           return code;
         };
-        Parser2.prototype.error = function(kind, location) {
+        Parser2.prototype.error = function(kind, location2) {
           return {
             val: null,
             err: {
               kind,
               message: this.message,
-              location
+              location: location2
             }
           };
         };
@@ -21273,9 +20059,9 @@
             this.position.offset += code < 65536 ? 1 : 2;
           }
         };
-        Parser2.prototype.bumpIf = function(prefix) {
-          if (startsWith(this.message, prefix, this.offset())) {
-            for (var i = 0; i < prefix.length; i++) {
+        Parser2.prototype.bumpIf = function(prefix2) {
+          if (startsWith(this.message, prefix2, this.offset())) {
+            for (var i = 0; i < prefix2.length; i++) {
               this.bump();
             }
             return true;
@@ -22403,9 +21189,9 @@
          * @param {Array} elems
          * @this {any}
          */
-        _cacheElems: function(prefix, elems) {
+        _cacheElems: function(prefix2, elems) {
           for (let i = 0; i < elems.length; i++) {
-            const selector = prefix + "-" + elems[i];
+            const selector = prefix2 + "-" + elems[i];
             const id = "$" + elems[i].replace(/-/g, "");
             this[id] = this.$(selector);
           }
@@ -23200,8 +21986,8 @@
                     ${description(
           (0, import_raw2.default)(
             i18n.t("site:majorTrackingNetworkDesc.title", {
-              companyDisplayName: company.displayName,
-              companyPrevalence: Math.round(company.prevalence),
+              companyDisplayName: company?.displayName,
+              companyPrevalence: Math.round(company?.prevalence ?? 0),
               blocked: model.tab.requestDetails.blocked.entitiesCount > 0
             })
           )
@@ -23498,9 +22284,9 @@
     }
   });
 
-  // shared/js/ui/platform-features.js
+  // shared/js/ui/platform-features.mjs
   function createPlatformFeatures(platform2) {
-    const desktop = ["windows", "macos", "browser", "example"];
+    const desktop = ["windows", "macos", "browser"];
     return new PlatformFeatures({
       spinnerFollowingProtectionsToggle: platform2.name !== "android" && platform2.name !== "windows",
       supportsHover: desktop.includes(platform2.name)
@@ -23508,7 +22294,7 @@
   }
   var PlatformFeatures;
   var init_platform_features = __esm({
-    "shared/js/ui/platform-features.js"() {
+    "shared/js/ui/platform-features.mjs"() {
       "use strict";
       PlatformFeatures = class {
         /**
@@ -23538,7 +22324,7 @@
       init_common();
       CookiePromptModel.prototype = import_jquery9.default.extend({}, model_default.prototype, {
         modelName: "cookiePrompt",
-        openSettings: function(category) {
+        openSettings: function(_category) {
           this.fetch(
             new OpenSettingsMessages({
               target: "cpm"
@@ -23584,7 +22370,7 @@
           if (this.popstateHandler) {
             window.removeEventListener("popstate", this.popstateHandler);
           }
-          this.popstateHandler = (e) => {
+          this.popstateHandler = () => {
             this._destroy(null, { fromNavigation: true });
           };
           window.addEventListener("popstate", this.popstateHandler);
@@ -23941,10 +22727,10 @@
             this.$go.removeClass(FOCUS_CLASS);
           }
         },
-        _handleBlur: function(e) {
+        _handleBlur: function(_e) {
           this._removeHoverEffect();
         },
-        _handleInput: function(e) {
+        _handleInput: function(_e) {
           const searchText = this.$input.val();
           this.model.set("searchText", searchText);
           if (searchText.length > 0) {
@@ -24007,7 +22793,7 @@
         modelName: "siteCompanyList",
         /** @this {any} */
         fetchAsyncData: function() {
-          return new Promise((resolve, reject) => {
+          return new Promise((resolve) => {
             communication_default.getBackgroundTabData().then(({ tab }) => {
               if (tab) {
                 this.tab = tab;
@@ -24152,7 +22938,7 @@
         },
         // calls `this.set()` to trigger view re-rendering
         /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        update: function(ops) {
+        update: function() {
           if (!this.acceptingUpdates) {
             console.log("not updating because acceptingUpdates was false");
             return;
@@ -24399,19 +23185,19 @@
     this.features = createPlatformFeatures(platform);
     this.cleanups = [];
     this.nav = {
-      connection: (e) => {
+      connection: () => {
         this.model.send("navigate", { target: "connection" });
       },
-      trackers: (e) => {
+      trackers: () => {
         this.model.send("navigate", { target: "trackers" });
       },
-      nonTrackers: (e) => {
+      nonTrackers: () => {
         this.model.send("navigate", { target: "nonTrackers" });
       },
-      consentManaged: (e) => {
+      consentManaged: () => {
         this.model.send("navigate", { target: "consentManaged" });
       },
-      cookieHidden: (e) => {
+      cookieHidden: () => {
         this.model.send("navigate", { target: "cookieHidden" });
       }
     };
@@ -24739,7 +23525,7 @@
         _close: function() {
           document.getElementById("fire-button-container")?.remove();
         },
-        _updateSummary: function(ev) {
+        _updateSummary: function() {
           const selectedOption = this.$opts[0].selectedIndex;
           const opts = this.model.fireOptions[selectedOption];
           this.model.fetch(new SetBurnDefaultOption(opts.name));
@@ -24807,10 +23593,10 @@
       Site2.prototype = import_jquery21.default.extend({}, view_default.prototype, {
         /**
          * @this {Site & Record<string, any>}
-         * @param e
+         * @param _e
          * @private
          */
-        _onAllowlistClick: function(e) {
+        _onAllowlistClick: function(_e) {
           if (this.$body.hasClass("is-disabled"))
             return;
           if (this.updateInProgress)
@@ -24881,7 +23667,7 @@
               this.showBreakageForm("reportBrokenSite");
             }
           }).catch((e2) => {
-            console.error("could not check");
+            console.error("could not check", e2);
           });
         },
         // pass clickSource to specify whether page should reload
@@ -25013,9 +23799,9 @@
                 <div class="page-inner">
                     ${renderSearchWrapper(this.model)}
                     <div class="padding-x">
-                        <div class='cta-screen'>
+                        <div class="cta-screen">
                             <p class="note token-title-3 text--center">${errorText}</p>
-                        </div> 
+                        </div>
                     </div>
                     <div class="padding-x"></div>
                 </div>
@@ -25030,30 +23816,23 @@
                     <div class="padding-x">
                         <div id="cta-rotation"></div>
                     </div>
-                    <div class="padding-x">
-                        ${renderEmailWrapper(this.model)}
-                    </div>
+                    <div class="padding-x">${renderEmailWrapper(this.model)}</div>
                 </div>
             </div>
         `;
     }
     const permissions = localizePermissions(this.model.permissions);
-    return import_nanohtml18.default`
-    <div class='site-info page'>
-        ${renderSearchWrapper(this.model)}
-        ${topNav({ view: "primary" })}
-        <div class='page-inner' data-with-permissions=${permissions.length > 0}>
-            <div class='padding-x-double'>
-                <div id='key-insight'></div>
+    return import_nanohtml18.default` <div class="site-info page">
+        ${renderSearchWrapper(this.model)} ${topNav({ view: "primary" })}
+        <div class="page-inner" data-with-permissions=${permissions.length > 0}>
+            <div class="padding-x-double">
+                <div id="key-insight"></div>
             </div>
-            <div class='padding-x'>
-                <nav id='main-nav'></nav>
+            <div class="padding-x">
+                <nav id="main-nav"></nav>
                 ${protectionToggle(this.model)}
             </div>
-            <div class='padding-x'>
-                ${renderEmailWrapper(this.model)}
-                ${renderReportButton()}
-            </div>
+            <div class="padding-x">${renderEmailWrapper(this.model)} ${renderReportButton()}</div>
         </div>
         ${permissions.length ? outer({ children: renderManagePermissions(this.model) }) : null}
     </div>`;
@@ -25076,35 +23855,34 @@
       return "";
     }
     const localizedPerms = localizePermissions(model.permissions);
-    return import_nanohtml18.default`
-        <ul class="default-list">
-            <li class="site-info__li--manage-permissions">
-                ${localizedPerms.map(({ key: permissionId, title, permission, options }, index) => {
+    return import_nanohtml18.default` <ul class="default-list">
+        <li class="site-info__li--manage-permissions">
+            ${localizedPerms.map(({ key: permissionId, title, permission, options }) => {
       if (!model.permissions)
         return "";
       return import_nanohtml18.default`<div class="site-info__page-permission">
-                        <label>
-                            <div>
-                                <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
-                                ${title}
-                            </div>
-                            <select class="js-site-permission" name="${permissionId}">
-                                ${options.map(
+                    <label>
+                        <div>
+                            <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
+                            ${title}
+                        </div>
+                        <select class="js-site-permission" name="${permissionId}">
+                            ${options.map(
         ({ id, title: title2 }) => import_nanohtml18.default`<option value="${id}" ${permission === id ? "selected" : ""}>${title2}</option>`
       )}
-                            </select>
-                        </label>
-                    </div>`;
+                        </select>
+                    </label>
+                </div>`;
     })}
-            </li>
-        </ul>`;
+        </li>
+    </ul>`;
   }
   function renderReportButton() {
     return import_nanohtml18.default`<div class="text--center border-light--top">
-            <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
-                ${i18n.t("site:websiteNotWorkingQ.title")}
-            </a>
-        </div>`;
+        <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
+            ${i18n.t("site:websiteNotWorkingQ.title")}
+        </a>
+    </div>`;
   }
   function localizePermissions(permissions) {
     if (!Array.isArray(permissions) || permissions.length === 0) {

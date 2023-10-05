@@ -15,7 +15,7 @@ import { heroFromTabNonTrackers, heroFromTabTrackers } from '../templates/shared
 import { KeyInsightView } from '../templates/key-insights'
 import { BreakageFormModel } from '../models/breakage-form.js'
 import { renderUpdatingSpinner } from '../templates/shared/protection-toggle'
-import { createPlatformFeatures } from '../platform-features'
+import { createPlatformFeatures } from '../platform-features.mjs'
 import { CookiePromptModel } from '../models/cookie-prompt.js'
 import { setupMaterialDesignRipple, setupSwitch } from './utils/utils.js'
 import BreakageFormView from './../views/breakage-form.js'
@@ -59,10 +59,10 @@ function Site(ops) {
 Site.prototype = $.extend({}, Parent.prototype, {
     /**
      * @this {Site & Record<string, any>}
-     * @param e
+     * @param _e
      * @private
      */
-    _onAllowlistClick: function (e) {
+    _onAllowlistClick: function (_e) {
         if (this.$body.hasClass('is-disabled')) return
 
         // this can only ever be interacted with once
@@ -152,7 +152,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 }
             })
             .catch((e) => {
-                console.error('could not check')
+                console.error('could not check', e)
             })
     },
 
