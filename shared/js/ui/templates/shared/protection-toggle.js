@@ -35,12 +35,16 @@ export function protectionToggle(model) {
 
     const protectionToggle = toggleButton(active, 'js-site-toggle', disabled)
 
-    return html`<div class="site-info__protection-wrapper">
-        <ul class="default-list">
-            <li class="site-info__li--toggle ${active ? 'is-active' : ''}">
-                <p class="site-info__protection"><span role="text">${raw(text)}</span></p>
-                <div class="site-info__toggle-container js-site-toggle-parent">${protectionToggle}</div>
-            </li>
-        </ul>
+    return html` <div class="site-info-toggle ${active ? 'is-active' : ''}">
+        <p class="site-info__protection"><span role="text">${raw(text)}</span></p>
+        <div class="site-info__toggle-container js-site-toggle-parent">${protectionToggle}</div>
     </div>`
+}
+
+/**
+ * @param {import('../../models/site.js').PublicSiteModel} model
+ * @returns {HTMLElement}
+ */
+export function paddedToggle(model) {
+    return html` <div class="padding-x padding-y">${protectionToggle(model)}</div>`
 }

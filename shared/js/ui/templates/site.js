@@ -1,7 +1,8 @@
 import html from 'nanohtml'
 import { i18n } from '../base/localize.js'
-import { protectionToggle } from './shared/protection-toggle'
+import { paddedToggle } from './shared/protection-toggle'
 import { topNav } from './shared/top-nav'
+import { protectionHeader } from './protection-header'
 
 /** @this {{model: import('../models/site.js').PublicSiteModel}} */
 export default function () {
@@ -38,17 +39,24 @@ export default function () {
     }
     const permissions = localizePermissions(this.model.permissions)
 
+    const layout = this.model.featureSettings.primaryScreen.layout
+
+    // prettier-ignore
     return html` <div class="site-info page">
         ${renderSearchWrapper(this.model)} ${topNav({ view: 'primary' })}
         <div class="page-inner" data-with-permissions=${permissions.length > 0}>
+            ${layout === 'highlighted-protections-toggle' ? protectionHeader(this.model) : null}
             <div class="padding-x-double">
                 <div id="key-insight"></div>
             </div>
             <div class="padding-x">
                 <nav id="main-nav"></nav>
-                ${protectionToggle(this.model)}
+                ${layout === 'default' ? paddedToggle(this.model) : null}
             </div>
-            <div class="padding-x">${renderEmailWrapper(this.model)} ${renderReportButton()}</div>
+            <div class="padding-x">
+                ${renderEmailWrapper(this.model)} 
+                ${layout === 'default' ? renderReportButton() : null}  
+            </div>
         </div>
         ${permissions.length ? outer({ children: renderManagePermissions(this.model) }) : null}
     </div>`

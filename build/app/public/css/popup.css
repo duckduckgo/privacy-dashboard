@@ -496,12 +496,12 @@ body.environment--windows {
   padding-right: 10px;
 }
 
-.site-info__li--toggle {
+.site-info-toggle {
   color: #333333;
   display: flex;
   align-items: center;
 }
-.body--theme-dark .site-info__li--toggle {
+.body--theme-dark .site-info-toggle {
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -3141,6 +3141,17 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 .body--theme-dark .note {
   background: rgba(255, 214, 92, 0.2);
+}
+
+.note--nested {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.note--nested-alt {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background: #ccdaff;
 }
 
 .note--key-insight {

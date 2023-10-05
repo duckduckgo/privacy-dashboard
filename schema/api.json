@@ -22,6 +22,9 @@
         "locale-settings": { "$ref": "./locale.json" },
         "refresh-alias-response": { "$ref": "./refresh-alias-response.json" },
         "exe": { "$ref": "./extension-message-set-list-options.json" },
-        "fire-button": { "$ref": "./fire-button.json" }
+        "fire-button": { "$ref": "./fire-button.json" },
+        "feature-settings": {
+            "$ref": "remote-feature-settings.json"
+        }
     }
 }

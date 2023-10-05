@@ -5,6 +5,7 @@ import { protectionsOff } from './toggle-protections.mjs'
  * @typedef {import('../../../browser/utils/request-details.mjs').TabData} TabData
  * @typedef {import('../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
  * @typedef {import('../../../../../schema/__generated__/schema.types').ParentEntity} ParentEntity
+ * @typedef {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} RemoteFeatureSettings
  */
 
 /** @type {DetectedRequest} */
@@ -236,11 +237,12 @@ export class MockData {
      * @param {boolean} [params.fireButtonEnabled]
      * @param {BurnConfig} [params.fireButtonOptions]
      * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
+     * @param {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} [params.remoteFeatureSettings]
      * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
      */
     constructor(params) {
         this.url = params.url || 'https://example.com'
-        this.requests = params.requests
+        this.requests = params.requests || []
         this.state = params.state
         this.localeSettings = params.localeSettings || { locale: 'en' }
         this.certificate = params.certificate || defaultCertificates
@@ -254,6 +256,7 @@ export class MockData {
         this.emailUser = params.emailUser
         this.cookiePromptManagementStatus = params.cookiePromptManagementStatus
         this.fireButtonEnabled = params.fireButtonEnabled || false
+        this.remoteFeatureSettings = params.remoteFeatureSettings
         this.emailProtectionUserData = params.emailProtectionUserData
         this.fireButtonOptions = params.fireButtonOptions
 
@@ -399,6 +402,35 @@ export class MockData {
  */
 export const createDataStates = (google, cnn) => {
     return {
+        'alternative-layout-exp-1': new MockData({
+            url: 'https://example.com',
+            requests: cnn.requests,
+            remoteFeatureSettings: {
+                primaryScreen: {
+                    layout: 'highlighted-protections-toggle',
+                },
+            },
+        }),
+        'alternative-layout-exp-1-protections-off': new MockData({
+            url: 'https://example.com',
+            requests: cnn.requests,
+            remoteFeatureSettings: {
+                primaryScreen: {
+                    layout: 'highlighted-protections-toggle',
+                },
+            },
+            allowlisted: true,
+        }),
+        'alternative-layout-exp-1-disabled': new MockData({
+            url: 'https://example.com',
+            requests: cnn.requests,
+            remoteFeatureSettings: {
+                primaryScreen: {
+                    layout: 'highlighted-protections-toggle',
+                },
+            },
+            contentBlockingException: true,
+        }),
         'consent-managed': new MockData({
             url: 'https://example.com',
             requests: [],

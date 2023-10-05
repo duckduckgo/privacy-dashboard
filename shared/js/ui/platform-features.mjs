@@ -43,3 +43,23 @@ export class PlatformFeatures {
         this.supportsHover = params.supportsHover
     }
 }
+
+/**
+ * Feature Settings are settings that might be delivered remotely, like UI experiments
+ */
+export class FeatureSettings {
+    /**
+     * @param {object} params
+     * @param {import("../../../schema/__generated__/schema.types").PrimaryScreen} [params.primaryScreen]
+     */
+    constructor(params) {
+        /** @type {import("../../../schema/__generated__/schema.types").PrimaryScreen} */
+        this.primaryScreen = params.primaryScreen || { layout: 'default' }
+    }
+    /**
+     *
+     */
+    static default() {
+        return new FeatureSettings({})
+    }
+}

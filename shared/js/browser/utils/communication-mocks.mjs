@@ -41,6 +41,9 @@ export async function mockDataProvider(params) {
         secCertificateViewModels: state.certificate,
     })
     window.onChangeLocale?.(state.localeSettings)
+    if (state.remoteFeatureSettings) {
+        window.onChangeFeatureSettings?.(state.remoteFeatureSettings)
+    }
     window.onChangeRequestData(state.url, { requests: state.requests || [] })
 }
 

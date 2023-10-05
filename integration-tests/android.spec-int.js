@@ -65,6 +65,41 @@ test.describe('Protections toggle', () => {
         await page.waitForTimeout(500) // todo(Shane): remove this
         await dash.mocks.calledForToggleAllowList()
     })
+    test('with alternative primary screen - toggling protections', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addState([testDataStates['alternative-layout-exp-1']])
+        await dash.showsAlternativeLayout()
+        await dash.toggleProtectionsOff()
+        await page.waitForTimeout(500) // todo(Shane): remove this
+        await dash.mocks.calledForToggleAllowList()
+        await page.pause()
+    })
+    test('with alternative primary screen - alternative-layout-exp-1', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addState([testDataStates['alternative-layout-exp-1']])
+        await dash.showsAlternativeLayout()
+        await dash.clicksWebsiteNotWorking()
+        await dash.helpIsShown()
+        await dash.clicksReportBroken()
+        await page.waitForTimeout(500)
+        await dash.mocks.calledForShowBreakageForm()
+    })
+    test('with alternative primary screen - alternative-layout-exp-1 protections off', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addState([testDataStates['alternative-layout-exp-1-protections-off']])
+        await dash.showsAlternativeLayout()
+        await dash.showsToggleFeedbackPrompt()
+    })
+    test('with alternative primary screen - alternative-layout-exp-1 remote disabled', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addState([testDataStates['alternative-layout-exp-1-disabled']])
+        await dash.showsAlternativeLayout()
+        await dash.showRemoteDisabled()
+        await dash.showsToggleFeedbackPrompt()
+        await dash.clicksReportBroken()
+        await page.waitForTimeout(500)
+        await dash.mocks.calledForShowBreakageForm()
+    })
 })
 
 test.describe('Close', () => {
@@ -129,6 +164,21 @@ if (!process.env.CI) {
             test(name, async ({ page }) => {
                 const dash = await DashboardPage.android(page)
                 await dash.screenshotEachScreenForState(name, state)
+            })
+        }
+    })
+    test.describe('screenshots for alternative layout states', () => {
+        const states = [
+            { name: 'alternative-layout-exp-1', state: testDataStates['alternative-layout-exp-1'] },
+            { name: 'alternative-layout-exp-1-disabled', state: testDataStates['alternative-layout-exp-1-disabled'] },
+            { name: 'alternative-layout-exp-1-protections-off', state: testDataStates['alternative-layout-exp-1-protections-off'] },
+        ]
+        for (const { name, state } of states) {
+            test(name, async ({ page }) => {
+                const dash = await DashboardPage.android(page)
+                await dash.addState([state])
+                await dash.showsPrimaryScreen()
+                await dash.screenshot(`${name}.png`)
             })
         }
     })

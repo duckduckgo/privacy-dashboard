@@ -77,13 +77,17 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         // allow 300ms for the animation
         setTimeout(() => {
-            this.model.toggleAllowlist()
-
-            // on platforms that support spinners, just replace the HTML
-            if (this.features.spinnerFollowingProtectionsToggle) {
-                this.$toggleparent.html(renderUpdatingSpinner())
-            }
+            this._allowListChange()
         }, 300)
+    },
+
+    _allowListChange: function () {
+        this.model.toggleAllowlist()
+
+        // on platforms that support spinners, just replace the HTML
+        if (this.features.spinnerFollowingProtectionsToggle) {
+            this.$toggleparent.html(renderUpdatingSpinner())
+        }
     },
 
     _changePermission: function (e) {
@@ -96,7 +100,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this._cacheElems('.js-site', ['toggle', 'toggle-parent', 'report-broken', 'permission', 'done'])
 
         if (isAndroid()) {
-            setupSwitch('.mdc-switch')
+            setupSwitch('.js-site-toggle')
             setupMaterialDesignRipple(this.$parent[0], '.js-site-report-broken')
         }
 
@@ -107,6 +111,14 @@ Site.prototype = $.extend({}, Parent.prototype, {
             [this.$permission, 'change', this._changePermission],
             [this.store.subscribe, 'action:site', this._handleEvents],
         ])
+
+        window.addEventListener('open-feedback', (e) => {
+            this._onReportBrokenSiteClick(e)
+        })
+
+        window.addEventListener('allow-list-change', (e) => {
+            this._allowListChange(e)
+        })
 
         this._setupFeatures()
 

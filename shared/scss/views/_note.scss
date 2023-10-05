@@ -9,6 +9,17 @@
     }
 }
 
+.note--nested {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.note--nested-alt {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background: $color-note-blue;
+}
+
 // this solves the case where the note is embedded inside the key-insight component
 .note--key-insight {
     margin-top: 12px;

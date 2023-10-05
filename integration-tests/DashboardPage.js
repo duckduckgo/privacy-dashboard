@@ -48,6 +48,18 @@ export class DashboardPage {
         await this.connectInfoLink().waitFor()
     }
 
+    async showsAlternativeLayout() {
+        await this.page.getByTestId('protectionHeader').waitFor({ timeout: 1000 })
+    }
+
+    async showsTogglePrompt() {
+        await this.page.getByRole('link', { name: 'Website not working?' }).waitFor({ timeout: 1000 })
+    }
+
+    async showsToggleFeedbackPrompt() {
+        await this.page.getByRole('link', { name: 'Report broken site' }).waitFor({ timeout: 1000 })
+    }
+
     async screenshot(name) {
         if (!process.env.CI) {
             // console.log('🚧 skipping screenshot 🚧', name)
@@ -367,5 +379,23 @@ export class DashboardPage {
 
     async chooseBurnOption(index) {
         await this.page.locator('#fire-button-opts').selectOption({ index })
+    }
+
+    async clicksWebsiteNotWorking() {
+        await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 1000 })
+    }
+
+    async helpIsShown() {
+        await this.page.getByText('Turning OFF the protections might help the website.').waitFor({ timeout: 1000 })
+    }
+
+    async clicksReportBroken() {
+        await this.page.getByRole('link', { name: 'Report broken site' }).click({ timeout: 1000 })
+    }
+
+    async showRemoteDisabled() {
+        await this.page
+            .getByText('We temporarily turned Privacy Protections off as they appear to be breaking this')
+            .waitFor({ timeout: 1000 })
     }
 }
