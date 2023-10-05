@@ -40,6 +40,9 @@ export async function mockDataProvider(params) {
     window.onChangeCertificateData({
         secCertificateViewModels: state.certificate,
     })
+    if (state.remoteFeatureSettings) {
+        window.onChangeFeatureSettings?.(state.remoteFeatureSettings)
+    }
     window.onChangeLocale?.(state.localeSettings)
     window.onChangeRequestData(state.url, { requests: state.requests || [] })
 }
@@ -239,7 +242,7 @@ export function mockBrowserApis() {
  * @return {Promise<void>}
  */
 export async function installMocks(platform) {
-    if (window.__playwright) console.log('❌ mocked already there')
+    if (window.__playwright) return console.log('❌ mocked already there')
     if (platform.name === 'windows') {
         windowsMockApis()
     } else if (platform.name === 'ios' || platform.name === 'macos') {
@@ -258,7 +261,7 @@ export async function installMocks(platform) {
         mock = testDataStates[stateFromUrl]
     } else {
         mock = testDataStates.protectionsOn_blocked
-        console.warn('state not found, falling back to default. state: ', 'protectionsOn_blocked')
+        console.warn('state not found, falling back to default. state: ', 'protectionsOn_blocked', stateFromUrl)
     }
 
     console.groupCollapsed(`${platform.name} open for more Dashboard States`)

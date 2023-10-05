@@ -1,6 +1,5 @@
 // @ts-ignore
 import $ from 'jquery'
-import { isAndroid } from '../environment-check.js'
 import EmailProtectionModel from '../models/email-protection.js'
 import emailProtectionTemplate from '../templates/email-protection.js'
 import SearchModel from '../models/search.js'
@@ -14,10 +13,8 @@ import { nonTrackersTemplate, sectionsFromSiteNonTracker } from '../templates/pa
 import { heroFromTabNonTrackers, heroFromTabTrackers } from '../templates/shared/hero.js'
 import { KeyInsightView } from '../templates/key-insights'
 import { BreakageFormModel } from '../models/breakage-form.js'
-import { renderUpdatingSpinner } from '../templates/shared/protection-toggle'
 import { createPlatformFeatures } from '../platform-features.mjs'
 import { CookiePromptModel } from '../models/cookie-prompt.js'
-import { setupMaterialDesignRipple, setupSwitch } from './utils/utils.js'
 import BreakageFormView from './../views/breakage-form.js'
 import pageConnectionTemplate from './../templates/page-connection.js'
 import breakageFormTemplate from './../templates/breakage-form.js'
@@ -37,7 +34,6 @@ function Site(ops) {
     this.pageView = ops.pageView
     this.template = ops.template
     this.features = createPlatformFeatures(platform)
-    this.updateInProgress = false
 
     // cache 'body' selector
     this.$body = $('body')
@@ -57,35 +53,6 @@ function Site(ops) {
 }
 
 Site.prototype = $.extend({}, Parent.prototype, {
-    /**
-     * @this {Site & Record<string, any>}
-     * @param _e
-     * @private
-     */
-    _onAllowlistClick: function (_e) {
-        if (this.$body.hasClass('is-disabled')) return
-
-        // this can only ever be interacted with once
-        // so we return if set, otherwise we immediately set this value to prevent further updates
-        if (this.updateInProgress) return
-        this.updateInProgress = true
-
-        // Provide visual feedback of the change
-        const pressed = this.$toggle.attr('aria-checked')
-        const next = pressed === 'true' ? 'false' : 'true'
-        this.$toggle.attr('aria-checked', next)
-
-        // allow 300ms for the animation
-        setTimeout(() => {
-            this.model.toggleAllowlist()
-
-            // on platforms that support spinners, just replace the HTML
-            if (this.features.spinnerFollowingProtectionsToggle) {
-                this.$toggleparent.html(renderUpdatingSpinner())
-            }
-        }, 300)
-    },
-
     _changePermission: function (e) {
         this.model.updatePermission(e.target.name, e.target.value)
     },
@@ -93,20 +60,18 @@ Site.prototype = $.extend({}, Parent.prototype, {
     // NOTE: after ._setup() is called this view listens for changes to
     // site model and re-renders every time model properties change
     _setup: function () {
-        this._cacheElems('.js-site', ['toggle', 'toggle-parent', 'report-broken', 'permission', 'done'])
-
-        if (isAndroid()) {
-            setupSwitch('.mdc-switch')
-            setupMaterialDesignRipple(this.$parent[0], '.js-site-report-broken')
-        }
+        this._cacheElems('.js-site', ['report-broken', 'permission', 'done'])
 
         this.bindEvents([
-            [this.$toggle, 'click', this._onAllowlistClick],
             [this.$reportbroken, 'click', this._onReportBrokenSiteClick],
             [this.$done, 'click', this._done],
             [this.$permission, 'change', this._changePermission],
             [this.store.subscribe, 'action:site', this._handleEvents],
         ])
+
+        window.addEventListener('open-feedback', (e) => {
+            this._onReportBrokenSiteClick(e)
+        })
 
         this._setupFeatures()
 

@@ -178,6 +178,10 @@ a {
     border-top: 1px solid var(--color-lines-light);
 }
 
+.border--bottom {
+    border-bottom: 1px solid var(--color-lines-light);
+}
+
 .border-light--top {
     border-top: 1px solid var(--color-lines-lighter);
 }
@@ -200,9 +204,22 @@ a {
     padding-right: 16px;
 }
 
+.padding-spacer {
+    padding-top: 24px;
+}
+
 .padding-y {
     padding-top: 16px;
     padding-bottom: 16px;
+}
+
+.padding-y--reduced {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.padding-bottom-half {
+    padding-bottom: 8px;
 }
 
 .bg-primary {
