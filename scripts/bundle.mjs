@@ -5,6 +5,8 @@ import { cwd, debug } from './utils.mjs'
 const CWD = cwd(import.meta.url)
 const BASE = join(CWD, '..')
 const LOCALES_BASE = join(BASE, 'shared/locales')
+const IS_PROD = process.env.NODE_ENV === 'production'
+console.log({ IS_PROD })
 
 /**
  * Bundle the base and polyfill files.
@@ -27,6 +29,10 @@ async function init() {
         bundle: true,
         outfile: manifest.base.output,
         sourcemap: debug ? 'linked' : undefined,
+        dropLabels: IS_PROD ? ['$TEST'] : [],
+        loader: {
+            '.js': 'jsx',
+        },
         plugins: [
             {
                 name: 'require-globify-shim',

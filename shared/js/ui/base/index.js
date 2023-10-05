@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 window.onunhandledrejection = (event) => {
     console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`)
 }

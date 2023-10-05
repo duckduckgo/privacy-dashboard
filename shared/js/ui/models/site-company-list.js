@@ -16,7 +16,7 @@ SiteCompanyList.prototype = $.extend({}, Parent.prototype, normalizeCompanyName,
 
     /** @this {any} */
     fetchAsyncData: function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             browserUIWrapper.getBackgroundTabData().then(({ tab }) => {
                 if (tab) {
                     this.tab = tab

@@ -5,7 +5,7 @@ import { DashboardPage } from './DashboardPage'
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
     })
 })
@@ -13,7 +13,7 @@ test.describe('initial page data', () => {
 test.describe('breakage form', () => {
     test('should show HTML breakage form and submit fields', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.screenshot('breakage-form.png')
         await dash.submitBreakageForm()
@@ -25,7 +25,7 @@ test.describe('breakage form', () => {
 test.describe('open external links', () => {
     test('should call webkit interface for external links', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
         await dash.clickAboutLink()
         await dash.mocks.calledForAboutLink()
@@ -35,7 +35,7 @@ test.describe('open external links', () => {
 test.describe('setting the height', () => {
     test('should send the initial height to native', async ({ page }) => {
         const dash = await DashboardPage.macos(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.mocks.calledForInitialHeight()
     })
 })
@@ -44,19 +44,19 @@ test.describe('cookie prompt management', () => {
     test.describe('none-configurable', () => {
         test('primary screen', async ({ page }) => {
             const dash = await DashboardPage.macos(page)
-            await dash.addStates([testDataStates['consent-managed']])
+            await dash.addState([testDataStates['consent-managed']])
             await dash.indicatesCookiesWereManaged()
         })
     })
     test.describe('configurable', () => {
         test('primary screen', async ({ page }) => {
             const dash = await DashboardPage.macos(page)
-            await dash.addStates([testDataStates['consent-managed-configurable']])
+            await dash.addState([testDataStates['consent-managed-configurable']])
             await dash.indicatesCookiesWereManaged()
         })
         test('secondary screen', async ({ page }) => {
             const dash = await DashboardPage.macos(page)
-            await dash.addStates([testDataStates['consent-managed-configurable']])
+            await dash.addState([testDataStates['consent-managed-configurable']])
             await dash.viewCookiePromptManagement()
             await dash.disableCookiesInSettings()
             await dash.mocks.calledForOpenSettings()
@@ -83,7 +83,7 @@ if (!process.env.CI) {
     test.describe('screenshots for cookies (none-configurable)', () => {
         test('primary screen', async ({ page }) => {
             const dash = await DashboardPage.macos(page)
-            await dash.addStates([testDataStates['consent-managed']])
+            await dash.addState([testDataStates['consent-managed']])
             await dash.indicatesCookiesWereManaged()
             await dash.screenshot('consent-managed.png')
         })
@@ -92,13 +92,13 @@ if (!process.env.CI) {
         test.describe('non-cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.macos(page)
-                await dash.addStates([testDataStates['consent-managed-configurable']])
+                await dash.addState([testDataStates['consent-managed-configurable']])
                 await dash.indicatesCookiesWereManaged()
                 await dash.screenshot('consent-managed-configurable.png')
             })
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.macos(page)
-                await dash.addStates([testDataStates['consent-managed-configurable']])
+                await dash.addState([testDataStates['consent-managed-configurable']])
                 await dash.viewCookiePromptManagement()
                 await dash.screenshot('consent-managed-configurable-secondary.png')
                 await dash.disableCookiesInSettings()
@@ -108,13 +108,13 @@ if (!process.env.CI) {
         test.describe('cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.macos(page)
-                await dash.addStates([testDataStates['consent-managed-configurable-cosmetic']])
+                await dash.addState([testDataStates['consent-managed-configurable-cosmetic']])
                 await dash.indicatesCookiesWereHidden()
                 await dash.screenshot('consent-managed-configurable-primary-cosmetic.png')
             })
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.macos(page)
-                await dash.addStates([testDataStates['consent-managed-configurable-cosmetic']])
+                await dash.addState([testDataStates['consent-managed-configurable-cosmetic']])
                 await dash.viewCookiePromptManagement()
                 await dash.screenshot('consent-managed-configurable-secondary-cosmetic.png')
                 await dash.disableCookiesInSettings()

@@ -8,7 +8,7 @@ import { getColorId } from './shared/utils.js'
 
 /**
  * @param {object} ops
- * @param {import("../models/site.js").default} ops.model
+ * @param {import("../models/site.js").PublicSiteModel} ops.model
  * @param {import("jquery")} ops.appendTo
  * @param {any} ops.store
  * @constructor
@@ -87,6 +87,7 @@ export function renderKeyInsight() {
             if (model.isDenylisted) {
                 text = i18n.t('site:protectionsDisabledRemoteOverride.title')
             }
+            // prettier-ignore
             return html`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--protections-off"></div>
@@ -112,8 +113,8 @@ export function renderKeyInsight() {
                     ${description(
                         raw(
                             i18n.t('site:majorTrackingNetworkDesc.title', {
-                                companyDisplayName: company.displayName,
-                                companyPrevalence: Math.round(company.prevalence),
+                                companyDisplayName: company?.displayName,
+                                companyPrevalence: Math.round(company?.prevalence ?? 0),
                                 blocked: model.tab.requestDetails.blocked.entitiesCount > 0,
                             })
                         )

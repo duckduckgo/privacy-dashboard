@@ -4,7 +4,7 @@ import Parent from '../base/view.js'
 import { trackerNetworksText } from '../templates/shared/tracker-networks-text.js'
 import { thirdpartyText } from '../templates/shared/thirdparty-text.js'
 import { i18n } from '../base/localize.js'
-import { createPlatformFeatures } from '../platform-features'
+import { createPlatformFeatures } from '../platform-features.mjs'
 import { platform } from '../../browser/communication.js'
 import { isAndroid } from '../environment-check'
 import { setupMaterialDesignRipple } from './utils/utils'
@@ -23,19 +23,19 @@ export function MainNavView(ops) {
     this.features = createPlatformFeatures(platform)
     this.cleanups = []
     this.nav = {
-        connection: (e) => {
+        connection: () => {
             this.model.send('navigate', { target: 'connection' })
         },
-        trackers: (e) => {
+        trackers: () => {
             this.model.send('navigate', { target: 'trackers' })
         },
-        nonTrackers: (e) => {
+        nonTrackers: () => {
             this.model.send('navigate', { target: 'nonTrackers' })
         },
-        consentManaged: (e) => {
+        consentManaged: () => {
             this.model.send('navigate', { target: 'consentManaged' })
         },
-        cookieHidden: (e) => {
+        cookieHidden: () => {
             this.model.send('navigate', { target: 'cookieHidden' })
         },
     }

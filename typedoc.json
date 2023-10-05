@@ -9,7 +9,7 @@
         "shared/js/browser/common.js",
         "shared/js/browser/utils/request-details.mjs",
         "shared/js/browser/utils/protections.mjs",
-        "shared/js/ui/platform-features.js",
+        "shared/js/ui/platform-features.mjs",
         "shared/js/features.doc.js"
     ],
     "out": "build/docs",

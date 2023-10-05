@@ -5,7 +5,7 @@ import { DashboardPage } from './DashboardPage'
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
     })
 })
@@ -13,7 +13,7 @@ test.describe('initial page data', () => {
 test.describe('breakage form', () => {
     test('should submit with no values', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.screenshot('breakage-form.png')
         await dash.submitBreakageForm()
@@ -25,7 +25,7 @@ test.describe('breakage form', () => {
 test.describe('setting the height', () => {
     test('should send the initial height to native', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.mocks.calledForInitialHeight()
     })
 })
@@ -33,7 +33,7 @@ test.describe('setting the height', () => {
 test.describe('Protections toggle', () => {
     test('pressing toggle should disable protections', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
-        await dash.addStates([testDataStates.protectionsOn])
+        await dash.addState([testDataStates.protectionsOn])
         await dash.toggleProtectionsOff()
         await page.waitForTimeout(500) // todo(Shane): remove this
         await dash.mocks.calledForToggleAllowList()
@@ -44,7 +44,7 @@ test.describe('cookie prompt management', () => {
     test.describe('none-configurable', () => {
         test('primary screen', async ({ page }) => {
             const dash = await DashboardPage.windows(page)
-            await dash.addStates([testDataStates['consent-managed']])
+            await dash.addState([testDataStates['consent-managed']])
             await dash.indicatesCookiesWereManaged()
         })
     })
@@ -52,12 +52,12 @@ test.describe('cookie prompt management', () => {
         test.describe('non-cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.windows(page)
-                await dash.addStates([testDataStates['consent-managed-configurable']])
+                await dash.addState([testDataStates['consent-managed-configurable']])
                 await dash.indicatesCookiesWereManaged()
             })
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.windows(page)
-                await dash.addStates([testDataStates['consent-managed-configurable']])
+                await dash.addState([testDataStates['consent-managed-configurable']])
                 await dash.viewCookiePromptManagement()
                 await dash.disableCookiesInSettings()
                 await dash.mocks.calledForOpenSettings()
@@ -66,12 +66,12 @@ test.describe('cookie prompt management', () => {
         test.describe('cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.windows(page)
-                await dash.addStates([testDataStates['consent-managed-configurable-cosmetic']])
+                await dash.addState([testDataStates['consent-managed-configurable-cosmetic']])
                 await dash.indicatesCookiesWereHidden()
             })
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.windows(page)
-                await dash.addStates([testDataStates['consent-managed-configurable-cosmetic']])
+                await dash.addState([testDataStates['consent-managed-configurable-cosmetic']])
                 await dash.viewCookiePromptManagement()
                 await dash.disableCookiesInSettings()
                 await dash.mocks.calledForOpenSettings()

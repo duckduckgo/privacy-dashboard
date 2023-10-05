@@ -3,7 +3,7 @@ import Parent from '../base/model.js'
 import { httpsMessages } from '../../../data/constants'
 import browserUIWrapper, { platform } from '../../browser/communication.js'
 import { i18n } from '../base/localize.js'
-import { createPlatformFeatures } from '../platform-features'
+import { createPlatformFeatures } from '../platform-features.mjs'
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, SetListsMessage, UpdatePermissionMessage } from '../../browser/common.js'
 
 // We consider major tracker networks as those found on this percentage of sites
@@ -166,7 +166,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
     // calls `this.set()` to trigger view re-rendering
     /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-    update: function (ops) {
+    update: function () {
         if (!this.acceptingUpdates) {
             console.log('not updating because acceptingUpdates was false')
             return

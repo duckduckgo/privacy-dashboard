@@ -1,19 +1,19 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Window {
     __DDG_TEST_DATA: any
     DDG: any
-    webkit: any
-    onChangeConsentManaged: any
+    onChangeConsentManaged: (payload: import('./schema/__generated__/schema.types').CookiePromptManagementStatus) => void
     onChangeParentEntity: any
     /**
      * @deprecated use window.onChangeRequestData
      */
     onChangeTrackerBlockingData: any
     onChangeTheme: any
-    onChangeRequestData: any
-    onChangeLocale: any
+    onChangeRequestData: (url: string, rawRequestData: import('./schema/__generated__/schema.types').RequestData) => void
+    onChangeLocale: (payload: import('./schema/__generated__/schema.types').LocaleSettings) => void
     onChangeAllowedPermissions: any
     onChangeUpgradedHttps: any
-    onChangeProtectionStatus: (protections: import('./shared/js/browser/utils/request-details.mjs').Protections) => void
+    onChangeProtectionStatus: (protections: import('./shared/js/browser/utils/protections.mjs').Protections) => void
     onChangeCertificateData: any
     onIsPendingUpdates: any
 
@@ -31,8 +31,11 @@ interface Window {
     /**
      * Overrides
      */
-    environmentOverride?: string
     $: import('jquery')
+    /**
+     * This is set in Playwright tests
+     */
+    __ddg_integration_test?: boolean
     __playwright: {
         listeners?: any[]
         calls: any[]
@@ -49,12 +52,11 @@ interface Window {
             privacyDashboardSetSize?: any
             privacyDashboardShowReportBrokenSite?: any
             privacyDashboardClose?: any
+            privacyDashboardSetProtection?: any
             privacyDashboardOpenSettings?: any
+            privacyDashboardSetPermission?: any
         }
     }
-}
-
-interface Window {
     chrome: {
         webview?: {
             postMessage?: Window['postMessage']
@@ -62,8 +64,4 @@ interface Window {
             removeEventListener?: Window['removeEventListener']
         }
     }
-}
-
-interface Navigator {
-    brave?: any
 }

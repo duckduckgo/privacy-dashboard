@@ -3,10 +3,10 @@ import * as mixins from './mixins/index.js'
 import * as store from './store.js'
 
 /**
- * @param ops
+ * @param _ops
  * @constructor
  */
-function BasePage(ops) {
+function BasePage(_ops) {
     this.views = {}
     this.store = store
     // @ts-ignore

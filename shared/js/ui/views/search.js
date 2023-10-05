@@ -35,11 +35,11 @@ Search.prototype = $.extend({}, Parent.prototype, {
         }
     },
 
-    _handleBlur: function (e) {
+    _handleBlur: function (_e) {
         this._removeHoverEffect()
     },
 
-    _handleInput: function (e) {
+    _handleInput: function (_e) {
         const searchText = this.$input.val()
         this.model.set('searchText', searchText)
 

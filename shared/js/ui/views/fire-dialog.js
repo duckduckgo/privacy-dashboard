@@ -45,7 +45,7 @@ FireDialog.prototype = $.extend({}, Parent.prototype, {
         document.getElementById('fire-button-container')?.remove()
     },
 
-    _updateSummary: function (ev) {
+    _updateSummary: function () {
         const selectedOption = this.$opts[0].selectedIndex
         const opts = this.model.fireOptions[selectedOption]
         this.model.fetch(new SetBurnDefaultOption(opts.name))

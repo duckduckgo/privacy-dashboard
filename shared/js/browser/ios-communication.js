@@ -21,6 +21,7 @@
  *
  * @category integrations
  */
+import invariant from 'tiny-invariant'
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, setupColorScheme } from './common.js'
 import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShared } from './macos-communication.js'
 
@@ -46,6 +47,7 @@ export function setup() {
  * ```
  */
 export function privacyDashboardClose(args) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
 }
 
@@ -61,6 +63,7 @@ export function privacyDashboardClose(args) {
  * ```
  */
 export function privacyDashboardShowReportBrokenSite(args) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args)
 }
 

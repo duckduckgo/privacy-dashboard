@@ -15,6 +15,7 @@
 
  * @category integrations
  */
+import invariant from 'tiny-invariant'
 import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
@@ -210,6 +211,7 @@ async function fetch(message) {
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
             const isProtected = value === false
+            invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
             window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
         }
     }
@@ -221,6 +223,7 @@ async function fetch(message) {
     }
 
     if (message instanceof UpdatePermissionMessage) {
+        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
         window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
             permission: message.id,
             value: message.value,
@@ -249,6 +252,7 @@ const getBackgroundTabData = () => {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardOpenUrlInNewTab(args) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     window.webkit.messageHandlers.privacyDashboardOpenUrlInNewTab.postMessage({
         url: args.url,
     })
@@ -260,6 +264,7 @@ export function privacyDashboardOpenUrlInNewTab(args) {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardOpenSettings(args) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     window.webkit.messageHandlers.privacyDashboardOpenSettings.postMessage({
         target: args.target,
     })
@@ -271,6 +276,7 @@ export function privacyDashboardOpenSettings(args) {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardSubmitBrokenSiteReport(report) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     window.webkit.messageHandlers.privacyDashboardSubmitBrokenSiteReport.postMessage({
         category: report.category,
         description: report.description,
@@ -284,6 +290,7 @@ export function privacyDashboardSubmitBrokenSiteReport(report) {
  */
 export function privacyDashboardSetSize(payload) {
     if (!isIOS()) {
+        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
         window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
     }
 }

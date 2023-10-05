@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 import $ from 'jquery'
 import Parent from '../base/model.js'
 import browserUIWrapper from '../../browser/communication.js'

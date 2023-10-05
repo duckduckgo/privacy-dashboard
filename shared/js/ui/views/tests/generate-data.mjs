@@ -207,18 +207,21 @@ export const permissions = [
 ]
 
 /**
- * These can be used when previewing the dashboard by adding the 'state' parameter, such as
- * - http://localhost:8080/html/popup.html?state=01
- * - http://localhost:8080/html/popup.html?state=02
- * - http://localhost:8080/html/popup.html?state=google
- * - http://localhost:8080/html/popup.html?state=cnn
+ * @typedef {{ clearHistory: boolean, tabClearEnabled: boolean, pinnedTabs: number }} BurnConfig
  */
 
+/**
+ * These can be used when previewing the dashboard by adding the 'state' parameter, such as
+ * - http://localhost:8080/html/ios.html?state=01
+ * - http://localhost:8080/html/ios.html?state=02
+ * - http://localhost:8080/html/ios.html?state=google
+ * - http://localhost:8080/html/ios.html?state=cnn
+ */
 export class MockData {
     /**
      * @param {object} params
      * @param {string} [params.state] - any string identifier for this mock state
-     * @param {string} params.url
+     * @param {string} [params.url]
      * @param {{locale: string}} [params.localeSettings]
      * @param {DetectedRequest[]} [params.requests]
      * @param {any[]} [params.certificate]
@@ -233,10 +236,11 @@ export class MockData {
      * @param {boolean} [params.fireButtonEnabled]
      * @param {BurnConfig} [params.fireButtonOptions]
      * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
+     * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
      */
     constructor(params) {
-        this.url = params.url
-        this.requests = params.requests || []
+        this.url = params.url || 'https://example.com'
+        this.requests = params.requests
         this.state = params.state
         this.localeSettings = params.localeSettings || { locale: 'en' }
         this.certificate = params.certificate || defaultCertificates
@@ -250,9 +254,8 @@ export class MockData {
         this.emailUser = params.emailUser
         this.cookiePromptManagementStatus = params.cookiePromptManagementStatus
         this.fireButtonEnabled = params.fireButtonEnabled || false
-        if (params.fireButtonOptions) {
-            this.getBurnOptions = mockBurnOptions(params.fireButtonOptions)
-        }
+        this.emailProtectionUserData = params.emailProtectionUserData
+        this.fireButtonOptions = params.fireButtonOptions
 
         /** @type {Protections} */
         this.protections = Protections.default()
@@ -267,7 +270,7 @@ export class MockData {
         if (this.contentBlockingException) {
             this.protections.enabledFeatures = []
         }
-        if (this.protections.allowlisted || this.contentBlockingException) {
+        if (this.requests && (this.protections.allowlisted || this.contentBlockingException)) {
             this.requests = protectionsOff(this.requests)
         }
     }
@@ -281,46 +284,112 @@ export class MockData {
             ...mock,
         })
     }
-}
 
-/**
- * @param {MockData} mock
- * @returns {{
- *  getPrivacyDashboardData: import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData,
- *  getBurnOptions?: import('../../../../../schema/__generated__/schema.types.js').FireButtonData
- * }}
- */
-export function mockToExtensionDashboardMessage(mock) {
-    /** @type {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData} */
-    const msg = {
-        tab: {
-            id: 123,
-            url: mock.url,
-            protections: mock.protections,
-            upgradedHttps: mock.upgradedHttps,
-            localeSettings: mock.localeSettings,
-            parentEntity: mock.parentEntity,
-        },
-        requestData: { requests: mock.requests },
-        emailProtectionUserData: undefined,
-        fireButton: {
-            enabled: mock.fireButtonEnabled,
-        },
-    }
-    if (mock.specialDomainName) {
-        msg.tab.specialDomainName = 'extensions'
-    }
-    if (mock.emailUser) {
-        msg.emailProtectionUserData = {
-            nextAlias: '123456_next',
+    /**
+     * @return {import('../../../../../schema/__generated__/schema.types').WindowsIncomingViewModel}
+     */
+    toWindowsViewModel() {
+        return {
+            Feature: 'PrivacyDashboard',
+            Name: 'ViewModelUpdated',
+            Data: {
+                rawRequestData: {
+                    requests: this.requests || [],
+                },
+                protections: this.protections,
+                tabUrl: this.url,
+                upgradedHttps: this.upgradedHttps,
+                parentEntity: this.parentEntity,
+                permissions: this.permissions,
+                certificates: this.certificate,
+                cookiePromptManagementStatus: this.cookiePromptManagementStatus,
+            },
         }
     }
-    if (mock.localeSettings) {
-        msg.tab.localeSettings = mock.localeSettings
+
+    /**
+     * @return {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData}
+     */
+    toExtensionDashboardData() {
+        /** @type {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData} */
+        const output = {
+            tab: {
+                id: 1533,
+                url: this.url || 'https://example.com',
+                upgradedHttps: this.upgradedHttps,
+                protections: this.protections,
+                parentEntity: this.parentEntity,
+            },
+            fireButton: { enabled: this.fireButtonEnabled },
+            requestData: {
+                requests: this.requests || [],
+            },
+            emailProtectionUserData: this.emailProtectionUserData,
+        }
+
+        if (this.specialDomainName) {
+            output.tab.specialDomainName = 'extensions'
+        }
+        if (this.emailUser) {
+            output.emailProtectionUserData = {
+                nextAlias: '123456_next',
+            }
+        }
+        if (this.localeSettings) {
+            output.tab.localeSettings = this.localeSettings
+        }
+
+        return output
     }
-    return {
-        getPrivacyDashboardData: msg,
-        getBurnOptions: mock.getBurnOptions || undefined,
+
+    /**
+     * @return {import('../../../../../schema/__generated__/schema.types.js').FireButtonData}
+     */
+    toBurnOptions() {
+        const burnConfig = this.fireButtonOptions || { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 }
+        const { clearHistory, pinnedTabs, tabClearEnabled } = burnConfig
+        return {
+            options: [
+                {
+                    name: 'CurrentSite',
+                    options: {
+                        origins: ['https://example.com/'],
+                    },
+                    descriptionStats: {
+                        clearHistory,
+                        site: 'example.com',
+                        duration: 'all',
+                        openTabs: tabClearEnabled ? 1 : 0,
+                        cookies: 1,
+                        pinnedTabs,
+                    },
+                },
+                {
+                    name: 'LastHour',
+                    options: {
+                        since: Date.now(),
+                    },
+                    descriptionStats: {
+                        clearHistory,
+                        duration: 'hour',
+                        openTabs: tabClearEnabled ? 5 : 0,
+                        cookies: 23,
+                        pinnedTabs,
+                    },
+                },
+                {
+                    name: 'AllTime',
+                    options: {},
+                    descriptionStats: {
+                        clearHistory,
+                        duration: 'all',
+                        openTabs: tabClearEnabled ? 5 : 0,
+                        cookies: 1000,
+                        pinnedTabs,
+                    },
+                },
+            ],
+        }
     }
 }
 
@@ -367,6 +436,11 @@ export const createDataStates = (google, cnn) => {
             },
             url: 'https://example.com',
             requests: [],
+        }),
+        'email-user': new MockData({
+            emailProtectionUserData: {
+                nextAlias: 'abc',
+            },
         }),
         'ad-attribution': new MockData({
             url: 'https://example.com',
@@ -563,57 +637,33 @@ export const createDataStates = (google, cnn) => {
             fireButtonEnabled: true,
             fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         }),
-    }
-}
-
-/**
- * @typedef {{ clearHistory: boolean, tabClearEnabled: boolean, pinnedTabs: number }} BurnConfig
- */
-/**
- * @param {BurnConfig} options
- * @returns {import('../../../../../schema/__generated__/schema.types.js').FireButtonData}
- */
-export function mockBurnOptions({ clearHistory, tabClearEnabled, pinnedTabs }) {
-    return {
-        options: [
-            {
-                name: 'CurrentSite',
-                options: {
-                    origins: ['https://example.com/'],
-                },
-                descriptionStats: {
-                    clearHistory,
-                    site: 'example.com',
-                    duration: 'all',
-                    openTabs: tabClearEnabled ? 1 : 0,
-                    cookies: 1,
-                    pinnedTabs,
-                },
-            },
-            {
-                name: 'LastHour',
-                options: {
-                    since: Date.now(),
-                },
-                descriptionStats: {
-                    clearHistory,
-                    duration: 'hour',
-                    openTabs: tabClearEnabled ? 5 : 0,
-                    cookies: 23,
-                    pinnedTabs,
-                },
-            },
-            {
-                name: 'AllTime',
-                options: {},
-                descriptionStats: {
-                    clearHistory,
-                    duration: 'all',
-                    openTabs: tabClearEnabled ? 5 : 0,
-                    cookies: 1000,
-                    pinnedTabs,
-                },
-            },
-        ],
+        'fire-button-enabled': new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+        }),
+        'fire-button-disabled': new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: false,
+        }),
+        'fire-button-no-pinned': new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 },
+        }),
+        'fire-button-tab-clear-disabled': new MockData({
+            url: 'https://example.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: false, pinnedTabs: 0 },
+        }),
+        'special-page': new MockData({
+            url: 'https://example.com',
+            specialDomainName: true,
+            emailUser: true,
+        }),
+        'invalid-data': new MockData({
+            url: 'https://example.com',
+            // @ts-expect-error - this SHOULD error, that's the test
+            requests: [{ foo: 'bar' }],
+        }),
     }
 }

@@ -19,8 +19,6 @@ export class DashboardPage {
                 return '/html/macos.html'
             case 'windows':
                 return '/html/windows.html'
-            case 'example':
-                return '/html/example.html'
             case 'browser':
                 return '/html/browser.html'
             default: {
@@ -36,7 +34,7 @@ export class DashboardPage {
     mocks
     /**
      * @param {import("@playwright/test").Page} page
-     * @param {import("../shared/js/ui/platform-features.js").Platform} platform
+     * @param {import("../shared/js/ui/platform-features.mjs").Platform} platform
      */
     constructor(page, platform) {
         this.platform = platform
@@ -59,7 +57,7 @@ export class DashboardPage {
 
     async screenshotPrimary(name, state) {
         await this.page.emulateMedia({ reducedMotion: 'reduce' })
-        await this.addStates([state])
+        await this.addState([state])
         await this.showsPrimaryScreen()
         return this.page.screenshot({ path: `screenshots/primary-${name}.png` })
     }
@@ -70,7 +68,7 @@ export class DashboardPage {
      */
     async screenshotEachScreenForState(name, state) {
         await this.page.emulateMedia({ reducedMotion: 'reduce' })
-        await this.addStates([state])
+        await this.addState([state])
         await this.showsPrimaryScreen()
         await this.screenshot(name + '-state-primary.png')
         await this.viewConnection()
@@ -156,18 +154,11 @@ export class DashboardPage {
 
     /**
      * @param {import("@playwright/test").Page} page
-     * @param {{
-     *     getPrivacyDashboardData?: import('../schema/__generated__/schema.types').GetPrivacyDashboardData,
-     *     getBurnOptions?: import('../schema/__generated__/schema.types').FireButtonData
-     * }} messages
      * @returns {Promise<DashboardPage>}
      */
-    static async browser(page, messages) {
+    static async browser(page) {
         const dash = new DashboardPage(page, { name: 'browser' })
         await dash.withMocks()
-        await page.addInitScript((messages) => {
-            window.__playwright.messages = Object.assign(window.__playwright.messages, messages)
-        }, messages)
         await dash.loadPage()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -185,15 +176,22 @@ export class DashboardPage {
      * @returns {Promise<DashboardPage>}
      */
     async withMocks() {
+        await this.page.addInitScript(() => (window.__ddg_integration_test = true))
         await this.mocks.install()
         return this
     }
 
     /**
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData[]} states
+     * @returns {Promise<Record<string, any>[]>}
      */
-    async addStates(states) {
-        await playTimeline(this.page, states, this.platform)
+    async addState(states) {
+        /** @type {Record<string, any>[]} */
+        const results = []
+        for (const state of states) {
+            results.push(await playTimeline(this.page, state, this.platform))
+        }
+        return results
     }
 
     async clickReportBreakage() {
@@ -301,7 +299,7 @@ export class DashboardPage {
         await expect(this.page.locator('[placeholder="Search DuckDuckGo"]')).toHaveValue(text)
     }
 
-    async submitSearch(text) {
+    async submitSearch() {
         await this.page.locator('[type="submit"]').click()
     }
 

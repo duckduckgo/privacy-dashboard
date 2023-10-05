@@ -4,7 +4,7 @@
 
 /**
  * @typedef Platform
- * @property {"ios" | "android" | "macos" | "browser" | "windows" | "example"} name
+ * @property {"ios" | "android" | "macos" | "browser" | "windows"} name
  */
 
 /**
@@ -13,7 +13,7 @@
  */
 export function createPlatformFeatures(platform) {
     /** @type {Platform["name"][]} */
-    const desktop = ['windows', 'macos', 'browser', 'example']
+    const desktop = ['windows', 'macos', 'browser']
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
