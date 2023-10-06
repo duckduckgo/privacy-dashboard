@@ -12158,400 +12158,6 @@
     }
   });
 
-  // node_modules/@material/switch/adapter.js
-  var init_adapter2 = __esm({
-    "node_modules/@material/switch/adapter.js"() {
-    }
-  });
-
-  // node_modules/@material/switch/constants.js
-  var CssClasses, Selectors;
-  var init_constants2 = __esm({
-    "node_modules/@material/switch/constants.js"() {
-      (function(CssClasses2) {
-        CssClasses2["PROCESSING"] = "mdc-switch--processing";
-        CssClasses2["SELECTED"] = "mdc-switch--selected";
-        CssClasses2["UNSELECTED"] = "mdc-switch--unselected";
-      })(CssClasses || (CssClasses = {}));
-      (function(Selectors2) {
-        Selectors2["RIPPLE"] = ".mdc-switch__ripple";
-      })(Selectors || (Selectors = {}));
-    }
-  });
-
-  // node_modules/@material/base/observer.js
-  function observeProperty(target, property, observer) {
-    var targetObservers = installObserver(target, property);
-    var observers = targetObservers.getObservers(property);
-    observers.push(observer);
-    return function() {
-      observers.splice(observers.indexOf(observer), 1);
-    };
-  }
-  function installObserver(target, property) {
-    var observersMap = /* @__PURE__ */ new Map();
-    if (!allTargetObservers.has(target)) {
-      allTargetObservers.set(target, {
-        isEnabled: true,
-        getObservers: function(key) {
-          var observers = observersMap.get(key) || [];
-          if (!observersMap.has(key)) {
-            observersMap.set(key, observers);
-          }
-          return observers;
-        },
-        installedProperties: /* @__PURE__ */ new Set()
-      });
-    }
-    var targetObservers = allTargetObservers.get(target);
-    if (targetObservers.installedProperties.has(property)) {
-      return targetObservers;
-    }
-    var descriptor = getDescriptor(target, property) || {
-      configurable: true,
-      enumerable: true,
-      value: target[property],
-      writable: true
-    };
-    var observedDescriptor = __assign({}, descriptor);
-    var descGet = descriptor.get, descSet = descriptor.set;
-    if ("value" in descriptor) {
-      delete observedDescriptor.value;
-      delete observedDescriptor.writable;
-      var value_1 = descriptor.value;
-      descGet = function() {
-        return value_1;
-      };
-      if (descriptor.writable) {
-        descSet = function(newValue) {
-          value_1 = newValue;
-        };
-      }
-    }
-    if (descGet) {
-      observedDescriptor.get = function() {
-        return descGet.call(this);
-      };
-    }
-    if (descSet) {
-      observedDescriptor.set = function(newValue) {
-        var e_4, _a2;
-        var previous = descGet ? descGet.call(this) : newValue;
-        descSet.call(this, newValue);
-        if (targetObservers.isEnabled && (!descGet || newValue !== previous)) {
-          try {
-            for (var _b = __values(targetObservers.getObservers(property)), _c = _b.next(); !_c.done; _c = _b.next()) {
-              var observer = _c.value;
-              observer(newValue, previous);
-            }
-          } catch (e_4_1) {
-            e_4 = { error: e_4_1 };
-          } finally {
-            try {
-              if (_c && !_c.done && (_a2 = _b.return))
-                _a2.call(_b);
-            } finally {
-              if (e_4)
-                throw e_4.error;
-            }
-          }
-        }
-      };
-    }
-    targetObservers.installedProperties.add(property);
-    Object.defineProperty(target, property, observedDescriptor);
-    return targetObservers;
-  }
-  function getDescriptor(target, property) {
-    var descriptorTarget = target;
-    var descriptor;
-    while (descriptorTarget) {
-      descriptor = Object.getOwnPropertyDescriptor(descriptorTarget, property);
-      if (descriptor) {
-        break;
-      }
-      descriptorTarget = Object.getPrototypeOf(descriptorTarget);
-    }
-    return descriptor;
-  }
-  function setObserversEnabled(target, enabled) {
-    var targetObservers = allTargetObservers.get(target);
-    if (targetObservers) {
-      targetObservers.isEnabled = enabled;
-    }
-  }
-  var allTargetObservers;
-  var init_observer = __esm({
-    "node_modules/@material/base/observer.js"() {
-      init_tslib_es6();
-      allTargetObservers = /* @__PURE__ */ new WeakMap();
-    }
-  });
-
-  // node_modules/@material/base/observer-foundation.js
-  var MDCObserverFoundation;
-  var init_observer_foundation = __esm({
-    "node_modules/@material/base/observer-foundation.js"() {
-      init_tslib_es6();
-      init_foundation();
-      init_observer();
-      MDCObserverFoundation = /** @class */
-      function(_super) {
-        __extends(MDCObserverFoundation2, _super);
-        function MDCObserverFoundation2(adapter) {
-          var _this = _super.call(this, adapter) || this;
-          _this.unobserves = /* @__PURE__ */ new Set();
-          return _this;
-        }
-        MDCObserverFoundation2.prototype.destroy = function() {
-          _super.prototype.destroy.call(this);
-          this.unobserve();
-        };
-        MDCObserverFoundation2.prototype.observe = function(target, observers) {
-          var e_1, _a2;
-          var _this = this;
-          var cleanup = [];
-          try {
-            for (var _b = __values(Object.keys(observers)), _c = _b.next(); !_c.done; _c = _b.next()) {
-              var property = _c.value;
-              var observer = observers[property].bind(this);
-              cleanup.push(this.observeProperty(target, property, observer));
-            }
-          } catch (e_1_1) {
-            e_1 = { error: e_1_1 };
-          } finally {
-            try {
-              if (_c && !_c.done && (_a2 = _b.return))
-                _a2.call(_b);
-            } finally {
-              if (e_1)
-                throw e_1.error;
-            }
-          }
-          var unobserve = function() {
-            var e_2, _a3;
-            try {
-              for (var cleanup_1 = __values(cleanup), cleanup_1_1 = cleanup_1.next(); !cleanup_1_1.done; cleanup_1_1 = cleanup_1.next()) {
-                var cleanupFn = cleanup_1_1.value;
-                cleanupFn();
-              }
-            } catch (e_2_1) {
-              e_2 = { error: e_2_1 };
-            } finally {
-              try {
-                if (cleanup_1_1 && !cleanup_1_1.done && (_a3 = cleanup_1.return))
-                  _a3.call(cleanup_1);
-              } finally {
-                if (e_2)
-                  throw e_2.error;
-              }
-            }
-            _this.unobserves.delete(unobserve);
-          };
-          this.unobserves.add(unobserve);
-          return unobserve;
-        };
-        MDCObserverFoundation2.prototype.observeProperty = function(target, property, observer) {
-          return observeProperty(target, property, observer);
-        };
-        MDCObserverFoundation2.prototype.setObserversEnabled = function(target, enabled) {
-          setObserversEnabled(target, enabled);
-        };
-        MDCObserverFoundation2.prototype.unobserve = function() {
-          var e_3, _a2;
-          try {
-            for (var _b = __values(__spreadArray([], __read(this.unobserves))), _c = _b.next(); !_c.done; _c = _b.next()) {
-              var unobserve = _c.value;
-              unobserve();
-            }
-          } catch (e_3_1) {
-            e_3 = { error: e_3_1 };
-          } finally {
-            try {
-              if (_c && !_c.done && (_a2 = _b.return))
-                _a2.call(_b);
-            } finally {
-              if (e_3)
-                throw e_3.error;
-            }
-          }
-        };
-        return MDCObserverFoundation2;
-      }(MDCFoundation);
-    }
-  });
-
-  // node_modules/@material/switch/foundation.js
-  var MDCSwitchFoundation, MDCSwitchRenderFoundation;
-  var init_foundation3 = __esm({
-    "node_modules/@material/switch/foundation.js"() {
-      init_tslib_es6();
-      init_observer_foundation();
-      init_constants2();
-      MDCSwitchFoundation = /** @class */
-      function(_super) {
-        __extends(MDCSwitchFoundation2, _super);
-        function MDCSwitchFoundation2(adapter) {
-          var _this = _super.call(this, adapter) || this;
-          _this.handleClick = _this.handleClick.bind(_this);
-          return _this;
-        }
-        MDCSwitchFoundation2.prototype.init = function() {
-          this.observe(this.adapter.state, {
-            disabled: this.stopProcessingIfDisabled,
-            processing: this.stopProcessingIfDisabled
-          });
-        };
-        MDCSwitchFoundation2.prototype.handleClick = function() {
-          if (this.adapter.state.disabled) {
-            return;
-          }
-          this.adapter.state.selected = !this.adapter.state.selected;
-        };
-        MDCSwitchFoundation2.prototype.stopProcessingIfDisabled = function() {
-          if (this.adapter.state.disabled) {
-            this.adapter.state.processing = false;
-          }
-        };
-        return MDCSwitchFoundation2;
-      }(MDCObserverFoundation);
-      MDCSwitchRenderFoundation = /** @class */
-      function(_super) {
-        __extends(MDCSwitchRenderFoundation2, _super);
-        function MDCSwitchRenderFoundation2() {
-          return _super !== null && _super.apply(this, arguments) || this;
-        }
-        MDCSwitchRenderFoundation2.prototype.init = function() {
-          _super.prototype.init.call(this);
-          this.observe(this.adapter.state, {
-            disabled: this.onDisabledChange,
-            processing: this.onProcessingChange,
-            selected: this.onSelectedChange
-          });
-        };
-        MDCSwitchRenderFoundation2.prototype.initFromDOM = function() {
-          this.setObserversEnabled(this.adapter.state, false);
-          this.adapter.state.selected = this.adapter.hasClass(CssClasses.SELECTED);
-          this.onSelectedChange();
-          this.adapter.state.disabled = this.adapter.isDisabled();
-          this.adapter.state.processing = this.adapter.hasClass(CssClasses.PROCESSING);
-          this.setObserversEnabled(this.adapter.state, true);
-          this.stopProcessingIfDisabled();
-        };
-        MDCSwitchRenderFoundation2.prototype.onDisabledChange = function() {
-          this.adapter.setDisabled(this.adapter.state.disabled);
-        };
-        MDCSwitchRenderFoundation2.prototype.onProcessingChange = function() {
-          this.toggleClass(this.adapter.state.processing, CssClasses.PROCESSING);
-        };
-        MDCSwitchRenderFoundation2.prototype.onSelectedChange = function() {
-          this.adapter.setAriaChecked(String(this.adapter.state.selected));
-          this.toggleClass(this.adapter.state.selected, CssClasses.SELECTED);
-          this.toggleClass(!this.adapter.state.selected, CssClasses.UNSELECTED);
-        };
-        MDCSwitchRenderFoundation2.prototype.toggleClass = function(addClass, className) {
-          if (addClass) {
-            this.adapter.addClass(className);
-          } else {
-            this.adapter.removeClass(className);
-          }
-        };
-        return MDCSwitchRenderFoundation2;
-      }(MDCSwitchFoundation);
-    }
-  });
-
-  // node_modules/@material/switch/component.js
-  var MDCSwitch;
-  var init_component3 = __esm({
-    "node_modules/@material/switch/component.js"() {
-      init_tslib_es6();
-      init_component();
-      init_component2();
-      init_foundation2();
-      init_constants2();
-      init_foundation3();
-      MDCSwitch = /** @class */
-      function(_super) {
-        __extends(MDCSwitch2, _super);
-        function MDCSwitch2(root, foundation) {
-          var _this = _super.call(this, root, foundation) || this;
-          _this.root = root;
-          return _this;
-        }
-        MDCSwitch2.attachTo = function(root) {
-          return new MDCSwitch2(root);
-        };
-        MDCSwitch2.prototype.initialize = function() {
-          this.ripple = new MDCRipple(this.root, this.createRippleFoundation());
-        };
-        MDCSwitch2.prototype.initialSyncWithDOM = function() {
-          var rippleElement = this.root.querySelector(Selectors.RIPPLE);
-          if (!rippleElement) {
-            throw new Error("Switch " + Selectors.RIPPLE + " element is required.");
-          }
-          this.rippleElement = rippleElement;
-          this.root.addEventListener("click", this.foundation.handleClick);
-          this.foundation.initFromDOM();
-        };
-        MDCSwitch2.prototype.destroy = function() {
-          _super.prototype.destroy.call(this);
-          this.ripple.destroy();
-          this.root.removeEventListener("click", this.foundation.handleClick);
-        };
-        MDCSwitch2.prototype.getDefaultFoundation = function() {
-          return new MDCSwitchRenderFoundation(this.createAdapter());
-        };
-        MDCSwitch2.prototype.createAdapter = function() {
-          var _this = this;
-          return {
-            addClass: function(className) {
-              _this.root.classList.add(className);
-            },
-            hasClass: function(className) {
-              return _this.root.classList.contains(className);
-            },
-            isDisabled: function() {
-              return _this.root.disabled;
-            },
-            removeClass: function(className) {
-              _this.root.classList.remove(className);
-            },
-            setAriaChecked: function(ariaChecked) {
-              return _this.root.setAttribute("aria-checked", ariaChecked);
-            },
-            setDisabled: function(disabled) {
-              _this.root.disabled = disabled;
-            },
-            state: this
-          };
-        };
-        MDCSwitch2.prototype.createRippleFoundation = function() {
-          return new MDCRippleFoundation(this.createRippleAdapter());
-        };
-        MDCSwitch2.prototype.createRippleAdapter = function() {
-          var _this = this;
-          return __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function() {
-            return _this.rippleElement.getBoundingClientRect();
-          }, isUnbounded: function() {
-            return true;
-          } });
-        };
-        return MDCSwitch2;
-      }(MDCComponent);
-    }
-  });
-
-  // node_modules/@material/switch/index.js
-  var init_switch = __esm({
-    "node_modules/@material/switch/index.js"() {
-      init_adapter2();
-      init_component3();
-      init_constants2();
-      init_foundation3();
-    }
-  });
-
   // shared/js/ui/views/utils/utils.js
   function setupMaterialDesignRipple(parent, ...selectors) {
     const cleanups = [];
@@ -21399,7 +21005,7 @@
 
   // shared/data/constants.js
   var displayCategories, httpsMessages;
-  var init_constants3 = __esm({
+  var init_constants2 = __esm({
     "shared/data/constants.js"() {
       "use strict";
       displayCategories = {
@@ -21845,7 +21451,7 @@
     "shared/js/ui/templates/page-trackers.js"() {
       "use strict";
       import_nanohtml8 = __toESM(require_browser());
-      init_constants3();
+      init_constants2();
       init_localize();
       init_hero();
       init_utils3();
@@ -22777,7 +22383,7 @@
       "use strict";
       import_jquery16 = __toESM(require_jquery());
       init_model();
-      init_constants3();
+      init_constants2();
       init_communication();
       init_localize();
       init_platform_features();
@@ -24184,6 +23790,400 @@
       init_preact_module();
       init_hooks_module();
       init_useRipple();
+    }
+  });
+
+  // node_modules/@material/switch/adapter.js
+  var init_adapter2 = __esm({
+    "node_modules/@material/switch/adapter.js"() {
+    }
+  });
+
+  // node_modules/@material/switch/constants.js
+  var CssClasses, Selectors;
+  var init_constants3 = __esm({
+    "node_modules/@material/switch/constants.js"() {
+      (function(CssClasses2) {
+        CssClasses2["PROCESSING"] = "mdc-switch--processing";
+        CssClasses2["SELECTED"] = "mdc-switch--selected";
+        CssClasses2["UNSELECTED"] = "mdc-switch--unselected";
+      })(CssClasses || (CssClasses = {}));
+      (function(Selectors2) {
+        Selectors2["RIPPLE"] = ".mdc-switch__ripple";
+      })(Selectors || (Selectors = {}));
+    }
+  });
+
+  // node_modules/@material/base/observer.js
+  function observeProperty(target, property, observer) {
+    var targetObservers = installObserver(target, property);
+    var observers = targetObservers.getObservers(property);
+    observers.push(observer);
+    return function() {
+      observers.splice(observers.indexOf(observer), 1);
+    };
+  }
+  function installObserver(target, property) {
+    var observersMap = /* @__PURE__ */ new Map();
+    if (!allTargetObservers.has(target)) {
+      allTargetObservers.set(target, {
+        isEnabled: true,
+        getObservers: function(key) {
+          var observers = observersMap.get(key) || [];
+          if (!observersMap.has(key)) {
+            observersMap.set(key, observers);
+          }
+          return observers;
+        },
+        installedProperties: /* @__PURE__ */ new Set()
+      });
+    }
+    var targetObservers = allTargetObservers.get(target);
+    if (targetObservers.installedProperties.has(property)) {
+      return targetObservers;
+    }
+    var descriptor = getDescriptor(target, property) || {
+      configurable: true,
+      enumerable: true,
+      value: target[property],
+      writable: true
+    };
+    var observedDescriptor = __assign({}, descriptor);
+    var descGet = descriptor.get, descSet = descriptor.set;
+    if ("value" in descriptor) {
+      delete observedDescriptor.value;
+      delete observedDescriptor.writable;
+      var value_1 = descriptor.value;
+      descGet = function() {
+        return value_1;
+      };
+      if (descriptor.writable) {
+        descSet = function(newValue) {
+          value_1 = newValue;
+        };
+      }
+    }
+    if (descGet) {
+      observedDescriptor.get = function() {
+        return descGet.call(this);
+      };
+    }
+    if (descSet) {
+      observedDescriptor.set = function(newValue) {
+        var e_4, _a2;
+        var previous = descGet ? descGet.call(this) : newValue;
+        descSet.call(this, newValue);
+        if (targetObservers.isEnabled && (!descGet || newValue !== previous)) {
+          try {
+            for (var _b = __values(targetObservers.getObservers(property)), _c = _b.next(); !_c.done; _c = _b.next()) {
+              var observer = _c.value;
+              observer(newValue, previous);
+            }
+          } catch (e_4_1) {
+            e_4 = { error: e_4_1 };
+          } finally {
+            try {
+              if (_c && !_c.done && (_a2 = _b.return))
+                _a2.call(_b);
+            } finally {
+              if (e_4)
+                throw e_4.error;
+            }
+          }
+        }
+      };
+    }
+    targetObservers.installedProperties.add(property);
+    Object.defineProperty(target, property, observedDescriptor);
+    return targetObservers;
+  }
+  function getDescriptor(target, property) {
+    var descriptorTarget = target;
+    var descriptor;
+    while (descriptorTarget) {
+      descriptor = Object.getOwnPropertyDescriptor(descriptorTarget, property);
+      if (descriptor) {
+        break;
+      }
+      descriptorTarget = Object.getPrototypeOf(descriptorTarget);
+    }
+    return descriptor;
+  }
+  function setObserversEnabled(target, enabled) {
+    var targetObservers = allTargetObservers.get(target);
+    if (targetObservers) {
+      targetObservers.isEnabled = enabled;
+    }
+  }
+  var allTargetObservers;
+  var init_observer = __esm({
+    "node_modules/@material/base/observer.js"() {
+      init_tslib_es6();
+      allTargetObservers = /* @__PURE__ */ new WeakMap();
+    }
+  });
+
+  // node_modules/@material/base/observer-foundation.js
+  var MDCObserverFoundation;
+  var init_observer_foundation = __esm({
+    "node_modules/@material/base/observer-foundation.js"() {
+      init_tslib_es6();
+      init_foundation();
+      init_observer();
+      MDCObserverFoundation = /** @class */
+      function(_super) {
+        __extends(MDCObserverFoundation2, _super);
+        function MDCObserverFoundation2(adapter) {
+          var _this = _super.call(this, adapter) || this;
+          _this.unobserves = /* @__PURE__ */ new Set();
+          return _this;
+        }
+        MDCObserverFoundation2.prototype.destroy = function() {
+          _super.prototype.destroy.call(this);
+          this.unobserve();
+        };
+        MDCObserverFoundation2.prototype.observe = function(target, observers) {
+          var e_1, _a2;
+          var _this = this;
+          var cleanup = [];
+          try {
+            for (var _b = __values(Object.keys(observers)), _c = _b.next(); !_c.done; _c = _b.next()) {
+              var property = _c.value;
+              var observer = observers[property].bind(this);
+              cleanup.push(this.observeProperty(target, property, observer));
+            }
+          } catch (e_1_1) {
+            e_1 = { error: e_1_1 };
+          } finally {
+            try {
+              if (_c && !_c.done && (_a2 = _b.return))
+                _a2.call(_b);
+            } finally {
+              if (e_1)
+                throw e_1.error;
+            }
+          }
+          var unobserve = function() {
+            var e_2, _a3;
+            try {
+              for (var cleanup_1 = __values(cleanup), cleanup_1_1 = cleanup_1.next(); !cleanup_1_1.done; cleanup_1_1 = cleanup_1.next()) {
+                var cleanupFn = cleanup_1_1.value;
+                cleanupFn();
+              }
+            } catch (e_2_1) {
+              e_2 = { error: e_2_1 };
+            } finally {
+              try {
+                if (cleanup_1_1 && !cleanup_1_1.done && (_a3 = cleanup_1.return))
+                  _a3.call(cleanup_1);
+              } finally {
+                if (e_2)
+                  throw e_2.error;
+              }
+            }
+            _this.unobserves.delete(unobserve);
+          };
+          this.unobserves.add(unobserve);
+          return unobserve;
+        };
+        MDCObserverFoundation2.prototype.observeProperty = function(target, property, observer) {
+          return observeProperty(target, property, observer);
+        };
+        MDCObserverFoundation2.prototype.setObserversEnabled = function(target, enabled) {
+          setObserversEnabled(target, enabled);
+        };
+        MDCObserverFoundation2.prototype.unobserve = function() {
+          var e_3, _a2;
+          try {
+            for (var _b = __values(__spreadArray([], __read(this.unobserves))), _c = _b.next(); !_c.done; _c = _b.next()) {
+              var unobserve = _c.value;
+              unobserve();
+            }
+          } catch (e_3_1) {
+            e_3 = { error: e_3_1 };
+          } finally {
+            try {
+              if (_c && !_c.done && (_a2 = _b.return))
+                _a2.call(_b);
+            } finally {
+              if (e_3)
+                throw e_3.error;
+            }
+          }
+        };
+        return MDCObserverFoundation2;
+      }(MDCFoundation);
+    }
+  });
+
+  // node_modules/@material/switch/foundation.js
+  var MDCSwitchFoundation, MDCSwitchRenderFoundation;
+  var init_foundation3 = __esm({
+    "node_modules/@material/switch/foundation.js"() {
+      init_tslib_es6();
+      init_observer_foundation();
+      init_constants3();
+      MDCSwitchFoundation = /** @class */
+      function(_super) {
+        __extends(MDCSwitchFoundation2, _super);
+        function MDCSwitchFoundation2(adapter) {
+          var _this = _super.call(this, adapter) || this;
+          _this.handleClick = _this.handleClick.bind(_this);
+          return _this;
+        }
+        MDCSwitchFoundation2.prototype.init = function() {
+          this.observe(this.adapter.state, {
+            disabled: this.stopProcessingIfDisabled,
+            processing: this.stopProcessingIfDisabled
+          });
+        };
+        MDCSwitchFoundation2.prototype.handleClick = function() {
+          if (this.adapter.state.disabled) {
+            return;
+          }
+          this.adapter.state.selected = !this.adapter.state.selected;
+        };
+        MDCSwitchFoundation2.prototype.stopProcessingIfDisabled = function() {
+          if (this.adapter.state.disabled) {
+            this.adapter.state.processing = false;
+          }
+        };
+        return MDCSwitchFoundation2;
+      }(MDCObserverFoundation);
+      MDCSwitchRenderFoundation = /** @class */
+      function(_super) {
+        __extends(MDCSwitchRenderFoundation2, _super);
+        function MDCSwitchRenderFoundation2() {
+          return _super !== null && _super.apply(this, arguments) || this;
+        }
+        MDCSwitchRenderFoundation2.prototype.init = function() {
+          _super.prototype.init.call(this);
+          this.observe(this.adapter.state, {
+            disabled: this.onDisabledChange,
+            processing: this.onProcessingChange,
+            selected: this.onSelectedChange
+          });
+        };
+        MDCSwitchRenderFoundation2.prototype.initFromDOM = function() {
+          this.setObserversEnabled(this.adapter.state, false);
+          this.adapter.state.selected = this.adapter.hasClass(CssClasses.SELECTED);
+          this.onSelectedChange();
+          this.adapter.state.disabled = this.adapter.isDisabled();
+          this.adapter.state.processing = this.adapter.hasClass(CssClasses.PROCESSING);
+          this.setObserversEnabled(this.adapter.state, true);
+          this.stopProcessingIfDisabled();
+        };
+        MDCSwitchRenderFoundation2.prototype.onDisabledChange = function() {
+          this.adapter.setDisabled(this.adapter.state.disabled);
+        };
+        MDCSwitchRenderFoundation2.prototype.onProcessingChange = function() {
+          this.toggleClass(this.adapter.state.processing, CssClasses.PROCESSING);
+        };
+        MDCSwitchRenderFoundation2.prototype.onSelectedChange = function() {
+          this.adapter.setAriaChecked(String(this.adapter.state.selected));
+          this.toggleClass(this.adapter.state.selected, CssClasses.SELECTED);
+          this.toggleClass(!this.adapter.state.selected, CssClasses.UNSELECTED);
+        };
+        MDCSwitchRenderFoundation2.prototype.toggleClass = function(addClass, className) {
+          if (addClass) {
+            this.adapter.addClass(className);
+          } else {
+            this.adapter.removeClass(className);
+          }
+        };
+        return MDCSwitchRenderFoundation2;
+      }(MDCSwitchFoundation);
+    }
+  });
+
+  // node_modules/@material/switch/component.js
+  var MDCSwitch;
+  var init_component3 = __esm({
+    "node_modules/@material/switch/component.js"() {
+      init_tslib_es6();
+      init_component();
+      init_component2();
+      init_foundation2();
+      init_constants3();
+      init_foundation3();
+      MDCSwitch = /** @class */
+      function(_super) {
+        __extends(MDCSwitch2, _super);
+        function MDCSwitch2(root, foundation) {
+          var _this = _super.call(this, root, foundation) || this;
+          _this.root = root;
+          return _this;
+        }
+        MDCSwitch2.attachTo = function(root) {
+          return new MDCSwitch2(root);
+        };
+        MDCSwitch2.prototype.initialize = function() {
+          this.ripple = new MDCRipple(this.root, this.createRippleFoundation());
+        };
+        MDCSwitch2.prototype.initialSyncWithDOM = function() {
+          var rippleElement = this.root.querySelector(Selectors.RIPPLE);
+          if (!rippleElement) {
+            throw new Error("Switch " + Selectors.RIPPLE + " element is required.");
+          }
+          this.rippleElement = rippleElement;
+          this.root.addEventListener("click", this.foundation.handleClick);
+          this.foundation.initFromDOM();
+        };
+        MDCSwitch2.prototype.destroy = function() {
+          _super.prototype.destroy.call(this);
+          this.ripple.destroy();
+          this.root.removeEventListener("click", this.foundation.handleClick);
+        };
+        MDCSwitch2.prototype.getDefaultFoundation = function() {
+          return new MDCSwitchRenderFoundation(this.createAdapter());
+        };
+        MDCSwitch2.prototype.createAdapter = function() {
+          var _this = this;
+          return {
+            addClass: function(className) {
+              _this.root.classList.add(className);
+            },
+            hasClass: function(className) {
+              return _this.root.classList.contains(className);
+            },
+            isDisabled: function() {
+              return _this.root.disabled;
+            },
+            removeClass: function(className) {
+              _this.root.classList.remove(className);
+            },
+            setAriaChecked: function(ariaChecked) {
+              return _this.root.setAttribute("aria-checked", ariaChecked);
+            },
+            setDisabled: function(disabled) {
+              _this.root.disabled = disabled;
+            },
+            state: this
+          };
+        };
+        MDCSwitch2.prototype.createRippleFoundation = function() {
+          return new MDCRippleFoundation(this.createRippleAdapter());
+        };
+        MDCSwitch2.prototype.createRippleAdapter = function() {
+          var _this = this;
+          return __assign(__assign({}, MDCRipple.createAdapter(this)), { computeBoundingRect: function() {
+            return _this.rippleElement.getBoundingClientRect();
+          }, isUnbounded: function() {
+            return true;
+          } });
+        };
+        return MDCSwitch2;
+      }(MDCComponent);
+    }
+  });
+
+  // node_modules/@material/switch/index.js
+  var init_switch = __esm({
+    "node_modules/@material/switch/index.js"() {
+      init_adapter2();
+      init_component3();
+      init_constants3();
+      init_foundation3();
     }
   });
 
