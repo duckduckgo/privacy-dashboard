@@ -57,7 +57,7 @@ export class DashboardPage {
     }
 
     async showsToggleFeedbackPrompt() {
-        await this.page.getByRole('link', { name: 'Report broken site' }).waitFor({ timeout: 1000 })
+        await this.page.getByRole('link', { name: 'Report broken site.' }).waitFor({ timeout: 1000 })
     }
 
     async screenshot(name) {
@@ -142,7 +142,7 @@ export class DashboardPage {
 
     static async android(page) {
         const dash = new DashboardPage(page, { name: 'android' })
-        await dash.withMarker();
+        await dash.withMarker()
         await dash.loadPage()
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -151,7 +151,7 @@ export class DashboardPage {
 
     static async windows(page) {
         const dash = new DashboardPage(page, { name: 'windows' })
-        await dash.withMarker();
+        await dash.withMarker()
         await dash.withMocks()
         await dash.loadPage()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -160,7 +160,7 @@ export class DashboardPage {
 
     static async macos(page) {
         const dash = new DashboardPage(page, { name: 'macos' })
-        await dash.withMarker();
+        await dash.withMarker()
         await dash.loadPage()
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -173,7 +173,7 @@ export class DashboardPage {
      */
     static async browser(page) {
         const dash = new DashboardPage(page, { name: 'browser' })
-        await dash.withMarker();
+        await dash.withMarker()
         await dash.withMocks()
         await dash.loadPage()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -182,7 +182,7 @@ export class DashboardPage {
 
     static async ios(page) {
         const dash = new DashboardPage(page, { name: 'ios' })
-        await dash.withMarker();
+        await dash.withMarker()
         await dash.loadPage()
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -191,7 +191,7 @@ export class DashboardPage {
 
     async withMarker() {
         await this.page.addInitScript(() => {
-            return window.__ddg_integration_test = true
+            return (window.__ddg_integration_test = true)
         })
     }
 
@@ -396,11 +396,11 @@ export class DashboardPage {
     }
 
     async helpIsShown() {
-        await this.page.getByText('Turning OFF the protections might help the website.').waitFor({ timeout: 1000 })
+        await this.page.getByText('Turning OFF the protections might help the site.').waitFor({ timeout: 1000 })
     }
 
     async clicksReportBroken() {
-        await this.page.getByRole('link', { name: 'Report broken site' }).click({ timeout: 1000 })
+        await this.page.getByRole('link', { name: 'Report broken site.' }).click({ timeout: 1000 })
     }
 
     async showRemoteDisabled() {

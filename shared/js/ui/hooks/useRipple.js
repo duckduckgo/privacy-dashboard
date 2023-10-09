@@ -11,7 +11,7 @@ export function useRipple(params) {
     useLayoutEffect(() => {
         const $el = ref.current
         if (!$el) return
-        if (!isAndroid()) return;
+        if (!isAndroid()) return
         $el.classList.add('material-design-ripple')
         const instance = MDCRipple.attachTo($el)
         instance.listen('click', function (e) {

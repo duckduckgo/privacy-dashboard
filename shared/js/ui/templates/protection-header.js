@@ -101,7 +101,7 @@ export function ProtectionHeader(props) {
                     {!props.model.isBroken && <HeaderDefault model={props.model} state={state} />}
                 </div>
                 <div className="text--center">
-                    <TextLink onClick={onClickTextLink}>
+                    <TextLink onClick={onClickTextLink} rounded={true}>
                         {buttonText}
                     </TextLink>
                 </div>
@@ -123,7 +123,7 @@ function HeaderDefault(props) {
             <div className="padding-x padding-y--reduced">
                 <ProtectionToggle model={props.model} />
             </div>
-            {props.state === 'site-not-working' && <div className="note note--nested-alt">{text}</div>}
+            {props.state === 'site-not-working' && <div className="note note--nested note--nested--alt">{text}</div>}
         </>
     )
 }
@@ -140,10 +140,10 @@ function HeaderDisabled(props) {
     }
     return (
         <>
-            <div className="note note--nested">{text}</div>
             <div className="padding-x padding-y--reduced">
                 <ProtectionToggle model={props.model} />
             </div>
+            <div className="note note--nested">{text}</div>
         </>
     )
 }

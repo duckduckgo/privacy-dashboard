@@ -7,17 +7,21 @@ import { useRipple } from '../hooks/useRipple'
 /**
  * @param {object} props
  * @param {import('preact').ComponentChildren} [props.children]
+ * @param {boolean} [props.rounded]
  * @param {() => void} props.onClick
  */
 export function TextLink(props) {
-    const { onClick } = props
+    const { onClick, rounded = false } = props
 
     const ref = useRef(null)
 
     useRipple({ ref })
 
+    let classNames = [`link-action`, `link-action--text`]
+    if (rounded) classNames.push(`link-action--rounded`)
+
     return (
-        <a href="javascript:void(0)" className="link-action link-action--text" draggable={false} ref={ref} onClick={onClick}>
+        <a href="javascript:void(0)" className={classNames.join(' ')} draggable={false} ref={ref} onClick={onClick}>
             {props.children}
         </a>
     )

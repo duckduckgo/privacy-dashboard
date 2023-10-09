@@ -124,8 +124,8 @@ function renderReportButton() {
         window.dispatchEvent(new CustomEvent('open-feedback'))
     }
     let root = html`<div class="text--center border-light--top"></div>`
-    render(<TextLink onClick={onClickTextLink}>{ns.site('websiteNotWorkingQ.title')}</TextLink>, root);
-    return root;
+    render(<TextLink onClick={onClickTextLink}>{ns.site('websiteNotWorkingQ.title')}</TextLink>, root)
+    return root
 }
 
 /**

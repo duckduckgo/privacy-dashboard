@@ -3,21 +3,21 @@
     border-radius: 12px;
     padding: 12px 16px;
 
-    // this will override any other margins and ensure there's enough space
     .body--theme-dark & {
-        background: rgba(255, 214, 92, 0.2);
+        background: $color-yellow--dark;
     }
 }
 
 .note--nested {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.note--nested-alt {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.note--nested--alt {
     background: $color-note-blue;
+    .body--theme-dark & {
+        background: rgba($color-note-blue--dark, 18%);
+    }
 }
 
 // this solves the case where the note is embedded inside the key-insight component
