@@ -100,9 +100,11 @@ export function ProtectionHeader(props) {
                     {props.model.isBroken && <HeaderDisabled model={props.model} state={state} />}
                     {!props.model.isBroken && <HeaderDefault model={props.model} state={state} />}
                 </div>
-                <TextLink onClick={onClickTextLink} state={state}>
-                    {buttonText}
-                </TextLink>
+                <div className="text--center">
+                    <TextLink onClick={onClickTextLink}>
+                        {buttonText}
+                    </TextLink>
+                </div>
             </div>
             <div className="padding-spacer"></div>
         </>

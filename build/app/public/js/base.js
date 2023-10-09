@@ -23757,6 +23757,8 @@
       const $el = ref.current;
       if (!$el)
         return;
+      if (!isAndroid())
+        return;
       $el.classList.add("material-design-ripple");
       const instance2 = MDCRipple.attachTo($el);
       instance2.listen("click", function(e3) {
@@ -23774,6 +23776,7 @@
       "use strict";
       init_hooks_module();
       init_ripple();
+      init_environment_check();
     }
   });
 
@@ -23782,7 +23785,7 @@
     const { onClick } = props;
     const ref = _23(null);
     useRipple({ ref });
-    return /* @__PURE__ */ y("div", { className: "text--center" }, /* @__PURE__ */ y("a", { href: "javascript:void(0)", className: "link-action link-action--text", draggable: false, ref, onClick }, props.children));
+    return /* @__PURE__ */ y("a", { href: "javascript:void(0)", className: "link-action link-action--text", draggable: false, ref, onClick }, props.children);
   }
   var init_text_link = __esm({
     "shared/js/ui/components/text-link.jsx"() {
@@ -24365,7 +24368,7 @@
         window.dispatchEvent(new CustomEvent("open-feedback"));
       }
     }
-    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { className: "padding-x border--bottom padding-bottom-half" }, /* @__PURE__ */ y("div", { class: "card-list--bordered" }, props.model.isBroken && /* @__PURE__ */ y(HeaderDisabled, { model: props.model, state }), !props.model.isBroken && /* @__PURE__ */ y(HeaderDefault, { model: props.model, state })), /* @__PURE__ */ y(TextLink, { onClick: onClickTextLink, state }, buttonText)), /* @__PURE__ */ y("div", { className: "padding-spacer" }));
+    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { className: "padding-x border--bottom padding-bottom-half" }, /* @__PURE__ */ y("div", { class: "card-list--bordered" }, props.model.isBroken && /* @__PURE__ */ y(HeaderDisabled, { model: props.model, state }), !props.model.isBroken && /* @__PURE__ */ y(HeaderDefault, { model: props.model, state })), /* @__PURE__ */ y("div", { className: "text--center" }, /* @__PURE__ */ y(TextLink, { onClick: onClickTextLink }, buttonText))), /* @__PURE__ */ y("div", { className: "padding-spacer" }));
   }
   function HeaderDefault(props) {
     const text = ns.site("websiteNotWorkingAdvice.title");
@@ -24485,11 +24488,13 @@
     </ul>`;
   }
   function renderReportButton() {
-    return import_nanohtml17.default`<div class="text--center border-light--top">
-        <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
-            ${i18n.t("site:websiteNotWorkingQ.title")}
-        </a>
-    </div>`;
+    function onClickTextLink(e3) {
+      e3.preventDefault();
+      window.dispatchEvent(new CustomEvent("open-feedback"));
+    }
+    let root = import_nanohtml17.default`<div class="text--center border-light--top"></div>`;
+    B(/* @__PURE__ */ y(TextLink, { onClick: onClickTextLink }, ns.site("websiteNotWorkingQ.title")), root);
+    return root;
   }
   function localizePermissions(permissions) {
     if (!Array.isArray(permissions) || permissions.length === 0) {
@@ -24519,6 +24524,8 @@
       init_localize();
       init_top_nav();
       init_protection_header();
+      init_preact_module();
+      init_text_link();
     }
   });
 

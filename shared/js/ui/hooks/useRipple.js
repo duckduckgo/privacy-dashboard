@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'preact/hooks'
 import { MDCRipple } from '@material/ripple'
+import { isAndroid } from '../environment-check'
 
 /**
  * @param {object} params
@@ -10,6 +11,7 @@ export function useRipple(params) {
     useLayoutEffect(() => {
         const $el = ref.current
         if (!$el) return
+        if (!isAndroid()) return;
         $el.classList.add('material-design-ripple')
         const instance = MDCRipple.attachTo($el)
         instance.listen('click', function (e) {

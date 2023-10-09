@@ -1,7 +1,10 @@
 import html from 'nanohtml'
-import { i18n } from '../base/localize.js'
+import { i18n, ns } from '../base/localize.js'
 import { topNav } from './shared/top-nav'
 import { protectionDefault, protectionHeader } from './protection-header'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { h, render } from 'preact'
+import { TextLink } from '../components/text-link'
 
 /** @this {{model: import('../models/site.js').PublicSiteModel}} */
 export default function () {
@@ -116,11 +119,13 @@ function renderManagePermissions(model) {
 }
 
 function renderReportButton() {
-    return html`<div class="text--center border-light--top">
-        <a href="javascript:void(0)" class="js-site-report-broken link-action link-action--text" draggable="false">
-            ${i18n.t('site:websiteNotWorkingQ.title')}
-        </a>
-    </div>`
+    function onClickTextLink(e) {
+        e.preventDefault()
+        window.dispatchEvent(new CustomEvent('open-feedback'))
+    }
+    let root = html`<div class="text--center border-light--top"></div>`
+    render(<TextLink onClick={onClickTextLink}>{ns.site('websiteNotWorkingQ.title')}</TextLink>, root);
+    return root;
 }
 
 /**
