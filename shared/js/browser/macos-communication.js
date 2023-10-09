@@ -20,7 +20,6 @@ import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
     protectionsStatusSchema,
-    remoteFeatureSettingsSchema,
     requestDataSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import { isIOS } from '../ui/environment-check'
@@ -60,9 +59,6 @@ const cookiePromptManagementStatus = {}
 /** @type {string | undefined} */
 let locale
 
-/** @type {import('../../../schema/__generated__/schema.types').RemoteFeatureSettings | undefined} */
-let featureSettings
-
 const combineSources = () => ({
     tab: Object.assign(
         {},
@@ -77,7 +73,6 @@ const combineSources = () => ({
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
     ),
-    featureSettings,
 })
 
 const resolveInitialRender = function () {
@@ -167,29 +162,6 @@ export function onChangeLocale(payload) {
     }
     locale = parsed.data.locale
     channel?.send('updateTabData')
-}
-
-/**
- * {@inheritDoc common.onChangeFeatureSettings}
- * @type {import("./common.js").onChangeFeatureSettings}
- * @group Android -> JavaScript Interface
- *
- * @example
- *
- * ```kotlin
- * // kotlin
- * webView.evaluateJavascript("javascript:onChangeFeatureSettings(${featureSettingsAsJsonString});", null)
- * ```
- */
-export function onChangeFeatureSettings(payload) {
-    const parsed = remoteFeatureSettingsSchema.safeParse(payload)
-    if (!parsed.success) {
-        console.error('could not parse incoming protection status from onChangeFeatureSettings')
-        console.error(parsed.error)
-        return
-    }
-    featureSettings = parsed.data
-    channel?.send('updateTabData', { via: 'onChangeFeatureSettings' })
 }
 
 /**
@@ -352,7 +324,6 @@ export function setupShared() {
         channel?.send('updateTabData')
     }
     window.onChangeConsentManaged = onChangeConsentManaged
-    window.onChangeFeatureSettings = onChangeFeatureSettings
     setupGlobalOpenerListener((href) => {
         privacyDashboardOpenUrlInNewTab({
             url: href,

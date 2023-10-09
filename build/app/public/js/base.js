@@ -12232,7 +12232,6 @@
     firstRenderComplete: () => firstRenderComplete,
     getBackgroundTabData: () => getBackgroundTabData2,
     onChangeConsentManaged: () => onChangeConsentManaged,
-    onChangeFeatureSettings: () => onChangeFeatureSettings,
     onChangeLocale: () => onChangeLocale,
     onChangeProtectionStatus: () => onChangeProtectionStatus,
     onChangeRequestData: () => onChangeRequestData,
@@ -12274,16 +12273,6 @@
     }
     locale = parsed.data.locale;
     channel2?.send("updateTabData");
-  }
-  function onChangeFeatureSettings(payload) {
-    const parsed = remoteFeatureSettingsSchema.safeParse(payload);
-    if (!parsed.success) {
-      console.error("could not parse incoming protection status from onChangeFeatureSettings");
-      console.error(parsed.error);
-      return;
-    }
-    featureSettings = parsed.data;
-    channel2?.send("updateTabData", { via: "onChangeFeatureSettings" });
   }
   function onChangeConsentManaged(payload) {
     const parsed = cookiePromptManagementStatusSchema.safeParse(payload);
@@ -12381,7 +12370,6 @@
       channel2?.send("updateTabData");
     };
     window.onChangeConsentManaged = onChangeConsentManaged;
-    window.onChangeFeatureSettings = onChangeFeatureSettings;
     setupGlobalOpenerListener((href) => {
       privacyDashboardOpenUrlInNewTab({
         url: href
@@ -12401,7 +12389,7 @@
       privacyDashboardSetSize({ height });
     }
   }
-  var channel2, backgroundMessage2, getBackgroundTabDataPromises, trackerBlockingData, permissionsData, certificateData, upgradedHttps, protections, isPendingUpdates, parentEntity, cookiePromptManagementStatus, locale, featureSettings, combineSources, resolveInitialRender, getBackgroundTabData2;
+  var channel2, backgroundMessage2, getBackgroundTabDataPromises, trackerBlockingData, permissionsData, certificateData, upgradedHttps, protections, isPendingUpdates, parentEntity, cookiePromptManagementStatus, locale, combineSources, resolveInitialRender, getBackgroundTabData2;
   var init_macos_communication = __esm({
     "shared/js/browser/macos-communication.js"() {
       "use strict";
@@ -12430,8 +12418,7 @@
           },
           permissionsData ? { permissions: permissionsData } : {},
           certificateData ? { certificate: certificateData } : {}
-        ),
-        featureSettings
+        )
       });
       resolveInitialRender = function() {
         const isUpgradedHttpsSet = typeof upgradedHttps === "boolean";
@@ -12510,7 +12497,7 @@
     fetch: () => fetch4,
     getBackgroundTabData: () => getBackgroundTabData3,
     onChangeConsentManaged: () => onChangeConsentManaged2,
-    onChangeFeatureSettings: () => onChangeFeatureSettings2,
+    onChangeFeatureSettings: () => onChangeFeatureSettings,
     onChangeLocale: () => onChangeLocale2,
     onChangeProtectionStatus: () => onChangeProtectionStatus2,
     onChangeRequestData: () => onChangeRequestData2,
@@ -12550,14 +12537,14 @@
     locale2 = parsed.data.locale;
     channel3?.send("updateTabData", { via: "onChangeLocale" });
   }
-  function onChangeFeatureSettings2(payload) {
+  function onChangeFeatureSettings(payload) {
     const parsed = remoteFeatureSettingsSchema.safeParse(payload);
     if (!parsed.success) {
       console.error("could not parse incoming protection status from onChangeFeatureSettings");
       console.error(parsed.error);
       return;
     }
-    featureSettings2 = parsed.data;
+    featureSettings = parsed.data;
     channel3?.send("updateTabData", { via: "onChangeFeatureSettings" });
   }
   function onChangeConsentManaged2(payload) {
@@ -12604,7 +12591,7 @@
     window.onChangeLocale = onChangeLocale2;
     window.onChangeRequestData = onChangeRequestData2;
     window.onChangeConsentManaged = onChangeConsentManaged2;
-    window.onChangeFeatureSettings = onChangeFeatureSettings2;
+    window.onChangeFeatureSettings = onChangeFeatureSettings;
     window.onChangeAllowedPermissions = function(data) {
       permissionsData2 = data;
       channel3?.send("updateTabData", { via: "onChangeAllowedPermissions" });
@@ -12635,7 +12622,7 @@
       });
     });
   }
-  var channel3, backgroundMessage3, getBackgroundTabDataPromises2, trackerBlockingData2, permissionsData2, certificateData2, upgradedHttps2, protections2, isPendingUpdates2, parentEntity2, cookiePromptManagementStatus2, locale2, featureSettings2, combineSources2, resolveInitialRender2, PrivacyDashboardJavascriptInterface, privacyDashboardApi, getBackgroundTabDataAndroid, getBackgroundTabData3, fetch4;
+  var channel3, backgroundMessage3, getBackgroundTabDataPromises2, trackerBlockingData2, permissionsData2, certificateData2, upgradedHttps2, protections2, isPendingUpdates2, parentEntity2, cookiePromptManagementStatus2, locale2, featureSettings, combineSources2, resolveInitialRender2, PrivacyDashboardJavascriptInterface, privacyDashboardApi, getBackgroundTabDataAndroid, getBackgroundTabData3, fetch4;
   var init_android_communication = __esm({
     "shared/js/browser/android-communication.js"() {
       "use strict";
@@ -12662,7 +12649,7 @@
           permissionsData2 ? { permissions: permissionsData2 } : {},
           certificateData2 ? { certificate: certificateData2 } : {}
         ),
-        featureSettings: featureSettings2
+        featureSettings
       });
       resolveInitialRender2 = function() {
         const isUpgradedHttpsSet = typeof upgradedHttps2 === "boolean";
@@ -22395,7 +22382,7 @@
         /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
         getBackgroundTabData: function() {
           return new Promise((resolve) => {
-            communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData, fireButton, featureSettings: featureSettings3 }) => {
+            communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData, fireButton, featureSettings: featureSettings2 }) => {
               if (tab) {
                 if (tab.locale) {
                   if (Object.keys(i18n.options.resources).includes(tab.locale)) {
@@ -22413,8 +22400,8 @@
               }
               this.emailProtectionUserData = emailProtectionUserData;
               this.fireButton = fireButton;
-              if (featureSettings3) {
-                const parsed = remoteFeatureSettingsSchema.safeParse(featureSettings3);
+              if (featureSettings2) {
+                const parsed = remoteFeatureSettingsSchema.safeParse(featureSettings2);
                 if (parsed.success) {
                   this.featureSettings = new FeatureSettings(parsed.data);
                 } else {
