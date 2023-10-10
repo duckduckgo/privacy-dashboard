@@ -137,7 +137,6 @@ export function AndroidToggle(props) {
         const elem = /** @type {HTMLButtonElement} */ (ref.current)
         if (!(elem instanceof HTMLButtonElement)) return
 
-        console.log('setup')
         const switchInstance = new MDCSwitch(ref.current)
         switchInstance.listen('click', () => {
             const pressed = elem.getAttribute('aria-checked')
