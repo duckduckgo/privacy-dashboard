@@ -248,8 +248,7 @@ export function backgroundMessage(_channel) {
  * @returns {Promise<{
  *   tab: import('./utils/request-details.mjs').TabData,
  *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
- *   fireButton?: { enabled: boolean },
- *   featureSettings?: import('../../../schema/__generated__/schema.types').RemoteFeatureSettings,
+ *   fireButton?: { enabled: boolean }
  * }>}
  */
 export async function getBackgroundTabData() {
@@ -284,7 +283,6 @@ export async function getBackgroundTabData() {
             },
             emailProtectionUserData,
             fireButton,
-            featureSettings: {},
         }
     }
 

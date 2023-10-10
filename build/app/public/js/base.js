@@ -11136,8 +11136,7 @@
           specialDomainName
         },
         emailProtectionUserData,
-        fireButton,
-        featureSettings: {}
+        fireButton
       };
     }
     console.log("\u{1F64F} getBackgroundTabData \u274C", parsedMessageData.error, resp);
