@@ -72,11 +72,11 @@
         "note": "button label text when we are trying to encourage a user to toggle protections off"
     },
     "websiteNotWorkingCta": {
-        "title": "Report broken site.",
+        "title": "Report broken site",
         "note": "button label text for a trigger that shows our feedback form"
     },
     "websiteNotWorkingAdvice": {
-      "title": "Turning OFF the protections might help the site.",
+      "title": "Turning protections OFF might help.",
         "note": "help text for "
     },
     "websiteNotWorkingPromptFollowUp": {
