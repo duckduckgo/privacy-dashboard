@@ -57,7 +57,7 @@ export class DashboardPage {
     }
 
     async showsToggleFeedbackPrompt() {
-        await this.page.getByRole('link', { name: 'Report broken site.' }).waitFor({ timeout: 1000 })
+        await this.page.getByRole('link', { name: 'Report broken site' }).waitFor({ timeout: 1000 })
     }
 
     async screenshot(name) {
@@ -396,11 +396,11 @@ export class DashboardPage {
     }
 
     async helpIsShown() {
-        await this.page.getByText('Turning OFF the protections might help the site.').waitFor({ timeout: 1000 })
+        await this.page.getByText('Turning protections OFF might help.').waitFor({ timeout: 1000 })
     }
 
     async clicksReportBroken() {
-        await this.page.getByRole('link', { name: 'Report broken site.' }).click({ timeout: 1000 })
+        await this.page.getByRole('link', { name: 'Report broken site' }).click({ timeout: 1000 })
     }
 
     async showRemoteDisabled() {
