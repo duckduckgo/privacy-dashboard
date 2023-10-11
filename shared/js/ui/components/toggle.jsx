@@ -97,7 +97,7 @@ export function useToggleState(model) {
      */
     function toggle() {
         setState((prev) => {
-            return { ...prev, active: false, sideEffects: true }
+            return { ...prev, active: !prev.active, sideEffects: true }
         })
     }
 

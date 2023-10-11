@@ -24227,7 +24227,7 @@
     }, [state.active, state.sideEffects]);
     function toggle() {
       setState((prev) => {
-        return { ...prev, active: false, sideEffects: true };
+        return { ...prev, active: !prev.active, sideEffects: true };
       });
     }
     return [state, toggle];

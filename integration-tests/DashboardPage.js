@@ -234,6 +234,9 @@ export class DashboardPage {
 
     async toggleProtectionsOff() {
         await this.page.getByRole('switch', { name: 'Disable Protections' }).click()
+        if (this.platform.name !== 'android') {
+            await this.page.locator('[aria-checked="false"]').waitFor({ timeout: 500 })
+        }
     }
 
     async indicatesCookiesWereManaged() {
@@ -254,6 +257,9 @@ export class DashboardPage {
 
     async toggleProtectionsOn() {
         await this.page.locator('[aria-checked="false"]').click()
+        if (this.platform.name !== 'android') {
+            await this.page.locator('[aria-checked="true"]').waitFor({ timeout: 500 })
+        }
     }
 
     async clickClose() {
