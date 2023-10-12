@@ -3,8 +3,9 @@ import Parent from '../base/model.js'
 import { httpsMessages } from '../../../data/constants'
 import browserUIWrapper, { platform } from '../../browser/communication.js'
 import { i18n } from '../base/localize.js'
-import { createPlatformFeatures } from '../platform-features.mjs'
+import { createPlatformFeatures, FeatureSettings } from '../platform-features.mjs'
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, SetListsMessage, UpdatePermissionMessage } from '../../browser/common.js'
+import { remoteFeatureSettingsSchema } from '../../../../schema/__generated__/schema.parsers.mjs'
 
 // We consider major tracker networks as those found on this percentage of sites
 // that we crawl
@@ -48,8 +49,11 @@ function Site(attrs) {
  * @property {boolean} displayBrokenUI
  * @property {boolean} isaMajorTrackingNetwork
  * @property {boolean} disabled
+ * @property {import("../platform-features.mjs").PlatformFeatures} features
+ * @property {FeatureSettings} featureSettings
  * @property {any[] | null} permissions
  * @property {import('../../browser/utils/request-details.mjs').TabData} tab
+ * @property {() => void} toggleAllowlist
  */
 
 /**
@@ -64,7 +68,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         return new Promise((resolve) => {
             browserUIWrapper
                 .getBackgroundTabData()
-                .then(({ tab, emailProtectionUserData, fireButton }) => {
+                .then(({ tab, emailProtectionUserData, fireButton, featureSettings }) => {
                     if (tab) {
                         if (tab.locale) {
                             // @ts-ignore
@@ -85,6 +89,19 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
                     this.emailProtectionUserData = emailProtectionUserData
                     this.fireButton = fireButton
+
+                    if (featureSettings) {
+                        const parsed = remoteFeatureSettingsSchema.safeParse(featureSettings)
+                        if (parsed.success) {
+                            this.featureSettings = new FeatureSettings(parsed.data)
+                        } else {
+                            console.error(parsed.error)
+                            throw new Error('platform did not provide featureSettings')
+                        }
+                    } else {
+                        // default
+                        this.featureSettings = new FeatureSettings({})
+                    }
 
                     this.update()
                     resolve(null)

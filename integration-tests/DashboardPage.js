@@ -48,6 +48,18 @@ export class DashboardPage {
         await this.connectInfoLink().waitFor()
     }
 
+    async showsAlternativeLayout() {
+        await this.page.getByTestId('protectionHeader').waitFor({ timeout: 1000 })
+    }
+
+    async showsTogglePrompt() {
+        await this.page.getByRole('link', { name: 'Website not working?' }).waitFor({ timeout: 1000 })
+    }
+
+    async showsToggleFeedbackPrompt() {
+        await this.page.getByRole('link', { name: 'Report broken site' }).waitFor({ timeout: 1000 })
+    }
+
     async screenshot(name) {
         if (!process.env.CI) {
             // console.log('🚧 skipping screenshot 🚧', name)
@@ -130,6 +142,7 @@ export class DashboardPage {
 
     static async android(page) {
         const dash = new DashboardPage(page, { name: 'android' })
+        await dash.withMarker()
         await dash.loadPage()
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -138,6 +151,7 @@ export class DashboardPage {
 
     static async windows(page) {
         const dash = new DashboardPage(page, { name: 'windows' })
+        await dash.withMarker()
         await dash.withMocks()
         await dash.loadPage()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -146,6 +160,7 @@ export class DashboardPage {
 
     static async macos(page) {
         const dash = new DashboardPage(page, { name: 'macos' })
+        await dash.withMarker()
         await dash.loadPage()
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -158,6 +173,7 @@ export class DashboardPage {
      */
     static async browser(page) {
         const dash = new DashboardPage(page, { name: 'browser' })
+        await dash.withMarker()
         await dash.withMocks()
         await dash.loadPage()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
@@ -166,17 +182,23 @@ export class DashboardPage {
 
     static async ios(page) {
         const dash = new DashboardPage(page, { name: 'ios' })
+        await dash.withMarker()
         await dash.loadPage()
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
     }
 
+    async withMarker() {
+        await this.page.addInitScript(() => {
+            return (window.__ddg_integration_test = true)
+        })
+    }
+
     /**
      * @returns {Promise<DashboardPage>}
      */
     async withMocks() {
-        await this.page.addInitScript(() => (window.__ddg_integration_test = true))
         await this.mocks.install()
         return this
     }
@@ -212,6 +234,9 @@ export class DashboardPage {
 
     async toggleProtectionsOff() {
         await this.page.getByRole('switch', { name: 'Disable Protections' }).click()
+        if (this.platform.name !== 'android') {
+            await this.page.locator('[aria-checked="false"]').waitFor({ timeout: 500 })
+        }
     }
 
     async indicatesCookiesWereManaged() {
@@ -232,6 +257,9 @@ export class DashboardPage {
 
     async toggleProtectionsOn() {
         await this.page.locator('[aria-checked="false"]').click()
+        if (this.platform.name !== 'android') {
+            await this.page.locator('[aria-checked="true"]').waitFor({ timeout: 500 })
+        }
     }
 
     async clickClose() {
@@ -367,5 +395,23 @@ export class DashboardPage {
 
     async chooseBurnOption(index) {
         await this.page.locator('#fire-button-opts').selectOption({ index })
+    }
+
+    async clicksWebsiteNotWorking() {
+        await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 1000 })
+    }
+
+    async helpIsShown() {
+        await this.page.getByText('Turning protections OFF might help.').waitFor({ timeout: 1000 })
+    }
+
+    async clicksReportBroken() {
+        await this.page.getByRole('link', { name: 'Report broken site' }).click({ timeout: 1000 })
+    }
+
+    async showRemoteDisabled() {
+        await this.page
+            .getByText('We temporarily turned Privacy Protections off as they appear to be breaking this')
+            .waitFor({ timeout: 1000 })
     }
 }

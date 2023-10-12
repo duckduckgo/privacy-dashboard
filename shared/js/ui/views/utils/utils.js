@@ -1,5 +1,4 @@
 import { MDCRipple } from '@material/ripple'
-import { MDCSwitch } from '@material/switch'
 
 const seen = new WeakSet()
 const seenSwitch = new WeakSet()
@@ -24,27 +23,6 @@ export function setupMaterialDesignRipple(parent, ...selectors) {
         })
     })
     return cleanups
-}
-
-/**
- * @param {string} selector
- */
-export function setupSwitch(selector) {
-    document.querySelectorAll(selector).forEach(($el) => {
-        if (seenSwitch.has($el)) {
-            return
-        }
-        if ($el instanceof HTMLButtonElement) {
-            seenSwitch.add($el)
-            // @ts-ignore
-            // eslint-disable-next-line no-unused-vars
-            const switchInstance = new MDCSwitch($el)
-            // don't allow more than a single click on the switch
-            switchInstance.listen('click', () => {
-                switchInstance.destroy()
-            })
-        }
-    })
 }
 
 /**

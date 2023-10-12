@@ -496,12 +496,12 @@ body.environment--windows {
   padding-right: 10px;
 }
 
-.site-info__li--toggle {
+.site-info-toggle {
   color: #333333;
   display: flex;
   align-items: center;
 }
-.body--theme-dark .site-info__li--toggle {
+.body--theme-dark .site-info-toggle {
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -3140,7 +3140,19 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   padding: 12px 16px;
 }
 .body--theme-dark .note {
-  background: rgba(255, 214, 92, 0.2);
+  background: rgba(255, 222, 122, 0.18);
+}
+
+.note--nested {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.note--nested--alt {
+  background: #ccdaff;
+}
+.body--theme-dark .note--nested--alt {
+  background: rgba(85, 127, 243, 0.18);
 }
 
 .note--key-insight {

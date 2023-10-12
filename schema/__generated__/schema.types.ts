@@ -58,6 +58,7 @@ export interface API {
   "refresh-alias-response"?: RefreshAliasResponse;
   exe?: ExtensionMessageSetListOptions;
   "fire-button"?: FireButtonData;
+  "feature-settings"?: RemoteFeatureSettings;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -376,5 +377,17 @@ export interface FireOption {
     pinnedTabs: number;
   };
   [k: string]: unknown;
+}
+/**
+ * This describes the payload for feature settings
+ */
+export interface RemoteFeatureSettings {
+  primaryScreen?: PrimaryScreen;
+}
+export interface PrimaryScreen {
+  /**
+   * A string to represent different screen layouts
+   */
+  layout: "default" | "highlighted-protections-toggle";
 }
 

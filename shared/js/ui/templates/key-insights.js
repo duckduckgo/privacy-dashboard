@@ -52,6 +52,7 @@ const keyInsightsState = /** @type {const} */ ({
  */
 export function renderKeyInsight() {
     const model = this.model
+    const layout = this.model.featureSettings.primaryScreen.layout
     const title = (text) => html`<h1 class="token-title-3-em">${text}</h1>`
     const description = (text) => html`<div class="token-title-3"><span role="text">${text}</span></div>`
 
@@ -91,7 +92,8 @@ export function renderKeyInsight() {
             return html`
                 <div class="key-insight key-insight--main">
                     <div class="large-icon-container hero-icon--protections-off"></div>
-                    ${title(model.tab.domain)} ${description(html`<p class="note note--key-insight">${text}</p>`)}
+                    ${title(model.tab.domain)} 
+                    ${layout === 'default' ? description(html`<p class="note note--key-insight">${text}</p>`) : null}
                 </div>
             `
         },

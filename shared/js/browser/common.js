@@ -2,7 +2,6 @@
 /**
  * @module common
  */
-
 export const getContentHeight = () => {
     const $openSubview = window.document.querySelector('#popup-container.sliding-subview--open > section:last-child > div')
     const $rootSubview = window.document.querySelector('#popup-container.sliding-subview--root > section:first-child > div')
@@ -125,6 +124,21 @@ export function assert(condition, message = '') {
  * @param {import('../../../schema/__generated__/schema.types').LocaleSettings} payload
  */
 export function onChangeLocale(payload) {}
+
+/**
+ * Sets the Feature Settings
+ *
+ * Example Payload: see {@link "Generated Schema Definitions".RemoteFeatureSettings}
+ *
+ * ```json
+ * {
+ *    "primaryScreen": { "layout": "highlighted-protections-toggle" }
+ * }
+ * ```
+ *
+ * @param {import('../../../schema/__generated__/schema.types').RemoteFeatureSettings} payload
+ */
+export function onChangeFeatureSettings(payload) {}
 
 /**
  * Sets the current status of the Cookie Prompt Management.

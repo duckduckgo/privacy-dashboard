@@ -11,6 +11,7 @@ interface Window {
     onChangeTheme: any
     onChangeRequestData: (url: string, rawRequestData: import('./schema/__generated__/schema.types').RequestData) => void
     onChangeLocale: (payload: import('./schema/__generated__/schema.types').LocaleSettings) => void
+    onChangeFeatureSettings: (remoteFeatureSettings: import('./schema/__generated__/schema.types').RemoteFeatureSettings) => void
     onChangeAllowedPermissions: any
     onChangeUpgradedHttps: any
     onChangeProtectionStatus: (protections: import('./shared/js/browser/utils/protections.mjs').Protections) => void

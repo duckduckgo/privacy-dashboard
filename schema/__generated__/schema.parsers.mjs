@@ -112,6 +112,10 @@ export const fireOptionSchema = z.record(z.unknown()).and(z.object({
     })
 }));
 
+export const primaryScreenSchema = z.object({
+    layout: z.union([z.literal("default"), z.literal("highlighted-protections-toggle")])
+});
+
 export const detectedRequestSchema = z.object({
     url: z.string(),
     eTLDplus1: z.string().optional(),
@@ -140,6 +144,10 @@ export const breakageReportSchema = z.object({
 
 export const fireButtonDataSchema = z.object({
     options: z.array(fireOptionSchema)
+});
+
+export const remoteFeatureSettingsSchema = z.object({
+    primaryScreen: primaryScreenSchema.optional()
 });
 
 export const requestDataSchema = z.object({
@@ -184,6 +192,7 @@ export const apiSchema = z.object({
     "locale-settings": localeSettingsSchema.optional(),
     "refresh-alias-response": refreshAliasResponseSchema.optional(),
     exe: extensionMessageSetListOptionsSchema.optional(),
-    "fire-button": fireButtonDataSchema.optional()
+    "fire-button": fireButtonDataSchema.optional(),
+    "feature-settings": remoteFeatureSettingsSchema.optional()
 });
 

@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "RemoteFeatureSettings",
+    "type": "object",
+    "description": "This describes the payload for feature settings",
+    "additionalProperties": false,
+    "properties": {
+        "primaryScreen": {
+            "title": "PrimaryScreen",
+            "type": "object",
+            "required": ["layout"],
+            "additionalProperties": false,
+            "properties": {
+                "layout": {
+                    "description": "A string to represent different screen layouts",
+                    "enum": ["default", "highlighted-protections-toggle"],
+                    "examples": ["default", "highlighted-protections-toggle"]
+                }
+            }
+        }
+    }
+}
