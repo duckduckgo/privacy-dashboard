@@ -27,6 +27,7 @@ async function init() {
     await esbuild.build({
         entryPoints: [manifest.base.input],
         bundle: true,
+        target: ['es2021'],
         outfile: manifest.base.output,
         sourcemap: debug ? 'linked' : undefined,
         dropLabels: IS_PROD ? ['$TEST'] : [],
@@ -53,6 +54,7 @@ async function init() {
 
     await esbuild.build({
         entryPoints: [manifest.polyfills.input],
+        target: ['es2021'],
         bundle: true,
         outfile: manifest.polyfills.output,
         sourcemap: debug ? 'linked' : undefined,
