@@ -21537,7 +21537,7 @@
   }
   function renderKeyInsight() {
     const model = this.model;
-    const layout = this.model.featureSettings.primaryScreen?.layout || "default";
+    const layout = this.model.featureSettings.primaryScreen.layout;
     const title = (text) => import_nanohtml10.default`<h1 class="token-title-3-em">${text}</h1>`;
     const description = (text) => import_nanohtml10.default`<div class="token-title-3"><span role="text">${text}</span></div>`;
     const state = (() => {

@@ -52,7 +52,7 @@ const keyInsightsState = /** @type {const} */ ({
  */
 export function renderKeyInsight() {
     const model = this.model
-    const layout = this.model.featureSettings.primaryScreen?.layout || 'default'
+    const layout = this.model.featureSettings.primaryScreen.layout
     const title = (text) => html`<h1 class="token-title-3-em">${text}</h1>`
     const description = (text) => html`<div class="token-title-3"><span role="text">${text}</span></div>`
 
