@@ -15,16 +15,28 @@
         "title": "Pick your issue from the list...",
         "note": "Asks the user to pick a specific list from the pulldown"
     },
+    "blocked": {
+        "title": "Site blocked or didn't load",
+        "note": "User is reporting this page because the page didn't load"
+    },
+    "layout": {
+        "title": "Site layout broken",
+        "note": "User is reporting this page because the page layout appears broken"
+    },
+    "emptySpaces": {
+        "title": "Site contains large empty spaces",
+        "note": "User is reporting this page because the page contains large empty spaces"
+    },
     "videos": {
-        "title": "Video didn't play",
-        "note": "User is reporting this page because a video didn't play"
+        "title": "Video didn’t play or load",
+        "note": "User is reporting this page because a video didn't play or load correctly"
     },
     "images": {
         "title": "Images didn't load",
         "note": "User is reporting this page because one or more images did not load"
     },
     "comments": {
-        "title": "Comments didn't load",
+        "title": "Comments, reviews, or chats didn’t load",
         "note": "User is reporting this page because one or more comments did not load"
     },
     "content": {
@@ -36,11 +48,19 @@
         "note": "User is reporting this page because one or more links or buttons did not work when clicked"
     },
     "login": {
-        "title": "I can't sign in",
+        "title": "Can’t sign in/register",
         "note": "User is reporting this page because they are unable to log into the website"
     },
+    "shopping": {
+        "title": "Can't pay, check out, or shop",
+        "note": "User is reporting this page because they are unable to log into the website"
+    },
+    "browser": {
+        "title": "Browser or other browser extension issue",
+        "note": "User is reporting this page because there a problem with the browser or another extension"
+    },
     "paywall": {
-        "title": "The site asked me to disable",
+        "title": "Site asked me to disable ad blocker",
         "note": "User is reporting this page asked them to disable their privacy or ad blocking extension"
     },
     "other": {
@@ -48,8 +68,8 @@
         "note": "User is reporting this page because of some other reason than the ones we listed"
     },
     "tellUsMoreDesc": {
-        "title": "If you'd like, tell us about the problem you experienced",
-        "note": "A hint for a text box that lets user enter free text to describe their problem"
+        "title": "Tell us more (optional):{bullet}What happened?{bullet}What should have happened?{bullet}Did disabling protections help?",
+        "note": "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
     },
     "sendReport": {
         "title": "Send Report",

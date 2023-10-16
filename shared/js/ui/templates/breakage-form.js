@@ -1,10 +1,9 @@
 import html from 'nanohtml'
-import { i18n } from '../base/localize.js'
+import { i18n, ns } from '../base/localize.js'
 import { largeHeroIcon } from './shared/hero.js'
 import { topNav } from './shared/top-nav'
-import { useEffect } from 'preact/hooks'
 import { render, h } from 'preact'
-import { ProtectionHeader, protectionHeader } from './protection-header'
+import { ProtectionHeader } from './protection-header'
 
 /**
  * @this {{
@@ -13,20 +12,25 @@ import { ProtectionHeader, protectionHeader } from './protection-header'
  * }}
  */
 export default function () {
-    console.log(this.mainModel);
     const categories = [
-        { category: i18n.t('report:videos.title'), value: 'videos' },
-        { category: i18n.t('report:images.title'), value: 'images' },
-        { category: i18n.t('report:comments.title'), value: 'comments' },
-        { category: i18n.t('report:content.title'), value: 'content' },
-        { category: i18n.t('report:links.title'), value: 'links' },
-        { category: i18n.t('report:login.title'), value: 'login' },
-        { category: i18n.t('report:paywall.title'), value: 'paywall' },
-        { category: i18n.t('report:other.title'), value: 'other' },
+        { category: ns.report('blocked.title'), value: 'blocked' },
+        { category: ns.report('layout.title'), value: 'layout' },
+        { category: ns.report('emptySpaces.title'), value: 'empty-spaces' },
+        { category: ns.report('paywall.title'), value: 'paywall' },
+        { category: ns.report('videos.title'), value: 'videos' },
+        { category: ns.report('comments.title'), value: 'comments' },
+        { category: ns.report('login.title'), value: 'login' },
+        { category: ns.report('shopping.title'), value: 'shopping' },
+        { category: ns.report('browser.title'), value: 'browser' },
+        { category: ns.report('other.title'), value: 'other' },
     ]
     const icon = largeHeroIcon({
         status: 'breakage-form',
     })
+
+    let bullet = '\u000A • '
+    let placeholder = ns.report('tellUsMoreDesc.title', { bullet })
+
     return html`<section class="sliding-subview">
         <div class="breakage-form">
             ${topNav({ view: 'secondary' })}
@@ -57,7 +61,7 @@ export default function () {
                             </div>
                             <textarea
                                 class="form__textarea js-breakage-form-description"
-                                placeholder="${i18n.t('report:tellUsMoreDesc.title')}"
+                                placeholder="${placeholder}"
                                 maxlength="2500"
                             ></textarea>
                             <button class="form__submit token-label-em js-breakage-form-submit" role="button">
