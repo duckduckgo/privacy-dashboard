@@ -23243,7 +23243,7 @@
   }
   function HeaderDefault(props) {
     const text = ns.site("websiteNotWorkingAdvice.title");
-    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { className: "padding-x padding-y--reduced" }, /* @__PURE__ */ y(ProtectionToggle, { model: props.model })), props.state === "site-not-working" && /* @__PURE__ */ y("div", { className: "note note--nested note--nested--alt" }, text));
+    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { className: "protection-header__toggle" }, /* @__PURE__ */ y(ProtectionToggle, { model: props.model })), props.state === "site-not-working" && /* @__PURE__ */ y("div", { className: "protection-header__note protection-header__note--alt" }, text));
   }
   function HeaderDisabled(props) {
     let text = i18n.t("site:protectionsDisabledRemote.title");
@@ -23921,7 +23921,7 @@
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged;
     const consentRow = import_nanohtml14.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
     return import_nanohtml14.default`
-        <ul class="default-list card-list--bordered main-nav token-body-em js-site-main-nav">
+        <ul class="default-list main-nav token-body-em js-site-main-nav">
             <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
             <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
             <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>

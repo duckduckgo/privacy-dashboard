@@ -195,7 +195,7 @@ body.environment--browser {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 20px;
 }
 body.environment--ios, body.environment--android, body.environment--example {
   --width: 100%;
@@ -526,9 +526,17 @@ body.environment--windows {
   border-radius: 12px;
   position: relative;
   z-index: 0;
+  overflow: hidden;
+}
+.environment--windows .card-list--bordered {
+  border-radius: 4px;
 }
 
 .main-nav {
+  border: 1px solid var(--color-lines-light);
+  border-radius: 12px;
+  position: relative;
+  z-index: 0;
   overflow: hidden;
 }
 
@@ -2971,17 +2979,22 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   margin: 0;
   margin-bottom: var(--size-unit);
 }
+.environment--windows .form__select select {
+  min-height: 34px;
+}
 
 .form__textarea {
   resize: none;
   width: 100%;
-  height: 110px;
+  height: 88px;
   display: block;
   box-sizing: border-box;
   margin-bottom: var(--size-unit);
   padding: var(--size-unit-half);
   border: 1px solid var(--color-lines-light);
   border-radius: 4px;
+  font-size: 13px;
+  line-height: 16px;
 }
 .body--theme-dark .form__textarea {
   background-color: rgba(255, 255, 255, 0.12);
@@ -3338,6 +3351,35 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   #fire-button-opts:hover {
     background-color: #444;
   }
+}
+
+.protection-header__toggle {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.environment--browser .protection-header__toggle {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.protection-header__note {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.environment--browser .protection-header__note {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.protection-header__note--alt {
+  background: #ccdaff;
+}
+.body--theme-dark .protection-header__note--alt {
+  background: rgba(85, 127, 243, 0.18);
 }
 
 /* Generic menu list styling */

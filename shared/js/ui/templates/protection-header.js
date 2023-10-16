@@ -147,10 +147,12 @@ function HeaderDefault(props) {
     const text = ns.site('websiteNotWorkingAdvice.title')
     return (
         <>
-            <div className="padding-x padding-y--reduced">
+            <div className="protection-header__toggle">
                 <ProtectionToggle model={props.model} />
             </div>
-            {props.state === 'site-not-working' && <div className="note note--nested note--nested--alt">{text}</div>}
+            {props.state === 'site-not-working' &&
+                <div className="protection-header__note protection-header__note--alt">{text}</div>
+            }
         </>
     )
 }
