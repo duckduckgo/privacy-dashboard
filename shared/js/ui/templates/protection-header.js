@@ -32,9 +32,12 @@ export function protectionHeader(model) {
         isBroken: model.isBroken,
         toggleAllowlist: model.toggleAllowlist.bind(model),
     }
-    render(<ProtectionHeader model={migrationModel}>
-        <ProtectionHeaderText />
-    </ProtectionHeader>, root)
+    render(
+        <ProtectionHeader model={migrationModel}>
+            <ProtectionHeaderText />
+        </ProtectionHeader>,
+        root
+    )
     return root
 }
 
@@ -62,9 +65,7 @@ export function protectionDefault(model) {
  * @typedef {{text: string; label: string; active: boolean; disabled: boolean; toggled: boolean}} ToggleState
  */
 
-const ProtectionContext = createContext(
-    /** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */({})
-);
+const ProtectionContext = createContext(/** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */ ({}))
 
 /**
  * @param {object} props
@@ -74,7 +75,7 @@ const ProtectionContext = createContext(
  */
 export function ProtectionHeader(props) {
     /** @type {UIState} */
-    let initial;
+    let initial
     if (props.initialState) {
         initial = props.initialState
     } else {
@@ -92,9 +93,13 @@ export function ProtectionHeader(props) {
                 {props.model.isBroken && <HeaderDisabled model={props.model} state={state} />}
                 {!props.model.isBroken && <HeaderDefault model={props.model} state={state} />}
             </div>
-            <ProtectionContext.Provider value={{
-                state, setState, model: props.model
-            }}>
+            <ProtectionContext.Provider
+                value={{
+                    state,
+                    setState,
+                    model: props.model,
+                }}
+            >
                 {props.children}
             </ProtectionContext.Provider>
         </>
@@ -102,8 +107,7 @@ export function ProtectionHeader(props) {
 }
 
 export function ProtectionHeaderText() {
-
-    const { state, setState, model } = useContext(ProtectionContext);
+    const { state, setState, model } = useContext(ProtectionContext)
 
     // prettier-ignore
     let buttonText = state === 'help-trigger'
@@ -150,9 +154,7 @@ function HeaderDefault(props) {
             <div className="protection-header__toggle">
                 <ProtectionToggle model={props.model} />
             </div>
-            {props.state === 'site-not-working' &&
-                <div className="protection-header__note protection-header__note--alt">{text}</div>
-            }
+            {props.state === 'site-not-working' && <div className="protection-header__note protection-header__note--alt">{text}</div>}
         </>
     )
 }

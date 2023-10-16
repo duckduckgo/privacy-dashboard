@@ -87,14 +87,14 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
         }
     },
 
-    _destroyProxy: function() {
+    _destroyProxy: function () {
         if (this.roots) {
             for (const [key] of this.roots) {
                 render('', key)
             }
-            this.roots.clear();
+            this.roots.clear()
         }
-        this.destroy();
+        this.destroy()
     },
 
     _done: function () {

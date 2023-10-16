@@ -1,29 +1,29 @@
 .protection-header__toggle {
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
-  .environment--browser & {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
+    .environment--browser & {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
 }
 .protection-header__note {
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
-  .environment--browser & {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
+    .environment--browser & {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
 }
 
 .protection-header__note--alt {
-  background: $color-note-blue;
-  .body--theme-dark & {
-    background: rgba($color-note-blue--dark, 18%);
-  }
+    background: $color-note-blue;
+    .body--theme-dark & {
+        background: rgba($color-note-blue--dark, 18%);
+    }
 }

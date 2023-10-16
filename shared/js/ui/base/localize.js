@@ -49,5 +49,5 @@ function report(key, options) {
 
 export const ns = {
     site,
-    report
+    report,
 }

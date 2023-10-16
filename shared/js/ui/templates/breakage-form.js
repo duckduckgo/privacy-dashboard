@@ -2,6 +2,7 @@ import html from 'nanohtml'
 import { i18n, ns } from '../base/localize.js'
 import { largeHeroIcon } from './shared/hero.js'
 import { topNav } from './shared/top-nav'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { render, h } from 'preact'
 import { ProtectionHeader } from './protection-header'
 
@@ -35,9 +36,7 @@ export default function () {
         <div class="breakage-form">
             ${topNav({ view: 'secondary' })}
             <div class="padding-x-double js-breakage-form-element" data-state="idle">
-                <div class="padding-y">
-                    ${wrap(this.mainModel, this)}    
-                </div>
+                <div class="padding-y">${wrap(this.mainModel, this)}</div>
                 <div class="key-insight">
                     ${icon}
                     <div class="breakage-form__advise">
@@ -86,7 +85,7 @@ function wrap(model, view) {
         isBroken: model.isBroken,
         toggleAllowlist: model.toggleAllowlist.bind(model),
     }
-    view.roots.set(root, true);
-    render(<ProtectionHeader model={migrationModel} initialState={'site-not-working'}/>, root)
-    return root;
+    view.roots.set(root, true)
+    render(<ProtectionHeader model={migrationModel} initialState={'site-not-working'} />, root)
+    return root
 }

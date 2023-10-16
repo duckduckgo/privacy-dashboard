@@ -68,7 +68,7 @@
         "note": "User is reporting this page because of some other reason than the ones we listed"
     },
     "tellUsMoreDesc": {
-        "title": "Tell us more (optional):{bullet}What happened?{bullet}What should have happened?{bullet}Did disabling protections help?",
+        "title": "Share more details (optional):{bullet}What happened?{bullet}What should have happened?{bullet}Did turning protections off help?",
         "note": "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
     },
     "sendReport": {
@@ -76,7 +76,7 @@
         "note": "Button for submitting report"
     },
     "reportsAreAnonymousDesc": {
-        "title": "Reports sent to DuckDuckGo only include information required to help us address your feedback.",
+        "title": "Reports sent to DuckDuckGo only include info required to help us address your feedback.",
         "note": "A small disclaimer at the bottom of the view describing what is included in the report"
     },
     "thankYou": {
