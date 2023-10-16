@@ -2893,7 +2893,7 @@
         }
         var rhtml = /<|&#?\w+;/;
         function buildFragment(elems, context, scripts, selection, ignored) {
-          var elem, tmp, tag, wrap, attached, j3, fragment = context.createDocumentFragment(), nodes = [], i3 = 0, l3 = elems.length;
+          var elem, tmp, tag, wrap2, attached, j3, fragment = context.createDocumentFragment(), nodes = [], i3 = 0, l3 = elems.length;
           for (; i3 < l3; i3++) {
             elem = elems[i3];
             if (elem || elem === 0) {
@@ -2904,9 +2904,9 @@
               } else {
                 tmp = tmp || fragment.appendChild(context.createElement("div"));
                 tag = (rtagName.exec(elem) || ["", ""])[1].toLowerCase();
-                wrap = wrapMap[tag] || wrapMap._default;
-                tmp.innerHTML = wrap[1] + jQuery.htmlPrefilter(elem) + wrap[2];
-                j3 = wrap[0];
+                wrap2 = wrapMap[tag] || wrapMap._default;
+                tmp.innerHTML = wrap2[1] + jQuery.htmlPrefilter(elem) + wrap2[2];
+                j3 = wrap2[0];
                 while (j3--) {
                   tmp = tmp.lastChild;
                 }
@@ -5888,16 +5888,16 @@
         };
         jQuery.fn.extend({
           wrapAll: function(html18) {
-            var wrap;
+            var wrap2;
             if (this[0]) {
               if (isFunction(html18)) {
                 html18 = html18.call(this[0]);
               }
-              wrap = jQuery(html18, this[0].ownerDocument).eq(0).clone(true);
+              wrap2 = jQuery(html18, this[0].ownerDocument).eq(0).clone(true);
               if (this[0].parentNode) {
-                wrap.insertBefore(this[0]);
+                wrap2.insertBefore(this[0]);
               }
-              wrap.map(function() {
+              wrap2.map(function() {
                 var elem = this;
                 while (elem.firstElementChild) {
                   elem = elem.firstElementChild;
@@ -12938,7 +12938,1385 @@
     }
   });
 
+  // schema/__fixtures__/request-data-google.json
+  var request_data_google_default;
+  var init_request_data_google = __esm({
+    "schema/__fixtures__/request-data-google.json"() {
+      request_data_google_default = {
+        requests: [
+          {
+            category: "Advertising",
+            url: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png",
+            pageUrl: "https://www.google.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              allowed: {
+                reason: "ownedByFirstParty"
+              }
+            },
+            prevalence: 80.1
+          },
+          {
+            category: "Advertising",
+            url: "https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.t9z7VPsEMFg.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo8oD_5FQW3kT3ksWwmXIWvhhqbKdw/cb=gapi.loaded_0",
+            pageUrl: "https://www.google.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              allowed: {
+                reason: "ownedByFirstParty"
+              }
+            },
+            prevalence: 80.1
+          },
+          {
+            category: "Content Delivery",
+            url: "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg",
+            pageUrl: "https://www.google.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              allowed: {
+                reason: "ownedByFirstParty"
+              }
+            },
+            prevalence: 80.1
+          },
+          {
+            category: "Content Delivery",
+            url: "https://www.gstatic.com/og/_/js/k=og.qtm.en_US.asUsweLQqwk.O/rt=j/m=qabr,q_dnp,qcwid,qapid/exm=qaaw,qadd,qaid,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhpr/d=1/ed=1/rs=AA2YrTvH37iHjvnJ7NPFbMaGY1OZ0tqdnw",
+            pageUrl: "https://www.google.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              allowed: {
+                reason: "ownedByFirstParty"
+              }
+            },
+            prevalence: 80.1
+          }
+        ]
+      };
+    }
+  });
+
+  // schema/__fixtures__/request-data-cnn.json
+  var request_data_cnn_default;
+  var init_request_data_cnn = __esm({
+    "schema/__fixtures__/request-data-cnn.json"() {
+      request_data_cnn_default = {
+        installedSurrogates: ["widgets.outbrain.com", "www.googletagservices.com", "sb.scorecardresearch.com"],
+        requests: [
+          {
+            category: "Advertising",
+            url: "https://cdn.krxd.net/",
+            eTLDplus1: "krxd.net",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Salesforce.com, Inc.",
+            entityName: "Salesforce.com",
+            state: {
+              blocked: {}
+            },
+            prevalence: 9.23
+          },
+          {
+            category: "Advertising",
+            url: "https://www.google.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              allowed: {
+                reason: "ruleException"
+              }
+            },
+            prevalence: 79.9
+          },
+          {
+            category: "Advertising",
+            url: "https://vrt.outbrain.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Outbrain",
+            entityName: "Outbrain",
+            state: {
+              blocked: {}
+            },
+            prevalence: 12.4
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "ownedByFirstParty"
+              }
+            },
+            prevalence: 21.6,
+            url: "https://www.ugdturner.com/",
+            ownerName: "WarnerMedia, LLC",
+            entityName: "WarnerMedia"
+          },
+          {
+            category: "Advertising",
+            url: "https://js-sec.indexww.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Index Exchange, Inc.",
+            entityName: "Index Exchange",
+            state: {
+              blocked: {}
+            },
+            prevalence: 17.3
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              blocked: {}
+            },
+            prevalence: 0.854,
+            url: "https://consent.truste.com/",
+            ownerName: "TrustArc Inc.",
+            entityName: "TrustArc"
+          },
+          {
+            category: "Advertising",
+            url: "https://as.casalemedia.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Index Exchange, Inc.",
+            entityName: "Index Exchange",
+            state: {
+              blocked: {}
+            },
+            prevalence: 17.3
+          },
+          {
+            category: "Advertising",
+            url: "https://c.amazon-adsystem.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Amazon Technologies, Inc.",
+            entityName: "Amazon.com",
+            state: {
+              blocked: {}
+            },
+            prevalence: 21.4
+          },
+          {
+            category: "Advertising",
+            url: "https://as-sec.casalemedia.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Index Exchange, Inc.",
+            entityName: "Index Exchange",
+            state: {
+              blocked: {}
+            },
+            prevalence: 17.3
+          },
+          {
+            category: "Advertising",
+            url: "https://ads.rubiconproject.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Magnite, Inc.",
+            entityName: "Magnite",
+            state: {
+              blocked: {}
+            },
+            prevalence: 18.3
+          },
+          {
+            category: "Advertising",
+            url: "https://aax.amazon-adsystem.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Amazon Technologies, Inc.",
+            entityName: "Amazon.com",
+            state: {
+              blocked: {}
+            },
+            prevalence: 21.4
+          },
+          {
+            category: "Advertising",
+            url: "https://dsum-sec.casalemedia.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Index Exchange, Inc.",
+            entityName: "Index Exchange",
+            state: {
+              blocked: {}
+            },
+            prevalence: 17.3
+          },
+          {
+            category: "Advertising",
+            url: "https://plus.google.com/+cnn/posts",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              allowed: {
+                reason: "ruleException"
+              }
+            },
+            prevalence: 79.9
+          },
+          {
+            category: "Advertising",
+            url: "https://tpc.googlesyndication.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              blocked: {}
+            },
+            prevalence: 79.9
+          },
+          {
+            category: "Advertising",
+            url: "https://fastlane.rubiconproject.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Magnite, Inc.",
+            entityName: "Magnite",
+            state: {
+              blocked: {}
+            },
+            prevalence: 18.3
+          },
+          {
+            category: "Advertising",
+            url: "https://partner.googleadservices.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              blocked: {}
+            },
+            prevalence: 79.9
+          },
+          {
+            category: "Advertising",
+            url: "https://pagead2.googlesyndication.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              blocked: {}
+            },
+            prevalence: 79.9
+          },
+          {
+            category: "Advertising",
+            url: "https://amplify.outbrain.com/cp/obtp.js",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Outbrain",
+            entityName: "Outbrain",
+            state: {
+              blocked: {}
+            },
+            prevalence: 12.4
+          },
+          {
+            category: "Advertising",
+            url: "https://tag.bounceexchange.com/340/i.js",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Bounce Exchange",
+            entityName: "Bounce Exchange",
+            state: {
+              blocked: {}
+            },
+            prevalence: 0.582
+          },
+          {
+            category: "Advertising",
+            url: "https://widgets.outbrain.com/outbrain.js",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Outbrain",
+            entityName: "Outbrain",
+            state: {
+              blocked: {}
+            },
+            prevalence: 12.4
+          },
+          {
+            category: "Advertising",
+            url: "https://fastlane-adv.rubiconproject.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Magnite, Inc.",
+            entityName: "Magnite",
+            state: {
+              blocked: {}
+            },
+            prevalence: 18.3
+          },
+          {
+            category: "Advertising",
+            url: "https://optimized-by.rubiconproject.com/",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Magnite, Inc.",
+            entityName: "Magnite",
+            state: {
+              blocked: {}
+            },
+            prevalence: 18.3
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "ruleException"
+              }
+            },
+            prevalence: 0.0468,
+            url: "https://www.dianomi.com/js/contextfeed.js",
+            ownerName: "Dianomi Ltd",
+            entityName: "Dianomi"
+          },
+          {
+            category: "Analytics",
+            url: "https://sb.scorecardresearch.com/beacon.js",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "comScore, Inc",
+            entityName: "comScore",
+            state: {
+              blocked: {}
+            },
+            prevalence: 9.99
+          },
+          {
+            category: "Advertising",
+            url: "https://c.amazon-adsystem.com/aax2/apstag.js",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Amazon Technologies, Inc.",
+            entityName: "Amazon.com",
+            state: {
+              allowed: {
+                reason: "ruleException"
+              }
+            },
+            prevalence: 21.4
+          },
+          {
+            category: "Advertising",
+            url: "https://www.googletagservices.com/tag/js/gpt.js",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Google LLC",
+            entityName: "Google",
+            state: {
+              blocked: {}
+            },
+            prevalence: 79.9
+          },
+          {
+            category: "Advertising",
+            url: "https://get.s-onetag.com/c15ddde9-ec7d-4a49-b8ca-7a21bc4b943b/tag.min.js",
+            pageUrl: "https://edition.cnn.com/",
+            ownerName: "Sovrn Holdings",
+            entityName: "Sovrn Holdings",
+            state: {
+              blocked: {}
+            },
+            prevalence: 10.5
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 21.6,
+            url: "https://data.api.cnn.io/",
+            entityName: "WarnerMedia"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 21.6,
+            url: "https://pmd.cdn.turner.com/",
+            entityName: "WarnerMedia"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 21.6,
+            url: "https://amd.cdn.turner.com/",
+            entityName: "WarnerMedia"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 21.6,
+            url: "https://registry.api.cnn.io/bundles/fave/latest-4.x/js",
+            entityName: "WarnerMedia"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            url: "android-app://com.cnn.mobile.android.phone/http/edition.cnn.com",
+            entityName: "android.phone"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            url: "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+            entityName: "cookielaw.org"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 9.99,
+            url: "https://segment-data-us-east.zqtk.net/turner-47fcf6",
+            entityName: "comScore"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 21.4,
+            url: "https://d2uap9jskdzp2.cloudfront.net/script.js",
+            entityName: "Amazon.com"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 21.6,
+            url: "https://ht.cdn.turner.com/",
+            entityName: "WarnerMedia"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            url: "https://w.usabilla.com/",
+            entityName: "usabilla.com"
+          },
+          {
+            pageUrl: "https://edition.cnn.com/",
+            state: {
+              allowed: {
+                reason: "otherThirdPartyRequest"
+              }
+            },
+            prevalence: 21.6,
+            url: "https://s.cdn.turner.com/analytics/comscore/streamsense.5.2.0.160629.min.js",
+            entityName: "WarnerMedia"
+          }
+        ]
+      };
+    }
+  });
+
+  // shared/js/ui/views/tests/toggle-protections.mjs
+  function protectionsOff(requests) {
+    return requests.map((r3) => {
+      if ("blocked" in r3.state) {
+        return detectedRequestSchema.parse({
+          ...r3,
+          state: { allowed: { reason: "protectionDisabled" } }
+        });
+      }
+      if ("allowed" in r3.state) {
+        if (r3.state.allowed.reason === "otherThirdPartyRequest") {
+          return r3;
+        }
+        return detectedRequestSchema.parse({
+          ...r3,
+          state: { allowed: { reason: "protectionDisabled" } }
+        });
+      }
+      return r3;
+    });
+  }
+  var init_toggle_protections = __esm({
+    "shared/js/ui/views/tests/toggle-protections.mjs"() {
+      "use strict";
+      init_schema_parsers();
+    }
+  });
+
+  // shared/js/ui/views/tests/generate-data.mjs
+  var allowedTracker, allowedTrackerRule, allowedThirdParty, allowedAdClickAttribution, blocked1, defaultCertificates, MockData, createDataStates;
+  var init_generate_data = __esm({
+    "shared/js/ui/views/tests/generate-data.mjs"() {
+      "use strict";
+      init_protections();
+      init_toggle_protections();
+      allowedTracker = {
+        entityName: "example.com",
+        prevalence: 82.6,
+        url: "https://example.com/a.js",
+        pageUrl: "https://example.com",
+        state: { allowed: { reason: "ownedByFirstParty" } }
+      };
+      allowedTrackerRule = {
+        entityName: "example.com",
+        prevalence: 82.6,
+        url: "https://example.com/a.js",
+        pageUrl: "https://example.com",
+        state: { allowed: { reason: "ruleException" } }
+      };
+      allowedThirdParty = {
+        entityName: "Index Exchange",
+        prevalence: 12.7,
+        url: "indexww.com",
+        pageUrl: "https://example.com",
+        category: "Advertising",
+        state: { allowed: { reason: "otherThirdPartyRequest" } }
+      };
+      allowedAdClickAttribution = {
+        entityName: "Index Exchange",
+        prevalence: 12.7,
+        url: "https://bat.bing.com/1.js",
+        pageUrl: "https://example.com",
+        category: "Advertising",
+        state: { allowed: { reason: "adClickAttribution" } }
+      };
+      blocked1 = {
+        entityName: "Google",
+        prevalence: 82.6,
+        url: "securepubads.g.doubleclick.net",
+        pageUrl: "https://example.com",
+        category: "Advertising",
+        state: { blocked: {} }
+      };
+      defaultCertificates = [
+        {
+          commonName: "sni.cloudflaressl.com",
+          publicKey: {
+            blockSize: 72,
+            canEncrypt: true,
+            bitSize: 256,
+            canSign: false,
+            canDerive: true,
+            canUnwrap: false,
+            canWrap: false,
+            canDecrypt: false,
+            effectiveSize: 256,
+            isPermanent: false,
+            type: "Elliptic Curve",
+            externalRepresentation: "BEO3YVjG8jpNVRlh9G10paEfrx9XnVG9GvNtOAYkZvuytfhKTZ9sW+MhQaFDAgKveZUDIMg7WvG8QXZGPNTWCKg=",
+            canVerify: true,
+            keyId: "Xbo6o2j/lA8zNZ/axcChz8ID2MM="
+          },
+          emails: [],
+          summary: "sni.cloudflaressl.com"
+        },
+        {
+          commonName: "Cloudflare Inc ECC CA-3",
+          publicKey: {
+            blockSize: 72,
+            canEncrypt: true,
+            bitSize: 256,
+            canSign: false,
+            canDerive: true,
+            canUnwrap: false,
+            canWrap: false,
+            canDecrypt: false,
+            effectiveSize: 256,
+            isPermanent: false,
+            type: "Elliptic Curve",
+            externalRepresentation: "BLmtTWaZFAtG7B+B0SpQHp0DFS80En0tlriIOJuFX4+/u03vYUbEyXPUJE/g7hzObLNRcS9q7kwFCXfTcmKkm9c=",
+            canVerify: true,
+            keyId: "pc436uuwdQ6UZ4i0RfrZJBCHlh8="
+          },
+          emails: [],
+          summary: "Cloudflare Inc ECC CA-3"
+        },
+        {
+          commonName: "Baltimore CyberTrust Root",
+          publicKey: {
+            blockSize: 256,
+            canEncrypt: false,
+            bitSize: 2048,
+            canSign: false,
+            canDerive: false,
+            canUnwrap: false,
+            canWrap: false,
+            canDecrypt: false,
+            effectiveSize: 2048,
+            isPermanent: false,
+            type: "RSA",
+            externalRepresentation: "MIIBCgKCAQEAowS7IquYPVfoJnKatXnUKeLh6JWAsbDjW44rKZpk36Fd7bAJBW3bKC7OYqJi/rSI2hLrOOshncBBKwFSe4h30xyPx7q5iLVqCedz6BFAp9HMymKNLeWPC6ZQ0qhQwyjq9aslh4qalhypZ7g/DNX3+VITL8Ib1XBw8I/AEsoGy5rh2cozenfW+Oy58WhEQkgT0sDCpK5eYP62pgX8tN0HWQLUWRiYY/WlY+CQDH1dsgZ684Xq69QDrl6EPl//Fe1pvPk5NnJ1z3dSTfPJkCy5PeXJI1M/HySYIVwHmSm9xjrs526GOmuXdGMzvWgYMfB4jXa//J6OXSqGp02Q3CcaOQIDAQAB",
+            canVerify: true,
+            keyId: "5Z1ZMIJHWMys+ghUNoZ7OrUETfA="
+          },
+          emails: [],
+          summary: "Baltimore CyberTrust Root"
+        }
+      ];
+      MockData = class _MockData {
+        /**
+         * @param {object} params
+         * @param {string} [params.state] - any string identifier for this mock state
+         * @param {string} [params.url]
+         * @param {{locale: string}} [params.localeSettings]
+         * @param {DetectedRequest[]} [params.requests]
+         * @param {any[]} [params.certificate]
+         * @param {ParentEntity} [params.parentEntity]
+         * @param {boolean} [params.upgradedHttps]
+         * @param {boolean} [params.contentBlockingException]
+         * @param {boolean} [params.allowlisted]
+         * @param {boolean} [params.denylisted]
+         * @param {any[]} [params.permissions]
+         * @param {boolean} [params.specialDomainName]
+         * @param {boolean} [params.emailUser]
+         * @param {boolean} [params.fireButtonEnabled]
+         * @param {BurnConfig} [params.fireButtonOptions]
+         * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
+         * @param {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} [params.remoteFeatureSettings]
+         * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
+         */
+        constructor(params) {
+          this.url = params.url || "https://example.com";
+          this.requests = params.requests || [];
+          this.state = params.state;
+          this.localeSettings = params.localeSettings || { locale: "en" };
+          this.certificate = params.certificate || defaultCertificates;
+          this.upgradedHttps = params.upgradedHttps ?? false;
+          this.contentBlockingException = params.contentBlockingException;
+          this.parentEntity = params.parentEntity;
+          this.permissions = params.permissions;
+          this.allowlisted = params.allowlisted;
+          this.denylisted = params.denylisted;
+          this.specialDomainName = params.specialDomainName;
+          this.emailUser = params.emailUser;
+          this.cookiePromptManagementStatus = params.cookiePromptManagementStatus;
+          this.fireButtonEnabled = params.fireButtonEnabled || false;
+          this.remoteFeatureSettings = params.remoteFeatureSettings;
+          this.emailProtectionUserData = params.emailProtectionUserData;
+          this.fireButtonOptions = params.fireButtonOptions;
+          this.protections = Protections.default();
+          if (this.allowlisted) {
+            this.protections.allowlisted = true;
+          }
+          if (this.denylisted) {
+            this.protections.denylisted = true;
+            this.contentBlockingException = true;
+          }
+          if (this.contentBlockingException) {
+            this.protections.enabledFeatures = [];
+          }
+          if (this.requests && (this.protections.allowlisted || this.contentBlockingException)) {
+            this.requests = protectionsOff(this.requests);
+          }
+        }
+        /**
+         * @param {Partial<MockData> & {url: string}} mock
+         * @returns {MockData}
+         */
+        static default(mock) {
+          return new _MockData({
+            ...mock
+          });
+        }
+        /**
+         * @return {import('../../../../../schema/__generated__/schema.types').WindowsIncomingViewModel}
+         */
+        toWindowsViewModel() {
+          return {
+            Feature: "PrivacyDashboard",
+            Name: "ViewModelUpdated",
+            Data: {
+              rawRequestData: {
+                requests: this.requests || []
+              },
+              protections: this.protections,
+              tabUrl: this.url,
+              upgradedHttps: this.upgradedHttps,
+              parentEntity: this.parentEntity,
+              permissions: this.permissions,
+              certificates: this.certificate,
+              cookiePromptManagementStatus: this.cookiePromptManagementStatus
+            }
+          };
+        }
+        /**
+         * @return {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData}
+         */
+        toExtensionDashboardData() {
+          const output2 = {
+            tab: {
+              id: 1533,
+              url: this.url || "https://example.com",
+              upgradedHttps: this.upgradedHttps,
+              protections: this.protections,
+              parentEntity: this.parentEntity
+            },
+            fireButton: { enabled: this.fireButtonEnabled },
+            requestData: {
+              requests: this.requests || []
+            },
+            emailProtectionUserData: this.emailProtectionUserData
+          };
+          if (this.specialDomainName) {
+            output2.tab.specialDomainName = "extensions";
+          }
+          if (this.emailUser) {
+            output2.emailProtectionUserData = {
+              nextAlias: "123456_next"
+            };
+          }
+          if (this.localeSettings) {
+            output2.tab.localeSettings = this.localeSettings;
+          }
+          return output2;
+        }
+        /**
+         * @return {import('../../../../../schema/__generated__/schema.types.js').FireButtonData}
+         */
+        toBurnOptions() {
+          const burnConfig = this.fireButtonOptions || { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 };
+          const { clearHistory, pinnedTabs, tabClearEnabled } = burnConfig;
+          return {
+            options: [
+              {
+                name: "CurrentSite",
+                options: {
+                  origins: ["https://example.com/"]
+                },
+                descriptionStats: {
+                  clearHistory,
+                  site: "example.com",
+                  duration: "all",
+                  openTabs: tabClearEnabled ? 1 : 0,
+                  cookies: 1,
+                  pinnedTabs
+                }
+              },
+              {
+                name: "LastHour",
+                options: {
+                  since: Date.now()
+                },
+                descriptionStats: {
+                  clearHistory,
+                  duration: "hour",
+                  openTabs: tabClearEnabled ? 5 : 0,
+                  cookies: 23,
+                  pinnedTabs
+                }
+              },
+              {
+                name: "AllTime",
+                options: {},
+                descriptionStats: {
+                  clearHistory,
+                  duration: "all",
+                  openTabs: tabClearEnabled ? 5 : 0,
+                  cookies: 1e3,
+                  pinnedTabs
+                }
+              }
+            ]
+          };
+        }
+      };
+      createDataStates = (google, cnn) => {
+        return {
+          "alternative-layout-exp-1": new MockData({
+            url: "https://example.com",
+            requests: cnn.requests,
+            remoteFeatureSettings: {
+              primaryScreen: {
+                layout: "highlighted-protections-toggle"
+              }
+            }
+          }),
+          "alternative-layout-exp-1-protections-off": new MockData({
+            url: "https://example.com",
+            requests: cnn.requests,
+            remoteFeatureSettings: {
+              primaryScreen: {
+                layout: "highlighted-protections-toggle"
+              }
+            },
+            allowlisted: true
+          }),
+          "alternative-layout-exp-1-disabled": new MockData({
+            url: "https://example.com",
+            requests: cnn.requests,
+            remoteFeatureSettings: {
+              primaryScreen: {
+                layout: "highlighted-protections-toggle"
+              }
+            },
+            contentBlockingException: true
+          }),
+          "consent-managed": new MockData({
+            url: "https://example.com",
+            requests: [],
+            cookiePromptManagementStatus: {
+              consentManaged: true
+            }
+          }),
+          "consent-managed-configurable": new MockData({
+            url: "https://example.com",
+            requests: [],
+            cookiePromptManagementStatus: {
+              consentManaged: true,
+              configurable: true
+            }
+          }),
+          "consent-managed-configurable-cosmetic": new MockData({
+            url: "https://example.com",
+            requests: [],
+            cookiePromptManagementStatus: {
+              consentManaged: true,
+              configurable: true,
+              cosmetic: true
+            }
+          }),
+          "locale-pl": new MockData({
+            localeSettings: {
+              locale: "pl"
+            },
+            url: "https://example.com",
+            requests: []
+          }),
+          "locale-fr": new MockData({
+            localeSettings: {
+              locale: "fr"
+            },
+            url: "https://example.com",
+            requests: []
+          }),
+          "email-user": new MockData({
+            emailProtectionUserData: {
+              nextAlias: "abc"
+            }
+          }),
+          "ad-attribution": new MockData({
+            url: "https://example.com",
+            requests: [blocked1, allowedAdClickAttribution],
+            certificate: []
+          }),
+          "without-certificate": new MockData({
+            url: "https://example.com",
+            requests: [],
+            certificate: [],
+            localeSettings: void 0,
+            parentEntity: void 0,
+            upgradedHttps: false
+          }),
+          insecure: new MockData({
+            url: "http://example.com",
+            requests: [],
+            certificate: [],
+            localeSettings: void 0,
+            parentEntity: void 0
+          }),
+          upgraded: new MockData({
+            url: "https://example.com",
+            upgradedHttps: true,
+            requests: [],
+            localeSettings: void 0,
+            parentEntity: void 0
+          }),
+          google: new MockData({
+            requests: google.requests,
+            url: "https://google.com",
+            parentEntity: {
+              displayName: "Google",
+              prevalence: 80.1
+            }
+          }),
+          "google-off": new MockData({
+            requests: protectionsOff(google.requests),
+            contentBlockingException: true,
+            url: "https://google.com",
+            parentEntity: {
+              displayName: "Google",
+              prevalence: 80.1
+            }
+          }),
+          "google-with-blocked": new MockData({
+            requests: google.requests.concat(blocked1),
+            url: "https://google.com",
+            parentEntity: {
+              displayName: "Google",
+              prevalence: 80.1
+            }
+          }),
+          "upgraded+secure": new MockData({
+            requests: [],
+            url: "https://example.com",
+            upgradedHttps: true,
+            certificate: defaultCertificates
+          }),
+          cnn: new MockData({
+            url: "https://edition.cnn.com",
+            requests: cnn.requests,
+            parentEntity: {
+              displayName: "WarnerMedia, LLC",
+              prevalence: 0.401
+            }
+          }),
+          protectionsOn: new MockData({
+            url: "https://example.com",
+            requests: []
+          }),
+          protectionsOn_blocked: new MockData({
+            url: "https://example.com",
+            requests: [blocked1]
+          }),
+          protectionsOn_blocked_allowedTrackers: new MockData({
+            url: "https://example.com",
+            requests: [blocked1, allowedTracker]
+          }),
+          protectionsOn_blocked_allowedNonTrackers: new MockData({
+            url: "https://example.com",
+            requests: [blocked1, allowedThirdParty]
+          }),
+          protectionsOn_blocked_allowedTrackers_allowedNonTrackers: new MockData({
+            url: "https://example.com",
+            requests: [blocked1, allowedThirdParty, allowedTracker]
+          }),
+          protectionsOn_allowedTrackers: new MockData({
+            url: "https://example.com",
+            requests: [
+              allowedTracker,
+              allowedTrackerRule,
+              allowedAdClickAttribution,
+              {
+                ...allowedTracker,
+                state: { allowed: { reason: "protectionDisabled" } }
+              }
+            ]
+          }),
+          protectionsOn_allowedNonTrackers: new MockData({
+            url: "https://example.com",
+            requests: [allowedThirdParty]
+          }),
+          protectionsOn_allowedTrackers_allowedNonTrackers: new MockData({
+            url: "https://example.com",
+            requests: [allowedTracker, allowedThirdParty]
+          }),
+          protectionsOff: new MockData({
+            url: "https://example.com",
+            requests: [],
+            contentBlockingException: true
+          }),
+          protectionsOff_allowedTrackers: new MockData({
+            url: "https://example.com",
+            requests: [allowedTracker],
+            contentBlockingException: true
+          }),
+          protectionsOff_allowedNonTrackers: new MockData({
+            url: "https://example.com",
+            requests: [allowedThirdParty],
+            contentBlockingException: true
+          }),
+          protectionsOff_allowedTrackers_allowedNonTrackers: new MockData({
+            url: "https://example.com",
+            requests: [allowedThirdParty, allowedTracker],
+            contentBlockingException: true
+          }),
+          allowlisted: new MockData({
+            url: "https://example.com",
+            requests: [allowedThirdParty, allowedTracker],
+            allowlisted: true
+          }),
+          denylisted: new MockData({
+            url: "https://example.com",
+            requests: [allowedThirdParty, allowedTracker],
+            denylisted: true
+          }),
+          "remote-disabled": new MockData({
+            url: "https://example.com",
+            requests: [allowedThirdParty, allowedTracker],
+            contentBlockingException: true
+          }),
+          "new-entities": new MockData({
+            url: "https://m.youtube.com",
+            requests: [
+              {
+                eTLDplus1: "ytimg.com",
+                entityName: "Youtube (Google)",
+                ownerName: "Youtube",
+                pageUrl: "https://m.youtube.com/",
+                prevalence: 0.5,
+                state: { blocked: {} },
+                url: "https://i.ytimg.com/vi/AD6OPCFxmJM/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSEbyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBsqqvey-tZ8K3peu7cavrfnR0zDA"
+              },
+              {
+                category: "Advertising",
+                eTLDplus1: "doubleclick.net",
+                entityName: "Google Ads (Google)",
+                ownerName: "Google Ads",
+                pageUrl: "https://m.youtube.com/",
+                prevalence: 0.5,
+                state: { blocked: {} },
+                url: "https://googleads.g.doubleclick.net/pagead/id"
+              },
+              {
+                category: "Advertising",
+                eTLDplus1: "doubleclick.net",
+                entityName: "Google Analytics (Google)",
+                ownerName: "Google Ads",
+                pageUrl: "https://m.youtube.com/",
+                prevalence: 0.5,
+                state: { blocked: {} },
+                url: "https://static.doubleclick.net/instream/ad_status.js"
+              },
+              {
+                category: "Advertising",
+                eTLDplus1: "google.com",
+                entityName: "Instagram (Facebook)",
+                ownerName: "Google LLC",
+                pageUrl: "https://m.youtube.com/",
+                prevalence: 80.5,
+                state: { blocked: {} },
+                url: "https://www.google.com/js/th/EWuoZ_9LU3hL76PT3YFLg_EjKJdTpZ6rgtgTJA98OBY.js"
+              }
+            ]
+          }),
+          "fire-button": new MockData({
+            requests: google.requests,
+            url: "https://google.com",
+            parentEntity: {
+              displayName: "Google",
+              prevalence: 80.1
+            },
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 }
+          }),
+          "fire-button-enabled": new MockData({
+            url: "https://example.com",
+            fireButtonEnabled: true
+          }),
+          "fire-button-disabled": new MockData({
+            url: "https://example.com",
+            fireButtonEnabled: false
+          }),
+          "fire-button-no-pinned": new MockData({
+            url: "https://example.com",
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 }
+          }),
+          "fire-button-tab-clear-disabled": new MockData({
+            url: "https://example.com",
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: false, pinnedTabs: 0 }
+          }),
+          "special-page": new MockData({
+            url: "https://example.com",
+            specialDomainName: true,
+            emailUser: true
+          }),
+          "invalid-data": new MockData({
+            url: "https://example.com",
+            // @ts-expect-error - this SHOULD error, that's the test
+            requests: [{ foo: "bar" }]
+          })
+        };
+      };
+    }
+  });
+
+  // shared/js/ui/views/tests/states-with-fixtures.js
+  var states_with_fixtures_exports = {};
+  __export(states_with_fixtures_exports, {
+    testDataStates: () => testDataStates
+  });
+  var testDataStates;
+  var init_states_with_fixtures = __esm({
+    "shared/js/ui/views/tests/states-with-fixtures.js"() {
+      "use strict";
+      init_request_data_google();
+      init_request_data_cnn();
+      init_generate_data();
+      testDataStates = createDataStates(request_data_google_default, request_data_cnn_default);
+    }
+  });
+
   // shared/js/browser/utils/communication-mocks.mjs
+  async function mockDataProvider(params) {
+    const { state, platform: platform2, messages } = params;
+    Object.assign(window.__playwright.messages, messages);
+    if (platform2?.name === "windows") {
+      if (!window.__playwright.messages.windowsViewModel)
+        throw new Error("missing `windowsViewModel` on messages");
+      for (const listener of window.__playwright.listeners || []) {
+        listener({
+          data: window.__playwright.messages.windowsViewModel
+        });
+      }
+      return;
+    }
+    if (platform2?.name === "browser") {
+      for (const listener of window.__playwright.listeners || []) {
+        listener({ updateTabData: true }, { id: "test" });
+      }
+      return;
+    }
+    if (state.cookiePromptManagementStatus) {
+      window.onChangeConsentManaged(state.cookiePromptManagementStatus);
+    }
+    window.onChangeParentEntity(state.parentEntity);
+    window.onChangeProtectionStatus(state.protections);
+    window.onChangeUpgradedHttps(state.upgradedHttps);
+    window.onChangeCertificateData({
+      secCertificateViewModels: state.certificate
+    });
+    if (state.remoteFeatureSettings) {
+      window.onChangeFeatureSettings?.(state.remoteFeatureSettings);
+    }
+    window.onChangeLocale?.(state.localeSettings);
+    window.onChangeRequestData(state.url, { requests: state.requests || [] });
+  }
+  function windowsMockApis() {
+    try {
+      if (!window.chrome) {
+        window.chrome = {};
+      }
+      window.__playwright = {
+        listeners: [],
+        messages: {},
+        mocks: {
+          outgoing: [],
+          incoming: []
+        },
+        calls: []
+      };
+      window.chrome.webview = {
+        // @ts-ignore
+        addEventListener: (messageName, listener) => {
+          window.__playwright.listeners?.push(listener);
+        },
+        postMessage(arg) {
+          window.__playwright.mocks.outgoing.push([arg.Name, arg]);
+        }
+      };
+    } catch (e3) {
+      console.error("\u274Ccouldn't set up mocks");
+      console.error(e3);
+    }
+  }
+  function webkitMockApis() {
+    try {
+      window.__playwright = {
+        messages: {},
+        mocks: {
+          outgoing: [],
+          incoming: []
+        },
+        calls: []
+      };
+      window.webkit = {
+        messageHandlers: {
+          privacyDashboardShowReportBrokenSite: {
+            postMessage: (arg) => {
+              window.__playwright.mocks.outgoing.push(["privacyDashboardShowReportBrokenSite", arg]);
+            }
+          },
+          privacyDashboardOpenUrlInNewTab: {
+            postMessage: (arg) => {
+              window.__playwright.mocks.outgoing.push(["privacyDashboardOpenUrlInNewTab", arg]);
+            }
+          },
+          privacyDashboardOpenSettings: {
+            postMessage: (arg) => {
+              window.__playwright.mocks.outgoing.push(["privacyDashboardOpenSettings", arg]);
+            }
+          },
+          privacyDashboardSubmitBrokenSiteReport: {
+            postMessage: (arg) => {
+              window.__playwright.mocks.outgoing.push(["privacyDashboardSubmitBrokenSiteReport", arg]);
+            }
+          },
+          privacyDashboardSetSize: {
+            postMessage: (arg) => {
+              window.__playwright.mocks.outgoing.push(["privacyDashboardSetSize", arg]);
+            }
+          },
+          privacyDashboardClose: {
+            postMessage: (arg) => {
+              window.__playwright.mocks.outgoing.push(["privacyDashboardClose", arg]);
+            }
+          },
+          privacyDashboardSetProtection: {
+            postMessage: (arg) => {
+              window.__playwright.mocks.outgoing.push(["privacyDashboardSetProtection", arg]);
+            }
+          }
+        }
+      };
+    } catch (e3) {
+      console.error("\u274Ccouldn't set up mocks");
+      console.error(e3);
+    }
+  }
+  function mockAndroidApis() {
+    try {
+      window.__playwright = {
+        messages: {},
+        mocks: {
+          outgoing: [],
+          incoming: []
+        },
+        calls: []
+      };
+      window.PrivacyDashboard = {
+        showBreakageForm(arg) {
+          window.__playwright.mocks.outgoing.push(["showBreakageForm", arg]);
+        },
+        openInNewTab(arg) {
+          window.__playwright.mocks.outgoing.push(["openInNewTab", arg]);
+        },
+        openSettings(arg) {
+          window.__playwright.mocks.outgoing.push(["openSettings", arg]);
+        },
+        close(arg) {
+          window.__playwright.mocks.outgoing.push(["close", arg]);
+        },
+        toggleAllowlist(arg) {
+          window.__playwright.mocks.outgoing.push(["toggleAllowlist", arg]);
+        }
+      };
+    } catch (e3) {
+      console.error("\u274Ccouldn't set up mocks");
+      console.error(e3);
+    }
+  }
+  function mockBrowserApis() {
+    const messages = {
+      submitBrokenSiteReport: {},
+      setLists: {},
+      search: {},
+      openOptions: {},
+      setBurnDefaultOption: {},
+      doBurn: {}
+    };
+    try {
+      if (!window.chrome) {
+        window.chrome = {
+          // @ts-ignore
+          permissions: {
+            // eslint-disable-next-line n/no-callback-literal
+            request: (permissions, cb) => cb && cb(true)
+          }
+        };
+      }
+      window.__playwright = {
+        messages,
+        mocks: {
+          outgoing: [],
+          incoming: []
+        },
+        calls: [],
+        listeners: []
+      };
+      window.chrome.runtime = {
+        id: "test",
+        async sendMessage(message, cb) {
+          function respond(fn, timeout = 100) {
+            setTimeout(() => {
+              fn();
+            }, timeout);
+          }
+          const matchingMessage = window.__playwright.messages[message.messageType];
+          if (matchingMessage) {
+            window.__playwright.mocks.outgoing.push([message.messageType, message]);
+            respond(() => cb(matchingMessage), 200);
+          } else {
+            setTimeout(() => {
+              const matchingMessage2 = window.__playwright.messages[message.messageType];
+              if (matchingMessage2) {
+                window.__playwright.mocks.outgoing.push([message.messageType, message]);
+                respond(() => cb(matchingMessage2), 0);
+              } else {
+                console.trace(`\u274C [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`);
+              }
+            }, 200);
+          }
+        },
+        // @ts-ignore
+        onMessage: {
+          addListener(listener) {
+            window.__playwright.listeners?.push(listener);
+          }
+        }
+      };
+    } catch (e3) {
+      console.error("\u274Ccouldn't set up browser mocks");
+      console.error(e3);
+    }
+  }
+  async function installMocks(platform2) {
+    if (window.__playwright)
+      return console.log("\u274C mocked already there");
+    if (platform2.name === "windows") {
+      windowsMockApis();
+    } else if (platform2.name === "ios" || platform2.name === "macos") {
+      webkitMockApis();
+    } else if (platform2.name === "android") {
+      mockAndroidApis();
+    } else if (platform2.name === "browser") {
+      mockBrowserApis();
+    }
+    const { testDataStates: testDataStates2 } = await Promise.resolve().then(() => (init_states_with_fixtures(), states_with_fixtures_exports));
+    const stateFromUrl = new URLSearchParams(window.location.search).get("state");
+    let mock;
+    if (stateFromUrl && stateFromUrl in testDataStates2) {
+      mock = testDataStates2[stateFromUrl];
+    } else {
+      mock = testDataStates2.protectionsOn_blocked;
+      console.warn("state not found, falling back to default. state: ", "protectionsOn_blocked", stateFromUrl);
+    }
+    console.groupCollapsed(`${platform2.name} open for more Dashboard States`);
+    const urls = Object.keys(testDataStates2).map((key) => {
+      const clone = new URL(location.href);
+      clone.searchParams.set("state", key);
+      return clone.href;
+    });
+    for (let url of urls) {
+      console.log(url);
+    }
+    console.groupEnd();
+    let messages = {};
+    if (platform2.name === "browser") {
+      messages["getBurnOptions"] = mock.toBurnOptions();
+      messages["getPrivacyDashboardData"] = mock.toExtensionDashboardData();
+    }
+    if (platform2.name === "windows") {
+      messages["windowsViewModel"] = mock.toWindowsViewModel();
+    }
+    await mockDataProvider({
+      state: mock,
+      platform: platform2,
+      messages
+    });
+  }
   var init_communication_mocks = __esm({
     "shared/js/browser/utils/communication-mocks.mjs"() {
       "use strict";
@@ -12978,6 +14356,8 @@
       }
       if (!defaultComms)
         throw new Error("unsupported environment");
+      $TEST:
+        typeof window.__ddg_integration_test === "undefined" && installMocks(platform).catch(console.error);
       defaultComms.setup();
       communication_default = defaultComms;
     }
@@ -14616,10 +15996,10 @@
       return false;
     }
   }
-  function removePending(q2, name) {
-    if (q2.pending[name] !== void 0) {
-      delete q2.pending[name];
-      q2.pendingCount--;
+  function removePending(q3, name) {
+    if (q3.pending[name] !== void 0) {
+      delete q3.pending[name];
+      q3.pendingCount--;
     }
   }
   function get() {
@@ -16284,16 +17664,16 @@
             }
             this.state[name] = err ? -1 : 2;
             var loaded2 = {};
-            this.queue.forEach(function(q2) {
-              pushPath(q2.loaded, [lng], ns2);
-              removePending(q2, name);
+            this.queue.forEach(function(q3) {
+              pushPath(q3.loaded, [lng], ns2);
+              removePending(q3, name);
               if (err)
-                q2.errors.push(err);
-              if (q2.pendingCount === 0 && !q2.done) {
-                Object.keys(q2.loaded).forEach(function(l3) {
+                q3.errors.push(err);
+              if (q3.pendingCount === 0 && !q3.done) {
+                Object.keys(q3.loaded).forEach(function(l3) {
                   if (!loaded2[l3])
                     loaded2[l3] = {};
-                  var loadedKeys = q2.loaded[l3];
+                  var loadedKeys = q3.loaded[l3];
                   if (loadedKeys.length) {
                     loadedKeys.forEach(function(ns3) {
                       if (loaded2[l3][ns3] === void 0)
@@ -16301,17 +17681,17 @@
                     });
                   }
                 });
-                q2.done = true;
-                if (q2.errors.length) {
-                  q2.callback(q2.errors);
+                q3.done = true;
+                if (q3.errors.length) {
+                  q3.callback(q3.errors);
                 } else {
-                  q2.callback();
+                  q3.callback();
                 }
               }
             });
             this.emit("loaded", loaded2);
-            this.queue = this.queue.filter(function(q2) {
-              return !q2.done;
+            this.queue = this.queue.filter(function(q3) {
+              return !q3.done;
             });
           }
         }, {
@@ -21873,1445 +23253,6 @@
     }
   });
 
-  // shared/js/ui/views/sliding-subview.js
-  function SlidingSubview(ops) {
-    ops.appendTo = (0, import_jquery10.default)(".sliding-subview--root");
-    view_default.call(this, ops);
-    this.$root = (0, import_jquery10.default)(".sliding-subview--root");
-    this.$root.addClass("sliding-subview--open");
-    this.setupNavigationSupport();
-    this.setupClose();
-  }
-  var import_jquery10, sliding_subview_default;
-  var init_sliding_subview = __esm({
-    "shared/js/ui/views/sliding-subview.js"() {
-      "use strict";
-      import_jquery10 = __toESM(require_jquery());
-      init_environment_check();
-      init_view();
-      init_utils();
-      SlidingSubview.prototype = import_jquery10.default.extend({}, view_default.prototype, {
-        setupClose: function() {
-          this._cacheElems(".js-sliding-subview", ["close", "done"]);
-          this.bindEvents([
-            [this.$close, "click", this._destroy],
-            [this.$done, "click", this._done]
-          ]);
-          if (isAndroid()) {
-            setupMaterialDesignRipple(this.$parent[0], ".link-action");
-          }
-        },
-        setupNavigationSupport: function() {
-          const url = new URL(window.location);
-          url.searchParams.set("open", "true");
-          window.history.pushState({}, "", url);
-          if (this.popstateHandler) {
-            window.removeEventListener("popstate", this.popstateHandler);
-          }
-          this.popstateHandler = () => {
-            this._destroy(null, { fromNavigation: true });
-          };
-          window.addEventListener("popstate", this.popstateHandler);
-        },
-        _destroy: function(e3, opts = {}) {
-          if (this.popstateHandler) {
-            window.removeEventListener("popstate", this.popstateHandler);
-          }
-          const url = new URL(window.location);
-          url.searchParams.delete("open");
-          window.history.replaceState({}, "", url);
-          if (opts.fromNavigation && isIOS()) {
-            this.$root.addClass("sliding-subview--immediate");
-            window.setTimeout(() => {
-              this.$root.removeClass("sliding-subview--open");
-              this.destroy();
-              window.history.replaceState({}, "", window.location);
-              window.setTimeout(() => {
-                this.$root.removeClass("sliding-subview--immediate");
-              }, 1);
-            }, 1);
-            return;
-          }
-          this.$root.removeClass("sliding-subview--open");
-          const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches === true;
-          if (isReduced) {
-            this.destroy();
-            window.history.replaceState({}, "", window.location);
-          } else {
-            window.setTimeout(() => {
-              this.destroy();
-              window.history.replaceState({}, "", window.location);
-            }, 325);
-          }
-        },
-        _done: function() {
-          this.model.site.close();
-        }
-      });
-      sliding_subview_default = SlidingSubview;
-    }
-  });
-
-  // shared/js/ui/views/breakage-form.js
-  function BreakageForm(ops) {
-    this.model = ops.model;
-    this.template = ops.template;
-    sliding_subview_default.call(this, ops);
-    this._setup();
-  }
-  var import_jquery11, breakage_form_default;
-  var init_breakage_form2 = __esm({
-    "shared/js/ui/views/breakage-form.js"() {
-      "use strict";
-      import_jquery11 = __toESM(require_jquery());
-      init_sliding_subview();
-      BreakageForm.prototype = import_jquery11.default.extend(
-        {},
-        // @ts-ignore
-        sliding_subview_default.prototype,
-        {
-          _setup: function() {
-            this._cacheElems(".js-breakage-form", ["close", "submit", "element", "dropdown", "description"]);
-            this.bindEvents([[this.$submit, "click", this._submitForm]]);
-          },
-          _submitForm: function() {
-            const category = this.$dropdown.val();
-            const description = this.$description.val();
-            this.model.submitBreakageForm(category, description);
-            this._showThankYouMessage();
-          },
-          _showThankYouMessage: function() {
-            this.$element[0].dataset.state = "sent";
-          }
-        }
-      );
-      breakage_form_default = BreakageForm;
-    }
-  });
-
-  // shared/js/ui/templates/page-connection.js
-  function page_connection_default() {
-    if (!this.model) {
-      return import_nanohtml11.default`<section class="sliding-subview"></section>`;
-    }
-    const summary = renderConnectionDescription(this.model.site);
-    const icon = largeHeroIcon({
-      status: `connection-${this.model.site.httpsState}`
-    });
-    const hero = heroTemplate({
-      icon,
-      summary,
-      suffix: "none"
-    });
-    return import_nanohtml11.default` <div class="site-info card" data-page="connection">
-        ${topNav({ view: "secondary" })}
-        <div class="padding-x-double">${hero} ${renderCertificateDetails(this.model.site, this.model.tab)}</div>
-    </div>`;
-  }
-  function getKeyUsage(key) {
-    const capabilities = {
-      canEncrypt: i18n.t("connection:encrypt.title"),
-      canDecrypt: i18n.t("connection:decrypt.title"),
-      canSign: i18n.t("connection:sign.title"),
-      canVerify: i18n.t("connection:verify.title"),
-      canDerive: i18n.t("connection:derive.title"),
-      canWrap: i18n.t("connection:wrap.title"),
-      canUnwrap: i18n.t("connection:unwrap.title")
-    };
-    return Object.keys(capabilities).reduce((usage, capability) => {
-      if (!key[capability])
-        return usage;
-      return [].concat(usage, capabilities[capability]);
-    }, []);
-  }
-  function renderCertificateDetails(site2, tab) {
-    if (site2.httpsState === "none" || !tab.certificate || tab.certificate.length === 0)
-      return "";
-    const certificate = tab.certificate[0];
-    return import_nanohtml11.default`
-        <div>
-            ${renderHeader(site2, tab)}
-            <div class="page-connection__certificate">
-                <div class="page-connection__certificate-details">
-                    <h3 class="token-body-em">${i18n.t("connection:certificateDetail.title")}</h3>
-                    <div>
-                        <span>${i18n.t("connection:commonName.title")}</span>
-                        <span class="page-connection__certificate-value">${certificate.commonName}</span>
-                    </div>
-                    ${renderCertificateSummary(certificate)}
-                </div>
-                ${renderPublicKeyDetails(certificate)}
-            </div>
-        </div>
-    `;
-  }
-  function renderCertificateSummary(certificate) {
-    if (!certificate.summary)
-      return "";
-    return import_nanohtml11.default`<div>
-        <span>${i18n.t("connection:summary.title")}</span>
-        <span class="page-connection__certificate-value">${certificate.summary}</span>
-    </div>`;
-  }
-  function renderPublicKeyDetails(certificate) {
-    if (!certificate.publicKey)
-      return "";
-    return import_nanohtml11.default`<div class="page-connection__certificate-details">
-        <h3 class="token-body-em">${i18n.t("connection:publicKey.title")}</h3>
-        ${renderCertificateType(certificate.publicKey)} ${renderCertificateBitSize(certificate.publicKey)}
-        ${renderCertificateEffectiveSize(certificate.publicKey)} ${renderCertificateKeyUsage(certificate.publicKey)}
-        ${renderCertificateIsPermanent(certificate.publicKey)}
-    </div>`;
-  }
-  function renderCertificateType(publicKey) {
-    if (!publicKey.type)
-      return "";
-    return import_nanohtml11.default`<div>
-        <span>${i18n.t("connection:algorithm.title")}</span>
-        <span class="page-connection__certificate-value">${publicKey.type}</span>
-    </div>`;
-  }
-  function renderCertificateBitSize(publicKey) {
-    if (!publicKey.bitSize)
-      return "";
-    return import_nanohtml11.default`<div>
-        <span>${i18n.t("connection:keySize.title")}</span>
-        <span class="page-connection__certificate-value">${publicKey.bitSize} bits</span>
-    </div>`;
-  }
-  function renderCertificateIsPermanent(publicKey) {
-    if (typeof publicKey.isPermanent !== "boolean")
-      return "";
-    return import_nanohtml11.default`<div>
-        <span>${i18n.t("connection:permanent.title")}</span>
-        <span class="page-connection__certificate-value">${publicKey.isPermanent ? "Yes" : "No"}</span>
-    </div>`;
-  }
-  function renderCertificateKeyUsage(publicKey) {
-    const keyUsage = getKeyUsage(publicKey);
-    if (keyUsage.length === 0)
-      return "";
-    return import_nanohtml11.default`<div>
-        <span>${i18n.t("connection:usage.title")}</span>
-        <span class="page-connection__certificate-value">${keyUsage.join(", ")}</span>
-    </div>`;
-  }
-  function renderCertificateEffectiveSize(publicKey) {
-    if (!publicKey.effectiveSize)
-      return "";
-    return import_nanohtml11.default`<div>
-        <span>${i18n.t("connection:effectiveSize.title")}</span>
-        <span class="page-connection__certificate-value">${publicKey.effectiveSize} bits</span>
-    </div>`;
-  }
-  function renderHeader(site2, tab) {
-    if (site2.httpsState === "none") {
-      return import_nanohtml11.default`<div class="section-list-header certificate-header--not-found">${i18n.t("connection:certificateNotFound.title")}</div>`;
-    }
-    return import_nanohtml11.default`<div class="section-list-header">${i18n.t("connection:certificateForDomain.title", { domain: tab.domain })}</div>`;
-  }
-  function renderConnectionDescription(site2) {
-    if (site2.httpsState === "none") {
-      return i18n.t("connection:insecureConnectionDesc.title");
-    }
-    if (site2.httpsState === "upgraded") {
-      return i18n.t("connection:upgradedConnectionDesc.title");
-    }
-    return i18n.t("connection:secureConnectionDesc.title");
-  }
-  var import_nanohtml11;
-  var init_page_connection = __esm({
-    "shared/js/ui/templates/page-connection.js"() {
-      "use strict";
-      import_nanohtml11 = __toESM(require_browser());
-      init_localize();
-      init_hero();
-      init_top_nav();
-    }
-  });
-
-  // shared/js/ui/templates/breakage-form.js
-  function breakage_form_default2() {
-    const categories = [
-      { category: i18n.t("report:videos.title"), value: "videos" },
-      { category: i18n.t("report:images.title"), value: "images" },
-      { category: i18n.t("report:comments.title"), value: "comments" },
-      { category: i18n.t("report:content.title"), value: "content" },
-      { category: i18n.t("report:links.title"), value: "links" },
-      { category: i18n.t("report:login.title"), value: "login" },
-      { category: i18n.t("report:paywall.title"), value: "paywall" },
-      { category: i18n.t("report:other.title"), value: "other" }
-    ];
-    const icon = largeHeroIcon({
-      status: "breakage-form"
-    });
-    return import_nanohtml12.default`<section class="sliding-subview">
-        <div class="breakage-form">
-            ${topNav({ view: "secondary" })}
-            <div class="padding-x-double js-breakage-form-element" data-state="idle">
-                <div class="key-insight">
-                    ${icon}
-                    <div class="breakage-form__advise">
-                        <p class="token-title-3">${i18n.t("report:selectTheOptionDesc.title")}</p>
-                    </div>
-                    <div class="breakage-form__message">
-                        <p class="token-title-3-em">${i18n.t("report:thankYou.title")}</p>
-                        <p class="token-title-3">${i18n.t("report:yourReportWillHelpDesc.title")}</p>
-                    </div>
-                </div>
-                <div class="breakage-form__content">
-                    <div class="breakage-form__element">
-                        <div class="form__group">
-                            <div class="form__select breakage-form__input--dropdown">
-                                <select class="js-breakage-form-dropdown">
-                                    <option value="">${i18n.t("report:pickYourIssueFromTheList.title")}</option>
-                                    ${categories.map(function(item) {
-      return import_nanohtml12.default`<option value=${item.value}>${item.category}</option>`;
-    })}
-                                </select>
-                            </div>
-                            <textarea
-                                class="form__textarea js-breakage-form-description"
-                                placeholder="${i18n.t("report:tellUsMoreDesc.title")}"
-                                maxlength="2500"
-                            ></textarea>
-                            <button class="form__submit token-label-em js-breakage-form-submit" role="button">
-                                ${i18n.t("report:sendReport.title")}
-                            </button>
-                        </div>
-                        <div class="breakage-form__footer token-breakage-form-body">${i18n.t("report:reportsAreAnonymousDesc.title")}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>`;
-  }
-  var import_nanohtml12;
-  var init_breakage_form3 = __esm({
-    "shared/js/ui/templates/breakage-form.js"() {
-      "use strict";
-      import_nanohtml12 = __toESM(require_browser());
-      init_localize();
-      init_hero();
-      init_top_nav();
-    }
-  });
-
-  // shared/js/ui/views/email-protection.js
-  function EmailProtectionView(ops) {
-    this.model = ops.model;
-    this.pageView = ops.pageView;
-    this.template = ops.template;
-    view_default.call(this, ops);
-    this._setup();
-  }
-  var import_jquery12, formatAddress, email_protection_default2;
-  var init_email_protection3 = __esm({
-    "shared/js/ui/views/email-protection.js"() {
-      "use strict";
-      import_jquery12 = __toESM(require_jquery());
-      init_view();
-      formatAddress = (address) => address + "@duck.com";
-      EmailProtectionView.prototype = import_jquery12.default.extend({}, view_default.prototype, {
-        _setup: function() {
-          this.bindEvents([[this.store.subscribe, `change:${this.model.modelName}`, this._rerender]]);
-        },
-        copyAlias: function() {
-          const alias = this.model.emailProtectionUserData.nextAlias;
-          navigator.clipboard?.writeText(formatAddress(alias));
-          this.model.set("state", "added");
-          setTimeout(() => {
-            this.model.set("state", "idle");
-          }, 2e3);
-          this.model.refreshAlias().catch((e3) => console.error(e3));
-        }
-      });
-      email_protection_default2 = EmailProtectionView;
-    }
-  });
-
-  // shared/js/ui/views/search.js
-  function Search2(ops) {
-    this.model = ops.model;
-    this.pageView = ops.pageView;
-    this.template = ops.template;
-    view_default.call(this, ops);
-    this._cacheElems(".js-search", ["form", "input", "go", "cog-button", "fire-button"]);
-    this.bindEvents([
-      [this.$input, "input", this._handleInput],
-      [this.$input, "blur", this._handleBlur],
-      [this.$go, "click", this._handleSubmit],
-      [this.$form, "submit", this._handleSubmit],
-      [this.$cogbutton, "click", this._handleCogClick],
-      [this.$firebutton, "click", this._handleFireClick]
-    ]);
-  }
-  var import_jquery13, FOCUS_CLASS, search_default3;
-  var init_search3 = __esm({
-    "shared/js/ui/views/search.js"() {
-      "use strict";
-      import_jquery13 = __toESM(require_jquery());
-      init_view();
-      FOCUS_CLASS = "go--focused";
-      Search2.prototype = import_jquery13.default.extend({}, view_default.prototype, {
-        // Hover effect on search button while typing
-        _addHoverEffect: function() {
-          if (!this.$go.hasClass(FOCUS_CLASS)) {
-            this.$go.addClass(FOCUS_CLASS);
-          }
-        },
-        _removeHoverEffect: function() {
-          if (this.$go.hasClass(FOCUS_CLASS)) {
-            this.$go.removeClass(FOCUS_CLASS);
-          }
-        },
-        _handleBlur: function(_e) {
-          this._removeHoverEffect();
-        },
-        _handleInput: function(_e) {
-          const searchText = this.$input.val();
-          this.model.set("searchText", searchText);
-          if (searchText.length > 0) {
-            this._addHoverEffect();
-          } else {
-            this._removeHoverEffect();
-          }
-        },
-        _handleSubmit: function(e3) {
-          e3.preventDefault();
-          this.model.doSearch(this.$input.val());
-        },
-        _handleCogClick: function(e3) {
-          e3.preventDefault();
-          this.model.openOptionsPage();
-        },
-        _handleFireClick: function(e3) {
-          e3.preventDefault();
-          this.pageView.model.send("navigate", { target: "fireButton" });
-        }
-      });
-      search_default3 = Search2;
-    }
-  });
-
-  // shared/js/ui/views/cta-rotation.js
-  function CtaRotationView(ops) {
-    this.model = ops.model;
-    this.pageView = ops.pageView;
-    this.template = ops.template;
-    view_default.call(this, ops);
-  }
-  var import_jquery14, cta_rotation_default2;
-  var init_cta_rotation3 = __esm({
-    "shared/js/ui/views/cta-rotation.js"() {
-      "use strict";
-      import_jquery14 = __toESM(require_jquery());
-      init_view();
-      CtaRotationView.prototype = import_jquery14.default.extend({}, view_default.prototype, {});
-      cta_rotation_default2 = CtaRotationView;
-    }
-  });
-
-  // shared/js/ui/models/site-company-list.js
-  function SiteCompanyList(attrs) {
-    attrs = attrs || {};
-    attrs.tab = null;
-    attrs.companyList = [];
-    model_default.call(this, attrs);
-  }
-  var import_jquery15, site_company_list_default;
-  var init_site_company_list = __esm({
-    "shared/js/ui/models/site-company-list.js"() {
-      "use strict";
-      import_jquery15 = __toESM(require_jquery());
-      init_model();
-      init_communication();
-      init_normalize_company_name();
-      SiteCompanyList.prototype = import_jquery15.default.extend({}, model_default.prototype, normalizeCompanyName, {
-        modelName: "siteCompanyList",
-        /** @this {any} */
-        fetchAsyncData: function() {
-          return new Promise((resolve) => {
-            communication_default.getBackgroundTabData().then(({ tab }) => {
-              if (tab) {
-                this.tab = tab;
-              }
-              resolve(null);
-            });
-          });
-        }
-      });
-      site_company_list_default = SiteCompanyList;
-    }
-  });
-
-  // shared/js/ui/models/site.js
-  function Site(attrs) {
-    attrs = attrs || {};
-    this.disabled = true;
-    this.tab = null;
-    this.permissions = null;
-    this.domain = "-";
-    this.protectionsEnabled = false;
-    this.isBroken = false;
-    this.displayBrokenUI = false;
-    this.isAllowlisted = false;
-    this.isDenylisted = false;
-    this.httpsState = "none";
-    this.httpsStatusText = "";
-    this.trackersCount = 0;
-    this.majorTrackerNetworksCount = 0;
-    this.totalTrackerNetworksCount = 0;
-    this.trackerNetworks = [];
-    this.isaMajorTrackingNetwork = false;
-    this.emailProtectionUserData = null;
-    this.acceptingUpdates = true;
-    this.features = createPlatformFeatures(platform);
-    model_default.call(this, attrs);
-    this.bindEvents([[this.store.subscribe, "action:backgroundMessage", this.handleBackgroundMsg]]);
-  }
-  var import_jquery16, MAJOR_TRACKER_THRESHOLD_PCT, site_default;
-  var init_site = __esm({
-    "shared/js/ui/models/site.js"() {
-      "use strict";
-      import_jquery16 = __toESM(require_jquery());
-      init_model();
-      init_constants2();
-      init_communication();
-      init_localize();
-      init_platform_features();
-      init_common();
-      init_schema_parsers();
-      MAJOR_TRACKER_THRESHOLD_PCT = 25;
-      Site.prototype = import_jquery16.default.extend({}, model_default.prototype, {
-        modelName: "site",
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        getBackgroundTabData: function() {
-          return new Promise((resolve) => {
-            communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData, fireButton, featureSettings: featureSettings2 }) => {
-              if (tab) {
-                if (tab.locale) {
-                  if (Object.keys(i18n.options.resources).includes(tab.locale)) {
-                    i18n.changeLanguage(tab.locale);
-                  } else {
-                    console.warn(`Unsupported locale ${tab.locale}`);
-                  }
-                }
-                this.set("tab", tab);
-                this.domain = tab.domain;
-                this.set("isaMajorTrackingNetwork", (tab.parentEntity?.prevalence || 0) >= MAJOR_TRACKER_THRESHOLD_PCT);
-              } else {
-                this.domain = "new tab";
-                console.debug("Site model: no tab");
-              }
-              this.emailProtectionUserData = emailProtectionUserData;
-              this.fireButton = fireButton;
-              if (featureSettings2) {
-                const parsed = remoteFeatureSettingsSchema.safeParse(featureSettings2);
-                if (parsed.success) {
-                  this.featureSettings = new FeatureSettings(parsed.data);
-                } else {
-                  console.error(parsed.error);
-                  throw new Error("platform did not provide featureSettings");
-                }
-              } else {
-                this.featureSettings = new FeatureSettings({});
-              }
-              this.update();
-              resolve(null);
-            }).catch((e3) => {
-              console.log("\u274C [models/site.es6.js] --> ", e3);
-            });
-          });
-        },
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        setSiteProperties: function() {
-          if (!this.tab) {
-            this.domain = "new tab";
-          } else {
-            this.initAllowlisted(this.tab.protections.allowlisted, this.tab.protections.denylisted);
-            if (this.tab.specialDomainName) {
-              this.domain = this.tab.specialDomainName;
-            } else {
-              this.set({ disabled: false });
-            }
-          }
-          if (this.domain && this.domain === "-")
-            this.set("disabled", true);
-        },
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        setHttpsMessage: function() {
-          if (!this.tab)
-            return;
-          if (this.tab.upgradedHttps) {
-            this.httpsState = "upgraded";
-          } else if (/^https/.exec(this.tab.url)) {
-            this.httpsState = "secure";
-          } else {
-            this.httpsState = "none";
-          }
-          this.httpsStatusText = i18n.t(httpsMessages[this.httpsState]);
-        },
-        timeout: null,
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        handleBackgroundMsg: function(message) {
-          if (!this.tab)
-            return;
-          if (message.action && message.action === "updateTabData") {
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-              communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
-                this.tab = tab;
-                this.emailProtectionUserData = emailProtectionUserData;
-                this.update();
-              }).catch((e3) => {
-                console.log("\u274C [models/site.es6.js:handleBackgroundMsg()] --> ", e3);
-              });
-            }, 100);
-          }
-        },
-        /** @this {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.js").fetcher}} */
-        updatePermission: function(id, value) {
-          if (!this.permissions)
-            return;
-          const permissionIndex = this.permissions.findIndex(({ key }) => key === id);
-          if (permissionIndex === -1)
-            return;
-          const updatedPermissions = JSON.parse(JSON.stringify(this.permissions));
-          updatedPermissions[permissionIndex].permission = value;
-          this.set("permissions", updatedPermissions);
-          try {
-            this.fetch(new UpdatePermissionMessage({ id, value }));
-          } catch (e3) {
-            console.error("updatePermission error", e3);
-          }
-        },
-        // calls `this.set()` to trigger view re-rendering
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        update: function() {
-          if (!this.acceptingUpdates) {
-            console.log("not updating because acceptingUpdates was false");
-            return;
-          }
-          this.setSiteProperties();
-          this.setHttpsMessage();
-          if (this.tab) {
-            this.set("permissions", this.tab.permissions);
-            const newTrackersCount = this.getUniqueTrackersCount();
-            if (newTrackersCount !== this.trackersCount) {
-              this.set("trackersCount", newTrackersCount);
-            }
-            const newTrackersBlockedCount = this.getUniqueTrackersBlockedCount();
-            if (newTrackersBlockedCount !== this.trackersBlockedCount) {
-              this.set("trackersBlockedCount", newTrackersBlockedCount);
-            }
-            const newTrackerNetworks = this.getTrackerNetworksOnPage();
-            if (this.trackerNetworks.length === 0 || newTrackerNetworks.length !== this.trackerNetworks.length) {
-              this.set("trackerNetworks", newTrackerNetworks);
-            }
-            const newUnknownTrackersCount = this.getUnknownTrackersCount();
-            const newTotalTrackerNetworksCount = newUnknownTrackersCount + newTrackerNetworks.length;
-            if (newTotalTrackerNetworksCount !== this.totalTrackerNetworksCount) {
-              this.set("totalTrackerNetworksCount", newTotalTrackerNetworksCount);
-            }
-            const newMajorTrackerNetworksCount = this.getMajorTrackerNetworksCount();
-            if (newMajorTrackerNetworksCount !== this.majorTrackerNetworksCount) {
-              this.set("majorTrackerNetworksCount", newMajorTrackerNetworksCount);
-            }
-          }
-        },
-        /**
-         * @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>}
-         * @returns {number}
-         */
-        getUniqueTrackersCount: function() {
-          return 0;
-        },
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        getUniqueTrackersBlockedCount: function() {
-          return 0;
-        },
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        getUnknownTrackersCount: function() {
-          let count = 0;
-          const entities = this.tab.requestDetails.all.entities;
-          for (const entity of Object.values(entities)) {
-            if (entity.name === "unknown")
-              count += Object.keys(entity.urls).length;
-          }
-          return count;
-        },
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        getMajorTrackerNetworksCount: function() {
-          let total = 0;
-          this.tab.requestDetails.forEachEntity((entity) => {
-            const isMajor = entity.prevalence > MAJOR_TRACKER_THRESHOLD_PCT;
-            total += isMajor ? 1 : 0;
-          });
-          return total;
-        },
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        getTrackerNetworksOnPage: function() {
-          const requests = this.tab.requestDetails;
-          const names = [];
-          requests.forEachEntity((en) => {
-            if (en.name !== "unknown") {
-              names.push(en.name);
-            }
-          });
-          return names;
-        },
-        /** @this {LocalThis} */
-        initAllowlisted: function(allowListValue, denyListValue) {
-          this.isAllowlisted = allowListValue;
-          this.isDenylisted = denyListValue;
-          this.isBroken = Boolean(
-            this.tab.protections.unprotectedTemporary || !this.tab.protections.enabledFeatures?.includes("contentBlocking")
-          );
-          this.displayBrokenUI = this.isBroken;
-          if (denyListValue) {
-            this.displayBrokenUI = false;
-            this.protectionsEnabled = true;
-          } else {
-            this.displayBrokenUI = this.isBroken;
-            this.protectionsEnabled = !(this.isAllowlisted || this.isBroken);
-          }
-          this.set("protectionsEnabled", this.protectionsEnabled);
-        },
-        /** @this {LocalThis} */
-        toggleAllowlist: function() {
-          const lists = [];
-          this.set("acceptingUpdates", false);
-          if (this.tab && this.tab.domain) {
-            if (this.isBroken) {
-              lists.push({
-                list: "denylisted",
-                domain: this.tab.domain,
-                value: !this.isDenylisted
-              });
-            } else {
-              lists.push({
-                list: "denylisted",
-                domain: this.tab.domain,
-                value: false
-              });
-              lists.push({
-                list: "allowlisted",
-                domain: this.tab.domain,
-                value: !this.isAllowlisted
-              });
-            }
-          }
-          this.setLists(lists).catch((e3) => console.error(e3));
-        },
-        /**
-         * @param {SetListsMessage["lists"]} lists
-         * @returns {Promise<boolean>}
-         */
-        async setLists(lists) {
-          try {
-            return this.fetch(new SetListsMessage({ lists }));
-          } catch (e3) {
-            console.error("setList error", e3);
-            return false;
-          }
-        },
-        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
-        companyNames: function() {
-          return [];
-        },
-        /**
-         * @this {LocalThis}
-         * @return {Promise<boolean>}
-         */
-        checkBrokenSiteReportHandled: function() {
-          try {
-            return this.fetch(new CheckBrokenSiteReportHandledMessage());
-          } catch (e3) {
-            console.error("checkBrokenSiteReportHandled error", e3);
-            return Promise.resolve(false);
-          }
-        },
-        /** @this {LocalThis} */
-        close: function() {
-          try {
-            this.fetch(new CloseMessage());
-          } catch (e3) {
-            console.error("close error", e3);
-          }
-        }
-      });
-      site_default = Site;
-    }
-  });
-
-  // shared/js/ui/views/tracker-networks.js
-  function TrackerNetworks(opts) {
-    this.$hero = null;
-    this.$details = null;
-    this.model = null;
-    this.currentModelName = null;
-    this.currentSiteModelName = null;
-    this.template = opts.template;
-    this.heroFn = opts.heroFn;
-    this.detailsFn = opts.detailsFn;
-    sliding_subview_default.call(this, opts);
-    this.renderAsyncContent();
-  }
-  var import_jquery17, tracker_networks_default;
-  var init_tracker_networks = __esm({
-    "shared/js/ui/views/tracker-networks.js"() {
-      "use strict";
-      import_jquery17 = __toESM(require_jquery());
-      init_sliding_subview();
-      init_site_company_list();
-      init_site();
-      TrackerNetworks.prototype = import_jquery17.default.extend(
-        {},
-        // @ts-ignore
-        sliding_subview_default.prototype,
-        {
-          /** @this {any} */
-          setup: function() {
-            this._cacheElems(".js-tracker-networks", ["hero", "details"]);
-            this.bindEvents([[this.store.subscribe, `change:${this.currentSiteModelName}`, this._rerender]]);
-          },
-          /** @this {any} */
-          renderAsyncContent: function() {
-            const random = Math.round(Math.random() * 1e5);
-            this.currentModelName = "siteCompanyList" + random;
-            this.currentSiteModelName = "site" + random;
-            this.model = new site_company_list_default({
-              modelName: this.currentModelName
-            });
-            this.model.fetchAsyncData().then(() => {
-              this.model.site = new site_default({
-                modelName: this.currentSiteModelName
-              });
-              this.model.site.getBackgroundTabData().then(() => {
-                const content = this.template();
-                this.$el.append(content);
-                this.setup();
-                this.setupClose();
-              });
-            });
-          },
-          /**
-           * @this {TrackerNetworks}
-           */
-          _renderHeroTemplate: function() {
-            if (this.model.site && this.heroFn) {
-              const site2 = this.model.site;
-              const heroElement = this.heroFn(site2.tab.requestDetails, site2.protectionsEnabled);
-              this.$hero?.html(heroElement);
-            }
-            if (this.model.site && this.detailsFn) {
-              const site2 = this.model.site;
-              const detailsElement = this.detailsFn(site2);
-              this.$details?.html(detailsElement);
-            }
-          },
-          _rerender: function(e3) {
-            if (e3 && e3.change) {
-              if (e3.change.attribute === "isaMajorTrackingNetwork" || e3.change.attribute === "isAllowlisted" || e3.change.attribute === "totalTrackerNetworksCount") {
-                this._renderHeroTemplate();
-                this.unbindEvents();
-                this.setup();
-                this.setupClose();
-              }
-            }
-          }
-        }
-      );
-      tracker_networks_default = TrackerNetworks;
-    }
-  });
-
-  // shared/js/ui/views/main-nav.js
-  function MainNavView(ops) {
-    this.model = ops.model;
-    this.store = ops.store;
-    this.template = template;
-    this.features = createPlatformFeatures(platform);
-    this.cleanups = [];
-    this.nav = {
-      connection: () => {
-        this.model.send("navigate", { target: "connection" });
-      },
-      trackers: () => {
-        this.model.send("navigate", { target: "trackers" });
-      },
-      nonTrackers: () => {
-        this.model.send("navigate", { target: "nonTrackers" });
-      },
-      consentManaged: () => {
-        this.model.send("navigate", { target: "consentManaged" });
-      },
-      cookieHidden: () => {
-        this.model.send("navigate", { target: "cookieHidden" });
-      }
-    };
-    view_default.call(this, ops);
-    this._setup();
-  }
-  function template() {
-    const model = this.model;
-    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged;
-    const consentRow = import_nanohtml13.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
-    return import_nanohtml13.default`
-        <ul class="default-list card-list--bordered main-nav token-body-em js-site-main-nav">
-            <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
-            <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
-            <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
-            ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
-        </ul>
-    `;
-  }
-  function renderCookieConsentManaged(model, cb) {
-    if (!model.tab?.cookiePromptManagementStatus)
-      return null;
-    const { consentManaged, cosmetic, optoutFailed, configurable } = model.tab.cookiePromptManagementStatus;
-    if (consentManaged && !optoutFailed) {
-      const text = cosmetic ? i18n.t("site:cookiesHidden.title") : i18n.t("site:cookiesMinimized.title");
-      if (configurable) {
-        return import_nanohtml13.default`
-                <a
-                    href="javascript:void(0)"
-                    class="main-nav__item main-nav__item--link link-action link-action--dark"
-                    role="button"
-                    draggable="false"
-                    onclick=${cb}
-                >
-                    <span class="main-nav__icon ${cosmetic ? "icon-small--info" : "icon-small--secure"}"></span>
-                    <span class="main-nav__text">${text}</span>
-                    <span class="main-nav__chev"></span>
-                </a>
-            `;
-      } else {
-        return import_nanohtml13.default`
-                <div class="main-nav__item">
-                    <span class="main-nav__icon icon-small--secure"></span>
-                    <span class="main-nav__text">${text}</span>
-                </div>
-            `;
-      }
-    }
-    return import_nanohtml13.default``;
-  }
-  function renderConnection(model, cb) {
-    let icon = "icon-small--insecure";
-    if (model.httpsState === "secure") {
-      icon = "icon-small--secure";
-    }
-    if (model.httpsState === "upgraded" && /^https/.exec(model.tab.url) && Array.isArray(model.tab.certificate) && model.tab.certificate.length > 0) {
-      icon = "icon-small--secure";
-    }
-    return import_nanohtml13.default` <a
-        href="javascript:void(0)"
-        class="main-nav__item main-nav__item--link link-action link-action--dark"
-        role="button"
-        draggable="false"
-        aria-label="View Connection Information"
-        onclick=${cb}
-    >
-        <span class="main-nav__icon ${icon}"></span>
-        <span class="main-nav__text">${model.httpsStatusText}</span>
-        <span class="main-nav__chev"></span>
-    </a>`;
-  }
-  function renderTrackerNetworksNew(model, cb) {
-    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled);
-    return import_nanohtml13.default` <a
-        href="javascript:void(0)"
-        class="main-nav__item main-nav__item--link link-action link-action--dark"
-        role="button"
-        draggable="false"
-        aria-label="View Tracker Companies"
-        onclick=${cb}
-    >
-        <span class="main-nav__icon icon-small--${icon}"></span>
-        <span class="main-nav__text">${title}</span>
-        <span class="main-nav__chev"></span>
-    </a>`;
-  }
-  function renderThirdPartyNew(model, cb) {
-    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled);
-    return import_nanohtml13.default` <a
-        href="javascript:void(0)"
-        class="main-nav__item main-nav__item--link link-action link-action--dark"
-        role="button"
-        draggable="false"
-        aria-label="View Non-Tracker Companies"
-        onclick=${cb}
-    >
-        <span class="main-nav__icon icon-small--${icon}"></span>
-        <span class="main-nav__text">${title}</span>
-        <span class="main-nav__chev"></span>
-    </a>`;
-  }
-  var import_jquery18, import_nanohtml13;
-  var init_main_nav = __esm({
-    "shared/js/ui/views/main-nav.js"() {
-      "use strict";
-      import_jquery18 = __toESM(require_jquery());
-      import_nanohtml13 = __toESM(require_browser());
-      init_view();
-      init_tracker_networks_text();
-      init_thirdparty_text();
-      init_localize();
-      init_platform_features();
-      init_communication();
-      init_environment_check();
-      init_utils();
-      MainNavView.prototype = import_jquery18.default.extend({}, view_default.prototype, {
-        /**
-         * @this {MainNavView}
-         * @private
-         */
-        _setup: function() {
-          this.bindEvents([
-            // @ts-ignore
-            [this.store.subscribe, "change:site", this.rerender],
-            // @ts-ignore
-            [this.$parent, "mouseover", this._mouseover],
-            // @ts-ignore
-            [this.$parent, "mouseleave", this._mouseleave]
-          ]);
-          if (isAndroid()) {
-            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], ".link-action"));
-          }
-        },
-        /**
-         * @this {MainNavView}
-         * @private
-         */
-        _mouseover(e3) {
-          if (!this.features.supportsHover)
-            return;
-          const li = e3.target?.closest("li");
-          if (li) {
-            const links = this.$parent.find("li").index(li);
-            this.$parent[0].dataset.hover = links;
-          }
-        },
-        _mouseleave() {
-          if (!this.features.supportsHover)
-            return;
-          try {
-            delete this.$parent[0].dataset.hover;
-          } catch (e3) {
-            console.warn("cannot delete data-hover");
-          }
-        },
-        cleanup() {
-          for (const cleanup of this.cleanups) {
-            cleanup();
-          }
-          this.cleanups = [];
-        },
-        rerender() {
-          this.cleanup();
-          this._rerender();
-          if (isAndroid()) {
-            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], ".link-action"));
-          }
-        }
-      });
-    }
-  });
-
-  // shared/js/ui/views/cookie-prompt.js
-  function CookiePromptView(ops) {
-    this.model = ops.model;
-    this.template = template2;
-    this.links = {
-      disable: (e3) => {
-        e3.preventDefault();
-        this.model.openSettings("cpm");
-      }
-    };
-    sliding_subview_default.call(this, ops);
-  }
-  function template2() {
-    const summary = this.model.isCosmetic ? ns.site("cookiesHiddenSummary.title") : ns.site("cookiesMinimizedSummary.title");
-    const icon = largeHeroIcon({
-      status: this.model.isCosmetic ? "cookies-hidden" : "cookies-managed"
-    });
-    const hero = heroTemplate({
-      icon,
-      summary,
-      suffix: "none"
-    });
-    return import_nanohtml14.default`<section class="sliding-subview">
-        <div class="card" data-page="cookie-prompt">
-            ${topNav({ view: "secondary" })}
-            <div class="padding-x-double">${hero}</div>
-            <div class="padding-x-double">
-                <div class="padding-y border--top--inner text--center">${disableInSettingsLink(this.links.disable)}</div>
-            </div>
-        </div>
-    </section> `;
-  }
-  var import_jquery19, import_nanohtml14;
-  var init_cookie_prompt2 = __esm({
-    "shared/js/ui/views/cookie-prompt.js"() {
-      "use strict";
-      import_jquery19 = __toESM(require_jquery());
-      import_nanohtml14 = __toESM(require_browser());
-      init_top_nav();
-      init_hero();
-      init_links();
-      init_localize();
-      init_sliding_subview();
-      CookiePromptView.prototype = import_jquery19.default.extend(
-        {},
-        // @ts-ignore
-        sliding_subview_default.prototype
-      );
-    }
-  });
-
-  // shared/js/ui/views/fire-dialog.js
-  function FireDialog(ops) {
-    this.model = ops.model;
-    this.template = template3;
-    this.model.fetch(new FetchBurnOptions()).then((resp) => {
-      this.model.fireOptions = resp.options;
-      view_default.call(this, ops);
-      this._setup();
-    });
-  }
-  function template3() {
-    const { fireOptions } = this.model;
-    if (!fireOptions) {
-      return import_nanohtml15.default`<dialog id="fire-button-container"></dialog>`;
-    }
-    const selectedOptionIndex = fireOptions.findIndex(({ selected }) => selected);
-    const selectedOption = fireOptions[selectedOptionIndex >= 0 ? selectedOptionIndex : 0];
-    const selectOptions = fireOptions.map(
-      ({ name, selected }) => import_nanohtml15.default`<option ${selected ? "selected" : ""}>${i18n.t(`firebutton:option${name}.title`)}</option>`
-    );
-    const summary = fireSummaryTemplate(selectedOption);
-    return import_nanohtml15.default` <dialog id="fire-button-container" open>
-        <div id="fire-button-content">
-            <span id="fire-button-header">
-                <img src="../img/fire-button-header.svg" />
-                <h3>
-                    ${selectedOption.descriptionStats.openTabs > 0 ? i18n.t("firebutton:fireDialogHeader.title") : i18n.t("firebutton:fireDialogHeaderNoTabs.title")}
-                </h3>
-            </span>
-            <select id="fire-button-opts">
-                ${selectOptions}
-            </select>
-            ${summary}
-            <div id="fire-button-row">
-                <button id="fire-button-cancel">${i18n.t("firebutton:cancel.title")}</button>
-                <button id="fire-button-burn">${i18n.t("firebutton:clearData.title")}</button>
-            </div>
-        </div>
-    </dialog>`;
-  }
-  function fireSummaryTemplate(selectedOption) {
-    const { descriptionStats } = selectedOption;
-    let template4 = "firebutton:summary";
-    if (descriptionStats.clearHistory && descriptionStats.openTabs) {
-      template4 += "ClearTabsHistory";
-    } else if (descriptionStats.clearHistory && !descriptionStats.openTabs) {
-      template4 += "ClearHistory";
-    } else if (!descriptionStats.clearHistory && descriptionStats.openTabs) {
-      template4 += "ClearTabs";
-    } else {
-      template4 += "ClearCookies";
-    }
-    if (descriptionStats.site) {
-      template4 += "Site";
-    } else if (descriptionStats.duration === "all") {
-      template4 += "All";
-    } else {
-      template4 += "Duration";
-    }
-    template4 += ".title";
-    return import_nanohtml15.default`<div id="fire-button-summary">
-        <p>
-            ${(0, import_raw3.default)(
-      i18n.t(template4, {
-        durationDesc: i18n.t("firebutton:historyDuration.title", { duration: descriptionStats.duration }),
-        ...descriptionStats
-      })
-    )}
-        </p>
-        ${descriptionStats.site && descriptionStats.clearHistory ? import_nanohtml15.default`<p class="fire-button-disclaimer">${i18n.t("firebutton:historyAndDownloadsNotAffected.title")}</p>` : null}
-        ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? import_nanohtml15.default`<p class="fire-button-disclaimer">
-                  ${(0, import_raw3.default)(i18n.t("firebutton:summaryPinnedIgnored.title", { tabs: descriptionStats.pinnedTabs }))}
-              </p>` : null}
-    </div>`;
-  }
-  var import_jquery20, import_nanohtml15, import_raw3;
-  var init_fire_dialog = __esm({
-    "shared/js/ui/views/fire-dialog.js"() {
-      "use strict";
-      import_jquery20 = __toESM(require_jquery());
-      import_nanohtml15 = __toESM(require_browser());
-      import_raw3 = __toESM(require_raw_browser());
-      init_view();
-      init_localize();
-      init_common();
-      FireDialog.prototype = import_jquery20.default.extend({}, view_default.prototype, {
-        _setup: function() {
-          this._cacheElems("#fire-button", ["burn", "cancel", "opts"]);
-          this.bindEvents([
-            [this.$burn, "click", this._onBurn],
-            [this.$cancel, "click", this._close],
-            [this.$opts, "change", this._updateSummary]
-          ]);
-        },
-        _onBurn: function() {
-          const selectedOption = this.$opts[0].selectedIndex;
-          const opts = this.model.fireOptions[selectedOption].options;
-          this.model.fetch(new BurnMessage(opts)).then(() => {
-            this._close();
-          });
-        },
-        _close: function() {
-          document.getElementById("fire-button-container")?.remove();
-        },
-        _updateSummary: function() {
-          const selectedOption = this.$opts[0].selectedIndex;
-          const opts = this.model.fireOptions[selectedOption];
-          this.model.fetch(new SetBurnDefaultOption(opts.name));
-          const summaryElement = (0, import_jquery20.default)("#fire-button-summary");
-          summaryElement.replaceWith(fireSummaryTemplate(opts));
-        }
-      });
-    }
-  });
-
-  // shared/js/ui/views/site.js
-  function Site2(ops) {
-    this.model = ops.model;
-    this.pageView = ops.pageView;
-    this.template = ops.template;
-    this.features = createPlatformFeatures(platform);
-    this.$body = (0, import_jquery21.default)("body");
-    this.model.getBackgroundTabData().then(() => {
-      view_default.call(this, ops);
-      this._setup();
-    }).catch((e3) => {
-      console.log("\u274C [views/site.es6.js] --> ", e3);
-    });
-  }
-  function blur(target) {
-    const closest = target?.closest("a");
-    if (closest && typeof closest.blur === "function") {
-      closest.blur();
-    }
-  }
-  var import_jquery21, site_default2;
-  var init_site2 = __esm({
-    "shared/js/ui/views/site.js"() {
-      "use strict";
-      import_jquery21 = __toESM(require_jquery());
-      init_email_protection();
-      init_email_protection2();
-      init_search();
-      init_search2();
-      init_view();
-      init_cta_rotation2();
-      init_cta_rotation();
-      init_communication();
-      init_page_trackers();
-      init_page_non_trackers();
-      init_hero();
-      init_key_insights();
-      init_breakage_form();
-      init_platform_features();
-      init_cookie_prompt();
-      init_breakage_form2();
-      init_page_connection();
-      init_breakage_form3();
-      init_email_protection3();
-      init_search3();
-      init_cta_rotation3();
-      init_tracker_networks();
-      init_main_nav();
-      init_cookie_prompt2();
-      init_fire_dialog();
-      Site2.prototype = import_jquery21.default.extend({}, view_default.prototype, {
-        _changePermission: function(e3) {
-          this.model.updatePermission(e3.target.name, e3.target.value);
-        },
-        // NOTE: after ._setup() is called this view listens for changes to
-        // site model and re-renders every time model properties change
-        _setup: function() {
-          this._cacheElems(".js-site", ["report-broken", "permission", "done"]);
-          this.bindEvents([
-            [this.$reportbroken, "click", this._onReportBrokenSiteClick],
-            [this.$done, "click", this._done],
-            [this.$permission, "change", this._changePermission],
-            [this.store.subscribe, "action:site", this._handleEvents]
-          ]);
-          window.addEventListener("open-feedback", (e3) => {
-            this._onReportBrokenSiteClick(e3);
-          });
-          this._setupFeatures();
-          setTimeout(() => {
-            communication_default.firstRenderComplete?.();
-          }, 100);
-        },
-        _handleEvents(event) {
-          if (event.action === "navigate") {
-            if (event.data?.target === "connection") {
-              this._showPageConnection();
-            }
-            if (event.data?.target === "trackers") {
-              this._showPageTrackers();
-            }
-            if (event.data?.target === "nonTrackers") {
-              this._showPageNonTrackers();
-            }
-            if (event.data?.target === "consentManaged") {
-              this._showPageConsent(false);
-            }
-            if (event.data?.target === "cookieHidden") {
-              this._showPageConsent(true);
-            }
-            if (event.data?.target === "fireButton") {
-              this._showFireModal();
-            }
-          }
-        },
-        _onReportBrokenSiteClick: function(e3) {
-          e3.preventDefault();
-          if (this.model && this.model.disabled) {
-            return;
-          }
-          this.model.checkBrokenSiteReportHandled().then((handled) => {
-            if (!handled) {
-              this.showBreakageForm("reportBrokenSite");
-            }
-          }).catch((e4) => {
-            console.error("could not check", e4);
-          });
-        },
-        // pass clickSource to specify whether page should reload
-        // after submitting breakage form.
-        showBreakageForm: function(e3) {
-          blur(e3.target);
-          this.views.slidingSubview = new breakage_form_default({
-            template: breakage_form_default2,
-            model: new BreakageFormModel()
-          });
-        },
-        _showPageTrackers: function() {
-          if (this.$body.hasClass("is-disabled"))
-            return;
-          this.views.slidingSubview = new tracker_networks_default({
-            template: trackerNetworksTemplate,
-            heroFn: heroFromTabTrackers,
-            detailsFn: sectionsFromSiteTrackers
-          });
-        },
-        _showPageNonTrackers: function() {
-          if (this.$body.hasClass("is-disabled"))
-            return;
-          this.views.slidingSubview = new tracker_networks_default({
-            template: nonTrackersTemplate,
-            heroFn: heroFromTabNonTrackers,
-            detailsFn: sectionsFromSiteNonTracker
-          });
-        },
-        _showPageConnection: function() {
-          if (this.$body.hasClass("is-disabled"))
-            return;
-          this.views.slidingSubview = new tracker_networks_default({
-            template: page_connection_default
-          });
-        },
-        /**
-         * @param {boolean} isCosmetic
-         */
-        _showPageConsent: function(isCosmetic) {
-          this.views.slidingSubview = new CookiePromptView({
-            model: new CookiePromptModel({
-              site: this.model,
-              isCosmetic
-            })
-          });
-        },
-        _showFireModal() {
-          this.dialog = new FireDialog({
-            model: this.model,
-            appendTo: (0, import_jquery21.default)("#site-info-container")
-          });
-        },
-        _done: function() {
-          this.model.close();
-        },
-        _setupFeatures() {
-          this.views.mainNav = new MainNavView({
-            model: this.model,
-            appendTo: (0, import_jquery21.default)("#main-nav"),
-            store: this.store
-          });
-          this.views.keyInsight = new KeyInsightView({
-            model: this.model,
-            appendTo: (0, import_jquery21.default)("#key-insight"),
-            store: this.store
-          });
-          if (this.model.tab?.search) {
-            this.views.search = new search_default3({
-              pageView: this,
-              model: new search_default({ searchText: "", showFireButton: this.model.fireButton?.enabled }),
-              appendTo: (0, import_jquery21.default)("#search-form-container"),
-              template: search_default2
-            });
-          }
-          if (this.model.tab?.ctaScreens && !this.views.ctaRotations) {
-            this.views.ctaRotations = new cta_rotation_default2({
-              pageView: this,
-              model: new CtaRotationModel({ emailProtectionUserData: this.model.emailProtectionUserData }),
-              appendTo: (0, import_jquery21.default)("#cta-rotation"),
-              template: cta_rotation_default
-            });
-          }
-          if (this.model.tab?.emailProtection) {
-            this.views.emailProtection = new email_protection_default2({
-              model: new email_protection_default({ emailProtectionUserData: this.model.emailProtectionUserData }),
-              appendTo: (0, import_jquery21.default)("#email-alias-container"),
-              template: emailProtectionTemplate
-            });
-          }
-        }
-      });
-      site_default2 = Site2;
-    }
-  });
-
-  // shared/js/ui/models/background-message.js
-  function BackgroundMessage(attrs) {
-    model_default.call(this, attrs);
-    const thisModel = this;
-    thisModel.send = new Proxy(thisModel.send, {
-      apply(target, thisArg, argArray) {
-        return Reflect.apply(target, thisArg, argArray);
-      }
-    });
-    communication_default.backgroundMessage(thisModel);
-  }
-  var import_jquery22, background_message_default;
-  var init_background_message = __esm({
-    "shared/js/ui/models/background-message.js"() {
-      "use strict";
-      import_jquery22 = __toESM(require_jquery());
-      init_model();
-      init_communication();
-      BackgroundMessage.prototype = import_jquery22.default.extend({}, model_default.prototype, {
-        modelName: "backgroundMessage"
-      });
-      background_message_default = BackgroundMessage;
-    }
-  });
-
   // node_modules/preact/dist/preact.module.js
   function h(n2, l3) {
     for (var u3 in l3)
@@ -23372,13 +23313,13 @@
   function P(n2, l3, u3, t4, i3, o3, r3, f3, e3, a3, h3) {
     var p3, y3, _24, b3, m3, w3, x2, P2, C, D2 = 0, H2 = t4 && t4.__k || s, I2 = H2.length, T2 = I2, j3 = l3.length;
     for (u3.__k = [], p3 = 0; p3 < j3; p3++)
-      null != (b3 = u3.__k[p3] = null == (b3 = l3[p3]) || "boolean" == typeof b3 || "function" == typeof b3 ? null : "string" == typeof b3 || "number" == typeof b3 || "bigint" == typeof b3 ? d(null, b3, null, null, b3) : v(b3) ? d(k, { children: b3 }, null, null, null) : b3.__b > 0 ? d(b3.type, b3.props, b3.key, b3.ref ? b3.ref : null, b3.__v) : b3) ? (b3.__ = u3, b3.__b = u3.__b + 1, -1 === (P2 = A(b3, H2, x2 = p3 + D2, T2)) ? _24 = c : (_24 = H2[P2] || c, H2[P2] = void 0, T2--), z(n2, b3, _24, i3, o3, r3, f3, e3, a3, h3), m3 = b3.__e, (y3 = b3.ref) && _24.ref != y3 && (_24.ref && N(_24.ref, null, b3), h3.push(y3, b3.__c || m3, b3)), null != m3 && (null == w3 && (w3 = m3), (C = _24 === c || null === _24.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j3 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p3 + D2, "function" != typeof b3.type || P2 === x2 && _24.__k !== b3.__k ? "function" == typeof b3.type || P2 === x2 && !C ? void 0 !== b3.__d ? (e3 = b3.__d, b3.__d = void 0) : e3 = m3.nextSibling : e3 = S(n2, m3, e3) : e3 = $23(b3, e3, n2), "function" == typeof u3.type && (u3.__d = e3))) : (_24 = H2[p3]) && null == _24.key && _24.__e && (_24.__e == e3 && (_24.__ = t4, e3 = g(_24)), O(_24, _24, false), H2[p3] = null);
+      null != (b3 = u3.__k[p3] = null == (b3 = l3[p3]) || "boolean" == typeof b3 || "function" == typeof b3 ? null : "string" == typeof b3 || "number" == typeof b3 || "bigint" == typeof b3 ? d(null, b3, null, null, b3) : v(b3) ? d(k, { children: b3 }, null, null, null) : b3.__b > 0 ? d(b3.type, b3.props, b3.key, b3.ref ? b3.ref : null, b3.__v) : b3) ? (b3.__ = u3, b3.__b = u3.__b + 1, -1 === (P2 = A(b3, H2, x2 = p3 + D2, T2)) ? _24 = c : (_24 = H2[P2] || c, H2[P2] = void 0, T2--), z(n2, b3, _24, i3, o3, r3, f3, e3, a3, h3), m3 = b3.__e, (y3 = b3.ref) && _24.ref != y3 && (_24.ref && N(_24.ref, null, b3), h3.push(y3, b3.__c || m3, b3)), null != m3 && (null == w3 && (w3 = m3), (C = _24 === c || null === _24.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j3 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p3 + D2, "function" != typeof b3.type || P2 === x2 && _24.__k !== b3.__k ? "function" == typeof b3.type || P2 === x2 && !C ? void 0 !== b3.__d ? (e3 = b3.__d, b3.__d = void 0) : e3 = m3.nextSibling : e3 = S(n2, m3, e3) : e3 = $10(b3, e3, n2), "function" == typeof u3.type && (u3.__d = e3))) : (_24 = H2[p3]) && null == _24.key && _24.__e && (_24.__e == e3 && (_24.__ = t4, e3 = g(_24)), O(_24, _24, false), H2[p3] = null);
     for (u3.__e = w3, p3 = I2; p3--; )
       null != H2[p3] && ("function" == typeof u3.type && null != H2[p3].__e && H2[p3].__e == u3.__d && (u3.__d = H2[p3].__e.nextSibling), O(H2[p3], H2[p3]));
   }
-  function $23(n2, l3, u3) {
+  function $10(n2, l3, u3) {
     for (var t4, i3 = n2.__k, o3 = 0; i3 && o3 < i3.length; o3++)
-      (t4 = i3[o3]) && (t4.__ = n2, l3 = "function" == typeof t4.type ? $23(t4, l3, u3) : S(u3, t4.__e, l3));
+      (t4 = i3[o3]) && (t4.__ = n2, l3 = "function" == typeof t4.type ? $10(t4, l3, u3) : S(u3, t4.__e, l3));
     return l3;
   }
   function S(n2, l3, u3) {
@@ -23567,6 +23508,27 @@
     var o3, r3, f3, e3;
     l.__ && l.__(u3, t4), r3 = (o3 = "function" == typeof i3) ? null : i3 && i3.__k || t4.__k, f3 = [], e3 = [], z(t4, u3 = (!o3 && i3 || t4).__k = y(k, null, [u3]), r3 || c, c, void 0 !== t4.ownerSVGElement, !o3 && i3 ? [i3] : r3 ? null : t4.firstChild ? n.call(t4.childNodes) : null, f3, !o3 && i3 ? i3 : r3 ? r3.__e : t4.firstChild, o3, e3), L(f3, u3, e3);
   }
+  function G(n2, l3) {
+    var u3 = { __c: l3 = "__cC" + e++, __: n2, Consumer: function(n3, l4) {
+      return n3.children(l4);
+    }, Provider: function(n3) {
+      var u4, t4;
+      return this.getChildContext || (u4 = [], (t4 = {})[l3] = this, this.getChildContext = function() {
+        return t4;
+      }, this.shouldComponentUpdate = function(n4) {
+        this.props.value !== n4.value && u4.some(function(n5) {
+          n5.__e = true, w(n5);
+        });
+      }, this.sub = function(n4) {
+        u4.push(n4);
+        var l4 = n4.componentWillUnmount;
+        n4.componentWillUnmount = function() {
+          u4.splice(u4.indexOf(n4), 1), l4 && l4.call(n4);
+        };
+      }), n3.children;
+    } };
+    return u3.Provider.__ = u3.Consumer.contextType = u3;
+  }
   var n, l, u, t2, i, o, r, f, e, c, s, a, v;
   var init_preact_module = __esm({
     "node_modules/preact/dist/preact.module.js"() {
@@ -23594,6 +23556,275 @@
       }, b.prototype.render = k, i = [], r = "function" == typeof Promise ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, f = function(n2, l3) {
         return n2.__v.__b - l3.__v.__b;
       }, x.__r = 0, e = 0;
+    }
+  });
+
+  // shared/js/ui/views/sliding-subview.js
+  function SlidingSubview(ops) {
+    ops.appendTo = (0, import_jquery10.default)(".sliding-subview--root");
+    view_default.call(this, ops);
+    this.$root = (0, import_jquery10.default)(".sliding-subview--root");
+    this.$root.addClass("sliding-subview--open");
+    this.setupNavigationSupport();
+    this.setupClose();
+  }
+  var import_jquery10, sliding_subview_default;
+  var init_sliding_subview = __esm({
+    "shared/js/ui/views/sliding-subview.js"() {
+      "use strict";
+      import_jquery10 = __toESM(require_jquery());
+      init_environment_check();
+      init_view();
+      init_utils();
+      init_preact_module();
+      SlidingSubview.prototype = import_jquery10.default.extend({}, view_default.prototype, {
+        setupClose: function() {
+          this._cacheElems(".js-sliding-subview", ["close", "done"]);
+          this.bindEvents([
+            [this.$close, "click", this._destroy],
+            [this.$done, "click", this._done]
+          ]);
+          if (isAndroid()) {
+            setupMaterialDesignRipple(this.$parent[0], ".link-action");
+          }
+        },
+        setupNavigationSupport: function() {
+          const url = new URL(window.location);
+          url.searchParams.set("open", "true");
+          window.history.pushState({}, "", url);
+          if (this.popstateHandler) {
+            window.removeEventListener("popstate", this.popstateHandler);
+          }
+          this.popstateHandler = () => {
+            this._destroy(null, { fromNavigation: true });
+          };
+          window.addEventListener("popstate", this.popstateHandler);
+        },
+        _destroy: function(e3, opts = {}) {
+          if (this.popstateHandler) {
+            window.removeEventListener("popstate", this.popstateHandler);
+          }
+          const url = new URL(window.location);
+          url.searchParams.delete("open");
+          window.history.replaceState({}, "", url);
+          if (opts.fromNavigation && isIOS()) {
+            this.$root.addClass("sliding-subview--immediate");
+            window.setTimeout(() => {
+              this.$root.removeClass("sliding-subview--open");
+              this._destroyProxy();
+              window.history.replaceState({}, "", window.location);
+              window.setTimeout(() => {
+                this.$root.removeClass("sliding-subview--immediate");
+              }, 1);
+            }, 1);
+            return;
+          }
+          this.$root.removeClass("sliding-subview--open");
+          const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches === true;
+          if (isReduced) {
+            this._destroyProxy();
+            window.history.replaceState({}, "", window.location);
+          } else {
+            window.setTimeout(() => {
+              this._destroyProxy();
+              window.history.replaceState({}, "", window.location);
+            }, 325);
+          }
+        },
+        _destroyProxy: function() {
+          if (this.roots) {
+            for (const [key] of this.roots) {
+              B("", key);
+            }
+            this.roots.clear();
+          }
+          this.destroy();
+        },
+        _done: function() {
+          this.model.site.close();
+        }
+      });
+      sliding_subview_default = SlidingSubview;
+    }
+  });
+
+  // shared/js/ui/views/breakage-form.js
+  function BreakageForm(ops) {
+    this.model = ops.model;
+    this.mainModel = ops.mainModel;
+    this.template = ops.template;
+    sliding_subview_default.call(this, ops);
+    this._setup();
+  }
+  var import_jquery11, breakage_form_default;
+  var init_breakage_form2 = __esm({
+    "shared/js/ui/views/breakage-form.js"() {
+      "use strict";
+      import_jquery11 = __toESM(require_jquery());
+      init_sliding_subview();
+      BreakageForm.prototype = import_jquery11.default.extend(
+        {},
+        // @ts-ignore
+        sliding_subview_default.prototype,
+        {
+          roots: /* @__PURE__ */ new Map(),
+          _setup: function() {
+            this._cacheElems(".js-breakage-form", ["close", "submit", "element", "dropdown", "description"]);
+            this.bindEvents([[this.$submit, "click", this._submitForm]]);
+          },
+          _submitForm: function() {
+            const category = this.$dropdown.val();
+            const description = this.$description.val();
+            this.model.submitBreakageForm(category, description);
+            this._showThankYouMessage();
+          },
+          _showThankYouMessage: function() {
+            this.$element[0].dataset.state = "sent";
+          }
+        }
+      );
+      breakage_form_default = BreakageForm;
+    }
+  });
+
+  // shared/js/ui/templates/page-connection.js
+  function page_connection_default() {
+    if (!this.model) {
+      return import_nanohtml11.default`<section class="sliding-subview"></section>`;
+    }
+    const summary = renderConnectionDescription(this.model.site);
+    const icon = largeHeroIcon({
+      status: `connection-${this.model.site.httpsState}`
+    });
+    const hero = heroTemplate({
+      icon,
+      summary,
+      suffix: "none"
+    });
+    return import_nanohtml11.default` <div class="site-info card" data-page="connection">
+        ${topNav({ view: "secondary" })}
+        <div class="padding-x-double">${hero} ${renderCertificateDetails(this.model.site, this.model.tab)}</div>
+    </div>`;
+  }
+  function getKeyUsage(key) {
+    const capabilities = {
+      canEncrypt: i18n.t("connection:encrypt.title"),
+      canDecrypt: i18n.t("connection:decrypt.title"),
+      canSign: i18n.t("connection:sign.title"),
+      canVerify: i18n.t("connection:verify.title"),
+      canDerive: i18n.t("connection:derive.title"),
+      canWrap: i18n.t("connection:wrap.title"),
+      canUnwrap: i18n.t("connection:unwrap.title")
+    };
+    return Object.keys(capabilities).reduce((usage, capability) => {
+      if (!key[capability])
+        return usage;
+      return [].concat(usage, capabilities[capability]);
+    }, []);
+  }
+  function renderCertificateDetails(site2, tab) {
+    if (site2.httpsState === "none" || !tab.certificate || tab.certificate.length === 0)
+      return "";
+    const certificate = tab.certificate[0];
+    return import_nanohtml11.default`
+        <div>
+            ${renderHeader(site2, tab)}
+            <div class="page-connection__certificate">
+                <div class="page-connection__certificate-details">
+                    <h3 class="token-body-em">${i18n.t("connection:certificateDetail.title")}</h3>
+                    <div>
+                        <span>${i18n.t("connection:commonName.title")}</span>
+                        <span class="page-connection__certificate-value">${certificate.commonName}</span>
+                    </div>
+                    ${renderCertificateSummary(certificate)}
+                </div>
+                ${renderPublicKeyDetails(certificate)}
+            </div>
+        </div>
+    `;
+  }
+  function renderCertificateSummary(certificate) {
+    if (!certificate.summary)
+      return "";
+    return import_nanohtml11.default`<div>
+        <span>${i18n.t("connection:summary.title")}</span>
+        <span class="page-connection__certificate-value">${certificate.summary}</span>
+    </div>`;
+  }
+  function renderPublicKeyDetails(certificate) {
+    if (!certificate.publicKey)
+      return "";
+    return import_nanohtml11.default`<div class="page-connection__certificate-details">
+        <h3 class="token-body-em">${i18n.t("connection:publicKey.title")}</h3>
+        ${renderCertificateType(certificate.publicKey)} ${renderCertificateBitSize(certificate.publicKey)}
+        ${renderCertificateEffectiveSize(certificate.publicKey)} ${renderCertificateKeyUsage(certificate.publicKey)}
+        ${renderCertificateIsPermanent(certificate.publicKey)}
+    </div>`;
+  }
+  function renderCertificateType(publicKey) {
+    if (!publicKey.type)
+      return "";
+    return import_nanohtml11.default`<div>
+        <span>${i18n.t("connection:algorithm.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.type}</span>
+    </div>`;
+  }
+  function renderCertificateBitSize(publicKey) {
+    if (!publicKey.bitSize)
+      return "";
+    return import_nanohtml11.default`<div>
+        <span>${i18n.t("connection:keySize.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.bitSize} bits</span>
+    </div>`;
+  }
+  function renderCertificateIsPermanent(publicKey) {
+    if (typeof publicKey.isPermanent !== "boolean")
+      return "";
+    return import_nanohtml11.default`<div>
+        <span>${i18n.t("connection:permanent.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.isPermanent ? "Yes" : "No"}</span>
+    </div>`;
+  }
+  function renderCertificateKeyUsage(publicKey) {
+    const keyUsage = getKeyUsage(publicKey);
+    if (keyUsage.length === 0)
+      return "";
+    return import_nanohtml11.default`<div>
+        <span>${i18n.t("connection:usage.title")}</span>
+        <span class="page-connection__certificate-value">${keyUsage.join(", ")}</span>
+    </div>`;
+  }
+  function renderCertificateEffectiveSize(publicKey) {
+    if (!publicKey.effectiveSize)
+      return "";
+    return import_nanohtml11.default`<div>
+        <span>${i18n.t("connection:effectiveSize.title")}</span>
+        <span class="page-connection__certificate-value">${publicKey.effectiveSize} bits</span>
+    </div>`;
+  }
+  function renderHeader(site2, tab) {
+    if (site2.httpsState === "none") {
+      return import_nanohtml11.default`<div class="section-list-header certificate-header--not-found">${i18n.t("connection:certificateNotFound.title")}</div>`;
+    }
+    return import_nanohtml11.default`<div class="section-list-header">${i18n.t("connection:certificateForDomain.title", { domain: tab.domain })}</div>`;
+  }
+  function renderConnectionDescription(site2) {
+    if (site2.httpsState === "none") {
+      return i18n.t("connection:insecureConnectionDesc.title");
+    }
+    if (site2.httpsState === "upgraded") {
+      return i18n.t("connection:upgradedConnectionDesc.title");
+    }
+    return i18n.t("connection:secureConnectionDesc.title");
+  }
+  var import_nanohtml11;
+  var init_page_connection = __esm({
+    "shared/js/ui/templates/page-connection.js"() {
+      "use strict";
+      import_nanohtml11 = __toESM(require_browser());
+      init_localize();
+      init_hero();
+      init_top_nav();
     }
   });
 
@@ -23658,6 +23889,10 @@
   function F(n2, r3) {
     var u3 = d2(t3++, 7);
     return z2(u3.__H, r3) ? (u3.__V = n2(), u3.i = r3, u3.__h = n2, u3.__V) : u3.__;
+  }
+  function q2(n2) {
+    var u3 = r2.context[n2.__c], i3 = d2(t3++, 9);
+    return i3.c = n2, u3 ? (null == i3.__ && (i3.__ = true, u3.sub(r2)), u3.props.value) : n2.__;
   }
   function b2() {
     for (var t4; t4 = f2.shift(); )
@@ -24317,7 +24552,7 @@
 
   // shared/js/ui/templates/protection-header.js
   function protectionHeader(model) {
-    const root = import_nanohtml16.default`<div data-testid="protectionHeader"></div>`;
+    const root = import_nanohtml12.default`<div data-testid="protectionHeader"></div>`;
     const migrationModel = {
       protectionsEnabled: model.protectionsEnabled,
       isAllowlisted: model.isAllowlisted,
@@ -24326,11 +24561,11 @@
       isBroken: model.isBroken,
       toggleAllowlist: model.toggleAllowlist.bind(model)
     };
-    B(/* @__PURE__ */ y(ProtectionHeader, { model: migrationModel }), root);
+    B(/* @__PURE__ */ y(ProtectionHeader, { model: migrationModel }, /* @__PURE__ */ y(ProtectionHeaderText, null)), root);
     return root;
   }
   function protectionDefault(model) {
-    const root = import_nanohtml16.default`<div class="padding-x padding-y"></div>`;
+    const root = import_nanohtml12.default`<div class="padding-x padding-y"></div>`;
     const migrationModel = {
       protectionsEnabled: model.protectionsEnabled,
       isAllowlisted: model.isAllowlisted,
@@ -24343,16 +24578,33 @@
     return root;
   }
   function ProtectionHeader(props) {
-    const initial = props.model.isBroken || props.model.isAllowlisted ? "form-trigger" : "help-trigger";
+    let initial;
+    if (props.initialState) {
+      initial = props.initialState;
+    } else {
+      if (props.model.isBroken || props.model.isAllowlisted) {
+        initial = "form-trigger";
+      } else {
+        initial = "help-trigger";
+      }
+    }
     const [state, setState] = h2(
       /** @type {UIState} */
       initial
     );
+    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { class: "card-list--bordered" }, props.model.isBroken && /* @__PURE__ */ y(HeaderDisabled, { model: props.model, state }), !props.model.isBroken && /* @__PURE__ */ y(HeaderDefault, { model: props.model, state })), /* @__PURE__ */ y(ProtectionContext.Provider, { value: {
+      state,
+      setState,
+      model: props.model
+    } }, props.children));
+  }
+  function ProtectionHeaderText() {
+    const { state, setState, model } = q2(ProtectionContext);
     let buttonText = state === "help-trigger" ? ns.site("websiteNotWorkingPrompt.title") : ns.site("websiteNotWorkingCta.title");
-    if (props.model.isBroken) {
+    if (model.isBroken) {
       buttonText = ns.site("websiteNotWorkingCta.title");
     }
-    if (props.model.isAllowlisted) {
+    if (model.isAllowlisted) {
       buttonText = ns.site("websiteNotWorkingCta.title");
     }
     function onClickTextLink(e3) {
@@ -24363,7 +24615,7 @@
         window.dispatchEvent(new CustomEvent("open-feedback"));
       }
     }
-    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { className: "padding-x border--bottom padding-bottom-half" }, /* @__PURE__ */ y("div", { class: "card-list--bordered" }, props.model.isBroken && /* @__PURE__ */ y(HeaderDisabled, { model: props.model, state }), !props.model.isBroken && /* @__PURE__ */ y(HeaderDefault, { model: props.model, state })), /* @__PURE__ */ y("div", { className: "text--center" }, /* @__PURE__ */ y(TextLink, { onClick: onClickTextLink, rounded: true }, buttonText))), /* @__PURE__ */ y("div", { className: "padding-spacer" }));
+    return /* @__PURE__ */ y("div", { className: "text--center" }, /* @__PURE__ */ y(TextLink, { onClick: onClickTextLink, rounded: true }, buttonText));
   }
   function HeaderDefault(props) {
     const text = ns.site("websiteNotWorkingAdvice.title");
@@ -24376,16 +24628,1224 @@
     }
     return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { className: "padding-x padding-y--reduced" }, /* @__PURE__ */ y(ProtectionToggle, { model: props.model })), /* @__PURE__ */ y("div", { className: "note note--nested" }, text));
   }
-  var import_nanohtml16;
+  var import_nanohtml12, ProtectionContext;
   var init_protection_header = __esm({
     "shared/js/ui/templates/protection-header.js"() {
       "use strict";
-      import_nanohtml16 = __toESM(require_browser());
+      import_nanohtml12 = __toESM(require_browser());
       init_preact_module();
       init_hooks_module();
       init_localize();
       init_text_link();
       init_toggle();
+      ProtectionContext = G(
+        /** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */
+        {}
+      );
+    }
+  });
+
+  // shared/js/ui/templates/breakage-form.js
+  function breakage_form_default2() {
+    console.log(this.mainModel);
+    const categories = [
+      { category: i18n.t("report:videos.title"), value: "videos" },
+      { category: i18n.t("report:images.title"), value: "images" },
+      { category: i18n.t("report:comments.title"), value: "comments" },
+      { category: i18n.t("report:content.title"), value: "content" },
+      { category: i18n.t("report:links.title"), value: "links" },
+      { category: i18n.t("report:login.title"), value: "login" },
+      { category: i18n.t("report:paywall.title"), value: "paywall" },
+      { category: i18n.t("report:other.title"), value: "other" }
+    ];
+    const icon = largeHeroIcon({
+      status: "breakage-form"
+    });
+    return import_nanohtml13.default`<section class="sliding-subview">
+        <div class="breakage-form">
+            ${topNav({ view: "secondary" })}
+            <div class="padding-x-double js-breakage-form-element" data-state="idle">
+                <div class="padding-y">
+                    ${wrap(this.mainModel, this)}    
+                </div>
+                <div class="key-insight">
+                    ${icon}
+                    <div class="breakage-form__advise">
+                        <p class="token-title-3">${i18n.t("report:selectTheOptionDesc.title")}</p>
+                    </div>
+                    <div class="breakage-form__message">
+                        <p class="token-title-3-em">${i18n.t("report:thankYou.title")}</p>
+                        <p class="token-title-3">${i18n.t("report:yourReportWillHelpDesc.title")}</p>
+                    </div>
+                </div>
+                <div class="breakage-form__content">
+                    <div class="breakage-form__element">
+                        <div class="form__group">
+                            <div class="form__select breakage-form__input--dropdown">
+                                <select class="js-breakage-form-dropdown">
+                                    <option value="">${i18n.t("report:pickYourIssueFromTheList.title")}</option>
+                                    ${categories.map(function(item) {
+      return import_nanohtml13.default`<option value=${item.value}>${item.category}</option>`;
+    })}
+                                </select>
+                            </div>
+                            <textarea
+                                class="form__textarea js-breakage-form-description"
+                                placeholder="${i18n.t("report:tellUsMoreDesc.title")}"
+                                maxlength="2500"
+                            ></textarea>
+                            <button class="form__submit token-label-em js-breakage-form-submit" role="button">
+                                ${i18n.t("report:sendReport.title")}
+                            </button>
+                        </div>
+                        <div class="breakage-form__footer token-breakage-form-body">${i18n.t("report:reportsAreAnonymousDesc.title")}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>`;
+  }
+  function wrap(model, view) {
+    const root = import_nanohtml13.default`<div></div>`;
+    const migrationModel = {
+      protectionsEnabled: model.protectionsEnabled,
+      isAllowlisted: model.isAllowlisted,
+      isDenylisted: model.isDenylisted,
+      platformFeatures: model.features,
+      isBroken: model.isBroken,
+      toggleAllowlist: model.toggleAllowlist.bind(model)
+    };
+    view.roots.set(root, true);
+    B(/* @__PURE__ */ y(ProtectionHeader, { model: migrationModel, initialState: "site-not-working" }), root);
+    return root;
+  }
+  var import_nanohtml13;
+  var init_breakage_form3 = __esm({
+    "shared/js/ui/templates/breakage-form.js"() {
+      "use strict";
+      import_nanohtml13 = __toESM(require_browser());
+      init_localize();
+      init_hero();
+      init_top_nav();
+      init_hooks_module();
+      init_preact_module();
+      init_protection_header();
+    }
+  });
+
+  // shared/js/ui/views/email-protection.js
+  function EmailProtectionView(ops) {
+    this.model = ops.model;
+    this.pageView = ops.pageView;
+    this.template = ops.template;
+    view_default.call(this, ops);
+    this._setup();
+  }
+  var import_jquery12, formatAddress, email_protection_default2;
+  var init_email_protection3 = __esm({
+    "shared/js/ui/views/email-protection.js"() {
+      "use strict";
+      import_jquery12 = __toESM(require_jquery());
+      init_view();
+      formatAddress = (address) => address + "@duck.com";
+      EmailProtectionView.prototype = import_jquery12.default.extend({}, view_default.prototype, {
+        _setup: function() {
+          this.bindEvents([[this.store.subscribe, `change:${this.model.modelName}`, this._rerender]]);
+        },
+        copyAlias: function() {
+          const alias = this.model.emailProtectionUserData.nextAlias;
+          navigator.clipboard?.writeText(formatAddress(alias));
+          this.model.set("state", "added");
+          setTimeout(() => {
+            this.model.set("state", "idle");
+          }, 2e3);
+          this.model.refreshAlias().catch((e3) => console.error(e3));
+        }
+      });
+      email_protection_default2 = EmailProtectionView;
+    }
+  });
+
+  // shared/js/ui/views/search.js
+  function Search2(ops) {
+    this.model = ops.model;
+    this.pageView = ops.pageView;
+    this.template = ops.template;
+    view_default.call(this, ops);
+    this._cacheElems(".js-search", ["form", "input", "go", "cog-button", "fire-button"]);
+    this.bindEvents([
+      [this.$input, "input", this._handleInput],
+      [this.$input, "blur", this._handleBlur],
+      [this.$go, "click", this._handleSubmit],
+      [this.$form, "submit", this._handleSubmit],
+      [this.$cogbutton, "click", this._handleCogClick],
+      [this.$firebutton, "click", this._handleFireClick]
+    ]);
+  }
+  var import_jquery13, FOCUS_CLASS, search_default3;
+  var init_search3 = __esm({
+    "shared/js/ui/views/search.js"() {
+      "use strict";
+      import_jquery13 = __toESM(require_jquery());
+      init_view();
+      FOCUS_CLASS = "go--focused";
+      Search2.prototype = import_jquery13.default.extend({}, view_default.prototype, {
+        // Hover effect on search button while typing
+        _addHoverEffect: function() {
+          if (!this.$go.hasClass(FOCUS_CLASS)) {
+            this.$go.addClass(FOCUS_CLASS);
+          }
+        },
+        _removeHoverEffect: function() {
+          if (this.$go.hasClass(FOCUS_CLASS)) {
+            this.$go.removeClass(FOCUS_CLASS);
+          }
+        },
+        _handleBlur: function(_e) {
+          this._removeHoverEffect();
+        },
+        _handleInput: function(_e) {
+          const searchText = this.$input.val();
+          this.model.set("searchText", searchText);
+          if (searchText.length > 0) {
+            this._addHoverEffect();
+          } else {
+            this._removeHoverEffect();
+          }
+        },
+        _handleSubmit: function(e3) {
+          e3.preventDefault();
+          this.model.doSearch(this.$input.val());
+        },
+        _handleCogClick: function(e3) {
+          e3.preventDefault();
+          this.model.openOptionsPage();
+        },
+        _handleFireClick: function(e3) {
+          e3.preventDefault();
+          this.pageView.model.send("navigate", { target: "fireButton" });
+        }
+      });
+      search_default3 = Search2;
+    }
+  });
+
+  // shared/js/ui/views/cta-rotation.js
+  function CtaRotationView(ops) {
+    this.model = ops.model;
+    this.pageView = ops.pageView;
+    this.template = ops.template;
+    view_default.call(this, ops);
+  }
+  var import_jquery14, cta_rotation_default2;
+  var init_cta_rotation3 = __esm({
+    "shared/js/ui/views/cta-rotation.js"() {
+      "use strict";
+      import_jquery14 = __toESM(require_jquery());
+      init_view();
+      CtaRotationView.prototype = import_jquery14.default.extend({}, view_default.prototype, {});
+      cta_rotation_default2 = CtaRotationView;
+    }
+  });
+
+  // shared/js/ui/models/site-company-list.js
+  function SiteCompanyList(attrs) {
+    attrs = attrs || {};
+    attrs.tab = null;
+    attrs.companyList = [];
+    model_default.call(this, attrs);
+  }
+  var import_jquery15, site_company_list_default;
+  var init_site_company_list = __esm({
+    "shared/js/ui/models/site-company-list.js"() {
+      "use strict";
+      import_jquery15 = __toESM(require_jquery());
+      init_model();
+      init_communication();
+      init_normalize_company_name();
+      SiteCompanyList.prototype = import_jquery15.default.extend({}, model_default.prototype, normalizeCompanyName, {
+        modelName: "siteCompanyList",
+        /** @this {any} */
+        fetchAsyncData: function() {
+          return new Promise((resolve) => {
+            communication_default.getBackgroundTabData().then(({ tab }) => {
+              if (tab) {
+                this.tab = tab;
+              }
+              resolve(null);
+            });
+          });
+        }
+      });
+      site_company_list_default = SiteCompanyList;
+    }
+  });
+
+  // shared/js/ui/models/site.js
+  function Site(attrs) {
+    attrs = attrs || {};
+    this.disabled = true;
+    this.tab = null;
+    this.permissions = null;
+    this.domain = "-";
+    this.protectionsEnabled = false;
+    this.isBroken = false;
+    this.displayBrokenUI = false;
+    this.isAllowlisted = false;
+    this.isDenylisted = false;
+    this.httpsState = "none";
+    this.httpsStatusText = "";
+    this.trackersCount = 0;
+    this.majorTrackerNetworksCount = 0;
+    this.totalTrackerNetworksCount = 0;
+    this.trackerNetworks = [];
+    this.isaMajorTrackingNetwork = false;
+    this.emailProtectionUserData = null;
+    this.acceptingUpdates = true;
+    this.features = createPlatformFeatures(platform);
+    model_default.call(this, attrs);
+    this.bindEvents([[this.store.subscribe, "action:backgroundMessage", this.handleBackgroundMsg]]);
+  }
+  var import_jquery16, MAJOR_TRACKER_THRESHOLD_PCT, site_default;
+  var init_site = __esm({
+    "shared/js/ui/models/site.js"() {
+      "use strict";
+      import_jquery16 = __toESM(require_jquery());
+      init_model();
+      init_constants2();
+      init_communication();
+      init_localize();
+      init_platform_features();
+      init_common();
+      init_schema_parsers();
+      MAJOR_TRACKER_THRESHOLD_PCT = 25;
+      Site.prototype = import_jquery16.default.extend({}, model_default.prototype, {
+        modelName: "site",
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        getBackgroundTabData: function() {
+          return new Promise((resolve) => {
+            communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData, fireButton, featureSettings: featureSettings2 }) => {
+              if (tab) {
+                if (tab.locale) {
+                  if (Object.keys(i18n.options.resources).includes(tab.locale)) {
+                    i18n.changeLanguage(tab.locale);
+                  } else {
+                    console.warn(`Unsupported locale ${tab.locale}`);
+                  }
+                }
+                this.set("tab", tab);
+                this.domain = tab.domain;
+                this.set("isaMajorTrackingNetwork", (tab.parentEntity?.prevalence || 0) >= MAJOR_TRACKER_THRESHOLD_PCT);
+              } else {
+                this.domain = "new tab";
+                console.debug("Site model: no tab");
+              }
+              this.emailProtectionUserData = emailProtectionUserData;
+              this.fireButton = fireButton;
+              if (featureSettings2) {
+                const parsed = remoteFeatureSettingsSchema.safeParse(featureSettings2);
+                if (parsed.success) {
+                  this.featureSettings = new FeatureSettings(parsed.data);
+                } else {
+                  console.error(parsed.error);
+                  throw new Error("platform did not provide featureSettings");
+                }
+              } else {
+                this.featureSettings = new FeatureSettings({});
+              }
+              this.update();
+              resolve(null);
+            }).catch((e3) => {
+              console.log("\u274C [models/site.es6.js] --> ", e3);
+            });
+          });
+        },
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        setSiteProperties: function() {
+          if (!this.tab) {
+            this.domain = "new tab";
+          } else {
+            this.initAllowlisted(this.tab.protections.allowlisted, this.tab.protections.denylisted);
+            if (this.tab.specialDomainName) {
+              this.domain = this.tab.specialDomainName;
+            } else {
+              this.set({ disabled: false });
+            }
+          }
+          if (this.domain && this.domain === "-")
+            this.set("disabled", true);
+        },
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        setHttpsMessage: function() {
+          if (!this.tab)
+            return;
+          if (this.tab.upgradedHttps) {
+            this.httpsState = "upgraded";
+          } else if (/^https/.exec(this.tab.url)) {
+            this.httpsState = "secure";
+          } else {
+            this.httpsState = "none";
+          }
+          this.httpsStatusText = i18n.t(httpsMessages[this.httpsState]);
+        },
+        timeout: null,
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        handleBackgroundMsg: function(message) {
+          if (!this.tab)
+            return;
+          if (message.action && message.action === "updateTabData") {
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+              communication_default.getBackgroundTabData().then(({ tab, emailProtectionUserData }) => {
+                this.tab = tab;
+                this.emailProtectionUserData = emailProtectionUserData;
+                this.update();
+              }).catch((e3) => {
+                console.log("\u274C [models/site.es6.js:handleBackgroundMsg()] --> ", e3);
+              });
+            }, 100);
+          }
+        },
+        /** @this {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.js").fetcher}} */
+        updatePermission: function(id, value) {
+          if (!this.permissions)
+            return;
+          const permissionIndex = this.permissions.findIndex(({ key }) => key === id);
+          if (permissionIndex === -1)
+            return;
+          const updatedPermissions = JSON.parse(JSON.stringify(this.permissions));
+          updatedPermissions[permissionIndex].permission = value;
+          this.set("permissions", updatedPermissions);
+          try {
+            this.fetch(new UpdatePermissionMessage({ id, value }));
+          } catch (e3) {
+            console.error("updatePermission error", e3);
+          }
+        },
+        // calls `this.set()` to trigger view re-rendering
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        update: function() {
+          if (!this.acceptingUpdates) {
+            console.log("not updating because acceptingUpdates was false");
+            return;
+          }
+          this.setSiteProperties();
+          this.setHttpsMessage();
+          if (this.tab) {
+            this.set("permissions", this.tab.permissions);
+            const newTrackersCount = this.getUniqueTrackersCount();
+            if (newTrackersCount !== this.trackersCount) {
+              this.set("trackersCount", newTrackersCount);
+            }
+            const newTrackersBlockedCount = this.getUniqueTrackersBlockedCount();
+            if (newTrackersBlockedCount !== this.trackersBlockedCount) {
+              this.set("trackersBlockedCount", newTrackersBlockedCount);
+            }
+            const newTrackerNetworks = this.getTrackerNetworksOnPage();
+            if (this.trackerNetworks.length === 0 || newTrackerNetworks.length !== this.trackerNetworks.length) {
+              this.set("trackerNetworks", newTrackerNetworks);
+            }
+            const newUnknownTrackersCount = this.getUnknownTrackersCount();
+            const newTotalTrackerNetworksCount = newUnknownTrackersCount + newTrackerNetworks.length;
+            if (newTotalTrackerNetworksCount !== this.totalTrackerNetworksCount) {
+              this.set("totalTrackerNetworksCount", newTotalTrackerNetworksCount);
+            }
+            const newMajorTrackerNetworksCount = this.getMajorTrackerNetworksCount();
+            if (newMajorTrackerNetworksCount !== this.majorTrackerNetworksCount) {
+              this.set("majorTrackerNetworksCount", newMajorTrackerNetworksCount);
+            }
+          }
+        },
+        /**
+         * @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>}
+         * @returns {number}
+         */
+        getUniqueTrackersCount: function() {
+          return 0;
+        },
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        getUniqueTrackersBlockedCount: function() {
+          return 0;
+        },
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        getUnknownTrackersCount: function() {
+          let count = 0;
+          const entities = this.tab.requestDetails.all.entities;
+          for (const entity of Object.values(entities)) {
+            if (entity.name === "unknown")
+              count += Object.keys(entity.urls).length;
+          }
+          return count;
+        },
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        getMajorTrackerNetworksCount: function() {
+          let total = 0;
+          this.tab.requestDetails.forEachEntity((entity) => {
+            const isMajor = entity.prevalence > MAJOR_TRACKER_THRESHOLD_PCT;
+            total += isMajor ? 1 : 0;
+          });
+          return total;
+        },
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        getTrackerNetworksOnPage: function() {
+          const requests = this.tab.requestDetails;
+          const names = [];
+          requests.forEachEntity((en) => {
+            if (en.name !== "unknown") {
+              names.push(en.name);
+            }
+          });
+          return names;
+        },
+        /** @this {LocalThis} */
+        initAllowlisted: function(allowListValue, denyListValue) {
+          this.isAllowlisted = allowListValue;
+          this.isDenylisted = denyListValue;
+          this.isBroken = Boolean(
+            this.tab.protections.unprotectedTemporary || !this.tab.protections.enabledFeatures?.includes("contentBlocking")
+          );
+          this.displayBrokenUI = this.isBroken;
+          if (denyListValue) {
+            this.displayBrokenUI = false;
+            this.protectionsEnabled = true;
+          } else {
+            this.displayBrokenUI = this.isBroken;
+            this.protectionsEnabled = !(this.isAllowlisted || this.isBroken);
+          }
+          this.set("protectionsEnabled", this.protectionsEnabled);
+        },
+        /** @this {LocalThis} */
+        toggleAllowlist: function() {
+          const lists = [];
+          this.set("acceptingUpdates", false);
+          if (this.tab && this.tab.domain) {
+            if (this.isBroken) {
+              lists.push({
+                list: "denylisted",
+                domain: this.tab.domain,
+                value: !this.isDenylisted
+              });
+            } else {
+              lists.push({
+                list: "denylisted",
+                domain: this.tab.domain,
+                value: false
+              });
+              lists.push({
+                list: "allowlisted",
+                domain: this.tab.domain,
+                value: !this.isAllowlisted
+              });
+            }
+          }
+          this.setLists(lists).catch((e3) => console.error(e3));
+        },
+        /**
+         * @param {SetListsMessage["lists"]} lists
+         * @returns {Promise<boolean>}
+         */
+        async setLists(lists) {
+          try {
+            return this.fetch(new SetListsMessage({ lists }));
+          } catch (e3) {
+            console.error("setList error", e3);
+            return false;
+          }
+        },
+        /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+        companyNames: function() {
+          return [];
+        },
+        /**
+         * @this {LocalThis}
+         * @return {Promise<boolean>}
+         */
+        checkBrokenSiteReportHandled: function() {
+          try {
+            return this.fetch(new CheckBrokenSiteReportHandledMessage());
+          } catch (e3) {
+            console.error("checkBrokenSiteReportHandled error", e3);
+            return Promise.resolve(false);
+          }
+        },
+        /** @this {LocalThis} */
+        close: function() {
+          try {
+            this.fetch(new CloseMessage());
+          } catch (e3) {
+            console.error("close error", e3);
+          }
+        }
+      });
+      site_default = Site;
+    }
+  });
+
+  // shared/js/ui/views/tracker-networks.js
+  function TrackerNetworks(opts) {
+    this.$hero = null;
+    this.$details = null;
+    this.model = null;
+    this.currentModelName = null;
+    this.currentSiteModelName = null;
+    this.template = opts.template;
+    this.heroFn = opts.heroFn;
+    this.detailsFn = opts.detailsFn;
+    sliding_subview_default.call(this, opts);
+    this.renderAsyncContent();
+  }
+  var import_jquery17, tracker_networks_default;
+  var init_tracker_networks = __esm({
+    "shared/js/ui/views/tracker-networks.js"() {
+      "use strict";
+      import_jquery17 = __toESM(require_jquery());
+      init_sliding_subview();
+      init_site_company_list();
+      init_site();
+      TrackerNetworks.prototype = import_jquery17.default.extend(
+        {},
+        // @ts-ignore
+        sliding_subview_default.prototype,
+        {
+          /** @this {any} */
+          setup: function() {
+            this._cacheElems(".js-tracker-networks", ["hero", "details"]);
+            this.bindEvents([[this.store.subscribe, `change:${this.currentSiteModelName}`, this._rerender]]);
+          },
+          /** @this {any} */
+          renderAsyncContent: function() {
+            const random = Math.round(Math.random() * 1e5);
+            this.currentModelName = "siteCompanyList" + random;
+            this.currentSiteModelName = "site" + random;
+            this.model = new site_company_list_default({
+              modelName: this.currentModelName
+            });
+            this.model.fetchAsyncData().then(() => {
+              this.model.site = new site_default({
+                modelName: this.currentSiteModelName
+              });
+              this.model.site.getBackgroundTabData().then(() => {
+                const content = this.template();
+                this.$el.append(content);
+                this.setup();
+                this.setupClose();
+              });
+            });
+          },
+          /**
+           * @this {TrackerNetworks}
+           */
+          _renderHeroTemplate: function() {
+            if (this.model.site && this.heroFn) {
+              const site2 = this.model.site;
+              const heroElement = this.heroFn(site2.tab.requestDetails, site2.protectionsEnabled);
+              this.$hero?.html(heroElement);
+            }
+            if (this.model.site && this.detailsFn) {
+              const site2 = this.model.site;
+              const detailsElement = this.detailsFn(site2);
+              this.$details?.html(detailsElement);
+            }
+          },
+          _rerender: function(e3) {
+            if (e3 && e3.change) {
+              if (e3.change.attribute === "isaMajorTrackingNetwork" || e3.change.attribute === "isAllowlisted" || e3.change.attribute === "totalTrackerNetworksCount") {
+                this._renderHeroTemplate();
+                this.unbindEvents();
+                this.setup();
+                this.setupClose();
+              }
+            }
+          }
+        }
+      );
+      tracker_networks_default = TrackerNetworks;
+    }
+  });
+
+  // shared/js/ui/views/main-nav.js
+  function MainNavView(ops) {
+    this.model = ops.model;
+    this.store = ops.store;
+    this.template = template;
+    this.features = createPlatformFeatures(platform);
+    this.cleanups = [];
+    this.nav = {
+      connection: () => {
+        this.model.send("navigate", { target: "connection" });
+      },
+      trackers: () => {
+        this.model.send("navigate", { target: "trackers" });
+      },
+      nonTrackers: () => {
+        this.model.send("navigate", { target: "nonTrackers" });
+      },
+      consentManaged: () => {
+        this.model.send("navigate", { target: "consentManaged" });
+      },
+      cookieHidden: () => {
+        this.model.send("navigate", { target: "cookieHidden" });
+      }
+    };
+    view_default.call(this, ops);
+    this._setup();
+  }
+  function template() {
+    const model = this.model;
+    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged;
+    const consentRow = import_nanohtml14.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
+    return import_nanohtml14.default`
+        <ul class="default-list card-list--bordered main-nav token-body-em js-site-main-nav">
+            <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
+            <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
+            <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
+            ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
+        </ul>
+    `;
+  }
+  function renderCookieConsentManaged(model, cb) {
+    if (!model.tab?.cookiePromptManagementStatus)
+      return null;
+    const { consentManaged, cosmetic, optoutFailed, configurable } = model.tab.cookiePromptManagementStatus;
+    if (consentManaged && !optoutFailed) {
+      const text = cosmetic ? i18n.t("site:cookiesHidden.title") : i18n.t("site:cookiesMinimized.title");
+      if (configurable) {
+        return import_nanohtml14.default`
+                <a
+                    href="javascript:void(0)"
+                    class="main-nav__item main-nav__item--link link-action link-action--dark"
+                    role="button"
+                    draggable="false"
+                    onclick=${cb}
+                >
+                    <span class="main-nav__icon ${cosmetic ? "icon-small--info" : "icon-small--secure"}"></span>
+                    <span class="main-nav__text">${text}</span>
+                    <span class="main-nav__chev"></span>
+                </a>
+            `;
+      } else {
+        return import_nanohtml14.default`
+                <div class="main-nav__item">
+                    <span class="main-nav__icon icon-small--secure"></span>
+                    <span class="main-nav__text">${text}</span>
+                </div>
+            `;
+      }
+    }
+    return import_nanohtml14.default``;
+  }
+  function renderConnection(model, cb) {
+    let icon = "icon-small--insecure";
+    if (model.httpsState === "secure") {
+      icon = "icon-small--secure";
+    }
+    if (model.httpsState === "upgraded" && /^https/.exec(model.tab.url) && Array.isArray(model.tab.certificate) && model.tab.certificate.length > 0) {
+      icon = "icon-small--secure";
+    }
+    return import_nanohtml14.default` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Connection Information"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon ${icon}"></span>
+        <span class="main-nav__text">${model.httpsStatusText}</span>
+        <span class="main-nav__chev"></span>
+    </a>`;
+  }
+  function renderTrackerNetworksNew(model, cb) {
+    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled);
+    return import_nanohtml14.default` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Tracker Companies"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon icon-small--${icon}"></span>
+        <span class="main-nav__text">${title}</span>
+        <span class="main-nav__chev"></span>
+    </a>`;
+  }
+  function renderThirdPartyNew(model, cb) {
+    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled);
+    return import_nanohtml14.default` <a
+        href="javascript:void(0)"
+        class="main-nav__item main-nav__item--link link-action link-action--dark"
+        role="button"
+        draggable="false"
+        aria-label="View Non-Tracker Companies"
+        onclick=${cb}
+    >
+        <span class="main-nav__icon icon-small--${icon}"></span>
+        <span class="main-nav__text">${title}</span>
+        <span class="main-nav__chev"></span>
+    </a>`;
+  }
+  var import_jquery18, import_nanohtml14;
+  var init_main_nav = __esm({
+    "shared/js/ui/views/main-nav.js"() {
+      "use strict";
+      import_jquery18 = __toESM(require_jquery());
+      import_nanohtml14 = __toESM(require_browser());
+      init_view();
+      init_tracker_networks_text();
+      init_thirdparty_text();
+      init_localize();
+      init_platform_features();
+      init_communication();
+      init_environment_check();
+      init_utils();
+      MainNavView.prototype = import_jquery18.default.extend({}, view_default.prototype, {
+        /**
+         * @this {MainNavView}
+         * @private
+         */
+        _setup: function() {
+          this.bindEvents([
+            // @ts-ignore
+            [this.store.subscribe, "change:site", this.rerender],
+            // @ts-ignore
+            [this.$parent, "mouseover", this._mouseover],
+            // @ts-ignore
+            [this.$parent, "mouseleave", this._mouseleave]
+          ]);
+          if (isAndroid()) {
+            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], ".link-action"));
+          }
+        },
+        /**
+         * @this {MainNavView}
+         * @private
+         */
+        _mouseover(e3) {
+          if (!this.features.supportsHover)
+            return;
+          const li = e3.target?.closest("li");
+          if (li) {
+            const links = this.$parent.find("li").index(li);
+            this.$parent[0].dataset.hover = links;
+          }
+        },
+        _mouseleave() {
+          if (!this.features.supportsHover)
+            return;
+          try {
+            delete this.$parent[0].dataset.hover;
+          } catch (e3) {
+            console.warn("cannot delete data-hover");
+          }
+        },
+        cleanup() {
+          for (const cleanup of this.cleanups) {
+            cleanup();
+          }
+          this.cleanups = [];
+        },
+        rerender() {
+          this.cleanup();
+          this._rerender();
+          if (isAndroid()) {
+            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], ".link-action"));
+          }
+        }
+      });
+    }
+  });
+
+  // shared/js/ui/views/cookie-prompt.js
+  function CookiePromptView(ops) {
+    this.model = ops.model;
+    this.template = template2;
+    this.links = {
+      disable: (e3) => {
+        e3.preventDefault();
+        this.model.openSettings("cpm");
+      }
+    };
+    sliding_subview_default.call(this, ops);
+  }
+  function template2() {
+    const summary = this.model.isCosmetic ? ns.site("cookiesHiddenSummary.title") : ns.site("cookiesMinimizedSummary.title");
+    const icon = largeHeroIcon({
+      status: this.model.isCosmetic ? "cookies-hidden" : "cookies-managed"
+    });
+    const hero = heroTemplate({
+      icon,
+      summary,
+      suffix: "none"
+    });
+    return import_nanohtml15.default`<section class="sliding-subview">
+        <div class="card" data-page="cookie-prompt">
+            ${topNav({ view: "secondary" })}
+            <div class="padding-x-double">${hero}</div>
+            <div class="padding-x-double">
+                <div class="padding-y border--top--inner text--center">${disableInSettingsLink(this.links.disable)}</div>
+            </div>
+        </div>
+    </section> `;
+  }
+  var import_jquery19, import_nanohtml15;
+  var init_cookie_prompt2 = __esm({
+    "shared/js/ui/views/cookie-prompt.js"() {
+      "use strict";
+      import_jquery19 = __toESM(require_jquery());
+      import_nanohtml15 = __toESM(require_browser());
+      init_top_nav();
+      init_hero();
+      init_links();
+      init_localize();
+      init_sliding_subview();
+      CookiePromptView.prototype = import_jquery19.default.extend(
+        {},
+        // @ts-ignore
+        sliding_subview_default.prototype
+      );
+    }
+  });
+
+  // shared/js/ui/views/fire-dialog.js
+  function FireDialog(ops) {
+    this.model = ops.model;
+    this.template = template3;
+    this.model.fetch(new FetchBurnOptions()).then((resp) => {
+      this.model.fireOptions = resp.options;
+      view_default.call(this, ops);
+      this._setup();
+    });
+  }
+  function template3() {
+    const { fireOptions } = this.model;
+    if (!fireOptions) {
+      return import_nanohtml16.default`<dialog id="fire-button-container"></dialog>`;
+    }
+    const selectedOptionIndex = fireOptions.findIndex(({ selected }) => selected);
+    const selectedOption = fireOptions[selectedOptionIndex >= 0 ? selectedOptionIndex : 0];
+    const selectOptions = fireOptions.map(
+      ({ name, selected }) => import_nanohtml16.default`<option ${selected ? "selected" : ""}>${i18n.t(`firebutton:option${name}.title`)}</option>`
+    );
+    const summary = fireSummaryTemplate(selectedOption);
+    return import_nanohtml16.default` <dialog id="fire-button-container" open>
+        <div id="fire-button-content">
+            <span id="fire-button-header">
+                <img src="../img/fire-button-header.svg" />
+                <h3>
+                    ${selectedOption.descriptionStats.openTabs > 0 ? i18n.t("firebutton:fireDialogHeader.title") : i18n.t("firebutton:fireDialogHeaderNoTabs.title")}
+                </h3>
+            </span>
+            <select id="fire-button-opts">
+                ${selectOptions}
+            </select>
+            ${summary}
+            <div id="fire-button-row">
+                <button id="fire-button-cancel">${i18n.t("firebutton:cancel.title")}</button>
+                <button id="fire-button-burn">${i18n.t("firebutton:clearData.title")}</button>
+            </div>
+        </div>
+    </dialog>`;
+  }
+  function fireSummaryTemplate(selectedOption) {
+    const { descriptionStats } = selectedOption;
+    let template4 = "firebutton:summary";
+    if (descriptionStats.clearHistory && descriptionStats.openTabs) {
+      template4 += "ClearTabsHistory";
+    } else if (descriptionStats.clearHistory && !descriptionStats.openTabs) {
+      template4 += "ClearHistory";
+    } else if (!descriptionStats.clearHistory && descriptionStats.openTabs) {
+      template4 += "ClearTabs";
+    } else {
+      template4 += "ClearCookies";
+    }
+    if (descriptionStats.site) {
+      template4 += "Site";
+    } else if (descriptionStats.duration === "all") {
+      template4 += "All";
+    } else {
+      template4 += "Duration";
+    }
+    template4 += ".title";
+    return import_nanohtml16.default`<div id="fire-button-summary">
+        <p>
+            ${(0, import_raw3.default)(
+      i18n.t(template4, {
+        durationDesc: i18n.t("firebutton:historyDuration.title", { duration: descriptionStats.duration }),
+        ...descriptionStats
+      })
+    )}
+        </p>
+        ${descriptionStats.site && descriptionStats.clearHistory ? import_nanohtml16.default`<p class="fire-button-disclaimer">${i18n.t("firebutton:historyAndDownloadsNotAffected.title")}</p>` : null}
+        ${descriptionStats.openTabs && descriptionStats.pinnedTabs ? import_nanohtml16.default`<p class="fire-button-disclaimer">
+                  ${(0, import_raw3.default)(i18n.t("firebutton:summaryPinnedIgnored.title", { tabs: descriptionStats.pinnedTabs }))}
+              </p>` : null}
+    </div>`;
+  }
+  var import_jquery20, import_nanohtml16, import_raw3;
+  var init_fire_dialog = __esm({
+    "shared/js/ui/views/fire-dialog.js"() {
+      "use strict";
+      import_jquery20 = __toESM(require_jquery());
+      import_nanohtml16 = __toESM(require_browser());
+      import_raw3 = __toESM(require_raw_browser());
+      init_view();
+      init_localize();
+      init_common();
+      FireDialog.prototype = import_jquery20.default.extend({}, view_default.prototype, {
+        _setup: function() {
+          this._cacheElems("#fire-button", ["burn", "cancel", "opts"]);
+          this.bindEvents([
+            [this.$burn, "click", this._onBurn],
+            [this.$cancel, "click", this._close],
+            [this.$opts, "change", this._updateSummary]
+          ]);
+        },
+        _onBurn: function() {
+          const selectedOption = this.$opts[0].selectedIndex;
+          const opts = this.model.fireOptions[selectedOption].options;
+          this.model.fetch(new BurnMessage(opts)).then(() => {
+            this._close();
+          });
+        },
+        _close: function() {
+          document.getElementById("fire-button-container")?.remove();
+        },
+        _updateSummary: function() {
+          const selectedOption = this.$opts[0].selectedIndex;
+          const opts = this.model.fireOptions[selectedOption];
+          this.model.fetch(new SetBurnDefaultOption(opts.name));
+          const summaryElement = (0, import_jquery20.default)("#fire-button-summary");
+          summaryElement.replaceWith(fireSummaryTemplate(opts));
+        }
+      });
+    }
+  });
+
+  // shared/js/ui/views/site.js
+  function Site2(ops) {
+    this.model = ops.model;
+    this.pageView = ops.pageView;
+    this.template = ops.template;
+    this.features = createPlatformFeatures(platform);
+    this.$body = (0, import_jquery21.default)("body");
+    this.model.getBackgroundTabData().then(() => {
+      view_default.call(this, ops);
+      this._setup();
+    }).catch((e3) => {
+      console.log("\u274C [views/site.es6.js] --> ", e3);
+    });
+  }
+  function blur(target) {
+    const closest = target?.closest("a");
+    if (closest && typeof closest.blur === "function") {
+      closest.blur();
+    }
+  }
+  var import_jquery21, site_default2;
+  var init_site2 = __esm({
+    "shared/js/ui/views/site.js"() {
+      "use strict";
+      import_jquery21 = __toESM(require_jquery());
+      init_email_protection();
+      init_email_protection2();
+      init_search();
+      init_search2();
+      init_view();
+      init_cta_rotation2();
+      init_cta_rotation();
+      init_communication();
+      init_page_trackers();
+      init_page_non_trackers();
+      init_hero();
+      init_key_insights();
+      init_breakage_form();
+      init_platform_features();
+      init_cookie_prompt();
+      init_breakage_form2();
+      init_page_connection();
+      init_breakage_form3();
+      init_email_protection3();
+      init_search3();
+      init_cta_rotation3();
+      init_tracker_networks();
+      init_main_nav();
+      init_cookie_prompt2();
+      init_fire_dialog();
+      Site2.prototype = import_jquery21.default.extend({}, view_default.prototype, {
+        _changePermission: function(e3) {
+          this.model.updatePermission(e3.target.name, e3.target.value);
+        },
+        // NOTE: after ._setup() is called this view listens for changes to
+        // site model and re-renders every time model properties change
+        _setup: function() {
+          this._cacheElems(".js-site", ["report-broken", "permission", "done"]);
+          this.bindEvents([
+            [this.$reportbroken, "click", this._onReportBrokenSiteClick],
+            [this.$done, "click", this._done],
+            [this.$permission, "change", this._changePermission],
+            [this.store.subscribe, "action:site", this._handleEvents]
+          ]);
+          window.addEventListener("open-feedback", (e3) => {
+            this._onReportBrokenSiteClick(e3);
+          });
+          this._setupFeatures();
+          setTimeout(() => {
+            communication_default.firstRenderComplete?.();
+          }, 100);
+        },
+        _handleEvents(event) {
+          if (event.action === "navigate") {
+            if (event.data?.target === "connection") {
+              this._showPageConnection();
+            }
+            if (event.data?.target === "trackers") {
+              this._showPageTrackers();
+            }
+            if (event.data?.target === "nonTrackers") {
+              this._showPageNonTrackers();
+            }
+            if (event.data?.target === "consentManaged") {
+              this._showPageConsent(false);
+            }
+            if (event.data?.target === "cookieHidden") {
+              this._showPageConsent(true);
+            }
+            if (event.data?.target === "fireButton") {
+              this._showFireModal();
+            }
+          }
+        },
+        _onReportBrokenSiteClick: function(e3) {
+          e3.preventDefault();
+          if (this.model && this.model.disabled) {
+            return;
+          }
+          this.model.checkBrokenSiteReportHandled().then((handled) => {
+            if (!handled) {
+              this.showBreakageForm("reportBrokenSite");
+            }
+          }).catch((e4) => {
+            console.error("could not check", e4);
+          });
+        },
+        // pass clickSource to specify whether page should reload
+        // after submitting breakage form.
+        showBreakageForm: function(e3) {
+          blur(e3.target);
+          this.views.slidingSubview = new breakage_form_default({
+            template: breakage_form_default2,
+            model: new BreakageFormModel(),
+            mainModel: this.model
+          });
+        },
+        _showPageTrackers: function() {
+          if (this.$body.hasClass("is-disabled"))
+            return;
+          this.views.slidingSubview = new tracker_networks_default({
+            template: trackerNetworksTemplate,
+            heroFn: heroFromTabTrackers,
+            detailsFn: sectionsFromSiteTrackers
+          });
+        },
+        _showPageNonTrackers: function() {
+          if (this.$body.hasClass("is-disabled"))
+            return;
+          this.views.slidingSubview = new tracker_networks_default({
+            template: nonTrackersTemplate,
+            heroFn: heroFromTabNonTrackers,
+            detailsFn: sectionsFromSiteNonTracker
+          });
+        },
+        _showPageConnection: function() {
+          if (this.$body.hasClass("is-disabled"))
+            return;
+          this.views.slidingSubview = new tracker_networks_default({
+            template: page_connection_default
+          });
+        },
+        /**
+         * @param {boolean} isCosmetic
+         */
+        _showPageConsent: function(isCosmetic) {
+          this.views.slidingSubview = new CookiePromptView({
+            model: new CookiePromptModel({
+              site: this.model,
+              isCosmetic
+            })
+          });
+        },
+        _showFireModal() {
+          this.dialog = new FireDialog({
+            model: this.model,
+            appendTo: (0, import_jquery21.default)("#site-info-container")
+          });
+        },
+        _done: function() {
+          this.model.close();
+        },
+        _setupFeatures() {
+          this.views.mainNav = new MainNavView({
+            model: this.model,
+            appendTo: (0, import_jquery21.default)("#main-nav"),
+            store: this.store
+          });
+          this.views.keyInsight = new KeyInsightView({
+            model: this.model,
+            appendTo: (0, import_jquery21.default)("#key-insight"),
+            store: this.store
+          });
+          if (this.model.tab?.search) {
+            this.views.search = new search_default3({
+              pageView: this,
+              model: new search_default({ searchText: "", showFireButton: this.model.fireButton?.enabled }),
+              appendTo: (0, import_jquery21.default)("#search-form-container"),
+              template: search_default2
+            });
+          }
+          if (this.model.tab?.ctaScreens && !this.views.ctaRotations) {
+            this.views.ctaRotations = new cta_rotation_default2({
+              pageView: this,
+              model: new CtaRotationModel({ emailProtectionUserData: this.model.emailProtectionUserData }),
+              appendTo: (0, import_jquery21.default)("#cta-rotation"),
+              template: cta_rotation_default
+            });
+          }
+          if (this.model.tab?.emailProtection) {
+            this.views.emailProtection = new email_protection_default2({
+              model: new email_protection_default({ emailProtectionUserData: this.model.emailProtectionUserData }),
+              appendTo: (0, import_jquery21.default)("#email-alias-container"),
+              template: emailProtectionTemplate
+            });
+          }
+        }
+      });
+      site_default2 = Site2;
+    }
+  });
+
+  // shared/js/ui/models/background-message.js
+  function BackgroundMessage(attrs) {
+    model_default.call(this, attrs);
+    const thisModel = this;
+    thisModel.send = new Proxy(thisModel.send, {
+      apply(target, thisArg, argArray) {
+        return Reflect.apply(target, thisArg, argArray);
+      }
+    });
+    communication_default.backgroundMessage(thisModel);
+  }
+  var import_jquery22, background_message_default;
+  var init_background_message = __esm({
+    "shared/js/ui/models/background-message.js"() {
+      "use strict";
+      import_jquery22 = __toESM(require_jquery());
+      init_model();
+      init_communication();
+      BackgroundMessage.prototype = import_jquery22.default.extend({}, model_default.prototype, {
+        modelName: "backgroundMessage"
+      });
+      background_message_default = BackgroundMessage;
     }
   });
 
@@ -24426,7 +25886,10 @@
     return import_nanohtml17.default` <div class="site-info page">
         ${renderSearchWrapper(this.model)} ${topNav({ view: "primary" })}
         <div class="page-inner" data-with-permissions=${permissions.length > 0}>
-            ${layout === "highlighted-protections-toggle" ? protectionHeader(this.model) : null}
+            ${layout === "highlighted-protections-toggle" ? import_nanohtml17.default`
+                        <div class="padding-x border--bottom padding-bottom-half">${protectionHeader(this.model)}</div>
+                        <div class="padding-spacer"></div>
+                    ` : null}
             <div class="padding-x-double">
                 <div id="key-insight"></div>
             </div>
@@ -25054,3 +26517,4 @@ eventemitter2/lib/eventemitter2.js:
    * THE SOFTWARE.
    *)
 */
+//# sourceMappingURL=base.js.map

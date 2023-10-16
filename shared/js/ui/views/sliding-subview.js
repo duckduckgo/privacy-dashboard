@@ -2,6 +2,7 @@ import $ from 'jquery'
 import { isAndroid, isIOS } from '../environment-check.js'
 import Parent from '../base/view.js'
 import { setupMaterialDesignRipple } from './utils/utils.js'
+import { render } from 'preact'
 
 function SlidingSubview(ops) {
     ops.appendTo = $('.sliding-subview--root')
@@ -61,7 +62,7 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
             this.$root.addClass('sliding-subview--immediate')
             window.setTimeout(() => {
                 this.$root.removeClass('sliding-subview--open')
-                this.destroy()
+                this._destroyProxy()
                 // @ts-ignore
                 window.history.replaceState({}, '', window.location)
                 window.setTimeout(() => {
@@ -74,16 +75,26 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
         this.$root.removeClass('sliding-subview--open')
         const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches === true
         if (isReduced) {
-            this.destroy()
+            this._destroyProxy()
             // @ts-ignore
             window.history.replaceState({}, '', window.location)
         } else {
             window.setTimeout(() => {
-                this.destroy()
+                this._destroyProxy()
                 // @ts-ignore
                 window.history.replaceState({}, '', window.location)
             }, 325) // 325ms = 0.3s in .sliding-subview--root transition + 25ms padding
         }
+    },
+
+    _destroyProxy: function() {
+        if (this.roots) {
+            for (const [key] of this.roots) {
+                render('', key)
+            }
+            this.roots.clear();
+        }
+        this.destroy();
     },
 
     _done: function () {

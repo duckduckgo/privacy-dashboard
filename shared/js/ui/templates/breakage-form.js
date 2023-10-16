@@ -2,8 +2,18 @@ import html from 'nanohtml'
 import { i18n } from '../base/localize.js'
 import { largeHeroIcon } from './shared/hero.js'
 import { topNav } from './shared/top-nav'
+import { useEffect } from 'preact/hooks'
+import { render, h } from 'preact'
+import { ProtectionHeader, protectionHeader } from './protection-header'
 
+/**
+ * @this {{
+ *     mainModel: import('../models/site.js').PublicSiteModel,
+ *     roots: Map<HTMLElement, boolean>
+ * }}
+ */
 export default function () {
+    console.log(this.mainModel);
     const categories = [
         { category: i18n.t('report:videos.title'), value: 'videos' },
         { category: i18n.t('report:images.title'), value: 'images' },
@@ -21,6 +31,9 @@ export default function () {
         <div class="breakage-form">
             ${topNav({ view: 'secondary' })}
             <div class="padding-x-double js-breakage-form-element" data-state="idle">
+                <div class="padding-y">
+                    ${wrap(this.mainModel, this)}    
+                </div>
                 <div class="key-insight">
                     ${icon}
                     <div class="breakage-form__advise">
@@ -57,4 +70,19 @@ export default function () {
             </div>
         </div>
     </section>`
+}
+
+function wrap(model, view) {
+    const root = html`<div></div>`
+    const migrationModel = {
+        protectionsEnabled: model.protectionsEnabled,
+        isAllowlisted: model.isAllowlisted,
+        isDenylisted: model.isDenylisted,
+        platformFeatures: model.features,
+        isBroken: model.isBroken,
+        toggleAllowlist: model.toggleAllowlist.bind(model),
+    }
+    view.roots.set(root, true);
+    render(<ProtectionHeader model={migrationModel} initialState={'site-not-working'}/>, root)
+    return root;
 }
