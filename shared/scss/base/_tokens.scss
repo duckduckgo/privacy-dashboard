@@ -132,6 +132,12 @@
         font-weight: 400;
         line-height: 18px;
     }
+
+    .environment--windows & {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
 }
 
 .token-label-em {

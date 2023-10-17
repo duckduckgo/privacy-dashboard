@@ -37,14 +37,14 @@ export default function () {
             ${topNav({ view: 'secondary' })}
             <div class="breakage-form__inner padding-x-double js-breakage-form-element" data-state="idle">
                 <div class="padding-y">${wrap(this.mainModel, this)}</div>
-                <div class="key-insight">
+                <div class="key-insight key-insight--breakage">
                     ${icon}
                     <div class="breakage-form__advise">
                         <p class="token-title-3">${i18n.t('report:selectTheOptionDesc.title')}</p>
                     </div>
-                    <div class="breakage-form__message">
-                        <p class="token-title-3-em">${i18n.t('report:thankYou.title')}</p>
-                        <p class="token-title-3">${i18n.t('report:yourReportWillHelpDesc.title')}</p>
+                    <div class="thanks">
+                        <p class="thanks__primary">${i18n.t('report:thankYou.title')}</p>
+                        <p class="thanks__secondary">${i18n.t('report:yourReportWillHelpDesc.title')}</p>
                     </div>
                 </div>
                 <div class="breakage-form__content">

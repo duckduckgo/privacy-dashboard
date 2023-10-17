@@ -1,6 +1,6 @@
 .key-insight {
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 24px;
     text-align: center;
 
     &[data-suffix='about-link'] {
@@ -29,5 +29,12 @@
     }
     .environment--browser & {
         padding-top: 6px;
+    }
+}
+
+.key-insight--breakage {
+    padding-bottom: 20px;
+    .environment--windows & {
+        padding-bottom: 12px;
     }
 }
