@@ -35,7 +35,7 @@ test.describe('breakage form', () => {
     test('should submit with category', async ({ page }) => {
         const dash = await DashboardPage.browser(page)
         await dash.addState([testDataStates.protectionsOn])
-        const optionToSelect = "Video didn't play"
+        const optionToSelect = "Video didn’t play or load"
         await dash.clickReportBreakage()
         await dash.selectBreakageCategory(optionToSelect)
         await dash.submitBreakageForm()
