@@ -76,7 +76,7 @@
         "note": "button label text for a trigger that shows our feedback form"
     },
     "websiteNotWorkingAdvice": {
-        "title": "Turning protections OFF may fix the site.",
+        "title": "Turning protections OFF might help.",
         "note": "help text"
     },
     "websiteNotWorkingPromptFollowUp": {

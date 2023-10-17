@@ -402,7 +402,7 @@ export class DashboardPage {
     }
 
     async helpIsShown() {
-        await this.page.getByText('Turning protections OFF may fix the site.').waitFor({ timeout: 1000 })
+        await this.page.getByText('Turning protections OFF might help.').waitFor({ timeout: 1000 })
     }
 
     async clicksReportBroken() {
