@@ -119,10 +119,14 @@
   letter-spacing: 0em;
 }
 .environment--browser .token-breakage-form-body {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 16px;
-  letter-spacing: -0.08px;
+  line-height: 18px;
+}
+.environment--windows .token-breakage-form-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .token-label-em {
@@ -800,6 +804,10 @@ body.environment--windows {
 
 .hero-icon--breakage-form {
   background-image: url("../../img/refresh-assets/Breakage-128.svg");
+  margin-bottom: 20px;
+}
+.environment--browser .hero-icon--breakage-form {
+  margin-bottom: 16px;
 }
 
 .hero-icon--tracker-network {
@@ -855,6 +863,7 @@ body.environment--windows {
 }
 .environment--browser .key-insight {
   background-color: transparent;
+  padding-bottom: 16px;
 }
 .environment--ios .key-insight {
   padding-top: 6px;
@@ -868,6 +877,13 @@ body.environment--windows {
 }
 .environment--browser .key-insight--main {
   padding-top: 6px;
+}
+
+.key-insight--breakage {
+  padding-bottom: 20px;
+}
+.environment--windows .key-insight--breakage {
+  padding-bottom: 12px;
 }
 
 body {
@@ -2887,7 +2903,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 
 .breakage-form {
-  padding-bottom: var(--size-unit);
+  height: 100%;
+}
+.environment--browser .breakage-form {
+  padding-bottom: 0;
 }
 
 .breakage-form__content {
@@ -2932,28 +2951,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   display: block;
 }
 
-.breakage-form__message {
-  text-align: center;
-  padding-bottom: 20px;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-  display: none;
-}
-.breakage-form__message .token-title-3-em {
-  margin-bottom: 8px;
-}
-[data-state=sent] .breakage-form__message {
-  display: block;
-}
-
-.breakage-form__success--title {
-  padding-top: 15px;
-}
-
-.breakage-form__success--message {
-  padding: 15px;
-}
-
 .form__label__select {
   display: block;
   text-align: left;
@@ -2961,7 +2958,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 
 .form__group {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
+}
+.environment--windows .form__group {
+  margin-bottom: 16px;
 }
 
 .form__select {
@@ -2973,7 +2973,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   cursor: pointer;
   display: block;
   width: 100%;
-  min-height: 2em;
+  min-height: 20px;
   border: 1px solid var(--color-lines-light);
   border-radius: 4px;
   margin: 0;
@@ -2981,6 +2981,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 .environment--windows .form__select select {
   min-height: 34px;
+  margin-bottom: 10px;
 }
 
 .form__textarea {
@@ -2999,6 +3000,13 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .body--theme-dark .form__textarea {
   background-color: rgba(255, 255, 255, 0.12);
   border-color: var(--color-lines-light);
+}
+.environment--macos .form__textarea {
+  height: 102px;
+}
+.environment--windows .form__textarea {
+  height: 102px;
+  line-height: 20px;
 }
 
 .form__submit {
@@ -3039,10 +3047,61 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 
 .breakage-form__footer {
-  padding: 0 5px;
+  padding-bottom: 24px;
+  text-align: center;
 }
 .body--theme-dark .breakage-form__footer {
   color: rgba(255, 255, 255, 0.5);
+}
+.environment--browser .breakage-form__footer {
+  margin-top: auto;
+}
+[data-state=sent] .breakage-form__footer {
+  display: none;
+}
+
+.breakage-form__inner {
+  height: calc(100% - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+}
+
+.thanks {
+  text-align: center;
+  padding-bottom: 20px;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+  display: none;
+}
+[data-state=sent] .thanks {
+  display: block;
+}
+
+.thanks__primary {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 20px; /* 133.333% */
+  margin-bottom: 8px;
+}
+.environment--macos .thanks__primary, .environment--macos .thanks__primary {
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 129.412% */
+}
+
+.thanks__secondary {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+.environment--macos .thanks__secondary {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .email-alias {
@@ -3353,32 +3412,29 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   }
 }
 
-.protection-header__toggle {
-  padding-left: 16px;
-  padding-right: 16px;
+.protection-toggle__row {
+  padding-left: 12px;
+  padding-right: 12px;
   padding-top: 12px;
   padding-bottom: 12px;
 }
-.environment--browser .protection-header__toggle {
+.environment--browser .protection-toggle__row {
   padding-top: 8px;
   padding-bottom: 8px;
 }
-
-.protection-header__note {
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-.environment--browser .protection-header__note {
-  padding-top: 8px;
-  padding-bottom: 8px;
+.environment--windows .protection-toggle__row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
-.protection-header__note--alt {
+.protection-toggle__row--alt {
   background: #ccdaff;
 }
-.body--theme-dark .protection-header__note--alt {
+.body--theme-dark .protection-toggle__row--alt {
   background: rgba(85, 127, 243, 0.18);
 }
 

@@ -23252,7 +23252,7 @@
   }
   function HeaderDefault(props) {
     const text = ns.site("websiteNotWorkingAdvice.title");
-    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y("div", { className: "protection-header__toggle" }, /* @__PURE__ */ y(ProtectionToggle, { model: props.model })), props.state === "site-not-working" && /* @__PURE__ */ y("div", { className: "protection-header__note protection-header__note--alt" }, text));
+    return /* @__PURE__ */ y("div", { className: "protection-toggle" }, /* @__PURE__ */ y("div", { className: "protection-toggle__row" }, /* @__PURE__ */ y(ProtectionToggle, { model: props.model })), props.state === "site-not-working" && /* @__PURE__ */ y("div", { className: "protection-toggle__row protection-toggle__row--alt" }, text));
   }
   function HeaderDisabled(props) {
     let text = i18n.t("site:protectionsDisabledRemote.title");
@@ -23300,16 +23300,16 @@
     return import_nanohtml13.default`<section class="sliding-subview">
         <div class="breakage-form">
             ${topNav({ view: "secondary" })}
-            <div class="padding-x-double js-breakage-form-element" data-state="idle">
+            <div class="breakage-form__inner padding-x-double js-breakage-form-element" data-state="idle">
                 <div class="padding-y">${wrap(this.mainModel, this)}</div>
-                <div class="key-insight">
+                <div class="key-insight key-insight--breakage">
                     ${icon}
                     <div class="breakage-form__advise">
                         <p class="token-title-3">${i18n.t("report:selectTheOptionDesc.title")}</p>
                     </div>
-                    <div class="breakage-form__message">
-                        <p class="token-title-3-em">${i18n.t("report:thankYou.title")}</p>
-                        <p class="token-title-3">${i18n.t("report:yourReportWillHelpDesc.title")}</p>
+                    <div class="thanks">
+                        <p class="thanks__primary">${i18n.t("report:thankYou.title")}</p>
+                        <p class="thanks__secondary">${i18n.t("report:yourReportWillHelpDesc.title")}</p>
                     </div>
                 </div>
                 <div class="breakage-form__content">
@@ -23332,9 +23332,9 @@
                                 ${i18n.t("report:sendReport.title")}
                             </button>
                         </div>
-                        <div class="breakage-form__footer token-breakage-form-body">${i18n.t("report:reportsAreAnonymousDesc.title")}</div>
                     </div>
                 </div>
+                <div class="breakage-form__footer token-breakage-form-body">${i18n.t("report:reportsAreAnonymousDesc.title")}</div>
             </div>
         </div>
     </section>`;
