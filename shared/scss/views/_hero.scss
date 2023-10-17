@@ -4,8 +4,11 @@
     //background-color: cyan;
     background-position: center center;
     background-repeat: no-repeat;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     background-size: contain;
+    .environment--browser & {
+        margin-bottom: 16px;
+    }
 }
 
 .hero-icon--breakage-form {

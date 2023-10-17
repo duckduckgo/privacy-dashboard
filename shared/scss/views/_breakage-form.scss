@@ -1,5 +1,9 @@
 .breakage-form {
-    padding-bottom: var(--size-unit);
+    height: 100%;
+
+    .environment--browser & {
+        padding-bottom: 0;
+    }
 }
 
 .breakage-form__content {
@@ -76,7 +80,7 @@
 }
 
 .form__group {
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 }
 
 .form__select {
@@ -88,7 +92,7 @@
     cursor: pointer;
     display: block;
     width: 100%;
-    min-height: 2em;
+    min-height: 20px;
     border: 1px solid var(--color-lines-light);
     border-radius: 4px;
     margin: 0;
@@ -115,6 +119,10 @@
     .body--theme-dark & {
         background-color: $dark-mode-white;
         border-color: var(--color-lines-light);
+    }
+
+    .environment--macos & {
+        height: 102px;
     }
 }
 
@@ -161,9 +169,20 @@
 }
 
 .breakage-form__footer {
-    padding: 0 5px;
+    padding-bottom: 24px;
+    text-align: center;
 
     .body--theme-dark & {
         color: rgba(255, 255, 255, 0.5);
     }
+
+    .environment--browser & {
+        margin-top: auto;
+    }
+}
+
+.breakage-form__inner {
+    height: calc(100% - var(--nav-height));
+    display: flex;
+    flex-direction: column;
 }

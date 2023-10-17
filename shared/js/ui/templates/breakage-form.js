@@ -35,7 +35,7 @@ export default function () {
     return html`<section class="sliding-subview">
         <div class="breakage-form">
             ${topNav({ view: 'secondary' })}
-            <div class="padding-x-double js-breakage-form-element" data-state="idle">
+            <div class="breakage-form__inner padding-x-double js-breakage-form-element" data-state="idle">
                 <div class="padding-y">${wrap(this.mainModel, this)}</div>
                 <div class="key-insight">
                     ${icon}
@@ -67,9 +67,9 @@ export default function () {
                                 ${i18n.t('report:sendReport.title')}
                             </button>
                         </div>
-                        <div class="breakage-form__footer token-breakage-form-body">${i18n.t('report:reportsAreAnonymousDesc.title')}</div>
                     </div>
                 </div>
+                <div class="breakage-form__footer token-breakage-form-body">${i18n.t('report:reportsAreAnonymousDesc.title')}</div>
             </div>
         </div>
     </section>`

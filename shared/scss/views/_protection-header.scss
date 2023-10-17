@@ -1,6 +1,10 @@
-.protection-header__toggle {
-    padding-left: 16px;
-    padding-right: 16px;
+.protection-toggle {
+}
+
+.protection-toggle__row {
+    // default is browser
+    padding-left: 12px;
+    padding-right: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
 
@@ -8,20 +12,13 @@
         padding-top: 8px;
         padding-bottom: 8px;
     }
-}
-.protection-header__note {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-
-    .environment--browser & {
-        padding-top: 8px;
-        padding-bottom: 8px;
+    .environment--macos & {
+        //padding-top: 11px;
+        //padding-bottom: 11px;
     }
 }
 
-.protection-header__note--alt {
+.protection-toggle__row--alt {
     background: $color-note-blue;
     .body--theme-dark & {
         background: rgba($color-note-blue--dark, 18%);

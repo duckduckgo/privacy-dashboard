@@ -1,6 +1,6 @@
 .key-insight {
     position: relative;
-    padding-bottom: 24px;
+    padding-bottom: 20px;
     text-align: center;
 
     &[data-suffix='about-link'] {
@@ -9,6 +9,7 @@
 
     .environment--browser & {
         background-color: transparent;
+        padding-bottom: 16px;
     }
 
     // slight padding needed on ios to move this below the nav

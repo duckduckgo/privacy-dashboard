@@ -150,12 +150,12 @@ export function ProtectionHeaderText() {
 function HeaderDefault(props) {
     const text = ns.site('websiteNotWorkingAdvice.title')
     return (
-        <>
-            <div className="protection-header__toggle">
+        <div className="protection-toggle">
+            <div className="protection-toggle__row">
                 <ProtectionToggle model={props.model} />
             </div>
-            {props.state === 'site-not-working' && <div className="protection-header__note protection-header__note--alt">{text}</div>}
-        </>
+            {props.state === 'site-not-working' && <div className="protection-toggle__row protection-toggle__row--alt">{text}</div>}
+        </div>
     )
 }
 
