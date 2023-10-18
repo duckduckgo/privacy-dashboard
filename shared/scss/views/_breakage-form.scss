@@ -98,13 +98,12 @@
     line-height: 16px;
 
     &::placeholder {
-        color: rgba(0, 0, 0, .6)
+        color: rgba(0, 0, 0, 0.6);
     }
 
     .body--theme-dark & {
-
         &::placeholder {
-            color: rgba(255, 255, 255, .6)
+            color: rgba(255, 255, 255, 0.6);
         }
 
         background-color: $dark-mode-white;
