@@ -23289,7 +23289,6 @@
       { category: ns.report("comments.title"), value: "comments" },
       { category: ns.report("login.title"), value: "login" },
       { category: ns.report("shopping.title"), value: "shopping" },
-      { category: ns.report("browser.title"), value: "browser" },
       { category: ns.report("other.title"), value: "other" }
     ];
     const icon = largeHeroIcon({
