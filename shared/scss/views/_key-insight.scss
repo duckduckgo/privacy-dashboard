@@ -9,7 +9,6 @@
 
     .environment--browser & {
         background-color: transparent;
-        padding-bottom: 16px;
     }
 
     // slight padding needed on ios to move this below the nav
@@ -34,6 +33,10 @@
 
 .key-insight--breakage {
     padding-bottom: 20px;
+
+    .environment--browser & {
+        padding-bottom: 16px;
+    }
     .environment--windows & {
         padding-bottom: 12px;
     }

@@ -199,7 +199,7 @@ body.environment--browser {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 18px;
 }
 body.environment--ios, body.environment--android, body.environment--example {
   --width: 100%;
@@ -863,7 +863,6 @@ body.environment--windows {
 }
 .environment--browser .key-insight {
   background-color: transparent;
-  padding-bottom: 16px;
 }
 .environment--ios .key-insight {
   padding-top: 6px;
@@ -881,6 +880,9 @@ body.environment--windows {
 
 .key-insight--breakage {
   padding-bottom: 20px;
+}
+.environment--browser .key-insight--breakage {
+  padding-bottom: 16px;
 }
 .environment--windows .key-insight--breakage {
   padding-bottom: 12px;
@@ -3427,6 +3429,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .environment--browser .protection-toggle__row {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+.environment--android .protection-toggle__row {
+  padding: 14px 16px;
 }
 .environment--windows .protection-toggle__row {
   padding-top: 7px;

@@ -8,7 +8,7 @@
         }]
     },
     "selectTheOptionDesc": {
-        "title": "Select the option that best describes the problem you experienced.",
+        "title": "Submitting an anonymous broken site report helps us improve the app.",
         "note": "The user will see this UI when they're running into issues with a given website, that we may be causing"
     },
     "pickYourIssueFromTheList": {
