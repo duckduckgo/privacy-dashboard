@@ -12,7 +12,7 @@
         "note": "The user will see this UI when they're running into issues with a given website, that we may be causing"
     },
     "pickYourIssueFromTheList": {
-        "title": "Pick your issue from the list...",
+        "title": "Describe what happened",
         "note": "Asks the user to pick a specific list from the pulldown"
     },
     "blocked": {
