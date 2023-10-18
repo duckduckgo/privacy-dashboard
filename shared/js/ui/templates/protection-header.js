@@ -30,7 +30,7 @@ export function protectionHeader(model) {
         isDenylisted: model.isDenylisted,
         platformFeatures: model.features,
         isBroken: model.isBroken,
-        toggleAllowlist: model.toggleAllowlist.bind(model),
+        toggleAllowlist: () => model.toggleAllowlist({ screen: 'primaryScreen' }),
     }
     render(
         <ProtectionHeader model={migrationModel}>
@@ -54,7 +54,7 @@ export function protectionDefault(model) {
         isDenylisted: model.isDenylisted,
         platformFeatures: model.features,
         isBroken: model.isBroken,
-        toggleAllowlist: model.toggleAllowlist.bind(model),
+        toggleAllowlist: () => model.toggleAllowlist({ screen: 'primaryScreen' }),
     }
     render(<ProtectionToggle model={migrationModel} />, root)
     return root

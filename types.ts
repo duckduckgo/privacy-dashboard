@@ -53,7 +53,9 @@ interface Window {
             privacyDashboardSetSize?: any
             privacyDashboardShowReportBrokenSite?: any
             privacyDashboardClose?: any
-            privacyDashboardSetProtection?: any
+            privacyDashboardSetProtection?: {
+                postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void
+            }
             privacyDashboardOpenSettings?: any
             privacyDashboardSetPermission?: any
         }

@@ -216,7 +216,7 @@ export class Mocks {
                     {
                         Feature: 'PrivacyDashboard',
                         Name: 'AddToAllowListCommand',
-                        Data: undefined,
+                        Data: { eventOrigin: { screen: 'primaryScreen' } },
                     },
                 ],
             ])

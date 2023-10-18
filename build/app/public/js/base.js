@@ -10351,7 +10351,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -10449,6 +10449,9 @@
       primaryScreenSchema = mod.object({
         layout: mod.union([mod.literal("default"), mod.literal("highlighted-protections-toggle")])
       });
+      eventOriginSchema = mod.object({
+        screen: mod.union([mod.literal("primaryScreen"), mod.literal("breakageForm")])
+      });
       detectedRequestSchema = mod.object({
         url: mod.string(),
         eTLDplus1: mod.string().optional(),
@@ -10477,6 +10480,10 @@
       });
       remoteFeatureSettingsSchema = mod.object({
         primaryScreen: primaryScreenSchema.optional()
+      });
+      setProtectionParamsSchema = mod.object({
+        isProtected: mod.boolean(),
+        eventOrigin: eventOriginSchema
       });
       requestDataSchema = mod.object({
         requests: mod.array(detectedRequestSchema),
@@ -10516,7 +10523,8 @@
         "refresh-alias-response": refreshAliasResponseSchema.optional(),
         exe: extensionMessageSetListOptionsSchema.optional(),
         "fire-button": fireButtonDataSchema.optional(),
-        "feature-settings": remoteFeatureSettingsSchema.optional()
+        "feature-settings": remoteFeatureSettingsSchema.optional(),
+        "set-protection": setProtectionParamsSchema.optional()
       });
     }
   });
@@ -10613,10 +10621,12 @@
         /**
          * @param {object} params
          * @param {Array<{ list: "allowlisted" | "denylisted", domain: string, value: boolean}>} params.lists
+         * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
          */
         constructor(params) {
           super();
           this.lists = params.lists;
+          this.eventOrigin = params.eventOrigin;
         }
       };
       SubmitBrokenSiteReportMessage = class extends Msg {
@@ -12306,8 +12316,11 @@
           continue;
         }
         const isProtected = value === false;
-        invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-        window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected);
+        invariant(window.webkit?.messageHandlers?.privacyDashboardSetProtection, "webkit.messageHandlers required");
+        window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage({
+          isProtected,
+          eventOrigin: message.eventOrigin
+        });
       }
     }
     if (message instanceof OpenSettingsMessages) {
@@ -12814,10 +12827,11 @@
           continue;
         }
         const isProtected = value === false;
+        const eventOrigin = message.eventOrigin;
         if (isProtected) {
-          windowsPostMessage("RemoveFromAllowListCommand");
+          windowsPostMessage("RemoveFromAllowListCommand", { eventOrigin });
         } else {
-          windowsPostMessage("AddToAllowListCommand");
+          windowsPostMessage("AddToAllowListCommand", { eventOrigin });
         }
       }
     }
@@ -23183,7 +23197,7 @@
       isDenylisted: model.isDenylisted,
       platformFeatures: model.features,
       isBroken: model.isBroken,
-      toggleAllowlist: model.toggleAllowlist.bind(model)
+      toggleAllowlist: () => model.toggleAllowlist({ screen: "primaryScreen" })
     };
     B(
       /* @__PURE__ */ y(ProtectionHeader, { model: migrationModel }, /* @__PURE__ */ y(ProtectionHeaderText, null)),
@@ -23199,7 +23213,7 @@
       isDenylisted: model.isDenylisted,
       platformFeatures: model.features,
       isBroken: model.isBroken,
-      toggleAllowlist: model.toggleAllowlist.bind(model)
+      toggleAllowlist: () => model.toggleAllowlist({ screen: "primaryScreen" })
     };
     B(/* @__PURE__ */ y(ProtectionToggle, { model: migrationModel }), root);
     return root;
@@ -23346,7 +23360,7 @@
       isDenylisted: model.isDenylisted,
       platformFeatures: model.features,
       isBroken: model.isBroken,
-      toggleAllowlist: model.toggleAllowlist.bind(model)
+      toggleAllowlist: () => model.toggleAllowlist({ screen: "breakageForm" })
     };
     view.roots.set(root, true);
     B(/* @__PURE__ */ y(ProtectionHeader, { model: migrationModel, initialState: "site-not-working" }), root);
@@ -23746,8 +23760,11 @@
           }
           this.set("protectionsEnabled", this.protectionsEnabled);
         },
-        /** @this {LocalThis} */
-        toggleAllowlist: function() {
+        /**
+         * @param {import('../../../../schema/__generated__/schema.types.js').EventOrigin} eventOrigin
+         * @this {LocalThis}
+         */
+        toggleAllowlist: function(eventOrigin) {
           const lists = [];
           this.set("acceptingUpdates", false);
           if (this.tab && this.tab.domain) {
@@ -23770,15 +23787,16 @@
               });
             }
           }
-          this.setLists(lists).catch((e3) => console.error(e3));
+          this.setLists(lists, eventOrigin).catch((e3) => console.error(e3));
         },
         /**
          * @param {SetListsMessage["lists"]} lists
+         * @param {import('../../../../schema/__generated__/schema.types.js').EventOrigin} eventOrigin
          * @returns {Promise<boolean>}
          */
-        async setLists(lists) {
+        async setLists(lists, eventOrigin) {
           try {
-            return this.fetch(new SetListsMessage({ lists }));
+            return this.fetch(new SetListsMessage({ lists, eventOrigin }));
           } catch (e3) {
             console.error("setList error", e3);
             return false;

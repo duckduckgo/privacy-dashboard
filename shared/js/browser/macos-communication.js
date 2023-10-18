@@ -211,8 +211,11 @@ async function fetch(message) {
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
             const isProtected = value === false
-            invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-            window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
+            invariant(window.webkit?.messageHandlers?.privacyDashboardSetProtection, 'webkit.messageHandlers required')
+            window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage({
+                isProtected,
+                eventOrigin: message.eventOrigin,
+            })
         }
     }
     if (message instanceof OpenSettingsMessages) {

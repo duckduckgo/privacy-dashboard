@@ -154,11 +154,13 @@ async function fetch(message) {
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
             const isProtected = value === false
+            /** @type {import('../../../schema/__generated__/schema.types').EventOrigin} */
+            const eventOrigin = message.eventOrigin
 
             if (isProtected) {
-                windowsPostMessage('RemoveFromAllowListCommand')
+                windowsPostMessage('RemoveFromAllowListCommand', { eventOrigin })
             } else {
-                windowsPostMessage('AddToAllowListCommand')
+                windowsPostMessage('AddToAllowListCommand', { eventOrigin })
             }
         }
     }

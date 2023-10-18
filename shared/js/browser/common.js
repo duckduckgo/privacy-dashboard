@@ -254,6 +254,7 @@ export class SetListsMessage extends Msg {
     /**
      * @param {object} params
      * @param {Array<{ list: "allowlisted" | "denylisted", domain: string, value: boolean}>} params.lists
+     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
      */
     constructor(params) {
         super()
@@ -261,6 +262,10 @@ export class SetListsMessage extends Msg {
          * @type {Array<{list: "allowlisted" | "denylisted", domain: string, value: boolean}>}
          */
         this.lists = params.lists
+        /**
+         * @type {import('../../../schema/__generated__/schema.types').EventOrigin}
+         */
+        this.eventOrigin = params.eventOrigin
     }
 }
 

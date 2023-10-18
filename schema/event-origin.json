@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EventOrigin",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["screen"],
+    "properties": {
+        "screen": {
+            "type": "string",
+            "enum": ["primaryScreen", "breakageForm"]
+        }
+    }
+}

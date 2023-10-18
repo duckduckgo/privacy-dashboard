@@ -116,6 +116,10 @@ export const primaryScreenSchema = z.object({
     layout: z.union([z.literal("default"), z.literal("highlighted-protections-toggle")])
 });
 
+export const eventOriginSchema = z.object({
+    screen: z.union([z.literal("primaryScreen"), z.literal("breakageForm")])
+});
+
 export const detectedRequestSchema = z.object({
     url: z.string(),
     eTLDplus1: z.string().optional(),
@@ -148,6 +152,11 @@ export const fireButtonDataSchema = z.object({
 
 export const remoteFeatureSettingsSchema = z.object({
     primaryScreen: primaryScreenSchema.optional()
+});
+
+export const setProtectionParamsSchema = z.object({
+    isProtected: z.boolean(),
+    eventOrigin: eventOriginSchema
 });
 
 export const requestDataSchema = z.object({
@@ -193,6 +202,7 @@ export const apiSchema = z.object({
     "refresh-alias-response": refreshAliasResponseSchema.optional(),
     exe: extensionMessageSetListOptionsSchema.optional(),
     "fire-button": fireButtonDataSchema.optional(),
-    "feature-settings": remoteFeatureSettingsSchema.optional()
+    "feature-settings": remoteFeatureSettingsSchema.optional(),
+    "set-protection": setProtectionParamsSchema.optional()
 });
 
