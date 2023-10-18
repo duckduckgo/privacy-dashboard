@@ -97,7 +97,16 @@
     font-size: 13px;
     line-height: 16px;
 
+    &::placeholder {
+        color: rgba(0, 0, 0, .6)
+    }
+
     .body--theme-dark & {
+
+        &::placeholder {
+            color: rgba(255, 255, 255, .6)
+        }
+
         background-color: $dark-mode-white;
         border-color: var(--color-lines-light);
     }

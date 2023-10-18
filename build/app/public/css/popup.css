@@ -2997,9 +2997,15 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   font-size: 13px;
   line-height: 16px;
 }
+.form__textarea::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
 .body--theme-dark .form__textarea {
   background-color: rgba(255, 255, 255, 0.12);
   border-color: var(--color-lines-light);
+}
+.body--theme-dark .form__textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 .environment--macos .form__textarea {
   height: 102px;
