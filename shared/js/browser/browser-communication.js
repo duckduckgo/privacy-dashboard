@@ -286,7 +286,10 @@ export async function getBackgroundTabData() {
         }
     }
 
-    console.log('🙏 getBackgroundTabData ❌', parsedMessageData.error, resp)
+    if (!window.__playwright) {
+        console.log('🙏 getBackgroundTabData ❌', parsedMessageData.error, resp)
+    }
+
     // todo(Shane): Have an error state here instead?
     const protections = {
         allowlisted: false,

@@ -14,6 +14,7 @@ test.describe('initial page data', () => {
 test.describe('breakage form', () => {
     test('should submit with no values', async ({ page }) => {
         const dash = await DashboardPage.browser(page)
+        await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.screenshot('breakage-form.png')
@@ -23,6 +24,7 @@ test.describe('breakage form', () => {
     })
     test('should submit with description', async ({ page }) => {
         const dash = await DashboardPage.browser(page)
+        await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOn])
         await dash.clickReportBreakage()
         await dash.enterBreakageSubscription('Video not playing')
@@ -34,6 +36,7 @@ test.describe('breakage form', () => {
     })
     test('should submit with category', async ({ page }) => {
         const dash = await DashboardPage.browser(page)
+        await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOn])
         const optionToSelect = 'Video didn’t play or load'
         await dash.clickReportBreakage()
@@ -50,27 +53,27 @@ test.describe('Protections toggle', () => {
     test.describe('when a site is NOT allowlisted', () => {
         test('then pressing toggle should disable protections', async ({ page }) => {
             const dash = await DashboardPage.browser(page)
+            await dash.reducedMotion()
             await dash.addState([testDataStates.protectionsOn])
             await dash.toggleProtectionsOff()
-            await page.waitForTimeout(500) // todo(Shane): remove this
             await dash.mocks.calledForToggleAllowList('protections-off')
         })
     })
     test.describe('When the site is already allowlisted', () => {
         test('then pressing the toggle re-enables protections', async ({ page }) => {
             const dash = await DashboardPage.browser(page)
+            await dash.reducedMotion()
             await dash.addState([testDataStates.allowlisted])
             await dash.toggleProtectionsOn()
-            await page.waitForTimeout(500) // todo(Shane): remove this
             await dash.mocks.calledForToggleAllowList('protections-on')
         })
     })
     test.describe('When the site has content blocking disabled', () => {
         test('then pressing the toggle re-enables protections (overriding our decision)', async ({ page }) => {
             const dash = await DashboardPage.browser(page)
+            await dash.reducedMotion()
             await dash.addState([testDataStates.protectionsOff])
             await dash.toggleProtectionsOn()
-            await page.waitForTimeout(500) // todo(Shane): remove this
             await dash.mocks.calledForToggleAllowList('protections-on-override')
         })
     })

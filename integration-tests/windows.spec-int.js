@@ -34,8 +34,8 @@ test.describe('Protections toggle', () => {
     test('pressing toggle should disable protections', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
         await dash.addState([testDataStates.protectionsOn])
+        await dash.reducedMotion()
         await dash.toggleProtectionsOff()
-        await page.waitForTimeout(500) // todo(Shane): remove this
         await dash.mocks.calledForToggleAllowList()
     })
 })

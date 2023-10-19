@@ -80,7 +80,7 @@ export default function () {
  * @return {HTMLElement}
  */
 function wrap(model, view) {
-    const root = html`<div></div>`
+    const root = html`<div data-testid="breakage-form-protection-header"></div>`
     const migrationModel = {
         protectionsEnabled: model.protectionsEnabled,
         isAllowlisted: model.isAllowlisted,

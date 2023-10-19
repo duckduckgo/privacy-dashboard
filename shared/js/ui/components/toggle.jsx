@@ -75,6 +75,8 @@ export function useToggleState(model) {
      */
     useEffect(() => {
         if (!state.sideEffects) return
+        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches === true
+        const timeout = isReducedMotion ? 0 : 300
 
         const int = setTimeout(() => {
             // toggle, this communicates with native
@@ -86,7 +88,7 @@ export function useToggleState(model) {
                     return { ...prev, toggled: true }
                 })
             }
-        }, 300)
+        }, timeout)
         return () => {
             clearTimeout(int)
         }

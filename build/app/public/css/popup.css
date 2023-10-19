@@ -363,6 +363,11 @@ body.environment--windows {
   right: calc(100% - var(--handle-size) - var(--handle-offset));
   background-color: var(--handle-color-off);
 }
+@media (prefers-reduced-motion) {
+  .toggle-button__handle {
+    transition: none;
+  }
+}
 
 .toggle-spinner {
   margin: 0 auto;

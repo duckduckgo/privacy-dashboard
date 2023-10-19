@@ -147,7 +147,7 @@ async function fetch(message) {
         for (const listItem of message.lists) {
             const { list, value } = listItem
             if (list !== 'allowlisted') {
-                console.warn('only `allowlisted` is currently supported on windows')
+                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on windows')
                 continue
             }
 

@@ -110,6 +110,10 @@ body {
         right: calc(100% - var(--handle-size) - var(--handle-offset));
         background-color: var(--handle-color-off);
     }
+
+    @media (prefers-reduced-motion) {
+        transition: none;
+    }
 }
 
 .toggle-spinner {

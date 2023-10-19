@@ -11156,7 +11156,9 @@
         fireButton
       };
     }
-    console.log("\u{1F64F} getBackgroundTabData \u274C", parsedMessageData.error, resp);
+    if (!window.__playwright) {
+      console.log("\u{1F64F} getBackgroundTabData \u274C", parsedMessageData.error, resp);
+    }
     const protections4 = {
       allowlisted: false,
       denylisted: false,
@@ -12312,7 +12314,8 @@
       for (const listItem of message.lists) {
         const { list, value } = listItem;
         if (list !== "allowlisted") {
-          console.warn("only `allowlisted` is currently supported on macos");
+          if (!window.__playwright)
+            console.warn("only `allowlisted` is currently supported on macos");
           continue;
         }
         const isProtected = value === false;
@@ -12581,7 +12584,8 @@
       for (const listItem of message.lists) {
         const { list, value } = listItem;
         if (list !== "allowlisted") {
-          console.warn("only `allowlisted` is currently supported on android");
+          if (!window.__playwright)
+            console.warn("only `allowlisted` is currently supported on android");
           continue;
         }
         const isProtected = value === false;
@@ -12823,7 +12827,8 @@
       for (const listItem of message.lists) {
         const { list, value } = listItem;
         if (list !== "allowlisted") {
-          console.warn("only `allowlisted` is currently supported on windows");
+          if (!window.__playwright)
+            console.warn("only `allowlisted` is currently supported on windows");
           continue;
         }
         const isProtected = value === false;
@@ -23093,6 +23098,8 @@
     p2(() => {
       if (!state.sideEffects)
         return;
+      const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches === true;
+      const timeout = isReducedMotion ? 0 : 300;
       const int = setTimeout(() => {
         model.toggleAllowlist();
         if (model.platformFeatures.spinnerFollowingProtectionsToggle) {
@@ -23100,7 +23107,7 @@
             return { ...prev, toggled: true };
           });
         }
-      }, 300);
+      }, timeout);
       return () => {
         clearTimeout(int);
       };
@@ -23266,7 +23273,8 @@
   }
   function HeaderDefault(props) {
     const text = ns.site("websiteNotWorkingAdvice.title");
-    return /* @__PURE__ */ y("div", { className: "protection-toggle" }, /* @__PURE__ */ y("div", { className: "protection-toggle__row" }, /* @__PURE__ */ y(ProtectionToggle, { model: props.model })), props.state === "site-not-working" && /* @__PURE__ */ y("div", { className: "protection-toggle__row protection-toggle__row--alt" }, text));
+    const showHelp = props.state === "site-not-working" && !props.model.isAllowlisted;
+    return /* @__PURE__ */ y("div", { className: "protection-toggle" }, /* @__PURE__ */ y("div", { className: "protection-toggle__row" }, /* @__PURE__ */ y(ProtectionToggle, { model: props.model })), showHelp && /* @__PURE__ */ y("div", { className: "protection-toggle__row protection-toggle__row--alt" }, text));
   }
   function HeaderDisabled(props) {
     let text = i18n.t("site:protectionsDisabledRemote.title");
@@ -23353,7 +23361,7 @@
     </section>`;
   }
   function wrap(model, view) {
-    const root = import_nanohtml13.default`<div></div>`;
+    const root = import_nanohtml13.default`<div data-testid="breakage-form-protection-header"></div>`;
     const migrationModel = {
       protectionsEnabled: model.protectionsEnabled,
       isAllowlisted: model.isAllowlisted,
