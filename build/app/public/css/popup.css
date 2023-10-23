@@ -363,7 +363,7 @@ body.environment--windows {
   right: calc(100% - var(--handle-size) - var(--handle-offset));
   background-color: var(--handle-color-off);
 }
-@media (prefers-reduced-motion) {
+@media (prefers-reduced-motion: reduce) {
   .toggle-button__handle {
     transition: none;
   }
@@ -3483,7 +3483,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   left: 0;
   transition: left 0.3s ease-in-out;
 }
-@media (prefers-reduced-motion) {
+@media (prefers-reduced-motion: reduce) {
   .sliding-subview.sliding-subview--root {
     transition: none;
   }
