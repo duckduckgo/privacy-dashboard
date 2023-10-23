@@ -2,6 +2,8 @@ import i18next from 'i18next'
 import ICU from 'i18next-icu'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import siteTranslations from '../../../locales/en/site.json'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import reportTranslations from '../../../locales/en/report.json'
 
 // @ts-ignore
 import localeResources from '../../../locales/*/*.json'
@@ -34,6 +36,18 @@ function site(key, options) {
     return i18next.t(`site:${key}`, options)
 }
 
+/**
+ * A helper for accessing the 'report' namespace with a bit of help from Typescript
+ * @template {keyof reportTranslations} K
+ * @template {`${K}.${string}`} F
+ * @param {F} key
+ * @param {Record<string, any>} [options]
+ */
+function report(key, options) {
+    return i18next.t(`report:${key}`, options)
+}
+
 export const ns = {
     site,
+    report,
 }

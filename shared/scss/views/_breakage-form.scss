@@ -1,5 +1,9 @@
 .breakage-form {
-    padding-bottom: var(--size-unit);
+    height: 100%;
+
+    .environment--browser & {
+        padding-bottom: 0;
+    }
 }
 
 .breakage-form__content {
@@ -45,29 +49,6 @@
         display: block;
     }
 }
-.breakage-form__message {
-    text-align: center;
-    padding-bottom: 20px;
-    transition: all 0.2s ease-in-out;
-    opacity: 1;
-    display: none;
-
-    .token-title-3-em {
-        margin-bottom: 8px;
-    }
-
-    [data-state='sent'] & {
-        display: block;
-    }
-}
-
-.breakage-form__success--title {
-    padding-top: 15px;
-}
-
-.breakage-form__success--message {
-    padding: 15px;
-}
 
 .form__label__select {
     display: block;
@@ -76,7 +57,10 @@
 }
 
 .form__group {
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    .environment--windows & {
+        margin-bottom: 16px;
+    }
 }
 
 .form__select {
@@ -88,27 +72,51 @@
     cursor: pointer;
     display: block;
     width: 100%;
-    min-height: 2em;
+    min-height: 20px;
     border: 1px solid var(--color-lines-light);
     border-radius: 4px;
     margin: 0;
     margin-bottom: var(--size-unit);
+
+    .environment--windows & {
+        min-height: 34px;
+        margin-bottom: 10px;
+    }
 }
 
 .form__textarea {
     resize: none;
     width: 100%;
-    height: 110px;
+    height: 88px;
     display: block;
     box-sizing: border-box;
     margin-bottom: var(--size-unit);
     padding: var(--size-unit-half);
     border: 1px solid var(--color-lines-light);
     border-radius: 4px;
+    font-size: 13px;
+    line-height: 16px;
+
+    &::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+    }
 
     .body--theme-dark & {
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
         background-color: $dark-mode-white;
         border-color: var(--color-lines-light);
+    }
+
+    .environment--macos & {
+        height: 102px;
+    }
+
+    .environment--windows & {
+        height: 102px;
+        line-height: 20px;
     }
 }
 
@@ -155,9 +163,65 @@
 }
 
 .breakage-form__footer {
-    padding: 0 5px;
+    padding-bottom: 24px;
+    text-align: center;
 
     .body--theme-dark & {
         color: rgba(255, 255, 255, 0.5);
+    }
+
+    .environment--browser & {
+        margin-top: auto;
+    }
+
+    [data-state='sent'] & {
+        display: none;
+    }
+}
+
+.breakage-form__inner {
+    height: calc(100% - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+}
+
+.thanks {
+    text-align: center;
+    padding-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+    opacity: 1;
+    display: none;
+
+    [data-state='sent'] & {
+        display: block;
+    }
+}
+
+.thanks__primary {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px; /* 133.333% */
+    margin-bottom: 8px;
+
+    .environment--macos &,
+    .environment--macos & {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px; /* 129.412% */
+    }
+}
+.thanks__secondary {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+
+    .environment--macos & {
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
     }
 }

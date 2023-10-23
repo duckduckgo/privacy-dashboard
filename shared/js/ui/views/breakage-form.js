@@ -5,10 +5,12 @@ import ParentSlidingSubview from './sliding-subview.js'
  * @param {object} ops
  * @param {() => HTMLElement} ops.template
  * @param {import("../models/breakage-form.js").BreakageFormModel} ops.model
+ * @param {import('../models/site.js').PublicSiteModel} ops.mainModel
  * @constructor
  */
 function BreakageForm(ops) {
     this.model = ops.model
+    this.mainModel = ops.mainModel
     this.template = ops.template
     // this.$root = $('.js-breakage-form')
     // @ts-ignore
@@ -22,6 +24,7 @@ BreakageForm.prototype = $.extend(
     // @ts-ignore
     ParentSlidingSubview.prototype,
     {
+        roots: new Map(),
         _setup: function () {
             this._cacheElems('.js-breakage-form', ['close', 'submit', 'element', 'dropdown', 'description'])
             this.bindEvents([[this.$submit, 'click', this._submitForm]])

@@ -47,7 +47,12 @@ export default function () {
     return html` <div class="site-info page">
         ${renderSearchWrapper(this.model)} ${topNav({ view: 'primary' })}
         <div class="page-inner" data-with-permissions=${permissions.length > 0}>
-            ${layout === 'highlighted-protections-toggle' ? protectionHeader(this.model) : null}
+            ${layout === 'highlighted-protections-toggle' 
+                    ? html`
+                        <div class="padding-x border--bottom padding-bottom-half">${protectionHeader(this.model)}</div>
+                        <div class="padding-spacer"></div>
+                    ` 
+                    : null}
             <div class="padding-x-double">
                 <div id="key-insight"></div>
             </div>

@@ -63,12 +63,16 @@ export class DashboardPage {
     async screenshot(name) {
         if (!process.env.CI) {
             // console.log('🚧 skipping screenshot 🚧', name)
-            await expect(this.page).toHaveScreenshot(name, { maxDiffPixelRatio: 0.1 })
+            await expect(this.page).toHaveScreenshot(name, { maxDiffPixelRatio: 0.025 })
         }
     }
 
-    async screenshotPrimary(name, state) {
+    async reducedMotion() {
         await this.page.emulateMedia({ reducedMotion: 'reduce' })
+    }
+
+    async screenshotPrimary(name, state) {
+        await this.reducedMotion()
         await this.addState([state])
         await this.showsPrimaryScreen()
         return this.page.screenshot({ path: `screenshots/primary-${name}.png` })
@@ -79,7 +83,7 @@ export class DashboardPage {
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
      */
     async screenshotEachScreenForState(name, state) {
-        await this.page.emulateMedia({ reducedMotion: 'reduce' })
+        await this.reducedMotion()
         await this.addState([state])
         await this.showsPrimaryScreen()
         await this.screenshot(name + '-state-primary.png')
@@ -232,15 +236,42 @@ export class DashboardPage {
         await this.page.locator('"La connexion est chiffrée"').waitFor({ timeout: 500 })
     }
 
-    async toggleProtectionsOff() {
-        await this.page.getByRole('switch', { name: 'Disable Protections' }).click()
-        if (this.platform.name !== 'android') {
-            await this.page.locator('[aria-checked="false"]').waitFor({ timeout: 500 })
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin} [eventOrigin] - where did this originate from
+     * @return {Promise<void>}
+     */
+    async toggleProtectionsOn(eventOrigin = { screen: 'primaryScreen' }) {
+        const locator =
+            eventOrigin.screen === 'breakageForm'
+                ? this.page.getByTestId('breakage-form-protection-header').getByLabel('Enable Protections')
+                : this.page.getByLabel('Enable Protections')
+
+        await locator.click()
+
+        if (this.platform.name === 'browser' || this.platform.name === 'ios' || this.platform.name === 'macos') {
+            await this.page.getByRole('img', { name: 'Updating protection list' }).waitFor()
+        }
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin} [eventOrigin] - where did this originate from
+     * @return {Promise<void>}
+     */
+    async toggleProtectionsOff(eventOrigin = { screen: 'primaryScreen' }) {
+        const locator =
+            eventOrigin.screen === 'breakageForm'
+                ? this.page.getByTestId('breakage-form-protection-header').getByLabel('Disable Protections')
+                : this.page.getByLabel('Disable Protections')
+
+        await locator.click()
+
+        if (this.platform.name === 'browser' || this.platform.name === 'ios' || this.platform.name === 'macos') {
+            await this.page.getByRole('img', { name: 'Updating protection list' }).waitFor()
         }
     }
 
     async indicatesCookiesWereManaged() {
-        await this.page.getByText('Cookies Managed').waitFor({ timeout: 500 })
+        await this.page.getByText('Cookies Managed').waitFor({ timeout: 1000 })
     }
 
     async indicatesCookiesWereHidden() {
@@ -253,13 +284,6 @@ export class DashboardPage {
 
     async disableCookiesInSettings() {
         await this.page.getByRole('link', { name: 'Disable in Settings' }).click()
-    }
-
-    async toggleProtectionsOn() {
-        await this.page.locator('[aria-checked="false"]').click()
-        if (this.platform.name !== 'android') {
-            await this.page.locator('[aria-checked="true"]').waitFor({ timeout: 500 })
-        }
     }
 
     async clickClose() {

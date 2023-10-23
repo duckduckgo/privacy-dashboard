@@ -53,7 +53,7 @@ function Site(attrs) {
  * @property {FeatureSettings} featureSettings
  * @property {any[] | null} permissions
  * @property {import('../../browser/utils/request-details.mjs').TabData} tab
- * @property {() => void} toggleAllowlist
+ * @property {(origin: import('../../../../schema/__generated__/schema.types.js').EventOrigin) => void} toggleAllowlist
  */
 
 /**
@@ -286,8 +286,11 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.set('protectionsEnabled', this.protectionsEnabled)
     },
 
-    /** @this {LocalThis} */
-    toggleAllowlist: function () {
+    /**
+     * @param {import('../../../../schema/__generated__/schema.types.js').EventOrigin} eventOrigin
+     * @this {LocalThis}
+     */
+    toggleAllowlist: function (eventOrigin) {
         /** @type {SetListsMessage["lists"]} */
         const lists = []
         this.set('acceptingUpdates', false)
@@ -312,16 +315,17 @@ Site.prototype = $.extend({}, Parent.prototype, {
                 })
             }
         }
-        this.setLists(lists).catch((e) => console.error(e))
+        this.setLists(lists, eventOrigin).catch((e) => console.error(e))
     },
 
     /**
      * @param {SetListsMessage["lists"]} lists
+     * @param {import('../../../../schema/__generated__/schema.types.js').EventOrigin} eventOrigin
      * @returns {Promise<boolean>}
      */
-    async setLists(lists) {
+    async setLists(lists, eventOrigin) {
         try {
-            return this.fetch(new SetListsMessage({ lists }))
+            return this.fetch(new SetListsMessage({ lists, eventOrigin: eventOrigin }))
         } catch (e) {
             console.error('setList error', e)
             return false

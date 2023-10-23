@@ -59,6 +59,7 @@ export interface API {
   exe?: ExtensionMessageSetListOptions;
   "fire-button"?: FireButtonData;
   "feature-settings"?: RemoteFeatureSettings;
+  "set-protection"?: SetProtectionParams;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -389,5 +390,12 @@ export interface PrimaryScreen {
    * A string to represent different screen layouts
    */
   layout: "default" | "highlighted-protections-toggle";
+}
+export interface SetProtectionParams {
+  isProtected: boolean;
+  eventOrigin: EventOrigin;
+}
+export interface EventOrigin {
+  screen: "primaryScreen" | "breakageForm";
 }
 

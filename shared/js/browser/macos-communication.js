@@ -205,14 +205,17 @@ async function fetch(message) {
         for (const listItem of message.lists) {
             const { list, value } = listItem
             if (list !== 'allowlisted') {
-                console.warn('only `allowlisted` is currently supported on macos')
+                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on macos')
                 continue
             }
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
             const isProtected = value === false
-            invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-            window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(isProtected)
+            invariant(window.webkit?.messageHandlers?.privacyDashboardSetProtection, 'webkit.messageHandlers required')
+            window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage({
+                isProtected,
+                eventOrigin: message.eventOrigin,
+            })
         }
     }
     if (message instanceof OpenSettingsMessages) {

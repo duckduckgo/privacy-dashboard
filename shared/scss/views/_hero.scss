@@ -10,6 +10,10 @@
 
 .hero-icon--breakage-form {
     @include cross_platform_bg_image('refresh-assets/Breakage-128.svg');
+    margin-bottom: 20px;
+    .environment--browser & {
+        margin-bottom: 16px;
+    }
 }
 .hero-icon--tracker-network {
     @include cross_platform_bg_image('refresh-assets/Network-128.svg');

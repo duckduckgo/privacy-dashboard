@@ -114,7 +114,7 @@ function template() {
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
     return html`
-        <ul class="default-list card-list--bordered main-nav token-body-em js-site-main-nav">
+        <ul class="default-list main-nav token-body-em js-site-main-nav">
             <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
             <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
             <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>

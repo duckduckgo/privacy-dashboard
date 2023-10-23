@@ -57,6 +57,7 @@ test.describe('breakage form', () => {
 test.describe('open external links', () => {
     test('should call ios interface for links', async ({ page }) => {
         const dash = await DashboardPage.ios(page)
+        await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
         await dash.clickAboutLink()
@@ -196,7 +197,6 @@ if (!process.env.CI) {
             test(name, async ({ page }, testInfo) => {
                 const dash = await DashboardPage.ios(page)
                 const screen = await dash.screenshotPrimary(name, state)
-                await page.pause()
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { certificate, ...rest } = state
                 await testInfo.attach(name, {

@@ -40,11 +40,28 @@ export class Mocks {
      * @returns {Promise<any[]>}
      */
     async outgoing(opts = { names: [] }) {
-        const result = await this.page.evaluate(() => window.__playwright.mocks.outgoing)
+        await this.page.waitForFunction(
+            (opts) => {
+                const current = window.__playwright.mocks.outgoing
+                if (opts.names.length) {
+                    const target = opts.names.length
+                    const messages = current.filter(([name]) => opts.names.includes(name))
+                    if (messages.length >= target) return true
+                    return false
+                }
+                if (current.length > 0) return true
+                return false
+            },
+            opts,
+            { timeout: 5000 }
+        )
+
+        const values = await this.page.evaluate(() => window.__playwright.mocks.outgoing)
+
         if (Array.isArray(opts.names) && opts.names.length > 0) {
-            return result.filter(([name]) => opts.names.includes(name))
+            return values.filter(([name]) => opts.names.includes(name))
         }
-        return result
+        return values
     }
 
     async calledForShowBreakageForm() {
@@ -108,8 +125,8 @@ export class Mocks {
     }
 
     async calledForAboutLink() {
-        const calls = await this.outgoing({ names: ['openInNewTab'] })
         if (this.platform.name === 'android') {
+            const calls = await this.outgoing({ names: ['openInNewTab'] })
             expect(calls).toMatchObject([
                 [
                     'openInNewTab',
@@ -200,9 +217,10 @@ export class Mocks {
 
     /**
      * @param {"protections-off" | "protections-on" | "protections-on-override"} kind
+     * @param {import('../schema/__generated__/schema.types').EventOrigin} eventOrigin
      * @returns {Promise<void>}
      */
-    async calledForToggleAllowList(kind = 'protections-off') {
+    async calledForToggleAllowList(kind = 'protections-off', eventOrigin = { screen: 'primaryScreen' }) {
         if (this.platform.name === 'android') {
             const calls = await this.outgoing({ names: ['toggleAllowlist'] })
             expect(calls).toMatchObject([['toggleAllowlist', false]])
@@ -216,7 +234,20 @@ export class Mocks {
                     {
                         Feature: 'PrivacyDashboard',
                         Name: 'AddToAllowListCommand',
-                        Data: undefined,
+                        Data: { eventOrigin: eventOrigin },
+                    },
+                ],
+            ])
+            return
+        }
+        if (this.platform.name === 'macos') {
+            const calls = await this.outgoing({ names: ['privacyDashboardSetProtection'] })
+            expect(calls).toMatchObject([
+                [
+                    'privacyDashboardSetProtection',
+                    {
+                        eventOrigin: eventOrigin,
+                        isProtected: false,
                     },
                 ],
             ])

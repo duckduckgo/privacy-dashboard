@@ -128,6 +128,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this.views.slidingSubview = new BreakageFormView({
             template: breakageFormTemplate,
             model: new BreakageFormModel(),
+            mainModel: this.model,
         })
     },
 

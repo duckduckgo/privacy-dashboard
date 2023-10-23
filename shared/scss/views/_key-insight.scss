@@ -30,3 +30,14 @@
         padding-top: 6px;
     }
 }
+
+.key-insight--breakage {
+    padding-bottom: 20px;
+
+    .environment--browser & {
+        padding-bottom: 16px;
+    }
+    .environment--windows & {
+        padding-bottom: 12px;
+    }
+}

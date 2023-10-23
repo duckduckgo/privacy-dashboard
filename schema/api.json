@@ -25,6 +25,9 @@
         "fire-button": { "$ref": "./fire-button.json" },
         "feature-settings": {
             "$ref": "remote-feature-settings.json"
+        },
+        "set-protection": {
+            "$ref": "set-protection.json"
         }
     }
 }

@@ -317,7 +317,7 @@ async function fetchAndroid(message) {
         for (const listItem of message.lists) {
             const { list, value } = listItem
             if (list !== 'allowlisted') {
-                console.warn('only `allowlisted` is currently supported on android')
+                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on android')
                 continue
             }
 
