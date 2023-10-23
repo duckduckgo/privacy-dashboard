@@ -111,7 +111,7 @@ body {
         background-color: var(--handle-color-off);
     }
 
-    @media (prefers-reduced-motion) {
+    @media (prefers-reduced-motion: reduce) {
         transition: none;
     }
 }
