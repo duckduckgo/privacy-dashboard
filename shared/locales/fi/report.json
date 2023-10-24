@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Valitse vaihtoehto, joka parhaiten kuvaa ongelmaa.",
+    "title" : "Anonyymin raportin lähettäminen toimimattomasta sivustosta auttaa meitä parantamaan sovellusta.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Valitse ongelma luettelosta...",
+    "title" : "Kuvaile mitä tapahtui",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Sivusto estetty tai ei latautunut",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Sivuston asettelu rikki",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Sivustolla on suuria tyhjiä tiloja",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Videoita ei toistettu",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Videota ei toistettu tai se ei latautunut",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Kuvat eivät latautuneet",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Kommentit eivät latautuneet",
+    "title" : "Kommentit, arvostelut tai chatit eivät latautuneet",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "En pysty kirjautumaan sisään",
+    "title" : "Ei voi kirjautua sisään/rekisteröityä",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Ei voi maksaa, siirtyä kassalle tai ostaa",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Selaimeen tai selainlaajennukseen liittyvä ongelma",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Sivusto pyysi minua poistamaan käytöstä",
+    "title" : "Sivusto pyysi minua poistamaan mainosten eston",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Jos haluat, kerro meille ongelmasta",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Anna lisätietoja (valinnainen):{bullet}Mitä tapahtui?{bullet}Mitä olisi pitänyt tapahtua?{bullet}Auttoiko estojen poistaminen käytöstä?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Lähetä raportti",

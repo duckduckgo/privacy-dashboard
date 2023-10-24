@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Επιλέξτε αυτό που περιγράφει καλύτερα το πρόβλημα που αντιμετωπίσατε.",
+    "title" : "Η υποβολή ανώνυμης αναφοράς μη λειτουργίας ιστότοπου μας βοηθά να βελτιώσουμε την εφαρμογή.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Επιλέξτε το πρόβλημα που αντιμετωπίζετε, από τη λίστα...",
+    "title" : "Περιγράψτε τι συνέβη",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Ο ιστότοπος αποκλείστηκε ή δεν φορτώθηκε",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Η διάταξη του ιστότοπου δεν λειτουργεί σωστά",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Ο ιστότοπος περιέχει μεγάλους κενούς χώρους",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Το βίντεο δεν έπαιξε",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Δεν έγινε αναπαραγωγή ή φόρτωση του βίντεο",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Οι εικόνες δεν φορτώθηκαν",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Τα σχόλια δεν φορτώθηκαν",
+    "title" : "Τα σχόλια, οι κριτικές ή οι συνομιλίες δεν φορτώθηκαν",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Δεν μπορώ να συνδεθώ",
+    "title" : "Δεν είναι δυνατή η σύνδεση/εγγραφή",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Δεν είναι δυνατή η πληρωμή ή η ολοκλήρωση μιας αγοράς",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Πρόβλημα με το πρόγραμμα περιήγησης ή άλλο πρόβλημα επέκτασης με το πρόγραμμα περιήγησης",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Ο ιστότοπος μου ζήτησε να απενεργοποιήσω",
+    "title" : "Ο ιστότοπος μου ζήτησε να απενεργοποιήσω το πρόγραμμα αποκλεισμού διαφημίσεων",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Αν θέλετε, πείτε μας για το πρόβλημα που αντιμετωπίσατε",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Μοιραστείτε περισσότερες λεπτομέρειες (προαιρετικό):{bullet}Τι συνέβη;{bullet}Τι θα έπρεπε να είχε συμβεί;{bullet}Βοήθησε η απενεργοποίηση της προστασίας;",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Αποστολή Αναφοράς",

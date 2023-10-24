@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Odaberi opciju koja najbolje opisuje nastali problem.",
+    "title" : "Podnošenje anonimnog izvješća o neispravnoj web-lokaciji pomaže nam poboljšati aplikaciju.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Odaberi svoj problem s popisa...",
+    "title" : "Opiši što se dogodilo",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Stranica je blokirana ili se nije učitala",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Stranica ne izgleda ispravno",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Stranica sadrži velike prazne prostore",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Videozapis nije se reproducirao",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Videozapis se nije reproducirao ili učitao",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Slike se nisu učitale",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Komentari se nisu učitali",
+    "title" : "Komentari, recenzije ili razgovori nisu se učitali",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Ne mogu se prijaviti",
+    "title" : "Ne mogu se prijaviti/registrirati",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Ne mogu platiti, odjaviti se ili kupovati",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Problem s preglednikom ili proširenjem",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Web-mjesto zatražilo je da onemogućim",
+    "title" : "Web-lokacija me zamolila da onemogućim blokiranje oglasa",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Ako želiš, reci nam više o svom problemu",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Podijelite više pojedinosti (nije obavezno):{bullet}Što se dogodilo?{bullet}Što se trebalo dogoditi?{bullet}Je li isključivanje zaštite pomoglo?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Pošalji izvješće",

@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Selecteer de optie die het beste je probleem beschrijft.",
+    "title" : "Als je een anoniem rapport over een kapotte site indient, helpt dat ons om de app te verbeteren.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Kies je probleem in de lijst ...",
+    "title" : "Beschrijf wat er is gebeurd",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Site geblokkeerd of niet geladen",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Site wordt niet goed vormgegeven",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Site bevat grote lege ruimtes",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Video werd niet afgespeeld",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Video niet afgespeeld of geladen",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Afbeeldingen zijn niet geladen",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Opmerkingen zijn niet geladen",
+    "title" : "Reacties, recensies of chats niet geladen",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Ik kan niet inloggen",
+    "title" : "Aanmelden/registreren niet mogelijk",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Betalen, afrekenen of winkelen niet mogelijk",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Probleem met browser of andere browserextensie",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "De site heeft me gevraagd om uit te schakelen",
+    "title" : "De site vroeg me om de adblocker uit te schakelen",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,15 +69,15 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Vertel ons eventueel over het probleem dat je hebt ondervonden",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Meer details delen (optioneel):{bullet}Wat is er gebeurd?{bullet}Wat had er moeten gebeuren?{bullet} Hielp het uitschakelen van de beveiliging?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Verzend Rapport",
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Rapporten die naar DuckDuckGo worden verzonden, bevatten alleen informatie die nodig is om ons te helpen je feedback te verwerken.",
+    "title" : "Rapporten die naar DuckDuckGo worden verzonden, bevatten alleen de info die nodig is om ons te helpen je feedback te verwerken.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {

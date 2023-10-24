@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Sélectionnez l'option qui décrit le mieux le problème rencontré.",
+    "title" : "La soumission d'un rapport anonyme pour signaler le mauvais fonctionnement du site nous aide à améliorer l'application.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Sélectionnez votre problème dans la liste...",
+    "title" : "Décrivez ce qui s'est passé",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Le site est bloqué ou le chargement de la page a échoué",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Problème de mise en page du site",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Le site contient de grands espaces vides",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "La vidéo n'a pas été lue",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "La lecture ou le chargement de la vidéo n'a pas fonctionné",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Les images ne se sont pas chargées",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Les commentaires n'ont pas été chargés",
+    "title" : "Les commentaires, les avis ou les chats n'ont pas été chargés",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Je ne peux pas me connecter",
+    "title" : "Impossible de se connecter/s'inscrire",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Impossible de payer, de passer au paiement ou d'acheter",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Problème de navigateur ou d'extension de navigateur",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Le site m'a demandé de désactiver",
+    "title" : "Le site m'a demandé de désactiver le bloqueur de publicités",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Si vous le souhaitez, vous pouvez nous en dire plus au sujet du problème rencontré",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Fournir plus de détails (facultatif) :{bullet}Que s'est-il passé ?{bullet}Qu'aurait-il dû se passer ?{bullet}Est-ce que la désactivation des protections a aidé ?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Envoyer un rapport",

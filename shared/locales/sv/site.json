@@ -68,6 +68,22 @@
     "title" : "Fungerar inte webbplatsen som förväntat?",
     "note" : "Call to action for user to click if they are having issues with this web page"
   },
+  "websiteNotWorkingPrompt" : {
+    "title" : "Fungerar inte webbplatsen?",
+    "note" : "button label text when we are trying to encourage a user to toggle protections off"
+  },
+  "websiteNotWorkingCta" : {
+    "title" : "Rapportera skadad webbplats",
+    "note" : "button label text for a trigger that shows our feedback form"
+  },
+  "websiteNotWorkingAdvice" : {
+    "title" : "Det kan hjälpa att stänga av skyddet.",
+    "note" : "help text"
+  },
+  "websiteNotWorkingPromptFollowUp" : {
+    "title" : "Fungerar det fortfarande inte?",
+    "note" : "button label text a user has already turned protections off"
+  },
   "takePrecautions" : {
     "title" : "Vidta försiktighetsåtgärder",
     "note" : "Title shown when the page is unencrypted"

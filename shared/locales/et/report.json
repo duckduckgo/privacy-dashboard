@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Vali suvand, mis kirjeldab sinu probleemi kõige paremini.",
+    "title" : "Anonüümne katkise saidi aruande esitamine aitab meil rakendust täiustada.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Vali loendist oma probleem...",
+    "title" : "Kirjelda toimunut",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Sait on blokeeritud või seda ei laaditud",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Saidi paigutus on katki",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Sait sisaldab suuri tühje alasid",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Videot ei esitatud",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Videot ei esitatud või laaditud",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Pilte ei laaditud",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Kommentaare ei laaditud",
+    "title" : "Kommentaare, arvustusi või vestlusi ei laaditud",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Ma ei saa sisse logida",
+    "title" : "Ei saa sisse logida / registreeruda",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Ei saa maksta, ostu vormistada või ostelda",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Brauseri või muu brauserilaiendi probleem",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Sait palus mul välja lülitada",
+    "title" : "Sait palus mul reklaamiblokeerija keelata",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Soovi korral räägi meile probleemist, mida kogesid",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Selgita täpsemalt (vabatahtlik).{bullet}Mis juhtus?{bullet}Mis oleks pidanud juhtuma?{bullet}Kas kaitsefunktsioonide väljalülitamine aitas?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Saada aruanne",

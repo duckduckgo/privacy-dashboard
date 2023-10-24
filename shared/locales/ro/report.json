@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Selectează opțiunea care descrie cel mai bine problema cu care te-ai confruntat.",
+    "title" : "Trimiterea unui raport anonim privind un site nefuncțional ne ajută să îmbunătățim aplicația.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Alegeți problema ta din listă...",
+    "title" : "Descrie ce s-a întâmplat",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Site-ul era blocat sau nu s-a încărcat",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Aspectul site-ului era defectuos",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Site-ul conține spații goale mari",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Videoclipul nu a funcționat",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Videoclipul nu a fost redat sau încărcat",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Imaginile nu s-au încărcat",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Comentariile nu s-au încărcat",
+    "title" : "Comentariile, recenziile sau mesajele chat nu s-au încărcat",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Nu mă pot conecta",
+    "title" : "Nu pot să mă conectez/înregistrez",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Nu pot plăti sau nu pot face cumpărături",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Problemă cu browserul sau cu altă extensie de browser",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Site-ul mi-a cerut să dezactivez",
+    "title" : "Site-ul mi-a solicitat să dezactivez funcția de blocare a reclamelor",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Dacă dorești, spune-ne despre problema cu care te-ai confruntat",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Comunică mai multe detalii (opțional):{bullet}Ce s-a întâmplat?{bullet}Ce ar fi trebuit să se întâmple?{bullet} Dezactivarea protecțiilor a fost utilă?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Trimite raportul",

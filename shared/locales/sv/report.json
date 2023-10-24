@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Välj det alternativ som bäst beskriver det problem som du har stött på.",
+    "title" : "Genom att skicka in en anonym anmälan om att webbplatsen inte fungerar hjälper du oss att förbättra appen.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Välj din fråga i listan ...",
+    "title" : "Berätta vad som hände:",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Webbplatsen är blockerad eller lästes inte in",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Webbplatsens layout är trasig",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Webbplatsen innehåller stora tomma fält",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Videon kunde inte spelas upp",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Videon spelades inte upp eller laddades inte",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Bilderna kunde inte laddas",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Inlägg kunde inte laddas",
+    "title" : "Kommentarer, recensioner eller chattar laddades inte",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Jag kan inte logga in",
+    "title" : "Det går inte att logga in/registrera sig",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Det går inte att betala, gå till kassan eller shoppa",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Problem med webbläsare eller annat tilläggsprogram",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Webbplatsen bad mig att avaktivera",
+    "title" : "Webbplatsen bad mig att inaktivera annonsblockeraren",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Om du vill kan du berätta mer om det problem som du har stött på",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Berätta mer (valfritt):{bullet}Vad hände?{bullet}Vad borde ha hänt?{bullet}Hjälpte det att stänga av skydd?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Skicka anmälan",

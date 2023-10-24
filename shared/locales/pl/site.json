@@ -68,6 +68,22 @@
     "title" : "Witryna internetowa nie działa zgodnie z oczekiwaniami?",
     "note" : "Call to action for user to click if they are having issues with this web page"
   },
+  "websiteNotWorkingPrompt" : {
+    "title" : "Witryna internetowa nie działa?",
+    "note" : "button label text when we are trying to encourage a user to toggle protections off"
+  },
+  "websiteNotWorkingCta" : {
+    "title" : "Zgłoś uszkodzoną witrynę",
+    "note" : "button label text for a trigger that shows our feedback form"
+  },
+  "websiteNotWorkingAdvice" : {
+    "title" : "WYŁĄCZENIE zabezpieczeń może pomóc.",
+    "note" : "help text"
+  },
+  "websiteNotWorkingPromptFollowUp" : {
+    "title" : "Witryna nadal nie działa?",
+    "note" : "button label text a user has already turned protections off"
+  },
   "takePrecautions" : {
     "title" : "Zachowaj środki ostrożności",
     "note" : "Title shown when the page is unencrypted"

@@ -68,6 +68,22 @@
     "title" : "¿El sitio web no funciona como esperabas?",
     "note" : "Call to action for user to click if they are having issues with this web page"
   },
+  "websiteNotWorkingPrompt" : {
+    "title" : "¿El sitio web no funciona?",
+    "note" : "button label text when we are trying to encourage a user to toggle protections off"
+  },
+  "websiteNotWorkingCta" : {
+    "title" : "Informar de sitio web dañado",
+    "note" : "button label text for a trigger that shows our feedback form"
+  },
+  "websiteNotWorkingAdvice" : {
+    "title" : "Puede que, si desactivas las protecciones, funcione.",
+    "note" : "help text"
+  },
+  "websiteNotWorkingPromptFollowUp" : {
+    "title" : "¿El sitio sigue sin funcionar?",
+    "note" : "button label text a user has already turned protections off"
+  },
   "takePrecautions" : {
     "title" : "Toma precauciones",
     "note" : "Title shown when the page is unencrypted"

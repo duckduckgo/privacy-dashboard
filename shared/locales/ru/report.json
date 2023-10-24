@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Выберите наиболее точное описание проблемы, с которой вы столкнулись.",
+    "title" : "Ваша анонимная жалоба на проблемы с сайтом поможет нам улучшить приложение.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Выберите проблему из списка...",
+    "title" : "Опишите, что случилось",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Сайт блокируется или не грузится",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Нарушена структура сайта",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Крупные пустые пространства",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Не воспроизводится видео",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Не грузится или не играет видео",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Не загружаются изображения",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Не загружаются комментарии",
+    "title" : "Не грузятся комментарии, отзывы или чат",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Не могу войти",
+    "title" : "Невозможно войти/зарегистрироваться",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Не получается провести оплату или оформить заказ/покупку",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Проблема с браузером или другим расширением",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Сайт попросил меня отключить",
+    "title" : "Сайт просит отключить блокировку рекламы",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "По желанию оставьте пояснение",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Предоставьте дополнительную информацию (необязательно).{bullet}Что случилось?{bullet}Что должно было произойти?{bullet}Помогло ли отключение защиты?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Отправить жалобу",
