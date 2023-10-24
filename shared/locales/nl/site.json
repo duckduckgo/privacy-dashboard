@@ -68,6 +68,22 @@
     "title" : "Werkt de website niet zoals verwacht?",
     "note" : "Call to action for user to click if they are having issues with this web page"
   },
+  "websiteNotWorkingPrompt" : {
+    "title" : "Werkt de website niet?",
+    "note" : "button label text when we are trying to encourage a user to toggle protections off"
+  },
+  "websiteNotWorkingCta" : {
+    "title" : "Defecte website melden",
+    "note" : "button label text for a trigger that shows our feedback form"
+  },
+  "websiteNotWorkingAdvice" : {
+    "title" : "Het kan helpen om de beveiliging uit te schakelen.",
+    "note" : "help text"
+  },
+  "websiteNotWorkingPromptFollowUp" : {
+    "title" : "Werkt de site nog steeds niet?",
+    "note" : "button label text a user has already turned protections off"
+  },
   "takePrecautions" : {
     "title" : "Neem voorzorgsmaatregelen",
     "note" : "Title shown when the page is unencrypted"

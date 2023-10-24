@@ -68,6 +68,22 @@
     "title" : "Tīmekļa vietne nedarbojas, kā paredzēts?",
     "note" : "Call to action for user to click if they are having issues with this web page"
   },
+  "websiteNotWorkingPrompt" : {
+    "title" : "Tīmekļa vietne nedarbojas?",
+    "note" : "button label text when we are trying to encourage a user to toggle protections off"
+  },
+  "websiteNotWorkingCta" : {
+    "title" : "Ziņot par bojātu vietni",
+    "note" : "button label text for a trigger that shows our feedback form"
+  },
+  "websiteNotWorkingAdvice" : {
+    "title" : "Aizsardzības IZSLĒGŠANA var palīdzēt.",
+    "note" : "help text"
+  },
+  "websiteNotWorkingPromptFollowUp" : {
+    "title" : "Vietne joprojām nedarbojas?",
+    "note" : "button label text a user has already turned protections off"
+  },
   "takePrecautions" : {
     "title" : "Veikt piesardzības pasākumus",
     "note" : "Title shown when the page is unencrypted"

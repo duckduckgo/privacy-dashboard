@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Pasirinkite parinktį, kuri geriausiai apibūdina iškilusią problemą.",
+    "title" : "Anoniminio pranešimo apie neveikiančią svetainę pateikimas padeda mums tobulinti programėlę.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Pasirinkite problemą iš sąrašo...",
+    "title" : "Aprašykite, kas atsitiko",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Svetainė užblokuota arba neįkelta",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Svetainės išdėstymas sugadintas",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Svetainėje yra didelių tuščių vietų",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Vaizdo įrašas nebuvo paleistas",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Vaizdo įrašas nebuvo paleistas arba įkeltas",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Vaizdai neįkelti",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Komentarai nebuvo įkelti",
+    "title" : "Nepavyko įkelti komentarų, apžvalgų ar pokalbių",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Negaliu prisijungti",
+    "title" : "Nepavyksta prisijungti / užsiregistruoti",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Negalite sumokėti, atsiskaityti ar apsipirkti",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Naršyklės ar kito naršyklės plėtinio problema",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Svetainė paprašė manęs išjungti",
+    "title" : "Svetainė paprašė manęs išjungti reklamos blokavimo programą",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Jei norite, papasakokite apie problemą, su kuria susidūrėte",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Pasidalinkite daugiau informacijos (neprivaloma):{bullet}Kas atsitiko?{bullet}Kas turėjo atsitikti?{bullet}Ar padėjo išjungus apsaugos priemones?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Siųsti ataskaitą",

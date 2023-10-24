@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Karşılaştığınız sorunu en iyi tanımlayan seçeneği seçin.",
+    "title" : "Anonim bir hatalı site raporunun gönderilmesi uygulamayı geliştirmemize yardımcı olur.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Listeden yaşadığınız sorunu seçin...",
+    "title" : "Ne olduğunu açıklayın",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Site engellendi veya yüklenmedi",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Sitede düzen hatalı",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Sitede geniş boş alanlar var",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Video oynatılamadı",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Video oynatılmadı veya yüklenmedi",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Resimler yüklenemedi",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Yorumlar yüklenmedi",
+    "title" : "Yorumlar, incelemeler veya sohbetler yüklenmedi",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Oturum açamıyorum",
+    "title" : "Oturum açamıyorum/kayıt olamıyorum",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Ödeme yapamıyorum, çıkış yapamıyorum veya alışveriş yapamıyorum",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Tarayıcıda veya diğer tarayıcı uzantısında sorun var",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Site benden devre dışı bırakmamı istedi",
+    "title" : "Site benden reklam engelleyiciyi devre dışı bırakmamı istedi",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "İsterseniz bize yaşadığınız sorun hakkında bilgi verin",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Daha fazla ayrıntı paylaşın (isteğe bağlı):{bullet}Ne oldu?{bullet}Ne olması gerekirdi?{bullet} Korumaları kapatmak yardımcı oldu mu?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Rapor gönder",

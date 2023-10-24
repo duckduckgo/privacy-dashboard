@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Izvēlies atbilstošāko problēmas raksturojumu.",
+    "title" : "Anonīma ziņošana par vietni, kurā ir darbības traucējumi, palīdz mums uzlabot lietotni.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Norādi problēmu sarakstā...",
+    "title" : "Aprakstiet notikušo",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Vietne ir bloķēta vai netika ielādēta",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Vietnes izkārtojums ir bojāts",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Vietnē ir lielas tukšas vietas",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Video netika demonstrēts",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Video netika atskaņots vai ielādēts",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Attēli netika ielādēti",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Komentāri netika ielādēti",
+    "title" : "Komentāri, atsauksmes vai tērzēšana netika ielādēta",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Es nevaru pierakstīties",
+    "title" : "Nevar pierakstīties/reģistrēties",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Nevar norēķināties vai iepirkties",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Pārlūkprogrammas vai cita pārlūkprogrammas paplašinājuma problēma",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Vietne pieprasīja atspējošanu",
+    "title" : "Vietne man lūdza atspējot reklāmu bloķētāju",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Ja vēlies, pastāsti mums par savu problēmu",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Sniedz sīkāku informāciju (neobligāti):{bullet}Kas notika?{bullet}Kam būtu bijis jānotiek?{bullet}Vai aizsardzības izslēgšana palīdzēja?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Nosūtīt ziņojumu",

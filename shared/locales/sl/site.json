@@ -68,6 +68,22 @@
     "title" : "Spletno mesto ne deluje po pričakovanjih?",
     "note" : "Call to action for user to click if they are having issues with this web page"
   },
+  "websiteNotWorkingPrompt" : {
+    "title" : "Spletna stran ne deluje?",
+    "note" : "button label text when we are trying to encourage a user to toggle protections off"
+  },
+  "websiteNotWorkingCta" : {
+    "title" : "Prijavite poškodovano spletno mesto",
+    "note" : "button label text for a trigger that shows our feedback form"
+  },
+  "websiteNotWorkingAdvice" : {
+    "title" : "IZKLOP zaščit lahko pomaga.",
+    "note" : "help text"
+  },
+  "websiteNotWorkingPromptFollowUp" : {
+    "title" : "Stran še vedno ne deluje?",
+    "note" : "button label text a user has already turned protections off"
+  },
   "takePrecautions" : {
     "title" : "Previdnostni ukrepi",
     "note" : "Title shown when the page is unencrypted"

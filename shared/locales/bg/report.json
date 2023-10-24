@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Изберете опцията, която най-добре описва възникналия проблем.",
+    "title" : "Изпращането на анонимен доклад за неработещ сайт ни помага да подобрим приложението.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Изберете проблем от списъка...",
+    "title" : "Опишете проблема",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Сайтът блокира или не се зарежда",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Оформлението на сайта не е както трябва",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Сайтът съдържа големи празни пространства",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Видеото не се възпроизвежда",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Видеото не се възпроизвежда или зарежда",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Изображенията не се зареждат",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Коментарите не се зареждат",
+    "title" : "Коментарите, отзивите или чатовете не се зареждат",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Не мога да вляза",
+    "title" : "Не мога да вляза/да се регистрирам",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Не мога да платя, да завърша покупката или да пазарувам",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Проблем с браузъра или друго разширение на браузъра",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Сайтът ме помоли да деактивирам",
+    "title" : "Сайтът иска да деактивирам инструмента за блокиране на реклами",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Ако искате, опишете ни за възникналия проблем",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Споделете повече подробности (по избор):{bullet}Какво се случи?{bullet}Какво трябваше да се случи?{bullet}Изключването на защитите помогна ли?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Изпращане на доклад",

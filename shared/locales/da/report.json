@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Vælg den mulighed, der bedst beskriver det problem, du oplevede.",
+    "title" : "Hvis du indsender en anonym rapport om en defekt side, hjælper det os med at forbedre appen.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Vælg dit emne fra listen ...",
+    "title" : "Beskriv hvad der skete",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Webstedet er blokeret eller blev ikke indlæst",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Sidens layout er ødelagt",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Siden indeholder store tomme områder",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Videoen blev ikke spillet",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Videoen blev ikke afspillet eller indlæst",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Billeder blev ikke indlæst",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Kommentarer blev ikke indlæst",
+    "title" : "Kommentarer, anmeldelser eller chats blev ikke indlæst",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Jeg kan ikke logge ind",
+    "title" : "Kan ikke logge ind/tilmelde",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Kan ikke betale, tjekke ud eller shoppe",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Problem med browser eller anden browserudvidelse",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Webstedet bad mig om at deaktivere",
+    "title" : "Siden bad mig om at deaktivere annonceblokering",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Hvis du vil, kan du fortælle os om det problem, du oplevede",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Del flere detaljer (valgfrit):{bullet}Hvad skete der?{bullet}Hvad burde være sket?{bullet}Hjalp det at slå beskyttelse fra?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Send rapport",

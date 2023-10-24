@@ -9,23 +9,35 @@
     }]
   },
   "selectTheOptionDesc" : {
-    "title" : "Vyberte možnosť, ktorá najlepšie opisuje problém, ktorý ste zaznamenali.",
+    "title" : "Odoslanie anonymného hlásenia o nefunkčnej stránke nám pomáha zlepšovať aplikáciu.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
   "pickYourIssueFromTheList" : {
-    "title" : "Vyberte problém zo zoznamu...",
+    "title" : "Popíšte, čo sa stalo",
     "note" : "Asks the user to pick a specific list from the pulldown"
   },
+  "blocked" : {
+    "title" : "Stránka je zablokovaná alebo sa nenačítala",
+    "note" : "User is reporting this page because the page didn't load"
+  },
+  "layout" : {
+    "title" : "Rozloženie stránky je nefunkčné",
+    "note" : "User is reporting this page because the page layout appears broken"
+  },
+  "emptySpaces" : {
+    "title" : "Stránka obsahuje veľké prázdne miesta",
+    "note" : "User is reporting this page because the page contains large empty spaces"
+  },
   "videos" : {
-    "title" : "Video sa neprehráva",
-    "note" : "User is reporting this page because a video didn't play"
+    "title" : "Video sa neprehralo alebo nenačítalo",
+    "note" : "User is reporting this page because a video didn't play or load correctly"
   },
   "images" : {
     "title" : "Obrázky sa nepodarilo načítať",
     "note" : "User is reporting this page because one or more images did not load"
   },
   "comments" : {
-    "title" : "Komentáre nepodarilo načítať",
+    "title" : "Nenačítali sa komentáre, recenzie alebo čety",
     "note" : "User is reporting this page because one or more comments did not load"
   },
   "content" : {
@@ -37,11 +49,19 @@
     "note" : "User is reporting this page because one or more links or buttons did not work when clicked"
   },
   "login" : {
-    "title" : "Nemôžem sa prihlásiť",
+    "title" : "Nedá sa prihlásiť/registrovať",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "shopping" : {
+    "title" : "Nedá sa zaplatiť, prejsť do pokladne ani nakupovať",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
+  "browser" : {
+    "title" : "Vyskytol sa problém s iným rozšírením prehliadača",
+    "note" : "User is reporting this page because there a problem with the browser or another extension"
+  },
   "paywall" : {
-    "title" : "Táto stránka ma požiadala o deaktiváciu",
+    "title" : "Stránka ma požiadala, aby som vypol/vypla blokovanie reklám",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
   "other" : {
@@ -49,8 +69,8 @@
     "note" : "User is reporting this page because of some other reason than the ones we listed"
   },
   "tellUsMoreDesc" : {
-    "title" : "Ak chcete, povedzte nám o probléme, ktorý ste zaznamenali",
-    "note" : "A hint for a text box that lets user enter free text to describe their problem"
+    "title" : "Zdieľajte ďalšie podrobnosti (voliteľné):{bullet}Čo sa stalo?{bullet}Kčomu malo dôjsť?{bullet} Pomáhavypnutie ochranných prvkov?",
+    "note" : "A hint for a text box that lets user enter free text to describe their problem. There are 3 questions as a guide, and each 'bullet' is replaced with a bullet point - such as '• What happened?'"
   },
   "sendReport" : {
     "title" : "Odoslať správu",
