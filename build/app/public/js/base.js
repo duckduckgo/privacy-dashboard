@@ -12497,8 +12497,7 @@
       return;
     }
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
-      privacyDashboardShowReportBrokenSite({});
-      return true;
+      return false;
     }
     return fetch2(message);
   }
