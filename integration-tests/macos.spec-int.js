@@ -15,7 +15,6 @@ test.describe('breakage form', () => {
         const dash = await DashboardPage.macos(page)
         await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOn])
-        await dash.clickReportBreakage()
         await dash.screenshot('breakage-form.png')
         await dash.submitBreakageForm()
         await dash.mocks.calledForSubmitBreakageForm()
