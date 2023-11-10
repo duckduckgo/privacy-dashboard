@@ -1,6 +1,7 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
+import { toggleFlows } from './utils/common-flows'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -24,16 +25,6 @@ test.describe('page data (with trackers)', () => {
         await dash.aboutLinkHasRipple()
     })
 })
-
-test.describe('breakage form', () => {
-    test('should call android interface', async ({ page }) => {
-        const dash = await DashboardPage.android(page)
-        await dash.addState([testDataStates.cnn])
-        await dash.clickReportBreakage()
-        await dash.mocks.calledForShowBreakageForm()
-    })
-})
-
 test.describe('open external links', () => {
     test('should call android interface for links', async ({ page }) => {
         const dash = await DashboardPage.android(page)
@@ -58,49 +49,7 @@ test.describe('localization', () => {
 })
 
 test.describe('Protections toggle', () => {
-    test('pressing toggle should disable protections', async ({ page }) => {
-        const dash = await DashboardPage.android(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.toggleProtectionsOff()
-        await dash.mocks.calledForToggleAllowList()
-    })
-    test('with alternative primary screen - toggling protections', async ({ page }) => {
-        const dash = await DashboardPage.android(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates['alternative-layout-exp-1']])
-        await page.pause()
-        await dash.showsAlternativeLayout()
-        await dash.toggleProtectionsOff()
-        await dash.mocks.calledForToggleAllowList()
-    })
-    test('with alternative primary screen - alternative-layout-exp-1', async ({ page }) => {
-        const dash = await DashboardPage.android(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates['alternative-layout-exp-1']])
-        await dash.showsAlternativeLayout()
-        await dash.clicksWebsiteNotWorking()
-        await dash.helpIsShown()
-        await dash.clicksReportBroken()
-        await dash.mocks.calledForShowBreakageForm()
-    })
-    test('with alternative primary screen - alternative-layout-exp-1 protections off (allowlisted)', async ({ page }) => {
-        const dash = await DashboardPage.android(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates['alternative-layout-exp-1-protections-off']])
-        await dash.showsAlternativeLayout()
-        await dash.showsToggleFeedbackPrompt()
-    })
-    test('with alternative primary screen - alternative-layout-exp-1 remote disabled', async ({ page }) => {
-        const dash = await DashboardPage.android(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates['alternative-layout-exp-1-disabled']])
-        await dash.showsAlternativeLayout()
-        await dash.showRemoteDisabled()
-        await dash.showsToggleFeedbackPrompt()
-        await dash.clicksReportBroken()
-        await dash.mocks.calledForShowBreakageForm()
-    })
+    toggleFlows((page) => DashboardPage.android(page))
 })
 
 test.describe('Close', () => {

@@ -34,9 +34,9 @@ export default function () {
     return html`<section class="sliding-subview">
         <div class="breakage-form">
             ${topNav({ view: 'secondary' })}
-            <div class="breakage-form__inner padding-x-double js-breakage-form-element" data-state="idle">
-                <div class="padding-y">${wrap(this.mainModel, this)}</div>
-                <div class="key-insight key-insight--breakage">
+            <div class="breakage-form__inner js-breakage-form-element" data-state="idle">
+                <div class="header header--breakage">${wrap(this.mainModel, this)}</div>
+                <div class="key-insight key-insight--breakage padding-x-double">
                     ${icon}
                     <div class="breakage-form__advise">
                         <p class="token-title-3">${i18n.t('report:selectTheOptionDesc.title')}</p>
@@ -46,7 +46,7 @@ export default function () {
                         <p class="thanks__secondary">${i18n.t('report:yourReportWillHelpDesc.title')}</p>
                     </div>
                 </div>
-                <div class="breakage-form__content">
+                <div class="breakage-form__content padding-x-double">
                     <div class="breakage-form__element">
                         <div class="form__group">
                             <div class="form__select breakage-form__input--dropdown">
@@ -68,7 +68,9 @@ export default function () {
                         </div>
                     </div>
                 </div>
-                <div class="breakage-form__footer token-breakage-form-body">${i18n.t('report:reportsAreAnonymousDesc.title')}</div>
+                <div class="breakage-form__footer padding-x-double token-breakage-form-body">
+                    ${i18n.t('report:reportsAreAnonymousDesc.title')}
+                </div>
             </div>
         </div>
     </section>`

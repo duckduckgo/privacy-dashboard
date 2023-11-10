@@ -52,7 +52,6 @@ const keyInsightsState = /** @type {const} */ ({
  */
 export function renderKeyInsight() {
     const model = this.model
-    const layout = this.model.featureSettings.primaryScreen.layout
     const title = (text) => html`<h1 class="token-title-3-em">${text}</h1>`
     const description = (text) => html`<div class="token-title-3"><span role="text">${text}</span></div>`
 
@@ -78,29 +77,24 @@ export function renderKeyInsight() {
         insecure: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--insecure-connection"></div>
+                    <div class="key-insight__icon hero-icon--insecure-connection"></div>
                     ${title(model.tab.domain)} ${description(raw(i18n.t('site:connectionDescriptionUnencrypted.title')))}
                 </div>
             `
         },
         broken: () => {
-            let text = i18n.t('site:protectionsDisabledRemote.title')
-            if (model.isDenylisted) {
-                text = i18n.t('site:protectionsDisabledRemoteOverride.title')
-            }
             // prettier-ignore
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--protections-off"></div>
+                    <div class="key-insight__icon hero-icon--protections-off"></div>
                     ${title(model.tab.domain)} 
-                    ${layout === 'default' ? description(html`<p class="note note--key-insight">${text}</p>`) : null}
                 </div>
             `
         },
         userAllowListed: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--protections-off"></div>
+                    <div class="key-insight__icon hero-icon--protections-off"></div>
                     ${title(model.tab.domain)} ${description(raw(i18n.t('site:protectionsDisabled.title')))}
                 </div>
             `
@@ -110,7 +104,7 @@ export function renderKeyInsight() {
 
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--tracker-network"></div>
+                    <div class="key-insight__icon hero-icon--tracker-network"></div>
                     ${title(model.tab.domain)}
                     ${description(
                         raw(
@@ -127,7 +121,7 @@ export function renderKeyInsight() {
         noneBlocked_someSpecialAllowed: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--info"></div>
+                    <div class="key-insight__icon hero-icon--info"></div>
                     ${title(model.tab.domain)} ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
                 </div>
             `
@@ -135,7 +129,7 @@ export function renderKeyInsight() {
         noneBlocked: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--no-activity"></div>
+                    <div class="key-insight__icon hero-icon--no-activity"></div>
                     ${title(model.tab.domain)} ${description(raw(i18n.t('site:trackerNetworksSummaryNone.title')))}
                 </div>
             `
@@ -143,7 +137,7 @@ export function renderKeyInsight() {
         emptyCompaniesList: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--trackers-blocked"></div>
+                    <div class="key-insight__icon hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
                     ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
                 </div>
@@ -246,7 +240,7 @@ function renderCompanyIconsList(model) {
     })
 
     return html`
-        <div class="large-icon-container icon-list" data-company-count="${processed.length}" aria-label="List of Blocked Company Icons">
+        <div class="key-insight__icon icon-list" data-company-count="${processed.length}" aria-label="List of Blocked Company Icons">
             ${list}
         </div>
     `

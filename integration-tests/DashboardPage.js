@@ -56,10 +56,6 @@ export class DashboardPage {
         await this.page.getByRole('link', { name: 'Website not working?' }).waitFor({ timeout: 1000 })
     }
 
-    async showsToggleFeedbackPrompt() {
-        await this.page.getByRole('link', { name: 'Report broken site' }).waitFor({ timeout: 1000 })
-    }
-
     async screenshot(name) {
         if (!process.env.CI) {
             // console.log('🚧 skipping screenshot 🚧', name)
@@ -218,10 +214,6 @@ export class DashboardPage {
             results.push(await playTimeline(this.page, state, this.platform))
         }
         return results
-    }
-
-    async clickReportBreakage() {
-        await this.page.getByRole('link', { name: 'Website not working as expected?' }).click()
     }
 
     async submitBreakageForm() {
@@ -432,14 +424,6 @@ export class DashboardPage {
 
     async clicksWebsiteNotWorking() {
         await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 1000 })
-    }
-
-    async helpIsShown() {
-        await this.page.getByText('Turning protections OFF might help.').waitFor({ timeout: 1000 })
-    }
-
-    async clicksReportBroken() {
-        await this.page.getByRole('link', { name: 'Report broken site' }).click({ timeout: 1000 })
     }
 
     async showRemoteDisabled() {

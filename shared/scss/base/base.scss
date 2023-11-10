@@ -126,6 +126,24 @@ a {
         border-radius: 12px;
         padding-top: 14px;
         padding-bottom: 14px;
+
+        .environment--ios & {
+            font-size: 14px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+        .environment--windows & {
+            line-height: 22px;
+            font-size: 14px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+        .environment--browser & {
+            line-height: 18px; // slight deviation from figma for precision
+            font-size: 14px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
     }
 }
 
@@ -209,10 +227,6 @@ a {
     padding-right: 16px;
 }
 
-.padding-spacer {
-    padding-top: 24px;
-}
-
 .padding-y {
     padding-top: 16px;
     padding-bottom: 16px;
@@ -224,7 +238,7 @@ a {
 }
 
 .padding-bottom-half {
-    padding-bottom: 8px;
+    padding-bottom: 10px;
 }
 
 .bg-primary {

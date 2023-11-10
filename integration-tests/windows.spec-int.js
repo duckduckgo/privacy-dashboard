@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
-import { settingPermissions } from './utils/common-flows'
+import { desktopBreakageForm, settingPermissions, toggleFlows } from './utils/common-flows'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -12,15 +12,15 @@ test.describe('initial page data', () => {
 })
 
 test.describe('breakage form', () => {
-    test('should submit with no values', async ({ page }) => {
-        const dash = await DashboardPage.windows(page)
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.clickReportBreakage()
-        await dash.screenshot('breakage-form.png')
-        await dash.submitBreakageForm()
-        await dash.mocks.calledForSubmitBreakageForm()
-        await dash.screenshot('breakage-form-message.png')
-    })
+    desktopBreakageForm((page) => DashboardPage.windows(page))
+})
+
+test.describe('Protections toggle', () => {
+    toggleFlows((page) => DashboardPage.windows(page))
+})
+
+test.describe('permissions', () => {
+    settingPermissions((page) => DashboardPage.windows(page))
 })
 
 test.describe('setting the height', () => {
@@ -29,20 +29,6 @@ test.describe('setting the height', () => {
         await dash.addState([testDataStates.protectionsOn])
         await dash.mocks.calledForInitialHeight()
     })
-})
-
-test.describe('Protections toggle', () => {
-    test('pressing toggle should disable protections', async ({ page }) => {
-        const dash = await DashboardPage.windows(page)
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.reducedMotion()
-        await dash.toggleProtectionsOff()
-        await dash.mocks.calledForToggleAllowList()
-    })
-})
-
-test.describe('permissions', () => {
-    settingPermissions((page) => DashboardPage.windows(page))
 })
 
 test.describe('cookie prompt management', () => {

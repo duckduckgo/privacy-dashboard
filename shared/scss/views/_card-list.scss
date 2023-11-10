@@ -13,10 +13,6 @@
     position: relative;
     z-index: 0;
     overflow: hidden;
-
-    .environment--windows & {
-        border-radius: 4px;
-    }
 }
 
 .card-list--last {

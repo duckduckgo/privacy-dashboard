@@ -37,8 +37,7 @@ body {
 
     // mobile environments
     &.environment--ios,
-    &.environment--android,
-    &.environment--example {
+    &.environment--android {
         --width: 100%;
     }
 
@@ -131,6 +130,8 @@ body {
 
 @import 'views/toggle-button';
 @import 'views/page';
+@import 'views/header';
+@import 'views/footer';
 @import 'views/site-info';
 @import 'views/card-list';
 @import 'views/main-nav';

@@ -1,0 +1,52 @@
+.header {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-bottom: 1px solid var(--color-lines-light);
+
+    .environment--macos & {
+        padding-top: 16px;
+        padding-bottom: 2px;
+    }
+    .environment--windows & {
+        padding-top: 16px;
+    }
+    .environment--browser & {
+        padding-top: 6px;
+    }
+    .environment--android & {
+        padding-bottom: 10px;
+    }
+    .environment--ios & {
+        padding-bottom: 10px;
+    }
+}
+
+.header--breakage {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    border-bottom: 0;
+
+    .environment--macos &,
+    .environment--windows & {
+        padding-bottom: 16px;
+    }
+    .environment--browser & {
+        padding-top: 16px;
+        padding-bottom: 12px;
+    }
+}
+
+.header-spacer {
+    padding-top: 24px;
+
+    .environment--macos & {
+        padding-top: 20px;
+    }
+    .environment--windows & {
+        padding-top: 20px;
+    }
+    .environment--browser & {
+        padding-top: 12px;
+    }
+}

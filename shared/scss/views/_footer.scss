@@ -1,0 +1,6 @@
+.footer {
+    .environment--macos &,
+    .environment--windows & {
+        padding-bottom: 20px;
+    }
+}
