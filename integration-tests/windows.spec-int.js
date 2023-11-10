@@ -1,6 +1,7 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
+import { settingPermissions } from './utils/common-flows'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -38,6 +39,10 @@ test.describe('Protections toggle', () => {
         await dash.toggleProtectionsOff()
         await dash.mocks.calledForToggleAllowList()
     })
+})
+
+test.describe('permissions', () => {
+    settingPermissions((page) => DashboardPage.windows(page))
 })
 
 test.describe('cookie prompt management', () => {

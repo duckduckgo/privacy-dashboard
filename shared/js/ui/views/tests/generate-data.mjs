@@ -540,6 +540,11 @@ export const createDataStates = (google, cnn) => {
                 prevalence: 0.401,
             },
         }),
+        permissions: new MockData({
+            url: 'https://example.com',
+            requests: [],
+            permissions,
+        }),
         protectionsOn: new MockData({
             url: 'https://example.com',
             requests: [],
