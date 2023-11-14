@@ -34,6 +34,9 @@ export async function mockDataProvider(params) {
     if (state.cookiePromptManagementStatus) {
         window.onChangeConsentManaged(state.cookiePromptManagementStatus)
     }
+    if (state.permissions) {
+        window.onChangeAllowedPermissions(state.permissions)
+    }
     window.onChangeParentEntity(state.parentEntity)
     window.onChangeProtectionStatus(state.protections)
     window.onChangeUpgradedHttps(state.upgradedHttps)
@@ -124,6 +127,11 @@ export function webkitMockApis() {
                 privacyDashboardSetProtection: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardSetProtection', arg])
+                    },
+                },
+                privacyDashboardSetPermission: {
+                    postMessage: (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSetPermission', arg])
                     },
                 },
             },

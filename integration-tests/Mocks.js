@@ -337,4 +337,52 @@ export class Mocks {
         if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name)
         await impl()
     }
+
+    /**
+     * @param {object} params
+     * @param {"camera"} params.permission
+     * @param {"grant"} params.value
+     * @return {Promise<void>}
+     */
+    async calledForSettingPermissions({ permission, value }) {
+        /**
+         * @type {Record<import('../shared/js/ui/platform-features.mjs').Platform['name'], any>}
+         */
+        const implementations = {
+            windows: async () => {
+                const calls = await this.outgoing({ names: ['SetPermissionCommand'] })
+                expect(calls).toMatchObject([
+                    [
+                        'SetPermissionCommand',
+                        {
+                            Feature: 'PrivacyDashboard',
+                            Name: 'SetPermissionCommand',
+                            Data: {
+                                permission,
+                                value,
+                            },
+                        },
+                    ],
+                ])
+            },
+            macos: async () => {
+                const calls = await this.outgoing({ names: ['privacyDashboardSetPermission'] })
+                expect(calls).toMatchObject([
+                    [
+                        'privacyDashboardSetPermission',
+                        {
+                            permission,
+                            value,
+                        },
+                    ],
+                ])
+            },
+            ios: undefined,
+            android: undefined,
+            browser: undefined,
+        }
+        const impl = implementations[this.platform.name]
+        if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name)
+        await impl()
+    }
 }

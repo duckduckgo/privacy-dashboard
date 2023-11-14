@@ -286,6 +286,15 @@ export class DashboardPage {
         await this.page.getByRole('link', { name: 'Disable in Settings' }).click()
     }
 
+    /**
+     * @param {"grant"} permission
+     * @return {Promise<void>}
+     */
+    async setsCameraPermissionTo(permission) {
+        const { page } = this
+        await page.getByLabel('Camera').selectOption(permission)
+    }
+
     async clickClose() {
         if (this.platform.name === 'android') {
             return this.backButton().click()

@@ -1,6 +1,7 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
+import { settingPermissions } from './utils/common-flows'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -48,6 +49,10 @@ test.describe('breakage form', () => {
         await dash.clickReportBreakage()
         await dash.screenshot('breakage-form-broken.png')
     })
+})
+
+test.describe('permissions', () => {
+    settingPermissions((page) => DashboardPage.macos(page))
 })
 
 test.describe('open external links', () => {
