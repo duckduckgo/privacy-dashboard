@@ -6,6 +6,7 @@ import ParentSlidingSubview from './sliding-subview.js'
  * @param {() => HTMLElement} ops.template
  * @param {import("../models/breakage-form.js").BreakageFormModel} ops.model
  * @param {import('../models/site.js').PublicSiteModel} ops.mainModel
+ * @param {boolean} ops.immediate
  * @constructor
  */
 function BreakageForm(ops) {

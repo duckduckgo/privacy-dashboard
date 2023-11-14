@@ -9,6 +9,11 @@ function SlidingSubview(ops) {
     Parent.call(this, ops)
 
     this.$root = $('.sliding-subview--root')
+
+    if (ops.immediate) {
+        this.$root.addClass('sliding-subview--immediate')
+    }
+
     this.$root.addClass('sliding-subview--open')
 
     // @ts-ignore

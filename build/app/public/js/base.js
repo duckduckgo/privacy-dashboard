@@ -22201,6 +22201,9 @@
     ops.appendTo = (0, import_jquery10.default)(".sliding-subview--root");
     view_default.call(this, ops);
     this.$root = (0, import_jquery10.default)(".sliding-subview--root");
+    if (ops.immediate) {
+      this.$root.addClass("sliding-subview--immediate");
+    }
     this.$root.addClass("sliding-subview--open");
     this.setupNavigationSupport();
     this.setupClose();
@@ -24263,7 +24266,7 @@
     });
   }
   function blur(target) {
-    const closest = target?.closest("a");
+    const closest = target?.closest?.("a");
     if (closest && typeof closest.blur === "function") {
       closest.blur();
     }
@@ -24317,8 +24320,9 @@
           });
           this._setupPrimaryScreen();
           const url = new URL(window.location.href);
-          if (url.searchParams.has("breakageFormOnly")) {
-            this.showBreakageForm("reportBrokenSite");
+          const str = "breakageForm";
+          if (url.searchParams.get("screen") === str) {
+            this.showBreakageForm({ immediate: true });
           }
           setTimeout(() => {
             communication_default.firstRenderComplete?.();
@@ -24353,20 +24357,26 @@
           }
           this.model.checkBrokenSiteReportHandled().then((handled) => {
             if (!handled) {
-              this.showBreakageForm("reportBrokenSite");
+              this.showBreakageForm({ eventTarget: e3.target, immediate: false });
             }
           }).catch((e4) => {
             console.error("could not check", e4);
           });
         },
-        // pass clickSource to specify whether page should reload
-        // after submitting breakage form.
-        showBreakageForm: function(e3) {
-          blur(e3.target);
+        /**
+         * @param {object} opts
+         * @param {boolean} opts.immediate
+         * @param {HTMLElement} [opts.eventTarget]
+         */
+        showBreakageForm: function({ immediate, eventTarget }) {
+          if (eventTarget) {
+            blur(eventTarget);
+          }
           this.views.slidingSubview = new breakage_form_default({
             template: breakage_form_default2,
             model: new BreakageFormModel({ site: this.model }),
-            mainModel: this.model
+            mainModel: this.model,
+            immediate
           });
         },
         _showPageTrackers: function() {
