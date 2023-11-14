@@ -73,7 +73,12 @@ Site.prototype = $.extend({}, Parent.prototype, {
             this._onReportBrokenSiteClick(e)
         })
 
-        this._setupFeatures()
+        this._setupPrimaryScreen()
+        const url = new URL(window.location.href)
+
+        if (url.searchParams.has('breakageFormOnly')) {
+            this.showBreakageForm('reportBrokenSite')
+        }
 
         setTimeout(() => {
             browserUIWrapper.firstRenderComplete?.()
@@ -127,7 +132,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         blur(e.target)
         this.views.slidingSubview = new BreakageFormView({
             template: breakageFormTemplate,
-            model: new BreakageFormModel(),
+            model: new BreakageFormModel({ site: this.model }),
             mainModel: this.model,
         })
     },
@@ -179,7 +184,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     _done: function () {
         this.model.close()
     },
-    _setupFeatures() {
+    _setupPrimaryScreen() {
         this.views.mainNav = new MainNavView({
             model: this.model,
             appendTo: $('#main-nav'),

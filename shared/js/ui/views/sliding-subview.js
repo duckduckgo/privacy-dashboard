@@ -32,8 +32,7 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
     },
 
     setupNavigationSupport: function () {
-        // @ts-ignore
-        const url = new URL(window.location)
+        const url = new URL(window.location.href)
         url.searchParams.set('open', 'true')
         window.history.pushState({}, '', url)
 

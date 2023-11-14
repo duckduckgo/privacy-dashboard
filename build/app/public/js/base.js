@@ -12498,7 +12498,7 @@
     }
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
       privacyDashboardShowReportBrokenSite({});
-      return true;
+      return false;
     }
     return fetch2(message);
   }
@@ -22226,7 +22226,7 @@
           }
         },
         setupNavigationSupport: function() {
-          const url = new URL(window.location);
+          const url = new URL(window.location.href);
           url.searchParams.set("open", "true");
           window.history.pushState({}, "", url);
           if (this.popstateHandler) {
@@ -24315,7 +24315,11 @@
           window.addEventListener("open-feedback", (e3) => {
             this._onReportBrokenSiteClick(e3);
           });
-          this._setupFeatures();
+          this._setupPrimaryScreen();
+          const url = new URL(window.location.href);
+          if (url.searchParams.has("breakageFormOnly")) {
+            this.showBreakageForm("reportBrokenSite");
+          }
           setTimeout(() => {
             communication_default.firstRenderComplete?.();
           }, 100);
@@ -24361,7 +24365,7 @@
           blur(e3.target);
           this.views.slidingSubview = new breakage_form_default({
             template: breakage_form_default2,
-            model: new BreakageFormModel(),
+            model: new BreakageFormModel({ site: this.model }),
             mainModel: this.model
           });
         },
@@ -24410,7 +24414,7 @@
         _done: function() {
           this.model.close();
         },
-        _setupFeatures() {
+        _setupPrimaryScreen() {
           this.views.mainNav = new MainNavView({
             model: this.model,
             appendTo: (0, import_jquery21.default)("#main-nav"),
