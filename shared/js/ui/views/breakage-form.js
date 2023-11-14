@@ -13,6 +13,7 @@ function BreakageForm(ops) {
     this.model = ops.model
     this.mainModel = ops.mainModel
     this.template = ops.template
+    this.immediate = ops.immediate
     // this.$root = $('.js-breakage-form')
     // @ts-ignore
     ParentSlidingSubview.call(this, ops)

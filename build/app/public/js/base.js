@@ -21333,7 +21333,7 @@
 
   // shared/js/ui/templates/shared/top-nav.js
   function topNav(opts = {}) {
-    const { view = "primary" } = opts;
+    const { view = "primary", immediate = false } = opts;
     let elements;
     if (view === "primary") {
       elements = platformSwitch({
@@ -21343,7 +21343,12 @@
       });
     } else {
       elements = platformSwitch({
-        ios: () => [back(), close()],
+        ios: () => {
+          if (immediate) {
+            return [close()];
+          }
+          return [back(), close()];
+        },
         default: () => [back()]
       });
     }
@@ -22293,6 +22298,7 @@
     this.model = ops.model;
     this.mainModel = ops.mainModel;
     this.template = ops.template;
+    this.immediate = ops.immediate;
     sliding_subview_default.call(this, ops);
     this._setup();
   }
@@ -23289,7 +23295,7 @@
     let placeholder = ns.report("tellUsMoreDesc.title", { bullet });
     return import_nanohtml13.default`<section class="sliding-subview">
         <div class="breakage-form">
-            ${topNav({ view: "secondary" })}
+            ${topNav({ view: "secondary", immediate: this.immediate })}
             <div class="breakage-form__inner js-breakage-form-element" data-state="idle">
                 <div class="header header--breakage">${wrap(this.mainModel, this)}</div>
                 <div class="key-insight key-insight--breakage padding-x-double">

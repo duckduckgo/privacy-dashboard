@@ -9,7 +9,8 @@ import { ProtectionHeader } from './protection-header'
 /**
  * @this {{
  *     mainModel: import('../models/site.js').PublicSiteModel,
- *     roots: Map<HTMLElement, boolean>
+ *     roots: Map<HTMLElement, boolean>,
+ *     immediate: boolean
  * }}
  */
 export default function () {
@@ -33,7 +34,7 @@ export default function () {
 
     return html`<section class="sliding-subview">
         <div class="breakage-form">
-            ${topNav({ view: 'secondary' })}
+            ${topNav({ view: 'secondary', immediate: this.immediate })}
             <div class="breakage-form__inner js-breakage-form-element" data-state="idle">
                 <div class="header header--breakage">${wrap(this.mainModel, this)}</div>
                 <div class="key-insight key-insight--breakage padding-x-double">
