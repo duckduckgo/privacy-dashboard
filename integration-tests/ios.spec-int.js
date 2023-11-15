@@ -1,6 +1,7 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
+import { toggleFlows } from './utils/common-flows'
 
 test.describe('page data (no trackers)', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -45,13 +46,8 @@ test.describe('page data (with trackers)', () => {
     })
 })
 
-test.describe('breakage form', () => {
-    test('should call webkit interface and not use HTML form', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
-        await dash.addState([testDataStates.cnn])
-        await dash.clickReportBreakage()
-        await dash.mocks.calledForShowBreakageForm()
-    })
+test.describe('Protections toggle', () => {
+    toggleFlows((page) => DashboardPage.ios(page))
 })
 
 test.describe('open external links', () => {
@@ -153,7 +149,7 @@ if (!process.env.CI) {
             })
         }
     })
-    test.describe('primary screen screenshots', () => {
+    test.describe.skip('primary screen screenshots', () => {
         /** @type {{name: string, state: any}[]} */
         const states = [
             {

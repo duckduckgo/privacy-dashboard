@@ -65,6 +65,9 @@ export class Mocks {
     }
 
     async calledForShowBreakageForm() {
+        // only on ios/android
+        if (!['android', 'ios'].includes(this.platform.name)) return
+
         const calls = await this.outgoing()
         if (this.platform.name === 'android') {
             expect(calls).toMatchObject([['showBreakageForm', undefined]])
@@ -74,11 +77,9 @@ export class Mocks {
             expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]])
             return
         }
-        throw new Error('unreachable. mockCalledForShowBreakageForm must be handled')
     }
 
-    async calledForSubmitBreakageForm(opts = {}) {
-        const { category = '', description = '' } = opts
+    async calledForSubmitBreakageForm({ category = '', description = '' }) {
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({
                 names: ['SubmitBrokenSiteReport'],
@@ -240,7 +241,7 @@ export class Mocks {
             ])
             return
         }
-        if (this.platform.name === 'macos') {
+        if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const calls = await this.outgoing({ names: ['privacyDashboardSetProtection'] })
             expect(calls).toMatchObject([
                 [

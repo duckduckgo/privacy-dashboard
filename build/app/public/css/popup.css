@@ -201,7 +201,7 @@ body.environment--browser {
   font-size: 14px;
   line-height: 18px;
 }
-body.environment--ios, body.environment--android, body.environment--example {
+body.environment--ios, body.environment--android {
   --width: 100%;
 }
 body.environment--browser {
@@ -407,6 +407,59 @@ body.environment--windows {
   background: var(--page-outer-bg);
 }
 
+.header {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-bottom: 1px solid var(--color-lines-light);
+}
+.environment--macos .header {
+  padding-top: 16px;
+  padding-bottom: 2px;
+}
+.environment--windows .header {
+  padding-top: 16px;
+}
+.environment--browser .header {
+  padding-top: 6px;
+}
+.environment--android .header {
+  padding-bottom: 10px;
+}
+.environment--ios .header {
+  padding-bottom: 10px;
+}
+
+.header--breakage {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  border-bottom: 0;
+}
+.environment--macos .header--breakage, .environment--windows .header--breakage {
+  padding-bottom: 16px;
+}
+.environment--browser .header--breakage {
+  padding-top: 16px;
+  padding-bottom: 12px;
+}
+
+.header-spacer {
+  padding-top: 24px;
+}
+.environment--macos .header-spacer {
+  padding-top: 20px;
+}
+.environment--windows .header-spacer {
+  padding-top: 20px;
+}
+.environment--browser .header-spacer {
+  padding-top: 12px;
+}
+
+.environment--macos .footer, .environment--windows .footer {
+  padding-bottom: 20px;
+}
+
 .site-info {
   margin-top: 0;
 }
@@ -537,9 +590,6 @@ body.environment--windows {
   z-index: 0;
   overflow: hidden;
 }
-.environment--windows .card-list--bordered {
-  border-radius: 4px;
-}
 
 .main-nav {
   border: 1px solid var(--color-lines-light);
@@ -593,6 +643,9 @@ body.environment--windows {
 }
 .environment--ios .main-nav__item, .environment--android .main-nav__item {
   height: 48px;
+}
+.environment--browser .main-nav__item {
+  height: 40px;
 }
 
 .main-nav__item--link {
@@ -876,11 +929,31 @@ body.environment--windows {
   margin-bottom: 8px;
 }
 
-.environment--macos .key-insight--main, .environment--windows .key-insight--main {
-  padding-top: 32px;
+.key-insight__icon {
+  height: 96px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-bottom: 24px;
+  background-size: contain;
+}
+.environment--macos .key-insight__icon {
+  margin-bottom: 20px;
+}
+.environment--windows .key-insight__icon {
+  margin-bottom: 20px;
+}
+.environment--browser .key-insight__icon {
+  margin-bottom: 12px;
+}
+
+.environment--macos .key-insight--main {
+  padding-bottom: 20px;
+}
+.environment--windows .key-insight--main {
+  padding-bottom: 20px;
 }
 .environment--browser .key-insight--main {
-  padding-top: 6px;
+  padding-bottom: 12px;
 }
 
 .key-insight--breakage {
@@ -3426,25 +3499,36 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 
 .protection-toggle__row {
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px;
 }
 .environment--browser .protection-toggle__row {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+.environment--ios .protection-toggle__row {
+  padding: 8.5px 16px;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 .environment--android .protection-toggle__row {
   padding: 14px 16px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 .environment--windows .protection-toggle__row {
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding: 10px 16px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+.environment--macos .protection-toggle__row {
+  padding-top: 13px;
+  padding-bottom: 13px;
 }
 
 .protection-toggle__row--alt {
@@ -3452,6 +3536,12 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 .body--theme-dark .protection-toggle__row--alt {
   background: rgba(85, 127, 243, 0.18);
+}
+.environment--ios .protection-toggle__row--alt {
+  padding: 12px 16px;
+}
+.environment--android .protection-toggle__row--alt {
+  padding: 12px 16px;
 }
 
 /* Generic menu list styling */

@@ -14635,10 +14635,10 @@
       return false;
     }
   }
-  function removePending(q3, name) {
-    if (q3.pending[name] !== void 0) {
-      delete q3.pending[name];
-      q3.pendingCount--;
+  function removePending(q2, name) {
+    if (q2.pending[name] !== void 0) {
+      delete q2.pending[name];
+      q2.pendingCount--;
     }
   }
   function get() {
@@ -16303,16 +16303,16 @@
             }
             this.state[name] = err ? -1 : 2;
             var loaded2 = {};
-            this.queue.forEach(function(q3) {
-              pushPath(q3.loaded, [lng], ns2);
-              removePending(q3, name);
+            this.queue.forEach(function(q2) {
+              pushPath(q2.loaded, [lng], ns2);
+              removePending(q2, name);
               if (err)
-                q3.errors.push(err);
-              if (q3.pendingCount === 0 && !q3.done) {
-                Object.keys(q3.loaded).forEach(function(l3) {
+                q2.errors.push(err);
+              if (q2.pendingCount === 0 && !q2.done) {
+                Object.keys(q2.loaded).forEach(function(l3) {
                   if (!loaded2[l3])
                     loaded2[l3] = {};
-                  var loadedKeys = q3.loaded[l3];
+                  var loadedKeys = q2.loaded[l3];
                   if (loadedKeys.length) {
                     loadedKeys.forEach(function(ns3) {
                       if (loaded2[l3][ns3] === void 0)
@@ -16320,17 +16320,17 @@
                     });
                   }
                 });
-                q3.done = true;
-                if (q3.errors.length) {
-                  q3.callback(q3.errors);
+                q2.done = true;
+                if (q2.errors.length) {
+                  q2.callback(q2.errors);
                 } else {
-                  q3.callback();
+                  q2.callback();
                 }
               }
             });
             this.emit("loaded", loaded2);
-            this.queue = this.queue.filter(function(q3) {
-              return !q3.done;
+            this.queue = this.queue.filter(function(q2) {
+              return !q2.done;
             });
           }
         }, {
@@ -21567,7 +21567,6 @@
   }
   function renderKeyInsight() {
     const model = this.model;
-    const layout = this.model.featureSettings.primaryScreen.layout;
     const title = (text) => import_nanohtml10.default`<h1 class="token-title-3-em">${text}</h1>`;
     const description = (text) => import_nanohtml10.default`<div class="token-title-3"><span role="text">${text}</span></div>`;
     const state = (() => {
@@ -21594,28 +21593,23 @@
       insecure: () => {
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--insecure-connection"></div>
+                    <div class="key-insight__icon hero-icon--insecure-connection"></div>
                     ${title(model.tab.domain)} ${description((0, import_raw2.default)(i18n.t("site:connectionDescriptionUnencrypted.title")))}
                 </div>
             `;
       },
       broken: () => {
-        let text = i18n.t("site:protectionsDisabledRemote.title");
-        if (model.isDenylisted) {
-          text = i18n.t("site:protectionsDisabledRemoteOverride.title");
-        }
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--protections-off"></div>
+                    <div class="key-insight__icon hero-icon--protections-off"></div>
                     ${title(model.tab.domain)} 
-                    ${layout === "default" ? description(import_nanohtml10.default`<p class="note note--key-insight">${text}</p>`) : null}
                 </div>
             `;
       },
       userAllowListed: () => {
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--protections-off"></div>
+                    <div class="key-insight__icon hero-icon--protections-off"></div>
                     ${title(model.tab.domain)} ${description((0, import_raw2.default)(i18n.t("site:protectionsDisabled.title")))}
                 </div>
             `;
@@ -21624,7 +21618,7 @@
         const company = model.tab.parentEntity;
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--tracker-network"></div>
+                    <div class="key-insight__icon hero-icon--tracker-network"></div>
                     ${title(model.tab.domain)}
                     ${description(
           (0, import_raw2.default)(
@@ -21641,7 +21635,7 @@
       noneBlocked_someSpecialAllowed: () => {
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--info"></div>
+                    <div class="key-insight__icon hero-icon--info"></div>
                     ${title(model.tab.domain)} ${description(i18n.t("site:trackerNetworksSummaryAllowedOnly.title"))}
                 </div>
             `;
@@ -21649,7 +21643,7 @@
       noneBlocked: () => {
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--no-activity"></div>
+                    <div class="key-insight__icon hero-icon--no-activity"></div>
                     ${title(model.tab.domain)} ${description((0, import_raw2.default)(i18n.t("site:trackerNetworksSummaryNone.title")))}
                 </div>
             `;
@@ -21657,7 +21651,7 @@
       emptyCompaniesList: () => {
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
-                    <div class="large-icon-container hero-icon--trackers-blocked"></div>
+                    <div class="key-insight__icon hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
                     ${description((0, import_raw2.default)(i18n.t("site:trackersBlockedDesc.title", generateCompanyNamesList(model))))}
                 </div>
@@ -21736,7 +21730,7 @@
             </div>`;
     });
     return import_nanohtml10.default`
-        <div class="large-icon-container icon-list" data-company-count="${processed.length}" aria-label="List of Blocked Company Icons">
+        <div class="key-insight__icon icon-list" data-company-count="${processed.length}" aria-label="List of Blocked Company Icons">
             ${list}
         </div>
     `;
@@ -22533,10 +22527,6 @@
     var u3 = d2(t3++, 7);
     return z2(u3.__H, r3) ? (u3.__V = n2(), u3.i = r3, u3.__h = n2, u3.__V) : u3.__;
   }
-  function q2(n2) {
-    var u3 = r2.context[n2.__c], i3 = d2(t3++, 9);
-    return i3.c = n2, u3 ? (null == i3.__ && (i3.__ = true, u3.sub(r2)), u3.props.value) : n2.__;
-  }
   function b2() {
     for (var t4; t4 = f2.shift(); )
       if (t4.__P && t4.__H)
@@ -23212,19 +23202,6 @@
     );
     return root;
   }
-  function protectionDefault(model) {
-    const root = import_nanohtml12.default`<div class="padding-x padding-y"></div>`;
-    const migrationModel = {
-      protectionsEnabled: model.protectionsEnabled,
-      isAllowlisted: model.isAllowlisted,
-      isDenylisted: model.isDenylisted,
-      platformFeatures: model.features,
-      isBroken: model.isBroken,
-      toggleAllowlist: () => model.toggleAllowlist({ screen: "primaryScreen" })
-    };
-    B(/* @__PURE__ */ y(ProtectionToggle, { model: migrationModel }), root);
-    return root;
-  }
   function ProtectionHeader(props) {
     let initial;
     if (props.initialState) {
@@ -23253,21 +23230,10 @@
     ));
   }
   function ProtectionHeaderText() {
-    const { state, setState, model } = q2(ProtectionContext);
-    let buttonText = state === "help-trigger" ? ns.site("websiteNotWorkingPrompt.title") : ns.site("websiteNotWorkingCta.title");
-    if (model.isBroken) {
-      buttonText = ns.site("websiteNotWorkingCta.title");
-    }
-    if (model.isAllowlisted) {
-      buttonText = ns.site("websiteNotWorkingCta.title");
-    }
+    let buttonText = ns.site("websiteNotWorkingPrompt.title");
     function onClickTextLink(e3) {
       e3.preventDefault();
-      if (state === "help-trigger") {
-        setState("site-not-working");
-      } else {
-        window.dispatchEvent(new CustomEvent("open-feedback"));
-      }
+      window.dispatchEvent(new CustomEvent("open-feedback"));
     }
     return /* @__PURE__ */ y("div", { className: "text--center" }, /* @__PURE__ */ y(TextLink, { onClick: onClickTextLink, rounded: true }, buttonText));
   }
@@ -23321,9 +23287,9 @@
     return import_nanohtml13.default`<section class="sliding-subview">
         <div class="breakage-form">
             ${topNav({ view: "secondary" })}
-            <div class="breakage-form__inner padding-x-double js-breakage-form-element" data-state="idle">
-                <div class="padding-y">${wrap(this.mainModel, this)}</div>
-                <div class="key-insight key-insight--breakage">
+            <div class="breakage-form__inner js-breakage-form-element" data-state="idle">
+                <div class="header header--breakage">${wrap(this.mainModel, this)}</div>
+                <div class="key-insight key-insight--breakage padding-x-double">
                     ${icon}
                     <div class="breakage-form__advise">
                         <p class="token-title-3">${i18n.t("report:selectTheOptionDesc.title")}</p>
@@ -23333,7 +23299,7 @@
                         <p class="thanks__secondary">${i18n.t("report:yourReportWillHelpDesc.title")}</p>
                     </div>
                 </div>
-                <div class="breakage-form__content">
+                <div class="breakage-form__content padding-x-double">
                     <div class="breakage-form__element">
                         <div class="form__group">
                             <div class="form__select breakage-form__input--dropdown">
@@ -23355,7 +23321,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="breakage-form__footer token-breakage-form-body">${i18n.t("report:reportsAreAnonymousDesc.title")}</div>
+                <div class="breakage-form__footer padding-x-double token-breakage-form-body">
+                    ${i18n.t("report:reportsAreAnonymousDesc.title")}
+                </div>
             </div>
         </div>
     </section>`;
@@ -24540,25 +24508,24 @@
         `;
     }
     const permissions = localizePermissions(this.model.permissions);
-    const layout = this.model.featureSettings.primaryScreen.layout;
     return import_nanohtml17.default` <div class="site-info page">
         ${renderSearchWrapper(this.model)} ${topNav({ view: "primary" })}
         <div class="page-inner" data-with-permissions=${permissions.length > 0}>
-            ${layout === "highlighted-protections-toggle" ? import_nanohtml17.default`
-                        <div class="padding-x border--bottom padding-bottom-half">${protectionHeader(this.model)}</div>
-                        <div class="padding-spacer"></div>
-                    ` : null}
+            <header class="header">
+                ${protectionHeader(this.model)}
+            </header>
+            <div class="header-spacer"></div>
             <div class="padding-x-double">
                 <div id="key-insight"></div>
             </div>
             <div class="padding-x">
                 <nav id="main-nav"></nav>
-                ${layout === "default" ? protectionDefault(this.model) : null}
             </div>
-            <div class="padding-x">
-                ${renderEmailWrapper(this.model)} 
-                ${layout === "default" ? renderReportButton() : null}  
-            </div>
+            <footer class="footer">
+                <div class="padding-x">
+                    ${renderEmailWrapper(this.model)} 
+                </div>
+            </footer>
         </div>
         ${permissions.length ? outer({ children: renderManagePermissions(this.model) }) : null}
     </div>`;
@@ -24603,15 +24570,6 @@
         </li>
     </ul>`;
   }
-  function renderReportButton() {
-    function onClickTextLink(e3) {
-      e3.preventDefault();
-      window.dispatchEvent(new CustomEvent("open-feedback"));
-    }
-    let root = import_nanohtml17.default`<div class="text--center border-light--top"></div>`;
-    B(/* @__PURE__ */ y(TextLink, { onClick: onClickTextLink }, ns.site("websiteNotWorkingQ.title")), root);
-    return root;
-  }
   function localizePermissions(permissions) {
     if (!Array.isArray(permissions) || permissions.length === 0) {
       return [];
@@ -24640,8 +24598,6 @@
       init_localize();
       init_top_nav();
       init_protection_header();
-      init_preact_module();
-      init_text_link();
     }
   });
 

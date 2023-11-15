@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
-import { settingPermissions } from './utils/common-flows'
+import { desktopBreakageForm, settingPermissions, toggleFlows } from './utils/common-flows'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -12,43 +12,11 @@ test.describe('initial page data', () => {
 })
 
 test.describe('breakage form', () => {
-    test('should show HTML breakage form and submit fields', async ({ page }) => {
-        const dash = await DashboardPage.macos(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.clickReportBreakage()
-        await dash.screenshot('breakage-form.png')
-        await dash.submitBreakageForm()
-        await dash.mocks.calledForSubmitBreakageForm()
-        await dash.screenshot('breakage-form-message.png')
-    })
-    test('toggling protections off from breakage form', async ({ page }) => {
-        const dash = await DashboardPage.macos(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.clickReportBreakage()
-        /** @type {import('../schema/__generated__/schema.types').EventOrigin} */
-        const eventOrigin = { screen: 'breakageForm' }
-        await dash.toggleProtectionsOff(eventOrigin)
-        await dash.mocks.calledForToggleAllowList('protections-off', eventOrigin)
-    })
-    test('toggling protections back on, from breakage form', async ({ page }) => {
-        const dash = await DashboardPage.macos(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.allowlisted])
-        await dash.clickReportBreakage()
-        /** @type {import('../schema/__generated__/schema.types').EventOrigin} */
-        const eventOrigin = { screen: 'breakageForm' }
-        await dash.screenshot('breakage-form-allowlisted.png')
-        await dash.toggleProtectionsOn(eventOrigin)
-    })
-    test('broken (remote disabled) breakage form', async ({ page }) => {
-        const dash = await DashboardPage.macos(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOff])
-        await dash.clickReportBreakage()
-        await dash.screenshot('breakage-form-broken.png')
-    })
+    desktopBreakageForm((page) => DashboardPage.macos(page))
+})
+
+test.describe('Protections toggle', () => {
+    toggleFlows((page) => DashboardPage.macos(page))
 })
 
 test.describe('permissions', () => {

@@ -2,7 +2,7 @@ import html from 'nanohtml'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { render, h, Fragment, createContext } from 'preact'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useContext, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import { i18n, ns } from '../base/localize'
 import { TextLink } from '../components/text-link.jsx'
 import { ProtectionToggle } from '../components/toggle'
@@ -107,30 +107,14 @@ export function ProtectionHeader(props) {
 }
 
 export function ProtectionHeaderText() {
-    const { state, setState, model } = useContext(ProtectionContext)
-
     // prettier-ignore
-    let buttonText = state === 'help-trigger'
-        ? ns.site('websiteNotWorkingPrompt.title')
-        : ns.site('websiteNotWorkingCta.title')
-
-    if (model.isBroken) {
-        buttonText = ns.site('websiteNotWorkingCta.title')
-    }
-
-    if (model.isAllowlisted) {
-        buttonText = ns.site('websiteNotWorkingCta.title')
-    }
+    let buttonText = ns.site('websiteNotWorkingPrompt.title')
 
     function onClickTextLink(e) {
         e.preventDefault()
-        if (state === 'help-trigger') {
-            setState('site-not-working')
-        } else {
-            // dispatching this for now, since there a few things that
-            // are checked/used in the existing view
-            window.dispatchEvent(new CustomEvent('open-feedback'))
-        }
+        // dispatching this for now, since there a few things that
+        // are checked/used in the existing view
+        window.dispatchEvent(new CustomEvent('open-feedback'))
     }
 
     return (

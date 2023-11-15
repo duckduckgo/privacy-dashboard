@@ -1,6 +1,7 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
+import { desktopBreakageForm, toggleFlows, toggleFlowsDenyList } from './utils/common-flows'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -12,71 +13,15 @@ test.describe('initial page data', () => {
 })
 
 test.describe('breakage form', () => {
-    test('should submit with no values', async ({ page }) => {
-        const dash = await DashboardPage.browser(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.clickReportBreakage()
-        await dash.screenshot('breakage-form.png')
-        await dash.submitBreakageForm()
-        await dash.mocks.calledForSubmitBreakageForm()
-        await dash.screenshot('breakage-form-message.png')
-    })
-    test('should submit with description', async ({ page }) => {
-        const dash = await DashboardPage.browser(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.clickReportBreakage()
-        await dash.enterBreakageSubscription('Video not playing')
-        await dash.submitBreakageForm()
-        await dash.mocks.calledForSubmitBreakageForm({
-            category: '',
-            description: 'Video not playing',
-        })
-    })
-    test('should submit with category', async ({ page }) => {
-        const dash = await DashboardPage.browser(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        const optionToSelect = 'Video didn’t play or load'
-        await dash.clickReportBreakage()
-        await dash.selectBreakageCategory(optionToSelect)
-        await dash.submitBreakageForm()
-        await dash.mocks.calledForSubmitBreakageForm({
-            category: 'videos',
-            description: '',
-        })
-    })
+    desktopBreakageForm((page) => DashboardPage.browser(page))
 })
 
 test.describe('Protections toggle', () => {
-    test.describe('when a site is NOT allowlisted', () => {
-        test('then pressing toggle should disable protections', async ({ page }) => {
-            const dash = await DashboardPage.browser(page)
-            await dash.reducedMotion()
-            await dash.addState([testDataStates.protectionsOn])
-            await dash.toggleProtectionsOff()
-            await dash.mocks.calledForToggleAllowList('protections-off')
-        })
-    })
-    test.describe('When the site is already allowlisted', () => {
-        test('then pressing the toggle re-enables protections', async ({ page }) => {
-            const dash = await DashboardPage.browser(page)
-            await dash.reducedMotion()
-            await dash.addState([testDataStates.allowlisted])
-            await dash.toggleProtectionsOn()
-            await dash.mocks.calledForToggleAllowList('protections-on')
-        })
-    })
-    test.describe('When the site has content blocking disabled', () => {
-        test('then pressing the toggle re-enables protections (overriding our decision)', async ({ page }) => {
-            const dash = await DashboardPage.browser(page)
-            await dash.reducedMotion()
-            await dash.addState([testDataStates.protectionsOff])
-            await dash.toggleProtectionsOn()
-            await dash.mocks.calledForToggleAllowList('protections-on-override')
-        })
-    })
+    toggleFlows((page) => DashboardPage.browser(page))
+})
+
+test.describe('Protections toggle (extension specific)', () => {
+    toggleFlowsDenyList((page) => DashboardPage.browser(page))
 })
 
 test.describe('special page (cta)', () => {

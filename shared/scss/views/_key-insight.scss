@@ -21,13 +21,33 @@
     }
 }
 
-.key-insight--main {
-    .environment--macos &,
+.key-insight__icon {
+    height: 96px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 24px;
+    background-size: contain;
+
+    .environment--macos & {
+        margin-bottom: 20px;
+    }
     .environment--windows & {
-        padding-top: 32px;
+        margin-bottom: 20px;
     }
     .environment--browser & {
-        padding-top: 6px;
+        margin-bottom: 12px;
+    }
+}
+
+.key-insight--main {
+    .environment--macos & {
+        padding-bottom: 20px;
+    }
+    .environment--windows & {
+        padding-bottom: 20px;
+    }
+    .environment--browser & {
+        padding-bottom: 12px;
     }
 }
 
