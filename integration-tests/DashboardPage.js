@@ -136,8 +136,10 @@ export class DashboardPage {
     /**
      * @returns {Promise<void>}
      */
-    async loadPage() {
-        await this.page.goto(this.htmlPage)
+    async loadPage(params = {}) {
+        const path = this.htmlPage
+        const search = new URLSearchParams(params).toString()
+        await this.page.goto(path + '?' + search)
     }
 
     static async android(page) {
@@ -180,10 +182,17 @@ export class DashboardPage {
         return dash
     }
 
-    static async ios(page) {
+    /**
+     * @param {import("@playwright/test").Page} page
+     * @param {object} [opts]
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} opts.screen
+     */
+    static async ios(page, opts) {
+        /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
+        const screen = opts?.screen || 'primaryScreen'
         const dash = new DashboardPage(page, { name: 'ios' })
         await dash.withMarker()
-        await dash.loadPage()
+        await dash.loadPage({ screen })
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -278,6 +287,14 @@ export class DashboardPage {
         await this.page.getByRole('link', { name: 'Disable in Settings' }).click()
     }
 
+    async breakageFormIsVisible() {
+        await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
+    }
+
+    async showsOnlyDoneButton() {
+        await this.page.locator('.breakage-form').locator('a:has-text("Done")').waitFor()
+        await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
+    }
     /**
      * @param {"grant"} permission
      * @return {Promise<void>}
