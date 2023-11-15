@@ -28,9 +28,6 @@ export function toggleFlows(dashboardFactory) {
         await dash.showsAlternativeLayout()
         await dash.clicksWebsiteNotWorking()
         await dash.mocks.calledForShowBreakageForm()
-        // await dash.helpIsShown()
-        // await dash.screenshot('help-shown.png')
-        // await dash.clicksReportBroken()
     })
     test('with alternative primary screen - alternative-layout-exp-1 protections off (allowlisted)', async ({ page }) => {
         const dash = await dashboardFactory(page)
