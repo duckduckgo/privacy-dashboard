@@ -292,10 +292,8 @@ export function privacyDashboardSubmitBrokenSiteReport(report) {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardSetSize(payload) {
-    if (!isIOS()) {
-        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-        window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
-    }
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
 }
 
 /**
