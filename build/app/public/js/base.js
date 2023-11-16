@@ -12397,13 +12397,13 @@
         url: href
       });
     });
+    setupMutationObserver((height) => {
+      privacyDashboardSetSize({ height });
+    });
   }
   function setup2() {
     setupColorScheme();
     setupShared();
-    setupMutationObserver((height) => {
-      privacyDashboardSetSize({ height });
-    });
   }
   function firstRenderComplete() {
     const height = getContentHeight();
@@ -12465,316 +12465,6 @@
     }
   });
 
-  // shared/js/browser/ios-communication.js
-  var ios_communication_exports = {};
-  __export(ios_communication_exports, {
-    backgroundMessage: () => backgroundMessage2,
-    fetch: () => fetch3,
-    getBackgroundTabData: () => getBackgroundTabData2,
-    privacyDashboardClose: () => privacyDashboardClose,
-    privacyDashboardShowReportBrokenSite: () => privacyDashboardShowReportBrokenSite,
-    setup: () => setup3
-  });
-  function setup3() {
-    const setColorScheme = setupColorScheme();
-    window.onChangeTheme = function(themeName) {
-      setColorScheme(themeName);
-    };
-    window.history.replaceState({}, "", window.location.href);
-    setupShared();
-  }
-  function privacyDashboardClose(args) {
-    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
-  }
-  function privacyDashboardShowReportBrokenSite(args) {
-    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-    window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args);
-  }
-  async function fetch3(message) {
-    if (message instanceof CloseMessage) {
-      privacyDashboardClose({});
-      return;
-    }
-    if (message instanceof CheckBrokenSiteReportHandledMessage) {
-      privacyDashboardShowReportBrokenSite({});
-      return false;
-    }
-    return fetch2(message);
-  }
-  var init_ios_communication = __esm({
-    "shared/js/browser/ios-communication.js"() {
-      "use strict";
-      init_tiny_invariant();
-      init_common();
-      init_macos_communication();
-    }
-  });
-
-  // shared/js/browser/android-communication.js
-  var android_communication_exports = {};
-  __export(android_communication_exports, {
-    PrivacyDashboardJavascriptInterface: () => PrivacyDashboardJavascriptInterface,
-    backgroundMessage: () => backgroundMessage3,
-    fetch: () => fetch4,
-    getBackgroundTabData: () => getBackgroundTabData3,
-    onChangeConsentManaged: () => onChangeConsentManaged2,
-    onChangeFeatureSettings: () => onChangeFeatureSettings,
-    onChangeLocale: () => onChangeLocale2,
-    onChangeProtectionStatus: () => onChangeProtectionStatus2,
-    onChangeRequestData: () => onChangeRequestData2,
-    setup: () => setup4
-  });
-  function onChangeRequestData2(tabUrl, rawRequestData) {
-    const requestData = requestDataSchema.safeParse(rawRequestData);
-    if (!protections2) {
-      console.error("protections status not set");
-      return;
-    }
-    if (!requestData.success) {
-      console.error("could not parse incoming request data from `onChangeRequestData`");
-      console.log(requestData.error);
-      return;
-    }
-    trackerBlockingData2 = createTabData(tabUrl, upgradedHttps2, protections2, requestData.data);
-    resolveInitialRender2();
-  }
-  function onChangeProtectionStatus2(protectionsStatus) {
-    const parsed = protectionsStatusSchema.safeParse(protectionsStatus);
-    if (!parsed.success) {
-      console.error("could not parse incoming protection status from onChangeProtectionStatus");
-      console.error(parsed.error);
-      return;
-    }
-    protections2 = parsed.data;
-    resolveInitialRender2();
-  }
-  function onChangeLocale2(payload) {
-    const parsed = localeSettingsSchema.safeParse(payload);
-    if (!parsed.success) {
-      console.error("could not parse incoming protection status from onChangeLocale");
-      console.error(parsed.error);
-      return;
-    }
-    locale2 = parsed.data.locale;
-    channel3?.send("updateTabData", { via: "onChangeLocale" });
-  }
-  function onChangeFeatureSettings(payload) {
-    const parsed = remoteFeatureSettingsSchema.safeParse(payload);
-    if (!parsed.success) {
-      console.error("could not parse incoming protection status from onChangeFeatureSettings");
-      console.error(parsed.error);
-      return;
-    }
-    featureSettings = parsed.data;
-    channel3?.send("updateTabData", { via: "onChangeFeatureSettings" });
-  }
-  function onChangeConsentManaged2(payload) {
-    const parsed = cookiePromptManagementStatusSchema.safeParse(payload);
-    if (!parsed.success) {
-      console.error("could not parse incoming data from onChangeConsentManaged");
-      console.error(parsed.error);
-      return;
-    }
-    Object.assign(cookiePromptManagementStatus2, parsed.data);
-    channel3?.send("updateTabData");
-  }
-  async function fetchAndroid(message) {
-    if (message instanceof SetListsMessage) {
-      for (const listItem of message.lists) {
-        const { list, value } = listItem;
-        if (list !== "allowlisted") {
-          if (!window.__playwright)
-            console.warn("only `allowlisted` is currently supported on android");
-          continue;
-        }
-        const isProtected = value === false;
-        privacyDashboardApi.toggleAllowlist(isProtected);
-      }
-    }
-    if (message instanceof CloseMessage) {
-      privacyDashboardApi.close();
-    }
-    if (message instanceof CheckBrokenSiteReportHandledMessage) {
-      privacyDashboardApi.showBreakageForm();
-      return true;
-    }
-    if (message instanceof OpenSettingsMessages) {
-      privacyDashboardApi.openSettings({
-        target: message.target
-      });
-    }
-  }
-  function setup4() {
-    const setColorScheme = setupColorScheme();
-    window.onChangeTheme = function(themeName) {
-      setColorScheme(themeName);
-    };
-    window.onChangeProtectionStatus = onChangeProtectionStatus2;
-    window.onChangeLocale = onChangeLocale2;
-    window.onChangeRequestData = onChangeRequestData2;
-    window.onChangeConsentManaged = onChangeConsentManaged2;
-    window.onChangeFeatureSettings = onChangeFeatureSettings;
-    window.onChangeAllowedPermissions = function(data) {
-      permissionsData2 = data;
-      channel3?.send("updateTabData", { via: "onChangeAllowedPermissions" });
-    };
-    window.onChangeUpgradedHttps = function(data) {
-      upgradedHttps2 = data;
-      if (trackerBlockingData2)
-        trackerBlockingData2.upgradedHttps = upgradedHttps2;
-      resolveInitialRender2();
-    };
-    window.onChangeCertificateData = function(data) {
-      certificateData2 = data.secCertificateViewModels;
-      channel3?.send("updateTabData", { via: "onChangeCertificateData" });
-    };
-    window.onIsPendingUpdates = function(data) {
-      isPendingUpdates2 = data;
-      channel3?.send("updateTabData", { via: "onIsPendingUpdates" });
-    };
-    window.onChangeParentEntity = function(data) {
-      parentEntity2 = data;
-      channel3?.send("updateTabData", { via: "onChangeParentEntity" });
-    };
-    privacyDashboardApi = new PrivacyDashboardJavascriptInterface();
-    setupBlurOnLongPress();
-    setupGlobalOpenerListener((href) => {
-      privacyDashboardApi.openInNewTab({
-        url: href
-      });
-    });
-  }
-  var channel3, backgroundMessage3, getBackgroundTabDataPromises2, trackerBlockingData2, permissionsData2, certificateData2, upgradedHttps2, protections2, isPendingUpdates2, parentEntity2, cookiePromptManagementStatus2, locale2, featureSettings, combineSources2, resolveInitialRender2, PrivacyDashboardJavascriptInterface, privacyDashboardApi, getBackgroundTabDataAndroid, getBackgroundTabData3, fetch4;
-  var init_android_communication = __esm({
-    "shared/js/browser/android-communication.js"() {
-      "use strict";
-      init_schema_parsers();
-      init_utils();
-      init_common();
-      init_request_details();
-      channel3 = null;
-      backgroundMessage3 = (backgroundModel) => {
-        channel3 = backgroundModel;
-      };
-      getBackgroundTabDataPromises2 = [];
-      cookiePromptManagementStatus2 = {};
-      combineSources2 = () => ({
-        tab: Object.assign(
-          {},
-          trackerBlockingData2 || {},
-          {
-            isPendingUpdates: isPendingUpdates2,
-            parentEntity: parentEntity2,
-            cookiePromptManagementStatus: cookiePromptManagementStatus2,
-            locale: locale2
-          },
-          permissionsData2 ? { permissions: permissionsData2 } : {},
-          certificateData2 ? { certificate: certificateData2 } : {}
-        ),
-        featureSettings
-      });
-      resolveInitialRender2 = function() {
-        const isUpgradedHttpsSet = typeof upgradedHttps2 === "boolean";
-        const isIsProtectedSet = typeof protections2 !== "undefined";
-        const isTrackerBlockingDataSet = typeof trackerBlockingData2 === "object";
-        const isLocaleSet = typeof locale2 === "string";
-        if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
-          return;
-        }
-        getBackgroundTabDataPromises2.forEach((resolve) => resolve(combineSources2()));
-        channel3?.send("updateTabData", { via: "resolveInitialRender" });
-      };
-      PrivacyDashboardJavascriptInterface = class {
-        /**
-         * @param {boolean} isProtected - note: this will be sent as valid JSON, eg: `"true"` or `"false"`
-         *
-         * Add the current domain to the 'allowlist'
-         *
-         * ```js
-         * window.PrivacyDashboard.toggleAllowlist("true")
-         * ```
-         *
-         * Remove the current domain from the 'allowlist'
-         *
-         * ```js
-         * window.PrivacyDashboard.toggleAllowlist("false")
-         * ```
-         */
-        toggleAllowlist(isProtected) {
-          window.PrivacyDashboard.toggleAllowlist(isProtected);
-        }
-        /**
-         * Shows the native breakage form, instead of using the one
-         * embedded in the Privacy Dashboard
-         * @example
-         * ```
-         * window.PrivacyDashboard.showBreakageForm()
-         * ```
-         */
-        showBreakageForm() {
-          window.PrivacyDashboard.showBreakageForm();
-        }
-        /**
-         * @example
-         * ```
-         * window.PrivacyDashboard.close()
-         * ```
-         */
-        close() {
-          window.PrivacyDashboard.close();
-        }
-        /**
-         * {@inheritDoc common.openInNewTab}
-         * @type {import("./common.js").openInNewTab}
-         *
-         * ```js
-         * const payload = JSON.stringify({
-         *     "url": "https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/"
-         * });
-         * window.PrivacyDashboard.openInNewTab(payload)
-         * ```
-         */
-        openInNewTab(payload) {
-          window.PrivacyDashboard.openInNewTab(JSON.stringify(payload));
-        }
-        /**
-         * {@inheritDoc common.openSettings}
-         * @type {import("./common.js").openSettings}
-         * @example
-         * ```js
-         * const payload = JSON.stringify({
-         *     "target": "cpm"
-         * });
-         * window.PrivacyDashboard.openSettings(payload)
-         * ```
-         */
-        openSettings(payload) {
-          window.PrivacyDashboard.openSettings(JSON.stringify(payload));
-        }
-      };
-      getBackgroundTabDataAndroid = () => {
-        return new Promise((resolve) => {
-          if (trackerBlockingData2) {
-            resolve(combineSources2());
-            return;
-          }
-          getBackgroundTabDataPromises2.push(resolve);
-        });
-      };
-      getBackgroundTabData3 = new Proxy(getBackgroundTabDataAndroid, {
-        apply(target, thisArg, argArray) {
-          return Reflect.apply(target, thisArg, argArray);
-        }
-      });
-      fetch4 = new Proxy(fetchAndroid, {
-        apply(target, thisArg, argArray) {
-          return Reflect.apply(target, thisArg, argArray);
-        }
-      });
-    }
-  });
-
   // shared/js/browser/windows-communication.js
   var windows_communication_exports = {};
   __export(windows_communication_exports, {
@@ -12782,24 +12472,24 @@
     OpenSettings: () => OpenSettings,
     SetSize: () => SetSize,
     SubmitBrokenSiteReport: () => SubmitBrokenSiteReport,
-    backgroundMessage: () => backgroundMessage4,
-    fetch: () => fetch5,
+    backgroundMessage: () => backgroundMessage3,
+    fetch: () => fetch3,
     firstRenderComplete: () => firstRenderComplete2,
-    getBackgroundTabData: () => getBackgroundTabData4,
+    getBackgroundTabData: () => getBackgroundTabData3,
     handleIncomingMessage: () => handleIncomingMessage,
-    setup: () => setup5
+    setup: () => setup3
   });
   function handleViewModelUpdate(viewModel) {
-    upgradedHttps3 = viewModel.upgradedHttps;
-    parentEntity3 = viewModel.parentEntity || {};
-    permissionsData3 = viewModel.permissions || [];
-    certificateData3 = viewModel.certificates || [];
-    protections3 = viewModel.protections;
-    trackerBlockingData3 = createTabData(viewModel.tabUrl, upgradedHttps3, viewModel.protections, viewModel.rawRequestData);
-    trackerBlockingData3.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
-    if (trackerBlockingData3)
-      trackerBlockingData3.upgradedHttps = upgradedHttps3;
-    resolveInitialRender3();
+    upgradedHttps2 = viewModel.upgradedHttps;
+    parentEntity2 = viewModel.parentEntity || {};
+    permissionsData2 = viewModel.permissions || [];
+    certificateData2 = viewModel.certificates || [];
+    protections2 = viewModel.protections;
+    trackerBlockingData2 = createTabData(viewModel.tabUrl, upgradedHttps2, viewModel.protections, viewModel.rawRequestData);
+    trackerBlockingData2.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
+    if (trackerBlockingData2)
+      trackerBlockingData2.upgradedHttps = upgradedHttps2;
+    resolveInitialRender2();
   }
   function windowsPostMessage(name, data) {
     assert(typeof window.chrome.webview?.postMessage === "function");
@@ -12809,7 +12499,7 @@
       Data: data
     });
   }
-  async function fetch5(message) {
+  async function fetch3(message) {
     if (message instanceof SubmitBrokenSiteReportMessage) {
       SubmitBrokenSiteReport({
         category: message.category,
@@ -12883,7 +12573,7 @@
       }
     }
   }
-  function setup5() {
+  function setup3() {
     if (!window.chrome.webview) {
       console.error("window.chrome.webview not available");
       return;
@@ -12908,11 +12598,241 @@
       SetSize({ height });
     }
   }
-  var channel4, backgroundMessage4, getBackgroundTabDataPromises3, trackerBlockingData3, permissionsData3, certificateData3, upgradedHttps3, protections3, isPendingUpdates3, parentEntity3, combineSources3, resolveInitialRender3, getBackgroundTabData4, eventShape;
+  var channel3, backgroundMessage3, getBackgroundTabDataPromises2, trackerBlockingData2, permissionsData2, certificateData2, upgradedHttps2, protections2, isPendingUpdates2, parentEntity2, combineSources2, resolveInitialRender2, getBackgroundTabData3, eventShape;
   var init_windows_communication = __esm({
     "shared/js/browser/windows-communication.js"() {
       "use strict";
       init_lib();
+      init_schema_parsers();
+      init_utils();
+      init_common();
+      init_request_details();
+      channel3 = null;
+      backgroundMessage3 = (backgroundModel) => {
+        channel3 = backgroundModel;
+      };
+      getBackgroundTabDataPromises2 = [];
+      combineSources2 = () => ({
+        tab: Object.assign(
+          {},
+          trackerBlockingData2 || {},
+          {
+            isPendingUpdates: isPendingUpdates2,
+            parentEntity: parentEntity2
+          },
+          permissionsData2 ? { permissions: permissionsData2 } : {},
+          certificateData2 ? { certificate: certificateData2 } : {}
+        )
+      });
+      resolveInitialRender2 = function() {
+        const isUpgradedHttpsSet = typeof upgradedHttps2 === "boolean";
+        const isIsProtectedSet = typeof protections2 !== "undefined";
+        const isTrackerBlockingDataSet = typeof trackerBlockingData2 === "object";
+        if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+          return;
+        }
+        getBackgroundTabDataPromises2.forEach((resolve) => resolve(combineSources2()));
+        channel3?.send("updateTabData");
+      };
+      getBackgroundTabData3 = () => {
+        return new Promise((resolve) => {
+          if (trackerBlockingData2) {
+            resolve(combineSources2());
+            return;
+          }
+          getBackgroundTabDataPromises2.push(resolve);
+        });
+      };
+      eventShape = mod.discriminatedUnion("Name", [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema]);
+    }
+  });
+
+  // shared/js/browser/ios-communication.js
+  var ios_communication_exports = {};
+  __export(ios_communication_exports, {
+    backgroundMessage: () => backgroundMessage2,
+    fetch: () => fetch4,
+    firstRenderComplete: () => firstRenderComplete2,
+    getBackgroundTabData: () => getBackgroundTabData2,
+    privacyDashboardClose: () => privacyDashboardClose,
+    privacyDashboardShowReportBrokenSite: () => privacyDashboardShowReportBrokenSite,
+    setup: () => setup4
+  });
+  function setup4() {
+    const setColorScheme = setupColorScheme();
+    window.onChangeTheme = function(themeName) {
+      setColorScheme(themeName);
+    };
+    window.history.replaceState({}, "", window.location.href);
+    setupShared();
+  }
+  function privacyDashboardClose(args) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
+  }
+  function privacyDashboardShowReportBrokenSite(args) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+    window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args);
+  }
+  async function fetch4(message) {
+    if (message instanceof CloseMessage) {
+      privacyDashboardClose({});
+      return;
+    }
+    if (message instanceof CheckBrokenSiteReportHandledMessage) {
+      privacyDashboardShowReportBrokenSite({});
+      return false;
+    }
+    return fetch2(message);
+  }
+  var init_ios_communication = __esm({
+    "shared/js/browser/ios-communication.js"() {
+      "use strict";
+      init_tiny_invariant();
+      init_common();
+      init_macos_communication();
+      init_windows_communication();
+    }
+  });
+
+  // shared/js/browser/android-communication.js
+  var android_communication_exports = {};
+  __export(android_communication_exports, {
+    PrivacyDashboardJavascriptInterface: () => PrivacyDashboardJavascriptInterface,
+    backgroundMessage: () => backgroundMessage4,
+    fetch: () => fetch5,
+    getBackgroundTabData: () => getBackgroundTabData4,
+    onChangeConsentManaged: () => onChangeConsentManaged2,
+    onChangeFeatureSettings: () => onChangeFeatureSettings,
+    onChangeLocale: () => onChangeLocale2,
+    onChangeProtectionStatus: () => onChangeProtectionStatus2,
+    onChangeRequestData: () => onChangeRequestData2,
+    setup: () => setup5
+  });
+  function onChangeRequestData2(tabUrl, rawRequestData) {
+    const requestData = requestDataSchema.safeParse(rawRequestData);
+    if (!protections3) {
+      console.error("protections status not set");
+      return;
+    }
+    if (!requestData.success) {
+      console.error("could not parse incoming request data from `onChangeRequestData`");
+      console.log(requestData.error);
+      return;
+    }
+    trackerBlockingData3 = createTabData(tabUrl, upgradedHttps3, protections3, requestData.data);
+    resolveInitialRender3();
+  }
+  function onChangeProtectionStatus2(protectionsStatus) {
+    const parsed = protectionsStatusSchema.safeParse(protectionsStatus);
+    if (!parsed.success) {
+      console.error("could not parse incoming protection status from onChangeProtectionStatus");
+      console.error(parsed.error);
+      return;
+    }
+    protections3 = parsed.data;
+    resolveInitialRender3();
+  }
+  function onChangeLocale2(payload) {
+    const parsed = localeSettingsSchema.safeParse(payload);
+    if (!parsed.success) {
+      console.error("could not parse incoming protection status from onChangeLocale");
+      console.error(parsed.error);
+      return;
+    }
+    locale2 = parsed.data.locale;
+    channel4?.send("updateTabData", { via: "onChangeLocale" });
+  }
+  function onChangeFeatureSettings(payload) {
+    const parsed = remoteFeatureSettingsSchema.safeParse(payload);
+    if (!parsed.success) {
+      console.error("could not parse incoming protection status from onChangeFeatureSettings");
+      console.error(parsed.error);
+      return;
+    }
+    featureSettings = parsed.data;
+    channel4?.send("updateTabData", { via: "onChangeFeatureSettings" });
+  }
+  function onChangeConsentManaged2(payload) {
+    const parsed = cookiePromptManagementStatusSchema.safeParse(payload);
+    if (!parsed.success) {
+      console.error("could not parse incoming data from onChangeConsentManaged");
+      console.error(parsed.error);
+      return;
+    }
+    Object.assign(cookiePromptManagementStatus2, parsed.data);
+    channel4?.send("updateTabData");
+  }
+  async function fetchAndroid(message) {
+    if (message instanceof SetListsMessage) {
+      for (const listItem of message.lists) {
+        const { list, value } = listItem;
+        if (list !== "allowlisted") {
+          if (!window.__playwright)
+            console.warn("only `allowlisted` is currently supported on android");
+          continue;
+        }
+        const isProtected = value === false;
+        privacyDashboardApi.toggleAllowlist(isProtected);
+      }
+    }
+    if (message instanceof CloseMessage) {
+      privacyDashboardApi.close();
+    }
+    if (message instanceof CheckBrokenSiteReportHandledMessage) {
+      privacyDashboardApi.showBreakageForm();
+      return true;
+    }
+    if (message instanceof OpenSettingsMessages) {
+      privacyDashboardApi.openSettings({
+        target: message.target
+      });
+    }
+  }
+  function setup5() {
+    const setColorScheme = setupColorScheme();
+    window.onChangeTheme = function(themeName) {
+      setColorScheme(themeName);
+    };
+    window.onChangeProtectionStatus = onChangeProtectionStatus2;
+    window.onChangeLocale = onChangeLocale2;
+    window.onChangeRequestData = onChangeRequestData2;
+    window.onChangeConsentManaged = onChangeConsentManaged2;
+    window.onChangeFeatureSettings = onChangeFeatureSettings;
+    window.onChangeAllowedPermissions = function(data) {
+      permissionsData3 = data;
+      channel4?.send("updateTabData", { via: "onChangeAllowedPermissions" });
+    };
+    window.onChangeUpgradedHttps = function(data) {
+      upgradedHttps3 = data;
+      if (trackerBlockingData3)
+        trackerBlockingData3.upgradedHttps = upgradedHttps3;
+      resolveInitialRender3();
+    };
+    window.onChangeCertificateData = function(data) {
+      certificateData3 = data.secCertificateViewModels;
+      channel4?.send("updateTabData", { via: "onChangeCertificateData" });
+    };
+    window.onIsPendingUpdates = function(data) {
+      isPendingUpdates3 = data;
+      channel4?.send("updateTabData", { via: "onIsPendingUpdates" });
+    };
+    window.onChangeParentEntity = function(data) {
+      parentEntity3 = data;
+      channel4?.send("updateTabData", { via: "onChangeParentEntity" });
+    };
+    privacyDashboardApi = new PrivacyDashboardJavascriptInterface();
+    setupBlurOnLongPress();
+    setupGlobalOpenerListener((href) => {
+      privacyDashboardApi.openInNewTab({
+        url: href
+      });
+    });
+  }
+  var channel4, backgroundMessage4, getBackgroundTabDataPromises3, trackerBlockingData3, permissionsData3, certificateData3, upgradedHttps3, protections3, isPendingUpdates3, parentEntity3, cookiePromptManagementStatus2, locale2, featureSettings, combineSources3, resolveInitialRender3, PrivacyDashboardJavascriptInterface, privacyDashboardApi, getBackgroundTabDataAndroid, getBackgroundTabData4, fetch5;
+  var init_android_communication = __esm({
+    "shared/js/browser/android-communication.js"() {
+      "use strict";
       init_schema_parsers();
       init_utils();
       init_common();
@@ -12922,29 +12842,102 @@
         channel4 = backgroundModel;
       };
       getBackgroundTabDataPromises3 = [];
+      cookiePromptManagementStatus2 = {};
       combineSources3 = () => ({
         tab: Object.assign(
           {},
           trackerBlockingData3 || {},
           {
             isPendingUpdates: isPendingUpdates3,
-            parentEntity: parentEntity3
+            parentEntity: parentEntity3,
+            cookiePromptManagementStatus: cookiePromptManagementStatus2,
+            locale: locale2
           },
           permissionsData3 ? { permissions: permissionsData3 } : {},
           certificateData3 ? { certificate: certificateData3 } : {}
-        )
+        ),
+        featureSettings
       });
       resolveInitialRender3 = function() {
         const isUpgradedHttpsSet = typeof upgradedHttps3 === "boolean";
         const isIsProtectedSet = typeof protections3 !== "undefined";
         const isTrackerBlockingDataSet = typeof trackerBlockingData3 === "object";
-        if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+        const isLocaleSet = typeof locale2 === "string";
+        if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
           return;
         }
         getBackgroundTabDataPromises3.forEach((resolve) => resolve(combineSources3()));
-        channel4?.send("updateTabData");
+        channel4?.send("updateTabData", { via: "resolveInitialRender" });
       };
-      getBackgroundTabData4 = () => {
+      PrivacyDashboardJavascriptInterface = class {
+        /**
+         * @param {boolean} isProtected - note: this will be sent as valid JSON, eg: `"true"` or `"false"`
+         *
+         * Add the current domain to the 'allowlist'
+         *
+         * ```js
+         * window.PrivacyDashboard.toggleAllowlist("true")
+         * ```
+         *
+         * Remove the current domain from the 'allowlist'
+         *
+         * ```js
+         * window.PrivacyDashboard.toggleAllowlist("false")
+         * ```
+         */
+        toggleAllowlist(isProtected) {
+          window.PrivacyDashboard.toggleAllowlist(isProtected);
+        }
+        /**
+         * Shows the native breakage form, instead of using the one
+         * embedded in the Privacy Dashboard
+         * @example
+         * ```
+         * window.PrivacyDashboard.showBreakageForm()
+         * ```
+         */
+        showBreakageForm() {
+          window.PrivacyDashboard.showBreakageForm();
+        }
+        /**
+         * @example
+         * ```
+         * window.PrivacyDashboard.close()
+         * ```
+         */
+        close() {
+          window.PrivacyDashboard.close();
+        }
+        /**
+         * {@inheritDoc common.openInNewTab}
+         * @type {import("./common.js").openInNewTab}
+         *
+         * ```js
+         * const payload = JSON.stringify({
+         *     "url": "https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/"
+         * });
+         * window.PrivacyDashboard.openInNewTab(payload)
+         * ```
+         */
+        openInNewTab(payload) {
+          window.PrivacyDashboard.openInNewTab(JSON.stringify(payload));
+        }
+        /**
+         * {@inheritDoc common.openSettings}
+         * @type {import("./common.js").openSettings}
+         * @example
+         * ```js
+         * const payload = JSON.stringify({
+         *     "target": "cpm"
+         * });
+         * window.PrivacyDashboard.openSettings(payload)
+         * ```
+         */
+        openSettings(payload) {
+          window.PrivacyDashboard.openSettings(JSON.stringify(payload));
+        }
+      };
+      getBackgroundTabDataAndroid = () => {
         return new Promise((resolve) => {
           if (trackerBlockingData3) {
             resolve(combineSources3());
@@ -12953,7 +12946,16 @@
           getBackgroundTabDataPromises3.push(resolve);
         });
       };
-      eventShape = mod.discriminatedUnion("Name", [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema]);
+      getBackgroundTabData4 = new Proxy(getBackgroundTabDataAndroid, {
+        apply(target, thisArg, argArray) {
+          return Reflect.apply(target, thisArg, argArray);
+        }
+      });
+      fetch5 = new Proxy(fetchAndroid, {
+        apply(target, thisArg, argArray) {
+          return Reflect.apply(target, thisArg, argArray);
+        }
+      });
     }
   });
 

@@ -332,6 +332,9 @@ export function setupShared() {
             url: href,
         })
     })
+    setupMutationObserver((height) => {
+        privacyDashboardSetSize({ height })
+    })
 }
 
 /**
@@ -340,9 +343,6 @@ export function setupShared() {
 export function setup() {
     setupColorScheme()
     setupShared()
-    setupMutationObserver((height) => {
-        privacyDashboardSetSize({ height })
-    })
 }
 
 /**
@@ -352,11 +352,11 @@ export function setup() {
  * @type {NonNullable<import('./communication.js').Communication['firstRenderComplete']>}
  * @category Internal API
  */
-function firstRenderComplete() {
+export function firstRenderComplete() {
     const height = getContentHeight()
     if (typeof height === 'number') {
         privacyDashboardSetSize({ height })
     }
 }
 
-export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete }
+export { fetch, backgroundMessage, getBackgroundTabData }
