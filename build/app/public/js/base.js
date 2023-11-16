@@ -12360,8 +12360,10 @@
     });
   }
   function privacyDashboardSetSize(payload) {
-    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-    window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
+    if (!isIOS()) {
+      invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+      window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
+    }
   }
   function setupShared() {
     window.onChangeRequestData = onChangeRequestData;
