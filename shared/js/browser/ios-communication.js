@@ -24,7 +24,6 @@
 import invariant from 'tiny-invariant'
 import { CheckBrokenSiteReportHandledMessage, CloseMessage, setupColorScheme } from './common.js'
 import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShared } from './macos-communication.js'
-import { firstRenderComplete } from './windows-communication.js'
 
 /**
  * iOS specific setup
@@ -86,4 +85,4 @@ async function fetch(message) {
     return macosFetch(message)
 }
 
-export { backgroundMessage, getBackgroundTabData, fetch, firstRenderComplete }
+export { backgroundMessage, getBackgroundTabData, fetch }
