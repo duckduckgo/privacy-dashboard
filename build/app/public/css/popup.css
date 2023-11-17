@@ -201,7 +201,11 @@ body.environment--browser {
   font-size: 14px;
   line-height: 18px;
 }
-body.environment--ios, body.environment--android {
+body.environment--ios {
+  --width: 100%;
+  --height: -webkit-fill-available;
+}
+body.environment--android {
   --width: 100%;
 }
 body.environment--browser {
