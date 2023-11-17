@@ -9,6 +9,11 @@ function SlidingSubview(ops) {
     Parent.call(this, ops)
 
     this.$root = $('.sliding-subview--root')
+
+    if (ops.immediate) {
+        this.$root.addClass('sliding-subview--immediate')
+    }
+
     this.$root.addClass('sliding-subview--open')
 
     // @ts-ignore
@@ -32,8 +37,7 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
     },
 
     setupNavigationSupport: function () {
-        // @ts-ignore
-        const url = new URL(window.location)
+        const url = new URL(window.location.href)
         url.searchParams.set('open', 'true')
         window.history.pushState({}, '', url)
 

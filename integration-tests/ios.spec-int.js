@@ -128,6 +128,17 @@ test.describe('cookie prompt management', () => {
     })
 })
 
+test.describe('opening breakage form', () => {
+    test('shows breakage form only', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.ios(page, { screen: 'breakageForm' })
+        await dash.addState([testDataStates.google])
+        await dash.screenshot('breakage-form-only.png')
+        await dash.breakageFormIsVisible()
+        await dash.showsOnlyDoneButton()
+    })
+})
+
 if (!process.env.CI) {
     test.describe('screenshots', () => {
         const states = [

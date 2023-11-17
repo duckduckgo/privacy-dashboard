@@ -12498,7 +12498,7 @@
     }
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
       privacyDashboardShowReportBrokenSite({});
-      return true;
+      return false;
     }
     return fetch2(message);
   }
@@ -21333,7 +21333,7 @@
 
   // shared/js/ui/templates/shared/top-nav.js
   function topNav(opts = {}) {
-    const { view = "primary" } = opts;
+    const { view = "primary", immediate = false } = opts;
     let elements;
     if (view === "primary") {
       elements = platformSwitch({
@@ -21343,7 +21343,12 @@
       });
     } else {
       elements = platformSwitch({
-        ios: () => [back(), close()],
+        ios: () => {
+          if (immediate) {
+            return [close()];
+          }
+          return [back(), close()];
+        },
         default: () => [back()]
       });
     }
@@ -22201,6 +22206,9 @@
     ops.appendTo = (0, import_jquery10.default)(".sliding-subview--root");
     view_default.call(this, ops);
     this.$root = (0, import_jquery10.default)(".sliding-subview--root");
+    if (ops.immediate) {
+      this.$root.addClass("sliding-subview--immediate");
+    }
     this.$root.addClass("sliding-subview--open");
     this.setupNavigationSupport();
     this.setupClose();
@@ -22226,7 +22234,7 @@
           }
         },
         setupNavigationSupport: function() {
-          const url = new URL(window.location);
+          const url = new URL(window.location.href);
           url.searchParams.set("open", "true");
           window.history.pushState({}, "", url);
           if (this.popstateHandler) {
@@ -22290,6 +22298,7 @@
     this.model = ops.model;
     this.mainModel = ops.mainModel;
     this.template = ops.template;
+    this.immediate = ops.immediate;
     sliding_subview_default.call(this, ops);
     this._setup();
   }
@@ -23286,7 +23295,7 @@
     let placeholder = ns.report("tellUsMoreDesc.title", { bullet });
     return import_nanohtml13.default`<section class="sliding-subview">
         <div class="breakage-form">
-            ${topNav({ view: "secondary" })}
+            ${topNav({ view: "secondary", immediate: this.immediate })}
             <div class="breakage-form__inner js-breakage-form-element" data-state="idle">
                 <div class="header header--breakage">${wrap(this.mainModel, this)}</div>
                 <div class="key-insight key-insight--breakage padding-x-double">
@@ -24263,7 +24272,7 @@
     });
   }
   function blur(target) {
-    const closest = target?.closest("a");
+    const closest = target?.closest?.("a");
     if (closest && typeof closest.blur === "function") {
       closest.blur();
     }
@@ -24315,7 +24324,12 @@
           window.addEventListener("open-feedback", (e3) => {
             this._onReportBrokenSiteClick(e3);
           });
-          this._setupFeatures();
+          this._setupPrimaryScreen();
+          const url = new URL(window.location.href);
+          const str = "breakageForm";
+          if (url.searchParams.get("screen") === str) {
+            this.showBreakageForm({ immediate: true });
+          }
           setTimeout(() => {
             communication_default.firstRenderComplete?.();
           }, 100);
@@ -24349,20 +24363,26 @@
           }
           this.model.checkBrokenSiteReportHandled().then((handled) => {
             if (!handled) {
-              this.showBreakageForm("reportBrokenSite");
+              this.showBreakageForm({ eventTarget: e3.target, immediate: false });
             }
           }).catch((e4) => {
             console.error("could not check", e4);
           });
         },
-        // pass clickSource to specify whether page should reload
-        // after submitting breakage form.
-        showBreakageForm: function(e3) {
-          blur(e3.target);
+        /**
+         * @param {object} opts
+         * @param {boolean} opts.immediate
+         * @param {HTMLElement} [opts.eventTarget]
+         */
+        showBreakageForm: function({ immediate, eventTarget }) {
+          if (eventTarget) {
+            blur(eventTarget);
+          }
           this.views.slidingSubview = new breakage_form_default({
             template: breakage_form_default2,
-            model: new BreakageFormModel(),
-            mainModel: this.model
+            model: new BreakageFormModel({ site: this.model }),
+            mainModel: this.model,
+            immediate
           });
         },
         _showPageTrackers: function() {
@@ -24410,7 +24430,7 @@
         _done: function() {
           this.model.close();
         },
-        _setupFeatures() {
+        _setupPrimaryScreen() {
           this.views.mainNav = new MainNavView({
             model: this.model,
             appendTo: (0, import_jquery21.default)("#main-nav"),

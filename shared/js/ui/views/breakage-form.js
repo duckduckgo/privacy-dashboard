@@ -6,12 +6,14 @@ import ParentSlidingSubview from './sliding-subview.js'
  * @param {() => HTMLElement} ops.template
  * @param {import("../models/breakage-form.js").BreakageFormModel} ops.model
  * @param {import('../models/site.js').PublicSiteModel} ops.mainModel
+ * @param {boolean} ops.immediate
  * @constructor
  */
 function BreakageForm(ops) {
     this.model = ops.model
     this.mainModel = ops.mainModel
     this.template = ops.template
+    this.immediate = ops.immediate
     // this.$root = $('.js-breakage-form')
     // @ts-ignore
     ParentSlidingSubview.call(this, ops)

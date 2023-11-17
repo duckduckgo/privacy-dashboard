@@ -73,7 +73,15 @@ Site.prototype = $.extend({}, Parent.prototype, {
             this._onReportBrokenSiteClick(e)
         })
 
-        this._setupFeatures()
+        this._setupPrimaryScreen()
+        const url = new URL(window.location.href)
+
+        /** @type {import('../../../../schema/__generated__/schema.types.js').EventOrigin['screen']} */
+        const str = 'breakageForm'
+
+        if (url.searchParams.get('screen') === str) {
+            this.showBreakageForm({ immediate: true })
+        }
 
         setTimeout(() => {
             browserUIWrapper.firstRenderComplete?.()
@@ -113,7 +121,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             .checkBrokenSiteReportHandled()
             .then((handled) => {
                 if (!handled) {
-                    this.showBreakageForm('reportBrokenSite')
+                    this.showBreakageForm({ eventTarget: e.target, immediate: false })
                 }
             })
             .catch((e) => {
@@ -121,14 +129,20 @@ Site.prototype = $.extend({}, Parent.prototype, {
             })
     },
 
-    // pass clickSource to specify whether page should reload
-    // after submitting breakage form.
-    showBreakageForm: function (e) {
-        blur(e.target)
+    /**
+     * @param {object} opts
+     * @param {boolean} opts.immediate
+     * @param {HTMLElement} [opts.eventTarget]
+     */
+    showBreakageForm: function ({ immediate, eventTarget }) {
+        if (eventTarget) {
+            blur(eventTarget)
+        }
         this.views.slidingSubview = new BreakageFormView({
             template: breakageFormTemplate,
-            model: new BreakageFormModel(),
+            model: new BreakageFormModel({ site: this.model }),
             mainModel: this.model,
+            immediate,
         })
     },
 
@@ -179,7 +193,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     _done: function () {
         this.model.close()
     },
-    _setupFeatures() {
+    _setupPrimaryScreen() {
         this.views.mainNav = new MainNavView({
             model: this.model,
             appendTo: $('#main-nav'),
@@ -224,7 +238,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
  * @param {HTMLElement | null} target
  */
 function blur(target) {
-    const closest = target?.closest('a')
+    const closest = target?.closest?.('a')
     if (closest && typeof closest.blur === 'function') {
         closest.blur()
     }

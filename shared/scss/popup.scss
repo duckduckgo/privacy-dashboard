@@ -36,11 +36,15 @@ body {
     --btn-accent-shadow: 0px 0px 1px rgba(40, 145, 255, 0.05), 0px 1px 1px rgba(40, 145, 255, 0.1);
 
     // mobile environments
-    &.environment--ios,
+    &.environment--ios {
+        --width: 100%;
+        --height: -webkit-fill-available;
+    }
     &.environment--android {
         --width: 100%;
     }
 
+    // desktops
     &.environment--browser {
         --height: 600px;
     }

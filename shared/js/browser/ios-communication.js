@@ -79,7 +79,7 @@ async function fetch(message) {
 
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
         privacyDashboardShowReportBrokenSite({})
-        return true // Return true to prevent HTML form from showing
+        return false // Return true to prevent HTML form from showing
     }
 
     return macosFetch(message)

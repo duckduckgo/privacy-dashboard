@@ -5,9 +5,11 @@ import { ns } from '../../base/localize.js'
 /**
  * @param {object} opts
  * @param {"primary" | "secondary"} [opts.view] - certain platforms show different things depending on view
+ * @param {boolean} [opts.immediate]
  */
 export function topNav(opts = {}) {
-    const { view = 'primary' } = opts
+    /** @type {typeof opts} */
+    const { view = 'primary', immediate = false } = opts
     let elements
     if (view === 'primary') {
         elements = platformSwitch({
@@ -18,7 +20,13 @@ export function topNav(opts = {}) {
     } else {
         // here, must be 'secondary' view
         elements = platformSwitch({
-            ios: () => [back(), close()],
+            ios: () => {
+                // if 'immediate' is set, don't allow 'back' navigation
+                if (immediate) {
+                    return [close()]
+                }
+                return [back(), close()]
+            },
             default: () => [back()],
         })
     }
