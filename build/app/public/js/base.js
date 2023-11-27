@@ -12255,6 +12255,7 @@
     onChangeRequestData: () => onChangeRequestData,
     privacyDashboardOpenSettings: () => privacyDashboardOpenSettings,
     privacyDashboardOpenUrlInNewTab: () => privacyDashboardOpenUrlInNewTab,
+    privacyDashboardSetProtection: () => privacyDashboardSetProtection,
     privacyDashboardSetSize: () => privacyDashboardSetSize,
     privacyDashboardSubmitBrokenSiteReport: () => privacyDashboardSubmitBrokenSiteReport,
     setup: () => setup2,
@@ -12302,6 +12303,13 @@
     Object.assign(cookiePromptManagementStatus, parsed.data);
     channel2?.send("updateTabData");
   }
+  function privacyDashboardSetProtection(params) {
+    invariant(
+      window.webkit?.messageHandlers?.privacyDashboardSetProtection,
+      "webkit.messageHandlers.privacyDashboardSetProtection required"
+    );
+    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(params);
+  }
   async function fetch2(message) {
     if (message instanceof SubmitBrokenSiteReportMessage) {
       privacyDashboardSubmitBrokenSiteReport({
@@ -12319,12 +12327,9 @@
           continue;
         }
         const isProtected = value === false;
-        invariant(window.webkit?.messageHandlers?.privacyDashboardSetProtection, "webkit.messageHandlers required");
-        window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage({
-          isProtected,
-          eventOrigin: message.eventOrigin
-        });
+        privacyDashboardSetProtection({ eventOrigin: message.eventOrigin, isProtected });
       }
+      return;
     }
     if (message instanceof OpenSettingsMessages) {
       privacyDashboardOpenSettings({
