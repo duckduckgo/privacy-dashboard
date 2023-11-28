@@ -215,6 +215,28 @@ export function privacyDashboardSetProtection(params) {
 }
 
 /**
+ * This message will be sent when the permissions dropdown is used
+ *
+ * {@inheritDoc common.setPermission}
+ * @type {import("./common.js").setPermission}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
+ *    permission: "camera",
+ *    value: "grant"
+ * })
+ * ```
+ */
+export function privacyDashboardSetPermission(params) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params)
+}
+
+/**
  * @category Internal API
  * @type {import("./common.js").fetcher}
  */
@@ -249,8 +271,7 @@ async function fetch(message) {
     }
 
     if (message instanceof UpdatePermissionMessage) {
-        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-        window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
+        privacyDashboardSetPermission({
             permission: message.id,
             value: message.value,
         })

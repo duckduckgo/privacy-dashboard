@@ -236,6 +236,13 @@ export async function refreshAlias() {
  */
 export function search(options) {}
 
+/**
+ * This message will be sent when the permissions dropdown is used
+ *
+ * @param {{permission: string; value: string}} params
+ */
+export function setPermission(params) {}
+
 class Msg {
     toJSON() {
         return {

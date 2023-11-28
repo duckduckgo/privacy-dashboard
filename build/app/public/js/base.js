@@ -12255,6 +12255,7 @@
     onChangeRequestData: () => onChangeRequestData,
     privacyDashboardOpenSettings: () => privacyDashboardOpenSettings,
     privacyDashboardOpenUrlInNewTab: () => privacyDashboardOpenUrlInNewTab,
+    privacyDashboardSetPermission: () => privacyDashboardSetPermission,
     privacyDashboardSetProtection: () => privacyDashboardSetProtection,
     privacyDashboardSetSize: () => privacyDashboardSetSize,
     privacyDashboardSubmitBrokenSiteReport: () => privacyDashboardSubmitBrokenSiteReport,
@@ -12310,6 +12311,10 @@
     );
     window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(params);
   }
+  function privacyDashboardSetPermission(params) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+    window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params);
+  }
   async function fetch2(message) {
     if (message instanceof SubmitBrokenSiteReportMessage) {
       privacyDashboardSubmitBrokenSiteReport({
@@ -12338,8 +12343,7 @@
       return;
     }
     if (message instanceof UpdatePermissionMessage) {
-      invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-      window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
+      privacyDashboardSetPermission({
         permission: message.id,
         value: message.value
       });
@@ -12783,8 +12787,11 @@
   // shared/js/browser/windows-communication.js
   var windows_communication_exports = {};
   __export(windows_communication_exports, {
+    AddToAllowListCommand: () => AddToAllowListCommand,
     OpenInNewTab: () => OpenInNewTab,
     OpenSettings: () => OpenSettings,
+    RemoveFromAllowListCommand: () => RemoveFromAllowListCommand,
+    SetPermissionCommand: () => SetPermissionCommand,
     SetSize: () => SetSize,
     SubmitBrokenSiteReport: () => SubmitBrokenSiteReport,
     backgroundMessage: () => backgroundMessage4,
@@ -12839,14 +12846,14 @@
         const isProtected = value === false;
         const eventOrigin = message.eventOrigin;
         if (isProtected) {
-          windowsPostMessage("RemoveFromAllowListCommand", { eventOrigin });
+          RemoveFromAllowListCommand(eventOrigin);
         } else {
-          windowsPostMessage("AddToAllowListCommand", { eventOrigin });
+          AddToAllowListCommand(eventOrigin);
         }
       }
     }
     if (message instanceof UpdatePermissionMessage) {
-      windowsPostMessage("SetPermissionCommand", {
+      SetPermissionCommand({
         permission: message.id,
         value: message.value
       });
@@ -12868,6 +12875,15 @@
   }
   function OpenSettings(args) {
     windowsPostMessage("OpenSettings", args);
+  }
+  function SetPermissionCommand(args) {
+    windowsPostMessage("SetPermissionCommand", args);
+  }
+  function RemoveFromAllowListCommand(eventOrigin) {
+    windowsPostMessage("RemoveFromAllowListCommand", { eventOrigin });
+  }
+  function AddToAllowListCommand(eventOrigin) {
+    windowsPostMessage("AddToAllowListCommand", { eventOrigin });
   }
   function handleIncomingMessage(message) {
     const parsed = eventShape.safeParse(message);
