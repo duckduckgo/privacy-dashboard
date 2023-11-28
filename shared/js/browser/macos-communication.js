@@ -215,8 +215,6 @@ export function privacyDashboardSetProtection(params) {
 }
 
 /**
- * This message will be sent when the permissions dropdown is used
- *
  * {@inheritDoc common.setPermission}
  * @type {import("./common.js").setPermission}
  * @category Webkit Message Handlers
