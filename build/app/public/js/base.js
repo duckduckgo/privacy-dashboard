@@ -10682,6 +10682,9 @@
         }
       };
       BurnMessage = class extends Msg {
+        /**
+         * @param {import('../../../schema/__generated__/schema.types').FireOption} opts
+         */
         constructor(opts) {
           super();
           Object.assign(this, opts);
@@ -10690,6 +10693,9 @@
       FetchBurnOptions = class extends Msg {
       };
       SetBurnDefaultOption = class extends Msg {
+        /**
+         * @param {import('../../../schema/__generated__/schema.types').FireOption['name']} name
+         */
         constructor(name) {
           super();
           this.defaultOption = name;
@@ -11021,10 +11027,12 @@
     doBurn: () => doBurn,
     fetch: () => fetch,
     getBackgroundTabData: () => getBackgroundTabData,
+    getBurnOptions: () => getBurnOptions,
     getPrivacyDashboardData: () => getPrivacyDashboardData,
     openOptions: () => openOptions,
     refreshAlias: () => refreshAlias,
     search: () => search,
+    setBurnDefaultOption: () => setBurnDefaultOption,
     setLists: () => setLists,
     setup: () => setup,
     submitBrokenSiteReport: () => submitBrokenSiteReport
@@ -11055,10 +11063,10 @@
       return doBurn(message);
     }
     if (message instanceof FetchBurnOptions) {
-      return toExtensionMessage("getBurnOptions");
+      return getBurnOptions();
     }
     if (message instanceof SetBurnDefaultOption) {
-      return toExtensionMessage("setBurnDefaultOption", message);
+      return setBurnDefaultOption(message);
     }
     return new Promise((resolve) => {
       window.chrome.runtime.sendMessage(message, (result) => {
@@ -11097,6 +11105,12 @@
   }
   async function openOptions() {
     return toExtensionMessage("openOptions");
+  }
+  function getBurnOptions() {
+    return toExtensionMessage("getBurnOptions");
+  }
+  function setBurnDefaultOption(message) {
+    return toExtensionMessage("setBurnDefaultOption", message);
   }
   async function doBurn(message) {
     const browsingDataPermissions = {
