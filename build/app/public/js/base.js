@@ -10682,6 +10682,9 @@
         }
       };
       BurnMessage = class extends Msg {
+        /**
+         * @param {import('../../../schema/__generated__/schema.types').FireOption} opts
+         */
         constructor(opts) {
           super();
           Object.assign(this, opts);
@@ -10690,6 +10693,9 @@
       FetchBurnOptions = class extends Msg {
       };
       SetBurnDefaultOption = class extends Msg {
+        /**
+         * @param {import('../../../schema/__generated__/schema.types').FireOption['name']} name
+         */
         constructor(name) {
           super();
           this.defaultOption = name;
@@ -11021,10 +11027,12 @@
     doBurn: () => doBurn,
     fetch: () => fetch,
     getBackgroundTabData: () => getBackgroundTabData,
+    getBurnOptions: () => getBurnOptions,
     getPrivacyDashboardData: () => getPrivacyDashboardData,
     openOptions: () => openOptions,
     refreshAlias: () => refreshAlias,
     search: () => search,
+    setBurnDefaultOption: () => setBurnDefaultOption,
     setLists: () => setLists,
     setup: () => setup,
     submitBrokenSiteReport: () => submitBrokenSiteReport
@@ -11055,10 +11063,10 @@
       return doBurn(message);
     }
     if (message instanceof FetchBurnOptions) {
-      return toExtensionMessage("getBurnOptions");
+      return getBurnOptions();
     }
     if (message instanceof SetBurnDefaultOption) {
-      return toExtensionMessage("setBurnDefaultOption", message);
+      return setBurnDefaultOption(message);
     }
     return new Promise((resolve) => {
       window.chrome.runtime.sendMessage(message, (result) => {
@@ -11097,6 +11105,12 @@
   }
   async function openOptions() {
     return toExtensionMessage("openOptions");
+  }
+  function getBurnOptions() {
+    return toExtensionMessage("getBurnOptions");
+  }
+  function setBurnDefaultOption(message) {
+    return toExtensionMessage("setBurnDefaultOption", message);
   }
   async function doBurn(message) {
     const browsingDataPermissions = {
@@ -12255,6 +12269,8 @@
     onChangeRequestData: () => onChangeRequestData,
     privacyDashboardOpenSettings: () => privacyDashboardOpenSettings,
     privacyDashboardOpenUrlInNewTab: () => privacyDashboardOpenUrlInNewTab,
+    privacyDashboardSetPermission: () => privacyDashboardSetPermission,
+    privacyDashboardSetProtection: () => privacyDashboardSetProtection,
     privacyDashboardSetSize: () => privacyDashboardSetSize,
     privacyDashboardSubmitBrokenSiteReport: () => privacyDashboardSubmitBrokenSiteReport,
     setup: () => setup2,
@@ -12302,6 +12318,17 @@
     Object.assign(cookiePromptManagementStatus, parsed.data);
     channel2?.send("updateTabData");
   }
+  function privacyDashboardSetProtection(params) {
+    invariant(
+      window.webkit?.messageHandlers?.privacyDashboardSetProtection,
+      "webkit.messageHandlers.privacyDashboardSetProtection required"
+    );
+    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(params);
+  }
+  function privacyDashboardSetPermission(params) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+    window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params);
+  }
   async function fetch2(message) {
     if (message instanceof SubmitBrokenSiteReportMessage) {
       privacyDashboardSubmitBrokenSiteReport({
@@ -12319,12 +12346,9 @@
           continue;
         }
         const isProtected = value === false;
-        invariant(window.webkit?.messageHandlers?.privacyDashboardSetProtection, "webkit.messageHandlers required");
-        window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage({
-          isProtected,
-          eventOrigin: message.eventOrigin
-        });
+        privacyDashboardSetProtection({ eventOrigin: message.eventOrigin, isProtected });
       }
+      return;
     }
     if (message instanceof OpenSettingsMessages) {
       privacyDashboardOpenSettings({
@@ -12333,8 +12357,7 @@
       return;
     }
     if (message instanceof UpdatePermissionMessage) {
-      invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-      window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
+      privacyDashboardSetPermission({
         permission: message.id,
         value: message.value
       });
@@ -12778,8 +12801,11 @@
   // shared/js/browser/windows-communication.js
   var windows_communication_exports = {};
   __export(windows_communication_exports, {
+    AddToAllowListCommand: () => AddToAllowListCommand,
     OpenInNewTab: () => OpenInNewTab,
     OpenSettings: () => OpenSettings,
+    RemoveFromAllowListCommand: () => RemoveFromAllowListCommand,
+    SetPermissionCommand: () => SetPermissionCommand,
     SetSize: () => SetSize,
     SubmitBrokenSiteReport: () => SubmitBrokenSiteReport,
     backgroundMessage: () => backgroundMessage4,
@@ -12834,14 +12860,14 @@
         const isProtected = value === false;
         const eventOrigin = message.eventOrigin;
         if (isProtected) {
-          windowsPostMessage("RemoveFromAllowListCommand", { eventOrigin });
+          RemoveFromAllowListCommand(eventOrigin);
         } else {
-          windowsPostMessage("AddToAllowListCommand", { eventOrigin });
+          AddToAllowListCommand(eventOrigin);
         }
       }
     }
     if (message instanceof UpdatePermissionMessage) {
-      windowsPostMessage("SetPermissionCommand", {
+      SetPermissionCommand({
         permission: message.id,
         value: message.value
       });
@@ -12863,6 +12889,15 @@
   }
   function OpenSettings(args) {
     windowsPostMessage("OpenSettings", args);
+  }
+  function SetPermissionCommand(args) {
+    windowsPostMessage("SetPermissionCommand", args);
+  }
+  function RemoveFromAllowListCommand(eventOrigin) {
+    windowsPostMessage("RemoveFromAllowListCommand", { eventOrigin });
+  }
+  function AddToAllowListCommand(eventOrigin) {
+    windowsPostMessage("AddToAllowListCommand", { eventOrigin });
   }
   function handleIncomingMessage(message) {
     const parsed = eventShape.safeParse(message);

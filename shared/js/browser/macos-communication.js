@@ -189,6 +189,52 @@ export function onChangeConsentManaged(payload) {
 // -----------------------------------------------------------------------------
 
 /**
+ * This message will be sent when the toggle is pressed on, or off via:
+ *  - The primary screen
+ *  - The breakage form
+ *
+ * @param {import('../../../schema/__generated__/schema.types').SetProtectionParams} params
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage({
+ *    isProtected: true,
+ *    eventOrigin: { screen: "primaryScreen" }
+ * })
+ * ```
+ */
+export function privacyDashboardSetProtection(params) {
+    invariant(
+        window.webkit?.messageHandlers?.privacyDashboardSetProtection,
+        'webkit.messageHandlers.privacyDashboardSetProtection required'
+    )
+    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(params)
+}
+
+/**
+ * {@inheritDoc common.setPermission}
+ * @type {import("./common.js").setPermission}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
+ *    permission: "camera",
+ *    value: "grant"
+ * })
+ * ```
+ */
+export function privacyDashboardSetPermission(params) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params)
+}
+
+/**
  * @category Internal API
  * @type {import("./common.js").fetcher}
  */
@@ -211,12 +257,9 @@ async function fetch(message) {
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
             const isProtected = value === false
-            invariant(window.webkit?.messageHandlers?.privacyDashboardSetProtection, 'webkit.messageHandlers required')
-            window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage({
-                isProtected,
-                eventOrigin: message.eventOrigin,
-            })
+            privacyDashboardSetProtection({ eventOrigin: message.eventOrigin, isProtected })
         }
+        return
     }
     if (message instanceof OpenSettingsMessages) {
         privacyDashboardOpenSettings({
@@ -226,8 +269,7 @@ async function fetch(message) {
     }
 
     if (message instanceof UpdatePermissionMessage) {
-        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-        window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage({
+        privacyDashboardSetPermission({
             permission: message.id,
             value: message.value,
         })

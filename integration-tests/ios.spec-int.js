@@ -152,6 +152,7 @@ if (!process.env.CI) {
             { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
             { name: 'google-off', state: testDataStates['google-off'] },
             { name: 'cnn', state: testDataStates.cnn },
+            { name: 'allowlisted', state: testDataStates.allowlisted },
         ]
         for (const { name, state } of states) {
             test(name, async ({ page }) => {

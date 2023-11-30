@@ -61,10 +61,10 @@ export async function fetch(message) {
         return doBurn(message)
     }
     if (message instanceof FetchBurnOptions) {
-        return toExtensionMessage('getBurnOptions')
+        return getBurnOptions()
     }
     if (message instanceof SetBurnDefaultOption) {
-        return toExtensionMessage('setBurnDefaultOption', message)
+        return setBurnDefaultOption(message)
     }
     return new Promise((resolve) => {
         // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
@@ -198,6 +198,48 @@ export async function openOptions() {
     return toExtensionMessage('openOptions')
 }
 
+/**
+ * @category Dashboard -> Extension Messages
+ * @return {Promise<import('../../../schema/__generated__/schema.types').FireButtonData>}
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'getBurnOptions',
+ *    options: {}
+ * })
+ * ```
+ */
+export function getBurnOptions() {
+    return toExtensionMessage('getBurnOptions')
+}
+
+/**
+ * @category Dashboard -> Extension Messages
+ * @param {SetBurnDefaultOption} message
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'setBurnDefaultOption',
+ *    options: {
+ *        defaultOption: "CurrentSite"
+ *    }
+ * })
+ * ```
+ */
+export function setBurnDefaultOption(message) {
+    return toExtensionMessage('setBurnDefaultOption', message)
+}
+
+/**
+ * @param {BurnMessage} message
+ * @category Dashboard -> Extension Messages
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'doBurn'
+ * })
+ * ```
+ */
 export async function doBurn(message) {
     const browsingDataPermissions = {
         permissions: ['browsingData'],

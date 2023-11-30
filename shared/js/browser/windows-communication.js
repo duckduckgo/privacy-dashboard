@@ -158,15 +158,15 @@ async function fetch(message) {
             const eventOrigin = message.eventOrigin
 
             if (isProtected) {
-                windowsPostMessage('RemoveFromAllowListCommand', { eventOrigin })
+                RemoveFromAllowListCommand(eventOrigin)
             } else {
-                windowsPostMessage('AddToAllowListCommand', { eventOrigin })
+                AddToAllowListCommand(eventOrigin)
             }
         }
     }
 
     if (message instanceof UpdatePermissionMessage) {
-        windowsPostMessage('SetPermissionCommand', {
+        SetPermissionCommand({
             permission: message.id,
             value: message.value,
         })
@@ -252,6 +252,43 @@ export function SetSize(payload) {
  */
 export function OpenSettings(args) {
     windowsPostMessage('OpenSettings', args)
+}
+
+/**
+ * {@inheritDoc common.setPermission}
+ * @type {import("./common.js").setPermission}
+ * @group JavaScript -> Windows Messages
+ *
+ * @example
+ *
+ * ```javascript
+ * window.chrome.webview.postMessage({
+ *     Feature: 'PrivacyDashboard',
+ *     Name: 'SetPermissionCommand',
+ *     Data: { permission: 'camera', value: "grant" }
+ * })
+ * ```
+ */
+export function SetPermissionCommand(args) {
+    windowsPostMessage('SetPermissionCommand', args)
+}
+
+/**
+ * Remove the current site from the User's allowlist
+ * @param {import("../../../schema/__generated__/schema.types").EventOrigin} eventOrigin
+ * @group JavaScript -> Windows Messages
+ */
+export function RemoveFromAllowListCommand(eventOrigin) {
+    windowsPostMessage('RemoveFromAllowListCommand', { eventOrigin })
+}
+
+/**
+ * Add the current site to the User's allowlist
+ * @param {import("../../../schema/__generated__/schema.types").EventOrigin} eventOrigin
+ * @group JavaScript -> Windows Messages
+ */
+export function AddToAllowListCommand(eventOrigin) {
+    windowsPostMessage('AddToAllowListCommand', { eventOrigin })
 }
 
 const getBackgroundTabData = () => {

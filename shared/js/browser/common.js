@@ -236,6 +236,13 @@ export async function refreshAlias() {
  */
 export function search(options) {}
 
+/**
+ * This message will be sent when the permissions dropdown is used
+ *
+ * @param {{permission: string; value: string}} params
+ */
+export function setPermission(params) {}
+
 class Msg {
     toJSON() {
         return {
@@ -341,6 +348,9 @@ export class OpenSettingsMessages extends Msg {
 }
 
 export class BurnMessage extends Msg {
+    /**
+     * @param {import('../../../schema/__generated__/schema.types').FireOption} opts
+     */
     constructor(opts) {
         super()
         Object.assign(this, opts)
@@ -350,6 +360,9 @@ export class BurnMessage extends Msg {
 export class FetchBurnOptions extends Msg {}
 
 export class SetBurnDefaultOption extends Msg {
+    /**
+     * @param {import('../../../schema/__generated__/schema.types').FireOption['name']} name
+     */
     constructor(name) {
         super()
         this.defaultOption = name
