@@ -78,6 +78,9 @@
     margin: 0;
     margin-bottom: var(--size-unit);
 
+    .environment--ios & {
+        height: 34px;
+    }
     .environment--windows & {
         min-height: 34px;
         margin-bottom: 10px;

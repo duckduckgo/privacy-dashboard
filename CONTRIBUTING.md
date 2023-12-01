@@ -40,28 +40,13 @@ any of the test instances to work on that configuration exclusively
 
 ## Emulating different platforms/scenarios.
 
-When you are viewing the application in a browser, you can emulate certain environments
-by using query parameters.
+When you run `npm run preview`, it opens `iframe.html` which contains iframes for all the individual platforms.
+Clicking any of the 'open in new tab' links will open the application in dedicated window.
 
-For example, first run `npm run preview` and then open one of the examples in a new tab. Then you alter the
-query parameters in the browser that opens.
-
--   `platform` - setting this will ensure that CSS for the selected platform is applied.
-    -   Values can be: `browser`, `ios`, `macos`, `windows` or `android`
-    -   Example: [http://localhost:3220/html/popup.html?platform=ios](http://localhost:3220/html/popup.html?platform=ios)
--   `theme` - for overriding dark mode
-    -   Values can be: `dark` or `light`
-    -   Example: [http://localhost:3220/html/popup.html?theme=dark](http://localhost:3220/html/popup.html?theme=dark)
-    -   Example Combined: [http://localhost:3220/html/popup.html?platform=ios&theme=dark](http://localhost:3220/html/popup.html?platform=ios&theme=dark)
--   `denylisted` - settings this to `true` would simulate the extension marking the current webpage
-    as broken, but the user has overridden the choice and wants to keep protections enabled.
-    -   Values can be `true` or `false`
-    -   Example: [http://localhost:3220/html/popup.html?platform=browser&isBroken=true&denylisted=true](http://localhost:3220/html/popup.html?platform=browser&isBroken=true&denylisted=true)
--   `contentBlockingException` - settings this to `true` would simulate an exception to the `contentBlocking` feature - this means DDG has remotely
-    disabled content blocking for the current webpage. This is another way of determining if the current site is deemed to be 'broken'.
-    -   Values can be `true` or `false`
-    -   Example: [http://localhost:3220/html/popup.html?platform=browser&contentBlockingException=true](http://localhost:3220/html/popup.html?platform=browser&contentBlockingException=true)
--   `locale` - You can set this to any supported language, such as `locale=pl`
+-   emulating dark/light mode
+    -   use the dev tools 'emulate dark/light mode'
+-   emulating tracker states, allowlisting andmore
+    -   use the select in the header to choose a state
 
 ## Browser/Extension specific overrides
 
@@ -70,9 +55,8 @@ Along with the above, you can also override the following to emulate features th
 **Note**: Some of these features will become available on other platforms too, when that occurs
 they will be documented above.
 
--   `emailUser` - setting this to 'true' would simulate a user being signed in to DDG Email Protection
-    -   Values can be `true` or `false`
-    -   Example: [http://localhost:3220/html/popup.html?platform=browser&emailUser=true](http://localhost:3220/html/popup.html?platform=browser&emailUser=true)
+-   `state=emailUser` - this would simulate a user being signed in to DDG Email Protection
+    -   Example: [http://127.0.0.1:3220/html/browser.html?theme=dark&state=email-user](http://127.0.0.1:3220/html/browser.html?theme=dark&state=email-user)
 
 ## Translations
 

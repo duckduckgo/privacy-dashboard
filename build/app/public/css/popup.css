@@ -3063,6 +3063,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   margin: 0;
   margin-bottom: var(--size-unit);
 }
+.environment--ios .form__select select {
+  height: 34px;
+}
 .environment--windows .form__select select {
   min-height: 34px;
   margin-bottom: 10px;
