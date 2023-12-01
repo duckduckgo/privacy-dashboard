@@ -41,12 +41,12 @@ any of the test instances to work on that configuration exclusively
 ## Emulating different platforms/scenarios.
 
 When you run `npm run preview`, it opens `iframe.html` which contains iframes for all the individual platforms.
-Clicking any of the 'open in new tab' links will open the application in dedicated window.  
+Clicking any of the 'open in new tab' links will open the application in dedicated window.
 
-- emulating dark/light mode
-   - use the dev tools 'emulate dark/light mode'
-- emulating tracker states, allowlisting andmore
-  - use the select in the header to choose a state
+-   emulating dark/light mode
+    -   use the dev tools 'emulate dark/light mode'
+-   emulating tracker states, allowlisting andmore
+    -   use the select in the header to choose a state
 
 ## Browser/Extension specific overrides
 
@@ -57,7 +57,7 @@ they will be documented above.
 
 -   `state=emailUser` - this would simulate a user being signed in to DDG Email Protection
     -   Example: [http://127.0.0.1:3220/html/browser.html?theme=dark&state=email-user](http://127.0.0.1:3220/html/browser.html?theme=dark&state=email-user)
-    
+
 ## Translations
 
 Inside `shared/js/ui/base/localize.js` the following line is used to load the translations:
