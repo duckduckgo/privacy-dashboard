@@ -5,12 +5,12 @@ import { toggleFlows } from './utils/common-flows'
 
 test.describe('page data (no trackers)', () => {
     test('should fetch initial data', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
     })
     test('should accept updates when on trackers list screen', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
         await dash.screenshot('tracker-list-before.png')
@@ -19,7 +19,7 @@ test.describe('page data (no trackers)', () => {
         await dash.screenshot('tracker-list-after.png')
     })
     test('should accept updates when on non-trackers list screen', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewThirdParties()
         await dash.screenshot('non-tracker-list-before.png')
@@ -28,7 +28,7 @@ test.describe('page data (no trackers)', () => {
         await dash.screenshot('non-tracker-list-after.png')
     })
     test('does not alter the appearance of connection panel', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewConnection()
         await dash.screenshot('connection-before.png')
@@ -39,7 +39,7 @@ test.describe('page data (no trackers)', () => {
 
 test.describe('page data (with trackers)', () => {
     test('should display correct primary screen', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.cnn])
         await dash.showsPrimaryScreen()
         await dash.screenshot('primary-screen.png')
@@ -47,12 +47,12 @@ test.describe('page data (with trackers)', () => {
 })
 
 test.describe('Protections toggle', () => {
-    toggleFlows((page) => DashboardPage.ios(page))
+    toggleFlows((page) => DashboardPage.webkit(page))
 })
 
 test.describe('open external links', () => {
     test('should call ios interface for links', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
@@ -63,12 +63,12 @@ test.describe('open external links', () => {
 
 test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates['locale-pl']])
         await dash.hasPolishLinkTextForConnectionInfo()
     })
     test('should load with `fr` locale', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates['locale-fr']])
         await dash.hasFrenchLinkTextForConnectionInfo()
     })
@@ -76,7 +76,7 @@ test.describe('localization', () => {
 
 test.describe('Close', () => {
     test('pressing close should call native API on iOS', async ({ page }) => {
-        const dash = await DashboardPage.ios(page)
+        const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.clickClose()
         await dash.mocks.calledForClose()
@@ -86,7 +86,7 @@ test.describe('Close', () => {
 test.describe('cookie prompt management', () => {
     test.describe('none-configurable', () => {
         test('primary screen', async ({ page }) => {
-            const dash = await DashboardPage.ios(page)
+            const dash = await DashboardPage.webkit(page)
             await dash.addState([testDataStates['consent-managed']])
             await dash.indicatesCookiesWereManaged()
         })
@@ -94,12 +94,12 @@ test.describe('cookie prompt management', () => {
     test.describe('configurable', () => {
         test.describe('non-cosmetic', () => {
             test('primary screen', async ({ page }) => {
-                const dash = await DashboardPage.ios(page)
+                const dash = await DashboardPage.webkit(page)
                 await dash.addState([testDataStates['consent-managed-configurable']])
                 await dash.indicatesCookiesWereManaged()
             })
             test('secondary screen', async ({ page }) => {
-                const dash = await DashboardPage.ios(page)
+                const dash = await DashboardPage.webkit(page)
                 await dash.addState([testDataStates['consent-managed-configurable']])
                 await dash.viewCookiePromptManagement()
                 await dash.disableCookiesInSettings()
@@ -111,12 +111,12 @@ test.describe('cookie prompt management', () => {
 
         test.describe('cosmetic', () => {
             test('primary screen', async ({ page }) => {
-                const dash = await DashboardPage.ios(page)
+                const dash = await DashboardPage.webkit(page)
                 await dash.addState([testDataStates['consent-managed-configurable-cosmetic']])
                 await dash.indicatesCookiesWereHidden()
             })
             test('secondary screen', async ({ page }) => {
-                const dash = await DashboardPage.ios(page)
+                const dash = await DashboardPage.webkit(page)
                 await dash.addState([testDataStates['consent-managed-configurable-cosmetic']])
                 await dash.viewCookiePromptManagement()
                 await dash.disableCookiesInSettings()
@@ -131,7 +131,7 @@ test.describe('cookie prompt management', () => {
 test.describe('opening breakage form', () => {
     test('shows breakage form only', async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.ios(page, { screen: 'breakageForm' })
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' })
         await dash.addState([testDataStates.google])
         await dash.screenshot('breakage-form-only.png')
         await dash.breakageFormIsVisible()
@@ -156,7 +156,7 @@ if (!process.env.CI) {
         ]
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
-                const dash = await DashboardPage.ios(page)
+                const dash = await DashboardPage.webkit(page)
                 await dash.screenshotEachScreenForState(name, state)
             })
         }
@@ -203,7 +203,7 @@ if (!process.env.CI) {
         ]
         for (const { name, state } of states) {
             test(name, async ({ page }, testInfo) => {
-                const dash = await DashboardPage.ios(page)
+                const dash = await DashboardPage.webkit(page)
                 const screen = await dash.screenshotPrimary(name, state)
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { certificate, ...rest } = state

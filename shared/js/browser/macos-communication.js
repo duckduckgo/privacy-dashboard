@@ -25,6 +25,7 @@ import {
 import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
+    CloseMessage,
     getContentHeight,
     OpenSettingsMessages,
     SetListsMessage,
@@ -235,10 +236,29 @@ export function privacyDashboardSetPermission(params) {
 }
 
 /**
+ * Close the Dashboard.
+ * @category Webkit Message Handlers
+ * @param {{}} args - An empty object to keep the `webkit` message handlers happy
+ * @example
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
+ * ```
+ */
+export function privacyDashboardClose(args) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
+}
+
+/**
  * @category Internal API
  * @type {import("./common.js").fetcher}
  */
 async function fetch(message) {
+    if (message instanceof CloseMessage) {
+        privacyDashboardClose({})
+        return
+    }
+
     if (message instanceof SubmitBrokenSiteReportMessage) {
         privacyDashboardSubmitBrokenSiteReport({
             category: message.category,

@@ -27,6 +27,13 @@ export function topNav(opts = {}) {
                 }
                 return [back(), close()]
             },
+            macos: () => {
+                // if 'immediate' is set, don't allow 'back' navigation
+                if (immediate) {
+                    return [close()]
+                }
+                return [back()]
+            },
             default: () => [back()],
         })
     }

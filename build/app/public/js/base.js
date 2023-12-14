@@ -12267,6 +12267,7 @@
     onChangeLocale: () => onChangeLocale,
     onChangeProtectionStatus: () => onChangeProtectionStatus,
     onChangeRequestData: () => onChangeRequestData,
+    privacyDashboardClose: () => privacyDashboardClose,
     privacyDashboardOpenSettings: () => privacyDashboardOpenSettings,
     privacyDashboardOpenUrlInNewTab: () => privacyDashboardOpenUrlInNewTab,
     privacyDashboardSetPermission: () => privacyDashboardSetPermission,
@@ -12329,7 +12330,15 @@
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params);
   }
+  function privacyDashboardClose(args) {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
+  }
   async function fetch2(message) {
+    if (message instanceof CloseMessage) {
+      privacyDashboardClose({});
+      return;
+    }
     if (message instanceof SubmitBrokenSiteReportMessage) {
       privacyDashboardSubmitBrokenSiteReport({
         category: message.category,
@@ -12494,7 +12503,6 @@
     backgroundMessage: () => backgroundMessage2,
     fetch: () => fetch3,
     getBackgroundTabData: () => getBackgroundTabData2,
-    privacyDashboardClose: () => privacyDashboardClose,
     privacyDashboardShowReportBrokenSite: () => privacyDashboardShowReportBrokenSite,
     setup: () => setup3
   });
@@ -12506,19 +12514,11 @@
     window.history.replaceState({}, "", window.location.href);
     setupShared();
   }
-  function privacyDashboardClose(args) {
-    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
-  }
   function privacyDashboardShowReportBrokenSite(args) {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args);
   }
   async function fetch3(message) {
-    if (message instanceof CloseMessage) {
-      privacyDashboardClose({});
-      return;
-    }
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
       privacyDashboardShowReportBrokenSite({});
       return false;
@@ -21383,6 +21383,12 @@
             return [close()];
           }
           return [back(), close()];
+        },
+        macos: () => {
+          if (immediate) {
+            return [close()];
+          }
+          return [back()];
         },
         default: () => [back()]
       });
