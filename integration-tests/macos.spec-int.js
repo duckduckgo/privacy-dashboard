@@ -30,6 +30,8 @@ test.describe('opening breakage form', () => {
         await dash.addState([testDataStates.google])
         await dash.breakageFormIsVisible()
         await dash.showsOnlyDoneButton()
+        await dash.selectDone()
+        await dash.mocks.calledForClose()
     })
 })
 

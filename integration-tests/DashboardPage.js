@@ -287,6 +287,10 @@ export class DashboardPage {
         await this.page.locator('.breakage-form').locator('a:has-text("Done")').waitFor()
         await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
     }
+
+    async selectDone() {
+        await this.page.locator('.breakage-form .top-nav a').click()
+    }
     /**
      * @param {"grant"} permission
      * @return {Promise<void>}
