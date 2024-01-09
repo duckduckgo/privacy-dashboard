@@ -103,4 +103,9 @@ body {
             opacity: 0.5;
         }
     }
+    .environment--macos & {
+        height: auto;
+        line-height: normal;
+        bottom: 0;
+    }
 }
