@@ -13,7 +13,7 @@ export function topNav(opts = {}) {
     let elements
     if (view === 'primary') {
         elements = platformSwitch({
-            ios: () => [close()],
+            ios: () => [done()],
             android: () => [back()],
             default: () => [],
         })
@@ -23,9 +23,9 @@ export function topNav(opts = {}) {
             ios: () => {
                 // if 'immediate' is set, don't allow 'back' navigation
                 if (immediate) {
-                    return [close()]
+                    return [done()]
                 }
-                return [back(), close()]
+                return [back(), done()]
             },
             macos: () => {
                 // if 'immediate' is set, don't allow 'back' navigation
@@ -58,8 +58,7 @@ function back() {
     </a>`
 }
 
-function close() {
-    const textLabel = ns.site('navigationComplete.title')
+function done(textLabel = ns.site('navigationComplete.title')) {
     return html` <a
         href="javascript:void(0)"
         class="top-nav__done js-sliding-subview-done js-site-done link-action link-action--dark"
@@ -67,4 +66,8 @@ function close() {
     >
         ${textLabel}
     </a>`
+}
+
+function close() {
+    return done(ns.site('navigationClose.title'))
 }

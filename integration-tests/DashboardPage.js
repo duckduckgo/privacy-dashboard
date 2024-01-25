@@ -288,9 +288,15 @@ export class DashboardPage {
         await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
     }
 
-    async selectDone() {
-        await this.page.locator('.breakage-form .top-nav a').click()
+    async showsOnlyCloseButton() {
+        await this.page.locator('.breakage-form').locator('a:has-text("Close")').waitFor()
+        await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
     }
+
+    async selectClose() {
+        await this.page.locator('.breakage-form .top-nav a').filter({ hasText: 'Close' }).click()
+    }
+
     /**
      * @param {"grant"} permission
      * @return {Promise<void>}
