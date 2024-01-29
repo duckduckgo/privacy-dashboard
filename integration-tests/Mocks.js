@@ -190,7 +190,7 @@ export class Mocks {
             expect(calls).toMatchObject([['close', undefined]])
             return
         }
-        if (this.platform.name === 'ios') {
+        if (this.platform.name === 'ios' || this.platform.name === 'macos') {
             const calls = await this.outgoing({ names: ['privacyDashboardClose'] })
             expect(calls).toMatchObject([['privacyDashboardClose', {}]])
             return

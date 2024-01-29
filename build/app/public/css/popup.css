@@ -1052,6 +1052,11 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .environment--ios .top-nav__done:active {
   opacity: 0.5;
 }
+.environment--macos .top-nav__done {
+  height: auto;
+  line-height: normal;
+  bottom: 0;
+}
 
 .status-list--right .status-list__item {
   padding-left: 0;

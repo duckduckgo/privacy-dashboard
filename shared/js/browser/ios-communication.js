@@ -22,7 +22,7 @@
  * @category integrations
  */
 import invariant from 'tiny-invariant'
-import { CheckBrokenSiteReportHandledMessage, CloseMessage, setupColorScheme } from './common.js'
+import { CheckBrokenSiteReportHandledMessage, setupColorScheme } from './common.js'
 import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShared } from './macos-communication.js'
 
 /**
@@ -35,20 +35,6 @@ export function setup() {
     }
     window.history.replaceState({}, '', window.location.href)
     setupShared()
-}
-
-/**
- * Close the Dashboard.
- * @category Webkit Message Handlers
- * @param {{}} args - An empty object to keep the `webkit` message handlers happy
- * @example
- * ```js
- * window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
- * ```
- */
-export function privacyDashboardClose(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
 }
 
 /**
@@ -72,11 +58,6 @@ export function privacyDashboardShowReportBrokenSite(args) {
  * @type {import("./common.js").fetcher}
  */
 async function fetch(message) {
-    if (message instanceof CloseMessage) {
-        privacyDashboardClose({})
-        return
-    }
-
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
         privacyDashboardShowReportBrokenSite({})
         return false // Return true to prevent HTML form from showing

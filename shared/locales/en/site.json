@@ -258,6 +258,10 @@
         "title": "Done",
         "note": "Button text for iOS on top bar navigation"
     },
+    "navigationClose": {
+        "title": "Close",
+        "note": "Button text for macos on top bar navigation"
+    },
     "navigationBack": {
         "title": "Back",
         "note": "Aria label and visible text for iOS on top bar navigation"
