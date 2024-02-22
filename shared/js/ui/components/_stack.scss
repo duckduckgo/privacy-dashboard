@@ -1,0 +1,25 @@
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+
+    &[data-debug='true'] {
+        > * {
+            outline: 1px dotted black;
+        }
+    }
+}
+
+.scrollable {
+    height: 300px;
+    overflow: scroll;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--Fill-Fill-01, rgba(0, 0, 0, 0.01));
+    padding: 16px 20px 20px 16px;
+}
+
+.data-list {
+    padding-left: 18px;
+}

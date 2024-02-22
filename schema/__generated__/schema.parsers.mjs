@@ -11,6 +11,8 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
+export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("simpleBreakageReport")]);
+
 export const stateBlockedSchema = z.object({
     blocked: z.record(z.unknown())
 });
@@ -117,7 +119,11 @@ export const primaryScreenSchema = z.object({
 });
 
 export const eventOriginSchema = z.object({
-    screen: z.union([z.literal("primaryScreen"), z.literal("breakageForm")])
+    screen: screenKindSchema
+});
+
+export const siteUrlAdditionalDataSchema = z.object({
+    url: z.string()
 });
 
 export const detectedRequestSchema = z.object({
@@ -159,6 +165,11 @@ export const setProtectionParamsSchema = z.object({
     eventOrigin: eventOriginSchema
 });
 
+export const simpleReportScreenDataItemSchema = z.object({
+    id: z.union([z.literal("wvVersion"), z.literal("requests"), z.literal("features"), z.literal("appVersion"), z.literal("atb"), z.literal("category"), z.literal("description"), z.literal("errorDescriptions"), z.literal("extensionVersion"), z.literal("httpErrorCodes"), z.literal("lastSentDay"), z.literal("loginSite"), z.literal("device"), z.literal("os"), z.literal("listVersions"), z.literal("reportFlow"), z.literal("siteUrl")]),
+    additional: siteUrlAdditionalDataSchema.optional()
+});
+
 export const requestDataSchema = z.object({
     requests: z.array(detectedRequestSchema),
     installedSurrogates: z.array(z.string()).optional()
@@ -182,6 +193,11 @@ export const windowsViewModelSchema = z.object({
     cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
 });
 
+export const simpleReportScreenSchema = z.object({
+    opener: z.union([z.literal("menu"), z.literal("dashboard")]),
+    data: z.array(simpleReportScreenDataItemSchema)
+});
+
 export const windowsIncomingViewModelSchema = z.object({
     Feature: z.literal("PrivacyDashboard"),
     Name: z.literal("ViewModelUpdated"),
@@ -203,6 +219,7 @@ export const apiSchema = z.object({
     exe: extensionMessageSetListOptionsSchema.optional(),
     "fire-button": fireButtonDataSchema.optional(),
     "feature-settings": remoteFeatureSettingsSchema.optional(),
-    "set-protection": setProtectionParamsSchema.optional()
+    "set-protection": setProtectionParamsSchema.optional(),
+    "simple-report-screen": simpleReportScreenSchema.optional()
 });
 

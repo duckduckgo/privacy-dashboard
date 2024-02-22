@@ -41,6 +41,7 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
  * A helper list of messages that the Dashboard accepts from Windows
  */
 export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
+export type ScreenKind = "primaryScreen" | "breakageForm" | "simpleBreakageReport";
 
 /**
  * This describes all of the top-level generated types
@@ -60,6 +61,7 @@ export interface API {
   "fire-button"?: FireButtonData;
   "feature-settings"?: RemoteFeatureSettings;
   "set-protection"?: SetProtectionParams;
+  "simple-report-screen"?: SimpleReportScreen;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -396,6 +398,40 @@ export interface SetProtectionParams {
   eventOrigin: EventOrigin;
 }
 export interface EventOrigin {
-  screen: "primaryScreen" | "breakageForm";
+  screen: ScreenKind;
+}
+export interface SimpleReportScreen {
+  /**
+   * Used to indicate which section of the browser the dashboard was opened from. This allow the dashboard to show the correct controls
+   */
+  opener: "menu" | "dashboard";
+  /**
+   * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
+   */
+  data: SimpleReportScreenDataItem[];
+}
+export interface SimpleReportScreenDataItem {
+  id:
+    | "wvVersion"
+    | "requests"
+    | "features"
+    | "appVersion"
+    | "atb"
+    | "category"
+    | "description"
+    | "errorDescriptions"
+    | "extensionVersion"
+    | "httpErrorCodes"
+    | "lastSentDay"
+    | "loginSite"
+    | "device"
+    | "os"
+    | "listVersions"
+    | "reportFlow"
+    | "siteUrl";
+  additional?: SiteUrlAdditionalData;
+}
+export interface SiteUrlAdditionalData {
+  url: string;
 }
 

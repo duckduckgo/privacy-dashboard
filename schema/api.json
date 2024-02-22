@@ -28,6 +28,9 @@
         },
         "set-protection": {
             "$ref": "set-protection.json"
+        },
+        "simple-report-screen": {
+            "$ref": "simple-report-screen.json"
         }
     }
 }

@@ -33,6 +33,16 @@ test.describe('opening breakage form', () => {
         await dash.selectClose()
         await dash.mocks.calledForClose()
     })
+    test.only('shows simple breakage report', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'macos' })
+        await dash.addState([testDataStates.google])
+        await dash.simpleBreakageReportIsVisible()
+
+        // await dash.showsOnlyCloseButton()
+        // await dash.selectClose()
+        // await dash.mocks.calledForClose()
+    })
 })
 
 test.describe('open external links', () => {

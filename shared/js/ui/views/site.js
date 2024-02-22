@@ -15,7 +15,7 @@ import { KeyInsightView } from '../templates/key-insights'
 import { BreakageFormModel } from '../models/breakage-form.js'
 import { createPlatformFeatures } from '../platform-features.mjs'
 import { CookiePromptModel } from '../models/cookie-prompt.js'
-import BreakageFormView from './../views/breakage-form.js'
+import { BreakageFormView, SimpleBreakageReportView } from './breakage-form'
 import pageConnectionTemplate from './../templates/page-connection.js'
 import breakageFormTemplate from './../templates/breakage-form.js'
 import EmailProtectionView from './email-protection.js'
@@ -25,6 +25,7 @@ import TrackerNetworksView from './../views/tracker-networks.js'
 import { MainNavView } from './main-nav'
 import { CookiePromptView } from './cookie-prompt'
 import { FireDialog } from './fire-dialog.js'
+import { simpleBreakageFormTemplate } from '../components/simple-breakage-report'
 
 /**
  * @constructor
@@ -81,6 +82,12 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         if (url.searchParams.get('screen') === str) {
             this.showBreakageForm({ immediate: true })
+        }
+
+        /** @type {import('../../../../schema/__generated__/schema.types.js').EventOrigin['screen']} */
+        const simple = 'simpleBreakageReport'
+        if (url.searchParams.get('screen') === simple) {
+            this.showSimpleBreakageForm({ immediate: true })
         }
 
         setTimeout(() => {
@@ -140,6 +147,23 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
         this.views.slidingSubview = new BreakageFormView({
             template: breakageFormTemplate,
+            model: new BreakageFormModel({ site: this.model }),
+            mainModel: this.model,
+            immediate,
+        })
+    },
+
+    /**
+     * @param {object} opts
+     * @param {boolean} opts.immediate
+     * @param {HTMLElement} [opts.eventTarget]
+     */
+    showSimpleBreakageForm: function ({ immediate, eventTarget }) {
+        if (eventTarget) {
+            blur(eventTarget)
+        }
+        this.views.slidingSubview = new SimpleBreakageReportView({
+            template: simpleBreakageFormTemplate,
             model: new BreakageFormModel({ site: this.model }),
             mainModel: this.model,
             immediate,

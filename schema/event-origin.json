@@ -6,8 +6,9 @@
     "required": ["screen"],
     "properties": {
         "screen": {
+            "title": "ScreenKind",
             "type": "string",
-            "enum": ["primaryScreen", "breakageForm"]
+            "enum": ["primaryScreen", "breakageForm", "simpleBreakageReport"]
         }
     }
 }

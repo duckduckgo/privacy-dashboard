@@ -75,6 +75,10 @@
         "title": "Send Report",
         "note": "Button for submitting report"
     },
+    "dontSendReport": {
+        "title": "Don't Send",
+        "note": "Button for not submitting report"
+    },
     "reportsAreAnonymousDesc": {
         "title": "Reports sent to DuckDuckGo only include info required to help us address your feedback.",
         "note": "A small disclaimer at the bottom of the view describing what is included in the report"
@@ -86,5 +90,20 @@
     "yourReportWillHelpDesc": {
         "title": "Your report will help improve our products and make the experience better for other people.",
         "note": "Body that the user sees upon submitting the report"
+    },
+    "siteNotWorkingTitle": {
+        "title": "Site not working? Let us know."
+    },
+    "siteNotWorkingSubTitle": {
+        "title": "Anonymous reports help DuckDuckGo fix issues caused by privacy protections."
+    },
+    "siteNotWorkingInfoReveal": {
+        "title": "See what’s sent"
+    },
+    "siteNotWorkingInfoHide": {
+        "title": "Hide"
+    },
+    "reportsNoInfoSent": {
+        "title": "Reports contain no personally identifiable information:"
     }
 }

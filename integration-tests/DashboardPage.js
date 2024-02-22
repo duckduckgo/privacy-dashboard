@@ -283,6 +283,11 @@ export class DashboardPage {
         await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
     }
 
+    async simpleBreakageReportIsVisible() {
+        await this.page.pause()
+        await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
+    }
+
     async showsOnlyDoneButton() {
         await this.page.locator('.breakage-form').locator('a:has-text("Done")').waitFor()
         await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
