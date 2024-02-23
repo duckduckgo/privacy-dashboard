@@ -31,10 +31,8 @@
                         { "$ref": "#/definitions/extensionVersion" },
                         { "$ref": "#/definitions/httpErrorCodes" },
                         { "$ref": "#/definitions/lastSentDay" },
-                        { "$ref": "#/definitions/loginSite" },
                         { "$ref": "#/definitions/device" },
                         { "$ref": "#/definitions/os" },
-                        { "$ref": "#/definitions/listVersions" },
                         { "$ref": "#/definitions/reportFlow" },
                         { "$ref": "#/definitions/siteUrl" }
                     ]
@@ -101,11 +99,6 @@
             "const": "lastSentDay",
             "description": "lastSentDay description"
         },
-        "loginSite": {
-            "title": "loginSite title",
-            "const": "loginSite",
-            "description": "loginSite description"
-        },
         "device": {
             "title": "device title",
             "const": "device",
@@ -115,11 +108,6 @@
             "title": "os title",
             "const": "os",
             "description": "os description"
-        },
-        "listVersions": {
-            "title": "listVersions title",
-            "const": "listVersions",
-            "description": "listVersions description"
         },
         "reportFlow": {
             "title": "reportFlow title",

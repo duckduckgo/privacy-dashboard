@@ -143,10 +143,6 @@
         "title": "Date of last report sent for this site",
         "note": "This text indicates the date of the last report sent for the site."
     },
-    "dynamic_loginSite": {
-        "title": "// TODO",
-        "note": "This text is still to be defined."
-    },
     "dynamic_device": {
         "title": "Device make, model, and manufacturer",
         "note": "This text provides information about the device, including make, model, and manufacturer."
@@ -154,10 +150,6 @@
     "dynamic_os": {
         "title": "Operating system version number",
         "note": "This text indicates the version number of the operating system."
-    },
-    "dynamic_listVersions": {
-        "title": "// TODO: this is true if protections are turned on (only applicable to regular reports)",
-        "note": "This text indicates if protections are active. It is only applicable to regular reports."
     },
     "dynamic_reportFlow": {
         "title": "Tracker blocking list and request exclusion list version numbers",

@@ -25,14 +25,10 @@ export function namedString(item) {
             return ns.report('dynamic_httpErrorCodes.title')
         case 'lastSentDay':
             return ns.report('dynamic_lastSentDay.title')
-        case 'loginSite':
-            return ns.report('dynamic_loginSite.title')
         case 'device':
             return ns.report('dynamic_device.title')
         case 'os':
             return ns.report('dynamic_os.title')
-        case 'listVersions':
-            return ns.report('dynamic_listVersions.title')
         case 'reportFlow':
             return ns.report('dynamic_reportFlow.title')
         case 'siteUrl':

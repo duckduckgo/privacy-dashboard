@@ -31,13 +31,9 @@ export const httpErrorCodesTitleSchema = z.literal("httpErrorCodes");
 
 export const lastSentDayTitleSchema = z.literal("lastSentDay");
 
-export const loginSiteTitleSchema = z.literal("loginSite");
-
 export const deviceTitleSchema = z.literal("device");
 
 export const osTitleSchema = z.literal("os");
-
-export const listVersionsTitleSchema = z.literal("listVersions");
 
 export const reportFlowTitleSchema = z.literal("reportFlow");
 
@@ -156,7 +152,7 @@ export const siteUrlAdditionalDataSchema = z.object({
     url: z.string()
 });
 
-export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, loginSiteTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema]);
+export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema]);
 
 export const detectedRequestSchema = z.object({
     url: z.string(),

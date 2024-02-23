@@ -52,10 +52,8 @@ export type DataItemId =
   | ExtensionVersionTitle
   | HttpErrorCodesTitle
   | LastSentDayTitle
-  | LoginSiteTitle
   | DeviceTitle
   | OsTitle
-  | ListVersionsTitle
   | ReportFlowTitle
   | SiteUrlTitle;
 /**
@@ -95,10 +93,6 @@ export type HttpErrorCodesTitle = "httpErrorCodes";
  */
 export type LastSentDayTitle = "lastSentDay";
 /**
- * loginSite description
- */
-export type LoginSiteTitle = "loginSite";
-/**
  * device description
  */
 export type DeviceTitle = "device";
@@ -106,10 +100,6 @@ export type DeviceTitle = "device";
  * os description
  */
 export type OsTitle = "os";
-/**
- * listVersions description
- */
-export type ListVersionsTitle = "listVersions";
 /**
  * reportFlow description
  */
