@@ -4,6 +4,7 @@ import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
+    simpleReportScreenSchema,
 } from './__generated__/schema.parsers.mjs'
 import { readFileSync } from 'node:fs'
 import { join } from 'path'
@@ -17,6 +18,7 @@ const protections = JSON.parse(readFileSync(join(CWD, '__fixtures__/protections.
 const locale = JSON.parse(readFileSync(join(CWD, '__fixtures__/locale-settings.json'), 'utf8'))
 const cpm = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm.json'), 'utf8'))
 const cpmSecondary = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm-secondary.json'), 'utf8'))
+const simpleReportScreen = JSON.parse(readFileSync(join(CWD, '__fixtures__/simple-report-screen.json'), 'utf8'))
 
 describe('__fixtures__', () => {
     it('validates request-data', () => {
@@ -34,5 +36,12 @@ describe('__fixtures__', () => {
     it('validates cpm incoming', () => {
         cookiePromptManagementStatusSchema.parse(cpm)
         cookiePromptManagementStatusSchema.parse(cpmSecondary)
+    })
+    it('validates simple report screen', () => {
+        simpleReportScreenSchema.parse(simpleReportScreen)
+    })
+    it('validates simple report screen with alt opener', () => {
+        const next = { ...simpleReportScreen, opener: 'dashboard' }
+        simpleReportScreenSchema.parse(next)
     })
 })

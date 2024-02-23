@@ -42,6 +42,92 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
  */
 export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
 export type ScreenKind = "primaryScreen" | "breakageForm" | "simpleBreakageReport";
+export type DataItemId =
+  | WvVersionTitle
+  | RequestsTitle
+  | FeaturesTitle
+  | AppVersionTitle
+  | AtbTitle
+  | CategoryTitle
+  | DescriptionTitle
+  | ErrorDescriptionsTitle
+  | ExtensionVersionTitle
+  | HttpErrorCodesTitle
+  | LastSentDayTitle
+  | LoginSiteTitle
+  | DeviceTitle
+  | OsTitle
+  | ListVersionsTitle
+  | ReportFlowTitle
+  | SiteUrlTitle;
+/**
+ * wvVersion description
+ */
+export type WvVersionTitle = "wvVersion";
+/**
+ * requests description
+ */
+export type RequestsTitle = "requests";
+/**
+ * features description
+ */
+export type FeaturesTitle = "features";
+/**
+ * appVersion description
+ */
+export type AppVersionTitle = "appVersion";
+/**
+ * atb description
+ */
+export type AtbTitle = "atb";
+/**
+ * category description
+ */
+export type CategoryTitle = "category";
+/**
+ * description description
+ */
+export type DescriptionTitle = "description";
+/**
+ * errorDescriptions description
+ */
+export type ErrorDescriptionsTitle = "errorDescriptions";
+/**
+ * extensionVersion description
+ */
+export type ExtensionVersionTitle = "extensionVersion";
+/**
+ * httpErrorCodes description
+ */
+export type HttpErrorCodesTitle = "httpErrorCodes";
+/**
+ * lastSentDay description
+ */
+export type LastSentDayTitle = "lastSentDay";
+/**
+ * loginSite description
+ */
+export type LoginSiteTitle = "loginSite";
+/**
+ * device description
+ */
+export type DeviceTitle = "device";
+/**
+ * os description
+ */
+export type OsTitle = "os";
+/**
+ * listVersions description
+ */
+export type ListVersionsTitle = "listVersions";
+/**
+ * reportFlow description
+ */
+export type ReportFlowTitle = "reportFlow";
+/**
+ * siteUrl description
+ */
+export type SiteUrlTitle = "siteUrl";
 
 /**
  * This describes all of the top-level generated types
@@ -400,6 +486,15 @@ export interface SetProtectionParams {
 export interface EventOrigin {
   screen: ScreenKind;
 }
+/**
+ * <details>
+ * <summary>Show example JSON</summary>
+ *
+ * ```json
+ * [[include:simple-report-screen.json]]
+ * ```
+ * </details>
+ */
 export interface SimpleReportScreen {
   /**
    * Used to indicate which section of the browser the dashboard was opened from. This allow the dashboard to show the correct controls
@@ -411,24 +506,7 @@ export interface SimpleReportScreen {
   data: SimpleReportScreenDataItem[];
 }
 export interface SimpleReportScreenDataItem {
-  id:
-    | "wvVersion"
-    | "requests"
-    | "features"
-    | "appVersion"
-    | "atb"
-    | "category"
-    | "description"
-    | "errorDescriptions"
-    | "extensionVersion"
-    | "httpErrorCodes"
-    | "lastSentDay"
-    | "loginSite"
-    | "device"
-    | "os"
-    | "listVersions"
-    | "reportFlow"
-    | "siteUrl";
+  id: DataItemId;
   additional?: SiteUrlAdditionalData;
 }
 export interface SiteUrlAdditionalData {

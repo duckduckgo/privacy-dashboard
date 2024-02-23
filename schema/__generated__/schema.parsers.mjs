@@ -13,6 +13,40 @@ export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequ
 
 export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("simpleBreakageReport")]);
 
+export const wvVersionTitleSchema = z.literal("wvVersion");
+
+export const requestsTitleSchema = z.literal("requests");
+
+export const featuresTitleSchema = z.literal("features");
+
+export const appVersionTitleSchema = z.literal("appVersion");
+
+export const atbTitleSchema = z.literal("atb");
+
+export const categoryTitleSchema = z.literal("category");
+
+export const descriptionTitleSchema = z.literal("description");
+
+export const errorDescriptionsTitleSchema = z.literal("errorDescriptions");
+
+export const extensionVersionTitleSchema = z.literal("extensionVersion");
+
+export const httpErrorCodesTitleSchema = z.literal("httpErrorCodes");
+
+export const lastSentDayTitleSchema = z.literal("lastSentDay");
+
+export const loginSiteTitleSchema = z.literal("loginSite");
+
+export const deviceTitleSchema = z.literal("device");
+
+export const osTitleSchema = z.literal("os");
+
+export const listVersionsTitleSchema = z.literal("listVersions");
+
+export const reportFlowTitleSchema = z.literal("reportFlow");
+
+export const siteUrlTitleSchema = z.literal("siteUrl");
+
 export const stateBlockedSchema = z.object({
     blocked: z.record(z.unknown())
 });
@@ -126,6 +160,8 @@ export const siteUrlAdditionalDataSchema = z.object({
     url: z.string()
 });
 
+export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, categoryTitleSchema, descriptionTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, loginSiteTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema]);
+
 export const detectedRequestSchema = z.object({
     url: z.string(),
     eTLDplus1: z.string().optional(),
@@ -166,7 +202,7 @@ export const setProtectionParamsSchema = z.object({
 });
 
 export const simpleReportScreenDataItemSchema = z.object({
-    id: z.union([z.literal("wvVersion"), z.literal("requests"), z.literal("features"), z.literal("appVersion"), z.literal("atb"), z.literal("category"), z.literal("description"), z.literal("errorDescriptions"), z.literal("extensionVersion"), z.literal("httpErrorCodes"), z.literal("lastSentDay"), z.literal("loginSite"), z.literal("device"), z.literal("os"), z.literal("listVersions"), z.literal("reportFlow"), z.literal("siteUrl")]),
+    id: dataItemIdSchema,
     additional: siteUrlAdditionalDataSchema.optional()
 });
 

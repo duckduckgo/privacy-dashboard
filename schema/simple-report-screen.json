@@ -4,6 +4,7 @@
   "type": "object",
   "additionalProperties": false,
   "required": ["opener", "data"],
+  "description": "<details>\n<summary>Show example JSON</summary>\n\n```json\n[[include:simple-report-screen.json]]\n```\n</details>",
   "properties": {
     "opener": {
       "type": "string",
@@ -23,25 +24,26 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "title": "DataItemId",
           "type": "string",
           "enum": [
-            "wvVersion",
-            "requests",
-            "features",
-            "appVersion",
-            "atb",
-            "category",
-            "description",
-            "errorDescriptions",
-            "extensionVersion",
-            "httpErrorCodes",
-            "lastSentDay",
-            "loginSite",
-            "device",
-            "os",
-            "listVersions",
-            "reportFlow",
-            "siteUrl"
+            { "$ref": "#/definitions/wvVersion"},
+            { "$ref": "#/definitions/requests"},
+            { "$ref": "#/definitions/features"},
+            { "$ref": "#/definitions/appVersion"},
+            { "$ref": "#/definitions/atb"},
+            { "$ref": "#/definitions/category"},
+            { "$ref": "#/definitions/description"},
+            { "$ref": "#/definitions/errorDescriptions"},
+            { "$ref": "#/definitions/extensionVersion"},
+            { "$ref": "#/definitions/httpErrorCodes"},
+            { "$ref": "#/definitions/lastSentDay"},
+            { "$ref": "#/definitions/loginSite"},
+            { "$ref": "#/definitions/device"},
+            { "$ref": "#/definitions/os"},
+            { "$ref": "#/definitions/listVersions"},
+            { "$ref": "#/definitions/reportFlow"},
+            { "$ref": "#/definitions/siteUrl" }
           ]
         },
         "additional": {
@@ -60,6 +62,91 @@
           ]
         }
       }
+    },
+    "wvVersion": {
+      "title": "wvVersion title",
+      "const": "wvVersion",
+      "description": "wvVersion description"
+    },
+    "requests":{
+      "title": "requests title",
+      "const": "requests",
+      "description": "requests description"
+    },
+    "features": {
+      "title": "features title",
+      "const": "features",
+      "description": "features description"
+    },
+    "appVersion":{
+      "title": "appVersion title",
+      "const": "appVersion",
+      "description": "appVersion description"
+    },
+    "atb": {
+      "title": "atb title",
+      "const": "atb",
+      "description": "atb description"
+    },
+    "category":{
+      "title": "category title",
+      "const": "category",
+      "description": "category description"
+    },
+    "description": {
+      "title": "description title",
+      "const": "description",
+      "description": "description description"
+    },
+    "errorDescriptions":{
+      "title": "errorDescriptions title",
+      "const": "errorDescriptions",
+      "description": "errorDescriptions description"
+    },
+    "extensionVersion": {
+      "title": "extensionVersion title",
+      "const": "extensionVersion",
+      "description": "extensionVersion description"
+    },
+    "httpErrorCodes":{
+      "title": "httpErrorCodes title",
+      "const": "httpErrorCodes",
+      "description": "httpErrorCodes description"
+    },
+    "lastSentDay": {
+      "title": "lastSentDay title",
+      "const": "lastSentDay",
+      "description": "lastSentDay description"
+    },
+    "loginSite":{
+      "title": "loginSite title",
+      "const": "loginSite",
+      "description": "loginSite description"
+    },
+    "device": {
+      "title": "device title",
+      "const": "device",
+      "description": "device description"
+    },
+    "os":{
+      "title": "os title",
+      "const": "os",
+      "description": "os description"
+    },
+    "listVersions": {
+      "title": "listVersions title",
+      "const": "listVersions",
+      "description": "listVersions description"
+    },
+    "reportFlow":{
+      "title": "reportFlow title",
+      "const": "reportFlow",
+      "description": "reportFlow description"
+    },
+    "siteUrl": {
+      "title": "siteUrl title",
+      "const": "siteUrl",
+      "description": "siteUrl description"
     }
   }
 }

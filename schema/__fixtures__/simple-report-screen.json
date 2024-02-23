@@ -1,0 +1,59 @@
+{
+  "opener": "menu",
+  "data": [
+    {
+      "id": "siteUrl",
+      "additional": {
+        "url": "hello world"
+      }
+    },
+    {
+      "id": "wvVersion"
+    },
+    {
+      "id": "requests"
+    },
+    {
+      "id": "features"
+    },
+    {
+      "id": "appVersion"
+    },
+    {
+      "id": "atb"
+    },
+    {
+      "id": "category"
+    },
+    {
+      "id": "description"
+    },
+    {
+      "id": "errorDescriptions"
+    },
+    {
+      "id": "extensionVersion"
+    },
+    {
+      "id": "httpErrorCodes"
+    },
+    {
+      "id": "lastSentDay"
+    },
+    {
+      "id": "loginSite"
+    },
+    {
+      "id": "device"
+    },
+    {
+      "id": "os"
+    },
+    {
+      "id": "listVersions"
+    },
+    {
+      "id": "reportFlow"
+    }
+  ]
+}
