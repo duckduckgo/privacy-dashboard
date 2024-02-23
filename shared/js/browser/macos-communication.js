@@ -21,11 +21,13 @@ import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
+    simpleReportScreenSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     CloseMessage,
+    FetchSimpleReportOptions,
     getContentHeight,
     OpenSettingsMessages,
     SetListsMessage,
@@ -238,6 +240,12 @@ export function privacyDashboardSetPermission(params) {
     window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params)
 }
 
+export function privacyDashboardGetSimpleReportOptions(params) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, 'privacyDashboardGetSimpleReportOptions required')
+    return window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage(params)
+}
+
 /**
  * Close the Dashboard.
  * @category Webkit Message Handlers
@@ -296,6 +304,12 @@ async function fetch(message) {
             permission: message.id,
             value: message.value,
         })
+    }
+
+    if (message instanceof FetchSimpleReportOptions) {
+        const data = await privacyDashboardGetSimpleReportOptions({})
+        const parsed = simpleReportScreenSchema.parse(data)
+        return parsed
     }
 }
 

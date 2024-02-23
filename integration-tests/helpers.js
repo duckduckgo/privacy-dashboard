@@ -5,6 +5,7 @@ import {
     webkitMockApis,
     windowsMockApis,
 } from '../shared/js/browser/utils/communication-mocks.mjs'
+import simpleReportScreen from '../schema/__fixtures__/simple-report-screen.json'
 
 /**
  * @param {import('@playwright/test').Page} page
@@ -51,11 +52,16 @@ export function installWindowsMocks(page) {
 
 /**
  * @param {import("@playwright/test").Page} page
+ * @param {Record<string, any>} [args]
  * @returns {Promise<void>}
  */
-export async function installWebkitMocks(page) {
+export async function installWebkitMocks(page, args) {
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function')
-    return page.evaluate(webkitMockApis)
+    return page.evaluate(webkitMockApis, {
+        responses: {
+            privacyDashboardGetSimpleReportOptions: simpleReportScreen,
+        },
+    })
 }
 
 /**

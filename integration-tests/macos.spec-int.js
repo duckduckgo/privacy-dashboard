@@ -33,15 +33,21 @@ test.describe('opening breakage form', () => {
         await dash.selectClose()
         await dash.mocks.calledForClose()
     })
-    test.only('shows simple breakage report', async ({ page }) => {
+    test('shows simple breakage report when opened from menu', async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'macos' })
+        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'macos', opener: 'menu' })
         await dash.addState([testDataStates.google])
         await dash.simpleBreakageReportIsVisible()
-
-        // await dash.showsOnlyCloseButton()
-        // await dash.selectClose()
-        // await dash.mocks.calledForClose()
+        await dash.showsOnlyCloseButton()
+        await dash.selectClose()
+        await dash.mocks.calledForClose()
+    })
+    test('shows simple breakage report when opened from dashboard', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'macos', opener: 'dashboard' })
+        await dash.addState([testDataStates.google])
+        await dash.simpleBreakageReportIsVisible()
+        await dash.closeButtonIsHidden()
     })
 })
 

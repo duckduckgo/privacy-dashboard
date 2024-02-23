@@ -497,10 +497,6 @@ export interface EventOrigin {
  */
 export interface SimpleReportScreen {
   /**
-   * Used to indicate which section of the browser the dashboard was opened from. This allow the dashboard to show the correct controls
-   */
-  opener: "menu" | "dashboard";
-  /**
    * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
    */
   data: SimpleReportScreenDataItem[];

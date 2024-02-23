@@ -230,7 +230,6 @@ export const windowsViewModelSchema = z.object({
 });
 
 export const simpleReportScreenSchema = z.object({
-    opener: z.union([z.literal("menu"), z.literal("dashboard")]),
     data: z.array(simpleReportScreenDataItemSchema)
 });
 

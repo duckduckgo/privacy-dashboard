@@ -4,6 +4,13 @@
     .environment--browser & {
         padding-bottom: 0;
     }
+
+    .environment--macos &[data-opener='dashboard'] {
+        .top-nav {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
 }
 
 .breakage-form__content {

@@ -3,14 +3,9 @@
   "title": "SimpleReportScreen",
   "type": "object",
   "additionalProperties": false,
-  "required": ["opener", "data"],
+  "required": ["data"],
   "description": "<details>\n<summary>Show example JSON</summary>\n\n```json\n[[include:simple-report-screen.json]]\n```\n</details>",
   "properties": {
-    "opener": {
-      "type": "string",
-      "description": "Used to indicate which section of the browser the dashboard was opened from. This allow the dashboard to show the correct controls",
-      "enum": ["menu", "dashboard"]
-    },
     "data": {
       "type": "array",
       "description": "The line-items to show to the user for indicating what data the report will send to DuckDuckGo",

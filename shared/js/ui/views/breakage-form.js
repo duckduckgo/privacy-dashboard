@@ -60,7 +60,6 @@ function SimpleBreakageReportView(ops) {
     this.mainModel = ops.mainModel
     this.template = ops.template
     this.immediate = ops.immediate
-    // this.$root = $('.js-breakage-form')
     // @ts-ignore
     ParentSlidingSubview.call(this, ops)
     // @ts-ignore
@@ -73,11 +72,7 @@ SimpleBreakageReportView.prototype = $.extend(
     ParentSlidingSubview.prototype,
     {
         roots: new Map(),
-        _setup: function () {
-            // this._cacheElems('.js-breakage-form', ['close', 'submit', 'element', 'dropdown', 'description'])
-            // this.bindEvents([[this.$submit, 'click', this._submitForm]])
-            console.log('setup!')
-        },
+        _setup: function () {},
         //
         // _submitForm: function () {
         //     const category = this.$dropdown.val()

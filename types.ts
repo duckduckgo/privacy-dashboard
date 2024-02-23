@@ -41,6 +41,7 @@ interface Window {
         listeners?: any[]
         calls: any[]
         messages: any
+        responses: any
         mocks: {
             outgoing: any[]
             incoming: any[]
@@ -58,6 +59,9 @@ interface Window {
             }
             privacyDashboardOpenSettings?: any
             privacyDashboardSetPermission?: any
+            privacyDashboardGetSimpleReportOptions?: {
+                postMessage: (params: any) => Promise<import('./schema/__generated__/schema.types').SimpleReportScreen>
+            }
         }
     }
     chrome: {

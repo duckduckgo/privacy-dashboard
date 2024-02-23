@@ -87,7 +87,8 @@ Site.prototype = $.extend({}, Parent.prototype, {
         /** @type {import('../../../../schema/__generated__/schema.types.js').EventOrigin['screen']} */
         const simple = 'simpleBreakageReport'
         if (url.searchParams.get('screen') === simple) {
-            this.showSimpleBreakageForm({ immediate: true })
+            const opener = url.searchParams.get('opener') || 'menu'
+            this.showSimpleBreakageForm({ immediate: true, opener })
         }
 
         setTimeout(() => {
@@ -147,7 +148,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
         this.views.slidingSubview = new BreakageFormView({
             template: breakageFormTemplate,
-            model: new BreakageFormModel({ site: this.model }),
+            model: new BreakageFormModel({ site: this.model, opener: 'dashboard' }),
             mainModel: this.model,
             immediate,
         })
@@ -157,14 +158,15 @@ Site.prototype = $.extend({}, Parent.prototype, {
      * @param {object} opts
      * @param {boolean} opts.immediate
      * @param {HTMLElement} [opts.eventTarget]
+     * @param {string} opts.opener
      */
-    showSimpleBreakageForm: function ({ immediate, eventTarget }) {
+    showSimpleBreakageForm: function ({ immediate, eventTarget, opener }) {
         if (eventTarget) {
             blur(eventTarget)
         }
         this.views.slidingSubview = new SimpleBreakageReportView({
             template: simpleBreakageFormTemplate,
-            model: new BreakageFormModel({ site: this.model }),
+            model: new BreakageFormModel({ site: this.model, opener }),
             mainModel: this.model,
             immediate,
         })

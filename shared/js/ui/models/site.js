@@ -351,6 +351,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     /** @this {LocalThis} */
     close: function () {
         try {
+            console.log(new CloseMessage())
             this.fetch(new CloseMessage())
         } catch (e) {
             console.error('close error', e)

@@ -2,9 +2,11 @@ import $ from 'jquery'
 import Parent from '../base/model.js'
 import { SubmitBrokenSiteReportMessage } from '../../browser/common.js'
 
-/** @this {any} */
+/**
+ * @param {{site: import("./site").default, opener: string}} attrs
+ * @constructor
+ */
 function BreakageFormModel(attrs) {
-    attrs = attrs || {}
     Parent.call(this, attrs)
 }
 

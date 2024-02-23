@@ -178,13 +178,15 @@ export class DashboardPage {
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'ios' | 'macos'} opts.platform
+     * @param {'menu' | 'dashboard'} [opts.opener]
      */
     static async webkit(page, opts) {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
         const screen = opts?.screen || 'primaryScreen'
+        const opener = opts?.opener || 'dashboard'
         const dash = new DashboardPage(page, { name: opts?.platform ?? 'ios' })
         await dash.withMarker()
-        await dash.loadPage({ screen })
+        await dash.loadPage({ screen, opener })
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -284,8 +286,8 @@ export class DashboardPage {
     }
 
     async simpleBreakageReportIsVisible() {
-        await this.page.pause()
         await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
+        await this.page.getByRole('heading', { name: 'Site not working? Let us know.' }).waitFor()
     }
 
     async showsOnlyDoneButton() {
@@ -296,6 +298,10 @@ export class DashboardPage {
     async showsOnlyCloseButton() {
         await this.page.locator('.breakage-form').locator('a:has-text("Close")').waitFor()
         await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
+    }
+
+    async closeButtonIsHidden() {
+        expect(await this.page.locator('.breakage-form .top-nav').isHidden()).toBe(true)
     }
 
     async selectClose() {

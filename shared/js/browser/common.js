@@ -358,6 +358,7 @@ export class BurnMessage extends Msg {
 }
 
 export class FetchBurnOptions extends Msg {}
+export class FetchSimpleReportOptions extends Msg {}
 
 export class SetBurnDefaultOption extends Msg {
     /**
