@@ -9,6 +9,7 @@ const exec = promisify(baseExec)
 const env = {
     ...process.env,
     NODE_ENV: debug ? 'development' : 'production',
+    BUILD_OUTPUT: debug ? 'build/app-debug' : 'build/app',
 }
 
 // sass+schema (parallel)
@@ -18,7 +19,7 @@ const env = {
     const schema = exec('node scripts/schema.js', { cwd: BASE, stdio: 'inherit', env })
 
     // sass
-    const output = 'build/app/public/css'
+    const output = join(env.BUILD_OUTPUT, 'public/css')
     // prettier-ignore
     const inputs = [
         'shared/scss/base/base.scss',
