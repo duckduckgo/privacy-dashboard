@@ -1,52 +1,52 @@
 {
-  "data": [
-    {
-      "id": "siteUrl",
-      "additional": {
-        "url": "https://example.com/a/b/c"
-      }
-    },
-    {
-      "id": "wvVersion"
-    },
-    {
-      "id": "requests"
-    },
-    {
-      "id": "features"
-    },
-    {
-      "id": "appVersion"
-    },
-    {
-      "id": "atb"
-    },
-    {
-      "id": "errorDescriptions"
-    },
-    {
-      "id": "extensionVersion"
-    },
-    {
-      "id": "httpErrorCodes"
-    },
-    {
-      "id": "lastSentDay"
-    },
-    {
-      "id": "loginSite"
-    },
-    {
-      "id": "device"
-    },
-    {
-      "id": "os"
-    },
-    {
-      "id": "listVersions"
-    },
-    {
-      "id": "reportFlow"
-    }
-  ]
+    "data": [
+        {
+            "id": "siteUrl",
+            "additional": {
+                "url": "https://example.com/a/b/c"
+            }
+        },
+        {
+            "id": "wvVersion"
+        },
+        {
+            "id": "requests"
+        },
+        {
+            "id": "features"
+        },
+        {
+            "id": "appVersion"
+        },
+        {
+            "id": "atb"
+        },
+        {
+            "id": "errorDescriptions"
+        },
+        {
+            "id": "extensionVersion"
+        },
+        {
+            "id": "httpErrorCodes"
+        },
+        {
+            "id": "lastSentDay"
+        },
+        {
+            "id": "loginSite"
+        },
+        {
+            "id": "device"
+        },
+        {
+            "id": "os"
+        },
+        {
+            "id": "listVersions"
+        },
+        {
+            "id": "reportFlow"
+        }
+    ]
 }

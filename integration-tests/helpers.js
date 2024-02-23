@@ -52,10 +52,10 @@ export function installWindowsMocks(page) {
 
 /**
  * @param {import("@playwright/test").Page} page
- * @param {Record<string, any>} [args]
+ * @param {Record<string, any>} [_args]
  * @returns {Promise<void>}
  */
-export async function installWebkitMocks(page, args) {
+export async function installWebkitMocks(page, _args) {
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function')
     return page.evaluate(webkitMockApis, {
         responses: {

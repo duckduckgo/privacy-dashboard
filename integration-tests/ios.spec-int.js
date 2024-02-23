@@ -137,6 +137,20 @@ test.describe('opening breakage form', () => {
         await dash.breakageFormIsVisible()
         await dash.showsOnlyDoneButton()
     })
+    test('sends simple breakage form', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'ios', opener: 'dashboard' })
+        await dash.addState([testDataStates.google])
+        await dash.simpleBreakageReportIsVisible()
+        await dash.sendSimpleBreakageReport()
+    })
+    test('rejects simple breakage form', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'ios', opener: 'dashboard' })
+        await dash.addState([testDataStates.google])
+        await dash.simpleBreakageReportIsVisible()
+        await dash.rejectSimpleBreakageReport()
+    })
 })
 
 if (!process.env.CI) {

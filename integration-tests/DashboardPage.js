@@ -461,4 +461,29 @@ export class DashboardPage {
             .getByText('We temporarily turned Privacy Protections off as they appear to be breaking this')
             .waitFor({ timeout: 1000 })
     }
+
+    async sendSimpleBreakageReport() {
+        const { page } = this
+        await page.getByRole('button', { name: 'Send Report' }).click()
+
+        // macos only, assert on the success screen
+        if (this.platform.name === 'macos') await this.showsSuccessScreen()
+
+        await this.mocks.calledForSendSimpleBreakageReport()
+    }
+
+    async showsSuccessScreen() {
+        await this.page.getByRole('heading', { name: 'Thank you!' }).waitFor()
+        await this.page
+            .getByRole('heading', {
+                name: 'Your report will help improve our products and make the experience better for other people.',
+            })
+            .waitFor()
+    }
+
+    async rejectSimpleBreakageReport() {
+        const { page } = this
+        await page.getByRole('button', { name: `Don't send` }).click()
+        await this.mocks.calledForRejectSimpleBreakageReport()
+    }
 }

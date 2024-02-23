@@ -10,7 +10,8 @@
         "shared/js/browser/utils/request-details.mjs",
         "shared/js/browser/utils/protections.mjs",
         "shared/js/ui/platform-features.mjs",
-        "shared/js/features.doc.js"
+        "shared/js/features.doc.js",
+        "guides/simple-breakage-report.js"
     ],
     "out": "build/docs",
     "media": "schema/__fixtures__",

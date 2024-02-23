@@ -232,6 +232,36 @@ export async function refreshAlias() {
 }
 
 /**
+ * Fetch the data needed to display the simple report screen
+ *
+ * @example
+ *
+ * ```json
+ *   [[include:simple-report-screen.json]]```
+ *
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').SimpleReportScreen>}
+ */
+export async function getSimpleReportOptions() {
+    throw new Error('base impl')
+}
+
+/**
+ * Send the simple breakage report
+ * @returns {Promise<void>}
+ */
+export async function sendSimpleBreakageReport() {
+    throw new Error('base impl')
+}
+
+/**
+ * Reject sending the simple breakage report
+ * @returns {Promise<void>}
+ */
+export async function rejectSimpleBreakageReport() {
+    throw new Error('base impl')
+}
+
+/**
  * @param {import('../../../schema/__generated__/schema.types').Search} options
  */
 export function search(options) {}
@@ -359,6 +389,8 @@ export class BurnMessage extends Msg {
 
 export class FetchBurnOptions extends Msg {}
 export class FetchSimpleReportOptions extends Msg {}
+export class SendSimpleBreakageReport extends Msg {}
+export class RejectSimpleBreakageReport extends Msg {}
 
 export class SetBurnDefaultOption extends Msg {
     /**

@@ -140,6 +140,16 @@ export function webkitMockApis({ responses = {} } = {}) {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardSetPermission', arg])
                     },
                 },
+                privacyDashboardSendSimpleBreakageReport: {
+                    postMessage: async (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSendSimpleBreakageReport', arg])
+                    },
+                },
+                privacyDashboardRejectSimpleBreakageReport: {
+                    postMessage: async (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardRejectSimpleBreakageReport', arg])
+                    },
+                },
                 privacyDashboardGetSimpleReportOptions: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardGetSimpleReportOptions', arg])

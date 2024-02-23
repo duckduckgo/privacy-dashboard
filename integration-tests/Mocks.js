@@ -79,6 +79,22 @@ export class Mocks {
         }
     }
 
+    async calledForSendSimpleBreakageReport() {
+        const out = await this.outgoing({
+            names: ['privacyDashboardSendSimpleBreakageReport'],
+        })
+        expect(out).toMatchObject([['privacyDashboardSendSimpleBreakageReport', {}]])
+        return
+    }
+
+    async calledForRejectSimpleBreakageReport() {
+        const out = await this.outgoing({
+            names: ['privacyDashboardRejectSimpleBreakageReport'],
+        })
+        expect(out).toMatchObject([['privacyDashboardRejectSimpleBreakageReport', {}]])
+        return
+    }
+
     async calledForSubmitBreakageForm({ category = '', description = '' }) {
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({

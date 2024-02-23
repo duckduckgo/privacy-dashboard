@@ -30,6 +30,8 @@ import {
     FetchSimpleReportOptions,
     getContentHeight,
     OpenSettingsMessages,
+    RejectSimpleBreakageReport,
+    SendSimpleBreakageReport,
     SetListsMessage,
     setupColorScheme,
     setupMutationObserver,
@@ -240,10 +242,61 @@ export function privacyDashboardSetPermission(params) {
     window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params)
 }
 
-export function privacyDashboardGetSimpleReportOptions(params) {
+/**
+ * {@inheritDoc common.getSimpleReportOptions}
+ * @type {import("./common.js").getSimpleReportOptions}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({})
+ * ```
+ */
+export function privacyDashboardGetSimpleReportOptions() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, 'privacyDashboardGetSimpleReportOptions required')
-    return window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage(params)
+    return window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({})
+}
+
+/**
+ * {@inheritDoc common.sendSimpleBreakageReport}
+ * @type {import("./common.js").sendSimpleBreakageReport}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport.postMessage({})
+ * ```
+ */
+export function privacyDashboardSendSimpleBreakageReport() {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport, 'privacyDashboardSendSimpleBreakageReport required')
+    return window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport.postMessage({})
+}
+
+/**
+ * {@inheritDoc common.rejectSimpleBreakageReport}
+ * @type {import("./common.js").rejectSimpleBreakageReport}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport.postMessage({})
+ * ```
+ */
+export function privacyDashboardRejectSimpleBreakageReport() {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(
+        window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport,
+        'privacyDashboardRejectSimpleBreakageReport required'
+    )
+    return window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport.postMessage({})
 }
 
 /**
@@ -307,9 +360,17 @@ async function fetch(message) {
     }
 
     if (message instanceof FetchSimpleReportOptions) {
-        const data = await privacyDashboardGetSimpleReportOptions({})
+        const data = await privacyDashboardGetSimpleReportOptions()
         const parsed = simpleReportScreenSchema.parse(data)
         return parsed
+    }
+
+    if (message instanceof SendSimpleBreakageReport) {
+        return privacyDashboardSendSimpleBreakageReport()
+    }
+
+    if (message instanceof RejectSimpleBreakageReport) {
+        return privacyDashboardRejectSimpleBreakageReport()
     }
 }
 

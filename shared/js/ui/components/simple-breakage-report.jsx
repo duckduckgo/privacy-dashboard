@@ -8,7 +8,7 @@ import { Button, ButtonBar } from './button'
 import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
 import { useContext, useEffect, useReducer } from 'preact/hooks'
-import { FetchSimpleReportOptions } from '../../browser/common'
+import { FetchSimpleReportOptions, RejectSimpleBreakageReport, SendSimpleBreakageReport } from '../../browser/common'
 import { namedString } from '../../../data/text'
 
 export function SimpleBreakageReport() {
@@ -16,24 +16,32 @@ export function SimpleBreakageReport() {
     const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
     const buttonSize = platform.name === 'ios' ? 'big' : 'small'
     const innerGap = platform.name === 'ios' ? '24px' : '16px'
+    const { value, send, reject } = useContext(DataContext)
     const [state, dispatch] = useReducer(
-        (state, /** @type {"toggle"} */ action) => {
+        (state, /** @type {"toggle" | "send" | "reject"} */ action) => {
             switch (action) {
                 case 'toggle': {
                     const next = state.value === 'hiding' ? /** @type {const} */ ('showing') : /** @type {const} */ ('hiding')
                     return { ...state, value: next }
                 }
+                case 'send': {
+                    send()
+                    return { ...state, value: /** @type {const} */ ('sent') }
+                }
+                case 'reject': {
+                    reject()
+                    return state
+                }
             }
             return state
         },
-        { value: /** @type {'hiding' | 'showing' | 'sent'} */ ('hiding') }
+        { value: /** @type {'hiding' | 'showing' | 'sent' | 'rejected'} */ ('hiding') }
     )
-    const { value } = useContext(DataContext)
-    console.log(value)
+    if (state.value === 'sent' && platform.name === 'macos') return <Sent />
     return (
         <Stack gap="24px">
             <Stack gap={innerGap}>
-                <div className="large-icon-container hero-icon--simple-breakage-form"></div>
+                <div className="medium-icon-container hero-icon--simple-breakage-form"></div>
                 <h1 className="token-title-2-em text--center">{ns.report('siteNotWorkingTitle.title')}</h1>
                 <div>
                     <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
@@ -69,10 +77,10 @@ export function SimpleBreakageReport() {
                 </Scrollable>
             )}
             <ButtonBar layout={buttonLayout}>
-                <Button variant={buttonVariant} btnSize={buttonSize}>
+                <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('reject')}>
                     {ns.report('dontSendReport.title')}
                 </Button>
-                <Button variant={buttonVariant} btnSize={buttonSize}>
+                <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('send')}>
                     {ns.report('sendReport.title')}
                 </Button>
             </ButtonBar>
@@ -80,8 +88,28 @@ export function SimpleBreakageReport() {
     )
 }
 
+function Sent() {
+    return (
+        <div>
+            <div className="medium-icon-container hero-icon--simple-breakage-form-sent"></div>
+            <Stack gap={'8px'}>
+                <h1 className="token-title-2-em text--center">{ns.report('thankYou.title')}</h1>
+                <h2 className="token-title-3 text--center">{ns.report('yourReportWillHelpDesc.title')}</h2>
+            </Stack>
+        </div>
+    )
+}
+
 const DataContext = createContext({
     value: /** @type {import('../../../../schema/__generated__/schema.types').SimpleReportScreen} */ ({}),
+    /** @type {() => void} */
+    send: () => {
+        throw new Error('todo implement send')
+    },
+    /** @type {() => void} */
+    reject: () => {
+        throw new Error('todo implement reject')
+    },
 })
 
 function DataProvider({ children, model }) {
@@ -92,13 +120,24 @@ function DataProvider({ children, model }) {
         return model
             .fetch(msg)
             .then((data) => {
+                console.log('?', data)
                 dispatch({ status: 'ready', value: data })
             })
             .catch((e) => {
                 dispatch({ status: 'error', error: e.toString() })
             })
     }, [model])
-    if (state.status === 'ready') return <DataContext.Provider value={{ value: state.value }}>{children}</DataContext.Provider>
+
+    function send() {
+        model.fetch(new SendSimpleBreakageReport())
+    }
+    function reject() {
+        model.fetch(new RejectSimpleBreakageReport())
+    }
+    if (state.status === 'ready') {
+        console.log(state)
+        return <DataContext.Provider value={{ value: state.value, send, reject }}>{children}</DataContext.Provider>
+    }
     if (state.status === 'error')
         return (
             <div>

@@ -62,6 +62,12 @@ interface Window {
             privacyDashboardGetSimpleReportOptions?: {
                 postMessage: (params: any) => Promise<import('./schema/__generated__/schema.types').SimpleReportScreen>
             }
+            privacyDashboardRejectSimpleBreakageReport?: {
+                postMessage: (params: any) => Promise<void>
+            }
+            privacyDashboardSendSimpleBreakageReport?: {
+                postMessage: (params: any) => Promise<void>
+            }
         }
     }
     chrome: {

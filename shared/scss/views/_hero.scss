@@ -8,6 +8,16 @@
     background-size: contain;
 }
 
+.medium-icon-container {
+    height: 72px;
+    //outline: 1px dashed grey;
+    //background-color: cyan;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 16px;
+    background-size: contain;
+}
+
 .hero-icon--breakage-form {
     @include cross_platform_bg_image('refresh-assets/Breakage-128.svg');
     margin-bottom: 20px;
@@ -18,6 +28,9 @@
 .hero-icon--simple-breakage-form {
     @include cross_platform_bg_image('refresh-assets/Breakage-128.svg');
     margin-bottom: 0;
+}
+.hero-icon--simple-breakage-form-sent {
+    @include cross_platform_bg_image('refresh-assets/breakage-sent.svg');
 }
 .hero-icon--tracker-network {
     @include cross_platform_bg_image('refresh-assets/Network-128.svg');

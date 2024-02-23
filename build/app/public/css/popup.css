@@ -70,6 +70,14 @@
   line-height: 20px;
 }
 
+/* Mac/System Keywords/Title 2 (Emphasis) */
+.token-title-2-em {
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+}
+
 .token-title-3 {
   font-size: 15px;
   font-weight: 400;
@@ -864,12 +872,29 @@ body.environment--windows {
   background-size: contain;
 }
 
+.medium-icon-container {
+  height: 72px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-bottom: 16px;
+  background-size: contain;
+}
+
 .hero-icon--breakage-form {
   background-image: url("../../img/refresh-assets/Breakage-128.svg");
   margin-bottom: 20px;
 }
 .environment--browser .hero-icon--breakage-form {
   margin-bottom: 16px;
+}
+
+.hero-icon--simple-breakage-form {
+  background-image: url("../../img/refresh-assets/Breakage-128.svg");
+  margin-bottom: 0;
+}
+
+.hero-icon--simple-breakage-form-sent {
+  background-image: url("../../img/refresh-assets/breakage-sent.svg");
 }
 
 .hero-icon--tracker-network {
@@ -2997,6 +3022,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .environment--browser .breakage-form {
   padding-bottom: 0;
 }
+.environment--macos .breakage-form[data-opener=dashboard] .top-nav {
+  opacity: 0;
+  visibility: hidden;
+}
 
 .breakage-form__content {
   z-index: 1;
@@ -3639,4 +3668,94 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .platform-limitations {
   padding: 16px 0;
   text-align: center;
+}
+
+.button[data-variant=macos-standard] {
+  color: var(--Text-Primary, rgba(0, 0, 0, 0.84));
+  text-align: center;
+  border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0.1));
+  background: var(--Controls-Mac-Buttons-Fill-Default, #fff);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
+}
+.body--theme-dark .button[data-variant=macos-standard] {
+  color: var(--Text-Primary, rgba(255, 255, 255, 0.84));
+  border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0));
+  background: var(--Controls-Mac-Buttons-Fill-Default, rgba(255, 255, 255, 0.25));
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
+}
+.button[data-variant=macos-standard]:active {
+  border-radius: 5px;
+  border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0.1));
+  background: #e7e7e7;
+  /* Mac/Button */
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
+}
+.button[data-variant=ios-secondary] {
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid var(--Buttons-Secondary-Wire-Default-Stroke, #3969ef);
+  color: var(--Buttons-Secondary-Wire-Text, #3969ef);
+  text-align: center;
+}
+.button[data-size=small] {
+  line-height: 13px;
+  height: var(--Window-Padding, 20px);
+  padding: 0px 12px;
+  border-radius: 5px;
+}
+.button[data-size=big] {
+  height: 50px;
+  padding: 0px 24px;
+  /* Button */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 133.333% */
+}
+
+.button-bar[data-layout=horizontal] {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 50% 50%;
+}
+.button-bar[data-layout=vertical] {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+.button-bar[data-layout=vertical] > * {
+  width: 100%;
+}
+
+.text-link-as-button:hover {
+  text-decoration: underline;
+}
+.text-link-as-button:active {
+  text-decoration: none;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+.stack[data-debug=true] > * {
+  outline: 1px dotted black;
+}
+
+.scrollable {
+  height: 300px;
+  overflow-y: scroll;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--Fill-Fill-01, rgba(0, 0, 0, 0.01));
+  padding: 16px 20px 20px 16px;
+}
+
+.data-list {
+  padding-left: 18px;
 }
