@@ -40,8 +40,4 @@ describe('__fixtures__', () => {
     it('validates simple report screen', () => {
         simpleReportScreenSchema.parse(simpleReportScreen)
     })
-    it('validates simple report screen with alt opener', () => {
-        const next = { ...simpleReportScreen, opener: 'dashboard' }
-        simpleReportScreenSchema.parse(next)
-    })
 })

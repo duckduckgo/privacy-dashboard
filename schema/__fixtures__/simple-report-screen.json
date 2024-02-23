@@ -34,16 +34,10 @@
             "id": "lastSentDay"
         },
         {
-            "id": "loginSite"
-        },
-        {
             "id": "device"
         },
         {
             "id": "os"
-        },
-        {
-            "id": "listVersions"
         },
         {
             "id": "reportFlow"
