@@ -41,7 +41,13 @@
  *   - WebKit: {@link "macOS integration".privacyDashboardSendSimpleBreakageReport}
  *   - WebKit: {@link "macOS integration".privacyDashboardRejectSimpleBreakageReport}
  *
+ * ## opener=menu
+ *  <iframe width=360 height=500 src="/app/html/ios.html?screen=simpleBreakageReport&opener=menu"></iframe>
+ *  <iframe width=360 height=500 src="/app/html/macos.html?screen=simpleBreakageReport&opener=menu"></iframe>*
  *
+ * ## opener=dashboard
+ *  <iframe width=360 height=500 src="/app/html/ios.html?screen=simpleBreakageReport&opener=dashboard"></iframe>
+ *  <iframe width=360 height=500 src="/app/html/macos.html?screen=simpleBreakageReport&opener=dashboard"></iframe>
  */
 
 export {}
