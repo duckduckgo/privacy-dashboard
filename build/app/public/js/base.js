@@ -10,8 +10,8 @@
   var __esm = (fn, res) => function __init() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
-  var __commonJS = (cb, mod2) => function __require() {
-    return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
     for (var name in all)
@@ -25,15 +25,15 @@
     }
     return to;
   };
-  var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__getProtoOf(mod2)) : {}, __copyProps(
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
     // If the importer is in node compatibility mode or this is not an ESM
     // file that has been converted to a CommonJS file using a Babel-
     // compatible transform (i.e. "__esModule" has not been set), then set
     // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
-    mod2
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
   ));
-  var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
   var __publicField = (obj, key, value) => {
     __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
     return value;
@@ -105,7 +105,7 @@
           }
           return typeof obj === "object" || typeof obj === "function" ? class2type[toString.call(obj)] || "object" : typeof obj;
         }
-        var version = "3.6.2", jQuery = function(selector, context) {
+        var version = "3.7.1", rhtmlSuffix = /HTML$/i, jQuery = function(selector, context) {
           return new jQuery.fn.init(selector, context);
         };
         jQuery.fn = jQuery.prototype = {
@@ -265,6 +265,25 @@
             }
             return obj;
           },
+          // Retrieve the text value of an array of DOM nodes
+          text: function(elem) {
+            var node, ret = "", i3 = 0, nodeType = elem.nodeType;
+            if (!nodeType) {
+              while (node = elem[i3++]) {
+                ret += jQuery.text(node);
+              }
+            }
+            if (nodeType === 1 || nodeType === 11) {
+              return elem.textContent;
+            }
+            if (nodeType === 9) {
+              return elem.documentElement.textContent;
+            }
+            if (nodeType === 3 || nodeType === 4) {
+              return elem.nodeValue;
+            }
+            return ret;
+          },
           // results is for internal usage only
           makeArray: function(arr3, results) {
             var ret = results || [];
@@ -282,6 +301,10 @@
           },
           inArray: function(elem, arr3, i3) {
             return arr3 == null ? -1 : indexOf.call(arr3, elem, i3);
+          },
+          isXMLDoc: function(elem) {
+            var namespace = elem && elem.namespaceURI, docElem = elem && (elem.ownerDocument || elem).documentElement;
+            return !rhtmlSuffix.test(namespace || docElem && docElem.nodeName || "HTML");
           },
           // Support: Android <=4.0 only, PhantomJS 1 only
           // push.apply(_, arraylike) throws on ancient WebKit
@@ -346,1340 +369,1182 @@
           }
           return type === "array" || length === 0 || typeof length === "number" && length > 0 && length - 1 in obj;
         }
-        var Sizzle = (
-          /*!
-           * Sizzle CSS Selector Engine v2.3.8
-           * https://sizzlejs.com/
-           *
-           * Copyright JS Foundation and other contributors
-           * Released under the MIT license
-           * https://js.foundation/
-           *
-           * Date: 2022-11-16
-           */
-          function(window3) {
-            var i3, support2, Expr, getText, isXML, tokenize, compile, select, outermostContext, sortInput, hasDuplicate, setDocument, document3, docElem, documentIsHTML, rbuggyQSA, rbuggyMatches, matches2, contains, expando = "sizzle" + 1 * /* @__PURE__ */ new Date(), preferredDoc = window3.document, dirruns = 0, done2 = 0, classCache = createCache(), tokenCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), sortOrder = function(a3, b3) {
-              if (a3 === b3) {
-                hasDuplicate = true;
-              }
-              return 0;
-            }, hasOwn2 = {}.hasOwnProperty, arr3 = [], pop = arr3.pop, pushNative = arr3.push, push2 = arr3.push, slice3 = arr3.slice, indexOf2 = function(list, elem) {
-              var i4 = 0, len = list.length;
-              for (; i4 < len; i4++) {
-                if (list[i4] === elem) {
-                  return i4;
-                }
-              }
-              return -1;
-            }, booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", whitespace2 = "[\\x20\\t\\r\\n\\f]", identifier = "(?:\\\\[\\da-fA-F]{1,6}" + whitespace2 + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+", attributes = "\\[" + whitespace2 + "*(" + identifier + ")(?:" + whitespace2 + // Operator (capture 2)
-            "*([*^$|!~]?=)" + whitespace2 + // "Attribute values must be CSS identifiers [capture 5]
-            // or strings [capture 3 or capture 4]"
-            `*(?:'((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)"|(` + identifier + "))|)" + whitespace2 + "*\\]", pseudos = ":(" + identifier + `)(?:\\((('((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)")|((?:\\\\.|[^\\\\()[\\]]|` + attributes + ")*)|.*)\\)|)", rwhitespace = new RegExp(whitespace2 + "+", "g"), rtrim2 = new RegExp("^" + whitespace2 + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace2 + "+$", "g"), rcomma = new RegExp("^" + whitespace2 + "*," + whitespace2 + "*"), rcombinators = new RegExp("^" + whitespace2 + "*([>+~]|" + whitespace2 + ")" + whitespace2 + "*"), rdescend = new RegExp(whitespace2 + "|>"), rpseudo = new RegExp(pseudos), ridentifier = new RegExp("^" + identifier + "$"), matchExpr = {
-              "ID": new RegExp("^#(" + identifier + ")"),
-              "CLASS": new RegExp("^\\.(" + identifier + ")"),
-              "TAG": new RegExp("^(" + identifier + "|[*])"),
-              "ATTR": new RegExp("^" + attributes),
-              "PSEUDO": new RegExp("^" + pseudos),
-              "CHILD": new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace2 + "*(even|odd|(([+-]|)(\\d*)n|)" + whitespace2 + "*(?:([+-]|)" + whitespace2 + "*(\\d+)|))" + whitespace2 + "*\\)|)", "i"),
-              "bool": new RegExp("^(?:" + booleans + ")$", "i"),
-              // For use in libraries implementing .is()
-              // We use this for POS matching in `select`
-              "needsContext": new RegExp("^" + whitespace2 + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + whitespace2 + "*((?:-\\d)?\\d*)" + whitespace2 + "*\\)|)(?=[^-]|$)", "i")
-            }, rhtml2 = /HTML$/i, rinputs = /^(?:input|select|textarea|button)$/i, rheader = /^h\d$/i, rnative = /^[^{]+\{\s*\[native \w/, rquickExpr2 = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, rsibling = /[+~]/, runescape = new RegExp("\\\\[\\da-fA-F]{1,6}" + whitespace2 + "?|\\\\([^\\r\\n\\f])", "g"), funescape = function(escape2, nonHex) {
-              var high = "0x" + escape2.slice(1) - 65536;
-              return nonHex ? (
-                // Strip the backslash prefix from a non-hex escape sequence
-                nonHex
-              ) : (
-                // Replace a hexadecimal escape sequence with the encoded Unicode code point
-                // Support: IE <=11+
-                // For values outside the Basic Multilingual Plane (BMP), manually construct a
-                // surrogate pair
-                high < 0 ? String.fromCharCode(high + 65536) : String.fromCharCode(high >> 10 | 55296, high & 1023 | 56320)
-              );
-            }, rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g, fcssescape = function(ch, asCodePoint) {
-              if (asCodePoint) {
-                if (ch === "\0") {
-                  return "\uFFFD";
-                }
-                return ch.slice(0, -1) + "\\" + ch.charCodeAt(ch.length - 1).toString(16) + " ";
-              }
-              return "\\" + ch;
-            }, unloadHandler = function() {
-              setDocument();
-            }, inDisabledFieldset = addCombinator(
-              function(elem) {
-                return elem.disabled === true && elem.nodeName.toLowerCase() === "fieldset";
-              },
-              { dir: "parentNode", next: "legend" }
-            );
+        function nodeName(elem, name) {
+          return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+        }
+        var pop = arr2.pop;
+        var sort = arr2.sort;
+        var splice = arr2.splice;
+        var whitespace = "[\\x20\\t\\r\\n\\f]";
+        var rtrimCSS = new RegExp(
+          "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$",
+          "g"
+        );
+        jQuery.contains = function(a3, b3) {
+          var bup = b3 && b3.parentNode;
+          return a3 === bup || !!(bup && bup.nodeType === 1 && // Support: IE 9 - 11+
+          // IE doesn't have `contains` on SVG.
+          (a3.contains ? a3.contains(bup) : a3.compareDocumentPosition && a3.compareDocumentPosition(bup) & 16));
+        };
+        var rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g;
+        function fcssescape(ch, asCodePoint) {
+          if (asCodePoint) {
+            if (ch === "\0") {
+              return "\uFFFD";
+            }
+            return ch.slice(0, -1) + "\\" + ch.charCodeAt(ch.length - 1).toString(16) + " ";
+          }
+          return "\\" + ch;
+        }
+        jQuery.escapeSelector = function(sel) {
+          return (sel + "").replace(rcssescape, fcssescape);
+        };
+        var preferredDoc = document2, pushNative = push;
+        (function() {
+          var i3, Expr, outermostContext, sortInput, hasDuplicate, push2 = pushNative, document3, documentElement2, documentIsHTML, rbuggyQSA, matches2, expando = jQuery.expando, dirruns = 0, done2 = 0, classCache = createCache(), tokenCache = createCache(), compilerCache = createCache(), nonnativeSelectorCache = createCache(), sortOrder = function(a3, b3) {
+            if (a3 === b3) {
+              hasDuplicate = true;
+            }
+            return 0;
+          }, booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", identifier = "(?:\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+", attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace + // Operator (capture 2)
+          "*([*^$|!~]?=)" + whitespace + // "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
+          `*(?:'((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)"|(` + identifier + "))|)" + whitespace + "*\\]", pseudos = ":(" + identifier + `)(?:\\((('((?:\\\\.|[^\\\\'])*)'|"((?:\\\\.|[^\\\\"])*)")|((?:\\\\.|[^\\\\()[\\]]|` + attributes + ")*)|.*)\\)|)", rwhitespace = new RegExp(whitespace + "+", "g"), rcomma = new RegExp("^" + whitespace + "*," + whitespace + "*"), rleadingCombinator = new RegExp("^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*"), rdescend = new RegExp(whitespace + "|>"), rpseudo = new RegExp(pseudos), ridentifier = new RegExp("^" + identifier + "$"), matchExpr = {
+            ID: new RegExp("^#(" + identifier + ")"),
+            CLASS: new RegExp("^\\.(" + identifier + ")"),
+            TAG: new RegExp("^(" + identifier + "|[*])"),
+            ATTR: new RegExp("^" + attributes),
+            PSEUDO: new RegExp("^" + pseudos),
+            CHILD: new RegExp(
+              "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace + "*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace + "*(\\d+)|))" + whitespace + "*\\)|)",
+              "i"
+            ),
+            bool: new RegExp("^(?:" + booleans + ")$", "i"),
+            // For use in libraries implementing .is()
+            // We use this for POS matching in `select`
+            needsContext: new RegExp("^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i")
+          }, rinputs = /^(?:input|select|textarea|button)$/i, rheader = /^h\d$/i, rquickExpr2 = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, rsibling = /[+~]/, runescape = new RegExp("\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\([^\\r\\n\\f])", "g"), funescape = function(escape2, nonHex) {
+            var high = "0x" + escape2.slice(1) - 65536;
+            if (nonHex) {
+              return nonHex;
+            }
+            return high < 0 ? String.fromCharCode(high + 65536) : String.fromCharCode(high >> 10 | 55296, high & 1023 | 56320);
+          }, unloadHandler = function() {
+            setDocument();
+          }, inDisabledFieldset = addCombinator(
+            function(elem) {
+              return elem.disabled === true && nodeName(elem, "fieldset");
+            },
+            { dir: "parentNode", next: "legend" }
+          );
+          function safeActiveElement() {
             try {
-              push2.apply(
-                arr3 = slice3.call(preferredDoc.childNodes),
-                preferredDoc.childNodes
-              );
-              arr3[preferredDoc.childNodes.length].nodeType;
-            } catch (e3) {
-              push2 = {
-                apply: arr3.length ? (
-                  // Leverage slice if possible
-                  function(target, els) {
-                    pushNative.apply(target, slice3.call(els));
-                  }
-                ) : (
-                  // Support: IE<9
-                  // Otherwise append directly
-                  function(target, els) {
-                    var j3 = target.length, i4 = 0;
-                    while (target[j3++] = els[i4++]) {
-                    }
-                    target.length = j3 - 1;
-                  }
-                )
-              };
+              return document3.activeElement;
+            } catch (err) {
             }
-            function Sizzle2(selector, context, results, seed) {
-              var m3, i4, elem, nid, match, groups, newSelector, newContext = context && context.ownerDocument, nodeType = context ? context.nodeType : 9;
-              results = results || [];
-              if (typeof selector !== "string" || !selector || nodeType !== 1 && nodeType !== 9 && nodeType !== 11) {
-                return results;
+          }
+          try {
+            push2.apply(
+              arr2 = slice2.call(preferredDoc.childNodes),
+              preferredDoc.childNodes
+            );
+            arr2[preferredDoc.childNodes.length].nodeType;
+          } catch (e3) {
+            push2 = {
+              apply: function(target, els) {
+                pushNative.apply(target, slice2.call(els));
+              },
+              call: function(target) {
+                pushNative.apply(target, slice2.call(arguments, 1));
               }
-              if (!seed) {
-                setDocument(context);
-                context = context || document3;
-                if (documentIsHTML) {
-                  if (nodeType !== 11 && (match = rquickExpr2.exec(selector))) {
-                    if (m3 = match[1]) {
-                      if (nodeType === 9) {
-                        if (elem = context.getElementById(m3)) {
-                          if (elem.id === m3) {
-                            results.push(elem);
-                            return results;
-                          }
-                        } else {
-                          return results;
-                        }
-                      } else {
-                        if (newContext && (elem = newContext.getElementById(m3)) && contains(context, elem) && elem.id === m3) {
-                          results.push(elem);
-                          return results;
-                        }
-                      }
-                    } else if (match[2]) {
-                      push2.apply(results, context.getElementsByTagName(selector));
-                      return results;
-                    } else if ((m3 = match[3]) && support2.getElementsByClassName && context.getElementsByClassName) {
-                      push2.apply(results, context.getElementsByClassName(m3));
-                      return results;
-                    }
-                  }
-                  if (support2.qsa && !nonnativeSelectorCache[selector + " "] && (!rbuggyQSA || !rbuggyQSA.test(selector)) && // Support: IE 8 only
-                  // Exclude object elements
-                  (nodeType !== 1 || context.nodeName.toLowerCase() !== "object")) {
-                    newSelector = selector;
-                    newContext = context;
-                    if (nodeType === 1 && (rdescend.test(selector) || rcombinators.test(selector))) {
-                      newContext = rsibling.test(selector) && testContext(context.parentNode) || context;
-                      if (newContext !== context || !support2.scope) {
-                        if (nid = context.getAttribute("id")) {
-                          nid = nid.replace(rcssescape, fcssescape);
-                        } else {
-                          context.setAttribute("id", nid = expando);
-                        }
-                      }
-                      groups = tokenize(selector);
-                      i4 = groups.length;
-                      while (i4--) {
-                        groups[i4] = (nid ? "#" + nid : ":scope") + " " + toSelector(groups[i4]);
-                      }
-                      newSelector = groups.join(",");
-                    }
-                    try {
-                      if (support2.cssSupportsSelector && // eslint-disable-next-line no-undef
-                      !CSS.supports("selector(" + newSelector + ")")) {
-                        throw new Error();
-                      }
-                      push2.apply(
-                        results,
-                        newContext.querySelectorAll(newSelector)
-                      );
-                      return results;
-                    } catch (qsaError) {
-                      nonnativeSelectorCache(selector, true);
-                    } finally {
-                      if (nid === expando) {
-                        context.removeAttribute("id");
-                      }
-                    }
-                  }
-                }
-              }
-              return select(selector.replace(rtrim2, "$1"), context, results, seed);
-            }
-            function createCache() {
-              var keys = [];
-              function cache(key, value) {
-                if (keys.push(key + " ") > Expr.cacheLength) {
-                  delete cache[keys.shift()];
-                }
-                return cache[key + " "] = value;
-              }
-              return cache;
-            }
-            function markFunction(fn) {
-              fn[expando] = true;
-              return fn;
-            }
-            function assert2(fn) {
-              var el = document3.createElement("fieldset");
-              try {
-                return !!fn(el);
-              } catch (e3) {
-                return false;
-              } finally {
-                if (el.parentNode) {
-                  el.parentNode.removeChild(el);
-                }
-                el = null;
-              }
-            }
-            function addHandle(attrs, handler) {
-              var arr4 = attrs.split("|"), i4 = arr4.length;
-              while (i4--) {
-                Expr.attrHandle[arr4[i4]] = handler;
-              }
-            }
-            function siblingCheck(a3, b3) {
-              var cur = b3 && a3, diff = cur && a3.nodeType === 1 && b3.nodeType === 1 && a3.sourceIndex - b3.sourceIndex;
-              if (diff) {
-                return diff;
-              }
-              if (cur) {
-                while (cur = cur.nextSibling) {
-                  if (cur === b3) {
-                    return -1;
-                  }
-                }
-              }
-              return a3 ? 1 : -1;
-            }
-            function createInputPseudo(type) {
-              return function(elem) {
-                var name = elem.nodeName.toLowerCase();
-                return name === "input" && elem.type === type;
-              };
-            }
-            function createButtonPseudo(type) {
-              return function(elem) {
-                var name = elem.nodeName.toLowerCase();
-                return (name === "input" || name === "button") && elem.type === type;
-              };
-            }
-            function createDisabledPseudo(disabled) {
-              return function(elem) {
-                if ("form" in elem) {
-                  if (elem.parentNode && elem.disabled === false) {
-                    if ("label" in elem) {
-                      if ("label" in elem.parentNode) {
-                        return elem.parentNode.disabled === disabled;
-                      } else {
-                        return elem.disabled === disabled;
-                      }
-                    }
-                    return elem.isDisabled === disabled || // Where there is no isDisabled, check manually
-                    /* jshint -W018 */
-                    elem.isDisabled !== !disabled && inDisabledFieldset(elem) === disabled;
-                  }
-                  return elem.disabled === disabled;
-                } else if ("label" in elem) {
-                  return elem.disabled === disabled;
-                }
-                return false;
-              };
-            }
-            function createPositionalPseudo(fn) {
-              return markFunction(function(argument) {
-                argument = +argument;
-                return markFunction(function(seed, matches3) {
-                  var j3, matchIndexes = fn([], seed.length, argument), i4 = matchIndexes.length;
-                  while (i4--) {
-                    if (seed[j3 = matchIndexes[i4]]) {
-                      seed[j3] = !(matches3[j3] = seed[j3]);
-                    }
-                  }
-                });
-              });
-            }
-            function testContext(context) {
-              return context && typeof context.getElementsByTagName !== "undefined" && context;
-            }
-            support2 = Sizzle2.support = {};
-            isXML = Sizzle2.isXML = function(elem) {
-              var namespace = elem && elem.namespaceURI, docElem2 = elem && (elem.ownerDocument || elem).documentElement;
-              return !rhtml2.test(namespace || docElem2 && docElem2.nodeName || "HTML");
             };
-            setDocument = Sizzle2.setDocument = function(node) {
-              var hasCompare, subWindow, doc = node ? node.ownerDocument || node : preferredDoc;
-              if (doc == document3 || doc.nodeType !== 9 || !doc.documentElement) {
-                return document3;
-              }
-              document3 = doc;
-              docElem = document3.documentElement;
-              documentIsHTML = !isXML(document3);
-              if (preferredDoc != document3 && (subWindow = document3.defaultView) && subWindow.top !== subWindow) {
-                if (subWindow.addEventListener) {
-                  subWindow.addEventListener("unload", unloadHandler, false);
-                } else if (subWindow.attachEvent) {
-                  subWindow.attachEvent("onunload", unloadHandler);
+          }
+          function find(selector, context, results, seed) {
+            var m3, i4, elem, nid, match, groups, newSelector, newContext = context && context.ownerDocument, nodeType = context ? context.nodeType : 9;
+            results = results || [];
+            if (typeof selector !== "string" || !selector || nodeType !== 1 && nodeType !== 9 && nodeType !== 11) {
+              return results;
+            }
+            if (!seed) {
+              setDocument(context);
+              context = context || document3;
+              if (documentIsHTML) {
+                if (nodeType !== 11 && (match = rquickExpr2.exec(selector))) {
+                  if (m3 = match[1]) {
+                    if (nodeType === 9) {
+                      if (elem = context.getElementById(m3)) {
+                        if (elem.id === m3) {
+                          push2.call(results, elem);
+                          return results;
+                        }
+                      } else {
+                        return results;
+                      }
+                    } else {
+                      if (newContext && (elem = newContext.getElementById(m3)) && find.contains(context, elem) && elem.id === m3) {
+                        push2.call(results, elem);
+                        return results;
+                      }
+                    }
+                  } else if (match[2]) {
+                    push2.apply(results, context.getElementsByTagName(selector));
+                    return results;
+                  } else if ((m3 = match[3]) && context.getElementsByClassName) {
+                    push2.apply(results, context.getElementsByClassName(m3));
+                    return results;
+                  }
+                }
+                if (!nonnativeSelectorCache[selector + " "] && (!rbuggyQSA || !rbuggyQSA.test(selector))) {
+                  newSelector = selector;
+                  newContext = context;
+                  if (nodeType === 1 && (rdescend.test(selector) || rleadingCombinator.test(selector))) {
+                    newContext = rsibling.test(selector) && testContext(context.parentNode) || context;
+                    if (newContext != context || !support.scope) {
+                      if (nid = context.getAttribute("id")) {
+                        nid = jQuery.escapeSelector(nid);
+                      } else {
+                        context.setAttribute("id", nid = expando);
+                      }
+                    }
+                    groups = tokenize(selector);
+                    i4 = groups.length;
+                    while (i4--) {
+                      groups[i4] = (nid ? "#" + nid : ":scope") + " " + toSelector(groups[i4]);
+                    }
+                    newSelector = groups.join(",");
+                  }
+                  try {
+                    push2.apply(
+                      results,
+                      newContext.querySelectorAll(newSelector)
+                    );
+                    return results;
+                  } catch (qsaError) {
+                    nonnativeSelectorCache(selector, true);
+                  } finally {
+                    if (nid === expando) {
+                      context.removeAttribute("id");
+                    }
+                  }
                 }
               }
-              support2.scope = assert2(function(el) {
-                docElem.appendChild(el).appendChild(document3.createElement("div"));
-                return typeof el.querySelectorAll !== "undefined" && !el.querySelectorAll(":scope fieldset div").length;
-              });
-              support2.cssSupportsSelector = assert2(function() {
-                return CSS.supports("selector(*)") && // Support: Firefox 78-81 only
-                // In old Firefox, `:is()` didn't use forgiving parsing. In that case,
-                // fail this test as there's no selector to test against that.
-                // `CSS.supports` uses unforgiving parsing
-                document3.querySelectorAll(":is(:jqfake)") && // `*` is needed as Safari & newer Chrome implemented something in between
-                // for `:has()` - it throws in `qSA` if it only contains an unsupported
-                // argument but multiple ones, one of which is supported, are fine.
-                // We want to play safe in case `:is()` gets the same treatment.
-                !CSS.supports("selector(:is(*,:jqfake))");
-              });
-              support2.attributes = assert2(function(el) {
-                el.className = "i";
-                return !el.getAttribute("className");
-              });
-              support2.getElementsByTagName = assert2(function(el) {
-                el.appendChild(document3.createComment(""));
-                return !el.getElementsByTagName("*").length;
-              });
-              support2.getElementsByClassName = rnative.test(document3.getElementsByClassName);
-              support2.getById = assert2(function(el) {
-                docElem.appendChild(el).id = expando;
-                return !document3.getElementsByName || !document3.getElementsByName(expando).length;
-              });
-              if (support2.getById) {
-                Expr.filter["ID"] = function(id) {
-                  var attrId = id.replace(runescape, funescape);
-                  return function(elem) {
-                    return elem.getAttribute("id") === attrId;
-                  };
-                };
-                Expr.find["ID"] = function(id, context) {
-                  if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                    var elem = context.getElementById(id);
-                    return elem ? [elem] : [];
+            }
+            return select(selector.replace(rtrimCSS, "$1"), context, results, seed);
+          }
+          function createCache() {
+            var keys = [];
+            function cache(key, value) {
+              if (keys.push(key + " ") > Expr.cacheLength) {
+                delete cache[keys.shift()];
+              }
+              return cache[key + " "] = value;
+            }
+            return cache;
+          }
+          function markFunction(fn) {
+            fn[expando] = true;
+            return fn;
+          }
+          function assert2(fn) {
+            var el = document3.createElement("fieldset");
+            try {
+              return !!fn(el);
+            } catch (e3) {
+              return false;
+            } finally {
+              if (el.parentNode) {
+                el.parentNode.removeChild(el);
+              }
+              el = null;
+            }
+          }
+          function createInputPseudo(type) {
+            return function(elem) {
+              return nodeName(elem, "input") && elem.type === type;
+            };
+          }
+          function createButtonPseudo(type) {
+            return function(elem) {
+              return (nodeName(elem, "input") || nodeName(elem, "button")) && elem.type === type;
+            };
+          }
+          function createDisabledPseudo(disabled) {
+            return function(elem) {
+              if ("form" in elem) {
+                if (elem.parentNode && elem.disabled === false) {
+                  if ("label" in elem) {
+                    if ("label" in elem.parentNode) {
+                      return elem.parentNode.disabled === disabled;
+                    } else {
+                      return elem.disabled === disabled;
+                    }
                   }
+                  return elem.isDisabled === disabled || // Where there is no isDisabled, check manually
+                  elem.isDisabled !== !disabled && inDisabledFieldset(elem) === disabled;
+                }
+                return elem.disabled === disabled;
+              } else if ("label" in elem) {
+                return elem.disabled === disabled;
+              }
+              return false;
+            };
+          }
+          function createPositionalPseudo(fn) {
+            return markFunction(function(argument) {
+              argument = +argument;
+              return markFunction(function(seed, matches3) {
+                var j3, matchIndexes = fn([], seed.length, argument), i4 = matchIndexes.length;
+                while (i4--) {
+                  if (seed[j3 = matchIndexes[i4]]) {
+                    seed[j3] = !(matches3[j3] = seed[j3]);
+                  }
+                }
+              });
+            });
+          }
+          function testContext(context) {
+            return context && typeof context.getElementsByTagName !== "undefined" && context;
+          }
+          function setDocument(node) {
+            var subWindow, doc = node ? node.ownerDocument || node : preferredDoc;
+            if (doc == document3 || doc.nodeType !== 9 || !doc.documentElement) {
+              return document3;
+            }
+            document3 = doc;
+            documentElement2 = document3.documentElement;
+            documentIsHTML = !jQuery.isXMLDoc(document3);
+            matches2 = documentElement2.matches || documentElement2.webkitMatchesSelector || documentElement2.msMatchesSelector;
+            if (documentElement2.msMatchesSelector && // Support: IE 11+, Edge 17 - 18+
+            // IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+            // two documents; shallow comparisons work.
+            // eslint-disable-next-line eqeqeq
+            preferredDoc != document3 && (subWindow = document3.defaultView) && subWindow.top !== subWindow) {
+              subWindow.addEventListener("unload", unloadHandler);
+            }
+            support.getById = assert2(function(el) {
+              documentElement2.appendChild(el).id = jQuery.expando;
+              return !document3.getElementsByName || !document3.getElementsByName(jQuery.expando).length;
+            });
+            support.disconnectedMatch = assert2(function(el) {
+              return matches2.call(el, "*");
+            });
+            support.scope = assert2(function() {
+              return document3.querySelectorAll(":scope");
+            });
+            support.cssHas = assert2(function() {
+              try {
+                document3.querySelector(":has(*,:jqfake)");
+                return false;
+              } catch (e3) {
+                return true;
+              }
+            });
+            if (support.getById) {
+              Expr.filter.ID = function(id) {
+                var attrId = id.replace(runescape, funescape);
+                return function(elem) {
+                  return elem.getAttribute("id") === attrId;
                 };
-              } else {
-                Expr.filter["ID"] = function(id) {
-                  var attrId = id.replace(runescape, funescape);
-                  return function(elem) {
-                    var node2 = typeof elem.getAttributeNode !== "undefined" && elem.getAttributeNode("id");
-                    return node2 && node2.value === attrId;
-                  };
+              };
+              Expr.find.ID = function(id, context) {
+                if (typeof context.getElementById !== "undefined" && documentIsHTML) {
+                  var elem = context.getElementById(id);
+                  return elem ? [elem] : [];
+                }
+              };
+            } else {
+              Expr.filter.ID = function(id) {
+                var attrId = id.replace(runescape, funescape);
+                return function(elem) {
+                  var node2 = typeof elem.getAttributeNode !== "undefined" && elem.getAttributeNode("id");
+                  return node2 && node2.value === attrId;
                 };
-                Expr.find["ID"] = function(id, context) {
-                  if (typeof context.getElementById !== "undefined" && documentIsHTML) {
-                    var node2, i4, elems, elem = context.getElementById(id);
-                    if (elem) {
+              };
+              Expr.find.ID = function(id, context) {
+                if (typeof context.getElementById !== "undefined" && documentIsHTML) {
+                  var node2, i4, elems, elem = context.getElementById(id);
+                  if (elem) {
+                    node2 = elem.getAttributeNode("id");
+                    if (node2 && node2.value === id) {
+                      return [elem];
+                    }
+                    elems = context.getElementsByName(id);
+                    i4 = 0;
+                    while (elem = elems[i4++]) {
                       node2 = elem.getAttributeNode("id");
                       if (node2 && node2.value === id) {
                         return [elem];
                       }
-                      elems = context.getElementsByName(id);
-                      i4 = 0;
-                      while (elem = elems[i4++]) {
-                        node2 = elem.getAttributeNode("id");
-                        if (node2 && node2.value === id) {
-                          return [elem];
+                    }
+                  }
+                  return [];
+                }
+              };
+            }
+            Expr.find.TAG = function(tag, context) {
+              if (typeof context.getElementsByTagName !== "undefined") {
+                return context.getElementsByTagName(tag);
+              } else {
+                return context.querySelectorAll(tag);
+              }
+            };
+            Expr.find.CLASS = function(className, context) {
+              if (typeof context.getElementsByClassName !== "undefined" && documentIsHTML) {
+                return context.getElementsByClassName(className);
+              }
+            };
+            rbuggyQSA = [];
+            assert2(function(el) {
+              var input;
+              documentElement2.appendChild(el).innerHTML = "<a id='" + expando + "' href='' disabled='disabled'></a><select id='" + expando + "-\r\\' disabled='disabled'><option selected=''></option></select>";
+              if (!el.querySelectorAll("[selected]").length) {
+                rbuggyQSA.push("\\[" + whitespace + "*(?:value|" + booleans + ")");
+              }
+              if (!el.querySelectorAll("[id~=" + expando + "-]").length) {
+                rbuggyQSA.push("~=");
+              }
+              if (!el.querySelectorAll("a#" + expando + "+*").length) {
+                rbuggyQSA.push(".#.+[+~]");
+              }
+              if (!el.querySelectorAll(":checked").length) {
+                rbuggyQSA.push(":checked");
+              }
+              input = document3.createElement("input");
+              input.setAttribute("type", "hidden");
+              el.appendChild(input).setAttribute("name", "D");
+              documentElement2.appendChild(el).disabled = true;
+              if (el.querySelectorAll(":disabled").length !== 2) {
+                rbuggyQSA.push(":enabled", ":disabled");
+              }
+              input = document3.createElement("input");
+              input.setAttribute("name", "");
+              el.appendChild(input);
+              if (!el.querySelectorAll("[name='']").length) {
+                rbuggyQSA.push("\\[" + whitespace + "*name" + whitespace + "*=" + whitespace + `*(?:''|"")`);
+              }
+            });
+            if (!support.cssHas) {
+              rbuggyQSA.push(":has");
+            }
+            rbuggyQSA = rbuggyQSA.length && new RegExp(rbuggyQSA.join("|"));
+            sortOrder = function(a3, b3) {
+              if (a3 === b3) {
+                hasDuplicate = true;
+                return 0;
+              }
+              var compare = !a3.compareDocumentPosition - !b3.compareDocumentPosition;
+              if (compare) {
+                return compare;
+              }
+              compare = (a3.ownerDocument || a3) == (b3.ownerDocument || b3) ? a3.compareDocumentPosition(b3) : (
+                // Otherwise we know they are disconnected
+                1
+              );
+              if (compare & 1 || !support.sortDetached && b3.compareDocumentPosition(a3) === compare) {
+                if (a3 === document3 || a3.ownerDocument == preferredDoc && find.contains(preferredDoc, a3)) {
+                  return -1;
+                }
+                if (b3 === document3 || b3.ownerDocument == preferredDoc && find.contains(preferredDoc, b3)) {
+                  return 1;
+                }
+                return sortInput ? indexOf.call(sortInput, a3) - indexOf.call(sortInput, b3) : 0;
+              }
+              return compare & 4 ? -1 : 1;
+            };
+            return document3;
+          }
+          find.matches = function(expr, elements) {
+            return find(expr, null, null, elements);
+          };
+          find.matchesSelector = function(elem, expr) {
+            setDocument(elem);
+            if (documentIsHTML && !nonnativeSelectorCache[expr + " "] && (!rbuggyQSA || !rbuggyQSA.test(expr))) {
+              try {
+                var ret = matches2.call(elem, expr);
+                if (ret || support.disconnectedMatch || // As well, disconnected nodes are said to be in a document
+                // fragment in IE 9
+                elem.document && elem.document.nodeType !== 11) {
+                  return ret;
+                }
+              } catch (e3) {
+                nonnativeSelectorCache(expr, true);
+              }
+            }
+            return find(expr, document3, null, [elem]).length > 0;
+          };
+          find.contains = function(context, elem) {
+            if ((context.ownerDocument || context) != document3) {
+              setDocument(context);
+            }
+            return jQuery.contains(context, elem);
+          };
+          find.attr = function(elem, name) {
+            if ((elem.ownerDocument || elem) != document3) {
+              setDocument(elem);
+            }
+            var fn = Expr.attrHandle[name.toLowerCase()], val = fn && hasOwn.call(Expr.attrHandle, name.toLowerCase()) ? fn(elem, name, !documentIsHTML) : void 0;
+            if (val !== void 0) {
+              return val;
+            }
+            return elem.getAttribute(name);
+          };
+          find.error = function(msg) {
+            throw new Error("Syntax error, unrecognized expression: " + msg);
+          };
+          jQuery.uniqueSort = function(results) {
+            var elem, duplicates = [], j3 = 0, i4 = 0;
+            hasDuplicate = !support.sortStable;
+            sortInput = !support.sortStable && slice2.call(results, 0);
+            sort.call(results, sortOrder);
+            if (hasDuplicate) {
+              while (elem = results[i4++]) {
+                if (elem === results[i4]) {
+                  j3 = duplicates.push(i4);
+                }
+              }
+              while (j3--) {
+                splice.call(results, duplicates[j3], 1);
+              }
+            }
+            sortInput = null;
+            return results;
+          };
+          jQuery.fn.uniqueSort = function() {
+            return this.pushStack(jQuery.uniqueSort(slice2.apply(this)));
+          };
+          Expr = jQuery.expr = {
+            // Can be adjusted by the user
+            cacheLength: 50,
+            createPseudo: markFunction,
+            match: matchExpr,
+            attrHandle: {},
+            find: {},
+            relative: {
+              ">": { dir: "parentNode", first: true },
+              " ": { dir: "parentNode" },
+              "+": { dir: "previousSibling", first: true },
+              "~": { dir: "previousSibling" }
+            },
+            preFilter: {
+              ATTR: function(match) {
+                match[1] = match[1].replace(runescape, funescape);
+                match[3] = (match[3] || match[4] || match[5] || "").replace(runescape, funescape);
+                if (match[2] === "~=") {
+                  match[3] = " " + match[3] + " ";
+                }
+                return match.slice(0, 4);
+              },
+              CHILD: function(match) {
+                match[1] = match[1].toLowerCase();
+                if (match[1].slice(0, 3) === "nth") {
+                  if (!match[3]) {
+                    find.error(match[0]);
+                  }
+                  match[4] = +(match[4] ? match[5] + (match[6] || 1) : 2 * (match[3] === "even" || match[3] === "odd"));
+                  match[5] = +(match[7] + match[8] || match[3] === "odd");
+                } else if (match[3]) {
+                  find.error(match[0]);
+                }
+                return match;
+              },
+              PSEUDO: function(match) {
+                var excess, unquoted = !match[6] && match[2];
+                if (matchExpr.CHILD.test(match[0])) {
+                  return null;
+                }
+                if (match[3]) {
+                  match[2] = match[4] || match[5] || "";
+                } else if (unquoted && rpseudo.test(unquoted) && // Get excess from tokenize (recursively)
+                (excess = tokenize(unquoted, true)) && // advance to the next closing parenthesis
+                (excess = unquoted.indexOf(")", unquoted.length - excess) - unquoted.length)) {
+                  match[0] = match[0].slice(0, excess);
+                  match[2] = unquoted.slice(0, excess);
+                }
+                return match.slice(0, 3);
+              }
+            },
+            filter: {
+              TAG: function(nodeNameSelector) {
+                var expectedNodeName = nodeNameSelector.replace(runescape, funescape).toLowerCase();
+                return nodeNameSelector === "*" ? function() {
+                  return true;
+                } : function(elem) {
+                  return nodeName(elem, expectedNodeName);
+                };
+              },
+              CLASS: function(className) {
+                var pattern = classCache[className + " "];
+                return pattern || (pattern = new RegExp("(^|" + whitespace + ")" + className + "(" + whitespace + "|$)")) && classCache(className, function(elem) {
+                  return pattern.test(
+                    typeof elem.className === "string" && elem.className || typeof elem.getAttribute !== "undefined" && elem.getAttribute("class") || ""
+                  );
+                });
+              },
+              ATTR: function(name, operator, check) {
+                return function(elem) {
+                  var result = find.attr(elem, name);
+                  if (result == null) {
+                    return operator === "!=";
+                  }
+                  if (!operator) {
+                    return true;
+                  }
+                  result += "";
+                  if (operator === "=") {
+                    return result === check;
+                  }
+                  if (operator === "!=") {
+                    return result !== check;
+                  }
+                  if (operator === "^=") {
+                    return check && result.indexOf(check) === 0;
+                  }
+                  if (operator === "*=") {
+                    return check && result.indexOf(check) > -1;
+                  }
+                  if (operator === "$=") {
+                    return check && result.slice(-check.length) === check;
+                  }
+                  if (operator === "~=") {
+                    return (" " + result.replace(rwhitespace, " ") + " ").indexOf(check) > -1;
+                  }
+                  if (operator === "|=") {
+                    return result === check || result.slice(0, check.length + 1) === check + "-";
+                  }
+                  return false;
+                };
+              },
+              CHILD: function(type, what, _argument, first, last) {
+                var simple = type.slice(0, 3) !== "nth", forward = type.slice(-4) !== "last", ofType = what === "of-type";
+                return first === 1 && last === 0 ? (
+                  // Shortcut for :nth-*(n)
+                  function(elem) {
+                    return !!elem.parentNode;
+                  }
+                ) : function(elem, _context, xml) {
+                  var cache, outerCache, node, nodeIndex, start, dir2 = simple !== forward ? "nextSibling" : "previousSibling", parent = elem.parentNode, name = ofType && elem.nodeName.toLowerCase(), useCache = !xml && !ofType, diff = false;
+                  if (parent) {
+                    if (simple) {
+                      while (dir2) {
+                        node = elem;
+                        while (node = node[dir2]) {
+                          if (ofType ? nodeName(node, name) : node.nodeType === 1) {
+                            return false;
+                          }
+                        }
+                        start = dir2 = type === "only" && !start && "nextSibling";
+                      }
+                      return true;
+                    }
+                    start = [forward ? parent.firstChild : parent.lastChild];
+                    if (forward && useCache) {
+                      outerCache = parent[expando] || (parent[expando] = {});
+                      cache = outerCache[type] || [];
+                      nodeIndex = cache[0] === dirruns && cache[1];
+                      diff = nodeIndex && cache[2];
+                      node = nodeIndex && parent.childNodes[nodeIndex];
+                      while (node = ++nodeIndex && node && node[dir2] || // Fallback to seeking `elem` from the start
+                      (diff = nodeIndex = 0) || start.pop()) {
+                        if (node.nodeType === 1 && ++diff && node === elem) {
+                          outerCache[type] = [dirruns, nodeIndex, diff];
+                          break;
+                        }
+                      }
+                    } else {
+                      if (useCache) {
+                        outerCache = elem[expando] || (elem[expando] = {});
+                        cache = outerCache[type] || [];
+                        nodeIndex = cache[0] === dirruns && cache[1];
+                        diff = nodeIndex;
+                      }
+                      if (diff === false) {
+                        while (node = ++nodeIndex && node && node[dir2] || (diff = nodeIndex = 0) || start.pop()) {
+                          if ((ofType ? nodeName(node, name) : node.nodeType === 1) && ++diff) {
+                            if (useCache) {
+                              outerCache = node[expando] || (node[expando] = {});
+                              outerCache[type] = [dirruns, diff];
+                            }
+                            if (node === elem) {
+                              break;
+                            }
+                          }
                         }
                       }
                     }
-                    return [];
+                    diff -= last;
+                    return diff === first || diff % first === 0 && diff / first >= 0;
                   }
                 };
-              }
-              Expr.find["TAG"] = support2.getElementsByTagName ? function(tag, context) {
-                if (typeof context.getElementsByTagName !== "undefined") {
-                  return context.getElementsByTagName(tag);
-                } else if (support2.qsa) {
-                  return context.querySelectorAll(tag);
-                }
-              } : function(tag, context) {
-                var elem, tmp = [], i4 = 0, results = context.getElementsByTagName(tag);
-                if (tag === "*") {
-                  while (elem = results[i4++]) {
-                    if (elem.nodeType === 1) {
-                      tmp.push(elem);
-                    }
-                  }
-                  return tmp;
-                }
-                return results;
-              };
-              Expr.find["CLASS"] = support2.getElementsByClassName && function(className, context) {
-                if (typeof context.getElementsByClassName !== "undefined" && documentIsHTML) {
-                  return context.getElementsByClassName(className);
-                }
-              };
-              rbuggyMatches = [];
-              rbuggyQSA = [];
-              if (support2.qsa = rnative.test(document3.querySelectorAll)) {
-                assert2(function(el) {
-                  var input;
-                  docElem.appendChild(el).innerHTML = "<a id='" + expando + "'></a><select id='" + expando + "-\r\\' msallowcapture=''><option selected=''></option></select>";
-                  if (el.querySelectorAll("[msallowcapture^='']").length) {
-                    rbuggyQSA.push("[*^$]=" + whitespace2 + `*(?:''|"")`);
-                  }
-                  if (!el.querySelectorAll("[selected]").length) {
-                    rbuggyQSA.push("\\[" + whitespace2 + "*(?:value|" + booleans + ")");
-                  }
-                  if (!el.querySelectorAll("[id~=" + expando + "-]").length) {
-                    rbuggyQSA.push("~=");
-                  }
-                  input = document3.createElement("input");
-                  input.setAttribute("name", "");
-                  el.appendChild(input);
-                  if (!el.querySelectorAll("[name='']").length) {
-                    rbuggyQSA.push("\\[" + whitespace2 + "*name" + whitespace2 + "*=" + whitespace2 + `*(?:''|"")`);
-                  }
-                  if (!el.querySelectorAll(":checked").length) {
-                    rbuggyQSA.push(":checked");
-                  }
-                  if (!el.querySelectorAll("a#" + expando + "+*").length) {
-                    rbuggyQSA.push(".#.+[+~]");
-                  }
-                  el.querySelectorAll("\\\f");
-                  rbuggyQSA.push("[\\r\\n\\f]");
-                });
-                assert2(function(el) {
-                  el.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
-                  var input = document3.createElement("input");
-                  input.setAttribute("type", "hidden");
-                  el.appendChild(input).setAttribute("name", "D");
-                  if (el.querySelectorAll("[name=d]").length) {
-                    rbuggyQSA.push("name" + whitespace2 + "*[*^$|!~]?=");
-                  }
-                  if (el.querySelectorAll(":enabled").length !== 2) {
-                    rbuggyQSA.push(":enabled", ":disabled");
-                  }
-                  docElem.appendChild(el).disabled = true;
-                  if (el.querySelectorAll(":disabled").length !== 2) {
-                    rbuggyQSA.push(":enabled", ":disabled");
-                  }
-                  el.querySelectorAll("*,:x");
-                  rbuggyQSA.push(",.*:");
-                });
-              }
-              if (support2.matchesSelector = rnative.test(matches2 = docElem.matches || docElem.webkitMatchesSelector || docElem.mozMatchesSelector || docElem.oMatchesSelector || docElem.msMatchesSelector)) {
-                assert2(function(el) {
-                  support2.disconnectedMatch = matches2.call(el, "*");
-                  matches2.call(el, "[s!='']:x");
-                  rbuggyMatches.push("!=", pseudos);
-                });
-              }
-              if (!support2.cssSupportsSelector) {
-                rbuggyQSA.push(":has");
-              }
-              rbuggyQSA = rbuggyQSA.length && new RegExp(rbuggyQSA.join("|"));
-              rbuggyMatches = rbuggyMatches.length && new RegExp(rbuggyMatches.join("|"));
-              hasCompare = rnative.test(docElem.compareDocumentPosition);
-              contains = hasCompare || rnative.test(docElem.contains) ? function(a3, b3) {
-                var adown = a3.nodeType === 9 && a3.documentElement || a3, bup = b3 && b3.parentNode;
-                return a3 === bup || !!(bup && bup.nodeType === 1 && (adown.contains ? adown.contains(bup) : a3.compareDocumentPosition && a3.compareDocumentPosition(bup) & 16));
-              } : function(a3, b3) {
-                if (b3) {
-                  while (b3 = b3.parentNode) {
-                    if (b3 === a3) {
-                      return true;
-                    }
-                  }
-                }
-                return false;
-              };
-              sortOrder = hasCompare ? function(a3, b3) {
-                if (a3 === b3) {
-                  hasDuplicate = true;
-                  return 0;
-                }
-                var compare = !a3.compareDocumentPosition - !b3.compareDocumentPosition;
-                if (compare) {
-                  return compare;
-                }
-                compare = (a3.ownerDocument || a3) == (b3.ownerDocument || b3) ? a3.compareDocumentPosition(b3) : (
-                  // Otherwise we know they are disconnected
-                  1
-                );
-                if (compare & 1 || !support2.sortDetached && b3.compareDocumentPosition(a3) === compare) {
-                  if (a3 == document3 || a3.ownerDocument == preferredDoc && contains(preferredDoc, a3)) {
-                    return -1;
-                  }
-                  if (b3 == document3 || b3.ownerDocument == preferredDoc && contains(preferredDoc, b3)) {
-                    return 1;
-                  }
-                  return sortInput ? indexOf2(sortInput, a3) - indexOf2(sortInput, b3) : 0;
-                }
-                return compare & 4 ? -1 : 1;
-              } : function(a3, b3) {
-                if (a3 === b3) {
-                  hasDuplicate = true;
-                  return 0;
-                }
-                var cur, i4 = 0, aup = a3.parentNode, bup = b3.parentNode, ap = [a3], bp = [b3];
-                if (!aup || !bup) {
-                  return a3 == document3 ? -1 : b3 == document3 ? 1 : (
-                    /* eslint-enable eqeqeq */
-                    aup ? -1 : bup ? 1 : sortInput ? indexOf2(sortInput, a3) - indexOf2(sortInput, b3) : 0
-                  );
-                } else if (aup === bup) {
-                  return siblingCheck(a3, b3);
-                }
-                cur = a3;
-                while (cur = cur.parentNode) {
-                  ap.unshift(cur);
-                }
-                cur = b3;
-                while (cur = cur.parentNode) {
-                  bp.unshift(cur);
-                }
-                while (ap[i4] === bp[i4]) {
-                  i4++;
-                }
-                return i4 ? (
-                  // Do a sibling check if the nodes have a common ancestor
-                  siblingCheck(ap[i4], bp[i4])
-                ) : (
-                  // Otherwise nodes in our document sort first
-                  // Support: IE 11+, Edge 17 - 18+
-                  // IE/Edge sometimes throw a "Permission denied" error when strict-comparing
-                  // two documents; shallow comparisons work.
-                  /* eslint-disable eqeqeq */
-                  ap[i4] == preferredDoc ? -1 : bp[i4] == preferredDoc ? 1 : (
-                    /* eslint-enable eqeqeq */
-                    0
-                  )
-                );
-              };
-              return document3;
-            };
-            Sizzle2.matches = function(expr, elements) {
-              return Sizzle2(expr, null, null, elements);
-            };
-            Sizzle2.matchesSelector = function(elem, expr) {
-              setDocument(elem);
-              if (support2.matchesSelector && documentIsHTML && !nonnativeSelectorCache[expr + " "] && (!rbuggyMatches || !rbuggyMatches.test(expr)) && (!rbuggyQSA || !rbuggyQSA.test(expr))) {
-                try {
-                  var ret = matches2.call(elem, expr);
-                  if (ret || support2.disconnectedMatch || // As well, disconnected nodes are said to be in a document
-                  // fragment in IE 9
-                  elem.document && elem.document.nodeType !== 11) {
-                    return ret;
-                  }
-                } catch (e3) {
-                  nonnativeSelectorCache(expr, true);
-                }
-              }
-              return Sizzle2(expr, document3, null, [elem]).length > 0;
-            };
-            Sizzle2.contains = function(context, elem) {
-              if ((context.ownerDocument || context) != document3) {
-                setDocument(context);
-              }
-              return contains(context, elem);
-            };
-            Sizzle2.attr = function(elem, name) {
-              if ((elem.ownerDocument || elem) != document3) {
-                setDocument(elem);
-              }
-              var fn = Expr.attrHandle[name.toLowerCase()], val = fn && hasOwn2.call(Expr.attrHandle, name.toLowerCase()) ? fn(elem, name, !documentIsHTML) : void 0;
-              return val !== void 0 ? val : support2.attributes || !documentIsHTML ? elem.getAttribute(name) : (val = elem.getAttributeNode(name)) && val.specified ? val.value : null;
-            };
-            Sizzle2.escape = function(sel) {
-              return (sel + "").replace(rcssescape, fcssescape);
-            };
-            Sizzle2.error = function(msg) {
-              throw new Error("Syntax error, unrecognized expression: " + msg);
-            };
-            Sizzle2.uniqueSort = function(results) {
-              var elem, duplicates = [], j3 = 0, i4 = 0;
-              hasDuplicate = !support2.detectDuplicates;
-              sortInput = !support2.sortStable && results.slice(0);
-              results.sort(sortOrder);
-              if (hasDuplicate) {
-                while (elem = results[i4++]) {
-                  if (elem === results[i4]) {
-                    j3 = duplicates.push(i4);
-                  }
-                }
-                while (j3--) {
-                  results.splice(duplicates[j3], 1);
-                }
-              }
-              sortInput = null;
-              return results;
-            };
-            getText = Sizzle2.getText = function(elem) {
-              var node, ret = "", i4 = 0, nodeType = elem.nodeType;
-              if (!nodeType) {
-                while (node = elem[i4++]) {
-                  ret += getText(node);
-                }
-              } else if (nodeType === 1 || nodeType === 9 || nodeType === 11) {
-                if (typeof elem.textContent === "string") {
-                  return elem.textContent;
-                } else {
-                  for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
-                    ret += getText(elem);
-                  }
-                }
-              } else if (nodeType === 3 || nodeType === 4) {
-                return elem.nodeValue;
-              }
-              return ret;
-            };
-            Expr = Sizzle2.selectors = {
-              // Can be adjusted by the user
-              cacheLength: 50,
-              createPseudo: markFunction,
-              match: matchExpr,
-              attrHandle: {},
-              find: {},
-              relative: {
-                ">": { dir: "parentNode", first: true },
-                " ": { dir: "parentNode" },
-                "+": { dir: "previousSibling", first: true },
-                "~": { dir: "previousSibling" }
               },
-              preFilter: {
-                "ATTR": function(match) {
-                  match[1] = match[1].replace(runescape, funescape);
-                  match[3] = (match[3] || match[4] || match[5] || "").replace(runescape, funescape);
-                  if (match[2] === "~=") {
-                    match[3] = " " + match[3] + " ";
-                  }
-                  return match.slice(0, 4);
-                },
-                "CHILD": function(match) {
-                  match[1] = match[1].toLowerCase();
-                  if (match[1].slice(0, 3) === "nth") {
-                    if (!match[3]) {
-                      Sizzle2.error(match[0]);
-                    }
-                    match[4] = +(match[4] ? match[5] + (match[6] || 1) : 2 * (match[3] === "even" || match[3] === "odd"));
-                    match[5] = +(match[7] + match[8] || match[3] === "odd");
-                  } else if (match[3]) {
-                    Sizzle2.error(match[0]);
-                  }
-                  return match;
-                },
-                "PSEUDO": function(match) {
-                  var excess, unquoted = !match[6] && match[2];
-                  if (matchExpr["CHILD"].test(match[0])) {
-                    return null;
-                  }
-                  if (match[3]) {
-                    match[2] = match[4] || match[5] || "";
-                  } else if (unquoted && rpseudo.test(unquoted) && // Get excess from tokenize (recursively)
-                  (excess = tokenize(unquoted, true)) && // advance to the next closing parenthesis
-                  (excess = unquoted.indexOf(")", unquoted.length - excess) - unquoted.length)) {
-                    match[0] = match[0].slice(0, excess);
-                    match[2] = unquoted.slice(0, excess);
-                  }
-                  return match.slice(0, 3);
+              PSEUDO: function(pseudo, argument) {
+                var args, fn = Expr.pseudos[pseudo] || Expr.setFilters[pseudo.toLowerCase()] || find.error("unsupported pseudo: " + pseudo);
+                if (fn[expando]) {
+                  return fn(argument);
                 }
-              },
-              filter: {
-                "TAG": function(nodeNameSelector) {
-                  var nodeName2 = nodeNameSelector.replace(runescape, funescape).toLowerCase();
-                  return nodeNameSelector === "*" ? function() {
-                    return true;
-                  } : function(elem) {
-                    return elem.nodeName && elem.nodeName.toLowerCase() === nodeName2;
-                  };
-                },
-                "CLASS": function(className) {
-                  var pattern = classCache[className + " "];
-                  return pattern || (pattern = new RegExp("(^|" + whitespace2 + ")" + className + "(" + whitespace2 + "|$)")) && classCache(
-                    className,
-                    function(elem) {
-                      return pattern.test(
-                        typeof elem.className === "string" && elem.className || typeof elem.getAttribute !== "undefined" && elem.getAttribute("class") || ""
-                      );
-                    }
-                  );
-                },
-                "ATTR": function(name, operator, check) {
-                  return function(elem) {
-                    var result = Sizzle2.attr(elem, name);
-                    if (result == null) {
-                      return operator === "!=";
-                    }
-                    if (!operator) {
-                      return true;
-                    }
-                    result += "";
-                    return operator === "=" ? result === check : operator === "!=" ? result !== check : operator === "^=" ? check && result.indexOf(check) === 0 : operator === "*=" ? check && result.indexOf(check) > -1 : operator === "$=" ? check && result.slice(-check.length) === check : operator === "~=" ? (" " + result.replace(rwhitespace, " ") + " ").indexOf(check) > -1 : operator === "|=" ? result === check || result.slice(0, check.length + 1) === check + "-" : false;
-                  };
-                },
-                "CHILD": function(type, what, _argument, first, last) {
-                  var simple = type.slice(0, 3) !== "nth", forward = type.slice(-4) !== "last", ofType = what === "of-type";
-                  return first === 1 && last === 0 ? (
-                    // Shortcut for :nth-*(n)
-                    function(elem) {
-                      return !!elem.parentNode;
-                    }
-                  ) : function(elem, _context, xml) {
-                    var cache, uniqueCache, outerCache, node, nodeIndex, start, dir2 = simple !== forward ? "nextSibling" : "previousSibling", parent = elem.parentNode, name = ofType && elem.nodeName.toLowerCase(), useCache = !xml && !ofType, diff = false;
-                    if (parent) {
-                      if (simple) {
-                        while (dir2) {
-                          node = elem;
-                          while (node = node[dir2]) {
-                            if (ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1) {
-                              return false;
-                            }
-                          }
-                          start = dir2 = type === "only" && !start && "nextSibling";
-                        }
-                        return true;
-                      }
-                      start = [forward ? parent.firstChild : parent.lastChild];
-                      if (forward && useCache) {
-                        node = parent;
-                        outerCache = node[expando] || (node[expando] = {});
-                        uniqueCache = outerCache[node.uniqueID] || (outerCache[node.uniqueID] = {});
-                        cache = uniqueCache[type] || [];
-                        nodeIndex = cache[0] === dirruns && cache[1];
-                        diff = nodeIndex && cache[2];
-                        node = nodeIndex && parent.childNodes[nodeIndex];
-                        while (node = ++nodeIndex && node && node[dir2] || // Fallback to seeking `elem` from the start
-                        (diff = nodeIndex = 0) || start.pop()) {
-                          if (node.nodeType === 1 && ++diff && node === elem) {
-                            uniqueCache[type] = [dirruns, nodeIndex, diff];
-                            break;
-                          }
-                        }
-                      } else {
-                        if (useCache) {
-                          node = elem;
-                          outerCache = node[expando] || (node[expando] = {});
-                          uniqueCache = outerCache[node.uniqueID] || (outerCache[node.uniqueID] = {});
-                          cache = uniqueCache[type] || [];
-                          nodeIndex = cache[0] === dirruns && cache[1];
-                          diff = nodeIndex;
-                        }
-                        if (diff === false) {
-                          while (node = ++nodeIndex && node && node[dir2] || (diff = nodeIndex = 0) || start.pop()) {
-                            if ((ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1) && ++diff) {
-                              if (useCache) {
-                                outerCache = node[expando] || (node[expando] = {});
-                                uniqueCache = outerCache[node.uniqueID] || (outerCache[node.uniqueID] = {});
-                                uniqueCache[type] = [dirruns, diff];
-                              }
-                              if (node === elem) {
-                                break;
-                              }
-                            }
-                          }
-                        }
-                      }
-                      diff -= last;
-                      return diff === first || diff % first === 0 && diff / first >= 0;
-                    }
-                  };
-                },
-                "PSEUDO": function(pseudo, argument) {
-                  var args, fn = Expr.pseudos[pseudo] || Expr.setFilters[pseudo.toLowerCase()] || Sizzle2.error("unsupported pseudo: " + pseudo);
-                  if (fn[expando]) {
-                    return fn(argument);
-                  }
-                  if (fn.length > 1) {
-                    args = [pseudo, pseudo, "", argument];
-                    return Expr.setFilters.hasOwnProperty(pseudo.toLowerCase()) ? markFunction(function(seed, matches3) {
-                      var idx, matched = fn(seed, argument), i4 = matched.length;
-                      while (i4--) {
-                        idx = indexOf2(seed, matched[i4]);
-                        seed[idx] = !(matches3[idx] = matched[i4]);
-                      }
-                    }) : function(elem) {
-                      return fn(elem, 0, args);
-                    };
-                  }
-                  return fn;
-                }
-              },
-              pseudos: {
-                // Potentially complex pseudos
-                "not": markFunction(function(selector) {
-                  var input = [], results = [], matcher = compile(selector.replace(rtrim2, "$1"));
-                  return matcher[expando] ? markFunction(function(seed, matches3, _context, xml) {
-                    var elem, unmatched = matcher(seed, null, xml, []), i4 = seed.length;
+                if (fn.length > 1) {
+                  args = [pseudo, pseudo, "", argument];
+                  return Expr.setFilters.hasOwnProperty(pseudo.toLowerCase()) ? markFunction(function(seed, matches3) {
+                    var idx, matched = fn(seed, argument), i4 = matched.length;
                     while (i4--) {
-                      if (elem = unmatched[i4]) {
-                        seed[i4] = !(matches3[i4] = elem);
-                      }
+                      idx = indexOf.call(seed, matched[i4]);
+                      seed[idx] = !(matches3[idx] = matched[i4]);
                     }
-                  }) : function(elem, _context, xml) {
-                    input[0] = elem;
-                    matcher(input, null, xml, results);
-                    input[0] = null;
-                    return !results.pop();
+                  }) : function(elem) {
+                    return fn(elem, 0, args);
                   };
-                }),
-                "has": markFunction(function(selector) {
-                  return function(elem) {
-                    return Sizzle2(selector, elem).length > 0;
-                  };
-                }),
-                "contains": markFunction(function(text) {
-                  text = text.replace(runescape, funescape);
-                  return function(elem) {
-                    return (elem.textContent || getText(elem)).indexOf(text) > -1;
-                  };
-                }),
-                // "Whether an element is represented by a :lang() selector
-                // is based solely on the element's language value
-                // being equal to the identifier C,
-                // or beginning with the identifier C immediately followed by "-".
-                // The matching of C against the element's language value is performed case-insensitively.
-                // The identifier C does not have to be a valid language name."
-                // http://www.w3.org/TR/selectors/#lang-pseudo
-                "lang": markFunction(function(lang) {
-                  if (!ridentifier.test(lang || "")) {
-                    Sizzle2.error("unsupported lang: " + lang);
-                  }
-                  lang = lang.replace(runescape, funescape).toLowerCase();
-                  return function(elem) {
-                    var elemLang;
-                    do {
-                      if (elemLang = documentIsHTML ? elem.lang : elem.getAttribute("xml:lang") || elem.getAttribute("lang")) {
-                        elemLang = elemLang.toLowerCase();
-                        return elemLang === lang || elemLang.indexOf(lang + "-") === 0;
-                      }
-                    } while ((elem = elem.parentNode) && elem.nodeType === 1);
-                    return false;
-                  };
-                }),
-                // Miscellaneous
-                "target": function(elem) {
-                  var hash = window3.location && window3.location.hash;
-                  return hash && hash.slice(1) === elem.id;
-                },
-                "root": function(elem) {
-                  return elem === docElem;
-                },
-                "focus": function(elem) {
-                  return elem === document3.activeElement && (!document3.hasFocus || document3.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
-                },
-                // Boolean properties
-                "enabled": createDisabledPseudo(false),
-                "disabled": createDisabledPseudo(true),
-                "checked": function(elem) {
-                  var nodeName2 = elem.nodeName.toLowerCase();
-                  return nodeName2 === "input" && !!elem.checked || nodeName2 === "option" && !!elem.selected;
-                },
-                "selected": function(elem) {
-                  if (elem.parentNode) {
-                    elem.parentNode.selectedIndex;
-                  }
-                  return elem.selected === true;
-                },
-                // Contents
-                "empty": function(elem) {
-                  for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
-                    if (elem.nodeType < 6) {
-                      return false;
+                }
+                return fn;
+              }
+            },
+            pseudos: {
+              // Potentially complex pseudos
+              not: markFunction(function(selector) {
+                var input = [], results = [], matcher = compile(selector.replace(rtrimCSS, "$1"));
+                return matcher[expando] ? markFunction(function(seed, matches3, _context, xml) {
+                  var elem, unmatched = matcher(seed, null, xml, []), i4 = seed.length;
+                  while (i4--) {
+                    if (elem = unmatched[i4]) {
+                      seed[i4] = !(matches3[i4] = elem);
                     }
                   }
-                  return true;
-                },
-                "parent": function(elem) {
-                  return !Expr.pseudos["empty"](elem);
-                },
-                // Element/input types
-                "header": function(elem) {
-                  return rheader.test(elem.nodeName);
-                },
-                "input": function(elem) {
-                  return rinputs.test(elem.nodeName);
-                },
-                "button": function(elem) {
-                  var name = elem.nodeName.toLowerCase();
-                  return name === "input" && elem.type === "button" || name === "button";
-                },
-                "text": function(elem) {
-                  var attr;
-                  return elem.nodeName.toLowerCase() === "input" && elem.type === "text" && // Support: IE <10 only
-                  // New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
-                  ((attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text");
-                },
-                // Position-in-collection
-                "first": createPositionalPseudo(function() {
-                  return [0];
-                }),
-                "last": createPositionalPseudo(function(_matchIndexes, length) {
-                  return [length - 1];
-                }),
-                "eq": createPositionalPseudo(function(_matchIndexes, length, argument) {
-                  return [argument < 0 ? argument + length : argument];
-                }),
-                "even": createPositionalPseudo(function(matchIndexes, length) {
-                  var i4 = 0;
-                  for (; i4 < length; i4 += 2) {
-                    matchIndexes.push(i4);
-                  }
-                  return matchIndexes;
-                }),
-                "odd": createPositionalPseudo(function(matchIndexes, length) {
-                  var i4 = 1;
-                  for (; i4 < length; i4 += 2) {
-                    matchIndexes.push(i4);
-                  }
-                  return matchIndexes;
-                }),
-                "lt": createPositionalPseudo(function(matchIndexes, length, argument) {
-                  var i4 = argument < 0 ? argument + length : argument > length ? length : argument;
-                  for (; --i4 >= 0; ) {
-                    matchIndexes.push(i4);
-                  }
-                  return matchIndexes;
-                }),
-                "gt": createPositionalPseudo(function(matchIndexes, length, argument) {
-                  var i4 = argument < 0 ? argument + length : argument;
-                  for (; ++i4 < length; ) {
-                    matchIndexes.push(i4);
-                  }
-                  return matchIndexes;
-                })
-              }
-            };
-            Expr.pseudos["nth"] = Expr.pseudos["eq"];
-            for (i3 in { radio: true, checkbox: true, file: true, password: true, image: true }) {
-              Expr.pseudos[i3] = createInputPseudo(i3);
-            }
-            for (i3 in { submit: true, reset: true }) {
-              Expr.pseudos[i3] = createButtonPseudo(i3);
-            }
-            function setFilters() {
-            }
-            setFilters.prototype = Expr.filters = Expr.pseudos;
-            Expr.setFilters = new setFilters();
-            tokenize = Sizzle2.tokenize = function(selector, parseOnly) {
-              var matched, match, tokens, type, soFar, groups, preFilters, cached = tokenCache[selector + " "];
-              if (cached) {
-                return parseOnly ? 0 : cached.slice(0);
-              }
-              soFar = selector;
-              groups = [];
-              preFilters = Expr.preFilter;
-              while (soFar) {
-                if (!matched || (match = rcomma.exec(soFar))) {
-                  if (match) {
-                    soFar = soFar.slice(match[0].length) || soFar;
-                  }
-                  groups.push(tokens = []);
+                }) : function(elem, _context, xml) {
+                  input[0] = elem;
+                  matcher(input, null, xml, results);
+                  input[0] = null;
+                  return !results.pop();
+                };
+              }),
+              has: markFunction(function(selector) {
+                return function(elem) {
+                  return find(selector, elem).length > 0;
+                };
+              }),
+              contains: markFunction(function(text) {
+                text = text.replace(runescape, funescape);
+                return function(elem) {
+                  return (elem.textContent || jQuery.text(elem)).indexOf(text) > -1;
+                };
+              }),
+              // "Whether an element is represented by a :lang() selector
+              // is based solely on the element's language value
+              // being equal to the identifier C,
+              // or beginning with the identifier C immediately followed by "-".
+              // The matching of C against the element's language value is performed case-insensitively.
+              // The identifier C does not have to be a valid language name."
+              // https://www.w3.org/TR/selectors/#lang-pseudo
+              lang: markFunction(function(lang) {
+                if (!ridentifier.test(lang || "")) {
+                  find.error("unsupported lang: " + lang);
                 }
-                matched = false;
-                if (match = rcombinators.exec(soFar)) {
-                  matched = match.shift();
-                  tokens.push({
-                    value: matched,
-                    // Cast descendant combinators to space
-                    type: match[0].replace(rtrim2, " ")
-                  });
-                  soFar = soFar.slice(matched.length);
-                }
-                for (type in Expr.filter) {
-                  if ((match = matchExpr[type].exec(soFar)) && (!preFilters[type] || (match = preFilters[type](match)))) {
-                    matched = match.shift();
-                    tokens.push({
-                      value: matched,
-                      type,
-                      matches: match
-                    });
-                    soFar = soFar.slice(matched.length);
-                  }
-                }
-                if (!matched) {
-                  break;
-                }
-              }
-              return parseOnly ? soFar.length : soFar ? Sizzle2.error(selector) : (
-                // Cache the tokens
-                tokenCache(selector, groups).slice(0)
-              );
-            };
-            function toSelector(tokens) {
-              var i4 = 0, len = tokens.length, selector = "";
-              for (; i4 < len; i4++) {
-                selector += tokens[i4].value;
-              }
-              return selector;
-            }
-            function addCombinator(matcher, combinator, base) {
-              var dir2 = combinator.dir, skip = combinator.next, key = skip || dir2, checkNonElements = base && key === "parentNode", doneName = done2++;
-              return combinator.first ? (
-                // Check against closest ancestor/preceding element
-                function(elem, context, xml) {
-                  while (elem = elem[dir2]) {
-                    if (elem.nodeType === 1 || checkNonElements) {
-                      return matcher(elem, context, xml);
+                lang = lang.replace(runescape, funescape).toLowerCase();
+                return function(elem) {
+                  var elemLang;
+                  do {
+                    if (elemLang = documentIsHTML ? elem.lang : elem.getAttribute("xml:lang") || elem.getAttribute("lang")) {
+                      elemLang = elemLang.toLowerCase();
+                      return elemLang === lang || elemLang.indexOf(lang + "-") === 0;
                     }
-                  }
+                  } while ((elem = elem.parentNode) && elem.nodeType === 1);
                   return false;
+                };
+              }),
+              // Miscellaneous
+              target: function(elem) {
+                var hash = window2.location && window2.location.hash;
+                return hash && hash.slice(1) === elem.id;
+              },
+              root: function(elem) {
+                return elem === documentElement2;
+              },
+              focus: function(elem) {
+                return elem === safeActiveElement() && document3.hasFocus() && !!(elem.type || elem.href || ~elem.tabIndex);
+              },
+              // Boolean properties
+              enabled: createDisabledPseudo(false),
+              disabled: createDisabledPseudo(true),
+              checked: function(elem) {
+                return nodeName(elem, "input") && !!elem.checked || nodeName(elem, "option") && !!elem.selected;
+              },
+              selected: function(elem) {
+                if (elem.parentNode) {
+                  elem.parentNode.selectedIndex;
                 }
-              ) : (
-                // Check against all ancestor/preceding elements
-                function(elem, context, xml) {
-                  var oldCache, uniqueCache, outerCache, newCache = [dirruns, doneName];
-                  if (xml) {
-                    while (elem = elem[dir2]) {
-                      if (elem.nodeType === 1 || checkNonElements) {
-                        if (matcher(elem, context, xml)) {
-                          return true;
-                        }
-                      }
-                    }
-                  } else {
-                    while (elem = elem[dir2]) {
-                      if (elem.nodeType === 1 || checkNonElements) {
-                        outerCache = elem[expando] || (elem[expando] = {});
-                        uniqueCache = outerCache[elem.uniqueID] || (outerCache[elem.uniqueID] = {});
-                        if (skip && skip === elem.nodeName.toLowerCase()) {
-                          elem = elem[dir2] || elem;
-                        } else if ((oldCache = uniqueCache[key]) && oldCache[0] === dirruns && oldCache[1] === doneName) {
-                          return newCache[2] = oldCache[2];
-                        } else {
-                          uniqueCache[key] = newCache;
-                          if (newCache[2] = matcher(elem, context, xml)) {
-                            return true;
-                          }
-                        }
-                      }
-                    }
-                  }
-                  return false;
-                }
-              );
-            }
-            function elementMatcher(matchers) {
-              return matchers.length > 1 ? function(elem, context, xml) {
-                var i4 = matchers.length;
-                while (i4--) {
-                  if (!matchers[i4](elem, context, xml)) {
+                return elem.selected === true;
+              },
+              // Contents
+              empty: function(elem) {
+                for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
+                  if (elem.nodeType < 6) {
                     return false;
                   }
                 }
                 return true;
-              } : matchers[0];
+              },
+              parent: function(elem) {
+                return !Expr.pseudos.empty(elem);
+              },
+              // Element/input types
+              header: function(elem) {
+                return rheader.test(elem.nodeName);
+              },
+              input: function(elem) {
+                return rinputs.test(elem.nodeName);
+              },
+              button: function(elem) {
+                return nodeName(elem, "input") && elem.type === "button" || nodeName(elem, "button");
+              },
+              text: function(elem) {
+                var attr;
+                return nodeName(elem, "input") && elem.type === "text" && // Support: IE <10 only
+                // New HTML5 attribute values (e.g., "search") appear
+                // with elem.type === "text"
+                ((attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text");
+              },
+              // Position-in-collection
+              first: createPositionalPseudo(function() {
+                return [0];
+              }),
+              last: createPositionalPseudo(function(_matchIndexes, length) {
+                return [length - 1];
+              }),
+              eq: createPositionalPseudo(function(_matchIndexes, length, argument) {
+                return [argument < 0 ? argument + length : argument];
+              }),
+              even: createPositionalPseudo(function(matchIndexes, length) {
+                var i4 = 0;
+                for (; i4 < length; i4 += 2) {
+                  matchIndexes.push(i4);
+                }
+                return matchIndexes;
+              }),
+              odd: createPositionalPseudo(function(matchIndexes, length) {
+                var i4 = 1;
+                for (; i4 < length; i4 += 2) {
+                  matchIndexes.push(i4);
+                }
+                return matchIndexes;
+              }),
+              lt: createPositionalPseudo(function(matchIndexes, length, argument) {
+                var i4;
+                if (argument < 0) {
+                  i4 = argument + length;
+                } else if (argument > length) {
+                  i4 = length;
+                } else {
+                  i4 = argument;
+                }
+                for (; --i4 >= 0; ) {
+                  matchIndexes.push(i4);
+                }
+                return matchIndexes;
+              }),
+              gt: createPositionalPseudo(function(matchIndexes, length, argument) {
+                var i4 = argument < 0 ? argument + length : argument;
+                for (; ++i4 < length; ) {
+                  matchIndexes.push(i4);
+                }
+                return matchIndexes;
+              })
             }
-            function multipleContexts(selector, contexts, results) {
-              var i4 = 0, len = contexts.length;
-              for (; i4 < len; i4++) {
-                Sizzle2(selector, contexts[i4], results);
+          };
+          Expr.pseudos.nth = Expr.pseudos.eq;
+          for (i3 in { radio: true, checkbox: true, file: true, password: true, image: true }) {
+            Expr.pseudos[i3] = createInputPseudo(i3);
+          }
+          for (i3 in { submit: true, reset: true }) {
+            Expr.pseudos[i3] = createButtonPseudo(i3);
+          }
+          function setFilters() {
+          }
+          setFilters.prototype = Expr.filters = Expr.pseudos;
+          Expr.setFilters = new setFilters();
+          function tokenize(selector, parseOnly) {
+            var matched, match, tokens, type, soFar, groups, preFilters, cached = tokenCache[selector + " "];
+            if (cached) {
+              return parseOnly ? 0 : cached.slice(0);
+            }
+            soFar = selector;
+            groups = [];
+            preFilters = Expr.preFilter;
+            while (soFar) {
+              if (!matched || (match = rcomma.exec(soFar))) {
+                if (match) {
+                  soFar = soFar.slice(match[0].length) || soFar;
+                }
+                groups.push(tokens = []);
               }
-              return results;
+              matched = false;
+              if (match = rleadingCombinator.exec(soFar)) {
+                matched = match.shift();
+                tokens.push({
+                  value: matched,
+                  // Cast descendant combinators to space
+                  type: match[0].replace(rtrimCSS, " ")
+                });
+                soFar = soFar.slice(matched.length);
+              }
+              for (type in Expr.filter) {
+                if ((match = matchExpr[type].exec(soFar)) && (!preFilters[type] || (match = preFilters[type](match)))) {
+                  matched = match.shift();
+                  tokens.push({
+                    value: matched,
+                    type,
+                    matches: match
+                  });
+                  soFar = soFar.slice(matched.length);
+                }
+              }
+              if (!matched) {
+                break;
+              }
             }
-            function condense(unmatched, map, filter, context, xml) {
-              var elem, newUnmatched = [], i4 = 0, len = unmatched.length, mapped = map != null;
-              for (; i4 < len; i4++) {
-                if (elem = unmatched[i4]) {
-                  if (!filter || filter(elem, context, xml)) {
-                    newUnmatched.push(elem);
-                    if (mapped) {
-                      map.push(i4);
-                    }
+            if (parseOnly) {
+              return soFar.length;
+            }
+            return soFar ? find.error(selector) : (
+              // Cache the tokens
+              tokenCache(selector, groups).slice(0)
+            );
+          }
+          function toSelector(tokens) {
+            var i4 = 0, len = tokens.length, selector = "";
+            for (; i4 < len; i4++) {
+              selector += tokens[i4].value;
+            }
+            return selector;
+          }
+          function addCombinator(matcher, combinator, base) {
+            var dir2 = combinator.dir, skip = combinator.next, key = skip || dir2, checkNonElements = base && key === "parentNode", doneName = done2++;
+            return combinator.first ? (
+              // Check against closest ancestor/preceding element
+              function(elem, context, xml) {
+                while (elem = elem[dir2]) {
+                  if (elem.nodeType === 1 || checkNonElements) {
+                    return matcher(elem, context, xml);
                   }
                 }
+                return false;
               }
-              return newUnmatched;
-            }
-            function setMatcher(preFilter, selector, matcher, postFilter, postFinder, postSelector) {
-              if (postFilter && !postFilter[expando]) {
-                postFilter = setMatcher(postFilter);
-              }
-              if (postFinder && !postFinder[expando]) {
-                postFinder = setMatcher(postFinder, postSelector);
-              }
-              return markFunction(function(seed, results, context, xml) {
-                var temp, i4, elem, preMap = [], postMap = [], preexisting = results.length, elems = seed || multipleContexts(
-                  selector || "*",
-                  context.nodeType ? [context] : context,
-                  []
-                ), matcherIn = preFilter && (seed || !selector) ? condense(elems, preMap, preFilter, context, xml) : elems, matcherOut = matcher ? (
-                  // If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
-                  postFinder || (seed ? preFilter : preexisting || postFilter) ? (
-                    // ...intermediate processing is necessary
-                    []
-                  ) : (
-                    // ...otherwise use results directly
-                    results
-                  )
-                ) : matcherIn;
-                if (matcher) {
-                  matcher(matcherIn, matcherOut, context, xml);
-                }
-                if (postFilter) {
-                  temp = condense(matcherOut, postMap);
-                  postFilter(temp, [], context, xml);
-                  i4 = temp.length;
-                  while (i4--) {
-                    if (elem = temp[i4]) {
-                      matcherOut[postMap[i4]] = !(matcherIn[postMap[i4]] = elem);
+            ) : (
+              // Check against all ancestor/preceding elements
+              function(elem, context, xml) {
+                var oldCache, outerCache, newCache = [dirruns, doneName];
+                if (xml) {
+                  while (elem = elem[dir2]) {
+                    if (elem.nodeType === 1 || checkNonElements) {
+                      if (matcher(elem, context, xml)) {
+                        return true;
+                      }
                     }
                   }
-                }
-                if (seed) {
-                  if (postFinder || preFilter) {
-                    if (postFinder) {
-                      temp = [];
-                      i4 = matcherOut.length;
-                      while (i4--) {
-                        if (elem = matcherOut[i4]) {
-                          temp.push(matcherIn[i4] = elem);
+                } else {
+                  while (elem = elem[dir2]) {
+                    if (elem.nodeType === 1 || checkNonElements) {
+                      outerCache = elem[expando] || (elem[expando] = {});
+                      if (skip && nodeName(elem, skip)) {
+                        elem = elem[dir2] || elem;
+                      } else if ((oldCache = outerCache[key]) && oldCache[0] === dirruns && oldCache[1] === doneName) {
+                        return newCache[2] = oldCache[2];
+                      } else {
+                        outerCache[key] = newCache;
+                        if (newCache[2] = matcher(elem, context, xml)) {
+                          return true;
                         }
                       }
-                      postFinder(null, matcherOut = [], temp, xml);
                     }
+                  }
+                }
+                return false;
+              }
+            );
+          }
+          function elementMatcher(matchers) {
+            return matchers.length > 1 ? function(elem, context, xml) {
+              var i4 = matchers.length;
+              while (i4--) {
+                if (!matchers[i4](elem, context, xml)) {
+                  return false;
+                }
+              }
+              return true;
+            } : matchers[0];
+          }
+          function multipleContexts(selector, contexts, results) {
+            var i4 = 0, len = contexts.length;
+            for (; i4 < len; i4++) {
+              find(selector, contexts[i4], results);
+            }
+            return results;
+          }
+          function condense(unmatched, map, filter, context, xml) {
+            var elem, newUnmatched = [], i4 = 0, len = unmatched.length, mapped = map != null;
+            for (; i4 < len; i4++) {
+              if (elem = unmatched[i4]) {
+                if (!filter || filter(elem, context, xml)) {
+                  newUnmatched.push(elem);
+                  if (mapped) {
+                    map.push(i4);
+                  }
+                }
+              }
+            }
+            return newUnmatched;
+          }
+          function setMatcher(preFilter, selector, matcher, postFilter, postFinder, postSelector) {
+            if (postFilter && !postFilter[expando]) {
+              postFilter = setMatcher(postFilter);
+            }
+            if (postFinder && !postFinder[expando]) {
+              postFinder = setMatcher(postFinder, postSelector);
+            }
+            return markFunction(function(seed, results, context, xml) {
+              var temp, i4, elem, matcherOut, preMap = [], postMap = [], preexisting = results.length, elems = seed || multipleContexts(
+                selector || "*",
+                context.nodeType ? [context] : context,
+                []
+              ), matcherIn = preFilter && (seed || !selector) ? condense(elems, preMap, preFilter, context, xml) : elems;
+              if (matcher) {
+                matcherOut = postFinder || (seed ? preFilter : preexisting || postFilter) ? (
+                  // ...intermediate processing is necessary
+                  []
+                ) : (
+                  // ...otherwise use results directly
+                  results
+                );
+                matcher(matcherIn, matcherOut, context, xml);
+              } else {
+                matcherOut = matcherIn;
+              }
+              if (postFilter) {
+                temp = condense(matcherOut, postMap);
+                postFilter(temp, [], context, xml);
+                i4 = temp.length;
+                while (i4--) {
+                  if (elem = temp[i4]) {
+                    matcherOut[postMap[i4]] = !(matcherIn[postMap[i4]] = elem);
+                  }
+                }
+              }
+              if (seed) {
+                if (postFinder || preFilter) {
+                  if (postFinder) {
+                    temp = [];
                     i4 = matcherOut.length;
                     while (i4--) {
-                      if ((elem = matcherOut[i4]) && (temp = postFinder ? indexOf2(seed, elem) : preMap[i4]) > -1) {
-                        seed[temp] = !(results[temp] = elem);
+                      if (elem = matcherOut[i4]) {
+                        temp.push(matcherIn[i4] = elem);
                       }
                     }
+                    postFinder(null, matcherOut = [], temp, xml);
                   }
-                } else {
-                  matcherOut = condense(
-                    matcherOut === results ? matcherOut.splice(preexisting, matcherOut.length) : matcherOut
-                  );
-                  if (postFinder) {
-                    postFinder(null, results, matcherOut, xml);
-                  } else {
-                    push2.apply(results, matcherOut);
-                  }
-                }
-              });
-            }
-            function matcherFromTokens(tokens) {
-              var checkContext, matcher, j3, len = tokens.length, leadingRelative = Expr.relative[tokens[0].type], implicitRelative = leadingRelative || Expr.relative[" "], i4 = leadingRelative ? 1 : 0, matchContext = addCombinator(function(elem) {
-                return elem === checkContext;
-              }, implicitRelative, true), matchAnyContext = addCombinator(function(elem) {
-                return indexOf2(checkContext, elem) > -1;
-              }, implicitRelative, true), matchers = [function(elem, context, xml) {
-                var ret = !leadingRelative && (xml || context !== outermostContext) || ((checkContext = context).nodeType ? matchContext(elem, context, xml) : matchAnyContext(elem, context, xml));
-                checkContext = null;
-                return ret;
-              }];
-              for (; i4 < len; i4++) {
-                if (matcher = Expr.relative[tokens[i4].type]) {
-                  matchers = [addCombinator(elementMatcher(matchers), matcher)];
-                } else {
-                  matcher = Expr.filter[tokens[i4].type].apply(null, tokens[i4].matches);
-                  if (matcher[expando]) {
-                    j3 = ++i4;
-                    for (; j3 < len; j3++) {
-                      if (Expr.relative[tokens[j3].type]) {
-                        break;
-                      }
-                    }
-                    return setMatcher(
-                      i4 > 1 && elementMatcher(matchers),
-                      i4 > 1 && toSelector(
-                        // If the preceding token was a descendant combinator, insert an implicit any-element `*`
-                        tokens.slice(0, i4 - 1).concat({ value: tokens[i4 - 2].type === " " ? "*" : "" })
-                      ).replace(rtrim2, "$1"),
-                      matcher,
-                      i4 < j3 && matcherFromTokens(tokens.slice(i4, j3)),
-                      j3 < len && matcherFromTokens(tokens = tokens.slice(j3)),
-                      j3 < len && toSelector(tokens)
-                    );
-                  }
-                  matchers.push(matcher);
-                }
-              }
-              return elementMatcher(matchers);
-            }
-            function matcherFromGroupMatchers(elementMatchers, setMatchers) {
-              var bySet = setMatchers.length > 0, byElement = elementMatchers.length > 0, superMatcher = function(seed, context, xml, results, outermost) {
-                var elem, j3, matcher, matchedCount = 0, i4 = "0", unmatched = seed && [], setMatched = [], contextBackup = outermostContext, elems = seed || byElement && Expr.find["TAG"]("*", outermost), dirrunsUnique = dirruns += contextBackup == null ? 1 : Math.random() || 0.1, len = elems.length;
-                if (outermost) {
-                  outermostContext = context == document3 || context || outermost;
-                }
-                for (; i4 !== len && (elem = elems[i4]) != null; i4++) {
-                  if (byElement && elem) {
-                    j3 = 0;
-                    if (!context && elem.ownerDocument != document3) {
-                      setDocument(elem);
-                      xml = !documentIsHTML;
-                    }
-                    while (matcher = elementMatchers[j3++]) {
-                      if (matcher(elem, context || document3, xml)) {
-                        results.push(elem);
-                        break;
-                      }
-                    }
-                    if (outermost) {
-                      dirruns = dirrunsUnique;
-                    }
-                  }
-                  if (bySet) {
-                    if (elem = !matcher && elem) {
-                      matchedCount--;
-                    }
-                    if (seed) {
-                      unmatched.push(elem);
+                  i4 = matcherOut.length;
+                  while (i4--) {
+                    if ((elem = matcherOut[i4]) && (temp = postFinder ? indexOf.call(seed, elem) : preMap[i4]) > -1) {
+                      seed[temp] = !(results[temp] = elem);
                     }
                   }
                 }
-                matchedCount += i4;
-                if (bySet && i4 !== matchedCount) {
-                  j3 = 0;
-                  while (matcher = setMatchers[j3++]) {
-                    matcher(unmatched, setMatched, context, xml);
-                  }
-                  if (seed) {
-                    if (matchedCount > 0) {
-                      while (i4--) {
-                        if (!(unmatched[i4] || setMatched[i4])) {
-                          setMatched[i4] = pop.call(results);
-                        }
-                      }
-                    }
-                    setMatched = condense(setMatched);
-                  }
-                  push2.apply(results, setMatched);
-                  if (outermost && !seed && setMatched.length > 0 && matchedCount + setMatchers.length > 1) {
-                    Sizzle2.uniqueSort(results);
-                  }
-                }
-                if (outermost) {
-                  dirruns = dirrunsUnique;
-                  outermostContext = contextBackup;
-                }
-                return unmatched;
-              };
-              return bySet ? markFunction(superMatcher) : superMatcher;
-            }
-            compile = Sizzle2.compile = function(selector, match) {
-              var i4, setMatchers = [], elementMatchers = [], cached = compilerCache[selector + " "];
-              if (!cached) {
-                if (!match) {
-                  match = tokenize(selector);
-                }
-                i4 = match.length;
-                while (i4--) {
-                  cached = matcherFromTokens(match[i4]);
-                  if (cached[expando]) {
-                    setMatchers.push(cached);
-                  } else {
-                    elementMatchers.push(cached);
-                  }
-                }
-                cached = compilerCache(
-                  selector,
-                  matcherFromGroupMatchers(elementMatchers, setMatchers)
+              } else {
+                matcherOut = condense(
+                  matcherOut === results ? matcherOut.splice(preexisting, matcherOut.length) : matcherOut
                 );
-                cached.selector = selector;
-              }
-              return cached;
-            };
-            select = Sizzle2.select = function(selector, context, results, seed) {
-              var i4, tokens, token, type, find, compiled = typeof selector === "function" && selector, match = !seed && tokenize(selector = compiled.selector || selector);
-              results = results || [];
-              if (match.length === 1) {
-                tokens = match[0] = match[0].slice(0);
-                if (tokens.length > 2 && (token = tokens[0]).type === "ID" && context.nodeType === 9 && documentIsHTML && Expr.relative[tokens[1].type]) {
-                  context = (Expr.find["ID"](token.matches[0].replace(runescape, funescape), context) || [])[0];
-                  if (!context) {
-                    return results;
-                  } else if (compiled) {
-                    context = context.parentNode;
-                  }
-                  selector = selector.slice(tokens.shift().value.length);
+                if (postFinder) {
+                  postFinder(null, results, matcherOut, xml);
+                } else {
+                  push2.apply(results, matcherOut);
                 }
-                i4 = matchExpr["needsContext"].test(selector) ? 0 : tokens.length;
-                while (i4--) {
-                  token = tokens[i4];
-                  if (Expr.relative[type = token.type]) {
-                    break;
-                  }
-                  if (find = Expr.find[type]) {
-                    if (seed = find(
-                      token.matches[0].replace(runescape, funescape),
-                      rsibling.test(tokens[0].type) && testContext(context.parentNode) || context
-                    )) {
-                      tokens.splice(i4, 1);
-                      selector = seed.length && toSelector(tokens);
-                      if (!selector) {
-                        push2.apply(results, seed);
-                        return results;
-                      }
+              }
+            });
+          }
+          function matcherFromTokens(tokens) {
+            var checkContext, matcher, j3, len = tokens.length, leadingRelative = Expr.relative[tokens[0].type], implicitRelative = leadingRelative || Expr.relative[" "], i4 = leadingRelative ? 1 : 0, matchContext = addCombinator(function(elem) {
+              return elem === checkContext;
+            }, implicitRelative, true), matchAnyContext = addCombinator(function(elem) {
+              return indexOf.call(checkContext, elem) > -1;
+            }, implicitRelative, true), matchers = [function(elem, context, xml) {
+              var ret = !leadingRelative && (xml || context != outermostContext) || ((checkContext = context).nodeType ? matchContext(elem, context, xml) : matchAnyContext(elem, context, xml));
+              checkContext = null;
+              return ret;
+            }];
+            for (; i4 < len; i4++) {
+              if (matcher = Expr.relative[tokens[i4].type]) {
+                matchers = [addCombinator(elementMatcher(matchers), matcher)];
+              } else {
+                matcher = Expr.filter[tokens[i4].type].apply(null, tokens[i4].matches);
+                if (matcher[expando]) {
+                  j3 = ++i4;
+                  for (; j3 < len; j3++) {
+                    if (Expr.relative[tokens[j3].type]) {
                       break;
                     }
                   }
+                  return setMatcher(
+                    i4 > 1 && elementMatcher(matchers),
+                    i4 > 1 && toSelector(
+                      // If the preceding token was a descendant combinator, insert an implicit any-element `*`
+                      tokens.slice(0, i4 - 1).concat({ value: tokens[i4 - 2].type === " " ? "*" : "" })
+                    ).replace(rtrimCSS, "$1"),
+                    matcher,
+                    i4 < j3 && matcherFromTokens(tokens.slice(i4, j3)),
+                    j3 < len && matcherFromTokens(tokens = tokens.slice(j3)),
+                    j3 < len && toSelector(tokens)
+                  );
+                }
+                matchers.push(matcher);
+              }
+            }
+            return elementMatcher(matchers);
+          }
+          function matcherFromGroupMatchers(elementMatchers, setMatchers) {
+            var bySet = setMatchers.length > 0, byElement = elementMatchers.length > 0, superMatcher = function(seed, context, xml, results, outermost) {
+              var elem, j3, matcher, matchedCount = 0, i4 = "0", unmatched = seed && [], setMatched = [], contextBackup = outermostContext, elems = seed || byElement && Expr.find.TAG("*", outermost), dirrunsUnique = dirruns += contextBackup == null ? 1 : Math.random() || 0.1, len = elems.length;
+              if (outermost) {
+                outermostContext = context == document3 || context || outermost;
+              }
+              for (; i4 !== len && (elem = elems[i4]) != null; i4++) {
+                if (byElement && elem) {
+                  j3 = 0;
+                  if (!context && elem.ownerDocument != document3) {
+                    setDocument(elem);
+                    xml = !documentIsHTML;
+                  }
+                  while (matcher = elementMatchers[j3++]) {
+                    if (matcher(elem, context || document3, xml)) {
+                      push2.call(results, elem);
+                      break;
+                    }
+                  }
+                  if (outermost) {
+                    dirruns = dirrunsUnique;
+                  }
+                }
+                if (bySet) {
+                  if (elem = !matcher && elem) {
+                    matchedCount--;
+                  }
+                  if (seed) {
+                    unmatched.push(elem);
+                  }
                 }
               }
-              (compiled || compile(selector, match))(
-                seed,
-                context,
-                !documentIsHTML,
-                results,
-                !context || rsibling.test(selector) && testContext(context.parentNode) || context
-              );
-              return results;
+              matchedCount += i4;
+              if (bySet && i4 !== matchedCount) {
+                j3 = 0;
+                while (matcher = setMatchers[j3++]) {
+                  matcher(unmatched, setMatched, context, xml);
+                }
+                if (seed) {
+                  if (matchedCount > 0) {
+                    while (i4--) {
+                      if (!(unmatched[i4] || setMatched[i4])) {
+                        setMatched[i4] = pop.call(results);
+                      }
+                    }
+                  }
+                  setMatched = condense(setMatched);
+                }
+                push2.apply(results, setMatched);
+                if (outermost && !seed && setMatched.length > 0 && matchedCount + setMatchers.length > 1) {
+                  jQuery.uniqueSort(results);
+                }
+              }
+              if (outermost) {
+                dirruns = dirrunsUnique;
+                outermostContext = contextBackup;
+              }
+              return unmatched;
             };
-            support2.sortStable = expando.split("").sort(sortOrder).join("") === expando;
-            support2.detectDuplicates = !!hasDuplicate;
-            setDocument();
-            support2.sortDetached = assert2(function(el) {
-              return el.compareDocumentPosition(document3.createElement("fieldset")) & 1;
-            });
-            if (!assert2(function(el) {
-              el.innerHTML = "<a href='#'></a>";
-              return el.firstChild.getAttribute("href") === "#";
-            })) {
-              addHandle("type|href|height|width", function(elem, name, isXML2) {
-                if (!isXML2) {
-                  return elem.getAttribute(name, name.toLowerCase() === "type" ? 1 : 2);
+            return bySet ? markFunction(superMatcher) : superMatcher;
+          }
+          function compile(selector, match) {
+            var i4, setMatchers = [], elementMatchers = [], cached = compilerCache[selector + " "];
+            if (!cached) {
+              if (!match) {
+                match = tokenize(selector);
+              }
+              i4 = match.length;
+              while (i4--) {
+                cached = matcherFromTokens(match[i4]);
+                if (cached[expando]) {
+                  setMatchers.push(cached);
+                } else {
+                  elementMatchers.push(cached);
                 }
-              });
+              }
+              cached = compilerCache(
+                selector,
+                matcherFromGroupMatchers(elementMatchers, setMatchers)
+              );
+              cached.selector = selector;
             }
-            if (!support2.attributes || !assert2(function(el) {
-              el.innerHTML = "<input/>";
-              el.firstChild.setAttribute("value", "");
-              return el.firstChild.getAttribute("value") === "";
-            })) {
-              addHandle("value", function(elem, _name, isXML2) {
-                if (!isXML2 && elem.nodeName.toLowerCase() === "input") {
-                  return elem.defaultValue;
+            return cached;
+          }
+          function select(selector, context, results, seed) {
+            var i4, tokens, token, type, find2, compiled = typeof selector === "function" && selector, match = !seed && tokenize(selector = compiled.selector || selector);
+            results = results || [];
+            if (match.length === 1) {
+              tokens = match[0] = match[0].slice(0);
+              if (tokens.length > 2 && (token = tokens[0]).type === "ID" && context.nodeType === 9 && documentIsHTML && Expr.relative[tokens[1].type]) {
+                context = (Expr.find.ID(
+                  token.matches[0].replace(runescape, funescape),
+                  context
+                ) || [])[0];
+                if (!context) {
+                  return results;
+                } else if (compiled) {
+                  context = context.parentNode;
                 }
-              });
-            }
-            if (!assert2(function(el) {
-              return el.getAttribute("disabled") == null;
-            })) {
-              addHandle(booleans, function(elem, name, isXML2) {
-                var val;
-                if (!isXML2) {
-                  return elem[name] === true ? name.toLowerCase() : (val = elem.getAttributeNode(name)) && val.specified ? val.value : null;
+                selector = selector.slice(tokens.shift().value.length);
+              }
+              i4 = matchExpr.needsContext.test(selector) ? 0 : tokens.length;
+              while (i4--) {
+                token = tokens[i4];
+                if (Expr.relative[type = token.type]) {
+                  break;
                 }
-              });
+                if (find2 = Expr.find[type]) {
+                  if (seed = find2(
+                    token.matches[0].replace(runescape, funescape),
+                    rsibling.test(tokens[0].type) && testContext(context.parentNode) || context
+                  )) {
+                    tokens.splice(i4, 1);
+                    selector = seed.length && toSelector(tokens);
+                    if (!selector) {
+                      push2.apply(results, seed);
+                      return results;
+                    }
+                    break;
+                  }
+                }
+              }
             }
-            return Sizzle2;
-          }(window2)
-        );
-        jQuery.find = Sizzle;
-        jQuery.expr = Sizzle.selectors;
-        jQuery.expr[":"] = jQuery.expr.pseudos;
-        jQuery.uniqueSort = jQuery.unique = Sizzle.uniqueSort;
-        jQuery.text = Sizzle.getText;
-        jQuery.isXMLDoc = Sizzle.isXML;
-        jQuery.contains = Sizzle.contains;
-        jQuery.escapeSelector = Sizzle.escape;
+            (compiled || compile(selector, match))(
+              seed,
+              context,
+              !documentIsHTML,
+              results,
+              !context || rsibling.test(selector) && testContext(context.parentNode) || context
+            );
+            return results;
+          }
+          support.sortStable = expando.split("").sort(sortOrder).join("") === expando;
+          setDocument();
+          support.sortDetached = assert2(function(el) {
+            return el.compareDocumentPosition(document3.createElement("fieldset")) & 1;
+          });
+          jQuery.find = find;
+          jQuery.expr[":"] = jQuery.expr.pseudos;
+          jQuery.unique = jQuery.uniqueSort;
+          find.compile = compile;
+          find.select = select;
+          find.setDocument = setDocument;
+          find.tokenize = tokenize;
+          find.escape = jQuery.escapeSelector;
+          find.getText = jQuery.text;
+          find.isXML = jQuery.isXMLDoc;
+          find.selectors = jQuery.expr;
+          find.support = jQuery.support;
+          find.uniqueSort = jQuery.uniqueSort;
+        })();
         var dir = function(elem, dir2, until) {
           var matched = [], truncate = until !== void 0;
           while ((elem = elem[dir2]) && elem.nodeType !== 9) {
@@ -1702,9 +1567,6 @@
           return matched;
         };
         var rneedsContext = jQuery.expr.match.needsContext;
-        function nodeName(elem, name) {
-          return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
-        }
         var rsingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
         function winnow(elements, qualifier, not) {
           if (isFunction(qualifier)) {
@@ -1851,7 +1713,7 @@
               for (; i3 < l3; i3++) {
                 for (cur = this[i3]; cur && cur !== context; cur = cur.parentNode) {
                   if (cur.nodeType < 11 && (targets ? targets.index(cur) > -1 : (
-                    // Don't pass non-elements to Sizzle
+                    // Don't pass non-elements to jQuery#find
                     cur.nodeType === 1 && jQuery.find.matchesSelector(cur, selectors)
                   ))) {
                     matched.push(cur);
@@ -2224,7 +2086,7 @@
                         if (jQuery.Deferred.exceptionHook) {
                           jQuery.Deferred.exceptionHook(
                             e3,
-                            process2.stackTrace
+                            process2.error
                           );
                         }
                         if (depth + 1 >= maxDepth) {
@@ -2239,8 +2101,10 @@
                     if (depth) {
                       process2();
                     } else {
-                      if (jQuery.Deferred.getStackHook) {
-                        process2.stackTrace = jQuery.Deferred.getStackHook();
+                      if (jQuery.Deferred.getErrorHook) {
+                        process2.error = jQuery.Deferred.getErrorHook();
+                      } else if (jQuery.Deferred.getStackHook) {
+                        process2.error = jQuery.Deferred.getStackHook();
                       }
                       window2.setTimeout(process2);
                     }
@@ -2339,9 +2203,13 @@
           }
         });
         var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
-        jQuery.Deferred.exceptionHook = function(error2, stack) {
+        jQuery.Deferred.exceptionHook = function(error2, asyncError) {
           if (window2.console && window2.console.warn && error2 && rerrorNames.test(error2.name)) {
-            window2.console.warn("jQuery.Deferred exception: " + error2.message, error2.stack, stack);
+            window2.console.warn(
+              "jQuery.Deferred exception: " + error2.message,
+              error2.stack,
+              asyncError
+            );
           }
         };
         jQuery.readyException = function(error2) {
@@ -2948,15 +2816,6 @@
         function returnFalse() {
           return false;
         }
-        function expectSync(elem, type) {
-          return elem === safeActiveElement() === (type === "focus");
-        }
-        function safeActiveElement() {
-          try {
-            return document2.activeElement;
-          } catch (err) {
-          }
-        }
         function on(elem, types, selector, data, fn, one) {
           var origFn, type;
           if (typeof types === "object") {
@@ -3222,7 +3081,7 @@
               setup: function(data) {
                 var el = this || data;
                 if (rcheckableType.test(el.type) && el.click && nodeName(el, "input")) {
-                  leverageNative(el, "click", returnTrue);
+                  leverageNative(el, "click", true);
                 }
                 return false;
               },
@@ -3249,8 +3108,8 @@
             }
           }
         };
-        function leverageNative(el, type, expectSync2) {
-          if (!expectSync2) {
+        function leverageNative(el, type, isSetup) {
+          if (!isSetup) {
             if (dataPriv.get(el, type) === void 0) {
               jQuery.event.add(el, type, returnTrue);
             }
@@ -3260,38 +3119,30 @@
           jQuery.event.add(el, type, {
             namespace: false,
             handler: function(event) {
-              var notAsync, result, saved = dataPriv.get(this, type);
+              var result, saved = dataPriv.get(this, type);
               if (event.isTrigger & 1 && this[type]) {
-                if (!saved.length) {
+                if (!saved) {
                   saved = slice2.call(arguments);
                   dataPriv.set(this, type, saved);
-                  notAsync = expectSync2(this, type);
                   this[type]();
                   result = dataPriv.get(this, type);
-                  if (saved !== result || notAsync) {
-                    dataPriv.set(this, type, false);
-                  } else {
-                    result = {};
-                  }
+                  dataPriv.set(this, type, false);
                   if (saved !== result) {
                     event.stopImmediatePropagation();
                     event.preventDefault();
-                    return result && result.value;
+                    return result;
                   }
                 } else if ((jQuery.event.special[type] || {}).delegateType) {
                   event.stopPropagation();
                 }
-              } else if (saved.length) {
-                dataPriv.set(this, type, {
-                  value: jQuery.event.trigger(
-                    // Support: IE <=9 - 11+
-                    // Extend with the prototype to reset the above stopImmediatePropagation()
-                    jQuery.extend(saved[0], jQuery.Event.prototype),
-                    saved.slice(1),
-                    this
-                  )
-                });
-                event.stopImmediatePropagation();
+              } else if (saved) {
+                dataPriv.set(this, type, jQuery.event.trigger(
+                  saved[0],
+                  saved.slice(1),
+                  this
+                ));
+                event.stopPropagation();
+                event.isImmediatePropagationStopped = returnTrue;
               }
             }
           });
@@ -3385,15 +3236,55 @@
           which: true
         }, jQuery.event.addProp);
         jQuery.each({ focus: "focusin", blur: "focusout" }, function(type, delegateType) {
+          function focusMappedHandler(nativeEvent) {
+            if (document2.documentMode) {
+              var handle2 = dataPriv.get(this, "handle"), event = jQuery.event.fix(nativeEvent);
+              event.type = nativeEvent.type === "focusin" ? "focus" : "blur";
+              event.isSimulated = true;
+              handle2(nativeEvent);
+              if (event.target === event.currentTarget) {
+                handle2(event);
+              }
+            } else {
+              jQuery.event.simulate(
+                delegateType,
+                nativeEvent.target,
+                jQuery.event.fix(nativeEvent)
+              );
+            }
+          }
           jQuery.event.special[type] = {
             // Utilize native event if possible so blur/focus sequence is correct
             setup: function() {
-              leverageNative(this, type, expectSync);
-              return false;
+              var attaches;
+              leverageNative(this, type, true);
+              if (document2.documentMode) {
+                attaches = dataPriv.get(this, delegateType);
+                if (!attaches) {
+                  this.addEventListener(delegateType, focusMappedHandler);
+                }
+                dataPriv.set(this, delegateType, (attaches || 0) + 1);
+              } else {
+                return false;
+              }
             },
             trigger: function() {
               leverageNative(this, type);
               return true;
+            },
+            teardown: function() {
+              var attaches;
+              if (document2.documentMode) {
+                attaches = dataPriv.get(this, delegateType) - 1;
+                if (!attaches) {
+                  this.removeEventListener(delegateType, focusMappedHandler);
+                  dataPriv.remove(this, delegateType);
+                } else {
+                  dataPriv.set(this, delegateType, attaches);
+                }
+              } else {
+                return false;
+              }
             },
             // Suppress native focus or blur if we're currently inside
             // a leveraged native-event stack
@@ -3401,6 +3292,32 @@
               return dataPriv.get(event.target, type);
             },
             delegateType
+          };
+          jQuery.event.special[delegateType] = {
+            setup: function() {
+              var doc = this.ownerDocument || this.document || this, dataHolder = document2.documentMode ? this : doc, attaches = dataPriv.get(dataHolder, delegateType);
+              if (!attaches) {
+                if (document2.documentMode) {
+                  this.addEventListener(delegateType, focusMappedHandler);
+                } else {
+                  doc.addEventListener(type, focusMappedHandler, true);
+                }
+              }
+              dataPriv.set(dataHolder, delegateType, (attaches || 0) + 1);
+            },
+            teardown: function() {
+              var doc = this.ownerDocument || this.document || this, dataHolder = document2.documentMode ? this : doc, attaches = dataPriv.get(dataHolder, delegateType) - 1;
+              if (!attaches) {
+                if (document2.documentMode) {
+                  this.removeEventListener(delegateType, focusMappedHandler);
+                } else {
+                  doc.removeEventListener(type, focusMappedHandler, true);
+                }
+                dataPriv.remove(dataHolder, delegateType);
+              } else {
+                dataPriv.set(dataHolder, delegateType, attaches);
+              }
+            }
           };
         });
         jQuery.each({
@@ -3770,11 +3687,6 @@
           return ret;
         };
         var rboxStyle = new RegExp(cssExpand.join("|"), "i");
-        var whitespace = "[\\x20\\t\\r\\n\\f]";
-        var rtrimCSS = new RegExp(
-          "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$",
-          "g"
-        );
         (function() {
           function computeStyleTests() {
             if (!div) {
@@ -3841,7 +3753,7 @@
                 tr = document2.createElement("tr");
                 trChild = document2.createElement("div");
                 table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
-                tr.style.cssText = "border:1px solid";
+                tr.style.cssText = "box-sizing:content-box;border:1px solid";
                 tr.style.height = "1px";
                 trChild.style.height = "9px";
                 trChild.style.display = "block";
@@ -3925,13 +3837,13 @@
           ) : value;
         }
         function boxModelAdjustment(elem, dimension, box, isBorderBox, styles, computedVal) {
-          var i3 = dimension === "width" ? 1 : 0, extra = 0, delta = 0;
+          var i3 = dimension === "width" ? 1 : 0, extra = 0, delta = 0, marginDelta = 0;
           if (box === (isBorderBox ? "border" : "content")) {
             return 0;
           }
           for (; i3 < 4; i3 += 2) {
             if (box === "margin") {
-              delta += jQuery.css(elem, box + cssExpand[i3], true, styles);
+              marginDelta += jQuery.css(elem, box + cssExpand[i3], true, styles);
             }
             if (!isBorderBox) {
               delta += jQuery.css(elem, "padding" + cssExpand[i3], true, styles);
@@ -3956,7 +3868,7 @@
               // Use an explicit zero to avoid NaN (gh-3964)
             )) || 0;
           }
-          return delta;
+          return delta + marginDelta;
         }
         function getWidthOrHeight(elem, dimension, extra) {
           var styles = getStyles(elem), boxSizingNeeded = !support.boxSizingReliable() || extra, isBorderBox = boxSizingNeeded && jQuery.css(elem, "boxSizing", false, styles) === "border-box", valueIsBorderBox = isBorderBox, val = curCSS(elem, dimension, styles), offsetProp = "offset" + dimension[0].toUpperCase() + dimension.slice(1);
@@ -4008,26 +3920,34 @@
           },
           // Don't automatically add "px" to these possibly-unitless properties
           cssNumber: {
-            "animationIterationCount": true,
-            "columnCount": true,
-            "fillOpacity": true,
-            "flexGrow": true,
-            "flexShrink": true,
-            "fontWeight": true,
-            "gridArea": true,
-            "gridColumn": true,
-            "gridColumnEnd": true,
-            "gridColumnStart": true,
-            "gridRow": true,
-            "gridRowEnd": true,
-            "gridRowStart": true,
-            "lineHeight": true,
-            "opacity": true,
-            "order": true,
-            "orphans": true,
-            "widows": true,
-            "zIndex": true,
-            "zoom": true
+            animationIterationCount: true,
+            aspectRatio: true,
+            borderImageSlice: true,
+            columnCount: true,
+            flexGrow: true,
+            flexShrink: true,
+            fontWeight: true,
+            gridArea: true,
+            gridColumn: true,
+            gridColumnEnd: true,
+            gridColumnStart: true,
+            gridRow: true,
+            gridRowEnd: true,
+            gridRowStart: true,
+            lineHeight: true,
+            opacity: true,
+            order: true,
+            orphans: true,
+            scale: true,
+            widows: true,
+            zIndex: true,
+            zoom: true,
+            // SVG-related
+            fillOpacity: true,
+            floodOpacity: true,
+            stopOpacity: true,
+            strokeMiterlimit: true,
+            strokeOpacity: true
           },
           // Add in properties whose names you wish to fix before
           // setting or getting the value
@@ -5148,7 +5068,26 @@
             };
           }
         });
-        support.focusin = "onfocusin" in window2;
+        var location2 = window2.location;
+        var nonce = { guid: Date.now() };
+        var rquery = /\?/;
+        jQuery.parseXML = function(data) {
+          var xml, parserErrorElem;
+          if (!data || typeof data !== "string") {
+            return null;
+          }
+          try {
+            xml = new window2.DOMParser().parseFromString(data, "text/xml");
+          } catch (e3) {
+          }
+          parserErrorElem = xml && xml.getElementsByTagName("parsererror")[0];
+          if (!xml || parserErrorElem) {
+            jQuery.error("Invalid XML: " + (parserErrorElem ? jQuery.map(parserErrorElem.childNodes, function(el) {
+              return el.textContent;
+            }).join("\n") : data));
+          }
+          return xml;
+        };
         var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/, stopPropagationCallback = function(e3) {
           e3.stopPropagation();
         };
@@ -5262,51 +5201,6 @@
             }
           }
         });
-        if (!support.focusin) {
-          jQuery.each({ focus: "focusin", blur: "focusout" }, function(orig, fix) {
-            var handler = function(event) {
-              jQuery.event.simulate(fix, event.target, jQuery.event.fix(event));
-            };
-            jQuery.event.special[fix] = {
-              setup: function() {
-                var doc = this.ownerDocument || this.document || this, attaches = dataPriv.access(doc, fix);
-                if (!attaches) {
-                  doc.addEventListener(orig, handler, true);
-                }
-                dataPriv.access(doc, fix, (attaches || 0) + 1);
-              },
-              teardown: function() {
-                var doc = this.ownerDocument || this.document || this, attaches = dataPriv.access(doc, fix) - 1;
-                if (!attaches) {
-                  doc.removeEventListener(orig, handler, true);
-                  dataPriv.remove(doc, fix);
-                } else {
-                  dataPriv.access(doc, fix, attaches);
-                }
-              }
-            };
-          });
-        }
-        var location2 = window2.location;
-        var nonce = { guid: Date.now() };
-        var rquery = /\?/;
-        jQuery.parseXML = function(data) {
-          var xml, parserErrorElem;
-          if (!data || typeof data !== "string") {
-            return null;
-          }
-          try {
-            xml = new window2.DOMParser().parseFromString(data, "text/xml");
-          } catch (e3) {
-          }
-          parserErrorElem = xml && xml.getElementsByTagName("parsererror")[0];
-          if (!xml || parserErrorElem) {
-            jQuery.error("Invalid XML: " + (parserErrorElem ? jQuery.map(parserErrorElem.childNodes, function(el) {
-              return el.textContent;
-            }).join("\n") : data));
-          }
-          return xml;
-        };
         var rbracket = /\[\]$/, rCRLF = /\r?\n/g, rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i, rsubmittable = /^(?:input|select|textarea|keygen)/i;
         function buildParams(prefix2, obj, traditional, add2) {
           var name;
@@ -6418,7 +6312,7 @@
             return arguments.length === 1 ? this.off(selector, "**") : this.off(types, selector || "**", fn);
           },
           hover: function(fnOver, fnOut) {
-            return this.mouseenter(fnOver).mouseleave(fnOut || fnOver);
+            return this.on("mouseenter", fnOver).on("mouseleave", fnOut || fnOver);
           }
         });
         jQuery.each(
@@ -7381,6 +7275,7 @@
         ctx.schemaErrorMap,
         getErrorMap(),
         errorMap
+        // then global default map
       ].filter((x2) => !!x2)
     });
     ctx.common.issues.push(issue);
@@ -7404,6 +7299,15 @@
     };
     return { errorMap: customMap, description };
   }
+  function isValidIP(ip, version) {
+    if ((version === "v4" || !version) && ipv4Regex.test(ip)) {
+      return true;
+    }
+    if ((version === "v6" || !version) && ipv6Regex.test(ip)) {
+      return true;
+    }
+    return false;
+  }
   function floatSafeRemainder(val, step) {
     const valDecCount = (val.toString().split(".")[1] || "").length;
     const stepDecCount = (step.toString().split(".")[1] || "").length;
@@ -7424,7 +7328,10 @@
         shape: () => newShape
       });
     } else if (schema instanceof ZodArray) {
-      return ZodArray.create(deepPartialify(schema.element));
+      return new ZodArray({
+        ...schema._def,
+        type: deepPartialify(schema.element)
+      });
     } else if (schema instanceof ZodOptional) {
       return ZodOptional.create(deepPartialify(schema.unwrap()));
     } else if (schema instanceof ZodNullable) {
@@ -7480,7 +7387,7 @@
       ...processCreateParams(params)
     });
   }
-  var util, ZodParsedType, getParsedType, ZodIssueCode, quotelessJson, ZodError, errorMap, overrideErrorMap, makeIssue, EMPTY_PATH, ParseStatus, INVALID, DIRTY, OK, isAborted, isDirty, isValid, isAsync, errorUtil, ParseInputLazyPath, handleResult, ZodType, cuidRegex, uuidRegex, emailRegex, ZodString, ZodNumber, ZodBigInt, ZodBoolean, ZodDate, ZodUndefined, ZodNull, ZodAny, ZodUnknown, ZodNever, ZodVoid, ZodArray, objectUtil, AugmentFactory, ZodObject, ZodUnion, ZodDiscriminatedUnion, ZodIntersection, ZodTuple, ZodRecord, ZodMap, ZodSet, ZodFunction, ZodLazy, ZodLiteral, ZodEnum, ZodNativeEnum, ZodPromise, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodNaN, BRAND, ZodBranded, custom, late, ZodFirstPartyTypeKind, instanceOfType, stringType, numberType, nanType, bigIntType, booleanType, dateType, undefinedType, nullType, anyType, unknownType, neverType, voidType, arrayType, objectType, strictObjectType, unionType, discriminatedUnionType, intersectionType, tupleType, recordType, mapType, setType, functionType, lazyType, literalType, enumType, nativeEnumType, promiseType, effectsType, optionalType, nullableType, preprocessType, ostring, onumber, oboolean, NEVER, mod;
+  var util, objectUtil, ZodParsedType, getParsedType, ZodIssueCode, quotelessJson, ZodError, errorMap, overrideErrorMap, makeIssue, EMPTY_PATH, ParseStatus, INVALID, DIRTY, OK, isAborted, isDirty, isValid, isAsync, errorUtil, ParseInputLazyPath, handleResult, ZodType, cuidRegex, cuid2Regex, ulidRegex, uuidRegex, emailRegex, _emojiRegex, emojiRegex, ipv4Regex, ipv6Regex, datetimeRegex, ZodString, ZodNumber, ZodBigInt, ZodBoolean, ZodDate, ZodSymbol, ZodUndefined, ZodNull, ZodAny, ZodUnknown, ZodNever, ZodVoid, ZodArray, ZodObject, ZodUnion, getDiscriminator, ZodDiscriminatedUnion, ZodIntersection, ZodTuple, ZodRecord, ZodMap, ZodSet, ZodFunction, ZodLazy, ZodLiteral, ZodEnum, ZodNativeEnum, ZodPromise, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodCatch, ZodNaN, BRAND, ZodBranded, ZodPipeline, ZodReadonly, custom, late, ZodFirstPartyTypeKind, instanceOfType, stringType, numberType, nanType, bigIntType, booleanType, dateType, symbolType, undefinedType, nullType, anyType, unknownType, neverType, voidType, arrayType, objectType, strictObjectType, unionType, discriminatedUnionType, intersectionType, tupleType, recordType, mapType, setType, functionType, lazyType, literalType, enumType, nativeEnumType, promiseType, effectsType, optionalType, nullableType, preprocessType, pipelineType, ostring, onumber, oboolean, coerce, NEVER, z;
   var init_lib = __esm({
     "node_modules/zod/lib/index.mjs"() {
       (function(util2) {
@@ -7540,6 +7447,15 @@
           return value;
         };
       })(util || (util = {}));
+      (function(objectUtil2) {
+        objectUtil2.mergeShapes = (first, second) => {
+          return {
+            ...first,
+            ...second
+            // second overwrites first
+          };
+        };
+      })(objectUtil || (objectUtil = {}));
       ZodParsedType = util.arrayToEnum([
         "string",
         "nan",
@@ -7577,6 +7493,8 @@
             return ZodParsedType.function;
           case "bigint":
             return ZodParsedType.bigint;
+          case "symbol":
+            return ZodParsedType.symbol;
           case "object":
             if (Array.isArray(data)) {
               return ZodParsedType.array;
@@ -7616,7 +7534,8 @@
         "too_small",
         "too_big",
         "invalid_intersection_types",
-        "not_multiple_of"
+        "not_multiple_of",
+        "not_finite"
       ]);
       quotelessJson = (obj) => {
         const json = JSON.stringify(obj, null, 2);
@@ -7746,7 +7665,12 @@
             break;
           case ZodIssueCode.invalid_string:
             if (typeof issue.validation === "object") {
-              if ("startsWith" in issue.validation) {
+              if ("includes" in issue.validation) {
+                message = `Invalid input: must include "${issue.validation.includes}"`;
+                if (typeof issue.validation.position === "number") {
+                  message = `${message} at one or more positions greater than or equal to ${issue.validation.position}`;
+                }
+              } else if ("startsWith" in issue.validation) {
                 message = `Invalid input: must start with "${issue.validation.startsWith}"`;
               } else if ("endsWith" in issue.validation) {
                 message = `Invalid input: must end with "${issue.validation.endsWith}"`;
@@ -7761,25 +7685,27 @@
             break;
           case ZodIssueCode.too_small:
             if (issue.type === "array")
-              message = `Array must contain ${issue.inclusive ? `at least` : `more than`} ${issue.minimum} element(s)`;
+              message = `Array must contain ${issue.exact ? "exactly" : issue.inclusive ? `at least` : `more than`} ${issue.minimum} element(s)`;
             else if (issue.type === "string")
-              message = `String must contain ${issue.inclusive ? `at least` : `over`} ${issue.minimum} character(s)`;
+              message = `String must contain ${issue.exact ? "exactly" : issue.inclusive ? `at least` : `over`} ${issue.minimum} character(s)`;
             else if (issue.type === "number")
-              message = `Number must be greater than ${issue.inclusive ? `or equal to ` : ``}${issue.minimum}`;
+              message = `Number must be ${issue.exact ? `exactly equal to ` : issue.inclusive ? `greater than or equal to ` : `greater than `}${issue.minimum}`;
             else if (issue.type === "date")
-              message = `Date must be greater than ${issue.inclusive ? `or equal to ` : ``}${new Date(issue.minimum)}`;
+              message = `Date must be ${issue.exact ? `exactly equal to ` : issue.inclusive ? `greater than or equal to ` : `greater than `}${new Date(Number(issue.minimum))}`;
             else
               message = "Invalid input";
             break;
           case ZodIssueCode.too_big:
             if (issue.type === "array")
-              message = `Array must contain ${issue.inclusive ? `at most` : `less than`} ${issue.maximum} element(s)`;
+              message = `Array must contain ${issue.exact ? `exactly` : issue.inclusive ? `at most` : `less than`} ${issue.maximum} element(s)`;
             else if (issue.type === "string")
-              message = `String must contain ${issue.inclusive ? `at most` : `under`} ${issue.maximum} character(s)`;
+              message = `String must contain ${issue.exact ? `exactly` : issue.inclusive ? `at most` : `under`} ${issue.maximum} character(s)`;
             else if (issue.type === "number")
-              message = `Number must be less than ${issue.inclusive ? `or equal to ` : ``}${issue.maximum}`;
+              message = `Number must be ${issue.exact ? `exactly` : issue.inclusive ? `less than or equal to` : `less than`} ${issue.maximum}`;
+            else if (issue.type === "bigint")
+              message = `BigInt must be ${issue.exact ? `exactly` : issue.inclusive ? `less than or equal to` : `less than`} ${issue.maximum}`;
             else if (issue.type === "date")
-              message = `Date must be smaller than ${issue.inclusive ? `or equal to ` : ``}${new Date(issue.maximum)}`;
+              message = `Date must be ${issue.exact ? `exactly` : issue.inclusive ? `smaller than or equal to` : `smaller than`} ${new Date(Number(issue.maximum))}`;
             else
               message = "Invalid input";
             break;
@@ -7791,6 +7717,9 @@
             break;
           case ZodIssueCode.not_multiple_of:
             message = `Number must be a multiple of ${issue.multipleOf}`;
+            break;
+          case ZodIssueCode.not_finite:
+            message = "Number must be finite";
             break;
           default:
             message = _ctx.defaultError;
@@ -7863,7 +7792,7 @@
               status.dirty();
             if (value.status === "dirty")
               status.dirty();
-            if (typeof value.value !== "undefined" || pair.alwaysSet) {
+            if (key.value !== "__proto__" && (typeof value.value !== "undefined" || pair.alwaysSet)) {
               finalObject[key.value] = value.value;
             }
           }
@@ -7878,20 +7807,28 @@
       isAborted = (x2) => x2.status === "aborted";
       isDirty = (x2) => x2.status === "dirty";
       isValid = (x2) => x2.status === "valid";
-      isAsync = (x2) => typeof Promise !== void 0 && x2 instanceof Promise;
+      isAsync = (x2) => typeof Promise !== "undefined" && x2 instanceof Promise;
       (function(errorUtil2) {
         errorUtil2.errToObj = (message) => typeof message === "string" ? { message } : message || {};
         errorUtil2.toString = (message) => typeof message === "string" ? message : message === null || message === void 0 ? void 0 : message.message;
       })(errorUtil || (errorUtil = {}));
       ParseInputLazyPath = class {
         constructor(parent, value, path, key) {
+          this._cachedPath = [];
           this.parent = parent;
           this.data = value;
           this._path = path;
           this._key = key;
         }
         get path() {
-          return this._path.concat(this._key);
+          if (!this._cachedPath.length) {
+            if (this._key instanceof Array) {
+              this._cachedPath.push(...this._path, ...this._key);
+            } else {
+              this._cachedPath.push(...this._path, this._key);
+            }
+          }
+          return this._cachedPath;
         }
       };
       handleResult = (ctx, result) => {
@@ -7901,14 +7838,21 @@
           if (!ctx.common.issues.length) {
             throw new Error("Validation failed but no issues detected.");
           }
-          const error2 = new ZodError(ctx.common.issues);
-          return { success: false, error: error2 };
+          return {
+            success: false,
+            get error() {
+              if (this._error)
+                return this._error;
+              const error2 = new ZodError(ctx.common.issues);
+              this._error = error2;
+              return this._error;
+            }
+          };
         }
       };
       ZodType = class {
         constructor(def) {
           this.spa = this.safeParseAsync;
-          this.superRefine = this._refinement;
           this._def = def;
           this.parse = this.parse.bind(this);
           this.safeParse = this.safeParse.bind(this);
@@ -7926,8 +7870,12 @@
           this.or = this.or.bind(this);
           this.and = this.and.bind(this);
           this.transform = this.transform.bind(this);
+          this.brand = this.brand.bind(this);
           this.default = this.default.bind(this);
+          this.catch = this.catch.bind(this);
           this.describe = this.describe.bind(this);
+          this.pipe = this.pipe.bind(this);
+          this.readonly = this.readonly.bind(this);
           this.isNullable = this.isNullable.bind(this);
           this.isOptional = this.isOptional.bind(this);
         }
@@ -8013,7 +7961,7 @@
             data,
             parsedType: getParsedType(data)
           };
-          const maybeAsyncResult = this._parse({ data, path: [], parent: ctx });
+          const maybeAsyncResult = this._parse({ data, path: ctx.path, parent: ctx });
           const result = await (isAsync(maybeAsyncResult) ? maybeAsyncResult : Promise.resolve(maybeAsyncResult));
           return handleResult(ctx, result);
         }
@@ -8068,29 +8016,33 @@
             effect: { type: "refinement", refinement }
           });
         }
+        superRefine(refinement) {
+          return this._refinement(refinement);
+        }
         optional() {
-          return ZodOptional.create(this);
+          return ZodOptional.create(this, this._def);
         }
         nullable() {
-          return ZodNullable.create(this);
+          return ZodNullable.create(this, this._def);
         }
         nullish() {
-          return this.optional().nullable();
+          return this.nullable().optional();
         }
         array() {
-          return ZodArray.create(this);
+          return ZodArray.create(this, this._def);
         }
         promise() {
-          return ZodPromise.create(this);
+          return ZodPromise.create(this, this._def);
         }
         or(option) {
-          return ZodUnion.create([this, option]);
+          return ZodUnion.create([this, option], this._def);
         }
         and(incoming) {
-          return ZodIntersection.create(this, incoming);
+          return ZodIntersection.create(this, incoming, this._def);
         }
         transform(transform) {
           return new ZodEffects({
+            ...processCreateParams(this._def),
             schema: this,
             typeName: ZodFirstPartyTypeKind.ZodEffects,
             effect: { type: "transform", transform }
@@ -8099,6 +8051,7 @@
         default(def) {
           const defaultValueFunc = typeof def === "function" ? def : () => def;
           return new ZodDefault({
+            ...processCreateParams(this._def),
             innerType: this,
             defaultValue: defaultValueFunc,
             typeName: ZodFirstPartyTypeKind.ZodDefault
@@ -8108,7 +8061,16 @@
           return new ZodBranded({
             typeName: ZodFirstPartyTypeKind.ZodBranded,
             type: this,
-            ...processCreateParams(void 0)
+            ...processCreateParams(this._def)
+          });
+        }
+        catch(def) {
+          const catchValueFunc = typeof def === "function" ? def : () => def;
+          return new ZodCatch({
+            ...processCreateParams(this._def),
+            innerType: this,
+            catchValue: catchValueFunc,
+            typeName: ZodFirstPartyTypeKind.ZodCatch
           });
         }
         describe(description) {
@@ -8118,6 +8080,12 @@
             description
           });
         }
+        pipe(target) {
+          return ZodPipeline.create(this, target);
+        }
+        readonly() {
+          return ZodReadonly.create(this);
+        }
         isOptional() {
           return this.safeParse(void 0).success;
         }
@@ -8126,23 +8094,39 @@
         }
       };
       cuidRegex = /^c[^\s-]{8,}$/i;
-      uuidRegex = /^([a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}|00000000-0000-0000-0000-000000000000)$/i;
-      emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      ZodString = class _ZodString extends ZodType {
-        constructor() {
-          super(...arguments);
-          this._regex = (regex, validation, message) => this.refinement((data) => regex.test(data), {
-            validation,
-            code: ZodIssueCode.invalid_string,
-            ...errorUtil.errToObj(message)
-          });
-          this.nonempty = (message) => this.min(1, errorUtil.errToObj(message));
-          this.trim = () => new _ZodString({
-            ...this._def,
-            checks: [...this._def.checks, { kind: "trim" }]
-          });
+      cuid2Regex = /^[a-z][a-z0-9]*$/;
+      ulidRegex = /^[0-9A-HJKMNP-TV-Z]{26}$/;
+      uuidRegex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/i;
+      emailRegex = /^(?!\.)(?!.*\.\.)([A-Z0-9_+-\.]*)[A-Z0-9_+-]@([A-Z0-9][A-Z0-9\-]*\.)+[A-Z]{2,}$/i;
+      _emojiRegex = `^(\\p{Extended_Pictographic}|\\p{Emoji_Component})+$`;
+      ipv4Regex = /^(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))$/;
+      ipv6Regex = /^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))$/;
+      datetimeRegex = (args) => {
+        if (args.precision) {
+          if (args.offset) {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${args.precision}}(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
+          } else {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${args.precision}}Z$`);
+          }
+        } else if (args.precision === 0) {
+          if (args.offset) {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
+          } else {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$`);
+          }
+        } else {
+          if (args.offset) {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
+          } else {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$`);
+          }
         }
+      };
+      ZodString = class _ZodString extends ZodType {
         _parse(input) {
+          if (this._def.coerce) {
+            input.data = String(input.data);
+          }
           const parsedType = this._getType(input);
           if (parsedType !== ZodParsedType.string) {
             const ctx2 = this._getOrReturnCtx(input);
@@ -8168,6 +8152,7 @@
                   minimum: check.value,
                   type: "string",
                   inclusive: true,
+                  exact: false,
                   message: check.message
                 });
                 status.dirty();
@@ -8180,8 +8165,35 @@
                   maximum: check.value,
                   type: "string",
                   inclusive: true,
+                  exact: false,
                   message: check.message
                 });
+                status.dirty();
+              }
+            } else if (check.kind === "length") {
+              const tooBig = input.data.length > check.value;
+              const tooSmall = input.data.length < check.value;
+              if (tooBig || tooSmall) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                if (tooBig) {
+                  addIssueToContext(ctx, {
+                    code: ZodIssueCode.too_big,
+                    maximum: check.value,
+                    type: "string",
+                    inclusive: true,
+                    exact: true,
+                    message: check.message
+                  });
+                } else if (tooSmall) {
+                  addIssueToContext(ctx, {
+                    code: ZodIssueCode.too_small,
+                    minimum: check.value,
+                    type: "string",
+                    inclusive: true,
+                    exact: true,
+                    message: check.message
+                  });
+                }
                 status.dirty();
               }
             } else if (check.kind === "email") {
@@ -8189,6 +8201,19 @@
                 ctx = this._getOrReturnCtx(input, ctx);
                 addIssueToContext(ctx, {
                   validation: "email",
+                  code: ZodIssueCode.invalid_string,
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "emoji") {
+              if (!emojiRegex) {
+                emojiRegex = new RegExp(_emojiRegex, "u");
+              }
+              if (!emojiRegex.test(input.data)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  validation: "emoji",
                   code: ZodIssueCode.invalid_string,
                   message: check.message
                 });
@@ -8209,6 +8234,26 @@
                 ctx = this._getOrReturnCtx(input, ctx);
                 addIssueToContext(ctx, {
                   validation: "cuid",
+                  code: ZodIssueCode.invalid_string,
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "cuid2") {
+              if (!cuid2Regex.test(input.data)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  validation: "cuid2",
+                  code: ZodIssueCode.invalid_string,
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "ulid") {
+              if (!ulidRegex.test(input.data)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  validation: "ulid",
                   code: ZodIssueCode.invalid_string,
                   message: check.message
                 });
@@ -8240,6 +8285,20 @@
               }
             } else if (check.kind === "trim") {
               input.data = input.data.trim();
+            } else if (check.kind === "includes") {
+              if (!input.data.includes(check.value, check.position)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  code: ZodIssueCode.invalid_string,
+                  validation: { includes: check.value, position: check.position },
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "toLowerCase") {
+              input.data = input.data.toLowerCase();
+            } else if (check.kind === "toUpperCase") {
+              input.data = input.data.toUpperCase();
             } else if (check.kind === "startsWith") {
               if (!input.data.startsWith(check.value)) {
                 ctx = this._getOrReturnCtx(input, ctx);
@@ -8260,11 +8319,39 @@
                 });
                 status.dirty();
               }
+            } else if (check.kind === "datetime") {
+              const regex = datetimeRegex(check);
+              if (!regex.test(input.data)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  code: ZodIssueCode.invalid_string,
+                  validation: "datetime",
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "ip") {
+              if (!isValidIP(input.data, check.version)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  validation: "ip",
+                  code: ZodIssueCode.invalid_string,
+                  message: check.message
+                });
+                status.dirty();
+              }
             } else {
               util.assertNever(check);
             }
           }
           return { status: status.value, value: input.data };
+        }
+        _regex(regex, validation, message) {
+          return this.refinement((data) => regex.test(data), {
+            validation,
+            code: ZodIssueCode.invalid_string,
+            ...errorUtil.errToObj(message)
+          });
         }
         _addCheck(check) {
           return new _ZodString({
@@ -8278,17 +8365,54 @@
         url(message) {
           return this._addCheck({ kind: "url", ...errorUtil.errToObj(message) });
         }
+        emoji(message) {
+          return this._addCheck({ kind: "emoji", ...errorUtil.errToObj(message) });
+        }
         uuid(message) {
           return this._addCheck({ kind: "uuid", ...errorUtil.errToObj(message) });
         }
         cuid(message) {
           return this._addCheck({ kind: "cuid", ...errorUtil.errToObj(message) });
         }
+        cuid2(message) {
+          return this._addCheck({ kind: "cuid2", ...errorUtil.errToObj(message) });
+        }
+        ulid(message) {
+          return this._addCheck({ kind: "ulid", ...errorUtil.errToObj(message) });
+        }
+        ip(options) {
+          return this._addCheck({ kind: "ip", ...errorUtil.errToObj(options) });
+        }
+        datetime(options) {
+          var _a2;
+          if (typeof options === "string") {
+            return this._addCheck({
+              kind: "datetime",
+              precision: null,
+              offset: false,
+              message: options
+            });
+          }
+          return this._addCheck({
+            kind: "datetime",
+            precision: typeof (options === null || options === void 0 ? void 0 : options.precision) === "undefined" ? null : options === null || options === void 0 ? void 0 : options.precision,
+            offset: (_a2 = options === null || options === void 0 ? void 0 : options.offset) !== null && _a2 !== void 0 ? _a2 : false,
+            ...errorUtil.errToObj(options === null || options === void 0 ? void 0 : options.message)
+          });
+        }
         regex(regex, message) {
           return this._addCheck({
             kind: "regex",
             regex,
             ...errorUtil.errToObj(message)
+          });
+        }
+        includes(value, options) {
+          return this._addCheck({
+            kind: "includes",
+            value,
+            position: options === null || options === void 0 ? void 0 : options.position,
+            ...errorUtil.errToObj(options === null || options === void 0 ? void 0 : options.message)
           });
         }
         startsWith(value, message) {
@@ -8320,7 +8444,39 @@
           });
         }
         length(len, message) {
-          return this.min(len, message).max(len, message);
+          return this._addCheck({
+            kind: "length",
+            value: len,
+            ...errorUtil.errToObj(message)
+          });
+        }
+        /**
+         * @deprecated Use z.string().min(1) instead.
+         * @see {@link ZodString.min}
+         */
+        nonempty(message) {
+          return this.min(1, errorUtil.errToObj(message));
+        }
+        trim() {
+          return new _ZodString({
+            ...this._def,
+            checks: [...this._def.checks, { kind: "trim" }]
+          });
+        }
+        toLowerCase() {
+          return new _ZodString({
+            ...this._def,
+            checks: [...this._def.checks, { kind: "toLowerCase" }]
+          });
+        }
+        toUpperCase() {
+          return new _ZodString({
+            ...this._def,
+            checks: [...this._def.checks, { kind: "toUpperCase" }]
+          });
+        }
+        get isDatetime() {
+          return !!this._def.checks.find((ch) => ch.kind === "datetime");
         }
         get isEmail() {
           return !!this._def.checks.find((ch) => ch.kind === "email");
@@ -8328,11 +8484,23 @@
         get isURL() {
           return !!this._def.checks.find((ch) => ch.kind === "url");
         }
+        get isEmoji() {
+          return !!this._def.checks.find((ch) => ch.kind === "emoji");
+        }
         get isUUID() {
           return !!this._def.checks.find((ch) => ch.kind === "uuid");
         }
         get isCUID() {
           return !!this._def.checks.find((ch) => ch.kind === "cuid");
+        }
+        get isCUID2() {
+          return !!this._def.checks.find((ch) => ch.kind === "cuid2");
+        }
+        get isULID() {
+          return !!this._def.checks.find((ch) => ch.kind === "ulid");
+        }
+        get isIP() {
+          return !!this._def.checks.find((ch) => ch.kind === "ip");
         }
         get minLength() {
           let min = null;
@@ -8356,9 +8524,11 @@
         }
       };
       ZodString.create = (params) => {
+        var _a2;
         return new ZodString({
           checks: [],
           typeName: ZodFirstPartyTypeKind.ZodString,
+          coerce: (_a2 = params === null || params === void 0 ? void 0 : params.coerce) !== null && _a2 !== void 0 ? _a2 : false,
           ...processCreateParams(params)
         });
       };
@@ -8370,6 +8540,9 @@
           this.step = this.multipleOf;
         }
         _parse(input) {
+          if (this._def.coerce) {
+            input.data = Number(input.data);
+          }
           const parsedType = this._getType(input);
           if (parsedType !== ZodParsedType.number) {
             const ctx2 = this._getOrReturnCtx(input);
@@ -8403,6 +8576,7 @@
                   minimum: check.value,
                   type: "number",
                   inclusive: check.inclusive,
+                  exact: false,
                   message: check.message
                 });
                 status.dirty();
@@ -8416,6 +8590,7 @@
                   maximum: check.value,
                   type: "number",
                   inclusive: check.inclusive,
+                  exact: false,
                   message: check.message
                 });
                 status.dirty();
@@ -8426,6 +8601,15 @@
                 addIssueToContext(ctx, {
                   code: ZodIssueCode.not_multiple_of,
                   multipleOf: check.value,
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "finite") {
+              if (!Number.isFinite(input.data)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  code: ZodIssueCode.not_finite,
                   message: check.message
                 });
                 status.dirty();
@@ -8513,6 +8697,25 @@
             message: errorUtil.toString(message)
           });
         }
+        finite(message) {
+          return this._addCheck({
+            kind: "finite",
+            message: errorUtil.toString(message)
+          });
+        }
+        safe(message) {
+          return this._addCheck({
+            kind: "min",
+            inclusive: true,
+            value: Number.MIN_SAFE_INTEGER,
+            message: errorUtil.toString(message)
+          })._addCheck({
+            kind: "max",
+            inclusive: true,
+            value: Number.MAX_SAFE_INTEGER,
+            message: errorUtil.toString(message)
+          });
+        }
         get minValue() {
           let min = null;
           for (const ch of this._def.checks) {
@@ -8534,39 +8737,203 @@
           return max;
         }
         get isInt() {
-          return !!this._def.checks.find((ch) => ch.kind === "int");
+          return !!this._def.checks.find((ch) => ch.kind === "int" || ch.kind === "multipleOf" && util.isInteger(ch.value));
+        }
+        get isFinite() {
+          let max = null, min = null;
+          for (const ch of this._def.checks) {
+            if (ch.kind === "finite" || ch.kind === "int" || ch.kind === "multipleOf") {
+              return true;
+            } else if (ch.kind === "min") {
+              if (min === null || ch.value > min)
+                min = ch.value;
+            } else if (ch.kind === "max") {
+              if (max === null || ch.value < max)
+                max = ch.value;
+            }
+          }
+          return Number.isFinite(min) && Number.isFinite(max);
         }
       };
       ZodNumber.create = (params) => {
         return new ZodNumber({
           checks: [],
           typeName: ZodFirstPartyTypeKind.ZodNumber,
+          coerce: (params === null || params === void 0 ? void 0 : params.coerce) || false,
           ...processCreateParams(params)
         });
       };
-      ZodBigInt = class extends ZodType {
+      ZodBigInt = class _ZodBigInt extends ZodType {
+        constructor() {
+          super(...arguments);
+          this.min = this.gte;
+          this.max = this.lte;
+        }
         _parse(input) {
+          if (this._def.coerce) {
+            input.data = BigInt(input.data);
+          }
           const parsedType = this._getType(input);
           if (parsedType !== ZodParsedType.bigint) {
-            const ctx = this._getOrReturnCtx(input);
-            addIssueToContext(ctx, {
+            const ctx2 = this._getOrReturnCtx(input);
+            addIssueToContext(ctx2, {
               code: ZodIssueCode.invalid_type,
               expected: ZodParsedType.bigint,
-              received: ctx.parsedType
+              received: ctx2.parsedType
             });
             return INVALID;
           }
-          return OK(input.data);
+          let ctx = void 0;
+          const status = new ParseStatus();
+          for (const check of this._def.checks) {
+            if (check.kind === "min") {
+              const tooSmall = check.inclusive ? input.data < check.value : input.data <= check.value;
+              if (tooSmall) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  code: ZodIssueCode.too_small,
+                  type: "bigint",
+                  minimum: check.value,
+                  inclusive: check.inclusive,
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "max") {
+              const tooBig = check.inclusive ? input.data > check.value : input.data >= check.value;
+              if (tooBig) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  code: ZodIssueCode.too_big,
+                  type: "bigint",
+                  maximum: check.value,
+                  inclusive: check.inclusive,
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else if (check.kind === "multipleOf") {
+              if (input.data % check.value !== BigInt(0)) {
+                ctx = this._getOrReturnCtx(input, ctx);
+                addIssueToContext(ctx, {
+                  code: ZodIssueCode.not_multiple_of,
+                  multipleOf: check.value,
+                  message: check.message
+                });
+                status.dirty();
+              }
+            } else {
+              util.assertNever(check);
+            }
+          }
+          return { status: status.value, value: input.data };
+        }
+        gte(value, message) {
+          return this.setLimit("min", value, true, errorUtil.toString(message));
+        }
+        gt(value, message) {
+          return this.setLimit("min", value, false, errorUtil.toString(message));
+        }
+        lte(value, message) {
+          return this.setLimit("max", value, true, errorUtil.toString(message));
+        }
+        lt(value, message) {
+          return this.setLimit("max", value, false, errorUtil.toString(message));
+        }
+        setLimit(kind, value, inclusive, message) {
+          return new _ZodBigInt({
+            ...this._def,
+            checks: [
+              ...this._def.checks,
+              {
+                kind,
+                value,
+                inclusive,
+                message: errorUtil.toString(message)
+              }
+            ]
+          });
+        }
+        _addCheck(check) {
+          return new _ZodBigInt({
+            ...this._def,
+            checks: [...this._def.checks, check]
+          });
+        }
+        positive(message) {
+          return this._addCheck({
+            kind: "min",
+            value: BigInt(0),
+            inclusive: false,
+            message: errorUtil.toString(message)
+          });
+        }
+        negative(message) {
+          return this._addCheck({
+            kind: "max",
+            value: BigInt(0),
+            inclusive: false,
+            message: errorUtil.toString(message)
+          });
+        }
+        nonpositive(message) {
+          return this._addCheck({
+            kind: "max",
+            value: BigInt(0),
+            inclusive: true,
+            message: errorUtil.toString(message)
+          });
+        }
+        nonnegative(message) {
+          return this._addCheck({
+            kind: "min",
+            value: BigInt(0),
+            inclusive: true,
+            message: errorUtil.toString(message)
+          });
+        }
+        multipleOf(value, message) {
+          return this._addCheck({
+            kind: "multipleOf",
+            value,
+            message: errorUtil.toString(message)
+          });
+        }
+        get minValue() {
+          let min = null;
+          for (const ch of this._def.checks) {
+            if (ch.kind === "min") {
+              if (min === null || ch.value > min)
+                min = ch.value;
+            }
+          }
+          return min;
+        }
+        get maxValue() {
+          let max = null;
+          for (const ch of this._def.checks) {
+            if (ch.kind === "max") {
+              if (max === null || ch.value < max)
+                max = ch.value;
+            }
+          }
+          return max;
         }
       };
       ZodBigInt.create = (params) => {
+        var _a2;
         return new ZodBigInt({
+          checks: [],
           typeName: ZodFirstPartyTypeKind.ZodBigInt,
+          coerce: (_a2 = params === null || params === void 0 ? void 0 : params.coerce) !== null && _a2 !== void 0 ? _a2 : false,
           ...processCreateParams(params)
         });
       };
       ZodBoolean = class extends ZodType {
         _parse(input) {
+          if (this._def.coerce) {
+            input.data = Boolean(input.data);
+          }
           const parsedType = this._getType(input);
           if (parsedType !== ZodParsedType.boolean) {
             const ctx = this._getOrReturnCtx(input);
@@ -8583,11 +8950,15 @@
       ZodBoolean.create = (params) => {
         return new ZodBoolean({
           typeName: ZodFirstPartyTypeKind.ZodBoolean,
+          coerce: (params === null || params === void 0 ? void 0 : params.coerce) || false,
           ...processCreateParams(params)
         });
       };
       ZodDate = class _ZodDate extends ZodType {
         _parse(input) {
+          if (this._def.coerce) {
+            input.data = new Date(input.data);
+          }
           const parsedType = this._getType(input);
           if (parsedType !== ZodParsedType.date) {
             const ctx2 = this._getOrReturnCtx(input);
@@ -8615,6 +8986,7 @@
                   code: ZodIssueCode.too_small,
                   message: check.message,
                   inclusive: true,
+                  exact: false,
                   minimum: check.value,
                   type: "date"
                 });
@@ -8627,6 +8999,7 @@
                   code: ZodIssueCode.too_big,
                   message: check.message,
                   inclusive: true,
+                  exact: false,
                   maximum: check.value,
                   type: "date"
                 });
@@ -8685,7 +9058,29 @@
       ZodDate.create = (params) => {
         return new ZodDate({
           checks: [],
+          coerce: (params === null || params === void 0 ? void 0 : params.coerce) || false,
           typeName: ZodFirstPartyTypeKind.ZodDate,
+          ...processCreateParams(params)
+        });
+      };
+      ZodSymbol = class extends ZodType {
+        _parse(input) {
+          const parsedType = this._getType(input);
+          if (parsedType !== ZodParsedType.symbol) {
+            const ctx = this._getOrReturnCtx(input);
+            addIssueToContext(ctx, {
+              code: ZodIssueCode.invalid_type,
+              expected: ZodParsedType.symbol,
+              received: ctx.parsedType
+            });
+            return INVALID;
+          }
+          return OK(input.data);
+        }
+      };
+      ZodSymbol.create = (params) => {
+        return new ZodSymbol({
+          typeName: ZodFirstPartyTypeKind.ZodSymbol,
           ...processCreateParams(params)
         });
       };
@@ -8811,6 +9206,22 @@
             });
             return INVALID;
           }
+          if (def.exactLength !== null) {
+            const tooBig = ctx.data.length > def.exactLength.value;
+            const tooSmall = ctx.data.length < def.exactLength.value;
+            if (tooBig || tooSmall) {
+              addIssueToContext(ctx, {
+                code: tooBig ? ZodIssueCode.too_big : ZodIssueCode.too_small,
+                minimum: tooSmall ? def.exactLength.value : void 0,
+                maximum: tooBig ? def.exactLength.value : void 0,
+                type: "array",
+                inclusive: true,
+                exact: true,
+                message: def.exactLength.message
+              });
+              status.dirty();
+            }
+          }
           if (def.minLength !== null) {
             if (ctx.data.length < def.minLength.value) {
               addIssueToContext(ctx, {
@@ -8818,6 +9229,7 @@
                 minimum: def.minLength.value,
                 type: "array",
                 inclusive: true,
+                exact: false,
                 message: def.minLength.message
               });
               status.dirty();
@@ -8830,19 +9242,20 @@
                 maximum: def.maxLength.value,
                 type: "array",
                 inclusive: true,
+                exact: false,
                 message: def.maxLength.message
               });
               status.dirty();
             }
           }
           if (ctx.common.async) {
-            return Promise.all(ctx.data.map((item, i3) => {
+            return Promise.all([...ctx.data].map((item, i3) => {
               return def.type._parseAsync(new ParseInputLazyPath(ctx, item, ctx.path, i3));
             })).then((result2) => {
               return ParseStatus.mergeArray(status, result2);
             });
           }
-          const result = ctx.data.map((item, i3) => {
+          const result = [...ctx.data].map((item, i3) => {
             return def.type._parseSync(new ParseInputLazyPath(ctx, item, ctx.path, i3));
           });
           return ParseStatus.mergeArray(status, result);
@@ -8863,7 +9276,10 @@
           });
         }
         length(len, message) {
-          return this.min(len, message).max(len, message);
+          return new _ZodArray({
+            ...this._def,
+            exactLength: { value: len, message: errorUtil.toString(message) }
+          });
         }
         nonempty(message) {
           return this.min(1, message);
@@ -8874,25 +9290,9 @@
           type: schema,
           minLength: null,
           maxLength: null,
+          exactLength: null,
           typeName: ZodFirstPartyTypeKind.ZodArray,
           ...processCreateParams(params)
-        });
-      };
-      (function(objectUtil2) {
-        objectUtil2.mergeShapes = (first, second) => {
-          return {
-            ...first,
-            ...second
-          };
-        };
-      })(objectUtil || (objectUtil = {}));
-      AugmentFactory = (def) => (augmentation) => {
-        return new ZodObject({
-          ...def,
-          shape: () => ({
-            ...def.shape(),
-            ...augmentation
-          })
         });
       };
       ZodObject = class _ZodObject extends ZodType {
@@ -8900,8 +9300,7 @@
           super(...arguments);
           this._cached = null;
           this.nonstrict = this.passthrough;
-          this.augment = AugmentFactory(this._def);
-          this.extend = AugmentFactory(this._def);
+          this.augment = this.extend;
         }
         _getCached() {
           if (this._cached !== null)
@@ -9031,8 +9430,31 @@
             unknownKeys: "passthrough"
           });
         }
-        setKey(key, schema) {
-          return this.augment({ [key]: schema });
+        // const AugmentFactory =
+        //   <Def extends ZodObjectDef>(def: Def) =>
+        //   <Augmentation extends ZodRawShape>(
+        //     augmentation: Augmentation
+        //   ): ZodObject<
+        //     extendShape<ReturnType<Def["shape"]>, Augmentation>,
+        //     Def["unknownKeys"],
+        //     Def["catchall"]
+        //   > => {
+        //     return new ZodObject({
+        //       ...def,
+        //       shape: () => ({
+        //         ...def.shape(),
+        //         ...augmentation,
+        //       }),
+        //     }) as any;
+        //   };
+        extend(augmentation) {
+          return new _ZodObject({
+            ...this._def,
+            shape: () => ({
+              ...this._def.shape(),
+              ...augmentation
+            })
+          });
         }
         /**
          * Prior to zod@1.0.12 there was a bug in the
@@ -9043,11 +9465,73 @@
           const merged = new _ZodObject({
             unknownKeys: merging._def.unknownKeys,
             catchall: merging._def.catchall,
-            shape: () => objectUtil.mergeShapes(this._def.shape(), merging._def.shape()),
+            shape: () => ({
+              ...this._def.shape(),
+              ...merging._def.shape()
+            }),
             typeName: ZodFirstPartyTypeKind.ZodObject
           });
           return merged;
         }
+        // merge<
+        //   Incoming extends AnyZodObject,
+        //   Augmentation extends Incoming["shape"],
+        //   NewOutput extends {
+        //     [k in keyof Augmentation | keyof Output]: k extends keyof Augmentation
+        //       ? Augmentation[k]["_output"]
+        //       : k extends keyof Output
+        //       ? Output[k]
+        //       : never;
+        //   },
+        //   NewInput extends {
+        //     [k in keyof Augmentation | keyof Input]: k extends keyof Augmentation
+        //       ? Augmentation[k]["_input"]
+        //       : k extends keyof Input
+        //       ? Input[k]
+        //       : never;
+        //   }
+        // >(
+        //   merging: Incoming
+        // ): ZodObject<
+        //   extendShape<T, ReturnType<Incoming["_def"]["shape"]>>,
+        //   Incoming["_def"]["unknownKeys"],
+        //   Incoming["_def"]["catchall"],
+        //   NewOutput,
+        //   NewInput
+        // > {
+        //   const merged: any = new ZodObject({
+        //     unknownKeys: merging._def.unknownKeys,
+        //     catchall: merging._def.catchall,
+        //     shape: () =>
+        //       objectUtil.mergeShapes(this._def.shape(), merging._def.shape()),
+        //     typeName: ZodFirstPartyTypeKind.ZodObject,
+        //   }) as any;
+        //   return merged;
+        // }
+        setKey(key, schema) {
+          return this.augment({ [key]: schema });
+        }
+        // merge<Incoming extends AnyZodObject>(
+        //   merging: Incoming
+        // ): //ZodObject<T & Incoming["_shape"], UnknownKeys, Catchall> = (merging) => {
+        // ZodObject<
+        //   extendShape<T, ReturnType<Incoming["_def"]["shape"]>>,
+        //   Incoming["_def"]["unknownKeys"],
+        //   Incoming["_def"]["catchall"]
+        // > {
+        //   // const mergedShape = objectUtil.mergeShapes(
+        //   //   this._def.shape(),
+        //   //   merging._def.shape()
+        //   // );
+        //   const merged: any = new ZodObject({
+        //     unknownKeys: merging._def.unknownKeys,
+        //     catchall: merging._def.catchall,
+        //     shape: () =>
+        //       objectUtil.mergeShapes(this._def.shape(), merging._def.shape()),
+        //     typeName: ZodFirstPartyTypeKind.ZodObject,
+        //   }) as any;
+        //   return merged;
+        // }
         catchall(index) {
           return new _ZodObject({
             ...this._def,
@@ -9056,9 +9540,10 @@
         }
         pick(mask) {
           const shape = {};
-          util.objectKeys(mask).map((key) => {
-            if (this.shape[key])
+          util.objectKeys(mask).forEach((key) => {
+            if (mask[key] && this.shape[key]) {
               shape[key] = this.shape[key];
+            }
           });
           return new _ZodObject({
             ...this._def,
@@ -9067,8 +9552,8 @@
         }
         omit(mask) {
           const shape = {};
-          util.objectKeys(this.shape).map((key) => {
-            if (util.objectKeys(mask).indexOf(key) === -1) {
+          util.objectKeys(this.shape).forEach((key) => {
+            if (!mask[key]) {
               shape[key] = this.shape[key];
             }
           });
@@ -9077,44 +9562,41 @@
             shape: () => shape
           });
         }
+        /**
+         * @deprecated
+         */
         deepPartial() {
           return deepPartialify(this);
         }
         partial(mask) {
           const newShape = {};
-          if (mask) {
-            util.objectKeys(this.shape).map((key) => {
-              if (util.objectKeys(mask).indexOf(key) === -1) {
-                newShape[key] = this.shape[key];
-              } else {
-                newShape[key] = this.shape[key].optional();
-              }
-            });
-            return new _ZodObject({
-              ...this._def,
-              shape: () => newShape
-            });
-          } else {
-            for (const key in this.shape) {
-              const fieldSchema = this.shape[key];
+          util.objectKeys(this.shape).forEach((key) => {
+            const fieldSchema = this.shape[key];
+            if (mask && !mask[key]) {
+              newShape[key] = fieldSchema;
+            } else {
               newShape[key] = fieldSchema.optional();
             }
-          }
+          });
           return new _ZodObject({
             ...this._def,
             shape: () => newShape
           });
         }
-        required() {
+        required(mask) {
           const newShape = {};
-          for (const key in this.shape) {
-            const fieldSchema = this.shape[key];
-            let newField = fieldSchema;
-            while (newField instanceof ZodOptional) {
-              newField = newField._def.innerType;
+          util.objectKeys(this.shape).forEach((key) => {
+            if (mask && !mask[key]) {
+              newShape[key] = this.shape[key];
+            } else {
+              const fieldSchema = this.shape[key];
+              let newField = fieldSchema;
+              while (newField instanceof ZodOptional) {
+                newField = newField._def.innerType;
+              }
+              newShape[key] = newField;
             }
-            newShape[key] = newField;
-          }
+          });
           return new _ZodObject({
             ...this._def,
             shape: () => newShape
@@ -9242,6 +9724,27 @@
           ...processCreateParams(params)
         });
       };
+      getDiscriminator = (type) => {
+        if (type instanceof ZodLazy) {
+          return getDiscriminator(type.schema);
+        } else if (type instanceof ZodEffects) {
+          return getDiscriminator(type.innerType());
+        } else if (type instanceof ZodLiteral) {
+          return [type.value];
+        } else if (type instanceof ZodEnum) {
+          return type.options;
+        } else if (type instanceof ZodNativeEnum) {
+          return Object.keys(type.enum);
+        } else if (type instanceof ZodDefault) {
+          return getDiscriminator(type._def.innerType);
+        } else if (type instanceof ZodUndefined) {
+          return [void 0];
+        } else if (type instanceof ZodNull) {
+          return [null];
+        } else {
+          return null;
+        }
+      };
       ZodDiscriminatedUnion = class _ZodDiscriminatedUnion extends ZodType {
         _parse(input) {
           const { ctx } = this._processInputParams(input);
@@ -9255,11 +9758,11 @@
           }
           const discriminator = this.discriminator;
           const discriminatorValue = ctx.data[discriminator];
-          const option = this.options.get(discriminatorValue);
+          const option = this.optionsMap.get(discriminatorValue);
           if (!option) {
             addIssueToContext(ctx, {
               code: ZodIssueCode.invalid_union_discriminator,
-              options: this.validDiscriminatorValues,
+              options: Array.from(this.optionsMap.keys()),
               path: [discriminator]
             });
             return INVALID;
@@ -9281,11 +9784,11 @@
         get discriminator() {
           return this._def.discriminator;
         }
-        get validDiscriminatorValues() {
-          return Array.from(this.options.keys());
-        }
         get options() {
           return this._def.options;
+        }
+        get optionsMap() {
+          return this._def.optionsMap;
         }
         /**
          * The constructor of the discriminated union schema. Its behaviour is very similar to that of the normal z.union() constructor.
@@ -9295,23 +9798,25 @@
          * @param types an array of object schemas
          * @param params
          */
-        static create(discriminator, types, params) {
-          const options = /* @__PURE__ */ new Map();
-          try {
-            types.forEach((type) => {
-              const discriminatorValue = type.shape[discriminator].value;
-              options.set(discriminatorValue, type);
-            });
-          } catch (e3) {
-            throw new Error("The discriminator value could not be extracted from all the provided schemas");
-          }
-          if (options.size !== types.length) {
-            throw new Error("Some of the discriminator values are not unique");
+        static create(discriminator, options, params) {
+          const optionsMap = /* @__PURE__ */ new Map();
+          for (const type of options) {
+            const discriminatorValues = getDiscriminator(type.shape[discriminator]);
+            if (!discriminatorValues) {
+              throw new Error(`A discriminator value for key \`${discriminator}\` could not be extracted from all schema options`);
+            }
+            for (const value of discriminatorValues) {
+              if (optionsMap.has(value)) {
+                throw new Error(`Discriminator property ${String(discriminator)} has duplicate value ${String(value)}`);
+              }
+              optionsMap.set(value, type);
+            }
           }
           return new _ZodDiscriminatedUnion({
             typeName: ZodFirstPartyTypeKind.ZodDiscriminatedUnion,
             discriminator,
             options,
+            optionsMap,
             ...processCreateParams(params)
           });
         }
@@ -9385,6 +9890,7 @@
               code: ZodIssueCode.too_small,
               minimum: this._def.items.length,
               inclusive: true,
+              exact: false,
               type: "array"
             });
             return INVALID;
@@ -9395,11 +9901,12 @@
               code: ZodIssueCode.too_big,
               maximum: this._def.items.length,
               inclusive: true,
+              exact: false,
               type: "array"
             });
             status.dirty();
           }
-          const items = ctx.data.map((item, itemIndex) => {
+          const items = [...ctx.data].map((item, itemIndex) => {
             const schema = this._def.items[itemIndex] || this._def.rest;
             if (!schema)
               return null;
@@ -9487,6 +9994,12 @@
         }
       };
       ZodMap = class extends ZodType {
+        get keySchema() {
+          return this._def.keyType;
+        }
+        get valueSchema() {
+          return this._def.valueType;
+        }
         _parse(input) {
           const { status, ctx } = this._processInputParams(input);
           if (ctx.parsedType !== ZodParsedType.map) {
@@ -9565,6 +10078,7 @@
                 minimum: def.minSize.value,
                 type: "set",
                 inclusive: true,
+                exact: false,
                 message: def.minSize.message
               });
               status.dirty();
@@ -9577,6 +10091,7 @@
                 maximum: def.maxSize.value,
                 type: "set",
                 inclusive: true,
+                exact: false,
                 message: def.maxSize.message
               });
               status.dirty();
@@ -9679,27 +10194,29 @@
           const params = { errorMap: ctx.common.contextualErrorMap };
           const fn = ctx.data;
           if (this._def.returns instanceof ZodPromise) {
-            return OK(async (...args) => {
+            const me = this;
+            return OK(async function(...args) {
               const error2 = new ZodError([]);
-              const parsedArgs = await this._def.args.parseAsync(args, params).catch((e3) => {
+              const parsedArgs = await me._def.args.parseAsync(args, params).catch((e3) => {
                 error2.addIssue(makeArgsIssue(args, e3));
                 throw error2;
               });
-              const result = await fn(...parsedArgs);
-              const parsedReturns = await this._def.returns._def.type.parseAsync(result, params).catch((e3) => {
+              const result = await Reflect.apply(fn, this, parsedArgs);
+              const parsedReturns = await me._def.returns._def.type.parseAsync(result, params).catch((e3) => {
                 error2.addIssue(makeReturnsIssue(result, e3));
                 throw error2;
               });
               return parsedReturns;
             });
           } else {
-            return OK((...args) => {
-              const parsedArgs = this._def.args.safeParse(args, params);
+            const me = this;
+            return OK(function(...args) {
+              const parsedArgs = me._def.args.safeParse(args, params);
               if (!parsedArgs.success) {
                 throw new ZodError([makeArgsIssue(args, parsedArgs.error)]);
               }
-              const result = fn(...parsedArgs.data);
-              const parsedReturns = this._def.returns.safeParse(result, params);
+              const result = Reflect.apply(fn, this, parsedArgs.data);
+              const parsedReturns = me._def.returns.safeParse(result, params);
               if (!parsedReturns.success) {
                 throw new ZodError([makeReturnsIssue(result, parsedReturns.error)]);
               }
@@ -9764,6 +10281,7 @@
           if (input.data !== this._def.value) {
             const ctx = this._getOrReturnCtx(input);
             addIssueToContext(ctx, {
+              received: ctx.data,
               code: ZodIssueCode.invalid_literal,
               expected: this._def.value
             });
@@ -9782,7 +10300,7 @@
           ...processCreateParams(params)
         });
       };
-      ZodEnum = class extends ZodType {
+      ZodEnum = class _ZodEnum extends ZodType {
         _parse(input) {
           if (typeof input.data !== "string") {
             const ctx = this._getOrReturnCtx(input);
@@ -9830,6 +10348,12 @@
           }
           return enumValues;
         }
+        extract(values) {
+          return _ZodEnum.create(values);
+        }
+        exclude(values) {
+          return _ZodEnum.create(this.options.filter((opt) => !values.includes(opt)));
+        }
       };
       ZodEnum.create = createZodEnum;
       ZodNativeEnum = class extends ZodType {
@@ -9868,6 +10392,9 @@
         });
       };
       ZodPromise = class extends ZodType {
+        unwrap() {
+          return this._def.type;
+        }
         _parse(input) {
           const { ctx } = this._processInputParams(input);
           if (ctx.parsedType !== ZodParsedType.promise && ctx.common.async === false) {
@@ -9898,11 +10425,34 @@
         innerType() {
           return this._def.schema;
         }
+        sourceType() {
+          return this._def.schema._def.typeName === ZodFirstPartyTypeKind.ZodEffects ? this._def.schema.sourceType() : this._def.schema;
+        }
         _parse(input) {
           const { status, ctx } = this._processInputParams(input);
           const effect = this._def.effect || null;
+          const checkCtx = {
+            addIssue: (arg) => {
+              addIssueToContext(ctx, arg);
+              if (arg.fatal) {
+                status.abort();
+              } else {
+                status.dirty();
+              }
+            },
+            get path() {
+              return ctx.path;
+            }
+          };
+          checkCtx.addIssue = checkCtx.addIssue.bind(checkCtx);
           if (effect.type === "preprocess") {
-            const processed = effect.transform(ctx.data);
+            const processed = effect.transform(ctx.data, checkCtx);
+            if (ctx.common.issues.length) {
+              return {
+                status: "dirty",
+                value: ctx.data
+              };
+            }
             if (ctx.common.async) {
               return Promise.resolve(processed).then((processed2) => {
                 return this._def.schema._parseAsync({
@@ -9919,20 +10469,6 @@
               });
             }
           }
-          const checkCtx = {
-            addIssue: (arg) => {
-              addIssueToContext(ctx, arg);
-              if (arg.fatal) {
-                status.abort();
-              } else {
-                status.dirty();
-              }
-            },
-            get path() {
-              return ctx.path;
-            }
-          };
-          checkCtx.addIssue = checkCtx.addIssue.bind(checkCtx);
           if (effect.type === "refinement") {
             const executeRefinement = (acc) => {
               const result = effect.refinement(acc, checkCtx);
@@ -10065,9 +10601,63 @@
         }
       };
       ZodDefault.create = (type, params) => {
-        return new ZodOptional({
+        return new ZodDefault({
           innerType: type,
-          typeName: ZodFirstPartyTypeKind.ZodOptional,
+          typeName: ZodFirstPartyTypeKind.ZodDefault,
+          defaultValue: typeof params.default === "function" ? params.default : () => params.default,
+          ...processCreateParams(params)
+        });
+      };
+      ZodCatch = class extends ZodType {
+        _parse(input) {
+          const { ctx } = this._processInputParams(input);
+          const newCtx = {
+            ...ctx,
+            common: {
+              ...ctx.common,
+              issues: []
+            }
+          };
+          const result = this._def.innerType._parse({
+            data: newCtx.data,
+            path: newCtx.path,
+            parent: {
+              ...newCtx
+            }
+          });
+          if (isAsync(result)) {
+            return result.then((result2) => {
+              return {
+                status: "valid",
+                value: result2.status === "valid" ? result2.value : this._def.catchValue({
+                  get error() {
+                    return new ZodError(newCtx.common.issues);
+                  },
+                  input: newCtx.data
+                })
+              };
+            });
+          } else {
+            return {
+              status: "valid",
+              value: result.status === "valid" ? result.value : this._def.catchValue({
+                get error() {
+                  return new ZodError(newCtx.common.issues);
+                },
+                input: newCtx.data
+              })
+            };
+          }
+        }
+        removeCatch() {
+          return this._def.innerType;
+        }
+      };
+      ZodCatch.create = (type, params) => {
+        return new ZodCatch({
+          innerType: type,
+          typeName: ZodFirstPartyTypeKind.ZodCatch,
+          catchValue: typeof params.catch === "function" ? params.catch : () => params.catch,
           ...processCreateParams(params)
         });
       };
@@ -10107,13 +10697,86 @@
           return this._def.type;
         }
       };
+      ZodPipeline = class _ZodPipeline extends ZodType {
+        _parse(input) {
+          const { status, ctx } = this._processInputParams(input);
+          if (ctx.common.async) {
+            const handleAsync = async () => {
+              const inResult = await this._def.in._parseAsync({
+                data: ctx.data,
+                path: ctx.path,
+                parent: ctx
+              });
+              if (inResult.status === "aborted")
+                return INVALID;
+              if (inResult.status === "dirty") {
+                status.dirty();
+                return DIRTY(inResult.value);
+              } else {
+                return this._def.out._parseAsync({
+                  data: inResult.value,
+                  path: ctx.path,
+                  parent: ctx
+                });
+              }
+            };
+            return handleAsync();
+          } else {
+            const inResult = this._def.in._parseSync({
+              data: ctx.data,
+              path: ctx.path,
+              parent: ctx
+            });
+            if (inResult.status === "aborted")
+              return INVALID;
+            if (inResult.status === "dirty") {
+              status.dirty();
+              return {
+                status: "dirty",
+                value: inResult.value
+              };
+            } else {
+              return this._def.out._parseSync({
+                data: inResult.value,
+                path: ctx.path,
+                parent: ctx
+              });
+            }
+          }
+        }
+        static create(a3, b3) {
+          return new _ZodPipeline({
+            in: a3,
+            out: b3,
+            typeName: ZodFirstPartyTypeKind.ZodPipeline
+          });
+        }
+      };
+      ZodReadonly = class extends ZodType {
+        _parse(input) {
+          const result = this._def.innerType._parse(input);
+          if (isValid(result)) {
+            result.value = Object.freeze(result.value);
+          }
+          return result;
+        }
+      };
+      ZodReadonly.create = (type, params) => {
+        return new ZodReadonly({
+          innerType: type,
+          typeName: ZodFirstPartyTypeKind.ZodReadonly,
+          ...processCreateParams(params)
+        });
+      };
       custom = (check, params = {}, fatal) => {
         if (check)
           return ZodAny.create().superRefine((data, ctx) => {
+            var _a2, _b;
             if (!check(data)) {
-              const p3 = typeof params === "function" ? params(data) : params;
+              const p3 = typeof params === "function" ? params(data) : typeof params === "string" ? { message: params } : params;
+              const _fatal = (_b = (_a2 = p3.fatal) !== null && _a2 !== void 0 ? _a2 : fatal) !== null && _b !== void 0 ? _b : true;
               const p22 = typeof p3 === "string" ? { message: p3 } : p3;
-              ctx.addIssue({ code: "custom", ...p22, fatal });
+              ctx.addIssue({ code: "custom", ...p22, fatal: _fatal });
             }
           });
         return ZodAny.create();
@@ -10128,6 +10791,7 @@
         ZodFirstPartyTypeKind2["ZodBigInt"] = "ZodBigInt";
         ZodFirstPartyTypeKind2["ZodBoolean"] = "ZodBoolean";
         ZodFirstPartyTypeKind2["ZodDate"] = "ZodDate";
+        ZodFirstPartyTypeKind2["ZodSymbol"] = "ZodSymbol";
         ZodFirstPartyTypeKind2["ZodUndefined"] = "ZodUndefined";
         ZodFirstPartyTypeKind2["ZodNull"] = "ZodNull";
         ZodFirstPartyTypeKind2["ZodAny"] = "ZodAny";
@@ -10152,18 +10816,22 @@
         ZodFirstPartyTypeKind2["ZodOptional"] = "ZodOptional";
         ZodFirstPartyTypeKind2["ZodNullable"] = "ZodNullable";
         ZodFirstPartyTypeKind2["ZodDefault"] = "ZodDefault";
+        ZodFirstPartyTypeKind2["ZodCatch"] = "ZodCatch";
         ZodFirstPartyTypeKind2["ZodPromise"] = "ZodPromise";
         ZodFirstPartyTypeKind2["ZodBranded"] = "ZodBranded";
+        ZodFirstPartyTypeKind2["ZodPipeline"] = "ZodPipeline";
+        ZodFirstPartyTypeKind2["ZodReadonly"] = "ZodReadonly";
       })(ZodFirstPartyTypeKind || (ZodFirstPartyTypeKind = {}));
       instanceOfType = (cls, params = {
         message: `Input not instance of ${cls.name}`
-      }) => custom((data) => data instanceof cls, params, true);
+      }) => custom((data) => data instanceof cls, params);
       stringType = ZodString.create;
       numberType = ZodNumber.create;
       nanType = ZodNaN.create;
       bigIntType = ZodBigInt.create;
       booleanType = ZodBoolean.create;
       dateType = ZodDate.create;
+      symbolType = ZodSymbol.create;
       undefinedType = ZodUndefined.create;
       nullType = ZodNull.create;
       anyType = ZodAny.create;
@@ -10190,14 +10858,23 @@
       optionalType = ZodOptional.create;
       nullableType = ZodNullable.create;
       preprocessType = ZodEffects.createWithPreprocess;
+      pipelineType = ZodPipeline.create;
       ostring = () => stringType().optional();
       onumber = () => numberType().optional();
       oboolean = () => booleanType().optional();
+      coerce = {
+        string: (arg) => ZodString.create({ ...arg, coerce: true }),
+        number: (arg) => ZodNumber.create({ ...arg, coerce: true }),
+        boolean: (arg) => ZodBoolean.create({
+          ...arg,
+          coerce: true
+        }),
+        bigint: (arg) => ZodBigInt.create({ ...arg, coerce: true }),
+        date: (arg) => ZodDate.create({ ...arg, coerce: true })
+      };
       NEVER = INVALID;
-      mod = /* @__PURE__ */ Object.freeze({
+      z = /* @__PURE__ */ Object.freeze({
         __proto__: null,
-        getParsedType,
-        ZodParsedType,
         defaultErrorMap: errorMap,
         setErrorMap,
         getErrorMap,
@@ -10212,12 +10889,21 @@
         isDirty,
         isValid,
         isAsync,
+        get util() {
+          return util;
+        },
+        get objectUtil() {
+          return objectUtil;
+        },
+        ZodParsedType,
+        getParsedType,
         ZodType,
         ZodString,
         ZodNumber,
         ZodBigInt,
         ZodBoolean,
         ZodDate,
+        ZodSymbol,
         ZodUndefined,
         ZodNull,
         ZodAny,
@@ -10225,9 +10911,6 @@
         ZodNever,
         ZodVoid,
         ZodArray,
-        get objectUtil() {
-          return objectUtil;
-        },
         ZodObject,
         ZodUnion,
         ZodDiscriminatedUnion,
@@ -10247,9 +10930,12 @@
         ZodOptional,
         ZodNullable,
         ZodDefault,
+        ZodCatch,
         ZodNaN,
         BRAND,
         ZodBranded,
+        ZodPipeline,
+        ZodReadonly,
         custom,
         Schema: ZodType,
         ZodSchema: ZodType,
@@ -10257,6 +10943,7 @@
         get ZodFirstPartyTypeKind() {
           return ZodFirstPartyTypeKind;
         },
+        coerce,
         any: anyType,
         array: arrayType,
         bigint: bigIntType,
@@ -10282,12 +10969,14 @@
         onumber,
         optional: optionalType,
         ostring,
+        pipeline: pipelineType,
         preprocess: preprocessType,
         promise: promiseType,
         record: recordType,
         set: setType,
         strictObject: strictObjectType,
         string: stringType,
+        symbol: symbolType,
         transformer: effectsType,
         tuple: tupleType,
         "undefined": undefinedType,
@@ -10356,162 +11045,162 @@
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
       init_lib();
-      protectionsDisabledReasonSchema = mod.literal("protectionDisabled");
-      ownedByFirstPartyReasonSchema = mod.literal("ownedByFirstParty");
-      ruleExceptionReasonSchema = mod.literal("ruleException");
-      adClickAttributionReasonSchema = mod.literal("adClickAttribution");
-      otherThirdPartyRequestReasonSchema = mod.literal("otherThirdPartyRequest");
-      stateBlockedSchema = mod.object({
-        blocked: mod.record(mod.unknown())
+      protectionsDisabledReasonSchema = z.literal("protectionDisabled");
+      ownedByFirstPartyReasonSchema = z.literal("ownedByFirstParty");
+      ruleExceptionReasonSchema = z.literal("ruleException");
+      adClickAttributionReasonSchema = z.literal("adClickAttribution");
+      otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
+      stateBlockedSchema = z.object({
+        blocked: z.record(z.unknown())
       });
-      stateAllowedSchema = mod.object({
-        allowed: mod.object({
-          reason: mod.union([protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema])
+      stateAllowedSchema = z.object({
+        allowed: z.object({
+          reason: z.union([protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema])
         })
       });
-      extensionMessageGetPrivacyDashboardDataSchema = mod.object({
-        messageType: mod.literal("getPrivacyDashboardData"),
-        options: mod.object({
-          tabId: mod.number().optional().nullable()
+      extensionMessageGetPrivacyDashboardDataSchema = z.object({
+        messageType: z.literal("getPrivacyDashboardData"),
+        options: z.object({
+          tabId: z.number().optional().nullable()
         })
       });
-      emailProtectionUserDataSchema = mod.object({
-        nextAlias: mod.string()
+      emailProtectionUserDataSchema = z.object({
+        nextAlias: z.string()
       });
-      protectionsStatusSchema = mod.object({
-        unprotectedTemporary: mod.boolean(),
-        enabledFeatures: mod.array(mod.string()),
-        allowlisted: mod.boolean(),
-        denylisted: mod.boolean()
+      protectionsStatusSchema = z.object({
+        unprotectedTemporary: z.boolean(),
+        enabledFeatures: z.array(z.string()),
+        allowlisted: z.boolean(),
+        denylisted: z.boolean()
       });
-      localeSettingsSchema = mod.object({
-        locale: mod.string()
+      localeSettingsSchema = z.object({
+        locale: z.string()
       });
-      parentEntitySchema = mod.object({
-        displayName: mod.string(),
-        prevalence: mod.number()
+      parentEntitySchema = z.object({
+        displayName: z.string(),
+        prevalence: z.number()
       });
-      fireButtonSchema = mod.object({
-        enabled: mod.boolean()
+      fireButtonSchema = z.object({
+        enabled: z.boolean()
       });
-      searchSchema = mod.object({
-        term: mod.string()
+      searchSchema = z.object({
+        term: z.string()
       });
-      breakageReportRequestSchema = mod.object({
-        category: mod.string().optional(),
-        description: mod.string().optional()
+      breakageReportRequestSchema = z.object({
+        category: z.string().optional(),
+        description: z.string().optional()
       });
-      setListOptionsSchema = mod.object({
-        lists: mod.array(mod.object({
-          list: mod.union([mod.literal("allowlisted"), mod.literal("denylisted")]),
-          domain: mod.string(),
-          value: mod.boolean()
+      setListOptionsSchema = z.object({
+        lists: z.array(z.object({
+          list: z.union([z.literal("allowlisted"), z.literal("denylisted")]),
+          domain: z.string(),
+          value: z.boolean()
         }))
       });
-      windowsIncomingVisibilitySchema = mod.object({
-        Feature: mod.literal("PrivacyDashboard"),
-        Name: mod.literal("VisibilityChanged"),
-        Data: mod.object({
-          isVisible: mod.boolean()
+      windowsIncomingVisibilitySchema = z.object({
+        Feature: z.literal("PrivacyDashboard"),
+        Name: z.literal("VisibilityChanged"),
+        Data: z.object({
+          isVisible: z.boolean()
         })
       });
-      cookiePromptManagementStatusSchema = mod.object({
-        consentManaged: mod.boolean(),
-        cosmetic: mod.boolean().optional(),
-        optoutFailed: mod.boolean().optional(),
-        selftestFailed: mod.boolean().optional(),
-        configurable: mod.boolean().optional()
+      cookiePromptManagementStatusSchema = z.object({
+        consentManaged: z.boolean(),
+        cosmetic: z.boolean().optional(),
+        optoutFailed: z.boolean().optional(),
+        selftestFailed: z.boolean().optional(),
+        configurable: z.boolean().optional()
       });
-      refreshAliasResponseSchema = mod.object({
-        personalAddress: mod.string(),
-        privateAddress: mod.string()
+      refreshAliasResponseSchema = z.object({
+        personalAddress: z.string(),
+        privateAddress: z.string()
       });
-      extensionMessageSetListOptionsSchema = mod.object({
-        messageType: mod.literal("setLists"),
+      extensionMessageSetListOptionsSchema = z.object({
+        messageType: z.literal("setLists"),
         options: setListOptionsSchema
       });
-      fireOptionSchema = mod.record(mod.unknown()).and(mod.object({
-        name: mod.union([mod.literal("CurrentSite"), mod.literal("LastHour"), mod.literal("Last24Hour"), mod.literal("Last7days"), mod.literal("Last4Weeks"), mod.literal("AllTime")]),
-        selected: mod.boolean().optional(),
-        options: mod.object({
-          since: mod.number().optional(),
-          origins: mod.array(mod.string()).optional()
+      fireOptionSchema = z.record(z.unknown()).and(z.object({
+        name: z.union([z.literal("CurrentSite"), z.literal("LastHour"), z.literal("Last24Hour"), z.literal("Last7days"), z.literal("Last4Weeks"), z.literal("AllTime")]),
+        selected: z.boolean().optional(),
+        options: z.object({
+          since: z.number().optional(),
+          origins: z.array(z.string()).optional()
         }),
-        descriptionStats: mod.object({
-          clearHistory: mod.boolean(),
-          site: mod.string().optional(),
-          duration: mod.union([mod.literal("hour"), mod.literal("day"), mod.literal("week"), mod.literal("month"), mod.literal("all")]),
-          openTabs: mod.number(),
-          cookies: mod.number(),
-          pinnedTabs: mod.number()
+        descriptionStats: z.object({
+          clearHistory: z.boolean(),
+          site: z.string().optional(),
+          duration: z.union([z.literal("hour"), z.literal("day"), z.literal("week"), z.literal("month"), z.literal("all")]),
+          openTabs: z.number(),
+          cookies: z.number(),
+          pinnedTabs: z.number()
         })
       }));
-      primaryScreenSchema = mod.object({
-        layout: mod.union([mod.literal("default"), mod.literal("highlighted-protections-toggle")])
+      primaryScreenSchema = z.object({
+        layout: z.union([z.literal("default"), z.literal("highlighted-protections-toggle")])
       });
-      eventOriginSchema = mod.object({
-        screen: mod.union([mod.literal("primaryScreen"), mod.literal("breakageForm")])
+      eventOriginSchema = z.object({
+        screen: z.union([z.literal("primaryScreen"), z.literal("breakageForm")])
       });
-      detectedRequestSchema = mod.object({
-        url: mod.string(),
-        eTLDplus1: mod.string().optional(),
-        pageUrl: mod.string(),
-        state: mod.union([stateBlockedSchema, stateAllowedSchema]),
-        entityName: mod.string().optional(),
-        category: mod.string().optional(),
-        prevalence: mod.number().optional(),
-        ownerName: mod.string().optional()
+      detectedRequestSchema = z.object({
+        url: z.string(),
+        eTLDplus1: z.string().optional(),
+        pageUrl: z.string(),
+        state: z.union([stateBlockedSchema, stateAllowedSchema]),
+        entityName: z.string().optional(),
+        category: z.string().optional(),
+        prevalence: z.number().optional(),
+        ownerName: z.string().optional()
       });
-      tabSchema = mod.object({
-        id: mod.number().optional(),
-        url: mod.string(),
-        upgradedHttps: mod.boolean(),
+      tabSchema = z.object({
+        id: z.number().optional(),
+        url: z.string(),
+        upgradedHttps: z.boolean(),
         protections: protectionsStatusSchema,
         localeSettings: localeSettingsSchema.optional(),
         parentEntity: parentEntitySchema.optional(),
-        specialDomainName: mod.string().optional()
+        specialDomainName: z.string().optional()
       });
-      breakageReportSchema = mod.object({
+      breakageReportSchema = z.object({
         request: breakageReportRequestSchema.optional(),
-        response: mod.record(mod.unknown()).optional()
+        response: z.record(z.unknown()).optional()
       });
-      fireButtonDataSchema = mod.object({
-        options: mod.array(fireOptionSchema)
+      fireButtonDataSchema = z.object({
+        options: z.array(fireOptionSchema)
       });
-      remoteFeatureSettingsSchema = mod.object({
+      remoteFeatureSettingsSchema = z.object({
         primaryScreen: primaryScreenSchema.optional()
       });
-      setProtectionParamsSchema = mod.object({
-        isProtected: mod.boolean(),
+      setProtectionParamsSchema = z.object({
+        isProtected: z.boolean(),
         eventOrigin: eventOriginSchema
       });
-      requestDataSchema = mod.object({
-        requests: mod.array(detectedRequestSchema),
-        installedSurrogates: mod.array(mod.string()).optional()
+      requestDataSchema = z.object({
+        requests: z.array(detectedRequestSchema),
+        installedSurrogates: z.array(z.string()).optional()
       });
-      getPrivacyDashboardDataSchema = mod.object({
+      getPrivacyDashboardDataSchema = z.object({
         requestData: requestDataSchema,
         emailProtectionUserData: emailProtectionUserDataSchema.optional(),
         tab: tabSchema,
         fireButton: fireButtonSchema.optional()
       });
-      windowsViewModelSchema = mod.object({
+      windowsViewModelSchema = z.object({
         protections: protectionsStatusSchema,
         rawRequestData: requestDataSchema,
-        tabUrl: mod.string(),
-        upgradedHttps: mod.boolean(),
+        tabUrl: z.string(),
+        upgradedHttps: z.boolean(),
         parentEntity: parentEntitySchema.optional(),
-        permissions: mod.array(mod.unknown()).optional(),
-        certificates: mod.array(mod.unknown()).optional(),
+        permissions: z.array(z.unknown()).optional(),
+        certificates: z.array(z.unknown()).optional(),
         cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
       });
-      windowsIncomingViewModelSchema = mod.object({
-        Feature: mod.literal("PrivacyDashboard"),
-        Name: mod.literal("ViewModelUpdated"),
+      windowsIncomingViewModelSchema = z.object({
+        Feature: z.literal("PrivacyDashboard"),
+        Name: z.literal("ViewModelUpdated"),
         Data: windowsViewModelSchema
       });
-      windowsIncomingMessageSchema = mod.union([windowsIncomingVisibilitySchema, windowsIncomingViewModelSchema]);
-      apiSchema = mod.object({
+      windowsIncomingMessageSchema = z.union([windowsIncomingVisibilitySchema, windowsIncomingViewModelSchema]);
+      apiSchema = z.object({
         "request-data": requestDataSchema,
         "extension-message-get-privacy-dashboard-data": extensionMessageGetPrivacyDashboardDataSchema,
         "get-privacy-dashboard-data": getPrivacyDashboardDataSchema.optional(),
@@ -11224,17 +11913,17 @@
     if (forceRefresh === void 0) {
       forceRefresh = false;
     }
-    var CSS2 = windowObj.CSS;
+    var CSS = windowObj.CSS;
     var supportsCssVars = supportsCssVariables_;
     if (typeof supportsCssVariables_ === "boolean" && !forceRefresh) {
       return supportsCssVariables_;
     }
-    var supportsFunctionPresent = CSS2 && typeof CSS2.supports === "function";
+    var supportsFunctionPresent = CSS && typeof CSS.supports === "function";
     if (!supportsFunctionPresent) {
       return false;
     }
-    var explicitlySupportsCssVars = CSS2.supports("--css-vars", "yes");
-    var weAreFeatureDetectingSafari10plus = CSS2.supports("(--css-vars: yes)") && CSS2.supports("color", "#00000000");
+    var explicitlySupportsCssVars = CSS.supports("--css-vars", "yes");
+    var weAreFeatureDetectingSafari10plus = CSS.supports("(--css-vars: yes)") && CSS.supports("color", "#00000000");
     supportsCssVars = explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus;
     if (!forceRefresh) {
       supportsCssVariables_ = supportsCssVars;
@@ -12988,7 +13677,7 @@
           getBackgroundTabDataPromises3.push(resolve);
         });
       };
-      eventShape = mod.discriminatedUnion("Name", [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema]);
+      eventShape = z.discriminatedUnion("Name", [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema]);
     }
   });
 
@@ -13205,8 +13894,8 @@
          */
         refreshAlias: function() {
           return this.fetch(new RefreshEmailAliasMessage()).then((resp) => {
-            const response = mod.object({
-              privateAddress: mod.string().optional()
+            const response = z.object({
+              privateAddress: z.string().optional()
             });
             const parsed = response.safeParse(resp);
             if (!parsed.success) {
@@ -21992,13 +22681,13 @@
   function x() {
     var n2, l3, u3, t4, o3, r3, e3, c3, s3;
     for (i.sort(f); n2 = i.shift(); )
-      n2.__d && (l3 = i.length, t4 = void 0, o3 = void 0, r3 = void 0, c3 = (e3 = (u3 = n2).__v).__e, (s3 = u3.__P) && (t4 = [], o3 = [], (r3 = h({}, e3)).__v = e3.__v + 1, z(s3, e3, r3, u3.__n, void 0 !== s3.ownerSVGElement, null != e3.__h ? [c3] : null, t4, null == c3 ? g(e3) : c3, e3.__h, o3), L(t4, e3, o3), e3.__e != c3 && m(e3)), i.length > l3 && i.sort(f));
+      n2.__d && (l3 = i.length, t4 = void 0, o3 = void 0, r3 = void 0, c3 = (e3 = (u3 = n2).__v).__e, (s3 = u3.__P) && (t4 = [], o3 = [], (r3 = h({}, e3)).__v = e3.__v + 1, z2(s3, e3, r3, u3.__n, void 0 !== s3.ownerSVGElement, null != e3.__h ? [c3] : null, t4, null == c3 ? g(e3) : c3, e3.__h, o3), L(t4, e3, o3), e3.__e != c3 && m(e3)), i.length > l3 && i.sort(f));
     x.__r = 0;
   }
   function P(n2, l3, u3, t4, i3, o3, r3, f3, e3, a3, h3) {
     var p3, y3, _24, b3, m3, w3, x2, P2, C, D2 = 0, H2 = t4 && t4.__k || s, I2 = H2.length, T2 = I2, j3 = l3.length;
     for (u3.__k = [], p3 = 0; p3 < j3; p3++)
-      null != (b3 = u3.__k[p3] = null == (b3 = l3[p3]) || "boolean" == typeof b3 || "function" == typeof b3 ? null : "string" == typeof b3 || "number" == typeof b3 || "bigint" == typeof b3 ? d(null, b3, null, null, b3) : v(b3) ? d(k, { children: b3 }, null, null, null) : b3.__b > 0 ? d(b3.type, b3.props, b3.key, b3.ref ? b3.ref : null, b3.__v) : b3) ? (b3.__ = u3, b3.__b = u3.__b + 1, -1 === (P2 = A(b3, H2, x2 = p3 + D2, T2)) ? _24 = c : (_24 = H2[P2] || c, H2[P2] = void 0, T2--), z(n2, b3, _24, i3, o3, r3, f3, e3, a3, h3), m3 = b3.__e, (y3 = b3.ref) && _24.ref != y3 && (_24.ref && N(_24.ref, null, b3), h3.push(y3, b3.__c || m3, b3)), null != m3 && (null == w3 && (w3 = m3), (C = _24 === c || null === _24.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j3 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p3 + D2, "function" != typeof b3.type || P2 === x2 && _24.__k !== b3.__k ? "function" == typeof b3.type || P2 === x2 && !C ? void 0 !== b3.__d ? (e3 = b3.__d, b3.__d = void 0) : e3 = m3.nextSibling : e3 = S(n2, m3, e3) : e3 = $10(b3, e3, n2), "function" == typeof u3.type && (u3.__d = e3))) : (_24 = H2[p3]) && null == _24.key && _24.__e && (_24.__e == e3 && (_24.__ = t4, e3 = g(_24)), O(_24, _24, false), H2[p3] = null);
+      null != (b3 = u3.__k[p3] = null == (b3 = l3[p3]) || "boolean" == typeof b3 || "function" == typeof b3 ? null : "string" == typeof b3 || "number" == typeof b3 || "bigint" == typeof b3 ? d(null, b3, null, null, b3) : v(b3) ? d(k, { children: b3 }, null, null, null) : b3.__b > 0 ? d(b3.type, b3.props, b3.key, b3.ref ? b3.ref : null, b3.__v) : b3) ? (b3.__ = u3, b3.__b = u3.__b + 1, -1 === (P2 = A(b3, H2, x2 = p3 + D2, T2)) ? _24 = c : (_24 = H2[P2] || c, H2[P2] = void 0, T2--), z2(n2, b3, _24, i3, o3, r3, f3, e3, a3, h3), m3 = b3.__e, (y3 = b3.ref) && _24.ref != y3 && (_24.ref && N(_24.ref, null, b3), h3.push(y3, b3.__c || m3, b3)), null != m3 && (null == w3 && (w3 = m3), (C = _24 === c || null === _24.__v) ? -1 == P2 && D2-- : P2 !== x2 && (P2 === x2 + 1 ? D2++ : P2 > x2 ? T2 > j3 - x2 ? D2 += P2 - x2 : D2-- : D2 = P2 < x2 && P2 == x2 - 1 ? P2 - x2 : 0), x2 = p3 + D2, "function" != typeof b3.type || P2 === x2 && _24.__k !== b3.__k ? "function" == typeof b3.type || P2 === x2 && !C ? void 0 !== b3.__d ? (e3 = b3.__d, b3.__d = void 0) : e3 = m3.nextSibling : e3 = S(n2, m3, e3) : e3 = $10(b3, e3, n2), "function" == typeof u3.type && (u3.__d = e3))) : (_24 = H2[p3]) && null == _24.key && _24.__e && (_24.__e == e3 && (_24.__ = t4, e3 = g(_24)), O(_24, _24, false), H2[p3] = null);
     for (u3.__e = w3, p3 = I2; p3--; )
       null != H2[p3] && ("function" == typeof u3.type && null != H2[p3].__e && H2[p3].__e == u3.__d && (u3.__d = H2[p3].__e.nextSibling), O(H2[p3], H2[p3]));
   }
@@ -22079,7 +22768,7 @@
   function j(n2) {
     return this.l[n2.type + true](l.event ? l.event(n2) : n2);
   }
-  function z(n2, u3, t4, i3, o3, r3, f3, e3, c3, s3) {
+  function z2(n2, u3, t4, i3, o3, r3, f3, e3, c3, s3) {
     var a3, p3, y3, d3, _24, g3, m3, w3, x2, $25, C, S2, A2, D2, H2, I2 = u3.type;
     if (void 0 !== u3.constructor)
       return null;
@@ -22191,7 +22880,7 @@
   }
   function B(u3, t4, i3) {
     var o3, r3, f3, e3;
-    l.__ && l.__(u3, t4), r3 = (o3 = "function" == typeof i3) ? null : i3 && i3.__k || t4.__k, f3 = [], e3 = [], z(t4, u3 = (!o3 && i3 || t4).__k = y(k, null, [u3]), r3 || c, c, void 0 !== t4.ownerSVGElement, !o3 && i3 ? [i3] : r3 ? null : t4.firstChild ? n.call(t4.childNodes) : null, f3, !o3 && i3 ? i3 : r3 ? r3.__e : t4.firstChild, o3, e3), L(f3, u3, e3);
+    l.__ && l.__(u3, t4), r3 = (o3 = "function" == typeof i3) ? null : i3 && i3.__k || t4.__k, f3 = [], e3 = [], z2(t4, u3 = (!o3 && i3 || t4).__k = y(k, null, [u3]), r3 || c, c, void 0 !== t4.ownerSVGElement, !o3 && i3 ? [i3] : r3 ? null : t4.firstChild ? n.call(t4.childNodes) : null, f3, !o3 && i3 ? i3 : r3 ? r3.__e : t4.firstChild, o3, e3), L(f3, u3, e3);
   }
   function G(n2, l3) {
     var u3 = { __c: l3 = "__cC" + e++, __: n2, Consumer: function(n3, l4) {
@@ -22564,11 +23253,11 @@
   }
   function p2(u3, i3) {
     var o3 = d2(t3++, 3);
-    !l.__s && z2(o3.__H, i3) && (o3.__ = u3, o3.i = i3, r2.__H.__h.push(o3));
+    !l.__s && z3(o3.__H, i3) && (o3.__ = u3, o3.i = i3, r2.__H.__h.push(o3));
   }
   function y2(u3, i3) {
     var o3 = d2(t3++, 4);
-    !l.__s && z2(o3.__H, i3) && (o3.__ = u3, o3.i = i3, r2.__h.push(o3));
+    !l.__s && z3(o3.__H, i3) && (o3.__ = u3, o3.i = i3, r2.__h.push(o3));
   }
   function _23(n2) {
     return o2 = 5, F(function() {
@@ -22577,7 +23266,7 @@
   }
   function F(n2, r3) {
     var u3 = d2(t3++, 7);
-    return z2(u3.__H, r3) ? (u3.__V = n2(), u3.i = r3, u3.__h = n2, u3.__V) : u3.__;
+    return z3(u3.__H, r3) ? (u3.__V = n2(), u3.i = r3, u3.__h = n2, u3.__V) : u3.__;
   }
   function b2() {
     for (var t4; t4 = f2.shift(); )
@@ -22602,7 +23291,7 @@
     var t4 = r2;
     n2.__c = n2.__(), r2 = t4;
   }
-  function z2(n2, t4) {
+  function z3(n2, t4) {
     return !n2 || n2.length !== t4.length || t4.some(function(t5, r3) {
       return t5 !== n2[r3];
     });
@@ -24756,17 +25445,14 @@
 
 jquery/dist/jquery.js:
   (*!
-   * jQuery JavaScript Library v3.6.2
+   * jQuery JavaScript Library v3.7.1
    * https://jquery.com/
-   *
-   * Includes Sizzle.js
-   * https://sizzlejs.com/
    *
    * Copyright OpenJS Foundation and other contributors
    * Released under the MIT license
    * https://jquery.org/license
    *
-   * Date: 2022-12-13T14:56Z
+   * Date: 2023-08-28T13:37Z
    *)
 
 is-plain-object/dist/is-plain-object.mjs:

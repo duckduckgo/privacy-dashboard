@@ -124,7 +124,10 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
  * @type {import("./common.js").onChangeProtectionStatus}
  * @group macOS -> JavaScript Interface
  *
- * @example On the swift side, evaluate JavaScript calling the correct method on `window`, something like this...
+ * @example
+ *
+ * On the swift side, evaluate JavaScript calling the correct method on `window`, something like this...
+ *
  * ```swift
  * // swift
  * evaluate(js: "window.onChangeTrackerBlockingData(\(safeTabUrl), \(trackerBlockingDataJson))", in: webView)
