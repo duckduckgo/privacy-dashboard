@@ -212,6 +212,8 @@ body.environment--browser {
 body.environment--ios {
   --width: 100%;
   --height: -webkit-fill-available;
+  --btn-accent-color: var(--color-accent-blue);
+  --btn-accent-bg-active: rgba(57, 105, 239, 0.2);
 }
 body.environment--android {
   --width: 100%;
@@ -255,6 +257,7 @@ body.body--theme-dark.environment--android {
 }
 body.body--theme-dark.environment--ios {
   --bg: #333333;
+  --btn-accent-bg-active: rgba(114, 149, 246, 0.2);
 }
 
 #popup-container {
@@ -3673,8 +3676,15 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .button[data-variant=macos-standard] {
   color: var(--Text-Primary, rgba(0, 0, 0, 0.84));
   text-align: center;
+  border-radius: 5px;
   border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0.1));
   background: var(--Controls-Mac-Buttons-Fill-Default, #fff);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
+}
+.button[data-variant=macos-standard]:active {
+  border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0.1));
+  background: #e7e7e7;
+  /* Mac/Button */
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
 }
 .body--theme-dark .button[data-variant=macos-standard] {
@@ -3683,12 +3693,11 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   background: var(--Controls-Mac-Buttons-Fill-Default, rgba(255, 255, 255, 0.25));
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
 }
-.button[data-variant=macos-standard]:active {
-  border-radius: 5px;
-  border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0.1));
-  background: #e7e7e7;
-  /* Mac/Button */
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
+.body--theme-dark .button[data-variant=macos-standard]:active {
+  border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0));
+  background: rgba(255, 255, 255, 0.35);
+  /* Mac/Button (Dark) */
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
 }
 .button[data-variant=ios-secondary] {
   justify-content: center;
@@ -3696,9 +3705,17 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   gap: 8px;
   flex-shrink: 0;
   border-radius: 8px;
-  border: 1px solid var(--Buttons-Secondary-Wire-Default-Stroke, #3969ef);
-  color: var(--Buttons-Secondary-Wire-Text, #3969ef);
+  border: 1px solid var(--btn-accent-color, #3969ef);
+  color: var(--btn-accent-color, #3969ef);
   text-align: center;
+  background: transparent;
+}
+.button[data-variant=ios-secondary]:active {
+  background: var(--btn-accent-bg-active);
+  color: #1e42a4;
+}
+.body--theme-dark .button[data-variant=ios-secondary]:active {
+  color: #8fabf9;
 }
 .button[data-size=small] {
   line-height: 13px;
