@@ -9,6 +9,7 @@ import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
 import { useContext, useEffect, useReducer } from 'preact/hooks'
 import { FetchSimpleReportOptions } from '../../browser/common'
+import { namedString } from '../../../data/text'
 
 export function SimpleBreakageReport() {
     const buttonVariant = platform.name === 'ios' ? 'ios-secondary' : 'macos-standard'
@@ -53,30 +54,16 @@ export function SimpleBreakageReport() {
                     <Stack gap="4px">
                         <p className="token-body-em">{ns.report('reportsNoInfoSent.title')}</p>
                         <ul className="data-list">
-                            <li>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur corporis cumque cupiditate dolores,
-                                earum hic in nobis perspiciatis quo. Aliquam aspernatur atque consequuntur dolorem iusto libero saepe
-                                voluptatem? Cum, explicabo?
-                            </li>
-                            <li>
-                                Accusantium amet aperiam aut beatae dicta dolores et eum fugiat fugit harum, hic illo illum iusto magni modi
-                                molestiae neque nobis officiis placeat possimus quia quibusdam quidem ullam vel voluptatum?
-                            </li>
-                            <li>
-                                Architecto beatae eveniet facere numquam voluptatibus? A adipisci aperiam, consequatur corporis culpa
-                                delectus, enim eos est fuga fugiat hic incidunt laborum minus nesciunt provident quaerat quam, ratione
-                                sapiente sunt suscipit.
-                            </li>
-                            <li>
-                                Ad delectus dicta doloremque fugiat, illum ipsam minima modi nam obcaecati odit optio porro quia quisquam
-                                sed ullam ut vitae voluptas voluptate? Aut distinctio expedita fugit labore nostrum voluptates?
-                                Reprehenderit.
-                            </li>
-                            <li>
-                                Ab exercitationem iusto minus molestias nostrum perferendis praesentium saepe temporibus voluptatibus. Autem
-                                delectus eaque earum, eius et ex fugit ipsam ipsum, maiores molestiae officia quod repellat sapiente totam,
-                                unde vel.
-                            </li>
+                            {value.data.map((item) => {
+                                const string = namedString(item)
+                                const additional = item.id === 'siteUrl' ? '[' + item.additional?.url + ']' : null
+                                return (
+                                    <li>
+                                        {string}
+                                        {additional && <strong>{additional}</strong>}
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </Stack>
                 </Scrollable>
@@ -112,7 +99,15 @@ function DataProvider({ children, model }) {
             })
     }, [model])
     if (state.status === 'ready') return <DataContext.Provider value={{ value: state.value }}>{children}</DataContext.Provider>
-    if (state.status === 'error') return <p>Something went wrong</p>
+    if (state.status === 'error')
+        return (
+            <div>
+                <p>Something went wrong</p>
+                <pre>
+                    <code>{state.error}</code>
+                </pre>
+            </div>
+        )
     return <p>wait...</p>
 }
 

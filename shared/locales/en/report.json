@@ -104,6 +104,67 @@
         "title": "Hide"
     },
     "reportsNoInfoSent": {
-        "title": "Reports contain no personally identifiable information:"
+        "title": "Reports contain no personally identifiable information:",
+        "note": "This text emphasizes that the sent reports do not contain any personally identifiable information."
+    },
+    "dynamic_wvVersion": {
+        "title": "Web browser engine version number",
+        "note": "This text represents the version number of the web browser engine."
+    },
+    "dynamic_requests": {
+        "title": "Hostnames of trackers blocked, surrogate requests, ignored requests, and requests not in tracker blocking list",
+        "note": "This text provides information about various types of requests, including blocked trackers and ignored requests."
+    },
+    "dynamic_features": {
+        "title": "List of which protections and browser features were active",
+        "note": "This text represents a list of active protections and browser features."
+    },
+    "dynamic_appVersion": {
+        "title": "App version number",
+        "note": "This text indicates the version number of the app."
+    },
+    "dynamic_atb": {
+        "title": "Anonymous experiment group for feature testing",
+        "note": "This text represents an anonymous group for testing features."
+    },
+    "dynamic_errorDescriptions": {
+        "title": "Browser-reported errors",
+        "note": "This text provides a list of errors reported by the browser."
+    },
+    "dynamic_extensionVersion": {
+        "title": "Extension version number",
+        "note": "This text indicates the version number of the extension."
+    },
+    "dynamic_httpErrorCodes": {
+        "title": "Website response status (HTTP) codes",
+        "note": "This text provides a list of response status codes from the website."
+    },
+    "dynamic_lastSentDay": {
+        "title": "Date of last report sent for this site",
+        "note": "This text indicates the date of the last report sent for the site."
+    },
+    "dynamic_loginSite": {
+        "title": "// TODO",
+        "note": "This text is still to be defined."
+    },
+    "dynamic_device": {
+        "title": "Device make, model, and manufacturer",
+        "note": "This text provides information about the device, including make, model, and manufacturer."
+    },
+    "dynamic_os": {
+        "title": "Operating system version number",
+        "note": "This text indicates the version number of the operating system."
+    },
+    "dynamic_listVersions": {
+        "title": "// TODO: this is true if protections are turned on (only applicable to regular reports)",
+        "note": "This text indicates if protections are active. It is only applicable to regular reports."
+    },
+    "dynamic_reportFlow": {
+        "title": "Tracker blocking list and request exclusion list version numbers",
+        "note": "This text represents the version numbers of the tracker blocking list and request exclusion list."
+    },
+    "dynamic_siteUrl": {
+        "title": "Page URL (without identifiable info)",
+        "note": "This text represents the URL of the page, without including any identifiable information."
     }
 }

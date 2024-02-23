@@ -23,10 +23,6 @@ export const appVersionTitleSchema = z.literal("appVersion");
 
 export const atbTitleSchema = z.literal("atb");
 
-export const categoryTitleSchema = z.literal("category");
-
-export const descriptionTitleSchema = z.literal("description");
-
 export const errorDescriptionsTitleSchema = z.literal("errorDescriptions");
 
 export const extensionVersionTitleSchema = z.literal("extensionVersion");
@@ -160,7 +156,7 @@ export const siteUrlAdditionalDataSchema = z.object({
     url: z.string()
 });
 
-export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, categoryTitleSchema, descriptionTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, loginSiteTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema]);
+export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, loginSiteTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema]);
 
 export const detectedRequestSchema = z.object({
     url: z.string(),

@@ -13,7 +13,7 @@
 
 .scrollable {
     height: 300px;
-    overflow: scroll;
+    overflow-y: scroll;
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: var(--Fill-Fill-01, rgba(0, 0, 0, 0.01));

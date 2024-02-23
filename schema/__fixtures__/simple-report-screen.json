@@ -3,7 +3,7 @@
     {
       "id": "siteUrl",
       "additional": {
-        "url": "hello world"
+        "url": "https://example.com/a/b/c"
       }
     },
     {
@@ -20,12 +20,6 @@
     },
     {
       "id": "atb"
-    },
-    {
-      "id": "category"
-    },
-    {
-      "id": "description"
     },
     {
       "id": "errorDescriptions"

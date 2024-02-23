@@ -27,8 +27,6 @@
             { "$ref": "#/definitions/features"},
             { "$ref": "#/definitions/appVersion"},
             { "$ref": "#/definitions/atb"},
-            { "$ref": "#/definitions/category"},
-            { "$ref": "#/definitions/description"},
             { "$ref": "#/definitions/errorDescriptions"},
             { "$ref": "#/definitions/extensionVersion"},
             { "$ref": "#/definitions/httpErrorCodes"},
@@ -82,16 +80,6 @@
       "title": "atb title",
       "const": "atb",
       "description": "atb description"
-    },
-    "category":{
-      "title": "category title",
-      "const": "category",
-      "description": "category description"
-    },
-    "description": {
-      "title": "description title",
-      "const": "description",
-      "description": "description description"
     },
     "errorDescriptions":{
       "title": "errorDescriptions title",

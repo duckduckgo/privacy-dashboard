@@ -48,8 +48,6 @@ export type DataItemId =
   | FeaturesTitle
   | AppVersionTitle
   | AtbTitle
-  | CategoryTitle
-  | DescriptionTitle
   | ErrorDescriptionsTitle
   | ExtensionVersionTitle
   | HttpErrorCodesTitle
@@ -80,14 +78,6 @@ export type AppVersionTitle = "appVersion";
  * atb description
  */
 export type AtbTitle = "atb";
-/**
- * category description
- */
-export type CategoryTitle = "category";
-/**
- * description description
- */
-export type DescriptionTitle = "description";
 /**
  * errorDescriptions description
  */
