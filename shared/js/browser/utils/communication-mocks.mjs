@@ -153,7 +153,11 @@ export function webkitMockApis({ responses = {} } = {}) {
                 privacyDashboardGetSimpleReportOptions: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardGetSimpleReportOptions', arg])
-                        return Promise.resolve(window.__playwright.responses['privacyDashboardGetSimpleReportOptions'])
+                        setTimeout(() => {
+                            window.onGetSimpleReportOptionsResponse?.(
+                                window.__playwright.responses['privacyDashboardGetSimpleReportOptions']
+                            )
+                        }, 0)
                     },
                 },
             },

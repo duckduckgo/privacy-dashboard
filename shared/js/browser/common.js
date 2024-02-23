@@ -233,13 +233,6 @@ export async function refreshAlias() {
 
 /**
  * Fetch the data needed to display the simple report screen
- *
- * @example
- *
- * ```json
- *   [[include:simple-report-screen.json]]```
- *
- * @returns {Promise<import('../../../schema/__generated__/schema.types').SimpleReportScreen>}
  */
 export async function getSimpleReportOptions() {
     throw new Error('base impl')

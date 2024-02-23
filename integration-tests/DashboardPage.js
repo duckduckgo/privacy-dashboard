@@ -290,6 +290,26 @@ export class DashboardPage {
         await this.page.getByRole('heading', { name: 'Site not working? Let us know.' }).waitFor()
     }
 
+    async showsInformation() {
+        const { page } = this
+        await page.getByRole('link', { name: 'See what’s sent' }).click()
+        await expect(page.getByTestId('simple-breakage-report').getByRole('list')).toContainText(
+            'Page URL (without identifiable info)[https://example.com/a/b/c]'
+        )
+    }
+
+    async cannotHideInformation() {
+        const { page } = this
+        expect(await page.getByRole('link', { name: 'See what’s sent' }).count()).toBe(0)
+        expect(await page.getByRole('link', { name: 'Hide' }).count()).toBe(0)
+    }
+
+    async hidesInformation() {
+        const { page } = this
+        await page.getByRole('link', { name: 'Hide' }).click()
+        await expect(page.getByTestId('simple-breakage-report').getByRole('list')).toBeHidden()
+    }
+
     async showsOnlyDoneButton() {
         await this.page.locator('.breakage-form').locator('a:has-text("Done")').waitFor()
         await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)

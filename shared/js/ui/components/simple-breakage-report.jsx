@@ -39,51 +39,71 @@ export function SimpleBreakageReport() {
     )
     if (state.value === 'sent' && platform.name === 'macos') return <Sent />
     return (
-        <Stack gap="24px">
-            <Stack gap={innerGap}>
-                <div className="medium-icon-container hero-icon--simple-breakage-form"></div>
-                <h1 className="token-title-2-em text--center">{ns.report('siteNotWorkingTitle.title')}</h1>
-                <div>
-                    <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
-                    {platform.name === 'macos' && (
-                        <div>
-                            <p className={'text--center token-title-3'}>
-                                <PlainTextLink onClick={() => dispatch('toggle')}>
-                                    {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
-                                    {state.value === 'showing' && ns.report('siteNotWorkingInfoHide.title')}
-                                </PlainTextLink>
-                            </p>
-                        </div>
-                    )}
-                </div>
+        <Stack gap="40px">
+            <Stack gap="24px">
+                <Stack gap={innerGap}>
+                    <div className="medium-icon-container hero-icon--simple-breakage-form"></div>
+                    <h1 className="token-title-2-em text--center">{ns.report('siteNotWorkingTitle.title')}</h1>
+                    <div>
+                        <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
+                        {platform.name === 'macos' && (
+                            <div>
+                                <p className={'text--center token-title-3'}>
+                                    <PlainTextLink onClick={() => dispatch('toggle')}>
+                                        {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
+                                        {state.value === 'showing' && ns.report('siteNotWorkingInfoHide.title')}
+                                    </PlainTextLink>
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                </Stack>
+                {platform.name === 'macos' && state.value === 'showing' && (
+                    <Scrollable>
+                        <DataList rows={value.data} />
+                    </Scrollable>
+                )}
+                <ButtonBar layout={buttonLayout}>
+                    <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('reject')}>
+                        {ns.report('dontSendReport.title')}
+                    </Button>
+                    <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('send')}>
+                        {ns.report('sendReport.title')}
+                    </Button>
+                </ButtonBar>
+                {platform.name === 'ios' && state.value !== 'showing' && (
+                    <p className={'text--center token-title-3'}>
+                        <PlainTextLink onClick={() => dispatch('toggle')}>
+                            {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
+                        </PlainTextLink>
+                    </p>
+                )}
             </Stack>
-            {platform.name === 'macos' && state.value === 'showing' && (
-                <Scrollable>
-                    <Stack gap="4px">
-                        <p className="token-body-em">{ns.report('reportsNoInfoSent.title')}</p>
-                        <ul className="data-list">
-                            {value.data.map((item) => {
-                                const string = namedString(item)
-                                const additional = item.id === 'siteUrl' ? '[' + item.additional?.url + ']' : null
-                                return (
-                                    <li>
-                                        {string}
-                                        {additional && <strong>{additional}</strong>}
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </Stack>
-                </Scrollable>
+            {platform.name === 'ios' && state.value === 'showing' && (
+                <div className="ios-separator">
+                    <DataList rows={value.data} />
+                </div>
             )}
-            <ButtonBar layout={buttonLayout}>
-                <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('reject')}>
-                    {ns.report('dontSendReport.title')}
-                </Button>
-                <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('send')}>
-                    {ns.report('sendReport.title')}
-                </Button>
-            </ButtonBar>
+        </Stack>
+    )
+}
+
+function DataList({ rows }) {
+    return (
+        <Stack gap="4px">
+            <p className="token-body-em">{ns.report('reportsNoInfoSent.title')}</p>
+            <ul className="data-list">
+                {rows.map((item) => {
+                    const string = namedString(item)
+                    const additional = item.id === 'siteUrl' ? '[' + item.additional?.url + ']' : null
+                    return (
+                        <li>
+                            {string}
+                            {additional && <strong>{additional}</strong>}
+                        </li>
+                    )
+                })}
+            </ul>
         </Stack>
     )
 }

@@ -13055,9 +13055,15 @@
     window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params);
   }
   function privacyDashboardGetSimpleReportOptions() {
-    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-    invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, "privacyDashboardGetSimpleReportOptions required");
-    return window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({});
+    return new Promise((resolve) => {
+      invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+      invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, "privacyDashboardGetSimpleReportOptions required");
+      window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({});
+      window.onGetSimpleReportOptionsResponse = (data) => {
+        resolve(data);
+        Reflect.deleteProperty(window, "onGetSimpleReportOptionsResponse");
+      };
+    });
   }
   function privacyDashboardSendSimpleBreakageReport() {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
@@ -25195,11 +25201,14 @@
     );
     if (state.value === "sent" && platform.name === "macos")
       return /* @__PURE__ */ y(Sent, null);
-    return /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--simple-breakage-form" }), /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-body-em" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, value.data.map((item) => {
+    return /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--simple-breakage-form" }), /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
+  }
+  function DataList({ rows }) {
+    return /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-body-em" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, rows.map((item) => {
       const string = namedString(item);
       const additional = item.id === "siteUrl" ? "[" + item.additional?.url + "]" : null;
       return /* @__PURE__ */ y("li", null, string, additional && /* @__PURE__ */ y("strong", null, additional));
-    })))), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))));
+    })));
   }
   function Sent() {
     return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--simple-breakage-form-sent" }), /* @__PURE__ */ y(Stack, { gap: "8px" }, /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("thankYou.title")), /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("yourReportWillHelpDesc.title"))));

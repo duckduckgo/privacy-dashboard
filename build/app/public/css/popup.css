@@ -181,6 +181,7 @@ body {
   --color-lines-light: rgba(0, 0, 0, 0.12);
   --color-lines-lighter: rgba(0, 0, 0, 0.06);
   --color-hover-bg: rgba(0, 0, 0, 0.06);
+  --color-system-lines: rgba(0, 0, 0, 0.09);
   --size-unit: 16px;
   --size-unit-half: calc(var(--size-unit) / 2);
   --size-unit-double: calc(var(--size-unit) * 2);
@@ -244,6 +245,7 @@ body.body--theme-dark {
   --color-lines-light: rgba(255, 255, 255, 0.18);
   --color-lines-lighter: rgba(255, 255, 255, 0.09);
   --color-hover-bg: rgba(255, 255, 255, 0.12);
+  --color-system-lines: rgba(255, 255, 255, 0.09);
 }
 body.body--theme-dark.environment--windows {
   --btn-accent-color: #000000;
@@ -3769,10 +3771,15 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   overflow-y: scroll;
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: var(--Fill-Fill-01, rgba(0, 0, 0, 0.01));
+  background: rgba(0, 0, 0, 0.01);
   padding: 16px 20px 20px 16px;
 }
 
 .data-list {
   padding-left: 18px;
+}
+
+.ios-separator {
+  padding-top: 16px;
+  border-top: 1px solid var(--color-system-lines);
 }

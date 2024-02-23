@@ -63,6 +63,14 @@ test.describe('opening breakage form', () => {
         await dash.simpleBreakageReportIsVisible()
         await dash.rejectSimpleBreakageReport()
     })
+    test('shows information', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'macos', opener: 'dashboard' })
+        await dash.addState([testDataStates.google])
+        await dash.simpleBreakageReportIsVisible()
+        await dash.showsInformation()
+        await dash.hidesInformation()
+    })
 })
 
 test.describe('open external links', () => {

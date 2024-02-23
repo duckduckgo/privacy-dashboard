@@ -22,6 +22,7 @@ body {
     --color-lines-light: rgba(0, 0, 0, 0.12);
     --color-lines-lighter: rgba(0, 0, 0, 0.06);
     --color-hover-bg: rgba(0, 0, 0, 0.06);
+    --color-system-lines: rgba(0, 0, 0, 0.09);
     --size-unit: 16px;
     --size-unit-half: calc(var(--size-unit) / 2);
     --size-unit-double: calc(var(--size-unit) * 2);
@@ -83,6 +84,7 @@ body {
         // todo(Shane): is this correct?
         --color-lines-lighter: rgba(255, 255, 255, 0.09);
         --color-hover-bg: rgba(255, 255, 255, 0.12);
+        --color-system-lines: rgba(255, 255, 255, 0.09);
 
         // windows uses slightly different colors for buttons
         &.environment--windows {

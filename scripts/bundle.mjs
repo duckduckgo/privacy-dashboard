@@ -36,7 +36,7 @@ async function init() {
         target: ['es2021'],
         outfile: manifest.base.output,
         sourcemap: debug ? 'linked' : undefined,
-        dropLabels: IS_PROD ? ['$TEST'] : [],
+        dropLabels: IS_PROD ? ['$TEST', '$DEBUG'] : [],
         loader: {
             '.js': 'jsx',
         },

@@ -20,8 +20,6 @@
  *
  * This is called immediately to retrieve the data needed to render the list.
  *
- * {@link common.getSimpleReportOptions}
- *
  * <details>
  *   <summary>Sample JSON response 📝</summary>
  *

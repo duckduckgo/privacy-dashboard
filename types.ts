@@ -60,7 +60,7 @@ interface Window {
             privacyDashboardOpenSettings?: any
             privacyDashboardSetPermission?: any
             privacyDashboardGetSimpleReportOptions?: {
-                postMessage: (params: any) => Promise<import('./schema/__generated__/schema.types').SimpleReportScreen>
+                postMessage: (params: any) => void
             }
             privacyDashboardRejectSimpleBreakageReport?: {
                 postMessage: (params: any) => Promise<void>
@@ -70,6 +70,7 @@ interface Window {
             }
         }
     }
+    onGetSimpleReportOptionsResponse?: (data: import('./schema/__generated__/schema.types').SimpleReportScreen) => void
     chrome: {
         webview?: {
             postMessage?: Window['postMessage']

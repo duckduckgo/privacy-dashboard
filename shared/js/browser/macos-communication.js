@@ -243,21 +243,42 @@ export function privacyDashboardSetPermission(params) {
 }
 
 /**
- * {@inheritDoc common.getSimpleReportOptions}
- * @type {import("./common.js").getSimpleReportOptions}
- * @category Webkit Message Handlers
+ * @category Webkit Message Handler
  * @example
  *
- * This message handler is the equivalent of calling the following JavaScript.
+ * When the Dashboard loads, it will call this message handler...
  *
  * ```js
  * window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({})
  * ```
+ *
+ * ... then, to reply with the correct data, call evaluate on the following window method:
+ *
+ * The JSON object should match {@link "Generated Schema Definitions".SimpleReportScreen}
+ *
+ * ```js
+ * window.onGetSimpleReportOptionsResponse({ "data": [...] })
+ * ```
+ * <br>
+ * <details>
+ *   <summary>Sample JSON 📝</summary>
+ *
+ *   ```json
+ *   [[include:simple-report-screen.json]]```
+ * </details>
+ *
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').SimpleReportScreen>}
  */
 export function privacyDashboardGetSimpleReportOptions() {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, 'privacyDashboardGetSimpleReportOptions required')
-    return window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({})
+    return new Promise((resolve) => {
+        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+        invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, 'privacyDashboardGetSimpleReportOptions required')
+        window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({})
+        window.onGetSimpleReportOptionsResponse = (data) => {
+            resolve(data)
+            Reflect.deleteProperty(window, 'onGetSimpleReportOptionsResponse')
+        }
+    })
 }
 
 /**

@@ -16,10 +16,15 @@
     overflow-y: scroll;
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background: var(--Fill-Fill-01, rgba(0, 0, 0, 0.01));
+    background: rgba(0, 0, 0, 0.01);
     padding: 16px 20px 20px 16px;
 }
 
 .data-list {
     padding-left: 18px;
+}
+
+.ios-separator {
+    padding-top: 16px;
+    border-top: 1px solid var(--color-system-lines);
 }
