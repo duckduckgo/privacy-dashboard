@@ -49,6 +49,10 @@ body {
     }
 
     // desktops
+    &.environment--macos {
+        --height: auto;
+    }
+
     &.environment--browser {
         --height: 600px;
     }

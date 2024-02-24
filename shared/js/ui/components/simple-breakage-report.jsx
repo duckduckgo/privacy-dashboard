@@ -17,6 +17,14 @@ export function SimpleBreakageReport() {
     const buttonSize = platform.name === 'ios' ? 'big' : 'small'
     const innerGap = platform.name === 'ios' ? '24px' : '16px'
     const { value, send, reject } = useContext(DataContext)
+    useEffect(() => {
+        let int = setTimeout(() => {
+            /** @type {HTMLElement | null} */
+            const f = document.querySelector('[class="breakage-form"]')
+            if (f) f.style.minHeight = 'auto'
+        }, 2000)
+        return () => clearTimeout(int)
+    }, [])
     const [state, dispatch] = useReducer(
         (state, /** @type {"toggle" | "send" | "reject"} */ action) => {
             switch (action) {
@@ -39,7 +47,7 @@ export function SimpleBreakageReport() {
     )
     if (state.value === 'sent' && platform.name === 'macos') return <Sent />
     return (
-        <Stack gap="40px">
+        <Stack gap="40px" className="fade-in">
             <Stack gap="24px">
                 <Stack gap={innerGap}>
                     <div className="medium-icon-container hero-icon--simple-breakage-form"></div>
@@ -167,7 +175,7 @@ function DataProvider({ children, model }) {
                 </pre>
             </div>
         )
-    return <p>wait...</p>
+    return null
 }
 
 /**
@@ -183,9 +191,12 @@ export function simpleBreakageFormTemplate() {
     const root = html`<div data-testid="simple-breakage-report"></div>`
     const template = html`
         <section class="sliding-subview">
-            <div class="breakage-form" data-opener=${this.model.opener}>
+            <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: 'secondary', immediate: this.immediate })}
-                <div class="padding-x-double">${root}</div>
+                <div class="breakage-form__inner">
+                    <div class="padding-x-double">${root}</div>
+                </div>
+                <div style="height: 24px"></div>
             </div>
         </section>
     `

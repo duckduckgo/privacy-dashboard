@@ -25167,6 +25167,14 @@
     const buttonSize = platform.name === "ios" ? "big" : "small";
     const innerGap = platform.name === "ios" ? "24px" : "16px";
     const { value, send, reject } = q2(DataContext);
+    p2(() => {
+      let int = setTimeout(() => {
+        const f3 = document.querySelector('[class="breakage-form"]');
+        if (f3)
+          f3.style.minHeight = "auto";
+      }, 2e3);
+      return () => clearTimeout(int);
+    }, []);
     const [state, dispatch] = s2(
       (state2, action) => {
         switch (action) {
@@ -25201,7 +25209,7 @@
     );
     if (state.value === "sent" && platform.name === "macos")
       return /* @__PURE__ */ y(Sent, null);
-    return /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--simple-breakage-form" }), /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
+    return /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--simple-breakage-form" }), /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
   }
   function DataList({ rows }) {
     return /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-body-em" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, rows.map((item) => {
@@ -25237,15 +25245,18 @@
     }
     if (state.status === "error")
       return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", null, "Something went wrong"), /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, state.error)));
-    return /* @__PURE__ */ y("p", null, "wait...");
+    return null;
   }
   function simpleBreakageFormTemplate() {
     const root = import_nanohtml17.default`<div data-testid="simple-breakage-report"></div>`;
     const template4 = import_nanohtml17.default`
         <section class="sliding-subview">
-            <div class="breakage-form" data-opener=${this.model.opener}>
+            <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: "secondary", immediate: this.immediate })}
-                <div class="padding-x-double">${root}</div>
+                <div class="breakage-form__inner">
+                    <div class="padding-x-double">${root}</div>
+                </div>
+                <div style="height: 24px"></div>
             </div>
         </section>
     `;
