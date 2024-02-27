@@ -22,7 +22,7 @@ export function SimpleBreakageReport() {
             /** @type {HTMLElement | null} */
             const f = document.querySelector('[class="breakage-form"]')
             if (f) f.style.minHeight = 'auto'
-        }, 2000)
+        }, 1000)
         return () => clearTimeout(int)
     }, [])
     const [state, dispatch] = useReducer(

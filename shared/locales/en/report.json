@@ -152,8 +152,8 @@
         "note": "This text indicates the version number of the operating system."
     },
     "dynamic_reportFlow": {
-        "title": "Tracker blocking list and request exclusion list version numbers",
-        "note": "This text represents the version numbers of the tracker blocking list and request exclusion list."
+        "title": "Which reporting form you used (\"menu\", \"dashboard\", etc.)",
+        "note": "This text represents the path the user took to get to this feedback screen."
     },
     "dynamic_siteUrl": {
         "title": "Page URL (without identifiable info)",
