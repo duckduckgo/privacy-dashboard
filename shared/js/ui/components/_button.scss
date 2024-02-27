@@ -3,12 +3,12 @@
         color: var(--Text-Primary, rgba(0, 0, 0, 0.84));
         text-align: center;
         border-radius: 5px;
-        border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0.1));
-        background: var(--Controls-Mac-Buttons-Fill-Default, #fff);
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
+        background: #fff;
         box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
 
         &:active {
-            border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0.1));
+            border: 0.5px solid rgba(0, 0, 0, 0.1);
             background: #e7e7e7;
 
             /* Mac/Button */
@@ -16,14 +16,14 @@
         }
 
         .body--theme-dark & {
-            color: var(--Text-Primary, rgba(255, 255, 255, 0.84));
-            border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0));
-            background: var(--Controls-Mac-Buttons-Fill-Default, rgba(255, 255, 255, 0.25));
+            color: rgba(255, 255, 255, 0.84);
+            border: 0.5px solid rgba(0, 0, 0, 0);
+            background: rgba(255, 255, 255, 0.25);
             box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
                 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
 
             &:active {
-                border: 0.5px solid var(--Controls-Mac-Buttons-Stroke-Default, rgba(0, 0, 0, 0));
+                border: 0.5px solid rgba(0, 0, 0, 0);
                 background: rgba(255, 255, 255, 0.35);
 
                 /* Mac/Button (Dark) */
@@ -38,32 +38,25 @@
         gap: 8px;
         flex-shrink: 0;
         border-radius: 8px;
-        border: 1px solid var(--btn-accent-color, #3969ef);
-        color: var(--btn-accent-color, #3969ef);
+        border: 1px solid var(--color-accent-blue);
+        color: var(--color-accent-blue);
         text-align: center;
         background: transparent;
 
         &:active {
-            background: var(--btn-accent-bg-active);
-            color: #1e42a4;
-        }
-
-        .body--theme-dark & {
-            &:active {
-                color: #8fabf9;
-            }
+            background: rgba(57, 105, 239, 0.2);
+            color: var(--color-accent-blue-active);
         }
     }
     &[data-size='small'] {
         line-height: 13px;
-        height: var(--Window-Padding, 20px);
+        height: 20px;
         padding: 0px 12px;
         border-radius: 5px;
     }
     &[data-size='big'] {
         height: 50px;
         padding: 0px 24px;
-
         /* Button */
         font-size: 15px;
         font-style: normal;

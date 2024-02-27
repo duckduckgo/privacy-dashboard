@@ -46,6 +46,9 @@
  * ## opener=dashboard
  *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=simpleBreakageReport&opener=dashboard"></iframe>
  *  <iframe width=360 height=600 src="/app-debug/html/macos.html?screen=simpleBreakageReport&opener=dashboard"></iframe>
+ *
+ * ## screen=breakageForm
+ *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=breakageForm"></iframe>
  */
 
 export {}

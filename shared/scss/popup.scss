@@ -19,6 +19,7 @@ body {
     --color-text-primary: rgba(0, 0, 0, 0.84);
     --color-text-secondary: rgba(0, 0, 0, 0.6);
     --color-accent-blue: #3969ef;
+    --color-accent-blue-active: #1e42a4;
     --color-lines-light: rgba(0, 0, 0, 0.12);
     --color-lines-lighter: rgba(0, 0, 0, 0.06);
     --color-hover-bg: rgba(0, 0, 0, 0.06);
@@ -40,8 +41,6 @@ body {
     &.environment--ios {
         --width: 100%;
         --height: -webkit-fill-available;
-        --btn-accent-color: var(--color-accent-blue);
-        --btn-accent-bg-active: rgba(57, 105, 239, 0.2);
     }
 
     &.environment--android {
@@ -84,6 +83,7 @@ body {
         --color-text-primary: rgba(255, 255, 255, 0.84);
         --color-text-secondary: rgba(255, 255, 255, 0.6);
         --color-accent-blue: #7295f6;
+        --color-accent-blue-active: #8fabf9;
         --color-lines-light: rgba(255, 255, 255, 0.18);
         // todo(Shane): is this correct?
         --color-lines-lighter: rgba(255, 255, 255, 0.09);
@@ -105,7 +105,6 @@ body {
 
         &.environment--ios {
             --bg: #{$slate};
-            --btn-accent-bg-active: rgba(114, 149, 246, 0.2);
         }
     }
 
