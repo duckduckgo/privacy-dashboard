@@ -33,6 +33,7 @@
                         { "$ref": "#/definitions/lastSentDay" },
                         { "$ref": "#/definitions/device" },
                         { "$ref": "#/definitions/os" },
+                        { "$ref": "#/definitions/listVersions" },
                         { "$ref": "#/definitions/reportFlow" },
                         { "$ref": "#/definitions/siteUrl" }
                     ]
@@ -108,6 +109,11 @@
             "title": "os title",
             "const": "os",
             "description": "os description"
+        },
+        "listVersions": {
+            "title": "listVersions title",
+            "const": "listVersions",
+            "description": "listVersions description"
         },
         "reportFlow": {
             "title": "reportFlow title",

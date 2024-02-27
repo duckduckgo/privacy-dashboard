@@ -41,6 +41,9 @@
         },
         {
             "id": "reportFlow"
+        },
+        {
+            "id": "listVersions"
         }
     ]
 }

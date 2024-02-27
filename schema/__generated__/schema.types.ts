@@ -54,6 +54,7 @@ export type DataItemId =
   | LastSentDayTitle
   | DeviceTitle
   | OsTitle
+  | ListVersionsTitle
   | ReportFlowTitle
   | SiteUrlTitle;
 /**
@@ -100,6 +101,10 @@ export type DeviceTitle = "device";
  * os description
  */
 export type OsTitle = "os";
+/**
+ * listVersions description
+ */
+export type ListVersionsTitle = "listVersions";
 /**
  * reportFlow description
  */

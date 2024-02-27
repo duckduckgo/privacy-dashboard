@@ -33,5 +33,7 @@ export function namedString(item) {
             return ns.report('dynamic_reportFlow.title')
         case 'siteUrl':
             return ns.report('dynamic_siteUrl.title')
+        case 'listVersions':
+            return ns.report('dynamic_listVersions.title')
     }
 }

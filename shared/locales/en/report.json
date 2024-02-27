@@ -158,5 +158,9 @@
     "dynamic_siteUrl": {
         "title": "Page URL (without identifiable info)",
         "note": "This text represents the URL of the page, without including any identifiable information."
+    },
+    "dynamic_listVersions": {
+        "title": "Information about which versions of our protections were active",
+        "note": "This text represents the URL of the page, without including any identifiable information."
     }
 }
