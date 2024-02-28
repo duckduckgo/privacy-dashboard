@@ -99,13 +99,13 @@ export function SimpleBreakageReport() {
 function DataList({ rows }) {
     return (
         <Stack gap="4px">
-            <p className="token-body-em">{ns.report('reportsNoInfoSent.title')}</p>
+            <p className="token-bold">{ns.report('reportsNoInfoSent.title')}</p>
             <ul className="data-list">
                 {rows.map((item) => {
                     const string = namedString(item)
                     const additional = item.id === 'siteUrl' ? '[' + item.additional?.url + ']' : null
                     return (
-                        <li className="data-list__item">
+                        <li className="data-list__item token-breakage-form-body">
                             {string}
                             {additional && <strong>{additional}</strong>}
                         </li>
