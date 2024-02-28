@@ -163,7 +163,6 @@ function DataProvider({ children, model }) {
         model.fetch(new RejectSimpleBreakageReport())
     }
     if (state.status === 'ready') {
-        console.log(state)
         return <DataContext.Provider value={{ value: state.value, send, reject }}>{children}</DataContext.Provider>
     }
     if (state.status === 'error')
@@ -193,9 +192,7 @@ export function simpleBreakageFormTemplate() {
         <section class="sliding-subview">
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: 'secondary', immediate: this.immediate })}
-                <div class="breakage-form__inner">
-                    <div class="padding-x-double">${root}</div>
-                </div>
+                <div class="padding-x-double">${root}</div>
                 <div style="height: 24px"></div>
             </div>
         </section>

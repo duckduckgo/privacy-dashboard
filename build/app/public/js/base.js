@@ -25243,7 +25243,6 @@
       model.fetch(new RejectSimpleBreakageReport());
     }
     if (state.status === "ready") {
-      console.log(state);
       return /* @__PURE__ */ y(DataContext.Provider, { value: { value: state.value, send, reject } }, children);
     }
     if (state.status === "error")
@@ -25256,9 +25255,7 @@
         <section class="sliding-subview">
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: "secondary", immediate: this.immediate })}
-                <div class="breakage-form__inner">
-                    <div class="padding-x-double">${root}</div>
-                </div>
+                <div class="padding-x-double">${root}</div>
                 <div style="height: 24px"></div>
             </div>
         </section>
