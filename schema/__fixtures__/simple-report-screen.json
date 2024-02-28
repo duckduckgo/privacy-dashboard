@@ -3,7 +3,7 @@
         {
             "id": "siteUrl",
             "additional": {
-                "url": "https://example.com/a/b/c"
+                "url": "https://example.com/a/b/c/with-a-very-long-path-segment"
             }
         },
         {
