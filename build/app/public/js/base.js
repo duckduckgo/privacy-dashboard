@@ -25111,7 +25111,11 @@
 
   // shared/js/ui/components/stack.jsx
   function Stack({ children, gap, ...rest }) {
-    return /* @__PURE__ */ y("div", { className: "stack", style: { gap }, ...rest }, children);
+    const classes = ["stack"].concat(
+      /** @type {string} */
+      rest.className
+    ).filter(Boolean);
+    return /* @__PURE__ */ y("div", { ...rest, className: classes.join(" "), style: { gap } }, children);
   }
   function Scrollable({ children, ...rest }) {
     return /* @__PURE__ */ y("div", { className: "scrollable", ...rest }, children);

@@ -6,8 +6,9 @@ import { h } from 'preact'
  * @param {import("preact").ComponentProps<'div'> & ButtonBarComponentProps} props
  */
 export function Stack({ children, gap, ...rest }) {
+    const classes = ['stack'].concat(/** @type {string} */ (rest.className)).filter(Boolean)
     return (
-        <div className={'stack'} style={{ gap: gap }} {...rest}>
+        <div {...rest} className={classes.join(' ')} style={{ gap: gap }}>
             {children}
         </div>
     )
