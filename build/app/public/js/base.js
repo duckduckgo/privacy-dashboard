@@ -25218,7 +25218,7 @@
     return /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-body-em" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, rows.map((item) => {
       const string = namedString(item);
       const additional = item.id === "siteUrl" ? "[" + item.additional?.url + "]" : null;
-      return /* @__PURE__ */ y("li", null, string, additional && /* @__PURE__ */ y("strong", null, additional));
+      return /* @__PURE__ */ y("li", { className: "data-list__item" }, string, additional && /* @__PURE__ */ y("strong", null, additional));
     })));
   }
   function Sent() {

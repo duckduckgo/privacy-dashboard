@@ -3778,6 +3778,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   padding-left: 18px;
 }
 
+.data-list__item {
+  word-wrap: anywhere;
+}
+
 .ios-separator {
   padding-top: 16px;
   border-top: 1px solid var(--color-system-lines);

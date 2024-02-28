@@ -23,6 +23,9 @@
 .data-list {
     padding-left: 18px;
 }
+.data-list__item {
+    word-wrap: anywhere;
+}
 
 .ios-separator {
     padding-top: 16px;

@@ -105,7 +105,7 @@ function DataList({ rows }) {
                     const string = namedString(item)
                     const additional = item.id === 'siteUrl' ? '[' + item.additional?.url + ']' : null
                     return (
-                        <li>
+                        <li className="data-list__item">
                             {string}
                             {additional && <strong>{additional}</strong>}
                         </li>
