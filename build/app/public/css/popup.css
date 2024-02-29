@@ -3787,6 +3787,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   color: var(--color-text-secondary);
   line-height: 18px;
 }
+.data-list__item + .data-list__item {
+  margin-top: 3px;
+}
 
 .ios-separator {
   padding-top: 16px;

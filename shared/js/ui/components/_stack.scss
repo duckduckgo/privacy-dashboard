@@ -27,6 +27,9 @@
     word-wrap: anywhere;
     color: var(--color-text-secondary);
     line-height: 18px;
+    + .data-list__item {
+        margin-top: 3px;
+    }
 }
 
 .ios-separator {
