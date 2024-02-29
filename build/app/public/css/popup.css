@@ -3784,7 +3784,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 
 .data-list__item {
   word-wrap: anywhere;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-text-secondary);
   line-height: 18px;
 }
 
