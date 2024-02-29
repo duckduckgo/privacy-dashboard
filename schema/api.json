@@ -29,8 +29,8 @@
         "set-protection": {
             "$ref": "set-protection.json"
         },
-        "simple-report-screen": {
-            "$ref": "simple-report-screen.json"
+        "toggle-report-screen": {
+            "$ref": "toggle-report-screen.json"
         }
     }
 }

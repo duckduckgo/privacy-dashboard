@@ -48,34 +48,36 @@ interface Window {
         }
     }
     webkit?: {
-        messageHandlers?: {
-            privacyDashboardSubmitBrokenSiteReport?: any
-            privacyDashboardOpenUrlInNewTab?: any
-            privacyDashboardSetSize?: any
-            privacyDashboardShowReportBrokenSite?: any
-            privacyDashboardClose?: any
-            privacyDashboardSetProtection?: {
-                postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void
-            }
-            privacyDashboardOpenSettings?: any
-            privacyDashboardSetPermission?: any
-            privacyDashboardGetSimpleReportOptions?: {
-                postMessage: (params: any) => void
-            }
-            privacyDashboardRejectSimpleBreakageReport?: {
-                postMessage: (params: any) => Promise<void>
-            }
-            privacyDashboardSendSimpleBreakageReport?: {
-                postMessage: (params: any) => Promise<void>
-            }
-        }
+        messageHandlers?: WebkitMessageHandlers
     }
-    onGetSimpleReportOptionsResponse?: (data: import('./schema/__generated__/schema.types').SimpleReportScreen) => void
+    onGetToggleReportOptionsResponse?: (data: import('./schema/__generated__/schema.types').ToggleReportScreen) => void
     chrome: {
         webview?: {
             postMessage?: Window['postMessage']
             addEventListener?: Window['addEventListener']
             removeEventListener?: Window['removeEventListener']
         }
+    }
+}
+
+interface WebkitMessageHandlers {
+    privacyDashboardSubmitBrokenSiteReport?: any
+    privacyDashboardOpenUrlInNewTab?: any
+    privacyDashboardSetSize?: any
+    privacyDashboardShowReportBrokenSite?: any
+    privacyDashboardClose?: any
+    privacyDashboardSetProtection?: {
+        postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void
+    }
+    privacyDashboardOpenSettings?: any
+    privacyDashboardSetPermission?: any
+    privacyDashboardGetToggleReportOptions?: {
+        postMessage: (params: any) => void
+    }
+    privacyDashboardRejectToggleReport?: {
+        postMessage: (params: any) => Promise<void>
+    }
+    privacyDashboardSendToggleReport?: {
+        postMessage: (params: any) => Promise<void>
     }
 }

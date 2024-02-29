@@ -41,7 +41,7 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
  * A helper list of messages that the Dashboard accepts from Windows
  */
 export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
-export type ScreenKind = "primaryScreen" | "breakageForm" | "simpleBreakageReport";
+export type ScreenKind = "primaryScreen" | "breakageForm" | "toggleReport";
 export type DataItemId =
   | WvVersionTitle
   | RequestsTitle
@@ -132,7 +132,7 @@ export interface API {
   "fire-button"?: FireButtonData;
   "feature-settings"?: RemoteFeatureSettings;
   "set-protection"?: SetProtectionParams;
-  "simple-report-screen"?: SimpleReportScreen;
+  "toggle-report-screen"?: ToggleReportScreen;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -476,17 +476,17 @@ export interface EventOrigin {
  * <summary>Show example JSON</summary>
  *
  * ```json
- * [[include:simple-report-screen.json]]
+ * [[include:toggle-report-screen.json]]
  * ```
  * </details>
  */
-export interface SimpleReportScreen {
+export interface ToggleReportScreen {
   /**
    * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
    */
-  data: SimpleReportScreenDataItem[];
+  data: ToggleReportScreenDataItem[];
 }
-export interface SimpleReportScreenDataItem {
+export interface ToggleReportScreenDataItem {
   id: DataItemId;
   additional?: SiteUrlAdditionalData;
 }

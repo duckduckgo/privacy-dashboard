@@ -285,7 +285,7 @@ export class DashboardPage {
         await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
     }
 
-    async simpleBreakageReportIsVisible() {
+    async toggleReportIsVisible() {
         await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
         await this.page.getByRole('heading', { name: 'Site not working? Let us know.' }).waitFor()
     }
@@ -293,8 +293,8 @@ export class DashboardPage {
     async showsInformation() {
         const { page } = this
         await page.getByRole('link', { name: 'See what’s sent' }).click()
-        await expect(page.getByTestId('simple-breakage-report').getByRole('list')).toContainText(
-            'Page URL (without identifiable info)[https://example.com/a/b/c]'
+        await expect(page.getByTestId('toggle-report').getByRole('list')).toContainText(
+            'Page URL (without identifiable info)[https://example.com/a/b/c/with-a-very-long-path-segment]'
         )
     }
 
@@ -307,7 +307,7 @@ export class DashboardPage {
     async hidesInformation() {
         const { page } = this
         await page.getByRole('link', { name: 'Hide' }).click()
-        await expect(page.getByTestId('simple-breakage-report').getByRole('list')).toBeHidden()
+        await expect(page.getByTestId('toggle-report').getByRole('list')).toBeHidden()
     }
 
     async showsOnlyDoneButton() {
@@ -482,14 +482,14 @@ export class DashboardPage {
             .waitFor({ timeout: 1000 })
     }
 
-    async sendSimpleBreakageReport() {
+    async sendToggleReport() {
         const { page } = this
         await page.getByRole('button', { name: 'Send Report' }).click()
 
         // macos only, assert on the success screen
         if (this.platform.name === 'macos') await this.showsSuccessScreen()
 
-        await this.mocks.calledForSendSimpleBreakageReport()
+        await this.mocks.calledForSendToggleReport()
     }
 
     async showsSuccessScreen() {
@@ -501,9 +501,9 @@ export class DashboardPage {
             .waitFor()
     }
 
-    async rejectSimpleBreakageReport() {
+    async rejectToggleReport() {
         const { page } = this
         await page.getByRole('button', { name: `Don't send` }).click()
-        await this.mocks.calledForRejectSimpleBreakageReport()
+        await this.mocks.calledForRejectToggleReport()
     }
 }

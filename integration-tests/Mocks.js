@@ -79,19 +79,19 @@ export class Mocks {
         }
     }
 
-    async calledForSendSimpleBreakageReport() {
+    async calledForSendToggleReport() {
         const out = await this.outgoing({
-            names: ['privacyDashboardSendSimpleBreakageReport'],
+            names: ['privacyDashboardSendToggleReport'],
         })
-        expect(out).toMatchObject([['privacyDashboardSendSimpleBreakageReport', {}]])
+        expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
         return
     }
 
-    async calledForRejectSimpleBreakageReport() {
+    async calledForRejectToggleReport() {
         const out = await this.outgoing({
-            names: ['privacyDashboardRejectSimpleBreakageReport'],
+            names: ['privacyDashboardRejectToggleReport'],
         })
-        expect(out).toMatchObject([['privacyDashboardRejectSimpleBreakageReport', {}]])
+        expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
         return
     }
 

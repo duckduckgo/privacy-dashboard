@@ -137,25 +137,25 @@ test.describe('opening breakage form', () => {
         await dash.breakageFormIsVisible()
         await dash.showsOnlyDoneButton()
     })
-    test('sends simple breakage form', async ({ page }) => {
+    test('sends toggle report', async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'ios', opener: 'dashboard' })
+        const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
-        await dash.simpleBreakageReportIsVisible()
-        await dash.sendSimpleBreakageReport()
+        await dash.toggleReportIsVisible()
+        await dash.sendToggleReport()
     })
-    test('rejects simple breakage form', async ({ page }) => {
+    test('rejects toggle report', async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'ios', opener: 'dashboard' })
+        const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
-        await dash.simpleBreakageReportIsVisible()
-        await dash.rejectSimpleBreakageReport()
+        await dash.toggleReportIsVisible()
+        await dash.rejectToggleReport()
     })
-    test.only('shows information once', async ({ page }) => {
+    test('shows information once', async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, { screen: 'simpleBreakageReport', platform: 'ios', opener: 'dashboard' })
+        const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
-        await dash.simpleBreakageReportIsVisible()
+        await dash.toggleReportIsVisible()
         await dash.showsInformation()
         await dash.cannotHideInformation()
     })

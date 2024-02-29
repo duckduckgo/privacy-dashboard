@@ -21,17 +21,17 @@ import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
-    simpleReportScreenSchema,
+    toggleReportScreenSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     CloseMessage,
-    FetchSimpleReportOptions,
+    FetchToggleReportOptions,
     getContentHeight,
     OpenSettingsMessages,
-    RejectSimpleBreakageReport,
-    SendSimpleBreakageReport,
+    RejectToggleBreakageReport,
+    SendToggleBreakageReport,
     SetListsMessage,
     setupColorScheme,
     setupMutationObserver,
@@ -249,75 +249,72 @@ export function privacyDashboardSetPermission(params) {
  * When the Dashboard loads, it will call this message handler...
  *
  * ```js
- * window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({})
+ * window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({})
  * ```
  *
  * ... then, to reply with the correct data, call evaluate on the following window method:
  *
- * The JSON object should match {@link "Generated Schema Definitions".SimpleReportScreen}
+ * The JSON object should match {@link "Generated Schema Definitions".ToggleReportScreen}
  *
  * ```js
- * window.onGetSimpleReportOptionsResponse({ "data": [...] })
+ * window.onGetToggleReportOptionsResponse({ "data": [...] })
  * ```
  * <br>
  * <details>
  *   <summary>Sample JSON 📝</summary>
  *
  *   ```json
- *   [[include:simple-report-screen.json]]```
+ *   [[include:toggle-report-screen.json]]```
  * </details>
  *
- * @returns {Promise<import('../../../schema/__generated__/schema.types').SimpleReportScreen>}
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
  */
-export function privacyDashboardGetSimpleReportOptions() {
+export function privacyDashboardGetToggleReportOptions() {
     return new Promise((resolve) => {
         invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-        invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, 'privacyDashboardGetSimpleReportOptions required')
-        window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({})
-        window.onGetSimpleReportOptionsResponse = (data) => {
+        invariant(window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions, 'privacyDashboardGetToggleReportOptions required')
+        window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({})
+        window.onGetToggleReportOptionsResponse = (data) => {
             resolve(data)
-            Reflect.deleteProperty(window, 'onGetSimpleReportOptionsResponse')
+            Reflect.deleteProperty(window, 'onGetToggleReportOptionsResponse')
         }
     })
 }
 
 /**
- * {@inheritDoc common.sendSimpleBreakageReport}
- * @type {import("./common.js").sendSimpleBreakageReport}
+ * {@inheritDoc common.sendToggleReport}
+ * @type {import("./common.js").sendToggleReport}
  * @category Webkit Message Handlers
  * @example
  *
  * This message handler is the equivalent of calling the following JavaScript.
  *
  * ```js
- * window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport.postMessage({})
+ * window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({})
  * ```
  */
-export function privacyDashboardSendSimpleBreakageReport() {
+export function privacyDashboardSendToggleReport() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    invariant(window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport, 'privacyDashboardSendSimpleBreakageReport required')
-    return window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport.postMessage({})
+    invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, 'privacyDashboardSendToggleReport required')
+    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({})
 }
 
 /**
- * {@inheritDoc common.rejectSimpleBreakageReport}
- * @type {import("./common.js").rejectSimpleBreakageReport}
+ * {@inheritDoc common.rejectToggleReport}
+ * @type {import("./common.js").rejectToggleReport}
  * @category Webkit Message Handlers
  * @example
  *
  * This message handler is the equivalent of calling the following JavaScript.
  *
  * ```js
- * window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport.postMessage({})
+ * window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({})
  * ```
  */
-export function privacyDashboardRejectSimpleBreakageReport() {
+export function privacyDashboardRejectToggleReport() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    invariant(
-        window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport,
-        'privacyDashboardRejectSimpleBreakageReport required'
-    )
-    return window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport.postMessage({})
+    invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, 'privacyDashboardRejectToggleReport required')
+    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({})
 }
 
 /**
@@ -380,18 +377,18 @@ async function fetch(message) {
         })
     }
 
-    if (message instanceof FetchSimpleReportOptions) {
-        const data = await privacyDashboardGetSimpleReportOptions()
-        const parsed = simpleReportScreenSchema.parse(data)
+    if (message instanceof FetchToggleReportOptions) {
+        const data = await privacyDashboardGetToggleReportOptions()
+        const parsed = toggleReportScreenSchema.parse(data)
         return parsed
     }
 
-    if (message instanceof SendSimpleBreakageReport) {
-        return privacyDashboardSendSimpleBreakageReport()
+    if (message instanceof SendToggleBreakageReport) {
+        return privacyDashboardSendToggleReport()
     }
 
-    if (message instanceof RejectSimpleBreakageReport) {
-        return privacyDashboardRejectSimpleBreakageReport()
+    if (message instanceof RejectToggleBreakageReport) {
+        return privacyDashboardRejectToggleReport()
     }
 }
 

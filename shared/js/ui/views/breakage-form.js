@@ -55,36 +55,23 @@ export { BreakageFormView }
  * @param {boolean} ops.immediate
  * @constructor
  */
-function SimpleBreakageReportView(ops) {
+function ToggleReportView(ops) {
     this.model = ops.model
     this.mainModel = ops.mainModel
     this.template = ops.template
     this.immediate = ops.immediate
     // @ts-ignore
     ParentSlidingSubview.call(this, ops)
-    // @ts-ignore
-    this._setup()
 }
 
-SimpleBreakageReportView.prototype = $.extend(
+ToggleReportView.prototype = $.extend(
     {},
     // @ts-ignore
     ParentSlidingSubview.prototype,
     {
         roots: new Map(),
         _setup: function () {},
-        //
-        // _submitForm: function () {
-        //     const category = this.$dropdown.val()
-        //     const description = this.$description.val()
-        //     this.model.submitBreakageForm(category, description)
-        //     this._showThankYouMessage()
-        // },
-        //
-        // _showThankYouMessage: function () {
-        //     this.$element[0].dataset.state = 'sent'
-        // },
     }
 )
 
-export { SimpleBreakageReportView }
+export { ToggleReportView }

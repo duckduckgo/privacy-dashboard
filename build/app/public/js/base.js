@@ -11040,7 +11040,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, siteUrlAdditionalDataSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, simpleReportScreenDataItemSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, simpleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, siteUrlAdditionalDataSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -11050,7 +11050,7 @@
       ruleExceptionReasonSchema = z.literal("ruleException");
       adClickAttributionReasonSchema = z.literal("adClickAttribution");
       otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
-      screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("simpleBreakageReport")]);
+      screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport")]);
       wvVersionTitleSchema = z.literal("wvVersion");
       requestsTitleSchema = z.literal("requests");
       featuresTitleSchema = z.literal("features");
@@ -11193,7 +11193,7 @@
         isProtected: z.boolean(),
         eventOrigin: eventOriginSchema
       });
-      simpleReportScreenDataItemSchema = z.object({
+      toggleReportScreenDataItemSchema = z.object({
         id: dataItemIdSchema,
         additional: siteUrlAdditionalDataSchema.optional()
       });
@@ -11217,8 +11217,8 @@
         certificates: z.array(z.unknown()).optional(),
         cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
       });
-      simpleReportScreenSchema = z.object({
-        data: z.array(simpleReportScreenDataItemSchema)
+      toggleReportScreenSchema = z.object({
+        data: z.array(toggleReportScreenDataItemSchema)
       });
       windowsIncomingViewModelSchema = z.object({
         Feature: z.literal("PrivacyDashboard"),
@@ -11240,7 +11240,7 @@
         "fire-button": fireButtonDataSchema.optional(),
         "feature-settings": remoteFeatureSettingsSchema.optional(),
         "set-protection": setProtectionParamsSchema.optional(),
-        "simple-report-screen": simpleReportScreenSchema.optional()
+        "toggle-report-screen": toggleReportScreenSchema.optional()
       });
     }
   });
@@ -11308,7 +11308,7 @@
       throw new Error(message);
     }
   }
-  var getContentHeight, DARK_THEME, LIGHT_THEME, explicitlySetTheme, detectedTheme, oppositeTheme, Msg, SetListsMessage, SubmitBrokenSiteReportMessage, UpdatePermissionMessage, CloseMessage, CheckBrokenSiteReportHandledMessage, RefreshEmailAliasMessage, OpenOptionsMessage, SearchMessage, OpenSettingsMessages, BurnMessage, FetchBurnOptions, FetchSimpleReportOptions, SendSimpleBreakageReport, RejectSimpleBreakageReport, SetBurnDefaultOption;
+  var getContentHeight, DARK_THEME, LIGHT_THEME, explicitlySetTheme, detectedTheme, oppositeTheme, Msg, SetListsMessage, SubmitBrokenSiteReportMessage, UpdatePermissionMessage, CloseMessage, CheckBrokenSiteReportHandledMessage, RefreshEmailAliasMessage, OpenOptionsMessage, SearchMessage, OpenSettingsMessages, BurnMessage, FetchBurnOptions, FetchToggleReportOptions, SendToggleBreakageReport, RejectToggleBreakageReport, SetBurnDefaultOption;
   var init_common = __esm({
     "shared/js/browser/common.js"() {
       "use strict";
@@ -11408,11 +11408,11 @@
       };
       FetchBurnOptions = class extends Msg {
       };
-      FetchSimpleReportOptions = class extends Msg {
+      FetchToggleReportOptions = class extends Msg {
       };
-      SendSimpleBreakageReport = class extends Msg {
+      SendToggleBreakageReport = class extends Msg {
       };
-      RejectSimpleBreakageReport = class extends Msg {
+      RejectToggleBreakageReport = class extends Msg {
       };
       SetBurnDefaultOption = class extends Msg {
         /**
@@ -12990,11 +12990,11 @@
     onChangeProtectionStatus: () => onChangeProtectionStatus,
     onChangeRequestData: () => onChangeRequestData,
     privacyDashboardClose: () => privacyDashboardClose,
-    privacyDashboardGetSimpleReportOptions: () => privacyDashboardGetSimpleReportOptions,
+    privacyDashboardGetToggleReportOptions: () => privacyDashboardGetToggleReportOptions,
     privacyDashboardOpenSettings: () => privacyDashboardOpenSettings,
     privacyDashboardOpenUrlInNewTab: () => privacyDashboardOpenUrlInNewTab,
-    privacyDashboardRejectSimpleBreakageReport: () => privacyDashboardRejectSimpleBreakageReport,
-    privacyDashboardSendSimpleBreakageReport: () => privacyDashboardSendSimpleBreakageReport,
+    privacyDashboardRejectToggleReport: () => privacyDashboardRejectToggleReport,
+    privacyDashboardSendToggleReport: () => privacyDashboardSendToggleReport,
     privacyDashboardSetPermission: () => privacyDashboardSetPermission,
     privacyDashboardSetProtection: () => privacyDashboardSetProtection,
     privacyDashboardSetSize: () => privacyDashboardSetSize,
@@ -13055,29 +13055,26 @@
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params);
   }
-  function privacyDashboardGetSimpleReportOptions() {
+  function privacyDashboardGetToggleReportOptions() {
     return new Promise((resolve) => {
       invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-      invariant(window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions, "privacyDashboardGetSimpleReportOptions required");
-      window.webkit.messageHandlers.privacyDashboardGetSimpleReportOptions.postMessage({});
-      window.onGetSimpleReportOptionsResponse = (data) => {
+      invariant(window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions, "privacyDashboardGetToggleReportOptions required");
+      window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({});
+      window.onGetToggleReportOptionsResponse = (data) => {
         resolve(data);
-        Reflect.deleteProperty(window, "onGetSimpleReportOptionsResponse");
+        Reflect.deleteProperty(window, "onGetToggleReportOptionsResponse");
       };
     });
   }
-  function privacyDashboardSendSimpleBreakageReport() {
+  function privacyDashboardSendToggleReport() {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-    invariant(window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport, "privacyDashboardSendSimpleBreakageReport required");
-    return window.webkit.messageHandlers.privacyDashboardSendSimpleBreakageReport.postMessage({});
+    invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, "privacyDashboardSendToggleReport required");
+    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({});
   }
-  function privacyDashboardRejectSimpleBreakageReport() {
+  function privacyDashboardRejectToggleReport() {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
-    invariant(
-      window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport,
-      "privacyDashboardRejectSimpleBreakageReport required"
-    );
-    return window.webkit.messageHandlers.privacyDashboardRejectSimpleBreakageReport.postMessage({});
+    invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, "privacyDashboardRejectToggleReport required");
+    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({});
   }
   function privacyDashboardClose(args) {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
@@ -13120,16 +13117,16 @@
         value: message.value
       });
     }
-    if (message instanceof FetchSimpleReportOptions) {
-      const data = await privacyDashboardGetSimpleReportOptions();
-      const parsed = simpleReportScreenSchema.parse(data);
+    if (message instanceof FetchToggleReportOptions) {
+      const data = await privacyDashboardGetToggleReportOptions();
+      const parsed = toggleReportScreenSchema.parse(data);
       return parsed;
     }
-    if (message instanceof SendSimpleBreakageReport) {
-      return privacyDashboardSendSimpleBreakageReport();
+    if (message instanceof SendToggleBreakageReport) {
+      return privacyDashboardSendToggleReport();
     }
-    if (message instanceof RejectSimpleBreakageReport) {
-      return privacyDashboardRejectSimpleBreakageReport();
+    if (message instanceof RejectToggleBreakageReport) {
+      return privacyDashboardRejectToggleReport();
     }
   }
   function privacyDashboardOpenUrlInNewTab(args) {
@@ -23104,13 +23101,12 @@
     sliding_subview_default.call(this, ops);
     this._setup();
   }
-  function SimpleBreakageReportView(ops) {
+  function ToggleReportView(ops) {
     this.model = ops.model;
     this.mainModel = ops.mainModel;
     this.template = ops.template;
     this.immediate = ops.immediate;
     sliding_subview_default.call(this, ops);
-    this._setup();
   }
   var import_jquery11;
   var init_breakage_form2 = __esm({
@@ -23139,7 +23135,7 @@
           }
         }
       );
-      SimpleBreakageReportView.prototype = import_jquery11.default.extend(
+      ToggleReportView.prototype = import_jquery11.default.extend(
         {},
         // @ts-ignore
         sliding_subview_default.prototype,
@@ -23147,17 +23143,6 @@
           roots: /* @__PURE__ */ new Map(),
           _setup: function() {
           }
-          //
-          // _submitForm: function () {
-          //     const category = this.$dropdown.val()
-          //     const description = this.$description.val()
-          //     this.model.submitBreakageForm(category, description)
-          //     this._showThankYouMessage()
-          // },
-          //
-          // _showThankYouMessage: function () {
-          //     this.$element[0].dataset.state = 'sent'
-          // },
         }
       );
     }
@@ -25167,8 +25152,8 @@
     }
   });
 
-  // shared/js/ui/components/simple-breakage-report.jsx
-  function SimpleBreakageReport() {
+  // shared/js/ui/components/toggle-report.jsx
+  function ToggleReport() {
     const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
     const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
     const buttonSize = platform.name === "ios" ? "big" : "small";
@@ -25216,7 +25201,7 @@
     );
     if (state.value === "sent" && platform.name === "macos")
       return /* @__PURE__ */ y(Sent, null);
-    return /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--simple-breakage-form" }), /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
+    return /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
   }
   function DataList({ rows }) {
     return /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-bold" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, rows.map((item) => {
@@ -25226,13 +25211,13 @@
     })));
   }
   function Sent() {
-    return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--simple-breakage-form-sent" }), /* @__PURE__ */ y(Stack, { gap: "8px" }, /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("thankYou.title")), /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("yourReportWillHelpDesc.title"))));
+    return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report-sent" }), /* @__PURE__ */ y(Stack, { gap: "8px" }, /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("thankYou.title")), /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("yourReportWillHelpDesc.title"))));
   }
   function DataProvider({ children, model }) {
     const initial = { status: "pending" };
     const [state, dispatch] = s2((state2, action) => action, initial);
     p2(() => {
-      const msg = new FetchSimpleReportOptions();
+      const msg = new FetchToggleReportOptions();
       return model.fetch(msg).then((data) => {
         console.log("?", data);
         dispatch({ status: "ready", value: data });
@@ -25241,10 +25226,10 @@
       });
     }, [model]);
     function send() {
-      model.fetch(new SendSimpleBreakageReport());
+      model.fetch(new SendToggleBreakageReport());
     }
     function reject() {
-      model.fetch(new RejectSimpleBreakageReport());
+      model.fetch(new RejectToggleBreakageReport());
     }
     if (state.status === "ready") {
       return /* @__PURE__ */ y(DataContext.Provider, { value: { value: state.value, send, reject } }, children);
@@ -25253,8 +25238,8 @@
       return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", null, "Something went wrong"), /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, state.error)));
     return null;
   }
-  function simpleBreakageFormTemplate() {
-    const root = import_nanohtml17.default`<div data-testid="simple-breakage-report"></div>`;
+  function toggleReportTemplate() {
+    const root = import_nanohtml17.default`<div data-testid="toggle-report"></div>`;
     const template4 = import_nanohtml17.default`
         <section class="sliding-subview">
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
@@ -25266,14 +25251,14 @@
     `;
     this.roots.set(root, true);
     B(
-      /* @__PURE__ */ y(DataProvider, { model: this.model }, /* @__PURE__ */ y(SimpleBreakageReport, null)),
+      /* @__PURE__ */ y(DataProvider, { model: this.model }, /* @__PURE__ */ y(ToggleReport, null)),
       root
     );
     return template4;
   }
   var import_nanohtml17, DataContext;
-  var init_simple_breakage_report = __esm({
-    "shared/js/ui/components/simple-breakage-report.jsx"() {
+  var init_toggle_report = __esm({
+    "shared/js/ui/components/toggle-report.jsx"() {
       "use strict";
       init_preact_module();
       import_nanohtml17 = __toESM(require_browser());
@@ -25288,7 +25273,7 @@
       init_text();
       DataContext = G({
         value: (
-          /** @type {import('../../../../schema/__generated__/schema.types').SimpleReportScreen} */
+          /** @type {import('../../../../schema/__generated__/schema.types').ToggleReportScreen} */
           {}
         ),
         /** @type {() => void} */
@@ -25353,7 +25338,7 @@
       init_main_nav();
       init_cookie_prompt2();
       init_fire_dialog();
-      init_simple_breakage_report();
+      init_toggle_report();
       Site2.prototype = import_jquery21.default.extend({}, view_default.prototype, {
         _changePermission: function(e3) {
           this.model.updatePermission(e3.target.name, e3.target.value);
@@ -25377,10 +25362,10 @@
           if (url.searchParams.get("screen") === str) {
             this.showBreakageForm({ immediate: true });
           }
-          const simple = "simpleBreakageReport";
-          if (url.searchParams.get("screen") === simple) {
+          const toggle = "toggleReport";
+          if (url.searchParams.get("screen") === toggle) {
             const opener = url.searchParams.get("opener") || "menu";
-            this.showSimpleBreakageForm({ immediate: true, opener });
+            this.showToggleReport({ immediate: true, opener });
           }
           setTimeout(() => {
             communication_default.firstRenderComplete?.();
@@ -25443,12 +25428,12 @@
          * @param {HTMLElement} [opts.eventTarget]
          * @param {string} opts.opener
          */
-        showSimpleBreakageForm: function({ immediate, eventTarget, opener }) {
+        showToggleReport: function({ immediate, eventTarget, opener }) {
           if (eventTarget) {
             blur(eventTarget);
           }
-          this.views.slidingSubview = new SimpleBreakageReportView({
-            template: simpleBreakageFormTemplate,
+          this.views.slidingSubview = new ToggleReportView({
+            template: toggleReportTemplate,
             model: new BreakageFormModel({ site: this.model, opener }),
             mainModel: this.model,
             immediate

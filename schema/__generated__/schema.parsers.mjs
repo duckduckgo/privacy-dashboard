@@ -11,7 +11,7 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
-export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("simpleBreakageReport")]);
+export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport")]);
 
 export const wvVersionTitleSchema = z.literal("wvVersion");
 
@@ -195,7 +195,7 @@ export const setProtectionParamsSchema = z.object({
     eventOrigin: eventOriginSchema
 });
 
-export const simpleReportScreenDataItemSchema = z.object({
+export const toggleReportScreenDataItemSchema = z.object({
     id: dataItemIdSchema,
     additional: siteUrlAdditionalDataSchema.optional()
 });
@@ -223,8 +223,8 @@ export const windowsViewModelSchema = z.object({
     cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
 });
 
-export const simpleReportScreenSchema = z.object({
-    data: z.array(simpleReportScreenDataItemSchema)
+export const toggleReportScreenSchema = z.object({
+    data: z.array(toggleReportScreenDataItemSchema)
 });
 
 export const windowsIncomingViewModelSchema = z.object({
@@ -249,6 +249,6 @@ export const apiSchema = z.object({
     "fire-button": fireButtonDataSchema.optional(),
     "feature-settings": remoteFeatureSettingsSchema.optional(),
     "set-protection": setProtectionParamsSchema.optional(),
-    "simple-report-screen": simpleReportScreenSchema.optional()
+    "toggle-report-screen": toggleReportScreenSchema.optional()
 });
 

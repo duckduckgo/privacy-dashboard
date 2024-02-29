@@ -1,19 +1,19 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "SimpleReportScreen",
+    "title": "ToggleReportScreen",
     "type": "object",
     "additionalProperties": false,
     "required": ["data"],
-    "description": "<details>\n<summary>Show example JSON</summary>\n\n```json\n[[include:simple-report-screen.json]]\n```\n</details>",
+    "description": "<details>\n<summary>Show example JSON</summary>\n\n```json\n[[include:toggle-report-screen.json]]\n```\n</details>",
     "properties": {
         "data": {
             "type": "array",
             "description": "The line-items to show to the user for indicating what data the report will send to DuckDuckGo",
-            "items": { "$ref": "#/definitions/SimpleReportScreenDataItem" }
+            "items": { "$ref": "#/definitions/ToggleReportScreenDataItem" }
         }
     },
     "definitions": {
-        "SimpleReportScreenDataItem": {
+        "ToggleReportScreenDataItem": {
             "type": "object",
             "required": ["id"],
             "additionalProperties": false,

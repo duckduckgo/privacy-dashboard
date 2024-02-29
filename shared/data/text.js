@@ -1,8 +1,8 @@
 import { ns } from '../js/ui/base/localize'
 
 /**
- * This provides a type-safe mapping from a simple report data item into a translated string
- * @param {import("../../schema/__generated__/schema.types").SimpleReportScreenDataItem} item
+ * This provides a type-safe mapping from a toggle report data item into a translated string
+ * @param {import("../../schema/__generated__/schema.types").ToggleReportScreenDataItem} item
  * @return {string}
  */
 export function namedString(item) {

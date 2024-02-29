@@ -15,7 +15,7 @@ import { KeyInsightView } from '../templates/key-insights'
 import { BreakageFormModel } from '../models/breakage-form.js'
 import { createPlatformFeatures } from '../platform-features.mjs'
 import { CookiePromptModel } from '../models/cookie-prompt.js'
-import { BreakageFormView, SimpleBreakageReportView } from './breakage-form'
+import { BreakageFormView, ToggleReportView } from './breakage-form'
 import pageConnectionTemplate from './../templates/page-connection.js'
 import breakageFormTemplate from './../templates/breakage-form.js'
 import EmailProtectionView from './email-protection.js'
@@ -25,7 +25,7 @@ import TrackerNetworksView from './../views/tracker-networks.js'
 import { MainNavView } from './main-nav'
 import { CookiePromptView } from './cookie-prompt'
 import { FireDialog } from './fire-dialog.js'
-import { simpleBreakageFormTemplate } from '../components/simple-breakage-report'
+import { toggleReportTemplate } from '../components/toggle-report'
 
 /**
  * @constructor
@@ -85,10 +85,10 @@ Site.prototype = $.extend({}, Parent.prototype, {
         }
 
         /** @type {import('../../../../schema/__generated__/schema.types.js').EventOrigin['screen']} */
-        const simple = 'simpleBreakageReport'
-        if (url.searchParams.get('screen') === simple) {
+        const toggle = 'toggleReport'
+        if (url.searchParams.get('screen') === toggle) {
             const opener = url.searchParams.get('opener') || 'menu'
-            this.showSimpleBreakageForm({ immediate: true, opener })
+            this.showToggleReport({ immediate: true, opener })
         }
 
         setTimeout(() => {
@@ -160,12 +160,12 @@ Site.prototype = $.extend({}, Parent.prototype, {
      * @param {HTMLElement} [opts.eventTarget]
      * @param {string} opts.opener
      */
-    showSimpleBreakageForm: function ({ immediate, eventTarget, opener }) {
+    showToggleReport: function ({ immediate, eventTarget, opener }) {
         if (eventTarget) {
             blur(eventTarget)
         }
-        this.views.slidingSubview = new SimpleBreakageReportView({
-            template: simpleBreakageFormTemplate,
+        this.views.slidingSubview = new ToggleReportView({
+            template: toggleReportTemplate,
             model: new BreakageFormModel({ site: this.model, opener }),
             mainModel: this.model,
             immediate,

@@ -899,12 +899,12 @@ body.environment--windows {
   margin-bottom: 16px;
 }
 
-.hero-icon--simple-breakage-form {
+.hero-icon--toggle-report {
   background-image: url("../../img/refresh-assets/Breakage-128.svg");
   margin-bottom: 0;
 }
 
-.hero-icon--simple-breakage-form-sent {
+.hero-icon--toggle-report-sent {
   background-image: url("../../img/refresh-assets/breakage-sent.svg");
 }
 

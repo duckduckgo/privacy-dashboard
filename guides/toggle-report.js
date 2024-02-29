@@ -1,5 +1,5 @@
 /**
- * @module Simple Breakage Report
+ * @module Toggle Report
  *
  * @category guides
  *
@@ -7,7 +7,7 @@
  *
  * ## Step 1: Open the dashboard with params
  *
- *  - `screen=simpleBreakageReport`
+ *  - `screen=toggleReport`
  *  - `opener=menu`
  *    - or `opener=dashboard`
  *
@@ -24,28 +24,28 @@
  *   <summary>Sample JSON response 📝</summary>
  *
  *   ```json
- *   [[include:simple-report-screen.json]]```
+ *   [[include:toggle-report-screen.json]]```
  * </details>
  *
- *   - WebKit: {@link "macOS integration".privacyDashboardGetSimpleReportOptions}
+ *   - WebKit: {@link "macOS integration".privacyDashboardGetToggleReportOptions}
  *   - Other platforms will be added
  *
  * ## Step 4: Implement the 'Send' and 'Don't send' handlers
  *
  * Both of these take no params and they return no data.
  *
- * - {@link common.sendSimpleBreakageReport}
- * - {@link common.rejectSimpleBreakageReport}
- *   - WebKit: {@link "macOS integration".privacyDashboardSendSimpleBreakageReport}
- *   - WebKit: {@link "macOS integration".privacyDashboardRejectSimpleBreakageReport}
+ * - {@link common.sendToggleReport}
+ * - {@link common.rejectToggleReport}
+ *   - WebKit: {@link "macOS integration".privacyDashboardSendToggleReport}
+ *   - WebKit: {@link "macOS integration".privacyDashboardRejectToggleReport}
  *
  * ## opener=menu
- *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=simpleBreakageReport&opener=menu"></iframe>
- *  <iframe width=360 height=600 src="/app-debug/html/macos.html?screen=simpleBreakageReport&opener=menu"></iframe>*
+ *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=toggleReport&opener=menu"></iframe>
+ *  <iframe width=360 height=600 src="/app-debug/html/macos.html?screen=toggleReport&opener=menu"></iframe>*
  *
  * ## opener=dashboard
- *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=simpleBreakageReport&opener=dashboard"></iframe>
- *  <iframe width=360 height=600 src="/app-debug/html/macos.html?screen=simpleBreakageReport&opener=dashboard"></iframe>
+ *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=toggleReport&opener=dashboard"></iframe>
+ *  <iframe width=360 height=600 src="/app-debug/html/macos.html?screen=toggleReport&opener=dashboard"></iframe>
  *
  * ## screen=breakageForm
  *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=breakageForm"></iframe>

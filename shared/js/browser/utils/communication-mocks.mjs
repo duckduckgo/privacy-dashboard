@@ -1,4 +1,4 @@
-import simpleReportScreen from '../../../../schema/__fixtures__/simple-report-screen.json'
+import toggleReportScreen from '../../../../schema/__fixtures__/toggle-report-screen.json'
 /**
  * @param {object} params
  * @param {import("../../ui/views/tests/generate-data.mjs").MockData} params.state
@@ -84,7 +84,11 @@ export function windowsMockApis() {
     }
 }
 
-export function webkitMockApis({ responses = {} } = {}) {
+/**
+ * @param {object} params
+ * @param {Partial<Record<keyof WebkitMessageHandlers, any>>} params.responses
+ */
+export function webkitMockApis({ responses = {} }) {
     const merged = {
         ...responses,
     }
@@ -140,22 +144,22 @@ export function webkitMockApis({ responses = {} } = {}) {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardSetPermission', arg])
                     },
                 },
-                privacyDashboardSendSimpleBreakageReport: {
+                privacyDashboardSendToggleReport: {
                     postMessage: async (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardSendSimpleBreakageReport', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSendToggleReport', arg])
                     },
                 },
-                privacyDashboardRejectSimpleBreakageReport: {
+                privacyDashboardRejectToggleReport: {
                     postMessage: async (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardRejectSimpleBreakageReport', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardRejectToggleReport', arg])
                     },
                 },
-                privacyDashboardGetSimpleReportOptions: {
+                privacyDashboardGetToggleReportOptions: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardGetSimpleReportOptions', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg])
                         setTimeout(() => {
-                            window.onGetSimpleReportOptionsResponse?.(
-                                window.__playwright.responses['privacyDashboardGetSimpleReportOptions']
+                            window.onGetToggleReportOptionsResponse?.(
+                                window.__playwright.responses['privacyDashboardGetToggleReportOptions']
                             )
                         }, 0)
                     },
@@ -284,7 +288,7 @@ export async function installMocks(platform) {
     } else if (platform.name === 'ios' || platform.name === 'macos') {
         webkitMockApis({
             responses: {
-                privacyDashboardGetSimpleReportOptions: simpleReportScreen,
+                privacyDashboardGetToggleReportOptions: toggleReportScreen,
             },
         })
     } else if (platform.name === 'android') {

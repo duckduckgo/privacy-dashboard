@@ -5,7 +5,7 @@ import {
     webkitMockApis,
     windowsMockApis,
 } from '../shared/js/browser/utils/communication-mocks.mjs'
-import simpleReportScreen from '../schema/__fixtures__/simple-report-screen.json'
+import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json'
 
 /**
  * @param {import('@playwright/test').Page} page
@@ -59,7 +59,7 @@ export async function installWebkitMocks(page, _args) {
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function')
     return page.evaluate(webkitMockApis, {
         responses: {
-            privacyDashboardGetSimpleReportOptions: simpleReportScreen,
+            privacyDashboardGetToggleReportOptions: toggleReportScreen,
         },
     })
 }

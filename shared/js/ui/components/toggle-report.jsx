@@ -8,10 +8,10 @@ import { Button, ButtonBar } from './button'
 import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
 import { useContext, useEffect, useReducer } from 'preact/hooks'
-import { FetchSimpleReportOptions, RejectSimpleBreakageReport, SendSimpleBreakageReport } from '../../browser/common'
+import { FetchToggleReportOptions, RejectToggleBreakageReport, SendToggleBreakageReport } from '../../browser/common'
 import { namedString } from '../../../data/text'
 
-export function SimpleBreakageReport() {
+export function ToggleReport() {
     const buttonVariant = platform.name === 'ios' ? 'ios-secondary' : 'macos-standard'
     const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
     const buttonSize = platform.name === 'ios' ? 'big' : 'small'
@@ -50,7 +50,7 @@ export function SimpleBreakageReport() {
         <Stack gap="40px" className="fade-in">
             <Stack gap="24px">
                 <Stack gap={innerGap}>
-                    <div className="medium-icon-container hero-icon--simple-breakage-form"></div>
+                    <div className="medium-icon-container hero-icon--toggle-report"></div>
                     <h1 className="token-title-2-em text--center">{ns.report('siteNotWorkingTitle.title')}</h1>
                     <div>
                         <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
@@ -119,7 +119,7 @@ function DataList({ rows }) {
 function Sent() {
     return (
         <div>
-            <div className="medium-icon-container hero-icon--simple-breakage-form-sent"></div>
+            <div className="medium-icon-container hero-icon--toggle-report-sent"></div>
             <Stack gap={'8px'}>
                 <h1 className="token-title-2-em text--center">{ns.report('thankYou.title')}</h1>
                 <h2 className="token-title-3 text--center">{ns.report('yourReportWillHelpDesc.title')}</h2>
@@ -129,7 +129,7 @@ function Sent() {
 }
 
 const DataContext = createContext({
-    value: /** @type {import('../../../../schema/__generated__/schema.types').SimpleReportScreen} */ ({}),
+    value: /** @type {import('../../../../schema/__generated__/schema.types').ToggleReportScreen} */ ({}),
     /** @type {() => void} */
     send: () => {
         throw new Error('todo implement send')
@@ -144,7 +144,7 @@ function DataProvider({ children, model }) {
     const initial = { status: 'pending' }
     const [state, dispatch] = useReducer((state, action) => action, initial)
     useEffect(() => {
-        const msg = new FetchSimpleReportOptions()
+        const msg = new FetchToggleReportOptions()
         return model
             .fetch(msg)
             .then((data) => {
@@ -157,10 +157,10 @@ function DataProvider({ children, model }) {
     }, [model])
 
     function send() {
-        model.fetch(new SendSimpleBreakageReport())
+        model.fetch(new SendToggleBreakageReport())
     }
     function reject() {
-        model.fetch(new RejectSimpleBreakageReport())
+        model.fetch(new RejectToggleBreakageReport())
     }
     if (state.status === 'ready') {
         return <DataContext.Provider value={{ value: state.value, send, reject }}>{children}</DataContext.Provider>
@@ -186,8 +186,8 @@ function DataProvider({ children, model }) {
  *     fetch: any,
  * }}
  */
-export function simpleBreakageFormTemplate() {
-    const root = html`<div data-testid="simple-breakage-report"></div>`
+export function toggleReportTemplate() {
+    const root = html`<div data-testid="toggle-report"></div>`
     const template = html`
         <section class="sliding-subview">
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
@@ -200,7 +200,7 @@ export function simpleBreakageFormTemplate() {
     this.roots.set(root, true)
     render(
         <DataProvider model={this.model}>
-            <SimpleBreakageReport />
+            <ToggleReport />
         </DataProvider>,
         root
     )

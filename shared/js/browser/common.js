@@ -232,25 +232,25 @@ export async function refreshAlias() {
 }
 
 /**
- * Fetch the data needed to display the simple report screen
+ * Fetch the data needed to display the toggle report screen
  */
-export async function getSimpleReportOptions() {
+export async function getToggleReportOptions() {
     throw new Error('base impl')
 }
 
 /**
- * Send the simple breakage report
+ * Send the toggle report
  * @returns {Promise<void>}
  */
-export async function sendSimpleBreakageReport() {
+export async function sendToggleReport() {
     throw new Error('base impl')
 }
 
 /**
- * Reject sending the simple breakage report
+ * Reject sending the toggle report
  * @returns {Promise<void>}
  */
-export async function rejectSimpleBreakageReport() {
+export async function rejectToggleReport() {
     throw new Error('base impl')
 }
 
@@ -381,9 +381,9 @@ export class BurnMessage extends Msg {
 }
 
 export class FetchBurnOptions extends Msg {}
-export class FetchSimpleReportOptions extends Msg {}
-export class SendSimpleBreakageReport extends Msg {}
-export class RejectSimpleBreakageReport extends Msg {}
+export class FetchToggleReportOptions extends Msg {}
+export class SendToggleBreakageReport extends Msg {}
+export class RejectToggleBreakageReport extends Msg {}
 
 export class SetBurnDefaultOption extends Msg {
     /**
