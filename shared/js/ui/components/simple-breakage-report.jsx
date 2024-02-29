@@ -107,7 +107,7 @@ function DataList({ rows }) {
                     return (
                         <li className="data-list__item token-breakage-form-body">
                             {string}
-                            {additional && <strong>{additional}</strong>}
+                            {additional && <strong className="block">{additional}</strong>}
                         </li>
                     )
                 })}
