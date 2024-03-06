@@ -1,5 +1,6 @@
 import { describe, it } from 'node:test'
 import {
+    closeMessageParamsSchema,
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
     protectionsStatusSchema,
@@ -19,6 +20,7 @@ const locale = JSON.parse(readFileSync(join(CWD, '__fixtures__/locale-settings.j
 const cpm = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm.json'), 'utf8'))
 const cpmSecondary = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm-secondary.json'), 'utf8'))
 const toggleReportScreen = JSON.parse(readFileSync(join(CWD, '__fixtures__/toggle-report-screen.json'), 'utf8'))
+const webkitClose = JSON.parse(readFileSync(join(CWD, '__fixtures__/webkit-close.json'), 'utf8'))
 
 describe('__fixtures__', () => {
     it('validates request-data', () => {
@@ -39,5 +41,8 @@ describe('__fixtures__', () => {
     })
     it('validates toggle report screen', () => {
         toggleReportScreenSchema.parse(toggleReportScreen)
+    })
+    it('validates close message on webkit', () => {
+        closeMessageParamsSchema.parse(webkitClose)
     })
 })

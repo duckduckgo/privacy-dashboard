@@ -133,6 +133,7 @@ export interface API {
   "feature-settings"?: RemoteFeatureSettings;
   "set-protection"?: SetProtectionParams;
   "toggle-report-screen"?: ToggleReportScreen;
+  "close-message"?: CloseMessageParams;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -492,5 +493,8 @@ export interface ToggleReportScreenDataItem {
 }
 export interface SiteUrlAdditionalData {
   url: string;
+}
+export interface CloseMessageParams {
+  eventOrigin: EventOrigin;
 }
 

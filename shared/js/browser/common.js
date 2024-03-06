@@ -325,7 +325,19 @@ export class UpdatePermissionMessage extends Msg {
     }
 }
 
-export class CloseMessage extends Msg {}
+export class CloseMessage extends Msg {
+    /**
+     * @param {object} params
+     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     */
+    constructor(params) {
+        super()
+        /**
+         * @type {import('../../../schema/__generated__/schema.types').EventOrigin}
+         */
+        this.eventOrigin = params.eventOrigin
+    }
+}
 
 export class CheckBrokenSiteReportHandledMessage extends Msg {}
 

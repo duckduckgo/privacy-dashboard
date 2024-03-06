@@ -31,7 +31,7 @@ test.describe('opening breakage form', () => {
         await dash.breakageFormIsVisible()
         await dash.showsOnlyCloseButton()
         await dash.selectClose()
-        await dash.mocks.calledForClose()
+        await dash.mocks.calledForClose({ screen: 'breakageForm' })
     })
     test('shows toggle report when opened from menu', async ({ page }) => {
         /** @type {DashboardPage} */
@@ -40,7 +40,7 @@ test.describe('opening breakage form', () => {
         await dash.toggleReportIsVisible()
         await dash.showsOnlyCloseButton()
         await dash.selectClose()
-        await dash.mocks.calledForClose()
+        await dash.mocks.calledForClose({ screen: 'toggleReport' })
     })
     test('shows toggle report when opened from dashboard', async ({ page }) => {
         /** @type {DashboardPage} */

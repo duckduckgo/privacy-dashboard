@@ -57,7 +57,11 @@ function Site(attrs) {
  */
 
 /**
- * @typedef {{ tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any> & {fetch: import("../../browser/common.js").fetcher}} LocalThis
+ * @typedef {{
+ *   tab: import('../../browser/utils/request-details.mjs').TabData,
+ *   features: import("../platform-features.mjs").PlatformFeatures
+ * } & Record<string, any>
+ *   & { fetch: import("../../browser/common.js").fetcher} } LocalThis
  */
 
 Site.prototype = $.extend({}, Parent.prototype, {
@@ -351,8 +355,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
     /** @this {LocalThis} */
     close: function () {
         try {
-            console.log(new CloseMessage())
-            this.fetch(new CloseMessage())
+            this.fetch(new CloseMessage({ eventOrigin: { screen: this.features.initialScreen } }))
         } catch (e) {
             console.error('close error', e)
         }

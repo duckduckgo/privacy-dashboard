@@ -320,11 +320,16 @@ export function privacyDashboardRejectToggleReport() {
 /**
  * Close the Dashboard.
  * @category Webkit Message Handlers
- * @param {{}} args - An empty object to keep the `webkit` message handlers happy
+ * @param {import('../../../schema/__generated__/schema.types').CloseMessageParams} args
  * @example
+ *
  * ```js
  * window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
  * ```
+ * ### Sample JSON 📝
+ * ```json
+ * [[include:webkit-close.json]]```
+ *
  */
 export function privacyDashboardClose(args) {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
@@ -337,7 +342,7 @@ export function privacyDashboardClose(args) {
  */
 async function fetch(message) {
     if (message instanceof CloseMessage) {
-        privacyDashboardClose({})
+        privacyDashboardClose({ eventOrigin: message.eventOrigin })
         return
     }
 

@@ -77,16 +77,11 @@ Site.prototype = $.extend({}, Parent.prototype, {
         this._setupPrimaryScreen()
         const url = new URL(window.location.href)
 
-        /** @type {import('../../../../schema/__generated__/schema.types.js').EventOrigin['screen']} */
-        const str = 'breakageForm'
-
-        if (url.searchParams.get('screen') === str) {
+        if (this.features.initialScreen === 'breakageForm') {
             this.showBreakageForm({ immediate: true })
         }
 
-        /** @type {import('../../../../schema/__generated__/schema.types.js').EventOrigin['screen']} */
-        const toggle = 'toggleReport'
-        if (url.searchParams.get('screen') === toggle) {
+        if (this.features.initialScreen === 'toggleReport') {
             const opener = url.searchParams.get('opener') || 'menu'
             this.showToggleReport({ immediate: true, opener })
         }

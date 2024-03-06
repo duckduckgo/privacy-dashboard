@@ -154,6 +154,10 @@ export const siteUrlAdditionalDataSchema = z.object({
     url: z.string()
 });
 
+export const closeMessageParamsSchema = z.object({
+    eventOrigin: eventOriginSchema
+});
+
 export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema]);
 
 export const detectedRequestSchema = z.object({
@@ -249,6 +253,7 @@ export const apiSchema = z.object({
     "fire-button": fireButtonDataSchema.optional(),
     "feature-settings": remoteFeatureSettingsSchema.optional(),
     "set-protection": setProtectionParamsSchema.optional(),
-    "toggle-report-screen": toggleReportScreenSchema.optional()
+    "toggle-report-screen": toggleReportScreenSchema.optional(),
+    "close-message": closeMessageParamsSchema.optional()
 });
 

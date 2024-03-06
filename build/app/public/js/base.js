@@ -11040,7 +11040,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, siteUrlAdditionalDataSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -11159,6 +11159,9 @@
       siteUrlAdditionalDataSchema = z.object({
         url: z.string()
       });
+      closeMessageParamsSchema = z.object({
+        eventOrigin: eventOriginSchema
+      });
       dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema]);
       detectedRequestSchema = z.object({
         url: z.string(),
@@ -11240,7 +11243,8 @@
         "fire-button": fireButtonDataSchema.optional(),
         "feature-settings": remoteFeatureSettingsSchema.optional(),
         "set-protection": setProtectionParamsSchema.optional(),
-        "toggle-report-screen": toggleReportScreenSchema.optional()
+        "toggle-report-screen": toggleReportScreenSchema.optional(),
+        "close-message": closeMessageParamsSchema.optional()
       });
     }
   });
@@ -11370,6 +11374,14 @@
         }
       };
       CloseMessage = class extends Msg {
+        /**
+         * @param {object} params
+         * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+         */
+        constructor(params) {
+          super();
+          this.eventOrigin = params.eventOrigin;
+        }
       };
       CheckBrokenSiteReportHandledMessage = class extends Msg {
       };
@@ -13082,7 +13094,7 @@
   }
   async function fetch2(message) {
     if (message instanceof CloseMessage) {
-      privacyDashboardClose({});
+      privacyDashboardClose({ eventOrigin: message.eventOrigin });
       return;
     }
     if (message instanceof SubmitBrokenSiteReportMessage) {
@@ -22631,9 +22643,18 @@
   // shared/js/ui/platform-features.mjs
   function createPlatformFeatures(platform2) {
     const desktop = ["windows", "macos", "browser"];
+    let screen = "primaryScreen";
+    const url = new URL(window.location.href);
+    if (url.searchParams.get("screen") === "breakageForm") {
+      screen = "breakageForm";
+    }
+    if (url.searchParams.get("screen") === "toggleReport") {
+      screen = "toggleReport";
+    }
     return new PlatformFeatures({
       spinnerFollowingProtectionsToggle: platform2.name !== "android" && platform2.name !== "windows",
-      supportsHover: desktop.includes(platform2.name)
+      supportsHover: desktop.includes(platform2.name),
+      initialScreen: screen
     });
   }
   var PlatformFeatures, FeatureSettings;
@@ -22645,10 +22666,12 @@
          * @param {object} params
          * @param {boolean} params.spinnerFollowingProtectionsToggle
          * @param {boolean} params.supportsHover
+         * @param {InitialScreen} params.initialScreen
          */
         constructor(params) {
           this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
           this.supportsHover = params.supportsHover;
+          this.initialScreen = params.initialScreen;
         }
       };
       FeatureSettings = class _FeatureSettings {
@@ -24628,8 +24651,7 @@
         /** @this {LocalThis} */
         close: function() {
           try {
-            console.log(new CloseMessage());
-            this.fetch(new CloseMessage());
+            this.fetch(new CloseMessage({ eventOrigin: { screen: this.features.initialScreen } }));
           } catch (e3) {
             console.error("close error", e3);
           }
@@ -25358,12 +25380,10 @@
           });
           this._setupPrimaryScreen();
           const url = new URL(window.location.href);
-          const str = "breakageForm";
-          if (url.searchParams.get("screen") === str) {
+          if (this.features.initialScreen === "breakageForm") {
             this.showBreakageForm({ immediate: true });
           }
-          const toggle = "toggleReport";
-          if (url.searchParams.get("screen") === toggle) {
+          if (this.features.initialScreen === "toggleReport") {
             const opener = url.searchParams.get("opener") || "menu";
             this.showToggleReport({ immediate: true, opener });
           }
