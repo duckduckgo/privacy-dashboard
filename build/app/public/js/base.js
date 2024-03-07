@@ -25267,7 +25267,7 @@
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: "secondary", immediate: this.immediate })}
                 <div class="padding-x-double">${root}</div>
-                <div style="height: 24px"></div>
+                ${platform.name === "macos" ? import_nanohtml17.default`<div style="height: 32px"></div>` : null}
             </div>
         </section>
     `;
