@@ -3777,6 +3777,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   background: rgba(0, 0, 0, 0.01);
   padding: 16px 20px 20px 16px;
 }
+.body--theme-dark .scrollable {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.09);
+}
 
 .data-list {
   padding-left: 18px;
