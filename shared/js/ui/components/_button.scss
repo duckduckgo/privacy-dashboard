@@ -69,9 +69,8 @@
     &[data-layout='horizontal'] {
         display: grid;
         gap: 12px;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr;
     }
-
     &[data-layout='vertical'] {
         display: flex;
         gap: 12px;

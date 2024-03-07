@@ -3741,7 +3741,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .button-bar[data-layout=horizontal] {
   display: grid;
   gap: 12px;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
 }
 .button-bar[data-layout=vertical] {
   display: flex;
