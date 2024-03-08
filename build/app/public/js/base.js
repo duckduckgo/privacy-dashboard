@@ -11313,7 +11313,7 @@
       throw new Error(message);
     }
   }
-  var getContentHeight, DARK_THEME, LIGHT_THEME, explicitlySetTheme, detectedTheme, oppositeTheme, Msg, SetListsMessage, SubmitBrokenSiteReportMessage, UpdatePermissionMessage, CloseMessage, CheckBrokenSiteReportHandledMessage, RefreshEmailAliasMessage, OpenOptionsMessage, SearchMessage, OpenSettingsMessages, BurnMessage, FetchBurnOptions, FetchToggleReportOptions, SendToggleBreakageReport, RejectToggleBreakageReport, SetBurnDefaultOption;
+  var getContentHeight, DARK_THEME, LIGHT_THEME, explicitlySetTheme, detectedTheme, oppositeTheme, Msg, SetListsMessage, SubmitBrokenSiteReportMessage, UpdatePermissionMessage, CloseMessage, CheckBrokenSiteReportHandledMessage, RefreshEmailAliasMessage, OpenOptionsMessage, SearchMessage, OpenSettingsMessages, BurnMessage, FetchBurnOptions, FetchToggleReportOptions, SendToggleBreakageReport, RejectToggleBreakageReport, SeeWhatIsSent, SetBurnDefaultOption;
   var init_common = __esm({
     "shared/js/browser/common.js"() {
       "use strict";
@@ -11426,6 +11426,8 @@
       SendToggleBreakageReport = class extends Msg {
       };
       RejectToggleBreakageReport = class extends Msg {
+      };
+      SeeWhatIsSent = class extends Msg {
       };
       SetBurnDefaultOption = class extends Msg {
         /**
@@ -13007,6 +13009,7 @@
     privacyDashboardOpenSettings: () => privacyDashboardOpenSettings,
     privacyDashboardOpenUrlInNewTab: () => privacyDashboardOpenUrlInNewTab,
     privacyDashboardRejectToggleReport: () => privacyDashboardRejectToggleReport,
+    privacyDashboardSeeWhatIsSent: () => privacyDashboardSeeWhatIsSent,
     privacyDashboardSendToggleReport: () => privacyDashboardSendToggleReport,
     privacyDashboardSetPermission: () => privacyDashboardSetPermission,
     privacyDashboardSetProtection: () => privacyDashboardSetProtection,
@@ -13089,6 +13092,11 @@
     invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, "privacyDashboardRejectToggleReport required");
     return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({});
   }
+  function privacyDashboardSeeWhatIsSent() {
+    invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
+    invariant(window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent, "privacyDashboardSeeWhatIsSent required");
+    return window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent.postMessage({});
+  }
   function privacyDashboardClose(args) {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
@@ -13140,6 +13148,9 @@
     }
     if (message instanceof RejectToggleBreakageReport) {
       return privacyDashboardRejectToggleReport();
+    }
+    if (message instanceof SeeWhatIsSent) {
+      return privacyDashboardSeeWhatIsSent();
     }
   }
   function privacyDashboardOpenUrlInNewTab(args) {
@@ -25186,7 +25197,7 @@
     const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
     const buttonSize = platform.name === "ios" ? "big" : "small";
     const innerGap = platform.name === "ios" ? "24px" : "16px";
-    const { value, send, reject } = q2(DataContext);
+    const { value, send, reject, didShowWhatIsSent } = q2(DataContext);
     p2(() => {
       let int = setTimeout(() => {
         const f3 = document.querySelector('[class="breakage-form"]');
@@ -25199,6 +25210,7 @@
       (state2, action) => {
         switch (action) {
           case "toggle-ios": {
+            didShowWhatIsSent();
             return { ...state2, value: (
               /** @type {const} */
               "animating"
@@ -25218,6 +25230,9 @@
               /** @type {const} */
               "hiding"
             );
+            if (next === "showing") {
+              didShowWhatIsSent();
+            }
             return { ...state2, value: next };
           }
           case "send": {
@@ -25280,8 +25295,11 @@
     function reject() {
       model.fetch(new RejectToggleBreakageReport());
     }
+    function didShowWhatIsSent() {
+      model.fetch(new SeeWhatIsSent());
+    }
     if (state.status === "ready") {
-      return /* @__PURE__ */ y(DataContext.Provider, { value: { value: state.value, send, reject } }, children);
+      return /* @__PURE__ */ y(DataContext.Provider, { value: { value: state.value, send, reject, didShowWhatIsSent } }, children);
     }
     if (state.status === "error")
       return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", null, "Something went wrong"), /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, state.error)));
@@ -25357,6 +25375,10 @@
         /** @type {() => void} */
         reject: () => {
           throw new Error("todo implement reject");
+        },
+        /** @type {() => void} */
+        didShowWhatIsSent: () => {
+          throw new Error("todo implement didShowWhatIsSent");
         }
       });
     }

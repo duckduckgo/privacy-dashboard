@@ -8,7 +8,7 @@ import { Button, ButtonBar } from './button'
 import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
 import { useContext, useEffect, useReducer } from 'preact/hooks'
-import { FetchToggleReportOptions, RejectToggleBreakageReport, SendToggleBreakageReport } from '../../browser/common'
+import { FetchToggleReportOptions, RejectToggleBreakageReport, SeeWhatIsSent, SendToggleBreakageReport } from '../../browser/common'
 import { namedString } from '../../../data/text'
 
 export function ToggleReport() {
@@ -16,7 +16,7 @@ export function ToggleReport() {
     const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
     const buttonSize = platform.name === 'ios' ? 'big' : 'small'
     const innerGap = platform.name === 'ios' ? '24px' : '16px'
-    const { value, send, reject } = useContext(DataContext)
+    const { value, send, reject, didShowWhatIsSent } = useContext(DataContext)
     useEffect(() => {
         let int = setTimeout(() => {
             /** @type {HTMLElement | null} */
@@ -29,6 +29,7 @@ export function ToggleReport() {
         (state, /** @type {"toggle" | "toggle-ios" | "animation-complete" | "send" | "reject"} */ action) => {
             switch (action) {
                 case 'toggle-ios': {
+                    didShowWhatIsSent()
                     return { ...state, value: /** @type {const} */ ('animating') }
                 }
                 case 'animation-complete': {
@@ -36,6 +37,9 @@ export function ToggleReport() {
                 }
                 case 'toggle': {
                     const next = state.value === 'hiding' ? /** @type {const} */ ('showing') : /** @type {const} */ ('hiding')
+                    if (next === 'showing') {
+                        didShowWhatIsSent()
+                    }
                     return { ...state, value: next }
                 }
                 case 'send': {
@@ -159,6 +163,10 @@ const DataContext = createContext({
     reject: () => {
         throw new Error('todo implement reject')
     },
+    /** @type {() => void} */
+    didShowWhatIsSent: () => {
+        throw new Error('todo implement didShowWhatIsSent')
+    },
 })
 
 function DataProvider({ children, model }) {
@@ -183,8 +191,11 @@ function DataProvider({ children, model }) {
     function reject() {
         model.fetch(new RejectToggleBreakageReport())
     }
+    function didShowWhatIsSent() {
+        model.fetch(new SeeWhatIsSent())
+    }
     if (state.status === 'ready') {
-        return <DataContext.Provider value={{ value: state.value, send, reject }}>{children}</DataContext.Provider>
+        return <DataContext.Provider value={{ value: state.value, send, reject, didShowWhatIsSent }}>{children}</DataContext.Provider>
     }
     if (state.status === 'error')
         return (

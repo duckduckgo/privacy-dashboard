@@ -69,6 +69,7 @@ test.describe('opening breakage form', () => {
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
         await dash.showsInformation()
+        await dash.mocks.calledForSeeWhatsSent()
         await dash.hidesInformation()
     })
 })

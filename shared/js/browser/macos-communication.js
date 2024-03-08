@@ -31,6 +31,7 @@ import {
     getContentHeight,
     OpenSettingsMessages,
     RejectToggleBreakageReport,
+    SeeWhatIsSent,
     SendToggleBreakageReport,
     SetListsMessage,
     setupColorScheme,
@@ -318,6 +319,24 @@ export function privacyDashboardRejectToggleReport() {
 }
 
 /**
+ * This is sent when the user has chosen to show the information that will be used in the toggle report
+ *
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent.postMessage({})
+ * ```
+ */
+export function privacyDashboardSeeWhatIsSent() {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent, 'privacyDashboardSeeWhatIsSent required')
+    return window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent.postMessage({})
+}
+
+/**
  * Close the Dashboard.
  * @category Webkit Message Handlers
  * @param {import('../../../schema/__generated__/schema.types').CloseMessageParams} args
@@ -394,6 +413,10 @@ async function fetch(message) {
 
     if (message instanceof RejectToggleBreakageReport) {
         return privacyDashboardRejectToggleReport()
+    }
+
+    if (message instanceof SeeWhatIsSent) {
+        return privacyDashboardSeeWhatIsSent()
     }
 }
 

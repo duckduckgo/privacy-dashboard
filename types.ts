@@ -80,4 +80,7 @@ interface WebkitMessageHandlers {
     privacyDashboardSendToggleReport?: {
         postMessage: (params: any) => Promise<void>
     }
+    privacyDashboardSeeWhatIsSent?: {
+        postMessage: (params: any) => Promise<void>
+    }
 }

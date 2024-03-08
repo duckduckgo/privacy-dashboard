@@ -95,6 +95,14 @@ export class Mocks {
         return
     }
 
+    async calledForSeeWhatsSent() {
+        const out = await this.outgoing({
+            names: ['privacyDashboardSeeWhatIsSent'],
+        })
+        expect(out).toMatchObject([['privacyDashboardSeeWhatIsSent', {}]])
+        return
+    }
+
     async calledForSubmitBreakageForm({ category = '', description = '' }) {
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({

@@ -154,6 +154,11 @@ export function webkitMockApis({ responses = {} }) {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardRejectToggleReport', arg])
                     },
                 },
+                privacyDashboardSeeWhatIsSent: {
+                    postMessage: async (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSeeWhatIsSent', arg])
+                    },
+                },
                 privacyDashboardGetToggleReportOptions: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg])
