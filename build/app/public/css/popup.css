@@ -265,7 +265,8 @@ body.body--theme-dark.environment--android {
   --page-bg: #111111;
 }
 body.body--theme-dark.environment--ios {
-  --bg: #333333;
+  --bg: #222222;
+  --page-bg: #222222;
 }
 
 #popup-container {
@@ -1019,13 +1020,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   z-index: 5;
   width: 100%;
   height: var(--nav-height);
-  background: white;
-}
-.body--theme-dark .top-nav {
-  background-color: #333333;
-}
-.body--theme-dark.environment--android .top-nav {
-  background-color: #111111;
+  background: var(--page-bg);
 }
 
 .top-nav__spacer {

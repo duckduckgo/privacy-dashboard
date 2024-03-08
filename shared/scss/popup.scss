@@ -104,7 +104,8 @@ body {
         }
 
         &.environment--ios {
-            --bg: #{$slate};
+            --bg: #222222;
+            --page-bg: #222222;
         }
     }
 
