@@ -51,7 +51,7 @@ export function ToggleReport() {
             <Stack gap="24px">
                 <Stack gap={innerGap}>
                     <div className="medium-icon-container hero-icon--toggle-report"></div>
-                    <h1 className="token-title-2-em text--center">{ns.report('siteNotWorkingTitle.title')}</h1>
+                    <ToggleReportTitle>{ns.report('siteNotWorkingTitle.title')}</ToggleReportTitle>
                     <div>
                         <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
                         {platform.name === 'macos' && (
@@ -186,6 +186,20 @@ function ToggleReportWrapper({ children }) {
         case 'browser':
         case 'macos':
             return <div className="padding-x-double">{children}</div>
+        default:
+            return null
+    }
+}
+
+function ToggleReportTitle({ children }) {
+    switch (platform.name) {
+        case 'android':
+        case 'ios':
+            return <h1 className="token-ios-title-3 text--center">{children}</h1>
+        case 'windows':
+        case 'browser':
+        case 'macos':
+            return <h1 className="token-title-2-em text--center">{children}</h1>
         default:
             return null
     }

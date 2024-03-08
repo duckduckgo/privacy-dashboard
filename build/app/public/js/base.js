@@ -25226,7 +25226,7 @@
     );
     if (state.value === "sent" && platform.name === "macos")
       return /* @__PURE__ */ y(Sent, null);
-    return /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle"), className: "token-bold" }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
+    return /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle"), className: "token-bold" }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
   }
   function DataList({ rows }) {
     return /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-bold" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, rows.map((item) => {
@@ -25272,6 +25272,19 @@
       case "browser":
       case "macos":
         return /* @__PURE__ */ y("div", { className: "padding-x-double" }, children);
+      default:
+        return null;
+    }
+  }
+  function ToggleReportTitle({ children }) {
+    switch (platform.name) {
+      case "android":
+      case "ios":
+        return /* @__PURE__ */ y("h1", { className: "token-ios-title-3 text--center" }, children);
+      case "windows":
+      case "browser":
+      case "macos":
+        return /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, children);
       default:
         return null;
     }
