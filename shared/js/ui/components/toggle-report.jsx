@@ -81,7 +81,7 @@ export function ToggleReport() {
                 </ButtonBar>
                 {platform.name === 'ios' && state.value !== 'showing' && (
                     <p className={'text--center token-title-3'}>
-                        <PlainTextLink onClick={() => dispatch('toggle')}>
+                        <PlainTextLink onClick={() => dispatch('toggle')} className="token-bold">
                             {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
                         </PlainTextLink>
                     </p>
@@ -177,6 +177,20 @@ function DataProvider({ children, model }) {
     return null
 }
 
+function ToggleReportWrapper({ children }) {
+    switch (platform.name) {
+        case 'android':
+        case 'ios':
+            return <div className="padding-x-xl">{children}</div>
+        case 'windows':
+        case 'browser':
+        case 'macos':
+            return <div className="padding-x-double">{children}</div>
+        default:
+            return null
+    }
+}
+
 /**
  * @this {{
  *     mainModel: import('../models/site.js').PublicSiteModel,
@@ -191,8 +205,7 @@ export function toggleReportTemplate() {
     const template = html`
         <section class="sliding-subview">
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
-                ${topNav({ view: 'secondary', immediate: this.immediate })}
-                <div class="padding-x-double">${root}</div>
+                ${topNav({ view: 'secondary', immediate: this.immediate })} ${root}
                 ${platform.name === 'macos' ? html`<div style="height: 32px"></div>` : null}
             </div>
         </section>
@@ -200,7 +213,9 @@ export function toggleReportTemplate() {
     this.roots.set(root, true)
     render(
         <DataProvider model={this.model}>
-            <ToggleReport />
+            <ToggleReportWrapper>
+                <ToggleReport />
+            </ToggleReportWrapper>
         </DataProvider>,
         root
     )

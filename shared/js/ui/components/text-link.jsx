@@ -31,9 +31,11 @@ export function TextLink(props) {
  * @typedef {object} PlainTextLinkProps
  * @param {import("preact").ComponentProps<'a'> & PlainTextLinkProps} props
  */
-export function PlainTextLink({ children, ...rest }) {
+export function PlainTextLink({ children, className, ...rest }) {
+    const classes = ['text-link-as-button']
+    if (className) classes.push(className)
     return (
-        <a href="javascript:void(0)" className="text-link-as-button" draggable={false} {...rest}>
+        <a href="javascript:void(0)" className={classes.join(' ')} draggable={false} {...rest}>
             {children}
         </a>
     )

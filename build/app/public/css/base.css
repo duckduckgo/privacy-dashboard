@@ -651,6 +651,11 @@ a.link-action--rounded {
   padding-right: 32px;
 }
 
+.padding-x-xl {
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
 .padded--top {
   padding: 24px 0 0;
 }
