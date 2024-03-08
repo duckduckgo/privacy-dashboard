@@ -35,7 +35,8 @@
                         { "$ref": "#/definitions/os" },
                         { "$ref": "#/definitions/listVersions" },
                         { "$ref": "#/definitions/reportFlow" },
-                        { "$ref": "#/definitions/siteUrl" }
+                        { "$ref": "#/definitions/siteUrl" },
+                        { "$ref": "#/definitions/didOpenReportInfo" }
                     ]
                 },
                 "additional": {
@@ -124,6 +125,11 @@
             "title": "siteUrl title",
             "const": "siteUrl",
             "description": "siteUrl description"
+        },
+        "didOpenReportInfo": {
+            "title": "didOpenReportInfo title",
+            "const": "didOpenReportInfo",
+            "description": "didOpenReportInfo description"
         }
     }
 }

@@ -44,6 +44,9 @@
         },
         {
             "id": "listVersions"
+        },
+        {
+            "id": "didOpenReportInfo"
         }
     ]
 }

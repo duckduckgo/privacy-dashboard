@@ -56,7 +56,8 @@ export type DataItemId =
   | OsTitle
   | ListVersionsTitle
   | ReportFlowTitle
-  | SiteUrlTitle;
+  | SiteUrlTitle
+  | DidOpenReportInfoTitle;
 /**
  * wvVersion description
  */
@@ -113,6 +114,10 @@ export type ReportFlowTitle = "reportFlow";
  * siteUrl description
  */
 export type SiteUrlTitle = "siteUrl";
+/**
+ * didOpenReportInfo description
+ */
+export type DidOpenReportInfoTitle = "didOpenReportInfo";
 
 /**
  * This describes all of the top-level generated types

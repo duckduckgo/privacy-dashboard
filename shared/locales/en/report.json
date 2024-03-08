@@ -162,5 +162,9 @@
     "dynamic_listVersions": {
         "title": "Information about which versions of our protections were active",
         "note": "This text represents the URL of the page, without including any identifiable information."
+    },
+    "dynamic_didOpenReportInfo": {
+        "title": "Whether or not you opted to show this report info",
+        "note": "This text represents if the user has opted to see a list of information, or not."
     }
 }
