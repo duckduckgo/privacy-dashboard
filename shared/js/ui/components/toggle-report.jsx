@@ -58,7 +58,13 @@ export function ToggleReport() {
         }, 500)
         return () => clearTimeout(int)
     }, [state.value])
-    if (state.value === 'sent' && platform.name === 'macos') return <Sent />
+    if (state.value === 'sent' && platform.name === 'macos') {
+        return (
+            <ToggleReportWrapper state={state.value}>
+                <Sent />
+            </ToggleReportWrapper>
+        )
+    }
     return (
         <ToggleReportWrapper state={state.value}>
             <Stack gap="40px" className="fade-in">
