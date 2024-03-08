@@ -25128,7 +25128,7 @@
     return /* @__PURE__ */ y("div", { ...rest, className: classes.join(" "), style: { gap } }, children);
   }
   function Scrollable({ children, ...rest }) {
-    return /* @__PURE__ */ y("div", { className: "scrollable", ...rest }, children);
+    return /* @__PURE__ */ y("div", { className: "scrollable fade-in", ...rest }, children);
   }
   var init_stack = __esm({
     "shared/js/ui/components/stack.jsx"() {

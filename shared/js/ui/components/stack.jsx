@@ -20,7 +20,7 @@ export function Stack({ children, gap, ...rest }) {
  */
 export function Scrollable({ children, ...rest }) {
     return (
-        <div className={'scrollable'} {...rest}>
+        <div className={'scrollable fade-in'} {...rest}>
             {children}
         </div>
     )
