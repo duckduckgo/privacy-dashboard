@@ -3819,3 +3819,17 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
     visibility: visible;
   }
 }
+.vertically-centered {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+}
+.vertically-centered[data-state=animating] {
+  top: 56px;
+  transform: translateY(0);
+}
+.vertically-centered[data-state=showing] {
+  top: 56px;
+  transform: translateY(0);
+}

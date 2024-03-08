@@ -26,8 +26,14 @@ export function ToggleReport() {
         return () => clearTimeout(int)
     }, [])
     const [state, dispatch] = useReducer(
-        (state, /** @type {"toggle" | "send" | "reject"} */ action) => {
+        (state, /** @type {"toggle" | "toggle-ios" | "animation-complete" | "send" | "reject"} */ action) => {
             switch (action) {
+                case 'toggle-ios': {
+                    return { ...state, value: /** @type {const} */ ('animating') }
+                }
+                case 'animation-complete': {
+                    return { ...state, value: /** @type {const} */ ('showing') }
+                }
                 case 'toggle': {
                     const next = state.value === 'hiding' ? /** @type {const} */ ('showing') : /** @type {const} */ ('hiding')
                     return { ...state, value: next }
@@ -43,56 +49,65 @@ export function ToggleReport() {
             }
             return state
         },
-        { value: /** @type {'hiding' | 'showing' | 'sent' | 'rejected'} */ ('hiding') }
+        { value: /** @type {'hiding' | 'showing' | 'sent' | 'rejected' | 'animating'} */ ('hiding') }
     )
+    useEffect(() => {
+        if (state.value !== 'animating') return
+        let int = setTimeout(() => {
+            dispatch('animation-complete')
+        }, 500)
+        return () => clearTimeout(int)
+    }, [state.value])
     if (state.value === 'sent' && platform.name === 'macos') return <Sent />
     return (
-        <Stack gap="40px" className="fade-in">
-            <Stack gap="24px">
-                <Stack gap={innerGap}>
-                    <div className="medium-icon-container hero-icon--toggle-report"></div>
-                    <ToggleReportTitle>{ns.report('siteNotWorkingTitle.title')}</ToggleReportTitle>
-                    <div>
-                        <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
-                        {platform.name === 'macos' && (
-                            <div>
-                                <p className={'text--center token-title-3'}>
-                                    <PlainTextLink onClick={() => dispatch('toggle')}>
-                                        {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
-                                        {state.value === 'showing' && ns.report('siteNotWorkingInfoHide.title')}
-                                    </PlainTextLink>
-                                </p>
-                            </div>
-                        )}
-                    </div>
+        <ToggleReportWrapper state={state.value}>
+            <Stack gap="40px" className="fade-in">
+                <Stack gap="24px">
+                    <Stack gap={innerGap}>
+                        <div className="medium-icon-container hero-icon--toggle-report"></div>
+                        <ToggleReportTitle>{ns.report('siteNotWorkingTitle.title')}</ToggleReportTitle>
+                        <div>
+                            <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
+                            {platform.name === 'macos' && (
+                                <div>
+                                    <p className={'text--center token-title-3'}>
+                                        <PlainTextLink onClick={() => dispatch('toggle')}>
+                                            {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
+                                            {state.value === 'showing' && ns.report('siteNotWorkingInfoHide.title')}
+                                        </PlainTextLink>
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+                    </Stack>
+                    {platform.name === 'macos' && state.value === 'showing' && (
+                        <Scrollable>
+                            <DataList rows={value.data} />
+                        </Scrollable>
+                    )}
+                    <ButtonBar layout={buttonLayout}>
+                        <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('reject')}>
+                            {ns.report('dontSendReport.title')}
+                        </Button>
+                        <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('send')}>
+                            {ns.report('sendReport.title')}
+                        </Button>
+                    </ButtonBar>
+                    {platform.name === 'ios' && state.value !== 'showing' && (
+                        <p className={'text--center token-title-3'}>
+                            <PlainTextLink onClick={() => dispatch('toggle-ios')} className="token-bold">
+                                {ns.report('siteNotWorkingInfoReveal.title')}
+                            </PlainTextLink>
+                        </p>
+                    )}
                 </Stack>
-                {platform.name === 'macos' && state.value === 'showing' && (
-                    <Scrollable>
+                {platform.name === 'ios' && state.value === 'showing' && (
+                    <div className="ios-separator">
                         <DataList rows={value.data} />
-                    </Scrollable>
-                )}
-                <ButtonBar layout={buttonLayout}>
-                    <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('reject')}>
-                        {ns.report('dontSendReport.title')}
-                    </Button>
-                    <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('send')}>
-                        {ns.report('sendReport.title')}
-                    </Button>
-                </ButtonBar>
-                {platform.name === 'ios' && state.value !== 'showing' && (
-                    <p className={'text--center token-title-3'}>
-                        <PlainTextLink onClick={() => dispatch('toggle')} className="token-bold">
-                            {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
-                        </PlainTextLink>
-                    </p>
+                    </div>
                 )}
             </Stack>
-            {platform.name === 'ios' && state.value === 'showing' && (
-                <div className="ios-separator">
-                    <DataList rows={value.data} />
-                </div>
-            )}
-        </Stack>
+        </ToggleReportWrapper>
     )
 }
 
@@ -177,11 +192,15 @@ function DataProvider({ children, model }) {
     return null
 }
 
-function ToggleReportWrapper({ children }) {
+function ToggleReportWrapper({ children, state }) {
     switch (platform.name) {
         case 'android':
         case 'ios':
-            return <div className="padding-x-xl">{children}</div>
+            return (
+                <div className="padding-x-xl vertically-centered" data-state={state}>
+                    {children}
+                </div>
+            )
         case 'windows':
         case 'browser':
         case 'macos':
@@ -227,9 +246,7 @@ export function toggleReportTemplate() {
     this.roots.set(root, true)
     render(
         <DataProvider model={this.model}>
-            <ToggleReportWrapper>
-                <ToggleReport />
-            </ToggleReportWrapper>
+            <ToggleReport />
         </DataProvider>,
         root
     )

@@ -25195,6 +25195,18 @@
     const [state, dispatch] = s2(
       (state2, action) => {
         switch (action) {
+          case "toggle-ios": {
+            return { ...state2, value: (
+              /** @type {const} */
+              "animating"
+            ) };
+          }
+          case "animation-complete": {
+            return { ...state2, value: (
+              /** @type {const} */
+              "showing"
+            ) };
+          }
           case "toggle": {
             const next = state2.value === "hiding" ? (
               /** @type {const} */
@@ -25220,13 +25232,21 @@
         return state2;
       },
       { value: (
-        /** @type {'hiding' | 'showing' | 'sent' | 'rejected'} */
+        /** @type {'hiding' | 'showing' | 'sent' | 'rejected' | 'animating'} */
         "hiding"
       ) }
     );
+    p2(() => {
+      if (state.value !== "animating")
+        return;
+      let int = setTimeout(() => {
+        dispatch("animation-complete");
+      }, 500);
+      return () => clearTimeout(int);
+    }, [state.value]);
     if (state.value === "sent" && platform.name === "macos")
       return /* @__PURE__ */ y(Sent, null);
-    return /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle"), className: "token-bold" }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data })));
+    return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data }))));
   }
   function DataList({ rows }) {
     return /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-bold" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, rows.map((item) => {
@@ -25263,11 +25283,11 @@
       return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", null, "Something went wrong"), /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, state.error)));
     return null;
   }
-  function ToggleReportWrapper({ children }) {
+  function ToggleReportWrapper({ children, state }) {
     switch (platform.name) {
       case "android":
       case "ios":
-        return /* @__PURE__ */ y("div", { className: "padding-x-xl" }, children);
+        return /* @__PURE__ */ y("div", { className: "padding-x-xl vertically-centered", "data-state": state }, children);
       case "windows":
       case "browser":
       case "macos":
@@ -25301,7 +25321,7 @@
     `;
     this.roots.set(root, true);
     B(
-      /* @__PURE__ */ y(DataProvider, { model: this.model }, /* @__PURE__ */ y(ToggleReportWrapper, null, /* @__PURE__ */ y(ToggleReport, null))),
+      /* @__PURE__ */ y(DataProvider, { model: this.model }, /* @__PURE__ */ y(ToggleReport, null)),
       root
     );
     return template4;
