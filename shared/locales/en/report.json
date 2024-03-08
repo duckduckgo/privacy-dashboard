@@ -104,7 +104,7 @@
         "title": "Hide"
     },
     "reportsNoInfoSent": {
-        "title": "Reports contain no personally identifiable information:",
+        "title": "Info sent in reports can't be used to identify you:",
         "note": "This text emphasizes that the sent reports do not contain any personally identifiable information."
     },
     "dynamic_wvVersion": {
