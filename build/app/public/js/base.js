@@ -25197,7 +25197,7 @@
     const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
     const buttonSize = platform.name === "ios" ? "big" : "small";
     const innerGap = platform.name === "ios" ? "24px" : "16px";
-    const { value, send, reject, didShowWhatIsSent } = q2(DataContext);
+    const { value, send, reject, didShowWhatIsSent, didClickSuccessScreen } = q2(DataContext);
     p2(() => {
       let int = setTimeout(() => {
         const f3 = document.querySelector('[class="breakage-form"]');
@@ -25263,7 +25263,7 @@
       return () => clearTimeout(int);
     }, [state.value]);
     if (state.value === "sent" && platform.name === "macos") {
-      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Sent, null));
+      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Sent, { onClick: didClickSuccessScreen }));
     }
     return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data }))));
   }
@@ -25274,8 +25274,8 @@
       return /* @__PURE__ */ y("li", { className: "data-list__item token-breakage-form-body" }, string, additional && /* @__PURE__ */ y("strong", { className: "block" }, additional));
     })));
   }
-  function Sent() {
-    return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report-sent" }), /* @__PURE__ */ y(Stack, { gap: "8px" }, /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("thankYou.title")), /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("yourReportWillHelpDesc.title"))));
+  function Sent({ onClick }) {
+    return /* @__PURE__ */ y("div", { onClick }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report-sent" }), /* @__PURE__ */ y(Stack, { gap: "8px" }, /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("thankYou.title")), /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("yourReportWillHelpDesc.title"))));
   }
   function DataProvider({ children, model }) {
     const initial = { status: "pending" };
@@ -25298,8 +25298,23 @@
     function didShowWhatIsSent() {
       model.fetch(new SeeWhatIsSent());
     }
+    function didClickSuccessScreen() {
+      model.fetch(new CloseMessage({ eventOrigin: { screen: "toggleReport" } }));
+    }
     if (state.status === "ready") {
-      return /* @__PURE__ */ y(DataContext.Provider, { value: { value: state.value, send, reject, didShowWhatIsSent } }, children);
+      return /* @__PURE__ */ y(
+        DataContext.Provider,
+        {
+          value: {
+            value: state.value,
+            send,
+            reject,
+            didShowWhatIsSent,
+            didClickSuccessScreen
+          }
+        },
+        children
+      );
     }
     if (state.status === "error")
       return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", null, "Something went wrong"), /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, state.error)));
@@ -25379,6 +25394,10 @@
         /** @type {() => void} */
         didShowWhatIsSent: () => {
           throw new Error("todo implement didShowWhatIsSent");
+        },
+        /** @type {() => void} */
+        didClickSuccessScreen: () => {
+          throw new Error("todo implement didClickSuccessScreen");
         }
       });
     }

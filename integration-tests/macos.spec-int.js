@@ -55,6 +55,10 @@ test.describe('opening breakage form', () => {
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
         await dash.sendToggleReport()
+
+        // this is macOS specific:
+        await dash.showsSuccessScreen()
+        await dash.clickingSuccessScreenClosesDashboard()
     })
     test('rejects toggle report', async ({ page }) => {
         /** @type {DashboardPage} */

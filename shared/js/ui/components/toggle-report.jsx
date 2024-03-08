@@ -8,7 +8,13 @@ import { Button, ButtonBar } from './button'
 import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
 import { useContext, useEffect, useReducer } from 'preact/hooks'
-import { FetchToggleReportOptions, RejectToggleBreakageReport, SeeWhatIsSent, SendToggleBreakageReport } from '../../browser/common'
+import {
+    CloseMessage,
+    FetchToggleReportOptions,
+    RejectToggleBreakageReport,
+    SeeWhatIsSent,
+    SendToggleBreakageReport,
+} from '../../browser/common'
 import { namedString } from '../../../data/text'
 
 export function ToggleReport() {
@@ -16,7 +22,7 @@ export function ToggleReport() {
     const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
     const buttonSize = platform.name === 'ios' ? 'big' : 'small'
     const innerGap = platform.name === 'ios' ? '24px' : '16px'
-    const { value, send, reject, didShowWhatIsSent } = useContext(DataContext)
+    const { value, send, reject, didShowWhatIsSent, didClickSuccessScreen } = useContext(DataContext)
     useEffect(() => {
         let int = setTimeout(() => {
             /** @type {HTMLElement | null} */
@@ -65,7 +71,7 @@ export function ToggleReport() {
     if (state.value === 'sent' && platform.name === 'macos') {
         return (
             <ToggleReportWrapper state={state.value}>
-                <Sent />
+                <Sent onClick={didClickSuccessScreen} />
             </ToggleReportWrapper>
         )
     }
@@ -141,9 +147,9 @@ function DataList({ rows }) {
     )
 }
 
-function Sent() {
+function Sent({ onClick }) {
     return (
-        <div>
+        <div onClick={onClick}>
             <div className="medium-icon-container hero-icon--toggle-report-sent"></div>
             <Stack gap={'8px'}>
                 <h1 className="token-title-2-em text--center">{ns.report('thankYou.title')}</h1>
@@ -166,6 +172,10 @@ const DataContext = createContext({
     /** @type {() => void} */
     didShowWhatIsSent: () => {
         throw new Error('todo implement didShowWhatIsSent')
+    },
+    /** @type {() => void} */
+    didClickSuccessScreen: () => {
+        throw new Error('todo implement didClickSuccessScreen')
     },
 })
 
@@ -194,8 +204,23 @@ function DataProvider({ children, model }) {
     function didShowWhatIsSent() {
         model.fetch(new SeeWhatIsSent())
     }
+    function didClickSuccessScreen() {
+        model.fetch(new CloseMessage({ eventOrigin: { screen: 'toggleReport' } }))
+    }
     if (state.status === 'ready') {
-        return <DataContext.Provider value={{ value: state.value, send, reject, didShowWhatIsSent }}>{children}</DataContext.Provider>
+        return (
+            <DataContext.Provider
+                value={{
+                    value: state.value,
+                    send,
+                    reject,
+                    didShowWhatIsSent,
+                    didClickSuccessScreen,
+                }}
+            >
+                {children}
+            </DataContext.Provider>
+        )
     }
     if (state.status === 'error')
         return (

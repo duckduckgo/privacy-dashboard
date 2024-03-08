@@ -30,14 +30,19 @@
  *   - WebKit: {@link "macOS integration".privacyDashboardGetToggleReportOptions}
  *   - Other platforms will be added
  *
- * ## Step 4: Implement the 'Send' and 'Don't send' handlers
+ * ## Step 4: Implement new handlers
  *
- * Both of these take no params and they return no data.
+ * The following are all sent in response to user interactions
  *
- * - {@link common.sendToggleReport}
- * - {@link common.rejectToggleReport}
+ * ### 👆Sending/rejecting the report
  *   - WebKit: {@link "macOS integration".privacyDashboardSendToggleReport}
  *   - WebKit: {@link "macOS integration".privacyDashboardRejectToggleReport}
+ *
+ * ### 👆Tapping the 'see what's sent' list
+ *   - Webkit: {@link "macOS integration".privacyDashboardSeeWhatIsSent}
+ *
+ * ### 👆Tapping anywhere on the success screen (macos only)
+ *   - Webkit: {@link "macOS integration".privacyDashboardClose}
  *
  * ## opener=menu
  *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=toggleReport&opener=menu"></iframe>

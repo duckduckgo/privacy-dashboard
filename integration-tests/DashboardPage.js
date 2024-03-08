@@ -485,10 +485,6 @@ export class DashboardPage {
     async sendToggleReport() {
         const { page } = this
         await page.getByRole('button', { name: 'Send Report' }).click()
-
-        // macos only, assert on the success screen
-        if (this.platform.name === 'macos') await this.showsSuccessScreen()
-
         await this.mocks.calledForSendToggleReport()
     }
 
@@ -499,6 +495,15 @@ export class DashboardPage {
                 name: 'Your report will help improve our products and make the experience better for other people.',
             })
             .waitFor()
+    }
+
+    async clickingSuccessScreenClosesDashboard() {
+        await this.page
+            .getByRole('heading', {
+                name: 'Your report will help improve our products and make the experience better for other people.',
+            })
+            .click()
+        await this.mocks.calledForClose({ screen: 'toggleReport' })
     }
 
     async rejectToggleReport() {
