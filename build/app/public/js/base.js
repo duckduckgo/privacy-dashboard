@@ -25328,7 +25328,7 @@
       case "windows":
       case "browser":
       case "macos":
-        return /* @__PURE__ */ y("div", { className: "padding-x-double" }, children);
+        return /* @__PURE__ */ y("div", { className: "padding-x-double" }, children, state === "sent" ? /* @__PURE__ */ y("div", { style: "height: 40px" }) : /* @__PURE__ */ y("div", { style: "height: 32px" }));
       default:
         return null;
     }
@@ -25352,7 +25352,6 @@
         <section class="sliding-subview">
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: "secondary", immediate: this.immediate })} ${root}
-                ${platform.name === "macos" ? import_nanohtml17.default`<div style="height: 32px"></div>` : null}
             </div>
         </section>
     `;
