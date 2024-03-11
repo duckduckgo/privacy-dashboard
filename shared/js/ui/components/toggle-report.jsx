@@ -246,7 +246,12 @@ function ToggleReportWrapper({ children, state }) {
         case 'windows':
         case 'browser':
         case 'macos':
-            return <div className="padding-x-double">{children}</div>
+            return (
+                <div className="padding-x-double">
+                    {children}
+                    {state === 'sent' ? <div style="height: 40px"></div> : <div style="height: 32px"></div>}
+                </div>
+            )
         default:
             return null
     }
@@ -281,7 +286,6 @@ export function toggleReportTemplate() {
         <section class="sliding-subview">
             <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: 'secondary', immediate: this.immediate })} ${root}
-                ${platform.name === 'macos' ? html`<div style="height: 32px"></div>` : null}
             </div>
         </section>
     `

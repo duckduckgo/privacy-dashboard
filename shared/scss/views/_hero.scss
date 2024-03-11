@@ -9,13 +9,16 @@
 }
 
 .medium-icon-container {
-    height: 62px;
-    //outline: 1px dashed grey;
-    //background-color: cyan;
+    height: 72px;
     background-position: center center;
     background-repeat: no-repeat;
     margin-bottom: 16px;
     background-size: contain;
+
+    // todo(Shane): check SVG dimensions to prevent this
+    &.hero-icon--toggle-report-sent {
+        height: 62px;
+    }
 }
 
 .hero-icon--breakage-form {
