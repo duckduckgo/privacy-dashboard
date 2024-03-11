@@ -58,7 +58,7 @@ jobs:
                   path: build/docs
                   key: build-output-${{ github.run_id }}
             - name: Build all
-              run: npm run build
+              run: npm run build && npm run build.debug
             ###
             ###  Run clean-tree following the build - no changes should be present
             ###
