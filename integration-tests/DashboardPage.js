@@ -315,17 +315,48 @@ export class DashboardPage {
         await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
     }
 
-    async showsOnlyCloseButton() {
-        await this.page.locator('.breakage-form').locator('a:has-text("Close")').waitFor()
-        await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async showsOnlyCloseButton(screen = 'breakageForm') {
+        let selector = this.parent(screen)
+        await this.page.locator(selector).locator('a:has-text("Close")').waitFor()
+        await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
     }
 
-    async closeButtonIsHidden() {
-        expect(await this.page.locator('.breakage-form .top-nav').isHidden()).toBe(true)
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async closeButtonIsHidden(screen) {
+        let selector = this.parent(screen)
+        expect(await this.page.locator(selector).locator('.top-nav').isHidden()).toBe(true)
     }
 
-    async selectClose() {
-        await this.page.locator('.breakage-form .top-nav a').filter({ hasText: 'Close' }).click()
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async selectClose(screen) {
+        let selector = this.parent(screen)
+        await this.page.locator(selector).locator('.top-nav a').filter({ hasText: 'Close' }).click()
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {string}
+     */
+    parent(screen) {
+        let parent
+        if (screen === 'breakageForm') {
+            parent = '.breakage-form'
+        } else if (screen === 'toggleReport') {
+            parent = '[data-toggle-report="parent"]'
+        } else {
+            parent = 'n/a'
+        }
+        return parent
     }
 
     /**

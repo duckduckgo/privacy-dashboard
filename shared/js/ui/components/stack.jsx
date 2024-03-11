@@ -6,9 +6,8 @@ import { h } from 'preact'
  * @param {import("preact").ComponentProps<'div'> & ButtonBarComponentProps} props
  */
 export function Stack({ children, gap, ...rest }) {
-    const classes = ['stack'].concat(/** @type {string} */ (rest.className)).filter(Boolean)
     return (
-        <div {...rest} className={classes.join(' ')} style={{ gap: gap }}>
+        <div {...rest} className="stack" style={{ gap: gap }}>
             {children}
         </div>
     )
@@ -20,7 +19,7 @@ export function Stack({ children, gap, ...rest }) {
  */
 export function Scrollable({ children, ...rest }) {
     return (
-        <div className={'scrollable fade-in'} {...rest}>
+        <div className="scrollable fade-in" {...rest}>
             {children}
         </div>
     )

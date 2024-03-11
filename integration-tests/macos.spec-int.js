@@ -29,8 +29,8 @@ test.describe('opening breakage form', () => {
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' })
         await dash.addState([testDataStates.google])
         await dash.breakageFormIsVisible()
-        await dash.showsOnlyCloseButton()
-        await dash.selectClose()
+        await dash.showsOnlyCloseButton('breakageForm')
+        await dash.selectClose('breakageForm')
         await dash.mocks.calledForClose({ screen: 'breakageForm' })
     })
     test('shows toggle report when opened from menu', async ({ page }) => {
@@ -38,8 +38,8 @@ test.describe('opening breakage form', () => {
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'menu' })
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
-        await dash.showsOnlyCloseButton()
-        await dash.selectClose()
+        await dash.showsOnlyCloseButton('toggleReport')
+        await dash.selectClose('toggleReport')
         await dash.mocks.calledForClose({ screen: 'toggleReport' })
     })
     test('shows toggle report when opened from dashboard', async ({ page }) => {
@@ -47,7 +47,7 @@ test.describe('opening breakage form', () => {
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
-        await dash.closeButtonIsHidden()
+        await dash.closeButtonIsHidden('toggleReport')
     })
     test('sends toggle report', async ({ page }) => {
         /** @type {DashboardPage} */

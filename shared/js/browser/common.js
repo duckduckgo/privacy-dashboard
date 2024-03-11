@@ -266,7 +266,7 @@ export function search(options) {}
  */
 export function setPermission(params) {}
 
-class Msg {
+export class Msg {
     toJSON() {
         return {
             ...this,

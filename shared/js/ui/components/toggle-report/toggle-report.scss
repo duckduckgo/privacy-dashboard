@@ -1,0 +1,9 @@
+.toggle-report {
+    height: 100%;
+}
+.toggle-report[data-opener='dashboard'] {
+    .top-nav {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

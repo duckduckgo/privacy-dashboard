@@ -3037,10 +3037,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .environment--browser .breakage-form {
   padding-bottom: 0;
 }
-.environment--macos .breakage-form[data-opener=dashboard] .top-nav {
-  opacity: 0;
-  visibility: hidden;
-}
 
 .breakage-form__content {
   z-index: 1;
@@ -3822,17 +3818,11 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
     visibility: visible;
   }
 }
-.vertically-centered {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: all 0.3s;
+.toggle-report {
+  height: 100%;
 }
-.vertically-centered[data-state=animating] {
-  top: 56px;
-  transform: translateY(0);
-}
-.vertically-centered[data-state=showing] {
-  top: 56px;
-  transform: translateY(0);
+
+.toggle-report[data-opener=dashboard] .top-nav {
+  opacity: 0;
+  visibility: hidden;
 }

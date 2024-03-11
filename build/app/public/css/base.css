@@ -594,6 +594,10 @@ a.link-action--rounded {
   text-align: center;
 }
 
+.height-full {
+  height: 100%;
+}
+
 .text--left {
   text-align: left;
 }

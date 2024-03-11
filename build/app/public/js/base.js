@@ -25134,11 +25134,7 @@
 
   // shared/js/ui/components/stack.jsx
   function Stack({ children, gap, ...rest }) {
-    const classes = ["stack"].concat(
-      /** @type {string} */
-      rest.className
-    ).filter(Boolean);
-    return /* @__PURE__ */ y("div", { ...rest, className: classes.join(" "), style: { gap } }, children);
+    return /* @__PURE__ */ y("div", { ...rest, className: "stack", style: { gap } }, children);
   }
   function Scrollable({ children, ...rest }) {
     return /* @__PURE__ */ y("div", { className: "scrollable fade-in", ...rest }, children);
@@ -25147,6 +25143,212 @@
     "shared/js/ui/components/stack.jsx"() {
       "use strict";
       init_preact_module();
+    }
+  });
+
+  // shared/js/ui/components/toggle-report/toggle-report-provider.jsx
+  function ToggleReportProvider({ children, model }) {
+    const initial = { status: "pending" };
+    const [state, dispatch] = s2((state2, action) => action, initial);
+    p2(() => {
+      const msg = new FetchToggleReportOptions();
+      model.fetch(msg)?.then((data) => {
+        dispatch({ status: "ready", value: data });
+      }).catch((e3) => {
+        dispatch({ status: "error", error: e3.toString() });
+      });
+    }, [model]);
+    function send() {
+      model.fetch(new SendToggleBreakageReport());
+    }
+    function reject() {
+      model.fetch(new RejectToggleBreakageReport());
+    }
+    function didShowWhatIsSent() {
+      model.fetch(new SeeWhatIsSent());
+    }
+    function didClickSuccessScreen() {
+      model.fetch(new CloseMessage({ eventOrigin: { screen: "toggleReport" } }));
+    }
+    if (state.status === "ready") {
+      return /* @__PURE__ */ y(
+        ToggleReportContext.Provider,
+        {
+          value: {
+            value: state.value,
+            send,
+            reject,
+            didShowWhatIsSent,
+            didClickSuccessScreen
+          }
+        },
+        children
+      );
+    }
+    if (state.status === "error")
+      return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", null, "Something went wrong"), /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, state.error)));
+    return null;
+  }
+  var ToggleReportContext;
+  var init_toggle_report_provider = __esm({
+    "shared/js/ui/components/toggle-report/toggle-report-provider.jsx"() {
+      "use strict";
+      init_preact_module();
+      init_hooks_module();
+      init_common();
+      ToggleReportContext = G({
+        value: (
+          /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */
+          {}
+        ),
+        /** @type {() => void} */
+        send: () => {
+          throw new Error("todo implement send");
+        },
+        /** @type {() => void} */
+        reject: () => {
+          throw new Error("todo implement reject");
+        },
+        /** @type {() => void} */
+        didShowWhatIsSent: () => {
+          throw new Error("todo implement didShowWhatIsSent");
+        },
+        /** @type {() => void} */
+        didClickSuccessScreen: () => {
+          throw new Error("todo implement didClickSuccessScreen");
+        }
+      });
+    }
+  });
+
+  // shared/js/ui/components/toggle-report/use-toggle-report-state.js
+  function useToggleReportState() {
+    const { send, reject, didShowWhatIsSent } = q2(ToggleReportContext);
+    return s2(
+      (state, action) => {
+        switch (action) {
+          case "toggle-ios": {
+            didShowWhatIsSent();
+            return {
+              ...state,
+              value: (
+                /** @type {const} */
+                "animating"
+              )
+            };
+          }
+          case "animation-complete": {
+            return {
+              ...state,
+              value: (
+                /** @type {const} */
+                "showing"
+              )
+            };
+          }
+          case "toggle": {
+            const next = state.value === "hiding" ? (
+              /** @type {const} */
+              "showing"
+            ) : (
+              /** @type {const} */
+              "hiding"
+            );
+            if (next === "showing") {
+              didShowWhatIsSent();
+            }
+            return {
+              ...state,
+              value: next
+            };
+          }
+          case "send": {
+            send();
+            return {
+              ...state,
+              value: (
+                /** @type {const} */
+                "sent"
+              )
+            };
+          }
+          case "reject": {
+            reject();
+            return state;
+          }
+        }
+        return state;
+      },
+      { value: (
+        /** @type {'hiding' | 'showing' | 'sent' | 'rejected' | 'animating'} */
+        "hiding"
+      ) }
+    );
+  }
+  var init_use_toggle_report_state = __esm({
+    "shared/js/ui/components/toggle-report/use-toggle-report-state.js"() {
+      "use strict";
+      init_hooks_module();
+      init_toggle_report_provider();
+    }
+  });
+
+  // shared/js/ui/components/toggle-report/use-ios-animation.js
+  function useIosAnimation(state, dispatch) {
+    p2(() => {
+      if (platform.name !== "ios")
+        return;
+      if (state.value === "animating") {
+        const child = (
+          /** @type {HTMLDivElement | null} */
+          document.querySelector('[data-toggle-report="child"]')
+        );
+        if (!child)
+          return;
+        child.addEventListener("transitionend", () => {
+          dispatch("animation-complete");
+        });
+        child.style.transform = "translateY(0)";
+      }
+    }, [state.value]);
+    p2(() => {
+      if (platform.name !== "ios")
+        return;
+      const child = (
+        /** @type {HTMLDivElement | null} */
+        document.querySelector('[data-toggle-report="child"]')
+      );
+      const parent = (
+        /** @type {HTMLDivElement | null} */
+        document.querySelector('[data-toggle-report="parent"]')
+      );
+      if (!child || !parent)
+        return;
+      const rs = new ResizeObserver((r3) => {
+        for (let resizeObserverEntry of r3) {
+          if (resizeObserverEntry.contentRect.height === 0)
+            continue;
+          const childSize = child.clientHeight;
+          const parentHeight = resizeObserverEntry.contentRect.height - 56;
+          const offset2 = (parentHeight - childSize) / 2;
+          child.style.transform = "translateY(" + offset2 + "px)";
+          setTimeout(() => {
+            child.style.transition = "all .3s";
+          }, 0);
+        }
+      });
+      rs.observe(parent);
+      return () => {
+        rs.disconnect();
+      };
+    }, []);
+  }
+  var init_use_ios_animation = __esm({
+    "shared/js/ui/components/toggle-report/use-ios-animation.js"() {
+      "use strict";
+      init_hooks_module();
+      init_communication();
+      init_use_toggle_report_state();
     }
   });
 
@@ -25194,140 +25396,43 @@
     }
   });
 
-  // shared/js/ui/components/toggle-report.jsx
-  function ToggleReport() {
-    const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
-    const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
-    const buttonSize = platform.name === "ios" ? "big" : "small";
-    const innerGap = platform.name === "ios" ? "24px" : "16px";
-    const { value, send, reject, didShowWhatIsSent, didClickSuccessScreen } = q2(DataContext);
-    p2(() => {
-      let int = setTimeout(() => {
-        const f3 = document.querySelector('[class="breakage-form"]');
-        if (f3)
-          f3.style.minHeight = "auto";
-      }, 1e3);
-      return () => clearTimeout(int);
-    }, []);
-    const [state, dispatch] = s2(
-      (state2, action) => {
-        switch (action) {
-          case "toggle-ios": {
-            didShowWhatIsSent();
-            return { ...state2, value: (
-              /** @type {const} */
-              "animating"
-            ) };
-          }
-          case "animation-complete": {
-            return { ...state2, value: (
-              /** @type {const} */
-              "showing"
-            ) };
-          }
-          case "toggle": {
-            const next = state2.value === "hiding" ? (
-              /** @type {const} */
-              "showing"
-            ) : (
-              /** @type {const} */
-              "hiding"
-            );
-            if (next === "showing") {
-              didShowWhatIsSent();
-            }
-            return { ...state2, value: next };
-          }
-          case "send": {
-            send();
-            return { ...state2, value: (
-              /** @type {const} */
-              "sent"
-            ) };
-          }
-          case "reject": {
-            reject();
-            return state2;
-          }
-        }
-        return state2;
-      },
-      { value: (
-        /** @type {'hiding' | 'showing' | 'sent' | 'rejected' | 'animating'} */
-        "hiding"
-      ) }
-    );
-    p2(() => {
-      if (state.value !== "animating")
-        return;
-      let int = setTimeout(() => {
-        dispatch("animation-complete");
-      }, 500);
-      return () => clearTimeout(int);
-    }, [state.value]);
-    if (state.value === "sent" && platform.name === "macos") {
-      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Sent, { onClick: didClickSuccessScreen }));
-    }
-    return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px", className: "fade-in" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(DataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(DataList, { rows: value.data }))));
-  }
-  function DataList({ rows }) {
+  // shared/js/ui/components/toggle-report/toggle-report-data-list.jsx
+  function ToggleReportDataList({ rows }) {
     return /* @__PURE__ */ y(Stack, { gap: "4px" }, /* @__PURE__ */ y("p", { className: "token-bold" }, ns.report("reportsNoInfoSent.title")), /* @__PURE__ */ y("ul", { className: "data-list" }, rows.map((item) => {
       const string = namedString(item);
       const additional = item.id === "siteUrl" ? "[" + item.additional?.url + "]" : null;
       return /* @__PURE__ */ y("li", { className: "data-list__item token-breakage-form-body" }, string, additional && /* @__PURE__ */ y("strong", { className: "block" }, additional));
     })));
   }
-  function Sent({ onClick }) {
+  var init_toggle_report_data_list = __esm({
+    "shared/js/ui/components/toggle-report/toggle-report-data-list.jsx"() {
+      "use strict";
+      init_preact_module();
+      init_stack();
+      init_localize();
+      init_text();
+    }
+  });
+
+  // shared/js/ui/components/toggle-report/toggle-report-sent.jsx
+  function ToggleReportSent({ onClick }) {
     return /* @__PURE__ */ y("div", { onClick }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report-sent" }), /* @__PURE__ */ y(Stack, { gap: "8px" }, /* @__PURE__ */ y("h1", { className: "token-title-2-em text--center" }, ns.report("thankYou.title")), /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("yourReportWillHelpDesc.title"))));
   }
-  function DataProvider({ children, model }) {
-    const initial = { status: "pending" };
-    const [state, dispatch] = s2((state2, action) => action, initial);
-    p2(() => {
-      const msg = new FetchToggleReportOptions();
-      return model.fetch(msg).then((data) => {
-        console.log("?", data);
-        dispatch({ status: "ready", value: data });
-      }).catch((e3) => {
-        dispatch({ status: "error", error: e3.toString() });
-      });
-    }, [model]);
-    function send() {
-      model.fetch(new SendToggleBreakageReport());
+  var init_toggle_report_sent = __esm({
+    "shared/js/ui/components/toggle-report/toggle-report-sent.jsx"() {
+      "use strict";
+      init_preact_module();
+      init_stack();
+      init_localize();
     }
-    function reject() {
-      model.fetch(new RejectToggleBreakageReport());
-    }
-    function didShowWhatIsSent() {
-      model.fetch(new SeeWhatIsSent());
-    }
-    function didClickSuccessScreen() {
-      model.fetch(new CloseMessage({ eventOrigin: { screen: "toggleReport" } }));
-    }
-    if (state.status === "ready") {
-      return /* @__PURE__ */ y(
-        DataContext.Provider,
-        {
-          value: {
-            value: state.value,
-            send,
-            reject,
-            didShowWhatIsSent,
-            didClickSuccessScreen
-          }
-        },
-        children
-      );
-    }
-    if (state.status === "error")
-      return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", null, "Something went wrong"), /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, state.error)));
-    return null;
-  }
+  });
+
+  // shared/js/ui/components/toggle-report/toggle-report-wrapper.jsx
   function ToggleReportWrapper({ children, state }) {
     switch (platform.name) {
       case "android":
       case "ios":
-        return /* @__PURE__ */ y("div", { className: "padding-x-xl vertically-centered", "data-state": state }, children);
+        return /* @__PURE__ */ y("div", { className: "padding-x-xl vertically-centered", "data-state": state, "data-toggle-report": "child" }, children);
       case "windows":
       case "browser":
       case "macos":
@@ -25336,6 +25441,15 @@
         return null;
     }
   }
+  var init_toggle_report_wrapper = __esm({
+    "shared/js/ui/components/toggle-report/toggle-report-wrapper.jsx"() {
+      "use strict";
+      init_preact_module();
+      init_communication();
+    }
+  });
+
+  // shared/js/ui/components/toggle-report/toggle-report-title.jsx
   function ToggleReportTitle({ children }) {
     switch (platform.name) {
       case "android":
@@ -25349,23 +25463,45 @@
         return null;
     }
   }
+  var init_toggle_report_title = __esm({
+    "shared/js/ui/components/toggle-report/toggle-report-title.jsx"() {
+      "use strict";
+      init_preact_module();
+      init_communication();
+    }
+  });
+
+  // shared/js/ui/components/toggle-report.jsx
+  function ToggleReport() {
+    const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
+    const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
+    const buttonSize = platform.name === "ios" ? "big" : "small";
+    const innerGap = platform.name === "ios" ? "24px" : "16px";
+    const { value, didClickSuccessScreen } = q2(ToggleReportContext);
+    const [state, dispatch] = useToggleReportState();
+    useIosAnimation(state, dispatch);
+    if (state.value === "sent" && platform.name === "macos") {
+      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(ToggleReportSent, { onClick: didClickSuccessScreen }));
+    }
+    return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.report("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.report("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.report("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.report("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.report("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.report("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
+  }
   function toggleReportTemplate() {
     const root = import_nanohtml17.default`<div data-testid="toggle-report"></div>`;
     const template4 = import_nanohtml17.default`
         <section class="sliding-subview">
-            <div class="breakage-form" data-opener=${this.model.opener} style="min-height: 286px">
+            <div data-toggle-report="parent" class="toggle-report" data-opener=${this.model.opener} style="min-height: 286px">
                 ${topNav({ view: "secondary", immediate: this.immediate })} ${root}
             </div>
         </section>
     `;
     this.roots.set(root, true);
     B(
-      /* @__PURE__ */ y(DataProvider, { model: this.model }, /* @__PURE__ */ y(ToggleReport, null)),
+      /* @__PURE__ */ y(ToggleReportProvider, { model: this.model }, /* @__PURE__ */ y(ToggleReport, null)),
       root
     );
     return template4;
   }
-  var import_nanohtml17, DataContext;
+  var import_nanohtml17;
   var init_toggle_report = __esm({
     "shared/js/ui/components/toggle-report.jsx"() {
       "use strict";
@@ -25378,30 +25514,13 @@
       init_communication();
       init_stack();
       init_hooks_module();
-      init_common();
-      init_text();
-      DataContext = G({
-        value: (
-          /** @type {import('../../../../schema/__generated__/schema.types').ToggleReportScreen} */
-          {}
-        ),
-        /** @type {() => void} */
-        send: () => {
-          throw new Error("todo implement send");
-        },
-        /** @type {() => void} */
-        reject: () => {
-          throw new Error("todo implement reject");
-        },
-        /** @type {() => void} */
-        didShowWhatIsSent: () => {
-          throw new Error("todo implement didShowWhatIsSent");
-        },
-        /** @type {() => void} */
-        didClickSuccessScreen: () => {
-          throw new Error("todo implement didClickSuccessScreen");
-        }
-      });
+      init_use_ios_animation();
+      init_toggle_report_provider();
+      init_use_toggle_report_state();
+      init_toggle_report_data_list();
+      init_toggle_report_sent();
+      init_toggle_report_wrapper();
+      init_toggle_report_title();
     }
   });
 
