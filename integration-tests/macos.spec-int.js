@@ -31,6 +31,7 @@ test.describe('opening breakage form', () => {
         await dash.breakageFormIsVisible()
         await dash.showsOnlyCloseButton('breakageForm')
         await dash.selectClose('breakageForm')
+        await dash.screenshot('screen-breakage-form.png')
         await dash.mocks.calledForClose({ screen: 'breakageForm' })
     })
     test('shows toggle report when opened from menu', async ({ page }) => {
@@ -40,6 +41,7 @@ test.describe('opening breakage form', () => {
         await dash.toggleReportIsVisible()
         await dash.showsOnlyCloseButton('toggleReport')
         await dash.selectClose('toggleReport')
+        await dash.screenshot('screen-toggle-report-menu.png')
         await dash.mocks.calledForClose({ screen: 'toggleReport' })
     })
     test('shows toggle report when opened from dashboard', async ({ page }) => {
@@ -47,6 +49,7 @@ test.describe('opening breakage form', () => {
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
+        await dash.screenshot('screen-toggle-report-dashboard.png')
         await dash.closeButtonIsHidden('toggleReport')
     })
     test('sends toggle report', async ({ page }) => {
@@ -58,6 +61,7 @@ test.describe('opening breakage form', () => {
 
         // this is macOS specific:
         await dash.showsSuccessScreen()
+        await dash.screenshot('screen-toggle-report-sent.png')
         await dash.clickingSuccessScreenClosesDashboard()
     })
     test('rejects toggle report', async ({ page }) => {
@@ -74,6 +78,7 @@ test.describe('opening breakage form', () => {
         await dash.toggleReportIsVisible()
         await dash.showsInformation()
         await dash.mocks.calledForSeeWhatsSent()
+        await dash.screenshot('screen-toggle-report-show.png')
         await dash.hidesInformation()
     })
 })

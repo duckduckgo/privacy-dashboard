@@ -2,6 +2,12 @@
 @import 'mixins';
 @import './base/tokens';
 
+* {
+    @media (prefers-reduced-motion: reduce) {
+        transition: none !important;
+    }
+}
+
 /* Popup */
 body {
     @include token-body;

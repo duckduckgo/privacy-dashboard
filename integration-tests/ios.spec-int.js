@@ -135,6 +135,7 @@ test.describe('opening breakage form', () => {
         await dash.addState([testDataStates.google])
         await dash.screenshot('breakage-form-only.png')
         await dash.breakageFormIsVisible()
+        await dash.screenshot('screen-breakage-form.png')
         await dash.showsOnlyDoneButton()
     })
     test('sends toggle report', async ({ page }) => {
@@ -142,6 +143,7 @@ test.describe('opening breakage form', () => {
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
+        await dash.screenshot('screen-toggle-report.png')
         await dash.sendToggleReport()
     })
     test('rejects toggle report', async ({ page }) => {
@@ -158,6 +160,7 @@ test.describe('opening breakage form', () => {
         await dash.toggleReportIsVisible()
         await dash.showsInformation()
         await dash.cannotHideInformation()
+        await dash.screenshot('screen-toggle-report-show.png')
     })
 })
 
