@@ -36,7 +36,8 @@
                         { "$ref": "#/definitions/listVersions" },
                         { "$ref": "#/definitions/reportFlow" },
                         { "$ref": "#/definitions/siteUrl" },
-                        { "$ref": "#/definitions/didOpenReportInfo" }
+                        { "$ref": "#/definitions/didOpenReportInfo" },
+                        { "$ref": "#/definitions/toggleReportCounter" }
                     ]
                 },
                 "additional": {
@@ -130,6 +131,11 @@
             "title": "didOpenReportInfo title",
             "const": "didOpenReportInfo",
             "description": "didOpenReportInfo description"
+        },
+        "toggleReportCounter": {
+            "title": "toggleReportCounter title",
+            "const": "toggleReportCounter",
+            "description": "toggleReportCounter description"
         }
     }
 }

@@ -57,7 +57,8 @@ export type DataItemId =
   | ListVersionsTitle
   | ReportFlowTitle
   | SiteUrlTitle
-  | DidOpenReportInfoTitle;
+  | DidOpenReportInfoTitle
+  | ToggleReportCounterTitle;
 /**
  * wvVersion description
  */
@@ -118,6 +119,10 @@ export type SiteUrlTitle = "siteUrl";
  * didOpenReportInfo description
  */
 export type DidOpenReportInfoTitle = "didOpenReportInfo";
+/**
+ * toggleReportCounter description
+ */
+export type ToggleReportCounterTitle = "toggleReportCounter";
 
 /**
  * This describes all of the top-level generated types

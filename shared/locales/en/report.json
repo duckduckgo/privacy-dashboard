@@ -166,5 +166,9 @@
     "dynamic_didOpenReportInfo": {
         "title": "Whether or not you opted to show this report info",
         "note": "This text represents if the user has opted to see a list of information, or not."
+    },
+    "dynamic_toggleReportCounter": {
+        "title": "Number of times protections were toggled off",
+        "note": "This text represents the amount of times protections were toggled"
     }
 }

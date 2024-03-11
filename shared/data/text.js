@@ -37,5 +37,7 @@ export function namedString(item) {
             return ns.report('dynamic_listVersions.title')
         case 'didOpenReportInfo':
             return ns.report('dynamic_didOpenReportInfo.title')
+        case 'toggleReportCounter':
+            return ns.report('dynamic_toggleReportCounter.title')
     }
 }
