@@ -1,9 +1,20 @@
 .toggle-report {
     height: 100%;
 }
-.toggle-report[data-opener='dashboard'] {
-    .top-nav {
-        opacity: 0;
-        visibility: hidden;
+.environment--macos {
+    .toggle-report[data-opener='dashboard'] {
+        .top-nav {
+            opacity: 0;
+            visibility: hidden;
+        }
     }
+}
+
+.environment--ios [data-toggle-report='child'] {
+    opacity: 0;
+    visibility: hidden;
+}
+.environment--ios [data-toggle-report='child'][data-ready='true'] {
+    opacity: 1;
+    visibility: visible;
 }

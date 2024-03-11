@@ -9,7 +9,7 @@ export function ToggleReportSent({ onClick }) {
             <div className="medium-icon-container hero-icon--toggle-report-sent"></div>
             <Stack gap={'8px'}>
                 <h1 className="token-title-2-em text--center">{ns.report('thankYou.title')}</h1>
-                <h2 className="token-title-3 text--center">{ns.report('yourReportWillHelpDesc.title')}</h2>
+                <h2 className="token-title-3 text--center">{ns.report('yourReportWillHelpToggleReport.title')}</h2>
             </Stack>
         </div>
     )

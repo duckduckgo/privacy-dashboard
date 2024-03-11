@@ -38,6 +38,7 @@ export function useIosAnimation(state, dispatch) {
                 const parentHeight = resizeObserverEntry.contentRect.height - 56
                 const offset = (parentHeight - childSize) / 2
                 child.style.transform = 'translateY(' + offset + 'px)'
+                child.dataset.ready = 'true'
                 setTimeout(() => {
                     child.style.transition = 'all .3s'
                 }, 0)

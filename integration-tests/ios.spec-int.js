@@ -144,6 +144,7 @@ test.describe('opening breakage form', () => {
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
         await dash.screenshot('screen-toggle-report.png')
+        await dash.showsOnlyDoneButton('toggleReport')
         await dash.sendToggleReport()
     })
     test('rejects toggle report', async ({ page }) => {

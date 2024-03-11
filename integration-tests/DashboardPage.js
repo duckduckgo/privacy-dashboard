@@ -310,9 +310,14 @@ export class DashboardPage {
         await expect(page.getByTestId('toggle-report').getByRole('list')).toBeHidden()
     }
 
-    async showsOnlyDoneButton() {
-        await this.page.locator('.breakage-form').locator('a:has-text("Done")').waitFor()
-        await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async showsOnlyDoneButton(screen = 'breakageForm') {
+        const selector = this.parent(screen)
+        await this.page.locator(selector).locator('a:has-text("Done")').waitFor()
+        await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
     }
 
     /**
@@ -523,7 +528,7 @@ export class DashboardPage {
         await this.page.getByRole('heading', { name: 'Thank you!' }).waitFor()
         await this.page
             .getByRole('heading', {
-                name: 'Your report will help improve our products and make the experience better for other people.',
+                name: 'Your report will help improve our products and make the experience better for everyone.',
             })
             .waitFor()
     }
@@ -531,7 +536,7 @@ export class DashboardPage {
     async clickingSuccessScreenClosesDashboard() {
         await this.page
             .getByRole('heading', {
-                name: 'Your report will help improve our products and make the experience better for other people.',
+                name: 'Your report will help improve our products and make the experience better for everyone.',
             })
             .click()
         await this.mocks.calledForClose({ screen: 'toggleReport' })
