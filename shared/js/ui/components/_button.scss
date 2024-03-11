@@ -1,0 +1,91 @@
+.button {
+    &[data-variant='macos-standard'] {
+        color: var(--Text-Primary, rgba(0, 0, 0, 0.84));
+        text-align: center;
+        border-radius: 5px;
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
+        background: #fff;
+        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
+
+        &:active {
+            border: 0.5px solid rgba(0, 0, 0, 0.1);
+            background: #e7e7e7;
+
+            /* Mac/Button */
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
+        }
+
+        .body--theme-dark & {
+            color: rgba(255, 255, 255, 0.84);
+            border: 0.5px solid rgba(0, 0, 0, 0);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
+                0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
+
+            &:active {
+                border: 0.5px solid rgba(0, 0, 0, 0);
+                background: rgba(255, 255, 255, 0.35);
+
+                /* Mac/Button (Dark) */
+                box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
+                    0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
+            }
+        }
+    }
+    &[data-variant='ios-secondary'] {
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        border: 1px solid var(--color-accent-blue);
+        color: var(--color-accent-blue);
+        text-align: center;
+        background: transparent;
+
+        &:active {
+            background: rgba(57, 105, 239, 0.2);
+            color: var(--color-accent-blue-active);
+        }
+    }
+    &[data-size='small'] {
+        line-height: 13px;
+        height: 20px;
+        padding: 0px 12px;
+        border-radius: 5px;
+    }
+    &[data-size='big'] {
+        height: 50px;
+        padding: 0px 24px;
+        /* Button */
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; /* 133.333% */
+    }
+}
+
+.button-bar {
+    &[data-layout='horizontal'] {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+    }
+    &[data-layout='vertical'] {
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+        > * {
+            width: 100%;
+        }
+    }
+}
+
+.text-link-as-button {
+    &:hover {
+        text-decoration: underline;
+    }
+    &:active {
+        text-decoration: none;
+    }
+}

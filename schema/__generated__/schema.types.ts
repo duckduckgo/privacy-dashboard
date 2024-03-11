@@ -41,6 +41,88 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
  * A helper list of messages that the Dashboard accepts from Windows
  */
 export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
+export type ScreenKind = "primaryScreen" | "breakageForm" | "toggleReport";
+export type DataItemId =
+  | WvVersionTitle
+  | RequestsTitle
+  | FeaturesTitle
+  | AppVersionTitle
+  | AtbTitle
+  | ErrorDescriptionsTitle
+  | ExtensionVersionTitle
+  | HttpErrorCodesTitle
+  | LastSentDayTitle
+  | DeviceTitle
+  | OsTitle
+  | ListVersionsTitle
+  | ReportFlowTitle
+  | SiteUrlTitle
+  | DidOpenReportInfoTitle
+  | ToggleReportCounterTitle;
+/**
+ * wvVersion description
+ */
+export type WvVersionTitle = "wvVersion";
+/**
+ * requests description
+ */
+export type RequestsTitle = "requests";
+/**
+ * features description
+ */
+export type FeaturesTitle = "features";
+/**
+ * appVersion description
+ */
+export type AppVersionTitle = "appVersion";
+/**
+ * atb description
+ */
+export type AtbTitle = "atb";
+/**
+ * errorDescriptions description
+ */
+export type ErrorDescriptionsTitle = "errorDescriptions";
+/**
+ * extensionVersion description
+ */
+export type ExtensionVersionTitle = "extensionVersion";
+/**
+ * httpErrorCodes description
+ */
+export type HttpErrorCodesTitle = "httpErrorCodes";
+/**
+ * lastSentDay description
+ */
+export type LastSentDayTitle = "lastSentDay";
+/**
+ * device description
+ */
+export type DeviceTitle = "device";
+/**
+ * os description
+ */
+export type OsTitle = "os";
+/**
+ * listVersions description
+ */
+export type ListVersionsTitle = "listVersions";
+/**
+ * reportFlow description
+ */
+export type ReportFlowTitle = "reportFlow";
+/**
+ * siteUrl description
+ */
+export type SiteUrlTitle = "siteUrl";
+/**
+ * didOpenReportInfo description
+ */
+export type DidOpenReportInfoTitle = "didOpenReportInfo";
+/**
+ * toggleReportCounter description
+ */
+export type ToggleReportCounterTitle = "toggleReportCounter";
 
 /**
  * This describes all of the top-level generated types
@@ -60,6 +142,8 @@ export interface API {
   "fire-button"?: FireButtonData;
   "feature-settings"?: RemoteFeatureSettings;
   "set-protection"?: SetProtectionParams;
+  "toggle-report-screen"?: ToggleReportScreen;
+  "close-message"?: CloseMessageParams;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -396,6 +480,31 @@ export interface SetProtectionParams {
   eventOrigin: EventOrigin;
 }
 export interface EventOrigin {
-  screen: "primaryScreen" | "breakageForm";
+  screen: ScreenKind;
+}
+/**
+ * <details>
+ * <summary>Show example JSON</summary>
+ *
+ * ```json
+ * [[include:toggle-report-screen.json]]
+ * ```
+ * </details>
+ */
+export interface ToggleReportScreen {
+  /**
+   * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
+   */
+  data: ToggleReportScreenDataItem[];
+}
+export interface ToggleReportScreenDataItem {
+  id: DataItemId;
+  additional?: SiteUrlAdditionalData;
+}
+export interface SiteUrlAdditionalData {
+  url: string;
+}
+export interface CloseMessageParams {
+  eventOrigin: EventOrigin;
 }
 

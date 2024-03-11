@@ -1,0 +1,55 @@
+{
+    "data": [
+        {
+            "id": "siteUrl",
+            "additional": {
+                "url": "https://example.com/a/b/c/with-a-very-long-path-segment"
+            }
+        },
+        {
+            "id": "wvVersion"
+        },
+        {
+            "id": "requests"
+        },
+        {
+            "id": "features"
+        },
+        {
+            "id": "appVersion"
+        },
+        {
+            "id": "atb"
+        },
+        {
+            "id": "errorDescriptions"
+        },
+        {
+            "id": "extensionVersion"
+        },
+        {
+            "id": "httpErrorCodes"
+        },
+        {
+            "id": "lastSentDay"
+        },
+        {
+            "id": "device"
+        },
+        {
+            "id": "os"
+        },
+        {
+            "id": "reportFlow"
+        },
+        {
+            "id": "listVersions"
+        },
+        {
+            "id": "didOpenReportInfo"
+        },
+        {
+            "id": "toggleReportCounter"
+        }
+    ]
+}

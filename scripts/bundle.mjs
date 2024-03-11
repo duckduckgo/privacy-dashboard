@@ -2,11 +2,17 @@ import esbuild from 'esbuild'
 import { basename, join } from 'node:path'
 import { readdirSync, readFileSync } from 'node:fs'
 import { cwd, debug } from './utils.mjs'
+import z from 'zod'
 const CWD = cwd(import.meta.url)
 const BASE = join(CWD, '..')
 const LOCALES_BASE = join(BASE, 'shared/locales')
 const IS_PROD = process.env.NODE_ENV === 'production'
 console.log({ IS_PROD })
+const env = z
+    .object({
+        BUILD_OUTPUT: z.string(),
+    })
+    .parse(process.env)
 
 /**
  * Bundle the base and polyfill files.
@@ -17,11 +23,11 @@ async function init() {
     const manifest = {
         base: {
             input: join(BASE, 'shared/js/ui/base/index.js'),
-            output: join(BASE, 'build/app/public/js/base.js'),
+            output: join(BASE, env.BUILD_OUTPUT, 'public/js/base.js'),
         },
         polyfills: {
             input: join(BASE, 'shared/js/polyfill.js'),
-            output: join(BASE, 'build/app/public/js/polyfills.js'),
+            output: join(BASE, env.BUILD_OUTPUT, 'public/js/polyfills.js'),
         },
     }
     await esbuild.build({
@@ -30,7 +36,7 @@ async function init() {
         target: ['es2021'],
         outfile: manifest.base.output,
         sourcemap: debug ? 'linked' : undefined,
-        dropLabels: IS_PROD ? ['$TEST'] : [],
+        dropLabels: IS_PROD ? ['$TEST', '$DEBUG'] : [],
         loader: {
             '.js': 'jsx',
         },

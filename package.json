@@ -14,7 +14,7 @@
         "docs.watch": "npm run docs -- --watch",
         "preview": "npm run build.debug && npm run preview.serve",
         "preview.serve": "npm run serve -- -o html/iframe.html",
-        "serve": "http-server build/app --port 3220 -c-1",
+        "serve": "http-server build/app-debug --port 3220 -c-1",
         "lint": "eslint .",
         "lint.fix": "eslint . --fix",
         "prettier": "prettier .",
@@ -32,7 +32,8 @@
         "test.clean-tree": "npm run build && sh scripts/check-for-changes.sh",
         "verify.artifacts": "node scripts/verify-artifacts.mjs",
         "verify.local": "npm run lint.fix && npm run prettier.fix && npm run build && npm run test.unit && npm run docs && npm run test.int",
-        "fetch-fonts": "mkdir -p build/app/public/font && curl -o build/app/public/font/ProximaNova-Reg-webfont.woff https://duckduckgo.com/font/ProximaNova-Reg-webfont.woff && curl -o build/app/public/font/ProximaNova-Sbold-webfont.woff https://duckduckgo.com/font/ProximaNova-Sbold-webfont.woff"
+        "fetch-fonts": "mkdir -p build/app/public/font && curl -o build/app/public/font/ProximaNova-Reg-webfont.woff https://duckduckgo.com/font/ProximaNova-Reg-webfont.woff && curl -o build/app/public/font/ProximaNova-Sbold-webfont.woff https://duckduckgo.com/font/ProximaNova-Sbold-webfont.woff",
+        "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
     },
     "devDependencies": {
         "@formatjs/intl-locale": "^3.0.7",

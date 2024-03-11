@@ -28,6 +28,12 @@
         },
         "set-protection": {
             "$ref": "set-protection.json"
+        },
+        "toggle-report-screen": {
+            "$ref": "toggle-report-screen.json"
+        },
+        "close-message": {
+            "$ref": "close-message.json"
         }
     }
 }

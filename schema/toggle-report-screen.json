@@ -1,0 +1,141 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ToggleReportScreen",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["data"],
+    "description": "<details>\n<summary>Show example JSON</summary>\n\n```json\n[[include:toggle-report-screen.json]]\n```\n</details>",
+    "properties": {
+        "data": {
+            "type": "array",
+            "description": "The line-items to show to the user for indicating what data the report will send to DuckDuckGo",
+            "items": { "$ref": "#/definitions/ToggleReportScreenDataItem" }
+        }
+    },
+    "definitions": {
+        "ToggleReportScreenDataItem": {
+            "type": "object",
+            "required": ["id"],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "title": "DataItemId",
+                    "type": "string",
+                    "enum": [
+                        { "$ref": "#/definitions/wvVersion" },
+                        { "$ref": "#/definitions/requests" },
+                        { "$ref": "#/definitions/features" },
+                        { "$ref": "#/definitions/appVersion" },
+                        { "$ref": "#/definitions/atb" },
+                        { "$ref": "#/definitions/errorDescriptions" },
+                        { "$ref": "#/definitions/extensionVersion" },
+                        { "$ref": "#/definitions/httpErrorCodes" },
+                        { "$ref": "#/definitions/lastSentDay" },
+                        { "$ref": "#/definitions/device" },
+                        { "$ref": "#/definitions/os" },
+                        { "$ref": "#/definitions/listVersions" },
+                        { "$ref": "#/definitions/reportFlow" },
+                        { "$ref": "#/definitions/siteUrl" },
+                        { "$ref": "#/definitions/didOpenReportInfo" },
+                        { "$ref": "#/definitions/toggleReportCounter" }
+                    ]
+                },
+                "additional": {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": ["url"],
+                            "title": "SiteUrlAdditionalData",
+                            "properties": {
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "wvVersion": {
+            "title": "wvVersion title",
+            "const": "wvVersion",
+            "description": "wvVersion description"
+        },
+        "requests": {
+            "title": "requests title",
+            "const": "requests",
+            "description": "requests description"
+        },
+        "features": {
+            "title": "features title",
+            "const": "features",
+            "description": "features description"
+        },
+        "appVersion": {
+            "title": "appVersion title",
+            "const": "appVersion",
+            "description": "appVersion description"
+        },
+        "atb": {
+            "title": "atb title",
+            "const": "atb",
+            "description": "atb description"
+        },
+        "errorDescriptions": {
+            "title": "errorDescriptions title",
+            "const": "errorDescriptions",
+            "description": "errorDescriptions description"
+        },
+        "extensionVersion": {
+            "title": "extensionVersion title",
+            "const": "extensionVersion",
+            "description": "extensionVersion description"
+        },
+        "httpErrorCodes": {
+            "title": "httpErrorCodes title",
+            "const": "httpErrorCodes",
+            "description": "httpErrorCodes description"
+        },
+        "lastSentDay": {
+            "title": "lastSentDay title",
+            "const": "lastSentDay",
+            "description": "lastSentDay description"
+        },
+        "device": {
+            "title": "device title",
+            "const": "device",
+            "description": "device description"
+        },
+        "os": {
+            "title": "os title",
+            "const": "os",
+            "description": "os description"
+        },
+        "listVersions": {
+            "title": "listVersions title",
+            "const": "listVersions",
+            "description": "listVersions description"
+        },
+        "reportFlow": {
+            "title": "reportFlow title",
+            "const": "reportFlow",
+            "description": "reportFlow description"
+        },
+        "siteUrl": {
+            "title": "siteUrl title",
+            "const": "siteUrl",
+            "description": "siteUrl description"
+        },
+        "didOpenReportInfo": {
+            "title": "didOpenReportInfo title",
+            "const": "didOpenReportInfo",
+            "description": "didOpenReportInfo description"
+        },
+        "toggleReportCounter": {
+            "title": "toggleReportCounter title",
+            "const": "toggleReportCounter",
+            "description": "toggleReportCounter description"
+        }
+    }
+}

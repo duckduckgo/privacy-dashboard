@@ -79,6 +79,30 @@ export class Mocks {
         }
     }
 
+    async calledForSendToggleReport() {
+        const out = await this.outgoing({
+            names: ['privacyDashboardSendToggleReport'],
+        })
+        expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
+        return
+    }
+
+    async calledForRejectToggleReport() {
+        const out = await this.outgoing({
+            names: ['privacyDashboardRejectToggleReport'],
+        })
+        expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
+        return
+    }
+
+    async calledForSeeWhatsSent() {
+        const out = await this.outgoing({
+            names: ['privacyDashboardSeeWhatIsSent'],
+        })
+        expect(out).toMatchObject([['privacyDashboardSeeWhatIsSent', {}]])
+        return
+    }
+
     async calledForSubmitBreakageForm({ category = '', description = '' }) {
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({
@@ -184,7 +208,11 @@ export class Mocks {
         throw new Error('unreachable: must handle `mockCalledForSearch` on platform ' + this.platform.name)
     }
 
-    async calledForClose() {
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin} eventOrigin
+     * @return {Promise<void>}
+     */
+    async calledForClose(eventOrigin = { screen: 'primaryScreen' }) {
         if (this.platform.name === 'android') {
             const calls = await this.outgoing({ names: ['close'] })
             expect(calls).toMatchObject([['close', undefined]])
@@ -192,7 +220,14 @@ export class Mocks {
         }
         if (this.platform.name === 'ios' || this.platform.name === 'macos') {
             const calls = await this.outgoing({ names: ['privacyDashboardClose'] })
-            expect(calls).toMatchObject([['privacyDashboardClose', {}]])
+            expect(calls).toMatchObject([
+                [
+                    'privacyDashboardClose',
+                    {
+                        eventOrigin: eventOrigin,
+                    },
+                ],
+            ])
             return
         }
         throw new Error('unreachable. mockCalledForClose must be handled')

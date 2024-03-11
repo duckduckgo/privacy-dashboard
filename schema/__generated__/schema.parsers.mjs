@@ -11,6 +11,40 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
+export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport")]);
+
+export const wvVersionTitleSchema = z.literal("wvVersion");
+
+export const requestsTitleSchema = z.literal("requests");
+
+export const featuresTitleSchema = z.literal("features");
+
+export const appVersionTitleSchema = z.literal("appVersion");
+
+export const atbTitleSchema = z.literal("atb");
+
+export const errorDescriptionsTitleSchema = z.literal("errorDescriptions");
+
+export const extensionVersionTitleSchema = z.literal("extensionVersion");
+
+export const httpErrorCodesTitleSchema = z.literal("httpErrorCodes");
+
+export const lastSentDayTitleSchema = z.literal("lastSentDay");
+
+export const deviceTitleSchema = z.literal("device");
+
+export const osTitleSchema = z.literal("os");
+
+export const listVersionsTitleSchema = z.literal("listVersions");
+
+export const reportFlowTitleSchema = z.literal("reportFlow");
+
+export const siteUrlTitleSchema = z.literal("siteUrl");
+
+export const didOpenReportInfoTitleSchema = z.literal("didOpenReportInfo");
+
+export const toggleReportCounterTitleSchema = z.literal("toggleReportCounter");
+
 export const stateBlockedSchema = z.object({
     blocked: z.record(z.unknown())
 });
@@ -117,8 +151,18 @@ export const primaryScreenSchema = z.object({
 });
 
 export const eventOriginSchema = z.object({
-    screen: z.union([z.literal("primaryScreen"), z.literal("breakageForm")])
+    screen: screenKindSchema
 });
+
+export const siteUrlAdditionalDataSchema = z.object({
+    url: z.string()
+});
+
+export const closeMessageParamsSchema = z.object({
+    eventOrigin: eventOriginSchema
+});
+
+export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema]);
 
 export const detectedRequestSchema = z.object({
     url: z.string(),
@@ -159,6 +203,11 @@ export const setProtectionParamsSchema = z.object({
     eventOrigin: eventOriginSchema
 });
 
+export const toggleReportScreenDataItemSchema = z.object({
+    id: dataItemIdSchema,
+    additional: siteUrlAdditionalDataSchema.optional()
+});
+
 export const requestDataSchema = z.object({
     requests: z.array(detectedRequestSchema),
     installedSurrogates: z.array(z.string()).optional()
@@ -182,6 +231,10 @@ export const windowsViewModelSchema = z.object({
     cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
 });
 
+export const toggleReportScreenSchema = z.object({
+    data: z.array(toggleReportScreenDataItemSchema)
+});
+
 export const windowsIncomingViewModelSchema = z.object({
     Feature: z.literal("PrivacyDashboard"),
     Name: z.literal("ViewModelUpdated"),
@@ -203,6 +256,8 @@ export const apiSchema = z.object({
     exe: extensionMessageSetListOptionsSchema.optional(),
     "fire-button": fireButtonDataSchema.optional(),
     "feature-settings": remoteFeatureSettingsSchema.optional(),
-    "set-protection": setProtectionParamsSchema.optional()
+    "set-protection": setProtectionParamsSchema.optional(),
+    "toggle-report-screen": toggleReportScreenSchema.optional(),
+    "close-message": closeMessageParamsSchema.optional()
 });
 

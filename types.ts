@@ -41,30 +41,46 @@ interface Window {
         listeners?: any[]
         calls: any[]
         messages: any
+        responses: any
         mocks: {
             outgoing: any[]
             incoming: any[]
         }
     }
     webkit?: {
-        messageHandlers?: {
-            privacyDashboardSubmitBrokenSiteReport?: any
-            privacyDashboardOpenUrlInNewTab?: any
-            privacyDashboardSetSize?: any
-            privacyDashboardShowReportBrokenSite?: any
-            privacyDashboardClose?: any
-            privacyDashboardSetProtection?: {
-                postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void
-            }
-            privacyDashboardOpenSettings?: any
-            privacyDashboardSetPermission?: any
-        }
+        messageHandlers?: WebkitMessageHandlers
     }
+    onGetToggleReportOptionsResponse?: (data: import('./schema/__generated__/schema.types').ToggleReportScreen) => void
     chrome: {
         webview?: {
             postMessage?: Window['postMessage']
             addEventListener?: Window['addEventListener']
             removeEventListener?: Window['removeEventListener']
         }
+    }
+}
+
+interface WebkitMessageHandlers {
+    privacyDashboardSubmitBrokenSiteReport?: any
+    privacyDashboardOpenUrlInNewTab?: any
+    privacyDashboardSetSize?: any
+    privacyDashboardShowReportBrokenSite?: any
+    privacyDashboardClose?: any
+    privacyDashboardSetProtection?: {
+        postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void
+    }
+    privacyDashboardOpenSettings?: any
+    privacyDashboardSetPermission?: any
+    privacyDashboardGetToggleReportOptions?: {
+        postMessage: (params: any) => void
+    }
+    privacyDashboardRejectToggleReport?: {
+        postMessage: (params: any) => Promise<void>
+    }
+    privacyDashboardSendToggleReport?: {
+        postMessage: (params: any) => Promise<void>
+    }
+    privacyDashboardSeeWhatIsSent?: {
+        postMessage: (params: any) => Promise<void>
     }
 }

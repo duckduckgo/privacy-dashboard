@@ -9,7 +9,7 @@ import ParentSlidingSubview from './sliding-subview.js'
  * @param {boolean} ops.immediate
  * @constructor
  */
-function BreakageForm(ops) {
+function BreakageFormView(ops) {
     this.model = ops.model
     this.mainModel = ops.mainModel
     this.template = ops.template
@@ -21,7 +21,7 @@ function BreakageForm(ops) {
     this._setup()
 }
 
-BreakageForm.prototype = $.extend(
+BreakageFormView.prototype = $.extend(
     {},
     // @ts-ignore
     ParentSlidingSubview.prototype,
@@ -45,4 +45,33 @@ BreakageForm.prototype = $.extend(
     }
 )
 
-export default BreakageForm
+export { BreakageFormView }
+
+/**
+ * @param {object} ops
+ * @param {() => HTMLElement} ops.template
+ * @param {import("../models/breakage-form.js").BreakageFormModel} ops.model
+ * @param {import('../models/site.js').PublicSiteModel} ops.mainModel
+ * @param {boolean} ops.immediate
+ * @constructor
+ */
+function ToggleReportView(ops) {
+    this.model = ops.model
+    this.mainModel = ops.mainModel
+    this.template = ops.template
+    this.immediate = ops.immediate
+    // @ts-ignore
+    ParentSlidingSubview.call(this, ops)
+}
+
+ToggleReportView.prototype = $.extend(
+    {},
+    // @ts-ignore
+    ParentSlidingSubview.prototype,
+    {
+        roots: new Map(),
+        _setup: function () {},
+    }
+)
+
+export { ToggleReportView }

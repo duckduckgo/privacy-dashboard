@@ -1,9 +1,11 @@
 import { describe, it } from 'node:test'
 import {
+    closeMessageParamsSchema,
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
+    toggleReportScreenSchema,
 } from './__generated__/schema.parsers.mjs'
 import { readFileSync } from 'node:fs'
 import { join } from 'path'
@@ -17,6 +19,8 @@ const protections = JSON.parse(readFileSync(join(CWD, '__fixtures__/protections.
 const locale = JSON.parse(readFileSync(join(CWD, '__fixtures__/locale-settings.json'), 'utf8'))
 const cpm = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm.json'), 'utf8'))
 const cpmSecondary = JSON.parse(readFileSync(join(CWD, '__fixtures__/cpm-secondary.json'), 'utf8'))
+const toggleReportScreen = JSON.parse(readFileSync(join(CWD, '__fixtures__/toggle-report-screen.json'), 'utf8'))
+const webkitClose = JSON.parse(readFileSync(join(CWD, '__fixtures__/webkit-close.json'), 'utf8'))
 
 describe('__fixtures__', () => {
     it('validates request-data', () => {
@@ -34,5 +38,11 @@ describe('__fixtures__', () => {
     it('validates cpm incoming', () => {
         cookiePromptManagementStatusSchema.parse(cpm)
         cookiePromptManagementStatusSchema.parse(cpmSecondary)
+    })
+    it('validates toggle report screen', () => {
+        toggleReportScreenSchema.parse(toggleReportScreen)
+    })
+    it('validates close message on webkit', () => {
+        closeMessageParamsSchema.parse(webkitClose)
     })
 })

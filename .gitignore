@@ -17,3 +17,4 @@ __diff_output__
 build/app/html/iframe.html
 build/app/html/states.json
 build/app/public/font
+build/app-debug

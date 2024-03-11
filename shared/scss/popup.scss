@@ -2,6 +2,12 @@
 @import 'mixins';
 @import './base/tokens';
 
+* {
+    @media (prefers-reduced-motion: reduce) {
+        transition: none !important;
+    }
+}
+
 /* Popup */
 body {
     @include token-body;
@@ -19,9 +25,11 @@ body {
     --color-text-primary: rgba(0, 0, 0, 0.84);
     --color-text-secondary: rgba(0, 0, 0, 0.6);
     --color-accent-blue: #3969ef;
+    --color-accent-blue-active: #1e42a4;
     --color-lines-light: rgba(0, 0, 0, 0.12);
     --color-lines-lighter: rgba(0, 0, 0, 0.06);
     --color-hover-bg: rgba(0, 0, 0, 0.06);
+    --color-system-lines: rgba(0, 0, 0, 0.09);
     --size-unit: 16px;
     --size-unit-half: calc(var(--size-unit) / 2);
     --size-unit-double: calc(var(--size-unit) * 2);
@@ -40,11 +48,16 @@ body {
         --width: 100%;
         --height: -webkit-fill-available;
     }
+
     &.environment--android {
         --width: 100%;
     }
 
     // desktops
+    &.environment--macos {
+        --height: auto;
+    }
+
     &.environment--browser {
         --height: 600px;
     }
@@ -76,10 +89,12 @@ body {
         --color-text-primary: rgba(255, 255, 255, 0.84);
         --color-text-secondary: rgba(255, 255, 255, 0.6);
         --color-accent-blue: #7295f6;
+        --color-accent-blue-active: #8fabf9;
         --color-lines-light: rgba(255, 255, 255, 0.18);
         // todo(Shane): is this correct?
         --color-lines-lighter: rgba(255, 255, 255, 0.09);
         --color-hover-bg: rgba(255, 255, 255, 0.12);
+        --color-system-lines: rgba(255, 255, 255, 0.09);
 
         // windows uses slightly different colors for buttons
         &.environment--windows {
@@ -95,7 +110,8 @@ body {
         }
 
         &.environment--ios {
-            --bg: #{$slate};
+            --bg: #222222;
+            --page-bg: #222222;
         }
     }
 
@@ -165,3 +181,7 @@ body {
     padding: 16px 0;
     text-align: center;
 }
+
+@import '../js/ui/components/button';
+@import '../js/ui/components/stack';
+@import '../js/ui/components/toggle-report/toggle-report';

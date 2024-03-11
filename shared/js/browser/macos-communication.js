@@ -21,13 +21,18 @@ import {
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
+    toggleReportScreenSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import { isIOS } from '../ui/environment-check'
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     CloseMessage,
+    FetchToggleReportOptions,
     getContentHeight,
     OpenSettingsMessages,
+    RejectToggleBreakageReport,
+    SeeWhatIsSent,
+    SendToggleBreakageReport,
     SetListsMessage,
     setupColorScheme,
     setupMutationObserver,
@@ -239,13 +244,111 @@ export function privacyDashboardSetPermission(params) {
 }
 
 /**
+ * @category Webkit Message Handler
+ * @example
+ *
+ * When the Dashboard loads, it will call this message handler...
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({})
+ * ```
+ *
+ * ... then, to reply with the correct data, call evaluate on the following window method:
+ *
+ * The JSON object should match {@link "Generated Schema Definitions".ToggleReportScreen}
+ *
+ * ```js
+ * window.onGetToggleReportOptionsResponse({ "data": [...] })
+ * ```
+ * <br>
+ * <details>
+ *   <summary>Sample JSON 📝</summary>
+ *
+ *   ```json
+ *   [[include:toggle-report-screen.json]]```
+ * </details>
+ *
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
+ */
+export function privacyDashboardGetToggleReportOptions() {
+    return new Promise((resolve) => {
+        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+        invariant(window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions, 'privacyDashboardGetToggleReportOptions required')
+        window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({})
+        window.onGetToggleReportOptionsResponse = (data) => {
+            resolve(data)
+            Reflect.deleteProperty(window, 'onGetToggleReportOptionsResponse')
+        }
+    })
+}
+
+/**
+ * {@inheritDoc common.sendToggleReport}
+ * @type {import("./common.js").sendToggleReport}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({})
+ * ```
+ */
+export function privacyDashboardSendToggleReport() {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, 'privacyDashboardSendToggleReport required')
+    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({})
+}
+
+/**
+ * {@inheritDoc common.rejectToggleReport}
+ * @type {import("./common.js").rejectToggleReport}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({})
+ * ```
+ */
+export function privacyDashboardRejectToggleReport() {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, 'privacyDashboardRejectToggleReport required')
+    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({})
+}
+
+/**
+ * This is sent when the user has chosen to show the information that will be used in the toggle report
+ *
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent.postMessage({})
+ * ```
+ */
+export function privacyDashboardSeeWhatIsSent() {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent, 'privacyDashboardSeeWhatIsSent required')
+    return window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent.postMessage({})
+}
+
+/**
  * Close the Dashboard.
  * @category Webkit Message Handlers
- * @param {{}} args - An empty object to keep the `webkit` message handlers happy
+ * @param {import('../../../schema/__generated__/schema.types').CloseMessageParams} args
  * @example
+ *
  * ```js
  * window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
  * ```
+ * ### Sample JSON 📝
+ * ```json
+ * [[include:webkit-close.json]]```
+ *
  */
 export function privacyDashboardClose(args) {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
@@ -258,7 +361,7 @@ export function privacyDashboardClose(args) {
  */
 async function fetch(message) {
     if (message instanceof CloseMessage) {
-        privacyDashboardClose({})
+        privacyDashboardClose({ eventOrigin: message.eventOrigin })
         return
     }
 
@@ -296,6 +399,24 @@ async function fetch(message) {
             permission: message.id,
             value: message.value,
         })
+    }
+
+    if (message instanceof FetchToggleReportOptions) {
+        const data = await privacyDashboardGetToggleReportOptions()
+        const parsed = toggleReportScreenSchema.parse(data)
+        return parsed
+    }
+
+    if (message instanceof SendToggleBreakageReport) {
+        return privacyDashboardSendToggleReport()
+    }
+
+    if (message instanceof RejectToggleBreakageReport) {
+        return privacyDashboardRejectToggleReport()
+    }
+
+    if (message instanceof SeeWhatIsSent) {
+        return privacyDashboardSeeWhatIsSent()
     }
 }
 

@@ -178,13 +178,15 @@ export class DashboardPage {
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'ios' | 'macos'} opts.platform
+     * @param {'menu' | 'dashboard'} [opts.opener]
      */
     static async webkit(page, opts) {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
         const screen = opts?.screen || 'primaryScreen'
+        const opener = opts?.opener || 'dashboard'
         const dash = new DashboardPage(page, { name: opts?.platform ?? 'ios' })
         await dash.withMarker()
-        await dash.loadPage({ screen })
+        await dash.loadPage({ screen, opener })
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -283,18 +285,83 @@ export class DashboardPage {
         await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
     }
 
-    async showsOnlyDoneButton() {
-        await this.page.locator('.breakage-form').locator('a:has-text("Done")').waitFor()
-        await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
+    async toggleReportIsVisible() {
+        await this.page.getByRole('button', { name: 'Send Report' }).waitFor()
+        await this.page.getByRole('heading', { name: 'Site not working? Let us know.' }).waitFor()
     }
 
-    async showsOnlyCloseButton() {
-        await this.page.locator('.breakage-form').locator('a:has-text("Close")').waitFor()
-        await expect(this.page.locator('.breakage-form .top-nav a')).toHaveCount(1)
+    async showsInformation() {
+        const { page } = this
+        await page.getByRole('link', { name: 'See what’s sent' }).click()
+        await expect(page.getByTestId('toggle-report').getByRole('list')).toContainText(
+            'Page URL (without identifiable info)[https://example.com/a/b/c/with-a-very-long-path-segment]'
+        )
     }
 
-    async selectClose() {
-        await this.page.locator('.breakage-form .top-nav a').filter({ hasText: 'Close' }).click()
+    async cannotHideInformation() {
+        const { page } = this
+        expect(await page.getByRole('link', { name: 'See what’s sent' }).count()).toBe(0)
+        expect(await page.getByRole('link', { name: 'Hide' }).count()).toBe(0)
+    }
+
+    async hidesInformation() {
+        const { page } = this
+        await page.getByRole('link', { name: 'Hide' }).click()
+        await expect(page.getByTestId('toggle-report').getByRole('list')).toBeHidden()
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async showsOnlyDoneButton(screen = 'breakageForm') {
+        const selector = this.parent(screen)
+        await this.page.locator(selector).locator('a:has-text("Done")').waitFor()
+        await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async showsOnlyCloseButton(screen = 'breakageForm') {
+        let selector = this.parent(screen)
+        await this.page.locator(selector).locator('a:has-text("Close")').waitFor()
+        await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async closeButtonIsHidden(screen) {
+        let selector = this.parent(screen)
+        expect(await this.page.locator(selector).locator('.top-nav').isHidden()).toBe(true)
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async selectClose(screen) {
+        let selector = this.parent(screen)
+        await this.page.locator(selector).locator('.top-nav a').filter({ hasText: 'Close' }).click()
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {string}
+     */
+    parent(screen) {
+        let parent
+        if (screen === 'breakageForm') {
+            parent = '.breakage-form'
+        } else if (screen === 'toggleReport') {
+            parent = '[data-toggle-report="parent"]'
+        } else {
+            parent = 'n/a'
+        }
+        return parent
     }
 
     /**
@@ -449,5 +516,35 @@ export class DashboardPage {
         await this.page
             .getByText('We temporarily turned Privacy Protections off as they appear to be breaking this')
             .waitFor({ timeout: 1000 })
+    }
+
+    async sendToggleReport() {
+        const { page } = this
+        await page.getByRole('button', { name: 'Send Report' }).click()
+        await this.mocks.calledForSendToggleReport()
+    }
+
+    async showsSuccessScreen() {
+        await this.page.getByRole('heading', { name: 'Thank you!' }).waitFor()
+        await this.page
+            .getByRole('heading', {
+                name: 'Your report will help improve our products and make the experience better for everyone.',
+            })
+            .waitFor()
+    }
+
+    async clickingSuccessScreenClosesDashboard() {
+        await this.page
+            .getByRole('heading', {
+                name: 'Your report will help improve our products and make the experience better for everyone.',
+            })
+            .click()
+        await this.mocks.calledForClose({ screen: 'toggleReport' })
+    }
+
+    async rejectToggleReport() {
+        const { page } = this
+        await page.getByRole('button', { name: `Don't send` }).click()
+        await this.mocks.calledForRejectToggleReport()
     }
 }

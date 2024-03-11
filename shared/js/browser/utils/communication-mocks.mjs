@@ -1,3 +1,4 @@
+import toggleReportScreen from '../../../../schema/__fixtures__/toggle-report-screen.json'
 /**
  * @param {object} params
  * @param {import("../../ui/views/tests/generate-data.mjs").MockData} params.state
@@ -58,6 +59,7 @@ export function windowsMockApis() {
         }
         window.__playwright = {
             listeners: [],
+            responses: {},
             messages: {},
             mocks: {
                 outgoing: [],
@@ -82,10 +84,18 @@ export function windowsMockApis() {
     }
 }
 
-export function webkitMockApis() {
+/**
+ * @param {object} params
+ * @param {Partial<Record<keyof WebkitMessageHandlers, any>>} params.responses
+ */
+export function webkitMockApis({ responses = {} }) {
+    const merged = {
+        ...responses,
+    }
     try {
         window.__playwright = {
             messages: {},
+            responses: merged,
             mocks: {
                 outgoing: [],
                 incoming: [],
@@ -134,6 +144,31 @@ export function webkitMockApis() {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardSetPermission', arg])
                     },
                 },
+                privacyDashboardSendToggleReport: {
+                    postMessage: async (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSendToggleReport', arg])
+                    },
+                },
+                privacyDashboardRejectToggleReport: {
+                    postMessage: async (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardRejectToggleReport', arg])
+                    },
+                },
+                privacyDashboardSeeWhatIsSent: {
+                    postMessage: async (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSeeWhatIsSent', arg])
+                    },
+                },
+                privacyDashboardGetToggleReportOptions: {
+                    postMessage: (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg])
+                        setTimeout(() => {
+                            window.onGetToggleReportOptionsResponse?.(
+                                window.__playwright.responses['privacyDashboardGetToggleReportOptions']
+                            )
+                        }, 0)
+                    },
+                },
             },
         }
     } catch (e) {
@@ -146,6 +181,7 @@ export function mockAndroidApis() {
     try {
         window.__playwright = {
             messages: {},
+            responses: {},
             mocks: {
                 outgoing: [],
                 incoming: [],
@@ -197,6 +233,7 @@ export function mockBrowserApis() {
         }
         window.__playwright = {
             messages,
+            responses: {},
             mocks: {
                 outgoing: [],
                 incoming: [],
@@ -254,7 +291,11 @@ export async function installMocks(platform) {
     if (platform.name === 'windows') {
         windowsMockApis()
     } else if (platform.name === 'ios' || platform.name === 'macos') {
-        webkitMockApis()
+        webkitMockApis({
+            responses: {
+                privacyDashboardGetToggleReportOptions: toggleReportScreen,
+            },
+        })
     } else if (platform.name === 'android') {
         mockAndroidApis()
     } else if (platform.name === 'browser') {

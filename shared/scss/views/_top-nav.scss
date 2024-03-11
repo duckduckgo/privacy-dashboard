@@ -15,15 +15,7 @@ body {
     z-index: 5;
     width: 100%;
     height: var(--nav-height);
-    background: white;
-
-    .body--theme-dark & {
-        background-color: $slate;
-    }
-
-    .body--theme-dark.environment--android & {
-        background-color: $black;
-    }
+    background: var(--page-bg);
 }
 
 .top-nav__spacer {

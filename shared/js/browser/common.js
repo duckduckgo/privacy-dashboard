@@ -232,6 +232,29 @@ export async function refreshAlias() {
 }
 
 /**
+ * Fetch the data needed to display the toggle report screen
+ */
+export async function getToggleReportOptions() {
+    throw new Error('base impl')
+}
+
+/**
+ * Send the toggle report
+ * @returns {Promise<void>}
+ */
+export async function sendToggleReport() {
+    throw new Error('base impl')
+}
+
+/**
+ * Reject sending the toggle report
+ * @returns {Promise<void>}
+ */
+export async function rejectToggleReport() {
+    throw new Error('base impl')
+}
+
+/**
  * @param {import('../../../schema/__generated__/schema.types').Search} options
  */
 export function search(options) {}
@@ -243,7 +266,7 @@ export function search(options) {}
  */
 export function setPermission(params) {}
 
-class Msg {
+export class Msg {
     toJSON() {
         return {
             ...this,
@@ -302,7 +325,19 @@ export class UpdatePermissionMessage extends Msg {
     }
 }
 
-export class CloseMessage extends Msg {}
+export class CloseMessage extends Msg {
+    /**
+     * @param {object} params
+     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     */
+    constructor(params) {
+        super()
+        /**
+         * @type {import('../../../schema/__generated__/schema.types').EventOrigin}
+         */
+        this.eventOrigin = params.eventOrigin
+    }
+}
 
 export class CheckBrokenSiteReportHandledMessage extends Msg {}
 
@@ -358,6 +393,10 @@ export class BurnMessage extends Msg {
 }
 
 export class FetchBurnOptions extends Msg {}
+export class FetchToggleReportOptions extends Msg {}
+export class SendToggleBreakageReport extends Msg {}
+export class RejectToggleBreakageReport extends Msg {}
+export class SeeWhatIsSent extends Msg {}
 
 export class SetBurnDefaultOption extends Msg {
     /**

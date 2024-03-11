@@ -67,6 +67,14 @@
     }
 }
 
+/* Mac/System Keywords/Title 2 (Emphasis) */
+.token-title-2-em {
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+}
+
 .token-title-3 {
     //styleName: Mac/Title 3;
     font-size: 15px;
@@ -91,6 +99,12 @@
         font-size: 16px;
         line-height: 20px;
     }
+}
+
+.token-ios-title-3 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
 }
 
 .token-title-3-em {
@@ -166,4 +180,8 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
+}
+
+.token-bold {
+    font-weight: 600;
 }
