@@ -9,7 +9,7 @@ jobs:
     test:
         runs-on: ubuntu-20.04
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Use Node.js from .nvmrc
               uses: actions/setup-node@v3
               with:
@@ -38,7 +38,7 @@ jobs:
         runs-on: ubuntu-20.04
         needs: test
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Use Node.js from .nvmrc
               uses: actions/setup-node@v3
               with:
@@ -86,7 +86,7 @@ jobs:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: Use Node.js from .nvmrc
               uses: actions/setup-node@v3
               with:
