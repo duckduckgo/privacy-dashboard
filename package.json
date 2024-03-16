@@ -36,7 +36,7 @@
         "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
     },
     "devDependencies": {
-        "@formatjs/intl-locale": "^3.0.7",
+        "@formatjs/intl-locale": "^3.3.4",
         "@material/ripple": "^14.0.0",
         "@material/switch": "^14.0.0",
         "@playwright/test": "^1.41.2",
