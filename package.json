@@ -41,7 +41,7 @@
         "@material/switch": "^14.0.0",
         "@playwright/test": "^1.41.2",
         "@types/chrome": "^0.0.203",
-        "@types/node": "18.16.16",
+        "@types/node": "20.8.3",
         "@typescript-eslint/eslint-plugin": "^6.7.4",
         "chokidar-cli": "^3.0.0",
         "deep-freeze": "0.0.1",
