@@ -58,7 +58,10 @@ export type DataItemId =
   | ReportFlowTitle
   | SiteUrlTitle
   | DidOpenReportInfoTitle
-  | ToggleReportCounterTitle;
+  | ToggleReportCounterTitle
+  | OpenerContextTitle
+  | UserRefreshCountTitle
+  | JsPerformanceTitle;
 /**
  * wvVersion description
  */
@@ -123,6 +126,18 @@ export type DidOpenReportInfoTitle = "didOpenReportInfo";
  * toggleReportCounter description
  */
 export type ToggleReportCounterTitle = "toggleReportCounter";
+/**
+ * openerContext description
+ */
+export type OpenerContextTitle = "openerContext";
+/**
+ * userRefreshCount description
+ */
+export type UserRefreshCountTitle = "userRefreshCount";
+/**
+ * jsPerformance description
+ */
+export type JsPerformanceTitle = "jsPerformance";
 
 /**
  * This describes all of the top-level generated types

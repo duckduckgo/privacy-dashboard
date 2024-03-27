@@ -45,6 +45,12 @@ export const didOpenReportInfoTitleSchema = z.literal("didOpenReportInfo");
 
 export const toggleReportCounterTitleSchema = z.literal("toggleReportCounter");
 
+export const openerContextTitleSchema = z.literal("openerContext");
+
+export const userRefreshCountTitleSchema = z.literal("userRefreshCount");
+
+export const jsPerformanceTitleSchema = z.literal("jsPerformance");
+
 export const stateBlockedSchema = z.object({
     blocked: z.record(z.unknown())
 });
@@ -162,7 +168,7 @@ export const closeMessageParamsSchema = z.object({
     eventOrigin: eventOriginSchema
 });
 
-export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema]);
+export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
 
 export const detectedRequestSchema = z.object({
     url: z.string(),

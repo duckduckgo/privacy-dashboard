@@ -37,7 +37,10 @@
                         { "$ref": "#/definitions/reportFlow" },
                         { "$ref": "#/definitions/siteUrl" },
                         { "$ref": "#/definitions/didOpenReportInfo" },
-                        { "$ref": "#/definitions/toggleReportCounter" }
+                        { "$ref": "#/definitions/toggleReportCounter" },
+                        { "$ref": "#/definitions/openerContext" },
+                        { "$ref": "#/definitions/userRefreshCount" },
+                        { "$ref": "#/definitions/jsPerformance" }
                     ]
                 },
                 "additional": {
@@ -136,6 +139,21 @@
             "title": "toggleReportCounter title",
             "const": "toggleReportCounter",
             "description": "toggleReportCounter description"
+        },
+        "openerContext": {
+            "title": "openerContext title",
+            "const": "openerContext",
+            "description": "openerContext description"
+        },
+        "userRefreshCount": {
+            "title": "userRefreshCount title",
+            "const": "userRefreshCount",
+            "description": "userRefreshCount description"
+        },
+        "jsPerformance": {
+            "title": "jsPerformance title",
+            "const": "jsPerformance",
+            "description": "jsPerformance description"
         }
     }
 }
