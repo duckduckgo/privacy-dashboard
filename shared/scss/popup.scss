@@ -54,7 +54,7 @@ body {
     }
 
     // desktops
-    &.environment--macos {
+    &.environment--macos[data-screen='toggleReport'] {
         --height: auto;
     }
 

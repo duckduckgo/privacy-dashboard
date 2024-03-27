@@ -234,7 +234,7 @@ body.environment--ios {
 body.environment--android {
   --width: 100%;
 }
-body.environment--macos {
+body.environment--macos[data-screen=toggleReport] {
   --height: auto;
 }
 body.environment--browser {
