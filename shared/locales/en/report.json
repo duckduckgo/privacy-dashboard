@@ -174,5 +174,17 @@
     "dynamic_toggleReportCounter": {
         "title": "Number of times protections were toggled off",
         "note": "This text represents the amount of times protections were toggled"
+    },
+    "dynamic_openerContext": {
+        "title": "How you got to this page, either: \"SERP\" (DuckDuckGo search), \"Navigation\" (link/URL), or \"External\" (other means)",
+        "note": "todo"
+    },
+    "dynamic_userRefreshCount": {
+        "title": "Number of refreshes since page load",
+        "note": "todo"
+    },
+    "dynamic_jsPerformance": {
+        "title": "How quickly parts of the page loaded",
+        "note": "todo"
     }
 }

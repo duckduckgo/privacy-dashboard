@@ -159,6 +159,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
         if (eventTarget) {
             blur(eventTarget)
         }
+        document.body.dataset.screen = 'toggleReport'
         this.views.slidingSubview = new ToggleReportView({
             template: toggleReportTemplate,
             model: new BreakageFormModel({ site: this.model, opener }),

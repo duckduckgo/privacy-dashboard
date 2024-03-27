@@ -50,6 +50,15 @@
         },
         {
             "id": "toggleReportCounter"
+        },
+        {
+            "id": "openerContext"
+        },
+        {
+            "id": "userRefreshCount"
+        },
+        {
+            "id": "jsPerformance"
         }
     ]
 }

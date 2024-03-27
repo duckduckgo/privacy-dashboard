@@ -7,6 +7,12 @@ import { ns } from '../js/ui/base/localize'
  */
 export function namedString(item) {
     switch (item.id) {
+        case 'openerContext':
+            return ns.report('dynamic_openerContext.title')
+        case 'userRefreshCount':
+            return ns.report('dynamic_userRefreshCount.title')
+        case 'jsPerformance':
+            return ns.report('dynamic_jsPerformance.title')
         case 'wvVersion':
             return ns.report('dynamic_wvVersion.title')
         case 'requests':
