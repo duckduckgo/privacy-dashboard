@@ -33,6 +33,7 @@ export function createPlatformFeatures(platform) {
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
+        supportsInvalidCerts: platform.name !== 'browser',
     })
 }
 
@@ -46,6 +47,7 @@ export class PlatformFeatures {
      * @param {boolean} params.spinnerFollowingProtectionsToggle
      * @param {boolean} params.supportsHover
      * @param {InitialScreen} params.initialScreen
+     * @param {boolean} params.supportsInvalidCerts
      */
     constructor(params) {
         /**
@@ -58,6 +60,11 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.supportsHover = params.supportsHover
+        /**
+         * Does the current platform support hover interactions?
+         * @type {boolean}
+         */
+        this.supportsInvalidCerts = params.supportsInvalidCerts
         /**
          * Does the current platform support hover interactions?
          * @type {InitialScreen}

@@ -41,7 +41,8 @@
 
 .hero-icon--insecure-connection,
 .hero-icon--trackers-blocked,
-.hero-icon--connection-none {
+.hero-icon--connection-none,
+.hero-icon--connection-invalid {
     @include cross_platform_bg_image('refresh-assets/Unlocked-128.svg');
 }
 
