@@ -1,6 +1,6 @@
 import esbuild from 'esbuild'
 import { basename, join } from 'node:path'
-import { copyFileSync, readdirSync, readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { cwd, debug } from './utils.mjs'
 import z from 'zod'
 const CWD = cwd(import.meta.url)
@@ -77,8 +77,6 @@ async function init() {
     })
 
     if (!IS_PROD) {
-        console.log('debugger', manifest.debugger.html, manifest.debugger.htmlOutput)
-        copyFileSync(manifest.debugger.html, manifest.debugger.htmlOutput)
         await esbuild.build({
             entryPoints: [manifest.debugger.input],
             target: ['es2021'],

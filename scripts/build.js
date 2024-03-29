@@ -42,15 +42,15 @@ const env = {
     console.timeEnd('sass+schema')
 }
 
-// bundle
-console.time('bundle')
-execSync('node scripts/bundle.mjs', { cwd: BASE, stdio: 'inherit', env })
-console.timeEnd('bundle')
-
 // copy assets
 console.time('copy')
 execSync('node scripts/copy.mjs', { cwd: BASE, stdio: 'inherit', env })
 console.timeEnd('copy')
+
+// bundle
+console.time('bundle')
+execSync('node scripts/bundle.mjs', { cwd: BASE, stdio: 'inherit', env })
+console.timeEnd('bundle')
 
 // exec:buildHtml
 console.time('html')
