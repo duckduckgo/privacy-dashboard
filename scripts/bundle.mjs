@@ -77,6 +77,7 @@ async function init() {
     })
 
     if (!IS_PROD) {
+        console.log('debugger', manifest.debugger.html, manifest.debugger.htmlOutput)
         copyFileSync(manifest.debugger.html, manifest.debugger.htmlOutput)
         await esbuild.build({
             entryPoints: [manifest.debugger.input],
