@@ -55,5 +55,4 @@ console.timeEnd('copy')
 // exec:buildHtml
 console.time('html')
 execSync('node scripts/duplicate-html.js', { cwd: BASE, stdio: 'inherit', env })
-execSync('node scripts/iframe.mjs', { cwd: BASE, stdio: 'inherit', env })
 console.timeEnd('html')

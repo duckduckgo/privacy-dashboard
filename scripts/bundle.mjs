@@ -6,13 +6,17 @@ import z from 'zod'
 const CWD = cwd(import.meta.url)
 const BASE = join(CWD, '..')
 const LOCALES_BASE = join(BASE, 'shared/locales')
-const IS_PROD = process.env.NODE_ENV === 'production'
-console.log({ IS_PROD })
+
 const env = z
     .object({
         BUILD_OUTPUT: z.string(),
+        NODE_ENV: z.union([z.literal('production'), z.literal('development')]).default('production'),
     })
     .parse(process.env)
+
+const IS_PROD = env.NODE_ENV === 'production'
+
+console.log({ env, IS_PROD })
 
 /**
  * Bundle the base and polyfill files.
@@ -24,6 +28,10 @@ async function init() {
         base: {
             input: join(BASE, 'shared/js/ui/base/index.js'),
             output: join(BASE, env.BUILD_OUTPUT, 'public/js/base.js'),
+        },
+        debugger: {
+            input: join(BASE, 'debugger/debugger.jsx'),
+            output: join(BASE, env.BUILD_OUTPUT, 'debugger/debugger.js'),
         },
         polyfills: {
             input: join(BASE, 'shared/js/polyfill.js'),
@@ -65,6 +73,19 @@ async function init() {
         outfile: manifest.polyfills.output,
         sourcemap: debug ? 'linked' : undefined,
     })
+
+    if (!IS_PROD) {
+        await esbuild.build({
+            entryPoints: [manifest.debugger.input],
+            target: ['es2021'],
+            bundle: true,
+            outfile: manifest.debugger.output,
+            sourcemap: debug ? 'linked' : undefined,
+            loader: {
+                '.js': 'jsx',
+            },
+        })
+    }
 }
 
 init()

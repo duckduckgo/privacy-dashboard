@@ -1,0 +1,52 @@
+@import url("./reset.css");
+body {
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
+}
+.grid {
+    display: grid;
+    height: 100vh;
+    overflow: hidden;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        'header'
+        'content'
+}
+.header {
+    border: 1px dashed black;
+    grid-area: header;
+    padding: 1em;
+}
+.content {
+    padding: 1em;
+    border: 1px dashed green;
+    grid-area: content;
+    overflow-y: scroll;
+    height: 100%;
+}
+.frames {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 360px);
+    grid-gap: 10px;
+}
+.frame {
+    display: none;
+    font-family: monospace;
+}
+.frame[data-state=ready] {
+    display: block
+}
+.code {
+    overflow: scroll;
+    max-height: 80vh;
+    font-size: 10px;
+}
+form {
+    display: flex;
+    gap: 1em;
+}
+.label {
+    display: flex;
+    gap: .5em;
+}
