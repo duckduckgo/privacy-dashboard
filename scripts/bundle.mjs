@@ -1,6 +1,6 @@
 import esbuild from 'esbuild'
 import { basename, join } from 'node:path'
-import { readdirSync, readFileSync } from 'node:fs'
+import { copyFileSync, readdirSync, readFileSync } from 'node:fs'
 import { cwd, debug } from './utils.mjs'
 import z from 'zod'
 const CWD = cwd(import.meta.url)
@@ -32,6 +32,8 @@ async function init() {
         debugger: {
             input: join(BASE, 'debugger/debugger.jsx'),
             output: join(BASE, env.BUILD_OUTPUT, 'debugger/debugger.js'),
+            html: join(BASE, 'debugger/iframe.html'),
+            htmlOutput: join(BASE, env.BUILD_OUTPUT, 'html/iframe.html'),
         },
         polyfills: {
             input: join(BASE, 'shared/js/polyfill.js'),
@@ -75,6 +77,7 @@ async function init() {
     })
 
     if (!IS_PROD) {
+        copyFileSync(manifest.debugger.html, manifest.debugger.htmlOutput)
         await esbuild.build({
             entryPoints: [manifest.debugger.input],
             target: ['es2021'],
