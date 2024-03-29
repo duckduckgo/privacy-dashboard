@@ -925,7 +925,8 @@ body.environment--windows {
 
 .hero-icon--insecure-connection,
 .hero-icon--trackers-blocked,
-.hero-icon--connection-none {
+.hero-icon--connection-none,
+.hero-icon--connection-invalid {
   background-image: url("../../img/refresh-assets/Unlocked-128.svg");
 }
 
