@@ -8,42 +8,42 @@ import { ns } from '../js/ui/base/localize'
 export function namedString(item) {
     switch (item.id) {
         case 'openerContext':
-            return ns.report('dynamic_openerContext.title')
+            return ns.noTrans('dynamic_openerContext.title')
         case 'userRefreshCount':
-            return ns.report('dynamic_userRefreshCount.title')
+            return ns.noTrans('dynamic_userRefreshCount.title')
         case 'jsPerformance':
-            return ns.report('dynamic_jsPerformance.title')
+            return ns.noTrans('dynamic_jsPerformance.title')
         case 'wvVersion':
-            return ns.report('dynamic_wvVersion.title')
+            return ns.noTrans('dynamic_wvVersion.title')
         case 'requests':
-            return ns.report('dynamic_requests.title')
+            return ns.noTrans('dynamic_requests.title')
         case 'features':
-            return ns.report('dynamic_features.title')
+            return ns.noTrans('dynamic_features.title')
         case 'appVersion':
-            return ns.report('dynamic_appVersion.title')
+            return ns.noTrans('dynamic_appVersion.title')
         case 'atb':
-            return ns.report('dynamic_atb.title')
+            return ns.noTrans('dynamic_atb.title')
         case 'errorDescriptions':
-            return ns.report('dynamic_errorDescriptions.title')
+            return ns.noTrans('dynamic_errorDescriptions.title')
         case 'extensionVersion':
-            return ns.report('dynamic_extensionVersion.title')
+            return ns.noTrans('dynamic_extensionVersion.title')
         case 'httpErrorCodes':
-            return ns.report('dynamic_httpErrorCodes.title')
+            return ns.noTrans('dynamic_httpErrorCodes.title')
         case 'lastSentDay':
-            return ns.report('dynamic_lastSentDay.title')
+            return ns.noTrans('dynamic_lastSentDay.title')
         case 'device':
-            return ns.report('dynamic_device.title')
+            return ns.noTrans('dynamic_device.title')
         case 'os':
-            return ns.report('dynamic_os.title')
+            return ns.noTrans('dynamic_os.title')
         case 'reportFlow':
-            return ns.report('dynamic_reportFlow.title')
+            return ns.noTrans('dynamic_reportFlow.title')
         case 'siteUrl':
-            return ns.report('dynamic_siteUrl.title')
+            return ns.noTrans('dynamic_siteUrl.title')
         case 'listVersions':
-            return ns.report('dynamic_listVersions.title')
+            return ns.noTrans('dynamic_listVersions.title')
         case 'didOpenReportInfo':
-            return ns.report('dynamic_didOpenReportInfo.title')
+            return ns.noTrans('dynamic_didOpenReportInfo.title')
         case 'toggleReportCounter':
-            return ns.report('dynamic_toggleReportCounter.title')
+            return ns.noTrans('dynamic_toggleReportCounter.title')
     }
 }

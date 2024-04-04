@@ -75,10 +75,6 @@
         "title": "Send Report",
         "note": "Button for submitting report"
     },
-    "dontSendReport": {
-        "title": "Don't Send",
-        "note": "Button for not submitting report"
-    },
     "reportsAreAnonymousDesc": {
         "title": "Reports sent to DuckDuckGo only include info required to help us address your feedback.",
         "note": "A small disclaimer at the bottom of the view describing what is included in the report"
@@ -90,101 +86,5 @@
     "yourReportWillHelpDesc": {
         "title": "Your report will help improve our products and make the experience better for other people.",
         "note": "Body that the user sees upon submitting the report"
-    },
-    "yourReportWillHelpToggleReport": {
-        "title": "Your report will help improve our products and make the experience better for everyone.",
-        "note": "Body that the user sees upon submitting the report"
-    },
-    "siteNotWorkingTitle": {
-        "title": "Site not working? Let us know."
-    },
-    "siteNotWorkingSubTitle": {
-        "title": "Anonymous reports help DuckDuckGo fix issues caused by privacy protections."
-    },
-    "siteNotWorkingInfoReveal": {
-        "title": "See what’s sent"
-    },
-    "siteNotWorkingInfoHide": {
-        "title": "Hide"
-    },
-    "reportsNoInfoSent": {
-        "title": "Info sent in reports can't be used to identify you:",
-        "note": "This text emphasizes that the sent reports do not contain any personally identifiable information."
-    },
-    "dynamic_wvVersion": {
-        "title": "Web browser engine version number",
-        "note": "This text represents the version number of the web browser engine."
-    },
-    "dynamic_requests": {
-        "title": "Hostnames of trackers blocked, surrogate requests, ignored requests, and requests not in tracker blocking list",
-        "note": "This text provides information about various types of requests, including blocked trackers and ignored requests."
-    },
-    "dynamic_features": {
-        "title": "List of which protections and browser features were active",
-        "note": "This text represents a list of active protections and browser features."
-    },
-    "dynamic_appVersion": {
-        "title": "App version number",
-        "note": "This text indicates the version number of the app."
-    },
-    "dynamic_atb": {
-        "title": "Anonymous experiment group for feature testing",
-        "note": "This text represents an anonymous group for testing features."
-    },
-    "dynamic_errorDescriptions": {
-        "title": "Browser-reported errors",
-        "note": "This text provides a list of errors reported by the browser."
-    },
-    "dynamic_extensionVersion": {
-        "title": "Extension version number",
-        "note": "This text indicates the version number of the extension."
-    },
-    "dynamic_httpErrorCodes": {
-        "title": "Website response status (HTTP) codes",
-        "note": "This text provides a list of response status codes from the website."
-    },
-    "dynamic_lastSentDay": {
-        "title": "Date of last report sent for this site",
-        "note": "This text indicates the date of the last report sent for the site."
-    },
-    "dynamic_device": {
-        "title": "Device make, model, and manufacturer",
-        "note": "This text provides information about the device, including make, model, and manufacturer."
-    },
-    "dynamic_os": {
-        "title": "Operating system version number",
-        "note": "This text indicates the version number of the operating system."
-    },
-    "dynamic_reportFlow": {
-        "title": "Which reporting form you used (\"menu\", \"dashboard\", etc.)",
-        "note": "This text represents the path the user took to get to this feedback screen."
-    },
-    "dynamic_siteUrl": {
-        "title": "Page URL (without identifiable info)",
-        "note": "This text represents the URL of the page, without including any identifiable information."
-    },
-    "dynamic_listVersions": {
-        "title": "Information about which versions of our protections were active",
-        "note": "This text represents the URL of the page, without including any identifiable information."
-    },
-    "dynamic_didOpenReportInfo": {
-        "title": "Whether or not you opted to show this report info",
-        "note": "This text represents if the user has opted to see a list of information, or not."
-    },
-    "dynamic_toggleReportCounter": {
-        "title": "Number of times protections were toggled off",
-        "note": "This text represents the amount of times protections were toggled"
-    },
-    "dynamic_openerContext": {
-        "title": "How you got to this page, either: \"SERP\" (DuckDuckGo search), \"Navigation\" (link/URL), or \"External\" (other means)",
-        "note": "todo"
-    },
-    "dynamic_userRefreshCount": {
-        "title": "Number of refreshes since page load",
-        "note": "todo"
-    },
-    "dynamic_jsPerformance": {
-        "title": "How quickly parts of the page loaded",
-        "note": "todo"
     }
 }

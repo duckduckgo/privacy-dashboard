@@ -1,4 +1,4 @@
-@import url("./reset.css");
+@import url('./reset.css');
 body {
     max-height: 100vh;
     max-width: 100vw;
@@ -11,7 +11,7 @@ body {
     grid-template-rows: auto 1fr;
     grid-template-areas:
         'header'
-        'content'
+        'content';
 }
 .header {
     border: 1px dashed black;
@@ -34,8 +34,8 @@ body {
     display: none;
     font-family: monospace;
 }
-.frame[data-state=ready] {
-    display: block
+.frame[data-state='ready'] {
+    display: block;
 }
 .code {
     overflow: scroll;
@@ -48,5 +48,5 @@ form {
 }
 .label {
     display: flex;
-    gap: .5em;
+    gap: 0.5em;
 }
