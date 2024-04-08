@@ -32,6 +32,10 @@
     "title" : "<b>Questo sito non è sicuro</b> e potrebbe compromettere le informazioni che invii su questa pagina.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Il certificato di questo sito non è valido.</b>Potresti collegarti a un server che finge di essere <b>{domain}</b> e che potrebbe mettere a rischio le tue informazioni riservate.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Il caricamento delle richieste da parte dei seguenti domini di terze parti è stato bloccato perché si trattava di richieste con tracciamento. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "La connessione non è crittografata",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "La connessione potrebbe non essere sicura",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Caricamento delle richieste bloccato",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Fatto",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Chiudi",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Indietro",

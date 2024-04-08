@@ -32,6 +32,10 @@
     "title" : "<b>Deze site is niet veilig</b> en kan alle informatie die je op deze pagina verzendt, in gevaar brengen.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Het certificaat voor deze website is ongeldig.</b> Mogelijk maak je verbinding met een server die zich voordoet als <b>{domain}</b>, waardoor je vertrouwelijke informatie in gevaar kan komen.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "De volgende verzoeken van domeinen van derden werden geblokkeerd omdat ze werden geïdentificeerd als verzoeken met tracking. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Verbinding is niet versleuteld",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "De verbinding is misschien onveilig",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Verzoeken geblokkeerd bij laden",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Klaar",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Sluiten",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Terug",

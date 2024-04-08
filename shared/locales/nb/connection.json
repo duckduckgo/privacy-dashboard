@@ -84,6 +84,10 @@
     "title" : "Denne siden bruker en ukryptert tilkobling. Tredjeparter kan kanskje se aktiviteten din eller fange opp sensitiv informasjon du sender på denne siden.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Sertifikatet for dette nettstedet er ugyldig. Det kan være du er koblet til en server som utgir seg for å være <b>{domain}</b>, noe som kan sette din konfidensielle informasjon i fare.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Vi har oppgradert tilkoblingen på denne siden, så informasjonen du sender er beskyttet i transitt.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

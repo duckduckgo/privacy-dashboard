@@ -32,6 +32,10 @@
     "title" : "<b>Tämä sivusto ei ole turvallinen</b> ja voi vaarantaa kaikki tällä sivulla lähettämäsi tiedot.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Tämän sivuston varmenne on virheellinen.</b> Saatat olla yhteydessä palvelimeen, joka teeskentelee olevansa <b>{domain}</b>, mikä voi vaarantaa luottamukselliset tietosi.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Seuraavien kolmansien osapuolten verkkotunnusten pyyntöjen lataaminen estettiin, koska ne tunnistettiin seurantapyynnöiksi. Jos yrityksen pyynnöt ladataan, yritys voi mahdollisesti profiloida sinut.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Yhteyttä ei ole salattu",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Yhteys saattaa olla suojaamaton",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Pyynnöt, joiden lataaminen estetty",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Valmis",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Sulje",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Takaisin",

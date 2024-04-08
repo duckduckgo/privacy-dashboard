@@ -32,6 +32,10 @@
     "title" : "<b>Tahle stránka není zabezpečená</b> a všechny informace, které na ní zadáš, tak mohou být ohrožené.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Tenhle web nemá platný certifikát.</b> Možná se dokonce připojuješ k serveru, který předstírá, že je <b>{domain}</b>. Tvoje důvěrné informace by mohly být ohrožené.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Následující požadavky na domény třetích stran byly zablokovány, protože byly identifikovány jako požadavky se sledováním. Pokud se načtou požadavky služby, může jim to umožnit vytvořit si tvůj profil.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Připojení není šifrované",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Připojení nemusí být zabezpečené",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Načítání požadavků bylo zablokováno",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Hotovo",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Zavřít",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Zpět",

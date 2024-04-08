@@ -32,6 +32,10 @@
     "title" : "<b>Den här webbplatsen är inte säker</b> och kan äventyra eventuell information som du skickar på sidan.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Certifikatet för denna webbplats är ogiltigt</b>. Du kanske ansluter till en server som låtsas vara <b>{domain}</b>. Detta kan utgöra en risk för din konfidentiella information.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Följande tredjepartsdomäners förfrågningar blockerades från att läsas in eftersom de identifierades som spårningsförfrågningar. Om ett företags förfrågningar läses in kan det göra det möjligt för företaget att profilera dig.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Anslutningen är inte krypterad",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Anslutningen kan vara osäker",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Förfrågningar blockerades från att läsas in",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Klart",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Stäng",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Tillbaka",

@@ -84,6 +84,10 @@
     "title" : "Deze pagina gebruikt een niet-versleutelde verbinding. Mogelijk kunnen externe partijen je activiteit bekijken of gevoelige informatie onderscheppen die je op deze pagina verzendt.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Het certificaat voor deze website is ongeldig. Misschien maak je verbinding met een server die zich voordoet als <b>{domain}</b>, waardoor je vertrouwelijke informatie in gevaar kan komen.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Wij hebben de verbinding op deze pagina geüpgraded om de informatie die je verzendt te beschermen tijdens de overdracht.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

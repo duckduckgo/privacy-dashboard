@@ -32,6 +32,10 @@
     "title" : "<b>Ez az oldal nem biztonságos</b> és veszélyeztetheti az erre az oldalra küldött információkat.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>A webhely tanúsítványa érvénytelen.</b> Előfordulhat, hogy olyan szerverhez csatlakozol, amely megpróbál <b>{domain}</b> címűként viselkedni, veszélybe sodorva ezzel bizalmas adataidat.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "A következő harmadik fél tartományok kéréseinek betöltése blokkolva van, mivel nyomon követő kérésként lettek beazonosítva. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "A kapcsolat nem titkosított",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Lehet, hogy a kapcsolat nem biztonságos",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Kérések betöltése blokkolva",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Kész",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Bezárás",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Vissza",

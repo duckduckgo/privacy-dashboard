@@ -32,6 +32,10 @@
     "title" : "<b>Ši svetainė nėra saugi</b> ir gali pakenkti bet kokiai informacijai, kurią siunčiate šiame puslapyje.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Šios svetainės sertifikatas negalioja.</b> Galbūt jungiatės prie serverio, kuris apsimeta <b>{domain}</b>, o tai gali kelti pavojų jūsų konfidencialiai informacijai.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Toliau nurodytų trečiųjų šalių domenų užklausų įkėlimas buvo užblokuotas, nes jos buvo identifikuotos kaip sekimo užklausos. Jei įmonės užklausos įkeliamos, ji gali leisti joms rinkti informaciją apie jus.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Ryšys neužšifruotas",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Ryšys gali būti nesaugus",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Užklausos užblokuotos įkelti",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Atlikta",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Uždaryti",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Atgal",

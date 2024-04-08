@@ -32,6 +32,10 @@
     "title" : "<b>O ιστότοπος αυτός δεν είναι ασφαλής</b> και ενδέχεται να θέσει σε κίνδυνο τις πληροφορίες που στέλνετε στη σελίδα αυτή.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Το πιστοποιητικό για τον ιστότοπο αυτό δεν είναι έγκυρο.</b> Ίσως συνδέεστε σε διακομιστή που προσποιείται ότι είναι ο τομέας <b>{domain}</b>, γεγονός που θα μπορούσε να θέσει σε κίνδυνο τις εμπιστευτικές πληροφορίες σας.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Τα αιτήματα των ακόλουθων τομέων τρίτων μερών αποκλείστηκαν από τη φόρτωση επειδή αναγνωρίστηκαν ως αιτήματα με παρακολούθηση. Εάν τα αιτήματα μιας εταιρείας έχουν φορτωθεί, ίσως τους επιτρέπουν να σκιαγραφήσουν το προφίλ σας.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Η σύνδεση δεν είναι κρυπτογραφημένη",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Η σύνδεση ενδέχεται να μην είναι ασφαλής",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Αιτήματα που αποκλείστηκαν από τη φόρτωση",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Ολοκληρώθηκε",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Κλείσιμο",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Πίσω",

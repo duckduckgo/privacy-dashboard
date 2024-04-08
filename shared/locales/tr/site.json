@@ -32,6 +32,10 @@
     "title" : "<b>Bu site güvenli değildir</b> ve bu sayfada gönderdiğiniz bilgileri tehlikeye atabilir.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Bu sitenin sertifikası geçersiz</b>. <b>{domain}</b> gibi görünen ve gizli bilgilerinizi riske atabilecek bir sunucuya bağlanıyor olabilirsiniz.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Aşağıdaki üçüncü taraf alan adlarının isteklerinin yüklenmesi, izleme istekleri olarak tanımlandıkları için engellendi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Bağlantı Şifrelenmemiştir",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Bağlantı Güvenli Olmayabilir",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Yüklenmesi Engellenen İstekler",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Bitti",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Kapat",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Geri",

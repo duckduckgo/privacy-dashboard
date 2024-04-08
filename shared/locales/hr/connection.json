@@ -84,6 +84,10 @@
     "title" : "Ova stranica koristi nešifriranu vezu. Treće strane bi mogle vidjeti tvoje aktivnosti ili presresti osjetljive informacije koje šalješ na ovoj stranici.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Certifikat za ovu stranicu nije valjan. Možda se povezuješ s poslužiteljem koji se pretvara da je <b>{domain}</b>, što bi moglo ugroziti tvoje povjerljive podatke.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Na ovoj smo stranici nadogradili vezu kako bismo zaštitili podatke koje šalješ tijekom prijenosa.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

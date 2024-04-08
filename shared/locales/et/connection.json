@@ -84,6 +84,10 @@
     "title" : "See leht kasutab krüptimata ühendust. Kolmandad osapooled võivad näha sinu tegevust või kinni püüda tundlikku teavet, mida sellel lehel saadad.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Selle saidi sertifikaat on vale. Võimalik, et lood ühenduse serveriga, mis teeskleb olevat <b>{domain}</b> ja see võib sinu konfidentsiaalse teabe ohtu seada.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Me täiendasime selle lehel kasutatavat ühendust, et kaitsta sinu saadetud teavet edastamise ajal.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

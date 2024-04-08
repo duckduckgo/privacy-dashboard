@@ -84,6 +84,10 @@
     "title" : "Ez az oldal titkosítatlan kapcsolatot használ. Előfordulhat, hogy harmadik felek megtekinthetik a tevékenységedet, vagy megszerezhetik az erre az oldalra küldött érzékeny adatokat.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "A webhely tanúsítványa érvénytelen. Előfordulhat, hogy olyan szerverhez csatlakozol, amely megpróbál <b>{domain}</b> címűként viselkedni, veszélybe sodorva ezzel bizalmas adataidat.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Az oldal kapcsolatát biztonságosabbá tettük, hogy megvédjük az elküldött adatokat az átvitel során.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

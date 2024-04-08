@@ -84,6 +84,10 @@
     "title" : "Această pagină folosește o conexiune necriptată. Este posibil ca terțe părți să îți poată vedea activitatea sau să intercepteze informațiile sensibile pe care le trimiți pe această pagină.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Certificatul pentru acest site este nevalid. S-ar putea să te conectezi la un server care pretinde a fi <b>{domain}</b>, ceea ce ar putea pune în pericol informațiile tale confidențiale.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Am îmbunătățit conexiunea de pe această pagină pentru a proteja informațiile pe care le trimiți, în timp ce acestea se află în tranzit.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

@@ -84,6 +84,10 @@
     "title" : "Cette page utilise une connexion non chiffrée. Des tiers sont susceptibles de voir votre activité ou d'intercepter les informations sensibles que vous envoyez sur cette page.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Le certificat de ce site n'est pas valide. Vous vous connectez peut-être à un serveur qui se fait passer pour <b>{domain}</b>, ce qui pourrait mettre vos informations confidentielles en danger.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Nous avons amélioré la connexion à cette page pour protéger les informations que vous envoyez pendant leur transit.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

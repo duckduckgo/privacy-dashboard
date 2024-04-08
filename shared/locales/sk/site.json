@@ -32,6 +32,10 @@
     "title" : "<b>Táto lokalita nie je zabezpečená</b> a môže ohroziť zabezpečenie všetkých informácií, ktoré na nej odošlete.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Certifikát pre túto lokalitu je neplatný</b>. Možno sa pripájate k serveru, ktorý predstiera, že je <b>{domain}</b>, čo by mohlo ohroziť vaše dôverné údaje.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Načítanie požiadaviek nasledujúcich domén tretích strán bolo zablokované, pretože boli identifikované ako požiadavky so sledovaním. Ak sú načítané požiadavky spoločnosti, môže im umožniť profilovať vás.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -124,6 +128,10 @@
     "title" : "Pripojenie nie je šifrované",
     "note" : "The connection is not secure (HTTP)"
   },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Pripojenie môže byť nezabezpečené",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
+  },
   "trackerNetworksDesc" : {
     "title" : "Načítavanie žiadostí je zablokované",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -169,7 +177,7 @@
     "note" : "Title for the list of tracker domains detected from a given company"
   },
   "zeroTrackersFound" : {
-    "title" : "Našlo sa '{'0'}' sledovacích zariadení",
+    "title" : "Našlo sa 0 sledovacích zariadení",
     "note" : "We did not find any trackers on this page"
   },
   "trackerOwnedByThisSite" : {
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Hotovo",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Zatvoriť",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Späť",

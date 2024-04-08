@@ -84,6 +84,10 @@
     "title" : "Den här sidan använder en okrypterad anslutning. Tredje part kan ha möjlighet att se din aktivitet eller avlyssna känslig information som du skickar på den här sidan.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Certifikatet för denna webbplats är ogiltigt. Du kanske ansluter till en server som låtsas vara <b>{domain}</b>. Detta kan utgöra en risk för din konfidentiella information.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Vi har uppgraderat anslutningen på den här sidan för att skydda den information som du skickar medan den överförs.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

@@ -84,6 +84,10 @@
     "title" : "Ta strona korzysta z połączenia nieszyfrowanego. Strony trzecie mogą być w stanie obserwować Twoją aktywność lub przechwycić poufne informacje, które przesyłasz na tej stronie.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Certyfikat tej witryny jest nieprawidłowy. Być może łączysz się z serwerem podszywającym się pod <b>{domain}</b>, co może narazić poufne informacje na niebezpieczeństwo.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Uaktualniliśmy połączenie na tej stronie, aby chronić przesyłane informacje.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

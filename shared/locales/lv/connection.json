@@ -84,6 +84,10 @@
     "title" : "Šajā lapā tiek izmantots nešifrēts savienojums. Trešās puses, iespējams, varēs skatīt tavas darbības vai pārtvert sensitīvu informāciju, ko nosūti šajā lapā.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Šīs vietnes sertifikāts ir nederīgs. Tu, iespējams, izveido savienojumu ar serveri, kas izliekas par <b>{domain}</b> un var pakļaut riskam tavu konfidenciālo informāciju.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Mēs esam uzlabojuši šīs lapas savienojumu, lai aizsargātu nosūtīto informāciju tās pārraides laikā.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

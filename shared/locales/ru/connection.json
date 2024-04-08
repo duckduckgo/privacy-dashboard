@@ -84,6 +84,10 @@
     "title" : "На этой странице используется нешифрованное соединение. Сторонние лица могут просматривать ваши действия и перехватывать конфиденциальную информацию, отправляемую на этой странице.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Сертификат этого сайта недействителен. Возможно, вы пытаетесь подключиться к серверу, который выдает себя за <b>{domain}</b>, что ставит под угрозу вашу конфиденциальную информацию.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Чтобы защитить передаваемую вами информацию, мы повысили безопасность соединения на этой странице.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"
