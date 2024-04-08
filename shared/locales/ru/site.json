@@ -32,6 +32,10 @@
     "title" : "<b>Сайт небезопасен</b> и не обеспечивает защиту информации, передаваемой на этой странице.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Сертификат этого сайта недействителен.</b> Возможно, вы пытаетесь подключиться к серверу, который выдает себя за <b>{domain}</b>, что ставит под угрозу вашу конфиденциальную информацию.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Мы заблокировали загрузку следующих запросов сторонних доменов, так как распознали в них попытки отслеживания. Загруженные запросы позволяют компаниям вас профилировать.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Соединение не зашифровано",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Риск небезопасного соединения",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Заблокирована загрузка запросов",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Готово",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Закрыть",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Назад",

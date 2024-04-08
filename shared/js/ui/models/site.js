@@ -41,7 +41,7 @@ function Site(attrs) {
 /**
  * @typedef PublicSiteModel
  * @property {boolean} protectionsEnabled
- * @property {string} httpsState
+ * @property {'secure' | 'upgraded' | 'none' | 'invalid'} httpsState
  * @property {string} httpsStatusText
  * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
@@ -131,17 +131,27 @@ Site.prototype = $.extend({}, Parent.prototype, {
         if (this.domain && this.domain === '-') this.set('disabled', true)
     },
 
-    /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
+    /** @this {PublicSiteModel} */
     setHttpsMessage: function () {
         if (!this.tab) return
 
-        if (this.tab.upgradedHttps) {
-            this.httpsState = 'upgraded'
-        } else if (/^https/.exec(this.tab.url)) {
-            this.httpsState = 'secure'
-        } else {
-            this.httpsState = 'none'
-        }
+        /** @type {PublicSiteModel['httpsState']} */
+        let nextState = (() => {
+            if (this.tab.upgradedHttps) {
+                return 'upgraded'
+            }
+            if (/^https/.exec(this.tab.url)) {
+                if (this.features.supportsInvalidCerts) {
+                    if (!this.tab.certificate || this.tab.certificate.length === 0) {
+                        return 'invalid'
+                    }
+                }
+                return 'secure'
+            }
+            return 'none'
+        })()
+
+        this.httpsState = nextState
 
         this.httpsStatusText = i18n.t(httpsMessages[this.httpsState])
     },

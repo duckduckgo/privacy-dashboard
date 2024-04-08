@@ -84,6 +84,10 @@
     "title" : "Tahle stránka používá nešifrované připojení. Třetí strany můžou zobrazit tvou aktivitu nebo zachytit citlivé informace, které na téhle stránce zadáváš.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Tenhle web nemá platný certifikát. Možná se dokonce připojuješ k serveru, který předstírá, že je <b>{domain}</b>. Tvoje důvěrné informace by mohly být ohrožené.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Aktualizovali jsme připojení na téhle stránce, abychom ochránili zadávané informace.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

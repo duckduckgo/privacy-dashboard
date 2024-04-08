@@ -32,6 +32,10 @@
     "title" : "<b>Този сайт не е защитен</b> и може да компрометира информацията, която изпращате на тази страница.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Сертификатът за този сайт е невалиден</b>. Възможно е да се свързвате със сървър, който се представя за <b>{domain}</b>, което може да изложи поверителната Ви информация на риск.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Блокирано е зареждането на заявки от следните домейни на трети страни, тъй като са идентифицирани като заявки с проследяване. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Връзката не е криптирана",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Връзката може да не е сигурна",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Блокирано зареждане на заявки",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Готово",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Затваряне",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Обратно",

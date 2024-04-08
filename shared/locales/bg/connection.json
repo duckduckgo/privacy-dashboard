@@ -84,6 +84,10 @@
     "title" : "Тази страница използва некриптирана връзка. Възможно е трети страни да могат да виждат дейността Ви или да прихващат поверителна информация, която изпращате на тази страница.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Сертификатът за този сайт е невалиден. Възможно е да се свързвате със сървър, който се представя за <b>{domain}</b>, което може да изложи поверителната Ви информация на риск.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Надградихме връзката на тази страница, за да защитим изпращаната от Вас информация по време на преноса.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

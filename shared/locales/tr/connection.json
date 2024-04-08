@@ -84,6 +84,10 @@
     "title" : "Bu sayfada şifrelenmemiş bir bağlantı kullanılıyor. Üçüncü taraflar bu sayfadaki etkinliğinizi görüntüleyebilir veya bu sayfada gönderdiğiniz hassas bilgileri ele geçirebilir.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Bu sitenin sertifikası geçersiz. <b>{domain}</b> gibi görünen ve gizli bilgilerinizi riske atabilecek bir sunucuya bağlanıyor olabilirsiniz.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Aktarım sırasında gönderdiğiniz bilgileri korumak için bu sayfadaki bağlantıyı yükselttik.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

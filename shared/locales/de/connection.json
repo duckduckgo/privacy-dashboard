@@ -84,6 +84,10 @@
     "title" : "Diese Seite verwendet eine unverschlüsselte Verbindung. Dritte können möglicherweise deine Aktivitäten einsehen oder vertrauliche Informationen, die du auf dieser Seite sendest, abfangen.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Das Zertifikat für diese Website ist ungültig. Möglicherweise stellst du eine Verbindung zu einem Server her, der vorgibt, <b>{domain}</b> zu sein, wodurch deine vertraulichen Daten in Gefahr sein könnten.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Wir haben die Verbindung auf dieser Seite verbessert, um die von dir gesendeten Daten während der Übertragung zu schützen.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

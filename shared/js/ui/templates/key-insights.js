@@ -45,6 +45,7 @@ const keyInsightsState = /** @type {const} */ ({
     /* 06 */ noneBlocked: 'noneBlocked',
     /* 07 */ emptyCompaniesList: 'emptyCompaniesList',
     /* 08 */ blocked: 'blocked',
+    /* 09 */ invalid: 'invalid',
 })
 
 /**
@@ -58,6 +59,7 @@ export function renderKeyInsight() {
     /** @type {keyInsightsState[keyof keyInsightsState]} */
     const state = (() => {
         if (model.httpsState === 'none') return keyInsightsState.insecure
+        if (model.httpsState === 'invalid') return keyInsightsState.invalid
         if (model.isBroken) return keyInsightsState.broken
         if (!model.protectionsEnabled) return keyInsightsState.userAllowListed
         if (model.isaMajorTrackingNetwork && model.tab.parentEntity) return keyInsightsState.majorTrackingNetwork
@@ -79,6 +81,15 @@ export function renderKeyInsight() {
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--insecure-connection"></div>
                     ${title(model.tab.domain)} ${description(raw(i18n.t('site:connectionDescriptionUnencrypted.title')))}
+                </div>
+            `
+        },
+        invalid: () => {
+            const text = i18n.t('site:connectionDescriptionInvalidCertificate.title', { domain: model.tab.domain })
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--insecure-connection"></div>
+                    ${title(model.tab.domain)} ${description(raw(text))}
                 </div>
             `
         },

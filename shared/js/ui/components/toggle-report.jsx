@@ -46,15 +46,15 @@ export function ToggleReport() {
                 <Stack gap="24px">
                     <Stack gap={innerGap}>
                         <div className="medium-icon-container hero-icon--toggle-report"></div>
-                        <ToggleReportTitle>{ns.report('siteNotWorkingTitle.title')}</ToggleReportTitle>
+                        <ToggleReportTitle>{ns.noTrans('siteNotWorkingTitle.title')}</ToggleReportTitle>
                         <div>
-                            <h2 className="token-title-3 text--center">{ns.report('siteNotWorkingSubTitle.title')}</h2>
+                            <h2 className="token-title-3 text--center">{ns.noTrans('siteNotWorkingSubTitle.title')}</h2>
                             {platform.name === 'macos' && (
                                 <div>
                                     <p className={'text--center token-title-3'}>
                                         <PlainTextLink onClick={() => dispatch('toggle')}>
-                                            {state.value === 'hiding' && ns.report('siteNotWorkingInfoReveal.title')}
-                                            {state.value === 'showing' && ns.report('siteNotWorkingInfoHide.title')}
+                                            {state.value === 'hiding' && ns.noTrans('siteNotWorkingInfoReveal.title')}
+                                            {state.value === 'showing' && ns.noTrans('siteNotWorkingInfoHide.title')}
                                         </PlainTextLink>
                                     </p>
                                 </div>
@@ -68,7 +68,7 @@ export function ToggleReport() {
                     )}
                     <ButtonBar layout={buttonLayout}>
                         <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('reject')}>
-                            {ns.report('dontSendReport.title')}
+                            {ns.noTrans('dontSendReport.title')}
                         </Button>
                         <Button variant={buttonVariant} btnSize={buttonSize} onClick={() => dispatch('send')}>
                             {ns.report('sendReport.title')}
@@ -77,7 +77,7 @@ export function ToggleReport() {
                     {platform.name === 'ios' && state.value !== 'showing' && (
                         <p className={'text--center token-title-3'}>
                             <PlainTextLink onClick={() => dispatch('toggle-ios')} className="token-bold">
-                                {ns.report('siteNotWorkingInfoReveal.title')}
+                                {ns.noTrans('siteNotWorkingInfoReveal.title')}
                             </PlainTextLink>
                         </p>
                     )}

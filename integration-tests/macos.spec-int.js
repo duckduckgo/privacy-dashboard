@@ -23,6 +23,17 @@ test.describe('permissions', () => {
     settingPermissions((page) => DashboardPage.webkit(page, { platform: 'macos' }))
 })
 
+test('invalid/missing certificate', async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.webkit(page, { platform: 'macos' })
+    await dash.addState([testDataStates['without-certificate']])
+    await dash.screenshot('invalid-cert.png')
+    await dash.hasInvalidCertText()
+    await dash.viewConnection()
+    await dash.screenshot('invalid-detail.png')
+    await dash.showsInvalidCertDetail()
+})
+
 test.describe('opening breakage form', () => {
     test('shows breakage form only', async ({ page }) => {
         /** @type {DashboardPage} */

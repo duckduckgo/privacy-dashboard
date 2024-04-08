@@ -2,6 +2,7 @@ import html from 'nanohtml'
 import { aboutLink } from './links'
 import { trackerNetworksHeroIcon, trackerNetworkSummary } from './tracker-networks-text.js'
 import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.js'
+import raw from 'nanohtml/raw'
 
 /**
  * @param {object} opts
@@ -13,7 +14,7 @@ import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.js'
 export function heroTemplate(opts) {
     return html`
         <div class="key-insight" data-suffix=${opts.suffix}>
-            ${opts.icon} ${opts.summary ? html`<p class="token-title-3">${opts.summary}</p>` : null}
+            ${opts.icon} ${opts.summary ? html`<p class="token-title-3">${raw(opts.summary)}</p>` : null}
             ${opts.suffix === 'about-link' ? aboutLink() : null} ${opts.children ? opts.children : null}
         </div>
     `
@@ -56,9 +57,9 @@ export function heroFromTabNonTrackers(requestDetails, protectionsEnabled) {
 }
 
 /**
- * @param {object} ops
- * @param {string} ops.status
+ * @param {object} props
+ * @param {string} props.status
  */
-export function largeHeroIcon(ops) {
-    return html`<div class="large-icon-container hero-icon--${ops.status}"></div>`
+export function largeHeroIcon(props) {
+    return html`<div class="large-icon-container hero-icon--${props.status}"></div>`
 }

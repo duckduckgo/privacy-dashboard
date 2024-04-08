@@ -32,6 +32,10 @@
     "title" : "<b>To spletno mesto ni varno</b> in lahko ogrozi vse podatke, ki jih pošljete na tej strani.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Certifikat za to stran ni veljaven.</b> Morda se povezujete s strežnikom, ki se pretvarja, da je <b>{domain}</b>, kar bi lahko ogrozilo vaše zaupne podatke.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Nalaganje zahtevkov naslednjih domen tretjih oseb je bilo blokirano, ker so bili prepoznani kot zahtevki za sledenje. Če so zahtevki podjetja naloženi, lahko na podlagi tega oblikujejo vaš profil.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Povezava ni šifrirana",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Povezava je morda nevarna",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Zahtevki, katerih nalaganje je blokirano",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Končano",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Zapri",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Nazaj",

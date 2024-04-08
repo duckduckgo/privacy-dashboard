@@ -32,6 +32,10 @@
     "title" : "<b>Šī vietne nav droša</b> un var pakļaut riskam jebkuru informāciju, ko nosūti šajā lapā.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Šīs vietnes sertifikāts ir nederīgs.</b> Tu, iespējams, izveido savienojumu ar serveri, kas izliekas par <b>{domain}</b> un var pakļaut riskam tavu konfidenciālo informāciju.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Šo trešo pušu domēnu pieprasījumu ielāde tika bloķēta, jo tie tika atpazīti kā izsekoši pieprasījumi. Uzņēmuma pieprasījumu ielāde, var ļaut tam veidot tavu profilu.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Savienojums nav šifrēts",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Savienojums var būt nedrošs",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Pieprasījumi, kuru ielādēšana ir bloķēta",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Gatavs",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Aizvērt",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Atpakaļ",

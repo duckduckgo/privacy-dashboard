@@ -84,6 +84,10 @@
     "title" : "Esta página está a utilizar uma ligação não encriptada. É possível que terceiros consigam ver a tua atividade ou intercetar informações sensíveis que envies nesta página.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "O certificado deste site é inválido. Podes estar a ligar a um servidor que finge ser <b>{domain}</b>, o que pode colocar as tuas informações confidenciais em risco.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Melhorámos a ligação nesta página para proteger a informação que envias enquanto estás em trânsito.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

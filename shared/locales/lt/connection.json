@@ -84,6 +84,10 @@
     "title" : "Šiame puslapyje naudojamas neužšifruotas ryšys. Trečiosios šalys gali matyti jūsų veiklą arba perimti slaptą informaciją, kurią siunčiate šiame puslapyje.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Šios svetainės sertifikatas negalioja. Galbūt jungiatės prie serverio, kuris apsimeta <b>{domain}</b>, o tai gali kelti pavojų jūsų konfidencialiai informacijai.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Atnaujinome šiame puslapyje esantį ryšį, kad apsaugotume siunčiamą informaciją jos perdavimo metu.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

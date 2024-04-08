@@ -32,6 +32,10 @@
     "title" : "<b>Acest site nu este securizat</b> și poate compromite informațiile pe care le trimiți pe această pagină.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Certificatul pentru acest site este nevalid.</b> S-ar putea să te conectezi la un server care pretinde a fi <b>{domain}</b>, ceea ce ar putea pune în pericol informațiile tale confidențiale.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Încărcarea solicitărilor următoarelor domenii terțe a fost blocată, deoarece au fost identificate ca fiind solicitări de urmărire. În cazul în care solicitările unei societăți sunt încărcate, aceasta îi poate permite să îți creeze un profil.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Conexiunea nu este criptată",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Conexiunea poate fi nesecurizată",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Solicitări a căror încărcare a fost blocată",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Terminat",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Închidere",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Înapoi",

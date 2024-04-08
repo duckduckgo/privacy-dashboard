@@ -16,7 +16,7 @@ export default function () {
         return html`<section class="sliding-subview"></section>`
     }
 
-    const summary = renderConnectionDescription(this.model.site)
+    const summary = renderConnectionDescription(this.model.site, this.model.tab)
     const icon = largeHeroIcon({
         status: `connection-${this.model.site.httpsState}`,
     })
@@ -156,8 +156,12 @@ function renderHeader(site, tab) {
 
 /**
  * @param {import('../models/site.js').PublicSiteModel} site
+ * @param {import("../../browser/utils/request-details.mjs").TabData} tab
  */
-function renderConnectionDescription(site) {
+function renderConnectionDescription(site, tab) {
+    if (site.httpsState === 'invalid') {
+        return i18n.t('connection:invalidConnectionDesc.title', { domain: tab.domain })
+    }
     if (site.httpsState === 'none') {
         return i18n.t('connection:insecureConnectionDesc.title')
     }

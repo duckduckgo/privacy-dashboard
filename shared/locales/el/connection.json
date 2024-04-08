@@ -84,6 +84,10 @@
     "title" : "Η σελίδα αυτή χρησιμοποιεί μη κρυπτογραφημένη σύνδεση. Τρίτα μέρη ενδέχεται να μπορούν να δουν τη δραστηριότητά σας ή να υποκλέψουν ευαίσθητες πληροφορίες που στέλνετε στη σελίδα αυτή.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Το πιστοποιητικό για τον ιστότοπο αυτόν δεν είναι έγκυρο. Ίσως συνδέεστε σε διακομιστή που προσποιείται ότι είναι ο τομέας <b>{domain}</b>, γεγονός που θα μπορούσε να θέσει σε κίνδυνο τις εμπιστευτικές πληροφορίες σας.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Αναβαθμίσαμε τη σύνδεση στη σελίδα αυτή για προστασία των πληροφοριών που στέλνετε κατά τη μεταφορά τους.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

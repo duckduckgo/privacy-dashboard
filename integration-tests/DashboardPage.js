@@ -117,6 +117,20 @@ export class DashboardPage {
         await this.page.locator('[data-page="connection"]').waitFor({ timeout: 2000 })
     }
 
+    async hasInvalidCertText() {
+        const { page } = this
+        await expect(page.locator('#popup-container')).toContainText(
+            'The certificate for this site is invalid. You might be connecting to a server that is pretending to be example.com which could put your confidential information at risk.'
+        )
+    }
+
+    async showsInvalidCertDetail() {
+        const { page } = this
+        await expect(page.locator('#key-insight')).toContainText(
+            'The certificate for this site is invalid. You might be connecting to a server that is pretending to be example.com which could put your confidential information at risk.'
+        )
+    }
+
     async showsTrackersScreen() {
         await this.page.locator('[data-page="trackers"]').waitFor({ timeout: 2000 })
     }

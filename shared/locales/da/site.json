@@ -32,6 +32,10 @@
     "title" : "<b>Dette websted er ikke sikkert</b> og kan lække alle oplysninger, du sender på denne side.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Certifikatet for dette websted er ugyldigt.</b> Du opretter muligvis forbindelse til en server, der foregiver at være <b>{domain}</b>, hvilket kan bringe dine fortrolige oplysninger i fare.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Følgende anmodninger fra tredjepartsdomæner blev blokeret fra at blive indlæst, fordi de blev identificeret som sporingsanmodninger. Hvis en virksomheds anmodninger indlæses, kan det give dem mulighed for at profilere dig.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -124,6 +128,10 @@
     "title" : "Forbindelsen er ikke krypteret",
     "note" : "The connection is not secure (HTTP)"
   },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Forbindelsen er muligvis usikker",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
+  },
   "trackerNetworksDesc" : {
     "title" : "Anmodninger blokeret fra indlæsning",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -169,7 +177,7 @@
     "note" : "Title for the list of tracker domains detected from a given company"
   },
   "zeroTrackersFound" : {
-    "title" : "'{'0'}' tracker fundet",
+    "title" : "0 trackere fundet",
     "note" : "We did not find any trackers on this page"
   },
   "trackerOwnedByThisSite" : {
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Færdig",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Luk",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Tilbage",

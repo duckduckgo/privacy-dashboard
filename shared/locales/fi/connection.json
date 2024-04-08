@@ -84,6 +84,10 @@
     "title" : "Tällä sivulla käytetään salaamatonta yhteyttä. Kolmannet osapuolet saattavat kyetä tarkastelemaan toimintaasi tai sieppaamaan tällä sivulla lähettämiäsi arkaluontoisia tietoja.",
     "note" : "Shown we connection is not encrypted"
   },
+  "invalidConnectionDesc" : {
+    "title" : "Tämän sivuston varmenne on virheellinen. Saatat olla yhteydessä palvelimeen, joka teeskentelee olevansa <b>{domain}</b>, mikä voi vaarantaa luottamukselliset tietosi.",
+    "note" : "Shown when connection is encrypted, but the certificate is invalid"
+  },
   "upgradedConnectionDesc" : {
     "title" : "Päivitimme tämän sivun yhteyden suojataksemme siirron aikana lähettämiäsi tietoja.",
     "note" : "Shown when we successfully upgrade a connection from an insecure one to a secure connection"

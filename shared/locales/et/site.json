@@ -32,6 +32,10 @@
     "title" : "<b>See sait ei ole turvaline</b> ja võib ohustada mis tahes teavet, mida sa sellel lehel saadad.",
     "note" : "Shown when the connection is not encrypted (HTTP instead of HTTPS)"
   },
+  "connectionDescriptionInvalidCertificate" : {
+    "title" : "<b>Selle saidi sertifikaat on vale.</b> Võimalik, et lood ühenduse serveriga, mis teeskleb olevat <b>{domain}</b> ja see võib teie konfidentsiaalse teabe ohtu seada.",
+    "note" : "Shown when the connection is encrypted, but the certificate was invalid"
+  },
   "trackerNetworksSummaryBlocked" : {
     "title" : "Järgmiste kolmanda poole domeenide taotluste laadimine blokeeriti, sest need tuvastati jälgimistaotlustena. Kui ettevõtte taotlused laaditakse, võib see võimaldada neil sind profileerida.",
     "note" : "The summary immediately shown on the 'trackers blocked' screen"
@@ -123,6 +127,10 @@
   "connectionNotSecure" : {
     "title" : "Ühendus ei ole krüptitud",
     "note" : "The connection is not secure (HTTP)"
+  },
+  "connectionNotSecureInvalidCertificate" : {
+    "title" : "Ühendus võib olla ebaturvaline",
+    "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "trackerNetworksDesc" : {
     "title" : "Päringute laadimine on blokeeritud",
@@ -258,6 +266,10 @@
   "navigationComplete" : {
     "title" : "Valmis",
     "note" : "Button text for iOS on top bar navigation"
+  },
+  "navigationClose" : {
+    "title" : "Sulge",
+    "note" : "Button text for macos on top bar navigation"
   },
   "navigationBack" : {
     "title" : "Tagasi",

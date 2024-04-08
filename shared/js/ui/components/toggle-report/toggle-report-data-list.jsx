@@ -7,7 +7,7 @@ import { namedString } from '../../../../data/text'
 export function ToggleReportDataList({ rows }) {
     return (
         <Stack gap="4px">
-            <p className="token-bold">{ns.report('reportsNoInfoSent.title')}</p>
+            <p className="token-bold">{ns.noTrans('reportsNoInfoSent.title')}</p>
             <ul className="data-list">
                 {rows.map((item) => {
                     const string = namedString(item)
