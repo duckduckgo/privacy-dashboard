@@ -12,6 +12,10 @@
     "title" : "L'invio di una segnalazione anonima su un sito non funzionante ci aiuta a migliorare l'app.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Seleziona l'opzione che meglio descrive il problema riscontrato.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Descrivi cosa è successo",
     "note" : "Asks the user to pick a specific list from the pulldown"

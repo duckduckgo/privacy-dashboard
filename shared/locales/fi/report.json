@@ -12,6 +12,10 @@
     "title" : "Anonyymin raportin lähettäminen toimimattomasta sivustosta auttaa meitä parantamaan sovellusta.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Valitse vaihtoehto, joka parhaiten kuvaa ongelmaa.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Kuvaile mitä tapahtui",
     "note" : "Asks the user to pick a specific list from the pulldown"

@@ -12,6 +12,10 @@
     "title" : "La soumission d'un rapport anonyme pour signaler le mauvais fonctionnement du site nous aide à améliorer l'application.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Sélectionnez l'option qui décrit le mieux le problème rencontré.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Décrivez ce qui s'est passé",
     "note" : "Asks the user to pick a specific list from the pulldown"

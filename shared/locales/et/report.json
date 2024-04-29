@@ -12,6 +12,10 @@
     "title" : "Anonüümne katkise saidi aruande esitamine aitab meil rakendust täiustada.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Vali suvand, mis kirjeldab sinu probleemi kõige paremini.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Kirjelda toimunut",
     "note" : "Asks the user to pick a specific list from the pulldown"

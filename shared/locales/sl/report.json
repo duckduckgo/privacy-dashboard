@@ -12,6 +12,10 @@
     "title" : "Oddaja anonimnega poročila o nedelujočem mestu nam pomaga izboljšati aplikacijo.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Izberite možnost, ki najbolje opisuje težavo, na katero ste naleteli.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Opišite, kaj se je zgodilo",
     "note" : "Asks the user to pick a specific list from the pulldown"

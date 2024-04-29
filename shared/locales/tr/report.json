@@ -12,6 +12,10 @@
     "title" : "Anonim bir hatalı site raporunun gönderilmesi uygulamayı geliştirmemize yardımcı olur.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Karşılaştığınız sorunu en iyi tanımlayan seçeneği seçin.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Ne olduğunu açıklayın",
     "note" : "Asks the user to pick a specific list from the pulldown"
