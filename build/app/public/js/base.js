@@ -24414,7 +24414,6 @@
     this.isAllowlisted = false;
     this.isDenylisted = false;
     this.httpsState = "none";
-    this.httpsStatusText = "";
     this.trackersCount = 0;
     this.majorTrackerNetworksCount = 0;
     this.totalTrackerNetworksCount = 0;
@@ -24432,7 +24431,6 @@
       "use strict";
       import_jquery16 = __toESM(require_jquery());
       init_model();
-      init_constants2();
       init_communication();
       init_localize();
       init_platform_features();
@@ -24514,7 +24512,6 @@
             return "none";
           })();
           this.httpsState = nextState;
-          this.httpsStatusText = i18n.t(httpsMessages[this.httpsState]);
         },
         timeout: null,
         /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
@@ -24868,10 +24865,10 @@
   }
   function renderConnection(model, cb) {
     let icon = "icon-small--insecure";
-    if (model.httpsState === "secure") {
-      icon = "icon-small--secure";
-    }
-    if (model.httpsState === "upgraded" && /^https/.exec(model.tab.url) && Array.isArray(model.tab.certificate) && model.tab.certificate.length > 0) {
+    let text = i18n.t(httpsMessages[model.httpsState]);
+    let isSecure = model.httpsState === "secure";
+    let isUpgraded = model.httpsState === "upgraded" && /^https/.exec(model.tab.url);
+    if (isSecure || isUpgraded) {
       icon = "icon-small--secure";
     }
     return import_nanohtml14.default` <a
@@ -24883,7 +24880,7 @@
         onclick=${cb}
     >
         <span class="main-nav__icon ${icon}"></span>
-        <span class="main-nav__text">${model.httpsStatusText}</span>
+        <span class="main-nav__text">${text}</span>
         <span class="main-nav__chev"></span>
     </a>`;
   }
@@ -24931,6 +24928,7 @@
       init_communication();
       init_environment_check();
       init_utils();
+      init_constants2();
       MainNavView.prototype = import_jquery18.default.extend({}, view_default.prototype, {
         /**
          * @this {MainNavView}
