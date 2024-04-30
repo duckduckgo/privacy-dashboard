@@ -531,6 +531,12 @@ export const createDataStates = (google, cnn) => {
             upgradedHttps: true,
             certificate: defaultCertificates,
         }),
+        'upgraded+secure+without-certs': new MockData({
+            requests: [],
+            url: 'https://example.com',
+            upgradedHttps: true,
+            certificate: [],
+        }),
         cnn: new MockData({
             url: 'https://edition.cnn.com',
             requests: cnn.requests,

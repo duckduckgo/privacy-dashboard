@@ -1,6 +1,5 @@
 import $ from 'jquery'
 import Parent from '../base/model.js'
-import { httpsMessages } from '../../../data/constants'
 import browserUIWrapper, { platform } from '../../browser/communication.js'
 import { i18n } from '../base/localize.js'
 import { createPlatformFeatures, FeatureSettings } from '../platform-features.mjs'
@@ -24,7 +23,6 @@ function Site(attrs) {
     this.isAllowlisted = false
     this.isDenylisted = false
     this.httpsState = 'none'
-    this.httpsStatusText = ''
     this.trackersCount = 0 // unique trackers count
     this.majorTrackerNetworksCount = 0
     this.totalTrackerNetworksCount = 0
@@ -42,7 +40,6 @@ function Site(attrs) {
  * @typedef PublicSiteModel
  * @property {boolean} protectionsEnabled
  * @property {'secure' | 'upgraded' | 'none' | 'invalid'} httpsState
- * @property {string} httpsStatusText
  * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
  * @property {boolean} isDenylisted
@@ -152,8 +149,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
         })()
 
         this.httpsState = nextState
-
-        this.httpsStatusText = i18n.t(httpsMessages[this.httpsState])
     },
     timeout: null,
     /** @this {{tab: import('../../browser/utils/request-details.mjs').TabData} & Record<string, any>} */
