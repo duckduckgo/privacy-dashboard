@@ -12,6 +12,10 @@
     "title" : "Trimiterea unui raport anonim privind un site nefuncțional ne ajută să îmbunătățim aplicația.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Selectează opțiunea care descrie cel mai bine problema cu care te-ai confruntat.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Descrie ce s-a întâmplat",
     "note" : "Asks the user to pick a specific list from the pulldown"

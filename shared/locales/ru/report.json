@@ -12,6 +12,10 @@
     "title" : "Ваша анонимная жалоба на проблемы с сайтом поможет нам улучшить приложение.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Выберите наиболее точное описание проблемы, с которой вы столкнулись.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Опишите, что случилось",
     "note" : "Asks the user to pick a specific list from the pulldown"

@@ -12,6 +12,10 @@
     "title" : "Egy hibás webhelyről szóló névtelen bejelentés segít bennünket az alkalmazás fejlesztésében.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Válaszd ki azt a lehetőséget, amelyik a legjobban leírja a tapasztalt problémát.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Az esemény leírása",
     "note" : "Asks the user to pick a specific list from the pulldown"

@@ -12,6 +12,10 @@
     "title" : "Odoslanie anonymného hlásenia o nefunkčnej stránke nám pomáha zlepšovať aplikáciu.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Vyberte možnosť, ktorá najlepšie opisuje problém, ktorý ste zaznamenali.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Popíšte, čo sa stalo",
     "note" : "Asks the user to pick a specific list from the pulldown"

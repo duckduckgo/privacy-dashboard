@@ -12,6 +12,10 @@
     "title" : "Als je een anoniem rapport over een kapotte site indient, helpt dat ons om de app te verbeteren.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Selecteer de optie die het beste je probleem beschrijft.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Beschrijf wat er is gebeurd",
     "note" : "Asks the user to pick a specific list from the pulldown"

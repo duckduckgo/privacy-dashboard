@@ -12,6 +12,10 @@
     "title" : "Η υποβολή ανώνυμης αναφοράς μη λειτουργίας ιστότοπου μας βοηθά να βελτιώσουμε την εφαρμογή.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Επιλέξτε αυτό που περιγράφει καλύτερα το πρόβλημα που αντιμετωπίσατε.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Περιγράψτε τι συνέβη",
     "note" : "Asks the user to pick a specific list from the pulldown"

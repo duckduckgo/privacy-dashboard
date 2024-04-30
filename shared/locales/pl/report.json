@@ -12,6 +12,10 @@
     "title" : "Przesłanie anonimowego raportu o uszkodzonej witrynie pomaga nam ulepszać aplikację.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Wybierz opcję, która najlepiej opisuje napotkany problem.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Opisz, co się stało",
     "note" : "Asks the user to pick a specific list from the pulldown"

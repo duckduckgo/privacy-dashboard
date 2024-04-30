@@ -12,6 +12,10 @@
     "title" : "Изпращането на анонимен доклад за неработещ сайт ни помага да подобрим приложението.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Изберете опцията, която най-добре описва възникналия проблем.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Опишете проблема",
     "note" : "Asks the user to pick a specific list from the pulldown"

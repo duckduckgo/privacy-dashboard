@@ -12,6 +12,10 @@
     "title" : "Anoniminio pranešimo apie neveikiančią svetainę pateikimas padeda mums tobulinti programėlę.",
     "note" : "The user will see this UI when they're running into issues with a given website, that we may be causing"
   },
+  "selectTheOptionDescV2" : {
+    "title" : "Pasirinkite parinktį, kuri geriausiai apibūdina iškilusią problemą.",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Aprašykite, kas atsitiko",
     "note" : "Asks the user to pick a specific list from the pulldown"
