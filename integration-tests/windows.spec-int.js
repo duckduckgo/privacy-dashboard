@@ -23,6 +23,13 @@ test.describe('permissions', () => {
     settingPermissions((page) => DashboardPage.windows(page))
 })
 
+test('windows is excluded from invalid/missing certificate', async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.windows(page)
+    await dash.addState([testDataStates['https-without-certificate']])
+    await dash.screenshot('invalid-cert.png')
+})
+
 test.describe('setting the height', () => {
     test('should send the initial height to native', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
