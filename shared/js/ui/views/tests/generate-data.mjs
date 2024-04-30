@@ -478,7 +478,7 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             requests: [blocked1, allowedAdClickAttribution],
         }),
-        'without-certificate': new MockData({
+        'https-without-certificate': new MockData({
             url: 'https://example.com',
             requests: [],
             certificate: [],

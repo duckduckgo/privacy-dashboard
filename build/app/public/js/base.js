@@ -22690,7 +22690,7 @@
       spinnerFollowingProtectionsToggle: platform2.name !== "android" && platform2.name !== "windows",
       supportsHover: desktop.includes(platform2.name),
       initialScreen: screen,
-      supportsInvalidCerts: platform2.name !== "browser"
+      supportsInvalidCerts: platform2.name !== "browser" && platform2.name !== "windows"
     });
   }
   var PlatformFeatures, FeatureSettings;

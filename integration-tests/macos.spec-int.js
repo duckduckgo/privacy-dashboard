@@ -26,7 +26,7 @@ test.describe('permissions', () => {
 test('invalid/missing certificate', async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.webkit(page, { platform: 'macos' })
-    await dash.addState([testDataStates['without-certificate']])
+    await dash.addState([testDataStates['https-without-certificate']])
     await dash.screenshot('invalid-cert.png')
     await dash.hasInvalidCertText()
     await dash.viewConnection()

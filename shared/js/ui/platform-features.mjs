@@ -33,7 +33,7 @@ export function createPlatformFeatures(platform) {
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
-        supportsInvalidCerts: platform.name !== 'browser',
+        supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
     })
 }
 
