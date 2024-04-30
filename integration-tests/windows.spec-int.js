@@ -30,6 +30,13 @@ test('windows is excluded from invalid/missing certificate', async ({ page }) =>
     await dash.screenshot('invalid-cert.png')
 })
 
+test('upgraded requests without certs always show as secure', async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.windows(page)
+    await dash.addState([testDataStates['upgraded+secure+without-certs']])
+    await dash.screenshot('upgraded-missing-certs.png')
+})
+
 test.describe('setting the height', () => {
     test('should send the initial height to native', async ({ page }) => {
         const dash = await DashboardPage.windows(page)
