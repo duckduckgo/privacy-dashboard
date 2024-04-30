@@ -77,7 +77,7 @@ jobs:
             - name: Build docs
               run: npm run docs
             - name: copy-to-docs
-              run: cp -r build/app/ build/docs/app
+              run: cp -r build/app-debug/ build/docs/app-debug
     deploy:
         runs-on: ubuntu-20.04
         needs: build
