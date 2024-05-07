@@ -8,7 +8,7 @@
         "screen": {
             "title": "ScreenKind",
             "type": "string",
-            "enum": ["primaryScreen", "breakageForm", "toggleReport"]
+            "enum": ["primaryScreen", "breakageForm", "toggleReport", "promptBreakageForm"]
         }
     }
 }

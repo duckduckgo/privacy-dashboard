@@ -19,6 +19,8 @@ export function createPlatformFeatures(platform) {
     /** @type {Platform["name"][]} */
     const desktop = ['windows', 'macos', 'browser']
 
+    let includeToggleOnBreakageForm = true
+
     /** @type {InitialScreen} */
     let screen = 'primaryScreen'
     const url = new URL(window.location.href)
@@ -28,12 +30,17 @@ export function createPlatformFeatures(platform) {
     if (url.searchParams.get('screen') === 'toggleReport') {
         screen = 'toggleReport'
     }
+    if (url.searchParams.get('screen') === 'promptBreakageForm') {
+        screen = 'promptBreakageForm'
+        includeToggleOnBreakageForm = false
+    }
 
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
         supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
+        includeToggleOnBreakageForm,
     })
 }
 
@@ -48,6 +55,7 @@ export class PlatformFeatures {
      * @param {boolean} params.supportsHover
      * @param {InitialScreen} params.initialScreen
      * @param {boolean} params.supportsInvalidCerts
+     * @param {boolean} params.includeToggleOnBreakageForm
      */
     constructor(params) {
         /**
@@ -70,6 +78,11 @@ export class PlatformFeatures {
          * @type {InitialScreen}
          */
         this.initialScreen = params.initialScreen
+        /**
+         * Should the toggle functionality be included on the breakage form?
+         * @type {boolean}
+         */
+        this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm
     }
 }
 

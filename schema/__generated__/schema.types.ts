@@ -41,7 +41,7 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
  * A helper list of messages that the Dashboard accepts from Windows
  */
 export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
-export type ScreenKind = "primaryScreen" | "breakageForm" | "toggleReport";
+export type ScreenKind = "primaryScreen" | "breakageForm" | "toggleReport" | "promptBreakageForm";
 export type DataItemId =
   | WvVersionTitle
   | RequestsTitle

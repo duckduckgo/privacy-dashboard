@@ -10,7 +10,8 @@ import { ProtectionHeader } from './protection-header'
  * @this {{
  *     mainModel: import('../models/site.js').PublicSiteModel,
  *     roots: Map<HTMLElement, boolean>,
- *     immediate: boolean
+ *     immediate: boolean,
+ *     includeToggle: boolean
  * }}
  */
 export default function () {
@@ -32,15 +33,24 @@ export default function () {
     let bullet = '\u000A • '
     let placeholder = ns.report('tellUsMoreDesc.title', { bullet })
 
-    return html`<section class="sliding-subview">
+    /**
+     * Currently using the visibility of the toggle to determine which title
+     * to use. This might be too simplistic and need updating later.
+     */
+    let headerText = this.includeToggle ? ns.report('selectTheOptionDesc.title') : ns.report('selectTheOptionDescV2.title')
+
+    return html` <section class="sliding-subview">
         <div class="breakage-form">
-            ${topNav({ view: 'secondary', immediate: this.immediate })}
+            ${topNav({
+                view: 'secondary',
+                immediate: this.immediate,
+            })}
             <div class="breakage-form__inner js-breakage-form-element" data-state="idle">
-                <div class="header header--breakage">${wrap(this.mainModel, this)}</div>
+                ${this.includeToggle ? html`<div class="header header--breakage">${wrap(this.mainModel, this)}</div>` : null}
                 <div class="key-insight key-insight--breakage padding-x-double">
                     ${icon}
                     <div class="breakage-form__advise">
-                        <p class="token-title-3">${i18n.t('report:selectTheOptionDesc.title')}</p>
+                        <p class="token-title-3">${headerText}</p>
                     </div>
                     <div class="thanks">
                         <p class="thanks__primary">${i18n.t('report:thankYou.title')}</p>
@@ -54,7 +64,7 @@ export default function () {
                                 <select class="js-breakage-form-dropdown">
                                     <option value="">${i18n.t('report:pickYourIssueFromTheList.title')}</option>
                                     ${categories.map(function (item) {
-                                        return html`<option value=${item.value}>${item.category}</option>`
+                                        return html` <option value="${item.value}">${item.category}</option>`
                                     })}
                                 </select>
                             </div>

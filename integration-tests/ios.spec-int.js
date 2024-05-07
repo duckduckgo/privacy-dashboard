@@ -138,6 +138,14 @@ test.describe('opening breakage form', () => {
         await dash.screenshot('screen-breakage-form.png')
         await dash.showsOnlyDoneButton()
     })
+    test('shows breakage form without toggle (promptBreakageForm)', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'promptBreakageForm', platform: 'ios' })
+        await dash.addState([testDataStates.google])
+        await dash.promptBreakageFormIsVisible()
+        await dash.toggleIsAbsent()
+        await dash.screenshot('breakage-form-prompt.png')
+    })
     test('sends toggle report', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' })
