@@ -6,7 +6,7 @@ import { createDataStates } from '../shared/js/ui/views/tests/generate-data.mjs'
 import google from '../schema/__fixtures__/request-data-google.json'
 import cnn from '../schema/__fixtures__/request-data-cnn.json'
 
-const states = createDataStates(google, cnn)
+const states = createDataStates(/** @type {any} */ (google), /** @type {any} */ (cnn))
 const keys = Object.keys(states)
 
 const items = [
@@ -30,14 +30,22 @@ const items = [
         platform: 'browser',
     },
 ]
-
-let initialState = new URL(window.location).searchParams.get('state')
-if (!keys.includes(initialState)) {
+let searchParams = new URL(window.location.href).searchParams
+let initialState = searchParams.get('state')
+if (!initialState || !keys.includes(initialState)) {
     initialState = 'protectionsOn_blocked'
 }
 
+let reflectList = ['screen']
+let reflectParams = new URLSearchParams(Object.entries({ state: initialState }))
+for (let [key, value] of searchParams) {
+    if (reflectList.includes(key)) {
+        reflectParams.set(key, value)
+    }
+}
+
 let platforms = (() => {
-    let subject = new URL(window.location).searchParams.get('platforms')
+    let subject = searchParams.get('platforms')
     const known = items.map((x) => x.platform)
     if (subject) {
         const selected = subject
@@ -53,14 +61,29 @@ let platforms = (() => {
 
 function update(value) {
     const url = new URL(window.location.href)
+
+    // remove existing reflected params
+    for (let key of reflectList) {
+        url.searchParams.delete(key)
+    }
+
+    // set the new state (as chosen in the dropdown)
     url.searchParams.set('state', value)
-    window.location = url
+    const selected = states[value]
+
+    // reflect explicit url params
+    for (let [key, value] of Object.entries(selected.urlParams)) {
+        url.searchParams.set(key, String(value))
+    }
+
+    // reload the page with all new URL
+    window.location.href = url.href
 }
 
 function updatePlatforms(value) {
     const url = new URL(window.location.href)
     url.searchParams.set('platforms', value.join(','))
-    window.location = url
+    window.location.href = url.href
 }
 
 function App() {
@@ -79,8 +102,8 @@ function App() {
 
 function Selector({ selected, onChange }) {
     return (
-        <select onChange={(e) => onChange(e.target.value)}>
-            {Object.entries(states).map(([key, value]) => {
+        <select onChange={(/** @type {any} */ e) => onChange(e.target.value)}>
+            {Object.entries(states).map(([key]) => {
                 return (
                     <option value={key} selected={selected === key}>
                         {key}
@@ -122,9 +145,8 @@ function Frames({ platforms, initialState }) {
                 </pre>
             </div>
             {items.map((item) => {
-                const { platform, ...rest } = item
-                const params = new URLSearchParams({ ...rest, state: initialState }).toString()
-                const src = item.platform + '.html?' + params.toString()
+                const { platform } = item
+                const src = item.platform + '.html?' + reflectParams.toString()
                 const height = item.height ?? 600
                 return (
                     <div class={styles.frame} data-state={platforms.includes(platform) ? 'ready' : 'hidden'}>
@@ -151,4 +173,4 @@ function Frames({ platforms, initialState }) {
     )
 }
 
-render(<App />, document.querySelector('#app'))
+render(<App />, /** @type {HTMLDivElement} */ (document.querySelector('#app')))

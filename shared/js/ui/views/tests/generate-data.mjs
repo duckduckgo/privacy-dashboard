@@ -239,8 +239,10 @@ export class MockData {
      * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
      * @param {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} [params.remoteFeatureSettings]
      * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
+     * @param {{screen?: import('../../../../../schema/__generated__/schema.types').ScreenKind}} [params.urlParams]
      */
     constructor(params) {
+        this.urlParams = params.urlParams || {}
         this.url = params.url || 'https://example.com'
         this.requests = params.requests || []
         this.state = params.state
@@ -706,6 +708,20 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             // @ts-expect-error - this SHOULD error, that's the test
             requests: [{ foo: 'bar' }],
+        }),
+        'screen-breakageForm': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            urlParams: {
+                screen: 'breakageForm',
+            },
+        }),
+        'screen-toggleReport': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            urlParams: {
+                screen: 'toggleReport',
+            },
         }),
     }
 }

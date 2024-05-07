@@ -84,3 +84,8 @@ interface WebkitMessageHandlers {
         postMessage: (params: any) => Promise<void>
     }
 }
+
+declare module '*.css' {
+    const classMap: Record<string, any>
+    export default classMap
+}
