@@ -81,6 +81,10 @@ Site.prototype = $.extend({}, Parent.prototype, {
             this.showBreakageForm({ immediate: true })
         }
 
+        if (this.features.initialScreen === 'promptBreakageForm') {
+            this.showBreakageForm({ immediate: true, includeToggle: false })
+        }
+
         if (this.features.initialScreen === 'toggleReport') {
             const opener = url.searchParams.get('opener') || 'menu'
             this.showToggleReport({ immediate: true, opener })
@@ -135,9 +139,10 @@ Site.prototype = $.extend({}, Parent.prototype, {
     /**
      * @param {object} opts
      * @param {boolean} opts.immediate
+     * @param {boolean} [opts.includeToggle=true] - default is true
      * @param {HTMLElement} [opts.eventTarget]
      */
-    showBreakageForm: function ({ immediate, eventTarget }) {
+    showBreakageForm: function ({ immediate, includeToggle = true, eventTarget }) {
         if (eventTarget) {
             blur(eventTarget)
         }
@@ -146,6 +151,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             model: new BreakageFormModel({ site: this.model, opener: 'dashboard' }),
             mainModel: this.model,
             immediate,
+            includeToggle,
         })
     },
 

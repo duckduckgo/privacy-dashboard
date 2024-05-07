@@ -304,6 +304,14 @@ export class DashboardPage {
         await this.page.getByRole('heading', { name: 'Site not working? Let us know.' }).waitFor()
     }
 
+    async promptBreakageFormIsVisible() {
+        await this.page.getByText('Select the option that best describes the problem you experienced.').waitFor()
+    }
+
+    async toggleIsAbsent() {
+        expect(await this.page.getByTestId('breakage-form-protection-header').count()).toBe(0)
+    }
+
     async showsInformation() {
         const { page } = this
         await page.getByRole('link', { name: 'See what’s sent' }).click()

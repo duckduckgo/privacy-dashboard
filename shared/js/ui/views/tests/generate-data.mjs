@@ -723,5 +723,12 @@ export const createDataStates = (google, cnn) => {
                 screen: 'toggleReport',
             },
         }),
+        'screen-promptBreakageForm': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            urlParams: {
+                screen: 'promptBreakageForm',
+            },
+        }),
     }
 }

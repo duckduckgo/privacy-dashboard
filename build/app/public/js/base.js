@@ -11050,7 +11050,7 @@
       ruleExceptionReasonSchema = z.literal("ruleException");
       adClickAttributionReasonSchema = z.literal("adClickAttribution");
       otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
-      screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport")]);
+      screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("promptBreakageForm")]);
       wvVersionTitleSchema = z.literal("wvVersion");
       requestsTitleSchema = z.literal("requests");
       featuresTitleSchema = z.literal("features");
@@ -22678,6 +22678,7 @@
   // shared/js/ui/platform-features.mjs
   function createPlatformFeatures(platform2) {
     const desktop = ["windows", "macos", "browser"];
+    let includeToggleOnBreakageForm = true;
     let screen = "primaryScreen";
     const url = new URL(window.location.href);
     if (url.searchParams.get("screen") === "breakageForm") {
@@ -22686,11 +22687,16 @@
     if (url.searchParams.get("screen") === "toggleReport") {
       screen = "toggleReport";
     }
+    if (url.searchParams.get("screen") === "promptBreakageForm") {
+      screen = "promptBreakageForm";
+      includeToggleOnBreakageForm = false;
+    }
     return new PlatformFeatures({
       spinnerFollowingProtectionsToggle: platform2.name !== "android" && platform2.name !== "windows",
       supportsHover: desktop.includes(platform2.name),
       initialScreen: screen,
-      supportsInvalidCerts: platform2.name !== "browser" && platform2.name !== "windows"
+      supportsInvalidCerts: platform2.name !== "browser" && platform2.name !== "windows",
+      includeToggleOnBreakageForm
     });
   }
   var PlatformFeatures, FeatureSettings;
@@ -22704,12 +22710,14 @@
          * @param {boolean} params.supportsHover
          * @param {InitialScreen} params.initialScreen
          * @param {boolean} params.supportsInvalidCerts
+         * @param {boolean} params.includeToggleOnBreakageForm
          */
         constructor(params) {
           this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
           this.supportsHover = params.supportsHover;
           this.supportsInvalidCerts = params.supportsInvalidCerts;
           this.initialScreen = params.initialScreen;
+          this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm;
         }
       };
       FeatureSettings = class _FeatureSettings {
@@ -23159,6 +23167,7 @@
     this.mainModel = ops.mainModel;
     this.template = ops.template;
     this.immediate = ops.immediate;
+    this.includeToggle = ops.includeToggle;
     sliding_subview_default.call(this, ops);
     this._setup();
   }
@@ -24182,15 +24191,19 @@
     });
     let bullet = "\n \u2022 ";
     let placeholder = ns.report("tellUsMoreDesc.title", { bullet });
-    return import_nanohtml13.default`<section class="sliding-subview">
+    let headerText = this.includeToggle ? ns.report("selectTheOptionDesc.title") : ns.report("selectTheOptionDescV2.title");
+    return import_nanohtml13.default` <section class="sliding-subview">
         <div class="breakage-form">
-            ${topNav({ view: "secondary", immediate: this.immediate })}
+            ${topNav({
+      view: "secondary",
+      immediate: this.immediate
+    })}
             <div class="breakage-form__inner js-breakage-form-element" data-state="idle">
-                <div class="header header--breakage">${wrap(this.mainModel, this)}</div>
+                ${this.includeToggle ? import_nanohtml13.default`<div class="header header--breakage">${wrap(this.mainModel, this)}</div>` : null}
                 <div class="key-insight key-insight--breakage padding-x-double">
                     ${icon}
                     <div class="breakage-form__advise">
-                        <p class="token-title-3">${i18n.t("report:selectTheOptionDesc.title")}</p>
+                        <p class="token-title-3">${headerText}</p>
                     </div>
                     <div class="thanks">
                         <p class="thanks__primary">${i18n.t("report:thankYou.title")}</p>
@@ -24204,7 +24217,7 @@
                                 <select class="js-breakage-form-dropdown">
                                     <option value="">${i18n.t("report:pickYourIssueFromTheList.title")}</option>
                                     ${categories.map(function(item) {
-      return import_nanohtml13.default`<option value=${item.value}>${item.category}</option>`;
+      return import_nanohtml13.default` <option value="${item.value}">${item.category}</option>`;
     })}
                                 </select>
                             </div>
@@ -25638,6 +25651,9 @@
           if (this.features.initialScreen === "breakageForm") {
             this.showBreakageForm({ immediate: true });
           }
+          if (this.features.initialScreen === "promptBreakageForm") {
+            this.showBreakageForm({ immediate: true, includeToggle: false });
+          }
           if (this.features.initialScreen === "toggleReport") {
             const opener = url.searchParams.get("opener") || "menu";
             this.showToggleReport({ immediate: true, opener });
@@ -25684,9 +25700,10 @@
         /**
          * @param {object} opts
          * @param {boolean} opts.immediate
+         * @param {boolean} [opts.includeToggle=true] - default is true
          * @param {HTMLElement} [opts.eventTarget]
          */
-        showBreakageForm: function({ immediate, eventTarget }) {
+        showBreakageForm: function({ immediate, includeToggle = true, eventTarget }) {
           if (eventTarget) {
             blur(eventTarget);
           }
@@ -25694,7 +25711,8 @@
             template: breakage_form_default,
             model: new BreakageFormModel({ site: this.model, opener: "dashboard" }),
             mainModel: this.model,
-            immediate
+            immediate,
+            includeToggle
           });
         },
         /**
