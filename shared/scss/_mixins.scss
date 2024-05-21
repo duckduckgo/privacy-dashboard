@@ -68,14 +68,16 @@
         height: 100%;
         box-sizing: border-box;
 
-        &.sliding-subview--animating {
-            transition: left 0.3s ease-in-out;
-        }
-
         &.sliding-subview--root {
             position: relative;
             top: 0;
             left: 0;
+            transition: left 0.3s ease-in-out;
+
+            &.sliding-subview--immediate {
+                transition: none;
+            }
+
             &.sliding-subview--open {
                 left: -100%;
             }

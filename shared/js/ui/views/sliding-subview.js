@@ -37,7 +37,6 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
     },
 
     setupNavigationSupport: function () {
-        console.trace('setupNavigationSupport')
         const url = new URL(window.location.href)
         url.searchParams.set('open', 'true')
         window.history.pushState({}, '', url)
@@ -64,16 +63,16 @@ SlidingSubview.prototype = $.extend({}, Parent.prototype, {
 
         if (opts.fromNavigation && isIOS()) {
             // Don't animate out if we've navigated back to the root screen
-            // this.$root.addClass('sliding-subview--immediate')
-            // window.setTimeout(() => {
-            //     this.$root.removeClass('sliding-subview--open')
-            //     this._destroyProxy()
-            //     // @ts-ignore
-            //     window.history.replaceState({}, '', window.location)
-            //     window.setTimeout(() => {
-            //         this.$root.removeClass('sliding-subview--immediate')
-            //     }, 1)
-            // }, 1)
+            this.$root.addClass('sliding-subview--immediate')
+            window.setTimeout(() => {
+                this.$root.removeClass('sliding-subview--open')
+                this._destroyProxy()
+                // @ts-ignore
+                window.history.replaceState({}, '', window.location)
+                window.setTimeout(() => {
+                    this.$root.removeClass('sliding-subview--immediate')
+                }, 1)
+            }, 1)
             return
         }
 
