@@ -53,12 +53,16 @@ const elementMap = {
     connection: { kind: 'subview', component: <ConnectionPage /> },
 }
 
+/**
+ * @typedef {{type: 'push', name: routes[number]} | {type: 'pop'} | {type: 'end'} | {type: 'goto', stack: (routes[number])[]}} NavEvent
+ * @typedef {{commit: string[], stack: string[], state: 'settled' | 'transitioning'}} NavState
+ */
+
 export function Navigation(props) {
     /** @type {import('preact/hooks').MutableRef<HTMLDivElement | null>} */
     const parentRef = useRef(null)
-    /** @type {[any, import('preact/hooks').Dispatch<{type: 'push', name: routes[number]} | {type: 'pop'} | {type: 'end'} | {type: 'goto', stack: (routes[number])[]}>]} */
     const [state, dispatch] = useReducer(
-        (prev, action) => {
+        (/** @type {NavState} */ prev, /** @type {NavEvent} */ action) => {
             console.log('📩', prev, action)
             switch (prev.state) {
                 case 'transitioning': {
@@ -103,40 +107,24 @@ export function Navigation(props) {
                         }
                     }
                 }
-                case 'exiting': {
-                    return {
-                        ...prev,
-                        commit: [],
-                        state: /** @type {const} */ ('settled'),
-                    }
-                }
                 default:
                     throw new Error('unreachable')
             }
         },
         {
-            path: '/',
             stack: ['primary'],
-            state: /** @type {'settled' | 'transitioning' | 'exiting'} */ ('settled'),
-            commit: /** @type {string[]} */ ([]),
+            state: 'settled',
+            commit: [],
         }
     )
-
-    console.log('CURR state', state.state)
-    console.log(' - stack', state.stack)
-    console.log(' - commit', state.commit)
     useEffect(() => {
         const curr = parentRef.current
         if (!curr) return
-        console.group('USEFECT')
-        console.log('state', state.state)
         const handler = () => {
-            console.log('before dispatch', state.state)
             dispatch({ type: 'end' })
         }
         curr.addEventListener('transitionend', handler)
         return () => {
-            console.groupEnd()
             curr.removeEventListener('transitionend', handler)
         }
     }, [state.state])
@@ -151,12 +139,12 @@ export function Navigation(props) {
                 id="popup-container"
                 ref={parentRef}
                 className={cn({
-                    'sliding-subview': true,
-                    'sliding-subview--root': true,
-                    'sliding-subview--animating': state.state === 'transitioning',
+                    'sliding-subview-v2': true,
+                    'sliding-subview-v2--root': true,
+                    'sliding-subview-v2--animating': state.state === 'transitioning',
                 })}
                 style={{
-                    left: -((state.stack.length - 1) * 100) + '%',
+                    transform: `translateX(` + -((state.stack.length - 1) * 100) + '%)',
                 }}
             >
                 {Object.entries(elementMap).map(([name, item]) => {
@@ -170,18 +158,14 @@ export function Navigation(props) {
                             </section>
                         )
                     }
+                    const translateValue = state.stack.includes(name)
+                        ? state.stack.indexOf(name)
+                        : state.commit.includes(name)
+                        ? state.commit.indexOf(name)
+                        : 0
+                    const cssProp = `translateX(${translateValue * 100}%)`
                     return (
-                        <section
-                            className="sliding-subview"
-                            key={name}
-                            style={
-                                state.stack.includes(name)
-                                    ? `left: calc(${state.stack.indexOf(name) * 100}%)`
-                                    : state.commit.includes(name)
-                                    ? `left: calc(${state.commit.indexOf(name) * 100}%)`
-                                    : ''
-                            }
-                        >
+                        <section className="sliding-subview-v2" key={name} style={{ transform: cssProp }}>
                             {item.component}
                         </section>
                     )

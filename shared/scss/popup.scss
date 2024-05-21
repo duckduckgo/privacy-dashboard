@@ -175,7 +175,49 @@ body {
 @include default_list();
 
 /* Sliding subviews */
-@include sliding_subview();
+.sliding-subview {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    &.sliding-subview--root {
+        position: relative;
+        top: 0;
+        left: 0;
+        transition: left 0.3s ease-in-out;
+
+        &.sliding-subview--immediate {
+            transition: none;
+        }
+
+        &.sliding-subview--open {
+            left: -100%;
+        }
+    }
+}
+
+/* Sliding subviews */
+.sliding-subview-v2 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: var(--page-bg);
+}
+
+.sliding-subview-v2--root {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.sliding-subview-v2--animating {
+    transition: transform 0.3s ease-in-out;
+}
 
 .platform-limitations {
     padding: 16px 0;
