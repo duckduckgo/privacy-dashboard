@@ -14,7 +14,7 @@ const env = {
 
 // sass+schema (parallel)
 {
-    console.time('sass+schema')
+    console.time('sass+s')
     // @ts-ignore
     const schema = exec('node scripts/schema.js', { cwd: BASE, stdio: 'inherit', env })
 

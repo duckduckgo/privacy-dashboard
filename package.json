@@ -6,8 +6,8 @@
         "npm": ">=9.0.0"
     },
     "scripts": {
-        "start": "npm run dev",
-        "dev": "chokidar \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
+        "start": "which bslive && bslive",
+        "dev": "chokidar \"shared\" 'debugger' \"schema/*.json\" \"v2\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
         "build.watch.prod": "chokidar \"shared\" \"schema/*.json\" -c \"npm run build\" --initial \"npm run build\"",
         "build": "node scripts/build.js",
         "build.debug": "node scripts/build.js --debug",
@@ -37,7 +37,12 @@
         "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
     },
     "devDependencies": {
-        "@formatjs/intl-locale": "^3.0.7",
+        "@formatjs/cli-lib": "^6.2.0",
+        "@formatjs/intl-datetimeformat": "^6.12.0",
+        "@formatjs/intl-getcanonicallocales": "^2.2.1",
+        "@formatjs/intl-locale": "^3.3.2",
+        "@formatjs/intl-numberformat": "^8.7.0",
+        "@formatjs/intl-pluralrules": "^5.2.4",
         "@material/ripple": "^14.0.0",
         "@material/switch": "^14.0.0",
         "@playwright/test": "^1.42.1",
@@ -74,5 +79,9 @@
         "singleQuote": true,
         "printWidth": 140,
         "tabWidth": 4
+    },
+    "dependencies": {
+        "@browsersync/bslive": "^0.0.9",
+        "classnames": "^2.5.1"
     }
 }
