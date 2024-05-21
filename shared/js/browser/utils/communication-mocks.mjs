@@ -41,6 +41,7 @@ export async function mockDataProvider(params) {
     window.onChangeParentEntity(state.parentEntity)
     window.onChangeProtectionStatus(state.protections)
     window.onChangeUpgradedHttps(state.upgradedHttps)
+    window.onChangePhishingStatus(state.phishing)
     window.onChangeCertificateData({
         secCertificateViewModels: state.certificate,
     })

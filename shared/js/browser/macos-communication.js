@@ -58,6 +58,7 @@ let certificateData
 let upgradedHttps
 /** @type {import("./utils/protections.mjs").Protections | undefined} */
 let protections
+let phishing
 let isPendingUpdates
 let parentEntity
 const cookiePromptManagementStatus = {}
@@ -120,7 +121,7 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
         console.log(requestData.error)
         return
     }
-    trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data)
+    trackerBlockingData = createTabData(tabUrl, upgradedHttps, phishing, protections, requestData.data)
     resolveInitialRender()
 }
 
@@ -496,6 +497,11 @@ export function setupShared() {
     window.onChangeUpgradedHttps = function (data) {
         upgradedHttps = data
         if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
+        resolveInitialRender()
+    }
+    window.onChangePhishingStatus = function (data) {
+        phishing = data
+        if (trackerBlockingData) trackerBlockingData.phishing = phishing
         resolveInitialRender()
     }
     window.onChangeProtectionStatus = onChangeProtectionStatus

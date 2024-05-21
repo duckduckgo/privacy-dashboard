@@ -28,6 +28,7 @@ export class TabData {
      * @param {boolean} upgradedHttps
      * @param {Protections} protections
      * @param {any[] | null | undefined} permissions
+     * @param {boolean} phishing
      * @param {RequestDetails} requestDetails
      * @param {CookiePromptManagementStatus | undefined | null} cookiePromptManagementStatus
      * @param {Record<string, any> | null | undefined} ctaScreens
@@ -43,6 +44,7 @@ export class TabData {
         specialDomainName,
         status,
         upgradedHttps,
+        phishing,
         protections,
         permissions,
         requestDetails,
@@ -59,6 +61,7 @@ export class TabData {
         this.specialDomainName = specialDomainName
         this.status = status
         this.upgradedHttps = upgradedHttps
+        this.phishing = phishing
         this.protections = protections
         this.permissions = permissions
         this.requestDetails = requestDetails
@@ -78,7 +81,7 @@ export class TabData {
  * @param {import('../../../../schema/__generated__/schema.types.js').RequestData} rawRequestData
  * @returns {TabData}
  */
-export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData) => {
+export const createTabData = (tabUrl, upgradedHttps, phishing, protections, rawRequestData) => {
     let domain
     try {
         domain = new URL(tabUrl).hostname.replace(/^www\./, '')
@@ -93,6 +96,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         specialDomainName: undefined,
         domain,
         protections,
+        phishing,
         locale: null,
         requestDetails: createRequestDetails(rawRequestData.requests, rawRequestData.installedSurrogates || []),
         parentEntity: undefined,

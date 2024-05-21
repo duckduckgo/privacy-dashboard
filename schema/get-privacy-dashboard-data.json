@@ -33,7 +33,7 @@
         "tab": {
             "additionalProperties": false,
             "type": "object",
-            "required": ["url", "upgradedHttps", "protections"],
+            "required": ["url", "upgradedHttps", "phishing", "protections"],
             "properties": {
                 "id": {
                     "description": "Optional Tab ID - mostly used in the extensions",
@@ -43,6 +43,9 @@
                     "type": "string"
                 },
                 "upgradedHttps": {
+                    "type": "boolean"
+                },
+                "phishing": {
                     "type": "boolean"
                 },
                 "protections": {

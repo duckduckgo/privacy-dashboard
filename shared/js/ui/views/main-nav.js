@@ -165,6 +165,7 @@ function renderCookieConsentManaged(model, cb) {
 function renderConnection(model, cb) {
     let icon = 'icon-small--insecure'
     let text = i18n.t(httpsMessages[model.httpsState])
+    // let isPhishing = model.httpsState === 'phishing'
     let isSecure = model.httpsState === 'secure'
     let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
 

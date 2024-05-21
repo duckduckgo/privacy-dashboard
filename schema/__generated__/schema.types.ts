@@ -311,6 +311,7 @@ export interface Tab {
   id?: number;
   url: string;
   upgradedHttps: boolean;
+  phishing: boolean;
   protections: ProtectionsStatus;
   localeSettings?: LocaleSettings;
   parentEntity?: ParentEntity;
@@ -417,6 +418,7 @@ export interface WindowsViewModel {
   rawRequestData: RequestData;
   tabUrl: string;
   upgradedHttps: boolean;
+  phishing?: boolean;
   parentEntity?: ParentEntity;
   permissions?: unknown[];
   certificates?: unknown[];

@@ -18,6 +18,9 @@
         "upgradedHttps": {
             "type": "boolean"
         },
+        "phishing": {
+            "type": "boolean"
+        },
         "parentEntity": { "$ref": "./parent-entity.json" },
         "permissions": {
             "type": "array"

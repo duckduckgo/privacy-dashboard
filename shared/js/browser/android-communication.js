@@ -29,6 +29,7 @@ let trackerBlockingData
 let permissionsData
 let certificateData
 let upgradedHttps
+const phishing = false
 /** @type {import("./utils/protections.mjs").Protections | undefined} */
 let protections
 let isPendingUpdates
@@ -109,7 +110,7 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
         console.log(requestData.error)
         return
     }
-    trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data)
+    trackerBlockingData = createTabData(tabUrl, upgradedHttps, phishing, protections, requestData.data)
     resolveInitialRender()
 }
 

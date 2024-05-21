@@ -40,6 +40,7 @@ export function createPlatformFeatures(platform) {
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
         supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
+        supportsPhishingWarning: platform.name === 'macos',
         includeToggleOnBreakageForm,
     })
 }
@@ -56,6 +57,7 @@ export class PlatformFeatures {
      * @param {InitialScreen} params.initialScreen
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
+     * @param {boolean} params.supportsPhishingWarning
      */
     constructor(params) {
         /**
@@ -83,6 +85,11 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm
+        /**
+         * Does the current platform support phishing warnings?
+         * @type {boolean}
+         */
+        this.supportsPhishingWarning = params.supportsPhishingWarning
     }
 }
 

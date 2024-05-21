@@ -39,7 +39,8 @@ function Site(attrs) {
 /**
  * @typedef PublicSiteModel
  * @property {boolean} protectionsEnabled
- * @property {'secure' | 'upgraded' | 'none' | 'invalid'} httpsState
+ * TODO: Add a new state for phishing
+ * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} httpsState
  * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
  * @property {boolean} isDenylisted
@@ -129,11 +130,19 @@ Site.prototype = $.extend({}, Parent.prototype, {
     },
 
     /** @this {PublicSiteModel} */
+
     setHttpsMessage: function () {
         if (!this.tab) return
 
         /** @type {PublicSiteModel['httpsState']} */
         let nextState = (() => {
+            console.log('STATE', this.features.supportsPhishingWarning, this.tab)
+            if (this.features.supportsPhishingWarning) {
+                if (this.tab.phishing) {
+                    return 'phishing'
+                }
+            }
+
             if (this.tab.upgradedHttps) {
                 return 'upgraded'
             }

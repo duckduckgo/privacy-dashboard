@@ -303,7 +303,7 @@ export async function getBackgroundTabData() {
 
     if (parsedMessageData.success === true) {
         const { tab, emailProtectionUserData, requestData, fireButton } = parsedMessageData.data
-        const { upgradedHttps, url, parentEntity, specialDomainName, id, localeSettings } = tab
+        const { upgradedHttps, phishing, url, parentEntity, specialDomainName, id, localeSettings } = tab
 
         const protections = new Protections(
             tab.protections.unprotectedTemporary,
@@ -313,7 +313,7 @@ export async function getBackgroundTabData() {
         )
         return {
             tab: {
-                ...createTabData(url, upgradedHttps, protections, requestData),
+                ...createTabData(url, upgradedHttps, phishing, protections, requestData),
                 id,
                 // if the extension sends this value, then use it as-is. Otherwise, the default of 'en' will take effect
                 locale: localeSettings?.locale,
@@ -341,7 +341,8 @@ export async function getBackgroundTabData() {
     }
     return {
         tab: {
-            ...createTabData('unknown', false, protections, { requests: [] }),
+            // TODO: Confirm phishing value
+            ...createTabData('unknown', false, false, protections, { requests: [] }),
             error: parsedMessageData.error.message,
             search: {},
             ctaScreens: {},

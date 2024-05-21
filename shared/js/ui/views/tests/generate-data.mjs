@@ -232,6 +232,7 @@ export class MockData {
      * @param {boolean} [params.allowlisted]
      * @param {boolean} [params.denylisted]
      * @param {any[]} [params.permissions]
+     * @param {boolean} [params.phishing]
      * @param {boolean} [params.specialDomainName]
      * @param {boolean} [params.emailUser]
      * @param {boolean} [params.fireButtonEnabled]
@@ -249,6 +250,7 @@ export class MockData {
         this.localeSettings = params.localeSettings || { locale: 'en' }
         this.certificate = params.certificate || defaultCertificates
         this.upgradedHttps = params.upgradedHttps ?? false
+        this.phishing = params.phishing ?? false
         this.contentBlockingException = params.contentBlockingException
         this.parentEntity = params.parentEntity
         this.permissions = params.permissions
@@ -304,6 +306,7 @@ export class MockData {
                 protections: this.protections,
                 tabUrl: this.url,
                 upgradedHttps: this.upgradedHttps,
+                phishing: this.phishing,
                 parentEntity: this.parentEntity,
                 permissions: this.permissions,
                 certificates: this.certificate,
@@ -551,6 +554,10 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             requests: [],
             permissions,
+        }),
+        phishing: new MockData({
+            url: 'http://privacy-test-pages.site/security/badware/phishing.html',
+            phishing: true,
         }),
         protectionsOn: new MockData({
             url: 'https://example.com',
