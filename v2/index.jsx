@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h, render } from 'preact'
-import { Navigation } from './navigation'
+import { App } from './app'
+import { SettingsProvider } from './settings'
 
 window.onunhandledrejection = (event) => {
     console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`)
@@ -9,7 +10,12 @@ window.onunhandledrejection = (event) => {
 async function init() {
     const app = document.querySelector('#app')
     if (!app) throw new Error('unreachable')
-    render(<Navigation />, app)
+    render(
+        <SettingsProvider>
+            <App />
+        </SettingsProvider>,
+        app
+    )
 }
 
 init().catch((e) => {
