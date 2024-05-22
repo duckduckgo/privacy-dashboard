@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
+import { Raw } from './Text'
 
 export function KeyInsights() {
     return (
@@ -28,9 +29,7 @@ export function KeyInsights() {
                 </div>
                 <h1 className="token-title-3-em">example.com</h1>
                 <div className="token-title-3">
-                    <span>
-                        We blocked <b>Google</b> from loading tracking requests on this page.
-                    </span>
+                    <Raw text={'We blocked <b>Google</b> from loading tracking requests on this page.'} />
                 </div>
             </div>
         </div>

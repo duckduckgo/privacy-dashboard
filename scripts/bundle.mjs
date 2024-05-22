@@ -97,11 +97,28 @@ async function init() {
             entryPoints: [manifest.v2.input],
             target: ['es2021'],
             bundle: true,
+            dropLabels: IS_PROD ? ['$TEST', '$DEBUG'] : [],
             outfile: manifest.v2.output,
             sourcemap: debug ? 'linked' : undefined,
             loader: {
                 '.js': 'jsx',
             },
+            plugins: [
+                {
+                    name: 'require-globify-shim',
+                    setup(build) {
+                        build.onResolve({ filter: /locales\/\*\/\*.json/ }, (args) => {
+                            return { path: args.path, namespace: 'require-globify-shim' }
+                        })
+                        build.onLoad({ filter: /.*/, namespace: 'require-globify-shim' }, () => {
+                            return {
+                                contents: JSON.stringify(buildLocaleMap()),
+                                loader: 'json',
+                            }
+                        })
+                    },
+                },
+            ],
         })
     }
 }
