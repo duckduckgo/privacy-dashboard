@@ -17,7 +17,6 @@ export function ToggleReportScreen() {
         }
     }, [])
 
-    // todo(v2): add opener param
     return (
         <div data-testid="toggle-report">
             <div data-toggle-report="parent" className="toggle-report" data-opener={data.features.opener} style="min-height: 286px">

@@ -5,11 +5,13 @@ import { DomNode } from '../dom-node'
 import { disableInSettingsLink } from '../../shared/js/ui/templates/shared/links'
 import { ns } from '../../shared/js/ui/base/localize'
 import { heroTemplate, largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
-import { useData } from '../data-provider'
+import { useData, useFetcher } from '../data-provider'
+import { OpenSettingsMessages } from '../../shared/js/browser/common'
 
 export function ConsentManagedScreen({ cosmetic }) {
     const { pop } = useNav()
     const data = useData()
+    const fetcher = useFetcher()
     const summary = cosmetic ? ns.site('cookiesHiddenSummary.title') : ns.site('cookiesMinimizedSummary.title')
     const icon = largeHeroIcon({
         status: cosmetic ? 'cookies-hidden' : 'cookies-managed',
@@ -21,9 +23,11 @@ export function ConsentManagedScreen({ cosmetic }) {
         suffix: 'none',
     })
 
-    // todo(v2): wire up this message
     function disable() {
-        throw new Error('todo: disable in settings links')
+        const msg = new OpenSettingsMessages({
+            target: 'cpm',
+        })
+        fetcher(msg).catch(console.error)
     }
 
     return (
