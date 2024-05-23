@@ -1,11 +1,26 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
 import { useNav } from '../navigation'
+import { heroTemplate, largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
+import { renderCertificateDetails, renderConnectionDescription } from '../../shared/js/ui/templates/page-connection'
+import { useData } from '../data-provider'
+import { DomNode } from '../dom-node'
 
 export function ConnectionScreen() {
     const { pop } = useNav()
+    const data = useData()
+    const summary = renderConnectionDescription(data, data.tab)
+    const icon = largeHeroIcon({
+        status: `connection-${data.httpsState}`,
+    })
+
+    const hero = heroTemplate({
+        icon,
+        summary,
+        suffix: 'none',
+    })
     return (
-        <div data-page="connection" className="site-info card">
+        <div className="site-info card" data-page="connection">
             <div>
                 <div className="top-nav">
                     <a
@@ -21,45 +36,10 @@ export function ConnectionScreen() {
                 <div className="top-nav__spacer"></div>
             </div>
             <div className="padding-x-double">
-                <div data-suffix="none" className="key-insight">
-                    <div className="large-icon-container hero-icon--connection-secure"></div>
-                    <p className="token-title-3">
-                        This page uses an encrypted connection, which prevents third parties from viewing your activity or intercepting
-                        sensitive information you send on this page.
-                    </p>
-                </div>
-                <div>
-                    <div className="section-list-header">Certificate for example.com</div>
-                    <div className="page-connection__certificate">
-                        <div className="page-connection__certificate-details">
-                            <h3 className="token-body-em">Security Certificate Detail</h3>
-                            <div>
-                                <span>Common Name</span> <span className="page-connection__certificate-value">sni.cloudflaressl.com</span>
-                            </div>
-                            <div>
-                                <span>Summary</span> <span className="page-connection__certificate-value">sni.cloudflaressl.com</span>
-                            </div>
-                        </div>
-                        <div className="page-connection__certificate-details">
-                            <h3 className="token-body-em">Public Key</h3>
-                            <div>
-                                <span>Algorithm</span> <span className="page-connection__certificate-value">Elliptic Curve</span>
-                            </div>
-                            <div>
-                                <span>Key Size</span> <span className="page-connection__certificate-value">256 bits</span>
-                            </div>
-                            <div>
-                                <span>Effective Size</span> <span className="page-connection__certificate-value">256 bits</span>
-                            </div>
-                            <div>
-                                <span>Usage</span> <span className="page-connection__certificate-value">Encrypt, Verify, Derive</span>
-                            </div>
-                            <div>
-                                <span>Permanent</span> <span className="page-connection__certificate-value">No</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {/* @ts-ignore */}
+                <DomNode key={data.count}>{hero}</DomNode>
+                {/* @ts-ignore */}
+                <DomNode key={data.count}>{renderCertificateDetails(data, data.tab)}</DomNode>
             </div>
         </div>
     )
