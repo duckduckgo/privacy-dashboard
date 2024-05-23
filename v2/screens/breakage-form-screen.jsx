@@ -5,6 +5,8 @@ import { ns } from '../../shared/js/ui/base/localize'
 import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { DomNode } from '../dom-node'
 import { useState } from 'preact/hooks'
+import { SubmitBrokenSiteReportMessage } from '../../shared/js/browser/common'
+import { useFetcher } from '../data-provider'
 
 const categories = [
     { category: ns.report('blocked.title'), value: 'blocked' },
@@ -20,6 +22,7 @@ const categories = [
 
 export function BreakageFormScreen() {
     const { pop } = useNav()
+    const fetcher = useFetcher()
     const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
 
     const icon = largeHeroIcon({
@@ -35,13 +38,15 @@ export function BreakageFormScreen() {
     const includeToggle = false
     let headerText = includeToggle ? ns.report('selectTheOptionDesc.title') : ns.report('selectTheOptionDescV2.title')
 
-    // todo(v2): handle form submission
     function submit(e) {
         e.preventDefault()
         const values = Object.fromEntries(new FormData(e.target))
-        console.log(values)
+        const msg = new SubmitBrokenSiteReportMessage({
+            category: String(values.category) || '',
+            description: String(values.description) || '',
+        })
         setState('sent')
-        throw new Error('handle form submission')
+        fetcher(msg).catch(console.error)
     }
 
     return (
