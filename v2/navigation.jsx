@@ -5,11 +5,18 @@ import { useContext, useEffect, useReducer, useRef } from 'preact/hooks'
 import { ConnectionScreen } from './screens/connection-screen'
 import { PrimaryScreen } from './screens/primary-screen'
 import { BreakageFormScreen } from './screens/breakage-form-screen'
+import { TrackersScreen } from './screens/trackers-screen'
+import { NonTrackersScreen } from './screens/non-trackers-screen'
+import { ConsentManagedScreen } from './screens/consent-managed-screen'
 
 const availableScreens = {
     primary: { kind: 'root', component: <PrimaryScreen /> },
     breakage: { kind: 'subview', component: <BreakageFormScreen /> },
     connection: { kind: 'subview', component: <ConnectionScreen /> },
+    trackers: { kind: 'subview', component: <TrackersScreen /> },
+    nonTrackers: { kind: 'subview', component: <NonTrackersScreen /> },
+    consentManaged: { kind: 'subview', component: <ConsentManagedScreen cosmetic={false} /> },
+    cookieHidden: { kind: 'subview', component: <ConsentManagedScreen cosmetic={true} /> },
 }
 
 /**

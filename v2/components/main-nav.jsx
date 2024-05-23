@@ -20,13 +20,13 @@ export function MainNav() {
                         push('connection')
                     },
                     trackers: () => {
-                        console.log('navigate', { target: 'trackers' })
+                        push('trackers')
                     },
                     nonTrackers: () => {
-                        console.log('navigate', { target: 'nonTrackers' })
+                        push('nonTrackers')
                     },
                     consentManaged: () => {
-                        console.log('navigate', { target: 'consentManaged' })
+                        push('consentManaged')
                     },
                     cookieHidden: () => {
                         console.log('navigate', { target: 'cookieHidden' })
