@@ -1,8 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
 import { Raw } from './Text'
+import { useData } from '../data-provider'
 
 export function KeyInsights() {
+    const data = useData()
+    console.log(data)
     return (
         <div id="key-insight">
             <div className="key-insight key-insight--main">

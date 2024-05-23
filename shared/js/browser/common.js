@@ -1,4 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
+/**
+ * @typedef {{
+ *   tab: import('./utils/request-details.mjs').TabData,
+ *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
+ *   fireButton?: { enabled: boolean }
+ * }} BackgroundTabData
+ */
 /**
  * @module common
  */

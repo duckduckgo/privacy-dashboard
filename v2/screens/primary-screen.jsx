@@ -3,12 +3,9 @@ import { h } from 'preact'
 import { MainNav } from '../components/main-nav'
 import { KeyInsights } from '../components/key-insights'
 import { ProtectionHeader } from '../components/protection-header'
-import { useData } from '../data-provider'
 
 export function PrimaryScreen() {
     // const c = useChannel()
-    const d = useData()
-    console.log(d)
     return (
         <div className="site-info page">
             <div className="page-inner">
