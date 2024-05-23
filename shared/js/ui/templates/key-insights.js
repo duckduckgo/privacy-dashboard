@@ -16,7 +16,7 @@ import { getColorId } from './shared/utils.js'
 export function KeyInsightView(ops) {
     this.model = ops.model
     this.store = ops.store
-    this.template = renderKeyInsight
+    this.template = () => renderKeyInsight(this.model)
     Parent.call(this, ops)
     // @ts-ignore
     this._setup()
@@ -49,10 +49,11 @@ const keyInsightsState = /** @type {const} */ ({
 })
 
 /**
- * @this {KeyInsightView}
+ * @param {import("../models/site.js").PublicSiteModel} modelOverride
+ * @return {*}
  */
-export function renderKeyInsight() {
-    const model = this.model
+export function renderKeyInsight(modelOverride) {
+    const model = modelOverride
     const title = (text) => html`<h1 class="token-title-3-em">${text}</h1>`
     const description = (text) => html`<div class="token-title-3"><span role="text">${text}</span></div>`
 

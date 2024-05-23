@@ -100,7 +100,7 @@ function wrap(model, view) {
         isDenylisted: model.isDenylisted,
         platformFeatures: model.features,
         isBroken: model.isBroken,
-        toggleAllowlist: () => model.toggleAllowlist({ screen: 'breakageForm' }),
+        toggleAllowlist: () => /** @type {any} */ (model).toggleAllowlist({ screen: 'breakageForm' }),
     }
     view.roots.set(root, true)
     render(<ProtectionHeader model={migrationModel} initialState={'site-not-working'} />, root)

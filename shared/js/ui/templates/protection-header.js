@@ -30,7 +30,9 @@ export function protectionHeader(model) {
         isDenylisted: model.isDenylisted,
         platformFeatures: model.features,
         isBroken: model.isBroken,
-        toggleAllowlist: () => model.toggleAllowlist({ screen: 'primaryScreen' }),
+        toggleAllowlist: () => {
+            return /** @type {any} */ (model).toggleAllowlist({ screen: 'primaryScreen' })
+        },
     }
     render(
         <ProtectionHeader model={migrationModel}>
@@ -38,25 +40,6 @@ export function protectionHeader(model) {
         </ProtectionHeader>,
         root
     )
-    return root
-}
-
-/**
- * Regular protection toggle
- * @param {import('../models/site.js').PublicSiteModel} model
- * @return {HTMLElement}
- */
-export function protectionDefault(model) {
-    const root = html`<div class="padding-x padding-y"></div>`
-    const migrationModel = {
-        protectionsEnabled: model.protectionsEnabled,
-        isAllowlisted: model.isAllowlisted,
-        isDenylisted: model.isDenylisted,
-        platformFeatures: model.features,
-        isBroken: model.isBroken,
-        toggleAllowlist: () => model.toggleAllowlist({ screen: 'primaryScreen' }),
-    }
-    render(<ProtectionToggle model={migrationModel} />, root)
     return root
 }
 

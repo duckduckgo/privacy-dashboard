@@ -48,9 +48,8 @@ function Site(attrs) {
  * @property {boolean} disabled
  * @property {import("../platform-features.mjs").PlatformFeatures} features
  * @property {FeatureSettings} featureSettings
- * @property {any[] | null} permissions
+ * @property {any[] | null | undefined} permissions
  * @property {import('../../browser/utils/request-details.mjs').TabData} tab
- * @property {(origin: import('../../../../schema/__generated__/schema.types.js').EventOrigin) => void} toggleAllowlist
  */
 
 /**
