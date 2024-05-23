@@ -68,6 +68,6 @@ function done(textLabel = ns.site('navigationComplete.title')) {
     </a>`
 }
 
-function close() {
+export function close() {
     return done(ns.site('navigationClose.title'))
 }

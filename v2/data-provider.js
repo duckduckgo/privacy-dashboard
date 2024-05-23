@@ -3,6 +3,7 @@ import { h, createContext } from 'preact'
 import comms, { platform } from '../shared/js/browser/communication.js'
 import { useContext, useEffect, useState } from 'preact/hooks'
 import { i18n } from '../shared/js/ui/base/localize'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../shared/js/ui/platform-features.mjs'
 
 /**
@@ -254,4 +255,16 @@ export function useData() {
         }
     }, [])
     return state
+}
+
+export function useFetcher() {
+    const fetcher = async (msg) => {
+        try {
+            return comms.fetch(msg)
+        } catch (error) {
+            console.error('Error:', error)
+            throw error
+        }
+    }
+    return fetcher
 }

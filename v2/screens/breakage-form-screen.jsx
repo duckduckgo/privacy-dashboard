@@ -53,7 +53,7 @@ export function BreakageFormScreen() {
                         onClick={() => pop()}
                         role="button"
                         aria-label="Back"
-                        className="top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark"
+                        className="top-nav__back link-action link-action--dark"
                     >
                         <span data-icon-text="Back" className="icon icon__back-arrow"></span>
                     </a>
@@ -77,20 +77,15 @@ export function BreakageFormScreen() {
                     <form className="breakage-form__element" onSubmit={submit}>
                         <div className="form__group">
                             <div className="form__select breakage-form__input--dropdown">
-                                <select className="js-breakage-form-dropdown" name="category">
+                                <select name="category">
                                     <option value="">{ns.report('pickYourIssueFromTheList.title')}</option>$
                                     {categories.map(function (item) {
                                         return <option value={item.value}>{item.category}</option>
                                     })}
                                 </select>
                             </div>
-                            <textarea
-                                className="form__textarea js-breakage-form-description"
-                                placeholder={placeholder}
-                                maxLength={2500}
-                                name="description"
-                            ></textarea>
-                            <button className="form__submit token-label-em js-breakage-form-submit" type="submit">
+                            <textarea className="form__textarea" placeholder={placeholder} maxLength={2500} name="description"></textarea>
+                            <button className="form__submit token-label-em" type="submit">
                                 {ns.report('sendReport.title')}
                             </button>
                         </div>

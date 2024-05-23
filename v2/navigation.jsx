@@ -8,10 +8,12 @@ import { BreakageFormScreen } from './screens/breakage-form-screen'
 import { TrackersScreen } from './screens/trackers-screen'
 import { NonTrackersScreen } from './screens/non-trackers-screen'
 import { ConsentManagedScreen } from './screens/consent-managed-screen'
+import { ToggleReportScreen } from './screens/toggle-report-screen'
 
 const availableScreens = {
     primary: { kind: 'root', component: <PrimaryScreen /> },
     breakage: { kind: 'subview', component: <BreakageFormScreen /> },
+    toggleReport: { kind: 'subview', component: <ToggleReportScreen /> },
     connection: { kind: 'subview', component: <ConnectionScreen /> },
     trackers: { kind: 'subview', component: <TrackersScreen /> },
     nonTrackers: { kind: 'subview', component: <NonTrackersScreen /> },

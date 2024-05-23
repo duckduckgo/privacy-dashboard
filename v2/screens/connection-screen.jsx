@@ -28,7 +28,7 @@ export function ConnectionScreen() {
                         role="button"
                         aria-label="Back"
                         onClick={() => pop()}
-                        className="top-nav__back js-sliding-subview-close js-site-done link-action link-action--dark"
+                        className="top-nav__back link-action link-action--dark"
                     >
                         <span data-icon-text="Back" className="icon icon__back-arrow"></span>
                     </a>
