@@ -1,9 +1,49 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
 import { useNav } from '../navigation'
+import { ns } from '../../shared/js/ui/base/localize'
+import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
+import { DomNode } from '../dom-node'
+import { useState } from 'preact/hooks'
+
+const categories = [
+    { category: ns.report('blocked.title'), value: 'blocked' },
+    { category: ns.report('layout.title'), value: 'layout' },
+    { category: ns.report('emptySpaces.title'), value: 'empty-spaces' },
+    { category: ns.report('paywall.title'), value: 'paywall' },
+    { category: ns.report('videos.title'), value: 'videos' },
+    { category: ns.report('comments.title'), value: 'comments' },
+    { category: ns.report('login.title'), value: 'login' },
+    { category: ns.report('shopping.title'), value: 'shopping' },
+    { category: ns.report('other.title'), value: 'other' },
+]
 
 export function BreakageFormScreen() {
     const { pop } = useNav()
+    const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
+
+    const icon = largeHeroIcon({
+        status: 'breakage-form',
+    })
+
+    let bullet = '\u000A • '
+    let placeholder = ns.report('tellUsMoreDesc.title', { bullet })
+    /**
+     * Currently using the visibility of the toggle to determine which title
+     * to use. This might be too simplistic and need updating later.
+     */
+    const includeToggle = false
+    let headerText = includeToggle ? ns.report('selectTheOptionDesc.title') : ns.report('selectTheOptionDescV2.title')
+
+    // todo(v2): handle form submission
+    function submit(e) {
+        e.preventDefault()
+        const values = Object.fromEntries(new FormData(e.target))
+        console.log(values)
+        setState('sent')
+        throw new Error('handle form submission')
+    }
+
     return (
         <div className="breakage-form">
             <div>
@@ -20,84 +60,44 @@ export function BreakageFormScreen() {
                 </div>
                 <div className="top-nav__spacer"></div>
             </div>
-            <div data-state="idle" className="breakage-form__inner js-breakage-form-element">
-                <div className="header header--breakage">
-                    <div data-testid="breakage-form-protection-header">
-                        <div className="card-list--bordered">
-                            <div className="protection-toggle">
-                                <div className="protection-toggle__row">
-                                    <div className="site-info-toggle is-active">
-                                        <p className="site-info__protection">
-                                            <span role="textbox">
-                                                Protections are <b>ON</b> for this site
-                                            </span>
-                                        </p>
-                                        <div className="site-info__toggle-container">
-                                            <button
-                                                className="toggle-button"
-                                                type="button"
-                                                role="switch"
-                                                aria-checked="true"
-                                                aria-label="Disable Protections"
-                                            >
-                                                <div className="toggle-button__track"></div>
-                                                <div className="toggle-button__handle"></div>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="protection-toggle__row protection-toggle__row--alt">
-                                    Turning protections OFF might help.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className="breakage-form__inner" data-state={state}>
+                {/* todo(v2): insert protection header here */}
                 <div className="key-insight key-insight--breakage padding-x-double">
-                    <div className="large-icon-container hero-icon--breakage-form"></div>
+                    {/* @ts-ignore */}
+                    <DomNode>{icon}</DomNode>
                     <div className="breakage-form__advise">
-                        <p className="token-title-3">Submitting an anonymous broken site report helps us improve the app.</p>
+                        <p className="token-title-3">{headerText}</p>
                     </div>
                     <div className="thanks">
-                        <p className="thanks__primary">Thank you!</p>
-                        <p className="thanks__secondary">
-                            Your report will help improve our products and make the experience better for other people.
-                        </p>
+                        <p className="thanks__primary">{ns.report('thankYou.title')}</p>
+                        <p className="thanks__secondary">{ns.report('yourReportWillHelpDesc.title')}</p>
                     </div>
                 </div>
                 <div className="breakage-form__content padding-x-double">
-                    <div className="breakage-form__element">
+                    <form className="breakage-form__element" onSubmit={submit}>
                         <div className="form__group">
                             <div className="form__select breakage-form__input--dropdown">
-                                <select className="js-breakage-form-dropdown">
-                                    <option value="">Describe what happened</option>
-                                    <option value="blocked">Site blocked or didn't load</option>
-                                    <option value="layout">Site layout broken</option>
-                                    <option value="empty-spaces">Site contains large empty spaces</option>
-                                    <option value="paywall">Site asked me to disable ad blocker</option>
-                                    <option value="videos">Video didn’t play or load</option>
-                                    <option value="comments">Comments, reviews, or chats didn’t load</option>
-                                    <option value="login">Can’t sign in/register</option>
-                                    <option value="shopping">Can't pay, check out, or shop</option>
-                                    <option value="other">Something else</option>
+                                <select className="js-breakage-form-dropdown" name="category">
+                                    <option value="">{ns.report('pickYourIssueFromTheList.title')}</option>$
+                                    {categories.map(function (item) {
+                                        return <option value={item.value}>{item.category}</option>
+                                    })}
                                 </select>
                             </div>
                             <textarea
-                                placeholder="Share more details (optional):
- • What happened?
- • What should have happened?
- • Did turning protections off help?"
-                                maxLength={250}
                                 className="form__textarea js-breakage-form-description"
+                                placeholder={placeholder}
+                                maxLength={2500}
+                                name="description"
                             ></textarea>
-                            <button role="button" className="form__submit token-label-em js-breakage-form-submit">
-                                Send Report
+                            <button className="form__submit token-label-em js-breakage-form-submit" type="submit">
+                                {ns.report('sendReport.title')}
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div className="breakage-form__footer padding-x-double token-breakage-form-body">
-                    Reports sent to DuckDuckGo only include info required to help us address your feedback.
+                    {ns.report('reportsAreAnonymousDesc.title')}
                 </div>
             </div>
         </div>
