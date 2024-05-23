@@ -20,9 +20,6 @@ import { httpsMessages } from '../../../data/constants'
 export function MainNavView(ops) {
     this.model = ops.model
     this.store = ops.store
-    this.template = template
-    this.features = createPlatformFeatures(platform)
-    this.cleanups = []
     this.nav = {
         connection: () => {
             this.model.send('navigate', { target: 'connection' })
@@ -40,6 +37,9 @@ export function MainNavView(ops) {
             this.model.send('navigate', { target: 'cookieHidden' })
         },
     }
+    this.template = () => template(this.model, this.nav)
+    this.features = createPlatformFeatures(platform)
+    this.cleanups = []
     Parent.call(this, ops)
     // @ts-ignore
     this._setup()
@@ -106,19 +106,17 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
 })
 
 /**
- * @this {MainNavView}
+ * @param {import('../models/site.js').PublicSiteModel} model
  * @returns {HTMLElement}
  */
-function template() {
-    /** @type {import('../models/site.js').PublicSiteModel} */
-    const model = this.model
-    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged
+export function template(model, nav) {
+    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
     return html`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
-            <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
-            <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
-            <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
+            <li class="main-nav__row">${renderConnection(model, nav.connection)}</li>
+            <li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>
+            <li class="main-nav__row">${renderThirdPartyNew(model, nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
         </ul>
     `
