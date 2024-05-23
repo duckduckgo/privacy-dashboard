@@ -29,7 +29,7 @@ export function MainNav() {
                         push('consentManaged')
                     },
                     cookieHidden: () => {
-                        console.log('navigate', { target: 'cookieHidden' })
+                        push('cookieHidden')
                     },
                 })}
             </DomNode>
