@@ -111,6 +111,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             if (event.data?.target === 'cookieHidden') {
                 this._showPageConsent(true)
             }
+            // todo(v2): fire button support
             if (event.data?.target === 'fireButton') {
                 this._showFireModal()
             }

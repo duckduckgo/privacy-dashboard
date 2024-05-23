@@ -35,10 +35,17 @@ export function createPlatformFeatures(platform) {
         includeToggleOnBreakageForm = false
     }
 
+    /** @type {'dashboard' | 'menu'} */
+    let opener = 'menu'
+    if (url.searchParams.get('opener') === 'dashboard') {
+        opener = 'dashboard'
+    }
+
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
+        opener,
         supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
         includeToggleOnBreakageForm,
     })
@@ -54,6 +61,7 @@ export class PlatformFeatures {
      * @param {boolean} params.spinnerFollowingProtectionsToggle
      * @param {boolean} params.supportsHover
      * @param {InitialScreen} params.initialScreen
+     * @param {'dashboard' | 'menu'} params.opener
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
      */
@@ -78,6 +86,11 @@ export class PlatformFeatures {
          * @type {InitialScreen}
          */
         this.initialScreen = params.initialScreen
+        /**
+         * Does the current platform support hover interactions?
+         * @type {'dashboard' | 'menu'}
+         */
+        this.opener = params.opener
         /**
          * Should the toggle functionality be included on the breakage form?
          * @type {boolean}

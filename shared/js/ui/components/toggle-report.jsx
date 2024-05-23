@@ -112,7 +112,7 @@ export function toggleReportTemplate() {
     `
     this.roots.set(root, true)
     render(
-        <ToggleReportProvider model={this.model}>
+        <ToggleReportProvider model={this.model} screen={'toggleReport'}>
             <ToggleReport />
         </ToggleReportProvider>,
         root

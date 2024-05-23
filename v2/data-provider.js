@@ -226,7 +226,7 @@ export function useChannel() {
 /**
  * @return {null | DataChannelPublicData}
  */
-export function useInternalData() {
+function useInternalData() {
     const [state, setState] = useState(null)
     useEffect(() => {
         const handler = (evt) => {
@@ -258,8 +258,10 @@ export function useData() {
 }
 
 export function useFetcher() {
+    /** @type {(msg: import("../shared/js/browser/common.js").Msg) => Promise<any>} */
     const fetcher = async (msg) => {
         try {
+            console.log('📤 [outgoing useFetcher]', msg)
             return comms.fetch(msg)
         } catch (error) {
             console.error('Error:', error)
