@@ -160,7 +160,7 @@ export function Navigation(props) {
         goto: (stack) => dispatch({ type: 'goto', stack, opts: { animate: props.animate } }),
     }
 
-    console.group('Navigation Render state')
+    console.groupCollapsed('Navigation Render state')
     console.log(' - state: ', state.state)
     console.log(' - stack: ', state.stack)
     console.log(' - commit: ', state.commit)
@@ -185,11 +185,7 @@ export function Navigation(props) {
                     const commiting = state.commit.includes(name)
                     if (!inStack && !commiting) return null
                     if (item.kind === 'root') {
-                        return (
-                            <section id="site-info-container" key={name}>
-                                {item.component}
-                            </section>
-                        )
+                        return <section key={name}>{item.component}</section>
                     }
                     const translateValue = state.stack.includes(name)
                         ? state.stack.indexOf(name)

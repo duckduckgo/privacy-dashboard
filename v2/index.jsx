@@ -2,6 +2,7 @@
 import { h, render } from 'preact'
 import { App } from './app'
 import { SettingsProvider } from './settings'
+import { DataProvider } from './data-provider'
 
 window.onunhandledrejection = (event) => {
     console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`)
@@ -12,7 +13,9 @@ async function init() {
     if (!app) throw new Error('unreachable')
     render(
         <SettingsProvider>
-            <App />
+            <DataProvider>
+                <App />
+            </DataProvider>
         </SettingsProvider>,
         app
     )
