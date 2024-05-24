@@ -64,6 +64,7 @@ export function BreakageFormScreen({ includeToggle }) {
         const msg = new CloseMessage({ eventOrigin: { screen: data.features.initialScreen } })
         fetcher(msg).catch(console.error)
     }
+    // todo(v2): ios+android top nav tweaks (back button + done)
     let topNav = <TopNav back={<Back onClick={pop} />} />
     if (data.features.initialScreen === 'breakageForm') {
         topNav = <TopNav done={<Done onClick={done} />} />
