@@ -3,11 +3,22 @@ import { h } from 'preact'
 import { MainNav } from '../components/main-nav'
 import { KeyInsights } from '../components/key-insights'
 import { ProtectionHeader } from '../components/protection-header'
+import { SearchBar } from '../components/search-bar'
+import { EmailBar, EmailProvider } from '../components/email'
+import { platformSwitch } from '../../shared/js/ui/environment-check'
 
 export function PrimaryScreen() {
-    // const c = useChannel()
+    const email = platformSwitch({
+        browser: () => (
+            <EmailProvider>
+                <EmailBar />
+            </EmailProvider>
+        ),
+        default: () => null,
+    })
     return (
         <div className="site-info page">
+            <SearchBar />
             <div className="page-inner">
                 <header className="header">
                     <ProtectionHeader />
@@ -20,7 +31,7 @@ export function PrimaryScreen() {
                     <MainNav />
                 </div>
                 <footer className="footer">
-                    <div className="padding-x"></div>
+                    <div className="padding-x">{email}</div>
                 </footer>
             </div>
         </div>

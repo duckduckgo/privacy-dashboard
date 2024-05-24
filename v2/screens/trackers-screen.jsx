@@ -25,11 +25,13 @@ export function TrackersScreen() {
                     return <DomNode key={String(data.count) + String(index)}>{el}</DomNode>
                 })}
             </div>
-            {data.tab.platformLimitations && (
+            {data.tab.platformLimitations ? (
                 <div class="padding-x-double">
                     {/* @ts-ignore */}
                     <DomNode key={data.count}>{platformLimitations()}</DomNode>
                 </div>
+            ) : (
+                <div />
             )}
         </div>
     )

@@ -219,6 +219,7 @@ export function mockBrowserApis() {
         openOptions: {},
         setBurnDefaultOption: {},
         doBurn: {},
+        refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
     }
     try {
         if (!window.chrome) {

@@ -9,7 +9,6 @@ import { CloseMessage, SubmitBrokenSiteReportMessage } from '../../shared/js/bro
 import { ToggleAllowList, useData, useFetcher } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
 import { Back, Done, TopNav } from '../components/top-nav'
-import { platformSwitch } from '../../shared/js/ui/environment-check'
 
 const categories = [
     { category: ns.report('blocked.title'), value: 'blocked' },
@@ -65,21 +64,16 @@ export function BreakageFormScreen({ includeToggle }) {
         const msg = new CloseMessage({ eventOrigin: { screen: data.features.initialScreen } })
         fetcher(msg).catch(console.error)
     }
-
-    let topNav = platformSwitch({
-        macos: () => {
-            if (data.features.initialScreen === 'breakageForm') {
-                return <TopNav done={<Done onClick={done} />} />
-            }
-            if (data.features.initialScreen === 'toggleReport') {
-                return <TopNav done={<Done onClick={done} />} />
-            }
-            if (data.features.initialScreen === 'promptBreakageForm') {
-                return <TopNav done={<Done onClick={done} />} />
-            }
-            return <TopNav back={<Back onClick={pop} />} />
-        },
-    })
+    let topNav = <TopNav back={<Back onClick={pop} />} />
+    if (data.features.initialScreen === 'breakageForm') {
+        topNav = <TopNav done={<Done onClick={done} />} />
+    }
+    if (data.features.initialScreen === 'toggleReport') {
+        topNav = <TopNav done={<Done onClick={done} />} />
+    }
+    if (data.features.initialScreen === 'promptBreakageForm') {
+        topNav = <TopNav done={<Done onClick={done} />} />
+    }
 
     return (
         <div className="breakage-form">

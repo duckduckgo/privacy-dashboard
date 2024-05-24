@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
+import { h, Fragment } from 'preact'
 import { useNav } from '../navigation'
 import { heroTemplate, largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { renderCertificateDetails, renderConnectionDescription } from '../../shared/js/ui/templates/page-connection'
@@ -20,14 +20,19 @@ export function ConnectionScreen() {
         summary,
         suffix: 'none',
     })
+
     return (
         <div className="site-info card" data-page="connection">
             <TopNav back={<Back onClick={() => pop()} />} done={null} />
             <div className="padding-x-double">
                 {/* @ts-ignore */}
                 <DomNode key={data.count}>{hero}</DomNode>
-                {/* @ts-ignore */}
-                <DomNode key={data.count}>{renderCertificateDetails(data, data.tab)}</DomNode>
+                {data.tab.certificate && (
+                    <>
+                        {/* @ts-ignore */}
+                        <DomNode key={data.count}>{renderCertificateDetails(data, data.tab)}</DomNode>
+                    </>
+                )}
             </div>
         </div>
     )

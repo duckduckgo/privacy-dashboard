@@ -22,9 +22,7 @@ import { SetListsMessage } from '../shared/js/browser/common'
  * @property {any[] | null | undefined} permissions
  * @property {import('../shared/js/browser/utils/request-details.mjs').TabData} tab
  * @property {number} count
- *
- *
- * @property {import('../schema/__generated__/schema.types').EmailProtectionUserData} [emailProtectionUserData]
+ * @property {import('../schema/__generated__/schema.types').EmailProtectionUserData|null} emailProtectionUserData
  * @property {{ enabled: boolean }} [fireButton]
  */
 
@@ -45,8 +43,8 @@ class DataChannel extends EventTarget {
     permissions = null
     /** @type {import('../shared/js/browser/utils/request-details.mjs').TabData | null} */
     tab = null
-    /** @type {any} */
-    emailProtectionUserData = {}
+    /** @type {import('../schema/__generated__/schema.types').EmailProtectionUserData | null} */
+    emailProtectionUserData = null
     count = 0
 
     _timeout = /** @type {any} */ (null)
@@ -91,7 +89,9 @@ class DataChannel extends EventTarget {
             console.debug('Site model: no tab')
         }
 
-        this.emailProtectionUserData = emailProtectionUserData
+        if (emailProtectionUserData) {
+            this.emailProtectionUserData = emailProtectionUserData
+        }
         this.fireButton = fireButton
         this.featureSettings = new FeatureSettings({})
 
@@ -187,17 +187,8 @@ class DataChannel extends EventTarget {
             permissions: this.permissions,
             tab: this.tab,
             count: this.count,
+            emailProtectionUserData: this.emailProtectionUserData,
         }
-    }
-
-    /**
-     * @param {import('../schema/__generated__/schema.types.js').EventOrigin} eventOrigin
-     * @param eventOrigin
-     */
-    toggleAllowlist(eventOrigin) {
-        console.warn('todo: implement toggleAllowlist')
-        // todo(v2): wire up toggle allow list
-        debugger
     }
 }
 
