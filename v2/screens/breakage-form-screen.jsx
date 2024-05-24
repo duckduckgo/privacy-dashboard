@@ -5,9 +5,11 @@ import { ns } from '../../shared/js/ui/base/localize'
 import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { DomNode } from '../dom-node'
 import { useState } from 'preact/hooks'
-import { SubmitBrokenSiteReportMessage } from '../../shared/js/browser/common'
+import { CloseMessage, SubmitBrokenSiteReportMessage } from '../../shared/js/browser/common'
 import { ToggleAllowList, useData, useFetcher } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
+import { Back, Done, TopNav } from '../components/top-nav'
+import { platformSwitch } from '../../shared/js/ui/environment-check'
 
 const categories = [
     { category: ns.report('blocked.title'), value: 'blocked' },
@@ -59,23 +61,29 @@ export function BreakageFormScreen({ includeToggle }) {
         fetcher(msg).catch(console.error)
     }
 
-    // todo(v2): top nav
+    function done() {
+        const msg = new CloseMessage({ eventOrigin: { screen: data.features.initialScreen } })
+        fetcher(msg).catch(console.error)
+    }
+
+    let topNav = platformSwitch({
+        macos: () => {
+            if (data.features.initialScreen === 'breakageForm') {
+                return <TopNav done={<Done onClick={done} />} />
+            }
+            if (data.features.initialScreen === 'toggleReport') {
+                return <TopNav done={<Done onClick={done} />} />
+            }
+            if (data.features.initialScreen === 'promptBreakageForm') {
+                return <TopNav done={<Done onClick={done} />} />
+            }
+            return <TopNav back={<Back onClick={pop} />} />
+        },
+    })
+
     return (
         <div className="breakage-form">
-            <div>
-                <div className="top-nav">
-                    <a
-                        href="javascript:void(0)"
-                        onClick={() => pop()}
-                        role="button"
-                        aria-label="Back"
-                        className="top-nav__back link-action link-action--dark"
-                    >
-                        <span data-icon-text="Back" className="icon icon__back-arrow"></span>
-                    </a>
-                </div>
-                <div className="top-nav__spacer"></div>
-            </div>
+            {topNav}
             <div className="breakage-form__inner" data-state={state}>
                 {includeToggle && (
                     <div class="header header--breakage">

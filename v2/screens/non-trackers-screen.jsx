@@ -6,6 +6,7 @@ import { useNav } from '../navigation'
 import { heroFromTabNonTrackers } from '../../shared/js/ui/templates/shared/hero'
 import { platformLimitations } from '../../shared/js/ui/templates/shared/platform-limitations'
 import { sectionsFromSiteNonTracker } from '../../shared/js/ui/templates/page-non-trackers'
+import { Back, TopNav } from '../components/top-nav'
 
 export function NonTrackersScreen() {
     // const c = useChannel()
@@ -13,20 +14,7 @@ export function NonTrackersScreen() {
     const { pop } = useNav()
     return (
         <div className="site-info card page-inner" data-page="non-trackers">
-            <div>
-                <div className="top-nav">
-                    <a
-                        href="javascript:void(0)"
-                        onClick={() => pop()}
-                        role="button"
-                        aria-label="Back"
-                        className="top-nav__back link-action link-action--dark"
-                    >
-                        <span data-icon-text="Back" className="icon icon__back-arrow"></span>
-                    </a>
-                </div>
-                <div className="top-nav__spacer"></div>
-            </div>
+            <TopNav back={<Back onClick={() => pop()} />} />
             <div className="padding-x-double">
                 {/* @ts-ignore */}
                 <DomNode key={data.count}>{heroFromTabNonTrackers(data.tab.requestDetails, data.protectionsEnabled)}</DomNode>

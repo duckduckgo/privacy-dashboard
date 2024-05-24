@@ -5,6 +5,7 @@ import { heroTemplate, largeHeroIcon } from '../../shared/js/ui/templates/shared
 import { renderCertificateDetails, renderConnectionDescription } from '../../shared/js/ui/templates/page-connection'
 import { useData } from '../data-provider'
 import { DomNode } from '../dom-node'
+import { Back, TopNav } from '../components/top-nav'
 
 export function ConnectionScreen() {
     const { pop } = useNav()
@@ -21,20 +22,7 @@ export function ConnectionScreen() {
     })
     return (
         <div className="site-info card" data-page="connection">
-            <div>
-                <div className="top-nav">
-                    <a
-                        href="javascript:void(0)"
-                        role="button"
-                        aria-label="Back"
-                        onClick={() => pop()}
-                        className="top-nav__back link-action link-action--dark"
-                    >
-                        <span data-icon-text="Back" className="icon icon__back-arrow"></span>
-                    </a>
-                </div>
-                <div className="top-nav__spacer"></div>
-            </div>
+            <TopNav back={<Back onClick={() => pop()} />} done={null} />
             <div className="padding-x-double">
                 {/* @ts-ignore */}
                 <DomNode key={data.count}>{hero}</DomNode>
