@@ -15,7 +15,7 @@ interface Window {
     onChangeAllowedPermissions: any
     onChangeUpgradedHttps: any
     onChangeProtectionStatus: (protections: import('./shared/js/browser/utils/protections.mjs').Protections) => void
-    onChangePhishingStatus: any
+    onChangePhishingStatus?: any
     onChangeCertificateData: any
     onIsPendingUpdates: any
 

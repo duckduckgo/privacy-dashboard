@@ -83,6 +83,10 @@ export const localeSettingsSchema = z.object({
     locale: z.string()
 });
 
+export const phishingStatusSchema = z.object({
+    phishingStatus: z.boolean()
+});
+
 export const parentEntitySchema = z.object({
     displayName: z.string(),
     prevalence: z.number()
@@ -185,9 +189,9 @@ export const tabSchema = z.object({
     id: z.number().optional(),
     url: z.string(),
     upgradedHttps: z.boolean(),
-    phishing: z.boolean(),
     protections: protectionsStatusSchema,
     localeSettings: localeSettingsSchema.optional(),
+    phishingStatus: phishingStatusSchema.optional(),
     parentEntity: parentEntitySchema.optional(),
     specialDomainName: z.string().optional()
 });
@@ -232,7 +236,6 @@ export const windowsViewModelSchema = z.object({
     rawRequestData: requestDataSchema,
     tabUrl: z.string(),
     upgradedHttps: z.boolean(),
-    phishing: z.boolean().optional(),
     parentEntity: parentEntitySchema.optional(),
     permissions: z.array(z.unknown()).optional(),
     certificates: z.array(z.unknown()).optional(),

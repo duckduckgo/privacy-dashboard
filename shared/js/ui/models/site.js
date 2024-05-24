@@ -136,9 +136,10 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         /** @type {PublicSiteModel['httpsState']} */
         let nextState = (() => {
+            console.log('THIS', this)
             console.log('STATE', this.features.supportsPhishingWarning, this.tab)
             if (this.features.supportsPhishingWarning) {
-                if (this.tab.phishing) {
+                if (this.tab.phishingStatus) {
                     return 'phishing'
                 }
             }

@@ -19,6 +19,7 @@ import invariant from 'tiny-invariant'
 import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
+    phishingStatusSchema,
     protectionsStatusSchema,
     requestDataSchema,
     toggleReportScreenSchema,
@@ -58,10 +59,12 @@ let certificateData
 let upgradedHttps
 /** @type {import("./utils/protections.mjs").Protections | undefined} */
 let protections
-let phishing
 let isPendingUpdates
 let parentEntity
 const cookiePromptManagementStatus = {}
+
+/** @type {boolean | undefined} */
+let phishingStatus
 
 /** @type {string | undefined} */
 let locale
@@ -70,6 +73,7 @@ const combineSources = () => ({
     tab: Object.assign(
         {},
         trackerBlockingData || {},
+        { phishingStatus: phishingStatus ?? false },
         {
             isPendingUpdates,
             parentEntity,
@@ -87,7 +91,8 @@ const resolveInitialRender = function () {
     const isIsProtectedSet = typeof protections !== 'undefined'
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object'
     const isLocaleSet = typeof locale === 'string'
-    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    const isPhishingSet = typeof phishingStatus === 'boolean'
+    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isPhishingSet) {
         return
     }
     getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()))
@@ -121,7 +126,7 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
         console.log(requestData.error)
         return
     }
-    trackerBlockingData = createTabData(tabUrl, upgradedHttps, phishing, protections, requestData.data)
+    trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data)
     resolveInitialRender()
 }
 
@@ -172,6 +177,28 @@ export function onChangeLocale(payload) {
     }
     locale = parsed.data.locale
     channel?.send('updateTabData')
+}
+
+/**
+ * {@inheritDoc common.onChangePhishingStatus}
+ * @type {import("./common.js").onChangePhishingStatus}
+ * @group macOS -> JavaScript Interface
+ * @example
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangePhishingStatus(\(phishingStatusJsonString))", in: webView)
+ * ```
+ */
+export function onChangePhishingStatus(payload) {
+    const parsed = phishingStatusSchema.safeParse(payload)
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangePhishingStatus')
+        console.error(parsed.error)
+        return
+    }
+    phishingStatus = parsed.data.phishingStatus
+    resolveInitialRender()
 }
 
 /**
@@ -499,11 +526,7 @@ export function setupShared() {
         if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
         resolveInitialRender()
     }
-    window.onChangePhishingStatus = function (data) {
-        phishing = data
-        if (trackerBlockingData) trackerBlockingData.phishing = phishing
-        resolveInitialRender()
-    }
+    window.onChangePhishingStatus = onChangePhishingStatus
     window.onChangeProtectionStatus = onChangeProtectionStatus
     window.onChangeLocale = onChangeLocale
     window.onChangeCertificateData = function (data) {

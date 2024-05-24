@@ -187,7 +187,7 @@ describe('RequestDetails', () => {
 describe('createTabData', () => {
     it('creates a TabData object', () => {
         const url = 'https://www.example.com/'
-        const tabData = createTabData(url, true, true, new Protections(false, [], false, false), { requests: [] })
+        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] })
         const expected = {
             certificate: undefined,
             cookiePromptManagementStatus: undefined,
@@ -259,7 +259,7 @@ describe('createTabData', () => {
 
     it('removes port from the site domain', () => {
         const url = 'https://www.example.com:8080/'
-        const tabData = createTabData(url, true, false, new Protections(false, [], false, false), { requests: [] })
+        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] })
         equal(tabData.domain, 'example.com')
     })
 })

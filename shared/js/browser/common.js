@@ -126,6 +126,21 @@ export function assert(condition, message = '') {
 export function onChangeLocale(payload) {}
 
 /**
+ * Sets the phishing status for a page. This is a required call.
+ *
+ * Example Payload: see {@link "Generated Schema Definitions".PhishingStatus}
+ *
+ * ```json
+ * {
+ *    "phishingStatus": true
+ * }
+ * ```
+ *
+ * @param {import('../../../schema/__generated__/schema.types').PhishingStatus} payload
+ */
+export function onChangePhishingStatus(payload) {}
+
+/**
  * Sets the Feature Settings
  *
  * Example Payload: see {@link "Generated Schema Definitions".RemoteFeatureSettings}

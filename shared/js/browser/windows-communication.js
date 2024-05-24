@@ -55,7 +55,6 @@ let trackerBlockingData
 let permissionsData
 let certificateData
 let upgradedHttps
-const phishing = false
 let protections
 let isPendingUpdates
 let parentEntity
@@ -106,7 +105,7 @@ function handleViewModelUpdate(viewModel) {
     certificateData = viewModel.certificates || []
     protections = viewModel.protections
 
-    trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, phishing, viewModel.protections, viewModel.rawRequestData)
+    trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData)
     trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus
 
     if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps

@@ -169,6 +169,8 @@ function renderConnection(model, cb) {
     let isSecure = model.httpsState === 'secure'
     let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
 
+    console.log('STATE', model.httpsState)
+
     if (isSecure || isUpgraded) {
         icon = 'icon-small--secure'
     }

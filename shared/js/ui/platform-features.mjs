@@ -40,7 +40,7 @@ export function createPlatformFeatures(platform) {
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
         supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
-        supportsPhishingWarning: platform.name === 'macos',
+        supportsPhishingWarning: platform.name === 'macos', // TODO: Add a version number?
         includeToggleOnBreakageForm,
     })
 }

@@ -41,7 +41,6 @@ export async function mockDataProvider(params) {
     window.onChangeParentEntity(state.parentEntity)
     window.onChangeProtectionStatus(state.protections)
     window.onChangeUpgradedHttps(state.upgradedHttps)
-    window.onChangePhishingStatus(state.phishing)
     window.onChangeCertificateData({
         secCertificateViewModels: state.certificate,
     })
@@ -50,6 +49,7 @@ export async function mockDataProvider(params) {
     }
     window.onChangeLocale?.(state.localeSettings)
     window.onChangeRequestData(state.url, { requests: state.requests || [] })
+    window.onChangePhishingStatus?.(state.phishing)
 }
 
 export function windowsMockApis() {

@@ -132,11 +132,11 @@
         "note": "Shown as the button text when the connection is using an invalid certificate."
     },
     "phishingWebsite": {
-        "title": "Site May Be Harmful",
+        "title": "This website may be malicious",
         "note": "Shown as the button text when the URL is reported as a phishing website."
     },
     "phishingWebsiteDesc": {
-        "title": "This website has been reported to be harmful",
+        "title": "This website has been reported as deceptive",
         "note": "Shown as the description text when the URL is reported as a phishing website."
     },
     "trackerNetworksDesc": {
