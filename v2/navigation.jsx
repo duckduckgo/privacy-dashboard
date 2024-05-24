@@ -12,7 +12,8 @@ import { ToggleReportScreen } from './screens/toggle-report-screen'
 
 const availableScreens = {
     primary: { kind: 'root', component: <PrimaryScreen /> },
-    breakage: { kind: 'subview', component: <BreakageFormScreen /> },
+    breakage: { kind: 'subview', component: <BreakageFormScreen includeToggle={true} /> },
+    promptBreakageForm: { kind: 'subview', component: <BreakageFormScreen includeToggle={false} /> },
     toggleReport: { kind: 'subview', component: <ToggleReportScreen /> },
     connection: { kind: 'subview', component: <ConnectionScreen /> },
     trackers: { kind: 'subview', component: <TrackersScreen /> },

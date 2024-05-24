@@ -14,7 +14,7 @@ export function App() {
             return ['breakage']
         }
         if (data.features.initialScreen === 'promptBreakageForm') {
-            return ['breakage']
+            return ['promptBreakageForm']
         }
         if (data.features.initialScreen === 'toggleReport') {
             return ['toggleReport']

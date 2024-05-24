@@ -6,7 +6,8 @@ import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { DomNode } from '../dom-node'
 import { useState } from 'preact/hooks'
 import { SubmitBrokenSiteReportMessage } from '../../shared/js/browser/common'
-import { useFetcher } from '../data-provider'
+import { ToggleAllowList, useData, useFetcher } from '../data-provider'
+import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
 
 const categories = [
     { category: ns.report('blocked.title'), value: 'blocked' },
@@ -20,8 +21,13 @@ const categories = [
     { category: ns.report('other.title'), value: 'other' },
 ]
 
-export function BreakageFormScreen() {
+/**
+ * @param {object} props
+ * @param {object} props.includeToggle
+ */
+export function BreakageFormScreen({ includeToggle }) {
     const { pop } = useNav()
+    const data = useData()
     const fetcher = useFetcher()
     const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
 
@@ -35,7 +41,6 @@ export function BreakageFormScreen() {
      * Currently using the visibility of the toggle to determine which title
      * to use. This might be too simplistic and need updating later.
      */
-    const includeToggle = false
     let headerText = includeToggle ? ns.report('selectTheOptionDesc.title') : ns.report('selectTheOptionDescV2.title')
 
     function submit(e) {
@@ -49,6 +54,12 @@ export function BreakageFormScreen() {
         fetcher(msg).catch(console.error)
     }
 
+    function toggle() {
+        const msg = new ToggleAllowList().intoMessage(data, { screen: data.features.initialScreen })
+        fetcher(msg).catch(console.error)
+    }
+
+    // todo(v2): top nav
     return (
         <div className="breakage-form">
             <div>
@@ -66,7 +77,11 @@ export function BreakageFormScreen() {
                 <div className="top-nav__spacer"></div>
             </div>
             <div className="breakage-form__inner" data-state={state}>
-                {/* todo(v2): insert protection header here */}
+                {includeToggle && (
+                    <div class="header header--breakage">
+                        <ProtectionHeader model={data} initialState={'site-not-working'} toggle={toggle} />
+                    </div>
+                )}
                 <div className="key-insight key-insight--breakage padding-x-double">
                     {/* @ts-ignore */}
                     <DomNode>{icon}</DomNode>
