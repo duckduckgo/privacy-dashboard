@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'preact/hooks'
 import { i18n } from '../shared/js/ui/base/localize'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../shared/js/ui/platform-features.mjs'
+import { SetListsMessage } from '../shared/js/browser/common'
 
 /**
  * @typedef {Object} DataChannelPublicData
@@ -195,7 +196,42 @@ class DataChannel extends EventTarget {
      */
     toggleAllowlist(eventOrigin) {
         console.warn('todo: implement toggleAllowlist')
+        // todo(v2): wire up toggle allow list
         debugger
+    }
+}
+
+export class ToggleAllowList {
+    /**
+     * @param {DataChannelPublicData} data
+     * @param {import('../schema/__generated__/schema.types.js').EventOrigin} eventOrigin
+     * @return {import('../shared/js/browser/common.js').Msg}
+     */
+    intoMessage(data, eventOrigin) {
+        /** @type {SetListsMessage["lists"]} */
+        const lists = []
+        if (data.tab && data.tab.domain) {
+            if (data.isBroken) {
+                lists.push({
+                    list: 'denylisted',
+                    domain: data.tab.domain,
+                    value: !data.isDenylisted,
+                })
+            } else {
+                // Explicitly remove all denylisting if the site is isn't broken. This covers the case when the site has been removed from the list.
+                lists.push({
+                    list: 'denylisted',
+                    domain: data.tab.domain,
+                    value: false,
+                })
+                lists.push({
+                    list: 'allowlisted',
+                    domain: data.tab.domain,
+                    value: !data.isAllowlisted,
+                })
+            }
+        }
+        return new SetListsMessage({ lists, eventOrigin: eventOrigin })
     }
 }
 

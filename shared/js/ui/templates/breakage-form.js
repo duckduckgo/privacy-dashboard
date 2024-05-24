@@ -98,11 +98,15 @@ function wrap(model, view) {
         protectionsEnabled: model.protectionsEnabled,
         isAllowlisted: model.isAllowlisted,
         isDenylisted: model.isDenylisted,
-        platformFeatures: model.features,
+        features: model.features,
         isBroken: model.isBroken,
-        toggleAllowlist: () => /** @type {any} */ (model).toggleAllowlist({ screen: 'breakageForm' }),
+    }
+
+    const toggle = () => {
+        // @ts-ignore
+        model.toggleAllowlist({ screen: 'breakageForm' })
     }
     view.roots.set(root, true)
-    render(<ProtectionHeader model={migrationModel} initialState={'site-not-working'} />, root)
+    render(<ProtectionHeader model={migrationModel} initialState={'site-not-working'} toggle={toggle} />, root)
     return root
 }
