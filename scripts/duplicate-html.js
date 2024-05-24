@@ -8,14 +8,20 @@ const env = z
         BUILD_OUTPUT: z.string(),
     })
     .parse(process.env)
-const base = join(CWD, env.BUILD_OUTPUT, 'html/popup.html')
-const html = readFileSync(base, 'utf8')
-const platforms = ['ios', 'macos', 'browser', 'android', 'windows']
 
-for (const platform of platforms) {
-    const relative = join(env.BUILD_OUTPUT, 'html', platform + '.html')
-    const outFile = join(CWD, relative)
-    const outContent = html.replace('environment--example', 'environment--' + platform)
-    writeFileSync(outFile, outContent)
-    console.log(`✅ [html] [${platform}] ${relative}`)
+function run(src, named) {
+    const base = join(CWD, env.BUILD_OUTPUT, src)
+    const html = readFileSync(base, 'utf8')
+    const platforms = ['ios', 'macos', 'browser', 'android', 'windows']
+
+    for (const platform of platforms) {
+        const relative = join(env.BUILD_OUTPUT, 'html', named(platform))
+        const outFile = join(CWD, relative)
+        const outContent = html.replace('environment--example', 'environment--' + platform)
+        writeFileSync(outFile, outContent)
+        console.log(`✅ [html] [${platform}] ${relative}`)
+    }
 }
+
+run('html/popup.html', (platform) => platform + '.html')
+run('html/v2.html', (platform) => platform + '.v2.html')

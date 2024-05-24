@@ -38,8 +38,6 @@ async function init() {
         v2: {
             input: join(BASE, 'v2/index.jsx'),
             output: join(BASE, env.BUILD_OUTPUT, 'v2/index.js'),
-            html: join(BASE, 'v2/index.html'),
-            htmlOutput: join(BASE, env.BUILD_OUTPUT, 'html/v2.html'),
         },
         polyfills: {
             input: join(BASE, 'shared/js/polyfill.js'),
