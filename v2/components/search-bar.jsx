@@ -3,7 +3,7 @@ import { h } from 'preact'
 import { useData, useFetcher } from '../data-provider'
 import { ns } from '../../shared/js/ui/base/localize'
 import { useState } from 'preact/hooks'
-import { OpenOptionsMessage } from '../../shared/js/browser/common'
+import { OpenOptionsMessage, SearchMessage } from '../../shared/js/browser/common'
 
 export function SearchBar() {
     const data = useData()
@@ -17,6 +17,15 @@ export function SearchBar() {
     function openFire() {
         // todo(v2): open fire
     }
+    function doSearch(e) {
+        e.preventDefault()
+        const values = Object.fromEntries(new FormData(e.target))
+        if (!values.q || !(typeof values.q === 'string')) {
+            return console.warn('missing value')
+        }
+        const msg = new SearchMessage({ term: values.q })
+        fetcher(msg).catch(console.error)
+    }
     const fireButton = showFireButton ? (
         <button type="button" class="fire-button" onClick={openFire}>
             <FireIcon />
@@ -26,7 +35,7 @@ export function SearchBar() {
     return (
         <section id="search-form-container">
             <div className="search token-search-input">
-                <form className="search-form" name="x" data-test-id="search-form" data-focussed={focussed}>
+                <form className="search-form" name="x" data-test-id="search-form" data-focussed={focussed} onSubmit={doSearch}>
                     <input
                         type="text"
                         autoComplete="off"
