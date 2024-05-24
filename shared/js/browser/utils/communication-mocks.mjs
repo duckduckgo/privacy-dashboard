@@ -219,6 +219,7 @@ export function mockBrowserApis() {
         openOptions: {},
         setBurnDefaultOption: {},
         doBurn: {},
+        getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
     }
     try {

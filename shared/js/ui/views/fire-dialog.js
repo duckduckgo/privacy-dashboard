@@ -101,7 +101,7 @@ function template() {
  * @param {import('../../../../schema/__generated__/schema.types.js').FireOption} selectedOption
  * @returns {null|HTMLElement}
  */
-function fireSummaryTemplate(selectedOption) {
+export function fireSummaryTemplate(selectedOption) {
     const { descriptionStats } = selectedOption
     let template = 'firebutton:summary'
     if (descriptionStats.clearHistory && descriptionStats.openTabs) {

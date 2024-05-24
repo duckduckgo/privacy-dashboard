@@ -4,18 +4,20 @@ import { useData, useFetcher } from '../data-provider'
 import { ns } from '../../shared/js/ui/base/localize'
 import { useState } from 'preact/hooks'
 import { OpenOptionsMessage, SearchMessage } from '../../shared/js/browser/common'
+import { FireProvider } from './fire-dialog'
 
 export function SearchBar() {
     const data = useData()
     const fetcher = useFetcher()
     const showFireButton = data.fireButton?.enabled === true
     const [focussed, setFocussed] = useState(false)
+    const [fireDialogOpen, setFireDialogOpen] = useState(false)
     function openSettings() {
         const msg = new OpenOptionsMessage()
         fetcher(msg).catch(console.error)
     }
     function openFire() {
-        // todo(v2): open fire
+        setFireDialogOpen(true)
     }
     function doSearch(e) {
         e.preventDefault()
@@ -53,6 +55,7 @@ export function SearchBar() {
                     </button>
                 </form>
                 {fireButton}
+                {fireDialogOpen ? <FireProvider onCancel={() => setFireDialogOpen(false)} /> : null}
                 <button type="button" className="cog-button" aria-label={ns.site('optionsButton.title')} onClick={openSettings}>
                     <CogIcon />
                 </button>

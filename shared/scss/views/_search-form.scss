@@ -89,7 +89,8 @@ $dark-mode-white-hover: rgba(255, 255, 255, 0.2);
         color: white;
     }
 
-    [data-focussed='true'] & {
+    [data-focussed='true'] &,
+    &.go--focused {
         background-color: $color--blue-20;
         color: white;
         &:hover,

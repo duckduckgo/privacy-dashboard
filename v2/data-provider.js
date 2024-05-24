@@ -174,6 +174,7 @@ class DataChannel extends EventTarget {
         if (!this.tab) throw new Error('unreachable')
         if (!this.featureSettings) throw new Error('unreachable')
         return {
+            fireButton: this.fireButton,
             protectionsEnabled: this.protectionsEnabled,
             httpsState: this.httpsState,
             isBroken: this.isBroken,
