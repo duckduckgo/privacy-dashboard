@@ -72,6 +72,7 @@ function navReducer(state, event) {
             }
             return state
         }
+        case 'initial':
         case 'settled': {
             switch (event.type) {
                 case 'goto': {
@@ -141,7 +142,7 @@ function navReducer(state, event) {
  *   | {type: 'goto', stack: ScreenName[], opts: ActionOpts}
  *   | {type: 'end'}
  * } NavEvent
- * @typedef {{commit: string[], stack: string[], state: 'settled' | 'transitioning'}} NavState
+ * @typedef {{commit: string[], stack: string[], state: 'initial' | 'settled' | 'transitioning'}} NavState
  */
 
 /**
@@ -152,7 +153,7 @@ function navReducer(state, event) {
 export function Navigation(props) {
     const [state, dispatch] = useReducer(navReducer, {
         stack: props.stack,
-        state: 'settled',
+        state: 'initial',
         commit: [],
     })
 
@@ -160,7 +161,6 @@ export function Navigation(props) {
     const parentRef = useRef(null)
 
     // let the reducer know when an animation completes
-    // todo(v2): store nav in history state
     useEffect(() => {
         const curr = parentRef.current
         if (!curr) return
@@ -170,6 +170,25 @@ export function Navigation(props) {
         curr.addEventListener('transitionend', handler)
         return () => {
             curr.removeEventListener('transitionend', handler)
+        }
+    }, [state.state])
+
+    useEffect(() => {
+        if (state.state !== 'settled') {
+            return console.log('ignoring state `%s`', state.state)
+        }
+        const url = new URL(window.location.href)
+        url.searchParams.delete('stack')
+        for (let string of state.stack) {
+            url.searchParams.append('stack', string)
+        }
+        window.history.pushState({}, '', url)
+        function handler() {
+            dispatch({ type: 'pop', opts: { animate: true } })
+        }
+        window.addEventListener('popstate', handler)
+        return () => {
+            window.removeEventListener('popstate', handler)
         }
     }, [state.state])
 
