@@ -164,7 +164,8 @@ export function Navigation(props) {
     useEffect(() => {
         const curr = parentRef.current
         if (!curr) return
-        const handler = () => {
+        const handler = (e) => {
+            if (e.target !== parentRef.current) return
             dispatch({ type: 'end' })
         }
         curr.addEventListener('transitionend', handler)
@@ -174,8 +175,9 @@ export function Navigation(props) {
     }, [state.state])
 
     useEffect(() => {
+        // only act on navigations when settled
         if (state.state !== 'settled') {
-            return console.log('ignoring state `%s`', state.state)
+            return
         }
         const url = new URL(window.location.href)
         url.searchParams.delete('stack')
