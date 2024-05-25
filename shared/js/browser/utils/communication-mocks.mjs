@@ -49,6 +49,16 @@ export async function mockDataProvider(params) {
     }
     window.onChangeLocale?.(state.localeSettings)
     window.onChangeRequestData(state.url, { requests: state.requests || [] })
+    // let count = 0
+    // setInterval(() => {
+    //     count += 1
+    //     const even = count % 2 === 0
+    //     if (even) {
+    //         window.onChangeRequestData(state.url, { requests: [] })
+    //     } else {
+    //         window.onChangeRequestData(state.url, { requests: state.requests || [] })
+    //     }
+    // }, 5000)
 }
 
 export function windowsMockApis() {

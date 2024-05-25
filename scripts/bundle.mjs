@@ -25,10 +25,6 @@ console.log({ env, IS_PROD })
  */
 async function init() {
     const manifest = {
-        base: {
-            input: join(BASE, 'shared/js/ui/base/index.js'),
-            output: join(BASE, env.BUILD_OUTPUT, 'public/js/base.js'),
-        },
         debugger: {
             input: join(BASE, 'debugger/debugger.jsx'),
             output: join(BASE, env.BUILD_OUTPUT, 'debugger/debugger.js'),
@@ -44,33 +40,6 @@ async function init() {
             output: join(BASE, env.BUILD_OUTPUT, 'public/js/polyfills.js'),
         },
     }
-    await esbuild.build({
-        entryPoints: [manifest.base.input],
-        bundle: true,
-        target: ['es2021'],
-        outfile: manifest.base.output,
-        sourcemap: debug ? 'linked' : undefined,
-        dropLabels: IS_PROD ? ['$TEST', '$DEBUG'] : [],
-        loader: {
-            '.js': 'jsx',
-        },
-        plugins: [
-            {
-                name: 'require-globify-shim',
-                setup(build) {
-                    build.onResolve({ filter: /locales\/\*\/\*.json/ }, (args) => {
-                        return { path: args.path, namespace: 'require-globify-shim' }
-                    })
-                    build.onLoad({ filter: /.*/, namespace: 'require-globify-shim' }, () => {
-                        return {
-                            contents: JSON.stringify(buildLocaleMap()),
-                            loader: 'json',
-                        }
-                    })
-                },
-            },
-        ],
-    })
 
     await esbuild.build({
         entryPoints: [manifest.polyfills.input],

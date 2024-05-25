@@ -57,7 +57,3 @@ export function Done({ textLabel = ns.site('navigationComplete.title'), onClick 
         </a>
     )
 }
-
-export function Close({ onClick }) {
-    return <Done textLabel={ns.site('navigationClose.title')} onClick={onClick} />
-}

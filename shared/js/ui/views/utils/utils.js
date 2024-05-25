@@ -3,6 +3,7 @@ import { MDCRipple } from '@material/ripple'
 const seen = new WeakSet()
 const seenSwitch = new WeakSet()
 
+// todo(v2): android
 export function setupMaterialDesignRipple(parent, ...selectors) {
     const cleanups = []
     selectors.forEach((selector) => {

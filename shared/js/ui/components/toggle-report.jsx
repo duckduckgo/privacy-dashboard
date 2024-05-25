@@ -1,7 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h, render } from 'preact'
-import html from 'nanohtml'
-import { topNav } from '../templates/shared/top-nav'
+import { h } from 'preact'
 import { ns } from '../base/localize'
 import { PlainTextLink } from './text-link'
 import { Button, ButtonBar } from './button'
@@ -9,7 +7,7 @@ import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
 import { useContext } from 'preact/hooks'
 import { useIosAnimation } from './toggle-report/use-ios-animation'
-import { ToggleReportContext, ToggleReportProvider } from './toggle-report/toggle-report-provider'
+import { ToggleReportContext } from './toggle-report/toggle-report-provider'
 import { useToggleReportState } from './toggle-report/use-toggle-report-state'
 import { ToggleReportDataList } from './toggle-report/toggle-report-data-list'
 import { ToggleReportSent } from './toggle-report/toggle-report-sent'
@@ -90,32 +88,4 @@ export function ToggleReport() {
             </Stack>
         </ToggleReportWrapper>
     )
-}
-
-/**
- * @this {{
- *     mainModel: import('../models/site.js').PublicSiteModel,
- *     model: import('../models/breakage-form').BreakageFormModel & { opener: string, fetch: (arg: import("../../browser/common").Msg) => Promise<unknown> | void },
- *     roots: Map<HTMLElement, boolean>,
- *     immediate: boolean,
- *     fetch: any,
- * }}
- */
-export function toggleReportTemplate() {
-    const root = html`<div data-testid="toggle-report"></div>`
-    const template = html`
-        <section class="sliding-subview">
-            <div data-toggle-report="parent" class="toggle-report" data-opener=${this.model.opener} style="min-height: 286px">
-                ${topNav({ view: 'secondary', immediate: this.immediate })} ${root}
-            </div>
-        </section>
-    `
-    this.roots.set(root, true)
-    render(
-        <ToggleReportProvider model={this.model} screen={'toggleReport'}>
-            <ToggleReport />
-        </ToggleReportProvider>,
-        root
-    )
-    return template
 }

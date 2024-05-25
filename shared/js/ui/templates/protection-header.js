@@ -1,6 +1,5 @@
-import html from 'nanohtml'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { render, h, Fragment, createContext } from 'preact'
+import { h, Fragment, createContext } from 'preact'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useState } from 'preact/hooks'
 import { i18n, ns } from '../base/localize'
@@ -15,32 +14,6 @@ import { ProtectionToggle } from '../components/toggle'
  * @property {boolean} protectionsEnabled
  * @property {import("../platform-features.mjs").PlatformFeatures} features
  */
-
-/**
- * A wrapper around the preact render
- * @param {import('../models/site.js').PublicSiteModel} model
- * @returns {HTMLElement}
- */
-export function protectionHeader(model) {
-    const root = html`<div data-testid="protectionHeader"></div>`
-    const migrationModel = {
-        protectionsEnabled: model.protectionsEnabled,
-        isAllowlisted: model.isAllowlisted,
-        isDenylisted: model.isDenylisted,
-        features: model.features,
-        isBroken: model.isBroken,
-    }
-    const toggle = () => {
-        return /** @type {any} */ (model).toggleAllowlist({ screen: 'primaryScreen' })
-    }
-    render(
-        <ProtectionHeader model={migrationModel} toggle={toggle}>
-            <ProtectionHeaderText />
-        </ProtectionHeader>,
-        root
-    )
-    return root
-}
 
 /**
  * @typedef {'form-trigger' | 'site-not-working' | 'help-trigger' } UIState

@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h, createContext } from 'preact'
 import comms, { platform } from '../shared/js/browser/communication.js'
-import { useCallback, useContext, useEffect, useState } from 'preact/hooks'
+import { useCallback, useEffect, useState } from 'preact/hooks'
 import { i18n } from '../shared/js/ui/base/localize'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../shared/js/ui/platform-features.mjs'
@@ -246,10 +246,6 @@ export function DataProvider({ children }) {
     const d = useInternalData()
     if (!d || d.count === 0) return null
     return <ChannelContext.Provider value={{ channel: dc }}>{children}</ChannelContext.Provider>
-}
-
-export function useChannel() {
-    return useContext(ChannelContext).channel
 }
 
 /**

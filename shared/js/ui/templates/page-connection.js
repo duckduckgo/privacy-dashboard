@@ -1,37 +1,5 @@
 import html from 'nanohtml'
 import { i18n } from '../base/localize.js'
-import { heroTemplate, largeHeroIcon } from './shared/hero.js'
-import { topNav } from './shared/top-nav'
-
-/**
- * @this {{
- *  model: {
- *      tab: import("../../browser/utils/request-details.mjs").TabData,
- *      site: import('../models/site.js').PublicSiteModel
- *   }
- * }}
- */
-export default function () {
-    if (!this.model) {
-        return html`<section class="sliding-subview"></section>`
-    }
-
-    const summary = renderConnectionDescription(this.model.site, this.model.tab)
-    const icon = largeHeroIcon({
-        status: `connection-${this.model.site.httpsState}`,
-    })
-
-    const hero = heroTemplate({
-        icon,
-        summary,
-        suffix: 'none',
-    })
-
-    return html` <div class="site-info card" data-page="connection">
-        ${topNav({ view: 'secondary' })}
-        <div class="padding-x-double">${hero} ${renderCertificateDetails(this.model.site, this.model.tab)}</div>
-    </div>`
-}
 
 function getKeyUsage(key) {
     const capabilities = {

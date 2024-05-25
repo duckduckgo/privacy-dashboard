@@ -109,23 +109,6 @@ export function desktopBreakageForm(dashboardFactory) {
 /**
  * @param {(page: import("@playwright/test").Page) => Promise<import("../DashboardPage").DashboardPage>} dashboardFactory
  */
-export function mobileBreakageForm(dashboardFactory) {
-    test('should ', async ({ page }) => {
-        const dash = await dashboardFactory(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.showsAlternativeLayout()
-        await dash.clicksWebsiteNotWorking()
-
-        await dash.screenshot('breakage-form.png')
-        await dash.submitBreakageForm()
-        await dash.screenshot('breakage-form-message.png')
-    })
-}
-
-/**
- * @param {(page: import("@playwright/test").Page) => Promise<import("../DashboardPage").DashboardPage>} dashboardFactory
- */
 export function settingPermissions(dashboardFactory) {
     test('permissions toggles', async ({ page }) => {
         const dash = await dashboardFactory(page)

@@ -37,42 +37,28 @@
         "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
     },
     "devDependencies": {
-        "@formatjs/cli-lib": "^6.2.0",
-        "@formatjs/intl-datetimeformat": "^6.12.0",
-        "@formatjs/intl-getcanonicallocales": "^2.2.1",
-        "@formatjs/intl-locale": "^3.3.2",
-        "@formatjs/intl-numberformat": "^8.7.0",
-        "@formatjs/intl-pluralrules": "^5.2.4",
-        "@material/ripple": "^14.0.0",
-        "@material/switch": "^14.0.0",
         "@playwright/test": "^1.42.1",
         "@types/chrome": "^0.0.203",
         "@types/node": "18.16.16",
         "@typescript-eslint/eslint-plugin": "^6.7.4",
         "chokidar-cli": "^3.0.0",
-        "deep-freeze": "0.0.1",
         "duckduckgo-colors": "0.0.1",
         "esbuild": "^0.20.1",
         "eslint": "^8.41.0",
         "eslint-config-standard": "^17.1.0",
-        "eventemitter2": "4.1.0",
         "http-server": "^13.0.2",
         "i18next": "^21.6.14",
         "i18next-icu": "^2.0.3",
-        "is-plain-object": "5.0.0",
-        "jquery": "^3.7.1",
         "json-schema-to-typescript": "^11.0.2",
         "nanohtml": "^1.10.0",
         "normalize.scss": "0.1.0",
-        "preact": "^10.18.0",
         "prettier": "^2.7.1",
         "sass": "^1.32.4",
         "standard": "^17.1.0",
-        "tiny-invariant": "^1.3.1",
         "ts-to-zod": "^1.13.1",
-        "typedoc": "^0.25.8",
         "typescript": "^5.3.3",
-        "zod": "^3.22.4"
+        "@browsersync/bslive": "^0.0.9",
+        "typedoc": "^0.25.8"
     },
     "prettier": {
         "semi": false,
@@ -81,7 +67,17 @@
         "tabWidth": 4
     },
     "dependencies": {
-        "@browsersync/bslive": "^0.0.9",
-        "classnames": "^2.5.1"
+        "@formatjs/cli-lib": "^6.2.0",
+        "@formatjs/intl-datetimeformat": "^6.12.0",
+        "@formatjs/intl-getcanonicallocales": "^2.2.1",
+        "@formatjs/intl-locale": "^3.3.2",
+        "@formatjs/intl-numberformat": "^8.7.0",
+        "@formatjs/intl-pluralrules": "^5.2.4",
+        "@material/ripple": "^14.0.0",
+        "@material/switch": "^14.0.0",
+        "preact": "^10.18.0",
+        "classnames": "^2.5.1",
+        "tiny-invariant": "^1.3.1",
+        "zod": "^3.22.4"
     }
 }
