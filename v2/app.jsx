@@ -19,7 +19,10 @@ export function App() {
         if (data.features.initialScreen === 'toggleReport') {
             return ['toggleReport']
         }
-        return ['primary']
+        if (data.features.initialScreen === 'choiceBreakageReport') {
+            return ['choiceBreakageReport']
+        }
+        return ['primaryScreen']
     })()
     return <Navigation stack={stack} animate={!reducedMotion} />
 }

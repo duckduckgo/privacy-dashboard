@@ -8,7 +8,22 @@
         "screen": {
             "title": "ScreenKind",
             "type": "string",
-            "enum": ["primaryScreen", "breakageForm", "toggleReport", "promptBreakageForm"]
+            "enum": [
+                "primaryScreen",
+                "breakage",
+                "breakageForm",
+                "promptBreakageForm",
+                "toggleReport",
+                "choiceProblem",
+                "choiceCategory",
+                "choiceToggle",
+                "choiceBreakageReport",
+                "connection",
+                "trackers",
+                "nonTrackers",
+                "consentManaged",
+                "cookieHidden"
+            ]
         }
     }
 }

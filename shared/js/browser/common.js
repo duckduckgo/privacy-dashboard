@@ -312,11 +312,13 @@ export class SubmitBrokenSiteReportMessage extends Msg {
      * @param {object} params
      * @param {string} params.category
      * @param {string} params.description
+     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
      */
     constructor(params) {
         super()
         this.category = params.category
         this.description = params.description
+        this.eventOrigin = params.eventOrigin
     }
 }
 

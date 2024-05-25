@@ -13,7 +13,7 @@ import raw from 'nanohtml/raw'
  */
 export function heroTemplate(opts) {
     return html`
-        <div class="key-insight" data-suffix=${opts.suffix}>
+        <div class="key-insight" data-suffix=${opts.suffix} lol>
             ${opts.icon} ${opts.summary ? html`<p class="token-title-3">${raw(opts.summary)}</p>` : null}
             ${opts.suffix === 'about-link' ? aboutLink() : null} ${opts.children ? opts.children : null}
         </div>

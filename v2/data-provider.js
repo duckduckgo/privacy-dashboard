@@ -5,7 +5,8 @@ import { useCallback, useContext, useEffect, useState } from 'preact/hooks'
 import { i18n } from '../shared/js/ui/base/localize'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../shared/js/ui/platform-features.mjs'
-import { CloseMessage, SetListsMessage } from '../shared/js/browser/common'
+import { CloseMessage, SetListsMessage, SubmitBrokenSiteReportMessage } from '../shared/js/browser/common'
+import { useNav } from './navigation'
 
 /**
  * @typedef {Object} DataChannelPublicData
@@ -309,9 +310,35 @@ export function useFetcher() {
 
 export function useClose() {
     const fetcher = useFetcher()
-    const features = useFeatures()
+    const nav = useNav()
     return useCallback(() => {
-        const msg = new CloseMessage({ eventOrigin: { screen: features.initialScreen } })
+        const msg = new CloseMessage({ eventOrigin: { screen: nav.screen() } })
         fetcher(msg).catch(console.error)
-    }, [])
+    }, [nav])
+}
+
+export function useToggle() {
+    const fetcher = useFetcher()
+    const data = useData()
+    const nav = useNav()
+    return useCallback(() => {
+        const msg = new ToggleAllowList().intoMessage(data, { screen: nav.screen() })
+        fetcher(msg).catch(console.error)
+    }, [data, nav])
+}
+
+export function useSendReport() {
+    const fetcher = useFetcher()
+    const nav = useNav()
+    return useCallback(
+        ({ category, description }) => {
+            const msg = new SubmitBrokenSiteReportMessage({
+                category: category || '',
+                description: description || '',
+                eventOrigin: { screen: nav.screen() },
+            })
+            fetcher(msg).catch(console.error)
+        },
+        [nav]
+    )
 }

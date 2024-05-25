@@ -29,6 +29,9 @@
 }
 
 .breakage-form__element {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     opacity: 1;
     transition: all 0.2s ease-in-out;
 
@@ -57,9 +60,12 @@
 }
 
 .form__group {
-    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    //margin-bottom: 14px;
     .environment--windows & {
-        margin-bottom: 16px;
+        gap: 16px;
     }
 }
 
@@ -93,8 +99,7 @@
     height: 88px;
     display: block;
     box-sizing: border-box;
-    margin-bottom: var(--size-unit);
-    padding: var(--size-unit-half);
+    padding: var(--size-unit-half) var(--size-unit);
     border: 1px solid var(--color-lines-light);
     border-radius: 4px;
     font-size: 13px;

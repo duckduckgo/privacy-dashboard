@@ -19,6 +19,7 @@ BreakageFormModel.prototype = $.extend({}, Parent.prototype, {
                 new SubmitBrokenSiteReportMessage({
                     category,
                     description,
+                    eventOrigin: { screen: 'breakageForm' },
                 })
             )
         } catch (e) {

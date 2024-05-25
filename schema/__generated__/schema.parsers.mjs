@@ -11,7 +11,7 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
-export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("promptBreakageForm")]);
+export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakage"), z.literal("breakageForm"), z.literal("promptBreakageForm"), z.literal("toggleReport"), z.literal("choiceProblem"), z.literal("choiceCategory"), z.literal("choiceToggle"), z.literal("choiceBreakageReport"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
 
 export const wvVersionTitleSchema = z.literal("wvVersion");
 

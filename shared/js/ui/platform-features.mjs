@@ -30,6 +30,9 @@ export function createPlatformFeatures(platform) {
     if (url.searchParams.get('screen') === 'toggleReport') {
         screen = 'toggleReport'
     }
+    if (url.searchParams.get('screen') === 'choiceBreakageReport') {
+        screen = 'choiceBreakageReport'
+    }
     if (url.searchParams.get('screen') === 'promptBreakageForm') {
         screen = 'promptBreakageForm'
         includeToggleOnBreakageForm = false

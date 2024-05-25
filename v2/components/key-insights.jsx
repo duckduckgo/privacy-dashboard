@@ -13,3 +13,15 @@ export function KeyInsights() {
         </div>
     )
 }
+
+export function KeyInsightsMain({ title, children, icon = 'chat' }) {
+    return (
+        <div className="key-insight key-insight--main">
+            <div className={`key-insight__icon hero-icon--${icon}`}></div>
+            <h1 className="token-title-3-em">{title}</h1>
+            <div className="token-title-3">
+                <span>{children}</span>
+            </div>
+        </div>
+    )
+}

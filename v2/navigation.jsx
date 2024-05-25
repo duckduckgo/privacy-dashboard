@@ -9,9 +9,11 @@ import { TrackersScreen } from './screens/trackers-screen'
 import { NonTrackersScreen } from './screens/non-trackers-screen'
 import { ConsentManagedScreen } from './screens/consent-managed-screen'
 import { ToggleReportScreen } from './screens/toggle-report-screen'
+import { ChoiceBreakageReport, ChoiceCategoryScreen, ChoiceProblemScreen, ChoiceToggleScreen } from './screens/choice-problem'
 
+/** @type {Record<ScreenName, { kind: 'subview' | 'root', component: any}>} */
 const availableScreens = {
-    primary: { kind: 'root', component: <PrimaryScreen /> },
+    primaryScreen: { kind: 'root', component: <PrimaryScreen /> },
 
     // breakage form things
     breakage: { kind: 'subview', component: <BreakageFormScreen includeToggle={true} /> },
@@ -21,6 +23,12 @@ const availableScreens = {
     promptBreakageForm: { kind: 'subview', component: <BreakageFormScreen includeToggle={false} /> },
     toggleReport: { kind: 'subview', component: <ToggleReportScreen /> },
 
+    //
+    choiceProblem: { kind: 'subview', component: <ChoiceProblemScreen /> },
+    choiceCategory: { kind: 'subview', component: <ChoiceCategoryScreen /> },
+    choiceToggle: { kind: 'subview', component: <ChoiceToggleScreen /> },
+    choiceBreakageReport: { kind: 'subview', component: <ChoiceBreakageReport /> },
+
     connection: { kind: 'subview', component: <ConnectionScreen /> },
     trackers: { kind: 'subview', component: <TrackersScreen /> },
     nonTrackers: { kind: 'subview', component: <NonTrackersScreen /> },
@@ -29,7 +37,7 @@ const availableScreens = {
 }
 
 /**
- * @typedef {keyof typeof availableScreens} ScreenName
+ * @typedef {import('../schema/__generated__/schema.types').EventOrigin['screen']} ScreenName
  */
 
 const NavContext = createContext({
@@ -47,6 +55,10 @@ const NavContext = createContext({
     },
     /** @type {() => boolean} */
     canPop: () => false,
+    /** @type {() => ScreenName} */
+    screen: () => {
+        return /** @type {const} */ ('primaryScreen')
+    },
 })
 
 export function useNav() {
@@ -201,11 +213,17 @@ export function Navigation(props) {
         return state.stack.length > 1
     }, [state.state, state.stack, state.commit])
 
+    const screen = useCallback(() => {
+        const v = /** @type {ScreenName} */ (state.stack[state.stack.length - 1])
+        return v
+    }, [state.state, state.stack, state.commit])
+
     const api = {
         push: (name) => dispatch({ type: 'push', name, opts: { animate: props.animate } }),
         pop: () => dispatch({ type: 'pop', opts: { animate: props.animate } }),
         goto: (stack) => dispatch({ type: 'goto', stack, opts: { animate: props.animate } }),
         canPop: canPop,
+        screen: screen,
     }
 
     console.groupCollapsed('Navigation Render state')

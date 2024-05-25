@@ -8,6 +8,7 @@ import { protectionHeader } from './protection-header'
 export default function () {
     // here we'll show CTAs when the tab is disabled
     const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens)
+    // todo(v2): error screens
     if (this.model.tab.error) {
         const errorText = i18n.t('site:errorMessage.title')
         return html`
@@ -24,6 +25,7 @@ export default function () {
             </div>
         `
     }
+    // todo(v2): disabled screens when CTA
     if (this.model.disabled && supportsCtaScreens) {
         return html`
             <div class="site-info">
@@ -37,8 +39,11 @@ export default function () {
             </div>
         `
     }
+
+    // todo(v2): permissions
     const permissions = localizePermissions(this.model.permissions)
 
+    // todo(v2): permissions styling
     // prettier-ignore
     return html` <div class="site-info page">
         ${renderSearchWrapper(this.model)} ${topNav({ view: 'primary' })}
@@ -62,7 +67,7 @@ export default function () {
         ${permissions.length ? outer({ children: renderManagePermissions(this.model) }) : null}
     </div>`
 }
-
+// todo(v2): permissions outer
 function outer(props) {
     return html`<div class="page-outer">${props.children}</div>`
 }

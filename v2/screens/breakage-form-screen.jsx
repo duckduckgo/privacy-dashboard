@@ -4,8 +4,7 @@ import { ns } from '../../shared/js/ui/base/localize'
 import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { DomNode } from '../dom-node'
 import { useState } from 'preact/hooks'
-import { SubmitBrokenSiteReportMessage } from '../../shared/js/browser/common'
-import { ToggleAllowList, useClose, useData, useFeatures, useFetcher } from '../data-provider'
+import { useClose, useData, useSendReport, useToggle } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
 import { Done, SecondaryTopNav, TopNav } from '../components/top-nav'
 import { useNav } from '../navigation'
@@ -28,18 +27,17 @@ const categories = [
  */
 export function BreakageFormScreen({ includeToggle }) {
     const data = useData()
-    const features = useFeatures()
+    const onToggle = useToggle()
     const onClose = useClose()
-    const canPop = useNav().canPop()
-    const fetcher = useFetcher()
+    const nav = useNav()
+    const canPop = nav.canPop()
+    const sendReport = useSendReport()
     const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
 
     const icon = largeHeroIcon({
         status: 'breakage-form',
     })
 
-    let bullet = '\u000A • '
-    let placeholder = ns.report('tellUsMoreDesc.title', { bullet })
     /**
      * Currently using the visibility of the toggle to determine which title
      * to use. This might be too simplistic and need updating later.
@@ -49,17 +47,11 @@ export function BreakageFormScreen({ includeToggle }) {
     function submit(e) {
         e.preventDefault()
         const values = Object.fromEntries(new FormData(e.target))
-        const msg = new SubmitBrokenSiteReportMessage({
-            category: String(values.category) || '',
-            description: String(values.description) || '',
+        sendReport({
+            category: String(values.category || ''),
+            description: String(values.description || ''),
         })
         setState('sent')
-        fetcher(msg).catch(console.error)
-    }
-
-    function toggle() {
-        const msg = new ToggleAllowList().intoMessage(data, { screen: features.initialScreen })
-        fetcher(msg).catch(console.error)
     }
 
     let topNav = <SecondaryTopNav />
@@ -75,7 +67,7 @@ export function BreakageFormScreen({ includeToggle }) {
             <div className="breakage-form__inner" data-state={state}>
                 {includeToggle && (
                     <div class="header header--breakage">
-                        <ProtectionHeader model={data} initialState={'site-not-working'} toggle={toggle} />
+                        <ProtectionHeader model={data} initialState={'site-not-working'} toggle={onToggle} />
                     </div>
                 )}
                 <div className="key-insight key-insight--breakage padding-x-double">
@@ -90,8 +82,9 @@ export function BreakageFormScreen({ includeToggle }) {
                     </div>
                 </div>
                 <div className="breakage-form__content padding-x-double">
-                    <form className="breakage-form__element" onSubmit={submit}>
-                        <div className="form__group">
+                    <FormElement
+                        onSubmit={submit}
+                        before={
                             <div className="form__select breakage-form__input--dropdown">
                                 <select name="category">
                                     <option value="">{ns.report('pickYourIssueFromTheList.title')}</option>$
@@ -100,17 +93,40 @@ export function BreakageFormScreen({ includeToggle }) {
                                     })}
                                 </select>
                             </div>
-                            <textarea className="form__textarea" placeholder={placeholder} maxLength={2500} name="description"></textarea>
-                            <button className="form__submit token-label-em" type="submit">
-                                {ns.report('sendReport.title')}
-                            </button>
-                        </div>
-                    </form>
+                        }
+                    />
                 </div>
                 <div className="breakage-form__footer padding-x-double token-breakage-form-body">
                     {ns.report('reportsAreAnonymousDesc.title')}
                 </div>
             </div>
         </div>
+    )
+}
+
+/**
+ * Creates a form element.
+ *
+ * @param {Object} options - The options for the form element.
+ * @param {(args:any) => void} options.onSubmit - The submit event handler function for the form.
+ * @param {import("preact").ComponentChild} [options.before] - The content to display before the textarea.
+ * @param {import("preact").ComponentChild} [options.after] - The content to display before the textarea.
+ * @param {string} [options.placeholder] - The placeholder text in the textare
+ */
+export function FormElement({ onSubmit, before, after, placeholder }) {
+    let bullet = '\u000A • '
+    placeholder = placeholder || ns.report('tellUsMoreDesc.title', { bullet })
+
+    return (
+        <form className="breakage-form__element" onSubmit={onSubmit}>
+            <div className="form__group">
+                {before}
+                <textarea className="form__textarea" placeholder={placeholder} maxLength={2500} name="description"></textarea>
+                {after}
+            </div>
+            <button className="form__submit token-label-em" type="submit">
+                {ns.report('sendReport.title')}
+            </button>
+        </form>
     )
 }
