@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
-import { useNav } from '../navigation'
 import { ns } from '../../shared/js/ui/base/localize'
 import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { DomNode } from '../dom-node'
 import { useState } from 'preact/hooks'
-import { CloseMessage, SubmitBrokenSiteReportMessage } from '../../shared/js/browser/common'
-import { ToggleAllowList, useData, useFetcher } from '../data-provider'
+import { SubmitBrokenSiteReportMessage } from '../../shared/js/browser/common'
+import { ToggleAllowList, useClose, useData, useFeatures, useFetcher } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
-import { Back, Done, TopNav } from '../components/top-nav'
+import { Done, SecondaryTopNav, TopNav } from '../components/top-nav'
+import { useNav } from '../navigation'
 
 const categories = [
     { category: ns.report('blocked.title'), value: 'blocked' },
@@ -27,8 +27,10 @@ const categories = [
  * @param {object} props.includeToggle
  */
 export function BreakageFormScreen({ includeToggle }) {
-    const { pop } = useNav()
     const data = useData()
+    const features = useFeatures()
+    const onClose = useClose()
+    const canPop = useNav().canPop()
     const fetcher = useFetcher()
     const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
 
@@ -56,24 +58,15 @@ export function BreakageFormScreen({ includeToggle }) {
     }
 
     function toggle() {
-        const msg = new ToggleAllowList().intoMessage(data, { screen: data.features.initialScreen })
+        const msg = new ToggleAllowList().intoMessage(data, { screen: features.initialScreen })
         fetcher(msg).catch(console.error)
     }
 
-    function done() {
-        const msg = new CloseMessage({ eventOrigin: { screen: data.features.initialScreen } })
-        fetcher(msg).catch(console.error)
-    }
-    // todo(v2): ios+android top nav tweaks (back button + done)
-    let topNav = <TopNav back={<Back onClick={pop} />} />
-    if (data.features.initialScreen === 'breakageForm') {
-        topNav = <TopNav done={<Done onClick={done} />} />
-    }
-    if (data.features.initialScreen === 'toggleReport') {
-        topNav = <TopNav done={<Done onClick={done} />} />
-    }
-    if (data.features.initialScreen === 'promptBreakageForm') {
-        topNav = <TopNav done={<Done onClick={done} />} />
+    let topNav = <SecondaryTopNav />
+
+    // if we can't go back, swap out the nav
+    if (!canPop) {
+        topNav = <TopNav done={<Done onClick={onClose} />} />
     }
 
     return (

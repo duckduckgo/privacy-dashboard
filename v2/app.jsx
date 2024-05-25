@@ -11,7 +11,7 @@ export function App() {
     /** @type {import('./navigation').ScreenName[]} */
     const stack = (() => {
         if (data.features.initialScreen === 'breakageForm') {
-            return ['breakage']
+            return ['breakageForm']
         }
         if (data.features.initialScreen === 'promptBreakageForm') {
             return ['promptBreakageForm']

@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createContext, h } from 'preact'
 import cn from 'classnames'
-import { useContext, useEffect, useReducer, useRef } from 'preact/hooks'
+import { useCallback, useContext, useEffect, useReducer, useRef } from 'preact/hooks'
 import { ConnectionScreen } from './screens/connection-screen'
 import { PrimaryScreen } from './screens/primary-screen'
 import { BreakageFormScreen } from './screens/breakage-form-screen'
@@ -12,9 +12,15 @@ import { ToggleReportScreen } from './screens/toggle-report-screen'
 
 const availableScreens = {
     primary: { kind: 'root', component: <PrimaryScreen /> },
+
+    // breakage form things
     breakage: { kind: 'subview', component: <BreakageFormScreen includeToggle={true} /> },
+
+    // screens that would load immediately
+    breakageForm: { kind: 'subview', component: <BreakageFormScreen includeToggle={true} /> },
     promptBreakageForm: { kind: 'subview', component: <BreakageFormScreen includeToggle={false} /> },
     toggleReport: { kind: 'subview', component: <ToggleReportScreen /> },
+
     connection: { kind: 'subview', component: <ConnectionScreen /> },
     trackers: { kind: 'subview', component: <TrackersScreen /> },
     nonTrackers: { kind: 'subview', component: <NonTrackersScreen /> },
@@ -39,6 +45,8 @@ const NavContext = createContext({
     goto(stack) {
         throw new Error('not implemented ' + stack)
     },
+    /** @type {() => boolean} */
+    canPop: () => false,
 })
 
 export function useNav() {
@@ -152,6 +160,7 @@ export function Navigation(props) {
     const parentRef = useRef(null)
 
     // let the reducer know when an animation completes
+    // todo(v2): store nav in history state
     useEffect(() => {
         const curr = parentRef.current
         if (!curr) return
@@ -164,10 +173,18 @@ export function Navigation(props) {
         }
     }, [state.state])
 
+    const canPop = useCallback(() => {
+        if (state.state === 'transitioning') {
+            return state.commit.length > 1 || state.stack.length > 1
+        }
+        return state.stack.length > 1
+    }, [state.state, state.stack, state.commit])
+
     const api = {
         push: (name) => dispatch({ type: 'push', name, opts: { animate: props.animate } }),
         pop: () => dispatch({ type: 'pop', opts: { animate: props.animate } }),
         goto: (stack) => dispatch({ type: 'goto', stack, opts: { animate: props.animate } }),
+        canPop: canPop,
     }
 
     console.groupCollapsed('Navigation Render state')

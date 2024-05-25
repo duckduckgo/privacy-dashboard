@@ -4,38 +4,35 @@ import { MainNav } from '../components/main-nav'
 import { KeyInsights } from '../components/key-insights'
 import { ProtectionHeader } from '../components/protection-header'
 import { SearchBar } from '../components/search-bar'
-import { EmailBar, EmailProvider } from '../components/email'
-import { isAndroid, isIOS, platformSwitch } from '../../shared/js/ui/environment-check'
+import { isAndroid, isBrowser, isIOS } from '../../shared/js/ui/environment-check'
 import { Back, Done, TopNav } from '../components/top-nav'
-import { CloseMessage } from '../../shared/js/browser/common'
-import { useData, useFetcher } from '../data-provider'
+import { useClose } from '../data-provider'
+import { EmailBar, EmailProvider } from '../components/email'
 
 export function PrimaryScreen() {
-    const email = platformSwitch({
-        browser: () => (
-            <EmailProvider>
-                <EmailBar />
-            </EmailProvider>
-        ),
-        default: () => null,
-    })
     return (
-        <div className="site-info page">
+        <div class="site-info page">
             <SearchBar />
             <PrimaryScreenTopNav />
-            <div className="page-inner">
-                <header className="header">
+            <div class="page-inner">
+                <header class="header">
                     <ProtectionHeader />
                 </header>
-                <div className="header-spacer"></div>
-                <div className="padding-x-double">
+                <div class="header-spacer"></div>
+                <div class="padding-x-double">
                     <KeyInsights />
                 </div>
-                <div className="padding-x">
+                <div class="padding-x">
                     <MainNav />
                 </div>
-                <footer className="footer">
-                    <div className="padding-x">{email}</div>
+                <footer class="footer">
+                    <div class="padding-x">
+                        {isBrowser() && (
+                            <EmailProvider>
+                                <EmailBar />
+                            </EmailProvider>
+                        )}
+                    </div>
                 </footer>
             </div>
         </div>
@@ -43,13 +40,8 @@ export function PrimaryScreen() {
 }
 
 function PrimaryScreenTopNav() {
-    const data = useData()
-    const fetcher = useFetcher()
-    function goBack() {
-        const msg = new CloseMessage({ eventOrigin: { screen: data.features.initialScreen } })
-        fetcher(msg).catch(console.error)
-    }
-    if (isAndroid()) return <TopNav back={<Back onClick={goBack} />} />
-    if (isIOS()) return <TopNav done={<Done onClick={goBack} />} />
+    const onClose = useClose()
+    if (isAndroid()) return <TopNav back={<Back onClick={onClose} />} />
+    if (isIOS()) return <TopNav done={<Done onClick={onClose} />} />
     return null
 }

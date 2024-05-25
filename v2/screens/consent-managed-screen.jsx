@@ -1,16 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
-import { useNav } from '../navigation'
 import { DomNode } from '../dom-node'
 import { disableInSettingsLink } from '../../shared/js/ui/templates/shared/links'
 import { ns } from '../../shared/js/ui/base/localize'
 import { heroTemplate, largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { useData, useFetcher } from '../data-provider'
 import { OpenSettingsMessages } from '../../shared/js/browser/common'
-import { Back, TopNav } from '../components/top-nav'
+import { SecondaryTopNav } from '../components/top-nav'
 
 export function ConsentManagedScreen({ cosmetic }) {
-    const { pop } = useNav()
     const data = useData()
     const fetcher = useFetcher()
     const summary = cosmetic ? ns.site('cookiesHiddenSummary.title') : ns.site('cookiesMinimizedSummary.title')
@@ -33,7 +31,7 @@ export function ConsentManagedScreen({ cosmetic }) {
 
     return (
         <div className="card" data-page="cookie-prompt">
-            <TopNav back={<Back onClick={() => pop()} />} />
+            <SecondaryTopNav />
             <div className="padding-x-double">
                 {/* @ts-ignore */}
                 <DomNode key={data.count}>{hero}</DomNode>

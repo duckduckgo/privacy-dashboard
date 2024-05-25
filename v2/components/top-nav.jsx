@@ -1,6 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
 import { ns } from '../../shared/js/ui/base/localize'
+import { platformSwitch } from '../../shared/js/ui/environment-check'
+import { useNav } from '../navigation'
+import { useClose } from '../data-provider'
 
 /**
  * @param {object} props
@@ -14,9 +17,22 @@ export function TopNav({ back, done }) {
                 {back}
                 {done}
             </div>
-            <div className="top-nav__spacer"></div>
+            <div className="top-nav__spacer" />
         </div>
     )
+}
+
+export function SecondaryTopNav() {
+    const { pop } = useNav()
+    const onClose = useClose()
+    return platformSwitch({
+        ios: () => {
+            return <TopNav back={<Back onClick={pop} />} done={<Done onClick={onClose} />} />
+        },
+        default: () => {
+            return <TopNav back={<Back onClick={pop} />} done={null} />
+        },
+    })
 }
 
 export function Back({ onClick }) {

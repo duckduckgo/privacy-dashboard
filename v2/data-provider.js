@@ -1,11 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h, createContext } from 'preact'
 import comms, { platform } from '../shared/js/browser/communication.js'
-import { useContext, useEffect, useState } from 'preact/hooks'
+import { useCallback, useContext, useEffect, useState } from 'preact/hooks'
 import { i18n } from '../shared/js/ui/base/localize'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../shared/js/ui/platform-features.mjs'
-import { SetListsMessage } from '../shared/js/browser/common'
+import { CloseMessage, SetListsMessage } from '../shared/js/browser/common'
 
 /**
  * @typedef {Object} DataChannelPublicData
@@ -285,6 +285,14 @@ export function useData() {
     return state
 }
 
+/**
+ * Static access to `features` since it doesn't change
+ * @return {DataChannelPublicData['features']}
+ */
+export function useFeatures() {
+    return dc.lastValue().features
+}
+
 export function useFetcher() {
     /** @type {(msg: import("../shared/js/browser/common.js").Msg) => Promise<any>} */
     const fetcher = async (msg) => {
@@ -297,4 +305,13 @@ export function useFetcher() {
         }
     }
     return fetcher
+}
+
+export function useClose() {
+    const fetcher = useFetcher()
+    const features = useFeatures()
+    return useCallback(() => {
+        const msg = new CloseMessage({ eventOrigin: { screen: features.initialScreen } })
+        fetcher(msg).catch(console.error)
+    }, [])
 }

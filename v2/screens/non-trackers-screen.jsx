@@ -2,19 +2,17 @@
 import { h } from 'preact'
 import { DomNode } from '../dom-node'
 import { useData } from '../data-provider'
-import { useNav } from '../navigation'
 import { heroFromTabNonTrackers } from '../../shared/js/ui/templates/shared/hero'
 import { platformLimitations } from '../../shared/js/ui/templates/shared/platform-limitations'
 import { sectionsFromSiteNonTracker } from '../../shared/js/ui/templates/page-non-trackers'
-import { Back, TopNav } from '../components/top-nav'
+import { SecondaryTopNav } from '../components/top-nav'
 
 export function NonTrackersScreen() {
     // const c = useChannel()
     const data = useData()
-    const { pop } = useNav()
     return (
         <div className="site-info card page-inner" data-page="non-trackers">
-            <TopNav back={<Back onClick={() => pop()} />} />
+            <SecondaryTopNav />
             <div className="padding-x-double">
                 {/* @ts-ignore */}
                 <DomNode key={data.count}>{heroFromTabNonTrackers(data.tab.requestDetails, data.protectionsEnabled)}</DomNode>
