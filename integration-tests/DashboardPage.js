@@ -131,6 +131,34 @@ export class DashboardPage {
         )
     }
 
+    async hasPhishingIcon() {
+        const { page } = this
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/)
+    }
+
+    async hasPhishingHeadingText() {
+        const { page } = this
+        await expect(page.getByRole('heading', { name: 'privacy-test-pages.site' })).toBeVisible()
+    }
+
+    async hasPhishingWarningText() {
+        const { page } = this
+        await expect(page.locator('#popup-container')).toContainText(
+            'This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.'
+        )
+    }
+
+    async hasPhishingConnectionText() {
+        await expect(this.connectInfoLink()).toContainText('Site May Be Deceptive')
+    }
+
+    async showsPhishingWarningDetail() {
+        const { page } = this
+        await expect(page.locator('#key-insight')).toContainText(
+            'This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.'
+        )
+    }
+
     async showsTrackersScreen() {
         await this.page.locator('[data-page="trackers"]').waitFor({ timeout: 2000 })
     }

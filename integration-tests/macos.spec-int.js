@@ -34,6 +34,20 @@ test('invalid/missing certificate', async ({ page }) => {
     await dash.showsInvalidCertDetail()
 })
 
+test('phishing warning', async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.webkit(page, { platform: 'macos' })
+    await dash.addState([testDataStates['phishing']])
+    await dash.screenshot('phishing-warning.png')
+    await dash.hasPhishingIcon()
+    await dash.hasPhishingHeadingText()
+    await dash.hasPhishingWarningText()
+    await dash.hasPhishingConnectionText()
+    await dash.viewConnection()
+    await dash.screenshot('phishing-detail.png')
+    await dash.showsPhishingWarningDetail()
+})
+
 test.describe('opening breakage form', () => {
     test('shows breakage form only', async ({ page }) => {
         /** @type {DashboardPage} */

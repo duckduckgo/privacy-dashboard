@@ -136,8 +136,6 @@ Site.prototype = $.extend({}, Parent.prototype, {
 
         /** @type {PublicSiteModel['httpsState']} */
         let nextState = (() => {
-            console.log('THIS', this)
-            console.log('STATE', this.features.supportsPhishingWarning, this.tab)
             if (this.features.supportsPhishingWarning) {
                 if (this.tab.phishingStatus) {
                     return 'phishing'
@@ -207,6 +205,7 @@ Site.prototype = $.extend({}, Parent.prototype, {
             console.log('not updating because acceptingUpdates was false')
             return
         }
+
         this.setSiteProperties()
         this.setHttpsMessage()
 

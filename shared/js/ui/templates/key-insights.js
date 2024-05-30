@@ -166,10 +166,11 @@ export function renderKeyInsight() {
             `
         },
         phishing: () => {
+            const text = i18n.t('site:phishingWebsiteDesc.title', { domain: model.tab.domain })
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--insecure-connection"></div>
-                    ${title(model.tab.domain)} ${description(raw(i18n.t('site:phishingWebsiteDesc.title')))}
+                    <div class="key-insight__icon hero-icon--phishing"></div>
+                    ${title(model.tab.domain)} ${description(raw(text))}
                 </div>
             `
         },
