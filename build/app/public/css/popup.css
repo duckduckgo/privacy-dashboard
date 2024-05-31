@@ -637,6 +637,30 @@ body.environment--windows {
    done this way to prevent any heights changing, or any lines bleeding
    into the hover styles. I'm confident there's a better way, however :)
    */
+  /* TODO: Can be implemented with :has. See above. Sanity-check with Shane
+  [data-hover='0'] & {
+      &:nth-child(1) {
+          &:after {
+              background-color: var(--page-bg);
+          }
+      }
+  }
+  [data-hover='1'] & {
+      &:nth-child(1),
+      &:nth-child(2) {
+          &:after {
+              background-color: var(--page-bg);
+          }
+      }
+  }
+  [data-hover='2'] & {
+      &:nth-child(2),
+      &:nth-child(3) {
+          &:after {
+              background-color: var(--page-bg);
+          }
+      }
+  } */
 }
 .main-nav__row:after {
   content: " ";
@@ -648,13 +672,7 @@ body.environment--windows {
   bottom: -0.5px;
   left: 16px;
 }
-[data-hover="0"] .main-nav__row:nth-child(1):after {
-  background-color: var(--page-bg);
-}
-[data-hover="1"] .main-nav__row:nth-child(1):after, [data-hover="1"] .main-nav__row:nth-child(2):after {
-  background-color: var(--page-bg);
-}
-[data-hover="2"] .main-nav__row:nth-child(2):after, [data-hover="2"] .main-nav__row:nth-child(3):after {
+.main-nav__row:not(.main-nav__row--no-hover):hover:after, .main-nav__row:has(+ :not(.main-nav__row--no-hover):hover):after {
   background-color: var(--page-bg);
 }
 .main-nav__row:last-child {

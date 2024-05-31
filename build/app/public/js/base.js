@@ -24883,9 +24883,11 @@
     const model = this.model;
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged;
     const consentRow = import_nanohtml14.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
+    const renderConnectionAsText = this.model.httpsState === "phishing";
+    const connectionRow = renderConnectionAsText ? import_nanohtml14.default`<li class="main-nav__row main-nav__row--no-hover">${renderConnectionText(model)}</li>` : import_nanohtml14.default`<li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>`;
     return import_nanohtml14.default`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
-            <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
+            ${connectionRow}
             <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
             <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
@@ -24944,6 +24946,19 @@
         <span class="main-nav__chev"></span>
     </a>`;
   }
+  function renderConnectionText(model) {
+    let icon = "icon-small--insecure";
+    let text = i18n.t(httpsMessages[model.httpsState]);
+    let isSecure = model.httpsState === "secure";
+    let isUpgraded = model.httpsState === "upgraded" && /^https/.exec(model.tab.url);
+    if (isSecure || isUpgraded) {
+      icon = "icon-small--secure";
+    }
+    return import_nanohtml14.default`<div class="main-nav__item">
+        <span class="main-nav__icon ${icon}"></span>
+        <span class="main-nav__text">${text}</span>
+    </div>`;
+  }
   function renderTrackerNetworksNew(model, cb) {
     const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled);
     return import_nanohtml14.default` <a
@@ -24997,11 +25012,13 @@
         _setup: function() {
           this.bindEvents([
             // @ts-ignore
-            [this.store.subscribe, "change:site", this.rerender],
+            [this.store.subscribe, "change:site", this.rerender]
+            /* TODO: Sanity-check. See below
             // @ts-ignore
-            [this.$parent, "mouseover", this._mouseover],
+            [this.$parent, 'mouseover', this._mouseover],
             // @ts-ignore
-            [this.$parent, "mouseleave", this._mouseleave]
+            [this.$parent, 'mouseleave', this._mouseleave],
+            */
           ]);
           if (isAndroid()) {
             this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], ".link-action"));
@@ -25011,24 +25028,26 @@
          * @this {MainNavView}
          * @private
          */
-        _mouseover(e3) {
-          if (!this.features.supportsHover)
-            return;
-          const li = e3.target?.closest("li");
-          if (li) {
-            const links = this.$parent.find("li").index(li);
-            this.$parent[0].dataset.hover = links;
-          }
+        /* TODO: Can be implemented with :has. See above. Sanity-check with Shane
+        _mouseover(e) {
+            if (!this.features.supportsHover) return
+            const li = e.target?.closest('li')
+            if (li) {
+                // @ts-ignore
+                const links = this.$parent.find('li').index(li)
+                // @ts-ignore
+                this.$parent[0].dataset.hover = links
+            }
         },
         _mouseleave() {
-          if (!this.features.supportsHover)
-            return;
-          try {
-            delete this.$parent[0].dataset.hover;
-          } catch (e3) {
-            console.warn("cannot delete data-hover");
-          }
-        },
+            if (!this.features.supportsHover) return
+            try {
+                delete this.$parent[0].dataset.hover
+            } catch (e) {
+                console.warn('cannot delete data-hover')
+                // no-op
+            }
+        }, */
         cleanup() {
           for (const cleanup of this.cleanups) {
             cleanup();
