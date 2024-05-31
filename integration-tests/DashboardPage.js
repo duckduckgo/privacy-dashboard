@@ -148,15 +148,13 @@ export class DashboardPage {
         )
     }
 
-    async hasPhishingConnectionText() {
-        await expect(this.connectInfoLink()).toContainText('Site May Be Deceptive')
+    async hasPhishingStatusText() {
+        const { page } = this
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be Deceptive')
     }
 
-    async showsPhishingWarningDetail() {
-        const { page } = this
-        await expect(page.locator('#key-insight')).toContainText(
-            'This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.'
-        )
+    async connectionLinkDoesntShow() {
+        await expect(this.connectInfoLink()).not.toBeVisible()
     }
 
     async showsTrackersScreen() {

@@ -42,10 +42,8 @@ test('phishing warning', async ({ page }) => {
     await dash.hasPhishingIcon()
     await dash.hasPhishingHeadingText()
     await dash.hasPhishingWarningText()
-    await dash.hasPhishingConnectionText()
-    await dash.viewConnection()
-    await dash.screenshot('phishing-detail.png')
-    await dash.showsPhishingWarningDetail()
+    await dash.hasPhishingStatusText()
+    await dash.connectionLinkDoesntShow()
 })
 
 test.describe('opening breakage form', () => {
