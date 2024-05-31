@@ -55,10 +55,12 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
         this.bindEvents([
             // @ts-ignore
             [this.store.subscribe, 'change:site', this.rerender],
+            /* TODO: Sanity-check. See below
             // @ts-ignore
             [this.$parent, 'mouseover', this._mouseover],
             // @ts-ignore
             [this.$parent, 'mouseleave', this._mouseleave],
+            */
         ])
 
         if (isAndroid()) {
@@ -70,6 +72,8 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
      * @this {MainNavView}
      * @private
      */
+
+    /* TODO: Can be implemented with :has. See above. Sanity-check with Shane
     _mouseover(e) {
         if (!this.features.supportsHover) return
         const li = e.target?.closest('li')
@@ -88,7 +92,7 @@ MainNavView.prototype = $.extend({}, Parent.prototype, {
             console.warn('cannot delete data-hover')
             // no-op
         }
-    },
+    }, */
     cleanup() {
         for (const cleanup of this.cleanups) {
             cleanup()
@@ -114,9 +118,14 @@ function template() {
     const model = this.model
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
+    const renderConnectionAsText = this.model.httpsState === 'phishing'
+    const connectionRow = renderConnectionAsText
+        ? html`<li class="main-nav__row main-nav__row--no-hover">${renderConnectionText(model)}</li>`
+        : html`<li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>`
+
     return html`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
-            <li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>
+            ${connectionRow}
             <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
             <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
@@ -185,6 +194,26 @@ function renderConnection(model, cb) {
         <span class="main-nav__chev"></span>
     </a>`
 }
+
+/**
+ * @param {import('../models/site.js').PublicSiteModel} model
+ */
+function renderConnectionText(model) {
+    let icon = 'icon-small--insecure'
+    let text = i18n.t(httpsMessages[model.httpsState])
+    let isSecure = model.httpsState === 'secure'
+    let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+
+    if (isSecure || isUpgraded) {
+        icon = 'icon-small--secure'
+    }
+
+    return html`<div class="main-nav__item">
+        <span class="main-nav__icon ${icon}"></span>
+        <span class="main-nav__text">${text}</span>
+    </div>`
+}
+
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  */

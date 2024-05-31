@@ -20,11 +20,20 @@
         left: 16px;
     }
 
+    &:not(.main-nav__row--no-hover):hover,
+    &:has(+ :not(.main-nav__row--no-hover):hover) {
+        &:after {
+            background-color: var(--page-bg);
+        }
+    }
+
     /*
      The next 3 blocks are all about removing dividers on hover. It was
      done this way to prevent any heights changing, or any lines bleeding
      into the hover styles. I'm confident there's a better way, however :)
      */
+
+    /* TODO: Can be implemented with :has. See above. Sanity-check with Shane
     [data-hover='0'] & {
         &:nth-child(1) {
             &:after {
@@ -47,7 +56,8 @@
                 background-color: var(--page-bg);
             }
         }
-    }
+    } */
+
     &:last-child {
         &:after {
             display: none;
