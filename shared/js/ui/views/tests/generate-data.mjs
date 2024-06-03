@@ -404,6 +404,10 @@ export class MockData {
  */
 export const createDataStates = (google, cnn) => {
     return {
+        'rule-exception-only': new MockData({
+            url: 'https://example.com',
+            requests: [allowedTrackerRule, allowedThirdParty],
+        }),
         'alternative-layout-exp-1': new MockData({
             url: 'https://example.com',
             requests: cnn.requests,
