@@ -11927,7 +11927,6 @@
     };
     return {
       tab: {
-        // TODO: Confirm phishing value
         ...createTabData("unknown", false, protections4, { requests: [] }),
         error: parsedMessageData.error.message,
         search: {},
@@ -22454,7 +22453,6 @@
       return keyInsightsState.blocked;
     })();
     return {
-      // TODO: Add HTML render for phishing
       insecure: () => {
         return import_nanohtml10.default`
                 <div class="key-insight key-insight--main">
@@ -24884,7 +24882,7 @@
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged;
     const consentRow = import_nanohtml14.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
     const renderConnectionAsText = this.model.httpsState === "phishing";
-    const connectionRow = renderConnectionAsText ? import_nanohtml14.default`<li class="main-nav__row main-nav__row--no-hover">${renderConnectionText(model)}</li>` : import_nanohtml14.default`<li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>`;
+    const connectionRow = renderConnectionAsText ? import_nanohtml14.default`<li class="main-nav__row no-hover">${renderConnectionText(model)}</li>` : import_nanohtml14.default`<li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>`;
     return import_nanohtml14.default`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
             ${connectionRow}
@@ -25013,12 +25011,6 @@
           this.bindEvents([
             // @ts-ignore
             [this.store.subscribe, "change:site", this.rerender]
-            /* TODO: Sanity-check. See below
-            // @ts-ignore
-            [this.$parent, 'mouseover', this._mouseover],
-            // @ts-ignore
-            [this.$parent, 'mouseleave', this._mouseleave],
-            */
           ]);
           if (isAndroid()) {
             this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], ".link-action"));
@@ -25028,26 +25020,6 @@
          * @this {MainNavView}
          * @private
          */
-        /* TODO: Can be implemented with :has. See above. Sanity-check with Shane
-        _mouseover(e) {
-            if (!this.features.supportsHover) return
-            const li = e.target?.closest('li')
-            if (li) {
-                // @ts-ignore
-                const links = this.$parent.find('li').index(li)
-                // @ts-ignore
-                this.$parent[0].dataset.hover = links
-            }
-        },
-        _mouseleave() {
-            if (!this.features.supportsHover) return
-            try {
-                delete this.$parent[0].dataset.hover
-            } catch (e) {
-                console.warn('cannot delete data-hover')
-                // no-op
-            }
-        }, */
         cleanup() {
           for (const cleanup of this.cleanups) {
             cleanup();

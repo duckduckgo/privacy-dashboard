@@ -39,7 +39,6 @@ function Site(attrs) {
 /**
  * @typedef PublicSiteModel
  * @property {boolean} protectionsEnabled
- * TODO: Add a new state for phishing
  * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} httpsState
  * @property {boolean} isBroken
  * @property {boolean} isAllowlisted

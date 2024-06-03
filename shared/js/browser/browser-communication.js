@@ -341,7 +341,6 @@ export async function getBackgroundTabData() {
     }
     return {
         tab: {
-            // TODO: Confirm phishing value
             ...createTabData('unknown', false, protections, { requests: [] }),
             error: parsedMessageData.error.message,
             search: {},

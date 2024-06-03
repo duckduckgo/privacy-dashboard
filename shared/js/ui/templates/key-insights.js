@@ -78,7 +78,6 @@ export function renderKeyInsight() {
 
     /** @type {Record<keyof keyInsightsState, any>} */
     return {
-        // TODO: Add HTML render for phishing
         insecure: () => {
             return html`
                 <div class="key-insight key-insight--main">
