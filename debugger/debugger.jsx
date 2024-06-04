@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h, render } from 'preact'
 import styles from './debugger.module.css'
-import { createDataStates } from '../shared/js/ui/views/tests/generate-data.mjs'
+import { createDataStates, requests } from '../shared/js/ui/views/tests/generate-data.mjs'
 
 import google from '../schema/__fixtures__/request-data-google.json'
 import cnn from '../schema/__fixtures__/request-data-cnn.json'
@@ -30,13 +30,14 @@ const items = [
         platform: 'browser',
     },
 ]
+
 let searchParams = new URL(window.location.href).searchParams
 let initialState = searchParams.get('state')
 if (!initialState || !keys.includes(initialState)) {
     initialState = 'protectionsOn_blocked'
 }
 
-let reflectList = ['screen']
+let reflectList = ['screen', 'requests']
 let reflectParams = new URLSearchParams(Object.entries({ state: initialState }))
 for (let [key, value] of searchParams) {
     if (reflectList.includes(key)) {
@@ -57,6 +58,12 @@ let platforms = (() => {
         }
     }
     return known.slice(0, 3)
+})()
+
+let selectedRequests = (() => {
+    let subject = searchParams.getAll('requests')
+    const known = Object.keys(requests)
+    return subject.filter((x) => known.includes(x))
 })()
 
 function update(value) {
@@ -86,12 +93,31 @@ function updatePlatforms(value) {
     window.location.href = url.href
 }
 
+/**
+ * @param {string[]} values
+ */
+function updateRequests(values) {
+    const url = new URL(window.location.href)
+    url.searchParams.delete('requests')
+    for (let value of values) {
+        url.searchParams.append('requests', value)
+    }
+    window.location.href = url.href
+}
+
 function App() {
     return (
         <div class={styles.grid}>
             <div class={styles.header}>
-                <Selector selected={initialState} onChange={update} />
-                <Toggles selected={platforms} onChange={updatePlatforms} />
+                <div class={styles.toggles}>
+                    <Selector selected={initialState} onChange={update} />
+                    <Toggles selected={platforms} onChange={updatePlatforms} />
+                </div>
+                {initialState?.includes('with-overrides') && (
+                    <div class={styles.requests}>
+                        <Requests selected={selectedRequests} onChange={updateRequests} />
+                    </div>
+                )}
             </div>
             <div class={styles.content}>
                 <Frames platforms={platforms} initialState={initialState} />
@@ -133,6 +159,28 @@ function Toggles({ selected, onChange }) {
     )
 }
 
+function Requests({ selected, onChange }) {
+    function onChanged(e) {
+        const d = new FormData(e.target.form)
+        onChange(d.getAll('request'))
+    }
+    return (
+        <div>
+            <p>Request types:</p>
+            <form onChange={onChanged}>
+                {Object.entries(requests).map(([key]) => {
+                    return (
+                        <label class={styles.label}>
+                            <input type="checkbox" name="request" value={key} checked={selected.includes(key)}></input>
+                            {key}
+                        </label>
+                    )
+                })}
+            </form>
+        </div>
+    )
+}
+
 function Frames({ platforms, initialState }) {
     const previewJSON = states[initialState]
     const { certificate, ...rest } = previewJSON
@@ -146,12 +194,12 @@ function Frames({ platforms, initialState }) {
             </div>
             {items.map((item) => {
                 const { platform } = item
-                const src = item.platform + '.html?' + reflectParams.toString()
+                const src = new URL(item.platform + '.html?' + reflectParams.toString(), location.href)
                 const height = item.height ?? 600
                 return (
                     <div class={styles.frame} data-state={platforms.includes(platform) ? 'ready' : 'hidden'}>
                         <p>
-                            <a href={src} target="_blank">
+                            <a href={src.href} target="_blank">
                                 Open in new tab
                             </a>
                         </p>
@@ -159,7 +207,7 @@ function Frames({ platforms, initialState }) {
                             <code>{item.platform}</code> <small>{initialState}</small>
                         </p>
                         <iframe
-                            src={src}
+                            src={src.href}
                             frameBorder="0"
                             style={{
                                 width: '360px',

@@ -3,6 +3,7 @@ body {
     max-height: 100vh;
     max-width: 100vw;
     overflow: hidden;
+    font-family: monospace;
 }
 .grid {
     display: grid;
@@ -17,6 +18,18 @@ body {
     border: 1px dashed black;
     grid-area: header;
     padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'toggles requests';
+    gap: 1em;
+    font-size: 0.8em;
+}
+.toggles {
+    grid-area: toggles;
+}
+.requests {
+    grid-area: requests;
+    width: 100%;
 }
 .content {
     padding: 1em;
@@ -43,7 +56,6 @@ body {
     font-size: 10px;
 }
 form {
-    display: flex;
     gap: 1em;
 }
 .label {
