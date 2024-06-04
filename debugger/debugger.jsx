@@ -41,7 +41,7 @@ let reflectList = ['screen', 'requests']
 let reflectParams = new URLSearchParams(Object.entries({ state: initialState }))
 for (let [key, value] of searchParams) {
     if (reflectList.includes(key)) {
-        reflectParams.set(key, value)
+        reflectParams.append(key, value)
     }
 }
 
