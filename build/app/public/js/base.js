@@ -22730,7 +22730,6 @@
       initialScreen: screen,
       supportsInvalidCerts: platform2.name !== "browser" && platform2.name !== "windows",
       supportsPhishingWarning: platform2.name === "macos",
-      // TODO: Add a version number?
       includeToggleOnBreakageForm
     });
   }
