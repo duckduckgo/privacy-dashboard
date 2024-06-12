@@ -37,6 +37,7 @@ create(schema)
 
 async function create(schema) {
     const typescriptSourceCode = await compile(schema, schema.title, {
+        additionalProperties: false,
         cwd: BASE,
     })
     return {

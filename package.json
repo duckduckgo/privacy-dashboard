@@ -7,7 +7,7 @@
     },
     "scripts": {
         "start": "npm run dev",
-        "dev": "chokidar \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
+        "dev": "chokidar \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
         "build.watch.prod": "chokidar \"shared\" \"schema/*.json\" -c \"npm run build\" --initial \"npm run build\"",
         "build": "node scripts/build.js",
         "build.debug": "node scripts/build.js --debug",
