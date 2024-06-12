@@ -14702,6 +14702,13 @@
       }
       this.broadcast();
     }
+    initial() {
+      communication_default.getBackgroundTabData().then((resp) => {
+        this.accept(resp);
+      }).catch((e3) => {
+        console.log("\u274C [DataChannel .initial()] --> ", e3);
+      });
+    }
     setSiteProperties() {
       if (!this.tab) {
         this.domain = "new tab";
@@ -14831,6 +14838,7 @@
   function useInternalData() {
     const [state, setState] = h2(null);
     p2(() => {
+      dc.initial();
       const handler = (evt) => {
         setState(evt.detail);
       };

@@ -114,6 +114,17 @@ class DataChannel extends EventTarget {
         this.broadcast()
     }
 
+    initial() {
+        comms
+            .getBackgroundTabData()
+            .then((resp) => {
+                this.accept(resp)
+            })
+            .catch((e) => {
+                console.log('❌ [DataChannel .initial()] --> ', e)
+            })
+    }
+
     setSiteProperties() {
         if (!this.tab) {
             this.domain = 'new tab' // tab can be null for firefox new tabs
@@ -266,6 +277,7 @@ export function useChannel() {
 function useInternalData() {
     const [state, setState] = useState(null)
     useEffect(() => {
+        dc.initial()
         const handler = (evt) => {
             setState(evt.detail)
         }
