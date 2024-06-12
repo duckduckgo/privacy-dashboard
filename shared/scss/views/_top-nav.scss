@@ -91,13 +91,54 @@ body {
         // todo(Shane): remove these hard-coded value, replace with tokens
         font-size: 17px;
         font-weight: 600;
+        font-weight: 600;
         &:active {
             opacity: 0.5;
         }
     }
+
     .environment--macos & {
         height: auto;
         line-height: normal;
         bottom: 0;
+    }
+}
+
+.top-nav__cancel {
+    position: absolute;
+    padding: 0 var(--size-unit-half);
+    right: var(--size-unit-half);
+    height: var(--nav-height);
+    line-height: var(--nav-height);
+    color: var(--color-text-primary);
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+
+    .environment--ios & {
+        font-size: 17px;
+        &:active {
+            opacity: 0.5;
+        }
+    }
+}
+
+.top-nav__title {
+    position: absolute;
+    height: var(--nav-height);
+    line-height: var(--nav-height);
+    color: var(--color-text-primary);
+    left: 50%;
+    transform: translateX(-50%);
+
+    .environment--ios & {
+        font-size: 17px;
+        font-weight: 600;
+        &:active {
+            opacity: 0.5;
+        }
     }
 }

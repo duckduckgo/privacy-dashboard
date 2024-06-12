@@ -11,7 +11,7 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
-export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("promptBreakageForm")]);
+export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("promptBreakageForm"), z.literal("toggleReport"), z.literal("categoryTypeSelection"), z.literal("categorySelection"), z.literal("choiceToggle"), z.literal("choiceBreakageForm"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
 
 export const wvVersionTitleSchema = z.literal("wvVersion");
 
@@ -52,7 +52,7 @@ export const userRefreshCountTitleSchema = z.literal("userRefreshCount");
 export const jsPerformanceTitleSchema = z.literal("jsPerformance");
 
 export const stateBlockedSchema = z.object({
-    blocked: z.record(z.unknown())
+    blocked: z.object({})
 });
 
 export const stateAllowedSchema = z.object({
@@ -135,7 +135,7 @@ export const extensionMessageSetListOptionsSchema = z.object({
     options: setListOptionsSchema
 });
 
-export const fireOptionSchema = z.record(z.unknown()).and(z.object({
+export const fireOptionSchema = z.object({
     name: z.union([z.literal("CurrentSite"), z.literal("LastHour"), z.literal("Last24Hour"), z.literal("Last7days"), z.literal("Last4Weeks"), z.literal("AllTime")]),
     selected: z.boolean().optional(),
     options: z.object({
@@ -150,7 +150,7 @@ export const fireOptionSchema = z.record(z.unknown()).and(z.object({
         cookies: z.number(),
         pinnedTabs: z.number()
     })
-}));
+});
 
 export const primaryScreenSchema = z.object({
     layout: z.union([z.literal("default"), z.literal("highlighted-protections-toggle")])
@@ -166,6 +166,16 @@ export const siteUrlAdditionalDataSchema = z.object({
 
 export const closeMessageParamsSchema = z.object({
     eventOrigin: eventOriginSchema
+});
+
+export const categoryTypeSelectedSchema = z.object({
+    name: z.literal("categoryTypeSelected"),
+    value: z.union([z.literal("notWorking"), z.literal("dislike"), z.literal("general")])
+});
+
+export const categorySelectedSchema = z.object({
+    name: z.literal("categorySelected"),
+    value: z.union([z.literal("blocked"), z.literal("layout"), z.literal("empty-spaces"), z.literal("paywall"), z.literal("videos"), z.literal("comments"), z.literal("login"), z.literal("shopping"), z.literal("other")])
 });
 
 export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
@@ -193,7 +203,7 @@ export const tabSchema = z.object({
 
 export const breakageReportSchema = z.object({
     request: breakageReportRequestSchema.optional(),
-    response: z.record(z.unknown()).optional()
+    response: z.object({}).optional()
 });
 
 export const fireButtonDataSchema = z.object({
@@ -212,6 +222,11 @@ export const setProtectionParamsSchema = z.object({
 export const toggleReportScreenDataItemSchema = z.object({
     id: dataItemIdSchema,
     additional: siteUrlAdditionalDataSchema.optional()
+});
+
+export const telemetrySpanSchema = z.object({
+    attributes: z.union([categoryTypeSelectedSchema, categorySelectedSchema]),
+    eventOrigin: eventOriginSchema
 });
 
 export const requestDataSchema = z.object({
@@ -264,6 +279,7 @@ export const apiSchema = z.object({
     "feature-settings": remoteFeatureSettingsSchema.optional(),
     "set-protection": setProtectionParamsSchema.optional(),
     "toggle-report-screen": toggleReportScreenSchema.optional(),
-    "close-message": closeMessageParamsSchema.optional()
+    "close-message": closeMessageParamsSchema.optional(),
+    "telemetry-span": telemetrySpanSchema.optional()
 });
 

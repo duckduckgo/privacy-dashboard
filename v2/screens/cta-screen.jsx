@@ -1,52 +1,51 @@
-import html from 'nanohtml'
-import raw from 'nanohtml/raw'
-import { i18n } from '../base/localize.js'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { h } from 'preact'
+import { useData } from '../data-provider'
+import { i18n } from '../../shared/js/ui/base/localize'
 
-const ctas = {
-    spread: {
-        title: () => i18n.t('ctascreens:spreadTitle.title'),
-        text: () => i18n.t('ctascreens:spreadText.title'),
-        icon: heartArrowSvg,
-        action: () => {
-            return html`<a href="https://duckduckgo.com/spread" target="_blank" class="cta__button"
-                >${i18n.t('ctascreens:spreadButton.title')}</a
-            >`
+export function CtaScreen() {
+    const data = useData()
+    const ctas = {
+        spread: {
+            title: i18n.t('ctascreens:spreadTitle.title'),
+            text: i18n.t('ctascreens:spreadText.title'),
+            icon: heartArrowSvg,
+            action: (
+                <a href="https://duckduckgo.com/spread" target="_blank" class="cta__button">
+                    {i18n.t('ctascreens:spreadButton.title')}
+                </a>
+            ),
         },
-    },
-    email: {
-        title: () => i18n.t('ctascreens:emailTitle.title'),
-        text: () => i18n.t('ctascreens:emailText.title'),
-        icon: emailSvg,
-        action: () => {
-            return html`<a href="https://duckduckgo.com/email" target="_blank" class="cta__button"
-                >${i18n.t('ctascreens:spreadButton.title')}</a
-            >`
+        email: {
+            title: i18n.t('ctascreens:emailTitle.title'),
+            text: i18n.t('ctascreens:emailText.title'),
+            icon: emailSvg,
+            action: (
+                <a href="https://duckduckgo.com/email" target="_blank" class="cta__button">
+                    {i18n.t('ctascreens:spreadButton.title')}
+                </a>
+            ),
         },
-    },
-}
-/** @this {any} */
-function ctaRotationView() {
-    const cta = ctas[this.model.currentCta]
-    if (!cta) {
-        console.warn('unreachable - selected CTA not available ' + this.model.currentCta)
-        return ''
     }
-    return html`
-        <div class="cta-screen">
-            <p class="note token-title-3 text--center">${i18n.t('ctascreens:protectionsUnavailableNote.title')}</p>
-            <div class="cta text--center">
-                <div class="cta__icon">${cta.icon()}</div>
-                <h1 class="cta__title">${cta.title()}</h1>
-                <h2 class="cta__text">${cta.text()}</h2>
-                <div class="cta__action">${cta.action()}</div>
+    const keys = Object.keys(ctas)
+    const ctaKey = data.emailProtectionUserData?.nextAlias ? 'spread' : keys[Math.floor(Math.random() * keys.length)]
+    const cta = ctas[ctaKey]
+
+    return (
+        <div className="cta-screen page-inner">
+            <p className="note token-title-3 text--center">{i18n.t('ctascreens:protectionsUnavailableNote.title')}</p>
+            <div className="cta text--center">
+                <div className="cta__icon" dangerouslySetInnerHTML={{ __html: cta.icon() }}></div>
+                <h1 className="cta__title">{cta.title}</h1>
+                <h2 className="cta__text">{cta.text}</h2>
+                <div className="cta__action">{cta.action}</div>
             </div>
         </div>
-    `
+    )
 }
 
 function heartArrowSvg() {
-    // @ts-expect-error - typescript doesn't know about raw
-    return raw`<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    return `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M78.5138 21L71.5098 28.003V34.003L78.5138 27V21Z" fill="#C0C0C0"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M78.505 27.0034L71.51 33.9614H77.51L84.505 27.0034H78.505Z" fill="#C0C0C0"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M66.339 42.0032L63.51 39.1742L76.684 26.0012L79.512 28.8302L66.339 42.0032Z" fill="#C0C0C0"/>
@@ -63,13 +62,11 @@ function heartArrowSvg() {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M27.9544 15.0818C26.3303 14.4357 24.6178 14.8261 23.4753 15.8672C22.995 14.398 21.6978 13.2137 19.9664 12.9746C18.0748 12.7131 16.2171 13.7652 15.5153 15.4882C15.4792 15.5773 15.4462 15.6669 15.4166 15.7565C15.0641 16.8282 15.2583 18.0079 15.8448 18.9894L20.5677 26.8894L28.5729 22.3469C29.5672 21.7824 30.318 20.8521 30.54 19.7459C30.5584 19.6534 30.574 19.5591 30.5865 19.4638C30.8259 17.6188 29.7289 15.7873 27.9544 15.0818Z" fill="#E2E2E2"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M77.945 75.9298C76.9297 76.1112 76.1926 76.8398 75.9437 77.7173C75.2457 77.1301 74.2269 76.94 73.2844 77.3588C72.2546 77.8163 71.6506 78.9218 71.8348 80.004C71.8444 80.0599 71.8558 80.1151 71.8688 80.1693C72.0255 80.8163 72.49 81.3473 73.0894 81.6569L77.9155 84.1482L80.5157 79.3799C80.8385 78.7875 80.9255 78.0875 80.6926 77.4638C80.673 77.4117 80.6515 77.3596 80.6282 77.3079C80.1741 76.3084 79.0542 75.7314 77.945 75.9298Z" fill="#E2E2E2"/>
 </svg>
-
 `
 }
 
 function emailSvg() {
-    // @ts-expect-error - typescript doesn't know about raw
-    return raw`<svg width="76" height="78" viewBox="0 0 76 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+    return `<svg width="76" height="78" viewBox="0 0 76 78" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_273_32068)">
 <path d="M55.0125 26.7115C55.3701 26.3897 55.6204 25.9249 55.6204 25.3886V0.71875L41.4263 16.2L55.0125 26.7115Z" fill="#F9BE1A"/>
 <path d="M14.147 0.71875V25.3886C14.147 25.9249 14.3972 26.3897 14.7548 26.7115L28.3411 16.2L14.147 0.71875Z" fill="#F9BE1A"/>
@@ -108,6 +105,3 @@ function emailSvg() {
 </svg>
 `
 }
-
-export default ctaRotationView
-export { ctas }

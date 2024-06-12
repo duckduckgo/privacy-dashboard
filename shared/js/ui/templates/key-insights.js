@@ -1,40 +1,8 @@
 import html from 'nanohtml'
 import raw from 'nanohtml/raw'
-import $ from 'jquery'
 import { i18n } from '../base/localize.js'
 import { normalizeCompanyName } from '../models/mixins/normalize-company-name.mjs'
-import Parent from '../base/view.js'
 import { getColorId } from './shared/utils.js'
-
-/**
- * @param {object} ops
- * @param {import("../models/site.js").PublicSiteModel} ops.model
- * @param {import("jquery")} ops.appendTo
- * @param {any} ops.store
- * @constructor
- */
-export function KeyInsightView(ops) {
-    this.model = ops.model
-    this.store = ops.store
-    this.template = renderKeyInsight
-    Parent.call(this, ops)
-    // @ts-ignore
-    this._setup()
-}
-
-KeyInsightView.prototype = $.extend({}, Parent.prototype, {
-    /**
-     * @this {KeyInsightView & Parent}
-     * @private
-     */
-    _setup: function () {
-        // @ts-ignore
-        this.bindEvents([[this.store.subscribe, 'change:site', this._rerender]])
-    },
-    rerender() {
-        this._rerender()
-    },
-})
 
 const keyInsightsState = /** @type {const} */ ({
     /* 01 */ insecure: 'insecure',
@@ -49,10 +17,10 @@ const keyInsightsState = /** @type {const} */ ({
 })
 
 /**
- * @this {KeyInsightView}
+ * @param {import("../models/site.js").PublicSiteModel} modelOverride
  */
-export function renderKeyInsight() {
-    const model = this.model
+export function renderKeyInsight(modelOverride) {
+    const model = modelOverride
     const title = (text) => html`<h1 class="token-title-3-em">${text}</h1>`
     const description = (text) => html`<div class="token-title-3"><span role="text">${text}</span></div>`
 

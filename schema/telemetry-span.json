@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "TelemetrySpan",
+    "type": "object",
+    "required": ["attributes", "eventOrigin"],
+    "properties": {
+        "attributes": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "title": "CategoryTypeSelected",
+                    "required": ["name", "value"],
+                    "properties": {
+                        "name": {
+                            "const": "categoryTypeSelected"
+                        },
+                        "value": {
+                            "type": "string",
+                            "enum": ["notWorking", "dislike", "general"]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "CategorySelected",
+                    "required": ["name", "value"],
+                    "properties": {
+                        "name": {
+                            "const": "categorySelected"
+                        },
+                        "value": {
+                            "type": "string",
+                            "enum": ["blocked", "layout", "empty-spaces", "paywall", "videos", "comments", "login", "shopping", "other"]
+                        }
+                    }
+                }
+            ]
+        },
+        "eventOrigin": {
+            "$ref": "event-origin.json"
+        }
+    }
+}

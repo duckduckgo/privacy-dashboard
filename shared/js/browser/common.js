@@ -1,11 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
+/**
+ * @typedef {{
+ *   tab: import('./utils/request-details.mjs').TabData,
+ *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
+ *   fireButton?: { enabled: boolean }
+ * }} BackgroundTabData
+ */
 /**
  * @module common
  */
 export const getContentHeight = () => {
-    const $openSubview = window.document.querySelector('#popup-container.sliding-subview--open > section:last-child > div')
-    const $rootSubview = window.document.querySelector('#popup-container.sliding-subview--root > section:first-child > div')
-    return ($openSubview || $rootSubview)?.scrollHeight
+    const $openSubviewV2 = window.document.querySelector(
+        '#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child'
+    )
+    const $rootSubviewV2 = window.document.querySelector('#popup-container.sliding-subview-v2--root .page-inner')
+
+    return ($openSubviewV2 || $rootSubviewV2)?.scrollHeight
 }
 
 export const getContentHeightForScreenShot = () => {
@@ -304,11 +315,13 @@ export class SubmitBrokenSiteReportMessage extends Msg {
      * @param {object} params
      * @param {string} params.category
      * @param {string} params.description
+     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
      */
     constructor(params) {
         super()
         this.category = params.category
         this.description = params.description
+        this.eventOrigin = params.eventOrigin
     }
 }
 
@@ -351,6 +364,33 @@ export class RefreshEmailAliasMessage extends Msg {}
  * the 'options' page.
  */
 export class OpenOptionsMessage extends Msg {}
+
+/**
+ * Use this message to indicate that a native platform should open
+ * an alert because the form description was required, but missing
+ */
+export class ShowAlertForMissingDescription extends Msg {}
+/**
+ * Use this message to indicate that a native platform should open
+ * an alert because the form description was required, but missing
+ */
+export class ShowNativeFeedback extends Msg {}
+
+/**
+ * Use this message to indicate that an internal navigation occurred
+ */
+export class TelemetrySpanMsg extends Msg {
+    /**
+     * @param {object} params
+     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     * @param {import('../../../schema/__generated__/schema.types').TelemetrySpan['attributes']} params.attributes
+     */
+    constructor(params) {
+        super()
+        this.eventOrigin = params.eventOrigin
+        this.attributes = params.attributes
+    }
+}
 
 /**
  * Use this message to indicate that a native platform should open a search window with

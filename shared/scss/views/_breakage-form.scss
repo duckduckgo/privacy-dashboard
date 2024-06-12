@@ -1,6 +1,4 @@
 .breakage-form {
-    height: 100%;
-
     .environment--browser & {
         padding-bottom: 0;
     }
@@ -29,6 +27,9 @@
 }
 
 .breakage-form__element {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     opacity: 1;
     transition: all 0.2s ease-in-out;
 
@@ -53,18 +54,15 @@
 .form__label__select {
     display: block;
     text-align: left;
-    margin-bottom: 8px;
 }
 
 .form__group {
-    margin-bottom: 14px;
-    .environment--windows & {
-        margin-bottom: 16px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .form__select {
-    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -75,15 +73,12 @@
     min-height: 20px;
     border: 1px solid var(--color-lines-light);
     border-radius: 4px;
-    margin: 0;
-    margin-bottom: var(--size-unit);
 
     .environment--ios & {
         height: 34px;
     }
     .environment--windows & {
         min-height: 34px;
-        margin-bottom: 10px;
     }
 }
 
@@ -93,8 +88,7 @@
     height: 88px;
     display: block;
     box-sizing: border-box;
-    margin-bottom: var(--size-unit);
-    padding: var(--size-unit-half);
+    padding: var(--size-unit-half) var(--size-unit);
     border: 1px solid var(--color-lines-light);
     border-radius: 4px;
     font-size: 13px;
@@ -167,6 +161,7 @@
 
 .breakage-form__footer {
     padding-bottom: 24px;
+    padding-top: 24px;
     text-align: center;
 
     .body--theme-dark & {

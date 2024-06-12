@@ -34,8 +34,9 @@ export const ToggleReportContext = createContext({
  * @param {object} params
  * @param {import("preact").ComponentChild} params.children
  * @param {{ fetch: (msg: Msg) => Promise<any> | void}} params.model
+ * @param {import('../../platform-features.mjs').InitialScreen} params.screen
  */
-export function ToggleReportProvider({ children, model }) {
+export function ToggleReportProvider({ children, model, screen }) {
     const initial = { status: 'pending' }
     const [state, dispatch] = useReducer((state, action) => action, initial)
     useEffect(() => {
@@ -60,7 +61,7 @@ export function ToggleReportProvider({ children, model }) {
         model.fetch(new SeeWhatIsSent())
     }
     function didClickSuccessScreen() {
-        model.fetch(new CloseMessage({ eventOrigin: { screen: 'toggleReport' } }))
+        model.fetch(new CloseMessage({ eventOrigin: { screen } }))
     }
     if (state.status === 'ready') {
         return (

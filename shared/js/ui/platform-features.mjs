@@ -24,23 +24,49 @@ export function createPlatformFeatures(platform) {
     /** @type {InitialScreen} */
     let screen = 'primaryScreen'
     const url = new URL(window.location.href)
-    if (url.searchParams.get('screen') === 'breakageForm') {
-        screen = 'breakageForm'
+
+    const acceptedScreenParam = [
+        'breakageForm',
+        'toggleReport',
+        'choiceBreakageForm',
+        'categoryTypeSelection',
+        'categorySelection',
+        'promptBreakageForm',
+    ]
+    if (url.searchParams.has('screen')) {
+        const param = url.searchParams.get('screen')
+        if (typeof param === 'string' && acceptedScreenParam.includes(/** @type {string} */ (param))) {
+            screen = /** @type {any} */ (param)
+        }
     }
-    if (url.searchParams.get('screen') === 'toggleReport') {
-        screen = 'toggleReport'
-    }
-    if (url.searchParams.get('screen') === 'promptBreakageForm') {
-        screen = 'promptBreakageForm'
+
+    if (screen === 'promptBreakageForm') {
         includeToggleOnBreakageForm = false
+    }
+
+    /** @type {'dashboard' | 'menu'} */
+    let opener = 'menu'
+    if (url.searchParams.get('opener') === 'dashboard') {
+        opener = 'dashboard'
+    }
+
+    /** @type {InitialScreen} */
+    let breakageScreen = 'breakageForm'
+    if (url.searchParams.get('breakageScreen') === 'categorySelection') {
+        breakageScreen = 'categorySelection'
+    }
+    if (url.searchParams.get('breakageScreen') === 'categoryTypeSelection') {
+        breakageScreen = 'categoryTypeSelection'
     }
 
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
+        opener,
         supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
         includeToggleOnBreakageForm,
+        breakageScreen,
     })
 }
 
@@ -54,8 +80,10 @@ export class PlatformFeatures {
      * @param {boolean} params.spinnerFollowingProtectionsToggle
      * @param {boolean} params.supportsHover
      * @param {InitialScreen} params.initialScreen
+     * @param {'dashboard' | 'menu'} params.opener
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
+     * @param {InitialScreen} params.breakageScreen
      */
     constructor(params) {
         /**
@@ -79,10 +107,20 @@ export class PlatformFeatures {
          */
         this.initialScreen = params.initialScreen
         /**
+         * Does the current platform support hover interactions?
+         * @type {'dashboard' | 'menu'}
+         */
+        this.opener = params.opener
+        /**
          * Should the toggle functionality be included on the breakage form?
          * @type {boolean}
          */
         this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm
+
+        /**
+         * @type {import("../../../schema/__generated__/schema.types").EventOrigin['screen']}
+         */
+        this.breakageScreen = params.breakageScreen
     }
 }
 
