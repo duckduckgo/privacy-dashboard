@@ -105,7 +105,7 @@ test.describe('cookie prompt management', () => {
                 await dash.disableCookiesInSettings()
                 await dash.mocks.calledForOpenSettings()
                 await dash.clickCloseFromSecondaryScreen()
-                await dash.mocks.calledForClose()
+                await dash.mocks.calledForClose({ screen: 'consentManaged' })
             })
         })
 
@@ -122,7 +122,7 @@ test.describe('cookie prompt management', () => {
                 await dash.disableCookiesInSettings()
                 await dash.mocks.calledForOpenSettings()
                 await dash.clickCloseFromSecondaryScreen()
-                await dash.mocks.calledForClose()
+                await dash.mocks.calledForClose({ screen: 'cookieHidden' })
             })
         })
     })
@@ -148,7 +148,7 @@ test.describe('opening breakage form', () => {
     })
     test('sends toggle report', async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' })
+        const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'menu' })
         await dash.addState([testDataStates.google])
         await dash.toggleReportIsVisible()
         await dash.screenshot('screen-toggle-report.png')
@@ -170,6 +170,78 @@ test.describe('opening breakage form', () => {
         await dash.showsInformation()
         await dash.cannotHideInformation()
         await dash.screenshot('screen-toggle-report-show.png')
+    })
+})
+
+test.describe('stack based router', () => {
+    test('goes back and forward', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { breakageScreen: 'categorySelection', platform: 'ios' })
+        await dash.reducedMotion()
+        await dash.addState([testDataStates.google])
+        await dash.breakage.showsReportFromPrimaryScreen()
+        await dash.nav.goesBackToPrimaryScreen()
+    })
+})
+test.describe('temporary reporting flows', () => {
+    test.describe('opens to category selection from menu', () => {
+        // sends report after selecting a category
+        test('sends report after selecting a category', async ({ page }) => {
+            const dash = await DashboardPage.webkit(page, { screen: 'categorySelection', platform: 'ios' })
+            await dash.reducedMotion()
+            await dash.addState([testDataStates.google])
+            await dash.breakage.selectsCategory("Site blocked or didn't load", 'blocked')
+            await dash.breakage.submitsFormWithCategory('blocked')
+        })
+        test('forced to enter a description if "something else" is selected', async ({ page }) => {
+            const dash = await DashboardPage.webkit(page, { screen: 'categorySelection', platform: 'ios' })
+            await dash.reducedMotion()
+            await dash.addState([testDataStates.google])
+            await dash.breakage.selectsCategory('Something else', 'other')
+            await dash.breakage.submitsForm()
+            await dash.mocks.calledForAlert('missingDescription')
+        })
+    })
+    test('opens to category selection from primary screen when breakageScreen param is present', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { breakageScreen: 'categorySelection', platform: 'ios' })
+        await dash.reducedMotion()
+        await dash.addState([testDataStates.google])
+        await dash.breakage.showsReportFromPrimaryScreen()
+    })
+
+    test.describe('opens to category type selection from menu', () => {
+        test('shows category type list', async ({ page }) => {
+            const dash = await DashboardPage.webkit(page, { screen: 'categoryTypeSelection', platform: 'ios' })
+            await dash.reducedMotion()
+            await dash.addState([testDataStates.google])
+            await dash.breakage.reportsWhenStartingFromCategoryTypeSelection()
+        })
+        test('skips to feedback form when "dislike" category type is selected ', async ({ page }) => {
+            const dash = await DashboardPage.webkit(page, { screen: 'categoryTypeSelection', platform: 'ios' })
+            await dash.reducedMotion()
+            await dash.addState([testDataStates.google])
+            await dash.breakage.skipsToBreakageFormWhenDisliked()
+        })
+        test('shows general feedback', async ({ page }) => {
+            const dash = await DashboardPage.webkit(page, { screen: 'categoryTypeSelection', platform: 'ios' })
+            await dash.reducedMotion()
+            await dash.addState([testDataStates.google])
+            await dash.breakage.showsNativeFeedback()
+        })
+    })
+
+    test.describe('opens directly to feedback form', () => {
+        test('shows category from previous interaction', async ({ page }) => {
+            const dash = await DashboardPage.webkit(page, { screen: 'choiceBreakageForm', category: 'videos', platform: 'ios' })
+            await dash.reducedMotion()
+            await dash.addState([testDataStates.google])
+            await dash.breakage.submitsVideoFeedbackFormWhenOpenedDirectly()
+        })
+        test('requires description when category is "Other"', async ({ page }) => {
+            const dash = await DashboardPage.webkit(page, { screen: 'choiceBreakageForm', category: 'other', platform: 'ios' })
+            await dash.reducedMotion()
+            await dash.addState([testDataStates.google])
+            await dash.breakage.submitsOtherFeedbackFormWhenOpenedDirectly()
+        })
     })
 })
 

@@ -103,6 +103,53 @@ export class Mocks {
         return
     }
 
+    /**
+     * @param {object} params
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} params.screen
+     * @param {import('../schema/__generated__/schema.types').TelemetrySpan['attributes']} params.attributes
+     * @return {Promise<void>}
+     */
+    async didSendTelemetry({ screen, attributes }) {
+        const calls = await this.outgoing({
+            names: ['privacyDashboardTelemetrySpan'],
+        })
+        expect(calls).toMatchObject([
+            [
+                'privacyDashboardTelemetrySpan',
+                {
+                    eventOrigin: {
+                        screen,
+                    },
+                    attributes,
+                },
+            ],
+        ])
+    }
+
+    /**
+     * @param {'missingDescription'} alertType
+     * @return {Promise<void>}
+     */
+    async calledForAlert(alertType) {
+        const calls = await this.outgoing({
+            names: ['privacyDashboardShowAlertForMissingDescription'],
+        })
+        switch (alertType) {
+            case 'missingDescription': {
+                expect(calls).toMatchObject([['privacyDashboardShowAlertForMissingDescription', {}]])
+                return
+            }
+            default:
+                throw new Error('unimplemented')
+        }
+    }
+    async calledForNativeFeedback() {
+        const calls = await this.outgoing({
+            names: ['privacyDashboardShowNativeFeedback'],
+        })
+        expect(calls).toMatchObject([['privacyDashboardShowNativeFeedback', {}]])
+    }
+
     async calledForSubmitBreakageForm({ category = '', description = '' }) {
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({
@@ -123,7 +170,7 @@ export class Mocks {
             ])
             return
         }
-        if (this.platform.name === 'macos') {
+        if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const out = await this.outgoing({
                 names: ['privacyDashboardSubmitBrokenSiteReport'],
             })
