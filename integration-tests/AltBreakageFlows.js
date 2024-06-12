@@ -47,6 +47,7 @@ export class AltBreakageFlows {
         const { page } = this.dash
         await page.getByLabel('The site is not working as').click()
         await page.getByLabel('Site layout broken').click()
+        await this.dash.screenshot('category-inline-toggle.png')
         await page.getByRole('link', { name: 'Skip this step' }).click()
         await page.getByRole('button', { name: 'Send Report' }).click()
         await this.dash.mocks.calledForSubmitBreakageForm({ category: 'layout' })

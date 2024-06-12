@@ -189,7 +189,9 @@ test.describe('temporary reporting flows', () => {
             const dash = await DashboardPage.webkit(page, { screen: 'categorySelection', platform: 'ios' })
             await dash.reducedMotion()
             await dash.addState([testDataStates.google])
+            await dash.screenshot('category-selection.png')
             await dash.breakage.selectsCategory("Site blocked or didn't load", 'blocked')
+            await dash.screenshot('choice-breakage-form.png')
             await dash.breakage.submitsFormWithCategory('blocked')
         })
         test('forced to enter a description if "something else" is selected', async ({ page }) => {
@@ -213,6 +215,7 @@ test.describe('temporary reporting flows', () => {
             const dash = await DashboardPage.webkit(page, { screen: 'categoryTypeSelection', platform: 'ios' })
             await dash.reducedMotion()
             await dash.addState([testDataStates.google])
+            await dash.screenshot('category-type-selection.png')
             await dash.breakage.reportsWhenStartingFromCategoryTypeSelection()
         })
         test('skips to feedback form when "dislike" category type is selected ', async ({ page }) => {
