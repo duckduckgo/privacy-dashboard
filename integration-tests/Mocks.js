@@ -236,6 +236,13 @@ export class Mocks {
                     options: { tabId: null },
                 },
             ],
+            [
+                'getPrivacyDashboardData',
+                {
+                    messageType: 'getPrivacyDashboardData',
+                    options: { tabId: null },
+                },
+            ],
         ])
     }
 
