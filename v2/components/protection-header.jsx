@@ -22,16 +22,12 @@ export function ProtectionHeader() {
                     <TextLink
                         onClick={() => {
                             // this is a workaround for ios, to ensure we follow the old implementation
-                            if (isIOS() || isAndroid()) {
+                            if (isIOS()) {
                                 fetcher(new CheckBrokenSiteReportHandledMessage())
-                                    .then(() => {
-                                        push(breakageScreen)
-                                    })
-                                    .catch((e) => {
-                                        console.error(e)
-                                    })
-                            } else {
-                                push(breakageScreen)
+                                    .then(() => push(breakageScreen))
+                                    .catch(console.error)
+                            } else if (isAndroid()) {
+                                fetcher(new CheckBrokenSiteReportHandledMessage()).catch(console.error)
                             }
                         }}
                         rounded={true}
