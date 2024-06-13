@@ -5,7 +5,7 @@ import { useData, useFeatures, useFetcher, useToggle } from '../data-provider'
 import { TextLink } from '../../shared/js/ui/components/text-link'
 import { useNav } from '../navigation'
 import { ns } from '../../shared/js/ui/base/localize'
-import { isAndroid, isIOS } from '../../shared/js/ui/environment-check'
+import { isAndroid } from '../../shared/js/ui/environment-check'
 import { CheckBrokenSiteReportHandledMessage } from '../../shared/js/browser/common'
 
 export function ProtectionHeader() {
@@ -22,13 +22,13 @@ export function ProtectionHeader() {
                     <TextLink
                         onClick={() => {
                             // this is a workaround for ios, to ensure we follow the old implementation
-                            if (isIOS()) {
-                                fetcher(new CheckBrokenSiteReportHandledMessage())
-                                    .then(() => push(breakageScreen))
-                                    .catch(console.error)
-                            } else if (isAndroid()) {
-                                fetcher(new CheckBrokenSiteReportHandledMessage()).catch(console.error)
-                            }
+                            fetcher(new CheckBrokenSiteReportHandledMessage())
+                                .then(() => {
+                                    if (!isAndroid()) {
+                                        push(breakageScreen)
+                                    }
+                                })
+                                .catch(console.error)
                         }}
                         rounded={true}
                     >

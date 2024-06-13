@@ -16008,11 +16008,11 @@
       TextLink,
       {
         onClick: () => {
-          if (isIOS()) {
-            fetcher(new CheckBrokenSiteReportHandledMessage()).then(() => push(breakageScreen)).catch(console.error);
-          } else if (isAndroid()) {
-            fetcher(new CheckBrokenSiteReportHandledMessage()).catch(console.error);
-          }
+          fetcher(new CheckBrokenSiteReportHandledMessage()).then(() => {
+            if (!isAndroid()) {
+              push(breakageScreen);
+            }
+          }).catch(console.error);
         },
         rounded: true
       },
