@@ -415,7 +415,12 @@ body.environment--windows {
   flex-flow: column;
   z-index: 1;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   background: var(--page-bg);
+}
+.page-inner::-webkit-scrollbar {
+  display: none;
 }
 .environment--browser .page-inner, .environment--ios .page-inner, .environment--android .page-inner {
   height: 100%;

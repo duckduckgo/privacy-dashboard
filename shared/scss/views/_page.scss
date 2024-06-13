@@ -16,6 +16,13 @@
     z-index: 1;
     overflow-y: auto;
 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
     .environment--browser &,
     .environment--ios &,
     .environment--android & {
