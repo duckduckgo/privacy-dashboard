@@ -271,6 +271,10 @@
     "title" : "Zatvori",
     "note" : "Button text for macos on top bar navigation"
   },
+  "navigationCancel" : {
+    "title" : "Otkaži",
+    "note" : "Button text for cancel action"
+  },
   "navigationBack" : {
     "title" : "Natrag",
     "note" : "Aria label and visible text for iOS on top bar navigation"
