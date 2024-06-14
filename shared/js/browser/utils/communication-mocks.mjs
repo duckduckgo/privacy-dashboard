@@ -105,6 +105,21 @@ export function webkitMockApis({ responses = {} }) {
         }
         window.webkit = {
             messageHandlers: {
+                privacyDashboardTelemetrySpan: {
+                    postMessage: (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardTelemetrySpan', arg])
+                    },
+                },
+                privacyDashboardShowNativeFeedback: {
+                    postMessage: (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowNativeFeedback', arg])
+                    },
+                },
+                privacyDashboardShowAlertForMissingDescription: {
+                    postMessage: (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowAlertForMissingDescription', arg])
+                    },
+                },
                 privacyDashboardShowReportBrokenSite: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardShowReportBrokenSite', arg])
@@ -220,9 +235,11 @@ export function mockBrowserApis() {
         openOptions: {},
         setBurnDefaultOption: {},
         doBurn: {},
+        getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
+        refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
     }
     try {
-        if (!window.chrome) {
+        if (!window.chrome?.permissions) {
             // @ts-ignore
             window.chrome = {
                 // @ts-ignore

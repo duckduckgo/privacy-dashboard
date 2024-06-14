@@ -16,6 +16,34 @@
     "title" : "Επιλέξτε αυτό που περιγράφει καλύτερα το πρόβλημα που αντιμετωπίσατε.",
     "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
   },
+  "selectTheCategoryType" : {
+    "title" : "Ποιο είναι το πρόβλημα;",
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+  },
+  "categoryType1" : {
+    "title" : "Ο ιστότοπος δεν λειτουργεί όπως αναμενόταν",
+    "note" : "The user wants to report that the site isn't functioning as they expect it to."
+  },
+  "categoryType2" : {
+    "title" : "Δεν μου αρέσει το περιεχόμενο σε αυτόν τον ιστότοπο",
+    "note" : "The user wants to report that they didn't like the content of the site in question."
+  },
+  "categoryType3" : {
+    "title" : "Γενικά σχόλια για το πρόγραμμα περιήγησης DuckDuckGo",
+    "note" : "The user wants to provide feedback about our application, not the site in question"
+  },
+  "selectTheCategory" : {
+    "title" : "Τι δεν λειτουργεί στον ιστότοπο αυτόν;",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken, like `videos didn't play' or 'site layout is broken'"
+  },
+  "tryTurningProtectionsOff" : {
+    "title" : "Δοκιμάστε να απενεργοποιήσετε την Προστασία προσωπικών δεδομένων για να δείτε εάν επιλύεται το πρόβλημα.",
+    "note" : "Presented as an alternative solution"
+  },
+  "skipThisStep" : {
+    "title" : "Παράλειψη του βήματος αυτού",
+    "note" : "Text within a button that allow the user to skip to the next step"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Περιγράψτε τι συνέβη",
     "note" : "Asks the user to pick a specific list from the pulldown"
@@ -56,6 +84,10 @@
     "title" : "Δεν είναι δυνατή η σύνδεση/εγγραφή",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "loginV2" : {
+    "title" : "Δεν είναι δυνατή η σύνδεση ή η εγγραφή",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
   "shopping" : {
     "title" : "Δεν είναι δυνατή η πληρωμή ή η ολοκλήρωση μιας αγοράς",
     "note" : "User is reporting this page because they are unable to log into the website"
@@ -91,5 +123,33 @@
   "yourReportWillHelpDesc" : {
     "title" : "Η αναφορά σας θα μας βοηθήσει στο να βελτιώσουμε τα προϊόντα μας και θα καταστήσει την εμπειρία καλύτερη για άλλα άτομα που χρησιμοποιούν τις υπηρεσίες μας.",
     "note" : "Body that the user sees upon submitting the report"
+  },
+  "dislike" : {
+    "title" : "Δεν μου αρέσει το περιεχόμενο",
+    "note" : "User is reporting this page because they dislike something on the page"
+  },
+  "otherRequired" : {
+    "title" : "Περιγράψτε το πρόβλημα που αντιμετωπίσατε (απαιτείται)",
+    "note" : "Placeholder text in a form where the user must provide additional information"
+  },
+  "otherOptional" : {
+    "title" : "Περιγράψτε το πρόβλημα που αντιμετωπίσατε (προαιρετικό)",
+    "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "suggestionWhatHappened" : {
+    "title" : "Τι συνέβη;",
+    "note" : "Suggestion to enter a description of what problem the user was experiencing"
+  },
+  "suggestionWhatHappened2" : {
+    "title" : "Τι έπρεπε να είχε συμβεί;",
+    "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
+  },
+  "suggestionWhatHappened3" : {
+    "title" : "Βοήθησε η απενεργοποίηση της Προστασίας προσωπικών δεδομένων;",
+    "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
+  },
+  "reportTitle" : {
+    "title" : "Αναφορά στο DuckDuckGo",
+    "note" : "Used as a screen heading for a breakage report flow."
   }
 }

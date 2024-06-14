@@ -31,10 +31,6 @@ interface Window {
         openSettings: (payload: string) => void
     }
     /**
-     * Overrides
-     */
-    $: import('jquery')
-    /**
      * This is set in Playwright tests
      */
     __ddg_integration_test?: boolean
@@ -62,6 +58,9 @@ interface Window {
 }
 
 interface WebkitMessageHandlers {
+    privacyDashboardShowNativeFeedback?: any
+    privacyDashboardTelemetrySpan?: any
+    privacyDashboardShowAlertForMissingDescription?: any
     privacyDashboardSubmitBrokenSiteReport?: any
     privacyDashboardOpenUrlInNewTab?: any
     privacyDashboardSetSize?: any

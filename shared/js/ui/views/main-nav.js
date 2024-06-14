@@ -1,106 +1,26 @@
-import $ from 'jquery'
 import html from 'nanohtml'
-import Parent from '../base/view.js'
 import { trackerNetworksText } from '../templates/shared/tracker-networks-text.js'
 import { thirdpartyText } from '../templates/shared/thirdparty-text.js'
 import { i18n } from '../base/localize.js'
-import { createPlatformFeatures } from '../platform-features.mjs'
-import { platform } from '../../browser/communication.js'
-import { isAndroid } from '../environment-check'
-import { setupMaterialDesignRipple } from './utils/utils'
 import { httpsMessages } from '../../../data/constants'
 
 /**
- * @param {object} ops
- * @param {import("../models/site.js").default & import("../base/model.js").baseModelMethods} ops.model
- * @param {import("jquery")} ops.appendTo
- * @param {any} ops.store
- * @constructor
- */
-export function MainNavView(ops) {
-    this.model = ops.model
-    this.store = ops.store
-    this.template = template
-    this.features = createPlatformFeatures(platform)
-    this.cleanups = []
-    this.nav = {
-        connection: () => {
-            this.model.send('navigate', { target: 'connection' })
-        },
-        trackers: () => {
-            this.model.send('navigate', { target: 'trackers' })
-        },
-        nonTrackers: () => {
-            this.model.send('navigate', { target: 'nonTrackers' })
-        },
-        consentManaged: () => {
-            this.model.send('navigate', { target: 'consentManaged' })
-        },
-        cookieHidden: () => {
-            this.model.send('navigate', { target: 'cookieHidden' })
-        },
-    }
-    Parent.call(this, ops)
-    // @ts-ignore
-    this._setup()
-}
-
-MainNavView.prototype = $.extend({}, Parent.prototype, {
-    /**
-     * @this {MainNavView}
-     * @private
-     */
-    _setup: function () {
-        // @ts-ignore
-        this.bindEvents([
-            // @ts-ignore
-            [this.store.subscribe, 'change:site', this.rerender],
-        ])
-
-        if (isAndroid()) {
-            // @ts-ignore
-            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], '.link-action'))
-        }
-    },
-    /**
-     * @this {MainNavView}
-     * @private
-     */
-    cleanup() {
-        for (const cleanup of this.cleanups) {
-            cleanup()
-        }
-        this.cleanups = []
-    },
-    rerender() {
-        this.cleanup()
-        this._rerender()
-
-        if (isAndroid()) {
-            this.cleanups.push(...setupMaterialDesignRipple(this.$parent[0], '.link-action'))
-        }
-    },
-})
-
-/**
- * @this {MainNavView}
+ * @param {import('../models/site.js').PublicSiteModel} model
  * @returns {HTMLElement}
  */
-function template() {
-    /** @type {import('../models/site.js').PublicSiteModel} */
-    const model = this.model
-    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? this.nav.cookieHidden : this.nav.consentManaged
+export function template(model, nav) {
+    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
-    const renderConnectionAsText = this.model.httpsState === 'phishing'
+    const renderConnectionAsText = model.httpsState === 'phishing'
     const connectionRow = renderConnectionAsText
         ? html`<li class="main-nav__row no-hover">${renderConnectionText(model)}</li>`
-        : html`<li class="main-nav__row">${renderConnection(model, this.nav.connection)}</li>`
+        : html`<li class="main-nav__row">${renderConnection(model, nav.connection)}</li>`
 
     return html`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
             ${connectionRow}
-            <li class="main-nav__row">${renderTrackerNetworksNew(model, this.nav.trackers)}</li>
-            <li class="main-nav__row">${renderThirdPartyNew(model, this.nav.nonTrackers)}</li>
+            <li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>
+            <li class="main-nav__row">${renderThirdPartyNew(model, nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
         </ul>
     `

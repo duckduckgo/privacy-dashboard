@@ -61,6 +61,11 @@
     .environment--browser & {
         height: 40px;
     }
+
+    // when a nav item has an icon, reset the width from the icon
+    &:has(.main-nav__icon) .main-nav__text {
+        margin-left: 10px;
+    }
 }
 
 .main-nav__item--link {
@@ -100,7 +105,7 @@
 .main-nav__text {
     display: block;
     z-index: 1;
-    margin-left: 10px;
+    margin-left: 16px;
     margin-right: 10px;
     // when text wraps on this buttons (for different languages) this prevents the layout looking broken
     line-height: 1;

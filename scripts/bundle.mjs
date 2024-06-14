@@ -26,7 +26,7 @@ console.log({ env, IS_PROD })
 async function init() {
     const manifest = {
         base: {
-            input: join(BASE, 'shared/js/ui/base/index.js'),
+            input: join(BASE, 'v2/index.jsx'),
             output: join(BASE, env.BUILD_OUTPUT, 'public/js/base.js'),
         },
         debugger: {

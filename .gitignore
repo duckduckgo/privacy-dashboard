@@ -18,4 +18,8 @@ build/app/html/iframe.html
 build/app/html/states.json
 build/app/public/font
 build/app-debug
+<<<<<<< HEAD
 .swiftpm/xcode/xcuserdata
+=======
+build/app_backup
+>>>>>>> main

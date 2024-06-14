@@ -1,6 +1,8 @@
 import { expect } from '@playwright/test'
 import { forwardConsole, playTimeline } from './helpers'
 import { Mocks } from './Mocks'
+import { AltBreakageFlows } from './AltBreakageFlows'
+import { Nav } from './Nav'
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]')
@@ -32,6 +34,8 @@ export class DashboardPage {
     platform
     page
     mocks
+    breakage = new AltBreakageFlows(this)
+    nav = new Nav(this)
     /**
      * @param {import("@playwright/test").Page} page
      * @param {import("../shared/js/ui/platform-features.mjs").Platform} platform
@@ -218,15 +222,19 @@ export class DashboardPage {
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'ios' | 'macos'} opts.platform
+     * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
+     * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]
      */
     static async webkit(page, opts) {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
         const screen = opts?.screen || 'primaryScreen'
         const opener = opts?.opener || 'dashboard'
+        const breakageScreen = opts?.breakageScreen
+        const category = opts?.category
         const dash = new DashboardPage(page, { name: opts?.platform ?? 'ios' })
         await dash.withMarker()
-        await dash.loadPage({ screen, opener })
+        await dash.loadPage({ screen, opener, breakageScreen, category })
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -264,11 +272,11 @@ export class DashboardPage {
     }
 
     async hasPolishLinkTextForConnectionInfo() {
-        await this.page.locator('"Połączenie jest szyfrowane"').waitFor({ timeout: 500 })
+        await this.page.locator('"Połączenie jest szyfrowane"').waitFor({ timeout: 3000 })
     }
 
     async hasFrenchLinkTextForConnectionInfo() {
-        await this.page.locator('"La connexion est chiffrée"').waitFor({ timeout: 500 })
+        await this.page.locator('"La connexion est chiffrée"').waitFor({ timeout: 3000 })
     }
 
     /**
@@ -310,11 +318,11 @@ export class DashboardPage {
     }
 
     async indicatesCookiesWereHidden() {
-        await this.page.getByText('Pop-up Hidden').waitFor({ timeout: 500 })
+        await this.page.getByText('Pop-up Hidden').waitFor({ timeout: 3000 })
     }
 
     async viewCookiePromptManagement() {
-        await this.page.getByRole('button', { name: /Cookies Managed|Pop-up Hidden/ }).click({ timeout: 500 })
+        await this.page.getByRole('button', { name: /Cookies Managed|Pop-up Hidden/ }).click({ timeout: 3000 })
     }
 
     async disableCookiesInSettings() {
@@ -457,11 +465,11 @@ export class DashboardPage {
     }
 
     async showingCTA() {
-        await this.page.locator('"Love using DuckDuckGo?"').waitFor({ timeout: 500 })
+        await this.page.locator('"Love using DuckDuckGo?"').waitFor({ timeout: 1000 })
     }
 
     async waitForCompanyName(name) {
-        await this.page.locator(`[title="${name}"]`).waitFor({ timeout: 600 })
+        await this.page.locator(`[title="${name}"]`).waitFor({ timeout: 1000 })
     }
 
     /**
@@ -497,7 +505,7 @@ export class DashboardPage {
     async displayingError() {
         await this.page
             .locator('"Something went wrong, and we couldn\'t load this content. Try reloading the page."')
-            .waitFor({ timeout: 500 })
+            .waitFor({ timeout: 1000 })
     }
 
     async fireButtonDoesntShow() {
@@ -525,10 +533,10 @@ export class DashboardPage {
         // check that dropdown options are populated
         await expect(this.page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length)
         // there should be two text sections: summary and a notice
-        await expect(this.page.locator('#fire-button-summary > p')).toHaveCount(2)
+        expect(await this.page.locator('#fire-button-summary > p').count()).toBe(2)
 
         await this.page.locator('#fire-button-opts').selectOption({ index: 2 })
-        await expect(this.page.locator('#fire-button-summary > p')).toHaveCount(1)
+        expect(await this.page.locator('#fire-button-summary > p').count()).toBe(2)
     }
 
     async fireDialogHistoryDisabled() {

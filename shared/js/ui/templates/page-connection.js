@@ -54,7 +54,7 @@ function getKeyUsage(key) {
  * @param {import('../models/site.js').PublicSiteModel} site
  * @param {import("../../browser/utils/request-details.mjs").TabData} tab
  */
-function renderCertificateDetails(site, tab) {
+export function renderCertificateDetails(site, tab) {
     if (site.httpsState === 'none' || site.httpsState === 'phishing' || !tab.certificate || tab.certificate.length === 0) return ''
 
     const certificate = tab.certificate[0]
@@ -158,7 +158,7 @@ function renderHeader(site, tab) {
  * @param {import('../models/site.js').PublicSiteModel} site
  * @param {import("../../browser/utils/request-details.mjs").TabData} tab
  */
-function renderConnectionDescription(site, tab) {
+export function renderConnectionDescription(site, tab) {
     if (site.httpsState === 'phishing') {
         return i18n.t('connection:phishingWebsiteDesc.title', { domain: tab.domain })
     }

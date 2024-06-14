@@ -15,6 +15,34 @@
         "title": "Select the option that best describes the problem you experienced.",
         "note": "A heading that encourages the user to select from a list of reasons a website might be broken"
     },
+    "selectTheCategoryType": {
+        "title": "What's the problem?",
+        "note": "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+    },
+    "categoryType1": {
+        "title": "The site is not working as expected",
+        "note": "The user wants to report that the site isn't functioning as they expect it to."
+    },
+    "categoryType2": {
+        "title": "I dislike the content on this site",
+        "note": "The user wants to report that they didn't like the content of the site in question."
+    },
+    "categoryType3": {
+        "title": "General DuckDuckGo browser feedback",
+        "note": "The user wants to provide feedback about our application, not the site in question"
+    },
+    "selectTheCategory": {
+        "title": "What's not working on this site?",
+        "note": "A heading that encourages the user to select from a list of reasons a website might be broken, like `videos didn't play' or 'site layout is broken'"
+    },
+    "tryTurningProtectionsOff": {
+        "title": "Try turning Privacy Protections off to see if that resolves the issue.",
+        "note": "Presented as an alternative solution"
+    },
+    "skipThisStep": {
+        "title": "Skip this step",
+        "note": "Text within a button that allow the user to skip to the next step"
+    },
     "pickYourIssueFromTheList": {
         "title": "Describe what happened",
         "note": "Asks the user to pick a specific list from the pulldown"
@@ -55,6 +83,10 @@
         "title": "Can’t sign in/register",
         "note": "User is reporting this page because they are unable to log into the website"
     },
+    "loginV2": {
+        "title": "Can't sign in or register",
+        "note": "User is reporting this page because they are unable to log into the website"
+    },
     "shopping": {
         "title": "Can't pay, check out, or shop",
         "note": "User is reporting this page because they are unable to log into the website"
@@ -90,5 +122,33 @@
     "yourReportWillHelpDesc": {
         "title": "Your report will help improve our products and make the experience better for other people.",
         "note": "Body that the user sees upon submitting the report"
+    },
+    "dislike": {
+        "title": "I dislike the content",
+        "note": "User is reporting this page because they dislike something on the page"
+    },
+    "otherRequired": {
+        "title": "Please describe the issue you experienced (required)",
+        "note": "Placeholder text in a form where the user must provide additional information"
+    },
+    "otherOptional": {
+        "title": "Please describe the issue you experienced (optional)",
+        "note": "Placeholder text in a form where the user can provide additional information, but is not required to"
+    },
+    "suggestionWhatHappened": {
+        "title": "What happened?",
+        "note": "Suggestion to enter a description of what problem the user was experiencing"
+    },
+    "suggestionWhatHappened2": {
+        "title": "What should have happened?",
+        "note": "Suggestion to enter a description of what the user expected to happen, but didn't"
+    },
+    "suggestionWhatHappened3": {
+        "title": "Did turning Privacy Protections off help?",
+        "note": "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
+    },
+    "reportTitle": {
+        "title": "Report to DuckDuckGo",
+        "note": "Used as a screen heading for a breakage report flow."
     }
 }

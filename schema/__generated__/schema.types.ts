@@ -41,7 +41,20 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
  * A helper list of messages that the Dashboard accepts from Windows
  */
 export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
-export type ScreenKind = "primaryScreen" | "breakageForm" | "toggleReport" | "promptBreakageForm";
+export type ScreenKind =
+  | "primaryScreen"
+  | "breakageForm"
+  | "promptBreakageForm"
+  | "toggleReport"
+  | "categoryTypeSelection"
+  | "categorySelection"
+  | "choiceToggle"
+  | "choiceBreakageForm"
+  | "connection"
+  | "trackers"
+  | "nonTrackers"
+  | "consentManaged"
+  | "cookieHidden";
 export type DataItemId =
   | WvVersionTitle
   | RequestsTitle
@@ -159,6 +172,7 @@ export interface API {
   "set-protection"?: SetProtectionParams;
   "toggle-report-screen"?: ToggleReportScreen;
   "close-message"?: CloseMessageParams;
+  "telemetry-span"?: TelemetrySpan;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -256,9 +270,7 @@ export interface DetectedRequest {
  * When present, indicates that this request was blocked
  */
 export interface StateBlocked {
-  blocked: {
-    [k: string]: unknown;
-  };
+  blocked: {};
 }
 /**
  * When present, indicates that this request was allowed to load. The `reason` key should indicate why it was allowed
@@ -377,9 +389,7 @@ export interface Search {
  */
 export interface BreakageReport {
   request?: BreakageReportRequest;
-  response?: {
-    [k: string]: unknown;
-  };
+  response?: {};
 }
 export interface BreakageReportRequest {
   /**
@@ -486,7 +496,6 @@ export interface FireOption {
     cookies: number;
     pinnedTabs: number;
   };
-  [k: string]: unknown;
 }
 /**
  * This describes the payload for feature settings
@@ -531,5 +540,17 @@ export interface SiteUrlAdditionalData {
 }
 export interface CloseMessageParams {
   eventOrigin: EventOrigin;
+}
+export interface TelemetrySpan {
+  attributes: CategoryTypeSelected | CategorySelected;
+  eventOrigin: EventOrigin;
+}
+export interface CategoryTypeSelected {
+  name: "categoryTypeSelected";
+  value: "notWorking" | "dislike" | "general";
+}
+export interface CategorySelected {
+  name: "categorySelected";
+  value: "blocked" | "layout" | "empty-spaces" | "paywall" | "videos" | "comments" | "login" | "shopping" | "other";
 }
 

@@ -56,6 +56,25 @@ const blocked1 = {
     state: { blocked: {} },
 }
 
+/** @type {DetectedRequest} */
+const allowedProtectionsDisabled = {
+    entityName: 'Google',
+    prevalence: 82.6,
+    url: 'securepubads.g.doubleclick.net',
+    pageUrl: 'https://example.com',
+    category: 'Advertising',
+    state: { allowed: { reason: 'protectionDisabled' } },
+}
+
+export const requests = {
+    allowedTrackerFirstParty: allowedTracker,
+    allowedTrackerRuleException: allowedTrackerRule,
+    allowedThirdParty,
+    allowedAdClickAttribution,
+    allowedProtectionsDisabled,
+    blocked: blocked1,
+}
+
 // eslint-disable-next-line no-unused-vars
 export const defaultCertificates = [
     {
@@ -406,6 +425,15 @@ export class MockData {
  */
 export const createDataStates = (google, cnn) => {
     return {
+        'with-overrides': new MockData({
+            url: 'https://example.com',
+            requests: requestsFromOverride(),
+        }),
+        'with-overrides-protections-off': new MockData({
+            url: 'https://example.com',
+            requests: requestsFromOverride(),
+            contentBlockingException: true,
+        }),
         'rule-exception-only': new MockData({
             url: 'https://example.com',
             requests: [allowedTrackerRule, allowedThirdParty],
@@ -745,4 +773,11 @@ export const createDataStates = (google, cnn) => {
             },
         }),
     }
+}
+
+function requestsFromOverride() {
+    if (typeof window === 'undefined') return []
+    const keys = new URLSearchParams(window.location.search).getAll('requests')
+    const known = Object.keys(requests)
+    return keys.filter((key) => known.includes(key)).map((key) => requests[key])
 }
