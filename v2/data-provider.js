@@ -18,7 +18,7 @@ import { useNav } from './navigation'
 /**
  * @typedef {Object} DataChannelPublicData
  * @property {boolean} protectionsEnabled
- * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' } httpsState
+ * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} httpsState
  * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
  * @property {boolean} isDenylisted
@@ -36,7 +36,7 @@ import { useNav } from './navigation'
 
 class DataChannel extends EventTarget {
     protectionsEnabled = false
-    /** @type {'secure' | 'upgraded' | 'none' | 'invalid'} */
+    /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} */
     httpsState = 'none'
     isBroken = false
     isAllowlisted = false
