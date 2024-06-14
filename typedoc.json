@@ -11,7 +11,8 @@
         "shared/js/browser/utils/protections.mjs",
         "shared/js/ui/platform-features.mjs",
         "shared/js/features.doc.js",
-        "guides/toggle-report.js"
+        "guides/toggle-report.js",
+        "guides/breakage-flows.js"
     ],
     "out": "build/docs",
     "media": "schema/__fixtures__",

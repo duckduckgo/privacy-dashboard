@@ -271,6 +271,10 @@
     "title" : "Закрыть",
     "note" : "Button text for macos on top bar navigation"
   },
+  "navigationCancel" : {
+    "title" : "Отмена",
+    "note" : "Button text for cancel action"
+  },
   "navigationBack" : {
     "title" : "Назад",
     "note" : "Aria label and visible text for iOS on top bar navigation"

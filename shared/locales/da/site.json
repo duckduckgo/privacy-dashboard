@@ -177,7 +177,7 @@
     "note" : "Title for the list of tracker domains detected from a given company"
   },
   "zeroTrackersFound" : {
-    "title" : "0 trackere fundet",
+    "title" : "'{'0'}' tracker fundet",
     "note" : "We did not find any trackers on this page"
   },
   "trackerOwnedByThisSite" : {
@@ -270,6 +270,10 @@
   "navigationClose" : {
     "title" : "Luk",
     "note" : "Button text for macos on top bar navigation"
+  },
+  "navigationCancel" : {
+    "title" : "Annuller",
+    "note" : "Button text for cancel action"
   },
   "navigationBack" : {
     "title" : "Tilbage",

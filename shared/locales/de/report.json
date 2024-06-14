@@ -16,6 +16,34 @@
     "title" : "Wähle die Option, die dein Problem am besten beschreibt.",
     "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
   },
+  "selectTheCategoryType" : {
+    "title" : "Was ist das Problem?",
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+  },
+  "categoryType1" : {
+    "title" : "Die Website funktioniert nicht wie erwartet",
+    "note" : "The user wants to report that the site isn't functioning as they expect it to."
+  },
+  "categoryType2" : {
+    "title" : "Ich mag den Inhalt dieser Seite nicht",
+    "note" : "The user wants to report that they didn't like the content of the site in question."
+  },
+  "categoryType3" : {
+    "title" : "Allgemeines Feedback zum DuckDuckGo-Browser",
+    "note" : "The user wants to provide feedback about our application, not the site in question"
+  },
+  "selectTheCategory" : {
+    "title" : "Was funktioniert auf dieser Seite nicht?",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken, like `videos didn't play' or 'site layout is broken'"
+  },
+  "tryTurningProtectionsOff" : {
+    "title" : "Wurde das Problem auf dieser Website durch das Deaktivieren des Datenschutzes behoben?",
+    "note" : "Presented as an alternative solution"
+  },
+  "skipThisStep" : {
+    "title" : "Diesen Schritt überspringen",
+    "note" : "Text within a button that allow the user to skip to the next step"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Beschreiben, was passiert ist",
     "note" : "Asks the user to pick a specific list from the pulldown"
@@ -56,6 +84,10 @@
     "title" : "Anmeldung/Registrierung nicht möglich",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "loginV2" : {
+    "title" : "Anmeldung/Registrierung nicht möglich",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
   "shopping" : {
     "title" : "Bezahlen, Auschecken oder Einkaufen nicht möglich",
     "note" : "User is reporting this page because they are unable to log into the website"
@@ -91,5 +123,33 @@
   "yourReportWillHelpDesc" : {
     "title" : "Dein Bericht trägt dazu bei, unsere Produkte zu verbessern und die Erfahrung für andere Menschen zu verbessern.",
     "note" : "Body that the user sees upon submitting the report"
+  },
+  "dislike" : {
+    "title" : "Der Inhalt gefällt mir nicht",
+    "note" : "User is reporting this page because they dislike something on the page"
+  },
+  "otherRequired" : {
+    "title" : "Bitte beschreibe das aufgetretene Problem (erforderlich)",
+    "note" : "Placeholder text in a form where the user must provide additional information"
+  },
+  "otherOptional" : {
+    "title" : "Bitte beschreibe das aufgetretene Problem (optional)",
+    "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "suggestionWhatHappened" : {
+    "title" : "Was ist passiert?",
+    "note" : "Suggestion to enter a description of what problem the user was experiencing"
+  },
+  "suggestionWhatHappened2" : {
+    "title" : "Was hätte passieren sollen?",
+    "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
+  },
+  "suggestionWhatHappened3" : {
+    "title" : "Hat das Deaktivieren des Datenschutzes geholfen?",
+    "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
+  },
+  "reportTitle" : {
+    "title" : "Bericht an DuckDuckGo",
+    "note" : "Used as a screen heading for a breakage report flow."
   }
 }

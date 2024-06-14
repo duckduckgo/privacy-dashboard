@@ -16,6 +16,34 @@
     "title" : "Karşılaştığınız sorunu en iyi tanımlayan seçeneği seçin.",
     "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
   },
+  "selectTheCategoryType" : {
+    "title" : "Sorun nedir?",
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+  },
+  "categoryType1" : {
+    "title" : "Web sitesi beklendiği gibi çalışmıyor",
+    "note" : "The user wants to report that the site isn't functioning as they expect it to."
+  },
+  "categoryType2" : {
+    "title" : "Bu sitenin içeriğini beğenmiyorum",
+    "note" : "The user wants to report that they didn't like the content of the site in question."
+  },
+  "categoryType3" : {
+    "title" : "Genel DuckDuckGo tarayıcı geri bildirimi",
+    "note" : "The user wants to provide feedback about our application, not the site in question"
+  },
+  "selectTheCategory" : {
+    "title" : "Bu sitede neler çalışmıyor?",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken, like `videos didn't play' or 'site layout is broken'"
+  },
+  "tryTurningProtectionsOff" : {
+    "title" : "Sorunu çözüp çözmediğini görmek için Gizlilik Korumalarını kapatmayı deneyin.",
+    "note" : "Presented as an alternative solution"
+  },
+  "skipThisStep" : {
+    "title" : "Bu Adımı Atlayın",
+    "note" : "Text within a button that allow the user to skip to the next step"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Ne olduğunu açıklayın",
     "note" : "Asks the user to pick a specific list from the pulldown"
@@ -56,6 +84,10 @@
     "title" : "Oturum açamıyorum/kayıt olamıyorum",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "loginV2" : {
+    "title" : "Oturum açamıyor veya kayıt olamıyorum",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
   "shopping" : {
     "title" : "Ödeme yapamıyorum, çıkış yapamıyorum veya alışveriş yapamıyorum",
     "note" : "User is reporting this page because they are unable to log into the website"
@@ -91,5 +123,33 @@
   "yourReportWillHelpDesc" : {
     "title" : "Raporunuz ürünlerimizi geliştirmemize ve diğer kullanıcılar için daha iyi bir deneyim sunmamıza yardımcı olacaktır.",
     "note" : "Body that the user sees upon submitting the report"
+  },
+  "dislike" : {
+    "title" : "İçeriği beğenmedim",
+    "note" : "User is reporting this page because they dislike something on the page"
+  },
+  "otherRequired" : {
+    "title" : "Lütfen karşılaştığınız sorunu açıklayın (gerekli)",
+    "note" : "Placeholder text in a form where the user must provide additional information"
+  },
+  "otherOptional" : {
+    "title" : "Lütfen karşılaştığınız sorunu açıklayın (isteğe bağlı)",
+    "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "suggestionWhatHappened" : {
+    "title" : "Ne oldu?",
+    "note" : "Suggestion to enter a description of what problem the user was experiencing"
+  },
+  "suggestionWhatHappened2" : {
+    "title" : "Ne olması gerekiyordu?",
+    "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
+  },
+  "suggestionWhatHappened3" : {
+    "title" : "Gizlilik Korumalarını kapatmak yardımcı oldu mu?",
+    "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
+  },
+  "reportTitle" : {
+    "title" : "DuckDuckGo'ya bildir",
+    "note" : "Used as a screen heading for a breakage report flow."
   }
 }

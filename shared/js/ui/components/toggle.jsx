@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks'
 import { MDCSwitch } from '@material/switch'
 import { ns } from '../base/localize'
@@ -14,9 +13,10 @@ import { isAndroid, isBrowser } from '../environment-check'
 /**
  * @param {object} props
  * @param {MigrationModel} props.model
+ * @param {() => void} props.toggle
  */
 export function ProtectionToggle(props) {
-    const [toggleState, toggle] = useToggleState(props.model)
+    const [toggleState, toggle] = useToggleState(props.model, props.toggle)
     const altText = ns.site('updatingProtectionList.title')
 
     return (
@@ -34,9 +34,10 @@ export function ProtectionToggle(props) {
 
 /**
  * @param {MigrationModel} model
+ * @param {() => void} toggle
  * @returns {[ToggleState, () => void]}
  */
-export function useToggleState(model) {
+export function useToggleState(model, toggle) {
     const [state, setState] = useState(() => {
         const toggleState = {
             text: ns.site('protectionsEnabled.title'),
@@ -80,10 +81,10 @@ export function useToggleState(model) {
 
         const int = setTimeout(() => {
             // toggle, this communicates with native
-            model.toggleAllowlist()
+            toggle()
 
             // if the platform supports using a spinner
-            if (model.platformFeatures.spinnerFollowingProtectionsToggle) {
+            if (model.features.spinnerFollowingProtectionsToggle) {
                 setState((prev) => {
                     return { ...prev, toggled: true }
                 })
@@ -97,13 +98,13 @@ export function useToggleState(model) {
     /**
      * Wrapper around the toggle method that consumers will call.
      */
-    function toggle() {
+    function toggleInternal() {
         setState((prev) => {
             return { ...prev, active: !prev.active, sideEffects: true }
         })
     }
 
-    return [state, toggle]
+    return [state, toggleInternal]
 }
 
 /**

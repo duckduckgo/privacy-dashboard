@@ -7,7 +7,7 @@
     },
     "scripts": {
         "start": "npm run dev",
-        "dev": "chokidar \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
+        "dev": "chokidar \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
         "build.watch.prod": "chokidar \"shared\" \"schema/*.json\" -c \"npm run build\" --initial \"npm run build\"",
         "build": "node scripts/build.js",
         "build.debug": "node scripts/build.js --debug",
@@ -45,6 +45,7 @@
         "@types/node": "18.16.16",
         "@typescript-eslint/eslint-plugin": "^6.7.4",
         "chokidar-cli": "^3.0.0",
+        "classnames": "^2.5.1",
         "deep-freeze": "0.0.1",
         "duckduckgo-colors": "0.0.1",
         "esbuild": "^0.20.1",

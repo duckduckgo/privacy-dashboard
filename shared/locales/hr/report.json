@@ -16,6 +16,34 @@
     "title" : "Odaberi opciju koja najbolje opisuje nastali problem.",
     "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
   },
+  "selectTheCategoryType" : {
+    "title" : "U čemu je problem?",
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+  },
+  "categoryType1" : {
+    "title" : "Web-mjesto ne radi u skladu s očekivanjima",
+    "note" : "The user wants to report that the site isn't functioning as they expect it to."
+  },
+  "categoryType2" : {
+    "title" : "Ne sviđa mi se sadržaj na ovom web-mjestu",
+    "note" : "The user wants to report that they didn't like the content of the site in question."
+  },
+  "categoryType3" : {
+    "title" : "Općenita povratna informacija o DuckDuckGo pregledniku",
+    "note" : "The user wants to provide feedback about our application, not the site in question"
+  },
+  "selectTheCategory" : {
+    "title" : "Što ne funkcionira na ovom web-mjestu?",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken, like `videos didn't play' or 'site layout is broken'"
+  },
+  "tryTurningProtectionsOff" : {
+    "title" : "Pokušajte isključiti zaštitu privatnosti i vidjeti hoće li to riješiti problem na ovom web-mjestu.",
+    "note" : "Presented as an alternative solution"
+  },
+  "skipThisStep" : {
+    "title" : "Preskoči ovaj korak",
+    "note" : "Text within a button that allow the user to skip to the next step"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Opiši što se dogodilo",
     "note" : "Asks the user to pick a specific list from the pulldown"
@@ -56,6 +84,10 @@
     "title" : "Ne mogu se prijaviti/registrirati",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "loginV2" : {
+    "title" : "Ne mogu se prijaviti/registrirati",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
   "shopping" : {
     "title" : "Ne mogu platiti, odjaviti se ili kupovati",
     "note" : "User is reporting this page because they are unable to log into the website"
@@ -91,5 +123,33 @@
   "yourReportWillHelpDesc" : {
     "title" : "Tvoj će izvještaj pomoći poboljšati preglednik, kao i doživljaj pretraživanja za druge posjetitelje.",
     "note" : "Body that the user sees upon submitting the report"
+  },
+  "dislike" : {
+    "title" : "Ne sviđa mi se sadržaj",
+    "note" : "User is reporting this page because they dislike something on the page"
+  },
+  "otherRequired" : {
+    "title" : "Opiši problem na koji si naišao (obavezno)",
+    "note" : "Placeholder text in a form where the user must provide additional information"
+  },
+  "otherOptional" : {
+    "title" : "Opišite problem na koji si naišao (neobavezno)",
+    "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "suggestionWhatHappened" : {
+    "title" : "Šta se dogodilo?",
+    "note" : "Suggestion to enter a description of what problem the user was experiencing"
+  },
+  "suggestionWhatHappened2" : {
+    "title" : "Što se trebalo dogoditi?",
+    "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
+  },
+  "suggestionWhatHappened3" : {
+    "title" : "Je li isključivanje zaštite pomoglo?",
+    "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
+  },
+  "reportTitle" : {
+    "title" : "Slanje izvješća DuckDuckGou",
+    "note" : "Used as a screen heading for a breakage report flow."
   }
 }

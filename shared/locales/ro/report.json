@@ -16,6 +16,34 @@
     "title" : "Selectează opțiunea care descrie cel mai bine problema cu care te-ai confruntat.",
     "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
   },
+  "selectTheCategoryType" : {
+    "title" : "Care este problema?",
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+  },
+  "categoryType1" : {
+    "title" : "Site-ul nu funcționează cum trebuie",
+    "note" : "The user wants to report that the site isn't functioning as they expect it to."
+  },
+  "categoryType2" : {
+    "title" : "Nu-mi place conținutul de pe acest site",
+    "note" : "The user wants to report that they didn't like the content of the site in question."
+  },
+  "categoryType3" : {
+    "title" : "Feedback general despre browserul DuckDuckGo",
+    "note" : "The user wants to provide feedback about our application, not the site in question"
+  },
+  "selectTheCategory" : {
+    "title" : "Ce nu funcționează pe acest site?",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken, like `videos didn't play' or 'site layout is broken'"
+  },
+  "tryTurningProtectionsOff" : {
+    "title" : "Încearcă să dezactivezi Protecția confidențialității pentru a vedea dacă asta rezolvă problema.",
+    "note" : "Presented as an alternative solution"
+  },
+  "skipThisStep" : {
+    "title" : "Omite acest pas",
+    "note" : "Text within a button that allow the user to skip to the next step"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Descrie ce s-a întâmplat",
     "note" : "Asks the user to pick a specific list from the pulldown"
@@ -56,6 +84,10 @@
     "title" : "Nu pot să mă conectez/înregistrez",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "loginV2" : {
+    "title" : "Nu pot să mă conectez sau înregistrez",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
   "shopping" : {
     "title" : "Nu pot plăti sau nu pot face cumpărături",
     "note" : "User is reporting this page because they are unable to log into the website"
@@ -91,5 +123,33 @@
   "yourReportWillHelpDesc" : {
     "title" : "Raportul tău va contribui la îmbunătățirea produselor noastre și la îmbunătățirea experienței pentru alte persoane.",
     "note" : "Body that the user sees upon submitting the report"
+  },
+  "dislike" : {
+    "title" : "Nu îmi place conținutul",
+    "note" : "User is reporting this page because they dislike something on the page"
+  },
+  "otherRequired" : {
+    "title" : "Descrie problema pe care ai întâmpinat-o (obligatoriu)",
+    "note" : "Placeholder text in a form where the user must provide additional information"
+  },
+  "otherOptional" : {
+    "title" : "Descrie problema pe care ai întâmpinat-o (opțional)",
+    "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "suggestionWhatHappened" : {
+    "title" : "Ce s-a întâmplat?",
+    "note" : "Suggestion to enter a description of what problem the user was experiencing"
+  },
+  "suggestionWhatHappened2" : {
+    "title" : "Ce ar fi trebuit să se întâmple?",
+    "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
+  },
+  "suggestionWhatHappened3" : {
+    "title" : "A ajutat dezactivarea Protecției confidențialității?",
+    "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
+  },
+  "reportTitle" : {
+    "title" : "Raportează către DuckDuckGo",
+    "note" : "Used as a screen heading for a breakage report flow."
   }
 }

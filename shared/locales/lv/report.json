@@ -16,6 +16,34 @@
     "title" : "Izvēlies atbilstošāko problēmas raksturojumu.",
     "note" : "A heading that encourages the user to select from a list of reasons a website might be broken"
   },
+  "selectTheCategoryType" : {
+    "title" : "Kāda ir problēma?",
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+  },
+  "categoryType1" : {
+    "title" : "Vietne nedarbojas, kā paredzēts",
+    "note" : "The user wants to report that the site isn't functioning as they expect it to."
+  },
+  "categoryType2" : {
+    "title" : "Man nepatīk saturs šajā vietnē",
+    "note" : "The user wants to report that they didn't like the content of the site in question."
+  },
+  "categoryType3" : {
+    "title" : "Vispārīgas atsauksmes par DuckDuckGo pārlūku",
+    "note" : "The user wants to provide feedback about our application, not the site in question"
+  },
+  "selectTheCategory" : {
+    "title" : "Kas nedarbojas šajā vietnē?",
+    "note" : "A heading that encourages the user to select from a list of reasons a website might be broken, like `videos didn't play' or 'site layout is broken'"
+  },
+  "tryTurningProtectionsOff" : {
+    "title" : "Mēģiniet izslēgt privātuma aizsardzību, lai redzētu, vai tas novērš problēmu.",
+    "note" : "Presented as an alternative solution"
+  },
+  "skipThisStep" : {
+    "title" : "Izlaist šo soli",
+    "note" : "Text within a button that allow the user to skip to the next step"
+  },
   "pickYourIssueFromTheList" : {
     "title" : "Aprakstiet notikušo",
     "note" : "Asks the user to pick a specific list from the pulldown"
@@ -56,6 +84,10 @@
     "title" : "Nevar pierakstīties/reģistrēties",
     "note" : "User is reporting this page because they are unable to log into the website"
   },
+  "loginV2" : {
+    "title" : "Nevar pierakstīties vai reģistrēties",
+    "note" : "User is reporting this page because they are unable to log into the website"
+  },
   "shopping" : {
     "title" : "Nevar norēķināties vai iepirkties",
     "note" : "User is reporting this page because they are unable to log into the website"
@@ -91,5 +123,33 @@
   "yourReportWillHelpDesc" : {
     "title" : "Tavs ziņojums palīdzēs padarīt mūsu produktus labākus un uzlabot citu lietotāju pieredzi.",
     "note" : "Body that the user sees upon submitting the report"
+  },
+  "dislike" : {
+    "title" : "Man nepatīk saturs",
+    "note" : "User is reporting this page because they dislike something on the page"
+  },
+  "otherRequired" : {
+    "title" : "Lūdzu, apraksti problēmu, ar kuru saskāries (obligāti)",
+    "note" : "Placeholder text in a form where the user must provide additional information"
+  },
+  "otherOptional" : {
+    "title" : "Lūdzu, apraksti problēmu, ar kuru saskāries (nav obligāti)",
+    "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "suggestionWhatHappened" : {
+    "title" : "Kas notika?",
+    "note" : "Suggestion to enter a description of what problem the user was experiencing"
+  },
+  "suggestionWhatHappened2" : {
+    "title" : "Kam bija jānotiek?",
+    "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
+  },
+  "suggestionWhatHappened3" : {
+    "title" : "Vai privātuma aizsardzības izslēgšana palīdzēja?",
+    "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
+  },
+  "reportTitle" : {
+    "title" : "Ziņo DuckDuckGo",
+    "note" : "Used as a screen heading for a breakage report flow."
   }
 }

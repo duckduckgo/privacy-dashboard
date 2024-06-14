@@ -271,6 +271,10 @@
     "title" : "Κλείσιμο",
     "note" : "Button text for macos on top bar navigation"
   },
+  "navigationCancel" : {
+    "title" : "Ακύρωση",
+    "note" : "Button text for cancel action"
+  },
   "navigationBack" : {
     "title" : "Πίσω",
     "note" : "Aria label and visible text for iOS on top bar navigation"

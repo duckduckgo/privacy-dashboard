@@ -77,3 +77,9 @@
 .hero-icon--cookies-hidden {
     @include cross_platform_bg_image('refresh-assets/Cookies-Hidden-128.svg');
 }
+.hero-icon--chat {
+    @include cross_platform_bg_image('refresh-assets/chat-private-128.svg');
+}
+.hero-icon--switch-shield {
+    @include cross_platform_bg_image('refresh-assets/switch-shield-128.svg');
+}

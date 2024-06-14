@@ -121,7 +121,7 @@ function renderManagePermissions(model) {
  * @param permissions
  * @returns {any[]}
  */
-function localizePermissions(permissions) {
+export function localizePermissions(permissions) {
     if (!Array.isArray(permissions) || permissions.length === 0) {
         return []
     }

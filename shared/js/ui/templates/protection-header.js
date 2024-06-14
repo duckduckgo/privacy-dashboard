@@ -13,8 +13,7 @@ import { ProtectionToggle } from '../components/toggle'
  * @property {boolean} isBroken
  * @property {boolean} isDenylisted
  * @property {boolean} protectionsEnabled
- * @property {() => void} toggleAllowlist
- * @property {import("../platform-features.mjs").PlatformFeatures} platformFeatures
+ * @property {import("../platform-features.mjs").PlatformFeatures} features
  */
 
 /**
@@ -28,12 +27,14 @@ export function protectionHeader(model) {
         protectionsEnabled: model.protectionsEnabled,
         isAllowlisted: model.isAllowlisted,
         isDenylisted: model.isDenylisted,
-        platformFeatures: model.features,
+        features: model.features,
         isBroken: model.isBroken,
-        toggleAllowlist: () => model.toggleAllowlist({ screen: 'primaryScreen' }),
+    }
+    const toggle = () => {
+        return /** @type {any} */ (model).toggleAllowlist({ screen: 'primaryScreen' })
     }
     render(
-        <ProtectionHeader model={migrationModel}>
+        <ProtectionHeader model={migrationModel} toggle={toggle}>
             <ProtectionHeaderText />
         </ProtectionHeader>,
         root
@@ -42,44 +43,26 @@ export function protectionHeader(model) {
 }
 
 /**
- * Regular protection toggle
- * @param {import('../models/site.js').PublicSiteModel} model
- * @return {HTMLElement}
- */
-export function protectionDefault(model) {
-    const root = html`<div class="padding-x padding-y"></div>`
-    const migrationModel = {
-        protectionsEnabled: model.protectionsEnabled,
-        isAllowlisted: model.isAllowlisted,
-        isDenylisted: model.isDenylisted,
-        platformFeatures: model.features,
-        isBroken: model.isBroken,
-        toggleAllowlist: () => model.toggleAllowlist({ screen: 'primaryScreen' }),
-    }
-    render(<ProtectionToggle model={migrationModel} />, root)
-    return root
-}
-
-/**
  * @typedef {'form-trigger' | 'site-not-working' | 'help-trigger' } UIState
  * @typedef {{text: string; label: string; active: boolean; disabled: boolean; toggled: boolean}} ToggleState
  */
 
-const ProtectionContext = createContext(/** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */ ({}))
+export const ProtectionContext = createContext(/** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */ ({}))
 
 /**
  * @param {object} props
  * @param {MigrationModel} props.model
  * @param {UIState} [props.initialState]
+ * @param {() => void} props.toggle
  * @param {import("preact").ComponentChildren} [props.children] - children can use useContext(ProtectionContext) to access state
  */
-export function ProtectionHeader(props) {
+export function ProtectionHeader({ model, initialState, toggle, children, ...rest }) {
     /** @type {UIState} */
     let initial
-    if (props.initialState) {
-        initial = props.initialState
+    if (initialState) {
+        initial = initialState
     } else {
-        if (props.model.isBroken || props.model.isAllowlisted) {
+        if (model.isBroken || model.isAllowlisted) {
             initial = 'form-trigger'
         } else {
             initial = 'help-trigger'
@@ -88,21 +71,21 @@ export function ProtectionHeader(props) {
     const [state, setState] = useState(/** @type {UIState} */ (initial))
 
     return (
-        <>
+        <div {...rest}>
             <div class="card-list--bordered">
-                {props.model.isBroken && <HeaderDisabled model={props.model} state={state} />}
-                {!props.model.isBroken && <HeaderDefault model={props.model} state={state} />}
+                {model.isBroken && <HeaderDisabled model={model} state={state} toggle={toggle} />}
+                {!model.isBroken && <HeaderDefault model={model} state={state} toggle={toggle} />}
             </div>
             <ProtectionContext.Provider
                 value={{
                     state,
                     setState,
-                    model: props.model,
+                    model: model,
                 }}
             >
-                {props.children}
+                {children}
             </ProtectionContext.Provider>
-        </>
+        </div>
     )
 }
 
@@ -130,6 +113,7 @@ export function ProtectionHeaderText() {
  * @param {object} props
  * @param {UIState} props.state
  * @param {MigrationModel} props.model
+ * @param {() => void} props.toggle
  */
 function HeaderDefault(props) {
     const text = ns.site('websiteNotWorkingAdvice.title')
@@ -137,7 +121,7 @@ function HeaderDefault(props) {
     return (
         <div className="protection-toggle">
             <div className="protection-toggle__row">
-                <ProtectionToggle model={props.model} />
+                <ProtectionToggle model={props.model} toggle={props.toggle} />
             </div>
             {showHelp && <div className="protection-toggle__row protection-toggle__row--alt">{text}</div>}
         </div>
@@ -148,6 +132,7 @@ function HeaderDefault(props) {
  * @param {object} props
  * @param {UIState} props.state
  * @param {MigrationModel} props.model
+ * @param {() => void} props.toggle
  */
 function HeaderDisabled(props) {
     let text = i18n.t('site:protectionsDisabledRemote.title')
@@ -157,7 +142,7 @@ function HeaderDisabled(props) {
     return (
         <>
             <div className="padding-x padding-y--reduced">
-                <ProtectionToggle model={props.model} />
+                <ProtectionToggle model={props.model} toggle={props.toggle} />
             </div>
             <div className="note note--nested">{text}</div>
         </>
