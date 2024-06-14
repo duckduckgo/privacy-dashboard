@@ -970,19 +970,17 @@ body.environment--windows {
   background-image: url("../../img/refresh-assets/Cookies-Hidden-128.svg");
 }
 
-<<<<<<< HEAD
-/* TODO: Fix this in JS? */
 .hero-icon--phishing,
 .hero-icon--connection-phishing {
   background-image: url("../../img/refresh-assets/Phishing-128.svg");
-=======
+}
+
 .hero-icon--chat {
   background-image: url("../../img/refresh-assets/chat-private-128.svg");
 }
 
 .hero-icon--switch-shield {
   background-image: url("../../img/refresh-assets/switch-shield-128.svg");
->>>>>>> main
 }
 
 .key-insight {
