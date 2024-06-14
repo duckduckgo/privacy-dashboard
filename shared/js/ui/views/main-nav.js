@@ -11,9 +11,14 @@ import { httpsMessages } from '../../../data/constants'
 export function template(model, nav) {
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
+    const renderConnectionAsText = model.httpsState === 'phishing'
+    const connectionRow = renderConnectionAsText
+        ? html`<li class="main-nav__row no-hover">${renderConnectionText(model)}</li>`
+        : html`<li class="main-nav__row">${renderConnection(model, nav.connection)}</li>`
+
     return html`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
-            <li class="main-nav__row">${renderConnection(model, nav.connection)}</li>
+            ${connectionRow}
             <li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>
             <li class="main-nav__row">${renderThirdPartyNew(model, nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
@@ -82,6 +87,26 @@ function renderConnection(model, cb) {
         <span class="main-nav__chev"></span>
     </a>`
 }
+
+/**
+ * @param {import('../models/site.js').PublicSiteModel} model
+ */
+function renderConnectionText(model) {
+    let icon = 'icon-small--insecure'
+    let text = i18n.t(httpsMessages[model.httpsState])
+    let isSecure = model.httpsState === 'secure'
+    let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+
+    if (isSecure || isUpgraded) {
+        icon = 'icon-small--secure'
+    }
+
+    return html`<div class="main-nav__item">
+        <span class="main-nav__icon ${icon}"></span>
+        <span class="main-nav__text">${text}</span>
+    </div>`
+}
+
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  */

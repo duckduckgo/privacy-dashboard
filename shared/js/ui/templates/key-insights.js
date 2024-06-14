@@ -14,6 +14,7 @@ const keyInsightsState = /** @type {const} */ ({
     /* 07 */ emptyCompaniesList: 'emptyCompaniesList',
     /* 08 */ blocked: 'blocked',
     /* 09 */ invalid: 'invalid',
+    /* 10 */ phishing: 'phishing',
 })
 
 /**
@@ -26,6 +27,7 @@ export function renderKeyInsight(modelOverride) {
 
     /** @type {keyInsightsState[keyof keyInsightsState]} */
     const state = (() => {
+        if (model.httpsState === 'phishing') return keyInsightsState.phishing
         if (model.httpsState === 'none') return keyInsightsState.insecure
         if (model.httpsState === 'invalid') return keyInsightsState.invalid
         if (model.isBroken) return keyInsightsState.broken
@@ -66,7 +68,7 @@ export function renderKeyInsight(modelOverride) {
             return html`
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--protections-off"></div>
-                    ${title(model.tab.domain)} 
+                    ${title(model.tab.domain)}
                 </div>
             `
         },
@@ -127,6 +129,15 @@ export function renderKeyInsight(modelOverride) {
                 <div class="key-insight key-insight--main">
                     ${renderCompanyIconsList(model)} ${title(model.tab.domain)}
                     ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
+                </div>
+            `
+        },
+        phishing: () => {
+            const text = i18n.t('site:phishingWebsiteDesc.title', { domain: model.tab.domain })
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--phishing"></div>
+                    ${title(model.tab.domain)} ${description(raw(text))}
                 </div>
             `
         },
@@ -211,7 +222,7 @@ function renderCompanyIconsList(model) {
         }
         return html`
             <span class='icon-list__item' style='order: ${positionMap[index]}' data-company-icon-position='${positionMap[index]}'>
-                <span class='icon-list__wrapper icon-list__wrapper--count' 
+                <span class='icon-list__wrapper icon-list__wrapper--count'
                     data-company-icon-size='${item.size}'>
                     <span class='icon-list__count'>+${item.count}</span>
                 </span>

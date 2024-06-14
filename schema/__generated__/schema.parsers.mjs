@@ -83,6 +83,10 @@ export const localeSettingsSchema = z.object({
     locale: z.string()
 });
 
+export const phishingStatusSchema = z.object({
+    phishingStatus: z.boolean()
+});
+
 export const parentEntitySchema = z.object({
     displayName: z.string(),
     prevalence: z.number()
@@ -197,6 +201,7 @@ export const tabSchema = z.object({
     upgradedHttps: z.boolean(),
     protections: protectionsStatusSchema,
     localeSettings: localeSettingsSchema.optional(),
+    phishingStatus: phishingStatusSchema.optional(),
     parentEntity: parentEntitySchema.optional(),
     specialDomainName: z.string().optional()
 });
