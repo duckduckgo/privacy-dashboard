@@ -108,6 +108,7 @@ export function ChoiceToggleScreen() {
     const data = useData()
     const text = data.tab.domain
     const onToggle = useToggle()
+    const send = useTelemetry()
     return (
         <div className="site-info page-inner card" data-page="choice-category">
             <NavWrapper />
@@ -126,7 +127,14 @@ export function ChoiceToggleScreen() {
                     </div>
                 </div>
                 <div class="text--center">
-                    <TextLink onClick={() => push('choiceBreakageForm')}>{ns.report('skipThisStep.title')}</TextLink>
+                    <TextLink
+                        onClick={() => {
+                            push('choiceBreakageForm')
+                            send({ name: 'toggleSkipped' })
+                        }}
+                    >
+                        {ns.report('skipThisStep.title')}
+                    </TextLink>
                 </div>
             </div>
         </div>

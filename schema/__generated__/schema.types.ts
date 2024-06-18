@@ -532,7 +532,7 @@ export interface CloseMessageParams {
   eventOrigin: EventOrigin;
 }
 export interface TelemetrySpan {
-  attributes: CategoryTypeSelected | CategorySelected;
+  attributes: CategoryTypeSelected | CategorySelected | ToggleSkipped;
   eventOrigin: EventOrigin;
 }
 export interface CategoryTypeSelected {
@@ -542,5 +542,8 @@ export interface CategoryTypeSelected {
 export interface CategorySelected {
   name: "categorySelected";
   value: "blocked" | "layout" | "empty-spaces" | "paywall" | "videos" | "comments" | "login" | "shopping" | "other";
+}
+export interface ToggleSkipped {
+  name: "toggleSkipped";
 }
 
