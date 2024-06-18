@@ -49,6 +49,12 @@ export class AltBreakageFlows {
         await page.getByLabel('Site layout broken').click()
         await this.dash.screenshot('category-inline-toggle.png')
         await page.getByRole('link', { name: 'Skip this step' }).click()
+        await this.dash.mocks.didSendTelemetry({
+            screen: 'choiceToggle',
+            attributes: {
+                name: 'toggleSkipped',
+            },
+        })
         await page.getByRole('button', { name: 'Send Report' }).click()
         await this.dash.mocks.calledForSubmitBreakageForm({ category: 'layout' })
     }

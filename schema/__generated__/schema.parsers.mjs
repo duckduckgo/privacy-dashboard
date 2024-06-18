@@ -178,6 +178,10 @@ export const categorySelectedSchema = z.object({
     value: z.union([z.literal("blocked"), z.literal("layout"), z.literal("empty-spaces"), z.literal("paywall"), z.literal("videos"), z.literal("comments"), z.literal("login"), z.literal("shopping"), z.literal("other")])
 });
 
+export const toggleSkippedSchema = z.object({
+    name: z.literal("toggleSkipped")
+});
+
 export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
 
 export const detectedRequestSchema = z.object({
@@ -225,7 +229,7 @@ export const toggleReportScreenDataItemSchema = z.object({
 });
 
 export const telemetrySpanSchema = z.object({
-    attributes: z.union([categoryTypeSelectedSchema, categorySelectedSchema]),
+    attributes: z.union([categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema]),
     eventOrigin: eventOriginSchema
 });
 

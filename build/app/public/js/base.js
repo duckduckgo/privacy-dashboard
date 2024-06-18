@@ -4577,7 +4577,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -4712,6 +4712,9 @@
         name: z3.literal("categorySelected"),
         value: z3.union([z3.literal("blocked"), z3.literal("layout"), z3.literal("empty-spaces"), z3.literal("paywall"), z3.literal("videos"), z3.literal("comments"), z3.literal("login"), z3.literal("shopping"), z3.literal("other")])
       });
+      toggleSkippedSchema = z3.object({
+        name: z3.literal("toggleSkipped")
+      });
       dataItemIdSchema = z3.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
       detectedRequestSchema = z3.object({
         url: z3.string(),
@@ -4751,7 +4754,7 @@
         additional: siteUrlAdditionalDataSchema.optional()
       });
       telemetrySpanSchema = z3.object({
-        attributes: z3.union([categoryTypeSelectedSchema, categorySelectedSchema]),
+        attributes: z3.union([categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema]),
         eventOrigin: eventOriginSchema
       });
       requestDataSchema = z3.object({
@@ -17130,7 +17133,17 @@
     const data = useData();
     const text = data.tab.domain;
     const onToggle = useToggle();
-    return /* @__PURE__ */ y("div", { className: "site-info page-inner card", "data-page": "choice-category" }, /* @__PURE__ */ y(NavWrapper, null), /* @__PURE__ */ y("div", { className: "padding-x-double" }, /* @__PURE__ */ y(KeyInsightsMain, { title: text, icon: "switch-shield" }, description)), /* @__PURE__ */ y("div", { className: "padding-x" }, /* @__PURE__ */ y("div", { class: "card-list--bordered" }, /* @__PURE__ */ y("div", { className: "protection-toggle" }, /* @__PURE__ */ y("div", { className: "protection-toggle__row" }, /* @__PURE__ */ y(ProtectionToggle, { model: data, toggle: onToggle })))), /* @__PURE__ */ y("div", { class: "text--center" }, /* @__PURE__ */ y(TextLink, { onClick: () => push("choiceBreakageForm") }, ns.report("skipThisStep.title")))));
+    const send = useTelemetry();
+    return /* @__PURE__ */ y("div", { className: "site-info page-inner card", "data-page": "choice-category" }, /* @__PURE__ */ y(NavWrapper, null), /* @__PURE__ */ y("div", { className: "padding-x-double" }, /* @__PURE__ */ y(KeyInsightsMain, { title: text, icon: "switch-shield" }, description)), /* @__PURE__ */ y("div", { className: "padding-x" }, /* @__PURE__ */ y("div", { class: "card-list--bordered" }, /* @__PURE__ */ y("div", { className: "protection-toggle" }, /* @__PURE__ */ y("div", { className: "protection-toggle__row" }, /* @__PURE__ */ y(ProtectionToggle, { model: data, toggle: onToggle })))), /* @__PURE__ */ y("div", { class: "text--center" }, /* @__PURE__ */ y(
+      TextLink,
+      {
+        onClick: () => {
+          push("choiceBreakageForm");
+          send({ name: "toggleSkipped" });
+        }
+      },
+      ns.report("skipThisStep.title")
+    ))));
   }
   var validCategories = () => {
     return {

@@ -33,6 +33,16 @@
                             "enum": ["blocked", "layout", "empty-spaces", "paywall", "videos", "comments", "login", "shopping", "other"]
                         }
                     }
+                },
+                {
+                    "type": "object",
+                    "title": "ToggleSkipped",
+                    "required": ["name"],
+                    "properties": {
+                        "name": {
+                            "const": "toggleSkipped"
+                        }
+                    }
                 }
             ]
         },
