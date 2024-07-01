@@ -5,7 +5,7 @@ import siteTranslations from '../../../locales/en/site.json'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import reportTranslations from '../../../locales/en/report.json'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import doNotTranslateTranslations from '../../../locales/en/do-not-translate.json'
+import toggleReportTranslations from '../../../locales/en/toggle-report.json'
 
 // @ts-ignore
 import localeResources from '../../../locales/*/*.json'
@@ -15,7 +15,7 @@ i18next.use(ICU).init({
     initImmediate: false,
     fallbackLng: 'en',
     lng: 'en',
-    ns: ['shared', 'site', 'connection', 'report', 'ctascreens', 'firebutton', 'do-not-translate'],
+    ns: ['shared', 'site', 'connection', 'report', 'ctascreens', 'firebutton', 'toggle-report'],
     defaultNS: 'shared',
     resources: localeResources,
     i18nFormat: {
@@ -51,17 +51,17 @@ function report(key, options) {
 
 /**
  * A helper for accessing the 'report' namespace with a bit of help from Typescript
- * @template {keyof doNotTranslateTranslations} K
+ * @template {keyof toggleReportTranslations} K
  * @template {`${K}.title`} F
  * @param {F} key
  * @param {Record<string, any>} [options]
  */
-function noTrans(key, options) {
-    return i18next.t(`do-not-translate:${key}`, options)
+function toggleReport(key, options) {
+    return i18next.t(`toggle-report:${key}`, options)
 }
 
 export const ns = {
     site,
     report,
-    noTrans,
+    toggleReport,
 }
