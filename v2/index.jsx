@@ -3,6 +3,7 @@ import { h, render } from 'preact'
 import { App } from './app'
 import { SettingsProvider } from './settings'
 import { DataProvider } from './data-provider'
+import { TranslationProvider } from './translations'
 
 window.onunhandledrejection = (event) => {
     console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`)
@@ -14,7 +15,9 @@ async function init() {
     render(
         <SettingsProvider>
             <DataProvider>
-                <App />
+                <TranslationProvider>
+                    <App />
+                </TranslationProvider>
             </DataProvider>
         </SettingsProvider>,
         app
