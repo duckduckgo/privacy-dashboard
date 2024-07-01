@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
-import { mkdirSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { basename, join } from 'node:path'
 import { cwd } from './utils.mjs'
 import z from 'zod'
+import { mkdirSync } from 'node:fs'
 
 const CWD = cwd(import.meta.url)
 const BASE = join(CWD, '..')
@@ -11,63 +11,64 @@ const LOCALES_BASE = join(BASE, 'shared/locales')
 
 const env = z
     .object({
-        BUILD_OUTPUT: z.string(),
+        BUILD_OUTPUT: z.string().default('build/app-debug'),
         NODE_ENV: z.union([z.literal('production'), z.literal('development')]).default('production'),
     })
     .parse(process.env)
 
-// const IS_PROD = env.NODE_ENV === 'production'
 const OUTPUT_DIR = join(BASE, env.BUILD_OUTPUT, 'locales')
 
-// Function to read JSON file and return its contents as an object
-function readJSONFile(filePath) {
-    try {
-        const data = fs.readFileSync(filePath, 'utf8')
-        return JSON.parse(data)
-    } catch (err) {
-        console.error(`Error reading file ${filePath}:`, err)
-        return null
-    }
-}
-
-// Function to create a combined JSON file for a locale directory
-function createLocaleFile(localePath, locale) {
-    const result = {}
-    const files = fs.readdirSync(localePath)
-
-    files.forEach((file) => {
-        const filePath = path.join(localePath, file)
-        if (fs.statSync(filePath).isFile() && file.endsWith('.json')) {
-            const fileName = path.basename(file, '.json')
-            const json = readJSONFile(filePath)
-            delete json.smartling
-            Object.values(json).forEach((value) => {
-                try {
-                    delete value.note
-                } catch (e) {
-                    //
-                }
+/**
+ * Creates a locale file by reading all the JSON files in the given locale path,
+ * removing unnecessary properties, and writing the resulting JSON object to a file.
+ *
+ * @param {string} locale - The name of the locale for the output file.
+ *
+ */
+function createLocaleFile(locale) {
+    const localePath = path.join(LOCALES_BASE, locale)
+    const items = fs.readdirSync(localePath, { withFileTypes: true })
+    const json = items
+        /**
+         * Only include .json files
+         */
+        .filter((x) => x.isFile() && x.name.endsWith('.json'))
+        /**
+         * use the name of the json file to create the `ns` (namespace)
+         */
+        .map((item) => {
+            return {
+                ns: basename(item.name, '.json'),
+                json: JSON.parse(fs.readFileSync(path.join(localePath, item.name), 'utf8')),
+            }
+        })
+        /**
+         * Cleanup the JSON, removing unused keys like 'smartling' or `.note` from each item
+         */
+        .map((item) => {
+            const { smartling, ...rest } = item.json
+            const without = Object.entries(rest).map(([key, v]) => {
+                return [key, { title: v.title }]
             })
-            result[fileName] = json
-        }
-    })
+            return [item.ns, Object.fromEntries(without)]
+        })
 
-    let output = path.join(OUTPUT_DIR, `${locale}.json`)
-    mkdirSync(dirname(output), { recursive: true })
-    fs.writeFileSync(output, JSON.stringify(result, null, 2), 'utf8')
-    console.log(`✅ Created ${output}`)
+    return Object.fromEntries(json)
 }
 
 // Function to traverse the locales directory and process each locale
 function processLocales() {
-    const locales = fs.readdirSync(LOCALES_BASE)
+    const localeDirs = fs.readdirSync(LOCALES_BASE, { withFileTypes: true })
+    mkdirSync(OUTPUT_DIR, { recursive: true })
 
-    locales.forEach((locale) => {
-        const localePath = path.join(LOCALES_BASE, locale)
-        if (fs.statSync(localePath).isDirectory()) {
-            createLocaleFile(localePath, locale)
+    for (let locale of localeDirs) {
+        if (locale.isDirectory()) {
+            const json = createLocaleFile(locale.name)
+            const output = path.join(OUTPUT_DIR, `${locale.name}.json`)
+            fs.writeFileSync(output, JSON.stringify(json, null, 2), 'utf8')
+            console.log(`✅ Created ${output}`)
         }
-    })
+    }
 }
 
 processLocales()
