@@ -52,24 +52,26 @@ export class Settings {
      * @param {object} params
      * @param {string} [params.state]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [params.screen]
-     * @param {URLSearchParams} [params.reflectParams]
      * @param {import('../shared/js/ui/platform-features.mjs').Platform['name'][]} [params.platforms]
      * @param {string[]} [params.requests]
      */
-    constructor({
-        state = keys[0],
-        screen = 'primaryScreen',
-        reflectParams = new URLSearchParams({ state: state }),
-        platforms = ['android', 'ios', 'macos'],
-        requests = [],
-    } = {}) {
+    constructor({ state = keys[0], screen = 'primaryScreen', platforms = ['android', 'ios', 'macos'], requests = [] } = {}) {
         this.state = state
         this.screen = screen
         this.screens = screens
-        this.reflectParams = reflectParams
         this.platforms = platforms
         this.requests = requests
         this.items = items
+    }
+
+    get reflectParams() {
+        const nextParams = new URLSearchParams()
+        nextParams.set('screen', this.screen)
+        nextParams.set('state', this.state)
+        for (let request of this.requests) {
+            nextParams.append('requests', request)
+        }
+        return nextParams
     }
 
     /**
@@ -93,23 +95,6 @@ export class Settings {
         return new Settings({
             ...this,
             screen,
-        })
-    }
-
-    /**
-     * @param {URLSearchParams} params
-     */
-    withReflectParams(params) {
-        const nextParams = new URLSearchParams(this.reflectParams)
-        let reflectList = ['screen', 'requests']
-        for (let [key, value] of params) {
-            if (reflectList.includes(key)) {
-                nextParams.append(key, value)
-            }
-        }
-        return new Settings({
-            ...this,
-            reflectParams: nextParams,
         })
     }
 

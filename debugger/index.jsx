@@ -13,7 +13,6 @@ let searchParams = new URL(window.location.href).searchParams
 const settings = new Settings()
     .withState(searchParams.get('state'))
     .withScreen(searchParams.get('screen'))
-    .withReflectParams(searchParams)
     .withPlatforms(searchParams.get('platforms'))
     .withRequests(searchParams.getAll('requests'))
 
