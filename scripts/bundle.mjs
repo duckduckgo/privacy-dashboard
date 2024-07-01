@@ -30,7 +30,7 @@ async function init() {
             output: join(BASE, env.BUILD_OUTPUT, 'public/js/base.js'),
         },
         debugger: {
-            input: join(BASE, 'debugger/debugger.jsx'),
+            input: join(BASE, 'debugger/index.jsx'),
             output: join(BASE, env.BUILD_OUTPUT, 'debugger/debugger.js'),
             html: join(BASE, 'debugger/iframe.html'),
             htmlOutput: join(BASE, env.BUILD_OUTPUT, 'html/iframe.html'),
