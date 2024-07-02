@@ -47,6 +47,11 @@ console.time('copy')
 execSync('node scripts/copy.mjs', { cwd: BASE, stdio: 'inherit', env })
 console.timeEnd('copy')
 
+// copy assets
+console.time('translations')
+execSync('node scripts/locale.mjs', { cwd: BASE, stdio: 'inherit', env })
+console.timeEnd('translations')
+
 // bundle
 console.time('bundle')
 execSync('node scripts/bundle.mjs', { cwd: BASE, stdio: 'inherit', env })

@@ -1,8 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h, createContext } from 'preact'
 import comms, { platform } from '../shared/js/browser/communication.js'
-import { useCallback, useContext, useEffect, useState } from 'preact/hooks'
-import { i18n } from '../shared/js/ui/base/localize'
+import { useCallback, useEffect, useState } from 'preact/hooks'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../shared/js/ui/platform-features.mjs'
 import {
@@ -80,15 +79,6 @@ class DataChannel extends EventTarget {
      */
     accept({ tab, emailProtectionUserData, fireButton }) {
         if (tab) {
-            if (tab.locale) {
-                // @ts-ignore
-                if (Object.keys(i18n.options.resources).includes(tab.locale)) {
-                    i18n.changeLanguage(tab.locale)
-                } else {
-                    console.warn(`Unsupported locale ${tab.locale}`)
-                }
-            }
-
             this.tab = tab
             this.domain = tab.domain
             const MAJOR_TRACKER_THRESHOLD_PCT = 25
@@ -265,10 +255,6 @@ export function DataProvider({ children }) {
     const d = useInternalData()
     if (!d || d.count === 0) return null
     return <ChannelContext.Provider value={{ channel: dc }}>{children}</ChannelContext.Provider>
-}
-
-export function useChannel() {
-    return useContext(ChannelContext).channel
 }
 
 /**
