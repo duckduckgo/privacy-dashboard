@@ -13,37 +13,35 @@ const TranslationContext = createContext({
 export function TranslationProvider({ children }) {
     const data = useData()
     const locale = data.tab?.locale
-    const [ready, setReady] = useState(false)
+    const [state, setReady] = useState(/** @type {'idle'|'ready'|'loading'|'error'} */ ('idle'))
     useEffect(() => {
-        let cont = new AbortController()
-        async function fetchFile(locale, signal) {
-            try {
-                const s = await fetch(`../locales/${locale}.json`, { signal }).then((x) => x.json())
-                for (let [ns, translations] of Object.entries(s)) {
-                    i18n.addResourceBundle(locale, ns, translations)
-                }
-            } catch (e) {
-                console.error('could not load locale')
+        async function fetchFile(locale) {
+            setReady('loading')
+            const v = `/locales/${locale}.js`
+            const mod = await import(v)
+            for (let [ns, translations] of Object.entries(mod.default)) {
+                i18n.addResourceBundle(locale, ns, translations)
             }
-
             if (Object.keys(/** @type {any} */ (i18n.options.resources)).includes(locale)) {
                 i18n.changeLanguage(locale)
             } else {
                 console.warn(`Unsupported locale ${locale}`)
             }
+            setReady('ready')
         }
-        if (locale) {
-            fetchFile(locale, cont.signal)
-                .then(() => setReady(true))
-                .catch(console.error)
+        if (typeof locale === 'string' && locale.length === 2 && locale !== 'en') {
+            fetchFile(data.tab?.locale)
+                .then(() => setReady('ready'))
+                .catch(() => {
+                    console.error(`could not load the locale ${locale}`)
+                    setReady('error')
+                })
         } else {
-            console.log('ignoring dup')
-        }
-        return () => {
-            cont.abort()
+            setReady('ready')
         }
     }, [locale])
 
-    if (!ready) return null
+    if (state === 'idle') return null
+    if (state === 'loading') return null
     return <TranslationContext.Provider value={{ locale: 'en' }}>{children}</TranslationContext.Provider>
 }

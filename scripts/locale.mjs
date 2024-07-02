@@ -64,9 +64,9 @@ function processLocales() {
     for (let locale of localeDirs) {
         if (locale.isDirectory()) {
             const json = createLocaleFile(locale.name)
-            const output = path.join(OUTPUT_DIR, `${locale.name}.json`)
-            fs.writeFileSync(output, JSON.stringify(json, null, 2), 'utf8')
-            console.log(`✅ Created ${output}`)
+            const outputFile = path.join(OUTPUT_DIR, `${locale.name}.js`)
+            fs.writeFileSync(outputFile, `export default ` + JSON.stringify(json, null, 2), 'utf8')
+            console.log(`✅ Created ${outputFile}`)
         }
     }
 }

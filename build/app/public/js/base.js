@@ -13346,7 +13346,7 @@
   __export(browser_communication_exports, {
     backgroundMessage: () => backgroundMessage,
     doBurn: () => doBurn,
-    fetch: () => fetch2,
+    fetch: () => fetch,
     getBackgroundTabData: () => getBackgroundTabData,
     getBurnOptions: () => getBurnOptions,
     getPrivacyDashboardData: () => getPrivacyDashboardData,
@@ -13571,7 +13571,7 @@
   function setup() {
     setupColorScheme();
   }
-  async function fetch2(message) {
+  async function fetch(message) {
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
       return false;
     }
@@ -13724,7 +13724,7 @@
   var ios_communication_exports = {};
   __export(ios_communication_exports, {
     backgroundMessage: () => backgroundMessage2,
-    fetch: () => fetch4,
+    fetch: () => fetch3,
     getBackgroundTabData: () => getBackgroundTabData2,
     privacyDashboardShowAlertForMissingDescription: () => privacyDashboardShowAlertForMissingDescription,
     privacyDashboardShowNativeFeedback: () => privacyDashboardShowNativeFeedback,
@@ -13752,7 +13752,7 @@
   var macos_communication_exports = {};
   __export(macos_communication_exports, {
     backgroundMessage: () => backgroundMessage2,
-    fetch: () => fetch3,
+    fetch: () => fetch2,
     firstRenderComplete: () => firstRenderComplete,
     getBackgroundTabData: () => getBackgroundTabData2,
     onChangeConsentManaged: () => onChangeConsentManaged,
@@ -14760,7 +14760,7 @@
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
   }
-  async function fetch3(message) {
+  async function fetch2(message) {
     if (message instanceof CloseMessage) {
       privacyDashboardClose({ eventOrigin: message.eventOrigin });
       return;
@@ -14918,7 +14918,7 @@
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     window.webkit.messageHandlers.privacyDashboardTelemetrySpan.postMessage(args);
   }
-  async function fetch4(message) {
+  async function fetch3(message) {
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
       privacyDashboardShowReportBrokenSite({});
       return false;
@@ -14935,7 +14935,7 @@
       privacyDashboardTelemetrySpan(message);
       return false;
     }
-    return fetch3(message);
+    return fetch2(message);
   }
 
   // shared/js/browser/android-communication.js
@@ -14943,7 +14943,7 @@
   __export(android_communication_exports, {
     PrivacyDashboardJavascriptInterface: () => PrivacyDashboardJavascriptInterface,
     backgroundMessage: () => backgroundMessage3,
-    fetch: () => fetch5,
+    fetch: () => fetch4,
     getBackgroundTabData: () => getBackgroundTabData3,
     onChangeConsentManaged: () => onChangeConsentManaged2,
     onChangeFeatureSettings: () => onChangeFeatureSettings,
@@ -15197,7 +15197,7 @@
       return Reflect.apply(target, thisArg, argArray);
     }
   });
-  var fetch5 = new Proxy(fetchAndroid, {
+  var fetch4 = new Proxy(fetchAndroid, {
     apply(target, thisArg, argArray) {
       return Reflect.apply(target, thisArg, argArray);
     }
@@ -15214,7 +15214,7 @@
     SetSize: () => SetSize,
     SubmitBrokenSiteReport: () => SubmitBrokenSiteReport,
     backgroundMessage: () => backgroundMessage4,
-    fetch: () => fetch6,
+    fetch: () => fetch5,
     firstRenderComplete: () => firstRenderComplete2,
     getBackgroundTabData: () => getBackgroundTabData4,
     handleIncomingMessage: () => handleIncomingMessage,
@@ -15276,7 +15276,7 @@
       Data: data
     });
   }
-  async function fetch6(message) {
+  async function fetch5(message) {
     if (message instanceof SubmitBrokenSiteReportMessage) {
       SubmitBrokenSiteReport({
         category: message.category,
@@ -18395,17 +18395,17 @@
   function TranslationProvider({ children }) {
     const data = useData();
     const locale3 = data.tab?.locale;
-    const [ready, setReady] = h2(false);
+    const [state, setReady] = h2(
+      /** @type {'idle'|'ready'|'loading'|'error'} */
+      "idle"
+    );
     p2(() => {
-      let cont = new AbortController();
-      async function fetchFile(locale4, signal) {
-        try {
-          const s3 = await fetch(`../locales/${locale4}.json`, { signal }).then((x2) => x2.json());
-          for (let [ns2, translations] of Object.entries(s3)) {
-            i18n.addResourceBundle(locale4, ns2, translations);
-          }
-        } catch (e3) {
-          console.error("could not load locale");
+      async function fetchFile(locale4) {
+        setReady("loading");
+        const v3 = `/locales/${locale4}.js`;
+        const mod = await import(v3);
+        for (let [ns2, translations] of Object.entries(mod.default)) {
+          i18n.addResourceBundle(locale4, ns2, translations);
         }
         if (Object.keys(
           /** @type {any} */
@@ -18415,17 +18415,20 @@
         } else {
           console.warn(`Unsupported locale ${locale4}`);
         }
+        setReady("ready");
       }
-      if (locale3) {
-        fetchFile(locale3, cont.signal).then(() => setReady(true)).catch(console.error);
+      if (typeof locale3 === "string" && locale3.length === 2) {
+        fetchFile("pl").then(() => setReady("ready")).catch(() => {
+          console.error(`could not load the locale ${locale3}`);
+          setReady("error");
+        });
       } else {
-        console.log("ignoring dup");
+        setReady("ready");
       }
-      return () => {
-        cont.abort();
-      };
     }, [locale3]);
-    if (!ready)
+    if (state === "idle")
+      return null;
+    if (state === "loading")
       return null;
     return /* @__PURE__ */ y(TranslationContext.Provider, { value: { locale: "en" } }, children);
   }

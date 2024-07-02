@@ -1,4 +1,4 @@
-{
+export default {
   "connection": {
     "encrypt": {
       "title": "Titkosítás"
