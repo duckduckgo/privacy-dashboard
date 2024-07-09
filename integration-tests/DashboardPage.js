@@ -169,11 +169,19 @@ export class DashboardPage {
         return dash
     }
 
-    static async windows(page) {
+    /**
+     * @param {import("@playwright/test").Page} page
+     * @param {object} [opts]
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
+     * @return {Promise<DashboardPage>}
+     */
+    static async windows(page, opts = {}) {
+        /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
+        const screen = opts?.screen || 'primaryScreen'
         const dash = new DashboardPage(page, { name: 'windows' })
         await dash.withMarker()
         await dash.withMocks()
-        await dash.loadPage()
+        await dash.loadPage({ screen })
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
     }

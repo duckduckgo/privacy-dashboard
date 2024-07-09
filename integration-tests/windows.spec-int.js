@@ -15,6 +15,17 @@ test.describe('breakage form', () => {
     desktopBreakageForm((page) => DashboardPage.windows(page))
 })
 
+test.describe('opening breakage form', () => {
+    test('shows breakage form only', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page, { screen: 'breakageForm' })
+        await dash.addState([testDataStates.google])
+        await dash.breakageFormIsVisible()
+        await dash.screenshot('screen-breakage-form.png')
+        await dash.showsOnlyCloseButton()
+    })
+})
+
 test.describe('Protections toggle', () => {
     toggleFlows((page) => DashboardPage.windows(page))
 })
