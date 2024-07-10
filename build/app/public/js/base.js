@@ -14330,6 +14330,7 @@
   var windows_communication_exports = {};
   __export(windows_communication_exports, {
     AddToAllowListCommand: () => AddToAllowListCommand,
+    CloseCommand: () => CloseCommand,
     OpenInNewTab: () => OpenInNewTab,
     OpenSettings: () => OpenSettings,
     RemoveFromAllowListCommand: () => RemoveFromAllowListCommand,
@@ -14436,6 +14437,10 @@
         value: message.value
       });
     }
+    if (message instanceof CloseMessage) {
+      CloseCommand(message.eventOrigin);
+      return;
+    }
   }
   function SubmitBrokenSiteReport(report2) {
     windowsPostMessage("SubmitBrokenSiteReport", {
@@ -14462,6 +14467,9 @@
   }
   function AddToAllowListCommand(eventOrigin) {
     windowsPostMessage("AddToAllowListCommand", { eventOrigin });
+  }
+  function CloseCommand(eventOrigin) {
+    windowsPostMessage("CloseCommand", { eventOrigin });
   }
   var getBackgroundTabData4 = () => {
     return new Promise((resolve) => {
