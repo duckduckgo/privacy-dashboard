@@ -1,12 +1,8 @@
 import { detectedRequestSchema } from '../../../../../schema/__generated__/schema.parsers.mjs'
 
 /**
- * @import { DetectedRequest } from "../../../../../schema/__generated__/schema.types"
- */
-
-/**
- * @param {DetectedRequest[]} requests
- * @returns {DetectedRequest[]}
+ * @param {import("../../../../../schema/__generated__/schema.types").DetectedRequest[]} requests
+ * @returns {import("../../../../../schema/__generated__/schema.types").DetectedRequest[]}
  */
 export function protectionsOff(requests) {
     return requests.map((r) => {
