@@ -12573,7 +12573,7 @@
     /**
      * @param {object} params
      * @param {Array<{ list: "allowlisted" | "denylisted", domain: string, value: boolean}>} params.lists
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     * @param {EventOrigin} params.eventOrigin
      */
     constructor(params) {
       super();
@@ -12586,7 +12586,7 @@
      * @param {object} params
      * @param {string} params.category
      * @param {string} params.description
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     * @param {EventOrigin} params.eventOrigin
      */
     constructor(params) {
       super();
@@ -12610,7 +12610,7 @@
   var CloseMessage = class extends Msg {
     /**
      * @param {object} params
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     * @param {EventOrigin} params.eventOrigin
      */
     constructor(params) {
       super();
@@ -12630,8 +12630,8 @@
   var TelemetrySpanMsg = class extends Msg {
     /**
      * @param {object} params
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
-     * @param {import('../../../schema/__generated__/schema.types').TelemetrySpan['attributes']} params.attributes
+     * @param {EventOrigin} params.eventOrigin
+     * @param {TelemetrySpan['attributes']} params.attributes
      */
     constructor(params) {
       super();
@@ -12661,7 +12661,7 @@
   };
   var BurnMessage = class extends Msg {
     /**
-     * @param {import('../../../schema/__generated__/schema.types').FireOption} opts
+     * @param {FireOption} opts
      */
     constructor(opts) {
       super();
@@ -12680,7 +12680,7 @@
   };
   var SetBurnDefaultOption = class extends Msg {
     /**
-     * @param {import('../../../schema/__generated__/schema.types').FireOption['name']} name
+     * @param {FireOption['name']} name
      */
     constructor(name) {
       super();
@@ -14605,11 +14605,11 @@
      * @param {object} params
      * @param {boolean} params.spinnerFollowingProtectionsToggle
      * @param {boolean} params.supportsHover
-     * @param {InitialScreen} params.initialScreen
+     * @param {EventOrigin['screen']} params.initialScreen
      * @param {'dashboard' | 'menu'} params.opener
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
-     * @param {InitialScreen} params.breakageScreen
+     * @param {EventOrigin['screen']} params.breakageScreen
      */
     constructor(params) {
       this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
@@ -16729,7 +16729,7 @@
   // shared/js/ui/components/toggle-report/toggle-report-provider.jsx
   var ToggleReportContext = G({
     value: (
-      /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */
+      /** @type {ToggleReportScreen} */
       {}
     ),
     /** @type {() => void} */
