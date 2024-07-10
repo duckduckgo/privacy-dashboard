@@ -1,5 +1,10 @@
 name: Test & Deploy Docs
-on: [push, pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - main
 permissions:
     contents: read
     pages: write

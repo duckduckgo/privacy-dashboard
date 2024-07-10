@@ -2,10 +2,18 @@ import { Protections } from '../../../browser/utils/protections.mjs'
 import { protectionsOff } from './toggle-protections.mjs'
 
 /**
- * @typedef {import('../../../browser/utils/request-details.mjs').TabData} TabData
- * @typedef {import('../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
- * @typedef {import('../../../../../schema/__generated__/schema.types').ParentEntity} ParentEntity
- * @typedef {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} RemoteFeatureSettings
+ * @import {
+ *   DetectedRequest,
+ *   ParentEntity,
+ *   CookiePromptManagementStatus,
+ *   RemoteFeatureSettings,
+ *   EmailProtectionUserData,
+ *   ScreenKind,
+ *   WindowsIncomingViewModel,
+ *   GetPrivacyDashboardData,
+ *   FireButtonData,
+ *   RequestData,
+ * } from '../../../../../schema/__generated__/schema.types'
  */
 
 /** @type {DetectedRequest} */
@@ -255,10 +263,10 @@ export class MockData {
      * @param {boolean} [params.emailUser]
      * @param {boolean} [params.fireButtonEnabled]
      * @param {BurnConfig} [params.fireButtonOptions]
-     * @param {import('../../../../../schema/__generated__/schema.types').CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
-     * @param {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} [params.remoteFeatureSettings]
-     * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
-     * @param {{screen?: import('../../../../../schema/__generated__/schema.types').ScreenKind}} [params.urlParams]
+     * @param {CookiePromptManagementStatus} [params.cookiePromptManagementStatus]
+     * @param {RemoteFeatureSettings} [params.remoteFeatureSettings]
+     * @param {EmailProtectionUserData} [params.emailProtectionUserData]
+     * @param {{screen?: ScreenKind}} [params.urlParams]
      */
     constructor(params) {
         this.urlParams = params.urlParams || {}
@@ -310,7 +318,7 @@ export class MockData {
     }
 
     /**
-     * @return {import('../../../../../schema/__generated__/schema.types').WindowsIncomingViewModel}
+     * @return {WindowsIncomingViewModel}
      */
     toWindowsViewModel() {
         return {
@@ -332,10 +340,10 @@ export class MockData {
     }
 
     /**
-     * @return {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData}
+     * @return {GetPrivacyDashboardData}
      */
     toExtensionDashboardData() {
-        /** @type {import('../../../../../schema/__generated__/schema.types').GetPrivacyDashboardData} */
+        /** @type {GetPrivacyDashboardData} */
         const output = {
             tab: {
                 id: 1533,
@@ -367,7 +375,7 @@ export class MockData {
     }
 
     /**
-     * @return {import('../../../../../schema/__generated__/schema.types.js').FireButtonData}
+     * @return {FireButtonData}
      */
     toBurnOptions() {
         const burnConfig = this.fireButtonOptions || { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 }
@@ -418,8 +426,8 @@ export class MockData {
 }
 
 /**
- * @param {import('../../../../../schema/__generated__/schema.types').RequestData} google
- * @param {import('../../../../../schema/__generated__/schema.types').RequestData} cnn
+ * @param {RequestData} google
+ * @param {RequestData} cnn
  */
 export const createDataStates = (google, cnn) => {
     return {

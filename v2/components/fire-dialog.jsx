@@ -7,11 +7,10 @@ import { useEffect, useState } from 'preact/hooks'
 import { BurnMessage, FetchBurnOptions, SetBurnDefaultOption } from '../../shared/js/browser/common'
 import { useFetcher } from '../data-provider'
 
-/**
- * @typedef {import('../../schema/__generated__/schema.types.js').FireOption} FireOption
- */
-
 export function FireProvider({ onCancel }) {
+    /**
+     * @import {FireOption} from '../../schema/__generated__/schema.types.js'
+     */
     const [fireOptions, setFireOptions] = useState(/** @type {null | FireOption[]} */ (null))
     const fetcher = useFetcher()
     useEffect(() => {

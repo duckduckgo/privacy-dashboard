@@ -34,7 +34,8 @@ const availableScreens = {
 }
 
 /**
- * @typedef {import('../schema/__generated__/schema.types').EventOrigin['screen']} ScreenName
+ * @import {EventOrigin} from "../schema/__generated__/schema.types"
+ * @typedef {EventOrigin['screen']} ScreenName
  */
 
 const NavContext = createContext({

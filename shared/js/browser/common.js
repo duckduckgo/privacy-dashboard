@@ -1,9 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 /**
+ * @import {
+ *   EmailProtectionUserData,
+ *   RemoteFeatureSettings,
+ *   LocaleSettings,
+ *   CookiePromptManagementStatus,
+ *   ProtectionsStatus,
+ *   BreakageReportRequest,
+ *   SetListOptions,
+ *   RefreshAliasResponse,
+ *   Search,
+ *   EventOrigin,
+ *   TelemetrySpan,
+ *   FireOption,
+ * } from "../../../schema/__generated__/schema.types";
+ * @import {TabData} from "./utils/request-details.mjs"
+ */
+
+/**
  * @typedef {{
- *   tab: import('./utils/request-details.mjs').TabData,
- *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
+ *   tab: TabData,
+ *   emailProtectionUserData?: EmailProtectionUserData,
  *   fireButton?: { enabled: boolean }
  * }} BackgroundTabData
  */
@@ -132,7 +150,7 @@ export function assert(condition, message = '') {
  * "pl"
  * ```
  *
- * @param {import('../../../schema/__generated__/schema.types').LocaleSettings} payload
+ * @param {LocaleSettings} payload
  */
 export function onChangeLocale(payload) {}
 
@@ -147,7 +165,7 @@ export function onChangeLocale(payload) {}
  * }
  * ```
  *
- * @param {import('../../../schema/__generated__/schema.types').RemoteFeatureSettings} payload
+ * @param {RemoteFeatureSettings} payload
  */
 export function onChangeFeatureSettings(payload) {}
 
@@ -180,7 +198,7 @@ export function onChangeFeatureSettings(payload) {}
  *
  *
  *
- * @param {import('../../../schema/__generated__/schema.types').CookiePromptManagementStatus} payload
+ * @param {CookiePromptManagementStatus} payload
  */
 export function onChangeConsentManaged(payload) {}
 
@@ -214,7 +232,7 @@ export function setSize(payload) {}
  *
  * See {@link "Generated Schema Definitions".ProtectionsStatus} for details on the required properties
  *
- * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
+ * @param {ProtectionsStatus} protectionsStatus
  */
 export function onChangeProtectionStatus(protectionsStatus) {}
 
@@ -225,18 +243,18 @@ export function onChangeProtectionStatus(protectionsStatus) {}
  * Note: We only send the properties seen here: {@link "Generated Schema Definitions".BreakageReportRequest} (like `category`, `description`)
  * native sides should combine these with any additional data they require.
  *
- * @param {import('../../../schema/__generated__/schema.types').BreakageReportRequest} report
+ * @param {BreakageReportRequest} report
  */
 export function submitBrokenSiteReport(report) {}
 
 /**
- * @param {import('../../../schema/__generated__/schema.types').SetListOptions} options
+ * @param {SetListOptions} options
  */
 export function setLists(options) {}
 
 /**
  * Refresh the email alias
- * @returns {Promise<import('../../../schema/__generated__/schema.types').RefreshAliasResponse>}
+ * @returns {Promise<RefreshAliasResponse>}
  */
 export async function refreshAlias() {
     throw new Error('base impl')
@@ -266,7 +284,7 @@ export async function rejectToggleReport() {
 }
 
 /**
- * @param {import('../../../schema/__generated__/schema.types').Search} options
+ * @param {Search} options
  */
 export function search(options) {}
 
@@ -295,7 +313,7 @@ export class SetListsMessage extends Msg {
     /**
      * @param {object} params
      * @param {Array<{ list: "allowlisted" | "denylisted", domain: string, value: boolean}>} params.lists
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     * @param {EventOrigin} params.eventOrigin
      */
     constructor(params) {
         super()
@@ -304,7 +322,7 @@ export class SetListsMessage extends Msg {
          */
         this.lists = params.lists
         /**
-         * @type {import('../../../schema/__generated__/schema.types').EventOrigin}
+         * @type {EventOrigin}
          */
         this.eventOrigin = params.eventOrigin
     }
@@ -315,7 +333,7 @@ export class SubmitBrokenSiteReportMessage extends Msg {
      * @param {object} params
      * @param {string} params.category
      * @param {string} params.description
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     * @param {EventOrigin} params.eventOrigin
      */
     constructor(params) {
         super()
@@ -341,12 +359,12 @@ export class UpdatePermissionMessage extends Msg {
 export class CloseMessage extends Msg {
     /**
      * @param {object} params
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
+     * @param {EventOrigin} params.eventOrigin
      */
     constructor(params) {
         super()
         /**
-         * @type {import('../../../schema/__generated__/schema.types').EventOrigin}
+         * @type {EventOrigin}
          */
         this.eventOrigin = params.eventOrigin
     }
@@ -382,8 +400,8 @@ export class ShowNativeFeedback extends Msg {}
 export class TelemetrySpanMsg extends Msg {
     /**
      * @param {object} params
-     * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
-     * @param {import('../../../schema/__generated__/schema.types').TelemetrySpan['attributes']} params.attributes
+     * @param {EventOrigin} params.eventOrigin
+     * @param {TelemetrySpan['attributes']} params.attributes
      */
     constructor(params) {
         super()
@@ -424,7 +442,7 @@ export class OpenSettingsMessages extends Msg {
 
 export class BurnMessage extends Msg {
     /**
-     * @param {import('../../../schema/__generated__/schema.types').FireOption} opts
+     * @param {FireOption} opts
      */
     constructor(opts) {
         super()
@@ -440,7 +458,7 @@ export class SeeWhatIsSent extends Msg {}
 
 export class SetBurnDefaultOption extends Msg {
     /**
-     * @param {import('../../../schema/__generated__/schema.types').FireOption['name']} name
+     * @param {FireOption['name']} name
      */
     constructor(name) {
         super()

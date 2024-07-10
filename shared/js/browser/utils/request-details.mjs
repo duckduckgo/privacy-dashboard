@@ -3,7 +3,7 @@ import { requestDataSchema } from '../../../../schema/__generated__/schema.parse
 import { Protections } from './protections.mjs'
 
 /**
- * @typedef {import('../../../../schema/__generated__/schema.types.js').CookiePromptManagementStatus} CookiePromptManagementStatus
+ * @import {CookiePromptManagementStatus} from '../../../../schema/__generated__/schema.types.js'
  */
 
 /**

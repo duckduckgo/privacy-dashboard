@@ -10,8 +10,12 @@ import {
     SendToggleBreakageReport,
 } from '../../../browser/common'
 
+/**
+ * @import {EventOrigin, ToggleReportScreen} from '../../../../../schema/__generated__/schema.types'
+ */
+
 export const ToggleReportContext = createContext({
-    value: /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */ ({}),
+    value: /** @type {ToggleReportScreen} */ ({}),
     /** @type {() => void} */
     send: () => {
         throw new Error('todo implement send')
@@ -34,7 +38,7 @@ export const ToggleReportContext = createContext({
  * @param {object} params
  * @param {import("preact").ComponentChild} params.children
  * @param {{ fetch: (msg: Msg) => Promise<any> | void}} params.model
- * @param {import('../../platform-features.mjs').InitialScreen} params.screen
+ * @param {EventOrigin['screen']} params.screen
  */
 export function ToggleReportProvider({ children, model, screen }) {
     const initial = { status: 'pending' }

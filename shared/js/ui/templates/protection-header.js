@@ -44,7 +44,6 @@ export function protectionHeader(model) {
 
 /**
  * @typedef {'form-trigger' | 'site-not-working' | 'help-trigger' } UIState
- * @typedef {{text: string; label: string; active: boolean; disabled: boolean; toggled: boolean}} ToggleState
  */
 
 export const ProtectionContext = createContext(/** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */ ({}))

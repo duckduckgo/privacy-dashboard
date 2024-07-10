@@ -6,8 +6,8 @@ import { ns } from '../base/localize'
 import { isAndroid, isBrowser } from '../environment-check'
 
 /**
- * @typedef {import('../templates/protection-header').ToggleState} ToggleState
- * @typedef {import('../templates/protection-header').MigrationModel} MigrationModel
+ * @import {MigrationModel} from "../templates/protection-header"
+ * @typedef {{text: string; label: string; active: boolean; disabled: boolean; toggled: boolean}} ToggleState
  */
 
 /**

@@ -8,7 +8,7 @@
  */
 
 /**
- * @typedef {import("../../../schema/__generated__/schema.types").EventOrigin['screen']} InitialScreen
+ * @import {EventOrigin} from "../../../schema/__generated__/schema.types"
  */
 
 /**
@@ -21,7 +21,7 @@ export function createPlatformFeatures(platform) {
 
     let includeToggleOnBreakageForm = true
 
-    /** @type {InitialScreen} */
+    /** @type {EventOrigin['screen']} */
     let screen = 'primaryScreen'
     const url = new URL(window.location.href)
 
@@ -50,7 +50,7 @@ export function createPlatformFeatures(platform) {
         opener = 'dashboard'
     }
 
-    /** @type {InitialScreen} */
+    /** @type {EventOrigin['screen']} */
     let breakageScreen = 'breakageForm'
     if (url.searchParams.get('breakageScreen') === 'categorySelection') {
         breakageScreen = 'categorySelection'
@@ -79,11 +79,11 @@ export class PlatformFeatures {
      * @param {object} params
      * @param {boolean} params.spinnerFollowingProtectionsToggle
      * @param {boolean} params.supportsHover
-     * @param {InitialScreen} params.initialScreen
+     * @param {EventOrigin['screen']} params.initialScreen
      * @param {'dashboard' | 'menu'} params.opener
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
-     * @param {InitialScreen} params.breakageScreen
+     * @param {EventOrigin['screen']} params.breakageScreen
      */
     constructor(params) {
         /**
@@ -103,7 +103,7 @@ export class PlatformFeatures {
         this.supportsInvalidCerts = params.supportsInvalidCerts
         /**
          * Does the current platform support hover interactions?
-         * @type {InitialScreen}
+         * @type {EventOrigin['screen']}
          */
         this.initialScreen = params.initialScreen
         /**

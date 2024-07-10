@@ -6,11 +6,11 @@ const states = createDataStates(/** @type {any} */ (google), /** @type {any} */ 
 const keys = Object.keys(states)
 
 /**
- * @typedef {import('../schema/__generated__/schema.types').EventOrigin['screen']} Screen
+ * @import {EventOrigin} from '../schema/__generated__/schema.types'
  */
 
 /**
- * @type {Screen[]}
+ * @type {EventOrigin['screen'][]}
  */
 const validInitialScreens = [
     'breakageForm',
@@ -91,7 +91,7 @@ export class Settings {
      */
     withScreen(screen) {
         if (!screen) return this
-        if (!validInitialScreens.includes(/** @type {Screen} */ (screen))) return this
+        if (!validInitialScreens.includes(/** @type {EventOrigin['screen']} */ (screen))) return this
         return new Settings({
             ...this,
             screen,
