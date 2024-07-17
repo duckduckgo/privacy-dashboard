@@ -66,7 +66,7 @@ export function renderKeyInsight(modelOverride) {
             return html`
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--protections-off"></div>
-                    ${title(model.tab.domain)} 
+                    ${title(model.tab.domain)}
                 </div>
             `
         },
@@ -100,7 +100,7 @@ export function renderKeyInsight(modelOverride) {
         noneBlocked_someSpecialAllowed: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--info"></div>
+                    <div class="key-insight__icon hero-icon--no-activity"></div>
                     ${title(model.tab.domain)} ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
                 </div>
             `
@@ -211,7 +211,7 @@ function renderCompanyIconsList(model) {
         }
         return html`
             <span class='icon-list__item' style='order: ${positionMap[index]}' data-company-icon-position='${positionMap[index]}'>
-                <span class='icon-list__wrapper icon-list__wrapper--count' 
+                <span class='icon-list__wrapper icon-list__wrapper--count'
                     data-company-icon-size='${item.size}'>
                     <span class='icon-list__count'>+${item.count}</span>
                 </span>
