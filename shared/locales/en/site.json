@@ -52,7 +52,7 @@
         "note": "We did not find any trackers on this page"
     },
     "trackerNetworksSummaryAllowedOnly": {
-        "title": "To prevent site breakage, we didn’t block any companies from loading tracking requests on this page.",
+        "title": "We didn't block any tracking requests on this page.",
         "note": "The message shown when we allowed some trackers to load."
     },
     "trackerNetworksSummaryProtectionsOff": {
