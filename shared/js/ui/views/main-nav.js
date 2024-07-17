@@ -135,8 +135,8 @@ export function shouldRenderTrackerNetworksText(model) {
     switch (state) {
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedTrackers:
-            return false;
+            return false
         default:
-            return true;
+            return true
     }
 }
