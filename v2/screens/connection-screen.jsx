@@ -1,10 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h, Fragment } from 'preact'
+import { h } from 'preact'
 import { heroTemplate, largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { renderCertificateDetails, renderConnectionDescription } from '../../shared/js/ui/templates/page-connection'
 import { useData } from '../data-provider'
-import { DomNode } from '../dom-node'
+import { DomNode as _DomNode } from '../dom-node'
 import { SecondaryTopNav } from '../components/top-nav'
+
+const DomNode = /** @type {any} */ (_DomNode)
 
 export function ConnectionScreen() {
     const data = useData()
@@ -19,18 +21,22 @@ export function ConnectionScreen() {
         suffix: 'none',
     })
 
+    // prettier-ignore
+    const certDetails = data.tab.certificate
+        ? renderCertificateDetails(data, data.tab)
+        : null
+
+    // prettier-ignore
+    const certDetailsElement = certDetails
+        ? <DomNode key={data.count}>{certDetails}</DomNode>
+        : null
+
     return (
         <div className="site-info card page-inner" data-page="connection">
             <SecondaryTopNav />
             <div className="padding-x-double">
-                {/* @ts-ignore */}
                 <DomNode key={data.count}>{hero}</DomNode>
-                {data.tab.certificate && (
-                    <>
-                        {/* @ts-ignore */}
-                        <DomNode key={data.count}>{renderCertificateDetails(data, data.tab)}</DomNode>
-                    </>
-                )}
+                {certDetailsElement}
             </div>
         </div>
     )

@@ -12367,7 +12367,7 @@
   }
   function renderCertificateDetails(site2, tab) {
     if (site2.httpsState === "none" || !tab.certificate || tab.certificate.length === 0)
-      return "";
+      return null;
     const certificate = tab.certificate[0];
     return import_nanohtml4.default`
         <div>
@@ -15021,6 +15021,10 @@
   }
 
   // v2/screens/connection-screen.jsx
+  var DomNode2 = (
+    /** @type {any} */
+    DomNode
+  );
   function ConnectionScreen() {
     const data = useData();
     const summary = renderConnectionDescription(data, data.tab);
@@ -15032,7 +15036,9 @@
       summary,
       suffix: "none"
     });
-    return /* @__PURE__ */ y("div", { className: "site-info card page-inner", "data-page": "connection" }, /* @__PURE__ */ y(SecondaryTopNav, null), /* @__PURE__ */ y("div", { className: "padding-x-double" }, /* @__PURE__ */ y(DomNode, { key: data.count }, hero), data.tab.certificate && /* @__PURE__ */ y(k, null, /* @__PURE__ */ y(DomNode, { key: data.count }, renderCertificateDetails(data, data.tab)))));
+    const certDetails = data.tab.certificate ? renderCertificateDetails(data, data.tab) : null;
+    const certDetailsElement = certDetails ? /* @__PURE__ */ y(DomNode2, { key: data.count }, certDetails) : null;
+    return /* @__PURE__ */ y("div", { className: "site-info card page-inner", "data-page": "connection" }, /* @__PURE__ */ y(SecondaryTopNav, null), /* @__PURE__ */ y("div", { className: "padding-x-double" }, /* @__PURE__ */ y(DomNode2, { key: data.count }, hero), certDetailsElement));
   }
 
   // shared/js/ui/views/main-nav.js

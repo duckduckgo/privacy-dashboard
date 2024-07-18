@@ -34,6 +34,15 @@ test('invalid/missing certificate', async ({ page }) => {
     await dash.showsInvalidCertDetail()
 })
 
+test('insecure certificate', async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.webkit(page, { platform: 'macos' })
+    await dash.addState([testDataStates['insecure']])
+    await dash.hasInsecureText()
+    await dash.viewConnection()
+    await dash.hasInsecureTextDetail()
+})
+
 test.describe('opening breakage form', () => {
     test('shows breakage form only', async ({ page }) => {
         /** @type {DashboardPage} */
