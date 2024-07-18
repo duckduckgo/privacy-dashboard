@@ -121,6 +121,18 @@ export class DashboardPage {
         await this.page.locator('[data-page="connection"]').waitFor({ timeout: 2000 })
     }
 
+    async hasInsecureTextDetail() {
+        const { page } = this
+        await expect(page.locator('#popup-container')).toContainText(
+            'This page is using an unencrypted connection. Third parties may be able to view your activity or intercept sensitive information you send on this page.'
+        )
+    }
+    async hasInsecureText() {
+        const { page } = this
+        await expect(page.locator('#key-insight')).toContainText(
+            'This site is not secure and may compromise any information you send on this page.'
+        )
+    }
     async hasInvalidCertText() {
         const { page } = this
         await expect(page.locator('#popup-container')).toContainText(
@@ -130,9 +142,9 @@ export class DashboardPage {
 
     async showsInvalidCertDetail() {
         const { page } = this
-        await expect(page.locator('#key-insight')).toContainText(
+        const text =
             'The certificate for this site is invalid. You might be connecting to a server that is pretending to be example.com which could put your confidential information at risk.'
-        )
+        await page.locator('[data-page="connection"]').getByText(text).waitFor()
     }
 
     async showsTrackersScreen() {
