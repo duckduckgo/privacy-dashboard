@@ -115,6 +115,8 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
  * @returns {RequestDetails}
  */
 export function createRequestDetails(requests, installedSurrogates) {
+    console.log('REQUESTS', JSON.stringify(requests))
+
     const output = new RequestDetails(installedSurrogates)
     for (const request of requests) {
         // an overall list
@@ -230,6 +232,21 @@ export const states = /** @type {const} */ ({
     /* 010 */ protectionsOff_allowedTrackers: 'protectionsOff_allowedTrackers',
     /* 011 */ protectionsOff_allowedNonTrackers: 'protectionsOff_allowedNonTrackers',
     /* 012 */ protectionsOff_allowedTrackers_allowedNonTrackers: 'protectionsOff_allowedTrackers_allowedNonTrackers',
+
+    /* NEW STATES */
+
+    /* 013 */ protectionsOff_allowedFirstParty: 'protectionsOff_allowedFirstParty',
+    /* 014 */ protectionsOff_allowedFirstParty_allowedNonTrackers: /* 013 */ 'protectionsOff_allowedFirstParty_allowedNonTrackers',
+    /* 015 */ protectionsOff_allowedTrackers_allowedFirstParty: 'protectionsOff_allowedTrackers_allowedFirstParty',
+    /* 016 */ protectionsOff_allowedTrackers_allowedFirstParty_allowedNonTrackers: /* 013 */ 'protectionsOff_allowedTrackers_allowedFirstParty_allowedNonTrackers',
+    /* 017 */ protectionsOn_allowedFirstParty: 'protectionsOn_allowedFirstParty',
+    /* 018 */ protectionsOn_allowedFirstParty_allowedNonTrackers: 'protectionsOn_allowedFirstParty_allowedNonTrackers',
+    /* 019 */ protectionsOn_allowedTrackers_allowedFirstParty: 'protectionsOn_allowedTrackers_allowedFirstParty',
+    /* 020 */ protectionsOn_allowedTrackers_allowedFirstParty_allowedNonTrackers: /* 013 */ 'protectionsOn_allowedTrackers_allowedFirstParty_allowedNonTrackers',
+    /* 021 */ protectionsOn_blocked_allowedFirstParty: 'protectionsOn_blocked_allowedFirstParty',
+    /* 022 */ protectionsOn_blocked_allowedFirstParty_allowedNonTrackers: /* 013 */ 'protectionsOn_blocked_allowedFirstParty_allowedNonTrackers',
+    /* 023 */ protectionsOn_blocked_allowedTrackers_allowedFirstParty: /* 013 */ 'protectionsOn_blocked_allowedTrackers_allowedFirstParty',
+    /* 024 */ protectionsOn_blocked_allowedTrackers_allowedFirstParty_allowedNonTrackers: 'protectionsOn_blocked_allowedTrackers_allowedFirstParty_allowedNonTrackers',
 })
 
 /**
@@ -301,6 +318,13 @@ export class RequestDetails {
     }
 
     /**
+     * The number of entities observed that were owned by the first party website
+     */
+    allowedFirstPartyCount() {
+        return this.allowed.ownedByFirstParty.entitiesCount
+    }
+
+    /**
      * Create a list of company names, excluding any 'unknown' ones.
      * @returns {string[]}
      */
@@ -331,7 +355,21 @@ export class RequestDetails {
      * @return {keyof states & string}
      */
     state(protectionsEnabled) {
+        console.log('STATE', protectionsEnabled)
+
         if (!protectionsEnabled) {
+            if (this.allowedFirstPartyCount() > 0) {
+                if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
+                    return states.protectionsOff_allowedTrackers_allowedFirstParty_allowedNonTrackers
+                }
+                if (this.allowedNonSpecialCount() > 0) {
+                    return states.protectionsOff_allowedFirstParty_allowedNonTrackers
+                }
+                if (this.allowedSpecialCount() > 0) {
+                    return states.protectionsOff_allowedTrackers_allowedFirstParty
+                }
+                return states.protectionsOff_allowedFirstParty
+            }
             if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
                 return states.protectionsOff_allowedTrackers_allowedNonTrackers
             }
@@ -345,6 +383,18 @@ export class RequestDetails {
         } else {
             if (this.blockedCount() > 0) {
                 // with blocked trackers
+                if (this.allowedFirstPartyCount() > 0) {
+                    if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
+                        return states.protectionsOn_blocked_allowedTrackers_allowedFirstParty_allowedNonTrackers
+                    }
+                    if (this.allowedSpecialCount() > 0) {
+                        return states.protectionsOn_blocked_allowedTrackers_allowedFirstParty
+                    }
+                    if (this.allowedNonSpecialCount() > 0) {
+                        return states.protectionsOn_blocked_allowedFirstParty_allowedNonTrackers
+                    }
+                    return states.protectionsOn_blocked_allowedFirstParty
+                }
                 if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
                     return states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers
                 }
@@ -357,6 +407,18 @@ export class RequestDetails {
                 return states.protectionsOn_blocked
             } else {
                 // no trackers
+                if (this.allowedFirstPartyCount() > 0) {
+                    if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
+                        return states.protectionsOn_allowedTrackers_allowedFirstParty_allowedNonTrackers
+                    }
+                    if (this.allowedSpecialCount() > 0) {
+                        return states.protectionsOn_allowedTrackers_allowedFirstParty
+                    }
+                    if (this.allowedNonSpecialCount() > 0) {
+                        return states.protectionsOn_allowedFirstParty_allowedNonTrackers
+                    }
+                    return states.protectionsOn_allowedFirstParty
+                }
                 if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
                     return states.protectionsOn_allowedTrackers_allowedNonTrackers
                 }
@@ -369,6 +431,41 @@ export class RequestDetails {
             }
             return states.protectionsOn
         }
+    }
+
+    /**
+     * From the available request data, determine the global 'state' of the Request Data
+     * @param {boolean} protectionsEnabled
+     * @return {keyof states & string}
+     */
+    stateAlt(protectionsEnabled) {
+        let stateArray = []
+        if (protectionsEnabled) {
+            stateArray.push('protectionsOn')
+            if (this.blockedCount() > 0) stateArray.push('blocked')
+        }
+        else {
+            stateArray.push('protectionsOff')
+        }
+
+        if (this.allowedSpecialCount() > 0) {
+            stateArray.push('allowedTrackers')
+        }
+
+        if (this.allowedFirstPartyCount() > 0) {
+            stateArray.push('allowedFirstParty')
+        }
+
+        if (this.allowedNonSpecialCount() > 0) {
+            stateArray.push('allowedNonTrackers')
+        }
+
+        const stateString = stateArray.join('_')
+        if (!Object.keys(states).includes(stateString)) {
+            throw new Error(`Unexpected state ${stateString}`)
+        }
+
+        return states[stateString]
     }
 }
 

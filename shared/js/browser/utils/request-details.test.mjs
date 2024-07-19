@@ -12,6 +12,7 @@ const BASE = join(CWD, '../../../../schema/__fixtures__')
 const amazon = JSON.parse(readFileSync(join(BASE, 'request-data-amazon.json'), 'utf-8'))
 const google = JSON.parse(readFileSync(join(BASE, 'request-data-google.json'), 'utf-8'))
 const cnn = JSON.parse(readFileSync(join(BASE, 'request-data-cnn.json'), 'utf-8'))
+const reddit = JSON.parse(readFileSync(join(BASE, 'request-data-reddit.json'), 'utf-8'))
 
 describe('RequestDetails', () => {
     it('accepts zero requests', () => {
@@ -104,21 +105,28 @@ describe('RequestDetails', () => {
     it('calculates states (amazon)', () => {
         const requestDetails = fromJson(amazon)
         const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_allowedTrackers)
+        equal(state, states.protectionsOn_allowedTrackers_allowedFirstParty)
         const state2 = requestDetails.state(false)
-        equal(state2, states.protectionsOff_allowedTrackers)
+        equal(state2, states.protectionsOff_allowedTrackers_allowedFirstParty)
     })
     it('calculates states (google)', () => {
         const requestDetails = fromJson(google)
         const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_allowedTrackers)
+        equal(state, states.protectionsOn_allowedTrackers_allowedFirstParty)
     })
     it('calculates states (cnn)', () => {
         const requestDetails = fromJson(cnn)
         const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers)
+        equal(state, states.protectionsOn_blocked_allowedTrackers_allowedFirstParty_allowedNonTrackers)
         const state2 = requestDetails.state(false)
-        equal(state2, states.protectionsOff_allowedTrackers_allowedNonTrackers)
+        equal(state2, states.protectionsOff_allowedTrackers_allowedFirstParty_allowedNonTrackers)
+    })
+    it('calculates states (reddit)', () => {
+        const requestDetails = fromJson(reddit)
+        const state = requestDetails.state(true)
+        equal(state, states.protectionsOn_allowedTrackers_allowedFirstParty_allowedNonTrackers)
+        const state2 = requestDetails.state(false)
+        equal(state2, states.protectionsOff_allowedTrackers_allowedFirstParty_allowedNonTrackers)
     })
     it('calculates states (on + blocked)', () => {
         const requestDetails = fromJson({
