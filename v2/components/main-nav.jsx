@@ -9,7 +9,7 @@ import { useRippleChildren } from '../../shared/js/ui/hooks/useRipple'
 export function MainNav() {
     const data = useData()
     const { push } = useNav()
-    const ref = useRippleChildren()
+    const ref = useRippleChildren(data.count)
     return (
         <nav id="main-nav" ref={ref}>
             {/* @ts-ignore */}
