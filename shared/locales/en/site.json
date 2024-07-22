@@ -55,6 +55,10 @@
         "title": "We didn't block any tracking requests on this page.",
         "note": "The message shown when we allowed some trackers to load."
     },
+    "trackerNetworksSummaryFirstPartyAllowedOnly": {
+        "title": "We didn't find any external companies trying to load tracking requests on this page.",
+        "note": "The message shown when we allowed first party trackers to load."
+    },
     "trackerNetworksSummaryProtectionsOff": {
         "title": "No tracking requests were blocked from loading because Protections are turned off for this site. If a company's requests are loaded, it can allow them to profile you.",
         "note": "We found trackers, but protections were disabled"

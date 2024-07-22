@@ -132,9 +132,11 @@ function renderThirdPartyNew(model, cb) {
 export function shouldRenderTrackerNetworksText(model) {
     const state = model.tab.requestDetails.state(model.protectionsEnabled)
 
+    console.log('STATE', state)
+
     switch (state) {
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
             return false
         default:
             return true

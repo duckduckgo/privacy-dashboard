@@ -14,6 +14,7 @@ const keyInsightsState = /** @type {const} */ ({
     /* 07 */ emptyCompaniesList: 'emptyCompaniesList',
     /* 08 */ blocked: 'blocked',
     /* 09 */ invalid: 'invalid',
+    /* 10 */ noneBlocked_firstPartyAllowed: 'noneBlocked_firstPartyAllowed',
 })
 
 /**
@@ -32,6 +33,9 @@ export function renderKeyInsight(modelOverride) {
         if (!model.protectionsEnabled) return keyInsightsState.userAllowListed
         if (model.isaMajorTrackingNetwork && model.tab.parentEntity) return keyInsightsState.majorTrackingNetwork
         if (model.tab.requestDetails.blocked.requestCount === 0) {
+            if (model.tab.requestDetails.allowedFirstPartyCount() > 0 && model.tab.requestDetails.allowedFirstPartyCount() === model.tab.requestDetails.allowedSpecialCount()) {
+                return keyInsightsState.noneBlocked_firstPartyAllowed
+            }
             if (model.tab.requestDetails.allowedSpecialCount() > 0) {
                 return keyInsightsState.noneBlocked_someSpecialAllowed
             }
@@ -100,8 +104,16 @@ export function renderKeyInsight(modelOverride) {
         noneBlocked_someSpecialAllowed: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--no-activity"></div>
+                    <div class="key-insight__icon hero-icon--info"></div>
                     ${title(model.tab.domain)} ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
+                </div>
+            `
+        },
+        noneBlocked_firstPartyAllowed: () => {
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--no-activity"></div>
+                    ${title(model.tab.domain)} ${description(i18n.t('site:trackerNetworksSummaryFirstPartyAllowedOnly.title'))}
                 </div>
             `
         },

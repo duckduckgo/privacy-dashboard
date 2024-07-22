@@ -230,6 +230,8 @@ export const states = /** @type {const} */ ({
     /* 010 */ protectionsOff_allowedTrackers: 'protectionsOff_allowedTrackers',
     /* 011 */ protectionsOff_allowedNonTrackers: 'protectionsOff_allowedNonTrackers',
     /* 012 */ protectionsOff_allowedTrackers_allowedNonTrackers: 'protectionsOff_allowedTrackers_allowedNonTrackers',
+    /* 013 */ protectionsOn_allowedFirstParty: 'protectionsOn_allowedFirstParty',
+    /* 014 */ protectionsOn_allowedFirstParty_allowedNonTrackers: 'protectionsOn_allowedFirstParty_allowedNonTrackers',
 })
 
 /**
@@ -301,6 +303,13 @@ export class RequestDetails {
     }
 
     /**
+     * The number of entities observed that were owned by the first party website
+     */
+    allowedFirstPartyCount() {
+        return this.allowed.ownedByFirstParty.entitiesCount
+    }
+
+    /**
      * Create a list of company names, excluding any 'unknown' ones.
      * @returns {string[]}
      */
@@ -356,6 +365,19 @@ export class RequestDetails {
                 }
                 return states.protectionsOn_blocked
             } else {
+                // first party trackers only
+                if (this.allowedFirstPartyCount() > 0) {
+                    console.log('FIRST PARTY', this.allowedFirstPartyCount())
+                    console.log('SPECIAL', this.allowedSpecialCount())
+                    if (this.allowedFirstPartyCount() === this.allowedSpecialCount()) {
+                        if (this.allowedNonSpecialCount() > 0) {
+                            console.log('FP NT')
+                            return states.protectionsOn_allowedFirstParty_allowedNonTrackers
+                        }
+                        console.log('FP')
+                        return states.protectionsOn_allowedFirstParty
+                    }
+                }
                 // no trackers
                 if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
                     return states.protectionsOn_allowedTrackers_allowedNonTrackers

@@ -18,6 +18,15 @@ const allowedTracker = {
 }
 
 /** @type {DetectedRequest} */
+const allowedFirstPartyTracker = {
+    entityName: 'example.com',
+    prevalence: 82.6,
+    url: 'https://example.com/a.js',
+    pageUrl: 'https://example.com',
+    state: { allowed: { reason: 'ownedByFirstParty' } },
+}
+
+/** @type {DetectedRequest} */
 const allowedTrackerRule = {
     entityName: 'example.com',
     prevalence: 82.6,
@@ -623,6 +632,14 @@ export const createDataStates = (google, cnn) => {
         protectionsOn_allowedTrackers_allowedNonTrackers: new MockData({
             url: 'https://example.com',
             requests: [allowedTracker, allowedThirdParty],
+        }),
+        protectionsOn_allowedFirstParty: new MockData({
+            url: 'https://example.com',
+            requests: [allowedFirstPartyTracker],
+        }),
+        protectionsOn_allowedFirstParty_allowedNonTrackers: new MockData({
+            url: 'https://example.com',
+            requests: [allowedFirstPartyTracker, allowedThirdParty],
         }),
         protectionsOff: new MockData({
             url: 'https://example.com',
