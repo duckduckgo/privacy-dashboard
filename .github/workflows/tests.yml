@@ -62,6 +62,8 @@ jobs:
               with:
                   path: build/docs
                   key: build-output-${{ github.run_id }}
+            - name: Fetch fonts
+              run: npm run fetch-fonts
             - name: Build all
               run: npm run build && npm run build.debug
             ###
