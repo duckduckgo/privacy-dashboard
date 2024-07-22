@@ -122,7 +122,7 @@ test.describe('fire button', () => {
     })
 })
 
-test.describe('screenshots', () => {
+test.describe('screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },

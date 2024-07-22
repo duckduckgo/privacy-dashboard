@@ -16,7 +16,7 @@ test.describe('breakage form', () => {
 })
 
 test.describe('opening breakage form', () => {
-    test('shows breakage form only', async ({ page }) => {
+    test('shows breakage form only', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' })
         await dash.addState([testDataStates.google])
@@ -34,14 +34,14 @@ test.describe('permissions', () => {
     settingPermissions((page) => DashboardPage.windows(page))
 })
 
-test('windows is excluded from invalid/missing certificate', async ({ page }) => {
+test('windows is excluded from invalid/missing certificate', { tag: '@screenshots' }, async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.windows(page)
     await dash.addState([testDataStates['https-without-certificate']])
     await dash.screenshot('invalid-cert.png')
 })
 
-test('upgraded requests without certs always show as secure', async ({ page }) => {
+test('upgraded requests without certs always show as secure', { tag: '@screenshots' }, async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.windows(page)
     await dash.addState([testDataStates['upgraded+secure+without-certs']])
@@ -96,7 +96,7 @@ test.describe('cookie prompt management', () => {
     })
 })
 
-if (!process.env.CI) {
+test.describe('windows screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
@@ -104,7 +104,7 @@ if (!process.env.CI) {
         { name: 'google-off', state: testDataStates['google-off'] },
         { name: 'cnn', state: testDataStates.cnn },
     ]
-    test.describe('screenshots', () => {
+    test.describe('states', () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
                 const dash = await DashboardPage.windows(page)
@@ -112,4 +112,4 @@ if (!process.env.CI) {
             })
         }
     })
-}
+})

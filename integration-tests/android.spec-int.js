@@ -12,7 +12,7 @@ test.describe('initial page data', () => {
 })
 
 test.describe('page data (with trackers)', () => {
-    test('should display correct primary screen', async ({ page }) => {
+    test('should display correct primary screen', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.android(page)
         await dash.addState([testDataStates.cnn])
         await dash.showsPrimaryScreen()
@@ -25,6 +25,7 @@ test.describe('page data (with trackers)', () => {
         await dash.aboutLinkHasRipple()
     })
 })
+
 test.describe('open external links', () => {
     test('should call android interface for links', async ({ page }) => {
         const dash = await DashboardPage.android(page)
@@ -101,8 +102,8 @@ test.describe('cookie prompt management', () => {
     })
 })
 
-if (!process.env.CI) {
-    test.describe('screenshots', () => {
+test.describe('Android screenshots', { tag: '@screenshots' }, () => {
+    test.describe('states', () => {
         const states = [
             { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
             { name: 'new-entities', state: testDataStates['new-entities'] },
@@ -117,6 +118,7 @@ if (!process.env.CI) {
             })
         }
     })
+
     test.describe('screenshots for alternative layout states', () => {
         const states = [
             { name: 'alternative-layout-exp-1', state: testDataStates['alternative-layout-exp-1'] },
@@ -132,6 +134,7 @@ if (!process.env.CI) {
             })
         }
     })
+
     test.describe('screenshots for cookies (non-configurable)', () => {
         test('primary screen', async ({ page }) => {
             const dash = await DashboardPage.android(page)
@@ -140,6 +143,7 @@ if (!process.env.CI) {
             await dash.screenshot('consent-managed.png')
         })
     })
+
     test.describe('screenshots for cookies (configurable)', () => {
         test.describe('non-cosmetic', () => {
             test('primary screen', async ({ page }) => {
@@ -174,4 +178,4 @@ if (!process.env.CI) {
             })
         })
     })
-}
+})

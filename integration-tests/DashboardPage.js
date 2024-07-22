@@ -56,26 +56,12 @@ export class DashboardPage {
         await this.page.getByTestId('protectionHeader').waitFor({ timeout: 1000 })
     }
 
-    async showsTogglePrompt() {
-        await this.page.getByRole('link', { name: 'Website not working?' }).waitFor({ timeout: 1000 })
-    }
-
     async screenshot(name) {
-        if (!process.env.CI) {
-            // console.log('🚧 skipping screenshot 🚧', name)
-            await expect(this.page).toHaveScreenshot(name, { maxDiffPixelRatio: 0.025 })
-        }
+        await expect(this.page).toHaveScreenshot(name, { maxDiffPixelRatio: 0.025 })
     }
 
     async reducedMotion() {
         await this.page.emulateMedia({ reducedMotion: 'reduce' })
-    }
-
-    async screenshotPrimary(name, state) {
-        await this.reducedMotion()
-        await this.addState([state])
-        await this.showsPrimaryScreen()
-        return this.page.screenshot({ path: `screenshots/primary-${name}.png` })
     }
 
     /**

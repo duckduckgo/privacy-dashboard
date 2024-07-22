@@ -14887,7 +14887,9 @@
   function useFetcher() {
     return T2(async (msg) => {
       try {
-        console.log("\u{1F4E4} [outgoing useFetcher]", msg);
+        if (!window.__ddg_integration_test) {
+          console.log("\u{1F4E4} [outgoing useFetcher]", msg);
+        }
         return communication_default.fetch(msg);
       } catch (error2) {
         console.error("Error:", error2);
@@ -15208,7 +15210,6 @@
       while (instances.length) {
         const last = instances.pop();
         last.destroy();
-        console.log("destroy");
       }
     };
   }
@@ -17260,7 +17261,9 @@
     return canPopFrom(screen);
   }
   function navReducer(state, event) {
-    console.log("\u{1F4E9}", event, state);
+    if (!window.__ddg_integration_test) {
+      console.log("\u{1F4E9}", event, state);
+    }
     switch (state.state) {
       case "transitioning": {
         switch (event.type) {
