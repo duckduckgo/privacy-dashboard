@@ -122,7 +122,7 @@ test.describe('fire button', () => {
     })
 })
 
-if (!process.env.CI) {
+test.describe('screenshots', () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
@@ -134,13 +134,11 @@ if (!process.env.CI) {
             state: testDataStates['fire-button'],
         },
     ]
-    test.describe('screenshots', () => {
-        for (const { name, state } of states) {
-            test(name, async ({ page }) => {
-                const dash = await DashboardPage.browser(page)
-                await dash.addState([state])
-                await dash.screenshotEachScreenForState(name, state)
-            })
-        }
-    })
-}
+    for (const { name, state } of states) {
+        test(name, async ({ page }) => {
+            const dash = await DashboardPage.browser(page)
+            await dash.addState([state])
+            await dash.screenshotEachScreenForState(name, state)
+        })
+    }
+})
