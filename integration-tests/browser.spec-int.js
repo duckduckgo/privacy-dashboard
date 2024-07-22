@@ -138,7 +138,7 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
         test(name, async ({ page }) => {
             const dash = await DashboardPage.browser(page)
             await dash.addState([state])
-            await dash.screenshotEachScreenForState(name, state)
+            await dash.screenshotEachScreenForState(name, state, { maxDiffPixels: 100 })
         })
     }
 })

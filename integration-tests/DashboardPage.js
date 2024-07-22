@@ -56,8 +56,8 @@ export class DashboardPage {
         await this.page.getByTestId('protectionHeader').waitFor({ timeout: 1000 })
     }
 
-    async screenshot(name) {
-        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: 50 })
+    async screenshot(name, { maxDiffPixels = 50 } = {}) {
+        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: maxDiffPixels })
     }
 
     async reducedMotion() {
@@ -67,27 +67,28 @@ export class DashboardPage {
     /**
      * @param {string} name
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
+     * @param {{ maxDiffPixels?: number }} [opts]
      */
-    async screenshotEachScreenForState(name, state) {
+    async screenshotEachScreenForState(name, state, opts = {}) {
         await this.reducedMotion()
         await this.addState([state])
         await this.showsPrimaryScreen()
-        await this.screenshot(name + '-state-primary.png')
+        await this.screenshot(name + '-state-primary.png', opts)
         await this.viewConnection()
         await this.showsConnectionScreen()
-        await this.screenshot(name + '-state-connection.png')
+        await this.screenshot(name + '-state-connection.png', opts)
         await this.goBack()
         await this.viewTrackerCompanies()
         await this.showsTrackersScreen()
-        await this.screenshot(name + '-state-trackers.png')
+        await this.screenshot(name + '-state-trackers.png', opts)
         await this.goBack()
         await this.viewThirdParties()
         await this.showsNonTrackersScreen()
-        await this.screenshot(name + '-state-non-trackers.png')
+        await this.screenshot(name + '-state-non-trackers.png', opts)
         if (state.fireButtonEnabled) {
             await this.goBack()
             await this.clickFireButton()
-            await this.screenshot(name + '-state-fire-dialog.png')
+            await this.screenshot(name + '-state-fire-dialog.png', opts)
         }
     }
 
