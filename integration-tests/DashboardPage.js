@@ -57,7 +57,7 @@ export class DashboardPage {
     }
 
     async screenshot(name) {
-        await expect(this.page).toHaveScreenshot(name, { maxDiffPixelRatio: 0.025 })
+        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: 50 })
     }
 
     async reducedMotion() {
