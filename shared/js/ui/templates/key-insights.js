@@ -32,8 +32,9 @@ export function renderKeyInsight(modelOverride) {
         if (model.isBroken) return keyInsightsState.broken
         if (!model.protectionsEnabled) return keyInsightsState.userAllowListed
         if (model.isaMajorTrackingNetwork && model.tab.parentEntity) return keyInsightsState.majorTrackingNetwork
+        // TODO: Can we refactor this?
         if (model.tab.requestDetails.blocked.requestCount === 0) {
-            if (model.tab.requestDetails.allowedFirstPartyCount() > 0 && model.tab.requestDetails.allowedFirstPartyCount() === model.tab.requestDetails.allowedSpecialCount()) {
+            if (model.tab.requestDetails.allowedFirstPartyOnly()) {
                 return keyInsightsState.noneBlocked_firstPartyAllowed
             }
             if (model.tab.requestDetails.allowedSpecialCount() > 0) {
