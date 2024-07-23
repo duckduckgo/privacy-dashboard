@@ -15099,11 +15099,11 @@
   function template(model, nav) {
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged;
     const consentRow = import_nanohtml5.default`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
-    const networkTrackersText = shouldRenderTrackerNetworksText(model) ? import_nanohtml5.default`<li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>` : "";
+    const networkTrackersLink = shouldRenderTrackerNetworksLink(model) ? import_nanohtml5.default`<li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>` : "";
     return import_nanohtml5.default`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
             <li class="main-nav__row">${renderConnection(model, nav.connection)}</li>
-            ${networkTrackersText}
+            ${networkTrackersLink}
             <li class="main-nav__row">${renderThirdPartyNew(model, nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
         </ul>
@@ -15191,9 +15191,8 @@
         <span class="main-nav__chev"></span>
     </a>`;
   }
-  function shouldRenderTrackerNetworksText(model) {
+  function shouldRenderTrackerNetworksLink(model) {
     const state = model.tab.requestDetails.state(model.protectionsEnabled);
-    console.log("STATE", state);
     switch (state) {
       case states.protectionsOn_allowedFirstParty:
       case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
