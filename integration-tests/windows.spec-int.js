@@ -21,7 +21,7 @@ test.describe('opening breakage form', () => {
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' })
         await dash.addState([testDataStates.google])
         await dash.breakageFormIsVisible()
-        await dash.screenshot('screen-breakage-form.png')
+        await dash.screenshot('screen-breakage-form.png', { skipInCI: true })
         await dash.showsOnlyCloseButton()
     })
 })
