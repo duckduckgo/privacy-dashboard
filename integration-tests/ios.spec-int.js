@@ -261,6 +261,8 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
         { name: '09', state: testDataStates.protectionsOff_allowedTrackers },
         { name: '10', state: testDataStates.protectionsOff_allowedNonTrackers },
         { name: '11', state: testDataStates.protectionsOff_allowedTrackers_allowedNonTrackers },
+        { name: '12', state: testDataStates.protectionsOn_allowedFirstParty },
+        { name: '13', state: testDataStates.protectionsOn_allowedFirstParty_allowedNonTrackers },
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
         { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },

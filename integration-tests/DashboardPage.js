@@ -3,6 +3,7 @@ import { forwardConsole, playTimeline } from './helpers'
 import { Mocks } from './Mocks'
 import { AltBreakageFlows } from './AltBreakageFlows'
 import { Nav } from './Nav'
+import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]')
@@ -83,10 +84,12 @@ export class DashboardPage {
         await this.showsConnectionScreen()
         await this.screenshot(name + '-state-connection.png', opts)
         await this.goBack()
-        await this.viewTrackerCompanies()
-        await this.showsTrackersScreen()
-        await this.screenshot(name + '-state-trackers.png', opts)
-        await this.goBack()
+        if (this.shouldScreenshotTrackersScreen(state)) {
+            await this.viewTrackerCompanies()
+            await this.showsTrackersScreen()
+            await this.screenshot(name + '-state-trackers.png', opts)
+            await this.goBack()
+        }
         await this.viewThirdParties()
         await this.showsNonTrackersScreen()
         await this.screenshot(name + '-state-non-trackers.png', opts)
@@ -94,6 +97,21 @@ export class DashboardPage {
             await this.goBack()
             await this.clickFireButton()
             await this.screenshot(name + '-state-fire-dialog.png', opts)
+        }
+    }
+
+    /**
+     * Whether to screenshot the company trackers screen, as some states omit that screen
+     * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
+     */
+    shouldScreenshotTrackersScreen(state) {
+        switch(state) {
+            case testDataStates['fire-button']:
+            case testDataStates.protectionsOn_allowedFirstParty:
+            case testDataStates.protectionsOn_allowedFirstParty_allowedNonTrackers:
+                return false
+            default:
+                return true
         }
     }
 
@@ -119,17 +137,30 @@ export class DashboardPage {
             'This page is using an unencrypted connection. Third parties may be able to view your activity or intercept sensitive information you send on this page.'
         )
     }
+
     async hasInsecureText() {
         const { page } = this
         await expect(page.locator('#key-insight')).toContainText(
             'This site is not secure and may compromise any information you send on this page.'
         )
     }
+
     async hasInvalidCertText() {
         const { page } = this
         await expect(page.locator('#popup-container')).toContainText(
             'The certificate for this site is invalid. You might be connecting to a server that is pretending to be example.com which could put your confidential information at risk.'
         )
+    }
+
+    async hasAllowedFirstPartyText() {
+        const { page } = this
+        await expect(page.locator('#key-insight')).toContainText(
+            'We didn\'t find any external companies trying to load tracking requests on this page.'
+        )
+    }
+
+    async hidesTrackerCompaniesLink() {
+        await expect(this.trackerCompaniesLink()).not.toBeVisible()
     }
 
     async showsInvalidCertDetail() {
