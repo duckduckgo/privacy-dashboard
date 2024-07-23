@@ -12,14 +12,14 @@ import { states } from '../../browser/utils/request-details.mjs'
 export function template(model, nav) {
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
-    const networkTrackersText = shouldRenderTrackerNetworksText(model)
+    const networkTrackersLink = shouldRenderTrackerNetworksLink(model)
         ? html`<li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>`
         : ''
 
     return html`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
             <li class="main-nav__row">${renderConnection(model, nav.connection)}</li>
-            ${networkTrackersText}
+            ${networkTrackersLink}
             <li class="main-nav__row">${renderThirdPartyNew(model, nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
         </ul>
@@ -129,10 +129,8 @@ function renderThirdPartyNew(model, cb) {
  * @param {import('../models/site.js').PublicSiteModel} model
  * @returns {boolean}
  */
-export function shouldRenderTrackerNetworksText(model) {
+export function shouldRenderTrackerNetworksLink(model) {
     const state = model.tab.requestDetails.state(model.protectionsEnabled)
-
-    console.log('STATE', state)
 
     switch (state) {
         case states.protectionsOn_allowedFirstParty:
