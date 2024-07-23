@@ -11930,17 +11930,17 @@
       /* 08 */
       protectionsOn_allowedTrackers_allowedNonTrackers: "protectionsOn_allowedTrackers_allowedNonTrackers",
       /* 09 */
-      protectionsOff: "protectionsOff",
-      /* 010 */
-      protectionsOff_allowedTrackers: "protectionsOff_allowedTrackers",
-      /* 011 */
-      protectionsOff_allowedNonTrackers: "protectionsOff_allowedNonTrackers",
-      /* 012 */
-      protectionsOff_allowedTrackers_allowedNonTrackers: "protectionsOff_allowedTrackers_allowedNonTrackers",
-      /* 013 */
       protectionsOn_allowedFirstParty: "protectionsOn_allowedFirstParty",
+      /* 010 */
+      protectionsOn_allowedFirstParty_allowedNonTrackers: "protectionsOn_allowedFirstParty_allowedNonTrackers",
+      /* 011 */
+      protectionsOff: "protectionsOff",
+      /* 012 */
+      protectionsOff_allowedTrackers: "protectionsOff_allowedTrackers",
+      /* 013 */
+      protectionsOff_allowedNonTrackers: "protectionsOff_allowedNonTrackers",
       /* 014 */
-      protectionsOn_allowedFirstParty_allowedNonTrackers: "protectionsOn_allowedFirstParty_allowedNonTrackers"
+      protectionsOff_allowedTrackers_allowedNonTrackers: "protectionsOff_allowedTrackers_allowedNonTrackers"
     }
   );
   var RequestDetails = class {
@@ -12004,6 +12004,12 @@
       return this.allowed.ownedByFirstParty.entitiesCount;
     }
     /**
+     * When all the 'special' entities observed belong to the first party
+     */
+    allowedFirstPartyOnly() {
+      return this.allowedFirstPartyCount() > 0 && this.allowedFirstPartyCount() === this.allowedSpecialCount();
+    }
+    /**
      * Create a list of company names, excluding any 'unknown' ones.
      * @returns {string[]}
      */
@@ -12054,17 +12060,11 @@
           }
           return states.protectionsOn_blocked;
         } else {
-          if (this.allowedFirstPartyCount() > 0) {
-            console.log("FIRST PARTY", this.allowedFirstPartyCount());
-            console.log("SPECIAL", this.allowedSpecialCount());
-            if (this.allowedFirstPartyCount() === this.allowedSpecialCount()) {
-              if (this.allowedNonSpecialCount() > 0) {
-                console.log("FP NT");
-                return states.protectionsOn_allowedFirstParty_allowedNonTrackers;
-              }
-              console.log("FP");
-              return states.protectionsOn_allowedFirstParty;
+          if (this.allowedFirstPartyOnly()) {
+            if (this.allowedNonSpecialCount() > 0) {
+              return states.protectionsOn_allowedFirstParty_allowedNonTrackers;
             }
+            return states.protectionsOn_allowedFirstParty;
           }
           if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
             return states.protectionsOn_allowedTrackers_allowedNonTrackers;
@@ -15339,7 +15339,7 @@
       if (model.isaMajorTrackingNetwork && model.tab.parentEntity)
         return keyInsightsState.majorTrackingNetwork;
       if (model.tab.requestDetails.blocked.requestCount === 0) {
-        if (model.tab.requestDetails.allowedFirstPartyCount() > 0 && model.tab.requestDetails.allowedFirstPartyCount() === model.tab.requestDetails.allowedSpecialCount()) {
+        if (model.tab.requestDetails.allowedFirstPartyOnly()) {
           return keyInsightsState.noneBlocked_firstPartyAllowed;
         }
         if (model.tab.requestDetails.allowedSpecialCount() > 0) {
