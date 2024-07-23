@@ -66,7 +66,6 @@ export function addRippleTo(elements) {
         while (instances.length) {
             const last = instances.pop()
             last.destroy()
-            console.log('destroy')
         }
     }
 }

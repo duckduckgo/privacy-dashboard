@@ -45,7 +45,7 @@ Clicking any of the 'open in new tab' links will open the application in dedicat
 
 -   emulating dark/light mode
     -   use the dev tools 'emulate dark/light mode'
--   emulating tracker states, allowlisting andmore
+-   emulating tracker states, allowlisting and more
     -   use the select in the header to choose a state
 
 ## Browser/Extension specific overrides
@@ -109,5 +109,7 @@ Test files can be found co-located with the corresponding code using `.test.js` 
 To verify the platform-specific communications, run the integration tests
 
 -   Run `npm run test.int` to have all platforms tested
--   Run `npm run test.int --project ios` to only run the iOS tests - likewise for the other platforms
+-   Run `npm run test.int --project ios` to only run the iOS tests, likewise for the other platforms
+-   Run `npm run test.int -- --grep @screenshots` to only run screenshot tests
+-   Run `npm run test.int -- --grep-invert @screenshots` to only run non-screenshot tests
 -   Run `npm run test.int.update-screenshots` to also update screenshots (if you've made changes to anything visual)

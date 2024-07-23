@@ -329,7 +329,9 @@ export function useFetcher() {
     /** @type {(msg: import("../shared/js/browser/common.js").Msg) => Promise<any>} */
     return useCallback(async (msg) => {
         try {
-            console.log('📤 [outgoing useFetcher]', msg)
+            if (!window.__ddg_integration_test) {
+                console.log('📤 [outgoing useFetcher]', msg)
+            }
             return comms.fetch(msg)
         } catch (error) {
             console.error('Error:', error)

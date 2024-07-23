@@ -9,7 +9,7 @@ test.describe('page data (no trackers)', () => {
         await dash.addState([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
     })
-    test('should accept updates when on trackers list screen', async ({ page }) => {
+    test('should accept updates when on trackers list screen', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewTrackerCompanies()
@@ -18,7 +18,7 @@ test.describe('page data (no trackers)', () => {
         await dash.waitForCompanyName('Google LLC')
         await dash.screenshot('tracker-list-after.png')
     })
-    test('should accept updates when on non-trackers list screen', async ({ page }) => {
+    test('should accept updates when on non-trackers list screen', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewThirdParties()
@@ -27,7 +27,7 @@ test.describe('page data (no trackers)', () => {
         await dash.waitForCompanyName('Google LLC')
         await dash.screenshot('non-tracker-list-after.png')
     })
-    test('does not alter the appearance of connection panel', async ({ page }) => {
+    test('does not alter the appearance of connection panel', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.protectionsOn])
         await dash.viewConnection()
@@ -38,7 +38,7 @@ test.describe('page data (no trackers)', () => {
 })
 
 test.describe('page data (with trackers)', () => {
-    test('should display correct primary screen', async ({ page }) => {
+    test('should display correct primary screen', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page)
         await dash.addState([testDataStates.cnn])
         await dash.showsPrimaryScreen()
@@ -129,7 +129,7 @@ test.describe('cookie prompt management', () => {
 })
 
 test.describe('opening breakage form', () => {
-    test('shows breakage form only', async ({ page }) => {
+    test('shows breakage form only', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' })
         await dash.addState([testDataStates.google])
@@ -138,7 +138,7 @@ test.describe('opening breakage form', () => {
         await dash.screenshot('screen-breakage-form.png')
         await dash.showsOnlyDoneButton()
     })
-    test('shows breakage form without toggle (promptBreakageForm)', async ({ page }) => {
+    test('shows breakage form without toggle (promptBreakageForm)', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'promptBreakageForm', platform: 'ios' })
         await dash.addState([testDataStates.google])
@@ -146,7 +146,7 @@ test.describe('opening breakage form', () => {
         await dash.toggleIsAbsent()
         await dash.screenshot('breakage-form-prompt.png')
     })
-    test('sends toggle report', async ({ page }) => {
+    test('sends toggle report', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'menu' })
         await dash.addState([testDataStates.google])
@@ -162,7 +162,7 @@ test.describe('opening breakage form', () => {
         await dash.toggleReportIsVisible()
         await dash.rejectToggleReport()
     })
-    test('shows information once', async ({ page }) => {
+    test('shows information once', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
@@ -185,7 +185,7 @@ test.describe('stack based router', () => {
 test.describe('temporary reporting flows', () => {
     test.describe('opens to category selection from menu', () => {
         // sends report after selecting a category
-        test('sends report after selecting a category', async ({ page }) => {
+        test('sends report after selecting a category', { tag: '@screenshots' }, async ({ page }) => {
             const dash = await DashboardPage.webkit(page, { screen: 'categorySelection', platform: 'ios' })
             await dash.reducedMotion()
             await dash.addState([testDataStates.google])
@@ -211,7 +211,7 @@ test.describe('temporary reporting flows', () => {
     })
 
     test.describe('opens to category type selection from menu', () => {
-        test('shows category type list', async ({ page }) => {
+        test('shows category type list', { tag: '@screenshots' }, async ({ page }) => {
             const dash = await DashboardPage.webkit(page, { screen: 'categoryTypeSelection', platform: 'ios' })
             await dash.reducedMotion()
             await dash.addState([testDataStates.google])
@@ -248,83 +248,24 @@ test.describe('temporary reporting flows', () => {
     })
 })
 
-if (!process.env.CI) {
-    test.describe('screenshots', () => {
-        const states = [
-            { name: '01', state: testDataStates.protectionsOn },
-            { name: '02', state: testDataStates.protectionsOn_blocked },
-            { name: '03', state: testDataStates.protectionsOn_blocked_allowedTrackers },
-            { name: '04', state: testDataStates.protectionsOn_blocked_allowedNonTrackers },
-            { name: '05', state: testDataStates.protectionsOn_blocked_allowedTrackers_allowedNonTrackers },
-            { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
-            { name: 'new-entities', state: testDataStates['new-entities'] },
-            { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
-            { name: 'google-off', state: testDataStates['google-off'] },
-            { name: 'cnn', state: testDataStates.cnn },
-            { name: 'allowlisted', state: testDataStates.allowlisted },
-        ]
-        for (const { name, state } of states) {
-            test(name, async ({ page }) => {
-                const dash = await DashboardPage.webkit(page)
-                await dash.screenshotEachScreenForState(name, state)
-            })
-        }
-    })
-    test.describe.skip('primary screen screenshots', () => {
-        /** @type {{name: string, state: any}[]} */
-        const states = [
-            {
-                name: 'primary-insecure',
-                state: testDataStates.insecure,
-            },
-            {
-                name: 'primary-broken',
-                state: testDataStates.protectionsOff,
-            },
-            {
-                name: 'primary-user-allow-listed',
-                state: testDataStates.allowlisted,
-            },
-            {
-                name: 'primary-major-tracking-network',
-                state: testDataStates.google,
-            },
-            {
-                name: 'primary-major-tracking-network-blocked',
-                state: testDataStates['google-with-blocked'],
-            },
-            {
-                name: 'primary-none-blocked-some-trackers-allowed',
-                state: testDataStates.protectionsOn_allowedTrackers,
-            },
-            {
-                name: 'primary-none-blocked-third-party-allowed',
-                state: testDataStates.protectionsOn_allowedNonTrackers,
-            },
-            {
-                name: 'primary-none-blocked',
-                state: testDataStates.protectionsOn,
-            },
-            {
-                name: 'primary-blocked',
-                state: testDataStates.cnn,
-            },
-        ]
-        for (const { name, state } of states) {
-            test(name, async ({ page }, testInfo) => {
-                const dash = await DashboardPage.webkit(page)
-                const screen = await dash.screenshotPrimary(name, state)
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const { certificate, ...rest } = state
-                await testInfo.attach(name, {
-                    body: JSON.stringify(rest, null, 2),
-                    contentType: 'application/json',
-                })
-                await testInfo.attach(state + '-screen', {
-                    body: screen,
-                    contentType: 'image/png',
-                })
-            })
-        }
-    })
-}
+test.describe('screenshots', { tag: '@screenshots' }, () => {
+    const states = [
+        { name: '01', state: testDataStates.protectionsOn },
+        { name: '02', state: testDataStates.protectionsOn_blocked },
+        { name: '03', state: testDataStates.protectionsOn_blocked_allowedTrackers },
+        { name: '04', state: testDataStates.protectionsOn_blocked_allowedNonTrackers },
+        { name: '05', state: testDataStates.protectionsOn_blocked_allowedTrackers_allowedNonTrackers },
+        { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
+        { name: 'new-entities', state: testDataStates['new-entities'] },
+        { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
+        { name: 'google-off', state: testDataStates['google-off'] },
+        { name: 'cnn', state: testDataStates.cnn },
+        { name: 'allowlisted', state: testDataStates.allowlisted },
+    ]
+    for (const { name, state } of states) {
+        test(name, async ({ page }) => {
+            const dash = await DashboardPage.webkit(page)
+            await dash.screenshotEachScreenForState(name, state)
+        })
+    }
+})
