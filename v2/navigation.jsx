@@ -81,7 +81,9 @@ export function useCanPop() {
  * @param {NavEvent} event
  */
 function navReducer(state, event) {
-    console.log('📩', event, state)
+    if (!window.__ddg_integration_test) {
+        console.log('📩', event, state)
+    }
     switch (state.state) {
         case 'transitioning': {
             switch (event.type) {

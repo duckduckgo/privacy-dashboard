@@ -28,7 +28,7 @@
         "test.int": "playwright test",
         "test.int.ui": "playwright test --ui",
         "test.int.headed": "playwright test --headed",
-        "test.int.update-screenshots": "npm run test.int -- --update-snapshots",
+        "test.int.update-screenshots": "npm run test.int -- --grep @screenshots --update-snapshots",
         "test.int-debug": "playwright test --headed --debug",
         "test.clean-tree": "npm run build && sh scripts/check-for-changes.sh",
         "verify.artifacts": "node scripts/verify-artifacts.mjs",

@@ -63,7 +63,7 @@ export function toggleFlowsDenyList(dashboardFactory) {
  * @param {(page: import("@playwright/test").Page) => Promise<import("../DashboardPage").DashboardPage>} dashboardFactory
  */
 export function desktopBreakageForm(dashboardFactory) {
-    test('should show HTML breakage form and submit fields', async ({ page }) => {
+    test('should show HTML breakage form and submit fields', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await dashboardFactory(page)
         await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOn])
@@ -87,7 +87,7 @@ export function desktopBreakageForm(dashboardFactory) {
         await dash.toggleProtectionsOff(eventOrigin)
         await dash.mocks.calledForToggleAllowList('protections-off', eventOrigin)
     })
-    test('toggling protections back on, from breakage form', async ({ page }) => {
+    test('toggling protections back on, from breakage form', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await dashboardFactory(page)
         await dash.reducedMotion()
         await dash.addState([testDataStates.allowlisted])
@@ -97,7 +97,7 @@ export function desktopBreakageForm(dashboardFactory) {
         await dash.screenshot('breakage-form-allowlisted.png')
         await dash.toggleProtectionsOn(eventOrigin)
     })
-    test('broken (remote disabled) breakage form', async ({ page }) => {
+    test('broken (remote disabled) breakage form', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await dashboardFactory(page)
         await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOff])
@@ -109,25 +109,8 @@ export function desktopBreakageForm(dashboardFactory) {
 /**
  * @param {(page: import("@playwright/test").Page) => Promise<import("../DashboardPage").DashboardPage>} dashboardFactory
  */
-export function mobileBreakageForm(dashboardFactory) {
-    test('should ', async ({ page }) => {
-        const dash = await dashboardFactory(page)
-        await dash.reducedMotion()
-        await dash.addState([testDataStates.protectionsOn])
-        await dash.showsAlternativeLayout()
-        await dash.clicksWebsiteNotWorking()
-
-        await dash.screenshot('breakage-form.png')
-        await dash.submitBreakageForm()
-        await dash.screenshot('breakage-form-message.png')
-    })
-}
-
-/**
- * @param {(page: import("@playwright/test").Page) => Promise<import("../DashboardPage").DashboardPage>} dashboardFactory
- */
 export function settingPermissions(dashboardFactory) {
-    test('permissions toggles', async ({ page }) => {
+    test('permissions toggles', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await dashboardFactory(page)
         await dash.addState([testDataStates.permissions])
         await dash.screenshot('permissions.png')

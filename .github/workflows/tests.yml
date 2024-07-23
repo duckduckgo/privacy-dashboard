@@ -64,6 +64,8 @@ jobs:
                   key: build-output-${{ github.run_id }}
             - name: Build all
               run: npm run build && npm run build.debug
+            - name: Fetch fonts
+              run: npm run fetch-fonts
             ###
             ###  Run clean-tree following the build - no changes should be present
             ###
@@ -71,8 +73,10 @@ jobs:
               run: npm run test.clean-tree
             - name: Install Playwright Browsers
               run: npx playwright install --with-deps
-            - name: Run Playwright (integration) tests
-              run: npm run test.int
+            - name: Run Playwright tests (none-screenshots)
+              run: npm run test.int -- --grep-invert @screenshots
+            - name: Run Playwright tests (screenshots only)
+              run: npm run test.int -- --grep @screenshots
             - uses: actions/upload-artifact@v3
               if: always()
               with:
