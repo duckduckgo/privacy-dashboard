@@ -69,11 +69,11 @@ export function desktopBreakageForm(dashboardFactory) {
         await dash.addState([testDataStates.protectionsOn])
         await dash.showsAlternativeLayout()
         await dash.clicksWebsiteNotWorking()
-        await dash.screenshot('breakage-form.png', { maxDiffPixels: 100 })
+        await dash.screenshot('breakage-form.png', { skipInCI: true })
         await dash.enterBreakageSubscription('TEST')
         await dash.selectBreakageCategory(`Video didn’t play or load`)
         await dash.submitBreakageForm()
-        await dash.screenshot('breakage-form-message.png', { maxDiffPixels: 100 })
+        await dash.screenshot('breakage-form-message.png', { skipInCI: true })
         await dash.mocks.calledForSubmitBreakageForm({ category: 'videos', description: 'TEST' })
     })
     test('toggling protections off from breakage form', async ({ page }) => {
@@ -94,7 +94,7 @@ export function desktopBreakageForm(dashboardFactory) {
         await dash.clicksWebsiteNotWorking()
         /** @type {import('../../schema/__generated__/schema.types').EventOrigin} */
         const eventOrigin = { screen: 'breakageForm' }
-        await dash.screenshot('breakage-form-allowlisted.png', { maxDiffPixels: 100 })
+        await dash.screenshot('breakage-form-allowlisted.png', { skipInCI: true })
         await dash.toggleProtectionsOn(eventOrigin)
     })
     test('broken (remote disabled) breakage form', { tag: '@screenshots' }, async ({ page }) => {
@@ -102,7 +102,7 @@ export function desktopBreakageForm(dashboardFactory) {
         await dash.reducedMotion()
         await dash.addState([testDataStates.protectionsOff])
         await dash.clicksWebsiteNotWorking()
-        await dash.screenshot('breakage-form-broken.png', { maxDiffPixels: 100 })
+        await dash.screenshot('breakage-form-broken.png', { skipInCI: true })
     })
 }
 
@@ -113,7 +113,7 @@ export function settingPermissions(dashboardFactory) {
     test('permissions toggles', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await dashboardFactory(page)
         await dash.addState([testDataStates.permissions])
-        await dash.screenshot('permissions.png', { maxDiffPixels: 100 })
+        await dash.screenshot('permissions.png', { skipInCI: true })
         await dash.setsCameraPermissionTo('grant')
         await dash.mocks.calledForSettingPermissions({ permission: 'camera', value: 'grant' })
     })

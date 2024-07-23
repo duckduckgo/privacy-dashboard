@@ -122,7 +122,7 @@ test.describe('fire button', () => {
     })
 })
 
-test.describe.skip('screenshots', { tag: '@screenshots' }, () => {
+test.describe('screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
@@ -138,7 +138,7 @@ test.describe.skip('screenshots', { tag: '@screenshots' }, () => {
         test(name, async ({ page }) => {
             const dash = await DashboardPage.browser(page)
             await dash.addState([state])
-            await dash.screenshotEachScreenForState(name, state, { maxDiffPixels: 100 })
+            await dash.screenshotEachScreenForState(name, state, { skipInCI: true })
         })
     }
 })

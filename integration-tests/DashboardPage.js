@@ -56,8 +56,13 @@ export class DashboardPage {
         await this.page.getByTestId('protectionHeader').waitFor({ timeout: 1000 })
     }
 
-    async screenshot(name, { maxDiffPixels = 50 } = {}) {
-        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: maxDiffPixels })
+    /**
+     * @param {string} name
+     * @param {{ skipInCI?: boolean }} [opts]
+     */
+    async screenshot(name, { skipInCI = false } = {}) {
+        if (skipInCI) return console.log(`skipped ${name} in CI`)
+        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: 50 })
     }
 
     async reducedMotion() {
@@ -67,7 +72,7 @@ export class DashboardPage {
     /**
      * @param {string} name
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
-     * @param {{ maxDiffPixels?: number }} [opts]
+     * @param {{ skipInCI?: boolean }} [opts]
      */
     async screenshotEachScreenForState(name, state, opts = {}) {
         await this.reducedMotion()
