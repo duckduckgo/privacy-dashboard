@@ -105,7 +105,7 @@ export class DashboardPage {
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
      */
     shouldScreenshotTrackersScreen(state) {
-        switch(state) {
+        switch (state) {
             case testDataStates['fire-button']:
             case testDataStates.protectionsOn_allowedFirstParty:
             case testDataStates.protectionsOn_allowedFirstParty_allowedNonTrackers:
@@ -155,7 +155,7 @@ export class DashboardPage {
     async hasAllowedFirstPartyText() {
         const { page } = this
         await expect(page.locator('#key-insight')).toContainText(
-            'We didn\'t find any external companies trying to load tracking requests on this page.'
+            "We didn't find any external companies trying to load tracking requests on this page."
         )
     }
 

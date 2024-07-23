@@ -309,13 +309,11 @@ export class RequestDetails {
         return this.allowed.ownedByFirstParty.entitiesCount
     }
 
-
     /**
      * When all the 'special' entities observed belong to the first party
      */
     allowedFirstPartyOnly() {
-        return this.allowedFirstPartyCount() > 0
-            && this.allowedFirstPartyCount() === this.allowedSpecialCount()
+        return this.allowedFirstPartyCount() > 0 && this.allowedFirstPartyCount() === this.allowedSpecialCount()
     }
 
     /**
