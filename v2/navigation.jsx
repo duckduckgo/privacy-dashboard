@@ -126,6 +126,7 @@ function navReducer(state, event) {
                             params: nextParams,
                             stack: state.stack.concat(event.name),
                             state: /** @type {const} */ ('settled'),
+                            via: 'push',
                         }
                     }
                     return {
@@ -133,6 +134,7 @@ function navReducer(state, event) {
                         params: nextParams,
                         stack: state.stack.concat(event.name),
                         state: /** @type {const} */ ('transitioning'),
+                        via: 'push',
                     }
                 }
                 case 'pop': {
@@ -147,6 +149,7 @@ function navReducer(state, event) {
                             commit: next,
                             stack: next,
                             state: /** @type {const} */ ('settled'),
+                            via: 'pop',
                         }
                     }
                     return {
@@ -154,6 +157,7 @@ function navReducer(state, event) {
                         commit: state.stack,
                         stack: state.stack.slice(0, -1),
                         state: /** @type {const} */ ('transitioning'),
+                        via: 'pop',
                     }
                 }
                 default: {
@@ -174,7 +178,13 @@ function navReducer(state, event) {
  *   | {type: 'goto', stack: ScreenName[], opts: ActionOpts}
  *   | {type: 'end'}
  * } NavEvent
- * @typedef {{commit: string[], stack: string[], state: 'initial' | 'settled' | 'transitioning', params: URLSearchParams}} NavState
+ * @typedef {{
+ *    commit: string[],
+ *    stack: string[],
+ *    state: 'initial' | 'settled' | 'transitioning',
+ *    params: URLSearchParams,
+ *    via: NavEvent['type'] | string | undefined
+ * }} NavState
  */
 
 /**
@@ -189,6 +199,7 @@ export function Navigation(props) {
         state: 'initial',
         commit: [],
         params: props.params,
+        via: undefined,
     })
 
     /** @type {import('preact/hooks').MutableRef<HTMLDivElement | null>} */
@@ -214,23 +225,33 @@ export function Navigation(props) {
         if (state.state !== 'settled') {
             return
         }
-        const url = new URL(window.location.href)
-        url.searchParams.delete('stack')
-        for (let string of state.stack) {
-            url.searchParams.append('stack', string)
+
+        if (state.via === 'push') {
+            const url = new URL(window.location.href)
+            url.searchParams.delete('stack')
+            for (let string of state.stack) {
+                url.searchParams.append('stack', string)
+            }
+            for (let [key, value] of Object.entries(state.params)) {
+                url.searchParams.set(key, value)
+            }
+            window.history.pushState({}, '', url)
         }
-        for (let [key, value] of Object.entries(state.params)) {
-            url.searchParams.set(key, value)
+
+        if (state.via === 'pop') {
+            window.history.go(-1)
         }
-        window.history.pushState({}, '', url)
+
         function handler() {
             dispatch({ type: 'pop', opts: { animate: props.animate } })
         }
+
         window.addEventListener('popstate', handler)
+
         return () => {
             window.removeEventListener('popstate', handler)
         }
-    }, [state.state, state.params, props.animate])
+    }, [state.state, state.params, state.via, props.animate])
 
     const canPop = useCallback(() => {
         // const curr = state.stack[state.stack.length - 1];

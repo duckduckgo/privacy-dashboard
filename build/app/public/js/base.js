@@ -15224,7 +15224,7 @@
       };
     }, []);
   }
-  function useRippleChildren() {
+  function useRippleChildren(count) {
     const ref = _(null);
     p2(() => {
       const $el = ref.current;
@@ -15237,7 +15237,7 @@
       return () => {
         cleanup();
       };
-    }, []);
+    }, [count]);
     return ref;
   }
   function addRippleTo(elements) {
@@ -15264,7 +15264,7 @@
   function MainNav() {
     const data = useData();
     const { push } = useNav();
-    const ref = useRippleChildren();
+    const ref = useRippleChildren(data.count);
     return /* @__PURE__ */ y("nav", { id: "main-nav", ref }, /* @__PURE__ */ y(DomNode, { key: data.count }, template(data, {
       connection: () => {
         push("connection");
@@ -16701,7 +16701,7 @@
   // v2/screens/trackers-screen.jsx
   function TrackersScreen() {
     const data = useData();
-    const ref = useRippleChildren();
+    const ref = useRippleChildren(data.count);
     return /* @__PURE__ */ y("div", { className: "site-info card page-inner", "data-page": "trackers" }, /* @__PURE__ */ y(SecondaryTopNav, null), /* @__PURE__ */ y("div", { className: "padding-x-double", ref }, /* @__PURE__ */ y(DomNode, { key: data.count }, heroFromTabTrackers(data.tab.requestDetails, data.protectionsEnabled))), /* @__PURE__ */ y("div", { className: "padding-x-double", "aria-label": "List of Tracker Companies" }, sectionsFromSiteTrackers(data).map((el, index) => {
       return /* @__PURE__ */ y(DomNode, { key: String(data.count) + String(index) }, el);
     })), data.tab.platformLimitations ? /* @__PURE__ */ y("div", { class: "padding-x-double" }, /* @__PURE__ */ y(DomNode, { key: data.count }, platformLimitations())) : /* @__PURE__ */ y("div", null));
@@ -16764,7 +16764,7 @@
   // v2/screens/non-trackers-screen.jsx
   function NonTrackersScreen() {
     const data = useData();
-    const ref = useRippleChildren();
+    const ref = useRippleChildren(data.count);
     return /* @__PURE__ */ y("div", { className: "site-info card page-inner", "data-page": "non-trackers" }, /* @__PURE__ */ y(SecondaryTopNav, null), /* @__PURE__ */ y("div", { className: "padding-x-double", ref }, /* @__PURE__ */ y(DomNode, { key: data.count }, heroFromTabNonTrackers(data.tab.requestDetails, data.protectionsEnabled))), /* @__PURE__ */ y("div", { className: "padding-x-double", "aria-label": "List of Tracker Companies" }, sectionsFromSiteNonTracker(data).map((el, index) => {
       return /* @__PURE__ */ y(DomNode, { key: String(data.count) + String(index) }, el);
     })), data.tab.platformLimitations && /* @__PURE__ */ y("div", { class: "padding-x-double" }, /* @__PURE__ */ y(DomNode, { key: data.count }, platformLimitations())));
@@ -17375,7 +17375,8 @@
                 state: (
                   /** @type {const} */
                   "settled"
-                )
+                ),
+                via: "push"
               };
             }
             return {
@@ -17385,7 +17386,8 @@
               state: (
                 /** @type {const} */
                 "transitioning"
-              )
+              ),
+              via: "push"
             };
           }
           case "pop": {
@@ -17402,7 +17404,8 @@
                 state: (
                   /** @type {const} */
                   "settled"
-                )
+                ),
+                via: "pop"
               };
             }
             return {
@@ -17412,7 +17415,8 @@
               state: (
                 /** @type {const} */
                 "transitioning"
-              )
+              ),
+              via: "pop"
             };
           }
           default: {
@@ -17430,7 +17434,8 @@
       stack: props.stack,
       state: "initial",
       commit: [],
-      params: props.params
+      params: props.params,
+      via: void 0
     });
     const parentRef = _(null);
     p2(() => {
@@ -17451,15 +17456,20 @@
       if (state.state !== "settled") {
         return;
       }
-      const url = new URL(window.location.href);
-      url.searchParams.delete("stack");
-      for (let string of state.stack) {
-        url.searchParams.append("stack", string);
+      if (state.via === "push") {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("stack");
+        for (let string of state.stack) {
+          url.searchParams.append("stack", string);
+        }
+        for (let [key, value] of Object.entries(state.params)) {
+          url.searchParams.set(key, value);
+        }
+        window.history.pushState({}, "", url);
       }
-      for (let [key, value] of Object.entries(state.params)) {
-        url.searchParams.set(key, value);
+      if (state.via === "pop") {
+        window.history.go(-1);
       }
-      window.history.pushState({}, "", url);
       function handler() {
         dispatch({ type: "pop", opts: { animate: props.animate } });
       }
@@ -17467,7 +17477,7 @@
       return () => {
         window.removeEventListener("popstate", handler);
       };
-    }, [state.state, state.params, props.animate]);
+    }, [state.state, state.params, state.via, props.animate]);
     const canPop = T2(() => {
       if (state.state === "transitioning") {
         return state.commit.length > 1 || state.stack.length > 1;
