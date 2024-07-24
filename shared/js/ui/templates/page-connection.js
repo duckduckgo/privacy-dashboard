@@ -55,7 +55,7 @@ function getKeyUsage(key) {
  * @param {import("../../browser/utils/request-details.mjs").TabData} tab
  */
 export function renderCertificateDetails(site, tab) {
-    if (site.httpsState === 'none' || site.httpsState === 'phishing' || !tab.certificate || tab.certificate.length === 0) return ''
+    if (site.httpsState === 'none' || site.httpsState === 'phishing' || !tab.certificate || tab.certificate.length === 0) return null
 
     const certificate = tab.certificate[0]
     return html`

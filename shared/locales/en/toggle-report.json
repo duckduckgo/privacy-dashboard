@@ -7,29 +7,29 @@
       "instruction": "*/note"
     }]
   },
-  "invalidConnectionDesc": {
-    "title": "The certificate for this site is invalid. You might be connecting to a server that is pretending to be <b>{domain}</b> which could put your confidential information at risk.",
-    "note": "Shown when connection is encrypted, but the certificate is invalid"
-  },
   "dontSendReport": {
     "title": "Don't Send",
-    "note": "Button for not submitting report"
+    "note": "Button for choosing not to submit a report"
   },
   "yourReportWillHelpToggleReport": {
     "title": "Your report will help improve our products and make the experience better for everyone.",
     "note": "Body that the user sees upon submitting the report"
   },
   "siteNotWorkingTitle": {
-    "title": "Site not working? Let us know."
+    "title": "Site not working? Let us know.",
+    "note": "Title asking users if the site is not working and prompting them to report the issue."
   },
   "siteNotWorkingSubTitle": {
-    "title": "Anonymous reports help DuckDuckGo fix issues caused by privacy protections."
+    "title": "Anonymous reports help DuckDuckGo fix issues caused by privacy protections.",
+    "note": "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
   },
   "siteNotWorkingInfoReveal": {
-    "title": "See what’s sent"
+    "title": "See what’s sent",
+    "note": "Button label allowing users to see the information that is sent in the report."
   },
   "siteNotWorkingInfoHide": {
-    "title": "Hide"
+    "title": "Hide",
+    "note": "Button label allowing users to hide the information that is sent in the report."
   },
   "reportsNoInfoSent": {
     "title": "Info sent in reports can't be used to identify you:",
@@ -101,14 +101,14 @@
   },
   "dynamic_openerContext": {
     "title": "How you got to this page, either: \"SERP\" (DuckDuckGo search), \"Navigation\" (link/URL), or \"External\" (other means)",
-    "note": "todo"
+    "note": "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount": {
     "title": "Number of refreshes since page load",
-    "note": "todo"
+    "note": "This text represents the number of times the user has refreshed the page since it was initially loaded."
   },
   "dynamic_jsPerformance": {
     "title": "How quickly parts of the page loaded",
-    "note": "todo"
+    "note": "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
   }
 }

@@ -1,0 +1,115 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "dontSendReport" : {
+    "title" : "Send ikke",
+    "note" : "Button for choosing not to submit a report"
+  },
+  "yourReportWillHelpToggleReport" : {
+    "title" : "Din rapport vil være med til at forbedre vores produkter og gøre oplevelsen bedre for alle.",
+    "note" : "Body that the user sees upon submitting the report"
+  },
+  "siteNotWorkingTitle" : {
+    "title" : "Virker webstedet ikke? Fortæl os det.",
+    "note" : "Title asking users if the site is not working and prompting them to report the issue."
+  },
+  "siteNotWorkingSubTitle" : {
+    "title" : "Anonyme rapporter hjælper DuckDuckGo med at løse problemer forårsaget af privatlivsbeskyttelse.",
+    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+  },
+  "siteNotWorkingInfoReveal" : {
+    "title" : "Se, hvad der bliver sendt",
+    "note" : "Button label allowing users to see the information that is sent in the report."
+  },
+  "siteNotWorkingInfoHide" : {
+    "title" : "Skjul",
+    "note" : "Button label allowing users to hide the information that is sent in the report."
+  },
+  "reportsNoInfoSent" : {
+    "title" : "Oplysninger sendt i rapporter kan ikke bruges til at identificere dig:",
+    "note" : "This text emphasizes that the sent reports do not contain any personally identifiable information."
+  },
+  "dynamic_wvVersion" : {
+    "title" : "Versionsnummer på webbrowserens motor",
+    "note" : "This text represents the version number of the web browser engine."
+  },
+  "dynamic_requests" : {
+    "title" : "Værtsnavne på blokerede trackere, surrogatforespørgsler, ignorerede forespørgsler og forespørgsler, der ikke er på listen over blokerede trackere",
+    "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
+  },
+  "dynamic_features" : {
+    "title" : "Liste over hvilke beskyttelser og browserfunktioner, der var aktive",
+    "note" : "This text represents a list of active protections and browser features."
+  },
+  "dynamic_appVersion" : {
+    "title" : "Appens versionsnummer",
+    "note" : "This text indicates the version number of the app."
+  },
+  "dynamic_atb" : {
+    "title" : "Anonym eksperimentgruppe til test af funktioner",
+    "note" : "This text represents an anonymous group for testing features."
+  },
+  "dynamic_errorDescriptions" : {
+    "title" : "Browser-rapporterede fejl",
+    "note" : "This text provides a list of errors reported by the browser."
+  },
+  "dynamic_extensionVersion" : {
+    "title" : "Udvidelsens versionsnummer",
+    "note" : "This text indicates the version number of the extension."
+  },
+  "dynamic_httpErrorCodes" : {
+    "title" : "Responsstatuskoder for websted (HTTP)",
+    "note" : "This text provides a list of response status codes from the website."
+  },
+  "dynamic_lastSentDay" : {
+    "title" : "Dato for sidste rapport sendt for dette websted",
+    "note" : "This text indicates the date of the last report sent for the site."
+  },
+  "dynamic_device" : {
+    "title" : "Enhedens mærke, model og producent",
+    "note" : "This text provides information about the device, including make, model, and manufacturer."
+  },
+  "dynamic_os" : {
+    "title" : "Operativsystemets versionsnummer",
+    "note" : "This text indicates the version number of the operating system."
+  },
+  "dynamic_reportFlow" : {
+    "title" : "Hvilken rapporteringsformular du brugte (\" menu \", \" dashboard \" osv.)",
+    "note" : "This text represents the path the user took to get to this feedback screen."
+  },
+  "dynamic_siteUrl" : {
+    "title" : "Sidens URL (uden identificerbare oplysninger)",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_listVersions" : {
+    "title" : "Oplysninger om, hvilke versioner af vores beskyttelser der var aktive",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_didOpenReportInfo" : {
+    "title" : "Om du har valgt at vise denne rapportinformation eller ej",
+    "note" : "This text represents if the user has opted to see a list of information, or not."
+  },
+  "dynamic_toggleReportCounter" : {
+    "title" : "Antal gange beskyttelsen blev slået fra",
+    "note" : "This text represents the amount of times protections were toggled"
+  },
+  "dynamic_openerContext" : {
+    "title" : "Hvordan du kom til denne side, enten: \"SERP\" (DuckDuckGo-søgning), \"Navigation\" (link/URL) eller \"Ekstern\" (på anden måde)",
+    "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
+  },
+  "dynamic_userRefreshCount" : {
+    "title" : "Antal opdateringer siden indlæsning af siden",
+    "note" : "This text represents the number of times the user has refreshed the page since it was initially loaded."
+  },
+  "dynamic_jsPerformance" : {
+    "title" : "Hvor hurtigt dele af siden indlæses",
+    "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  }
+}

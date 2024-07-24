@@ -1,0 +1,115 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "dontSendReport" : {
+    "title" : "Neposílat",
+    "note" : "Button for choosing not to submit a report"
+  },
+  "yourReportWillHelpToggleReport" : {
+    "title" : "Tvoje hlášení nám pomůže vylepšovat naše služby a jejich funkčnost pro všechny.",
+    "note" : "Body that the user sees upon submitting the report"
+  },
+  "siteNotWorkingTitle" : {
+    "title" : "Stránka nefunguje? Dej nám vědět.",
+    "note" : "Title asking users if the site is not working and prompting them to report the issue."
+  },
+  "siteNotWorkingSubTitle" : {
+    "title" : "Anonymní hlášení pomáhají DuckDuckGo opravit problémy způsobené ochranou soukromí.",
+    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+  },
+  "siteNotWorkingInfoReveal" : {
+    "title" : "Podívej se, co se odesílá",
+    "note" : "Button label allowing users to see the information that is sent in the report."
+  },
+  "siteNotWorkingInfoHide" : {
+    "title" : "Skrýt",
+    "note" : "Button label allowing users to hide the information that is sent in the report."
+  },
+  "reportsNoInfoSent" : {
+    "title" : "Informace odeslané v hlášeních se nedají použít k tvojí identifikaci:",
+    "note" : "This text emphasizes that the sent reports do not contain any personally identifiable information."
+  },
+  "dynamic_wvVersion" : {
+    "title" : "Číslo verze webového prohlížeče",
+    "note" : "This text represents the version number of the web browser engine."
+  },
+  "dynamic_requests" : {
+    "title" : "Názvy hostitelů zablokovaných trackerů, náhradní požadavky, ignorované požadavky a požadavky, které nejsou v seznamu blokování trackerů",
+    "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
+  },
+  "dynamic_features" : {
+    "title" : "Seznam aktivních ochran a funkcí prohlížeče",
+    "note" : "This text represents a list of active protections and browser features."
+  },
+  "dynamic_appVersion" : {
+    "title" : "Číslo verze aplikace",
+    "note" : "This text indicates the version number of the app."
+  },
+  "dynamic_atb" : {
+    "title" : "Anonymní experimentální skupina pro testování funkcí",
+    "note" : "This text represents an anonymous group for testing features."
+  },
+  "dynamic_errorDescriptions" : {
+    "title" : "Chyby nahlášené prohlížečem",
+    "note" : "This text provides a list of errors reported by the browser."
+  },
+  "dynamic_extensionVersion" : {
+    "title" : "Číslo verze rozšíření",
+    "note" : "This text indicates the version number of the extension."
+  },
+  "dynamic_httpErrorCodes" : {
+    "title" : "Stavové kódy odezvy webových stránek (HTTP)",
+    "note" : "This text provides a list of response status codes from the website."
+  },
+  "dynamic_lastSentDay" : {
+    "title" : "Datum posledního hlášení odeslaného pro daný web",
+    "note" : "This text indicates the date of the last report sent for the site."
+  },
+  "dynamic_device" : {
+    "title" : "Značka, model a výrobce zařízení",
+    "note" : "This text provides information about the device, including make, model, and manufacturer."
+  },
+  "dynamic_os" : {
+    "title" : "Číslo verze operačního systému",
+    "note" : "This text indicates the version number of the operating system."
+  },
+  "dynamic_reportFlow" : {
+    "title" : "Který formulář hlášení jsi použil(a) („nabídka“, „informační panel“ atd.)",
+    "note" : "This text represents the path the user took to get to this feedback screen."
+  },
+  "dynamic_siteUrl" : {
+    "title" : "URL stránky (bez identifikovatelných informací)",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_listVersions" : {
+    "title" : "Informace o tom, které verze našich ochranných funkcí byly aktivní",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_didOpenReportInfo" : {
+    "title" : "Jestli sis informace o hlášení zobrazil(a)",
+    "note" : "This text represents if the user has opted to see a list of information, or not."
+  },
+  "dynamic_toggleReportCounter" : {
+    "title" : "Počet případů, kdy byly ochranné funkce vypnuté",
+    "note" : "This text represents the amount of times protections were toggled"
+  },
+  "dynamic_openerContext" : {
+    "title" : "Jak ses na danou stránku dostal(a): „SERP“ (vyhledávání DuckDuckGo), „navigace“ (odkaz/URL) nebo „externě“ (jinak)",
+    "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
+  },
+  "dynamic_userRefreshCount" : {
+    "title" : "Počet obnovení od načtení stránky",
+    "note" : "This text represents the number of times the user has refreshed the page since it was initially loaded."
+  },
+  "dynamic_jsPerformance" : {
+    "title" : "Jak rychle se jednotlivé části stránky načetly",
+    "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  }
+}

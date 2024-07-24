@@ -1,118 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h, render } from 'preact'
+import { h } from 'preact'
 import styles from './debugger.module.css'
-import { createDataStates, requests } from '../shared/js/ui/views/tests/generate-data.mjs'
+import { requests } from '../shared/js/ui/views/tests/generate-data.mjs'
 
-import google from '../schema/__fixtures__/request-data-google.json'
-import cnn from '../schema/__fixtures__/request-data-cnn.json'
-
-const states = createDataStates(/** @type {any} */ (google), /** @type {any} */ (cnn))
-const keys = Object.keys(states)
-
-const items = [
-    {
-        platform: 'android',
-        height: 780,
-    },
-    {
-        platform: 'ios',
-        height: 780,
-    },
-    {
-        platform: 'macos',
-        height: 600,
-    },
-    {
-        platform: 'windows',
-        height: 780,
-    },
-    {
-        platform: 'browser',
-    },
-]
-
-let searchParams = new URL(window.location.href).searchParams
-let initialState = searchParams.get('state')
-if (!initialState || !keys.includes(initialState)) {
-    initialState = 'protectionsOn_blocked'
-}
-
-let reflectList = ['screen', 'requests']
-let reflectParams = new URLSearchParams(Object.entries({ state: initialState }))
-for (let [key, value] of searchParams) {
-    if (reflectList.includes(key)) {
-        reflectParams.append(key, value)
-    }
-}
-
-let platforms = (() => {
-    let subject = searchParams.get('platforms')
-    const known = items.map((x) => x.platform)
-    if (subject) {
-        const selected = subject
-            .split(',')
-            .map((x) => x.trim())
-            .filter((x) => known.includes(x))
-        if (selected.length > 0) {
-            return selected
-        }
-    }
-    return known.slice(0, 3)
-})()
-
-let selectedRequests = (() => {
-    let subject = searchParams.getAll('requests')
-    const known = Object.keys(requests)
-    return subject.filter((x) => known.includes(x))
-})()
-
-function update(value) {
-    const url = new URL(window.location.href)
-
-    // remove existing reflected params
-    for (let key of reflectList) {
-        url.searchParams.delete(key)
-    }
-
-    // set the new state (as chosen in the dropdown)
-    url.searchParams.set('state', value)
-    const selected = states[value]
-
-    // reflect explicit url params
-    for (let [key, value] of Object.entries(selected.urlParams)) {
-        url.searchParams.set(key, String(value))
-    }
-
-    // reload the page with all new URL
-    window.location.href = url.href
-}
-
-function updatePlatforms(value) {
-    const url = new URL(window.location.href)
-    url.searchParams.set('platforms', value.join(','))
-    window.location.href = url.href
-}
-
-/**
- * @param {string[]} values
- */
-function updateRequests(values) {
-    const url = new URL(window.location.href)
-    url.searchParams.delete('requests')
-    for (let value of values) {
-        url.searchParams.append('requests', value)
-    }
-    window.location.href = url.href
-}
-
-function App() {
+export function Debugger({ states, initialState, selectedRequests, updateRequests, platforms, items, reflectParams, toggles }) {
     return (
         <div class={styles.grid}>
             <div class={styles.header}>
-                <div class={styles.toggles}>
-                    <Selector selected={initialState} onChange={update} />
-                    <Toggles selected={platforms} onChange={updatePlatforms} />
-                </div>
+                <div class={styles.toggles}>{toggles}</div>
                 {initialState?.includes('with-overrides') && (
                     <div class={styles.requests}>
                         <Requests selected={selectedRequests} onChange={updateRequests} />
@@ -120,27 +15,41 @@ function App() {
                 )}
             </div>
             <div class={styles.content}>
-                <Frames platforms={platforms} initialState={initialState} />
+                <Frames platforms={platforms} initialState={initialState} reflectParams={reflectParams} items={items} states={states} />
             </div>
         </div>
     )
 }
 
-function Selector({ selected, onChange }) {
+/**
+ * The Selector component renders a select element with options based on the provided options object.
+ * It allows the user to select an option and triggers the onChange callback when the selected option changes.
+ *
+ * @template {any} T
+ * @param {Object} props - The component props.
+ * @param {Record<string, T>} props.options - The options object.
+ * @param {string|null|undefined} props.selected - The currently selected option.
+ * @param {import("preact").ComponentChild} props.label - The currently selected option.
+ * @param {function} props.onChange - The callback function triggered when the selected option changes.
+ */
+export function Selector({ options, selected, label, onChange }) {
     return (
-        <select onChange={(/** @type {any} */ e) => onChange(e.target.value)}>
-            {Object.entries(states).map(([key]) => {
-                return (
-                    <option value={key} selected={selected === key}>
-                        {key}
-                    </option>
-                )
-            })}
-        </select>
+        <label>
+            {label}
+            <select onChange={(/** @type {any} */ e) => onChange(e.target.value)}>
+                {Object.entries(options).map(([key]) => {
+                    return (
+                        <option value={key} selected={selected === key}>
+                            {key}
+                        </option>
+                    )
+                })}
+            </select>
+        </label>
     )
 }
 
-function Toggles({ selected, onChange }) {
+export function PlatformToggles({ selected, onChange, items }) {
     function onChanged(e) {
         const d = new FormData(e.target.form)
         onChange(d.getAll('platform'))
@@ -181,7 +90,7 @@ function Requests({ selected, onChange }) {
     )
 }
 
-function Frames({ platforms, initialState }) {
+function Frames({ platforms, initialState, states, items, reflectParams }) {
     const previewJSON = states[initialState]
     const { certificate, ...rest } = previewJSON
     rest.certificate = certificate
@@ -220,5 +129,3 @@ function Frames({ platforms, initialState }) {
         </div>
     )
 }
-
-render(<App />, /** @type {HTMLDivElement} */ (document.querySelector('#app')))

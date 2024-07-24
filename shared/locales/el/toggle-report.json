@@ -1,0 +1,115 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "dontSendReport" : {
+    "title" : "Να μη γίνει αποστολή",
+    "note" : "Button for choosing not to submit a report"
+  },
+  "yourReportWillHelpToggleReport" : {
+    "title" : "Η αναφορά σας θα μας βοηθήσει στο να βελτιώσουμε τα προϊόντα μας και θα καταστήσει την εμπειρία καλύτερη για όλους.",
+    "note" : "Body that the user sees upon submitting the report"
+  },
+  "siteNotWorkingTitle" : {
+    "title" : "Δεν λειτουργεί ο ιστότοπος; Ενημερώστε μας.",
+    "note" : "Title asking users if the site is not working and prompting them to report the issue."
+  },
+  "siteNotWorkingSubTitle" : {
+    "title" : "Οι ανώνυμες αναφορές βοηθούν το DuckDuckGo να διορθώνει προβλήματα που προκαλούνται από την προστασία προσωπικών δεδομένων.",
+    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+  },
+  "siteNotWorkingInfoReveal" : {
+    "title" : "Δείτε τι έχει αποσταλεί",
+    "note" : "Button label allowing users to see the information that is sent in the report."
+  },
+  "siteNotWorkingInfoHide" : {
+    "title" : "Απόκρυψη",
+    "note" : "Button label allowing users to hide the information that is sent in the report."
+  },
+  "reportsNoInfoSent" : {
+    "title" : "Οι πληροφορίες που αποστέλλονται σε αναφορές δεν μπορούν να χρησιμοποιηθούν για την ταυτοποίησή σας:",
+    "note" : "This text emphasizes that the sent reports do not contain any personally identifiable information."
+  },
+  "dynamic_wvVersion" : {
+    "title" : "Αριθμός έκδοσης μηχανής προγράμματος περιήγησης ιστού",
+    "note" : "This text represents the version number of the web browser engine."
+  },
+  "dynamic_requests" : {
+    "title" : "Ονόματα κεντρικών υπολογιστών που έχουν αποκλειστεί, υποκατάστατα αιτήματα, αγνοημένα αιτήματα και αιτήματα που δεν περιλαμβάνονται στη λίστα αποκλεισμού εφαρμογών παρακολούθησης",
+    "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
+  },
+  "dynamic_features" : {
+    "title" : "Λίστα που περιλαμβάνει ποιες προστασίες και λειτουργίες του προγράμματος περιήγησης ήταν ενεργές",
+    "note" : "This text represents a list of active protections and browser features."
+  },
+  "dynamic_appVersion" : {
+    "title" : "Αριθμός έκδοσης εφαρμογής",
+    "note" : "This text indicates the version number of the app."
+  },
+  "dynamic_atb" : {
+    "title" : "Ανώνυμη πειραματική ομάδα για δοκιμή λειτουργιών",
+    "note" : "This text represents an anonymous group for testing features."
+  },
+  "dynamic_errorDescriptions" : {
+    "title" : "Σφάλματα που αναφέρθηκαν από το πρόγραμμα περιήγησης",
+    "note" : "This text provides a list of errors reported by the browser."
+  },
+  "dynamic_extensionVersion" : {
+    "title" : "Αριθμός έκδοσης επέκτασης",
+    "note" : "This text indicates the version number of the extension."
+  },
+  "dynamic_httpErrorCodes" : {
+    "title" : "Κωδικοί κατάστασης απόκρισης ιστότοπου (HTTP)",
+    "note" : "This text provides a list of response status codes from the website."
+  },
+  "dynamic_lastSentDay" : {
+    "title" : "Ημερομηνία της τελευταίας αναφοράς που στάλθηκε γι' αυτόν τον ιστότοπο",
+    "note" : "This text indicates the date of the last report sent for the site."
+  },
+  "dynamic_device" : {
+    "title" : "Μάρκα, μοντέλο και κατασκευαστής της συσκευής",
+    "note" : "This text provides information about the device, including make, model, and manufacturer."
+  },
+  "dynamic_os" : {
+    "title" : "Αριθμός έκδοσης λειτουργικού συστήματος",
+    "note" : "This text indicates the version number of the operating system."
+  },
+  "dynamic_reportFlow" : {
+    "title" : "Ποια φόρμα αναφοράς χρησιμοποιήσατε («μενού», «πίνακας εργαλείων», κ.λπ.)",
+    "note" : "This text represents the path the user took to get to this feedback screen."
+  },
+  "dynamic_siteUrl" : {
+    "title" : "Διεύθυνση URL σελίδας (χωρίς ταυτοποιήσιμες πληροφορίες)",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_listVersions" : {
+    "title" : "Πληροφορίες σχετικά με το ποιες εκδόσεις των λειτουργιών προστασίας μας ήταν ενεργές",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_didOpenReportInfo" : {
+    "title" : "Είτε επιλέξατε να εμφανίσετε αυτές τις πληροφορίες αναφοράς είτε όχι",
+    "note" : "This text represents if the user has opted to see a list of information, or not."
+  },
+  "dynamic_toggleReportCounter" : {
+    "title" : "Αριθμός φορών που απενεργοποιήθηκαν οι λειτουργίες προστασίας",
+    "note" : "This text represents the amount of times protections were toggled"
+  },
+  "dynamic_openerContext" : {
+    "title" : "Πώς μεταβήκατε σε αυτήν τη σελίδα, είτε: «SERP» (αναζήτηση DuckDuckGo), «Πλοήγηση» (σύνδεσμος/διεύθυνση URL), είτε «Εξωτερικά» (άλλα μέσα)",
+    "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
+  },
+  "dynamic_userRefreshCount" : {
+    "title" : "Αριθμός ανανεώσεων από τη φόρτωση της σελίδας",
+    "note" : "This text represents the number of times the user has refreshed the page since it was initially loaded."
+  },
+  "dynamic_jsPerformance" : {
+    "title" : "Πόσο γρήγορα φορτώθηκαν τμήματα της σελίδας",
+    "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  }
+}

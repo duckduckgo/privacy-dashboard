@@ -1,0 +1,115 @@
+{
+  "smartling" : {
+    "string_format" : "icu",
+    "translate_paths" : [
+    {
+      "path" : "*/title",
+      "key" : "{*}/title",
+      "instruction" : "*/note"
+    }]
+  },
+  "dontSendReport" : {
+    "title" : "Não enviar",
+    "note" : "Button for choosing not to submit a report"
+  },
+  "yourReportWillHelpToggleReport" : {
+    "title" : "O teu relatório ajuda-nos a melhorarmos os nossos produtos e a experiência de todos os utilizadores.",
+    "note" : "Body that the user sees upon submitting the report"
+  },
+  "siteNotWorkingTitle" : {
+    "title" : "O site não funciona? Informa-nos.",
+    "note" : "Title asking users if the site is not working and prompting them to report the issue."
+  },
+  "siteNotWorkingSubTitle" : {
+    "title" : "Os relatórios anónimos ajudam a DuckDuckGo a corrigir problemas causados pelas proteções de privacidade.",
+    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+  },
+  "siteNotWorkingInfoReveal" : {
+    "title" : "Ver o que foi enviado",
+    "note" : "Button label allowing users to see the information that is sent in the report."
+  },
+  "siteNotWorkingInfoHide" : {
+    "title" : "Ocultar",
+    "note" : "Button label allowing users to hide the information that is sent in the report."
+  },
+  "reportsNoInfoSent" : {
+    "title" : "As informações enviadas nos relatórios não podem ser utilizadas para te identificar:",
+    "note" : "This text emphasizes that the sent reports do not contain any personally identifiable information."
+  },
+  "dynamic_wvVersion" : {
+    "title" : "Número da versão do motor do navegador web",
+    "note" : "This text represents the version number of the web browser engine."
+  },
+  "dynamic_requests" : {
+    "title" : "Nomes de anfitrião de rastreadores bloqueados, pedidos substitutos, pedidos ignorados e pedidos que não estão na lista de bloqueio de rastreadores",
+    "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
+  },
+  "dynamic_features" : {
+    "title" : "Lista das proteções e funcionalidades do navegador que estavam ativas",
+    "note" : "This text represents a list of active protections and browser features."
+  },
+  "dynamic_appVersion" : {
+    "title" : "Número da versão da aplicação",
+    "note" : "This text indicates the version number of the app."
+  },
+  "dynamic_atb" : {
+    "title" : "Grupo experimental anónimo para testes de funcionalidades",
+    "note" : "This text represents an anonymous group for testing features."
+  },
+  "dynamic_errorDescriptions" : {
+    "title" : "Erros comunicados pelo navegador",
+    "note" : "This text provides a list of errors reported by the browser."
+  },
+  "dynamic_extensionVersion" : {
+    "title" : "Número da versão da extensão",
+    "note" : "This text indicates the version number of the extension."
+  },
+  "dynamic_httpErrorCodes" : {
+    "title" : "Códigos de estado de resposta do site (HTTP)",
+    "note" : "This text provides a list of response status codes from the website."
+  },
+  "dynamic_lastSentDay" : {
+    "title" : "Data do último relatório enviado para este site",
+    "note" : "This text indicates the date of the last report sent for the site."
+  },
+  "dynamic_device" : {
+    "title" : "Marca, modelo e fabricante do dispositivo",
+    "note" : "This text provides information about the device, including make, model, and manufacturer."
+  },
+  "dynamic_os" : {
+    "title" : "Número da versão do sistema operativo",
+    "note" : "This text indicates the version number of the operating system."
+  },
+  "dynamic_reportFlow" : {
+    "title" : "Que formulário de relatório utilizaste (\"menu\", \"painel\", etc.)",
+    "note" : "This text represents the path the user took to get to this feedback screen."
+  },
+  "dynamic_siteUrl" : {
+    "title" : "URL da página (sem informações identificáveis)",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_listVersions" : {
+    "title" : "Informações sobre que versões das nossas proteções estavam ativas",
+    "note" : "This text represents the URL of the page, without including any identifiable information."
+  },
+  "dynamic_didOpenReportInfo" : {
+    "title" : "Se optaste ou não por mostrar as informações deste relatório",
+    "note" : "This text represents if the user has opted to see a list of information, or not."
+  },
+  "dynamic_toggleReportCounter" : {
+    "title" : "Número de vezes que as proteções foram desativadas",
+    "note" : "This text represents the amount of times protections were toggled"
+  },
+  "dynamic_openerContext" : {
+    "title" : "Como chegaste a esta página: \"SERP\" (pesquisa DuckDuckGo), \"Navegação\" (link/URL), ou \"Externo\" (outros meios)",
+    "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
+  },
+  "dynamic_userRefreshCount" : {
+    "title" : "Número de atualizações desde o carregamento da página",
+    "note" : "This text represents the number of times the user has refreshed the page since it was initially loaded."
+  },
+  "dynamic_jsPerformance" : {
+    "title" : "Rapidez com que partes da página foram carregadas",
+    "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  }
+}

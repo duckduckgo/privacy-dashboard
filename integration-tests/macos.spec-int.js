@@ -23,7 +23,7 @@ test.describe('permissions', () => {
     settingPermissions((page) => DashboardPage.webkit(page, { platform: 'macos' }))
 })
 
-test('invalid/missing certificate', async ({ page }) => {
+test('invalid/missing certificate', { tag: '@screenshots' }, async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.webkit(page, { platform: 'macos' })
     await dash.addState([testDataStates['https-without-certificate']])
@@ -46,8 +46,17 @@ test('phishing warning', async ({ page }) => {
     await dash.connectionLinkDoesntShow()
 })
 
+test('insecure certificate', async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.webkit(page, { platform: 'macos' })
+    await dash.addState([testDataStates['insecure']])
+    await dash.hasInsecureText()
+    await dash.viewConnection()
+    await dash.hasInsecureTextDetail()
+})
+
 test.describe('opening breakage form', () => {
-    test('shows breakage form only', async ({ page }) => {
+    test('shows breakage form only', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' })
         await dash.addState([testDataStates.google])
@@ -57,7 +66,7 @@ test.describe('opening breakage form', () => {
         await dash.screenshot('screen-breakage-form.png')
         await dash.mocks.calledForClose({ screen: 'breakageForm' })
     })
-    test('shows toggle report when opened from menu', async ({ page }) => {
+    test('shows toggle report when opened from menu', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'menu' })
         await dash.addState([testDataStates.google])
@@ -67,7 +76,7 @@ test.describe('opening breakage form', () => {
         await dash.screenshot('screen-toggle-report-menu.png')
         await dash.mocks.calledForClose({ screen: 'toggleReport' })
     })
-    test('shows toggle report when opened from dashboard', async ({ page }) => {
+    test('shows toggle report when opened from dashboard', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
@@ -75,7 +84,7 @@ test.describe('opening breakage form', () => {
         await dash.screenshot('screen-toggle-report-dashboard.png')
         await dash.closeButtonIsHidden('toggleReport')
     })
-    test('sends toggle report', async ({ page }) => {
+    test('sends toggle report', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
@@ -94,7 +103,7 @@ test.describe('opening breakage form', () => {
         await dash.toggleReportIsVisible()
         await dash.rejectToggleReport()
     })
-    test('shows information', async ({ page }) => {
+    test('shows information', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'dashboard' })
         await dash.addState([testDataStates.google])
@@ -148,7 +157,7 @@ test.describe('cookie prompt management', () => {
     })
 })
 
-if (!process.env.CI) {
+test.describe('macos screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
@@ -156,7 +165,7 @@ if (!process.env.CI) {
         { name: 'google-off', state: testDataStates['google-off'] },
         { name: 'cnn', state: testDataStates.cnn },
     ]
-    test.describe('screenshots', () => {
+    test.describe('states', () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' })
@@ -206,4 +215,4 @@ if (!process.env.CI) {
             })
         })
     })
-}
+})

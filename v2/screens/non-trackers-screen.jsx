@@ -11,7 +11,7 @@ import { useRippleChildren } from '../../shared/js/ui/hooks/useRipple'
 export function NonTrackersScreen() {
     // const c = useChannel()
     const data = useData()
-    const ref = useRippleChildren()
+    const ref = useRippleChildren(data.count)
     return (
         <div className="site-info card page-inner" data-page="non-trackers">
             <SecondaryTopNav />

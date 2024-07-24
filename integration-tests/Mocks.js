@@ -113,16 +113,15 @@ export class Mocks {
         const calls = await this.outgoing({
             names: ['privacyDashboardTelemetrySpan'],
         })
-        expect(calls).toMatchObject([
-            [
-                'privacyDashboardTelemetrySpan',
-                {
-                    eventOrigin: {
-                        screen,
-                    },
-                    attributes,
+        const filtered = calls.find(([_name, payload]) => payload.attributes?.name === attributes.name)
+        expect(filtered).toMatchObject([
+            'privacyDashboardTelemetrySpan',
+            {
+                eventOrigin: {
+                    screen,
                 },
-            ],
+                attributes,
+            },
         ])
     }
 

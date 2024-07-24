@@ -35,6 +35,7 @@ import { windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema } from 
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
 import {
     assert,
+    CloseMessage,
     getContentHeight,
     OpenSettingsMessages,
     SetListsMessage,
@@ -171,6 +172,11 @@ async function fetch(message) {
             value: message.value,
         })
     }
+
+    if (message instanceof CloseMessage) {
+        CloseCommand(message.eventOrigin)
+        return
+    }
 }
 
 /**
@@ -289,6 +295,15 @@ export function RemoveFromAllowListCommand(eventOrigin) {
  */
 export function AddToAllowListCommand(eventOrigin) {
     windowsPostMessage('AddToAllowListCommand', { eventOrigin })
+}
+
+/**
+ * Close the dashboard
+ * @param {import("../../../schema/__generated__/schema.types").EventOrigin} eventOrigin
+ * @group JavaScript -> Windows Messages
+ */
+export function CloseCommand(eventOrigin) {
+    windowsPostMessage('CloseCommand', { eventOrigin })
 }
 
 const getBackgroundTabData = () => {

@@ -56,52 +56,44 @@ export class DashboardPage {
         await this.page.getByTestId('protectionHeader').waitFor({ timeout: 1000 })
     }
 
-    async showsTogglePrompt() {
-        await this.page.getByRole('link', { name: 'Website not working?' }).waitFor({ timeout: 1000 })
-    }
-
-    async screenshot(name) {
-        if (!process.env.CI) {
-            // console.log('🚧 skipping screenshot 🚧', name)
-            await expect(this.page).toHaveScreenshot(name, { maxDiffPixelRatio: 0.025 })
-        }
+    /**
+     * @param {string} name
+     * @param {{ skipInCI?: boolean }} [opts]
+     */
+    async screenshot(name, { skipInCI = false } = {}) {
+        if (skipInCI) return console.log(`skipped ${name} in CI`)
+        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: 50 })
     }
 
     async reducedMotion() {
         await this.page.emulateMedia({ reducedMotion: 'reduce' })
     }
 
-    async screenshotPrimary(name, state) {
-        await this.reducedMotion()
-        await this.addState([state])
-        await this.showsPrimaryScreen()
-        return this.page.screenshot({ path: `screenshots/primary-${name}.png` })
-    }
-
     /**
      * @param {string} name
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
+     * @param {{ skipInCI?: boolean }} [opts]
      */
-    async screenshotEachScreenForState(name, state) {
+    async screenshotEachScreenForState(name, state, opts = {}) {
         await this.reducedMotion()
         await this.addState([state])
         await this.showsPrimaryScreen()
-        await this.screenshot(name + '-state-primary.png')
+        await this.screenshot(name + '-state-primary.png', opts)
         await this.viewConnection()
         await this.showsConnectionScreen()
-        await this.screenshot(name + '-state-connection.png')
+        await this.screenshot(name + '-state-connection.png', opts)
         await this.goBack()
         await this.viewTrackerCompanies()
         await this.showsTrackersScreen()
-        await this.screenshot(name + '-state-trackers.png')
+        await this.screenshot(name + '-state-trackers.png', opts)
         await this.goBack()
         await this.viewThirdParties()
         await this.showsNonTrackersScreen()
-        await this.screenshot(name + '-state-non-trackers.png')
+        await this.screenshot(name + '-state-non-trackers.png', opts)
         if (state.fireButtonEnabled) {
             await this.goBack()
             await this.clickFireButton()
-            await this.screenshot(name + '-state-fire-dialog.png')
+            await this.screenshot(name + '-state-fire-dialog.png', opts)
         }
     }
 
@@ -121,6 +113,18 @@ export class DashboardPage {
         await this.page.locator('[data-page="connection"]').waitFor({ timeout: 2000 })
     }
 
+    async hasInsecureTextDetail() {
+        const { page } = this
+        await expect(page.locator('#popup-container')).toContainText(
+            'This page is using an unencrypted connection. Third parties may be able to view your activity or intercept sensitive information you send on this page.'
+        )
+    }
+    async hasInsecureText() {
+        const { page } = this
+        await expect(page.locator('#key-insight')).toContainText(
+            'This site is not secure and may compromise any information you send on this page.'
+        )
+    }
     async hasInvalidCertText() {
         const { page } = this
         await expect(page.locator('#popup-container')).toContainText(
@@ -130,9 +134,9 @@ export class DashboardPage {
 
     async showsInvalidCertDetail() {
         const { page } = this
-        await expect(page.locator('#key-insight')).toContainText(
+        const text =
             'The certificate for this site is invalid. You might be connecting to a server that is pretending to be example.com which could put your confidential information at risk.'
-        )
+        await page.locator('[data-page="connection"]').getByText(text).waitFor()
     }
 
     async hasPhishingIcon() {
@@ -195,11 +199,19 @@ export class DashboardPage {
         return dash
     }
 
-    static async windows(page) {
+    /**
+     * @param {import("@playwright/test").Page} page
+     * @param {object} [opts]
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
+     * @return {Promise<DashboardPage>}
+     */
+    static async windows(page, opts = {}) {
+        /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
+        const screen = opts?.screen || 'primaryScreen'
         const dash = new DashboardPage(page, { name: 'windows' })
         await dash.withMarker()
         await dash.withMocks()
-        await dash.loadPage()
+        await dash.loadPage({ screen })
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
     }

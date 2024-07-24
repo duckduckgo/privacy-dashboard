@@ -28,9 +28,10 @@ export function useRipple(params) {
 }
 
 /**
+ * @param {number} count - used to force a re-trigger of effects
  * @returns {import('preact/hooks').Ref<any>}
  */
-export function useRippleChildren() {
+export function useRippleChildren(count) {
     /** @type {import('preact/hooks').MutableRef<HTMLElement | null>} */
     const ref = useRef(null)
     useEffect(() => {
@@ -42,7 +43,7 @@ export function useRippleChildren() {
         return () => {
             cleanup()
         }
-    }, [])
+    }, [count])
     return ref
 }
 
@@ -66,7 +67,6 @@ export function addRippleTo(elements) {
         while (instances.length) {
             const last = instances.pop()
             last.destroy()
-            console.log('destroy')
         }
     }
 }

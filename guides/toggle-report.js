@@ -5,6 +5,8 @@
  *
  * @description
  *
+ * Live example: https://duckduckgo.github.io/privacy-dashboard/app-debug/html/iframe.html?screen=toggleReport
+ *
  * ## Step 1: Open the dashboard with params
  *
  *  - `screen=toggleReport`
@@ -43,17 +45,6 @@
  *
  * ### 👆Tapping anywhere on the success screen (macos only)
  *   - Webkit: {@link "macOS integration".privacyDashboardClose}
- *
- * ## opener=menu
- *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=toggleReport&opener=menu"></iframe>
- *  <iframe width=360 height=600 src="/app-debug/html/macos.html?screen=toggleReport&opener=menu"></iframe>*
- *
- * ## opener=dashboard
- *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=toggleReport&opener=dashboard"></iframe>
- *  <iframe width=360 height=600 src="/app-debug/html/macos.html?screen=toggleReport&opener=dashboard"></iframe>
- *
- * ## screen=breakageForm
- *  <iframe width=360 height=600 src="/app-debug/html/ios.html?screen=breakageForm"></iframe>
  */
 
 export {}
