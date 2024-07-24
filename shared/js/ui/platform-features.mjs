@@ -65,6 +65,7 @@ export function createPlatformFeatures(platform) {
         initialScreen: screen,
         opener,
         supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
+        supportsPhishingWarning: platform.name === 'macos',
         includeToggleOnBreakageForm,
         breakageScreen,
     })
@@ -84,6 +85,7 @@ export class PlatformFeatures {
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {InitialScreen} params.breakageScreen
+     * @param {boolean} params.supportsPhishingWarning
      */
     constructor(params) {
         /**
@@ -116,7 +118,11 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm
-
+        /**
+         * Does the current platform support phishing warnings?
+         * @type {boolean}
+         */
+        this.supportsPhishingWarning = params.supportsPhishingWarning
         /**
          * @type {import("../../../schema/__generated__/schema.types").EventOrigin['screen']}
          */

@@ -33,6 +33,7 @@ export class TabData {
      * @param {Record<string, any> | null | undefined} ctaScreens
      * @param {Record<string, any> | null | undefined} search
      * @param {Record<string, any> | null | undefined} emailProtection
+     * @param {boolean | undefined} phishingStatus
      * @param {{prevalence: number, displayName: string} | null | undefined} parentEntity
      * @param {string | null | undefined} error
      */
@@ -50,6 +51,7 @@ export class TabData {
         ctaScreens,
         search,
         emailProtection,
+        phishingStatus,
         parentEntity,
         error
     ) {
@@ -66,6 +68,7 @@ export class TabData {
         this.ctaScreens = ctaScreens
         this.search = search
         this.emailProtection = emailProtection
+        this.phishingStatus = phishingStatus
         this.parentEntity = parentEntity
         this.error = error
     }
@@ -101,6 +104,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         ctaScreens: undefined,
         search: undefined,
         emailProtection: undefined,
+        phishingStatus: undefined,
         isPendingUpdates: undefined,
         certificate: undefined,
         platformLimitations: undefined,

@@ -94,5 +94,9 @@
     "secureConnectionDesc": {
         "title": "This page uses an encrypted connection, which prevents third parties from viewing your activity or intercepting sensitive information you send on this page.",
         "note": "Shown when the user navigated directly to a secure connection"
+    },
+    "phishingWebsiteDesc": {
+        "title": "This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.",
+        "note": "Shown when the user navigated to a phishing website"
     }
 }
