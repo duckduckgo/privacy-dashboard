@@ -56,7 +56,7 @@
         "note": "The message shown when we allowed some trackers to load."
     },
     "trackerNetworksSummaryFirstPartyAllowedOnly": {
-        "title": "We didn't find any external companies trying to load tracking requests on this page.",
+        "title": "We only found non-tracking requests or requests associated with <b>{domain}</b> on this page.",
         "note": "The message shown when we allowed first party trackers to load."
     },
     "trackerNetworksSummaryProtectionsOff": {
