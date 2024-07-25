@@ -114,7 +114,8 @@ export function renderKeyInsight(modelOverride) {
             return html`
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--no-activity"></div>
-                        ${title(model.tab.domain)} ${description(raw(i18n.t('site:trackerNetworksSummaryFirstPartyAllowedOnly.title', { domain: model.tab.domain })))}
+                    ${title(model.tab.domain)}
+                    ${description(raw(i18n.t('site:trackerNetworksSummaryFirstPartyAllowedOnly.title', { domain: model.tab.domain })))}
                 </div>
             `
         },
