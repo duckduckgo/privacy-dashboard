@@ -3,7 +3,6 @@ import { forwardConsole, playTimeline } from './helpers'
 import { Mocks } from './Mocks'
 import { AltBreakageFlows } from './AltBreakageFlows'
 import { Nav } from './Nav'
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]')
@@ -84,7 +83,7 @@ export class DashboardPage {
         await this.showsConnectionScreen()
         await this.screenshot(name + '-state-connection.png', opts)
         await this.goBack()
-        if (this.shouldScreenshotTrackersScreen(state)) {
+        if (await this.shouldScreenshotTrackersScreen()) {
             await this.viewTrackerCompanies()
             await this.showsTrackersScreen()
             await this.screenshot(name + '-state-trackers.png', opts)
@@ -102,19 +101,10 @@ export class DashboardPage {
 
     /**
      * Whether to screenshot the company trackers screen, as some states omit that screen
-     * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} state
      */
-    shouldScreenshotTrackersScreen(state) {
-        switch (state) {
-            case testDataStates['fire-button']:
-            case testDataStates.protectionsOn_allowedTrackers:
-            case testDataStates.protectionsOn_allowedTrackers_allowedNonTrackers:
-            case testDataStates.protectionsOn_allowedFirstParty:
-            case testDataStates.protectionsOn_allowedFirstParty_allowedNonTrackers:
-                return false
-            default:
-                return true
-        }
+    async shouldScreenshotTrackersScreen() {
+        let count = await this.trackerCompaniesLink().count()
+        return count === 1
     }
 
     async viewTrackerCompanies() {
