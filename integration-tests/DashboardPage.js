@@ -107,6 +107,8 @@ export class DashboardPage {
     shouldScreenshotTrackersScreen(state) {
         switch (state) {
             case testDataStates['fire-button']:
+            case testDataStates.protectionsOn_allowedTrackers:
+            case testDataStates.protectionsOn_allowedTrackers_allowedNonTrackers:
             case testDataStates.protectionsOn_allowedFirstParty:
             case testDataStates.protectionsOn_allowedFirstParty_allowedNonTrackers:
                 return false
