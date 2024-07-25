@@ -15417,7 +15417,8 @@
         return import_nanohtml6.default`
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--no-activity"></div>
-                        ${title(model.tab.domain)} ${description((0, import_raw2.default)(i18n.t("site:trackerNetworksSummaryFirstPartyAllowedOnly.title", { domain: model.tab.domain })))}
+                    ${title(model.tab.domain)}
+                    ${description((0, import_raw2.default)(i18n.t("site:trackerNetworksSummaryFirstPartyAllowedOnly.title", { domain: model.tab.domain })))}
                 </div>
             `;
       },
