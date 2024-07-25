@@ -155,7 +155,7 @@ export class DashboardPage {
     async hasAllowedFirstPartyText() {
         const { page } = this
         await expect(page.locator('#key-insight')).toContainText(
-            "We only found non-tracking requests or requests associated with example.com on this page."
+            "We only found non-tracking requests or requests associated with example.com loading on this page."
         )
     }
 
