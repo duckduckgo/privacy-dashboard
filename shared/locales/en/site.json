@@ -52,7 +52,7 @@
         "note": "We did not find any trackers on this page"
     },
     "trackerNetworksSummaryAllowedOnly": {
-        "title": "We didn't block any tracking requests on this page.",
+        "title": "No tracking requests were blocked on this page.",
         "note": "The message shown when we allowed some trackers to load."
     },
     "trackerNetworksSummaryFirstPartyAllowedOnly": {
