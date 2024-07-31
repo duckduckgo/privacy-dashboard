@@ -9,7 +9,7 @@ import { protectionsOff } from './toggle-protections.mjs'
  */
 
 /** @type {DetectedRequest} */
-const allowedTracker = {
+const allowedFirstPartyTracker = {
     entityName: 'example.com',
     prevalence: 82.6,
     url: 'https://example.com/a.js',
@@ -67,7 +67,7 @@ const allowedProtectionsDisabled = {
 }
 
 export const requests = {
-    allowedTrackerFirstParty: allowedTracker,
+    allowedTrackerFirstParty: allowedFirstPartyTracker,
     allowedTrackerRuleException: allowedTrackerRule,
     allowedThirdParty,
     allowedAdClickAttribution,
@@ -594,7 +594,7 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOn_blocked_allowedTrackers: new MockData({
             url: 'https://example.com',
-            requests: [blocked1, allowedTracker],
+            requests: [blocked1, allowedFirstPartyTracker],
         }),
         protectionsOn_blocked_allowedNonTrackers: new MockData({
             url: 'https://example.com',
@@ -602,16 +602,16 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOn_blocked_allowedTrackers_allowedNonTrackers: new MockData({
             url: 'https://example.com',
-            requests: [blocked1, allowedThirdParty, allowedTracker],
+            requests: [blocked1, allowedThirdParty, allowedFirstPartyTracker],
         }),
         protectionsOn_allowedTrackers: new MockData({
             url: 'https://example.com',
             requests: [
-                allowedTracker,
+                allowedFirstPartyTracker,
                 allowedTrackerRule,
                 allowedAdClickAttribution,
                 {
-                    ...allowedTracker,
+                    ...allowedFirstPartyTracker,
                     state: { allowed: { reason: 'protectionDisabled' } },
                 },
             ],
@@ -622,7 +622,15 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOn_allowedTrackers_allowedNonTrackers: new MockData({
             url: 'https://example.com',
-            requests: [allowedTracker, allowedThirdParty],
+            requests: [allowedFirstPartyTracker, allowedTrackerRule, allowedThirdParty],
+        }),
+        protectionsOn_allowedFirstParty: new MockData({
+            url: 'https://example.com',
+            requests: [allowedFirstPartyTracker],
+        }),
+        protectionsOn_allowedFirstParty_allowedNonTrackers: new MockData({
+            url: 'https://example.com',
+            requests: [allowedFirstPartyTracker, allowedThirdParty],
         }),
         protectionsOff: new MockData({
             url: 'https://example.com',
@@ -631,7 +639,7 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOff_allowedTrackers: new MockData({
             url: 'https://example.com',
-            requests: [allowedTracker],
+            requests: [allowedFirstPartyTracker, allowedTrackerRule],
             contentBlockingException: true,
         }),
         protectionsOff_allowedNonTrackers: new MockData({
@@ -641,22 +649,22 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOff_allowedTrackers_allowedNonTrackers: new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             contentBlockingException: true,
         }),
         allowlisted: new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             allowlisted: true,
         }),
         denylisted: new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             denylisted: true,
         }),
         'remote-disabled': new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             contentBlockingException: true,
         }),
         'new-entities': new MockData({

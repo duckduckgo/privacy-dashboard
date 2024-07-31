@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Чтобы не нарушить работу сайта, мы не стали блокировать на этой странице запросы компаний на отслеживание.",
+    "title" : "На этой странице мы не заблокировали ни одного запроса на отслеживание.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "На этой странице обнаружены только запросы, которые либо не связаны с отслеживанием, либо задействованы в загрузке сайта <b>{domain}</b>.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Мы не заблокировали ни одного запроса на отслеживание, так как защита на этом сайте отключена. Загруженные запросы позволяют компаниям вас профилировать.",

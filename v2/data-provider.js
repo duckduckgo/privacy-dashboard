@@ -91,7 +91,7 @@ class DataChannel extends EventTarget {
 
             this.tab = tab
             this.domain = tab.domain
-            const MAJOR_TRACKER_THRESHOLD_PCT = 25
+            const MAJOR_TRACKER_THRESHOLD_PCT = 15
             this.isaMajorTrackingNetwork = (tab.parentEntity?.prevalence || 0) >= MAJOR_TRACKER_THRESHOLD_PCT
         } else {
             this.domain = 'new tab'

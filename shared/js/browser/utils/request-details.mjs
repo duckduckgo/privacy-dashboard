@@ -226,10 +226,12 @@ export const states = /** @type {const} */ ({
     /* 06 */ protectionsOn_allowedTrackers: 'protectionsOn_allowedTrackers',
     /* 07 */ protectionsOn_allowedNonTrackers: 'protectionsOn_allowedNonTrackers',
     /* 08 */ protectionsOn_allowedTrackers_allowedNonTrackers: 'protectionsOn_allowedTrackers_allowedNonTrackers',
-    /* 09 */ protectionsOff: 'protectionsOff',
-    /* 010 */ protectionsOff_allowedTrackers: 'protectionsOff_allowedTrackers',
-    /* 011 */ protectionsOff_allowedNonTrackers: 'protectionsOff_allowedNonTrackers',
-    /* 012 */ protectionsOff_allowedTrackers_allowedNonTrackers: 'protectionsOff_allowedTrackers_allowedNonTrackers',
+    /* 09 */ protectionsOn_allowedFirstParty: 'protectionsOn_allowedFirstParty',
+    /* 010 */ protectionsOn_allowedFirstParty_allowedNonTrackers: 'protectionsOn_allowedFirstParty_allowedNonTrackers',
+    /* 011 */ protectionsOff: 'protectionsOff',
+    /* 012 */ protectionsOff_allowedTrackers: 'protectionsOff_allowedTrackers',
+    /* 013 */ protectionsOff_allowedNonTrackers: 'protectionsOff_allowedNonTrackers',
+    /* 014 */ protectionsOff_allowedTrackers_allowedNonTrackers: 'protectionsOff_allowedTrackers_allowedNonTrackers',
 })
 
 /**
@@ -301,6 +303,20 @@ export class RequestDetails {
     }
 
     /**
+     * The number of entities observed that were owned by the first party website
+     */
+    allowedFirstPartyCount() {
+        return this.allowed.ownedByFirstParty.entitiesCount
+    }
+
+    /**
+     * When all the 'special' entities observed belong to the first party
+     */
+    allowedFirstPartyOnly() {
+        return this.allowedFirstPartyCount() > 0 && this.allowedFirstPartyCount() === this.allowedSpecialCount()
+    }
+
+    /**
      * Create a list of company names, excluding any 'unknown' ones.
      * @returns {string[]}
      */
@@ -356,6 +372,13 @@ export class RequestDetails {
                 }
                 return states.protectionsOn_blocked
             } else {
+                // first party trackers only
+                if (this.allowedFirstPartyOnly()) {
+                    if (this.allowedNonSpecialCount() > 0) {
+                        return states.protectionsOn_allowedFirstParty_allowedNonTrackers
+                    }
+                    return states.protectionsOn_allowedFirstParty
+                }
                 // no trackers
                 if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
                     return states.protectionsOn_allowedTrackers_allowedNonTrackers

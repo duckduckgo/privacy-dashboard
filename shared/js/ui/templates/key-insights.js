@@ -14,6 +14,7 @@ const keyInsightsState = /** @type {const} */ ({
     /* 07 */ emptyCompaniesList: 'emptyCompaniesList',
     /* 08 */ blocked: 'blocked',
     /* 09 */ invalid: 'invalid',
+    /* 10 */ noneBlocked_firstPartyAllowed: 'noneBlocked_firstPartyAllowed',
 })
 
 /**
@@ -31,7 +32,11 @@ export function renderKeyInsight(modelOverride) {
         if (model.isBroken) return keyInsightsState.broken
         if (!model.protectionsEnabled) return keyInsightsState.userAllowListed
         if (model.isaMajorTrackingNetwork && model.tab.parentEntity) return keyInsightsState.majorTrackingNetwork
+        // TODO: Can we refactor this?
         if (model.tab.requestDetails.blocked.requestCount === 0) {
+            if (model.tab.requestDetails.allowedFirstPartyOnly()) {
+                return keyInsightsState.noneBlocked_firstPartyAllowed
+            }
             if (model.tab.requestDetails.allowedSpecialCount() > 0) {
                 return keyInsightsState.noneBlocked_someSpecialAllowed
             }
@@ -66,7 +71,7 @@ export function renderKeyInsight(modelOverride) {
             return html`
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--protections-off"></div>
-                    ${title(model.tab.domain)} 
+                    ${title(model.tab.domain)}
                 </div>
             `
         },
@@ -102,6 +107,15 @@ export function renderKeyInsight(modelOverride) {
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--info"></div>
                     ${title(model.tab.domain)} ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
+                </div>
+            `
+        },
+        noneBlocked_firstPartyAllowed: () => {
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--no-activity"></div>
+                    ${title(model.tab.domain)}
+                    ${description(raw(i18n.t('site:trackerNetworksSummaryFirstPartyAllowedOnly.title', { domain: model.tab.domain })))}
                 </div>
             `
         },
@@ -211,7 +225,7 @@ function renderCompanyIconsList(model) {
         }
         return html`
             <span class='icon-list__item' style='order: ${positionMap[index]}' data-company-icon-position='${positionMap[index]}'>
-                <span class='icon-list__wrapper icon-list__wrapper--count' 
+                <span class='icon-list__wrapper icon-list__wrapper--count'
                     data-company-icon-size='${item.size}'>
                     <span class='icon-list__count'>+${item.count}</span>
                 </span>

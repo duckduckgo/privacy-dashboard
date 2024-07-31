@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Per evitare malfunzionamenti sul sito, non abbiamo bloccato il caricamento delle richieste con tracciamento da parte delle aziende su questa pagina.",
+    "title" : "Nessun caricamento di richieste con tracciamento è stato bloccato su questa pagina.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Abbiamo trovato solo richieste non tracciabili o richieste associate al caricamento di <b>{domain}</b> in questa pagina.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Il caricamento delle richieste con tracciamento non è stato bloccato perché le protezioni per questo sito sono disattivate. Il caricamento delle richieste da parte delle aziende può consentire loro di tracciare un profilo dell'utente.",

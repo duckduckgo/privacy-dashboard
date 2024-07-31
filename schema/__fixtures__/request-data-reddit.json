@@ -1,0 +1,84 @@
+{
+    "requests": [
+        {
+            "url": "https://www.gstatic.com/recaptcha/releases/rKbTvxTxwcw5VqzrtN-ICwWt/recaptcha__en.js",
+            "eTLDplus1": "gstatic.com",
+            "pageUrl": "https://www.reddit.com/",
+            "state": {
+                "allowed": {
+                    "reason": "ruleException"
+                }
+            },
+            "entityName": "Google",
+            "category": "Content Delivery",
+            "prevalence": 79,
+            "ownerName": "Google LLC"
+        },
+        {
+            "url": "https://www.redditstatic.com/shreddit/en-US/shell-010f89b8.js",
+            "eTLDplus1": "redditstatic.com",
+            "pageUrl": "https://www.reddit.com/",
+            "state": {
+                "allowed": {
+                    "reason": "ownedByFirstParty"
+                }
+            },
+            "entityName": "Reddit",
+            "category": "Analytics",
+            "prevalence": 1.46,
+            "ownerName": "Reddit Inc."
+        },
+        {
+            "url": "https://accounts.google.com/gsi/client",
+            "eTLDplus1": "google.com",
+            "pageUrl": "https://www.reddit.com/",
+            "state": {
+                "allowed": {
+                    "reason": "ruleException"
+                }
+            },
+            "entityName": "Google",
+            "category": "Advertising",
+            "prevalence": 79,
+            "ownerName": "Google LLC"
+        },
+        {
+            "url": "https://www.google.com/recaptcha/enterprise.js?render=6LfirrMoAAAAAHZOipvza4kpp_VtTwLNuXVwURNQ",
+            "eTLDplus1": "google.com",
+            "pageUrl": "https://www.reddit.com/",
+            "state": {
+                "allowed": {
+                    "reason": "ruleException"
+                }
+            },
+            "entityName": "Google",
+            "category": "Advertising",
+            "prevalence": 79,
+            "ownerName": "Google LLC"
+        },
+        {
+            "url": "https://preview.redd.it/discussion-bando-stone-the-new-world-the-final-childish-v0-bwilw8tqz9dd1.jpeg?width=320&crop=smart&auto=webp&s=49df8eca944c76623def1dbd8e3276cfcccb1cbe",
+            "eTLDplus1": "redd.it",
+            "pageUrl": "https://www.reddit.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "entityName": "Reddit",
+            "prevalence": 1.46
+        },
+        {
+            "url": "https://external-preview.redd.it/banks-airlines-and-media-outlets-hit-by-global-outage-v0-0S2PN2KIwz5l2LGDDfdjsFzEc-8GCkAkQFAgRLl81ww.jpg?width=320&crop=smart&auto=webp&s=7434f2b52c4cb13845e3a85db863ed783312196f",
+            "eTLDplus1": "redd.it",
+            "pageUrl": "https://www.reddit.com/",
+            "state": {
+                "allowed": {
+                    "reason": "otherThirdPartyRequest"
+                }
+            },
+            "entityName": "Reddit",
+            "prevalence": 1.46
+        }
+    ]
+}

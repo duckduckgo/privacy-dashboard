@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Aby sme zabránili narušeniu lokality, neblokovali sme žiadnym spoločnostiam načítanie žiadostí so sledovaním na tejto stránke.",
+    "title" : "Na tejto stránke neboli zablokované žiadne požiadavky so sledovaním.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Na tejto stránke sme našli iba nesledujúce požiadavky alebo požiadavky spojené s načítavaním <b>{domain}</b> .",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Nebolo zablokované žiadne načítavanie požiadaviek so sledovaním, pretože ochrana je pre túto stránku vypnutá. Ak sú požiadavky spoločnosti načítané, môže im to umožniť profilovať vás.",

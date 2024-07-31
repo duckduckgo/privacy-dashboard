@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Για να αποφύγουμε διακοπή της λειτουργίας του ιστότοπου, δεν εμποδίσαμε καμία εταιρεία να φορτώσει αιτήματα με παρακολούθηση στη σελίδα αυτή.",
+    "title" : "Δεν αποκλείστηκαν αιτήματα παρακολούθησης στη σελίδα αυτή.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Βρήκαμε μόνο αιτήματα μη παρακολούθησης ή αιτήματα που σχετίζονται με τη φόρτωση <b>{domain}</b> στη σελίδα αυτή.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Δεν αποκλείστηκαν αιτήματα με παρακολούθηση από τη φόρτωση, καθώς οι Προστασίες είναι απενεργοποιημένες γι' αυτόν τον ιστότοπο. Εάν τα αιτήματα μιας εταιρείας έχουν φορτωθεί, ίσως τους επιτρέπουν να σκιαγραφήσουν το προφίλ σας.",
