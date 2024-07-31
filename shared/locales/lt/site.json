@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Kad svetainės veikimas nebūtų sutrikdytas, neužblokavome jokių įmonių, bandančių šiame puslapyje įkelti sekimo užklausas.",
+    "title" : "Šiame puslapyje nebuvo užblokuota jokių sekimo užklausų.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Šiame puslapyje radome tik ne sekimo užklausas arba užklausas, susijusias su <b>{domain}</b> įkėlimu šiame puslapyje.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Nebuvo užblokuotas jokių sekimo užklausų įkėlimas, nes šioje svetainėje apsauga yra išjungta. Jei įmonės užklausos įkeliamos, ji gali leisti joms rinkti informaciją apie jus.",

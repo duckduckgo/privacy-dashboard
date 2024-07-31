@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Om te voorkomen dat deze site niet meer goed werkt, hebben we geen enkel verzoek met tracking van bedrijven op deze pagina geblokkeerd.",
+    "title" : "Er zijn geen trackingverzoeken geblokkeerd op deze pagina.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "We hebben op deze pagina alleen niet-trackingverzoeken gevonden of verzoeken die verband houden met het laden van <b>{domain}</b> op deze pagina.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Verzoeken met tracking werden niet verhinderd om te laden omdat beschermingen zijn uitgeschakeld voor deze site. Als de verzoeken van een bedrijf worden geladen, kunnen ze een profiel van je maken.",

@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Para que o site funcione corretamente, não bloqueámos o carregamento de pedidos com rastreamento de nenhuma empresa.",
+    "title" : "Nenhum pedido de rastreamento foi bloqueado nesta página.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Só encontrámos pedidos sem rastreamento ou pedidos associados ao carregamento de <b>{domain}</b> nesta página.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Não foram bloqueados pedidos de terceiros porque as Proteções estão desativadas para este site. Se os pedidos de uma empresa forem carregados, a empresa pode conseguir criar um perfil sobre ti.",

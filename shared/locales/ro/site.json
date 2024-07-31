@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Pentru a preveni apariția unor disfuncții pe site, nu am blocat încărcarea solicitărilor de urmărire ale companiilor pe această pagină.",
+    "title" : "Pe această pagină nu a fost blocată nicio solicitare de urmărire.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Am găsit doar solicitări fără caracter de urmărire sau solicitări asociate cu încărcarea <b>{domain}</b> pe această pagină.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Nu a fost blocată încărcarea niciunei solicitări de urmărire, deoarece protecțiile sunt dezactivate pentru acest site. În cazul în care solicitările unei societăți sunt încărcate, aceasta îi poate permite să îți creeze un profil.",

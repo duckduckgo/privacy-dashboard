@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "För att förhindra fel på webbplatsen har vi inte blockerat några företag från att läsa in spårningsförfrågningar på den här sidan.",
+    "title" : "Inga spårningsförfrågningar blockerades på den här sidan.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Vi hittade bara icke-spårningsförfrågningar eller förfrågningar associerade med <b>{domain}</b>-inläsning på den här sidan.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Inga spårningsförfrågningar blockerades från att läsas in eftersom skyddet är avstängt för den här webbplatsen. Om ett företags förfrågningar läses in kan det göra det möjligt för företaget att profilera dig.",

@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Sitede hatalar olmasını önlemek için şirketlerin bu sayfaya izleme isteği yüklemesini engellemedik.",
+    "title" : "Bu sayfada hiçbir izleme isteği engellenmedi.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Bu sayfada yalnızca izleme dışı istekler veya <b>{domain}</b> yüklemesiyle ilişkili istekler bulundu.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Bu site için Korumalar kapalı olduğundan, hiçbir izleme isteğinin yüklenmesi engellenmedi. Bir şirketin istekleri yüklenirse profilinizi oluşturmaları mümkün olabilir.",

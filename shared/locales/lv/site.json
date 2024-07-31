@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Lai nepieļautu vietnes darbības traucējumus, mēs nebloķējām neviena uzņēmuma izsekojošos pieprasījumus šajā lapā.",
+    "title" : "Šajā lapā netika bloķēts neviens izsekošanas pieprasījums.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Mēs atradām tikai ar izsekošanu nesaistītus pieprasījumus vai pieprasījumus, kas saistīti ar <b>{domain}</b> ielādi šajā lapā.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Netika bloķēta neviena izsekojoša pieprasījuma ielāde, jo šai vietnei ir izslēgta aizsardzība. Uzņēmuma pieprasījumu ielādes gadījumā uzņēmums var veidot tavu profilu.",
