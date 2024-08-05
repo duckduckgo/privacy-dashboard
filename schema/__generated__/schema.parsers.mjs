@@ -156,6 +156,10 @@ export const primaryScreenSchema = z.object({
     layout: z.union([z.literal("default"), z.literal("highlighted-protections-toggle")])
 });
 
+export const webBreakageFormSchema = z.object({
+    state: z.union([z.literal("enabled"), z.literal("disabled")])
+});
+
 export const eventOriginSchema = z.object({
     screen: screenKindSchema
 });
@@ -215,7 +219,8 @@ export const fireButtonDataSchema = z.object({
 });
 
 export const remoteFeatureSettingsSchema = z.object({
-    primaryScreen: primaryScreenSchema.optional()
+    primaryScreen: primaryScreenSchema.optional(),
+    webBreakageForm: webBreakageFormSchema.optional()
 });
 
 export const setProtectionParamsSchema = z.object({
