@@ -17,6 +17,19 @@
                     "examples": ["default", "highlighted-protections-toggle"]
                 }
             }
+        },
+        "webBreakageForm": {
+            "title": "WebBreakageForm",
+            "type": "object",
+            "required": ["state"],
+            "additionalProperties": false,
+            "properties": {
+                "state": {
+                    "type": "string",
+                    "enum": ["enabled", "disabled"],
+                    "default": "enabled"
+                }
+            }
         }
     }
 }

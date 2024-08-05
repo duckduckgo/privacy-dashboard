@@ -17,8 +17,16 @@ import {
     requestDataSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
 import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils'
-import { CheckBrokenSiteReportHandledMessage, CloseMessage, OpenSettingsMessages, SetListsMessage, setupColorScheme } from './common.js'
+import {
+    CheckBrokenSiteReportHandledMessage,
+    CloseMessage,
+    OpenSettingsMessages,
+    SetListsMessage,
+    setupColorScheme,
+    SubmitBrokenSiteReportMessage,
+} from './common.js'
 import { createTabData } from './utils/request-details.mjs'
+import invariant from 'tiny-invariant'
 
 let channel = null
 const backgroundMessage = (backgroundModel) => {
@@ -300,6 +308,15 @@ export class PrivacyDashboardJavascriptInterface {
     openSettings(payload) {
         window.PrivacyDashboard.openSettings(JSON.stringify(payload))
     }
+
+    /**
+     * {@inheritDoc common.submitBrokenSiteReport}
+     * @type {import("./common.js").submitBrokenSiteReport}
+     */
+    submitBrokenSiteReport(payload) {
+        invariant(typeof window.PrivacyDashboard?.submitBrokenSiteReport, 'window.PrivacyDashboard.submitBrokenSiteReport required')
+        window.PrivacyDashboard.submitBrokenSiteReport(JSON.stringify(payload))
+    }
 }
 
 /**
@@ -326,10 +343,12 @@ async function fetchAndroid(message) {
             const isProtected = value === false
             privacyDashboardApi.toggleAllowlist(isProtected)
         }
+        return
     }
 
     if (message instanceof CloseMessage) {
         privacyDashboardApi.close()
+        return
     }
 
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
@@ -337,11 +356,21 @@ async function fetchAndroid(message) {
         return true // Return true to prevent HTML form from showing
     }
 
+    if (message instanceof SubmitBrokenSiteReportMessage) {
+        privacyDashboardApi.submitBrokenSiteReport({
+            category: message.category,
+            description: message.description,
+        })
+        return true // Return true to prevent HTML form from showing
+    }
+
     if (message instanceof OpenSettingsMessages) {
-        privacyDashboardApi.openSettings({
+        return privacyDashboardApi.openSettings({
             target: message.target,
         })
     }
+
+    console.warn('unhandled message', message)
 }
 
 const getBackgroundTabDataAndroid = () => {
