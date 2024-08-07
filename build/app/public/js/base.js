@@ -12839,6 +12839,9 @@
         channel.send("updateTabData");
       if (req.closePopup)
         window.close();
+      if (req.toggleReport) {
+        window.location.search = "?screen=toggleReport&opener=dashboard";
+      }
     });
   }
   async function getBackgroundTabData() {

@@ -283,6 +283,9 @@ export function backgroundMessage(_channel) {
         if (req.updateTabData) channel.send('updateTabData')
         if (req.didResetTrackersData) channel.send('updateTabData')
         if (req.closePopup) window.close()
+        if (req.toggleReport) {
+            window.location.search = '?screen=toggleReport&opener=dashboard'
+        }
     })
 }
 
