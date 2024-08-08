@@ -12507,6 +12507,7 @@
     getBackgroundTabData: () => getBackgroundTabData,
     getBurnOptions: () => getBurnOptions,
     getPrivacyDashboardData: () => getPrivacyDashboardData,
+    getToggleReportOptions: () => getToggleReportOptions,
     openOptions: () => openOptions,
     refreshAlias: () => refreshAlias,
     search: () => search,
@@ -12756,6 +12757,9 @@
     if (message instanceof SetBurnDefaultOption) {
       return setBurnDefaultOption(message);
     }
+    if (message instanceof FetchToggleReportOptions) {
+      return getToggleReportOptions();
+    }
     return new Promise((resolve) => {
       window.chrome.runtime.sendMessage(message, (result) => {
         resolve(result);
@@ -12796,6 +12800,9 @@
   }
   function getBurnOptions() {
     return toExtensionMessage("getBurnOptions");
+  }
+  function getToggleReportOptions() {
+    return toExtensionMessage("getToggleReportOptions");
   }
   function setBurnDefaultOption(message) {
     return toExtensionMessage("setBurnDefaultOption", message);
