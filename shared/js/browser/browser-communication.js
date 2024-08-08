@@ -16,9 +16,12 @@ import {
     BurnMessage,
     CheckBrokenSiteReportHandledMessage,
     FetchBurnOptions,
+    FetchToggleReportOptions,
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
+    RejectToggleBreakageReport,
     SearchMessage,
+    SendToggleBreakageReport,
     SetBurnDefaultOption,
     SetListsMessage,
     setupColorScheme,
@@ -65,6 +68,15 @@ export async function fetch(message) {
     }
     if (message instanceof SetBurnDefaultOption) {
         return setBurnDefaultOption(message)
+    }
+    if (message instanceof SendToggleBreakageReport) {
+        return sendToggleReport()
+    }
+    if (message instanceof RejectToggleBreakageReport) {
+        return rejectToggleReport()
+    }
+    if (message instanceof FetchToggleReportOptions) {
+        return getToggleReportOptions()
     }
     return new Promise((resolve) => {
         // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
@@ -199,6 +211,38 @@ export async function openOptions() {
 }
 
 /**
+ * {@inheritDoc common.sendToggleReport}
+ * @type {import("./common.js").sendToggleReport}
+ * @category Dashboard -> Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'sendToggleReport'
+ * })
+ * ```
+ */
+export async function sendToggleReport() {
+    return toExtensionMessage('sendToggleReport')
+}
+
+/**
+ * {@inheritDoc common.rejectToggleReport}
+ * @type {import("./common.js").rejectToggleReport}
+ * @category Dashboard -> Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'rejectToggleReport'
+ * })
+ * ```
+ */
+export async function rejectToggleReport() {
+    return toExtensionMessage('rejectToggleReport')
+}
+
+/**
  * @category Dashboard -> Extension Messages
  * @return {Promise<import('../../../schema/__generated__/schema.types').FireButtonData>}
  * @example
@@ -211,6 +255,21 @@ export async function openOptions() {
  */
 export function getBurnOptions() {
     return toExtensionMessage('getBurnOptions')
+}
+
+/**
+ * @category Dashboard -> Extension Messages
+ * @return {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'getToggleReportOptions',
+ *    options: {}
+ * })
+ * ```
+ */
+export function getToggleReportOptions() {
+    return toExtensionMessage('getToggleReportOptions')
 }
 
 /**
@@ -283,6 +342,9 @@ export function backgroundMessage(_channel) {
         if (req.updateTabData) channel.send('updateTabData')
         if (req.didResetTrackersData) channel.send('updateTabData')
         if (req.closePopup) window.close()
+        if (req.toggleReport) {
+            window.location.search = '?screen=toggleReport&opener=dashboard'
+        }
     })
 }
 
