@@ -16,6 +16,7 @@ import {
     BurnMessage,
     CheckBrokenSiteReportHandledMessage,
     FetchBurnOptions,
+    FetchToggleReportOptions,
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
     SearchMessage,
@@ -65,6 +66,9 @@ export async function fetch(message) {
     }
     if (message instanceof SetBurnDefaultOption) {
         return setBurnDefaultOption(message)
+    }
+    if (message instanceof FetchToggleReportOptions) {
+        return getToggleReportOptions()
     }
     return new Promise((resolve) => {
         // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
@@ -211,6 +215,21 @@ export async function openOptions() {
  */
 export function getBurnOptions() {
     return toExtensionMessage('getBurnOptions')
+}
+
+/**
+ * @category Dashboard -> Extension Messages
+ * @return {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'getToggleReportOptions',
+ *    options: {}
+ * })
+ * ```
+ */
+export function getToggleReportOptions() {
+    return toExtensionMessage('getToggleReportOptions')
 }
 
 /**

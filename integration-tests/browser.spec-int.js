@@ -24,6 +24,29 @@ test.describe('Protections toggle (extension specific)', () => {
     toggleFlowsDenyList((page) => DashboardPage.browser(page))
 })
 
+test.describe('Protections toggle -> simple report screen', () => {
+    test.skip('should reset the page URL when the extension instructs it to', async ({ page }) => {
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates.protectionsOn])
+        await dash.showsPrimaryScreen()
+        await dash.toggleProtectionsOff()
+        await dash.mocks.calledForToggleAllowList()
+        await page.evaluate(() => {
+            for (let listener of window.__playwright.listeners || []) {
+                listener(
+                    {
+                        toggleReport: true,
+                    },
+                    { id: 'test' }
+                )
+            }
+        })
+        await page.waitForURL((url) => {
+            return url.searchParams.get('screen') === 'toggleReport'
+        })
+    })
+})
+
 test.describe('special page (cta)', () => {
     test('should render correctly', async ({ page }) => {
         const dash = await DashboardPage.browser(page)
