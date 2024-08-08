@@ -12757,6 +12757,12 @@
     if (message instanceof SetBurnDefaultOption) {
       return setBurnDefaultOption(message);
     }
+    if (message instanceof SendToggleBreakageReport) {
+      return toExtensionMessage("sendToggleBreakageReport");
+    }
+    if (message instanceof RejectToggleBreakageReport) {
+      return toExtensionMessage("rejectToggleBreakageReport");
+    }
     if (message instanceof FetchToggleReportOptions) {
       return getToggleReportOptions();
     }
