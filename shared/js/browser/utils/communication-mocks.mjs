@@ -233,6 +233,7 @@ export function mockBrowserApis() {
         search: {},
         openOptions: {},
         setBurnDefaultOption: {},
+        getToggleReportOptions: toggleReportScreen,
         doBurn: {},
         getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
