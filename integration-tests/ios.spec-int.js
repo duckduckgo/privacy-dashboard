@@ -186,7 +186,11 @@ test.describe('temporary reporting flows', () => {
     test.describe('opens to category selection from menu', () => {
         // sends report after selecting a category
         test('sends report after selecting a category', { tag: '@screenshots' }, async ({ page }) => {
-            const dash = await DashboardPage.webkit(page, { screen: 'categorySelection', platform: 'ios' })
+            const dash = await DashboardPage.webkit(page, {
+                screen: 'categorySelection',
+                platform: 'ios',
+                randomisedCategories: 'false',
+            })
             await dash.reducedMotion()
             await dash.addState([testDataStates.google])
             await dash.screenshot('category-selection.png')

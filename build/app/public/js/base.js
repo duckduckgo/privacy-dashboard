@@ -14624,6 +14624,9 @@
     if (url.searchParams.get("breakageScreen") === "categoryTypeSelection") {
       breakageScreen = "categoryTypeSelection";
     }
+    let randomisedCategories = true;
+    if (url.searchParams.get("randomisedCategories") === "false")
+      randomisedCategories = false;
     return new PlatformFeatures({
       spinnerFollowingProtectionsToggle: platform2.name !== "android" && platform2.name !== "windows",
       supportsHover: desktop.includes(platform2.name),
@@ -14631,7 +14634,8 @@
       opener,
       supportsInvalidCerts: platform2.name !== "browser" && platform2.name !== "windows",
       includeToggleOnBreakageForm,
-      breakageScreen
+      breakageScreen,
+      randomisedCategories
     });
   }
   var PlatformFeatures = class {
@@ -14644,6 +14648,7 @@
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {InitialScreen} params.breakageScreen
+     * @param {boolean} params.randomisedCategories
      */
     constructor(params) {
       this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
@@ -14653,6 +14658,7 @@
       this.opener = params.opener;
       this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm;
       this.breakageScreen = params.breakageScreen;
+      this.randomisedCategories = params.randomisedCategories;
     }
   };
   var FeatureSettings = class _FeatureSettings {
@@ -16560,8 +16566,8 @@
     return /* @__PURE__ */ y("div", { className: "padding-x" }, /* @__PURE__ */ y("div", { className: "cta-screen" }, /* @__PURE__ */ y("p", { className: "note token-title-3 text--center" }, errorText)));
   }
 
-  // v2/screens/breakage-form-screen.jsx
-  var categories = () => {
+  // v2/breakage-categories.js
+  var defaultCategories = () => {
     return {
       blocked: ns.report("blocked.title"),
       layout: ns.report("layout.title"),
@@ -16574,6 +16580,40 @@
       other: ns.report("other.title")
     };
   };
+  function createBreakageFeaturesFrom(platformFeatures) {
+    return {
+      /**
+       * @param {Record<string, string>} [additional]
+       * @return {[key: string, description: string][]}
+       */
+      categoryList(additional = {}) {
+        const items = {
+          ...defaultCategories(),
+          ...additional
+        };
+        const list = Object.entries(items);
+        if (platformFeatures.randomisedCategories) {
+          return shuffle(list);
+        }
+        return list;
+      }
+    };
+  }
+  function shuffle(arr2) {
+    let len = arr2.length;
+    let temp;
+    let index;
+    while (len > 0) {
+      index = Math.floor(Math.random() * len);
+      len--;
+      temp = arr2[len];
+      arr2[len] = arr2[index];
+      arr2[index] = temp;
+    }
+    return arr2;
+  }
+
+  // v2/screens/breakage-form-screen.jsx
   function BreakageFormScreen({ includeToggle }) {
     const data = useData();
     const onToggle = useToggle();
@@ -16581,6 +16621,7 @@
     const nav = useNav();
     const canPop = nav.canPop();
     const sendReport = useSendReport();
+    const platformFeatures = useFeatures();
     const [state, setState] = h2(
       /** @type {"idle" | "sent"} */
       "idle"
@@ -16605,6 +16646,10 @@
         default: () => /* @__PURE__ */ y(TopNav, { done: /* @__PURE__ */ y(Close, { onClick: onClose }) })
       });
     }
+    const randomised = F(() => {
+      const f3 = createBreakageFeaturesFrom(platformFeatures);
+      return f3.categoryList();
+    }, [platformFeatures]);
     return /* @__PURE__ */ y("div", { className: "breakage-form page-inner" }, topNav2, /* @__PURE__ */ y("div", { className: "breakage-form__inner", "data-state": state }, includeToggle && /* @__PURE__ */ y("div", { class: "header header--breakage" }, /* @__PURE__ */ y(
       ProtectionHeader,
       {
@@ -16617,7 +16662,7 @@
       FormElement,
       {
         onSubmit: submit,
-        before: /* @__PURE__ */ y("div", { className: "form__select breakage-form__input--dropdown" }, /* @__PURE__ */ y("select", { name: "category" }, /* @__PURE__ */ y("option", { value: "" }, ns.report("pickYourIssueFromTheList.title")), "$", Object.entries(categories()).map(([key, value]) => {
+        before: /* @__PURE__ */ y("div", { className: "form__select breakage-form__input--dropdown" }, /* @__PURE__ */ y("select", { name: "category" }, /* @__PURE__ */ y("option", { value: "" }, ns.report("pickYourIssueFromTheList.title")), "$", randomised.map(([key, value]) => {
           return /* @__PURE__ */ y("option", { value: key }, value);
         })))
       }
@@ -17176,13 +17221,15 @@
     const send = useTelemetry();
     const { protectionsEnabled, tab } = useData();
     const text = tab.domain;
-    const { breakageScreen, initialScreen } = useFeatures();
-    const showToggle = protectionsEnabled && (breakageScreen === "categoryTypeSelection" || initialScreen === "categoryTypeSelection");
-    const v2Categories = {
-      ...categories(),
-      login: ns.report("loginV2.title")
-    };
-    return /* @__PURE__ */ y("div", { className: "site-info page-inner card", "data-page": "choice-category" }, /* @__PURE__ */ y(NavWrapper, null), /* @__PURE__ */ y("div", { className: "padding-x-double" }, /* @__PURE__ */ y(KeyInsightsMain, { title: text }, description)), /* @__PURE__ */ y("div", { className: "padding-x" }, /* @__PURE__ */ y(Nav, null, Object.entries(v2Categories).map(([value, title]) => {
+    const platformFeatures = useFeatures();
+    const showToggle = protectionsEnabled && (platformFeatures.breakageScreen === "categoryTypeSelection" || platformFeatures.initialScreen === "categoryTypeSelection");
+    const randomised = F(() => {
+      const f3 = createBreakageFeaturesFrom(platformFeatures);
+      return f3.categoryList({
+        login: ns.report("loginV2.title")
+      });
+    }, [platformFeatures]);
+    return /* @__PURE__ */ y("div", { className: "site-info page-inner card", "data-page": "choice-category" }, /* @__PURE__ */ y(NavWrapper, null), /* @__PURE__ */ y("div", { className: "padding-x-double" }, /* @__PURE__ */ y(KeyInsightsMain, { title: text }, description)), /* @__PURE__ */ y("div", { className: "padding-x" }, /* @__PURE__ */ y(Nav, null, randomised.map(([value, title]) => {
       return /* @__PURE__ */ y(
         NavItem,
         {
@@ -17223,7 +17270,7 @@
   }
   var validCategories = () => {
     return {
-      ...categories(),
+      ...defaultCategories(),
       dislike: ns.report("dislike.title")
     };
   };
@@ -17232,12 +17279,12 @@
     const sendReport = useSendReport();
     const nav = useNav();
     const showAlert = useShowAlert();
-    const categories2 = validCategories();
+    const categories = validCategories();
     let category = nav.params.get("category");
-    if (!category || !Object.hasOwnProperty.call(categories2, category)) {
+    if (!category || !Object.hasOwnProperty.call(categories, category)) {
       category = "other";
     }
-    const description = categories2[category];
+    const description = categories[category];
     const placeholder = category === "other" ? ns.report("otherRequired.title") : ns.report("otherOptional.title");
     function submit(e3) {
       e3.preventDefault();
