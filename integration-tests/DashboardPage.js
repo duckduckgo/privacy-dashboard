@@ -232,6 +232,7 @@ export class DashboardPage {
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'ios' | 'macos'} opts.platform
      * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
+     * @param {string} [opts.randomisedCategories]
      * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]
      */
@@ -241,9 +242,10 @@ export class DashboardPage {
         const opener = opts?.opener || 'dashboard'
         const breakageScreen = opts?.breakageScreen
         const category = opts?.category
+        const randomisedCategories = opts?.randomisedCategories
         const dash = new DashboardPage(page, { name: opts?.platform ?? 'ios' })
         await dash.withMarker()
-        await dash.loadPage({ screen, opener, breakageScreen, category })
+        await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories })
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash

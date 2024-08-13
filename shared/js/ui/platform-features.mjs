@@ -59,6 +59,10 @@ export function createPlatformFeatures(platform) {
         breakageScreen = 'categoryTypeSelection'
     }
 
+    // allow randomization to be disabled in a URL param
+    let randomisedCategories = true
+    if (url.searchParams.get('randomisedCategories') === 'false') randomisedCategories = false
+
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
@@ -67,6 +71,7 @@ export function createPlatformFeatures(platform) {
         supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
         includeToggleOnBreakageForm,
         breakageScreen,
+        randomisedCategories,
     })
 }
 
@@ -84,6 +89,7 @@ export class PlatformFeatures {
      * @param {boolean} params.supportsInvalidCerts
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {InitialScreen} params.breakageScreen
+     * @param {boolean} params.randomisedCategories
      */
     constructor(params) {
         /**
@@ -116,11 +122,15 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm
-
         /**
          * @type {import("../../../schema/__generated__/schema.types").EventOrigin['screen']}
          */
         this.breakageScreen = params.breakageScreen
+        /**
+         * Whether or to randomize the categories in the breakage form
+         * @type {boolean}
+         */
+        this.randomisedCategories = params.randomisedCategories
     }
 }
 
