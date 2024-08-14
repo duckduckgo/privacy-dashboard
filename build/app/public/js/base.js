@@ -4577,7 +4577,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, webBreakageFormSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -4695,6 +4695,9 @@
       primaryScreenSchema = z3.object({
         layout: z3.union([z3.literal("default"), z3.literal("highlighted-protections-toggle")])
       });
+      webBreakageFormSchema = z3.object({
+        state: z3.union([z3.literal("enabled"), z3.literal("disabled")])
+      });
       eventOriginSchema = z3.object({
         screen: screenKindSchema
       });
@@ -4743,7 +4746,8 @@
         options: z3.array(fireOptionSchema)
       });
       remoteFeatureSettingsSchema = z3.object({
-        primaryScreen: primaryScreenSchema.optional()
+        primaryScreen: primaryScreenSchema.optional(),
+        webBreakageForm: webBreakageFormSchema.optional()
       });
       setProtectionParamsSchema = z3.object({
         isProtected: z3.boolean(),
@@ -14272,6 +14276,14 @@
     openSettings(payload) {
       window.PrivacyDashboard.openSettings(JSON.stringify(payload));
     }
+    /**
+     * {@inheritDoc common.submitBrokenSiteReport}
+     * @type {import("./common.js").submitBrokenSiteReport}
+     */
+    submitBrokenSiteReport(payload) {
+      invariant(typeof window.PrivacyDashboard?.submitBrokenSiteReport, "window.PrivacyDashboard.submitBrokenSiteReport required");
+      window.PrivacyDashboard.submitBrokenSiteReport(JSON.stringify(payload));
+    }
   };
   var privacyDashboardApi;
   async function fetchAndroid(message) {
@@ -14286,19 +14298,29 @@
         const isProtected = value === false;
         privacyDashboardApi.toggleAllowlist(isProtected);
       }
+      return;
     }
     if (message instanceof CloseMessage) {
       privacyDashboardApi.close();
+      return;
     }
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
       privacyDashboardApi.showBreakageForm();
       return true;
     }
+    if (message instanceof SubmitBrokenSiteReportMessage) {
+      privacyDashboardApi.submitBrokenSiteReport({
+        category: message.category,
+        description: message.description
+      });
+      return true;
+    }
     if (message instanceof OpenSettingsMessages) {
-      privacyDashboardApi.openSettings({
+      return privacyDashboardApi.openSettings({
         target: message.target
       });
     }
+    console.warn("unhandled message", message);
   }
   var getBackgroundTabDataAndroid = () => {
     return new Promise((resolve) => {
@@ -14665,15 +14687,28 @@
     /**
      * @param {object} params
      * @param {import("../../../schema/__generated__/schema.types").PrimaryScreen} [params.primaryScreen]
+     * @param {import("../../../schema/__generated__/schema.types").WebBreakageForm} [params.webBreakageForm]
      */
     constructor(params) {
       this.primaryScreen = params.primaryScreen || { layout: "default" };
+      this.webBreakageForm = params.webBreakageForm || { state: "enabled" };
     }
     /**
-     *
+     * @param {import("../../../schema/__generated__/schema.types").RemoteFeatureSettings|undefined} settings
+     * @param {Platform} platform
      */
-    static default() {
-      return new _FeatureSettings({});
+    static create(settings, platform2) {
+      switch (platform2.name) {
+        case "android": {
+          return new _FeatureSettings({
+            webBreakageForm: { state: "disabled" },
+            ...settings
+          });
+        }
+        default: {
+          return new _FeatureSettings(settings || {});
+        }
+      }
     }
   };
 
@@ -14724,7 +14759,7 @@
     /**
      * @param {import('../shared/js/browser/common.js').BackgroundTabData} data
      */
-    accept({ tab, emailProtectionUserData, fireButton }) {
+    accept({ tab, emailProtectionUserData, fireButton, featureSettings: featureSettings2 }) {
       if (tab) {
         if (tab.locale) {
           if (Object.keys(i18n.options.resources).includes(tab.locale)) {
@@ -14745,7 +14780,7 @@
         this.emailProtectionUserData = emailProtectionUserData;
       }
       this.fireButton = fireButton;
-      this.featureSettings = new FeatureSettings({});
+      this.featureSettings = FeatureSettings.create(featureSettings2, platform);
       this.setSiteProperties();
       this.setHttpsMessage();
       if (this.tab) {
@@ -14915,6 +14950,9 @@
   }
   function useFeatures() {
     return dc.lastValue().features;
+  }
+  function useFeatureSettings() {
+    return dc.lastValue().featureSettings;
   }
   function usePrimaryStatus() {
     const { disabled, tab } = dc.lastValue();
@@ -16089,12 +16127,13 @@
     const onToggle = useToggle();
     const fetcher = useFetcher();
     const { breakageScreen } = useFeatures();
+    const featureSettings2 = useFeatureSettings();
     return /* @__PURE__ */ y("div", { "data-testid": "protectionHeader" }, /* @__PURE__ */ y(ProtectionHeader, { model: data, toggle: onToggle }, /* @__PURE__ */ y("div", { className: "text--center" }, /* @__PURE__ */ y(
       TextLink,
       {
         onClick: () => {
           fetcher(new CheckBrokenSiteReportHandledMessage()).then(() => {
-            if (!isAndroid()) {
+            if (featureSettings2.webBreakageForm.state === "enabled") {
               push(breakageScreen);
             }
           }).catch(console.error);
