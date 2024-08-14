@@ -4,7 +4,8 @@
  * @typedef {{
  *   tab: import('./utils/request-details.mjs').TabData,
  *   emailProtectionUserData?: import('../../../schema/__generated__/schema.types').EmailProtectionUserData,
- *   fireButton?: { enabled: boolean }
+ *   fireButton?: { enabled: boolean },
+ *   featureSettings?: import('../../../schema/__generated__/schema.types').RemoteFeatureSettings | undefined
  * }} BackgroundTabData
  */
 /**

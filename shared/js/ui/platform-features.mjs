@@ -141,15 +141,30 @@ export class FeatureSettings {
     /**
      * @param {object} params
      * @param {import("../../../schema/__generated__/schema.types").PrimaryScreen} [params.primaryScreen]
+     * @param {import("../../../schema/__generated__/schema.types").WebBreakageForm} [params.webBreakageForm]
      */
     constructor(params) {
         /** @type {import("../../../schema/__generated__/schema.types").PrimaryScreen} */
         this.primaryScreen = params.primaryScreen || { layout: 'default' }
+        /** @type {import("../../../schema/__generated__/schema.types").WebBreakageForm} */
+        this.webBreakageForm = params.webBreakageForm || { state: 'enabled' }
     }
+
     /**
-     *
+     * @param {import("../../../schema/__generated__/schema.types").RemoteFeatureSettings|undefined} settings
+     * @param {Platform} platform
      */
-    static default() {
-        return new FeatureSettings({})
+    static create(settings, platform) {
+        switch (platform.name) {
+            case 'android': {
+                return new FeatureSettings({
+                    webBreakageForm: { state: 'disabled' },
+                    ...settings,
+                })
+            }
+            default: {
+                return new FeatureSettings(settings || {})
+            }
+        }
     }
 }

@@ -78,7 +78,7 @@ class DataChannel extends EventTarget {
     /**
      * @param {import('../shared/js/browser/common.js').BackgroundTabData} data
      */
-    accept({ tab, emailProtectionUserData, fireButton }) {
+    accept({ tab, emailProtectionUserData, fireButton, featureSettings }) {
         if (tab) {
             if (tab.locale) {
                 // @ts-ignore
@@ -102,7 +102,7 @@ class DataChannel extends EventTarget {
             this.emailProtectionUserData = emailProtectionUserData
         }
         this.fireButton = fireButton
-        this.featureSettings = new FeatureSettings({})
+        this.featureSettings = FeatureSettings.create(featureSettings, platform)
 
         this.setSiteProperties()
         this.setHttpsMessage()
@@ -312,6 +312,14 @@ export function useData() {
  */
 export function useFeatures() {
     return dc.lastValue().features
+}
+
+/**
+ * Static access to `featureSettings` since it doesn't change
+ * @return {DataChannelPublicData['featureSettings']}
+ */
+export function useFeatureSettings() {
+    return dc.lastValue().featureSettings
 }
 
 /**

@@ -770,6 +770,20 @@ export const createDataStates = (google, cnn) => {
                 screen: 'promptBreakageForm',
             },
         }),
+        'webBreakageForm-enabled': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            remoteFeatureSettings: {
+                webBreakageForm: { state: 'enabled' },
+            },
+        }),
+        'webBreakageForm-disabled': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            remoteFeatureSettings: {
+                webBreakageForm: { state: 'disabled' },
+            },
+        }),
     }
 }
 

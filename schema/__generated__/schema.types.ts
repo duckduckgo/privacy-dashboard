@@ -492,12 +492,16 @@ export interface FireOption {
  */
 export interface RemoteFeatureSettings {
   primaryScreen?: PrimaryScreen;
+  webBreakageForm?: WebBreakageForm;
 }
 export interface PrimaryScreen {
   /**
    * A string to represent different screen layouts
    */
   layout: "default" | "highlighted-protections-toggle";
+}
+export interface WebBreakageForm {
+  state: "enabled" | "disabled";
 }
 export interface SetProtectionParams {
   isProtected: boolean;
