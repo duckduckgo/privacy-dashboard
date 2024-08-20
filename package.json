@@ -25,7 +25,7 @@
         "tsc.watch": "tsc --watch",
         "test": "npm run verify.local",
         "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs && node shared/locales/validate-locales.test.mjs && node scripts/verify-artifacts.test.mjs",
-        "test.int": "playwright test",
+        "test.int": "npm run build.debug && playwright test",
         "test.int.ui": "playwright test --ui",
         "test.int.headed": "playwright test --headed",
         "test.int.update-screenshots": "npm run test.int -- --grep @screenshots --update-snapshots",
