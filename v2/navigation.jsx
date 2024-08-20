@@ -141,7 +141,9 @@ function navReducer(state, event) {
                 }
                 case 'pop': {
                     if (state.stack.length < 2) {
-                        console.warn('ignoring a `pop` event', window.location.search)
+                        if (!window.__ddg_integration_test) {
+                            console.warn('ignoring a `pop` event', window.location.search)
+                        }
                         return state
                     }
                     if (!event.opts.animate) {
