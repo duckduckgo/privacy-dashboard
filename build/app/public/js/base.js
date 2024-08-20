@@ -17542,10 +17542,11 @@
         return;
       }
       function popstateHandler() {
-        const curr = new URLSearchParams(location.href);
-        const currStack = curr.getAll("stack");
-        if (currStack.length > state.stack.length) {
-          const lastEntry = currStack[currStack.length - 1];
+        const currentUrlParams = new URLSearchParams(location.href);
+        const currentURLStack = currentUrlParams.getAll("stack");
+        const navigationIntentionIsForwards = currentURLStack.length > state.stack.length;
+        if (navigationIntentionIsForwards) {
+          const lastEntry = currentURLStack[currentURLStack.length - 1];
           if (isScreenName(lastEntry)) {
             dispatch({ type: "push", name: lastEntry, opts: { animate: props.animate && isAndroid() } });
           }
