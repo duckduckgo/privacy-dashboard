@@ -10343,9 +10343,9 @@
     // native
     hasNativeFromEntries ? Object.fromEntries : (
       // Ponyfill
-      function fromEntries2(entries) {
+      function fromEntries2(entries2) {
         var obj = {};
-        for (var _i = 0, entries_1 = entries; _i < entries_1.length; _i++) {
+        for (var _i = 0, entries_1 = entries2; _i < entries_1.length; _i++) {
           var _a2 = entries_1[_i], k3 = _a2[0], v3 = _a2[1];
           obj[k3] = v3;
         }
@@ -17352,6 +17352,7 @@
   }
 
   // v2/navigation.jsx
+  init_schema_parsers();
   var availableScreens = {
     primaryScreen: { kind: "root", component: () => /* @__PURE__ */ y(PrimaryScreen, null) },
     // screens that would load immediately
@@ -17369,6 +17370,10 @@
     consentManaged: { kind: "subview", component: () => /* @__PURE__ */ y(ConsentManagedScreen, { cosmetic: false }) },
     cookieHidden: { kind: "subview", component: () => /* @__PURE__ */ y(ConsentManagedScreen, { cosmetic: true }) }
   };
+  var entries = (
+    /** @type {[ScreenName, { kind: 'subview' | 'root', component: () => any}][]} */
+    Object.entries(availableScreens)
+  );
   var NavContext = G({
     /** @type {(name: ScreenName, params?: Record<string, string>) => void} */
     push() {
@@ -17377,10 +17382,6 @@
     /** @type {() => void} */
     pop() {
       throw new Error("not implemented");
-    },
-    /** @type {(stack: ScreenName[]) => void} */
-    goto(stack) {
-      throw new Error("not implemented " + stack);
     },
     params: new URLSearchParams(""),
     /** @type {() => boolean} */
@@ -17406,6 +17407,9 @@
     const { screen } = q2(ScreenContext);
     const { canPopFrom } = useNav();
     return canPopFrom(screen);
+  }
+  function isScreenName(input) {
+    return screenKindSchema.safeParse(input).success;
   }
   function navReducer(state, event) {
     if (!window.__ddg_integration_test) {
@@ -17451,14 +17455,9 @@
             };
           }
           case "push": {
-            const nextParams = new URLSearchParams(state.params);
-            for (let [key, value] of Object.entries(event.params)) {
-              nextParams.set(key, value);
-            }
             if (!event.opts.animate) {
               return {
                 ...state,
-                params: nextParams,
                 stack: state.stack.concat(event.name),
                 state: (
                   /** @type {const} */
@@ -17469,7 +17468,6 @@
             }
             return {
               ...state,
-              params: nextParams,
               stack: state.stack.concat(event.name),
               state: (
                 /** @type {const} */
@@ -17480,7 +17478,7 @@
           }
           case "pop": {
             if (state.stack.length < 2) {
-              console.warn("ignoring a `pop` event");
+              console.warn("ignoring a `pop` event", window.location.search);
               return state;
             }
             if (!event.opts.animate) {
@@ -17522,7 +17520,6 @@
       stack: props.stack,
       state: "initial",
       commit: [],
-      params: props.params,
       via: void 0
     });
     const parentRef = _(null);
@@ -17544,28 +17541,23 @@
       if (state.state !== "settled") {
         return;
       }
-      if (state.via === "push") {
-        const url = new URL(window.location.href);
-        url.searchParams.delete("stack");
-        for (let string of state.stack) {
-          url.searchParams.append("stack", string);
+      function popstateHandler() {
+        const curr = new URLSearchParams(location.href);
+        const currStack = curr.getAll("stack");
+        if (currStack.length > state.stack.length) {
+          const lastEntry = currStack[currStack.length - 1];
+          if (isScreenName(lastEntry)) {
+            dispatch({ type: "push", name: lastEntry, opts: { animate: props.animate && isAndroid() } });
+          }
+        } else {
+          dispatch({ type: "pop", opts: { animate: props.animate && isAndroid() } });
         }
-        for (let [key, value] of Object.entries(state.params)) {
-          url.searchParams.set(key, value);
-        }
-        window.history.pushState({}, "", url);
       }
-      if (state.via === "pop") {
-        window.history.go(-1);
-      }
-      function handler() {
-        dispatch({ type: "pop", opts: { animate: props.animate } });
-      }
-      window.addEventListener("popstate", handler);
+      window.addEventListener("popstate", popstateHandler);
       return () => {
-        window.removeEventListener("popstate", handler);
+        window.removeEventListener("popstate", popstateHandler);
       };
-    }, [state.state, state.params, state.via, props.animate]);
+    }, [state.state, state.via, props.animate]);
     const canPop = T2(() => {
       if (state.state === "transitioning") {
         return state.commit.length > 1 || state.stack.length > 1;
@@ -17588,13 +17580,33 @@
       return v3;
     }, [state.state, state.stack, state.commit]);
     const api = {
-      push: (name, params = {}) => dispatch({ type: "push", name, opts: { animate: props.animate }, params }),
-      pop: () => dispatch({ type: "pop", opts: { animate: props.animate } }),
-      goto: (stack) => dispatch({ type: "goto", stack, opts: { animate: props.animate } }),
+      /**
+       * @param {ScreenName} name
+       * @param {Record<string, any>} params
+       */
+      push: (name, params = {}) => {
+        const url = new URL(window.location.href);
+        for (let [key, value] of Object.entries(params)) {
+          url.searchParams.set(key, value);
+        }
+        url.searchParams.delete("stack");
+        for (let string of state.stack) {
+          url.searchParams.append("stack", string);
+        }
+        url.searchParams.append("stack", name);
+        window.history.pushState({}, "", url);
+        dispatch({ type: "push", name, opts: { animate: props.animate } });
+      },
+      pop: () => {
+        window.history.go(-1);
+        dispatch({ type: "pop", opts: { animate: props.animate } });
+      },
       canPop,
       canPopFrom,
       screen,
-      params: state.params
+      get params() {
+        return new URLSearchParams(location.search);
+      }
     };
     return /* @__PURE__ */ y(NavContext.Provider, { value: api }, /* @__PURE__ */ y(
       "div",
@@ -17610,29 +17622,23 @@
           transform: `translateX(` + -((state.stack.length - 1) * 100) + "%)"
         }
       },
-      Object.entries(availableScreens).map(([name, item]) => {
-        const inStack = state.stack.includes(name);
-        const commiting = state.commit.includes(name);
-        const current = state.stack[state.stack.length - 1] === name;
+      entries.map(([screenName, item]) => {
+        const inStack = state.stack.includes(screenName);
+        const commiting = state.commit.includes(screenName);
+        const current = state.stack[state.stack.length - 1] === screenName;
         if (!inStack && !commiting)
           return null;
         if (item.kind === "root") {
-          return /* @__PURE__ */ y(ScreenContext.Provider, { value: { screen: (
-            /** @type {ScreenName} */
-            name
-          ) } }, /* @__PURE__ */ y("section", { className: "app-height", key: name }, item.component()));
+          return /* @__PURE__ */ y(ScreenContext.Provider, { value: { screen: screenName } }, /* @__PURE__ */ y("section", { className: "app-height", key: screenName }, item.component()));
         }
-        const translateValue = state.stack.includes(name) ? state.stack.indexOf(name) : state.commit.includes(name) ? state.commit.indexOf(name) : 0;
+        const translateValue = state.stack.includes(screenName) ? state.stack.indexOf(screenName) : state.commit.includes(screenName) ? state.commit.indexOf(screenName) : 0;
         const cssProp = `translateX(${translateValue * 100}%)`;
-        return /* @__PURE__ */ y(ScreenContext.Provider, { value: { screen: (
-          /** @type {ScreenName} */
-          name
-        ) } }, /* @__PURE__ */ y(
+        return /* @__PURE__ */ y(ScreenContext.Provider, { value: { screen: screenName } }, /* @__PURE__ */ y(
           "section",
           {
             "data-current": String(current),
             className: "sliding-subview-v2",
-            key: name,
+            key: screenName,
             style: { transform: cssProp }
           },
           item.component()
