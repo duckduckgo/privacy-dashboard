@@ -226,11 +226,20 @@ export function Navigation(props) {
             return
         }
 
+        /**
+         * 'popstateHandler' is invoked on back AND forward navigations
+         * - To detect if it's a 'forward' intention, we look at the current 'stack' in the url params
+         *   and compare it to our local state. So if the url stack has 1 more item than our state, we know
+         *   it's a 'forward' action.
+         * - otherwise, it's just a 'back' action, so we can `pop` an item from the stack as usual
+         */
         function popstateHandler() {
-            const curr = new URLSearchParams(location.href)
-            const currStack = curr.getAll('stack')
-            if (currStack.length > state.stack.length) {
-                const lastEntry = currStack[currStack.length - 1]
+            const currentUrlParams = new URLSearchParams(location.href)
+            const currentURLStack = currentUrlParams.getAll('stack')
+            const navigationIntentionIsForwards = currentURLStack.length > state.stack.length
+
+            if (navigationIntentionIsForwards) {
+                const lastEntry = currentURLStack[currentURLStack.length - 1]
                 if (isScreenName(lastEntry)) {
                     dispatch({ type: 'push', name: lastEntry, opts: { animate: props.animate && isAndroid() } })
                 }
