@@ -17540,9 +17540,6 @@
       };
     }, [state.state]);
     p2(() => {
-      if (state.state !== "settled") {
-        return;
-      }
       function popstateHandler() {
         const currentUrlParams = new URLSearchParams(location.href);
         const currentURLStack = currentUrlParams.getAll("stack");

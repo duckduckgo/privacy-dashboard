@@ -223,11 +223,6 @@ export function Navigation(props) {
 
     // reflect to the URL
     useEffect(() => {
-        // only act on popstate events when settled
-        if (state.state !== 'settled') {
-            return
-        }
-
         /**
          * 'popstateHandler' is invoked on back AND forward navigations
          * - To detect if it's a 'forward' intention, we look at the current 'stack' in the url params
