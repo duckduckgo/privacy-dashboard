@@ -49,7 +49,7 @@ export class DashboardPage {
 
     async showsPrimaryScreen() {
         await this.page.waitForFunction(() => typeof window.__playwright !== 'undefined')
-        await this.connectInfoLink().waitFor()
+        await this.connectInfoLink().waitFor({ timeout: 5000 })
     }
 
     async showsAlternativeLayout() {
@@ -75,7 +75,6 @@ export class DashboardPage {
      * @param {{ skipInCI?: boolean }} [opts]
      */
     async screenshotEachScreenForState(name, state, opts = {}) {
-        await this.reducedMotion()
         await this.addState([state])
         await this.showsPrimaryScreen()
         await this.screenshot(name + '-state-primary.png', opts)
@@ -577,6 +576,9 @@ export class DashboardPage {
 
     async clicksWebsiteNotWorking() {
         await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 1000 })
+    }
+    async showsBreakageForm() {
+        await this.page.getByText('Submitting an anonymous').waitFor({ timeout: 5000 })
     }
 
     async showRemoteDisabled() {

@@ -164,6 +164,7 @@ test.describe('macos screenshots', { tag: '@screenshots' }, () => {
     test.describe('states', () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
+                await page.emulateMedia({ reducedMotion: 'reduce' })
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' })
                 await dash.screenshotEachScreenForState(name, state)
             })

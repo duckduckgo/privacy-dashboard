@@ -107,6 +107,7 @@ test.describe('windows screenshots', { tag: '@screenshots' }, () => {
     test.describe('states', () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
+                await page.emulateMedia({ reducedMotion: 'reduce' })
                 const dash = await DashboardPage.windows(page)
                 await dash.screenshotEachScreenForState(name, state)
             })

@@ -129,6 +129,7 @@ test.describe('Android screenshots', { tag: '@screenshots' }, () => {
         ]
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
+                await page.emulateMedia({ reducedMotion: 'reduce' })
                 const dash = await DashboardPage.android(page)
                 await dash.screenshotEachScreenForState(name, state)
             })
