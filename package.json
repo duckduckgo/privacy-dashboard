@@ -8,7 +8,7 @@
     "scripts": {
         "start": "npm run dev",
         "dev": "chokidar \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
-        "build.watch.prod": "chokidar \"shared\" \"schema/*.json\" -c \"npm run build\" --initial \"npm run build\"",
+        "build.watch.prod": "chokidar \"v2\" \"shared\" \"schema/*.json\" -c \"npm run build\" --initial \"npm run build\"",
         "build": "node scripts/build.js",
         "build.debug": "node scripts/build.js --debug",
         "docs": "typedoc",
@@ -25,7 +25,7 @@
         "tsc.watch": "tsc --watch",
         "test": "npm run verify.local",
         "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs && node shared/locales/validate-locales.test.mjs && node scripts/verify-artifacts.test.mjs",
-        "test.int": "playwright test",
+        "test.int": "npm run build.debug && playwright test",
         "test.int.ui": "playwright test --ui",
         "test.int.headed": "playwright test --headed",
         "test.int.update-screenshots": "npm run test.int -- --grep @screenshots --update-snapshots",
