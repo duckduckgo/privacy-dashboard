@@ -231,7 +231,7 @@ export function Navigation(props) {
          * - otherwise, it's just a 'back' action, so we can `pop` an item from the stack as usual
          */
         function popstateHandler() {
-            const currentUrlParams = new URLSearchParams(location.href)
+            const currentUrlParams = new URLSearchParams(location.search)
             const currentURLStack = currentUrlParams.getAll('stack')
             const navigationIntentionIsForwards = currentURLStack.length > state.stack.length
 
@@ -250,7 +250,7 @@ export function Navigation(props) {
         return () => {
             window.removeEventListener('popstate', popstateHandler)
         }
-    }, [state.state, state.via, props.animate])
+    }, [state.state, state.stack, state.via, props.animate])
 
     const canPop = useCallback(() => {
         // const curr = state.stack[state.stack.length - 1];

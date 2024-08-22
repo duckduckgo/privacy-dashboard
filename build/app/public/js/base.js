@@ -17541,7 +17541,7 @@
     }, [state.state]);
     p2(() => {
       function popstateHandler() {
-        const currentUrlParams = new URLSearchParams(location.href);
+        const currentUrlParams = new URLSearchParams(location.search);
         const currentURLStack = currentUrlParams.getAll("stack");
         const navigationIntentionIsForwards = currentURLStack.length > state.stack.length;
         if (navigationIntentionIsForwards) {
@@ -17557,7 +17557,7 @@
       return () => {
         window.removeEventListener("popstate", popstateHandler);
       };
-    }, [state.state, state.via, props.animate]);
+    }, [state.state, state.stack, state.via, props.animate]);
     const canPop = T2(() => {
       if (state.state === "transitioning") {
         return state.commit.length > 1 || state.stack.length > 1;
