@@ -239,22 +239,22 @@ export function onChangeConsentManaged(payload) {
  */
 export class PrivacyDashboardJavascriptInterface {
     /**
-     * @param {boolean} isProtected - note: this will be sent as valid JSON, eg: `"true"` or `"false"`
+     * @param {import('../../../schema/__generated__/schema.types').SetProtectionParams} params
      *
      * Add the current domain to the 'allowlist'
      *
      * ```js
-     * window.PrivacyDashboard.toggleAllowlist("true")
+     * window.PrivacyDashboard.toggleAllowlist({ "isProtected": true, "eventOrigin": { "screen": "primaryScreen" } })
      * ```
      *
      * Remove the current domain from the 'allowlist'
      *
      * ```js
-     * window.PrivacyDashboard.toggleAllowlist("false")
+     * window.PrivacyDashboard.toggleAllowlist({ "isProtected": false, "eventOrigin": { "screen": "primaryScreen" } })
      * ```
      */
-    toggleAllowlist(isProtected) {
-        window.PrivacyDashboard.toggleAllowlist(isProtected)
+    toggleAllowlist(params) {
+        window.PrivacyDashboard.toggleAllowlist(JSON.stringify(params))
     }
 
     /**
@@ -341,7 +341,7 @@ async function fetchAndroid(message) {
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
             const isProtected = value === false
-            privacyDashboardApi.toggleAllowlist(isProtected)
+            privacyDashboardApi.toggleAllowlist({ eventOrigin: message.eventOrigin, isProtected })
         }
         return
     }
@@ -384,7 +384,7 @@ const getBackgroundTabDataAndroid = () => {
     })
 }
 
-export function setup() {
+export function setup(debug) {
     const setColorScheme = setupColorScheme()
     window.onChangeTheme = function (themeName) {
         setColorScheme(themeName)
@@ -430,6 +430,8 @@ export function setup() {
             url: href,
         })
     })
+
+    if (debug) installAndroidCommunicationsProxy()
 }
 export const getBackgroundTabData = new Proxy(getBackgroundTabDataAndroid, {
     apply(target, thisArg, argArray) {
@@ -443,5 +445,27 @@ export const fetch = new Proxy(fetchAndroid, {
         return Reflect.apply(target, thisArg, argArray)
     },
 })
+
+function installAndroidCommunicationsProxy() {
+    const handler = {
+        get(target, propKey, receiver) {
+            const origMethod = target[propKey]
+            if (typeof origMethod === 'function') {
+                return function (...args) {
+                    if (args.length === 0) {
+                        console.log(`🤖 called window.PrivacyDashboard.${propKey} without args`)
+                    } else {
+                        console.log(`🤖 called window.PrivacyDashboard.${propKey} with`, ...args)
+                    }
+                    return Reflect.apply(origMethod, receiver, args)
+                }
+            } else {
+                // If the property is not a function, return it as is
+                return origMethod
+            }
+        },
+    }
+    window.PrivacyDashboard = new Proxy(window.PrivacyDashboard, handler)
+}
 
 export { backgroundMessage }

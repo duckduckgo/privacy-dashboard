@@ -317,7 +317,15 @@ export class Mocks {
     async calledForToggleAllowList(kind = 'protections-off', eventOrigin = { screen: 'primaryScreen' }) {
         if (this.platform.name === 'android') {
             const calls = await this.outgoing({ names: ['toggleAllowlist'] })
-            expect(calls).toMatchObject([['toggleAllowlist', false]])
+            expect(calls).toMatchObject([
+                [
+                    'toggleAllowlist',
+                    JSON.stringify({
+                        eventOrigin: eventOrigin,
+                        isProtected: false,
+                    }),
+                ],
+            ])
             return
         }
         if (this.platform.name === 'windows') {
