@@ -14323,22 +14323,28 @@
   }
   var PrivacyDashboardJavascriptInterface = class {
     /**
-     * @param {boolean} isProtected - note: this will be sent as valid JSON, eg: `"true"` or `"false"`
+     * @param {import('../../../schema/__generated__/schema.types').SetProtectionParams} params
      *
      * Add the current domain to the 'allowlist'
      *
      * ```js
-     * window.PrivacyDashboard.toggleAllowlist("true")
+     * window.PrivacyDashboard.toggleAllowlist(JSON.stringify({
+     *   "isProtected": true,
+     *   "eventOrigin": { "screen": "primaryScreen" }
+     * }))
      * ```
      *
      * Remove the current domain from the 'allowlist'
      *
      * ```js
-     * window.PrivacyDashboard.toggleAllowlist("false")
+     * window.PrivacyDashboard.toggleAllowlist(JSON.stringify({
+     *   "isProtected": false,
+     *   "eventOrigin": { "screen": "primaryScreen" }
+     * }))
      * ```
      */
-    toggleAllowlist(isProtected) {
-      window.PrivacyDashboard.toggleAllowlist(isProtected);
+    toggleAllowlist(params) {
+      window.PrivacyDashboard.toggleAllowlist(JSON.stringify(params));
     }
     /**
      * Shows the native breakage form, instead of using the one
@@ -14408,7 +14414,7 @@
           continue;
         }
         const isProtected = value === false;
-        privacyDashboardApi.toggleAllowlist(isProtected);
+        privacyDashboardApi.toggleAllowlist({ eventOrigin: message.eventOrigin, isProtected });
       }
       return;
     }
@@ -14443,7 +14449,7 @@
       getBackgroundTabDataPromises2.push(resolve);
     });
   };
-  function setup4() {
+  function setup4(debug2) {
     const setColorScheme = setupColorScheme();
     window.onChangeTheme = function(themeName) {
       setColorScheme(themeName);
@@ -14482,6 +14488,8 @@
         url: href
       });
     });
+    if (debug2)
+      installAndroidCommunicationsProxy();
   }
   var getBackgroundTabData3 = new Proxy(getBackgroundTabDataAndroid, {
     apply(target, thisArg, argArray) {
@@ -14493,6 +14501,26 @@
       return Reflect.apply(target, thisArg, argArray);
     }
   });
+  function installAndroidCommunicationsProxy() {
+    const handler = {
+      get(target, propKey, receiver) {
+        const origMethod = target[propKey];
+        if (typeof origMethod === "function") {
+          return function(...args) {
+            if (args.length === 0) {
+              console.log(`\u{1F916} called window.PrivacyDashboard.${propKey} without args`);
+            } else {
+              console.log(`\u{1F916} called window.PrivacyDashboard.${propKey} with`, ...args);
+            }
+            return Reflect.apply(origMethod, receiver, args);
+          };
+        } else {
+          return origMethod;
+        }
+      }
+    };
+    window.PrivacyDashboard = new Proxy(window.PrivacyDashboard, handler);
+  }
 
   // shared/js/browser/windows-communication.js
   var windows_communication_exports = {};
@@ -14718,7 +14746,8 @@
   }
   if (!defaultComms)
     throw new Error("unsupported environment");
-  defaultComms.setup();
+  var debug = false;
+  defaultComms.setup(debug);
   var communication_default = defaultComms;
 
   // shared/js/ui/platform-features.mjs

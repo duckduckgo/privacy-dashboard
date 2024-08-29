@@ -26,7 +26,7 @@ interface Window {
      * TODO: type these methods
      */
     PrivacyDashboard: {
-        toggleAllowlist: (isProtected) => void
+        toggleAllowlist: (payload: string) => void
         close: (...args: any[]) => any
         showBreakageForm: (...args: any[]) => any
         openInNewTab: (payload: string) => void
