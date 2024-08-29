@@ -14216,13 +14216,19 @@
      * Add the current domain to the 'allowlist'
      *
      * ```js
-     * window.PrivacyDashboard.toggleAllowlist({ "isProtected": true, "eventOrigin": { "screen": "primaryScreen" } })
+     * window.PrivacyDashboard.toggleAllowlist(JSON.stringify({
+     *   "isProtected": true,
+     *   "eventOrigin": { "screen": "primaryScreen" }
+     * }))
      * ```
      *
      * Remove the current domain from the 'allowlist'
      *
      * ```js
-     * window.PrivacyDashboard.toggleAllowlist({ "isProtected": false, "eventOrigin": { "screen": "primaryScreen" } })
+     * window.PrivacyDashboard.toggleAllowlist(JSON.stringify({
+     *   "isProtected": false,
+     *   "eventOrigin": { "screen": "primaryScreen" }
+     * }))
      * ```
      */
     toggleAllowlist(params) {
