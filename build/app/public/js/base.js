@@ -14654,7 +14654,7 @@
       supportsHover: desktop.includes(platform2.name),
       initialScreen: screen,
       opener,
-      supportsInvalidCerts: platform2.name !== "browser" && platform2.name !== "windows",
+      supportsInvalidCerts: platform2.name !== "browser",
       includeToggleOnBreakageForm,
       breakageScreen,
       randomisedCategories

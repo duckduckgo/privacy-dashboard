@@ -68,7 +68,7 @@ export function createPlatformFeatures(platform) {
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
         opener,
-        supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
+        supportsInvalidCerts: platform.name !== 'browser',
         includeToggleOnBreakageForm,
         breakageScreen,
         randomisedCategories,
