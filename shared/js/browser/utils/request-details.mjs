@@ -37,7 +37,7 @@ export class TabData {
      * @param {string | null | undefined} error
      * @param {boolean | null | undefined} isInvalidCert
      */
-     
+
     constructor(
         id,
         url,
@@ -54,7 +54,7 @@ export class TabData {
         emailProtection,
         parentEntity,
         error,
-        isInvalidCert 
+        isInvalidCert
     ) {
         this.url = url
         this.id = id

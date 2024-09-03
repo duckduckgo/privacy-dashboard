@@ -109,9 +109,9 @@ function handleViewModelUpdate(viewModel) {
     trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData)
     trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus
     trackerBlockingData.isInvalidCert = viewModel.isInvalidCert
-    
+
     if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
-    
+
     resolveInitialRender()
 }
 

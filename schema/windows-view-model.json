@@ -26,7 +26,7 @@
             "type": "array"
         },
         "cookiePromptManagementStatus": { "$ref": "./cookie-prompt-management-status.json" },
-        "isInvalidCert": { 
+        "isInvalidCert": {
             "type": "boolean"
         }
     }

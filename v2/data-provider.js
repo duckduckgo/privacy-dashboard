@@ -168,7 +168,7 @@ class DataChannel extends EventTarget {
             if (this.tab.isInvalidCert === true) {
                 return 'invalid'
             }
-            
+
             if (this.tab.upgradedHttps) {
                 return 'upgraded'
             }
