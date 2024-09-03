@@ -68,7 +68,7 @@ export function createPlatformFeatures(platform) {
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
         opener,
-        supportsInvalidCerts: platform.name !== 'browser',
+        supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
         includeToggleOnBreakageForm,
         breakageScreen,
         randomisedCategories,
@@ -86,7 +86,7 @@ export class PlatformFeatures {
      * @param {boolean} params.supportsHover
      * @param {InitialScreen} params.initialScreen
      * @param {'dashboard' | 'menu'} params.opener
-     * @param {boolean} params.supportsInvalidCerts
+     * @param {boolean} params.supportsInvalidCertsImplicitly
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {InitialScreen} params.breakageScreen
      * @param {boolean} params.randomisedCategories
@@ -106,7 +106,7 @@ export class PlatformFeatures {
          * Does the current platform support hover interactions?
          * @type {boolean}
          */
-        this.supportsInvalidCerts = params.supportsInvalidCerts
+        this.supportsInvalidCertsImplicitly = params.supportsInvalidCertsImplicitly
         /**
          * Does the current platform support hover interactions?
          * @type {InitialScreen}

@@ -35,7 +35,9 @@ export class TabData {
      * @param {Record<string, any> | null | undefined} emailProtection
      * @param {{prevalence: number, displayName: string} | null | undefined} parentEntity
      * @param {string | null | undefined} error
+     * @param {boolean | null | undefined} isInvalidCert
      */
+     
     constructor(
         id,
         url,
@@ -51,7 +53,8 @@ export class TabData {
         search,
         emailProtection,
         parentEntity,
-        error
+        error,
+        isInvalidCert 
     ) {
         this.url = url
         this.id = id
@@ -68,6 +71,7 @@ export class TabData {
         this.emailProtection = emailProtection
         this.parentEntity = parentEntity
         this.error = error
+        this.isInvalidCert = isInvalidCert
     }
 }
 
@@ -105,6 +109,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         certificate: undefined,
         platformLimitations: undefined,
         error: undefined,
+        isInvalidCert: undefined,
     }
 }
 

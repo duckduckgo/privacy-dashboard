@@ -4779,7 +4779,8 @@
         parentEntity: parentEntitySchema.optional(),
         permissions: z3.array(z3.unknown()).optional(),
         certificates: z3.array(z3.unknown()).optional(),
-        cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
+        cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional(),
+        isInvalidCert: z3.boolean().optional()
       });
       toggleReportScreenSchema = z3.object({
         data: z3.array(toggleReportScreenDataItemSchema)
@@ -11850,7 +11851,8 @@
       isPendingUpdates: void 0,
       certificate: void 0,
       platformLimitations: void 0,
-      error: void 0
+      error: void 0,
+      isInvalidCert: void 0
     };
   };
   function createRequestDetails(requests, installedSurrogates) {
@@ -14444,6 +14446,7 @@
     protections3 = viewModel.protections;
     trackerBlockingData3 = createTabData(viewModel.tabUrl, upgradedHttps3, viewModel.protections, viewModel.rawRequestData);
     trackerBlockingData3.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
+    trackerBlockingData3.isInvalidCert = viewModel.isInvalidCert;
     if (trackerBlockingData3)
       trackerBlockingData3.upgradedHttps = upgradedHttps3;
     resolveInitialRender3();
@@ -14654,7 +14657,7 @@
       supportsHover: desktop.includes(platform2.name),
       initialScreen: screen,
       opener,
-      supportsInvalidCerts: platform2.name !== "browser",
+      supportsInvalidCertsImplicitly: platform2.name !== "browser" && platform2.name !== "windows",
       includeToggleOnBreakageForm,
       breakageScreen,
       randomisedCategories
@@ -14667,7 +14670,7 @@
      * @param {boolean} params.supportsHover
      * @param {InitialScreen} params.initialScreen
      * @param {'dashboard' | 'menu'} params.opener
-     * @param {boolean} params.supportsInvalidCerts
+     * @param {boolean} params.supportsInvalidCertsImplicitly
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {InitialScreen} params.breakageScreen
      * @param {boolean} params.randomisedCategories
@@ -14675,7 +14678,7 @@
     constructor(params) {
       this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
       this.supportsHover = params.supportsHover;
-      this.supportsInvalidCerts = params.supportsInvalidCerts;
+      this.supportsInvalidCertsImplicitly = params.supportsInvalidCertsImplicitly;
       this.initialScreen = params.initialScreen;
       this.opener = params.opener;
       this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm;
@@ -14829,11 +14832,14 @@
       if (!this.tab)
         return;
       let nextState = (() => {
+        if (this.tab.isInvalidCert === true) {
+          return "invalid";
+        }
         if (this.tab.upgradedHttps) {
           return "upgraded";
         }
         if (/^https/.exec(this.tab.url)) {
-          if (this.features.supportsInvalidCerts) {
+          if (this.features.supportsInvalidCertsImplicitly) {
             if (!this.tab.certificate || this.tab.certificate.length === 0) {
               return "invalid";
             }

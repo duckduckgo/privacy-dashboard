@@ -165,17 +165,23 @@ class DataChannel extends EventTarget {
 
         /** @type {import('../shared/js/ui/models/site.js').PublicSiteModel['httpsState']} */
         let nextState = (() => {
+            if (this.tab.isInvalidCert === true) {
+                return 'invalid'
+            }
+            
             if (this.tab.upgradedHttps) {
                 return 'upgraded'
             }
+
             if (/^https/.exec(this.tab.url)) {
-                if (this.features.supportsInvalidCerts) {
+                if (this.features.supportsInvalidCertsImplicitly) {
                     if (!this.tab.certificate || this.tab.certificate.length === 0) {
                         return 'invalid'
                     }
                 }
                 return 'secure'
             }
+
             return 'none'
         })()
 
