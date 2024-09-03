@@ -204,6 +204,7 @@ describe('createTabData', () => {
             emailProtection: undefined,
             error: undefined,
             id: undefined,
+            isInvalidCert: undefined,
             isPendingUpdates: undefined,
             locale: null,
             parentEntity: undefined,
