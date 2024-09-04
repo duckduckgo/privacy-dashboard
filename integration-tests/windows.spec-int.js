@@ -56,10 +56,10 @@ test('upgraded requests with invalid certs always show as insecure', { tag: '@sc
     /** @type {DashboardPage} */
     const dash = await DashboardPage.windows(page)
     await dash.addState([testDataStates['upgraded-with-invalid-cert']])
-    await dash.screenshot('invalid-cert.png')
+    await dash.screenshot('upgraded-invalid-cert.png')
     await dash.hasInvalidCertText()
     await dash.viewConnection()
-    await dash.screenshot('invalid-detail.png')
+    await dash.screenshot('upgraded-invalid-detail.png')
     await dash.showsInvalidCertDetail()
 })
 
