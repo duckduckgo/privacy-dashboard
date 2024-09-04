@@ -1,0 +1,50 @@
+name: Generate Screenshots
+on:
+  workflow_dispatch:
+permissions:
+    contents: read
+jobs:
+    update-screenshots:
+        runs-on: macos-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js from .nvmrc
+              uses: actions/setup-node@v3
+              with:
+                  node-version-file: '.nvmrc'
+            - name: Cache node modules
+              id: cache-npm
+              uses: actions/cache@v3
+              env:
+                  cache-name: cache-node-modules
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-${{ env.cache-name }}-
+                      ${{ runner.os }}-build-
+                      ${{ runner.os }}-
+            - name: Install dependencies
+              run: npm ci
+            - name: Cache build outputs
+              id: build-output
+              uses: actions/cache@v3
+              with:
+                  path: build/docs
+                  key: build-output-${{ github.run_id }}
+            - name: Build all
+              run: npm run build && npm run build.debug
+            - name: Fetch fonts
+              run: npm run fetch-fonts
+            - name: Update screenshots
+              run: npm run test.int.update-screenshots
+            - name: Copy screenshots
+              run: |
+                mkdir -p screenshots  # Create the screenshots directory if it doesn't exist
+                cp -R integration-tests/*-snapshots screenshots
+            - name: Upload screenshots
+              uses: actions/upload-artifact@v2
+              with:
+                name: screenshots
+                path: screenshots
+                retention-days: 2
