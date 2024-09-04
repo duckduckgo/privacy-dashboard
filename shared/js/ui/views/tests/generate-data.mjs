@@ -259,6 +259,7 @@ export class MockData {
      * @param {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} [params.remoteFeatureSettings]
      * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
      * @param {{screen?: import('../../../../../schema/__generated__/schema.types').ScreenKind}} [params.urlParams]
+     * @param {boolean} [params.isInvalidCert]
      */
     constructor(params) {
         this.urlParams = params.urlParams || {}
@@ -280,6 +281,7 @@ export class MockData {
         this.remoteFeatureSettings = params.remoteFeatureSettings
         this.emailProtectionUserData = params.emailProtectionUserData
         this.fireButtonOptions = params.fireButtonOptions
+        this.isInvalidCert = params.isInvalidCert
 
         /** @type {Protections} */
         this.protections = Protections.default()
@@ -327,6 +329,7 @@ export class MockData {
                 permissions: this.permissions,
                 certificates: this.certificate,
                 cookiePromptManagementStatus: this.cookiePromptManagementStatus,
+                isInvalidCert: this.isInvalidCert,
             },
         }
     }
@@ -512,6 +515,15 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             requests: [blocked1, allowedAdClickAttribution],
         }),
+        'https-with-invalid-certificate': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            isInvalidCert: true,
+            certificate: [],
+            localeSettings: undefined,
+            parentEntity: undefined,
+            upgradedHttps: false,
+        }),
         'https-without-certificate': new MockData({
             url: 'https://example.com',
             requests: [],
@@ -570,6 +582,12 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             upgradedHttps: true,
             certificate: [],
+        }),
+        'upgraded-with-invalid-cert': new MockData({
+            requests: [],
+            url: 'https://example.com',
+            upgradedHttps: true,
+            isInvalidCert: true,
         }),
         cnn: new MockData({
             url: 'https://edition.cnn.com',
