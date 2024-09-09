@@ -78,7 +78,7 @@ class DataChannel extends EventTarget {
     /**
      * @param {import('../shared/js/browser/common.js').BackgroundTabData} data
      */
-    accept({ tab, emailProtectionUserData, fireButton }) {
+    accept({ tab, emailProtectionUserData, fireButton, featureSettings }) {
         if (tab) {
             if (tab.locale) {
                 // @ts-ignore
@@ -91,7 +91,7 @@ class DataChannel extends EventTarget {
 
             this.tab = tab
             this.domain = tab.domain
-            const MAJOR_TRACKER_THRESHOLD_PCT = 25
+            const MAJOR_TRACKER_THRESHOLD_PCT = 15
             this.isaMajorTrackingNetwork = (tab.parentEntity?.prevalence || 0) >= MAJOR_TRACKER_THRESHOLD_PCT
         } else {
             this.domain = 'new tab'
@@ -102,7 +102,7 @@ class DataChannel extends EventTarget {
             this.emailProtectionUserData = emailProtectionUserData
         }
         this.fireButton = fireButton
-        this.featureSettings = new FeatureSettings({})
+        this.featureSettings = FeatureSettings.create(featureSettings, platform)
 
         this.setSiteProperties()
         this.setHttpsMessage()
@@ -171,17 +171,23 @@ class DataChannel extends EventTarget {
                 }
             }
 
+            if (this.tab.isInvalidCert === true) {
+                return 'invalid'
+            }
+
             if (this.tab.upgradedHttps) {
                 return 'upgraded'
             }
+
             if (/^https/.exec(this.tab.url)) {
-                if (this.features.supportsInvalidCerts) {
+                if (this.features.supportsInvalidCertsImplicitly) {
                     if (!this.tab.certificate || this.tab.certificate.length === 0) {
                         return 'invalid'
                     }
                 }
                 return 'secure'
             }
+
             return 'none'
         })()
 
@@ -318,6 +324,14 @@ export function useData() {
  */
 export function useFeatures() {
     return dc.lastValue().features
+}
+
+/**
+ * Static access to `featureSettings` since it doesn't change
+ * @return {DataChannelPublicData['featureSettings']}
+ */
+export function useFeatureSettings() {
+    return dc.lastValue().featureSettings
 }
 
 /**

@@ -220,6 +220,9 @@ export function mockAndroidApis() {
             toggleAllowlist(arg) {
                 window.__playwright.mocks.outgoing.push(['toggleAllowlist', arg])
             },
+            submitBrokenSiteReport(arg) {
+                window.__playwright.mocks.outgoing.push(['submitBrokenSiteReport', arg])
+            },
         }
     } catch (e) {
         console.error("❌couldn't set up mocks")

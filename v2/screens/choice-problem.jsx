@@ -7,8 +7,10 @@ import { useNav } from '../navigation'
 import { TextLink } from '../../shared/js/ui/components/text-link'
 import { ProtectionToggle } from '../../shared/js/ui/components/toggle'
 import { useData, useFeatures, useSendReport, useShowAlert, useShowNativeFeedback, useTelemetry, useToggle } from '../data-provider'
-import { categories, FormElement } from './breakage-form-screen'
+import { FormElement } from './breakage-form-screen'
 import { ns } from '../../shared/js/ui/base/localize'
+import { useMemo } from 'preact/hooks'
+import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categories'
 
 export function CategoryTypeSelection() {
     const description = ns.report('selectTheCategoryType.title')
@@ -62,14 +64,22 @@ export function CategorySelection() {
     const send = useTelemetry()
     const { protectionsEnabled, tab } = useData()
     const text = tab.domain
-    const { breakageScreen, initialScreen } = useFeatures()
-    const showToggle = protectionsEnabled && (breakageScreen === 'categoryTypeSelection' || initialScreen === 'categoryTypeSelection')
+    const platformFeatures = useFeatures()
+    const showToggle =
+        protectionsEnabled &&
+        (platformFeatures.breakageScreen === 'categoryTypeSelection' || platformFeatures.initialScreen === 'categoryTypeSelection')
 
-    // note: This is here to allow different copy for 'login' during an experiment
-    const v2Categories = {
-        ...categories(),
-        login: ns.report('loginV2.title'),
-    }
+    // shuffle once and remember
+    const randomised = useMemo(() => {
+        const f = createBreakageFeaturesFrom(platformFeatures)
+
+        // override the description for 'login' on this screen.
+        // this is deliberately different to the 'regular' breakage form.
+        return f.categoryList({
+            login: ns.report('loginV2.title'),
+        })
+    }, [platformFeatures])
+
     return (
         <div className="site-info page-inner card" data-page="choice-category">
             <NavWrapper />
@@ -79,7 +89,7 @@ export function CategorySelection() {
             </div>
             <div className="padding-x">
                 <Nav>
-                    {Object.entries(v2Categories).map(([value, title]) => {
+                    {randomised.map(([value, title]) => {
                         return (
                             <NavItem
                                 key={value}
@@ -143,7 +153,7 @@ export function ChoiceToggleScreen() {
 
 export const validCategories = () => {
     return {
-        ...categories(),
+        ...defaultCategories(),
         dislike: ns.report('dislike.title'),
     }
 }

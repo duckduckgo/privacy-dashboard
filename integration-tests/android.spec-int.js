@@ -53,6 +53,22 @@ test.describe('Protections toggle', () => {
     toggleFlows((page) => DashboardPage.android(page))
 })
 
+test.describe('Breakage form', () => {
+    test('displays web breakage form', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addState([testDataStates['webBreakageForm-enabled']])
+        await dash.clicksWebsiteNotWorking()
+        await dash.submitBreakageForm()
+        await dash.mocks.calledForSubmitBreakageForm({ category: 'videos', description: 'TEST' })
+    })
+    test('uses native breakage form', async ({ page }) => {
+        const dash = await DashboardPage.android(page)
+        await dash.addState([testDataStates['webBreakageForm-disabled']])
+        await dash.clicksWebsiteNotWorking()
+        await dash.mocks.calledForShowBreakageForm()
+    })
+})
+
 test.describe('Close', () => {
     test('pressing close should call native API', async ({ page }) => {
         const dash = await DashboardPage.android(page)
@@ -113,6 +129,7 @@ test.describe('Android screenshots', { tag: '@screenshots' }, () => {
         ]
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
+                await page.emulateMedia({ reducedMotion: 'reduce' })
                 const dash = await DashboardPage.android(page)
                 await dash.screenshotEachScreenForState(name, state)
             })

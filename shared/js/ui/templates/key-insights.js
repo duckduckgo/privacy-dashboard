@@ -14,7 +14,8 @@ const keyInsightsState = /** @type {const} */ ({
     /* 07 */ emptyCompaniesList: 'emptyCompaniesList',
     /* 08 */ blocked: 'blocked',
     /* 09 */ invalid: 'invalid',
-    /* 10 */ phishing: 'phishing',
+    /* 10 */ noneBlocked_firstPartyAllowed: 'noneBlocked_firstPartyAllowed',
+    /* 11 */ phishing: 'phishing',
 })
 
 /**
@@ -33,7 +34,11 @@ export function renderKeyInsight(modelOverride) {
         if (model.isBroken) return keyInsightsState.broken
         if (!model.protectionsEnabled) return keyInsightsState.userAllowListed
         if (model.isaMajorTrackingNetwork && model.tab.parentEntity) return keyInsightsState.majorTrackingNetwork
+        // TODO: Can we refactor this?
         if (model.tab.requestDetails.blocked.requestCount === 0) {
+            if (model.tab.requestDetails.allowedFirstPartyOnly()) {
+                return keyInsightsState.noneBlocked_firstPartyAllowed
+            }
             if (model.tab.requestDetails.allowedSpecialCount() > 0) {
                 return keyInsightsState.noneBlocked_someSpecialAllowed
             }
@@ -104,6 +109,15 @@ export function renderKeyInsight(modelOverride) {
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--info"></div>
                     ${title(model.tab.domain)} ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
+                </div>
+            `
+        },
+        noneBlocked_firstPartyAllowed: () => {
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--no-activity"></div>
+                    ${title(model.tab.domain)}
+                    ${description(raw(i18n.t('site:trackerNetworksSummaryFirstPartyAllowedOnly.title', { domain: model.tab.domain })))}
                 </div>
             `
         },

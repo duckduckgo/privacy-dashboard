@@ -59,15 +59,20 @@ export function createPlatformFeatures(platform) {
         breakageScreen = 'categoryTypeSelection'
     }
 
+    // allow randomization to be disabled in a URL param
+    let randomisedCategories = true
+    if (url.searchParams.get('randomisedCategories') === 'false') randomisedCategories = false
+
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
         initialScreen: screen,
         opener,
-        supportsInvalidCerts: platform.name !== 'browser' && platform.name !== 'windows',
+        supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
         supportsPhishingWarning: platform.name === 'macos',
         includeToggleOnBreakageForm,
         breakageScreen,
+        randomisedCategories,
     })
 }
 
@@ -82,10 +87,11 @@ export class PlatformFeatures {
      * @param {boolean} params.supportsHover
      * @param {InitialScreen} params.initialScreen
      * @param {'dashboard' | 'menu'} params.opener
-     * @param {boolean} params.supportsInvalidCerts
+     * @param {boolean} params.supportsInvalidCertsImplicitly
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {InitialScreen} params.breakageScreen
      * @param {boolean} params.supportsPhishingWarning
+     * @param {boolean} params.randomisedCategories
      */
     constructor(params) {
         /**
@@ -102,7 +108,7 @@ export class PlatformFeatures {
          * Does the current platform support hover interactions?
          * @type {boolean}
          */
-        this.supportsInvalidCerts = params.supportsInvalidCerts
+        this.supportsInvalidCertsImplicitly = params.supportsInvalidCertsImplicitly
         /**
          * Does the current platform support hover interactions?
          * @type {InitialScreen}
@@ -127,6 +133,11 @@ export class PlatformFeatures {
          * @type {import("../../../schema/__generated__/schema.types").EventOrigin['screen']}
          */
         this.breakageScreen = params.breakageScreen
+        /**
+         * Whether or to randomize the categories in the breakage form
+         * @type {boolean}
+         */
+        this.randomisedCategories = params.randomisedCategories
     }
 }
 
@@ -137,15 +148,30 @@ export class FeatureSettings {
     /**
      * @param {object} params
      * @param {import("../../../schema/__generated__/schema.types").PrimaryScreen} [params.primaryScreen]
+     * @param {import("../../../schema/__generated__/schema.types").WebBreakageForm} [params.webBreakageForm]
      */
     constructor(params) {
         /** @type {import("../../../schema/__generated__/schema.types").PrimaryScreen} */
         this.primaryScreen = params.primaryScreen || { layout: 'default' }
+        /** @type {import("../../../schema/__generated__/schema.types").WebBreakageForm} */
+        this.webBreakageForm = params.webBreakageForm || { state: 'enabled' }
     }
+
     /**
-     *
+     * @param {import("../../../schema/__generated__/schema.types").RemoteFeatureSettings|undefined} settings
+     * @param {Platform} platform
      */
-    static default() {
-        return new FeatureSettings({})
+    static create(settings, platform) {
+        switch (platform.name) {
+            case 'android': {
+                return new FeatureSettings({
+                    webBreakageForm: { state: 'disabled' },
+                    ...settings,
+                })
+            }
+            default: {
+                return new FeatureSettings(settings || {})
+            }
+        }
     }
 }

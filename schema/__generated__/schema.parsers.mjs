@@ -160,6 +160,10 @@ export const primaryScreenSchema = z.object({
     layout: z.union([z.literal("default"), z.literal("highlighted-protections-toggle")])
 });
 
+export const webBreakageFormSchema = z.object({
+    state: z.union([z.literal("enabled"), z.literal("disabled")])
+});
+
 export const eventOriginSchema = z.object({
     screen: screenKindSchema
 });
@@ -220,7 +224,8 @@ export const fireButtonDataSchema = z.object({
 });
 
 export const remoteFeatureSettingsSchema = z.object({
-    primaryScreen: primaryScreenSchema.optional()
+    primaryScreen: primaryScreenSchema.optional(),
+    webBreakageForm: webBreakageFormSchema.optional()
 });
 
 export const setProtectionParamsSchema = z.object({
@@ -258,7 +263,8 @@ export const windowsViewModelSchema = z.object({
     parentEntity: parentEntitySchema.optional(),
     permissions: z.array(z.unknown()).optional(),
     certificates: z.array(z.unknown()).optional(),
-    cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional()
+    cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional(),
+    isInvalidCert: z.boolean().optional()
 });
 
 export const toggleReportScreenSchema = z.object({

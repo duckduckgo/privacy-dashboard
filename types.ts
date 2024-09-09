@@ -29,6 +29,7 @@ interface Window {
         showBreakageForm: (...args: any[]) => any
         openInNewTab: (payload: string) => void
         openSettings: (payload: string) => void
+        submitBrokenSiteReport: (payload: string) => void
     }
     /**
      * This is set in Playwright tests

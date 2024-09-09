@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Kako bismo spriječili pad stranice, nismo blokirali nijednu tvrtku da učitava zahtjeve s praćenjem na ovoj stranici.",
+    "title" : "Nijedan zahtjev za praćenje nije blokiran na ovoj stranici.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Na ovoj smo stranici pronašli samo zahtjeve koji ne uključuju praćenje ili zahtjeve povezane s učitavanjem domene <b>{domain}</b>.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Učitavanje zahtjeva s praćenjem nije blokirano jer su zaštite isključene za ovo web-mjesto. Ako su zahtjevi tvrtke učitani, to im može omogućiti da te profiliraju.",

@@ -3,26 +3,13 @@ import { h } from 'preact'
 import { ns } from '../../shared/js/ui/base/localize'
 import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
 import { DomNode } from '../dom-node'
-import { useState } from 'preact/hooks'
-import { useClose, useData, useSendReport, useToggle } from '../data-provider'
+import { useMemo, useState } from 'preact/hooks'
+import { useClose, useData, useFeatures, useSendReport, useToggle } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
 import { Close, Done, SecondaryTopNav, TopNav } from '../components/top-nav'
 import { useNav } from '../navigation'
 import { platformSwitch } from '../../shared/js/ui/environment-check'
-
-export const categories = () => {
-    return {
-        blocked: ns.report('blocked.title'),
-        layout: ns.report('layout.title'),
-        'empty-spaces': ns.report('emptySpaces.title'),
-        paywall: ns.report('paywall.title'),
-        videos: ns.report('videos.title'),
-        comments: ns.report('comments.title'),
-        login: ns.report('login.title'),
-        shopping: ns.report('shopping.title'),
-        other: ns.report('other.title'),
-    }
-}
+import { createBreakageFeaturesFrom } from '../breakage-categories'
 
 /**
  * @param {object} props
@@ -35,6 +22,7 @@ export function BreakageFormScreen({ includeToggle }) {
     const nav = useNav()
     const canPop = nav.canPop()
     const sendReport = useSendReport()
+    const platformFeatures = useFeatures()
     const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
 
     const icon = largeHeroIcon({
@@ -66,6 +54,12 @@ export function BreakageFormScreen({ includeToggle }) {
             default: () => <TopNav done={<Close onClick={onClose} />} />,
         })
     }
+
+    // shuffle once and remember
+    const randomised = useMemo(() => {
+        const f = createBreakageFeaturesFrom(platformFeatures)
+        return f.categoryList()
+    }, [platformFeatures])
 
     return (
         <div className="breakage-form page-inner">
@@ -99,7 +93,7 @@ export function BreakageFormScreen({ includeToggle }) {
                             <div className="form__select breakage-form__input--dropdown">
                                 <select name="category">
                                     <option value="">{ns.report('pickYourIssueFromTheList.title')}</option>$
-                                    {Object.entries(categories()).map(([key, value]) => {
+                                    {randomised.map(([key, value]) => {
                                         return <option value={key}>{value}</option>
                                     })}
                                 </select>

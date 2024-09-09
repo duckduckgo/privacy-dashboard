@@ -25,7 +25,9 @@ export function thirdpartyText(requestDetails, protectionsEnabled) {
         case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers:
         case states.protectionsOff_allowedNonTrackers:
-        case states.protectionsOff_allowedTrackers: {
+        case states.protectionsOff_allowedTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
             return {
                 title: ns.site('thirdPartiesLoaded.title'),
                 icon: 'info',
@@ -53,7 +55,9 @@ export function thirdpartySummary(requestDetails, protectionsEnabled) {
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOn_allowedNonTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOff_allowedNonTrackers: {
+        case states.protectionsOff_allowedNonTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
             return ns.site('thirdPartiesSummaryProtectionsOff.title')
         }
         case states.protectionsOn:
@@ -87,7 +91,9 @@ export function thirdpartyHeroIcon(requestDetails, protectionsEnabled) {
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOn_blocked_allowedNonTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers: {
+        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
             return 'major-networks-info'
         }
         default:

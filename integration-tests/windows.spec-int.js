@@ -34,11 +34,15 @@ test.describe('permissions', () => {
     settingPermissions((page) => DashboardPage.windows(page))
 })
 
-test('windows is excluded from invalid/missing certificate', { tag: '@screenshots' }, async ({ page }) => {
+test('invalid certificate shows as insecure', { tag: '@screenshots' }, async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.windows(page)
-    await dash.addState([testDataStates['https-without-certificate']])
+    await dash.addState([testDataStates['https-with-invalid-certificate']])
     await dash.screenshot('invalid-cert.png')
+    await dash.hasInvalidCertText()
+    await dash.viewConnection()
+    await dash.screenshot('invalid-detail.png')
+    await dash.showsInvalidCertDetail()
 })
 
 test('upgraded requests without certs always show as secure', { tag: '@screenshots' }, async ({ page }) => {
@@ -46,6 +50,17 @@ test('upgraded requests without certs always show as secure', { tag: '@screensho
     const dash = await DashboardPage.windows(page)
     await dash.addState([testDataStates['upgraded+secure+without-certs']])
     await dash.screenshot('upgraded-missing-certs.png')
+})
+
+test('upgraded requests with invalid certs always show as insecure', { tag: '@screenshots' }, async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.windows(page)
+    await dash.addState([testDataStates['upgraded-with-invalid-cert']])
+    await dash.screenshot('upgraded-invalid-cert.png')
+    await dash.hasInvalidCertText()
+    await dash.viewConnection()
+    await dash.screenshot('upgraded-invalid-detail.png')
+    await dash.showsInvalidCertDetail()
 })
 
 test.describe('setting the height', () => {
@@ -107,6 +122,7 @@ test.describe('windows screenshots', { tag: '@screenshots' }, () => {
     test.describe('states', () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
+                await page.emulateMedia({ reducedMotion: 'reduce' })
                 const dash = await DashboardPage.windows(page)
                 await dash.screenshotEachScreenForState(name, state)
             })

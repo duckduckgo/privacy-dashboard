@@ -174,19 +174,42 @@ test.describe('opening breakage form', () => {
 })
 
 test.describe('stack based router', () => {
-    test('goes back and forward', async ({ page }) => {
+    test('goes back and forward in categorySelection flow', async ({ page }) => {
         const dash = await DashboardPage.webkit(page, { breakageScreen: 'categorySelection', platform: 'ios' })
         await dash.reducedMotion()
         await dash.addState([testDataStates.google])
         await dash.breakage.showsReportFromPrimaryScreen()
         await dash.nav.goesBackToPrimaryScreen()
     })
+    test('goes back and forward generally', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { platform: 'ios' })
+        await dash.reducedMotion()
+        await dash.addState([testDataStates.google])
+        await dash.clicksWebsiteNotWorking()
+        await dash.showsBreakageForm()
+
+        // needed to allow the router to settle
+        // playwright is too fast here and is doing something a user never could
+        await page.waitForTimeout(100)
+        await page.goBack()
+        await dash.showsPrimaryScreen()
+
+        // same as previous wait point
+        await page.waitForTimeout(100)
+        await page.goForward()
+        await dash.showsBreakageForm()
+    })
 })
+
 test.describe('temporary reporting flows', () => {
     test.describe('opens to category selection from menu', () => {
         // sends report after selecting a category
         test('sends report after selecting a category', { tag: '@screenshots' }, async ({ page }) => {
-            const dash = await DashboardPage.webkit(page, { screen: 'categorySelection', platform: 'ios' })
+            const dash = await DashboardPage.webkit(page, {
+                screen: 'categorySelection',
+                platform: 'ios',
+                randomisedCategories: 'false',
+            })
             await dash.reducedMotion()
             await dash.addState([testDataStates.google])
             await dash.screenshot('category-selection.png')
@@ -261,6 +284,8 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
         { name: '09', state: testDataStates.protectionsOff_allowedTrackers },
         { name: '10', state: testDataStates.protectionsOff_allowedNonTrackers },
         { name: '11', state: testDataStates.protectionsOff_allowedTrackers_allowedNonTrackers },
+        { name: '12', state: testDataStates.protectionsOn_allowedFirstParty },
+        { name: '13', state: testDataStates.protectionsOn_allowedFirstParty_allowedNonTrackers },
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
         { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
@@ -270,6 +295,7 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
     ]
     for (const { name, state } of states) {
         test(name, async ({ page }) => {
+            await page.emulateMedia({ reducedMotion: 'reduce' })
             const dash = await DashboardPage.webkit(page)
             await dash.screenshotEachScreenForState(name, state)
         })

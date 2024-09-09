@@ -55,6 +55,14 @@ test('insecure certificate', async ({ page }) => {
     await dash.hasInsecureTextDetail()
 })
 
+test('allowed first party requests', async ({ page }) => {
+    /** @type {DashboardPage} */
+    const dash = await DashboardPage.webkit(page, { platform: 'macos' })
+    await dash.addState([testDataStates['protectionsOn_allowedFirstParty']])
+    await dash.hasAllowedFirstPartyText()
+    await dash.hidesTrackerCompaniesLink()
+})
+
 test.describe('opening breakage form', () => {
     test('shows breakage form only', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
@@ -168,6 +176,7 @@ test.describe('macos screenshots', { tag: '@screenshots' }, () => {
     test.describe('states', () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
+                await page.emulateMedia({ reducedMotion: 'reduce' })
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' })
                 await dash.screenshotEachScreenForState(name, state)
             })

@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Saidi häirete vältimiseks ei blokeerinud me sellel lehel ühtegi ettevõtte jälgimistaotluste laadimist.",
+    "title" : "Sellel lehel ei blokeeritud ühtegi jälgimistaotlust.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Leidsime ainult mittejälgivaid taotlusi või taotlusi, mis on seotud domeeni <b>{domain}</b> laadimisega sellel lehel.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Jälgimistaotluste laadimist ei blokeeritud, sest selle saidi jaoks on kaitsed välja lülitatud. Kui ettevõtte taotlused laaditakse, võib see võimaldada neil sind profileerida.",

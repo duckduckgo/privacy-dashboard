@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "За да предотвратим срив на сайта, не сме блокирали зареждането на заявки с проследяване на тази страница от други компании.",
+    "title" : "Няма блокирани заявки за проследяване на тази страница.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Открихме само заявки без проследяване или заявки, свързани с зареждането на тази страница от <b>{domain}</b>.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Няма блокирано зареждане на заявки с проследяване, тъй като защитите за този сайт са изключени. Ако бъдат заредени заявки от дадена компания, те могат да ѝ позволят да Ви профилира.",

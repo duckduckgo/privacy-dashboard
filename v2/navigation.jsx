@@ -10,6 +10,12 @@ import { NonTrackersScreen } from './screens/non-trackers-screen'
 import { ConsentManagedScreen } from './screens/consent-managed-screen'
 import { ToggleReportScreen } from './screens/toggle-report-screen'
 import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection, ChoiceToggleScreen } from './screens/choice-problem'
+import { isAndroid } from '../shared/js/ui/environment-check'
+import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs'
+
+/**
+ * @typedef {import('../schema/__generated__/schema.types').EventOrigin['screen']} ScreenName
+ */
 
 /** @type {Record<ScreenName, { kind: 'subview' | 'root', component: () => any}>} */
 const availableScreens = {
@@ -33,9 +39,8 @@ const availableScreens = {
     cookieHidden: { kind: 'subview', component: () => <ConsentManagedScreen cosmetic={true} /> },
 }
 
-/**
- * @typedef {import('../schema/__generated__/schema.types').EventOrigin['screen']} ScreenName
- */
+// Typescript isn't smart enough to understand what Object.entries does here :(
+const entries = /** @type {[ScreenName, { kind: 'subview' | 'root', component: () => any}][]} */ (Object.entries(availableScreens))
 
 const NavContext = createContext({
     /** @type {(name: ScreenName, params?: Record<string, string>) => void} */
@@ -45,10 +50,6 @@ const NavContext = createContext({
     /** @type {() => void} */
     pop() {
         throw new Error('not implemented')
-    },
-    /** @type {(stack: ScreenName[]) => void} */
-    goto(stack) {
-        throw new Error('not implemented ' + stack)
     },
     params: new URLSearchParams(''),
     /** @type {() => boolean} */
@@ -74,6 +75,14 @@ export function useCanPop() {
     const { screen } = useContext(ScreenContext)
     const { canPopFrom } = useNav()
     return canPopFrom(screen)
+}
+
+/**
+ * @param {any} input;
+ * @returns {input is ScreenName}
+ */
+function isScreenName(input) {
+    return screenKindSchema.safeParse(input).success
 }
 
 /**
@@ -115,15 +124,9 @@ function navReducer(state, event) {
                     }
                 }
                 case 'push': {
-                    const nextParams = new URLSearchParams(state.params)
-                    for (let [key, value] of Object.entries(event.params)) {
-                        // using 'set' to override previous values.
-                        nextParams.set(key, value)
-                    }
                     if (!event.opts.animate) {
                         return {
                             ...state,
-                            params: nextParams,
                             stack: state.stack.concat(event.name),
                             state: /** @type {const} */ ('settled'),
                             via: 'push',
@@ -131,7 +134,6 @@ function navReducer(state, event) {
                     }
                     return {
                         ...state,
-                        params: nextParams,
                         stack: state.stack.concat(event.name),
                         state: /** @type {const} */ ('transitioning'),
                         via: 'push',
@@ -139,7 +141,9 @@ function navReducer(state, event) {
                 }
                 case 'pop': {
                     if (state.stack.length < 2) {
-                        console.warn('ignoring a `pop` event')
+                        if (!window.__ddg_integration_test) {
+                            console.warn('ignoring a `pop` event', window.location.search)
+                        }
                         return state
                     }
                     if (!event.opts.animate) {
@@ -173,16 +177,15 @@ function navReducer(state, event) {
 
 /**
  * @typedef {{ animate: boolean }} ActionOpts
- * @typedef {{ type: 'push', name: ScreenName, opts: ActionOpts, params: Record<string, string>}
+ * @typedef {{ type: 'push', name: ScreenName, opts: ActionOpts}
  *   | {type: 'pop', opts: ActionOpts}
  *   | {type: 'goto', stack: ScreenName[], opts: ActionOpts}
  *   | {type: 'end'}
  * } NavEvent
  * @typedef {{
  *    commit: string[],
- *    stack: string[],
+ *    stack: ScreenName[],
  *    state: 'initial' | 'settled' | 'transitioning',
- *    params: URLSearchParams,
  *    via: NavEvent['type'] | string | undefined
  * }} NavState
  */
@@ -198,7 +201,6 @@ export function Navigation(props) {
         stack: props.stack,
         state: 'initial',
         commit: [],
-        params: props.params,
         via: undefined,
     })
 
@@ -221,37 +223,34 @@ export function Navigation(props) {
 
     // reflect to the URL
     useEffect(() => {
-        // only act on navigations when settled
-        if (state.state !== 'settled') {
-            return
-        }
+        /**
+         * 'popstateHandler' is invoked on back AND forward navigations
+         * - To detect if it's a 'forward' intention, we look at the current 'stack' in the url params
+         *   and compare it to our local state. So if the url stack has 1 more item than our state, we know
+         *   it's a 'forward' action.
+         * - otherwise, it's just a 'back' action, so we can `pop` an item from the stack as usual
+         */
+        function popstateHandler() {
+            const currentUrlParams = new URLSearchParams(location.search)
+            const currentURLStack = currentUrlParams.getAll('stack')
+            const navigationIntentionIsForwards = currentURLStack.length > state.stack.length
 
-        if (state.via === 'push') {
-            const url = new URL(window.location.href)
-            url.searchParams.delete('stack')
-            for (let string of state.stack) {
-                url.searchParams.append('stack', string)
+            if (navigationIntentionIsForwards) {
+                const lastEntry = currentURLStack[currentURLStack.length - 1]
+                if (isScreenName(lastEntry)) {
+                    dispatch({ type: 'push', name: lastEntry, opts: { animate: props.animate && isAndroid() } })
+                }
+            } else {
+                dispatch({ type: 'pop', opts: { animate: props.animate && isAndroid() } })
             }
-            for (let [key, value] of Object.entries(state.params)) {
-                url.searchParams.set(key, value)
-            }
-            window.history.pushState({}, '', url)
         }
 
-        if (state.via === 'pop') {
-            window.history.go(-1)
-        }
-
-        function handler() {
-            dispatch({ type: 'pop', opts: { animate: props.animate } })
-        }
-
-        window.addEventListener('popstate', handler)
+        window.addEventListener('popstate', popstateHandler)
 
         return () => {
-            window.removeEventListener('popstate', handler)
+            window.removeEventListener('popstate', popstateHandler)
         }
-    }, [state.state, state.params, state.via, props.animate])
+    }, [state.state, state.stack, state.via, props.animate])
 
     const canPop = useCallback(() => {
         // const curr = state.stack[state.stack.length - 1];
@@ -276,13 +275,44 @@ export function Navigation(props) {
     }, [state.state, state.stack, state.commit])
 
     const api = {
-        push: (name, params = {}) => dispatch({ type: 'push', name, opts: { animate: props.animate }, params }),
-        pop: () => dispatch({ type: 'pop', opts: { animate: props.animate } }),
-        goto: (stack) => dispatch({ type: 'goto', stack, opts: { animate: props.animate } }),
+        /**
+         * @param {ScreenName} name
+         * @param {Record<string, any>} params
+         */
+        push: (name, params = {}) => {
+            const url = new URL(window.location.href)
+
+            for (let [key, value] of Object.entries(params)) {
+                // using 'set' to override any previous values.
+                url.searchParams.set(key, value)
+            }
+
+            // reset the navigation stack
+            url.searchParams.delete('stack')
+            for (let string of state.stack) {
+                url.searchParams.append('stack', string)
+            }
+            url.searchParams.append('stack', name)
+
+            // reflect the new as a push
+            window.history.pushState({}, '', url)
+
+            // change component state
+            dispatch({ type: 'push', name, opts: { animate: props.animate } })
+        },
+        pop: () => {
+            // remove a history entry
+            window.history.go(-1)
+
+            // change component state
+            dispatch({ type: 'pop', opts: { animate: props.animate } })
+        },
         canPop: canPop,
         canPopFrom: canPopFrom,
         screen: screen,
-        params: state.params,
+        get params() {
+            return new URLSearchParams(location.search)
+        },
     }
 
     // console.groupCollapsed('Navigation Render state')
@@ -305,32 +335,32 @@ export function Navigation(props) {
                     transform: `translateX(` + -((state.stack.length - 1) * 100) + '%)',
                 }}
             >
-                {Object.entries(availableScreens).map(([name, item]) => {
-                    const inStack = state.stack.includes(name)
-                    const commiting = state.commit.includes(name)
-                    const current = state.stack[state.stack.length - 1] === name
+                {entries.map(([screenName, item]) => {
+                    const inStack = state.stack.includes(screenName)
+                    const commiting = state.commit.includes(screenName)
+                    const current = state.stack[state.stack.length - 1] === screenName
                     if (!inStack && !commiting) return null
                     if (item.kind === 'root') {
                         return (
-                            <ScreenContext.Provider value={{ screen: /** @type {ScreenName} */ (name) }}>
-                                <section className="app-height" key={name}>
+                            <ScreenContext.Provider value={{ screen: screenName }}>
+                                <section className="app-height" key={screenName}>
                                     {item.component()}
                                 </section>
                             </ScreenContext.Provider>
                         )
                     }
-                    const translateValue = state.stack.includes(name)
-                        ? state.stack.indexOf(name)
-                        : state.commit.includes(name)
-                        ? state.commit.indexOf(name)
+                    const translateValue = state.stack.includes(screenName)
+                        ? state.stack.indexOf(screenName)
+                        : state.commit.includes(screenName)
+                        ? state.commit.indexOf(screenName)
                         : 0
                     const cssProp = `translateX(${translateValue * 100}%)`
                     return (
-                        <ScreenContext.Provider value={{ screen: /** @type {ScreenName} */ (name) }}>
+                        <ScreenContext.Provider value={{ screen: screenName }}>
                             <section
                                 data-current={String(current)}
                                 className="sliding-subview-v2"
-                                key={name}
+                                key={screenName}
                                 style={{ transform: cssProp }}
                             >
                                 {item.component()}

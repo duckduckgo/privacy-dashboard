@@ -3,6 +3,7 @@ import { trackerNetworksText } from '../templates/shared/tracker-networks-text.j
 import { thirdpartyText } from '../templates/shared/thirdparty-text.js'
 import { i18n } from '../base/localize.js'
 import { httpsMessages } from '../../../data/constants'
+import { states } from '../../browser/utils/request-details.mjs'
 
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
@@ -11,6 +12,9 @@ import { httpsMessages } from '../../../data/constants'
 export function template(model, nav) {
     const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged
     const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
+    const networkTrackersLink = shouldRenderTrackerNetworksLink(model)
+        ? html`<li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>`
+        : ''
     const renderConnectionAsText = model.httpsState === 'phishing'
     const connectionRow = renderConnectionAsText
         ? html`<li class="main-nav__row no-hover">${renderConnectionText(model)}</li>`
@@ -18,8 +22,7 @@ export function template(model, nav) {
 
     return html`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
-            ${connectionRow}
-            <li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>
+            ${connectionRow} ${networkTrackersLink}
             <li class="main-nav__row">${renderThirdPartyNew(model, nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
         </ul>
@@ -143,4 +146,22 @@ function renderThirdPartyNew(model, cb) {
         <span class="main-nav__text">${title}</span>
         <span class="main-nav__chev"></span>
     </a>`
+}
+
+/**
+ * @param {import('../models/site.js').PublicSiteModel} model
+ * @returns {boolean}
+ */
+export function shouldRenderTrackerNetworksLink(model) {
+    const state = model.tab.requestDetails.state(model.protectionsEnabled)
+
+    switch (state) {
+        case states.protectionsOn_allowedTrackers:
+        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
+            return false
+        default:
+            return true
+    }
 }

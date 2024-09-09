@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "A webhely helytelen működésének megelőzéséért nem blokkoltuk egyetlen cég nyomon követő kérésének betöltését sem ezen az oldalon.",
+    "title" : "Ezen az oldalon nem lett blokkolva nyomkövetési kérés.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Ezen az oldalon csak nem nyomkövetési kérések vagy az éppen megtekintett <b>{domain}</b> tartománynévhez tartozó kérések betöltését tapasztaltuk.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "A nyomon követő kérések betöltése nincs blokkolva, mert a védelem ki van kapcsolva ehhez a webhelyhez. Ha egy cég kérései betöltődnek, az lehetővé teheti számukra, hogy profilokat készítsenek rólad.",

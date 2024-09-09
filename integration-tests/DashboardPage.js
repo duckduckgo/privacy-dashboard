@@ -49,7 +49,7 @@ export class DashboardPage {
 
     async showsPrimaryScreen() {
         await this.page.waitForFunction(() => typeof window.__playwright !== 'undefined')
-        await this.connectInfoLink().waitFor()
+        await this.connectInfoLink().waitFor({ timeout: 5000 })
     }
 
     async showsAlternativeLayout() {
@@ -75,7 +75,6 @@ export class DashboardPage {
      * @param {{ skipInCI?: boolean }} [opts]
      */
     async screenshotEachScreenForState(name, state, opts = {}) {
-        await this.reducedMotion()
         await this.addState([state])
         await this.showsPrimaryScreen()
         await this.screenshot(name + '-state-primary.png', opts)
@@ -83,10 +82,12 @@ export class DashboardPage {
         await this.showsConnectionScreen()
         await this.screenshot(name + '-state-connection.png', opts)
         await this.goBack()
-        await this.viewTrackerCompanies()
-        await this.showsTrackersScreen()
-        await this.screenshot(name + '-state-trackers.png', opts)
-        await this.goBack()
+        if (await this.shouldScreenshotTrackersScreen()) {
+            await this.viewTrackerCompanies()
+            await this.showsTrackersScreen()
+            await this.screenshot(name + '-state-trackers.png', opts)
+            await this.goBack()
+        }
         await this.viewThirdParties()
         await this.showsNonTrackersScreen()
         await this.screenshot(name + '-state-non-trackers.png', opts)
@@ -95,6 +96,14 @@ export class DashboardPage {
             await this.clickFireButton()
             await this.screenshot(name + '-state-fire-dialog.png', opts)
         }
+    }
+
+    /**
+     * Whether to screenshot the company trackers screen, as some states omit that screen
+     */
+    async shouldScreenshotTrackersScreen() {
+        let count = await this.trackerCompaniesLink().count()
+        return count === 1
     }
 
     async viewTrackerCompanies() {
@@ -119,17 +128,30 @@ export class DashboardPage {
             'This page is using an unencrypted connection. Third parties may be able to view your activity or intercept sensitive information you send on this page.'
         )
     }
+
     async hasInsecureText() {
         const { page } = this
         await expect(page.locator('#key-insight')).toContainText(
             'This site is not secure and may compromise any information you send on this page.'
         )
     }
+
     async hasInvalidCertText() {
         const { page } = this
         await expect(page.locator('#popup-container')).toContainText(
             'The certificate for this site is invalid. You might be connecting to a server that is pretending to be example.com which could put your confidential information at risk.'
         )
+    }
+
+    async hasAllowedFirstPartyText() {
+        const { page } = this
+        await expect(page.locator('#key-insight')).toContainText(
+            'We only found non-tracking requests or requests associated with example.com loading on this page.'
+        )
+    }
+
+    async hidesTrackerCompaniesLink() {
+        await expect(this.trackerCompaniesLink()).not.toBeVisible()
     }
 
     async showsInvalidCertDetail() {
@@ -235,6 +257,7 @@ export class DashboardPage {
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'ios' | 'macos'} opts.platform
      * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
+     * @param {string} [opts.randomisedCategories]
      * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]
      */
@@ -244,9 +267,10 @@ export class DashboardPage {
         const opener = opts?.opener || 'dashboard'
         const breakageScreen = opts?.breakageScreen
         const category = opts?.category
+        const randomisedCategories = opts?.randomisedCategories
         const dash = new DashboardPage(page, { name: opts?.platform ?? 'ios' })
         await dash.withMarker()
-        await dash.loadPage({ screen, opener, breakageScreen, category })
+        await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories })
         await dash.withMocks()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -578,6 +602,9 @@ export class DashboardPage {
 
     async clicksWebsiteNotWorking() {
         await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 1000 })
+    }
+    async showsBreakageForm() {
+        await this.page.getByText('Submitting an anonymous').waitFor({ timeout: 5000 })
     }
 
     async showRemoteDisabled() {

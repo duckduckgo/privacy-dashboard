@@ -40,6 +40,11 @@ export class AltBreakageFlows {
     async showsReportFromPrimaryScreen() {
         const { page } = this.dash
         await page.getByRole('link', { name: 'Website not working?' }).click()
+        await this.breakageFormIsVisible()
+    }
+
+    async breakageFormIsVisible() {
+        const { page } = this.dash
         await page.getByText("What's not working on this").waitFor({ timeout: 1000 })
     }
 

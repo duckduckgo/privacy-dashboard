@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Sivuston rikkoutumisen estämiseksi emme ole estäneet yrityksiä lataamasta seurantapyyntöjä tällä sivulla.",
+    "title" : "Seurantapyyntöjen lataamista ei ole estetty tällä sivulla.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Löysimme tältä sivulta vain ei-seurantapyyntöjä tai pyyntöjä, jotka liittyvät <b>{domain}</b> -lataukseen.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Seurantapyyntöjä ei estetty latautumasta, koska suojaukset on poistettu käytöstä tältä sivustolta. Jos yrityksen pyynnöt ladataan, yritys voi mahdollisesti profiloida sinut.",

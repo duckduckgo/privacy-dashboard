@@ -9,7 +9,7 @@ import { protectionsOff } from './toggle-protections.mjs'
  */
 
 /** @type {DetectedRequest} */
-const allowedTracker = {
+const allowedFirstPartyTracker = {
     entityName: 'example.com',
     prevalence: 82.6,
     url: 'https://example.com/a.js',
@@ -67,7 +67,7 @@ const allowedProtectionsDisabled = {
 }
 
 export const requests = {
-    allowedTrackerFirstParty: allowedTracker,
+    allowedTrackerFirstParty: allowedFirstPartyTracker,
     allowedTrackerRuleException: allowedTrackerRule,
     allowedThirdParty,
     allowedAdClickAttribution,
@@ -260,6 +260,7 @@ export class MockData {
      * @param {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} [params.remoteFeatureSettings]
      * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
      * @param {{screen?: import('../../../../../schema/__generated__/schema.types').ScreenKind}} [params.urlParams]
+     * @param {boolean} [params.isInvalidCert]
      */
     constructor(params) {
         this.urlParams = params.urlParams || {}
@@ -282,6 +283,7 @@ export class MockData {
         this.remoteFeatureSettings = params.remoteFeatureSettings
         this.emailProtectionUserData = params.emailProtectionUserData
         this.fireButtonOptions = params.fireButtonOptions
+        this.isInvalidCert = params.isInvalidCert
 
         /** @type {Protections} */
         this.protections = Protections.default()
@@ -329,6 +331,7 @@ export class MockData {
                 permissions: this.permissions,
                 certificates: this.certificate,
                 cookiePromptManagementStatus: this.cookiePromptManagementStatus,
+                isInvalidCert: this.isInvalidCert,
             },
         }
     }
@@ -514,6 +517,15 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             requests: [blocked1, allowedAdClickAttribution],
         }),
+        'https-with-invalid-certificate': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            isInvalidCert: true,
+            certificate: [],
+            localeSettings: undefined,
+            parentEntity: undefined,
+            upgradedHttps: false,
+        }),
         'https-without-certificate': new MockData({
             url: 'https://example.com',
             requests: [],
@@ -573,6 +585,12 @@ export const createDataStates = (google, cnn) => {
             upgradedHttps: true,
             certificate: [],
         }),
+        'upgraded-with-invalid-cert': new MockData({
+            requests: [],
+            url: 'https://example.com',
+            upgradedHttps: true,
+            isInvalidCert: true,
+        }),
         cnn: new MockData({
             url: 'https://edition.cnn.com',
             requests: cnn.requests,
@@ -604,7 +622,7 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOn_blocked_allowedTrackers: new MockData({
             url: 'https://example.com',
-            requests: [blocked1, allowedTracker],
+            requests: [blocked1, allowedFirstPartyTracker],
         }),
         protectionsOn_blocked_allowedNonTrackers: new MockData({
             url: 'https://example.com',
@@ -612,16 +630,16 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOn_blocked_allowedTrackers_allowedNonTrackers: new MockData({
             url: 'https://example.com',
-            requests: [blocked1, allowedThirdParty, allowedTracker],
+            requests: [blocked1, allowedThirdParty, allowedFirstPartyTracker],
         }),
         protectionsOn_allowedTrackers: new MockData({
             url: 'https://example.com',
             requests: [
-                allowedTracker,
+                allowedFirstPartyTracker,
                 allowedTrackerRule,
                 allowedAdClickAttribution,
                 {
-                    ...allowedTracker,
+                    ...allowedFirstPartyTracker,
                     state: { allowed: { reason: 'protectionDisabled' } },
                 },
             ],
@@ -632,7 +650,15 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOn_allowedTrackers_allowedNonTrackers: new MockData({
             url: 'https://example.com',
-            requests: [allowedTracker, allowedThirdParty],
+            requests: [allowedFirstPartyTracker, allowedTrackerRule, allowedThirdParty],
+        }),
+        protectionsOn_allowedFirstParty: new MockData({
+            url: 'https://example.com',
+            requests: [allowedFirstPartyTracker],
+        }),
+        protectionsOn_allowedFirstParty_allowedNonTrackers: new MockData({
+            url: 'https://example.com',
+            requests: [allowedFirstPartyTracker, allowedThirdParty],
         }),
         protectionsOff: new MockData({
             url: 'https://example.com',
@@ -641,7 +667,7 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOff_allowedTrackers: new MockData({
             url: 'https://example.com',
-            requests: [allowedTracker],
+            requests: [allowedFirstPartyTracker, allowedTrackerRule],
             contentBlockingException: true,
         }),
         protectionsOff_allowedNonTrackers: new MockData({
@@ -651,22 +677,22 @@ export const createDataStates = (google, cnn) => {
         }),
         protectionsOff_allowedTrackers_allowedNonTrackers: new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             contentBlockingException: true,
         }),
         allowlisted: new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             allowlisted: true,
         }),
         denylisted: new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             denylisted: true,
         }),
         'remote-disabled': new MockData({
             url: 'https://example.com',
-            requests: [allowedThirdParty, allowedTracker],
+            requests: [allowedThirdParty, allowedFirstPartyTracker],
             contentBlockingException: true,
         }),
         'new-entities': new MockData({
@@ -770,6 +796,20 @@ export const createDataStates = (google, cnn) => {
             requests: [],
             urlParams: {
                 screen: 'promptBreakageForm',
+            },
+        }),
+        'webBreakageForm-enabled': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            remoteFeatureSettings: {
+                webBreakageForm: { state: 'enabled' },
+            },
+        }),
+        'webBreakageForm-disabled': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            remoteFeatureSettings: {
+                webBreakageForm: { state: 'disabled' },
             },
         }),
     }

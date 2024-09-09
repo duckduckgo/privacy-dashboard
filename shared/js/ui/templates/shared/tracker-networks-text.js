@@ -19,7 +19,9 @@ export function trackerNetworksText(requestDetails, protectionsEnabled) {
             }
         }
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedTrackers: {
+        case states.protectionsOn_allowedTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
             return {
                 title: ns.site('trackerNetworksNotBlocked.title'),
                 icon: 'info',
@@ -61,7 +63,9 @@ export function trackerNetworkSummary(requestDetails, protectionsEnabled) {
             return ns.site('trackerNetworksSummaryNoneFound.title')
         }
         case states.protectionsOn_allowedTrackers:
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers: {
+        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
             return ns.site('trackerNetworksSummaryNoneBlocked.title')
         }
         case states.protectionsOff_allowedTrackers:
@@ -87,7 +91,9 @@ export function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
             return 'major-networks-no-activity'
         }
         case states.protectionsOn_allowedTrackers:
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers: {
+        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
             return 'major-networks-info'
         }
         case states.protectionsOff_allowedTrackers:

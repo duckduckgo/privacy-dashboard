@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Pour éviter toute coupure du site, nous n'avons empêché aucune entreprise de charger des demandes de pistage sur cette page.",
+    "title" : "Aucune demande de pistage n'a été bloquée sur cette page.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Nous n'avons trouvé que des demandes sans pistage ou associées au chargement de <b>{domain}</b> sur cette page.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Aucune demande de pistage n'a vu son chargement bloqué car les protections sont désactivées pour ce site. Si les demandes d'une entreprise sont chargées, cela peut lui permettre d'établir votre profil.",

@@ -53,8 +53,12 @@
     "note" : "We did not find any trackers on this page"
   },
   "trackerNetworksSummaryAllowedOnly" : {
-    "title" : "Abychom zabránili chybám při načítání webu, nezablokovali jsme na téhle stránce žádné požadavky se sledováním.",
+    "title" : "Na téhle stránce nejsou zablokované žádné požadavky na sledování.",
     "note" : "The message shown when we allowed some trackers to load."
+  },
+  "trackerNetworksSummaryFirstPartyAllowedOnly" : {
+    "title" : "Na téhle stránce jsme našli jenom požadavky nesouvisející se sledováním nebo požadavky pro načítání domény <b>{domain}</b>.",
+    "note" : "The message shown when we allowed first party trackers to load. The placeholder is for the domain name being viewed (example: amazon.com)"
   },
   "trackerNetworksSummaryProtectionsOff" : {
     "title" : "Žádné požadavky se sledováním nebyly zablokovány, protože ochrana je pro tento web vypnutá. Pokud se načtou požadavky služby, může jim to umožnit vytvořit si tvůj profil.",
