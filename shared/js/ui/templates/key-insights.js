@@ -15,6 +15,7 @@ const keyInsightsState = /** @type {const} */ ({
     /* 08 */ blocked: 'blocked',
     /* 09 */ invalid: 'invalid',
     /* 10 */ noneBlocked_firstPartyAllowed: 'noneBlocked_firstPartyAllowed',
+    /* 11 */ phishing: 'phishing',
 })
 
 /**
@@ -27,6 +28,7 @@ export function renderKeyInsight(modelOverride) {
 
     /** @type {keyInsightsState[keyof keyInsightsState]} */
     const state = (() => {
+        if (model.httpsState === 'phishing') return keyInsightsState.phishing
         if (model.httpsState === 'none') return keyInsightsState.insecure
         if (model.httpsState === 'invalid') return keyInsightsState.invalid
         if (model.isBroken) return keyInsightsState.broken
@@ -141,6 +143,15 @@ export function renderKeyInsight(modelOverride) {
                 <div class="key-insight key-insight--main">
                     ${renderCompanyIconsList(model)} ${title(model.tab.domain)}
                     ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
+                </div>
+            `
+        },
+        phishing: () => {
+            const text = i18n.t('site:phishingWebsiteDesc.title', { domain: model.tab.domain })
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--phishing"></div>
+                    ${title(model.tab.domain)} ${description(raw(text))}
                 </div>
             `
         },

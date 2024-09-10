@@ -21,33 +21,21 @@
     }
 
     /*
-     The next 3 blocks are all about removing dividers on hover. It was
-     done this way to prevent any heights changing, or any lines bleeding
-     into the hover styles. I'm confident there's a better way, however :)
-     */
-    [data-hover='0'] & {
-        &:nth-child(1) {
-            &:after {
-                background-color: var(--page-bg);
-            }
+        The following avoids height shifts when hovering over nav rows.
+
+        Each row has an :after element that provides the separator line. When hovering a row, we need to change the color of any adjacent separators (i.e. the current row and the row above it).
+
+        We do that by targeting the current row directly, then use a :has selector to also target the previous sibling of the current row.
+
+        We also use the :not selector to exclude any rows marked as no-hover.
+    */
+    &:not(.no-hover):hover,
+    &:has(+ :not(.no-hover):hover) {
+        &:after {
+            background-color: var(--page-bg);
         }
     }
-    [data-hover='1'] & {
-        &:nth-child(1),
-        &:nth-child(2) {
-            &:after {
-                background-color: var(--page-bg);
-            }
-        }
-    }
-    [data-hover='2'] & {
-        &:nth-child(2),
-        &:nth-child(3) {
-            &:after {
-                background-color: var(--page-bg);
-            }
-        }
-    }
+
     &:last-child {
         &:after {
             display: none;

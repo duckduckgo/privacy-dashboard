@@ -10,4 +10,5 @@ export const httpsMessages = {
     upgraded: 'site:connectionSecure.title',
     none: 'site:connectionNotSecure.title',
     invalid: 'site:connectionNotSecureInvalidCertificate.title',
+    phishing: 'site:phishingWebsite.title',
 }

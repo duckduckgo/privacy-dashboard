@@ -161,6 +161,32 @@ export class DashboardPage {
         await page.locator('[data-page="connection"]').getByText(text).waitFor()
     }
 
+    async hasPhishingIcon() {
+        const { page } = this
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/)
+    }
+
+    async hasPhishingHeadingText() {
+        const { page } = this
+        await expect(page.getByRole('heading', { name: 'privacy-test-pages.site' })).toBeVisible()
+    }
+
+    async hasPhishingWarningText() {
+        const { page } = this
+        await expect(page.locator('#popup-container')).toContainText(
+            'This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.'
+        )
+    }
+
+    async hasPhishingStatusText() {
+        const { page } = this
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be Deceptive')
+    }
+
+    async connectionLinkDoesntShow() {
+        await expect(this.connectInfoLink()).not.toBeVisible()
+    }
+
     async showsTrackersScreen() {
         await this.page.locator('[data-page="trackers"]').waitFor({ timeout: 2000 })
     }

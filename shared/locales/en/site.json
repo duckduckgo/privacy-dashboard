@@ -135,6 +135,14 @@
         "title": "Connection May Be Insecure",
         "note": "Shown as the button text when the connection is using an invalid certificate."
     },
+    "phishingWebsite": {
+        "title": "Site May Be Deceptive",
+        "note": "Shown as the button text when the URL is reported as a phishing website."
+    },
+    "phishingWebsiteDesc": {
+        "title": "This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.",
+        "note": "Shown as the description text when the URL is reported as a phishing website."
+    },
     "trackerNetworksDesc": {
         "title": "Requests Blocked from Loading",
         "note": "This indicates that 1 or more trackers were blocked."

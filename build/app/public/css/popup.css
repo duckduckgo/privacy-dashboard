@@ -639,10 +639,14 @@ body.environment--windows {
 .main-nav__row {
   position: relative;
   /*
-   The next 3 blocks are all about removing dividers on hover. It was
-   done this way to prevent any heights changing, or any lines bleeding
-   into the hover styles. I'm confident there's a better way, however :)
-   */
+      The following avoids height shifts when hovering over nav rows.
+
+      Each row has an :after element that provides the separator line. When hovering a row, we need to change the color of any adjacent separators (i.e. the current row and the row above it).
+
+      We do that by targeting the current row directly, then use a :has selector to also target the previous sibling of the current row.
+
+      We also use the :not selector to exclude any rows marked as no-hover.
+  */
 }
 .main-nav__row:after {
   content: " ";
@@ -654,13 +658,7 @@ body.environment--windows {
   bottom: -0.5px;
   left: 16px;
 }
-[data-hover="0"] .main-nav__row:nth-child(1):after {
-  background-color: var(--page-bg);
-}
-[data-hover="1"] .main-nav__row:nth-child(1):after, [data-hover="1"] .main-nav__row:nth-child(2):after {
-  background-color: var(--page-bg);
-}
-[data-hover="2"] .main-nav__row:nth-child(2):after, [data-hover="2"] .main-nav__row:nth-child(3):after {
+.main-nav__row:not(.no-hover):hover:after, .main-nav__row:has(+ :not(.no-hover):hover):after {
   background-color: var(--page-bg);
 }
 .main-nav__row:last-child {
@@ -970,6 +968,11 @@ body.environment--windows {
 
 .hero-icon--cookies-hidden {
   background-image: url("../../img/refresh-assets/Cookies-Hidden-128.svg");
+}
+
+.hero-icon--phishing,
+.hero-icon--connection-phishing {
+  background-image: url("../../img/refresh-assets/Phishing-128.svg");
 }
 
 .hero-icon--chat {

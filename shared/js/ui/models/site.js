@@ -1,7 +1,7 @@
 /**
  * @typedef PublicSiteModel
  * @property {boolean} protectionsEnabled
- * @property {'secure' | 'upgraded' | 'none' | 'invalid'} httpsState
+ * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} httpsState
  * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
  * @property {boolean} isDenylisted
