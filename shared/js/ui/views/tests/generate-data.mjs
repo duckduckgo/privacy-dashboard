@@ -812,6 +812,7 @@ export const createDataStates = (google, cnn) => {
                 webBreakageForm: { state: 'disabled' },
             },
         }),
+        empty: new MockData({}),
     }
 }
 
