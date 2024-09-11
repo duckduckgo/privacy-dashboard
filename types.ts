@@ -44,6 +44,7 @@ interface Window {
             outgoing: any[]
             incoming: any[]
         }
+        handler?: (message: Record<string, any>) => void
     }
     webkit?: {
         messageHandlers?: WebkitMessageHandlers

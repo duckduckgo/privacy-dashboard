@@ -190,7 +190,33 @@ export const toggleSkippedSchema = z.object({
     name: z.literal("toggleSkipped")
 });
 
+export const incomingResponseSchema = z.object({
+    messageType: z.literal("response"),
+    id: z.number(),
+    options: z.unknown()
+});
+
+export const incomingToggleReportSchema = z.object({
+    messageType: z.literal("toggleReport")
+});
+
+export const incomingUpdateTabDataSchema = z.object({
+    messageType: z.literal("updateTabData")
+});
+
+export const incomingClosePopupSchema = z.object({
+    messageType: z.literal("closePopup")
+});
+
+export const outgoingExtensionMessageSchema = z.object({
+    messageType: z.string(),
+    id: z.number().optional(),
+    options: z.object({})
+});
+
 export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
+
+export const incomingExtensionMessageSchema = z.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema]);
 
 export const detectedRequestSchema = z.object({
     url: z.string(),
@@ -295,6 +321,8 @@ export const apiSchema = z.object({
     "set-protection": setProtectionParamsSchema.optional(),
     "toggle-report-screen": toggleReportScreenSchema.optional(),
     "close-message": closeMessageParamsSchema.optional(),
-    "telemetry-span": telemetrySpanSchema.optional()
+    "telemetry-span": telemetrySpanSchema.optional(),
+    "extension-incoming": incomingExtensionMessageSchema.optional(),
+    "extension-outgoing": outgoingExtensionMessageSchema.optional()
 });
 

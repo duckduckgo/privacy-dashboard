@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "IncomingExtensionMessage",
+    "oneOf": [
+        {
+            "type": "object",
+            "title": "IncomingResponse",
+            "required": ["id", "messageType", "options"],
+            "properties": {
+                "messageType": {
+                    "type": "string",
+                    "const": "response"
+                },
+                "id": {
+                    "type": "number"
+                },
+                "options": {}
+            }
+        },
+        {
+            "type": "object",
+            "title": "IncomingToggleReport",
+            "required": ["messageType"],
+            "properties": {
+                "messageType": {
+                    "type": "string",
+                    "const": "toggleReport"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "title": "IncomingUpdateTabData",
+            "required": ["messageType"],
+            "properties": {
+                "messageType": {
+                    "type": "string",
+                    "const": "updateTabData"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "title": "IncomingClosePopup",
+            "required": ["messageType"],
+            "properties": {
+                "messageType": {
+                    "type": "string",
+                    "const": "closePopup"
+                }
+            }
+        }
+    ]
+}
