@@ -12521,9 +12521,12 @@
     getBackgroundTabData: () => getBackgroundTabData,
     getBurnOptions: () => getBurnOptions,
     getPrivacyDashboardData: () => getPrivacyDashboardData,
+    getToggleReportOptions: () => getToggleReportOptions,
     openOptions: () => openOptions,
     refreshAlias: () => refreshAlias,
+    rejectToggleReport: () => rejectToggleReport,
     search: () => search,
+    sendToggleReport: () => sendToggleReport,
     setBurnDefaultOption: () => setBurnDefaultOption,
     setLists: () => setLists,
     setup: () => setup,
@@ -12770,6 +12773,15 @@
     if (message instanceof SetBurnDefaultOption) {
       return setBurnDefaultOption(message);
     }
+    if (message instanceof SendToggleBreakageReport) {
+      return sendToggleReport();
+    }
+    if (message instanceof RejectToggleBreakageReport) {
+      return rejectToggleReport();
+    }
+    if (message instanceof FetchToggleReportOptions) {
+      return getToggleReportOptions();
+    }
     return new Promise((resolve) => {
       window.chrome.runtime.sendMessage(message, (result) => {
         resolve(result);
@@ -12808,8 +12820,17 @@
   async function openOptions() {
     return toExtensionMessage("openOptions");
   }
+  async function sendToggleReport() {
+    return toExtensionMessage("sendToggleReport");
+  }
+  async function rejectToggleReport() {
+    return toExtensionMessage("rejectToggleReport");
+  }
   function getBurnOptions() {
     return toExtensionMessage("getBurnOptions");
+  }
+  function getToggleReportOptions() {
+    return toExtensionMessage("getToggleReportOptions");
   }
   function setBurnDefaultOption(message) {
     return toExtensionMessage("setBurnDefaultOption", message);
@@ -12839,6 +12860,9 @@
         channel.send("updateTabData");
       if (req.closePopup)
         window.close();
+      if (req.toggleReport) {
+        window.location.search = "?screen=toggleReport&opener=dashboard";
+      }
     });
   }
   async function getBackgroundTabData() {
@@ -17236,13 +17260,14 @@
     const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
     const buttonSize = platform.name === "ios" ? "big" : "small";
     const innerGap = platform.name === "ios" ? "24px" : "16px";
+    const desktop = platform.name === "macos" || platform.name === "browser" || platform.name === "windows";
     const { value, didClickSuccessScreen } = q2(ToggleReportContext);
     const [state, dispatch] = useToggleReportState();
     useIosAnimation(state, dispatch);
-    if (state.value === "sent" && platform.name === "macos") {
+    if (state.value === "sent" && desktop) {
       return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(ToggleReportSent, { onClick: didClickSuccessScreen }));
     }
-    return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.toggleReport("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.toggleReport("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.toggleReport("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.toggleReport("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
+    return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), desktop && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.toggleReport("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.toggleReport("siteNotWorkingInfoHide.title")))))), desktop && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.toggleReport("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.toggleReport("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
   }
 
   // v2/screens/toggle-report-screen.jsx

@@ -19,6 +19,7 @@ export function ToggleReport() {
     const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
     const buttonSize = platform.name === 'ios' ? 'big' : 'small'
     const innerGap = platform.name === 'ios' ? '24px' : '16px'
+    const desktop = platform.name === 'macos' || platform.name === 'browser' || platform.name === 'windows'
 
     // data context (data, api, messages)
     const { value, didClickSuccessScreen } = useContext(ToggleReportContext)
@@ -30,7 +31,7 @@ export function ToggleReport() {
     useIosAnimation(state, dispatch)
 
     // on macOS only, transition to a success screen
-    if (state.value === 'sent' && platform.name === 'macos') {
+    if (state.value === 'sent' && desktop) {
         return (
             <ToggleReportWrapper state={state.value}>
                 <ToggleReportSent onClick={didClickSuccessScreen} />
@@ -47,7 +48,7 @@ export function ToggleReport() {
                         <ToggleReportTitle>{ns.toggleReport('siteNotWorkingTitle.title')}</ToggleReportTitle>
                         <div>
                             <h2 className="token-title-3 text--center">{ns.toggleReport('siteNotWorkingSubTitle.title')}</h2>
-                            {platform.name === 'macos' && (
+                            {desktop && (
                                 <div>
                                     <p className={'text--center token-title-3'}>
                                         <PlainTextLink onClick={() => dispatch('toggle')}>
@@ -59,7 +60,7 @@ export function ToggleReport() {
                             )}
                         </div>
                     </Stack>
-                    {platform.name === 'macos' && state.value === 'showing' && (
+                    {desktop && state.value === 'showing' && (
                         <Scrollable>
                             <ToggleReportDataList rows={value.data} />
                         </Scrollable>
