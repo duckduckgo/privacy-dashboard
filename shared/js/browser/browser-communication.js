@@ -61,7 +61,7 @@ function openPort() {
                 break
             }
             case 'closePopup': {
-                channel.send('updateTabData')
+                window.close()
                 break
             }
             case 'updateTabData': {
