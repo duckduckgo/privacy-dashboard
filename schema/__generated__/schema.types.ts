@@ -151,11 +151,6 @@ export type UserRefreshCountTitle = "userRefreshCount";
  * jsPerformance description
  */
 export type JsPerformanceTitle = "jsPerformance";
-export type IncomingExtensionMessage =
-  | IncomingResponse
-  | IncomingToggleReport
-  | IncomingUpdateTabData
-  | IncomingClosePopup;
 
 /**
  * This describes all of the top-level generated types
@@ -178,8 +173,6 @@ export interface API {
   "toggle-report-screen"?: ToggleReportScreen;
   "close-message"?: CloseMessageParams;
   "telemetry-span"?: TelemetrySpan;
-  "extension-incoming"?: IncomingExtensionMessage;
-  "extension-outgoing"?: OutgoingExtensionMessage;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -567,27 +560,5 @@ export interface CategorySelected {
 }
 export interface ToggleSkipped {
   name: "toggleSkipped";
-}
-export interface IncomingResponse {
-  messageType: "response";
-  id: number;
-  options: unknown;
-}
-export interface IncomingToggleReport {
-  messageType: "toggleReport";
-}
-export interface IncomingUpdateTabData {
-  messageType: "updateTabData";
-}
-export interface IncomingClosePopup {
-  messageType: "closePopup";
-}
-export interface OutgoingExtensionMessage {
-  messageType: string;
-  /**
-   * If the `id` field is present, it indicates that a response is needed
-   */
-  id?: number;
-  options: {};
 }
 

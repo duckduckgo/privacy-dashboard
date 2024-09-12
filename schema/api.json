@@ -37,12 +37,6 @@
         },
         "telemetry-span": {
             "$ref": "telemetry-span.json"
-        },
-        "extension-incoming": {
-            "$ref": "extension-incoming.json"
-        },
-        "extension-outgoing": {
-            "$ref": "extension-outgoing.json"
         }
     }
 }

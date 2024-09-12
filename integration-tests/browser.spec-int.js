@@ -1,65 +1,41 @@
 import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
-import { desktopBreakageForm, toggleFlows } from './utils/common-flows'
+import { desktopBreakageForm, toggleFlows, toggleFlowsDenyList } from './utils/common-flows'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates.protectionsOn])
         await dash.showsPrimaryScreen()
         await dash.mocks.calledForInitialExtensionMessage()
     })
 })
 
 test.describe('breakage form', () => {
-    desktopBreakageForm((page, params) => DashboardPage.browser(page, params))
+    desktopBreakageForm((page) => DashboardPage.browser(page))
 })
 
 test.describe('Protections toggle', () => {
-    toggleFlows((page, params) => DashboardPage.browser(page, params))
+    toggleFlows((page) => DashboardPage.browser(page))
 })
 
 test.describe('Protections toggle (extension specific)', () => {
-    test('then pressing the toggle re-enables protections (overriding our decision)', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates.protectionsOff)
-        await dash.reducedMotion()
-        await dash.toggleProtectionsOn()
-        await dash.mocks.calledForToggleAllowList('protections-on-override')
-    })
-})
-
-test.describe('Protections toggle -> simple report screen', () => {
-    test.skip('should reset the page URL when the extension instructs it to', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)
-        await dash.showsPrimaryScreen()
-        await dash.toggleProtectionsOff()
-        await dash.mocks.calledForToggleAllowList()
-        await page.evaluate(() => {
-            for (let listener of window.__playwright.listeners || []) {
-                listener(
-                    {
-                        toggleReport: true,
-                    },
-                    { id: 'test' }
-                )
-            }
-        })
-        await page.waitForURL((url) => {
-            return url.searchParams.get('screen') === 'toggleReport'
-        })
-    })
+    toggleFlowsDenyList((page) => DashboardPage.browser(page))
 })
 
 test.describe('special page (cta)', () => {
     test('should render correctly', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['special-page'])
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates['special-page']])
         await dash.showingCTA()
     })
 })
 
 test.describe('search', () => {
     test('should not lose text when re-render occurs', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates.protectionsOn])
         const term = 'nike'
         await dash.enterSearchText(term)
         await dash.addState([testDataStates.protectionsOn_blocked])
@@ -71,7 +47,8 @@ test.describe('search', () => {
 
 test.describe('options', () => {
     test('should open options page', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates.protectionsOn])
         await dash.selectOptionsCog()
         await dash.mocks.calledForOptions()
     })
@@ -79,56 +56,64 @@ test.describe('options', () => {
 
 test.describe('tab data error', () => {
     test('should show an error screen', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['invalid-data'])
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates['invalid-data']])
         await dash.displayingError()
     })
 })
 
 test.describe('localization', () => {
     test('should load with `pl` locale', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['locale-pl'])
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates['locale-pl']])
         await dash.hasPolishLinkTextForConnectionInfo()
     })
 })
 
 test.describe('fire button', () => {
     test('by default no fire button is displayed', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['fire-button-disabled'])
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates['fire-button-disabled']])
         await dash.showsPrimaryScreen()
         await dash.fireButtonDoesntShow()
     })
 
     test('adding firebutton option to dashboard message shows fire button', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['fire-button-enabled'])
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates['fire-button-enabled']])
         await dash.fireButtonShows()
     })
 
     test('fire button menu: open and close', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['fire-button-no-pinned'])
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates['fire-button-no-pinned']])
         await dash.clickFireButton()
         await dash.fireButtonCancelClosesDialog()
     })
     test('fire button menu: history and tab clearing enabled', async ({ page }) => {
+        const dash = await DashboardPage.browser(page)
         const mock = testDataStates['fire-button-no-pinned']
-        const dash = await DashboardPage.browser(page, mock)
+        await dash.addState([mock])
         await dash.clickFireButton()
         await dash.fireDialogIsPopulatedFromOptions(mock.toBurnOptions())
     })
     test('fire button menu: history clearing enabled', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['fire-button-tab-clear-disabled'])
+        const dash = await DashboardPage.browser(page)
+        await dash.addState([testDataStates['fire-button-tab-clear-disabled']])
         await dash.clickFireButton()
         await dash.fireDialogHistoryDisabled()
     })
     test('fire button menu: sends option parameters with burn message', async ({ page }) => {
+        const dash = await DashboardPage.browser(page)
         const mock = testDataStates['fire-button-no-pinned']
-        const dash = await DashboardPage.browser(page, mock)
+        await dash.addState([mock])
         await dash.clickFireButton()
         await dash.clickFireButtonBurn()
         await dash.sendsOptionsWithBurnMessage(mock.toBurnOptions()?.options[0].options)
     })
     test('fire button menu: sends option parameters of selected burn option', async ({ page }) => {
+        const dash = await DashboardPage.browser(page)
         const mock = testDataStates['fire-button-no-pinned']
-        const dash = await DashboardPage.browser(page, mock)
         const [messages] = await dash.addState([mock])
         await dash.clickFireButton()
         await dash.chooseBurnOption(1)
@@ -151,7 +136,8 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
     ]
     for (const { name, state } of states) {
         test(name, async ({ page }) => {
-            const dash = await DashboardPage.browser(page, state)
+            const dash = await DashboardPage.browser(page)
+            await dash.addState([state])
             await dash.screenshotEachScreenForState(name, state, { skipInCI: true })
         })
     }

@@ -1,4 +1,10 @@
-import { mockAndroidApis, mockDataProvider, webkitMockApis, windowsMockApis } from '../shared/js/browser/utils/communication-mocks.mjs'
+import {
+    mockAndroidApis,
+    mockBrowserApis,
+    mockDataProvider,
+    webkitMockApis,
+    windowsMockApis,
+} from '../shared/js/browser/utils/communication-mocks.mjs'
 import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json'
 
 /**
@@ -56,4 +62,12 @@ export async function installWebkitMocks(page, _args) {
             privacyDashboardGetToggleReportOptions: toggleReportScreen,
         },
     })
+}
+
+/**
+ * @param {import("@playwright/test").Page} page
+ * @returns {Promise<void>}
+ */
+export async function installBrowserMocks(page) {
+    return page.addInitScript(mockBrowserApis)
 }

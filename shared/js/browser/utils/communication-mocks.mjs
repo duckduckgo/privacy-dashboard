@@ -230,23 +230,16 @@ export function mockAndroidApis() {
     }
 }
 
-/**
- * @param {object} params
- * @param {Record<string, any>} params.messages
- */
-export function mockBrowserApis(params = { messages: {} }) {
+export function mockBrowserApis() {
     const messages = {
         submitBrokenSiteReport: {},
         setLists: {},
         search: {},
         openOptions: {},
         setBurnDefaultOption: {},
-        getToggleReportOptions: {},
-        getPrivacyDashboardData: {},
         doBurn: {},
         getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
-        ...params.messages,
     }
     try {
         if (!window.chrome?.permissions) {
@@ -268,68 +261,40 @@ export function mockBrowserApis(params = { messages: {} }) {
             },
             calls: [],
             listeners: [],
-            handler: undefined,
         }
 
         // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
-        // @ts-ignore
         window.chrome.runtime = {
             id: 'test',
-            connect: (info) => {
-                console.log('connect: ', info.name)
-                const port = {
-                    onDisconnect: {
-                        addListener: () => {
-                            console.log('did add onDisconnect listener')
-                        },
-                    },
-                    onMessage: {
-                        addListener: (cb) => {
-                            window.__playwright.handler = cb
-                            console.log('did add onMessage listener')
-                        },
-                    },
-                    postMessage: (message) => {
-                        const id = message.id
-                        console.log('[mock] did post message', message)
-                        const handler = window.__playwright.handler
-                        if (!handler) throw new Error('no registered handler')
+            async sendMessage(message, cb) {
+                function respond(fn, timeout = 100) {
+                    setTimeout(() => {
+                        fn()
+                    }, timeout)
+                }
 
-                        function respond(response, timeout = 100) {
-                            const responseShape = {
-                                messageType: 'response',
-                                options: structuredClone(response),
-                                id: id,
-                            }
-                            console.log('[mock] will respond with', JSON.stringify(responseShape))
-                            setTimeout(() => {
-                                handler?.(responseShape)
-                            }, timeout)
-                        }
-
-                        // does the incoming message match one that's been mocked here?
+                // does the incoming message match one that's been mocked here?
+                const matchingMessage = window.__playwright.messages[message.messageType]
+                if (matchingMessage) {
+                    window.__playwright.mocks.outgoing.push([message.messageType, message])
+                    respond(() => cb(matchingMessage), 200)
+                } else {
+                    setTimeout(() => {
                         const matchingMessage = window.__playwright.messages[message.messageType]
                         if (matchingMessage) {
                             window.__playwright.mocks.outgoing.push([message.messageType, message])
-                            respond(matchingMessage, 200)
+                            respond(() => cb(matchingMessage), 0)
                         } else {
-                            setTimeout(() => {
-                                const matchingMessage = window.__playwright.messages[message.messageType]
-                                if (matchingMessage) {
-                                    window.__playwright.mocks.outgoing.push([message.messageType, message])
-                                    respond(matchingMessage, 0)
-                                } else {
-                                    console.trace(`❌ [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`)
-                                }
-                            }, 200)
+                            console.trace(`❌ [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`)
                         }
-                    },
+                    }, 200)
                 }
-
-                return /** @type {any} */ (port)
             },
-            async sendMessage() {
-                // no longer used
+            // @ts-ignore
+            onMessage: {
+                addListener(listener) {
+                    window.__playwright.listeners?.push(listener)
+                },
             },
         }
     } catch (e) {
@@ -343,11 +308,7 @@ export function mockBrowserApis(params = { messages: {} }) {
  * @return {Promise<void>}
  */
 export async function installMocks(platform) {
-    console.log('instaling...')
-    if (window.__playwright) {
-        console.log('instaling... NOE')
-        return console.log('❌ mocked already there')
-    }
+    if (window.__playwright) return console.log('❌ mocked already there')
     if (platform.name === 'windows') {
         windowsMockApis()
     } else if (platform.name === 'ios' || platform.name === 'macos') {

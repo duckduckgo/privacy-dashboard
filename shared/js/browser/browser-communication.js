@@ -9,8 +9,6 @@
 import {
     breakageReportRequestSchema,
     getPrivacyDashboardDataSchema,
-    incomingExtensionMessageSchema,
-    outgoingExtensionMessageSchema,
     refreshAliasResponseSchema,
     setListOptionsSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs'
@@ -18,7 +16,6 @@ import {
     BurnMessage,
     CheckBrokenSiteReportHandledMessage,
     FetchBurnOptions,
-    FetchToggleReportOptions,
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
     SearchMessage,
@@ -31,79 +28,6 @@ import { createTabData } from './utils/request-details.mjs'
 import { Protections } from './utils/protections.mjs'
 
 let channel
-let port
-
-const devtoolsMessageResponseReceived = new EventTarget()
-
-function openPort() {
-    port = chrome.runtime.connect({ name: 'privacy-dashboard' })
-    port.onDisconnect.addListener(openPort)
-    port.onMessage.addListener((message) => {
-        // console.log('did receive raw', message)
-        const parsed = incomingExtensionMessageSchema.safeParse(message)
-        // console.log('did parse into', parsed)
-
-        if (!parsed.success) {
-            return console.warn('the incoming message was not accepted', message)
-        }
-
-        switch (parsed.data.messageType) {
-            case 'response': {
-                const { id, options } = parsed.data
-                // console.log('did send options from', parsed.data)
-                devtoolsMessageResponseReceived.dispatchEvent(new CustomEvent(String(id), { detail: options }))
-                break
-            }
-            case 'toggleReport': {
-                window.location.search = '?screen=toggleReport&opener=dashboard'
-                break
-            }
-            case 'closePopup': {
-                channel.send('updateTabData')
-                break
-            }
-            case 'updateTabData': {
-                channel.send('updateTabData')
-                break
-            }
-            default: {
-                console.warn('unhandled message')
-            }
-        }
-    })
-}
-
-function notify(messageType, options = {}) {
-    port.postMessage({ messageType, options })
-}
-
-/**
- * @param {string} messageType
- * @param {Record<string, any>} [options] optional payload
- * @return {Promise<any>}
- */
-function request(messageType, options = {}) {
-    return new Promise((resolve, reject) => {
-        const outgoing = {
-            messageType,
-            options,
-            id: Math.random(),
-        }
-        const parsed = outgoingExtensionMessageSchema.safeParse(outgoing)
-        if (!parsed.success) {
-            return reject(new Error('invalid message ' + JSON.stringify(outgoing)))
-        }
-        // console.log('Will 👂 for', outgoing.id)
-        devtoolsMessageResponseReceived.addEventListener(
-            String(outgoing.id),
-            (/** @type {any} */ evt) => {
-                resolve(evt.detail)
-            },
-            { once: true }
-        )
-        port.postMessage(outgoing)
-    })
-}
 
 export function setup() {
     setupColorScheme()
@@ -142,10 +66,33 @@ export async function fetch(message) {
     if (message instanceof SetBurnDefaultOption) {
         return setBurnDefaultOption(message)
     }
-    if (message instanceof FetchToggleReportOptions) {
-        return getToggleReportOptions()
+    return new Promise((resolve) => {
+        // console.log('🚀 [OUTGOING]', JSON.stringify(message, null, 2))
+        window.chrome.runtime.sendMessage(message, (result) => {
+            // console.log('🚀✅ [RESPONSE]', JSON.stringify(result, null, 2))
+            resolve(result)
+        })
+    })
+}
+
+/**
+ * @param {string} name
+ * @param [data]
+ * @returns {Promise<any>}
+ */
+function toExtensionMessage(name, data) {
+    const outgoing = {
+        messageType: name,
+        options: data,
     }
-    return Promise.reject(new Error('unhandled message: ' + JSON.stringify(message)))
+    return new Promise((resolve) => {
+        window.chrome.runtime.sendMessage(outgoing, (result) => {
+            if (window.chrome.runtime.lastError) {
+                console.error('window.chrome.runtime.lastError', window.chrome.runtime.lastError)
+            }
+            resolve(result)
+        })
+    })
 }
 
 /**
@@ -156,7 +103,7 @@ export async function fetch(message) {
  * @example
  *
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'submitBrokenSiteReport',
  *    options: { category: "videos", description: "something was broken :(" }
  * })
@@ -164,7 +111,7 @@ export async function fetch(message) {
  */
 export async function submitBrokenSiteReport(report) {
     const parsedInput = breakageReportRequestSchema.parse(report)
-    notify('submitBrokenSiteReport', parsedInput)
+    toExtensionMessage('submitBrokenSiteReport', parsedInput)
 }
 
 /**
@@ -175,7 +122,7 @@ export async function submitBrokenSiteReport(report) {
  * @example
  *
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'setLists',
  *    options: {
  *      lists: [
@@ -196,7 +143,7 @@ export async function submitBrokenSiteReport(report) {
  */
 export async function setLists(options) {
     const parsedInput = setListOptionsSchema.parse(options)
-    return notify('setLists', parsedInput)
+    return toExtensionMessage('setLists', parsedInput)
 }
 
 /**
@@ -206,13 +153,13 @@ export async function setLists(options) {
  *
  * @example
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'refreshAlias',
  * })
  * ```
  */
 export async function refreshAlias() {
-    const result = await request('refreshAlias')
+    const result = await toExtensionMessage('refreshAlias')
     return refreshAliasResponseSchema.parse(result)
 }
 
@@ -223,7 +170,7 @@ export async function refreshAlias() {
  *
  * @example
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'search',
  *    options: {
  *        term: 'nike'
@@ -232,7 +179,7 @@ export async function refreshAlias() {
  * ```
  */
 export async function search(options) {
-    return notify('search', options)
+    return toExtensionMessage('search', options)
 }
 
 /**
@@ -242,13 +189,13 @@ export async function search(options) {
  *
  * @example
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'openOptions'
  * })
  * ```
  */
 export async function openOptions() {
-    return notify('openOptions')
+    return toExtensionMessage('openOptions')
 }
 
 /**
@@ -256,29 +203,14 @@ export async function openOptions() {
  * @return {Promise<import('../../../schema/__generated__/schema.types').FireButtonData>}
  * @example
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'getBurnOptions',
  *    options: {}
  * })
  * ```
  */
 export function getBurnOptions() {
-    return request('getBurnOptions')
-}
-
-/**
- * @category Dashboard -> Extension Messages
- * @return {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
- * @example
- * ```javascript
- * port.postMessage({
- *    messageType: 'getToggleReportOptions',
- *    options: {}
- * })
- * ```
- */
-export function getToggleReportOptions() {
-    return request('getToggleReportOptions')
+    return toExtensionMessage('getBurnOptions')
 }
 
 /**
@@ -286,7 +218,7 @@ export function getToggleReportOptions() {
  * @param {SetBurnDefaultOption} message
  * @example
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'setBurnDefaultOption',
  *    options: {
  *        defaultOption: "CurrentSite"
@@ -295,7 +227,7 @@ export function getToggleReportOptions() {
  * ```
  */
 export function setBurnDefaultOption(message) {
-    return request('setBurnDefaultOption', message)
+    return toExtensionMessage('setBurnDefaultOption', message)
 }
 
 /**
@@ -303,7 +235,7 @@ export function setBurnDefaultOption(message) {
  * @category Dashboard -> Extension Messages
  * @example
  * ```javascript
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'doBurn'
  * })
  * ```
@@ -316,7 +248,7 @@ export async function doBurn(message) {
     if (!permissionRequestGranted) {
         throw new Error('Permission not granted')
     }
-    return notify('doBurn', message)
+    return toExtensionMessage('doBurn', message)
 }
 
 /**
@@ -326,7 +258,7 @@ export async function doBurn(message) {
  *
  * @example
  * ```js
- * port.postMessage({
+ * window.chrome.runtime.sendMessage({
  *    messageType: 'getPrivacyDashboardData',
  *    options: {
  *        tabId: 99234
@@ -335,12 +267,23 @@ export async function doBurn(message) {
  * ```
  */
 export async function getPrivacyDashboardData(tabId) {
-    return request('getPrivacyDashboardData', { tabId })
+    return toExtensionMessage('getPrivacyDashboardData', { tabId })
 }
 
 export function backgroundMessage(_channel) {
     channel = _channel
-    openPort()
+    // listen for messages from background and
+    // notify subscribers
+    window.chrome.runtime.onMessage.addListener((req, sender) => {
+        if (sender.id !== window.chrome.runtime.id) {
+            return
+        }
+        // console.log('🌍 [INCOMING window.chrome.runtime.onMessage]', req)
+        // todo(Shane): document these extension -> dashboard messages
+        if (req.updateTabData) channel.send('updateTabData')
+        if (req.didResetTrackersData) channel.send('updateTabData')
+        if (req.closePopup) window.close()
+    })
 }
 
 /**
@@ -383,9 +326,6 @@ export async function getBackgroundTabData() {
             emailProtectionUserData,
             fireButton,
         }
-    } else {
-        console.log('getPrivacyDashboardDataSchema failed', parsedMessageData.error)
-        console.log('getPrivacyDashboardDataSchema failed: ', JSON.stringify(resp))
     }
 
     if (!window.__playwright) {
