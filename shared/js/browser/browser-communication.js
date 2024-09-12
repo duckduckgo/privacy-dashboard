@@ -21,7 +21,9 @@ import {
     FetchToggleReportOptions,
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
+    RejectToggleBreakageReport,
     SearchMessage,
+    SendToggleBreakageReport,
     SetBurnDefaultOption,
     SetListsMessage,
     setupColorScheme,
@@ -142,6 +144,12 @@ export async function fetch(message) {
     if (message instanceof SetBurnDefaultOption) {
         return setBurnDefaultOption(message)
     }
+    if (message instanceof SendToggleBreakageReport) {
+        return sendToggleReport()
+    }
+    if (message instanceof RejectToggleBreakageReport) {
+        return rejectToggleReport()
+    }
     if (message instanceof FetchToggleReportOptions) {
         return getToggleReportOptions()
     }
@@ -249,6 +257,38 @@ export async function search(options) {
  */
 export async function openOptions() {
     return notify('openOptions')
+}
+
+/**
+ * {@inheritDoc common.sendToggleReport}
+ * @type {import("./common.js").sendToggleReport}
+ * @category Dashboard -> Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'sendToggleReport'
+ * })
+ * ```
+ */
+export async function sendToggleReport() {
+    return notify('sendToggleReport')
+}
+
+/**
+ * {@inheritDoc common.rejectToggleReport}
+ * @type {import("./common.js").rejectToggleReport}
+ * @category Dashboard -> Extension Messages
+ *
+ * @example
+ * ```javascript
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'rejectToggleReport'
+ * })
+ * ```
+ */
+export async function rejectToggleReport() {
+    return notify('rejectToggleReport')
 }
 
 /**
