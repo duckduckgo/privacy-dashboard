@@ -3,6 +3,8 @@ import { forwardConsole, playTimeline } from './helpers'
 import { Mocks } from './Mocks'
 import { AltBreakageFlows } from './AltBreakageFlows'
 import { Nav } from './Nav'
+import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
+import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs'
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]')
@@ -216,7 +218,7 @@ export class DashboardPage {
         const dash = new DashboardPage(page, { name: 'android' })
         await dash.withMarker()
         await dash.loadPage()
-        await dash.withMocks()
+        await dash.mocks.install()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
     }
@@ -232,7 +234,7 @@ export class DashboardPage {
         const screen = opts?.screen || 'primaryScreen'
         const dash = new DashboardPage(page, { name: 'windows' })
         await dash.withMarker()
-        await dash.withMocks()
+        await dash.mocks.install()
         await dash.loadPage({ screen })
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -240,12 +242,20 @@ export class DashboardPage {
 
     /**
      * @param {import("@playwright/test").Page} page
+     * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} initial
      * @returns {Promise<DashboardPage>}
      */
-    static async browser(page) {
+    static async browser(page, initial = testDataStates.empty) {
         const dash = new DashboardPage(page, { name: 'browser' })
         await dash.withMarker()
-        await dash.withMocks()
+
+        // ensure the very first call gives a response
+        const messages = {}
+        messages.getBurnOptions = initial.toBurnOptions()
+        messages.getPrivacyDashboardData = initial.toExtensionDashboardData()
+
+        await page.addInitScript(mockBrowserApis, { messages })
+
         await dash.loadPage()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -271,7 +281,7 @@ export class DashboardPage {
         const dash = new DashboardPage(page, { name: opts?.platform ?? 'ios' })
         await dash.withMarker()
         await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories })
-        await dash.withMocks()
+        await dash.mocks.install()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
     }
@@ -280,14 +290,6 @@ export class DashboardPage {
         await this.page.addInitScript(() => {
             return (window.__ddg_integration_test = true)
         })
-    }
-
-    /**
-     * @returns {Promise<DashboardPage>}
-     */
-    async withMocks() {
-        await this.mocks.install()
-        return this
     }
 
     /**
@@ -601,7 +603,7 @@ export class DashboardPage {
     }
 
     async clicksWebsiteNotWorking() {
-        await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 1000 })
+        await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 5000 })
     }
     async showsBreakageForm() {
         await this.page.getByText('Submitting an anonymous').waitFor({ timeout: 5000 })
