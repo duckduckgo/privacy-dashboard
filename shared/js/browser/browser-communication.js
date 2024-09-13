@@ -68,6 +68,10 @@ function openPort() {
                 channel.send('updateTabData')
                 break
             }
+            case 'didResetTrackersData': {
+                channel.send('updateTabData')
+                break
+            }
             default: {
                 console.warn('unhandled message')
             }

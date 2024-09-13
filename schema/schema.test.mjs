@@ -2,6 +2,7 @@ import { describe, it } from 'node:test'
 import {
     closeMessageParamsSchema,
     cookiePromptManagementStatusSchema,
+    incomingDidResetTrackersDataSchema,
     localeSettingsSchema,
     protectionsStatusSchema,
     requestDataSchema,
@@ -44,5 +45,16 @@ describe('__fixtures__', () => {
     })
     it('validates close message on webkit', () => {
         closeMessageParamsSchema.parse(webkitClose)
+    })
+})
+
+describe('ad-hoc tests', () => {
+    it('messaging parsing can handle additional/unused keys', () => {
+        incomingDidResetTrackersDataSchema.parse({
+            messageType: 'didResetTrackersData',
+            options: {
+                resetDate: 123,
+            },
+        })
     })
 })

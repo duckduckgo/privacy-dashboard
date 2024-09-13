@@ -4577,7 +4577,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, phishingStatusSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, webBreakageFormSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema, incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, outgoingExtensionMessageSchema, dataItemIdSchema, incomingExtensionMessageSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, phishingStatusSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, webBreakageFormSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema, incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema, outgoingExtensionMessageSchema, dataItemIdSchema, incomingExtensionMessageSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -4735,13 +4735,16 @@
       incomingClosePopupSchema = z3.object({
         messageType: z3.literal("closePopup")
       });
+      incomingDidResetTrackersDataSchema = z3.object({
+        messageType: z3.literal("didResetTrackersData")
+      });
       outgoingExtensionMessageSchema = z3.object({
         messageType: z3.string(),
         id: z3.number().optional(),
         options: z3.object({})
       });
       dataItemIdSchema = z3.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
-      incomingExtensionMessageSchema = z3.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema]);
+      incomingExtensionMessageSchema = z3.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
       detectedRequestSchema = z3.object({
         url: z3.string(),
         eTLDplus1: z3.string().optional(),
@@ -12789,6 +12792,10 @@
           break;
         }
         case "updateTabData": {
+          channel.send("updateTabData");
+          break;
+        }
+        case "didResetTrackersData": {
           channel.send("updateTabData");
           break;
         }

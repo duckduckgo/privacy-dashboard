@@ -49,6 +49,17 @@
                     "const": "closePopup"
                 }
             }
+        },
+        {
+            "type": "object",
+            "title": "IncomingDidResetTrackersData",
+            "required": ["messageType"],
+            "properties": {
+                "messageType": {
+                    "type": "string",
+                    "const": "didResetTrackersData"
+                }
+            }
         }
     ]
 }

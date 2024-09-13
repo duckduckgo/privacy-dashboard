@@ -155,7 +155,8 @@ export type IncomingExtensionMessage =
   | IncomingResponse
   | IncomingToggleReport
   | IncomingUpdateTabData
-  | IncomingClosePopup;
+  | IncomingClosePopup
+  | IncomingDidResetTrackersData;
 
 /**
  * This describes all of the top-level generated types
@@ -581,6 +582,9 @@ export interface IncomingUpdateTabData {
 }
 export interface IncomingClosePopup {
   messageType: "closePopup";
+}
+export interface IncomingDidResetTrackersData {
+  messageType: "didResetTrackersData";
 }
 export interface OutgoingExtensionMessage {
   messageType: string;

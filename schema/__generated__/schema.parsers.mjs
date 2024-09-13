@@ -208,6 +208,10 @@ export const incomingClosePopupSchema = z.object({
     messageType: z.literal("closePopup")
 });
 
+export const incomingDidResetTrackersDataSchema = z.object({
+    messageType: z.literal("didResetTrackersData")
+});
+
 export const outgoingExtensionMessageSchema = z.object({
     messageType: z.string(),
     id: z.number().optional(),
@@ -216,7 +220,7 @@ export const outgoingExtensionMessageSchema = z.object({
 
 export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
 
-export const incomingExtensionMessageSchema = z.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema]);
+export const incomingExtensionMessageSchema = z.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
 
 export const detectedRequestSchema = z.object({
     url: z.string(),
