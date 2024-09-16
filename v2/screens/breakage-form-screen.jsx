@@ -6,7 +6,7 @@ import { DomNode } from '../dom-node'
 import { useMemo, useState } from 'preact/hooks'
 import { useClose, useData, useFeatures, useSendReport, useToggle } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
-import { Close, Done, SecondaryTopNav, TopNav } from '../components/top-nav'
+import { Back, Close, Done, SecondaryTopNav, TopNav } from '../components/top-nav'
 import { useNav } from '../navigation'
 import { platformSwitch } from '../../shared/js/ui/environment-check'
 import { createBreakageFeaturesFrom } from '../breakage-categories'
@@ -51,6 +51,7 @@ export function BreakageFormScreen({ includeToggle }) {
     if (!canPop) {
         topNav = platformSwitch({
             ios: () => <TopNav done={<Done onClick={onClose} />} />,
+            android: () => <TopNav back={<Back onClick={onClose} />} />,
             default: () => <TopNav done={<Close onClick={onClose} />} />,
         })
     }
@@ -92,7 +93,10 @@ export function BreakageFormScreen({ includeToggle }) {
                         before={
                             <div className="form__select breakage-form__input--dropdown">
                                 <select name="category">
-                                    <option value="">{ns.report('pickYourIssueFromTheList.title')}</option>$
+                                    <option value="" selected disabled>
+                                        {ns.report('pickYourIssueFromTheList.title')}
+                                    </option>
+                                    $
                                     {randomised.map(([key, value]) => {
                                         return <option value={key}>{value}</option>
                                     })}

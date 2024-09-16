@@ -67,6 +67,23 @@ test.describe('Breakage form', () => {
         await dash.clicksWebsiteNotWorking()
         await dash.mocks.calledForShowBreakageForm()
     })
+    test('shows breakage form only', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'breakageForm' })
+        await dash.addState([testDataStates.google])
+        await dash.screenshot('breakage-form-only.png')
+        await dash.breakageFormIsVisible()
+        await dash.screenshot('screen-breakage-form.png')
+        await dash.showsOnlyBackButton()
+    })
+    test('shows breakage form without toggle (promptBreakageForm)', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'promptBreakageForm' })
+        await dash.addState([testDataStates.google])
+        await dash.promptBreakageFormIsVisible()
+        await dash.toggleIsAbsent()
+        await dash.screenshot('breakage-form-prompt.png')
+    })
 })
 
 test.describe('Close', () => {

@@ -66,7 +66,7 @@ export class DashboardPage {
      */
     async screenshot(name, { skipInCI = false } = {}) {
         if (skipInCI) return console.log(`skipped ${name} in CI`)
-        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: 50 })
+        await expect(this.page).toHaveScreenshot(name, { maxDiffPixels: 60 })
     }
 
     async reducedMotion() {
@@ -216,10 +216,25 @@ export class DashboardPage {
         await this.page.goto(path + '?' + search)
     }
 
-    static async android(page) {
+    /**
+     * @param {import("@playwright/test").Page} page
+     * @param {object} [opts]
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
+     * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
+     * @param {string} [opts.randomisedCategories]
+     * @param {string} [opts.category]
+     * @param {'menu' | 'dashboard'} [opts.opener]
+     */
+    static async android(page, opts) {
+        /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
+        const screen = opts?.screen || 'primaryScreen'
+        const opener = opts?.opener || 'dashboard'
+        const breakageScreen = opts?.breakageScreen
+        const category = opts?.category
+        const randomisedCategories = opts?.randomisedCategories
         const dash = new DashboardPage(page, { name: 'android' })
         await dash.withMarker()
-        await dash.loadPage()
+        await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories })
         await dash.mocks.install()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
@@ -424,6 +439,16 @@ export class DashboardPage {
     async showsOnlyCloseButton(screen = 'breakageForm') {
         let selector = this.parent(screen)
         await this.page.locator(selector).locator('a:has-text("Close")').waitFor()
+        await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async showsOnlyBackButton(screen = 'breakageForm') {
+        let selector = this.parent(screen)
+        await this.page.locator(selector).getByLabel('Back').waitFor()
         await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
     }
 

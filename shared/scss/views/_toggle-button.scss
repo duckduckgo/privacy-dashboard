@@ -33,8 +33,21 @@ body {
     }
 
     &.environment--android {
-        --toggle-width: 36px;
-        --toggle-height: 20px;
+        --toggle-width: 51px;
+        --toggle-height: 31px;
+        --toggle-spinner-size: 31px;
+
+        --handle-size: 24px;
+        --handle-offset: 4px;
+        --handle-shadow: none;
+
+        --track-color: #3969ef;
+        --track-color-off: rgba(136, 136, 136, 0.5);
+
+        &.body--theme-dark {
+            --track-color: #7295f6;
+            --track-color-off: rgba(204, 204, 204, 0.5);
+        }
     }
 
     &.environment--windows {

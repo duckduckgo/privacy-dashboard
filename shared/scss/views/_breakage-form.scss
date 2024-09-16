@@ -223,3 +223,6 @@
         line-height: 20px;
     }
 }
+
+/* Android-specific styles */
+@import './breakage-form-android';
