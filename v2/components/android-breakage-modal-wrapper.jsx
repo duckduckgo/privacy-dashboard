@@ -96,6 +96,8 @@ export function AndroidBreakageDialogWrapper({ items, onSelect }) {
             items={items}
             ref={ref}
             title={ns.report('pickYourIssueFromTheList.title')}
+            cancelText={ns.site('navigationCancel.title')}
+            okText={'OK'}
         ></ddg-android-breakage-dialog>
     )
 }

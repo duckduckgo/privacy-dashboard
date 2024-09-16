@@ -6,6 +6,8 @@ declare global {
             'ddg-android-breakage-dialog': {
                 items: [string, string][]
                 title: string
+                cancelText: string
+                okText: string
                 ref: import('preact').RefObject<AndroidBreakageDialog | null>
             }
         }

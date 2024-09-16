@@ -17,11 +17,15 @@ export class AndroidBreakageDialog extends LitElement {
         title: {
             type: String,
         },
+        opened: {
+            type: Boolean,
+        },
     }
 
     title = 'please set the title prop'
     /** @type {[string, string][]} */
     items = []
+    opened = false
 
     /**
      * Every time we show the modal, reset the form to
@@ -95,7 +99,7 @@ export class AndroidBreakageDialog extends LitElement {
                     })}
                 </form>
                 <div slot="actions">
-                    <md-text-button form="form" value="cancel">LOL2</md-text-button>
+                    <md-text-button form="form" value="cancel">Cancel</md-text-button>
                     <md-filled-button form="form" value="ok">OK</md-filled-button>
                 </div>
             </md-dialog>

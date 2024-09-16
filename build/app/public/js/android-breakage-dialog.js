@@ -4288,6 +4288,7 @@
       __publicField(this, "title", "please set the title prop");
       /** @type {[string, string][]} */
       __publicField(this, "items", []);
+      __publicField(this, "opened", false);
     }
     /**
      * Every time we show the modal, reset the form to
@@ -4356,7 +4357,7 @@
       })}
                 </form>
                 <div slot="actions">
-                    <md-text-button form="form" value="cancel">LOL2</md-text-button>
+                    <md-text-button form="form" value="cancel">Cancel</md-text-button>
                     <md-filled-button form="form" value="ok">OK</md-filled-button>
                 </div>
             </md-dialog>
@@ -4369,6 +4370,9 @@
     },
     title: {
       type: String
+    },
+    opened: {
+      type: Boolean
     }
   });
   __publicField(AndroidBreakageDialog, "styles", [

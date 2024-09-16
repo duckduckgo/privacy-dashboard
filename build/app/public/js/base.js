@@ -16586,7 +16586,9 @@
       {
         items,
         ref,
-        title: ns.report("pickYourIssueFromTheList.title")
+        title: ns.report("pickYourIssueFromTheList.title"),
+        cancelText: ns.site("navigationCancel.title"),
+        okText: "OK"
       }
     );
   }
