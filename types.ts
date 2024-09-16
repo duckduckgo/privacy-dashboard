@@ -19,6 +19,8 @@ interface Window {
     onChangeCertificateData: any
     onIsPendingUpdates: any
 
+    __ddg_did_load?: string[]
+
     /**
      * Android's Window API
      * TODO: type these methods

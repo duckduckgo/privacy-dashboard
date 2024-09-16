@@ -21,5 +21,16 @@
         "jsxFactory": "h",
         "jsxFragmentFactory": "Fragment"
     },
-    "include": ["types.ts", "schema", "e2e", "scripts", "shared/js", "integration-tests", "guides", "debugger", "v2"]
+    "include": [
+        "types.ts",
+        "global.types.d.ts",
+        "schema",
+        "e2e",
+        "scripts",
+        "shared/js",
+        "integration-tests",
+        "guides",
+        "debugger",
+        "v2"
+    ]
 }

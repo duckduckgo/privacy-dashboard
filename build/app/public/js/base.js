@@ -5192,6 +5192,9 @@
     return n2.__v.__b - l3.__v.__b;
   }, x.__r = 0, e = 0;
 
+  // node_modules/preact/devtools/dist/devtools.module.js
+  "undefined" != typeof window && window.__PREACT_DEVTOOLS__ && window.__PREACT_DEVTOOLS__.attachPreact("10.18.1", l, { Fragment: k, Component: b });
+
   // v2/navigation.jsx
   var import_classnames = __toESM(require_classnames());
 
@@ -16435,6 +16438,159 @@
     return arr2;
   }
 
+  // v2/components/custom-element-loader.jsx
+  function CustomElementLoader(props) {
+    const [state, dispatch] = s2(reducer, { status: "idle" });
+    p2(() => {
+      if (state.status === "idle") {
+        if (window.__ddg_did_load && window.__ddg_did_load.includes(props.element)) {
+          dispatch({ kind: "skip-loading" });
+        } else {
+          dispatch({ kind: "load-script", element: props.element });
+        }
+        return;
+      }
+      if (state.status === "script-ready") {
+        dispatch({ kind: "load-element" });
+        customElements.whenDefined(props.element).then(() => {
+          window.__ddg_did_load ??= [];
+          window.__ddg_did_load.push(props.element);
+          dispatch({ kind: "element-loaded" });
+        });
+      }
+    }, [state.status, props.src, props.element]);
+    if (state.status === "element-ready") {
+      return props.children;
+    }
+    if (state.status === "script-pending") {
+      return /* @__PURE__ */ y("script", { src: props.src, onLoad: () => dispatch({ kind: "script-loaded" }) });
+    }
+    return (
+      /** @type {any} */
+      null
+    );
+  }
+  function reducer(state, event) {
+    console.log("incoming", event, "current", state);
+    switch (state.status) {
+      case "idle": {
+        switch (event.kind) {
+          case "load-script": {
+            return { ...state, status: (
+              /** @type {const} */
+              "script-pending"
+            ) };
+          }
+          case "skip-loading": {
+            return { ...state, status: (
+              /** @type {const} */
+              "element-ready"
+            ) };
+          }
+        }
+        break;
+      }
+      case "script-pending": {
+        switch (event.kind) {
+          case "script-loaded": {
+            return { ...state, status: (
+              /** @type {const} */
+              "script-ready"
+            ) };
+          }
+        }
+        break;
+      }
+      case "script-ready": {
+        switch (event.kind) {
+          case "load-element": {
+            return { ...state, status: (
+              /** @type {const} */
+              "element-pending"
+            ) };
+          }
+        }
+        break;
+      }
+      case "element-pending": {
+        switch (event.kind) {
+          case "element-loaded": {
+            return { ...state, status: (
+              /** @type {const} */
+              "element-ready"
+            ) };
+          }
+        }
+      }
+    }
+    return state;
+  }
+
+  // v2/components/android-breakage-modal-wrapper.jsx
+  var DDG_DIALOG_NAME = "ddg-android-breakage-dialog";
+  var DDG_DIALOG_PATH = "../public/js/android-breakage-dialog.js";
+  function FormSelectElementWithDialog() {
+    const platformFeatures = useFeatures();
+    const randomised = F(() => {
+      const f3 = createBreakageFeaturesFrom(platformFeatures);
+      return f3.categoryList();
+    }, [platformFeatures]);
+    const selectRef = _(null);
+    function onPointerDown() {
+      const elem = document.querySelector(DDG_DIALOG_NAME);
+      if (!elem)
+        return console.warn("could not find custom element", "ddg-android-breakage-dialog");
+      if (!selectRef.current)
+        return console.warn("could not find select ref");
+      elem.show(selectRef.current.value);
+    }
+    return /* @__PURE__ */ y(k, null, /* @__PURE__ */ y(CustomElementLoader, { src: DDG_DIALOG_PATH, element: DDG_DIALOG_NAME }, /* @__PURE__ */ y(
+      AndroidBreakageDialogWrapper,
+      {
+        items: randomised,
+        onSelect: (value) => {
+          if (!selectRef.current)
+            return;
+          selectRef.current.value = value;
+        }
+      }
+    )), /* @__PURE__ */ y("div", { className: "form__select breakage-form__input--dropdown", onPointerDown }, /* @__PURE__ */ y("select", { name: "category", ref: selectRef }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), randomised.map(([key, value]) => {
+      return /* @__PURE__ */ y("option", { value: key }, value);
+    }))));
+  }
+  function AndroidBreakageDialogWrapper({ items, onSelect }) {
+    const ref = _(null);
+    p2(() => {
+      const controller = new AbortController();
+      ref.current?.addEventListener(
+        "did-select",
+        (e3) => {
+          const selection = (
+            /** @type {{value: string}} */
+            e3.detail
+          );
+          const matched = items.find(([name]) => name === selection.value);
+          if (!matched)
+            throw new Error("value did not match a variant");
+          const [value] = matched;
+          onSelect(value);
+        },
+        { signal: controller.signal }
+      );
+      return () => {
+        return controller.abort();
+      };
+    }, []);
+    return /* @__PURE__ */ y(
+      "ddg-android-breakage-dialog",
+      {
+        items,
+        ref,
+        title: ns.report("pickYourIssueFromTheList.title")
+      }
+    );
+  }
+
   // v2/screens/breakage-form-screen.jsx
   function BreakageFormScreen({ includeToggle }) {
     const data = useData();
@@ -16443,7 +16599,6 @@
     const nav = useNav();
     const canPop = nav.canPop();
     const sendReport = useSendReport();
-    const platformFeatures = useFeatures();
     const [state, setState] = h2(
       /** @type {"idle" | "sent"} */
       "idle"
@@ -16469,10 +16624,6 @@
         default: () => /* @__PURE__ */ y(TopNav, { done: /* @__PURE__ */ y(Close, { onClick: onClose }) })
       });
     }
-    const randomised = F(() => {
-      const f3 = createBreakageFeaturesFrom(platformFeatures);
-      return f3.categoryList();
-    }, [platformFeatures]);
     return /* @__PURE__ */ y("div", { className: "breakage-form page-inner" }, topNav2, /* @__PURE__ */ y("div", { className: "breakage-form__inner", "data-state": state }, includeToggle && /* @__PURE__ */ y("div", { class: "header header--breakage" }, /* @__PURE__ */ y(
       ProtectionHeader,
       {
@@ -16481,15 +16632,17 @@
         toggle: onToggle,
         "data-testid": "breakage-form-protection-header"
       }
-    )), /* @__PURE__ */ y("div", { className: "key-insight key-insight--breakage padding-x-double" }, /* @__PURE__ */ y(DomNode, null, icon), /* @__PURE__ */ y("div", { className: "breakage-form__advise" }, /* @__PURE__ */ y("p", { className: "token-title-3" }, headerText)), /* @__PURE__ */ y("div", { className: "thanks" }, /* @__PURE__ */ y("p", { className: "thanks__primary" }, ns.report("thankYou.title")), /* @__PURE__ */ y("p", { className: "thanks__secondary" }, ns.report("yourReportWillHelpDesc.title")))), /* @__PURE__ */ y("div", { className: "breakage-form__content padding-x-double" }, /* @__PURE__ */ y(
-      FormElement,
-      {
-        onSubmit: submit,
-        before: /* @__PURE__ */ y("div", { className: "form__select breakage-form__input--dropdown" }, /* @__PURE__ */ y("select", { name: "category" }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), "$", randomised.map(([key, value]) => {
-          return /* @__PURE__ */ y("option", { value: key }, value);
-        })))
-      }
-    )), /* @__PURE__ */ y("div", { className: "breakage-form__footer padding-x-double token-breakage-form-body" }, ns.report("reportsAreAnonymousDesc.title"))));
+    )), /* @__PURE__ */ y("div", { className: "key-insight key-insight--breakage padding-x-double" }, /* @__PURE__ */ y(DomNode, null, icon), /* @__PURE__ */ y("div", { className: "breakage-form__advise" }, /* @__PURE__ */ y("p", { className: "token-title-3" }, headerText)), /* @__PURE__ */ y("div", { className: "thanks" }, /* @__PURE__ */ y("p", { className: "thanks__primary" }, ns.report("thankYou.title")), /* @__PURE__ */ y("p", { className: "thanks__secondary" }, ns.report("yourReportWillHelpDesc.title")))), /* @__PURE__ */ y("div", { className: "breakage-form__content padding-x-double" }, /* @__PURE__ */ y(FormElement, { onSubmit: submit, before: isAndroid() ? /* @__PURE__ */ y(FormSelectElementWithDialog, null) : /* @__PURE__ */ y(FormSelectElement, null) })), /* @__PURE__ */ y("div", { className: "breakage-form__footer padding-x-double token-breakage-form-body" }, ns.report("reportsAreAnonymousDesc.title"))));
+  }
+  function FormSelectElement() {
+    const platformFeatures = useFeatures();
+    const randomised = F(() => {
+      const f3 = createBreakageFeaturesFrom(platformFeatures);
+      return f3.categoryList();
+    }, [platformFeatures]);
+    return /* @__PURE__ */ y("div", { className: "form__select breakage-form__input--dropdown" }, /* @__PURE__ */ y("select", { name: "category" }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), randomised.map(([key, value]) => {
+      return /* @__PURE__ */ y("option", { value: key }, value);
+    })));
   }
   function FormElement({ onSubmit, before, after, placeholder }) {
     let bullet = "\n \u2022 ";

@@ -1058,7 +1058,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .top-nav {
   text-align: center;
   position: fixed;
-  z-index: 5;
+  z-index: 1;
   width: 100%;
   height: var(--nav-height);
   background: var(--page-bg);
@@ -3313,6 +3313,12 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   --form-select-color: rgba(0, 0, 0, 0.6);
   --form-select-border-color: rgba(0, 0, 0, 0.3);
   --form-select-chevron: url("../../img/refresh-assets/chevron.svg");
+  /**
+   * prevent the empty element from taking any screen height
+   */
+}
+.environment--android ddg-android-breakage-dialog {
+  position: absolute;
 }
 .environment--android .breakage-form .form__submit {
   height: calc(var(--size-unit) * 3);
@@ -3328,6 +3334,10 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   color: var(--form-select-color);
   font-size: var(--size-unit);
   padding: var(--size-unit);
+  /**
+   * By setting this, android will never try to invoke the native select menu
+   */
+  pointer-events: none;
 }
 .environment--android .breakage-form .breakage-form__input--dropdown::after {
   content: "";
