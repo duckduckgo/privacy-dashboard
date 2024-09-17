@@ -4346,7 +4346,7 @@
       return ke`
             <md-dialog @close=${this._onClose} @opened=${this._didOpen} @closed=${this._didClose} data-opened=${String(this.opened)}>
                 <div slot="headline">${this.title}</div>
-                <form id="form" slot="content" method="dialog">
+                <form slot="content" id="form" method="dialog">
                     ${oo(this.items, ([value, title]) => {
         return ke`
                             <label>
@@ -4397,10 +4397,10 @@
                 --md-sys-color-primary: #3969ef;
                 --md-radio-icon-color: #3969ef;
             }
-            md-dialog md-radio {
+            md-dialog label {
                 pointer-events: none;
             }
-            md-dialog[data-opened='true'] md-radio {
+            md-dialog[data-opened='true'] label {
                 pointer-events: unset;
             }
             md-filled-button {
