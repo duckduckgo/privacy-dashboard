@@ -6,7 +6,7 @@ import { DomNode } from '../dom-node'
 import { useMemo, useState } from 'preact/hooks'
 import { useClose, useData, useFeatures, useSendReport, useToggle } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
-import { Back, Close, Done, SecondaryTopNav, TopNav } from '../components/top-nav'
+import { Back, Close, Done, SecondaryTopNav, Title, TopNav } from '../components/top-nav'
 import { useNav } from '../navigation'
 import { isAndroid, platformSwitch } from '../../shared/js/ui/environment-check'
 import { createBreakageFeaturesFrom } from '../breakage-categories'
@@ -45,13 +45,24 @@ export function BreakageFormScreen({ includeToggle }) {
         setState('sent')
     }
 
-    let topNav = <SecondaryTopNav />
+    let topNav = platformSwitch({
+        android: () => (
+            <SecondaryTopNav>
+                <Title>{ns.site('websiteNotWorkingCta.title')}</Title>
+            </SecondaryTopNav>
+        ),
+        default: () => <SecondaryTopNav />,
+    })
 
     // if we can't go back, swap out the nav
     if (!canPop) {
         topNav = platformSwitch({
             ios: () => <TopNav done={<Done onClick={onClose} />} />,
-            android: () => <TopNav back={<Back onClick={onClose} />} />,
+            android: () => (
+                <TopNav back={<Back onClick={onClose} />}>
+                    <Title>{ns.site('websiteNotWorkingCta.title')}</Title>
+                </TopNav>
+            ),
             default: () => <TopNav done={<Close onClick={onClose} />} />,
         })
     }

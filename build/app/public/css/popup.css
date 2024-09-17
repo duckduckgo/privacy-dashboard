@@ -1164,6 +1164,15 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .environment--ios .top-nav__title:active {
   opacity: 0.5;
 }
+.environment--android .top-nav__title {
+  transform: unset;
+  left: 60px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.environment--android .top-nav__title:active {
+  opacity: 0.5;
+}
 
 .status-list--right .status-list__item {
   padding-left: 0;

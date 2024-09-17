@@ -15197,15 +15197,15 @@
   function TopNav({ back, done, children }) {
     return /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("div", { className: "top-nav" }, back, children, done), /* @__PURE__ */ y("div", { className: "top-nav__spacer" }));
   }
-  function SecondaryTopNav() {
+  function SecondaryTopNav({ children }) {
     const { pop } = useNav();
     const onClose = useClose();
     return platformSwitch({
       ios: () => {
-        return /* @__PURE__ */ y(TopNav, { back: /* @__PURE__ */ y(Back, { onClick: pop }), done: /* @__PURE__ */ y(Done, { onClick: onClose }) });
+        return /* @__PURE__ */ y(TopNav, { back: /* @__PURE__ */ y(Back, { onClick: pop }), done: /* @__PURE__ */ y(Done, { onClick: onClose }) }, children);
       },
       default: () => {
-        return /* @__PURE__ */ y(TopNav, { back: /* @__PURE__ */ y(Back, { onClick: pop }), done: null });
+        return /* @__PURE__ */ y(TopNav, { back: /* @__PURE__ */ y(Back, { onClick: pop }), done: null }, children);
       }
     });
   }
@@ -16647,11 +16647,14 @@
       });
       setState("sent");
     }
-    let topNav2 = /* @__PURE__ */ y(SecondaryTopNav, null);
+    let topNav2 = platformSwitch({
+      android: () => /* @__PURE__ */ y(SecondaryTopNav, null, /* @__PURE__ */ y(Title, null, ns.site("websiteNotWorkingCta.title"))),
+      default: () => /* @__PURE__ */ y(SecondaryTopNav, null)
+    });
     if (!canPop) {
       topNav2 = platformSwitch({
         ios: () => /* @__PURE__ */ y(TopNav, { done: /* @__PURE__ */ y(Done, { onClick: onClose }) }),
-        android: () => /* @__PURE__ */ y(TopNav, { back: /* @__PURE__ */ y(Back, { onClick: onClose }) }),
+        android: () => /* @__PURE__ */ y(TopNav, { back: /* @__PURE__ */ y(Back, { onClick: onClose }) }, /* @__PURE__ */ y(Title, null, ns.site("websiteNotWorkingCta.title"))),
         default: () => /* @__PURE__ */ y(TopNav, { done: /* @__PURE__ */ y(Close, { onClick: onClose }) })
       });
     }

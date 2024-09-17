@@ -141,4 +141,14 @@ body {
             opacity: 0.5;
         }
     }
+
+    .environment--android & {
+        transform: unset;
+        left: 60px;
+        font-size: 17px;
+        font-weight: 500;
+        &:active {
+            opacity: 0.5;
+        }
+    }
 }
