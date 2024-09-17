@@ -4385,7 +4385,6 @@
                 align-items: center;
             }
             md-dialog {
-                pointer-events: none;
                 text-align: left;
 
                 --md-ref-typeface-plain: system, system-ui, Roboto;
@@ -4398,7 +4397,10 @@
                 --md-sys-color-primary: #3969ef;
                 --md-radio-icon-color: #3969ef;
             }
-            md-dialog[data-opened='true'] {
+            md-dialog md-radio {
+                pointer-events: none;
+            }
+            md-dialog[data-opened='true'] md-radio {
                 pointer-events: unset;
             }
             md-filled-button {
