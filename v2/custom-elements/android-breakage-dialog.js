@@ -138,7 +138,7 @@ export class AndroidBreakageDialog extends LitElement {
                     --md-sys-color-on-primary: black;
                     --md-sys-color-on-surface: rgba(255, 255, 255, 0.9);
                     --md-sys-color-on-surface-variant: rgba(255, 255, 255, 0.9);
-                    --md-sys-color-outline-variant: transparent;
+                    --md-sys-color-outline-variant: rgba(255, 255, 255, 0.18);
                 }
             }
 
