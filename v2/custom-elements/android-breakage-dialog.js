@@ -121,21 +121,39 @@ export class AndroidBreakageDialog extends LitElement {
                 --md-ref-typeface-brand: system, system-ui, Roboto;
 
                 --md-dialog-headline-size: 18px;
-                --md-dialog-container-shape: 8px;
+                --md-dialog-container-shape: 12px;
                 --md-dialog-container-color: white;
 
                 --md-sys-color-primary: #3969ef;
+                --md-sys-color-on-primary: white;
                 --md-radio-icon-color: #3969ef;
+                --md-sys-typescale-body-medium-size: 1rem;
             }
+
+            @media screen and (prefers-color-scheme: dark) {
+                md-dialog {
+                    --md-sys-color-primary: #7295f6;
+                    --md-radio-icon-color: #7295f6;
+                    --md-dialog-container-color: #282828;
+                    --md-sys-color-on-primary: black;
+                    --md-sys-color-on-surface: rgba(255, 255, 255, 0.9);
+                    --md-sys-color-on-surface-variant: rgba(255, 255, 255, 0.9);
+                    --md-sys-color-outline-variant: transparent;
+                }
+            }
+
             md-dialog label {
                 pointer-events: none;
             }
+
             md-dialog[data-opened='true'] label {
                 pointer-events: unset;
             }
+
             md-filled-button {
                 --md-filled-button-container-shape: 8px;
             }
+
             md-text-button {
                 --md-text-button-container-shape: 8px;
             }

@@ -16536,7 +16536,27 @@
       return f3.categoryList();
     }, [platformFeatures]);
     const selectRef = _(null);
-    function onPointerDown() {
+    let obj = _({
+      isTap: false,
+      startX: 0,
+      startY: 0
+    });
+    function onPointerDown(event) {
+      obj.current.isTap = true;
+      obj.current.startX = event.clientX;
+      obj.current.startY = event.clientY;
+    }
+    function onPointerMove(event) {
+      const tapThreshold = 10;
+      const deltaX = Math.abs(event.clientX - obj.current.startX);
+      const deltaY = Math.abs(event.clientY - obj.current.startY);
+      if (deltaX > tapThreshold || deltaY > tapThreshold) {
+        obj.current.isTap = false;
+      }
+    }
+    function onPointerUp() {
+      if (!obj.current.isTap)
+        return;
       const elem = document.querySelector(DDG_DIALOG_NAME);
       if (!elem)
         return console.warn("could not find custom element", "ddg-android-breakage-dialog");
@@ -16554,9 +16574,18 @@
           selectRef.current.value = value;
         }
       }
-    )), /* @__PURE__ */ y("div", { className: "form__select breakage-form__input--dropdown", onPointerDown }, /* @__PURE__ */ y("select", { name: "category", ref: selectRef }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), randomised.map(([key, value]) => {
-      return /* @__PURE__ */ y("option", { value: key }, value);
-    }))));
+    )), /* @__PURE__ */ y(
+      "div",
+      {
+        className: "form__select breakage-form__input--dropdown",
+        onPointerDown,
+        onPointerMove,
+        onPointerUp
+      },
+      /* @__PURE__ */ y("select", { name: "category", ref: selectRef }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), randomised.map(([key, value]) => {
+        return /* @__PURE__ */ y("option", { value: key }, value);
+      }))
+    ));
   }
   function AndroidBreakageDialogWrapper({ items, onSelect }) {
     const ref = _(null);

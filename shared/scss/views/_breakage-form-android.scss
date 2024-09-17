@@ -57,6 +57,7 @@
             line-height: 1.25;
             height: calc(var(--size-unit) * 7);
             padding: var(--size-unit);
+            background: none;
         }
 
         .breakage-form__content.padding-x-double {
@@ -71,7 +72,6 @@
         --btn-accent-bg-active: #3969ef;
         --btn-accent-color: rgba(0, 0, 0, 0.84);
 
-        --form-select-bg: rgba(255, 255, 255, 0.12);
         --form-select-color: rgba(255, 255, 255, 0.9);
         --form-select-border-color: rgba(255, 255, 255, 0.3);
         --form-select-chevron: url('../../img/refresh-assets/chevron--light.svg');
