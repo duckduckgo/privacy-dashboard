@@ -5192,9 +5192,6 @@
     return n2.__v.__b - l3.__v.__b;
   }, x.__r = 0, e = 0;
 
-  // node_modules/preact/devtools/dist/devtools.module.js
-  "undefined" != typeof window && window.__PREACT_DEVTOOLS__ && window.__PREACT_DEVTOOLS__.attachPreact("10.18.1", l, { Fragment: k, Component: b });
-
   // v2/navigation.jsx
   var import_classnames = __toESM(require_classnames());
 
