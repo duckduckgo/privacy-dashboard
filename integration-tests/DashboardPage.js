@@ -5,6 +5,7 @@ import { AltBreakageFlows } from './AltBreakageFlows'
 import { Nav } from './Nav'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs'
+import { Extension } from './Extension'
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]')
@@ -38,6 +39,7 @@ export class DashboardPage {
     mocks
     breakage = new AltBreakageFlows(this)
     nav = new Nav(this)
+    extension = new Extension(this)
     /**
      * @param {import("@playwright/test").Page} page
      * @param {import("../shared/js/ui/platform-features.mjs").Platform} platform
@@ -253,6 +255,7 @@ export class DashboardPage {
         const messages = {}
         messages.getBurnOptions = initial.toBurnOptions()
         messages.getPrivacyDashboardData = initial.toExtensionDashboardData()
+        messages.getToggleReportOptions = require('../schema/__fixtures__/toggle-report-screen.json')
 
         await page.addInitScript(mockBrowserApis, { messages })
 

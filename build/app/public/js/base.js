@@ -12775,7 +12775,8 @@
     port.onMessage.addListener((message) => {
       const parsed = incomingExtensionMessageSchema.safeParse(message);
       if (!parsed.success) {
-        return console.warn("the incoming message was not accepted", message);
+        console.warn("the incoming message could not be parsed with `incomingExtensionMessageSchema`", JSON.stringify(message));
+        return;
       }
       switch (parsed.data.messageType) {
         case "response": {
@@ -17027,6 +17028,7 @@
   }
 
   // shared/js/ui/components/toggle-report/toggle-report-provider.jsx
+  init_schema_parsers();
   var ToggleReportContext = G({
     value: (
       /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */
@@ -17055,7 +17057,17 @@
     p2(() => {
       const msg = new FetchToggleReportOptions();
       model.fetch(msg)?.then((data) => {
-        dispatch({ status: "ready", value: data });
+        const parsed = toggleReportScreenSchema.safeParse(data);
+        if (parsed.success) {
+          dispatch({ status: "ready", value: data });
+        } else {
+          console.group("ToggleReportProvider");
+          console.error("the response for FetchToggleReportOptions did not match the schema");
+          console.error("response:", data);
+          console.error("error:", parsed.error.toString());
+          console.groupEnd();
+          dispatch({ status: "error", error: parsed.error.toString() });
+        }
       }).catch((e3) => {
         dispatch({ status: "error", error: e3.toString() });
       });

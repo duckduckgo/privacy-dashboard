@@ -243,6 +243,8 @@ export function mockBrowserApis(params = { messages: {} }) {
         setBurnDefaultOption: {},
         getToggleReportOptions: {},
         getPrivacyDashboardData: {},
+        sendToggleReport: {},
+        rejectToggleReport: {},
         doBurn: {},
         getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
@@ -296,6 +298,7 @@ export function mockBrowserApis(params = { messages: {} }) {
                         if (!handler) throw new Error('no registered handler')
 
                         function respond(response, timeout = 100) {
+                            if (!id) return console.log('not responding since `id` was absent')
                             const responseShape = {
                                 messageType: 'response',
                                 options: structuredClone(response),
@@ -388,6 +391,7 @@ export async function installMocks(platform) {
     if (platform.name === 'browser') {
         messages['getBurnOptions'] = mock.toBurnOptions()
         messages['getPrivacyDashboardData'] = mock.toExtensionDashboardData()
+        messages['getToggleReportOptions'] = toggleReportScreen
     }
     if (platform.name === 'windows') {
         messages['windowsViewModel'] = mock.toWindowsViewModel()

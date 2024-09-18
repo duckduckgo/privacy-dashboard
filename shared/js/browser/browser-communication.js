@@ -46,7 +46,8 @@ function openPort() {
         // console.log('did parse into', parsed)
 
         if (!parsed.success) {
-            return console.warn('the incoming message was not accepted', message)
+            console.warn('the incoming message could not be parsed with `incomingExtensionMessageSchema`', JSON.stringify(message))
+            return
         }
 
         switch (parsed.data.messageType) {

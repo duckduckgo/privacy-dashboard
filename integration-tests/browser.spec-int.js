@@ -2,6 +2,7 @@ import { test } from '@playwright/test'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { DashboardPage } from './DashboardPage'
 import { desktopBreakageForm, toggleFlows } from './utils/common-flows'
+import { forwardConsole } from './helpers'
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -29,24 +30,24 @@ test.describe('Protections toggle (extension specific)', () => {
 })
 
 test.describe('Protections toggle -> simple report screen', () => {
-    test.skip('should reset the page URL when the extension instructs it to', async ({ page }) => {
+    test('shows toggle report + accepts it', async ({ page }) => {
+        forwardConsole(page)
         const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)
         await dash.showsPrimaryScreen()
         await dash.toggleProtectionsOff()
         await dash.mocks.calledForToggleAllowList()
-        await page.evaluate(() => {
-            for (let listener of window.__playwright.listeners || []) {
-                listener(
-                    {
-                        toggleReport: true,
-                    },
-                    { id: 'test' }
-                )
-            }
-        })
-        await page.waitForURL((url) => {
-            return url.searchParams.get('screen') === 'toggleReport'
-        })
+        await dash.extension.triggersToggleReport()
+        await dash.showsInformation()
+        await dash.sendToggleReport()
+    })
+    test('shows toggle report + rejects it', async ({ page }) => {
+        forwardConsole(page)
+        const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)
+        await dash.showsPrimaryScreen()
+        await dash.toggleProtectionsOff()
+        await dash.mocks.calledForToggleAllowList()
+        await dash.extension.triggersToggleReport()
+        await dash.rejectToggleReport()
     })
 })
 

@@ -81,18 +81,45 @@ export class Mocks {
     }
 
     async calledForSendToggleReport() {
-        const out = await this.outgoing({
-            names: ['privacyDashboardSendToggleReport'],
-        })
-        expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
+        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return
+        if (this.platform.name === 'browser') {
+            const calls = await this.outgoing({ names: ['sendToggleReport'] })
+            expect(calls).toMatchObject([
+                [
+                    'sendToggleReport',
+                    {
+                        messageType: 'sendToggleReport',
+                    },
+                ],
+            ])
+        } else {
+            const out = await this.outgoing({
+                names: ['privacyDashboardSendToggleReport'],
+            })
+            expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
+        }
         return
     }
 
     async calledForRejectToggleReport() {
-        const out = await this.outgoing({
-            names: ['privacyDashboardRejectToggleReport'],
-        })
-        expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
+        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return
+        if (this.platform.name === 'browser') {
+            const calls = await this.outgoing({ names: ['rejectToggleReport'] })
+            expect(calls).toMatchObject([
+                [
+                    'rejectToggleReport',
+                    {
+                        messageType: 'rejectToggleReport',
+                    },
+                ],
+            ])
+        } else {
+            // ios/macos
+            const out = await this.outgoing({
+                names: ['privacyDashboardRejectToggleReport'],
+            })
+            expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
+        }
         return
     }
 
