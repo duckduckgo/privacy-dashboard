@@ -4286,6 +4286,8 @@
     constructor() {
       super(...arguments);
       __publicField(this, "title", "please set the title prop");
+      __publicField(this, "okText", "OK");
+      __publicField(this, "cancelText", "Cancel");
       /** @type {[string, string][]} */
       __publicField(this, "items", []);
       __publicField(this, "opened", false);
@@ -4357,8 +4359,8 @@
       })}
                 </form>
                 <div slot="actions">
-                    <md-text-button form="form" value="cancel">Cancel</md-text-button>
-                    <md-filled-button form="form" value="ok">OK</md-filled-button>
+                    <md-text-button form="form" value="cancel">${this.cancelText}</md-text-button>
+                    <md-filled-button form="form" value="ok">${this.okText}</md-filled-button>
                 </div>
             </md-dialog>
         `;
@@ -4368,9 +4370,9 @@
     items: {
       type: Array
     },
-    title: {
-      type: String
-    },
+    title: { type: String },
+    okText: { type: String },
+    cancelText: { type: String },
     opened: {
       type: Boolean
     }

@@ -286,6 +286,10 @@
         "title": "Cancel",
         "note": "Button text for cancel action"
     },
+    "okDialogAction": {
+        "title": "OK",
+        "note": "Text for the button that confirms or accepts the selection in a dialog."
+    },
     "navigationBack": {
         "title": "Back",
         "note": "Aria label and visible text for iOS on top bar navigation"

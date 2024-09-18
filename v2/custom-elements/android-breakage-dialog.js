@@ -14,15 +14,17 @@ export class AndroidBreakageDialog extends LitElement {
         items: {
             type: Array,
         },
-        title: {
-            type: String,
-        },
+        title: { type: String },
+        okText: { type: String },
+        cancelText: { type: String },
         opened: {
             type: Boolean,
         },
     }
 
     title = 'please set the title prop'
+    okText = 'OK'
+    cancelText = 'Cancel'
     /** @type {[string, string][]} */
     items = []
     opened = false
@@ -99,8 +101,8 @@ export class AndroidBreakageDialog extends LitElement {
                     })}
                 </form>
                 <div slot="actions">
-                    <md-text-button form="form" value="cancel">Cancel</md-text-button>
-                    <md-filled-button form="form" value="ok">OK</md-filled-button>
+                    <md-text-button form="form" value="cancel">${this.cancelText}</md-text-button>
+                    <md-filled-button form="form" value="ok">${this.okText}</md-filled-button>
                 </div>
             </md-dialog>
         `
