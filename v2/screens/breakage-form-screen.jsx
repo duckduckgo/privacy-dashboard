@@ -8,7 +8,7 @@ import { useClose, useData, useFeatures, useSendReport, useToggle } from '../dat
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
 import { Back, Close, Done, SecondaryTopNav, Title, TopNav } from '../components/top-nav'
 import { useNav } from '../navigation'
-import { isAndroid, platformSwitch } from '../../shared/js/ui/environment-check'
+import { platformSwitch } from '../../shared/js/ui/environment-check'
 import { createBreakageFeaturesFrom } from '../breakage-categories'
 import { FormSelectElementWithDialog } from '../components/android-breakage-modal-wrapper'
 
@@ -23,6 +23,7 @@ export function BreakageFormScreen({ includeToggle }) {
     const nav = useNav()
     const canPop = nav.canPop()
     const sendReport = useSendReport()
+    const platformFeatures = useFeatures()
     const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
 
     const icon = largeHeroIcon({
@@ -93,7 +94,16 @@ export function BreakageFormScreen({ includeToggle }) {
                     </div>
                 </div>
                 <div className="breakage-form__content padding-x-double">
-                    <FormElement onSubmit={submit} before={isAndroid() ? <FormSelectElementWithDialog /> : <FormSelectElement />} />
+                    <FormElement
+                        onSubmit={submit}
+                        before={
+                            platformFeatures.breakageFormCategorySelect === 'material-web-dialog' ? (
+                                <FormSelectElementWithDialog />
+                            ) : (
+                                <DefaultSelectElement />
+                            )
+                        }
+                    />
                 </div>
                 <div className="breakage-form__footer padding-x-double token-breakage-form-body">
                     {ns.report('reportsAreAnonymousDesc.title')}
@@ -106,7 +116,7 @@ export function BreakageFormScreen({ includeToggle }) {
 /**
  * When the platform can use the select element directly
  */
-function FormSelectElement() {
+function DefaultSelectElement() {
     const platformFeatures = useFeatures()
 
     // shuffle once and remember

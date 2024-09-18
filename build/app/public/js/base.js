@@ -14765,6 +14765,10 @@
     let randomisedCategories = true;
     if (url.searchParams.get("randomisedCategories") === "false")
       randomisedCategories = false;
+    let breakageFormCategorySelect = "default";
+    if (platform2.name === "android" && typeof CSSLayerBlockRule === "function") {
+      breakageFormCategorySelect = "material-web-dialog";
+    }
     return new PlatformFeatures({
       spinnerFollowingProtectionsToggle: platform2.name !== "android" && platform2.name !== "windows",
       supportsHover: desktop.includes(platform2.name),
@@ -14774,7 +14778,8 @@
       supportsPhishingWarning: platform2.name === "macos",
       includeToggleOnBreakageForm,
       breakageScreen,
-      randomisedCategories
+      randomisedCategories,
+      breakageFormCategorySelect
     });
   }
   var PlatformFeatures = class {
@@ -14789,6 +14794,7 @@
      * @param {InitialScreen} params.breakageScreen
      * @param {boolean} params.supportsPhishingWarning
      * @param {boolean} params.randomisedCategories
+     * @param {"default" | "material-web-dialog"} params.breakageFormCategorySelect
      */
     constructor(params) {
       this.spinnerFollowingProtectionsToggle = params.spinnerFollowingProtectionsToggle;
@@ -14800,6 +14806,7 @@
       this.supportsPhishingWarning = params.supportsPhishingWarning;
       this.breakageScreen = params.breakageScreen;
       this.randomisedCategories = params.randomisedCategories;
+      this.breakageFormCategorySelect = params.breakageFormCategorySelect;
     }
   };
   var FeatureSettings = class _FeatureSettings {
@@ -16582,7 +16589,7 @@
         onPointerMove,
         onPointerUp
       },
-      /* @__PURE__ */ y("select", { name: "category", ref: selectRef }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), randomised.map(([key, value]) => {
+      /* @__PURE__ */ y("select", { name: "category", ref: selectRef, style: { pointerEvents: "none" } }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), randomised.map(([key, value]) => {
         return /* @__PURE__ */ y("option", { value: key }, value);
       }))
     ));
@@ -16630,6 +16637,7 @@
     const nav = useNav();
     const canPop = nav.canPop();
     const sendReport = useSendReport();
+    const platformFeatures = useFeatures();
     const [state, setState] = h2(
       /** @type {"idle" | "sent"} */
       "idle"
@@ -16666,9 +16674,15 @@
         toggle: onToggle,
         "data-testid": "breakage-form-protection-header"
       }
-    )), /* @__PURE__ */ y("div", { className: "key-insight key-insight--breakage padding-x-double" }, /* @__PURE__ */ y(DomNode, null, icon), /* @__PURE__ */ y("div", { className: "breakage-form__advise" }, /* @__PURE__ */ y("p", { className: "token-title-3" }, headerText)), /* @__PURE__ */ y("div", { className: "thanks" }, /* @__PURE__ */ y("p", { className: "thanks__primary" }, ns.report("thankYou.title")), /* @__PURE__ */ y("p", { className: "thanks__secondary" }, ns.report("yourReportWillHelpDesc.title")))), /* @__PURE__ */ y("div", { className: "breakage-form__content padding-x-double" }, /* @__PURE__ */ y(FormElement, { onSubmit: submit, before: isAndroid() ? /* @__PURE__ */ y(FormSelectElementWithDialog, null) : /* @__PURE__ */ y(FormSelectElement, null) })), /* @__PURE__ */ y("div", { className: "breakage-form__footer padding-x-double token-breakage-form-body" }, ns.report("reportsAreAnonymousDesc.title"))));
+    )), /* @__PURE__ */ y("div", { className: "key-insight key-insight--breakage padding-x-double" }, /* @__PURE__ */ y(DomNode, null, icon), /* @__PURE__ */ y("div", { className: "breakage-form__advise" }, /* @__PURE__ */ y("p", { className: "token-title-3" }, headerText)), /* @__PURE__ */ y("div", { className: "thanks" }, /* @__PURE__ */ y("p", { className: "thanks__primary" }, ns.report("thankYou.title")), /* @__PURE__ */ y("p", { className: "thanks__secondary" }, ns.report("yourReportWillHelpDesc.title")))), /* @__PURE__ */ y("div", { className: "breakage-form__content padding-x-double" }, /* @__PURE__ */ y(
+      FormElement,
+      {
+        onSubmit: submit,
+        before: platformFeatures.breakageFormCategorySelect === "material-web-dialog" ? /* @__PURE__ */ y(FormSelectElementWithDialog, null) : /* @__PURE__ */ y(DefaultSelectElement, null)
+      }
+    )), /* @__PURE__ */ y("div", { className: "breakage-form__footer padding-x-double token-breakage-form-body" }, ns.report("reportsAreAnonymousDesc.title"))));
   }
-  function FormSelectElement() {
+  function DefaultSelectElement() {
     const platformFeatures = useFeatures();
     const randomised = F(() => {
       const f3 = createBreakageFeaturesFrom(platformFeatures);

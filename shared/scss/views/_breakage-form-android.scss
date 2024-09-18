@@ -31,10 +31,6 @@
                 color: var(--form-select-color);
                 font-size: var(--size-unit);
                 padding: var(--size-unit);
-                /**
-                 * By setting this, android will never try to invoke the native select menu
-                 */
-                pointer-events: none;
             }
 
             &::after {
