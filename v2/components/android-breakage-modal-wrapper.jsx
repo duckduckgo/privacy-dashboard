@@ -84,6 +84,7 @@ export function FormSelectElementWithDialog() {
                 onPointerDown={onPointerDown}
                 onPointerMove={onPointerMove}
                 onPointerUp={onPointerUp}
+                data-testid="select-click-capture"
             >
                 <select name="category" ref={selectRef} style={{ pointerEvents: 'none' }}>
                     <option value="" selected disabled>

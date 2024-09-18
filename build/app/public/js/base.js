@@ -14769,6 +14769,12 @@
     if (platform2.name === "android" && typeof CSSLayerBlockRule === "function") {
       breakageFormCategorySelect = "material-web-dialog";
     }
+    if (url.searchParams.get("breakageFormCategorySelect") === "material-web-dialog") {
+      breakageFormCategorySelect = "material-web-dialog";
+    }
+    if (url.searchParams.get("breakageFormCategorySelect") === "default") {
+      breakageFormCategorySelect = "default";
+    }
     return new PlatformFeatures({
       spinnerFollowingProtectionsToggle: platform2.name !== "android" && platform2.name !== "windows",
       supportsHover: desktop.includes(platform2.name),
@@ -16587,7 +16593,8 @@
         className: "form__select breakage-form__input--dropdown",
         onPointerDown,
         onPointerMove,
-        onPointerUp
+        onPointerUp,
+        "data-testid": "select-click-capture"
       },
       /* @__PURE__ */ y("select", { name: "category", ref: selectRef, style: { pointerEvents: "none" } }, /* @__PURE__ */ y("option", { value: "", selected: true, disabled: true }, ns.report("pickYourIssueFromTheList.title")), randomised.map(([key, value]) => {
         return /* @__PURE__ */ y("option", { value: key }, value);

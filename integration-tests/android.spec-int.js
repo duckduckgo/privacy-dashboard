@@ -59,7 +59,7 @@ test.describe('Breakage form', () => {
         await dash.addState([testDataStates['webBreakageForm-enabled']])
         await dash.clicksWebsiteNotWorking()
         await dash.submitBreakageForm()
-        await dash.mocks.calledForSubmitBreakageForm({ category: 'videos', description: 'TEST' })
+        await dash.mocks.calledForSubmitBreakageForm({ category: '', description: '' })
     })
     test('uses native breakage form', async ({ page }) => {
         const dash = await DashboardPage.android(page)
@@ -83,6 +83,29 @@ test.describe('Breakage form', () => {
         await dash.promptBreakageFormIsVisible()
         await dash.toggleIsAbsent()
         await dash.screenshot('breakage-form-prompt.png')
+    })
+    test('uses material web dialog', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, {
+            screen: 'breakageForm',
+            randomisedCategories: 'false',
+        })
+        await dash.addState([testDataStates.google])
+        await dash.breakageFormIsVisible()
+        await dash.mwd.usesMaterialWebDialog()
+    })
+    test('android can still use the default select on older webviews', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, {
+            screen: 'breakageForm',
+            randomisedCategories: 'false',
+            // forcing it to 'default' - like an older webview would on android in platform-features.mjs
+            breakageFormCategorySelect: 'default',
+        })
+
+        await dash.addState([testDataStates.google])
+        await dash.breakageFormIsVisible()
+        await dash.mwd.usesTheDefaultSelect()
     })
 })
 

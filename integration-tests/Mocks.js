@@ -222,7 +222,7 @@ export class Mocks {
         }
         if (this.platform.name === 'android') {
             const out = await this.outgoing({ names: ['submitBrokenSiteReport'] })
-            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category: '', description: '' })]])
+            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category, description })]])
             return
         }
         throw new Error('unreachable. mockCalledForSubmitBreakageForm must be handled')

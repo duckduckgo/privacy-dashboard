@@ -4384,6 +4384,9 @@
                 display: flex;
                 align-items: center;
             }
+            label md-radio {
+                flex-shrink: 0;
+            }
             md-dialog {
                 text-align: left;
 

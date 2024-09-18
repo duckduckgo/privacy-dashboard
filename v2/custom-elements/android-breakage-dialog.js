@@ -114,6 +114,9 @@ export class AndroidBreakageDialog extends LitElement {
                 display: flex;
                 align-items: center;
             }
+            label md-radio {
+                flex-shrink: 0;
+            }
             md-dialog {
                 text-align: left;
 

@@ -69,6 +69,12 @@ export function createPlatformFeatures(platform) {
     if (platform.name === 'android' && typeof CSSLayerBlockRule === 'function') {
         breakageFormCategorySelect = 'material-web-dialog'
     }
+    if (url.searchParams.get('breakageFormCategorySelect') === 'material-web-dialog') {
+        breakageFormCategorySelect = 'material-web-dialog'
+    }
+    if (url.searchParams.get('breakageFormCategorySelect') === 'default') {
+        breakageFormCategorySelect = 'default'
+    }
 
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',

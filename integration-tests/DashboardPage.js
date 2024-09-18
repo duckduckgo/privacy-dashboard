@@ -3,9 +3,11 @@ import { forwardConsole, playTimeline } from './helpers'
 import { Mocks } from './Mocks'
 import { AltBreakageFlows } from './AltBreakageFlows'
 import { Nav } from './Nav'
+import { MaterialWebDialog } from './MaterialWebDialog'
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures'
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs'
 import { Extension } from './Extension'
+
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]')
@@ -39,6 +41,7 @@ export class DashboardPage {
     mocks
     breakage = new AltBreakageFlows(this)
     nav = new Nav(this)
+    mwd = new MaterialWebDialog(this)
     extension = new Extension(this)
     /**
      * @param {import("@playwright/test").Page} page
@@ -224,6 +227,7 @@ export class DashboardPage {
      * @param {string} [opts.randomisedCategories]
      * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]
+     * @param {import("../shared/js/ui/platform-features.mjs").PlatformFeatures['breakageFormCategorySelect']} [opts.breakageFormCategorySelect]
      */
     static async android(page, opts) {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
@@ -232,9 +236,10 @@ export class DashboardPage {
         const breakageScreen = opts?.breakageScreen
         const category = opts?.category
         const randomisedCategories = opts?.randomisedCategories
+        const breakageFormCategorySelect = opts?.breakageFormCategorySelect
         const dash = new DashboardPage(page, { name: 'android' })
         await dash.withMarker()
-        await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories })
+        await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories, breakageFormCategorySelect })
         await dash.mocks.install()
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined')
         return dash
