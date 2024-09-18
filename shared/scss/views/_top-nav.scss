@@ -129,10 +129,12 @@ body {
 .top-nav__title {
     position: absolute;
     height: var(--nav-height);
-    line-height: var(--nav-height);
+    line-height: 1.1;
     color: var(--color-text-primary);
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    align-items: center;
 
     .environment--ios & {
         font-size: 17px;
