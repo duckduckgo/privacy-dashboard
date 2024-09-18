@@ -40,6 +40,15 @@ test.describe('Protections toggle -> simple report screen', () => {
         await dash.showsInformation()
         await dash.sendToggleReport()
     })
+    test('handles disconnect + fetches new data for toggle-report', async ({ page }) => {
+        forwardConsole(page)
+        const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)
+        await dash.showsPrimaryScreen()
+        await dash.toggleProtectionsOff()
+        await dash.mocks.calledForToggleAllowList()
+        await dash.extension.triggersToggleReport()
+        await dash.extension.reconnects()
+    })
     test('shows toggle report + rejects it', async ({ page }) => {
         forwardConsole(page)
         const dash = await DashboardPage.browser(page, testDataStates.protectionsOn)

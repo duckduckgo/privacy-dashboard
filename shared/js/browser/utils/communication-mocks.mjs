@@ -281,8 +281,9 @@ export function mockBrowserApis(params = { messages: {} }) {
                 console.log('connect: ', info.name)
                 const port = {
                     onDisconnect: {
-                        addListener: () => {
+                        addListener: (cb) => {
                             console.log('did add onDisconnect listener')
+                            window.__playwright.onDisconnect = cb
                         },
                     },
                     onMessage: {

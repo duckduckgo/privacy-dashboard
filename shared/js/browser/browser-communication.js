@@ -32,6 +32,7 @@ import {
 import { createTabData } from './utils/request-details.mjs'
 import { Protections } from './utils/protections.mjs'
 
+/** @type {Pick<import("../../../v2/data-provider.js").DataChannel, 'send' | 'didReconnect'>} */
 let channel
 let port
 
@@ -39,7 +40,10 @@ const devtoolsMessageResponseReceived = new EventTarget()
 
 function openPort() {
     port = chrome.runtime.connect({ name: 'privacy-dashboard' })
-    port.onDisconnect.addListener(openPort)
+    port.onDisconnect.addListener(() => {
+        openPort()
+        channel.didReconnect()
+    })
     port.onMessage.addListener((message) => {
         // console.log('did receive raw', message)
         const parsed = incomingExtensionMessageSchema.safeParse(message)

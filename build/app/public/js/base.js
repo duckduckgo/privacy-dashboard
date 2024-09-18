@@ -12771,7 +12771,10 @@
   var devtoolsMessageResponseReceived = new EventTarget();
   function openPort() {
     port = chrome.runtime.connect({ name: "privacy-dashboard" });
-    port.onDisconnect.addListener(openPort);
+    port.onDisconnect.addListener(() => {
+      openPort();
+      channel.didReconnect();
+    });
     port.onMessage.addListener((message) => {
       const parsed = incomingExtensionMessageSchema.safeParse(message);
       if (!parsed.success) {
@@ -14849,6 +14852,7 @@
       /** @type {import('../schema/__generated__/schema.types').EmailProtectionUserData | null} */
       __publicField(this, "emailProtectionUserData", null);
       __publicField(this, "count", 0);
+      __publicField(this, "connection", 1);
       __publicField(
         this,
         "_timeout",
@@ -14857,9 +14861,11 @@
       );
     }
     /**
-     * This will be called by the communication layer
+     * Sets a timeout to send a message
+     *
+     * @param {string} _messageName - The name of the message to send
      */
-    send() {
+    send(_messageName) {
       clearTimeout(this._timeout);
       this._timeout = window.setTimeout(() => {
         communication_default.getBackgroundTabData().then((resp) => {
@@ -14868,6 +14874,13 @@
           console.log("\u274C [models/site.es6.js:handleBackgroundMsg()] --> ", e3);
         });
       }, 100);
+    }
+    /**
+     * Allow producers to indicate when their connection was re-established
+     */
+    didReconnect() {
+      this.connection += 1;
+      this.broadcast();
     }
     /**
      * @param {import('../shared/js/browser/common.js').BackgroundTabData} data
@@ -14973,10 +14986,11 @@
      * @return {DataChannelPublicData}
      */
     lastValue() {
+      console.log(JSON.stringify(this.tab));
       if (!this.tab)
-        throw new Error("unreachable");
+        throw new Error("unreachable, missing this.tab");
       if (!this.featureSettings)
-        throw new Error("unreachable");
+        throw new Error("unreachable, missing this.featureSettings");
       return {
         fireButton: this.fireButton,
         protectionsEnabled: this.protectionsEnabled,
@@ -14992,7 +15006,8 @@
         permissions: this.permissions,
         tab: this.tab,
         count: this.count,
-        emailProtectionUserData: this.emailProtectionUserData
+        emailProtectionUserData: this.emailProtectionUserData,
+        connection: this.connection
       };
     }
   };
@@ -15053,6 +15068,17 @@
       return () => {
         dc.removeEventListener("data", handler);
       };
+    }, []);
+    return state;
+  }
+  function useConnectionCount() {
+    const [state, setCount] = h2(() => dc.lastValue().connection);
+    p2(() => {
+      const controller = new AbortController();
+      dc.addEventListener("data", (evt) => {
+        setCount(evt.detail.connection);
+      });
+      return controller.abort;
     }, []);
     return state;
   }
@@ -17346,6 +17372,8 @@
     const fetcher = useFetcher();
     const features = useFeatures();
     const onClose = useClose();
+    const connectionCount = useConnectionCount();
+    const connectionId = `connection-${connectionCount}`;
     p2(() => {
       document.body.dataset.screen = "toggleReport";
       return () => {
@@ -17356,7 +17384,7 @@
       ios: () => /* @__PURE__ */ y(Done, { onClick: onClose }),
       default: () => /* @__PURE__ */ y(Close, { onClick: onClose })
     });
-    return /* @__PURE__ */ y("div", { "data-toggle-report": "parent", class: "toggle-report page-inner", "data-opener": features.opener }, features.opener === "menu" ? /* @__PURE__ */ y(TopNav, { done }) : /* @__PURE__ */ y(TopNav, null), /* @__PURE__ */ y("div", { "data-testid": "toggle-report" }, /* @__PURE__ */ y(ToggleReportProvider, { model: { fetch: fetcher }, screen: features.initialScreen }, /* @__PURE__ */ y(ToggleReport, null))));
+    return /* @__PURE__ */ y("div", { "data-toggle-report": "parent", class: "toggle-report page-inner", "data-opener": features.opener }, features.opener === "menu" ? /* @__PURE__ */ y(TopNav, { done }) : /* @__PURE__ */ y(TopNav, null), /* @__PURE__ */ y("div", { "data-testid": "toggle-report" }, /* @__PURE__ */ y(ToggleReportProvider, { key: connectionId, model: { fetch: fetcher }, screen: features.initialScreen }, /* @__PURE__ */ y(ToggleReport, null))));
   }
 
   // v2/components/nav.jsx
