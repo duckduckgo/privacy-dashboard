@@ -1,5 +1,6 @@
 import { expect } from '@playwright/test'
-import { installAndroidMocks, installBrowserMocks, installWebkitMocks, installWindowsMocks } from './helpers'
+import { installAndroidMocks, installWebkitMocks, installWindowsMocks } from './helpers'
+import { z } from 'zod'
 
 export class Mocks {
     page
@@ -26,7 +27,7 @@ export class Mocks {
             case 'windows':
                 return installWindowsMocks(this.page)
             case 'browser':
-                return installBrowserMocks(this.page)
+                return Promise.resolve()
             default: {
                 /** @type {never} */
                 const n = this.platform.name
@@ -80,18 +81,45 @@ export class Mocks {
     }
 
     async calledForSendToggleReport() {
-        const out = await this.outgoing({
-            names: ['privacyDashboardSendToggleReport'],
-        })
-        expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
+        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return
+        if (this.platform.name === 'browser') {
+            const calls = await this.outgoing({ names: ['sendToggleReport'] })
+            expect(calls).toMatchObject([
+                [
+                    'sendToggleReport',
+                    {
+                        messageType: 'sendToggleReport',
+                    },
+                ],
+            ])
+        } else {
+            const out = await this.outgoing({
+                names: ['privacyDashboardSendToggleReport'],
+            })
+            expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
+        }
         return
     }
 
     async calledForRejectToggleReport() {
-        const out = await this.outgoing({
-            names: ['privacyDashboardRejectToggleReport'],
-        })
-        expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
+        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return
+        if (this.platform.name === 'browser') {
+            const calls = await this.outgoing({ names: ['rejectToggleReport'] })
+            expect(calls).toMatchObject([
+                [
+                    'rejectToggleReport',
+                    {
+                        messageType: 'rejectToggleReport',
+                    },
+                ],
+            ])
+        } else {
+            // ios/macos
+            const out = await this.outgoing({
+                names: ['privacyDashboardRejectToggleReport'],
+            })
+            expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
+        }
         return
     }
 
@@ -232,22 +260,20 @@ export class Mocks {
 
     async calledForInitialExtensionMessage() {
         const calls = await this.outgoing()
-        expect(calls).toMatchObject([
-            [
-                'getPrivacyDashboardData',
-                {
-                    messageType: 'getPrivacyDashboardData',
-                    options: { tabId: null },
-                },
-            ],
-            [
-                'getPrivacyDashboardData',
-                {
-                    messageType: 'getPrivacyDashboardData',
-                    options: { tabId: null },
-                },
-            ],
-        ])
+        z.array(
+            z.tuple([
+                z.literal('getPrivacyDashboardData'),
+                z
+                    .object({
+                        messageType: z.literal('getPrivacyDashboardData'),
+                        options: z.object({ tabId: z.null() }),
+                        id: z.number(),
+                    })
+                    .strict(),
+            ])
+        )
+            .length(1)
+            .parse(calls)
     }
 
     async calledForOptions() {

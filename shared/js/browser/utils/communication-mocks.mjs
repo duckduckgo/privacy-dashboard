@@ -230,16 +230,25 @@ export function mockAndroidApis() {
     }
 }
 
-export function mockBrowserApis() {
+/**
+ * @param {object} params
+ * @param {Record<string, any>} params.messages
+ */
+export function mockBrowserApis(params = { messages: {} }) {
     const messages = {
         submitBrokenSiteReport: {},
         setLists: {},
         search: {},
         openOptions: {},
         setBurnDefaultOption: {},
+        getToggleReportOptions: {},
+        getPrivacyDashboardData: {},
+        sendToggleReport: {},
+        rejectToggleReport: {},
         doBurn: {},
         getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
+        ...params.messages,
     }
     try {
         if (!window.chrome?.permissions) {
@@ -261,40 +270,70 @@ export function mockBrowserApis() {
             },
             calls: [],
             listeners: [],
+            handler: undefined,
         }
 
         // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
+        // @ts-ignore
         window.chrome.runtime = {
             id: 'test',
-            async sendMessage(message, cb) {
-                function respond(fn, timeout = 100) {
-                    setTimeout(() => {
-                        fn()
-                    }, timeout)
-                }
+            connect: (info) => {
+                console.log('connect: ', info.name)
+                const port = {
+                    onDisconnect: {
+                        addListener: (cb) => {
+                            console.log('did add onDisconnect listener')
+                            window.__playwright.onDisconnect = cb
+                        },
+                    },
+                    onMessage: {
+                        addListener: (cb) => {
+                            window.__playwright.handler = cb
+                            console.log('did add onMessage listener')
+                        },
+                    },
+                    postMessage: (message) => {
+                        const id = message.id
+                        console.log('[mock] did post message', message)
+                        const handler = window.__playwright.handler
+                        if (!handler) throw new Error('no registered handler')
 
-                // does the incoming message match one that's been mocked here?
-                const matchingMessage = window.__playwright.messages[message.messageType]
-                if (matchingMessage) {
-                    window.__playwright.mocks.outgoing.push([message.messageType, message])
-                    respond(() => cb(matchingMessage), 200)
-                } else {
-                    setTimeout(() => {
+                        function respond(response, timeout = 100) {
+                            if (!id) return console.log('not responding since `id` was absent')
+                            const responseShape = {
+                                messageType: 'response',
+                                options: structuredClone(response),
+                                id: id,
+                            }
+                            console.log('[mock] will respond with', JSON.stringify(responseShape))
+                            setTimeout(() => {
+                                handler?.(responseShape)
+                            }, timeout)
+                        }
+
+                        // does the incoming message match one that's been mocked here?
                         const matchingMessage = window.__playwright.messages[message.messageType]
                         if (matchingMessage) {
                             window.__playwright.mocks.outgoing.push([message.messageType, message])
-                            respond(() => cb(matchingMessage), 0)
+                            respond(matchingMessage, 200)
                         } else {
-                            console.trace(`❌ [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`)
+                            setTimeout(() => {
+                                const matchingMessage = window.__playwright.messages[message.messageType]
+                                if (matchingMessage) {
+                                    window.__playwright.mocks.outgoing.push([message.messageType, message])
+                                    respond(matchingMessage, 0)
+                                } else {
+                                    console.trace(`❌ [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`)
+                                }
+                            }, 200)
                         }
-                    }, 200)
+                    },
                 }
+
+                return /** @type {any} */ (port)
             },
-            // @ts-ignore
-            onMessage: {
-                addListener(listener) {
-                    window.__playwright.listeners?.push(listener)
-                },
+            async sendMessage() {
+                // no longer used
             },
         }
     } catch (e) {
@@ -308,7 +347,11 @@ export function mockBrowserApis() {
  * @return {Promise<void>}
  */
 export async function installMocks(platform) {
-    if (window.__playwright) return console.log('❌ mocked already there')
+    console.log('instaling...')
+    if (window.__playwright) {
+        console.log('instaling... NOE')
+        return console.log('❌ mocked already there')
+    }
     if (platform.name === 'windows') {
         windowsMockApis()
     } else if (platform.name === 'ios' || platform.name === 'macos') {
@@ -349,6 +392,7 @@ export async function installMocks(platform) {
     if (platform.name === 'browser') {
         messages['getBurnOptions'] = mock.toBurnOptions()
         messages['getPrivacyDashboardData'] = mock.toExtensionDashboardData()
+        messages['getToggleReportOptions'] = toggleReportScreen
     }
     if (platform.name === 'windows') {
         messages['windowsViewModel'] = mock.toWindowsViewModel()

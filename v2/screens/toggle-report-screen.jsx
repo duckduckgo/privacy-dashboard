@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
-import { useClose, useFeatures, useFetcher } from '../data-provider'
+import { useClose, useConnectionCount, useFeatures, useFetcher } from '../data-provider'
 import { ToggleReportProvider } from '../../shared/js/ui/components/toggle-report/toggle-report-provider'
 import { ToggleReport } from '../../shared/js/ui/components/toggle-report'
 import { useEffect } from 'preact/hooks'
@@ -11,6 +11,8 @@ export function ToggleReportScreen() {
     const fetcher = useFetcher()
     const features = useFeatures()
     const onClose = useClose()
+    const connectionCount = useConnectionCount()
+    const connectionId = `connection-${connectionCount}`
 
     useEffect(() => {
         document.body.dataset.screen = 'toggleReport'
@@ -28,7 +30,7 @@ export function ToggleReportScreen() {
         <div data-toggle-report="parent" class="toggle-report page-inner" data-opener={features.opener}>
             {features.opener === 'menu' ? <TopNav done={done} /> : <TopNav />}
             <div data-testid="toggle-report">
-                <ToggleReportProvider model={{ fetch: fetcher }} screen={features.initialScreen}>
+                <ToggleReportProvider key={connectionId} model={{ fetch: fetcher }} screen={features.initialScreen}>
                     <ToggleReport />
                 </ToggleReportProvider>
             </div>

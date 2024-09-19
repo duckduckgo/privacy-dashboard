@@ -4,11 +4,11 @@ import { useEffect, useReducer } from 'preact/hooks'
 import {
     CloseMessage,
     FetchToggleReportOptions,
-    Msg,
     RejectToggleBreakageReport,
     SeeWhatIsSent,
     SendToggleBreakageReport,
 } from '../../../browser/common'
+import { toggleReportScreenSchema } from '../../../../../schema/__generated__/schema.parsers.mjs'
 
 export const ToggleReportContext = createContext({
     value: /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */ ({}),
@@ -33,7 +33,7 @@ export const ToggleReportContext = createContext({
 /**
  * @param {object} params
  * @param {import("preact").ComponentChild} params.children
- * @param {{ fetch: (msg: Msg) => Promise<any> | void}} params.model
+ * @param {{ fetch: (msg: import("../../../browser/common.js").Msg) => Promise<any> | void}} params.model
  * @param {import('../../platform-features.mjs').InitialScreen} params.screen
  */
 export function ToggleReportProvider({ children, model, screen }) {
@@ -44,7 +44,17 @@ export function ToggleReportProvider({ children, model, screen }) {
         model
             .fetch(msg)
             ?.then((data) => {
-                dispatch({ status: 'ready', value: data })
+                const parsed = toggleReportScreenSchema.safeParse(data)
+                if (parsed.success) {
+                    dispatch({ status: 'ready', value: data })
+                } else {
+                    console.group('ToggleReportProvider')
+                    console.error('the response for FetchToggleReportOptions did not match the schema')
+                    console.error('response:', data)
+                    console.error('error:', parsed.error.toString())
+                    console.groupEnd()
+                    dispatch({ status: 'error', error: parsed.error.toString() })
+                }
             })
             .catch((e) => {
                 dispatch({ status: 'error', error: e.toString() })

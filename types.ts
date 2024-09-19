@@ -44,6 +44,8 @@ interface Window {
             outgoing: any[]
             incoming: any[]
         }
+        handler?: (message: Record<string, any>) => void
+        onDisconnect?: () => void
     }
     webkit?: {
         messageHandlers?: WebkitMessageHandlers

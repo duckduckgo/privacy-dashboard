@@ -4577,7 +4577,7 @@
   });
 
   // schema/__generated__/schema.parsers.mjs
-  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, phishingStatusSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, webBreakageFormSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema, dataItemIdSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
+  var protectionsDisabledReasonSchema, ownedByFirstPartyReasonSchema, ruleExceptionReasonSchema, adClickAttributionReasonSchema, otherThirdPartyRequestReasonSchema, screenKindSchema, wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema, stateBlockedSchema, stateAllowedSchema, extensionMessageGetPrivacyDashboardDataSchema, emailProtectionUserDataSchema, protectionsStatusSchema, localeSettingsSchema, phishingStatusSchema, parentEntitySchema, fireButtonSchema, searchSchema, breakageReportRequestSchema, setListOptionsSchema, windowsIncomingVisibilitySchema, cookiePromptManagementStatusSchema, refreshAliasResponseSchema, extensionMessageSetListOptionsSchema, fireOptionSchema, primaryScreenSchema, webBreakageFormSchema, eventOriginSchema, siteUrlAdditionalDataSchema, closeMessageParamsSchema, categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema, incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema, outgoingExtensionMessageSchema, dataItemIdSchema, incomingExtensionMessageSchema, detectedRequestSchema, tabSchema, breakageReportSchema, fireButtonDataSchema, remoteFeatureSettingsSchema, setProtectionParamsSchema, toggleReportScreenDataItemSchema, telemetrySpanSchema, requestDataSchema, getPrivacyDashboardDataSchema, windowsViewModelSchema, toggleReportScreenSchema, windowsIncomingViewModelSchema, windowsIncomingMessageSchema, apiSchema;
   var init_schema_parsers = __esm({
     "schema/__generated__/schema.parsers.mjs"() {
       "use strict";
@@ -4721,7 +4721,30 @@
       toggleSkippedSchema = z3.object({
         name: z3.literal("toggleSkipped")
       });
+      incomingResponseSchema = z3.object({
+        messageType: z3.literal("response"),
+        id: z3.number(),
+        options: z3.unknown()
+      });
+      incomingToggleReportSchema = z3.object({
+        messageType: z3.literal("toggleReport")
+      });
+      incomingUpdateTabDataSchema = z3.object({
+        messageType: z3.literal("updateTabData")
+      });
+      incomingClosePopupSchema = z3.object({
+        messageType: z3.literal("closePopup")
+      });
+      incomingDidResetTrackersDataSchema = z3.object({
+        messageType: z3.literal("didResetTrackersData")
+      });
+      outgoingExtensionMessageSchema = z3.object({
+        messageType: z3.string(),
+        id: z3.number().optional(),
+        options: z3.object({})
+      });
       dataItemIdSchema = z3.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
+      incomingExtensionMessageSchema = z3.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
       detectedRequestSchema = z3.object({
         url: z3.string(),
         eTLDplus1: z3.string().optional(),
@@ -4811,7 +4834,9 @@
         "set-protection": setProtectionParamsSchema.optional(),
         "toggle-report-screen": toggleReportScreenSchema.optional(),
         "close-message": closeMessageParamsSchema.optional(),
-        "telemetry-span": telemetrySpanSchema.optional()
+        "telemetry-span": telemetrySpanSchema.optional(),
+        "extension-incoming": incomingExtensionMessageSchema.optional(),
+        "extension-outgoing": outgoingExtensionMessageSchema.optional()
       });
     }
   });
@@ -11862,15 +11887,15 @@
   };
   function createRequestDetails(requests, installedSurrogates) {
     const output2 = new RequestDetails(installedSurrogates);
-    for (const request of requests) {
-      output2.all.addRequest(request);
-      if ("blocked" in request.state) {
-        output2.blocked.addRequest(request);
+    for (const request2 of requests) {
+      output2.all.addRequest(request2);
+      if ("blocked" in request2.state) {
+        output2.blocked.addRequest(request2);
       }
-      if ("allowed" in request.state) {
-        const reason = request.state.allowed.reason;
+      if ("allowed" in request2.state) {
+        const reason = request2.state.allowed.reason;
         if (reason in output2.allowed) {
-          output2.allowed[request.state.allowed.reason].addRequest(request);
+          output2.allowed[request2.state.allowed.reason].addRequest(request2);
         }
       }
     }
@@ -11888,28 +11913,28 @@
     /**
      * @param {import('../../../../schema/__generated__/schema.types.js').DetectedRequest} request
      */
-    addRequest(request) {
+    addRequest(request2) {
       let hostname;
       try {
-        hostname = new URL(request.url).hostname;
+        hostname = new URL(request2.url).hostname;
       } catch (e3) {
-        hostname = request.url;
+        hostname = request2.url;
       }
       let displayName;
       const urlHostname = hostname.replace(/^www\./, "");
-      if (request.entityName) {
-        if (request.entityName === request.eTLDplus1) {
-          displayName = request.eTLDplus1;
+      if (request2.entityName) {
+        if (request2.entityName === request2.eTLDplus1) {
+          displayName = request2.eTLDplus1;
         } else {
-          displayName = removeTLD(request.entityName);
+          displayName = removeTLD(request2.entityName);
         }
       } else {
-        displayName = request.eTLDplus1 || request.url;
+        displayName = request2.eTLDplus1 || request2.url;
       }
       if (!this.entities[displayName]) {
-        this.entities[displayName] = new AggregateCompanyData(request.ownerName, displayName, request.prevalence ?? 0);
+        this.entities[displayName] = new AggregateCompanyData(request2.ownerName, displayName, request2.prevalence ?? 0);
       }
-      this.entities[displayName].addUrl(urlHostname, request.category);
+      this.entities[displayName].addUrl(urlHostname, request2.category);
       this.entitiesCount = Object.keys(this.entities).length;
       this.requestCount += 1;
     }
@@ -12521,9 +12546,12 @@
     getBackgroundTabData: () => getBackgroundTabData,
     getBurnOptions: () => getBurnOptions,
     getPrivacyDashboardData: () => getPrivacyDashboardData,
+    getToggleReportOptions: () => getToggleReportOptions,
     openOptions: () => openOptions,
     refreshAlias: () => refreshAlias,
+    rejectToggleReport: () => rejectToggleReport,
     search: () => search,
+    sendToggleReport: () => sendToggleReport,
     setBurnDefaultOption: () => setBurnDefaultOption,
     setLists: () => setLists,
     setup: () => setup,
@@ -12739,6 +12767,72 @@
   // shared/js/browser/browser-communication.js
   init_protections();
   var channel;
+  var port;
+  var devtoolsMessageResponseReceived = new EventTarget();
+  function openPort() {
+    port = chrome.runtime.connect({ name: "privacy-dashboard" });
+    port.onDisconnect.addListener(() => {
+      openPort();
+      channel.didReconnect();
+    });
+    port.onMessage.addListener((message) => {
+      const parsed = incomingExtensionMessageSchema.safeParse(message);
+      if (!parsed.success) {
+        console.warn("the incoming message could not be parsed with `incomingExtensionMessageSchema`", JSON.stringify(message));
+        return;
+      }
+      switch (parsed.data.messageType) {
+        case "response": {
+          const { id, options } = parsed.data;
+          devtoolsMessageResponseReceived.dispatchEvent(new CustomEvent(String(id), { detail: options }));
+          break;
+        }
+        case "toggleReport": {
+          window.location.search = "?screen=toggleReport&opener=dashboard";
+          break;
+        }
+        case "closePopup": {
+          window.close();
+          break;
+        }
+        case "updateTabData": {
+          channel.send("updateTabData");
+          break;
+        }
+        case "didResetTrackersData": {
+          channel.send("updateTabData");
+          break;
+        }
+        default: {
+          console.warn("unhandled message");
+        }
+      }
+    });
+  }
+  function notify(messageType, options = {}) {
+    port.postMessage({ messageType, options });
+  }
+  function request(messageType, options = {}) {
+    return new Promise((resolve, reject) => {
+      const outgoing = {
+        messageType,
+        options,
+        id: Math.random()
+      };
+      const parsed = outgoingExtensionMessageSchema.safeParse(outgoing);
+      if (!parsed.success) {
+        return reject(new Error("invalid message " + JSON.stringify(outgoing)));
+      }
+      devtoolsMessageResponseReceived.addEventListener(
+        String(outgoing.id),
+        (evt) => {
+          resolve(evt.detail);
+        },
+        { once: true }
+      );
+      port.postMessage(outgoing);
+    });
+  }
   function setup() {
     setupColorScheme();
   }
@@ -12770,49 +12864,49 @@
     if (message instanceof SetBurnDefaultOption) {
       return setBurnDefaultOption(message);
     }
-    return new Promise((resolve) => {
-      window.chrome.runtime.sendMessage(message, (result) => {
-        resolve(result);
-      });
-    });
-  }
-  function toExtensionMessage(name, data) {
-    const outgoing = {
-      messageType: name,
-      options: data
-    };
-    return new Promise((resolve) => {
-      window.chrome.runtime.sendMessage(outgoing, (result) => {
-        if (window.chrome.runtime.lastError) {
-          console.error("window.chrome.runtime.lastError", window.chrome.runtime.lastError);
-        }
-        resolve(result);
-      });
-    });
+    if (message instanceof SendToggleBreakageReport) {
+      return sendToggleReport();
+    }
+    if (message instanceof RejectToggleBreakageReport) {
+      return rejectToggleReport();
+    }
+    if (message instanceof FetchToggleReportOptions) {
+      return getToggleReportOptions();
+    }
+    return Promise.reject(new Error("unhandled message: " + JSON.stringify(message)));
   }
   async function submitBrokenSiteReport(report2) {
     const parsedInput = breakageReportRequestSchema.parse(report2);
-    toExtensionMessage("submitBrokenSiteReport", parsedInput);
+    notify("submitBrokenSiteReport", parsedInput);
   }
   async function setLists(options) {
     const parsedInput = setListOptionsSchema.parse(options);
-    return toExtensionMessage("setLists", parsedInput);
+    return notify("setLists", parsedInput);
   }
   async function refreshAlias() {
-    const result = await toExtensionMessage("refreshAlias");
+    const result = await request("refreshAlias");
     return refreshAliasResponseSchema.parse(result);
   }
   async function search(options) {
-    return toExtensionMessage("search", options);
+    return notify("search", options);
   }
   async function openOptions() {
-    return toExtensionMessage("openOptions");
+    return notify("openOptions");
+  }
+  async function sendToggleReport() {
+    return notify("sendToggleReport");
+  }
+  async function rejectToggleReport() {
+    return notify("rejectToggleReport");
   }
   function getBurnOptions() {
-    return toExtensionMessage("getBurnOptions");
+    return request("getBurnOptions");
+  }
+  function getToggleReportOptions() {
+    return request("getToggleReportOptions");
   }
   function setBurnDefaultOption(message) {
-    return toExtensionMessage("setBurnDefaultOption", message);
+    return request("setBurnDefaultOption", message);
   }
   async function doBurn(message) {
     const browsingDataPermissions = {
@@ -12822,24 +12916,14 @@
     if (!permissionRequestGranted) {
       throw new Error("Permission not granted");
     }
-    return toExtensionMessage("doBurn", message);
+    return notify("doBurn", message);
   }
   async function getPrivacyDashboardData(tabId) {
-    return toExtensionMessage("getPrivacyDashboardData", { tabId });
+    return request("getPrivacyDashboardData", { tabId });
   }
   function backgroundMessage(_channel) {
     channel = _channel;
-    window.chrome.runtime.onMessage.addListener((req, sender) => {
-      if (sender.id !== window.chrome.runtime.id) {
-        return;
-      }
-      if (req.updateTabData)
-        channel.send("updateTabData");
-      if (req.didResetTrackersData)
-        channel.send("updateTabData");
-      if (req.closePopup)
-        window.close();
-    });
+    openPort();
   }
   async function getBackgroundTabData() {
     const tabIdParam = new URL(document.location.href).searchParams.get("tabId");
@@ -12871,6 +12955,9 @@
         emailProtectionUserData,
         fireButton
       };
+    } else {
+      console.log("getPrivacyDashboardDataSchema failed", parsedMessageData.error);
+      console.log("getPrivacyDashboardDataSchema failed: ", JSON.stringify(resp));
     }
     if (!window.__playwright) {
       console.log("\u{1F64F} getBackgroundTabData \u274C", parsedMessageData.error, resp);
@@ -14765,6 +14852,7 @@
       /** @type {import('../schema/__generated__/schema.types').EmailProtectionUserData | null} */
       __publicField(this, "emailProtectionUserData", null);
       __publicField(this, "count", 0);
+      __publicField(this, "connection", 1);
       __publicField(
         this,
         "_timeout",
@@ -14773,9 +14861,11 @@
       );
     }
     /**
-     * This will be called by the communication layer
+     * Sets a timeout to send a message
+     *
+     * @param {string} _messageName - The name of the message to send
      */
-    send() {
+    send(_messageName) {
       clearTimeout(this._timeout);
       this._timeout = window.setTimeout(() => {
         communication_default.getBackgroundTabData().then((resp) => {
@@ -14784,6 +14874,13 @@
           console.log("\u274C [models/site.es6.js:handleBackgroundMsg()] --> ", e3);
         });
       }, 100);
+    }
+    /**
+     * Allow producers to indicate when their connection was re-established
+     */
+    didReconnect() {
+      this.connection += 1;
+      this.broadcast();
     }
     /**
      * @param {import('../shared/js/browser/common.js').BackgroundTabData} data
@@ -14890,9 +14987,9 @@
      */
     lastValue() {
       if (!this.tab)
-        throw new Error("unreachable");
+        throw new Error("unreachable, missing this.tab");
       if (!this.featureSettings)
-        throw new Error("unreachable");
+        throw new Error("unreachable, missing this.featureSettings");
       return {
         fireButton: this.fireButton,
         protectionsEnabled: this.protectionsEnabled,
@@ -14908,7 +15005,8 @@
         permissions: this.permissions,
         tab: this.tab,
         count: this.count,
-        emailProtectionUserData: this.emailProtectionUserData
+        emailProtectionUserData: this.emailProtectionUserData,
+        connection: this.connection
       };
     }
   };
@@ -14969,6 +15067,17 @@
       return () => {
         dc.removeEventListener("data", handler);
       };
+    }, []);
+    return state;
+  }
+  function useConnectionCount() {
+    const [state, setCount] = h2(() => dc.lastValue().connection);
+    p2(() => {
+      const controller = new AbortController();
+      dc.addEventListener("data", (evt) => {
+        setCount(evt.detail.connection);
+      });
+      return controller.abort;
     }, []);
     return state;
   }
@@ -16944,6 +17053,7 @@
   }
 
   // shared/js/ui/components/toggle-report/toggle-report-provider.jsx
+  init_schema_parsers();
   var ToggleReportContext = G({
     value: (
       /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */
@@ -16972,7 +17082,17 @@
     p2(() => {
       const msg = new FetchToggleReportOptions();
       model.fetch(msg)?.then((data) => {
-        dispatch({ status: "ready", value: data });
+        const parsed = toggleReportScreenSchema.safeParse(data);
+        if (parsed.success) {
+          dispatch({ status: "ready", value: data });
+        } else {
+          console.group("ToggleReportProvider");
+          console.error("the response for FetchToggleReportOptions did not match the schema");
+          console.error("response:", data);
+          console.error("error:", parsed.error.toString());
+          console.groupEnd();
+          dispatch({ status: "error", error: parsed.error.toString() });
+        }
       }).catch((e3) => {
         dispatch({ status: "error", error: e3.toString() });
       });
@@ -17236,13 +17356,14 @@
     const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
     const buttonSize = platform.name === "ios" ? "big" : "small";
     const innerGap = platform.name === "ios" ? "24px" : "16px";
+    const desktop = platform.name === "macos" || platform.name === "browser" || platform.name === "windows";
     const { value, didClickSuccessScreen } = q2(ToggleReportContext);
     const [state, dispatch] = useToggleReportState();
     useIosAnimation(state, dispatch);
-    if (state.value === "sent" && platform.name === "macos") {
+    if (state.value === "sent" && desktop) {
       return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(ToggleReportSent, { onClick: didClickSuccessScreen }));
     }
-    return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), platform.name === "macos" && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.toggleReport("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.toggleReport("siteNotWorkingInfoHide.title")))))), platform.name === "macos" && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.toggleReport("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.toggleReport("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
+    return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), desktop && /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle") }, state.value === "hiding" && ns.toggleReport("siteNotWorkingInfoReveal.title"), state.value === "showing" && ns.toggleReport("siteNotWorkingInfoHide.title")))))), desktop && state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("reject") }, ns.toggleReport("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: () => dispatch("send") }, ns.report("sendReport.title"))), platform.name === "ios" && state.value !== "showing" && /* @__PURE__ */ y("p", { className: "text--center token-title-3" }, /* @__PURE__ */ y(PlainTextLink, { onClick: () => dispatch("toggle-ios"), className: "token-bold" }, ns.toggleReport("siteNotWorkingInfoReveal.title")))), platform.name === "ios" && state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
   }
 
   // v2/screens/toggle-report-screen.jsx
@@ -17250,6 +17371,8 @@
     const fetcher = useFetcher();
     const features = useFeatures();
     const onClose = useClose();
+    const connectionCount = useConnectionCount();
+    const connectionId = `connection-${connectionCount}`;
     p2(() => {
       document.body.dataset.screen = "toggleReport";
       return () => {
@@ -17260,7 +17383,7 @@
       ios: () => /* @__PURE__ */ y(Done, { onClick: onClose }),
       default: () => /* @__PURE__ */ y(Close, { onClick: onClose })
     });
-    return /* @__PURE__ */ y("div", { "data-toggle-report": "parent", class: "toggle-report page-inner", "data-opener": features.opener }, features.opener === "menu" ? /* @__PURE__ */ y(TopNav, { done }) : /* @__PURE__ */ y(TopNav, null), /* @__PURE__ */ y("div", { "data-testid": "toggle-report" }, /* @__PURE__ */ y(ToggleReportProvider, { model: { fetch: fetcher }, screen: features.initialScreen }, /* @__PURE__ */ y(ToggleReport, null))));
+    return /* @__PURE__ */ y("div", { "data-toggle-report": "parent", class: "toggle-report page-inner", "data-opener": features.opener }, features.opener === "menu" ? /* @__PURE__ */ y(TopNav, { done }) : /* @__PURE__ */ y(TopNav, null), /* @__PURE__ */ y("div", { "data-testid": "toggle-report" }, /* @__PURE__ */ y(ToggleReportProvider, { key: connectionId, model: { fetch: fetcher }, screen: features.initialScreen }, /* @__PURE__ */ y(ToggleReport, null))));
   }
 
   // v2/components/nav.jsx

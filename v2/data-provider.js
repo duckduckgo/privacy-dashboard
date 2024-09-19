@@ -30,11 +30,12 @@ import { useNav } from './navigation'
  * @property {any[] | null | undefined} permissions
  * @property {import('../shared/js/browser/utils/request-details.mjs').TabData} tab
  * @property {number} count
+ * @property {number} connection
  * @property {import('../schema/__generated__/schema.types').EmailProtectionUserData|null} emailProtectionUserData
  * @property {{ enabled: boolean }} [fireButton]
  */
 
-class DataChannel extends EventTarget {
+export class DataChannel extends EventTarget {
     protectionsEnabled = false
     /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} */
     httpsState = 'none'
@@ -55,13 +56,16 @@ class DataChannel extends EventTarget {
     /** @type {import('../schema/__generated__/schema.types').EmailProtectionUserData | null} */
     emailProtectionUserData = null
     count = 0
+    connection = 1
 
     _timeout = /** @type {any} */ (null)
 
     /**
-     * This will be called by the communication layer
+     * Sets a timeout to send a message
+     *
+     * @param {string} _messageName - The name of the message to send
      */
-    send() {
+    send(_messageName) {
         clearTimeout(this._timeout)
         this._timeout = window.setTimeout(() => {
             comms
@@ -73,6 +77,14 @@ class DataChannel extends EventTarget {
                     console.log('❌ [models/site.es6.js:handleBackgroundMsg()] --> ', e)
                 })
         }, 100)
+    }
+
+    /**
+     * Allow producers to indicate when their connection was re-established
+     */
+    didReconnect() {
+        this.connection += 1
+        this.broadcast()
     }
 
     /**
@@ -203,8 +215,8 @@ class DataChannel extends EventTarget {
      * @return {DataChannelPublicData}
      */
     lastValue() {
-        if (!this.tab) throw new Error('unreachable')
-        if (!this.featureSettings) throw new Error('unreachable')
+        if (!this.tab) throw new Error('unreachable, missing this.tab')
+        if (!this.featureSettings) throw new Error('unreachable, missing this.featureSettings')
         return {
             fireButton: this.fireButton,
             protectionsEnabled: this.protectionsEnabled,
@@ -221,6 +233,7 @@ class DataChannel extends EventTarget {
             tab: this.tab,
             count: this.count,
             emailProtectionUserData: this.emailProtectionUserData,
+            connection: this.connection,
         }
     }
 }
@@ -300,6 +313,22 @@ function useInternalData() {
     }, [])
     return state
 }
+
+/**
+ * @return {number}
+ */
+export function useConnectionCount() {
+    const [state, setCount] = useState(() => dc.lastValue().connection)
+    useEffect(() => {
+        const controller = new AbortController()
+        dc.addEventListener('data', (/** @type {any} */ evt) => {
+            setCount(evt.detail.connection)
+        })
+        return controller.abort
+    }, [])
+    return state
+}
+
 /**
  * Public data is always ready to read.
  * @return {DataChannelPublicData}
