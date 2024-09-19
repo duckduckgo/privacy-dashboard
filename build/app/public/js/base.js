@@ -14986,7 +14986,6 @@
      * @return {DataChannelPublicData}
      */
     lastValue() {
-      console.log(JSON.stringify(this.tab));
       if (!this.tab)
         throw new Error("unreachable, missing this.tab");
       if (!this.featureSettings)

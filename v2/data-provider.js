@@ -215,7 +215,6 @@ export class DataChannel extends EventTarget {
      * @return {DataChannelPublicData}
      */
     lastValue() {
-        console.log(JSON.stringify(this.tab))
         if (!this.tab) throw new Error('unreachable, missing this.tab')
         if (!this.featureSettings) throw new Error('unreachable, missing this.featureSettings')
         return {
