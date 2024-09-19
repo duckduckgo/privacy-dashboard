@@ -121,11 +121,13 @@ export class AndroidBreakageDialog extends LitElement {
             }
             md-dialog {
                 text-align: left;
+                max-height: 470px;
 
                 --md-ref-typeface-plain: system, system-ui, Roboto;
                 --md-ref-typeface-brand: system, system-ui, Roboto;
 
-                --md-dialog-headline-size: 18px;
+                --md-sys-typescale-headline-small-weight: 500;
+                --md-dialog-headline-size: 20px;
                 --md-dialog-container-shape: 12px;
                 --md-dialog-container-color: white;
 

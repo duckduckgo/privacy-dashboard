@@ -1169,7 +1169,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .environment--android .top-nav__title {
   transform: unset;
   left: 60px;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 500;
 }
 .environment--android .top-nav__title:active {
