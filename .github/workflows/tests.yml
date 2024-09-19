@@ -76,12 +76,22 @@ jobs:
               run: npm run test.int -- --grep-invert @screenshots
             - name: Run Playwright tests (screenshots only)
               run: npm run test.int -- --grep @screenshots
+              id: screenshot_tests
             - uses: actions/upload-artifact@v3
               if: always()
               with:
                   name: playwright-report
                   path: playwright-report/
                   retention-days: 30
+            - if: ${{ failure() && steps.screenshot_tests.conclusion == 'failure' }}
+              run: npm run test.int -- --grep @screenshots --update-snapshots
+            - if: ${{ failure() && steps.screenshot_tests.conclusion == 'failure' }}
+              name: Upload screens
+              uses: actions/upload-artifact@v3
+              with:
+                  name: integration-tests
+                  path: integration-tests/
+                  retention-days: 10
             - name: Build docs
               run: npm run docs
             - name: copy-to-docs
