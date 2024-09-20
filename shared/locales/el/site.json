@@ -136,6 +136,14 @@
     "title" : "Η σύνδεση ενδέχεται να μην είναι ασφαλής",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "Ο ιστότοπος μπορεί να είναι παραπλανητικός",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Ο ιστότοπος αυτός μπορεί να υποδύεται έναν νόμιμο ιστότοπο προκειμένου να σας εξαπατήσει ώστε να παράσχετε προσωπικές πληροφορίες, όπως κωδικούς πρόσβασης ή αριθμούς πιστωτικών καρτών.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Αιτήματα που αποκλείστηκαν από τη φόρτωση",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "Ακύρωση",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "Εντάξει",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Πίσω",

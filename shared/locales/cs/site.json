@@ -136,6 +136,14 @@
     "title" : "Připojení nemusí být zabezpečené",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "Stránka může být klamavá",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Tahle webová stránka se může vydávat za legitimní web, aby tě přiměla k poskytnutí osobních údajů, jako jsou hesla nebo čísla kreditních karet.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Načítání požadavků bylo zablokováno",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "Zrušit",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "DOBŘE",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Zpět",

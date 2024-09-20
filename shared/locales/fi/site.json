@@ -136,6 +136,14 @@
     "title" : "Yhteys saattaa olla suojaamaton",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "Sivusto voi olla huijaussivusto",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Tämä verkkosivusto saattaa esiintyä laillisena sivustona huijatakseen sinua antamaan henkilötietoja, kuten salasanan tai luottokortin numeron.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Pyynnöt, joiden lataaminen estetty",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "Peruuta",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "OK",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Takaisin",
