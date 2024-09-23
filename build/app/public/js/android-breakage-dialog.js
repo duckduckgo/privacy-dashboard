@@ -4336,17 +4336,9 @@
         this.dispatchEvent(event);
       }
     }
-    _didOpen() {
-      this.opened = true;
-      this.requestUpdate();
-    }
-    _didClose() {
-      this.opened = false;
-      this.requestUpdate();
-    }
     render() {
       return ke`
-            <md-dialog @close=${this._onClose} @opened=${this._didOpen} @closed=${this._didClose} data-opened=${String(this.opened)}>
+            <md-dialog @close=${this._onClose}>
                 <div slot="headline">${this.title}</div>
                 <form slot="content" id="form" method="dialog">
                     ${oo(this.items, ([value, title]) => {
@@ -4359,7 +4351,8 @@
       })}
                 </form>
                 <div slot="actions">
-                    <md-text-button form="form" value="cancel">${this.cancelText}</md-text-button>
+                    <!-- added autofocus as mentioned here: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#usage_notes -->
+                    <md-text-button form="form" value="cancel" autofocus>${this.cancelText}</md-text-button>
                     <md-filled-button form="form" value="ok">${this.okText}</md-filled-button>
                 </div>
             </md-dialog>
@@ -4416,14 +4409,6 @@
                     --md-sys-color-on-surface-variant: rgba(255, 255, 255, 0.9);
                     --md-sys-color-outline-variant: rgba(255, 255, 255, 0.18);
                 }
-            }
-
-            md-dialog label {
-                pointer-events: none;
-            }
-
-            md-dialog[data-opened='true'] label {
-                pointer-events: unset;
             }
 
             md-filled-button {
