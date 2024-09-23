@@ -8,7 +8,6 @@ import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs'
 import { Extension } from './Extension'
 
-
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]')
     trackerCompaniesLink = () => this.page.locator('[aria-label="View Tracker Companies"]')
