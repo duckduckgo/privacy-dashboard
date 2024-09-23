@@ -30,37 +30,9 @@ export function FormSelectElementWithDialog() {
      */
     const selectRef = useRef(null)
 
-    /**
-     * Detect pointer events
-     */
-    let obj = useRef({
-        isTap: false,
-        startX: 0,
-        startY: 0,
-    })
-
-    // Pointer down event to start tracking
-    function onPointerDown(event) {
-        obj.current.isTap = true // Assume it is a tap initially
-        obj.current.startX = event.clientX // Record the starting X position
-        obj.current.startY = event.clientY // Record the starting Y position
-    }
-
-    // Pointer move event to detect scrolling or dragging
-    function onPointerMove(event) {
-        const tapThreshold = 10 // Adjust this threshold as needed (in pixels)
-
-        const deltaX = Math.abs(event.clientX - obj.current.startX)
-        const deltaY = Math.abs(event.clientY - obj.current.startY)
-
-        // If the movement exceeds the threshold, it is not a tap
-        if (deltaX > tapThreshold || deltaY > tapThreshold) {
-            obj.current.isTap = false
-        }
-    }
-
-    function onPointerUp() {
-        if (!obj.current.isTap) return
+    function onClick(e) {
+        e.preventDefault()
+        e.stopImmediatePropagation()
         /** @type {import("../custom-elements/android-breakage-dialog").AndroidBreakageDialog | null} */
         const elem = document.querySelector(DDG_DIALOG_NAME)
         if (!elem) return console.warn('could not find custom element', 'ddg-android-breakage-dialog')
@@ -79,14 +51,8 @@ export function FormSelectElementWithDialog() {
                     }}
                 />
             </CustomElementLoader>
-            <div
-                className="form__select breakage-form__input--dropdown"
-                onPointerDown={onPointerDown}
-                onPointerMove={onPointerMove}
-                onPointerUp={onPointerUp}
-                data-testid="select-click-capture"
-            >
-                <select name="category" ref={selectRef} style={{ pointerEvents: 'none' }}>
+            <div className="form__select breakage-form__input--dropdown" onClick={onClick} data-testid="select-click-capture">
+                <select name="category" ref={selectRef}>
                     <option value="" selected disabled>
                         {ns.report('pickYourIssueFromTheList.title')}
                     </option>
