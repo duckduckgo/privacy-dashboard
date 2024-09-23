@@ -4391,7 +4391,6 @@
             }
             md-dialog {
                 text-align: left;
-                max-height: 470px;
 
                 --md-ref-typeface-plain: system, system-ui, Roboto;
                 --md-ref-typeface-brand: system, system-ui, Roboto;
