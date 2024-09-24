@@ -63,6 +63,19 @@ export function createPlatformFeatures(platform) {
     let randomisedCategories = true
     if (url.searchParams.get('randomisedCategories') === 'false') randomisedCategories = false
 
+    // which kind of select element should the breakage form use?
+    /** @type {"default" | "material-web-dialog"} */
+    let breakageFormCategorySelect = 'default'
+    if (platform.name === 'android' && typeof CSSLayerBlockRule === 'function') {
+        breakageFormCategorySelect = 'material-web-dialog'
+    }
+    if (url.searchParams.get('breakageFormCategorySelect') === 'material-web-dialog') {
+        breakageFormCategorySelect = 'material-web-dialog'
+    }
+    if (url.searchParams.get('breakageFormCategorySelect') === 'default') {
+        breakageFormCategorySelect = 'default'
+    }
+
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
         supportsHover: desktop.includes(platform.name),
@@ -73,6 +86,7 @@ export function createPlatformFeatures(platform) {
         includeToggleOnBreakageForm,
         breakageScreen,
         randomisedCategories,
+        breakageFormCategorySelect,
     })
 }
 
@@ -92,6 +106,7 @@ export class PlatformFeatures {
      * @param {InitialScreen} params.breakageScreen
      * @param {boolean} params.supportsPhishingWarning
      * @param {boolean} params.randomisedCategories
+     * @param {"default" | "material-web-dialog"} params.breakageFormCategorySelect
      */
     constructor(params) {
         /**
@@ -138,6 +153,11 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.randomisedCategories = params.randomisedCategories
+        /**
+         * Whether we should use the material web dialog for the breakage form
+         * @type {"default" | "material-web-dialog"}
+         */
+        this.breakageFormCategorySelect = params.breakageFormCategorySelect
     }
 }
 

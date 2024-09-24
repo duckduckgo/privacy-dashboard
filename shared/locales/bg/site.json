@@ -136,6 +136,14 @@
     "title" : "Връзката може да не е сигурна",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "Сайтът може да е заблуждаващ",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Този уебсайт може да имитира легитимен сайт, за да ви подмами да предоставите лична информация, като например пароли или номера на кредитни карти.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Блокирано зареждане на заявки",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "Отмени",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "ОК",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Обратно",

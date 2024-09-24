@@ -1,9 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact'
-import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks'
-import { MDCSwitch } from '@material/switch'
+import { useEffect, useState } from 'preact/hooks'
 import { ns } from '../base/localize'
-import { isAndroid, isBrowser } from '../environment-check'
+import { isBrowser } from '../environment-check'
 
 /**
  * @typedef {import('../templates/protection-header').ToggleState} ToggleState
@@ -119,65 +118,7 @@ export function ToggleButton(props) {
     const labelDisabled = ns.site('disableProtectionsSwitch.title')
     const label = toggleState.active ? labelDisabled : labelEnabled
 
-    // prettier-ignore
-    return isAndroid()
-        ? <AndroidToggle toggleState={toggleState} onToggle={props.onToggle} label={label} />
-        : <DefaultToggleButton toggleState={toggleState} label={label} onToggle={props.onToggle} />
-}
-
-/**
- * @param {object} props
- * @param {string} props.label
- * @param {ToggleState} props.toggleState
- * @param {() => void} props.onToggle
- */
-export function AndroidToggle(props) {
-    const ref = useRef(null)
-    const className = `mdc-switch mdc-switch--${props.toggleState.active ? 'selected' : 'unselected'}`
-
-    useLayoutEffect(() => {
-        if (!ref.current) return
-        const elem = /** @type {HTMLButtonElement} */ (ref.current)
-        if (!(elem instanceof HTMLButtonElement)) return
-
-        const switchInstance = new MDCSwitch(ref.current)
-        switchInstance.listen('click', () => {
-            const pressed = elem.getAttribute('aria-checked')
-            const next = pressed === 'true' ? 'false' : 'true'
-            elem.setAttribute('aria-checked', next)
-            props.onToggle()
-            switchInstance.destroy()
-        })
-        return () => {
-            switchInstance.destroy()
-        }
-    }, [])
-
-    return (
-        <button
-            ref={ref}
-            id="basic-switch"
-            class={className}
-            type="button"
-            role="switch"
-            aria-checked="false"
-            aria-label={props.label}
-            disabled={props.toggleState.disabled}
-        >
-            <div class="mdc-switch__track"></div>
-            <div class="mdc-switch__handle-track">
-                <div class="mdc-switch__handle">
-                    <div class="mdc-switch__shadow">
-                        <div class="mdc-elevation-overlay"></div>
-                    </div>
-                    <div class="mdc-switch__ripple"></div>
-                </div>
-            </div>
-            <span class="mdc-switch__focus-ring-wrapper">
-                <div class="mdc-switch__focus-ring"></div>
-            </span>
-        </button>
-    )
+    return <DefaultToggleButton toggleState={toggleState} label={label} onToggle={props.onToggle} />
 }
 
 /**

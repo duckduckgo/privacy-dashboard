@@ -239,6 +239,12 @@ a {
 .padding-y--reduced {
     padding-top: 14px;
     padding-bottom: 14px;
+
+    .environment--ios &,
+    .environment--android & {
+        padding-top: 8.5px;
+        padding-bottom: 8.5px;
+    }
 }
 
 .padding-bottom-half {

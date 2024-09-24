@@ -222,7 +222,7 @@ export class Mocks {
         }
         if (this.platform.name === 'android') {
             const out = await this.outgoing({ names: ['submitBrokenSiteReport'] })
-            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category: '', description: '' })]])
+            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category, description })]])
             return
         }
         throw new Error('unreachable. mockCalledForSubmitBreakageForm must be handled')
@@ -343,7 +343,15 @@ export class Mocks {
     async calledForToggleAllowList(kind = 'protections-off', eventOrigin = { screen: 'primaryScreen' }) {
         if (this.platform.name === 'android') {
             const calls = await this.outgoing({ names: ['toggleAllowlist'] })
-            expect(calls).toMatchObject([['toggleAllowlist', false]])
+            expect(calls).toMatchObject([
+                [
+                    'toggleAllowlist',
+                    JSON.stringify({
+                        eventOrigin: eventOrigin,
+                        isProtected: false,
+                    }),
+                ],
+            ])
             return
         }
         if (this.platform.name === 'windows') {

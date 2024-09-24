@@ -6,10 +6,11 @@ import { DomNode } from '../dom-node'
 import { useMemo, useState } from 'preact/hooks'
 import { useClose, useData, useFeatures, useSendReport, useToggle } from '../data-provider'
 import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
-import { Close, Done, SecondaryTopNav, TopNav } from '../components/top-nav'
+import { Back, Close, Done, SecondaryTopNav, Title, TopNav } from '../components/top-nav'
 import { useNav } from '../navigation'
 import { platformSwitch } from '../../shared/js/ui/environment-check'
 import { createBreakageFeaturesFrom } from '../breakage-categories'
+import { FormSelectElementWithDialog } from '../components/android-breakage-modal-wrapper'
 
 /**
  * @param {object} props
@@ -45,21 +46,27 @@ export function BreakageFormScreen({ includeToggle }) {
         setState('sent')
     }
 
-    let topNav = <SecondaryTopNav />
+    let topNav = platformSwitch({
+        android: () => (
+            <SecondaryTopNav>
+                <Title>{ns.site('websiteNotWorkingCta.title')}</Title>
+            </SecondaryTopNav>
+        ),
+        default: () => <SecondaryTopNav />,
+    })
 
     // if we can't go back, swap out the nav
     if (!canPop) {
         topNav = platformSwitch({
             ios: () => <TopNav done={<Done onClick={onClose} />} />,
+            android: () => (
+                <TopNav back={<Back onClick={onClose} />}>
+                    <Title>{ns.site('websiteNotWorkingCta.title')}</Title>
+                </TopNav>
+            ),
             default: () => <TopNav done={<Close onClick={onClose} />} />,
         })
     }
-
-    // shuffle once and remember
-    const randomised = useMemo(() => {
-        const f = createBreakageFeaturesFrom(platformFeatures)
-        return f.categoryList()
-    }, [platformFeatures])
 
     return (
         <div className="breakage-form page-inner">
@@ -90,14 +97,11 @@ export function BreakageFormScreen({ includeToggle }) {
                     <FormElement
                         onSubmit={submit}
                         before={
-                            <div className="form__select breakage-form__input--dropdown">
-                                <select name="category">
-                                    <option value="">{ns.report('pickYourIssueFromTheList.title')}</option>$
-                                    {randomised.map(([key, value]) => {
-                                        return <option value={key}>{value}</option>
-                                    })}
-                                </select>
-                            </div>
+                            platformFeatures.breakageFormCategorySelect === 'material-web-dialog' ? (
+                                <FormSelectElementWithDialog />
+                            ) : (
+                                <DefaultSelectElement />
+                            )
                         }
                     />
                 </div>
@@ -110,12 +114,38 @@ export function BreakageFormScreen({ includeToggle }) {
 }
 
 /**
+ * When the platform can use the select element directly
+ */
+function DefaultSelectElement() {
+    const platformFeatures = useFeatures()
+
+    // shuffle once and remember
+    const randomised = useMemo(() => {
+        const f = createBreakageFeaturesFrom(platformFeatures)
+        return f.categoryList()
+    }, [platformFeatures])
+
+    return (
+        <div className="form__select breakage-form__input--dropdown">
+            <select name="category">
+                <option value="" selected disabled>
+                    {ns.report('pickYourIssueFromTheList.title')}
+                </option>
+                {randomised.map(([key, value]) => {
+                    return <option value={key}>{value}</option>
+                })}
+            </select>
+        </div>
+    )
+}
+
+/**
  * Creates a form element.
  *
  * @param {Object} options - The options for the form element.
  * @param {(args:any) => void} options.onSubmit - The submit event handler function for the form.
- * @param {import("preact").ComponentChild} [options.before] - The content to display before the textarea.
- * @param {import("preact").ComponentChild} [options.after] - The content to display before the textarea.
+ * @param {import('preact').ComponentChild} [options.before] - The content to display before the textarea.
+ * @param {import('preact').ComponentChild} [options.after] - The content to display before the textarea.
  * @param {string} [options.placeholder] - The placeholder text in the textare
  */
 export function FormElement({ onSubmit, before, after, placeholder }) {

@@ -136,6 +136,14 @@
     "title" : "Bağlantı Güvenli Olmayabilir",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "Site Aldatıcı Olabilir",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Bu web sitesi, şifre veya kredi kartı numarası gibi kişisel bilgilerinizi vermeniz için sizi kandırmak amacıyla meşru bir siteyi taklit ediyor olabilir.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Yüklenmesi Engellenen İstekler",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "İptal Et",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "Tamam",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Geri",

@@ -136,6 +136,14 @@
     "title" : "De verbinding is misschien onveilig",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "de website is mogelijk misleidend",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Deze website kan zich voordoen als een legitieme site om je te verleiden tot het verstrekken van persoonlijke informatie, zoals wachtwoorden of creditcardnummers.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Verzoeken geblokkeerd bij laden",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "Annuleren",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "OK",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Terug",

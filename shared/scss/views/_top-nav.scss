@@ -12,7 +12,7 @@ body {
 .top-nav {
     text-align: center;
     position: fixed;
-    z-index: 5;
+    z-index: 1;
     width: 100%;
     height: var(--nav-height);
     background: var(--page-bg);
@@ -129,14 +129,26 @@ body {
 .top-nav__title {
     position: absolute;
     height: var(--nav-height);
-    line-height: var(--nav-height);
+    line-height: 1.1;
     color: var(--color-text-primary);
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    align-items: center;
 
     .environment--ios & {
         font-size: 17px;
         font-weight: 600;
+        &:active {
+            opacity: 0.5;
+        }
+    }
+
+    .environment--android & {
+        transform: unset;
+        left: 60px;
+        font-size: 20px;
+        font-weight: 500;
         &:active {
             opacity: 0.5;
         }

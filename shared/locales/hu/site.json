@@ -136,6 +136,14 @@
     "title" : "Lehet, hogy a kapcsolat nem biztonságos",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "A webhely megtévesztő lehet",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Előfordulhat, hogy ez a webhely legitim webhelynek adja ki magát, hogy személyes adatok, például jelszavak vagy hitelkártyaszámok megadására vegyen rá.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Kérések betöltése blokkolva",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "Mégse",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "OK",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Vissza",

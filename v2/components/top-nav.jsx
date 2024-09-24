@@ -24,15 +24,27 @@ export function TopNav({ back, done, children }) {
     )
 }
 
-export function SecondaryTopNav() {
+/**
+ * @param {object} props
+ * @param {import("preact").ComponentChild} [props.children]
+ */
+export function SecondaryTopNav({ children }) {
     const { pop } = useNav()
     const onClose = useClose()
     return platformSwitch({
         ios: () => {
-            return <TopNav back={<Back onClick={pop} />} done={<Done onClick={onClose} />}></TopNav>
+            return (
+                <TopNav back={<Back onClick={pop} />} done={<Done onClick={onClose} />}>
+                    {children}
+                </TopNav>
+            )
         },
         default: () => {
-            return <TopNav back={<Back onClick={pop} />} done={null}></TopNav>
+            return (
+                <TopNav back={<Back onClick={pop} />} done={null}>
+                    {children}
+                </TopNav>
+            )
         },
     })
 }

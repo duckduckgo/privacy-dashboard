@@ -136,6 +136,14 @@
     "title" : "A ligação pode ser insegura",
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
+  "phishingWebsite" : {
+    "title" : "O site pode ser enganador",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "phishingWebsiteDesc" : {
+    "title" : "Este site pode estar a fazer-se passar por um site legítimo para te enganar a fornecer informações pessoais, como palavras-passe ou números de cartão de crédito.",
+    "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
   "trackerNetworksDesc" : {
     "title" : "Pedidos com carregamento bloqueado",
     "note" : "This indicates that 1 or more trackers were blocked."
@@ -278,6 +286,10 @@
   "navigationCancel" : {
     "title" : "Cancelar",
     "note" : "Button text for cancel action"
+  },
+  "okDialogAction" : {
+    "title" : "OK",
+    "note" : "Text for the button that confirms or accepts the selection in a dialog."
   },
   "navigationBack" : {
     "title" : "Retroceder",

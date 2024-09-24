@@ -4,7 +4,7 @@ import { useClose, useConnectionCount, useFeatures, useFetcher } from '../data-p
 import { ToggleReportProvider } from '../../shared/js/ui/components/toggle-report/toggle-report-provider'
 import { ToggleReport } from '../../shared/js/ui/components/toggle-report'
 import { useEffect } from 'preact/hooks'
-import { Close, Done, TopNav } from '../components/top-nav'
+import { Back, Close, Done, TopNav } from '../components/top-nav'
 import { platformSwitch } from '../../shared/js/ui/environment-check'
 
 export function ToggleReportScreen() {
@@ -23,12 +23,18 @@ export function ToggleReportScreen() {
 
     const done = platformSwitch({
         ios: () => <Done onClick={onClose} />,
+        android: () => null,
         default: () => <Close onClick={onClose} />,
+    })
+
+    const back = platformSwitch({
+        android: () => <Back onClick={onClose} />,
+        default: () => null,
     })
 
     return (
         <div data-toggle-report="parent" class="toggle-report page-inner" data-opener={features.opener}>
-            {features.opener === 'menu' ? <TopNav done={done} /> : <TopNav />}
+            {features.opener === 'menu' ? <TopNav back={back} done={done} /> : <TopNav />}
             <div data-testid="toggle-report">
                 <ToggleReportProvider key={connectionId} model={{ fetch: fetcher }} screen={features.initialScreen}>
                     <ToggleReport />
