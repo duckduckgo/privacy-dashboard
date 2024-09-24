@@ -29,7 +29,7 @@ export function ToggleReport() {
     useIosAnimation(state, dispatch)
 
     // on desktop only, transition to a success screen
-    if (state.value === 'sent' && desktop) {
+    if (state.value === 'sent' && (desktop || extension)) {
         return (
             <ToggleReportWrapper state={state.value}>
                 <ToggleReportSent onClick={didClickSuccessScreen} />

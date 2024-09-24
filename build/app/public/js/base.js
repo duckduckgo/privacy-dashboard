@@ -17174,7 +17174,7 @@
     const { value, didClickSuccessScreen } = q2(ToggleReportContext);
     const [state, dispatch] = useToggleReportState();
     useIosAnimation(state, dispatch);
-    if (state.value === "sent" && desktop) {
+    if (state.value === "sent" && (desktop || extension)) {
       return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(ToggleReportSent, { onClick: didClickSuccessScreen }));
     }
     if (desktop) {
