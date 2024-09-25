@@ -306,6 +306,13 @@ export async function rejectToggleReport() {
 }
 
 /**
+ * Sent when the user expands the disclosure
+ */
+export function seeWhatIsSent() {
+    throw new Error('base impl')
+}
+
+/**
  * @param {import('../../../schema/__generated__/schema.types').Search} options
  */
 export function search(options) {}
