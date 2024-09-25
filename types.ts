@@ -32,6 +32,10 @@ interface Window {
         openInNewTab: (payload: string) => void
         openSettings: (payload: string) => void
         submitBrokenSiteReport: (payload: string) => void
+        getToggleReportOptions: () => void
+        sendToggleReport: () => void
+        rejectToggleReport: () => void
+        seeWhatIsSent: () => void
     }
     /**
      * This is set in Playwright tests

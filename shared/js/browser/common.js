@@ -280,6 +280,7 @@ export async function refreshAlias() {
 
 /**
  * Fetch the data needed to display the toggle report screen
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
  */
 export async function getToggleReportOptions() {
     throw new Error('base impl')
@@ -287,17 +288,22 @@ export async function getToggleReportOptions() {
 
 /**
  * Send the toggle report
- * @returns {Promise<void>}
  */
-export async function sendToggleReport() {
+export function sendToggleReport() {
     throw new Error('base impl')
 }
 
 /**
  * Reject sending the toggle report
- * @returns {Promise<void>}
  */
-export async function rejectToggleReport() {
+export function rejectToggleReport() {
+    throw new Error('base impl')
+}
+
+/**
+ * Sent when the user expands the disclosure
+ */
+export function seeWhatIsSent() {
     throw new Error('base impl')
 }
 

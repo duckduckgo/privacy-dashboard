@@ -18,7 +18,11 @@ import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/uti
 import {
     CheckBrokenSiteReportHandledMessage,
     CloseMessage,
+    FetchToggleReportOptions,
     OpenSettingsMessages,
+    RejectToggleBreakageReport,
+    SeeWhatIsSent,
+    SendToggleBreakageReport,
     SetListsMessage,
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
@@ -322,6 +326,49 @@ export class PrivacyDashboardJavascriptInterface {
         invariant(typeof window.PrivacyDashboard?.submitBrokenSiteReport, 'window.PrivacyDashboard.submitBrokenSiteReport required')
         window.PrivacyDashboard.submitBrokenSiteReport(JSON.stringify(payload))
     }
+
+    /**
+     * {@inheritDoc common.getToggleReportOptions}
+     * @type {import("./common.js").getToggleReportOptions}
+     * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
+     */
+    getToggleReportOptions() {
+        invariant(typeof window.PrivacyDashboard?.getToggleReportOptions, 'window.PrivacyDashboard.getToggleReportOptions required')
+        window.PrivacyDashboard.getToggleReportOptions()
+        return new Promise((resolve) => {
+            window.onGetToggleReportOptionsResponse = (data) => {
+                resolve(data)
+                Reflect.deleteProperty(window, 'onGetToggleReportOptionsResponse')
+            }
+        })
+    }
+
+    /**
+     * {@inheritDoc common.sendToggleReport}
+     * @type {import("./common.js").sendToggleReport}
+     */
+    sendToggleReport() {
+        invariant(window.PrivacyDashboard?.sendToggleReport, 'sendToggleReport missing')
+        window.PrivacyDashboard.sendToggleReport()
+    }
+
+    /**
+     * {@inheritDoc common.rejectToggleReport}
+     * @type {import("./common.js").rejectToggleReport}
+     */
+    rejectToggleReport() {
+        invariant(window.PrivacyDashboard?.rejectToggleReport, 'rejectToggleReport missing')
+        window.PrivacyDashboard.rejectToggleReport()
+    }
+
+    /**
+     * {@inheritDoc common.seeWhatIsSent}
+     * @type {import("./common.js").seeWhatIsSent}
+     */
+    seeWhatIsSent() {
+        invariant(window.PrivacyDashboard?.seeWhatIsSent, 'seeWhatIsSent missing')
+        window.PrivacyDashboard.seeWhatIsSent()
+    }
 }
 
 /**
@@ -373,6 +420,22 @@ async function fetchAndroid(message) {
         return privacyDashboardApi.openSettings({
             target: message.target,
         })
+    }
+
+    if (message instanceof FetchToggleReportOptions) {
+        return privacyDashboardApi.getToggleReportOptions()
+    }
+
+    if (message instanceof SendToggleBreakageReport) {
+        return privacyDashboardApi.sendToggleReport()
+    }
+
+    if (message instanceof RejectToggleBreakageReport) {
+        return privacyDashboardApi.rejectToggleReport()
+    }
+
+    if (message instanceof SeeWhatIsSent) {
+        return privacyDashboardApi.seeWhatIsSent()
     }
 
     console.warn('unhandled message', message)
