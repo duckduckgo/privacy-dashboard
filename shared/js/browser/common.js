@@ -48,6 +48,29 @@ export function setupMutationObserver(callback) {
     return () => mutationObserver.disconnect()
 }
 
+/**
+ * Sets up a MutationObserver to monitor changes in the DOM and execute a callback function.
+ *
+ * @param {function} callback - The callback function to be executed when a mutation is observed.
+ * @return {function} - A function that can be called to disconnect the MutationObserver.
+ */
+export function setupMutationObserverForExtensions(callback) {
+    let lastHeight
+    const mutationObserver = new MutationObserver(() => {
+        const contentHeight = getContentHeight()
+        if (!contentHeight) return
+
+        // Only update if the height has changed since last run
+        if (lastHeight === contentHeight) return
+        lastHeight = contentHeight
+
+        callback(contentHeight)
+    })
+    const config = { childList: true, attributes: true, subtree: true }
+    mutationObserver.observe(window.document, config)
+    return () => mutationObserver.disconnect()
+}
+
 const DARK_THEME = 'dark'
 const LIGHT_THEME = 'light'
 let explicitlySetTheme = ''

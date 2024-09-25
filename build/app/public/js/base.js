@@ -12585,6 +12585,21 @@
     mutationObserver.observe(window.document, config);
     return () => mutationObserver.disconnect();
   }
+  function setupMutationObserverForExtensions(callback) {
+    let lastHeight;
+    const mutationObserver = new MutationObserver(() => {
+      const contentHeight = getContentHeight();
+      if (!contentHeight)
+        return;
+      if (lastHeight === contentHeight)
+        return;
+      lastHeight = contentHeight;
+      callback(contentHeight);
+    });
+    const config = { childList: true, attributes: true, subtree: true };
+    mutationObserver.observe(window.document, config);
+    return () => mutationObserver.disconnect();
+  }
   var DARK_THEME = "dark";
   var LIGHT_THEME = "light";
   var explicitlySetTheme = "";
@@ -17203,11 +17218,10 @@
         inner.style.height = "auto";
         const height = getContentHeight();
         document.body.style.setProperty("--height", `${height}px`);
-        const unsub = setupMutationObserver((height2) => {
+        const unsub = setupMutationObserverForExtensions((height2) => {
           document.body.style.setProperty("--height", `${height2}px`);
         });
         return () => {
-          console.log("cleanup");
           unsub();
         };
       } else {
