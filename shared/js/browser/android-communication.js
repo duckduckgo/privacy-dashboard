@@ -291,7 +291,6 @@ export class PrivacyDashboardJavascriptInterface {
     /**
      * {@inheritDoc common.openInNewTab}
      * @type {import("./common.js").openInNewTab}
-     *
      * ```js
      * const payload = JSON.stringify({
      *     "url": "https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/"
@@ -346,6 +345,10 @@ export class PrivacyDashboardJavascriptInterface {
     /**
      * {@inheritDoc common.sendToggleReport}
      * @type {import("./common.js").sendToggleReport}
+     * @example
+     * ```js
+     * window.PrivacyDashboard.sendToggleReport()
+     * ```
      */
     sendToggleReport() {
         invariant(window.PrivacyDashboard?.sendToggleReport, 'sendToggleReport missing')
