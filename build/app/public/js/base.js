@@ -12569,7 +12569,7 @@
     return ($openSubviewV2 || $rootSubviewV2)?.scrollHeight;
   };
   function setupMutationObserver(callback) {
-    const bufferHeight = 0;
+    const bufferHeight = 200;
     let lastHeight;
     const mutationObserver = new MutationObserver(() => {
       const contentHeight = getContentHeight();
