@@ -23,6 +23,7 @@ import {
     RefreshEmailAliasMessage,
     RejectToggleBreakageReport,
     SearchMessage,
+    SeeWhatIsSent,
     SendToggleBreakageReport,
     SetBurnDefaultOption,
     SetListsMessage,
@@ -162,6 +163,9 @@ export async function fetch(message) {
     if (message instanceof FetchToggleReportOptions) {
         return getToggleReportOptions()
     }
+    if (message instanceof SeeWhatIsSent) {
+        return seeWhatIsSent()
+    }
     return Promise.reject(new Error('unhandled message: ' + JSON.stringify(message)))
 }
 
@@ -298,6 +302,22 @@ export async function sendToggleReport() {
  */
 export async function rejectToggleReport() {
     return notify('rejectToggleReport')
+}
+
+/**
+ * {@inheritDoc common.seeWhatIsSent}
+ * @type {import("./common.js").seeWhatIsSent}
+ * @category Dashboard -> Extension Messages
+ *
+ * @example
+ * ```js
+ * window.chrome.runtime.sendMessage({
+ *    messageType: 'seeWhatIsSent'
+ * })
+ * ```
+ */
+export async function seeWhatIsSent() {
+    return notify('seeWhatIsSent')
 }
 
 /**

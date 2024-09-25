@@ -12551,6 +12551,7 @@
     refreshAlias: () => refreshAlias,
     rejectToggleReport: () => rejectToggleReport,
     search: () => search,
+    seeWhatIsSent: () => seeWhatIsSent,
     sendToggleReport: () => sendToggleReport,
     setBurnDefaultOption: () => setBurnDefaultOption,
     setLists: () => setLists,
@@ -12582,6 +12583,7 @@
     });
     const config = { childList: true, attributes: true, subtree: true };
     mutationObserver.observe(window.document, config);
+    return () => mutationObserver.disconnect();
   }
   var DARK_THEME = "dark";
   var LIGHT_THEME = "light";
@@ -12873,6 +12875,9 @@
     if (message instanceof FetchToggleReportOptions) {
       return getToggleReportOptions();
     }
+    if (message instanceof SeeWhatIsSent) {
+      return seeWhatIsSent();
+    }
     return Promise.reject(new Error("unhandled message: " + JSON.stringify(message)));
   }
   async function submitBrokenSiteReport(report2) {
@@ -12898,6 +12903,9 @@
   }
   async function rejectToggleReport() {
     return notify("rejectToggleReport");
+  }
+  async function seeWhatIsSent() {
+    return notify("seeWhatIsSent");
   }
   function getBurnOptions() {
     return request("getBurnOptions");
@@ -17175,18 +17183,37 @@
     const [state, dispatch] = useToggleReportState();
     useIosAnimation(state, dispatch);
     if (state.value === "sent" && (desktop || extension)) {
-      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(ToggleReportSent, { onClick: didClickSuccessScreen }));
+      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, extension && /* @__PURE__ */ y(SetAutoHeight, null), /* @__PURE__ */ y(ToggleReportSent, { onClick: didClickSuccessScreen }));
     }
-    if (desktop) {
-      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), /* @__PURE__ */ y(DesktopRevealText, { state, toggle: () => dispatch("toggle") }))), state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }))));
+    if (desktop || extension) {
+      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, extension && /* @__PURE__ */ y(SetAutoHeight, null), /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), /* @__PURE__ */ y(DesktopRevealText, { state, toggle: () => dispatch("toggle") }))), state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }))));
     }
     if (platform.name === "ios") {
       return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")))), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }), state.value !== "showing" && /* @__PURE__ */ y(RevealText, { toggle: () => dispatch("toggle-ios") })), state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
     }
-    if (extension) {
-      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")))), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }), /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })))));
-    }
     return /* @__PURE__ */ y("p", null, "unsupported platform: ", platform.name);
+  }
+  function SetAutoHeight() {
+    p2(() => {
+      const inner = (
+        /** @type {HTMLElement} */
+        document.querySelector('[data-screen="toggleReport"] .page-inner')
+      );
+      if (inner) {
+        inner.style.height = "auto";
+        const height = getContentHeight();
+        document.body.style.setProperty("--height", `${height}px`);
+        const unsub = setupMutationObserver((height2) => {
+          document.body.style.setProperty("--height", `${height2}px`);
+        });
+        return () => {
+          unsub();
+        };
+      } else {
+        console.warn("Could not select the required element");
+      }
+    }, []);
+    return null;
   }
   function ToggleReportButtons({ send, reject }) {
     const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
@@ -17216,8 +17243,8 @@
     }, []);
     const done = platformSwitch({
       ios: () => /* @__PURE__ */ y(Done, { onClick: onClose }),
-      android: () => null,
-      default: () => /* @__PURE__ */ y(Close, { onClick: onClose })
+      macos: () => /* @__PURE__ */ y(Close, { onClick: onClose }),
+      default: () => null
     });
     const back = platformSwitch({
       android: () => /* @__PURE__ */ y(Back, { onClick: onClose }),

@@ -45,6 +45,7 @@ export function setupMutationObserver(callback) {
     })
     const config = { childList: true, attributes: true, subtree: true }
     mutationObserver.observe(window.document, config)
+    return () => mutationObserver.disconnect()
 }
 
 const DARK_THEME = 'dark'

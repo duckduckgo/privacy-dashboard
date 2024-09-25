@@ -5,7 +5,7 @@ import { PlainTextLink } from './text-link'
 import { Button, ButtonBar } from './button'
 import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
-import { useContext } from 'preact/hooks'
+import { useContext, useEffect } from 'preact/hooks'
 import { useIosAnimation } from './toggle-report/use-ios-animation'
 import { ToggleReportContext } from './toggle-report/toggle-report-provider'
 import { useToggleReportState } from './toggle-report/use-toggle-report-state'
@@ -13,6 +13,7 @@ import { ToggleReportDataList } from './toggle-report/toggle-report-data-list'
 import { ToggleReportSent } from './toggle-report/toggle-report-sent'
 import { ToggleReportWrapper } from './toggle-report/toggle-report-wrapper'
 import { ToggleReportTitle } from './toggle-report/toggle-report-title'
+import { getContentHeight, setupMutationObserver } from '../../browser/common'
 
 export function ToggleReport() {
     const innerGap = platform.name === 'ios' ? '24px' : '16px'
@@ -32,14 +33,16 @@ export function ToggleReport() {
     if (state.value === 'sent' && (desktop || extension)) {
         return (
             <ToggleReportWrapper state={state.value}>
+                {extension && <SetAutoHeight />}
                 <ToggleReportSent onClick={didClickSuccessScreen} />
             </ToggleReportWrapper>
         )
     }
 
-    if (desktop) {
+    if (desktop || extension) {
         return (
             <ToggleReportWrapper state={state.value}>
+                {extension && <SetAutoHeight />}
                 <Stack gap="40px">
                     <Stack gap="24px">
                         <Stack gap={innerGap}>
@@ -87,29 +90,29 @@ export function ToggleReport() {
         )
     }
 
-    if (extension) {
-        return (
-            <ToggleReportWrapper state={state.value}>
-                <Stack gap="40px">
-                    <Stack gap="24px">
-                        <Stack gap={innerGap}>
-                            <div className="medium-icon-container hero-icon--toggle-report"></div>
-                            <ToggleReportTitle>{ns.toggleReport('siteNotWorkingTitle.title')}</ToggleReportTitle>
-                            <div>
-                                <h2 className="token-title-3 text--center">{ns.toggleReport('siteNotWorkingSubTitle.title')}</h2>
-                            </div>
-                        </Stack>
-                        <ToggleReportButtons send={() => dispatch('send')} reject={() => dispatch('reject')} />
-                        <Scrollable>
-                            <ToggleReportDataList rows={value.data} />
-                        </Scrollable>
-                    </Stack>
-                </Stack>
-            </ToggleReportWrapper>
-        )
-    }
-
     return <p>unsupported platform: {platform.name}</p>
+}
+
+function SetAutoHeight() {
+    useEffect(() => {
+        const inner = /** @type {HTMLElement} */ (document.querySelector('[data-screen="toggleReport"] .page-inner'))
+        if (inner) {
+            inner.style.height = 'auto'
+            const height = getContentHeight()
+            document.body.style.setProperty('--height', `${height}px`)
+
+            // this lives for the life
+            const unsub = setupMutationObserver((height) => {
+                document.body.style.setProperty('--height', `${height}px`)
+            })
+            return () => {
+                unsub()
+            }
+        } else {
+            console.warn('Could not select the required element')
+        }
+    }, [])
+    return null
 }
 
 function ToggleReportButtons({ send, reject }) {
