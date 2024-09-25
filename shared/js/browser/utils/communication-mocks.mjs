@@ -245,6 +245,7 @@ export function mockBrowserApis(params = { messages: {} }) {
         getPrivacyDashboardData: {},
         sendToggleReport: {},
         rejectToggleReport: {},
+        seeWhatIsSent: {},
         doBurn: {},
         getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },

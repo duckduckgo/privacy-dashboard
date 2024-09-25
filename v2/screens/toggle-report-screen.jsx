@@ -23,8 +23,8 @@ export function ToggleReportScreen() {
 
     const done = platformSwitch({
         ios: () => <Done onClick={onClose} />,
-        android: () => null,
-        default: () => <Close onClick={onClose} />,
+        macos: () => <Close onClick={onClose} />,
+        default: () => null,
     })
 
     const back = platformSwitch({
