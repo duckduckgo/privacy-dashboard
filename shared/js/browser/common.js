@@ -29,7 +29,7 @@ export const getContentHeightForScreenShot = () => {
  * @param {(height: number) => void} callback
  */
 export function setupMutationObserver(callback) {
-    const bufferHeight = 10
+    const bufferHeight = 0
     let lastHeight
     const mutationObserver = new MutationObserver(() => {
         const contentHeight = getContentHeight()

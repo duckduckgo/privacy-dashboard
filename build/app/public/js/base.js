@@ -12569,7 +12569,7 @@
     return ($openSubviewV2 || $rootSubviewV2)?.scrollHeight;
   };
   function setupMutationObserver(callback) {
-    const bufferHeight = 10;
+    const bufferHeight = 0;
     let lastHeight;
     const mutationObserver = new MutationObserver(() => {
       const contentHeight = getContentHeight();
@@ -17194,7 +17194,6 @@
     return /* @__PURE__ */ y("p", null, "unsupported platform: ", platform.name);
   }
   function SetAutoHeight() {
-    const [v3, set] = h2(0);
     p2(() => {
       const inner = (
         /** @type {HTMLElement} */
@@ -17203,13 +17202,9 @@
       if (inner) {
         inner.style.height = "auto";
         const height = getContentHeight();
-        if (height && height > 0) {
-          set(height);
-        }
         document.body.style.setProperty("--height", `${height}px`);
         const unsub = setupMutationObserver((height2) => {
           document.body.style.setProperty("--height", `${height2}px`);
-          set(height2);
         });
         return () => {
           console.log("cleanup");
@@ -17219,7 +17214,7 @@
         console.warn("Could not select the required element");
       }
     }, []);
-    return /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, v3));
+    return null;
   }
   function ToggleReportButtons({ send, reject }) {
     const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
