@@ -14039,12 +14039,12 @@
   function privacyDashboardSendToggleReport() {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, "privacyDashboardSendToggleReport required");
-    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({});
+    window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({});
   }
   function privacyDashboardRejectToggleReport() {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
     invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, "privacyDashboardRejectToggleReport required");
-    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({});
+    window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({});
   }
   function privacyDashboardSeeWhatIsSent() {
     invariant(window.webkit?.messageHandlers, "webkit.messageHandlers required");
@@ -14425,6 +14425,45 @@
       invariant(typeof window.PrivacyDashboard?.submitBrokenSiteReport, "window.PrivacyDashboard.submitBrokenSiteReport required");
       window.PrivacyDashboard.submitBrokenSiteReport(JSON.stringify(payload));
     }
+    /**
+     * {@inheritDoc common.getToggleReportOptions}
+     * @type {import("./common.js").getToggleReportOptions}
+     * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
+     */
+    getToggleReportOptions() {
+      invariant(typeof window.PrivacyDashboard?.getToggleReportOptions, "window.PrivacyDashboard.getToggleReportOptions required");
+      window.PrivacyDashboard.getToggleReportOptions();
+      return new Promise((resolve) => {
+        window.onGetToggleReportOptionsResponse = (data) => {
+          resolve(data);
+          Reflect.deleteProperty(window, "onGetToggleReportOptionsResponse");
+        };
+      });
+    }
+    /**
+     * {@inheritDoc common.sendToggleReport}
+     * @type {import("./common.js").sendToggleReport}
+     */
+    sendToggleReport() {
+      invariant(window.PrivacyDashboard?.sendToggleReport, "sendToggleReport missing");
+      window.PrivacyDashboard.sendToggleReport();
+    }
+    /**
+     * {@inheritDoc common.rejectToggleReport}
+     * @type {import("./common.js").rejectToggleReport}
+     */
+    rejectToggleReport() {
+      invariant(window.PrivacyDashboard?.rejectToggleReport, "rejectToggleReport missing");
+      window.PrivacyDashboard.rejectToggleReport();
+    }
+    /**
+     * {@inheritDoc common.seeWhatIsSent}
+     * @type {import("./common.js").seeWhatIsSent}
+     */
+    seeWhatIsSent() {
+      invariant(window.PrivacyDashboard?.seeWhatIsSent, "seeWhatIsSent missing");
+      window.PrivacyDashboard.seeWhatIsSent();
+    }
   };
   var privacyDashboardApi;
   async function fetchAndroid(message) {
@@ -14460,6 +14499,18 @@
       return privacyDashboardApi.openSettings({
         target: message.target
       });
+    }
+    if (message instanceof FetchToggleReportOptions) {
+      return privacyDashboardApi.getToggleReportOptions();
+    }
+    if (message instanceof SendToggleBreakageReport) {
+      return privacyDashboardApi.sendToggleReport();
+    }
+    if (message instanceof RejectToggleBreakageReport) {
+      return privacyDashboardApi.rejectToggleReport();
+    }
+    if (message instanceof SeeWhatIsSent) {
+      return privacyDashboardApi.seeWhatIsSent();
     }
     console.warn("unhandled message", message);
   }
@@ -17053,7 +17104,7 @@
   // shared/js/ui/components/toggle-report/use-ios-animation.js
   function useIosAnimation(state, dispatch) {
     p2(() => {
-      if (platform.name !== "ios")
+      if (platform.name !== "ios" && platform.name !== "android")
         return;
       if (state.value === "animating") {
         const child = (
@@ -17069,7 +17120,7 @@
       }
     }, [state.value]);
     p2(() => {
-      if (platform.name !== "ios")
+      if (platform.name !== "ios" && platform.name !== "android")
         return;
       const child = (
         /** @type {HTMLDivElement | null} */
@@ -17192,7 +17243,8 @@
 
   // shared/js/ui/components/toggle-report.jsx
   function ToggleReport() {
-    const innerGap = platform.name === "ios" ? "24px" : "16px";
+    const mobile = platform.name === "android" || platform.name === "ios";
+    const innerGap = mobile ? "24px" : "16px";
     const desktop = platform.name === "macos" || platform.name === "windows";
     const extension = platform.name === "browser";
     const { value, didClickSuccessScreen } = q2(ToggleReportContext);
@@ -17204,7 +17256,7 @@
     if (desktop || extension) {
       return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, extension && /* @__PURE__ */ y(SetAutoHeight, null), /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), /* @__PURE__ */ y(DesktopRevealText, { state, toggle: () => dispatch("toggle") }))), state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }))));
     }
-    if (platform.name === "ios") {
+    if (mobile) {
       return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")))), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }), state.value !== "showing" && /* @__PURE__ */ y(RevealText, { toggle: () => dispatch("toggle-ios") })), state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
     }
     return /* @__PURE__ */ y("p", null, "unsupported platform: ", platform.name);
@@ -17232,9 +17284,10 @@
     return null;
   }
   function ToggleReportButtons({ send, reject }) {
-    const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
-    const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
-    const buttonSize = platform.name === "ios" ? "big" : "small";
+    const mobile = platform.name === "ios" || platform.name === "android";
+    const buttonVariant = mobile ? "ios-secondary" : "macos-standard";
+    const buttonLayout = mobile ? "vertical" : "horizontal";
+    const buttonSize = mobile ? "big" : "small";
     return /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: reject }, ns.toggleReport("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: send }, ns.report("sendReport.title")));
   }
   function RevealText({ toggle }) {
