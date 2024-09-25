@@ -5,7 +5,7 @@ import { PlainTextLink } from './text-link'
 import { Button, ButtonBar } from './button'
 import { platform } from '../../browser/communication'
 import { Scrollable, Stack } from './stack'
-import { useContext, useEffect } from 'preact/hooks'
+import { useContext, useEffect, useState } from 'preact/hooks'
 import { useIosAnimation } from './toggle-report/use-ios-animation'
 import { ToggleReportContext } from './toggle-report/toggle-report-provider'
 import { useToggleReportState } from './toggle-report/use-toggle-report-state'
@@ -94,25 +94,35 @@ export function ToggleReport() {
 }
 
 function SetAutoHeight() {
+    const [v, set] = useState(0)
     useEffect(() => {
         const inner = /** @type {HTMLElement} */ (document.querySelector('[data-screen="toggleReport"] .page-inner'))
         if (inner) {
             inner.style.height = 'auto'
             const height = getContentHeight()
+            if (height && height > 0) {
+                set(height)
+            }
             document.body.style.setProperty('--height', `${height}px`)
 
             // this lives for the life
             const unsub = setupMutationObserver((height) => {
                 document.body.style.setProperty('--height', `${height}px`)
+                set(height)
             })
             return () => {
+                console.log('cleanup')
                 unsub()
             }
         } else {
             console.warn('Could not select the required element')
         }
     }, [])
-    return null
+    return (
+        <pre>
+            <code>{v}</code>
+        </pre>
+    )
 }
 
 function ToggleReportButtons({ send, reject }) {

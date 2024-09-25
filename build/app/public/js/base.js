@@ -17194,6 +17194,7 @@
     return /* @__PURE__ */ y("p", null, "unsupported platform: ", platform.name);
   }
   function SetAutoHeight() {
+    const [v3, set] = h2(0);
     p2(() => {
       const inner = (
         /** @type {HTMLElement} */
@@ -17202,18 +17203,23 @@
       if (inner) {
         inner.style.height = "auto";
         const height = getContentHeight();
+        if (height && height > 0) {
+          set(height);
+        }
         document.body.style.setProperty("--height", `${height}px`);
         const unsub = setupMutationObserver((height2) => {
           document.body.style.setProperty("--height", `${height2}px`);
+          set(height2);
         });
         return () => {
+          console.log("cleanup");
           unsub();
         };
       } else {
         console.warn("Could not select the required element");
       }
     }, []);
-    return null;
+    return /* @__PURE__ */ y("pre", null, /* @__PURE__ */ y("code", null, v3));
   }
   function ToggleReportButtons({ send, reject }) {
     const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
