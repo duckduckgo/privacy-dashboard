@@ -25,7 +25,7 @@ export function CustomElementLoader(props) {
         if (state.status === 'script-ready') {
             dispatch({ kind: 'load-element' })
             customElements.whenDefined(props.element).then(() => {
-                window.__ddg_did_load ??= []
+                if (!window.__ddg_did_load) window.__ddg_did_load = []
                 window.__ddg_did_load.push(props.element)
                 dispatch({ kind: 'element-loaded' })
             })
