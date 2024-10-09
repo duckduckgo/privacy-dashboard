@@ -23,19 +23,48 @@
         background: rgba(255, 255, 255, 0.03);
         border-color: rgba(255, 255, 255, 0.09);
     }
+
+    // Make the scrollbar always visible
+    &::-webkit-scrollbar {
+        width: 12px; /* width of the entire scrollbar */
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1; /* color of the scrollbar track */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888; /* color of the scrollbar thumb */
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555; /* color of the scrollbar thumb when hovered */
+    }
 }
 
 .data-list {
-    padding-left: 18px;
+    list-style: none;
 }
 .data-list__item {
     word-wrap: anywhere;
     color: var(--color-text-secondary);
     line-height: 18px;
+    position: relative;
+    padding-left: 20px;
 
     + .data-list__item {
         margin-top: 3px;
     }
+}
+
+.data-list__item::before {
+    content: '•';
+    font-size: 12px;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    transform: translateY(-50%);
+    color: black;
 }
 
 .ios-separator {

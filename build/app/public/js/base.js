@@ -16970,8 +16970,8 @@
   }
 
   // shared/js/ui/components/button.jsx
-  function Button({ children, btnSize, variant = "macos-standard", ...rest }) {
-    return /* @__PURE__ */ y("button", { type: "button", className: "button", ...rest, "data-variant": variant, "data-size": btnSize }, children);
+  function Button({ children, btnSize, variant = "desktop-vibrancy", ...rest }) {
+    return /* @__PURE__ */ y("button", { type: "button", className: "button token-body", ...rest, "data-variant": variant, "data-size": btnSize }, children);
   }
   function ButtonBar({ children, layout = "horizontal", ...rest }) {
     return /* @__PURE__ */ y("div", { className: "button-bar", "data-layout": layout, ...rest }, children);
@@ -17192,7 +17192,6 @@
 
   // shared/js/ui/components/toggle-report.jsx
   function ToggleReport() {
-    const innerGap = platform.name === "ios" ? "24px" : "16px";
     const desktop = platform.name === "macos" || platform.name === "windows";
     const extension = platform.name === "browser";
     const { value, didClickSuccessScreen } = q2(ToggleReportContext);
@@ -17202,10 +17201,10 @@
       return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, extension && /* @__PURE__ */ y(SetAutoHeight, null), /* @__PURE__ */ y(ToggleReportSent, { onClick: didClickSuccessScreen }));
     }
     if (desktop || extension) {
-      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, extension && /* @__PURE__ */ y(SetAutoHeight, null), /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), /* @__PURE__ */ y(DesktopRevealText, { state, toggle: () => dispatch("toggle") }))), state.value === "showing" && /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data })), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }))));
+      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, extension && /* @__PURE__ */ y(SetAutoHeight, null), /* @__PURE__ */ y("div", { className: "toggle-report__heading" }, /* @__PURE__ */ y(Stack, { gap: "16px" }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")), /* @__PURE__ */ y(DesktopRevealText, { state, toggle: () => dispatch("toggle") })))), state.value === "showing" && /* @__PURE__ */ y("div", { className: "toggle-report__scroller" }, /* @__PURE__ */ y(Scrollable, null, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") })));
     }
     if (platform.name === "ios") {
-      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: innerGap }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")))), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }), state.value !== "showing" && /* @__PURE__ */ y(RevealText, { toggle: () => dispatch("toggle-ios") })), state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
+      return /* @__PURE__ */ y(ToggleReportWrapper, { state: state.value }, /* @__PURE__ */ y(Stack, { gap: "40px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y(Stack, { gap: "24px" }, /* @__PURE__ */ y("div", { className: "medium-icon-container hero-icon--toggle-report" }), /* @__PURE__ */ y(ToggleReportTitle, null, ns.toggleReport("siteNotWorkingTitle.title")), /* @__PURE__ */ y("div", null, /* @__PURE__ */ y("h2", { className: "token-title-3 text--center" }, ns.toggleReport("siteNotWorkingSubTitle.title")))), /* @__PURE__ */ y(ToggleReportButtons, { send: () => dispatch("send"), reject: () => dispatch("reject") }), state.value !== "showing" && /* @__PURE__ */ y(RevealText, { toggle: () => dispatch("toggle-ios") })), state.value === "showing" && /* @__PURE__ */ y("div", { className: "ios-separator" }, /* @__PURE__ */ y(ToggleReportDataList, { rows: value.data }))));
     }
     return /* @__PURE__ */ y("p", null, "unsupported platform: ", platform.name);
   }
@@ -17232,9 +17231,9 @@
     return null;
   }
   function ToggleReportButtons({ send, reject }) {
-    const buttonVariant = platform.name === "ios" ? "ios-secondary" : "macos-standard";
+    const buttonVariant = platform.name === "ios" ? "ios-secondary" : "desktop-vibrancy";
     const buttonLayout = platform.name === "ios" ? "vertical" : "horizontal";
-    const buttonSize = platform.name === "ios" ? "big" : "small";
+    const buttonSize = platform.name === "ios" ? "big" : "desktop-large";
     return /* @__PURE__ */ y(ButtonBar, { layout: buttonLayout }, /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: reject }, ns.toggleReport("dontSendReport.title")), /* @__PURE__ */ y(Button, { variant: buttonVariant, btnSize: buttonSize, onClick: send }, ns.report("sendReport.title")));
   }
   function RevealText({ toggle }) {

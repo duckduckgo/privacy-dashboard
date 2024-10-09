@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Status icons */
 /* Colors */
 /* Dark theme */
@@ -3797,31 +3798,48 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   text-align: center;
 }
 
-.button[data-variant=macos-standard] {
-  color: var(--Text-Primary, rgba(0, 0, 0, 0.84));
-  text-align: center;
+.button[data-size=small] {
+  line-height: 13px;
+  height: 20px;
+  padding: 0px 12px;
   border-radius: 5px;
-  border: 0.5px solid rgba(0, 0, 0, 0.1);
-  background: #fff;
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
 }
-.button[data-variant=macos-standard]:active {
-  border: 0.5px solid rgba(0, 0, 0, 0.1);
-  background: #e7e7e7;
-  /* Mac/Button */
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05);
+.button[data-size=big] {
+  height: 50px;
+  padding: 0px 24px;
+  /* Button */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 133.333% */
 }
-.body--theme-dark .button[data-variant=macos-standard] {
-  color: rgba(255, 255, 255, 0.84);
-  border: 0.5px solid rgba(0, 0, 0, 0);
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
+.button[data-size=desktop-large] {
+  height: 29px;
+  padding: 0px 12px;
 }
-.body--theme-dark .button[data-variant=macos-standard]:active {
-  border: 0.5px solid rgba(0, 0, 0, 0);
+.button[data-variant=desktop-vibrancy] {
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  /* Mac/Control/Vibrant */
+  box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0), 0px 0px 1px 0px rgba(0, 0, 0, 0), 0px 1px 1px 0px rgba(0, 0, 0, 0);
+}
+.button[data-variant=desktop-vibrancy]:active {
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  /* Mac/Control/Vibrant */
+  box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0), 0px 0px 1px 0px rgba(0, 0, 0, 0), 0px 1px 1px 0px rgba(0, 0, 0, 0);
+}
+.body--theme-dark .button[data-variant=desktop-vibrancy] {
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.28);
+  /* Mac/Control/Vibrant */
+  box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+}
+.body--theme-dark .button[data-variant=desktop-vibrancy]:active {
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.35);
-  /* Mac/Button (Dark) */
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset;
+  /* Mac/Control/Vibrant */
+  box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 .button[data-variant=ios-secondary] {
   justify-content: center;
@@ -3837,21 +3855,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .button[data-variant=ios-secondary]:active {
   background: rgba(57, 105, 239, 0.2);
   color: var(--color-accent-blue-active);
-}
-.button[data-size=small] {
-  line-height: 13px;
-  height: 20px;
-  padding: 0px 12px;
-  border-radius: 5px;
-}
-.button[data-size=big] {
-  height: 50px;
-  padding: 0px 24px;
-  /* Button */
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px; /* 133.333% */
 }
 
 .button-bar[data-layout=horizontal] {
@@ -3897,18 +3900,42 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.09);
 }
+.scrollable::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+.scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1; /* color of the scrollbar track */
+}
+.scrollable::-webkit-scrollbar-thumb {
+  background: #888; /* color of the scrollbar thumb */
+}
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the scrollbar thumb when hovered */
+}
 
 .data-list {
-  padding-left: 18px;
+  list-style: none;
 }
 
 .data-list__item {
   word-wrap: anywhere;
   color: var(--color-text-secondary);
   line-height: 18px;
+  position: relative;
+  padding-left: 20px;
 }
 .data-list__item + .data-list__item {
   margin-top: 3px;
+}
+
+.data-list__item::before {
+  content: "•";
+  font-size: 12px;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  transform: translateY(-50%);
+  color: black;
 }
 
 .ios-separator {
@@ -3947,4 +3974,12 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .environment--ios [data-toggle-report=child][data-ready=true] {
   opacity: 1;
   visibility: visible;
+}
+
+.toggle-report__heading {
+  margin-bottom: 24px;
+}
+
+.toggle-report__scroller {
+  margin-bottom: 16px;
 }
