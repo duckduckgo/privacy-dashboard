@@ -3935,7 +3935,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   left: 8px;
   top: 8px;
   transform: translateY(-50%);
-  color: black;
+  color: currentColor;
 }
 
 .ios-separator {
