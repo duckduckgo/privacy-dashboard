@@ -1,8 +1,4 @@
 /**
- * @module macOS integration
- *
- * @description
- *
  * **Incoming data**
  *
  * On macOS, all data for the dashboard is delivered via methods that have been
@@ -12,7 +8,8 @@
  *
  * The dashboard communicates with the macOS application by calling message handlers that
  * are added to `window.webkit.messageHandlers.*`. Please see the items below under the heading `"Webkit Message Handlers"`
-
+ *
+ * @module macOS integration
  * @category integrations
  */
 import invariant from 'tiny-invariant'
@@ -288,13 +285,8 @@ export function privacyDashboardSetPermission(params) {
  * ```js
  * window.onGetToggleReportOptionsResponse({ "data": [...] })
  * ```
- * <br>
- * <details>
- *   <summary>Sample JSON 📝</summary>
  *
- *   ```json
- *   [[include:toggle-report-screen.json]]```
- * </details>
+ * [Sample JSON 📝](../../../schema/__fixtures__/toggle-report-screen.json)
  *
  * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
  */
@@ -373,9 +365,7 @@ export function privacyDashboardSeeWhatIsSent() {
  * ```js
  * window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
  * ```
- * ### Sample JSON 📝
- * ```json
- * [[include:webkit-close.json]]```
+ * [Sample JSON 📝](../../../schema/__fixtures__/webkit-close.json)
  *
  */
 export function privacyDashboardClose(args) {
@@ -574,4 +564,7 @@ function firstRenderComplete() {
     }
 }
 
+/**
+ * @module
+ */
 export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete }

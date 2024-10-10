@@ -208,17 +208,13 @@ export function onChangeFeatureSettings(payload) {}
  *
  * This would show the 4th row in the dashboard, but it would not be clickable
  *
- * ```
- * [[include:cpm.json]]```
+ * [Sample JSON 📝](../../../schema/__fixtures__/cpm.json)
  *
  * **Configurable**
  *
  * This would allow the link to be clicked, and it would show the secondary screen
  *
- * ```
- * [[include:cpm-secondary.json]]```
- *
- *
+ * [Sample JSON 📝](../../../schema/__fixtures__/cpm-secondary.json)
  *
  * @param {import('../../../schema/__generated__/schema.types').CookiePromptManagementStatus} payload
  */

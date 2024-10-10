@@ -1,9 +1,7 @@
 /**
- * @module Browser/Extensions integration
- *
- * @description
  * This is the communications layer for our Browser extensions
  *
+ * @module Browser/Extensions integration
  * @category integrations
  */
 import {

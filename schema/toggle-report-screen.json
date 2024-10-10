@@ -4,7 +4,7 @@
     "type": "object",
     "additionalProperties": false,
     "required": ["data"],
-    "description": "<details>\n<summary>Show example JSON</summary>\n\n```json\n[[include:toggle-report-screen.json]]\n```\n</details>",
+    "description": "[Sample JSON \uD83D\uDCDD](../__fixtures__/toggle-report-screen.json)",
     "properties": {
         "data": {
             "type": "array",

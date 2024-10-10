@@ -1,12 +1,10 @@
 /**
- * @module Android integration
- *
- * @description
  * On Android, all data for the dashboard is delivered via methods that have been
  * attached to the global `window` object.
  *
  * Please see the aboutLink below under the heading 'Integration API'
  *
+ * @module Android integration
  * @category integrations
  */
 import {
@@ -236,6 +234,7 @@ export function onChangeConsentManaged(payload) {
  *
  *
  * @group Javascript -> Android Interface
+ * @hideconstructor
  */
 export class PrivacyDashboardJavascriptInterface {
     /**
