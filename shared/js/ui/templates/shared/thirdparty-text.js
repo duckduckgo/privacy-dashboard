@@ -6,16 +6,15 @@ import { ns } from '../../base/localize.js'
  * @param {boolean} protectionsEnabled
  * @returns {{title: string, icon: string}}
  */
-export function thirdpartyText(requestDetails, protectionsEnabled) {
+export function thirdpartyText(requestDetails, protectionsEnabled, phishingDetected) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOn_blocked:
         case states.protectionsOff: {
-            return {
-                title: ns.site('thirdPartiesNoneFound.title'),
-                icon: 'blocked',
-            }
+            const title = ns.site('thirdPartiesNoneFound.title')
+            const icon = phishingDetected ? 'info' : 'blocked'
+            return { title, icon }
         }
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedNonTrackers:
@@ -33,8 +32,6 @@ export function thirdpartyText(requestDetails, protectionsEnabled) {
                 icon: 'info',
             }
         }
-
-        // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
         default:
             return unreachable(state)
     }
