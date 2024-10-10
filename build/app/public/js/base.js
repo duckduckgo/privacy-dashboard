@@ -15136,16 +15136,28 @@
     return state;
   }
   function useConnectionCount() {
-    const [state, setCount] = h2(() => dc.lastValue().connection);
+    const [count, setCount] = h2(() => dc.lastValue().connection);
     p2(() => {
       const controller = new AbortController();
-      dc.addEventListener("data", (evt) => {
-        setCount(evt.detail.connection);
-      });
+      dc.addEventListener(
+        "data",
+        (evt) => {
+          setCount(evt.detail.connection);
+        },
+        { signal: controller.signal }
+      );
+      p2(() => {
+        window.addEventListener(useConnectionCount.PAUSE_EVENT, controller.abort);
+        return () => window.removeEventListener(useConnectionCount.PAUSE_EVENT, controller.abort);
+      }, []);
       return controller.abort;
     }, []);
-    return state;
+    return { count };
   }
+  useConnectionCount.PAUSE_EVENT = "ignore-reconnections";
+  useConnectionCount.pause = () => {
+    window.dispatchEvent(new Event(useConnectionCount.PAUSE_EVENT));
+  };
   function useData() {
     const [state, setState] = h2(() => dc.lastValue());
     p2(() => {
@@ -16938,6 +16950,7 @@
       });
     }, [model]);
     function send() {
+      useConnectionCount.pause();
       model.fetch(new SendToggleBreakageReport());
     }
     function reject() {
@@ -17248,8 +17261,8 @@
     const fetcher = useFetcher();
     const features = useFeatures();
     const onClose = useClose();
-    const connectionCount = useConnectionCount();
-    const connectionId = `connection-${connectionCount}`;
+    const { count } = useConnectionCount();
+    const connectionId = `connection-${count}`;
     p2(() => {
       document.body.dataset.screen = "toggleReport";
       return () => {
