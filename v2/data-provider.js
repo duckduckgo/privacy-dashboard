@@ -315,18 +315,42 @@ function useInternalData() {
 }
 
 /**
- * @return {number}
+ * @return {{ count: number }}
  */
 export function useConnectionCount() {
-    const [state, setCount] = useState(() => dc.lastValue().connection)
+    const [count, setCount] = useState(() => dc.lastValue().connection)
+
     useEffect(() => {
         const controller = new AbortController()
-        dc.addEventListener('data', (/** @type {any} */ evt) => {
-            setCount(evt.detail.connection)
-        })
+        dc.addEventListener(
+            'data',
+            (/** @type {any} */ evt) => {
+                setCount(evt.detail.connection)
+            },
+            { signal: controller.signal }
+        )
+
+        useEffect(() => {
+            window.addEventListener(useConnectionCount.PAUSE_EVENT, controller.abort)
+            return () => window.removeEventListener(useConnectionCount.PAUSE_EVENT, controller.abort)
+        }, [])
+
         return controller.abort
     }, [])
-    return state
+
+    return { count }
+}
+
+/**
+ * @type {string}
+ */
+useConnectionCount.PAUSE_EVENT = 'ignore-reconnections'
+
+/**
+ * Allow consumers to trigger the event without knowing any details
+ */
+useConnectionCount.pause = () => {
+    window.dispatchEvent(new Event(useConnectionCount.PAUSE_EVENT))
 }
 
 /**

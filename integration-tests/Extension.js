@@ -48,7 +48,7 @@ export class Extension {
             window.__playwright.onDisconnect?.()
         })
 
-        await page.waitForTimeout(500)
+        await page.waitForTimeout(1000)
 
         const callCountAfter = await this.dash.mocks.outgoing({ names: ['getToggleReportOptions'] })
         expect(callCountAfter).toHaveLength(callCountBefore.length)
