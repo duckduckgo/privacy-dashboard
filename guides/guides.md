@@ -2,9 +2,9 @@
 title: Guides
 group: Documents
 children:
-  - ./breakage-flows.md
-  - ./toggle-report.md
-  - ./cookie-prompt-management.md
+    - ./breakage-flows.md
+    - ./toggle-report.md
+    - ./cookie-prompt-management.md
 ---
 
 # Guides

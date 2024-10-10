@@ -17,21 +17,6 @@
     "categoryOrder": ["Webkit Message Handlers", "References", "*"],
     "treatWarningsAsErrors": true,
     "searchInComments": true,
-    "projectDocuments": [
-        "guides/guides.md"
-    ],
-    "highlightLanguages": [
-        "bash",
-        "console",
-        "css",
-        "html",
-        "javascript",
-        "json",
-        "jsonc",
-        "json5",
-        "tsx",
-        "typescript",
-        "swift",
-        "kotlin"
-    ]
+    "projectDocuments": ["guides/guides.md"],
+    "highlightLanguages": ["bash", "console", "css", "html", "javascript", "json", "jsonc", "json5", "tsx", "typescript", "swift", "kotlin"]
 }
