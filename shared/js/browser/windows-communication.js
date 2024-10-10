@@ -1,7 +1,4 @@
 /**
- * @module Windows integration
- *
- * @description
  *
  * **Incoming Messages**
  *
@@ -28,6 +25,7 @@
  * ... where `name` will be one of the known message names, such as `"AddToAllowListCommand"`. See "JavaScript -> Windows Messages
  * OpenInNewTab" below for documented messages.
  *
+ * @module Windows integration
  * @category integrations
  */
 import { z } from 'zod'

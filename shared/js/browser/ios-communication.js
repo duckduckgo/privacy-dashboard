@@ -1,7 +1,5 @@
 /**
- * @module iOS integration
  *
- * @description
  * iOS shares the majority of functionality from {@link "macOS integration"}, with the exception
  * of the webkit handlers listed below.
  *
@@ -19,6 +17,7 @@
  * Although iOS uses the outgoing messages from the {@link "macOS integration"} - there are some that are iOS-only,
  * those are listed below under `"Webkit Message Handlers"`
  *
+ * @module iOS integration
  * @category integrations
  */
 import invariant from 'tiny-invariant'

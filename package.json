@@ -12,7 +12,7 @@
         "build": "node scripts/build.js",
         "build.debug": "node scripts/build.js --debug",
         "docs": "typedoc",
-        "docs.watch": "npm run docs -- --watch",
+        "docs.watch": "chokidar \"guides\" \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run docs\" --initial \"npm run docs\"",
         "preview": "npm run build.debug && npm run preview.serve",
         "preview.serve": "npm run serve -- -o html/iframe.html",
         "serve": "http-server build/app-debug --port 3220 -c-1",
@@ -64,7 +64,7 @@
         "standard": "^17.1.0",
         "tiny-invariant": "^1.3.1",
         "ts-to-zod": "^1.13.1",
-        "typedoc": "^0.25.8",
+        "typedoc": "^0.26.8",
         "typescript": "^5.3.3",
         "zod": "^3.22.4"
     },

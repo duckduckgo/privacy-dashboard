@@ -9,17 +9,29 @@
         "shared/js/browser/common.js",
         "shared/js/browser/utils/request-details.mjs",
         "shared/js/browser/utils/protections.mjs",
-        "shared/js/ui/platform-features.mjs",
-        "shared/js/features.doc.js",
-        "guides/toggle-report.js",
-        "guides/breakage-flows.js"
+        "shared/js/ui/platform-features.mjs"
     ],
     "out": "build/docs",
-    "media": "schema/__fixtures__",
     "excludeExternals": true,
     "readme": "DOCS.md",
     "categoryOrder": ["Webkit Message Handlers", "References", "*"],
     "treatWarningsAsErrors": true,
     "searchInComments": true,
-    "includes": "schema/__fixtures__"
+    "projectDocuments": [
+        "guides/guides.md"
+    ],
+    "highlightLanguages": [
+        "bash",
+        "console",
+        "css",
+        "html",
+        "javascript",
+        "json",
+        "jsonc",
+        "json5",
+        "tsx",
+        "typescript",
+        "swift",
+        "kotlin"
+    ]
 }

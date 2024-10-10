@@ -6,8 +6,8 @@ You can find the rendered version at https://duckduckgo.github.io/privacy-dashbo
 
 If you're looking for documentation relating to a particular platform:
 
--   [Android Docs](modules/Android_integration.html)
--   [iOS Docs](modules/iOS_integration.html)
--   [macOS Docs](modules/macOS_integration.html)
--   [Extension (chrome/firefox/opera) Docs](modules/Browser_Extensions_integration.html)
--   [Windows Docs](modules/Windows_integration.html)
+-   [Android Docs](shared/js/browser/android-communication.js)
+-   [iOS Docs](shared/js/browser/ios-communication.js)
+-   [macOS Docs](shared/js/browser/macos-communication.js)
+-   [Extension (chrome/firefox/opera) Docs](shared/js/browser/browser-communication.js)
+-   [Windows Docs](shared/js/browser/windows-communication.js)
