@@ -15146,11 +15146,16 @@
         },
         { signal: controller.signal }
       );
-      p2(() => {
-        window.addEventListener(useConnectionCount.PAUSE_EVENT, controller.abort);
-        return () => window.removeEventListener(useConnectionCount.PAUSE_EVENT, controller.abort);
-      }, []);
-      return controller.abort;
+      window.addEventListener(
+        useConnectionCount.PAUSE_EVENT,
+        () => {
+          controller.abort();
+        },
+        { signal: controller.signal }
+      );
+      return () => {
+        controller.abort();
+      };
     }, []);
     return { count };
   }

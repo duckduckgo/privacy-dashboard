@@ -330,12 +330,17 @@ export function useConnectionCount() {
             { signal: controller.signal }
         )
 
-        useEffect(() => {
-            window.addEventListener(useConnectionCount.PAUSE_EVENT, controller.abort)
-            return () => window.removeEventListener(useConnectionCount.PAUSE_EVENT, controller.abort)
-        }, [])
+        window.addEventListener(
+            useConnectionCount.PAUSE_EVENT,
+            () => {
+                controller.abort()
+            },
+            { signal: controller.signal }
+        )
 
-        return controller.abort
+        return () => {
+            controller.abort()
+        }
     }, [])
 
     return { count }
