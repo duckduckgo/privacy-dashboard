@@ -317,7 +317,7 @@ export function privacyDashboardGetToggleReportOptions() {
 export function privacyDashboardSendToggleReport() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, 'privacyDashboardSendToggleReport required')
-    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({})
+    window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({})
 }
 
 /**
@@ -335,7 +335,7 @@ export function privacyDashboardSendToggleReport() {
 export function privacyDashboardRejectToggleReport() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
     invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, 'privacyDashboardRejectToggleReport required')
-    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({})
+    window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({})
 }
 
 /**

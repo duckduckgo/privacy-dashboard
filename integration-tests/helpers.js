@@ -27,6 +27,9 @@ export async function playTimeline(page, state, platform) {
     if (platform.name === 'windows') {
         messages.windowsViewModel = state.toWindowsViewModel()
     }
+    if (platform.name === 'ios' || platform.name === 'macos') {
+        messages.privacyDashboardGetToggleReportOptions = toggleReportScreen
+    }
     await page.evaluate(mockDataProvider, { state, platform, messages })
     return messages
 }
@@ -52,7 +55,7 @@ export function installWindowsMocks(page) {
 export async function installWebkitMocks(page, _args) {
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function')
     return page.evaluate(webkitMockApis, {
-        responses: {
+        messages: {
             privacyDashboardGetToggleReportOptions: toggleReportScreen,
         },
     })

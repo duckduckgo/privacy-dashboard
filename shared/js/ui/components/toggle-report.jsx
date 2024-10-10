@@ -16,7 +16,8 @@ import { ToggleReportTitle } from './toggle-report/toggle-report-title'
 import { getContentHeight, setupMutationObserverForExtensions } from '../../browser/common'
 
 export function ToggleReport() {
-    const innerGap = platform.name === 'ios' ? '24px' : '16px'
+    const mobile = platform.name === 'android' || platform.name === 'ios'
+    const innerGap = mobile ? '24px' : '16px'
     const desktop = platform.name === 'macos' || platform.name === 'windows'
     const extension = platform.name === 'browser'
 
@@ -65,7 +66,7 @@ export function ToggleReport() {
         )
     }
 
-    if (platform.name === 'ios') {
+    if (mobile) {
         return (
             <ToggleReportWrapper state={state.value}>
                 <Stack gap="40px">
@@ -127,9 +128,10 @@ function SetAutoHeight() {
 }
 
 function ToggleReportButtons({ send, reject }) {
-    const buttonVariant = platform.name === 'ios' ? 'ios-secondary' : 'macos-standard'
-    const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
-    const buttonSize = platform.name === 'ios' ? 'big' : 'small'
+    const mobile = platform.name === 'ios' || platform.name === 'android'
+    const buttonVariant = mobile ? 'ios-secondary' : 'macos-standard'
+    const buttonLayout = mobile ? 'vertical' : 'horizontal'
+    const buttonSize = mobile ? 'big' : 'small'
 
     return (
         <ButtonBar layout={buttonLayout}>
