@@ -12149,13 +12149,19 @@
   };
 
   // shared/js/ui/templates/shared/tracker-networks-text.js
-  function trackerNetworksText(requestDetails, protectionsEnabled) {
+  function trackerNetworksText(requestDetails, protectionsEnabled, phishingDetected) {
     const state = requestDetails.state(protectionsEnabled);
     switch (state) {
       case states.protectionsOn_blocked:
       case states.protectionsOn_blocked_allowedTrackers:
       case states.protectionsOn_blocked_allowedNonTrackers:
       case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
+        if (phishingDetected) {
+          return {
+            title: ns.site("trackerNetworksDesc.title"),
+            icon: "info"
+          };
+        }
         return {
           title: ns.site("trackerNetworksDesc.title"),
           icon: "blocked"
@@ -12172,6 +12178,12 @@
       }
       case states.protectionsOff_allowedTrackers:
       case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+        if (phishingDetected) {
+          return {
+            title: ns.site("trackerNetworksDesc.title"),
+            icon: "info"
+          };
+        }
         return {
           title: ns.site("trackerNetworksNotBlocked.title"),
           icon: "warning"
@@ -12181,6 +12193,12 @@
       case states.protectionsOff:
       case states.protectionsOn_allowedNonTrackers:
       case states.protectionsOff_allowedNonTrackers: {
+        if (phishingDetected) {
+          return {
+            title: ns.site("trackerNetworksDesc.title"),
+            icon: "info"
+          };
+        }
         return {
           title: ns.site("trackerNetworksNotFound.title"),
           icon: "blocked"
@@ -12246,12 +12264,18 @@
   }
 
   // shared/js/ui/templates/shared/thirdparty-text.js
-  function thirdpartyText(requestDetails, protectionsEnabled) {
+  function thirdpartyText(requestDetails, protectionsEnabled, phishingDetected) {
     const state = requestDetails.state(protectionsEnabled);
     switch (state) {
       case states.protectionsOn:
       case states.protectionsOn_blocked:
       case states.protectionsOff: {
+        if (phishingDetected) {
+          return {
+            title: ns.site("thirdPartiesNoneFound.title"),
+            icon: "info"
+          };
+        }
         return {
           title: ns.site("thirdPartiesNoneFound.title"),
           icon: "blocked"
@@ -15432,7 +15456,7 @@
     </div>`;
   }
   function renderTrackerNetworksNew(model, cb) {
-    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled);
+    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
     return import_nanohtml5.default` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"
@@ -15447,7 +15471,7 @@
     </a>`;
   }
   function renderThirdPartyNew(model, cb) {
-    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled);
+    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
     return import_nanohtml5.default` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"

@@ -114,7 +114,7 @@ function renderConnectionText(model) {
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderTrackerNetworksNew(model, cb) {
-    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
+    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus)
     return html` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"
@@ -133,7 +133,7 @@ function renderTrackerNetworksNew(model, cb) {
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderThirdPartyNew(model, cb) {
-    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
+    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus)
     return html` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"

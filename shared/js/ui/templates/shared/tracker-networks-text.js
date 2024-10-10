@@ -6,13 +6,19 @@ import { ns } from '../../base/localize.js'
  * @param {any} protectionsEnabled
  * @returns {{title: string, icon: string}}
  */
-export function trackerNetworksText(requestDetails, protectionsEnabled) {
+export function trackerNetworksText(requestDetails, protectionsEnabled, phishingDetected) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
         case states.protectionsOn_blocked:
         case states.protectionsOn_blocked_allowedTrackers:
         case states.protectionsOn_blocked_allowedNonTrackers:
         case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
+            if (phishingDetected) {
+                return {
+                    title: ns.site('trackerNetworksDesc.title'),
+                    icon: 'info',
+                }
+            }
             return {
                 title: ns.site('trackerNetworksDesc.title'),
                 icon: 'blocked',
@@ -29,6 +35,12 @@ export function trackerNetworksText(requestDetails, protectionsEnabled) {
         }
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+            if (phishingDetected) {
+                return {
+                    title: ns.site('trackerNetworksDesc.title'),
+                    icon: 'info',
+                }
+            }
             return {
                 title: ns.site('trackerNetworksNotBlocked.title'),
                 icon: 'warning',
@@ -38,6 +50,12 @@ export function trackerNetworksText(requestDetails, protectionsEnabled) {
         case states.protectionsOff:
         case states.protectionsOn_allowedNonTrackers:
         case states.protectionsOff_allowedNonTrackers: {
+            if (phishingDetected) {
+                return {
+                    title: ns.site('trackerNetworksDesc.title'),
+                    icon: 'info',
+                }
+            }
             return {
                 title: ns.site('trackerNetworksNotFound.title'),
                 icon: 'blocked',

@@ -6,12 +6,18 @@ import { ns } from '../../base/localize.js'
  * @param {boolean} protectionsEnabled
  * @returns {{title: string, icon: string}}
  */
-export function thirdpartyText(requestDetails, protectionsEnabled) {
+export function thirdpartyText(requestDetails, protectionsEnabled, phishingDetected) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOn_blocked:
         case states.protectionsOff: {
+            if (phishingDetected) {
+                return {
+                    title: ns.site('thirdPartiesNoneFound.title'),
+                    icon: 'info',
+                }
+            }
             return {
                 title: ns.site('thirdPartiesNoneFound.title'),
                 icon: 'blocked',
