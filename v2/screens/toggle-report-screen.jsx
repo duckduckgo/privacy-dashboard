@@ -11,8 +11,8 @@ export function ToggleReportScreen() {
     const fetcher = useFetcher()
     const features = useFeatures()
     const onClose = useClose()
-    const connectionCount = useConnectionCount()
-    const connectionId = `connection-${connectionCount}`
+    const { count } = useConnectionCount()
+    const connectionId = `connection-${count}`
 
     useEffect(() => {
         document.body.dataset.screen = 'toggleReport'

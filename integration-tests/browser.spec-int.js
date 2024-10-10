@@ -48,6 +48,9 @@ test.describe('Protections toggle -> simple report screen', () => {
         await dash.mocks.calledForToggleAllowList()
         await dash.extension.triggersToggleReport()
         await dash.extension.reconnects()
+
+        await dash.sendToggleReport()
+        await dash.extension.reconnectsOnThankyouScreen()
     })
     test('shows toggle report + rejects it', async ({ page }) => {
         forwardConsole(page)

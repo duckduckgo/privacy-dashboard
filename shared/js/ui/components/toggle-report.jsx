@@ -16,7 +16,6 @@ import { ToggleReportTitle } from './toggle-report/toggle-report-title'
 import { getContentHeight, setupMutationObserverForExtensions } from '../../browser/common'
 
 export function ToggleReport() {
-    const innerGap = platform.name === 'ios' ? '24px' : '16px'
     const desktop = platform.name === 'macos' || platform.name === 'windows'
     const extension = platform.name === 'browser'
 
@@ -43,24 +42,26 @@ export function ToggleReport() {
         return (
             <ToggleReportWrapper state={state.value}>
                 {extension && <SetAutoHeight />}
-                <Stack gap="40px">
-                    <Stack gap="24px">
-                        <Stack gap={innerGap}>
-                            <div className="medium-icon-container hero-icon--toggle-report"></div>
-                            <ToggleReportTitle>{ns.toggleReport('siteNotWorkingTitle.title')}</ToggleReportTitle>
-                            <div>
-                                <h2 className="token-title-3 text--center">{ns.toggleReport('siteNotWorkingSubTitle.title')}</h2>
-                                <DesktopRevealText state={state} toggle={() => dispatch('toggle')} />
-                            </div>
-                        </Stack>
-                        {state.value === 'showing' && (
-                            <Scrollable>
-                                <ToggleReportDataList rows={value.data} />
-                            </Scrollable>
-                        )}
-                        <ToggleReportButtons send={() => dispatch('send')} reject={() => dispatch('reject')} />
+                <div className="toggle-report__heading">
+                    <Stack gap="16px">
+                        <div className="medium-icon-container hero-icon--toggle-report"></div>
+                        <ToggleReportTitle>{ns.toggleReport('siteNotWorkingTitle.title')}</ToggleReportTitle>
+                        <div>
+                            <h2 className="token-title-3 text--center">{ns.toggleReport('siteNotWorkingSubTitle.title')}</h2>
+                            <DesktopRevealText state={state} toggle={() => dispatch('toggle')} />
+                        </div>
                     </Stack>
-                </Stack>
+                </div>
+                {state.value === 'showing' && (
+                    <div className="toggle-report__scroller">
+                        <Scrollable>
+                            <ToggleReportDataList rows={value.data} />
+                        </Scrollable>
+                    </div>
+                )}
+                <div>
+                    <ToggleReportButtons send={() => dispatch('send')} reject={() => dispatch('reject')} />
+                </div>
             </ToggleReportWrapper>
         )
     }
@@ -70,7 +71,7 @@ export function ToggleReport() {
             <ToggleReportWrapper state={state.value}>
                 <Stack gap="40px">
                     <Stack gap="24px">
-                        <Stack gap={innerGap}>
+                        <Stack gap="24px">
                             <div className="medium-icon-container hero-icon--toggle-report"></div>
                             <ToggleReportTitle>{ns.toggleReport('siteNotWorkingTitle.title')}</ToggleReportTitle>
                             <div>
@@ -127,9 +128,9 @@ function SetAutoHeight() {
 }
 
 function ToggleReportButtons({ send, reject }) {
-    const buttonVariant = platform.name === 'ios' ? 'ios-secondary' : 'macos-standard'
+    const buttonVariant = platform.name === 'ios' ? 'ios-secondary' : 'desktop-vibrancy'
     const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
-    const buttonSize = platform.name === 'ios' ? 'big' : 'small'
+    const buttonSize = platform.name === 'ios' ? 'big' : 'desktop-large'
 
     return (
         <ButtonBar layout={buttonLayout}>
