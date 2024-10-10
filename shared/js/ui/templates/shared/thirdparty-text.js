@@ -12,16 +12,9 @@ export function thirdpartyText(requestDetails, protectionsEnabled, phishingDetec
         case states.protectionsOn:
         case states.protectionsOn_blocked:
         case states.protectionsOff: {
-            if (phishingDetected) {
-                return {
-                    title: ns.site('thirdPartiesNoneFound.title'),
-                    icon: 'info',
-                }
-            }
-            return {
-                title: ns.site('thirdPartiesNoneFound.title'),
-                icon: 'blocked',
-            }
+            const title = ns.site('thirdPartiesNoneFound.title')
+            const icon = phishingDetected ? 'info' : 'blocked'
+            return { title, icon }
         }
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedNonTrackers:
@@ -39,8 +32,6 @@ export function thirdpartyText(requestDetails, protectionsEnabled, phishingDetec
                 icon: 'info',
             }
         }
-
-        // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
         default:
             return unreachable(state)
     }
