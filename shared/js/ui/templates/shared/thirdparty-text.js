@@ -4,17 +4,15 @@ import { ns } from '../../base/localize.js'
 /**
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {boolean} protectionsEnabled
- * @returns {{title: string, icon: string}}
+ * @returns {string}
  */
-export function thirdpartyText(requestDetails, protectionsEnabled, phishingDetected) {
+export function thirdpartyTitle(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOn_blocked:
         case states.protectionsOff: {
-            const title = ns.site('thirdPartiesNoneFound.title')
-            const icon = phishingDetected ? 'info' : 'blocked'
-            return { title, icon }
+            return ns.site('thirdPartiesNoneFound.title')
         }
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedNonTrackers:
@@ -27,10 +25,45 @@ export function thirdpartyText(requestDetails, protectionsEnabled, phishingDetec
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return {
-                title: ns.site('thirdPartiesLoaded.title'),
-                icon: 'info',
-            }
+            return ns.site('thirdPartiesLoaded.title')
+        }
+
+        // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
+        default:
+            return unreachable(state)
+    }
+}
+
+/**
+ * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
+ * @param {boolean} protectionsEnabled
+ * @param {boolean} [phishingDetected]
+ * @returns {'info'|'blocked'}
+ */
+export function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetected) {
+    if (phishingDetected) {
+        return 'info'
+    }
+
+    const state = requestDetails.state(protectionsEnabled)
+    switch (state) {
+        case states.protectionsOn:
+        case states.protectionsOn_blocked:
+        case states.protectionsOff: {
+            return 'blocked'
+        }
+        case states.protectionsOn_allowedTrackers:
+        case states.protectionsOn_allowedNonTrackers:
+        case states.protectionsOn_blocked_allowedTrackers:
+        case states.protectionsOn_blocked_allowedNonTrackers:
+        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOff_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOff_allowedNonTrackers:
+        case states.protectionsOff_allowedTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
+            return 'info'
         }
         default:
             return unreachable(state)

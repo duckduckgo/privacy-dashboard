@@ -4,41 +4,73 @@ import { ns } from '../../base/localize.js'
 /**
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {any} protectionsEnabled
- * @returns {{title: string, icon: string}}
+ * @returns {string}
  */
-export function trackerNetworksText(requestDetails, protectionsEnabled, phishingDetected) {
+export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled)
-    const title = ns.site('trackerNetworksDesc.title')
-    let icon = 'info'
-
-    if (phishingDetected) {
-        icon = 'info'
-    } else {
-        switch (state) {
-            case states.protectionsOn_blocked:
-            case states.protectionsOn_blocked_allowedTrackers:
-            case states.protectionsOn_blocked_allowedNonTrackers:
-            case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
-                icon = 'blocked'
-                break
-            case states.protectionsOff_allowedTrackers:
-            case states.protectionsOff_allowedTrackers_allowedNonTrackers:
-                icon = 'warning'
-                break
-            case states.protectionsOn:
-            case states.protectionsOff:
-            case states.protectionsOn_allowedNonTrackers:
-            case states.protectionsOff_allowedNonTrackers:
-                icon = 'blocked'
-                break
-            default:
-                unreachable(state)
+    switch (state) {
+        case states.protectionsOn_blocked:
+        case states.protectionsOn_blocked_allowedTrackers:
+        case states.protectionsOn_blocked_allowedNonTrackers:
+        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
+            return ns.site('trackerNetworksDesc.title')
         }
+        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn_allowedTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
+        case states.protectionsOff_allowedTrackers:
+        case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+            return ns.site('trackerNetworksNotBlocked.title')
+        }
+        case states.protectionsOn:
+        case states.protectionsOff:
+        case states.protectionsOn_allowedNonTrackers:
+        case states.protectionsOff_allowedNonTrackers: {
+            return ns.site('trackerNetworksNotFound.title')
+        }
+        // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
+        default:
+            return unreachable(state)
+    }
+}
+
+/**
+ * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
+ * @param {any} protectionsEnabled
+ * @param {boolean} [phishingDetected]
+ * @returns {'info'|'blocked'|'warning'}
+ */
+export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishingDetected) {
+    if (phishingDetected) {
+        return 'info'
     }
 
-    return {
-        title,
-        icon,
+    const state = requestDetails.state(protectionsEnabled)
+    switch (state) {
+        case states.protectionsOn_blocked:
+        case states.protectionsOn_blocked_allowedTrackers:
+        case states.protectionsOn_blocked_allowedNonTrackers:
+        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn:
+        case states.protectionsOff:
+        case states.protectionsOn_allowedNonTrackers:
+        case states.protectionsOff_allowedNonTrackers: {
+            return 'blocked'
+        }
+        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+        case states.protectionsOn_allowedTrackers:
+        case states.protectionsOn_allowedFirstParty:
+        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
+            return 'info'
+        }
+        case states.protectionsOff_allowedTrackers:
+        case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+            return 'warning'
+        }
+        // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
+        default:
+            return unreachable(state)
     }
 }
 
