@@ -35,4 +35,22 @@ export class Extension {
         const callCountAfter = await this.dash.mocks.outgoing({ names: ['getToggleReportOptions'] })
         expect(callCountAfter).toHaveLength(2)
     }
+
+    /**
+     * This test verifies that once the 'thank you' screen is showing, any
+     * reconnecting will not trigger any data fetching or changes.
+     */
+    async reconnectsOnThankyouScreen() {
+        const { page } = this.dash
+        const callCountBefore = await this.dash.mocks.outgoing({ names: ['getToggleReportOptions'] })
+
+        await page.evaluate(() => {
+            window.__playwright.onDisconnect?.()
+        })
+
+        await page.waitForTimeout(1000)
+
+        const callCountAfter = await this.dash.mocks.outgoing({ names: ['getToggleReportOptions'] })
+        expect(callCountAfter).toHaveLength(callCountBefore.length)
+    }
 }

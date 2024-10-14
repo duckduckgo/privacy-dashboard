@@ -9,6 +9,7 @@ import {
     SendToggleBreakageReport,
 } from '../../../browser/common'
 import { toggleReportScreenSchema } from '../../../../../schema/__generated__/schema.parsers.mjs'
+import { useConnectionCount } from '../../../../../v2/data-provider'
 
 export const ToggleReportContext = createContext({
     value: /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */ ({}),
@@ -62,6 +63,7 @@ export function ToggleReportProvider({ children, model, screen }) {
     }, [model])
 
     function send() {
+        useConnectionCount.pause()
         model.fetch(new SendToggleBreakageReport())
     }
     function reject() {
