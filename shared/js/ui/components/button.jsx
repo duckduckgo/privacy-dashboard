@@ -3,13 +3,13 @@ import { h } from 'preact'
 
 /**
  * @typedef {object} ComponentProps
- * @property {"macos-standard" | "ios-secondary"} [variant]
- * @property {"big" | "small"} [btnSize]
+ * @property {"desktop-vibrancy" | "ios-secondary"} [variant]
+ * @property {"big" | "desktop-large"} [btnSize]
  * @param {import("preact").ComponentProps<'button'> & ComponentProps} props
  */
-export function Button({ children, btnSize, variant = 'macos-standard', ...rest }) {
+export function Button({ children, btnSize, variant = 'desktop-vibrancy', ...rest }) {
     return (
-        <button type="button" className="button" {...rest} data-variant={variant} data-size={btnSize}>
+        <button type="button" className="button token-body" {...rest} data-variant={variant} data-size={btnSize}>
             {children}
         </button>
     )
