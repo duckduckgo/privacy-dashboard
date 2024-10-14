@@ -3971,3 +3971,18 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 .toggle-report__scroller {
   margin-bottom: 16px;
 }
+.toggle-report__scroller .scrollable::-webkit-scrollbar {
+  width: 10px;
+}
+.toggle-report__scroller .scrollable::-webkit-scrollbar-track {
+  border-radius: 6px;
+}
+.toggle-report__scroller .scrollable::-webkit-scrollbar-thumb {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+.body--theme-dark .toggle-report__scroller .scrollable::-webkit-scrollbar-thumb {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
