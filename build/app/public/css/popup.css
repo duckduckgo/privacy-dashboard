@@ -3893,11 +3893,13 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   overflow-y: scroll;
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.01);
+  /* NOTE: this is not using alpha because the custom scrollbars need to stack */
+  background: rgb(252, 252, 252);
   padding: 16px 20px 20px 16px;
 }
 .body--theme-dark .scrollable {
-  background: rgba(255, 255, 255, 0.03);
+  /* NOTE: this is not using alpha because the custom scrollbars need to stack */
+  background: rgb(57, 57, 57);
   border-color: rgba(255, 255, 255, 0.09);
 }
 
@@ -3972,17 +3974,19 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   margin-bottom: 16px;
 }
 .toggle-report__scroller .scrollable::-webkit-scrollbar {
-  width: 10px;
+  width: 14px;
 }
 .toggle-report__scroller .scrollable::-webkit-scrollbar-track {
   border-radius: 6px;
 }
 .toggle-report__scroller .scrollable::-webkit-scrollbar-thumb {
-  border: 1px solid rgba(0, 0, 0, 0.1);
   background: rgba(0, 0, 0, 0.1);
+  /* NOTE: this is not using alpha because the custom scrollbars need to stack */
+  border: 2px solid rgb(252, 252, 252);
   border-radius: 6px;
 }
 .body--theme-dark .toggle-report__scroller .scrollable::-webkit-scrollbar-thumb {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* NOTE: this is not using alpha because the custom scrollbars need to stack */
+  border-color: rgb(57, 57, 57);
   background: rgba(0, 0, 0, 0.3);
 }

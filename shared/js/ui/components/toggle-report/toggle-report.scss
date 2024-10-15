@@ -24,7 +24,7 @@
 
     .scrollable {
         &::-webkit-scrollbar {
-            width: 10px;
+            width: 14px;
         }
 
         &::-webkit-scrollbar-track {
@@ -32,13 +32,15 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            border: 1px solid rgba(0, 0, 0, 0.1);
             background: rgba(0, 0, 0, 0.1);
+            /* NOTE: this is not using alpha because the custom scrollbars need to stack */
+            border: 2px solid rgba(252, 252, 252, 1);
             border-radius: 6px;
         }
 
         .body--theme-dark &::-webkit-scrollbar-thumb {
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* NOTE: this is not using alpha because the custom scrollbars need to stack */
+            border-color: rgba(57, 57, 57, 1);
             background: rgba(0, 0, 0, 0.3);
         }
     }
