@@ -4807,7 +4807,8 @@
         permissions: z3.array(z3.unknown()).optional(),
         certificates: z3.array(z3.unknown()).optional(),
         cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional(),
-        isInvalidCert: z3.boolean().optional()
+        isInvalidCert: z3.boolean().optional(),
+        localeSettings: localeSettingsSchema.optional()
       });
       toggleReportScreenSchema = z3.object({
         data: z3.array(toggleReportScreenDataItemSchema)
@@ -10252,7 +10253,7 @@
   };
 
   // node_modules/@formatjs/icu-messageformat-parser/lib/date-time-pattern-generator.js
-  function getBestPattern(skeleton, locale3) {
+  function getBestPattern(skeleton, locale4) {
     var skeletonCopy = "";
     for (var patternPos = 0; patternPos < skeleton.length; patternPos++) {
       var patternChar = skeleton.charAt(patternPos);
@@ -10265,7 +10266,7 @@
         var hourLen = 1 + (extraLength & 1);
         var dayPeriodLen = extraLength < 2 ? 1 : 3 + (extraLength >> 1);
         var dayPeriodChar = "a";
-        var hourChar = getDefaultHourSymbolFromLocale(locale3);
+        var hourChar = getDefaultHourSymbolFromLocale(locale4);
         if (hourChar == "H" || hourChar == "k") {
           dayPeriodLen = 0;
         }
@@ -10283,12 +10284,12 @@
     }
     return skeletonCopy;
   }
-  function getDefaultHourSymbolFromLocale(locale3) {
-    var hourCycle = locale3.hourCycle;
+  function getDefaultHourSymbolFromLocale(locale4) {
+    var hourCycle = locale4.hourCycle;
     if (hourCycle === void 0 && // @ts-ignore hourCycle(s) is not identified yet
-    locale3.hourCycles && // @ts-ignore
-    locale3.hourCycles.length) {
-      hourCycle = locale3.hourCycles[0];
+    locale4.hourCycles && // @ts-ignore
+    locale4.hourCycles.length) {
+      hourCycle = locale4.hourCycles[0];
     }
     if (hourCycle) {
       switch (hourCycle) {
@@ -10304,10 +10305,10 @@
           throw new Error("Invalid hourCycle");
       }
     }
-    var languageTag = locale3.language;
+    var languageTag = locale4.language;
     var regionTag;
     if (languageTag !== "root") {
-      regionTag = locale3.maximize().region;
+      regionTag = locale4.maximize().region;
     }
     var hourCycles = timeData[regionTag || ""] || timeData[languageTag || ""] || timeData["".concat(languageTag, "-001")] || timeData["001"];
     return hourCycles[0];
@@ -14577,13 +14578,15 @@
   var protections3;
   var isPendingUpdates3;
   var parentEntity3;
+  var locale3;
   var combineSources3 = () => ({
     tab: Object.assign(
       {},
       trackerBlockingData3 || {},
       {
         isPendingUpdates: isPendingUpdates3,
-        parentEntity: parentEntity3
+        parentEntity: parentEntity3,
+        locale: locale3
       },
       permissionsData3 ? { permissions: permissionsData3 } : {},
       certificateData3 ? { certificate: certificateData3 } : {}
@@ -14605,6 +14608,7 @@
     permissionsData3 = viewModel.permissions || [];
     certificateData3 = viewModel.certificates || [];
     protections3 = viewModel.protections;
+    locale3 = viewModel.localeSettings?.locale;
     trackerBlockingData3 = createTabData(viewModel.tabUrl, upgradedHttps3, viewModel.protections, viewModel.rawRequestData);
     trackerBlockingData3.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
     trackerBlockingData3.isInvalidCert = viewModel.isInvalidCert;

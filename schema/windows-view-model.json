@@ -28,6 +28,9 @@
         "cookiePromptManagementStatus": { "$ref": "./cookie-prompt-management-status.json" },
         "isInvalidCert": {
             "type": "boolean"
+        },
+        "localeSettings": {
+            "$ref": "locale.json"
         }
     }
 }

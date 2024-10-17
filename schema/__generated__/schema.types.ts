@@ -451,6 +451,7 @@ export interface WindowsViewModel {
   certificates?: unknown[];
   cookiePromptManagementStatus?: CookiePromptManagementStatus;
   isInvalidCert?: boolean;
+  localeSettings?: LocaleSettings;
 }
 /**
  * This describes the fields needed for the dashboard to display the status of CPM (Cookie Prompt Management)

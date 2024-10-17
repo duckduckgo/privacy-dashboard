@@ -58,6 +58,9 @@ let protections
 let isPendingUpdates
 let parentEntity
 
+/** @type {string | undefined} */
+let locale
+
 const combineSources = () => ({
     tab: Object.assign(
         {},
@@ -65,6 +68,7 @@ const combineSources = () => ({
         {
             isPendingUpdates,
             parentEntity,
+            locale,
         },
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
@@ -103,6 +107,7 @@ function handleViewModelUpdate(viewModel) {
     permissionsData = viewModel.permissions || []
     certificateData = viewModel.certificates || []
     protections = viewModel.protections
+    locale = viewModel.localeSettings?.locale
 
     trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData)
     trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus

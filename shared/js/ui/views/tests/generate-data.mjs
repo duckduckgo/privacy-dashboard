@@ -332,6 +332,7 @@ export class MockData {
                 certificates: this.certificate,
                 cookiePromptManagementStatus: this.cookiePromptManagementStatus,
                 isInvalidCert: this.isInvalidCert,
+                localeSettings: this.localeSettings,
             },
         }
     }
