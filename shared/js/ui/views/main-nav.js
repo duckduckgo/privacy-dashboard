@@ -1,6 +1,6 @@
 import html from 'nanohtml'
-import { trackerNetworksText } from '../templates/shared/tracker-networks-text.js'
-import { thirdpartyText } from '../templates/shared/thirdparty-text.js'
+import { trackerNetworksTitle, trackerNetworksIcon } from '../templates/shared/tracker-networks-text.js'
+import { thirdpartyTitle, thirdpartyIcon } from '../templates/shared/thirdparty-text.js'
 import { i18n } from '../base/localize.js'
 import { httpsMessages } from '../../../data/constants'
 import { states } from '../../browser/utils/request-details.mjs'
@@ -114,7 +114,9 @@ function renderConnectionText(model) {
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderTrackerNetworksNew(model, cb) {
-    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled)
+    const title = trackerNetworksTitle(model.tab.requestDetails, model.protectionsEnabled)
+    const icon = trackerNetworksIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus)
+
     return html` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"
@@ -133,7 +135,9 @@ function renderTrackerNetworksNew(model, cb) {
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderThirdPartyNew(model, cb) {
-    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled)
+    const title = thirdpartyTitle(model.tab.requestDetails, model.protectionsEnabled)
+    const icon = thirdpartyIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus)
+
     return html` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"
