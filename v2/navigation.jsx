@@ -8,7 +8,7 @@ import { TrackersScreen } from './screens/trackers-screen'
 import { NonTrackersScreen } from './screens/non-trackers-screen'
 import { ConsentManagedScreen } from './screens/consent-managed-screen'
 import { ToggleReportScreen } from './screens/toggle-report-screen'
-import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection } from './screens/choice-problem'
+import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection } from './screens/breakage-form-screen'
 import { isAndroid } from '../shared/js/ui/environment-check'
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs'
 
