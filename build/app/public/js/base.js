@@ -12150,42 +12150,58 @@
   };
 
   // shared/js/ui/templates/shared/tracker-networks-text.js
-  function trackerNetworksText(requestDetails, protectionsEnabled) {
+  function trackerNetworksTitle(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled);
     switch (state) {
       case states.protectionsOn_blocked:
       case states.protectionsOn_blocked_allowedTrackers:
       case states.protectionsOn_blocked_allowedNonTrackers:
       case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
-        return {
-          title: ns.site("trackerNetworksDesc.title"),
-          icon: "blocked"
-        };
+        return ns.site("trackerNetworksDesc.title");
       }
       case states.protectionsOn_allowedTrackers_allowedNonTrackers:
       case states.protectionsOn_allowedTrackers:
       case states.protectionsOn_allowedFirstParty:
-      case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-        return {
-          title: ns.site("trackerNetworksNotBlocked.title"),
-          icon: "info"
-        };
-      }
+      case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
       case states.protectionsOff_allowedTrackers:
       case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
-        return {
-          title: ns.site("trackerNetworksNotBlocked.title"),
-          icon: "warning"
-        };
+        return ns.site("trackerNetworksNotBlocked.title");
       }
       case states.protectionsOn:
       case states.protectionsOff:
       case states.protectionsOn_allowedNonTrackers:
       case states.protectionsOff_allowedNonTrackers: {
-        return {
-          title: ns.site("trackerNetworksNotFound.title"),
-          icon: "blocked"
-        };
+        return ns.site("trackerNetworksNotFound.title");
+      }
+      default:
+        return unreachable(state);
+    }
+  }
+  function trackerNetworksIcon(requestDetails, protectionsEnabled, phishingDetected) {
+    if (phishingDetected) {
+      return "info";
+    }
+    const state = requestDetails.state(protectionsEnabled);
+    switch (state) {
+      case states.protectionsOn_blocked:
+      case states.protectionsOn_blocked_allowedTrackers:
+      case states.protectionsOn_blocked_allowedNonTrackers:
+      case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
+      case states.protectionsOn:
+      case states.protectionsOff:
+      case states.protectionsOn_allowedNonTrackers:
+      case states.protectionsOff_allowedNonTrackers: {
+        return "blocked";
+      }
+      case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+      case states.protectionsOn_allowedTrackers:
+      case states.protectionsOn_allowedFirstParty:
+      case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
+        return "info";
+      }
+      case states.protectionsOff_allowedTrackers:
+      case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+        return "warning";
       }
       default:
         return unreachable(state);
@@ -12247,16 +12263,13 @@
   }
 
   // shared/js/ui/templates/shared/thirdparty-text.js
-  function thirdpartyText(requestDetails, protectionsEnabled) {
+  function thirdpartyTitle(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled);
     switch (state) {
       case states.protectionsOn:
       case states.protectionsOn_blocked:
       case states.protectionsOff: {
-        return {
-          title: ns.site("thirdPartiesNoneFound.title"),
-          icon: "blocked"
-        };
+        return ns.site("thirdPartiesNoneFound.title");
       }
       case states.protectionsOn_allowedTrackers:
       case states.protectionsOn_allowedNonTrackers:
@@ -12269,10 +12282,35 @@
       case states.protectionsOff_allowedTrackers:
       case states.protectionsOn_allowedFirstParty:
       case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-        return {
-          title: ns.site("thirdPartiesLoaded.title"),
-          icon: "info"
-        };
+        return ns.site("thirdPartiesLoaded.title");
+      }
+      default:
+        return unreachable2(state);
+    }
+  }
+  function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetected) {
+    if (phishingDetected) {
+      return "info";
+    }
+    const state = requestDetails.state(protectionsEnabled);
+    switch (state) {
+      case states.protectionsOn:
+      case states.protectionsOn_blocked:
+      case states.protectionsOff: {
+        return "blocked";
+      }
+      case states.protectionsOn_allowedTrackers:
+      case states.protectionsOn_allowedNonTrackers:
+      case states.protectionsOn_blocked_allowedTrackers:
+      case states.protectionsOn_blocked_allowedNonTrackers:
+      case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+      case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
+      case states.protectionsOff_allowedTrackers_allowedNonTrackers:
+      case states.protectionsOff_allowedNonTrackers:
+      case states.protectionsOff_allowedTrackers:
+      case states.protectionsOn_allowedFirstParty:
+      case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
+        return "info";
       }
       default:
         return unreachable2(state);
@@ -15453,7 +15491,8 @@
     </div>`;
   }
   function renderTrackerNetworksNew(model, cb) {
-    const { title, icon } = trackerNetworksText(model.tab.requestDetails, model.protectionsEnabled);
+    const title = trackerNetworksTitle(model.tab.requestDetails, model.protectionsEnabled);
+    const icon = trackerNetworksIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
     return import_nanohtml5.default` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"
@@ -15468,7 +15507,8 @@
     </a>`;
   }
   function renderThirdPartyNew(model, cb) {
-    const { title, icon } = thirdpartyText(model.tab.requestDetails, model.protectionsEnabled);
+    const title = thirdpartyTitle(model.tab.requestDetails, model.protectionsEnabled);
+    const icon = thirdpartyIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
     return import_nanohtml5.default` <a
         href="javascript:void(0)"
         class="main-nav__item main-nav__item--link link-action link-action--dark"
