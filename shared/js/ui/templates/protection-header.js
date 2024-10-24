@@ -97,7 +97,8 @@ export function ProtectionHeaderText() {
         e.preventDefault()
         // dispatching this for now, since there a few things that
         // are checked/used in the existing view
-        window.dispatchEvent(new CustomEvent('open-feedback'))
+//        window.dispatchEvent(new CustomEvent('open-feedback'))
+console.log('DISPATCH')
     }
 
     return (

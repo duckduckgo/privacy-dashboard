@@ -222,7 +222,7 @@ export class DashboardPage {
      * @param {import("@playwright/test").Page} page
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
-     * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
+     * @param {'breakageForm' | 'categorySelection'} [opts.breakageScreen]
      * @param {string} [opts.randomisedCategories]
      * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]
@@ -288,7 +288,7 @@ export class DashboardPage {
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'ios' | 'macos'} opts.platform
-     * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
+     * @param {'breakageForm' | 'categorySelection'} [opts.breakageScreen]
      * @param {string} [opts.randomisedCategories]
      * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]

@@ -138,30 +138,3 @@ function DefaultSelectElement() {
         </div>
     )
 }
-
-/**
- * Creates a form element.
- *
- * @param {Object} options - The options for the form element.
- * @param {(args:any) => void} options.onSubmit - The submit event handler function for the form.
- * @param {import('preact').ComponentChild} [options.before] - The content to display before the textarea.
- * @param {import('preact').ComponentChild} [options.after] - The content to display before the textarea.
- * @param {string} [options.placeholder] - The placeholder text in the textare
- */
-export function FormElement({ onSubmit, before, after, placeholder }) {
-    let bullet = '\u000A • '
-    placeholder = placeholder || ns.report('tellUsMoreDesc.title', { bullet })
-
-    return (
-        <form className="breakage-form__element" onSubmit={onSubmit}>
-            <div className="form__group">
-                {before}
-                <textarea className="form__textarea" placeholder={placeholder} maxLength={2500} name="description"></textarea>
-                {after}
-            </div>
-            <button className="form__submit token-label-em" type="submit">
-                {ns.report('sendReport.title')}
-            </button>
-        </form>
-    )
-}

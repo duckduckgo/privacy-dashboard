@@ -30,9 +30,6 @@ function initialStack(features) {
     if (features.initialScreen === 'choiceBreakageForm') {
         return ['choiceBreakageForm']
     }
-    if (features.initialScreen === 'categoryTypeSelection') {
-        return ['categoryTypeSelection']
-    }
     if (features.initialScreen === 'categorySelection') {
         return ['categorySelection']
     }

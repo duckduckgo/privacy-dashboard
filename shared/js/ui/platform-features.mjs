@@ -29,7 +29,6 @@ export function createPlatformFeatures(platform) {
         'breakageForm',
         'toggleReport',
         'choiceBreakageForm',
-        'categoryTypeSelection',
         'categorySelection',
         'promptBreakageForm',
     ]
@@ -54,9 +53,6 @@ export function createPlatformFeatures(platform) {
     let breakageScreen = 'breakageForm'
     if (url.searchParams.get('breakageScreen') === 'categorySelection') {
         breakageScreen = 'categorySelection'
-    }
-    if (url.searchParams.get('breakageScreen') === 'categoryTypeSelection') {
-        breakageScreen = 'categoryTypeSelection'
     }
 
     // allow randomization to be disabled in a URL param

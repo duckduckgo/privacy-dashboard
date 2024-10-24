@@ -4,10 +4,7 @@ import { SecondaryTopNavAlt, Title } from '../components/top-nav'
 import { Nav, NavItem } from '../components/nav'
 import { KeyInsightsMain } from '../components/key-insights'
 import { useNav } from '../navigation'
-import { TextLink } from '../../shared/js/ui/components/text-link'
-import { ProtectionToggle } from '../../shared/js/ui/components/toggle'
-import { useData, useFeatures, useSendReport, useShowAlert, useShowNativeFeedback, useTelemetry, useToggle } from '../data-provider'
-import { FormElement } from './breakage-form-screen'
+import { useData, useFeatures, useSendReport, useShowAlert, useShowNativeFeedback, useTelemetry } from '../data-provider'
 import { ns } from '../../shared/js/ui/base/localize'
 import { useMemo } from 'preact/hooks'
 import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categories'
@@ -62,12 +59,9 @@ export function CategorySelection() {
     const description = ns.report('selectTheCategory.title')
     const { push } = useNav()
     const send = useTelemetry()
-    const { protectionsEnabled, tab } = useData()
+    const { tab } = useData()
     const text = tab.domain
     const platformFeatures = useFeatures()
-    const showToggle =
-        protectionsEnabled &&
-        (platformFeatures.breakageScreen === 'categoryTypeSelection' || platformFeatures.initialScreen === 'categoryTypeSelection')
 
     // shuffle once and remember
     const randomised = useMemo(() => {
@@ -95,11 +89,7 @@ export function CategorySelection() {
                                 key={value}
                                 onClick={() => {
                                     send({ name: 'categorySelected', value: /** @type {any} */ (value) })
-                                    if (showToggle) {
-                                        push('choiceToggle', { category: value })
-                                    } else {
-                                        push('choiceBreakageForm', { category: value })
-                                    }
+                                    push('choiceBreakageForm', { category: value })
                                 }}
                             >
                                 {title}
@@ -107,45 +97,6 @@ export function CategorySelection() {
                         )
                     })}
                 </Nav>
-            </div>
-        </div>
-    )
-}
-
-export function ChoiceToggleScreen() {
-    const description = ns.report('tryTurningProtectionsOff.title')
-    const { push } = useNav()
-    const data = useData()
-    const text = data.tab.domain
-    const onToggle = useToggle()
-    const send = useTelemetry()
-    return (
-        <div className="site-info page-inner card" data-page="choice-category">
-            <NavWrapper />
-            <div className="padding-x-double">
-                {/* @ts-ignore */}
-                <KeyInsightsMain title={text} icon="switch-shield">
-                    {description}
-                </KeyInsightsMain>
-            </div>
-            <div className="padding-x">
-                <div class="card-list--bordered">
-                    <div className="protection-toggle">
-                        <div className="protection-toggle__row">
-                            <ProtectionToggle model={data} toggle={onToggle} />
-                        </div>
-                    </div>
-                </div>
-                <div class="text--center">
-                    <TextLink
-                        onClick={() => {
-                            push('choiceBreakageForm')
-                            send({ name: 'toggleSkipped' })
-                        }}
-                    >
-                        {ns.report('skipThisStep.title')}
-                    </TextLink>
-                </div>
             </div>
         </div>
     )
@@ -214,5 +165,32 @@ function NavWrapper() {
         <SecondaryTopNavAlt>
             <Title>{ns.report('reportTitle.title')}</Title>
         </SecondaryTopNavAlt>
+    )
+}
+
+/**
+ * Creates a form element.
+ *
+ * @param {Object} options - The options for the form element.
+ * @param {(args:any) => void} options.onSubmit - The submit event handler function for the form.
+ * @param {import('preact').ComponentChild} [options.before] - The content to display before the textarea.
+ * @param {import('preact').ComponentChild} [options.after] - The content to display before the textarea.
+ * @param {string} [options.placeholder] - The placeholder text in the textare
+ */
+export function FormElement({ onSubmit, before, after, placeholder }) {
+    let bullet = '\u000A • '
+    placeholder = placeholder || ns.report('tellUsMoreDesc.title', { bullet })
+
+    return (
+        <form className="breakage-form__element" onSubmit={onSubmit}>
+            <div className="form__group">
+                {before}
+                <textarea className="form__textarea" placeholder={placeholder} maxLength={2500} name="description"></textarea>
+                {after}
+            </div>
+            <button className="form__submit token-label-em" type="submit">
+                {ns.report('sendReport.title')}
+            </button>
+        </form>
     )
 }

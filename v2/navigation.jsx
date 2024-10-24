@@ -4,12 +4,11 @@ import cn from 'classnames'
 import { useCallback, useContext, useEffect, useReducer, useRef } from 'preact/hooks'
 import { ConnectionScreen } from './screens/connection-screen'
 import { PrimaryScreen } from './screens/primary-screen'
-import { BreakageFormScreen } from './screens/breakage-form-screen'
 import { TrackersScreen } from './screens/trackers-screen'
 import { NonTrackersScreen } from './screens/non-trackers-screen'
 import { ConsentManagedScreen } from './screens/consent-managed-screen'
 import { ToggleReportScreen } from './screens/toggle-report-screen'
-import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection, ChoiceToggleScreen } from './screens/choice-problem'
+import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection } from './screens/choice-problem'
 import { isAndroid } from '../shared/js/ui/environment-check'
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs'
 
@@ -22,14 +21,12 @@ const availableScreens = {
     primaryScreen: { kind: 'root', component: () => <PrimaryScreen /> },
 
     // screens that would load immediately
-    breakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={true} /> },
-    promptBreakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={false} /> },
+    breakageForm: { kind: 'subview', component: () => <CategoryTypeSelection /> },
+    promptBreakageForm: { kind: 'subview', component: () => <div>TODO</div>},
     toggleReport: { kind: 'subview', component: () => <ToggleReportScreen /> },
 
     //
-    categoryTypeSelection: { kind: 'subview', component: () => <CategoryTypeSelection /> },
     categorySelection: { kind: 'subview', component: () => <CategorySelection /> },
-    choiceToggle: { kind: 'subview', component: () => <ChoiceToggleScreen /> },
     choiceBreakageForm: { kind: 'subview', component: () => <ChoiceBreakageForm /> },
 
     connection: { kind: 'subview', component: () => <ConnectionScreen /> },
