@@ -21,14 +21,8 @@ Note: you may to stub some data with empty arrays - please see the previous brea
 
 This is called immediately to retrieve the data needed to render the list.
 
-<details>
-  <summary>Sample JSON response 📝</summary>
+[Sample JSON 📝](../schema/__fixtures__/toggle-report-screen.json)
 
-JSON here
-
-</details>
-
--   WebKit: {@link "macOS integration".privacyDashboardGetToggleReportOptions}
 -   WebKit: {@link "macOS integration".privacyDashboardGetToggleReportOptions}
 -   Other platforms will be added
 
