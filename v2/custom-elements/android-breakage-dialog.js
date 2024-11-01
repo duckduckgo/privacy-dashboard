@@ -82,13 +82,13 @@ export class AndroidBreakageDialog extends LitElement {
                 <div slot="headline">${this.title}</div>
                 <form slot="content" id="form" method="dialog">
                     ${map(this.items, ([value, title]) => {
-        return html`
+                        return html`
                             <label>
                                 <md-radio name="category" value=${value} aria-label=${title} touch-target="wrapper"></md-radio>
                                 <span aria-hidden="true">${title}</span>
                             </label>
                         `
-    })}
+                    })}
                 </form>
                 <div slot="actions">
                     <!-- added autofocus as mentioned here: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#usage_notes -->

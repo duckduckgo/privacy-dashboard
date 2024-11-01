@@ -68,13 +68,13 @@ export function renderCompany(company) {
         </p>
         <ol class="default-list site-info__trackers__company-list__url-list" aria-label=${listLabel}>
             ${Object.keys(company.urls).map((urlHostname) => {
-        const url = company.urls[urlHostname]
-        const matched = displayCategories[url.category]
-        return html` <li class="url-list-item">
+                const url = company.urls[urlHostname]
+                const matched = displayCategories[url.category]
+                return html` <li class="url-list-item">
                     <p class="url" title=${urlHostname}>${urlHostname}</p>
                     ${matched ? html`<div class="category">${i18n.t(matched)}</div>` : ''}
                 </li>`
-    })}
+            })}
         </ol>
     </li>`
 }

@@ -22,16 +22,20 @@ export default tseslint.config(
         },
 
         rules: {
+            indent: 'off', // no need when using prettier
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/ban-ts-comment': 'off',
             '@typescript-eslint/triple-slash-reference': 'off',
 
-            '@typescript-eslint/no-unused-vars': ["error", {
-                args: "none",
-                caughtErrors: "none",
-                ignoreRestSiblings: true,
-                vars: "all"
-            }],
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    args: 'none',
+                    caughtErrors: 'none',
+                    ignoreRestSiblings: true,
+                    vars: 'all',
+                },
+            ],
         },
     }
 )

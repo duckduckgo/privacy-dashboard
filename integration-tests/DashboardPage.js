@@ -17,21 +17,21 @@ export class DashboardPage {
     fireButton = () => this.page.locator('.fire-button')
     get htmlPage() {
         switch (this.platform.name) {
-        case 'android':
-            return '/html/android.html'
-        case 'ios':
-            return '/html/ios.html'
-        case 'macos':
-            return '/html/macos.html'
-        case 'windows':
-            return '/html/windows.html'
-        case 'browser':
-            return '/html/browser.html'
-        default: {
-            /** @type {never} */
-            const n = this.platform.name
-            throw new Error('unreachable ' + n)
-        }
+            case 'android':
+                return '/html/android.html'
+            case 'ios':
+                return '/html/ios.html'
+            case 'macos':
+                return '/html/macos.html'
+            case 'windows':
+                return '/html/windows.html'
+            case 'browser':
+                return '/html/browser.html'
+            default: {
+                /** @type {never} */
+                const n = this.platform.name
+                throw new Error('unreachable ' + n)
+            }
         }
     }
 

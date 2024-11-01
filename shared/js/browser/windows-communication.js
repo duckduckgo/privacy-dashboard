@@ -344,15 +344,15 @@ export function handleIncomingMessage(message) {
         return
     }
     switch (parsed.data.Name) {
-    case 'VisibilityChanged': {
-        if (parsed.data.Data.isVisible === false) {
-            document.body.innerHTML = ''
+        case 'VisibilityChanged': {
+            if (parsed.data.Data.isVisible === false) {
+                document.body.innerHTML = ''
+            }
+            break
         }
-        break
-    }
-    case 'ViewModelUpdated': {
-        handleViewModelUpdate(parsed.data.Data)
-    }
+        case 'ViewModelUpdated': {
+            handleViewModelUpdate(parsed.data.Data)
+        }
     }
 }
 

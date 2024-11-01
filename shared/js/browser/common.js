@@ -1,5 +1,3 @@
- 
-
 /**
  * @typedef {{
  *   tab: import('./utils/request-details.mjs').TabData,

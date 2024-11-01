@@ -183,15 +183,15 @@ export class FeatureSettings {
      */
     static create(settings, platform) {
         switch (platform.name) {
-        case 'android': {
-            return new FeatureSettings({
-                webBreakageForm: { state: 'disabled' },
-                ...settings,
-            })
-        }
-        default: {
-            return new FeatureSettings(settings || {})
-        }
+            case 'android': {
+                return new FeatureSettings({
+                    webBreakageForm: { state: 'disabled' },
+                    ...settings,
+                })
+            }
+            default: {
+                return new FeatureSettings(settings || {})
+            }
         }
     }
 }

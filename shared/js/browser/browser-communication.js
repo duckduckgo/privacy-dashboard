@@ -54,31 +54,31 @@ function openPort() {
         }
 
         switch (parsed.data.messageType) {
-        case 'response': {
-            const { id, options } = parsed.data
-            // console.log('did send options from', parsed.data)
-            devtoolsMessageResponseReceived.dispatchEvent(new CustomEvent(String(id), { detail: options }))
-            break
-        }
-        case 'toggleReport': {
-            window.location.search = '?screen=toggleReport&opener=dashboard'
-            break
-        }
-        case 'closePopup': {
-            window.close()
-            break
-        }
-        case 'updateTabData': {
-            channel.send('updateTabData')
-            break
-        }
-        case 'didResetTrackersData': {
-            channel.send('updateTabData')
-            break
-        }
-        default: {
-            console.warn('unhandled message')
-        }
+            case 'response': {
+                const { id, options } = parsed.data
+                // console.log('did send options from', parsed.data)
+                devtoolsMessageResponseReceived.dispatchEvent(new CustomEvent(String(id), { detail: options }))
+                break
+            }
+            case 'toggleReport': {
+                window.location.search = '?screen=toggleReport&opener=dashboard'
+                break
+            }
+            case 'closePopup': {
+                window.close()
+                break
+            }
+            case 'updateTabData': {
+                channel.send('updateTabData')
+                break
+            }
+            case 'didResetTrackersData': {
+                channel.send('updateTabData')
+                break
+            }
+            default: {
+                console.warn('unhandled message')
+            }
         }
     })
 }
