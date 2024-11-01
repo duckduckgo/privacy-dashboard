@@ -75,7 +75,6 @@ export const requests = {
     blocked: blocked1,
 }
 
-// eslint-disable-next-line no-unused-vars
 export const defaultCertificates = [
     {
         commonName: 'sni.cloudflaressl.com',

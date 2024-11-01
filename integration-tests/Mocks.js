@@ -19,20 +19,20 @@ export class Mocks {
      */
     async install() {
         switch (this.platform.name) {
-            case 'android':
-                return installAndroidMocks(this.page)
-            case 'ios':
-            case 'macos':
-                return installWebkitMocks(this.page)
-            case 'windows':
-                return installWindowsMocks(this.page)
-            case 'browser':
-                return Promise.resolve()
-            default: {
-                /** @type {never} */
-                const n = this.platform.name
-                throw new Error('unreachable ' + n)
-            }
+        case 'android':
+            return installAndroidMocks(this.page)
+        case 'ios':
+        case 'macos':
+            return installWebkitMocks(this.page)
+        case 'windows':
+            return installWindowsMocks(this.page)
+        case 'browser':
+            return Promise.resolve()
+        default: {
+            /** @type {never} */
+            const n = this.platform.name
+            throw new Error('unreachable ' + n)
+        }
         }
     }
 
@@ -76,7 +76,6 @@ export class Mocks {
         }
         if (this.platform.name === 'ios') {
             expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]])
-            return
         }
     }
 
@@ -98,7 +97,6 @@ export class Mocks {
             })
             expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
         }
-        return
     }
 
     async calledForRejectToggleReport() {
@@ -120,7 +118,6 @@ export class Mocks {
             })
             expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
         }
-        return
     }
 
     async calledForSeeWhatsSent() {
@@ -128,7 +125,6 @@ export class Mocks {
             names: ['privacyDashboardSeeWhatIsSent'],
         })
         expect(out).toMatchObject([['privacyDashboardSeeWhatIsSent', {}]])
-        return
     }
 
     /**
@@ -162,12 +158,12 @@ export class Mocks {
             names: ['privacyDashboardShowAlertForMissingDescription'],
         })
         switch (alertType) {
-            case 'missingDescription': {
-                expect(calls).toMatchObject([['privacyDashboardShowAlertForMissingDescription', {}]])
-                return
-            }
-            default:
-                throw new Error('unimplemented')
+        case 'missingDescription': {
+            expect(calls).toMatchObject([['privacyDashboardShowAlertForMissingDescription', {}]])
+            return
+        }
+        default:
+            throw new Error('unimplemented')
         }
     }
     async calledForNativeFeedback() {
@@ -308,7 +304,7 @@ export class Mocks {
                 [
                     'privacyDashboardClose',
                     {
-                        eventOrigin: eventOrigin,
+                        eventOrigin,
                     },
                 ],
             ])
@@ -347,7 +343,7 @@ export class Mocks {
                 [
                     'toggleAllowlist',
                     JSON.stringify({
-                        eventOrigin: eventOrigin,
+                        eventOrigin,
                         isProtected: false,
                     }),
                 ],
@@ -362,7 +358,7 @@ export class Mocks {
                     {
                         Feature: 'PrivacyDashboard',
                         Name: 'AddToAllowListCommand',
-                        Data: { eventOrigin: eventOrigin },
+                        Data: { eventOrigin },
                     },
                 ],
             ])
@@ -374,7 +370,7 @@ export class Mocks {
                 [
                     'privacyDashboardSetProtection',
                     {
-                        eventOrigin: eventOrigin,
+                        eventOrigin,
                         isProtected: false,
                     },
                 ],

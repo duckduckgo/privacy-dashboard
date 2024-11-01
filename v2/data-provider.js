@@ -176,7 +176,7 @@ export class DataChannel extends EventTarget {
         if (!this.tab) return
 
         /** @type {import('../shared/js/ui/models/site.js').PublicSiteModel['httpsState']} */
-        let nextState = (() => {
+        const nextState = (() => {
             if (this.features.supportsPhishingWarning) {
                 if (this.tab.phishingStatus) {
                     return 'phishing'
@@ -268,7 +268,7 @@ export class ToggleAllowList {
                 })
             }
         }
-        return new SetListsMessage({ lists, eventOrigin: eventOrigin })
+        return new SetListsMessage({ lists, eventOrigin })
     }
 }
 

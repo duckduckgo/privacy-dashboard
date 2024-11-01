@@ -68,7 +68,7 @@ export class Settings {
         const nextParams = new URLSearchParams()
         nextParams.set('screen', this.screen)
         nextParams.set('state', this.state)
-        for (let request of this.requests) {
+        for (const request of this.requests) {
             nextParams.append('requests', request)
         }
         return nextParams

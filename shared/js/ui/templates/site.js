@@ -2,7 +2,6 @@ import html from 'nanohtml'
 import { i18n } from '../base/localize.js'
 import { topNav } from './shared/top-nav'
 import { protectionHeader } from './protection-header'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 /** @this {{model: import('../models/site.js').PublicSiteModel}} */
 export default function () {
@@ -98,8 +97,8 @@ function renderManagePermissions(model) {
     return html` <ul class="default-list">
         <li class="site-info__li--manage-permissions">
             ${localizedPerms.map(({ key: permissionId, title, permission, options }) => {
-                if (!model.permissions) return '' // todo(Shane): typescript issue
-                return html`<div class="site-info__page-permission">
+        if (!model.permissions) return '' // todo(Shane): typescript issue
+        return html`<div class="site-info__page-permission">
                     <label>
                         <div>
                             <div class="site-info__page-permission__icon" data-icon=${permissionId}></div>
@@ -107,12 +106,12 @@ function renderManagePermissions(model) {
                         </div>
                         <select class="js-site-permission" name="${permissionId}">
                             ${options.map(
-                                ({ id, title }) => html`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`
-                            )}
+        ({ id, title }) => html`<option value="${id}" ${permission === id ? 'selected' : ''}>${title}</option>`
+    )}
                         </select>
                     </label>
                 </div>`
-            })}
+    })}
         </li>
     </ul>`
 }

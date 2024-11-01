@@ -179,7 +179,6 @@ async function fetch(message) {
 
     if (message instanceof CloseMessage) {
         CloseCommand(message.eventOrigin)
-        return
     }
 }
 
@@ -345,15 +344,15 @@ export function handleIncomingMessage(message) {
         return
     }
     switch (parsed.data.Name) {
-        case 'VisibilityChanged': {
-            if (parsed.data.Data.isVisible === false) {
-                document.body.innerHTML = ''
-            }
-            break
+    case 'VisibilityChanged': {
+        if (parsed.data.Data.isVisible === false) {
+            document.body.innerHTML = ''
         }
-        case 'ViewModelUpdated': {
-            handleViewModelUpdate(parsed.data.Data)
-        }
+        break
+    }
+    case 'ViewModelUpdated': {
+        handleViewModelUpdate(parsed.data.Data)
+    }
     }
 }
 

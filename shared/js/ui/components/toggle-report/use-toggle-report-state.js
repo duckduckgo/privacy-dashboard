@@ -6,40 +6,40 @@ export function useToggleReportState() {
     return useReducer(
         (state, /** @type {'toggle' | 'toggle-ios' | 'animation-complete' | 'send' | 'reject'} */ action) => {
             switch (action) {
-                case 'toggle-ios': {
+            case 'toggle-ios': {
+                didShowWhatIsSent()
+                return {
+                    ...state,
+                    value: /** @type {const} */ ('animating'),
+                }
+            }
+            case 'animation-complete': {
+                return {
+                    ...state,
+                    value: /** @type {const} */ ('showing'),
+                }
+            }
+            case 'toggle': {
+                const next = state.value === 'hiding' ? /** @type {const} */ ('showing') : /** @type {const} */ ('hiding')
+                if (next === 'showing') {
                     didShowWhatIsSent()
-                    return {
-                        ...state,
-                        value: /** @type {const} */ ('animating'),
-                    }
                 }
-                case 'animation-complete': {
-                    return {
-                        ...state,
-                        value: /** @type {const} */ ('showing'),
-                    }
+                return {
+                    ...state,
+                    value: next,
                 }
-                case 'toggle': {
-                    const next = state.value === 'hiding' ? /** @type {const} */ ('showing') : /** @type {const} */ ('hiding')
-                    if (next === 'showing') {
-                        didShowWhatIsSent()
-                    }
-                    return {
-                        ...state,
-                        value: next,
-                    }
+            }
+            case 'send': {
+                send()
+                return {
+                    ...state,
+                    value: /** @type {const} */ ('sent'),
                 }
-                case 'send': {
-                    send()
-                    return {
-                        ...state,
-                        value: /** @type {const} */ ('sent'),
-                    }
-                }
-                case 'reject': {
-                    reject()
-                    return state
-                }
+            }
+            case 'reject': {
+                reject()
+                return state
+            }
             }
             return state
         },

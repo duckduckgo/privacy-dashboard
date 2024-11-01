@@ -9,29 +9,29 @@ import { ns } from '../../base/localize.js'
 export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
-        case states.protectionsOn_blocked:
-        case states.protectionsOn_blocked_allowedTrackers:
-        case states.protectionsOn_blocked_allowedNonTrackers:
-        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
-            return ns.site('trackerNetworksDesc.title')
-        }
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedTrackers:
-        case states.protectionsOn_allowedFirstParty:
-        case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
-        case states.protectionsOff_allowedTrackers:
-        case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
-            return ns.site('trackerNetworksNotBlocked.title')
-        }
-        case states.protectionsOn:
-        case states.protectionsOff:
-        case states.protectionsOn_allowedNonTrackers:
-        case states.protectionsOff_allowedNonTrackers: {
-            return ns.site('trackerNetworksNotFound.title')
-        }
-        // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
-        default:
-            return unreachable(state)
+    case states.protectionsOn_blocked:
+    case states.protectionsOn_blocked_allowedTrackers:
+    case states.protectionsOn_blocked_allowedNonTrackers:
+    case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
+        return ns.site('trackerNetworksDesc.title')
+    }
+    case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+    case states.protectionsOn_allowedTrackers:
+    case states.protectionsOn_allowedFirstParty:
+    case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
+    case states.protectionsOff_allowedTrackers:
+    case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+        return ns.site('trackerNetworksNotBlocked.title')
+    }
+    case states.protectionsOn:
+    case states.protectionsOff:
+    case states.protectionsOn_allowedNonTrackers:
+    case states.protectionsOff_allowedNonTrackers: {
+        return ns.site('trackerNetworksNotFound.title')
+    }
+    // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
+    default:
+        return unreachable(state)
     }
 }
 
@@ -48,29 +48,29 @@ export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishing
 
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
-        case states.protectionsOn_blocked:
-        case states.protectionsOn_blocked_allowedTrackers:
-        case states.protectionsOn_blocked_allowedNonTrackers:
-        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn:
-        case states.protectionsOff:
-        case states.protectionsOn_allowedNonTrackers:
-        case states.protectionsOff_allowedNonTrackers: {
-            return 'blocked'
-        }
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedTrackers:
-        case states.protectionsOn_allowedFirstParty:
-        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return 'info'
-        }
-        case states.protectionsOff_allowedTrackers:
-        case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
-            return 'warning'
-        }
-        // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
-        default:
-            return unreachable(state)
+    case states.protectionsOn_blocked:
+    case states.protectionsOn_blocked_allowedTrackers:
+    case states.protectionsOn_blocked_allowedNonTrackers:
+    case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
+    case states.protectionsOn:
+    case states.protectionsOff:
+    case states.protectionsOn_allowedNonTrackers:
+    case states.protectionsOff_allowedNonTrackers: {
+        return 'blocked'
+    }
+    case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+    case states.protectionsOn_allowedTrackers:
+    case states.protectionsOn_allowedFirstParty:
+    case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
+        return 'info'
+    }
+    case states.protectionsOff_allowedTrackers:
+    case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+        return 'warning'
+    }
+    // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
+    default:
+        return unreachable(state)
     }
 }
 
@@ -81,23 +81,23 @@ export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishing
 export function trackerNetworkSummary(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
-        case states.protectionsOn:
-        case states.protectionsOff:
-        case states.protectionsOn_allowedNonTrackers:
-        case states.protectionsOff_allowedNonTrackers: {
-            return ns.site('trackerNetworksSummaryNoneFound.title')
-        }
-        case states.protectionsOn_allowedTrackers:
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedFirstParty:
-        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return ns.site('trackerNetworksSummaryNoneBlocked.title')
-        }
-        case states.protectionsOff_allowedTrackers:
-        case states.protectionsOff_allowedTrackers_allowedNonTrackers:
-            return ns.site('trackerNetworksSummaryProtectionsOff.title')
-        default:
-            return ns.site('trackerNetworksSummaryBlocked.title')
+    case states.protectionsOn:
+    case states.protectionsOff:
+    case states.protectionsOn_allowedNonTrackers:
+    case states.protectionsOff_allowedNonTrackers: {
+        return ns.site('trackerNetworksSummaryNoneFound.title')
+    }
+    case states.protectionsOn_allowedTrackers:
+    case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+    case states.protectionsOn_allowedFirstParty:
+    case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
+        return ns.site('trackerNetworksSummaryNoneBlocked.title')
+    }
+    case states.protectionsOff_allowedTrackers:
+    case states.protectionsOff_allowedTrackers_allowedNonTrackers:
+        return ns.site('trackerNetworksSummaryProtectionsOff.title')
+    default:
+        return ns.site('trackerNetworksSummaryBlocked.title')
     }
 }
 
@@ -109,30 +109,30 @@ export function trackerNetworkSummary(requestDetails, protectionsEnabled) {
 export function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
     const state = requestDetails.state(protectionsEnabled)
     switch (state) {
-        case states.protectionsOn:
-        case states.protectionsOff:
-        case states.protectionsOff_allowedNonTrackers:
-        case states.protectionsOn_allowedNonTrackers: {
-            return 'major-networks-no-activity'
-        }
-        case states.protectionsOn_allowedTrackers:
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedFirstParty:
-        case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return 'major-networks-info'
-        }
-        case states.protectionsOff_allowedTrackers:
-        case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
-            return 'major-networks-warning'
-        }
-        case states.protectionsOn_blocked_allowedTrackers:
-        case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_blocked:
-        case states.protectionsOn_blocked_allowedNonTrackers: {
-            return 'major-networks-blocked'
-        }
-        default:
-            return unreachable(state)
+    case states.protectionsOn:
+    case states.protectionsOff:
+    case states.protectionsOff_allowedNonTrackers:
+    case states.protectionsOn_allowedNonTrackers: {
+        return 'major-networks-no-activity'
+    }
+    case states.protectionsOn_allowedTrackers:
+    case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+    case states.protectionsOn_allowedFirstParty:
+    case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
+        return 'major-networks-info'
+    }
+    case states.protectionsOff_allowedTrackers:
+    case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
+        return 'major-networks-warning'
+    }
+    case states.protectionsOn_blocked_allowedTrackers:
+    case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
+    case states.protectionsOn_blocked:
+    case states.protectionsOn_blocked_allowedNonTrackers: {
+        return 'major-networks-blocked'
+    }
+    default:
+        return unreachable(state)
     }
 }
 

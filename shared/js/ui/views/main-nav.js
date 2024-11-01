@@ -69,9 +69,9 @@ function renderCookieConsentManaged(model, cb) {
  */
 function renderConnection(model, cb) {
     let icon = 'icon-small--insecure'
-    let text = i18n.t(httpsMessages[model.httpsState])
-    let isSecure = model.httpsState === 'secure'
-    let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+    const text = i18n.t(httpsMessages[model.httpsState])
+    const isSecure = model.httpsState === 'secure'
+    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
 
     if (isSecure || isUpgraded) {
         icon = 'icon-small--secure'
@@ -96,9 +96,9 @@ function renderConnection(model, cb) {
  */
 function renderConnectionText(model) {
     let icon = 'icon-small--insecure'
-    let text = i18n.t(httpsMessages[model.httpsState])
-    let isSecure = model.httpsState === 'secure'
-    let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+    const text = i18n.t(httpsMessages[model.httpsState])
+    const isSecure = model.httpsState === 'secure'
+    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
 
     if (isSecure || isUpgraded) {
         icon = 'icon-small--secure'
@@ -160,12 +160,12 @@ export function shouldRenderTrackerNetworksLink(model) {
     const state = model.tab.requestDetails.state(model.protectionsEnabled)
 
     switch (state) {
-        case states.protectionsOn_allowedTrackers:
-        case states.protectionsOn_allowedTrackers_allowedNonTrackers:
-        case states.protectionsOn_allowedFirstParty:
-        case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
-            return false
-        default:
-            return true
+    case states.protectionsOn_allowedTrackers:
+    case states.protectionsOn_allowedTrackers_allowedNonTrackers:
+    case states.protectionsOn_allowedFirstParty:
+    case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
+        return false
+    default:
+        return true
     }
 }

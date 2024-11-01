@@ -1,9 +1,9 @@
 import { normalizeCompanyName, removeTLD } from '../../ui/models/mixins/normalize-company-name.mjs'
 import { requestDataSchema } from '../../../../schema/__generated__/schema.parsers.mjs'
-import { Protections } from './protections.mjs'
 
 /**
  * @typedef {import('../../../../schema/__generated__/schema.types.js').CookiePromptManagementStatus} CookiePromptManagementStatus
+ * @typedef {import('./protections.mjs').Protections} Protections
  */
 
 /**

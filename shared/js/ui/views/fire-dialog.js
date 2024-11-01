@@ -30,19 +30,19 @@ export function fireSummaryTemplate(selectedOption) {
     return html`<div id="fire-button-summary">
         <p>
             ${raw(
-                i18n.t(template, {
-                    durationDesc: i18n.t('firebutton:historyDuration.title', { duration: descriptionStats.duration }),
-                    ...descriptionStats,
-                })
-            )}
+        i18n.t(template, {
+            durationDesc: i18n.t('firebutton:historyDuration.title', { duration: descriptionStats.duration }),
+            ...descriptionStats,
+        })
+    )}
         </p>
         ${descriptionStats.site && descriptionStats.clearHistory
-            ? html`<p class="fire-button-disclaimer">${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>`
-            : null}
+        ? html`<p class="fire-button-disclaimer">${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>`
+        : null}
         ${descriptionStats.openTabs && descriptionStats.pinnedTabs
-            ? html`<p class="fire-button-disclaimer">
+        ? html`<p class="fire-button-disclaimer">
                   ${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}
               </p>`
-            : null}
+        : null}
     </div>`
 }

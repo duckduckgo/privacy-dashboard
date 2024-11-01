@@ -104,7 +104,7 @@ const resolveInitialRender = function () {
  */
 export function onChangeRequestData(tabUrl, rawRequestData) {
     // note: this will fail currently, but is added here to enable the wiring of the documentation/schema
-    // eslint-disable-next-line no-unused-vars
+
     const requestData = requestDataSchema.safeParse(rawRequestData)
     if (!protections) {
         console.error('protections status not set')

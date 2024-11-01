@@ -93,14 +93,14 @@ export function renderKeyInsight(modelOverride) {
                     <div class="key-insight__icon hero-icon--tracker-network"></div>
                     ${title(model.tab.domain)}
                     ${description(
-                        raw(
-                            i18n.t('site:majorTrackingNetworkDesc.title', {
-                                companyDisplayName: company?.displayName,
-                                companyPrevalence: Math.round(company?.prevalence ?? 0),
-                                blocked: model.tab.requestDetails.blocked.entitiesCount > 0,
-                            })
-                        )
-                    )}
+        raw(
+            i18n.t('site:majorTrackingNetworkDesc.title', {
+                companyDisplayName: company?.displayName,
+                companyPrevalence: Math.round(company?.prevalence ?? 0),
+                blocked: model.tab.requestDetails.blocked.entitiesCount > 0,
+            })
+        )
+    )}
                 </div>
             `
         },
