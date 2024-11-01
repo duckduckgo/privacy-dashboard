@@ -4842,6 +4842,22 @@
     }
   });
 
+  // node_modules/nanohtml/lib/raw-browser.js
+  var require_raw_browser = __commonJS({
+    "node_modules/nanohtml/lib/raw-browser.js"(exports, module) {
+      "use strict";
+      function nanohtmlRawBrowser(tag) {
+        var el = document.createElement("div");
+        el.innerHTML = tag;
+        return toArray(el.childNodes);
+      }
+      function toArray(arr2) {
+        return Array.isArray(arr2) ? arr2 : [].slice.call(arr2);
+      }
+      module.exports = nanohtmlRawBrowser;
+    }
+  });
+
   // shared/js/browser/utils/protections.mjs
   var Protections;
   var init_protections = __esm({
@@ -4864,22 +4880,6 @@
           return new _Protections(false, ["contentBlocking"], false, false);
         }
       };
-    }
-  });
-
-  // node_modules/nanohtml/lib/raw-browser.js
-  var require_raw_browser = __commonJS({
-    "node_modules/nanohtml/lib/raw-browser.js"(exports, module) {
-      "use strict";
-      function nanohtmlRawBrowser(tag) {
-        var el = document.createElement("div");
-        el.innerHTML = tag;
-        return toArray(el.childNodes);
-      }
-      function toArray(arr2) {
-        return Array.isArray(arr2) ? arr2 : [].slice.call(arr2);
-      }
-      module.exports = nanohtmlRawBrowser;
     }
   });
 
@@ -11854,7 +11854,6 @@
 
   // shared/js/browser/utils/request-details.mjs
   init_schema_parsers();
-  init_protections();
   var createTabData = (tabUrl, upgradedHttps4, protections4, rawRequestData) => {
     let domain;
     try {
@@ -14701,7 +14700,6 @@
     }
     if (message instanceof CloseMessage) {
       CloseCommand(message.eventOrigin);
-      return;
     }
   }
   function SubmitBrokenSiteReport(report2) {
@@ -15061,7 +15059,7 @@
     setHttpsMessage() {
       if (!this.tab)
         return;
-      let nextState = (() => {
+      const nextState = (() => {
         if (this.features.supportsPhishingWarning) {
           if (this.tab.phishingStatus) {
             return "phishing";
@@ -15458,9 +15456,9 @@
   }
   function renderConnection(model, cb) {
     let icon = "icon-small--insecure";
-    let text = i18n.t(httpsMessages[model.httpsState]);
-    let isSecure = model.httpsState === "secure";
-    let isUpgraded = model.httpsState === "upgraded" && /^https/.exec(model.tab.url);
+    const text = i18n.t(httpsMessages[model.httpsState]);
+    const isSecure = model.httpsState === "secure";
+    const isUpgraded = model.httpsState === "upgraded" && /^https/.exec(model.tab.url);
     if (isSecure || isUpgraded) {
       icon = "icon-small--secure";
     }
@@ -15479,9 +15477,9 @@
   }
   function renderConnectionText(model) {
     let icon = "icon-small--insecure";
-    let text = i18n.t(httpsMessages[model.httpsState]);
-    let isSecure = model.httpsState === "secure";
-    let isUpgraded = model.httpsState === "upgraded" && /^https/.exec(model.tab.url);
+    const text = i18n.t(httpsMessages[model.httpsState]);
+    const isSecure = model.httpsState === "secure";
+    const isUpgraded = model.httpsState === "upgraded" && /^https/.exec(model.tab.url);
     if (isSecure || isUpgraded) {
       icon = "icon-small--secure";
     }
@@ -17144,7 +17142,7 @@
       if (!child || !parent)
         return;
       const rs = new ResizeObserver((r3) => {
-        for (let resizeObserverEntry of r3) {
+        for (const resizeObserverEntry of r3) {
           if (resizeObserverEntry.contentRect.height === 0)
             continue;
           const childSize = child.clientHeight;
