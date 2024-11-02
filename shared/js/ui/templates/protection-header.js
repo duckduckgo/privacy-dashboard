@@ -1,7 +1,7 @@
 import html from 'nanohtml'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { render, h, Fragment, createContext } from 'preact'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { useState } from 'preact/hooks'
 import { i18n, ns } from '../base/localize'
 import { TextLink } from '../components/text-link.jsx'
@@ -80,7 +80,7 @@ export function ProtectionHeader({ model, initialState, toggle, children, ...res
                 value={{
                     state,
                     setState,
-                    model: model,
+                    model,
                 }}
             >
                 {children}
@@ -91,7 +91,7 @@ export function ProtectionHeader({ model, initialState, toggle, children, ...res
 
 export function ProtectionHeaderText() {
     // prettier-ignore
-    let buttonText = ns.site('websiteNotWorkingPrompt.title')
+    const buttonText = ns.site('websiteNotWorkingPrompt.title')
 
     function onClickTextLink(e) {
         e.preventDefault()

@@ -179,9 +179,7 @@ export function webkitMockApis({ responses = {} }) {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg])
                         setTimeout(() => {
-                            window.onGetToggleReportOptionsResponse?.(
-                                window.__playwright.responses['privacyDashboardGetToggleReportOptions']
-                            )
+                            window.onGetToggleReportOptionsResponse?.(window.__playwright.responses.privacyDashboardGetToggleReportOptions)
                         }, 0)
                     },
                 },
@@ -304,7 +302,7 @@ export function mockBrowserApis(params = { messages: {} }) {
                             const responseShape = {
                                 messageType: 'response',
                                 options: structuredClone(response),
-                                id: id,
+                                id,
                             }
                             console.log('[mock] will respond with', JSON.stringify(responseShape))
                             setTimeout(() => {
@@ -384,24 +382,24 @@ export async function installMocks(platform) {
         clone.searchParams.set('state', key)
         return clone.href
     })
-    for (let url of urls) {
+    for (const url of urls) {
         console.log(url)
     }
     console.groupEnd()
 
-    let messages = {}
+    const messages = {}
     if (platform.name === 'browser') {
-        messages['getBurnOptions'] = mock.toBurnOptions()
-        messages['getPrivacyDashboardData'] = mock.toExtensionDashboardData()
-        messages['getToggleReportOptions'] = toggleReportScreen
+        messages.getBurnOptions = mock.toBurnOptions()
+        messages.getPrivacyDashboardData = mock.toExtensionDashboardData()
+        messages.getToggleReportOptions = toggleReportScreen
     }
     if (platform.name === 'windows') {
-        messages['windowsViewModel'] = mock.toWindowsViewModel()
+        messages.windowsViewModel = mock.toWindowsViewModel()
     }
 
     await mockDataProvider({
         state: mock,
-        platform: platform,
+        platform,
         messages,
     })
 }

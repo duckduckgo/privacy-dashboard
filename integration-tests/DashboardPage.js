@@ -108,7 +108,7 @@ export class DashboardPage {
      * Whether to screenshot the company trackers screen, as some states omit that screen
      */
     async shouldScreenshotTrackersScreen() {
-        let count = await this.trackerCompaniesLink().count()
+        const count = await this.trackerCompaniesLink().count()
         return count === 1
     }
 
@@ -274,6 +274,7 @@ export class DashboardPage {
         const messages = {}
         messages.getBurnOptions = initial.toBurnOptions()
         messages.getPrivacyDashboardData = initial.toExtensionDashboardData()
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         messages.getToggleReportOptions = require('../schema/__fixtures__/toggle-report-screen.json')
 
         await page.addInitScript(mockBrowserApis, { messages })
@@ -441,7 +442,7 @@ export class DashboardPage {
      * @return {Promise<void>}
      */
     async showsOnlyCloseButton(screen = 'breakageForm') {
-        let selector = this.parent(screen)
+        const selector = this.parent(screen)
         await this.page.locator(selector).locator('a:has-text("Close")').waitFor()
         await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
     }
@@ -451,7 +452,7 @@ export class DashboardPage {
      * @return {Promise<void>}
      */
     async showsOnlyBackButton(screen = 'breakageForm') {
-        let selector = this.parent(screen)
+        const selector = this.parent(screen)
         await this.page.locator(selector).getByLabel('Back').waitFor()
         await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1)
     }
@@ -461,7 +462,7 @@ export class DashboardPage {
      * @return {Promise<void>}
      */
     async closeButtonIsHidden(screen) {
-        let selector = this.parent(screen)
+        const selector = this.parent(screen)
         expect(await this.page.locator(selector).locator('.top-nav').isHidden()).toBe(true)
     }
 
@@ -470,7 +471,7 @@ export class DashboardPage {
      * @return {Promise<void>}
      */
     async selectClose(screen) {
-        let selector = this.parent(screen)
+        const selector = this.parent(screen)
         await this.page.locator(selector).locator('.top-nav a').filter({ hasText: 'Close' }).click()
     }
 

@@ -37,7 +37,7 @@ test('invalid/missing certificate', { tag: '@screenshots' }, async ({ page }) =>
 test('phishing warning', async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.webkit(page, { platform: 'macos' })
-    await dash.addState([testDataStates['phishing']])
+    await dash.addState([testDataStates.phishing])
     await dash.screenshot('phishing-warning.png')
     await dash.hasPhishingIcon()
     await dash.hasPhishingHeadingText()
@@ -49,7 +49,7 @@ test('phishing warning', async ({ page }) => {
 test('insecure certificate', async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.webkit(page, { platform: 'macos' })
-    await dash.addState([testDataStates['insecure']])
+    await dash.addState([testDataStates.insecure])
     await dash.hasInsecureText()
     await dash.viewConnection()
     await dash.hasInsecureTextDetail()
@@ -58,7 +58,7 @@ test('insecure certificate', async ({ page }) => {
 test('allowed first party requests', async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.webkit(page, { platform: 'macos' })
-    await dash.addState([testDataStates['protectionsOn_allowedFirstParty']])
+    await dash.addState([testDataStates.protectionsOn_allowedFirstParty])
     await dash.hasAllowedFirstPartyText()
     await dash.hidesTrackerCompaniesLink()
 })

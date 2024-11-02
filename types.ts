@@ -1,3 +1,31 @@
+interface WebkitMessageHandlers {
+    privacyDashboardShowNativeFeedback?: any
+    privacyDashboardTelemetrySpan?: any
+    privacyDashboardShowAlertForMissingDescription?: any
+    privacyDashboardSubmitBrokenSiteReport?: any
+    privacyDashboardOpenUrlInNewTab?: any
+    privacyDashboardSetSize?: any
+    privacyDashboardShowReportBrokenSite?: any
+    privacyDashboardClose?: any
+    privacyDashboardSetProtection?: {
+        postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void
+    }
+    privacyDashboardOpenSettings?: any
+    privacyDashboardSetPermission?: any
+    privacyDashboardGetToggleReportOptions?: {
+        postMessage: (params: any) => void
+    }
+    privacyDashboardRejectToggleReport?: {
+        postMessage: (params: any) => Promise<void>
+    }
+    privacyDashboardSendToggleReport?: {
+        postMessage: (params: any) => Promise<void>
+    }
+    privacyDashboardSeeWhatIsSent?: {
+        postMessage: (params: any) => Promise<void>
+    }
+}
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Window {
     __DDG_TEST_DATA: any
@@ -59,34 +87,6 @@ interface Window {
             addEventListener?: Window['addEventListener']
             removeEventListener?: Window['removeEventListener']
         }
-    }
-}
-
-interface WebkitMessageHandlers {
-    privacyDashboardShowNativeFeedback?: any
-    privacyDashboardTelemetrySpan?: any
-    privacyDashboardShowAlertForMissingDescription?: any
-    privacyDashboardSubmitBrokenSiteReport?: any
-    privacyDashboardOpenUrlInNewTab?: any
-    privacyDashboardSetSize?: any
-    privacyDashboardShowReportBrokenSite?: any
-    privacyDashboardClose?: any
-    privacyDashboardSetProtection?: {
-        postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void
-    }
-    privacyDashboardOpenSettings?: any
-    privacyDashboardSetPermission?: any
-    privacyDashboardGetToggleReportOptions?: {
-        postMessage: (params: any) => void
-    }
-    privacyDashboardRejectToggleReport?: {
-        postMessage: (params: any) => Promise<void>
-    }
-    privacyDashboardSendToggleReport?: {
-        postMessage: (params: any) => Promise<void>
-    }
-    privacyDashboardSeeWhatIsSent?: {
-        postMessage: (params: any) => Promise<void>
     }
 }
 

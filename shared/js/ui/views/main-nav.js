@@ -69,9 +69,9 @@ function renderCookieConsentManaged(model, cb) {
  */
 function renderConnection(model, cb) {
     let icon = 'icon-small--insecure'
-    let text = i18n.t(httpsMessages[model.httpsState])
-    let isSecure = model.httpsState === 'secure'
-    let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+    const text = i18n.t(httpsMessages[model.httpsState])
+    const isSecure = model.httpsState === 'secure'
+    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
 
     if (isSecure || isUpgraded) {
         icon = 'icon-small--secure'
@@ -96,9 +96,9 @@ function renderConnection(model, cb) {
  */
 function renderConnectionText(model) {
     let icon = 'icon-small--insecure'
-    let text = i18n.t(httpsMessages[model.httpsState])
-    let isSecure = model.httpsState === 'secure'
-    let isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+    const text = i18n.t(httpsMessages[model.httpsState])
+    const isSecure = model.httpsState === 'secure'
+    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
 
     if (isSecure || isUpgraded) {
         icon = 'icon-small--secure'

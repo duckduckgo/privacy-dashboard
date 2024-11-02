@@ -47,7 +47,7 @@ export class AndroidBreakageDialog extends LitElement {
 
         form.reset()
 
-        for (let element of Array.from(radioElements)) {
+        for (const element of Array.from(radioElements)) {
             if (element.value === initial) {
                 element.checked = true
             }

@@ -35,7 +35,7 @@ if (!defaultComms) throw new Error('unsupported environment')
 let debug = false
 
 // in test environments, install mocks and deliver initial data
-// eslint-disable-next-line no-unused-labels
+// eslint-disable-next-line no-unused-labels, no-labels
 $TEST: (() => {
     if (typeof window.__ddg_integration_test === 'undefined') {
         installMocks(platform).catch(console.error)

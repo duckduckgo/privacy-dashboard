@@ -1,7 +1,6 @@
-import { useLayoutEffect } from 'preact/hooks'
+import { useLayoutEffect, useEffect, useRef } from 'preact/hooks'
 import { MDCRipple } from '@material/ripple'
 import { isAndroid } from '../environment-check'
-import { useEffect, useRef } from 'preact/hooks'
 
 /**
  * @param {object} params

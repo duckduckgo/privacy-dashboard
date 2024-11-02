@@ -2,7 +2,6 @@ import html from 'nanohtml'
 import { i18n } from '../base/localize.js'
 import { topNav } from './shared/top-nav'
 import { protectionHeader } from './protection-header'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 /** @this {{model: import('../models/site.js').PublicSiteModel}} */
 export default function () {

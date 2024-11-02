@@ -56,7 +56,7 @@ Object.keys(translationsUnderTest).forEach(ns => {
                     }
                 },
                 i18nFormat: {
-                    parseErrorHandler: (err, key, res, options) => {
+                    parseErrorHandler: (err, key, _res, _options) => {
                         throw new Error(`Error in translation key ${key}: ${err}`)
                     },
                 },

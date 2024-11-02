@@ -29,7 +29,7 @@ export class AltBreakageFlows {
     async submitsFormWithCategory(category) {
         const { page } = this.dash
         await page.getByRole('button', { name: 'Send Report' }).click()
-        await this.dash.mocks.calledForSubmitBreakageForm({ category: category })
+        await this.dash.mocks.calledForSubmitBreakageForm({ category })
     }
 
     async submitsForm() {

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 /**
  * @typedef {{
  *   tab: import('./utils/request-details.mjs').TabData,

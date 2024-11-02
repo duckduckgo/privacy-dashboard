@@ -179,7 +179,6 @@ async function fetch(message) {
 
     if (message instanceof CloseMessage) {
         CloseCommand(message.eventOrigin)
-        return
     }
 }
 
