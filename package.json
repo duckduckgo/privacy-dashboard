@@ -35,7 +35,7 @@
     },
     "devDependencies": {
         "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#51dc868a4342379d6aec1d0f4214156e7046d5f6",
-        "@formatjs/intl-locale": "^3.0.7",
+        "@formatjs/intl-locale": "^4.2.3",
         "@material/ripple": "^14.0.0",
         "@material/web": "^2.1.0",
         "@playwright/test": "^1.45.3",
