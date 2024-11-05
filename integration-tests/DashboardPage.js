@@ -1,9 +1,7 @@
 import { expect } from '@playwright/test';
 import { forwardConsole, playTimeline } from './helpers';
 import { Mocks } from './Mocks';
-import { AltBreakageFlows } from './AltBreakageFlows';
 import { Nav } from './Nav';
-import { MaterialWebDialog } from './MaterialWebDialog';
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs';
 import { Extension } from './Extension';
@@ -38,9 +36,7 @@ export class DashboardPage {
     platform;
     page;
     mocks;
-    breakage = new AltBreakageFlows(this);
     nav = new Nav(this);
-    mwd = new MaterialWebDialog(this);
     extension = new Extension(this);
     /**
      * @param {import("@playwright/test").Page} page
@@ -222,7 +218,6 @@ export class DashboardPage {
      * @param {import("@playwright/test").Page} page
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
-     * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
      * @param {string} [opts.randomisedCategories]
      * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]
@@ -232,13 +227,12 @@ export class DashboardPage {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
         const screen = opts?.screen || 'primaryScreen';
         const opener = opts?.opener || 'dashboard';
-        const breakageScreen = opts?.breakageScreen;
         const category = opts?.category;
         const randomisedCategories = opts?.randomisedCategories;
         const breakageFormCategorySelect = opts?.breakageFormCategorySelect;
         const dash = new DashboardPage(page, { name: 'android' });
         await dash.withMarker();
-        await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories, breakageFormCategorySelect });
+        await dash.loadPage({ screen, opener, category, randomisedCategories, breakageFormCategorySelect });
         await dash.mocks.install();
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined');
         return dash;
@@ -249,16 +243,20 @@ export class DashboardPage {
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'menu' | 'dashboard'} [opts.opener]
+     * @param {string} [opts.category]
+     * @param {string} [opts.randomisedCategories]
      * @return {Promise<DashboardPage>}
      */
     static async windows(page, opts = {}) {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
         const screen = opts?.screen || 'primaryScreen';
         const opener = opts?.opener || 'dashboard';
+        const category = opts?.category;
+        const randomisedCategories = opts?.randomisedCategories;
         const dash = new DashboardPage(page, { name: 'windows' });
         await dash.withMarker();
         await dash.mocks.install();
-        await dash.loadPage({ screen, opener });
+        await dash.loadPage({ screen, opener, category, randomisedCategories });
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined');
         return dash;
     }
@@ -266,9 +264,18 @@ export class DashboardPage {
     /**
      * @param {import("@playwright/test").Page} page
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} initial
+     * @param {object} [opts]
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
+     * @param {'menu' | 'dashboard'} [opts.opener]
+     * @param {string} [opts.category]
+     * @param {string} [opts.randomisedCategories]
      * @returns {Promise<DashboardPage>}
      */
     static async browser(page, initial = testDataStates.empty, opts = {}) {
+        const screen = opts?.screen || 'primaryScreen';
+        const opener = opts?.opener || 'dashboard';
+        const category = opts?.category;
+        const randomisedCategories = opts?.randomisedCategories;
         const dash = new DashboardPage(page, { name: 'browser' });
         await dash.withMarker();
 
@@ -281,7 +288,7 @@ export class DashboardPage {
 
         await page.addInitScript(mockBrowserApis, { messages });
 
-        await dash.loadPage();
+        await dash.loadPage({ screen, opener, category, randomisedCategories });
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined');
         return dash;
     }
@@ -291,7 +298,6 @@ export class DashboardPage {
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
      * @param {'ios' | 'macos'} opts.platform
-     * @param {'breakageForm' | 'categorySelection' | 'categoryTypeSelection'} [opts.breakageScreen]
      * @param {string} [opts.randomisedCategories]
      * @param {string} [opts.category]
      * @param {'menu' | 'dashboard'} [opts.opener]
@@ -300,12 +306,11 @@ export class DashboardPage {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
         const screen = opts?.screen || 'primaryScreen';
         const opener = opts?.opener || 'dashboard';
-        const breakageScreen = opts?.breakageScreen;
         const category = opts?.category;
         const randomisedCategories = opts?.randomisedCategories;
         const dash = new DashboardPage(page, { name: opts?.platform ?? 'ios' });
         await dash.withMarker();
-        await dash.loadPage({ screen, opener, breakageScreen, category, randomisedCategories });
+        await dash.loadPage({ screen, opener, category, randomisedCategories });
         await dash.mocks.install();
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined');
         return dash;
@@ -330,8 +335,22 @@ export class DashboardPage {
         return results;
     }
 
-    async submitBreakageForm() {
+    async submitEmptyFeedbackForm() {
+        await this.page.getByPlaceholder('Please describe the issue you').fill('');
         await this.page.getByRole('button', { name: 'Send Report' }).click();
+    }
+
+    async submitFeedbackForm() {
+        await this.page.getByRole('button', { name: 'Send Report' }).click();
+    }
+
+    /**
+     * @param {string} description
+     */
+    async submitOtherFeedbackFormWithDescription(description) {
+        await this.page.getByPlaceholder('Please describe the issue you').fill(description);
+        await this.page.getByRole('button', { name: 'Send Report' }).click();
+        await this.mocks.calledForSubmitBreakageForm({ category: 'other', description });
     }
 
     async hasPolishLinkTextForConnectionInfo() {
@@ -392,17 +411,83 @@ export class DashboardPage {
         await this.page.getByRole('link', { name: 'Disable in Settings' }).click();
     }
 
-    async breakageFormIsVisible() {
-        await this.page.getByRole('button', { name: 'Send Report' }).waitFor();
+    async showsCategoryTypeSelection() {
+        await this.page.getByLabel('The site is not working as expected').waitFor();
+        await this.page.getByLabel('I dislike the content on this site').waitFor();
+        await this.page.getByLabel('General DuckDuckGo browser feedback').waitFor();
+    }
+
+    async showsCategoryTypeSelectionForExtension() {
+        await this.page.getByLabel('The site is not working as expected').waitFor();
+        await this.page.getByLabel('I dislike the content on this site').waitFor();
+    }
+
+    async showsCategorySelection() {
+        await this.page.getByLabel('Something else').waitFor();
+    }
+
+    async breakageFormIsVisible(categoryText) {
+        const formView = this.page.getByTestId('subview-breakageFormFinalStep');
+
+        await formView.getByRole('button', { name: 'Send Report' }).waitFor();
+        if (categoryText) {
+            await formView.getByText(categoryText).waitFor();
+        }
+    }
+
+    async descriptionPromptIsVisible() {
+        await this.page.getByText('What happened?').waitFor();
+    }
+
+    async descriptionPromptIsNotVisible() {
+        await expect(this.page.getByText('What happened?')).not.toBeVisible();
+    }
+
+    /**
+     * @param {string} text
+     * @param {string} category
+     * @param {{ telemetry?: boolean }} [options]
+     */
+    async selectsCategory(text, category, options = { telemetry: false }) {
+        await this.page.getByLabel(text).click();
+
+        if (options.telemetry) {
+            await this.mocks.didSendTelemetry({
+                screen: 'breakageFormCategorySelection',
+                attributes: {
+                    name: 'categorySelected',
+                    value: /** @type {any} */ (category),
+                },
+            });
+        }
+    }
+
+    /**
+     * @param {string} text
+     * @param {string} category
+     * @param {{ telemetry?: boolean }} [options]
+     */
+    async selectsCategoryType(text, category, options = { telemetry: false }) {
+        await this.page.getByLabel(text).click();
+
+        if (options.telemetry) {
+            await this.mocks.didSendTelemetry({
+                screen: 'breakageForm',
+                attributes: {
+                    name: 'categoryTypeSelected',
+                    value: /** @type {any} */ (category),
+                },
+            });
+        }
+    }
+
+    async emptyDescriptionWarningIsVisible() {
+        await this.page.getByText('Description required').waitFor();
     }
 
     async toggleReportIsVisible() {
         await this.page.getByRole('button', { name: 'Send Report' }).waitFor();
         await this.page.getByRole('heading', { name: 'Site not working? Let us know.' }).waitFor();
-    }
-
-    async promptBreakageFormIsVisible() {
-        await this.page.getByText('Select the option that best describes the problem you experienced.').waitFor();
     }
 
     async toggleIsAbsent() {
@@ -433,6 +518,15 @@ export class DashboardPage {
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
      * @return {Promise<void>}
      */
+    async showsBreakageFormTitle(screen = 'breakageForm') {
+        const selector = this.parent(screen);
+        await this.page.locator(selector).getByText('Report to DuckDuckGo').waitFor();
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
     async showsOnlyDoneButton(screen = 'breakageForm') {
         const selector = this.parent(screen);
         await this.page.locator(selector).locator('a:has-text("Done")').waitFor();
@@ -455,7 +549,17 @@ export class DashboardPage {
      */
     async showsOnlyBackButton(screen = 'breakageForm') {
         const selector = this.parent(screen);
-        await this.page.locator(selector).getByLabel('Back').waitFor();
+        await this.page.locator(selector).getByLabel('Back', { exact: true }).waitFor();
+        await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1);
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     * @return {Promise<void>}
+     */
+    async showsOnlyCancelButton(screen = 'breakageForm') {
+        const selector = this.parent(screen);
+        await this.page.locator(selector).locator('a:has-text("Cancel")').waitFor();
         await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1);
     }
 
@@ -484,7 +588,7 @@ export class DashboardPage {
     parent(screen) {
         let parent;
         if (screen === 'breakageForm') {
-            parent = '.breakage-form';
+            parent = '.breakage-screen';
         } else if (screen === 'toggleReport') {
             parent = '[data-toggle-report="parent"]';
         } else {
@@ -548,7 +652,7 @@ export class DashboardPage {
     /**
      * @param {string} text
      */
-    async enterBreakageSubscription(text) {
+    async enterBreakageDescription(text) {
         await this.page.locator('textarea').type(text);
     }
 
@@ -557,6 +661,11 @@ export class DashboardPage {
      */
     async selectBreakageCategory(categoryText) {
         await this.page.locator('select').selectOption({ label: categoryText });
+    }
+
+    async showsNativeFeedback() {
+        await this.page.getByLabel('General DuckDuckGo browser feedback').click();
+        await this.mocks.calledForNativeFeedback();
     }
 
     async enterSearchText(text) {
@@ -638,10 +747,39 @@ export class DashboardPage {
     }
 
     async clicksWebsiteNotWorking() {
-        await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 5000 });
+        await this.page.getByRole('link', { name: 'Report a problem with this site' }).click({ timeout: 5000 });
     }
+
     async showsBreakageForm() {
         await this.page.getByText('Submitting an anonymous').waitFor({ timeout: 5000 });
+    }
+
+    async skipsToBreakageFormWhenDisliked() {
+        await this.page.getByLabel('I dislike the content on this').click();
+        await this.page.getByRole('button', { name: 'Send Report' }).click();
+        await this.mocks.calledForSubmitBreakageForm({ category: 'dislike' });
+    }
+
+    async submitsVideoFeedbackFormWhenOpenedDirectly() {
+        await this.page.getByTestId('subview-breakageFormFinalStep').getByText('Video didn’t play or load').waitFor({ timeout: 1000 });
+        await this.page.getByPlaceholder('Please describe the issue you').fill("didn't play");
+        await this.page.getByRole('button', { name: 'Send Report' }).click();
+        await this.mocks.calledForSubmitBreakageForm({ category: 'videos', description: "didn't play" });
+    }
+
+    async submitsOtherFeedbackFormWhenOpenedDirectly() {
+        const description = 'it was broken';
+        await this.page.getByTestId('subview-breakageFormFinalStep').getByText('Something else').waitFor({ timeout: 1000 });
+        await this.page.getByRole('button', { name: 'Send Report' }).click();
+        await this.emptyDescriptionWarningIsVisible();
+        await this.page.getByPlaceholder('Please describe the issue you').fill(description);
+        await this.page.getByRole('button', { name: 'Send Report' }).click();
+        await this.mocks.calledForSubmitBreakageForm({ category: 'other', description });
+    }
+
+    async showsReportFromPrimaryScreen() {
+        await this.page.getByRole('link', { name: 'Report a problem with this site' }).click();
+        await this.showsCategorySelection();
     }
 
     async showRemoteDisabled() {
@@ -665,6 +803,11 @@ export class DashboardPage {
             .waitFor();
     }
 
+    async showsBreakageFormSuccessScreen() {
+        await this.page.getByRole('heading', { name: 'Thank you!' }).waitFor();
+        await this.page.getByText('Your report helps make DuckDuckGo better for everyone!').waitFor();
+    }
+
     async clickingSuccessScreenClosesDashboard() {
         await this.page
             .getByRole('heading', {
@@ -672,6 +815,11 @@ export class DashboardPage {
             })
             .click();
         await this.mocks.calledForClose({ screen: 'toggleReport' });
+    }
+
+    async clickingSuccessScreenClosesBreakageFormScreen() {
+        await this.page.getByText('Your report helps make DuckDuckGo better for everyone!').click();
+        await this.mocks.calledForClose({ screen: 'breakageFormFinalStep' });
     }
 
     /**

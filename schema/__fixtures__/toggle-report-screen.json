@@ -59,6 +59,12 @@
         },
         {
             "id": "jsPerformance"
+        },
+        {
+            "id": "locale"
+        },
+        {
+            "id": "description"
         }
     ]
 }

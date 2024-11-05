@@ -85,6 +85,7 @@ export class Mocks {
             expect(calls).toMatchObject([['sendToggleReport', undefined]]);
             return;
         }
+
         if (this.platform.name === 'browser') {
             const calls = await this.outgoing({ names: ['sendToggleReport'] });
             expect(calls).toMatchObject([
@@ -168,7 +169,6 @@ export class Mocks {
                 names: ['privacyDashboardRejectToggleReport'],
             });
             expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]]);
-
             return;
         }
 
@@ -245,24 +245,15 @@ export class Mocks {
         ]);
     }
 
-    /**
-     * @param {'missingDescription'} alertType
-     * @return {Promise<void>}
-     */
-    async calledForAlert(alertType) {
-        const calls = await this.outgoing({
-            names: ['privacyDashboardShowAlertForMissingDescription'],
-        });
-        switch (alertType) {
-            case 'missingDescription': {
-                expect(calls).toMatchObject([['privacyDashboardShowAlertForMissingDescription', {}]]);
-                return;
-            }
-            default:
-                throw new Error('unimplemented');
-        }
-    }
     async calledForNativeFeedback() {
+        if (this.platform.name === 'browser') return;
+
+        if (this.platform.name === 'android') {
+            const out = await this.outgoing({ names: ['showNativeFeedback'] });
+            expect(out).toMatchObject([['showNativeFeedback', undefined]]);
+            return;
+        }
+
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({
                 names: ['ShowNativeFeedback'],

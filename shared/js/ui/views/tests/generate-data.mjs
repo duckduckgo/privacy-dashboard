@@ -790,7 +790,7 @@ export const createDataStates = (google, cnn) => {
             // @ts-expect-error - this SHOULD error, that's the test
             requests: [{ foo: 'bar' }],
         }),
-        'screen-breakageForm': new MockData({
+        'screen-breakageReporting': new MockData({
             url: 'https://example.com',
             requests: [],
             urlParams: {
@@ -802,13 +802,6 @@ export const createDataStates = (google, cnn) => {
             requests: [],
             urlParams: {
                 screen: 'toggleReport',
-            },
-        }),
-        'screen-promptBreakageForm': new MockData({
-            url: 'https://example.com',
-            requests: [],
-            urlParams: {
-                screen: 'promptBreakageForm',
             },
         }),
         'webBreakageForm-enabled': new MockData({

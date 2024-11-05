@@ -12,6 +12,7 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
 export const wVVersionSchema = z.literal("wvVersion");
+<<<<<<< HEAD
 
 export const requestsSchema = z.literal("requests");
 
@@ -55,6 +56,51 @@ export const descriptionSchema = z.literal("description");
 
 export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("promptBreakageForm"), z.literal("toggleReport"), z.literal("categoryTypeSelection"), z.literal("categorySelection"), z.literal("choiceToggle"), z.literal("choiceBreakageForm"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
 
+=======
+
+export const requestsSchema = z.literal("requests");
+
+export const featuresSchema = z.literal("features");
+
+export const appVersionSchema = z.literal("appVersion");
+
+export const atbSchema = z.literal("atb");
+
+export const errorDescriptionsSchema = z.literal("errorDescriptions");
+
+export const extensionVersionSchema = z.literal("extensionVersion");
+
+export const hTTPErrorCodesSchema = z.literal("httpErrorCodes");
+
+export const lastSentDaySchema = z.literal("lastSentDay");
+
+export const deviceSchema = z.literal("device");
+
+export const osSchema = z.literal("os");
+
+export const listVersionsSchema = z.literal("listVersions");
+
+export const reportFlowSchema = z.literal("reportFlow");
+
+export const siteURLSchema = z.literal("siteUrl");
+
+export const didOpenReportInfoSchema = z.literal("didOpenReportInfo");
+
+export const toggleReportCounterSchema = z.literal("toggleReportCounter");
+
+export const openerContextSchema = z.literal("openerContext");
+
+export const userRefreshCountSchema = z.literal("userRefreshCount");
+
+export const jSPerformanceSchema = z.literal("jsPerformance");
+
+export const localeSchema = z.literal("locale");
+
+export const descriptionSchema = z.literal("description");
+
+export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("breakageFormCategorySelection"), z.literal("breakageFormFinalStep"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
+
+>>>>>>> e940022 (Improved Breakage Form)
 export const stateBlockedSchema = z.object({
     blocked: z.object({})
 });

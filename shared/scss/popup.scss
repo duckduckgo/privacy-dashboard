@@ -164,6 +164,7 @@ body {
 @import 'views/note';
 @import 'views/fire-button';
 @import 'views/protection-header';
+@import 'views/textarea';
 
 /* Generic menu list styling */
 @include default_list();

@@ -127,11 +127,6 @@ export function webkitMockApis({ messages = {} }) {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardShowNativeFeedback', arg]);
                     },
                 },
-                privacyDashboardShowAlertForMissingDescription: {
-                    postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowAlertForMissingDescription', arg]);
-                    },
-                },
                 privacyDashboardShowReportBrokenSite: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardShowReportBrokenSite', arg]);
@@ -349,6 +344,7 @@ export function mockBrowserApis(params = { messages: {} }) {
 
                         // does the incoming message match one that's been mocked here?
                         const matchingMessage = window.__playwright.messages[message.messageType];
+
                         if (matchingMessage) {
                             window.__playwright.mocks.outgoing.push([message.messageType, message]);
                             respond(matchingMessage, 200);
@@ -383,9 +379,7 @@ export function mockBrowserApis(params = { messages: {} }) {
  * @return {Promise<void>}
  */
 export async function installDebuggerMocks(platform) {
-    console.log('instaling...');
     if (window.__playwright) {
-        console.log('instaling... NOE');
         return console.log('❌ mocked already there');
     }
     if (platform.name === 'windows') {
@@ -429,6 +423,7 @@ export async function installDebuggerMocks(platform) {
     console.groupEnd();
 
     const messages = {};
+
     if (platform.name === 'browser') {
         messages.getBurnOptions = mock.toBurnOptions();
         messages.getPrivacyDashboardData = mock.toExtensionDashboardData();
