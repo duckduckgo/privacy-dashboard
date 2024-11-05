@@ -29,10 +29,6 @@ async function init() {
             input: join(BASE, 'v2/index.jsx'),
             output: join(BASE, env.BUILD_OUTPUT, 'public/js/base.js'),
         },
-        modal: {
-            input: join(BASE, 'v2/custom-elements/android-breakage-dialog.js'),
-            output: join(BASE, env.BUILD_OUTPUT, 'public/js/android-breakage-dialog.js'),
-        },
         debugger: {
             input: join(BASE, 'debugger/index.jsx'),
             output: join(BASE, env.BUILD_OUTPUT, 'debugger/debugger.js'),
@@ -77,14 +73,6 @@ async function init() {
         target: ['es2021'],
         bundle: true,
         outfile: manifest.polyfills.output,
-        sourcemap: debug ? 'linked' : undefined,
-    });
-
-    await esbuild.build({
-        entryPoints: [manifest.modal.input],
-        target: ['es2021'],
-        bundle: true,
-        outfile: manifest.modal.output,
         sourcemap: debug ? 'linked' : undefined,
     });
 

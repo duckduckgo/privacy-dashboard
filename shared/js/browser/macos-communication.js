@@ -26,6 +26,7 @@ import { setupGlobalOpenerListener } from '../ui/views/utils/utils';
 import {
     CloseMessage,
     FetchToggleReportOptions,
+    FetchBreakageFormOptions,
     getContentHeight,
     OpenSettingsMessages,
     RejectToggleBreakageReport,
@@ -420,7 +421,7 @@ async function fetch(message) {
         });
     }
 
-    if (message instanceof FetchToggleReportOptions) {
+    if (message instanceof FetchToggleReportOptions || message instanceof FetchBreakageFormOptions) {
         const data = await privacyDashboardGetToggleReportOptions();
         const parsed = toggleReportScreenSchema.parse(data);
         return parsed;

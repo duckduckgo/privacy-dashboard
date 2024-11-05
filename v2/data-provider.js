@@ -8,7 +8,6 @@ import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../sh
 import {
     CloseMessage,
     SetListsMessage,
-    ShowAlertForMissingDescription,
     ShowNativeFeedback,
     SubmitBrokenSiteReportMessage,
     TelemetrySpanMsg,
@@ -451,15 +450,6 @@ export function useSendReport() {
         },
         [nav]
     );
-}
-
-export function useShowAlert() {
-    const fetcher = useFetcher();
-    const nav = useNav();
-    return useCallback(() => {
-        const msg = new ShowAlertForMissingDescription();
-        fetcher(msg).catch(console.error);
-    }, [nav]);
 }
 
 export function useShowNativeFeedback() {

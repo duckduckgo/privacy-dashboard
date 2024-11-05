@@ -19,6 +19,7 @@ import {
     CheckBrokenSiteReportHandledMessage,
     CloseMessage,
     FetchToggleReportOptions,
+    FetchBreakageFormOptions,
     OpenSettingsMessages,
     RejectToggleBreakageReport,
     SeeWhatIsSent,
@@ -292,7 +293,6 @@ export class PrivacyDashboardJavascriptInterface {
     /**
      * {@inheritDoc common.openInNewTab}
      * @type {import("./common.js").openInNewTab}
-     *
      * ```js
      * const payload = JSON.stringify({
      *     "url": "https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/"
@@ -436,7 +436,7 @@ async function fetchAndroid(message) {
         });
     }
 
-    if (message instanceof FetchToggleReportOptions) {
+    if (message instanceof FetchToggleReportOptions || message instanceof FetchBreakageFormOptions) {
         return privacyDashboardApi.getToggleReportOptions();
     }
 

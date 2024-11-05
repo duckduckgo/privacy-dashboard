@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Η αναφορά σας θα μας βοηθήσει στο να βελτιώσουμε τα προϊόντα μας και θα καταστήσει την εμπειρία καλύτερη για άλλα άτομα που χρησιμοποιούν τις υπηρεσίες μας.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Η αναφορά σας βοηθάει ώστε να γίνει το{newline}DuckDuckGo καλύτερο για όλους!",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Δεν μου αρέσει το περιεχόμενο",
@@ -136,6 +136,10 @@
     "title" : "Περιγράψτε το πρόβλημα που αντιμετωπίσατε (προαιρετικό)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
   },
+  "descriptionRequired" : {
+    "title" : "Κείμενο περιγραφής",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
+  },
   "suggestionWhatHappened" : {
     "title" : "Τι συνέβη;",
     "note" : "Suggestion to enter a description of what problem the user was experiencing"
@@ -145,7 +149,7 @@
     "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
   },
   "suggestionWhatHappened3" : {
-    "title" : "Βοήθησε η απενεργοποίηση της Προστασίας προσωπικών δεδομένων;",
+    "title" : "Βοήθησε η απενεργοποίηση της προστασίας;",
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {

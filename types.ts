@@ -1,7 +1,6 @@
 interface WebkitMessageHandlers {
     privacyDashboardShowNativeFeedback?: any;
     privacyDashboardTelemetrySpan?: any;
-    privacyDashboardShowAlertForMissingDescription?: any;
     privacyDashboardSubmitBrokenSiteReport?: any;
     privacyDashboardOpenUrlInNewTab?: any;
     privacyDashboardSetSize?: any;
