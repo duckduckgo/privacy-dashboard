@@ -19,20 +19,20 @@ export function createPlatformFeatures(platform) {
     /** @type {Platform["name"][]} */
     const desktop = ['windows', 'macos', 'browser'];
 
-    let includeToggleOnBreakageForm = true;
+    const includeToggleOnBreakageForm = true;
 
     /** @type {InitialScreen} */
     let screen = 'primaryScreen';
     const url = new URL(window.location.href);
 
+    // prettier-ignore
     const acceptedScreenParam = [
         'breakageForm',
-        'toggleReport',
-        'choiceBreakageForm',
-        'categoryTypeSelection',
-        'categorySelection',
-        'promptBreakageForm',
+        'breakageFormCategorySelection',
+        'breakageFormFinalStep',
+        'toggleReport'
     ];
+
     if (url.searchParams.has('screen')) {
         const param = url.searchParams.get('screen');
         if (typeof param === 'string' && acceptedScreenParam.includes(/** @type {string} */ (param))) {
@@ -40,23 +40,10 @@ export function createPlatformFeatures(platform) {
         }
     }
 
-    if (screen === 'promptBreakageForm') {
-        includeToggleOnBreakageForm = false;
-    }
-
     /** @type {'dashboard' | 'menu'} */
     let opener = 'menu';
     if (url.searchParams.get('opener') === 'dashboard') {
         opener = 'dashboard';
-    }
-
-    /** @type {InitialScreen} */
-    let breakageScreen = 'breakageForm';
-    if (url.searchParams.get('breakageScreen') === 'categorySelection') {
-        breakageScreen = 'categorySelection';
-    }
-    if (url.searchParams.get('breakageScreen') === 'categoryTypeSelection') {
-        breakageScreen = 'categoryTypeSelection';
     }
 
     // allow randomization to be disabled in a URL param
@@ -84,7 +71,6 @@ export function createPlatformFeatures(platform) {
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
         supportsMaliciousSiteWarning: platform.name === 'macos' || platform.name === 'ios',
         includeToggleOnBreakageForm,
-        breakageScreen,
         randomisedCategories,
         breakageFormCategorySelect,
     });
@@ -144,10 +130,6 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.supportsMaliciousSiteWarning = params.supportsMaliciousSiteWarning;
-        /**
-         * @type {import("../../../schema/__generated__/schema.types").EventOrigin['screen']}
-         */
-        this.breakageScreen = params.breakageScreen;
         /**
          * Whether or to randomize the categories in the breakage form
          * @type {boolean}

@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
-import { desktopBreakageForm, settingPermissions, toggleFlows } from './utils/common-flows';
+import { settingPermissions, toggleFlows } from './utils/common-flows';
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -9,10 +9,6 @@ test.describe('initial page data', () => {
         await dash.addState([testDataStates.protectionsOn]);
         await dash.showsPrimaryScreen();
     });
-});
-
-test.describe('breakage form', () => {
-    desktopBreakageForm((page) => DashboardPage.webkit(page, { platform: 'macos' }));
 });
 
 test.describe('Protections toggle', () => {
@@ -93,17 +89,135 @@ test('allowed first party requests', async ({ page }) => {
     await dash.hidesTrackerCompaniesLink();
 });
 
-test.describe('opening breakage form', () => {
-    test('shows breakage form only', { tag: '@screenshots' }, async ({ page }) => {
+test.describe('breakage form', () => {
+    test('shows breakage form on category selection screen only', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' });
         await dash.addState([testDataStates.google]);
-        await dash.breakageFormIsVisible();
-        await dash.showsOnlyCloseButton('breakageForm');
-        await dash.selectClose('breakageForm');
-        await dash.screenshot('screen-breakage-form.png');
-        await dash.mocks.calledForClose({ screen: 'breakageForm' });
+        await dash.showsCategoryTypeSelection();
+        await dash.showsOnlyCloseButton();
     });
+
+    test('shows native feedback screen', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' });
+        await dash.addState([testDataStates.google]);
+        await dash.showsCategoryTypeSelection();
+        await dash.showsNativeFeedback();
+        await dash.showsOnlyCloseButton();
+    });
+
+    test('navigates through categories to breakage form', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, {
+            screen: 'breakageForm',
+            randomisedCategories: 'false',
+            platform: 'macos',
+        });
+        await dash.addState([testDataStates.google]);
+        await dash.screenshot('category-type-selection.png');
+        await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.screenshot('category-selection.png');
+        await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.breakageFormIsVisible();
+        await dash.descriptionPromptIsVisible();
+        await dash.screenshot('screen-breakage-form.png');
+        await dash.submitFeedbackForm();
+        await dash.showsBreakageFormSuccessScreen();
+        await dash.mocks.calledForSubmitBreakageForm({ category: 'layout', description: '' });
+    });
+
+    test('hides description prompt on "dislike" category', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, {
+            screen: 'breakageForm',
+            randomisedCategories: 'false',
+            platform: 'macos',
+        });
+        await dash.addState([testDataStates.google]);
+        await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
+        await dash.breakageFormIsVisible('I dislike the content');
+        await dash.descriptionPromptIsNotVisible();
+        await dash.screenshot('category-type-dislike.png');
+    });
+
+    test('skips to breakage form when disliked', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' });
+        await dash.addState([testDataStates.google]);
+        await dash.showsCategoryTypeSelection();
+        await dash.skipsToBreakageFormWhenDisliked();
+    });
+
+    test('shows empty description warning', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' });
+        await dash.addState([testDataStates.google]);
+        await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.selectsCategory('Something else', 'other');
+        await dash.breakageFormIsVisible();
+        await dash.submitEmptyFeedbackForm();
+        await dash.emptyDescriptionWarningIsVisible();
+        await dash.screenshot('screen-breakage-form-empty-description.png');
+    });
+
+    test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' });
+        await dash.addState([testDataStates.google]);
+        await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.selectsCategory('Something else', 'other');
+        await dash.breakageFormIsVisible();
+        await dash.submitOtherFeedbackFormWithDescription('something happened');
+        await dash.screenshot('screen-breakage-form-success.png');
+        await dash.showsBreakageFormSuccessScreen();
+        await dash.clickingSuccessScreenClosesBreakageFormScreen();
+    });
+});
+
+test.describe('opens directly to feedback form', () => {
+    test('shows category from previous interaction', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageFormFinalStep', category: 'videos', platform: 'macos' });
+        await dash.reducedMotion();
+        await dash.addState([testDataStates.google]);
+        await dash.submitsVideoFeedbackFormWhenOpenedDirectly();
+    });
+    test('requires description when category is "Other"', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageFormFinalStep', category: 'other', platform: 'macos' });
+        await dash.reducedMotion();
+        await dash.addState([testDataStates.google]);
+        await dash.submitsOtherFeedbackFormWhenOpenedDirectly();
+    });
+});
+
+test.describe('stack based router', () => {
+    test('goes back and forward in categorySelection flow', async ({ page }) => {
+        const dash = await DashboardPage.browser(page, testDataStates.google);
+        // await dash.reducedMotion(); // TODO: Removed because back button was going back two steps rather than one
+        await dash.clicksWebsiteNotWorking();
+        await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
+    });
+    test('goes back and forward generally', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.reducedMotion();
+        await dash.addState([testDataStates.google]);
+        await dash.clicksWebsiteNotWorking();
+        await dash.showsCategoryTypeSelection();
+
+        // needed to allow the router to settle
+        // playwright is too fast here and is doing something a user never could
+        await page.waitForTimeout(100);
+        await page.goBack();
+        await dash.showsPrimaryScreen();
+
+        // same as previous wait point
+        await page.waitForTimeout(100);
+        await page.goForward();
+        await dash.showsCategoryTypeSelection();
+    });
+});
+
+test.describe('toggle report', () => {
     test('shows toggle report when opened from menu', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'macos', opener: 'menu' });
