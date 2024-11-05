@@ -1,52 +1,52 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { fireSummaryTemplate } from '../../shared/js/ui/views/fire-dialog'
-import { i18n } from '../../shared/js/ui/base/localize'
-import { DomNode } from '../dom-node'
-import { useEffect, useState } from 'preact/hooks'
-import { BurnMessage, FetchBurnOptions, SetBurnDefaultOption } from '../../shared/js/browser/common'
-import { useFetcher } from '../data-provider'
+import { h } from 'preact';
+import { fireSummaryTemplate } from '../../shared/js/ui/views/fire-dialog';
+import { i18n } from '../../shared/js/ui/base/localize';
+import { DomNode } from '../dom-node';
+import { useEffect, useState } from 'preact/hooks';
+import { BurnMessage, FetchBurnOptions, SetBurnDefaultOption } from '../../shared/js/browser/common';
+import { useFetcher } from '../data-provider';
 
 /**
  * @typedef {import('../../schema/__generated__/schema.types.js').FireOption} FireOption
  */
 
 export function FireProvider({ onCancel }) {
-    const [fireOptions, setFireOptions] = useState(/** @type {null | FireOption[]} */ (null))
-    const fetcher = useFetcher()
+    const [fireOptions, setFireOptions] = useState(/** @type {null | FireOption[]} */ (null));
+    const fetcher = useFetcher();
     useEffect(() => {
-        const msg = new FetchBurnOptions()
+        const msg = new FetchBurnOptions();
         fetcher(msg)
             .then((resp) => {
-                setFireOptions(resp.options)
+                setFireOptions(resp.options);
             })
-            .catch(console.error)
-    }, [fetcher])
+            .catch(console.error);
+    }, [fetcher]);
 
     /**
      * @param {number} index
      */
     function onUpdate(index) {
-        if (!fireOptions) return
-        const selectedOption = index
-        const opts = fireOptions[selectedOption]
-        fetcher(new SetBurnDefaultOption(opts.name)).catch(console.error)
+        if (!fireOptions) return;
+        const selectedOption = index;
+        const opts = fireOptions[selectedOption];
+        fetcher(new SetBurnDefaultOption(opts.name)).catch(console.error);
     }
 
     /**
      * @param {number} index
      */
     function onBurn(index) {
-        if (!fireOptions) return
-        const selectedOption = index
-        const opts = fireOptions[selectedOption].options
+        if (!fireOptions) return;
+        const selectedOption = index;
+        const opts = fireOptions[selectedOption].options;
         fetcher(new BurnMessage(/** @type {any} */ (opts))).then(() => {
-            onCancel()
-        })
+            onCancel();
+        });
     }
-    if (fireOptions === null) return null
+    if (fireOptions === null) return null;
 
-    return <FireDialog fireOptions={fireOptions} onUpdate={onUpdate} onCancel={onCancel} onBurn={onBurn} />
+    return <FireDialog fireOptions={fireOptions} onUpdate={onUpdate} onCancel={onCancel} onBurn={onBurn} />;
 }
 
 /**
@@ -58,19 +58,19 @@ export function FireProvider({ onCancel }) {
  */
 export function FireDialog({ fireOptions, onUpdate, onCancel, onBurn }) {
     if (!fireOptions) {
-        return <dialog id="fire-button-container"></dialog>
+        return <dialog id="fire-button-container"></dialog>;
     }
-    let selectedOptionIndex = fireOptions.findIndex(({ selected }) => selected)
+    let selectedOptionIndex = fireOptions.findIndex(({ selected }) => selected);
     if (selectedOptionIndex < 0) {
-        selectedOptionIndex = 0
+        selectedOptionIndex = 0;
     }
-    const [value, setValue] = useState(selectedOptionIndex)
-    const selectedOption = fireOptions[value]
-    const selectOptions = fireOptions.map(({ name }, index) => <option value={index}>{i18n.t(`firebutton:option${name}.title`)}</option>)
-    const summary = fireSummaryTemplate(selectedOption)
+    const [value, setValue] = useState(selectedOptionIndex);
+    const selectedOption = fireOptions[value];
+    const selectOptions = fireOptions.map(({ name }, index) => <option value={index}>{i18n.t(`firebutton:option${name}.title`)}</option>);
+    const summary = fireSummaryTemplate(selectedOption);
     function onChange(e) {
-        setValue(Number(e.target.value))
-        onUpdate(Number(e.target.value))
+        setValue(Number(e.target.value));
+        onUpdate(Number(e.target.value));
     }
     return (
         <dialog id="fire-button-container" open>
@@ -98,5 +98,5 @@ export function FireDialog({ fireOptions, onUpdate, onCancel, onBurn }) {
                 </div>
             </div>
         </dialog>
-    )
+    );
 }

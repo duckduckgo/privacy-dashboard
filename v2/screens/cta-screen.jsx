@@ -1,10 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { useData } from '../data-provider'
-import { i18n } from '../../shared/js/ui/base/localize'
+import { h } from 'preact';
+import { useData } from '../data-provider';
+import { i18n } from '../../shared/js/ui/base/localize';
 
 export function CtaScreen() {
-    const data = useData()
+    const data = useData();
     const ctas = {
         spread: {
             title: i18n.t('ctascreens:spreadTitle.title'),
@@ -26,10 +26,10 @@ export function CtaScreen() {
                 </a>
             ),
         },
-    }
-    const keys = Object.keys(ctas)
-    const ctaKey = data.emailProtectionUserData?.nextAlias ? 'spread' : keys[Math.floor(Math.random() * keys.length)]
-    const cta = ctas[ctaKey]
+    };
+    const keys = Object.keys(ctas);
+    const ctaKey = data.emailProtectionUserData?.nextAlias ? 'spread' : keys[Math.floor(Math.random() * keys.length)];
+    const cta = ctas[ctaKey];
 
     return (
         <div className="cta-screen page-inner">
@@ -41,7 +41,7 @@ export function CtaScreen() {
                 <div className="cta__action">{cta.action}</div>
             </div>
         </div>
-    )
+    );
 }
 
 function heartArrowSvg() {
@@ -62,7 +62,7 @@ function heartArrowSvg() {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M27.9544 15.0818C26.3303 14.4357 24.6178 14.8261 23.4753 15.8672C22.995 14.398 21.6978 13.2137 19.9664 12.9746C18.0748 12.7131 16.2171 13.7652 15.5153 15.4882C15.4792 15.5773 15.4462 15.6669 15.4166 15.7565C15.0641 16.8282 15.2583 18.0079 15.8448 18.9894L20.5677 26.8894L28.5729 22.3469C29.5672 21.7824 30.318 20.8521 30.54 19.7459C30.5584 19.6534 30.574 19.5591 30.5865 19.4638C30.8259 17.6188 29.7289 15.7873 27.9544 15.0818Z" fill="#E2E2E2"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M77.945 75.9298C76.9297 76.1112 76.1926 76.8398 75.9437 77.7173C75.2457 77.1301 74.2269 76.94 73.2844 77.3588C72.2546 77.8163 71.6506 78.9218 71.8348 80.004C71.8444 80.0599 71.8558 80.1151 71.8688 80.1693C72.0255 80.8163 72.49 81.3473 73.0894 81.6569L77.9155 84.1482L80.5157 79.3799C80.8385 78.7875 80.9255 78.0875 80.6926 77.4638C80.673 77.4117 80.6515 77.3596 80.6282 77.3079C80.1741 76.3084 79.0542 75.7314 77.945 75.9298Z" fill="#E2E2E2"/>
 </svg>
-`
+`;
 }
 
 function emailSvg() {
@@ -103,5 +103,5 @@ function emailSvg() {
 </clipPath>
 </defs>
 </svg>
-`
+`;
 }

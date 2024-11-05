@@ -1,4 +1,4 @@
-import { detectedRequestSchema } from '../../../../../schema/__generated__/schema.parsers.mjs'
+import { detectedRequestSchema } from '../../../../../schema/__generated__/schema.parsers.mjs';
 
 /**
  * @param {import("./generate-data.mjs").DetectedRequest[]} requests
@@ -10,17 +10,17 @@ export function protectionsOff(requests) {
             return detectedRequestSchema.parse({
                 ...r,
                 state: { allowed: { reason: 'protectionDisabled' } },
-            })
+            });
         }
         if ('allowed' in r.state) {
             if (r.state.allowed.reason === 'otherThirdPartyRequest') {
-                return r
+                return r;
             }
             return detectedRequestSchema.parse({
                 ...r,
                 state: { allowed: { reason: 'protectionDisabled' } },
-            })
+            });
         }
-        return r
-    })
+        return r;
+    });
 }

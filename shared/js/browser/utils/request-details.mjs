@@ -1,5 +1,5 @@
-import { normalizeCompanyName, removeTLD } from '../../ui/models/mixins/normalize-company-name.mjs'
-import { requestDataSchema } from '../../../../schema/__generated__/schema.parsers.mjs'
+import { normalizeCompanyName, removeTLD } from '../../ui/models/mixins/normalize-company-name.mjs';
+import { requestDataSchema } from '../../../../schema/__generated__/schema.parsers.mjs';
 
 /**
  * @typedef {import('../../../../schema/__generated__/schema.types.js').CookiePromptManagementStatus} CookiePromptManagementStatus
@@ -12,13 +12,13 @@ import { requestDataSchema } from '../../../../schema/__generated__/schema.parse
  */
 export class TabData {
     /** @type {string | null | undefined} */
-    locale
+    locale;
     /** @type {boolean | null | undefined} */
-    isPendingUpdates
+    isPendingUpdates;
     /** @type {any[] | null | undefined} */
-    certificate
+    certificate;
     /** @type {boolean | null | undefined} */
-    platformLimitations
+    platformLimitations;
     /**
      * @param {number | null | undefined} id
      * @param {string} url
@@ -58,23 +58,23 @@ export class TabData {
         error,
         isInvalidCert
     ) {
-        this.url = url
-        this.id = id
-        this.domain = domain
-        this.specialDomainName = specialDomainName
-        this.status = status
-        this.upgradedHttps = upgradedHttps
-        this.protections = protections
-        this.permissions = permissions
-        this.requestDetails = requestDetails
-        this.cookiePromptManagementStatus = cookiePromptManagementStatus
-        this.ctaScreens = ctaScreens
-        this.search = search
-        this.emailProtection = emailProtection
-        this.phishingStatus = phishingStatus
-        this.parentEntity = parentEntity
-        this.error = error
-        this.isInvalidCert = isInvalidCert
+        this.url = url;
+        this.id = id;
+        this.domain = domain;
+        this.specialDomainName = specialDomainName;
+        this.status = status;
+        this.upgradedHttps = upgradedHttps;
+        this.protections = protections;
+        this.permissions = permissions;
+        this.requestDetails = requestDetails;
+        this.cookiePromptManagementStatus = cookiePromptManagementStatus;
+        this.ctaScreens = ctaScreens;
+        this.search = search;
+        this.emailProtection = emailProtection;
+        this.phishingStatus = phishingStatus;
+        this.parentEntity = parentEntity;
+        this.error = error;
+        this.isInvalidCert = isInvalidCert;
     }
 }
 
@@ -86,11 +86,11 @@ export class TabData {
  * @returns {TabData}
  */
 export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData) => {
-    let domain
+    let domain;
     try {
-        domain = new URL(tabUrl).hostname.replace(/^www\./, '')
+        domain = new URL(tabUrl).hostname.replace(/^www\./, '');
     } catch (e) {
-        domain = 'unknown'
+        domain = 'unknown';
     }
     return {
         id: undefined,
@@ -114,8 +114,8 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         platformLimitations: undefined,
         error: undefined,
         isInvalidCert: undefined,
-    }
-}
+    };
+};
 
 /**
  * From a list of requests, form the grouped RequestData object
@@ -124,25 +124,25 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
  * @returns {RequestDetails}
  */
 export function createRequestDetails(requests, installedSurrogates) {
-    const output = new RequestDetails(installedSurrogates)
+    const output = new RequestDetails(installedSurrogates);
     for (const request of requests) {
         // an overall list
-        output.all.addRequest(request)
+        output.all.addRequest(request);
 
         // the blocked list
         if ('blocked' in request.state) {
-            output.blocked.addRequest(request)
+            output.blocked.addRequest(request);
         }
 
         // all other requests
         if ('allowed' in request.state) {
-            const reason = request.state.allowed.reason
+            const reason = request.state.allowed.reason;
             if (reason in output.allowed) {
-                output.allowed[request.state.allowed.reason].addRequest(request)
+                output.allowed[request.state.allowed.reason].addRequest(request);
             }
         }
     }
-    return output
+    return output;
 }
 
 /**
@@ -151,8 +151,8 @@ export function createRequestDetails(requests, installedSurrogates) {
  * @throws {ZodError}
  */
 export function fromJson(json) {
-    const requestData = requestDataSchema.parse(json)
-    return createRequestDetails(requestData.requests, requestData.installedSurrogates || [])
+    const requestData = requestDataSchema.parse(json);
+    return createRequestDetails(requestData.requests, requestData.installedSurrogates || []);
 }
 
 /**
@@ -160,57 +160,57 @@ export function fromJson(json) {
  * @throws {ZodError}
  */
 export function fromMultiJson(...inputs) {
-    const requests = []
-    const installedSurrogates = []
+    const requests = [];
+    const installedSurrogates = [];
     for (const input of inputs) {
-        const requestData = requestDataSchema.parse(input)
-        requests.push(...requestData.requests)
-        installedSurrogates.push(...(requestData.installedSurrogates || []))
+        const requestData = requestDataSchema.parse(input);
+        requests.push(...requestData.requests);
+        installedSurrogates.push(...(requestData.installedSurrogates || []));
     }
-    return createRequestDetails(requests, installedSurrogates)
+    return createRequestDetails(requests, installedSurrogates);
 }
 
 export class AggregatedCompanyResponseData {
     /** @type {number} */
-    entitiesCount = 0
+    entitiesCount = 0;
     /** @type {number} */
-    requestCount = 0
+    requestCount = 0;
     /** @type {Record<string, AggregateCompanyData>} */
-    entities = {}
+    entities = {};
 
     /**
      * @param {import('../../../../schema/__generated__/schema.types.js').DetectedRequest} request
      */
     addRequest(request) {
-        let hostname
+        let hostname;
         try {
-            hostname = new URL(request.url).hostname
+            hostname = new URL(request.url).hostname;
         } catch (e) {
-            hostname = request.url
+            hostname = request.url;
         }
 
-        let displayName
-        const urlHostname = hostname.replace(/^www\./, '')
+        let displayName;
+        const urlHostname = hostname.replace(/^www\./, '');
 
         if (request.entityName) {
             // if 'entityName' + 'eTLDplus1' match, just use 'request.eTLDplus1' un-modified
             if (request.entityName === request.eTLDplus1) {
-                displayName = request.eTLDplus1
+                displayName = request.eTLDplus1;
             } else {
-                displayName = removeTLD(request.entityName)
+                displayName = removeTLD(request.entityName);
             }
         } else {
-            displayName = request.eTLDplus1 || request.url
+            displayName = request.eTLDplus1 || request.url;
         }
 
         if (!this.entities[displayName]) {
-            this.entities[displayName] = new AggregateCompanyData(request.ownerName, displayName, request.prevalence ?? 0)
+            this.entities[displayName] = new AggregateCompanyData(request.ownerName, displayName, request.prevalence ?? 0);
         }
 
-        this.entities[displayName].addUrl(urlHostname, request.category)
+        this.entities[displayName].addUrl(urlHostname, request.category);
 
-        this.entitiesCount = Object.keys(this.entities).length
-        this.requestCount += 1
+        this.entitiesCount = Object.keys(this.entities).length;
+        this.requestCount += 1;
     }
 
     /**
@@ -218,7 +218,7 @@ export class AggregatedCompanyResponseData {
      * @returns {AggregateCompanyData[]}
      */
     sortedByPrevalence() {
-        return [...Object.values(this.entities)].sort((a, b) => b.prevalence - a.prevalence)
+        return [...Object.values(this.entities)].sort((a, b) => b.prevalence - a.prevalence);
     }
 }
 
@@ -241,28 +241,28 @@ export const states = /** @type {const} */ ({
     /* 012 */ protectionsOff_allowedTrackers: 'protectionsOff_allowedTrackers',
     /* 013 */ protectionsOff_allowedNonTrackers: 'protectionsOff_allowedNonTrackers',
     /* 014 */ protectionsOff_allowedTrackers_allowedNonTrackers: 'protectionsOff_allowedTrackers_allowedNonTrackers',
-})
+});
 
 /**
  * This is the data format that the UI can use to render sections
  */
 export class RequestDetails {
-    surrogates
-    all = new AggregatedCompanyResponseData()
-    blocked = new AggregatedCompanyResponseData()
+    surrogates;
+    all = new AggregatedCompanyResponseData();
+    blocked = new AggregatedCompanyResponseData();
     allowed = {
         adClickAttribution: new AggregatedCompanyResponseData(),
         ownedByFirstParty: new AggregatedCompanyResponseData(),
         ruleException: new AggregatedCompanyResponseData(),
         protectionDisabled: new AggregatedCompanyResponseData(),
         otherThirdPartyRequest: new AggregatedCompanyResponseData(),
-    }
+    };
 
     /**
      * @param {string[]} surrogates - any installed surrogates, just the domains
      */
     constructor(surrogates) {
-        this.surrogates = surrogates
+        this.surrogates = surrogates;
     }
 
     /**
@@ -271,7 +271,7 @@ export class RequestDetails {
      */
     forEachEntity(fn) {
         for (const entity of Object.values(this.all.entities)) {
-            fn(entity)
+            fn(entity);
         }
     }
 
@@ -279,7 +279,7 @@ export class RequestDetails {
      * @returns {number}
      */
     blockedCount() {
-        return this.blocked.entitiesCount
+        return this.blocked.entitiesCount;
     }
 
     /**
@@ -297,7 +297,7 @@ export class RequestDetails {
             this.allowed.ownedByFirstParty.entitiesCount +
             this.allowed.ruleException.entitiesCount +
             this.allowed.protectionDisabled.entitiesCount
-        )
+        );
     }
 
     /**
@@ -308,21 +308,21 @@ export class RequestDetails {
      * @returns {number}
      */
     allowedNonSpecialCount() {
-        return this.allowed.otherThirdPartyRequest.entitiesCount
+        return this.allowed.otherThirdPartyRequest.entitiesCount;
     }
 
     /**
      * The number of entities observed that were owned by the first party website
      */
     allowedFirstPartyCount() {
-        return this.allowed.ownedByFirstParty.entitiesCount
+        return this.allowed.ownedByFirstParty.entitiesCount;
     }
 
     /**
      * When all the 'special' entities observed belong to the first party
      */
     allowedFirstPartyOnly() {
-        return this.allowedFirstPartyCount() > 0 && this.allowedFirstPartyCount() === this.allowedSpecialCount()
+        return this.allowedFirstPartyCount() > 0 && this.allowedFirstPartyCount() === this.allowedSpecialCount();
     }
 
     /**
@@ -331,14 +331,14 @@ export class RequestDetails {
      */
     blockedCompanyNames() {
         /** @type {AggregateCompanyData[]} */
-        const output = []
+        const output = [];
 
         for (const entity of Object.values(this.blocked.entities)) {
-            if (entity.name === 'unknown') continue
-            output.push(entity)
+            if (entity.name === 'unknown') continue;
+            output.push(entity);
         }
 
-        return output.sort((a, b) => b.prevalence - a.prevalence).map((entity) => entity.displayName)
+        return output.sort((a, b) => b.prevalence - a.prevalence).map((entity) => entity.displayName);
     }
 
     /**
@@ -346,8 +346,8 @@ export class RequestDetails {
      * @param {(keyof states & string)[]} states
      */
     matches(protectionsEnabled, states) {
-        const curr = this.state(protectionsEnabled)
-        return states.includes(curr)
+        const curr = this.state(protectionsEnabled);
+        return states.includes(curr);
     }
 
     /**
@@ -358,48 +358,48 @@ export class RequestDetails {
     state(protectionsEnabled) {
         if (!protectionsEnabled) {
             if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
-                return states.protectionsOff_allowedTrackers_allowedNonTrackers
+                return states.protectionsOff_allowedTrackers_allowedNonTrackers;
             }
             if (this.allowedNonSpecialCount() > 0) {
-                return states.protectionsOff_allowedNonTrackers
+                return states.protectionsOff_allowedNonTrackers;
             }
             if (this.allowedSpecialCount() > 0) {
-                return states.protectionsOff_allowedTrackers
+                return states.protectionsOff_allowedTrackers;
             }
-            return states.protectionsOff
+            return states.protectionsOff;
         } else {
             if (this.blockedCount() > 0) {
                 // with blocked trackers
                 if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
-                    return states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers
+                    return states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers;
                 }
                 if (this.allowedSpecialCount() > 0) {
-                    return states.protectionsOn_blocked_allowedTrackers
+                    return states.protectionsOn_blocked_allowedTrackers;
                 }
                 if (this.allowedNonSpecialCount() > 0) {
-                    return states.protectionsOn_blocked_allowedNonTrackers
+                    return states.protectionsOn_blocked_allowedNonTrackers;
                 }
-                return states.protectionsOn_blocked
+                return states.protectionsOn_blocked;
             } else {
                 // first party trackers only
                 if (this.allowedFirstPartyOnly()) {
                     if (this.allowedNonSpecialCount() > 0) {
-                        return states.protectionsOn_allowedFirstParty_allowedNonTrackers
+                        return states.protectionsOn_allowedFirstParty_allowedNonTrackers;
                     }
-                    return states.protectionsOn_allowedFirstParty
+                    return states.protectionsOn_allowedFirstParty;
                 }
                 // no trackers
                 if (this.allowedSpecialCount() > 0 && this.allowedNonSpecialCount() > 0) {
-                    return states.protectionsOn_allowedTrackers_allowedNonTrackers
+                    return states.protectionsOn_allowedTrackers_allowedNonTrackers;
                 }
                 if (this.allowedSpecialCount() > 0) {
-                    return states.protectionsOn_allowedTrackers
+                    return states.protectionsOn_allowedTrackers;
                 }
                 if (this.allowedNonSpecialCount() > 0) {
-                    return states.protectionsOn_allowedNonTrackers
+                    return states.protectionsOn_allowedNonTrackers;
                 }
             }
-            return states.protectionsOn
+            return states.protectionsOn;
         }
     }
 }
@@ -411,13 +411,13 @@ export class AggregateCompanyData {
      * @param {number} prevalence
      */
     constructor(name, displayName, prevalence) {
-        this.name = name
-        this.displayName = displayName
-        this.prevalence = prevalence
-        this.normalizedName = normalizeCompanyName(displayName)
+        this.name = name;
+        this.displayName = displayName;
+        this.prevalence = prevalence;
+        this.normalizedName = normalizeCompanyName(displayName);
 
         /** @type {Record<string, TrackerUrl>} */
-        this.urls = {}
+        this.urls = {};
     }
 
     /**
@@ -425,7 +425,7 @@ export class AggregateCompanyData {
      * @param {string} [category]
      */
     addUrl(url, category) {
-        this.urls[url] = new TrackerUrl(url, category)
+        this.urls[url] = new TrackerUrl(url, category);
     }
 }
 
@@ -435,7 +435,7 @@ export class TrackerUrl {
      * @param {string} [category]
      */
     constructor(url, category) {
-        this.url = url
-        this.category = category
+        this.url = url;
+        this.category = category;
     }
 }

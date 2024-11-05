@@ -1,8 +1,8 @@
-import { useEffect } from 'preact/hooks'
-import { platform } from '../../../browser/communication'
+import { useEffect } from 'preact/hooks';
+import { platform } from '../../../browser/communication';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useToggleReportState } from './use-toggle-report-state'
+import { useToggleReportState } from './use-toggle-report-state';
 
 /**
  * Smoothly animate the content back to the top, and then remove all animations to allow the content
@@ -13,42 +13,42 @@ import { useToggleReportState } from './use-toggle-report-state'
  */
 export function useIosAnimation(state, dispatch) {
     useEffect(() => {
-        if (platform.name !== 'ios') return
+        if (platform.name !== 'ios') return;
         if (state.value === 'animating') {
-            const child = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="child"]'))
-            if (!child) return
+            const child = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="child"]'));
+            if (!child) return;
             child.addEventListener('transitionend', () => {
-                dispatch('animation-complete')
-            })
-            child.style.transform = 'translateY(0)'
+                dispatch('animation-complete');
+            });
+            child.style.transform = 'translateY(0)';
         }
-    }, [state.value])
+    }, [state.value]);
 
     useEffect(() => {
-        if (platform.name !== 'ios') return
-        const child = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="child"]'))
-        const parent = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="parent"]'))
+        if (platform.name !== 'ios') return;
+        const child = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="child"]'));
+        const parent = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="parent"]'));
 
-        if (!child || !parent) return
+        if (!child || !parent) return;
 
         const rs = new ResizeObserver((r) => {
             for (const resizeObserverEntry of r) {
-                if (resizeObserverEntry.contentRect.height === 0) continue
-                const childSize = child.clientHeight
-                const parentHeight = resizeObserverEntry.contentRect.height - 56
-                const offset = (parentHeight - childSize) / 2
-                child.style.transform = 'translateY(' + offset + 'px)'
-                child.dataset.ready = 'true'
+                if (resizeObserverEntry.contentRect.height === 0) continue;
+                const childSize = child.clientHeight;
+                const parentHeight = resizeObserverEntry.contentRect.height - 56;
+                const offset = (parentHeight - childSize) / 2;
+                child.style.transform = 'translateY(' + offset + 'px)';
+                child.dataset.ready = 'true';
                 setTimeout(() => {
-                    child.style.transition = 'all .3s'
-                }, 0)
+                    child.style.transition = 'all .3s';
+                }, 0);
             }
-        })
+        });
 
-        rs.observe(parent)
+        rs.observe(parent);
 
         return () => {
-            rs.disconnect()
-        }
-    }, [])
+            rs.disconnect();
+        };
+    }, []);
 }

@@ -12,38 +12,38 @@
 export const getContentHeight = () => {
     const $openSubviewV2 = window.document.querySelector(
         '#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child'
-    )
-    const $rootSubviewV2 = window.document.querySelector('#popup-container.sliding-subview-v2--root .page-inner')
+    );
+    const $rootSubviewV2 = window.document.querySelector('#popup-container.sliding-subview-v2--root .page-inner');
 
-    return ($openSubviewV2 || $rootSubviewV2)?.scrollHeight
-}
+    return ($openSubviewV2 || $rootSubviewV2)?.scrollHeight;
+};
 
 export const getContentHeightForScreenShot = () => {
-    const $rootSubview = window.document.querySelector('.site-info.site-info--main')
-    return $rootSubview?.scrollHeight
-}
+    const $rootSubview = window.document.querySelector('.site-info.site-info--main');
+    return $rootSubview?.scrollHeight;
+};
 
 /**
  * @param {(height: number) => void} callback
  */
 export function setupMutationObserver(callback) {
-    const bufferHeight = 200
-    let lastHeight
+    const bufferHeight = 200;
+    let lastHeight;
     const mutationObserver = new MutationObserver(() => {
-        const contentHeight = getContentHeight()
-        if (!contentHeight) return
+        const contentHeight = getContentHeight();
+        if (!contentHeight) return;
 
-        const height = Math.min(window.screen.height - bufferHeight, contentHeight)
+        const height = Math.min(window.screen.height - bufferHeight, contentHeight);
 
         // Only update if the height has changed since last run
-        if (lastHeight === height) return
-        lastHeight = height
+        if (lastHeight === height) return;
+        lastHeight = height;
 
-        callback(height)
-    })
-    const config = { childList: true, attributes: true, subtree: true }
-    mutationObserver.observe(window.document, config)
-    return () => mutationObserver.disconnect()
+        callback(height);
+    });
+    const config = { childList: true, attributes: true, subtree: true };
+    mutationObserver.observe(window.document, config);
+    return () => mutationObserver.disconnect();
 }
 
 /**
@@ -53,75 +53,75 @@ export function setupMutationObserver(callback) {
  * @return {function} - A function that can be called to disconnect the MutationObserver.
  */
 export function setupMutationObserverForExtensions(callback) {
-    let lastHeight
+    let lastHeight;
     const mutationObserver = new MutationObserver(() => {
-        const contentHeight = getContentHeight()
-        if (!contentHeight) return
+        const contentHeight = getContentHeight();
+        if (!contentHeight) return;
 
         // Only update if the height has changed since last run
-        if (lastHeight === contentHeight) return
-        lastHeight = contentHeight
+        if (lastHeight === contentHeight) return;
+        lastHeight = contentHeight;
 
-        callback(contentHeight)
-    })
-    const config = { childList: true, attributes: true, subtree: true }
-    mutationObserver.observe(window.document, config)
-    return () => mutationObserver.disconnect()
+        callback(contentHeight);
+    });
+    const config = { childList: true, attributes: true, subtree: true };
+    mutationObserver.observe(window.document, config);
+    return () => mutationObserver.disconnect();
 }
 
-const DARK_THEME = 'dark'
-const LIGHT_THEME = 'light'
-let explicitlySetTheme = ''
-let detectedTheme = LIGHT_THEME
+const DARK_THEME = 'dark';
+const LIGHT_THEME = 'light';
+let explicitlySetTheme = '';
+let detectedTheme = LIGHT_THEME;
 const oppositeTheme = {
     [LIGHT_THEME]: DARK_THEME,
     [DARK_THEME]: LIGHT_THEME,
-}
+};
 
 function swapThemeTo(theme) {
-    document.body.classList.remove(`body--theme-${oppositeTheme[theme]}`)
-    document.body.classList.add(`body--theme-${theme}`)
+    document.body.classList.remove(`body--theme-${oppositeTheme[theme]}`);
+    document.body.classList.add(`body--theme-${theme}`);
 }
 
 function updateTheme() {
     if (explicitlySetTheme) {
-        swapThemeTo(explicitlySetTheme)
+        swapThemeTo(explicitlySetTheme);
     } else {
-        swapThemeTo(detectedTheme)
+        swapThemeTo(detectedTheme);
     }
 }
 
 export function setupColorScheme() {
-    const query = window.matchMedia('(prefers-color-scheme: dark)')
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
     if (query?.matches) {
-        detectedTheme = DARK_THEME
+        detectedTheme = DARK_THEME;
     }
 
     if (query.addEventListener) {
         query?.addEventListener('change', (event) => {
-            detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME
-            updateTheme()
-        })
+            detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME;
+            updateTheme();
+        });
     } else if ('addListener' in query) {
         query.addListener((event) => {
-            detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME
-            updateTheme()
-        })
+            detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME;
+            updateTheme();
+        });
     }
 
-    updateTheme()
+    updateTheme();
 
     return (theme = '') => {
-        theme = theme.trim().toLowerCase()
+        theme = theme.trim().toLowerCase();
 
         if (theme === LIGHT_THEME || theme === DARK_THEME) {
-            explicitlySetTheme = theme
+            explicitlySetTheme = theme;
         } else {
-            explicitlySetTheme = ''
+            explicitlySetTheme = '';
         }
 
-        updateTheme()
-    }
+        updateTheme();
+    };
 }
 
 /**
@@ -132,9 +132,9 @@ export function setupColorScheme() {
 export function assert(condition, message = '') {
     if (!condition) {
         if (!message) {
-            throw new Error('invariant')
+            throw new Error('invariant');
         }
-        throw new Error(message)
+        throw new Error(message);
     }
 }
 
@@ -273,14 +273,14 @@ export function setLists(options) {}
  * @returns {Promise<import('../../../schema/__generated__/schema.types').RefreshAliasResponse>}
  */
 export async function refreshAlias() {
-    throw new Error('base impl')
+    throw new Error('base impl');
 }
 
 /**
  * Fetch the data needed to display the toggle report screen
  */
 export async function getToggleReportOptions() {
-    throw new Error('base impl')
+    throw new Error('base impl');
 }
 
 /**
@@ -288,7 +288,7 @@ export async function getToggleReportOptions() {
  * @returns {Promise<void>}
  */
 export async function sendToggleReport() {
-    throw new Error('base impl')
+    throw new Error('base impl');
 }
 
 /**
@@ -296,14 +296,14 @@ export async function sendToggleReport() {
  * @returns {Promise<void>}
  */
 export async function rejectToggleReport() {
-    throw new Error('base impl')
+    throw new Error('base impl');
 }
 
 /**
  * Sent when the user expands the disclosure
  */
 export function seeWhatIsSent() {
-    throw new Error('base impl')
+    throw new Error('base impl');
 }
 
 /**
@@ -323,7 +323,7 @@ export class Msg {
         return {
             ...this,
             kind: this.constructor.name,
-        }
+        };
     }
 }
 
@@ -339,15 +339,15 @@ export class SetListsMessage extends Msg {
      * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
      */
     constructor(params) {
-        super()
+        super();
         /**
          * @type {Array<{list: "allowlisted" | "denylisted", domain: string, value: boolean}>}
          */
-        this.lists = params.lists
+        this.lists = params.lists;
         /**
          * @type {import('../../../schema/__generated__/schema.types').EventOrigin}
          */
-        this.eventOrigin = params.eventOrigin
+        this.eventOrigin = params.eventOrigin;
     }
 }
 
@@ -359,10 +359,10 @@ export class SubmitBrokenSiteReportMessage extends Msg {
      * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
      */
     constructor(params) {
-        super()
-        this.category = params.category
-        this.description = params.description
-        this.eventOrigin = params.eventOrigin
+        super();
+        this.category = params.category;
+        this.description = params.description;
+        this.eventOrigin = params.eventOrigin;
     }
 }
 
@@ -373,9 +373,9 @@ export class UpdatePermissionMessage extends Msg {
      * @param {string} params.value
      */
     constructor(params) {
-        super()
-        this.id = params.id
-        this.value = params.value
+        super();
+        this.id = params.id;
+        this.value = params.value;
     }
 }
 
@@ -385,11 +385,11 @@ export class CloseMessage extends Msg {
      * @param {import('../../../schema/__generated__/schema.types').EventOrigin} params.eventOrigin
      */
     constructor(params) {
-        super()
+        super();
         /**
          * @type {import('../../../schema/__generated__/schema.types').EventOrigin}
          */
-        this.eventOrigin = params.eventOrigin
+        this.eventOrigin = params.eventOrigin;
     }
 }
 
@@ -427,9 +427,9 @@ export class TelemetrySpanMsg extends Msg {
      * @param {import('../../../schema/__generated__/schema.types').TelemetrySpan['attributes']} params.attributes
      */
     constructor(params) {
-        super()
-        this.eventOrigin = params.eventOrigin
-        this.attributes = params.attributes
+        super();
+        this.eventOrigin = params.eventOrigin;
+        this.attributes = params.attributes;
     }
 }
 
@@ -443,8 +443,8 @@ export class SearchMessage extends Msg {
      * @param {string} params.term
      */
     constructor(params) {
-        super()
-        this.term = params.term
+        super();
+        this.term = params.term;
     }
 }
 
@@ -454,12 +454,12 @@ export class OpenSettingsMessages extends Msg {
      * @param {'cpm'} params.target
      */
     constructor(params) {
-        super()
+        super();
         /**
          * A string representing different settings screens that can be opened
          * @type {'cpm'}
          */
-        this.target = params.target
+        this.target = params.target;
     }
 }
 
@@ -468,8 +468,8 @@ export class BurnMessage extends Msg {
      * @param {import('../../../schema/__generated__/schema.types').FireOption} opts
      */
     constructor(opts) {
-        super()
-        Object.assign(this, opts)
+        super();
+        Object.assign(this, opts);
     }
 }
 
@@ -484,8 +484,8 @@ export class SetBurnDefaultOption extends Msg {
      * @param {import('../../../schema/__generated__/schema.types').FireOption['name']} name
      */
     constructor(name) {
-        super()
-        this.defaultOption = name
+        super();
+        this.defaultOption = name;
     }
 }
 
@@ -496,5 +496,5 @@ export class SetBurnDefaultOption extends Msg {
  * @returns {Promise<any>}
  */
 export async function fetcher(message) {
-    throw new Error('must implement')
+    throw new Error('must implement');
 }

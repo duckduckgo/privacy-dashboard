@@ -4,11 +4,11 @@
  * On windows, 'pathname' has a leading `/` which needs removing
  */
 export function cwd(current) {
-    const pathname = new URL('.', current).pathname
+    const pathname = new URL('.', current).pathname;
     if (process.platform === 'win32') {
-        return pathname.slice(1)
+        return pathname.slice(1);
     }
-    return pathname
+    return pathname;
 }
 
-export const debug = process.env.NODE_ENV === 'development'
+export const debug = process.env.NODE_ENV === 'development';

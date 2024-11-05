@@ -12,7 +12,7 @@
  * @module macOS integration
  * @category integrations
  */
-import invariant from 'tiny-invariant'
+import invariant from 'tiny-invariant';
 import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
@@ -20,9 +20,9 @@ import {
     protectionsStatusSchema,
     requestDataSchema,
     toggleReportScreenSchema,
-} from '../../../schema/__generated__/schema.parsers.mjs'
-import { isIOS } from '../ui/environment-check'
-import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
+} from '../../../schema/__generated__/schema.parsers.mjs';
+import { isIOS } from '../ui/environment-check';
+import { setupGlobalOpenerListener } from '../ui/views/utils/utils';
 import {
     CloseMessage,
     FetchToggleReportOptions,
@@ -36,35 +36,35 @@ import {
     setupMutationObserver,
     SubmitBrokenSiteReportMessage,
     UpdatePermissionMessage,
-} from './common.js'
-import { createTabData } from './utils/request-details.mjs'
+} from './common.js';
+import { createTabData } from './utils/request-details.mjs';
 
-let channel = null
+let channel = null;
 
 /**
  * @category Internal API
  * @param backgroundModel
  */
 const backgroundMessage = (backgroundModel) => {
-    channel = backgroundModel
-}
+    channel = backgroundModel;
+};
 
-const getBackgroundTabDataPromises = []
-let trackerBlockingData
-let permissionsData
-let certificateData
-let upgradedHttps
+const getBackgroundTabDataPromises = [];
+let trackerBlockingData;
+let permissionsData;
+let certificateData;
+let upgradedHttps;
 /** @type {import("./utils/protections.mjs").Protections | undefined} */
-let protections
-let isPendingUpdates
-let parentEntity
-const cookiePromptManagementStatus = {}
+let protections;
+let isPendingUpdates;
+let parentEntity;
+const cookiePromptManagementStatus = {};
 
 /** @type {boolean | undefined} */
-let phishingStatus
+let phishingStatus;
 
 /** @type {string | undefined} */
-let locale
+let locale;
 
 const combineSources = () => ({
     tab: Object.assign(
@@ -81,20 +81,20 @@ const combineSources = () => ({
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
     ),
-})
+});
 
 const resolveInitialRender = function () {
-    const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean'
-    const isIsProtectedSet = typeof protections !== 'undefined'
-    const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object'
-    const isLocaleSet = typeof locale === 'string'
-    const isPhishingSet = typeof phishingStatus === 'boolean'
+    const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
+    const isIsProtectedSet = typeof protections !== 'undefined';
+    const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
+    const isLocaleSet = typeof locale === 'string';
+    const isPhishingSet = typeof phishingStatus === 'boolean';
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isPhishingSet) {
-        return
+        return;
     }
-    getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()))
-    channel?.send('updateTabData')
-}
+    getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()));
+    channel?.send('updateTabData');
+};
 
 // Integration APIs
 // -----------------------------------------------------------------------------
@@ -116,15 +116,15 @@ const resolveInitialRender = function () {
  * Please see [cnn.json](media://request-data-cnn.json) or [google.json](media://request-data-google.json) for examples of this type
  */
 export function onChangeRequestData(tabUrl, rawRequestData) {
-    const requestData = requestDataSchema.safeParse(rawRequestData)
-    if (!protections) throw new Error('protections status not set')
+    const requestData = requestDataSchema.safeParse(rawRequestData);
+    if (!protections) throw new Error('protections status not set');
     if (!requestData.success) {
-        console.error('could not parse incoming request data from `onChangeRequestData`')
-        console.log(requestData.error)
-        return
+        console.error('could not parse incoming request data from `onChangeRequestData`');
+        console.log(requestData.error);
+        return;
     }
-    trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data)
-    resolveInitialRender()
+    trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data);
+    resolveInitialRender();
 }
 
 /**
@@ -144,14 +144,14 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
  */
 export function onChangeProtectionStatus(protectionsStatus) {
-    const parsed = protectionsStatusSchema.safeParse(protectionsStatus)
+    const parsed = protectionsStatusSchema.safeParse(protectionsStatus);
     if (!parsed.success) {
-        console.error('could not parse incoming protection status from onChangeProtectionStatus')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming protection status from onChangeProtectionStatus');
+        console.error(parsed.error);
+        return;
     }
-    protections = parsed.data
-    resolveInitialRender()
+    protections = parsed.data;
+    resolveInitialRender();
 }
 
 /**
@@ -166,14 +166,14 @@ export function onChangeProtectionStatus(protectionsStatus) {
  * ```
  */
 export function onChangeLocale(payload) {
-    const parsed = localeSettingsSchema.safeParse(payload)
+    const parsed = localeSettingsSchema.safeParse(payload);
     if (!parsed.success) {
-        console.error('could not parse incoming data from onChangeLocale')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming data from onChangeLocale');
+        console.error(parsed.error);
+        return;
     }
-    locale = parsed.data.locale
-    channel?.send('updateTabData')
+    locale = parsed.data.locale;
+    channel?.send('updateTabData');
 }
 
 /**
@@ -188,14 +188,14 @@ export function onChangeLocale(payload) {
  * ```
  */
 export function onChangePhishingStatus(payload) {
-    const parsed = phishingStatusSchema.safeParse(payload)
+    const parsed = phishingStatusSchema.safeParse(payload);
     if (!parsed.success) {
-        console.error('could not parse incoming data from onChangePhishingStatus')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming data from onChangePhishingStatus');
+        console.error(parsed.error);
+        return;
     }
-    phishingStatus = parsed.data.phishingStatus
-    resolveInitialRender()
+    phishingStatus = parsed.data.phishingStatus;
+    resolveInitialRender();
 }
 
 /**
@@ -210,14 +210,14 @@ export function onChangePhishingStatus(payload) {
  * ```
  */
 export function onChangeConsentManaged(payload) {
-    const parsed = cookiePromptManagementStatusSchema.safeParse(payload)
+    const parsed = cookiePromptManagementStatusSchema.safeParse(payload);
     if (!parsed.success) {
-        console.error('could not parse incoming data from onChangeConsentManaged')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming data from onChangeConsentManaged');
+        console.error(parsed.error);
+        return;
     }
-    Object.assign(cookiePromptManagementStatus, parsed.data)
-    channel?.send('updateTabData')
+    Object.assign(cookiePromptManagementStatus, parsed.data);
+    channel?.send('updateTabData');
 }
 
 // -----------------------------------------------------------------------------
@@ -244,8 +244,8 @@ export function privacyDashboardSetProtection(params) {
     invariant(
         window.webkit?.messageHandlers?.privacyDashboardSetProtection,
         'webkit.messageHandlers.privacyDashboardSetProtection required'
-    )
-    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(params)
+    );
+    window.webkit.messageHandlers.privacyDashboardSetProtection.postMessage(params);
 }
 
 /**
@@ -264,8 +264,8 @@ export function privacyDashboardSetProtection(params) {
  * ```
  */
 export function privacyDashboardSetPermission(params) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params)
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardSetPermission.postMessage(params);
 }
 
 /**
@@ -292,14 +292,14 @@ export function privacyDashboardSetPermission(params) {
  */
 export function privacyDashboardGetToggleReportOptions() {
     return new Promise((resolve) => {
-        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-        invariant(window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions, 'privacyDashboardGetToggleReportOptions required')
-        window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({})
+        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+        invariant(window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions, 'privacyDashboardGetToggleReportOptions required');
+        window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({});
         window.onGetToggleReportOptionsResponse = (data) => {
-            resolve(data)
-            Reflect.deleteProperty(window, 'onGetToggleReportOptionsResponse')
-        }
-    })
+            resolve(data);
+            Reflect.deleteProperty(window, 'onGetToggleReportOptionsResponse');
+        };
+    });
 }
 
 /**
@@ -315,9 +315,9 @@ export function privacyDashboardGetToggleReportOptions() {
  * ```
  */
 export function privacyDashboardSendToggleReport() {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, 'privacyDashboardSendToggleReport required')
-    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({})
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, 'privacyDashboardSendToggleReport required');
+    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({});
 }
 
 /**
@@ -333,9 +333,9 @@ export function privacyDashboardSendToggleReport() {
  * ```
  */
 export function privacyDashboardRejectToggleReport() {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, 'privacyDashboardRejectToggleReport required')
-    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({})
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, 'privacyDashboardRejectToggleReport required');
+    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({});
 }
 
 /**
@@ -351,9 +351,9 @@ export function privacyDashboardRejectToggleReport() {
  * ```
  */
 export function privacyDashboardSeeWhatIsSent() {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    invariant(window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent, 'privacyDashboardSeeWhatIsSent required')
-    return window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent.postMessage({})
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    invariant(window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent, 'privacyDashboardSeeWhatIsSent required');
+    return window.webkit.messageHandlers.privacyDashboardSeeWhatIsSent.postMessage({});
 }
 
 /**
@@ -369,8 +369,8 @@ export function privacyDashboardSeeWhatIsSent() {
  *
  */
 export function privacyDashboardClose(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args)
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardClose.postMessage(args);
 }
 
 /**
@@ -379,62 +379,62 @@ export function privacyDashboardClose(args) {
  */
 async function fetch(message) {
     if (message instanceof CloseMessage) {
-        privacyDashboardClose({ eventOrigin: message.eventOrigin })
-        return
+        privacyDashboardClose({ eventOrigin: message.eventOrigin });
+        return;
     }
 
     if (message instanceof SubmitBrokenSiteReportMessage) {
         privacyDashboardSubmitBrokenSiteReport({
             category: message.category,
             description: message.description,
-        })
-        return
+        });
+        return;
     }
 
     if (message instanceof SetListsMessage) {
         for (const listItem of message.lists) {
-            const { list, value } = listItem
+            const { list, value } = listItem;
             if (list !== 'allowlisted') {
-                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on macos')
-                continue
+                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on macos');
+                continue;
             }
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
-            const isProtected = value === false
-            privacyDashboardSetProtection({ eventOrigin: message.eventOrigin, isProtected })
+            const isProtected = value === false;
+            privacyDashboardSetProtection({ eventOrigin: message.eventOrigin, isProtected });
         }
-        return
+        return;
     }
     if (message instanceof OpenSettingsMessages) {
         privacyDashboardOpenSettings({
             target: message.target,
-        })
-        return
+        });
+        return;
     }
 
     if (message instanceof UpdatePermissionMessage) {
         privacyDashboardSetPermission({
             permission: message.id,
             value: message.value,
-        })
+        });
     }
 
     if (message instanceof FetchToggleReportOptions) {
-        const data = await privacyDashboardGetToggleReportOptions()
-        const parsed = toggleReportScreenSchema.parse(data)
-        return parsed
+        const data = await privacyDashboardGetToggleReportOptions();
+        const parsed = toggleReportScreenSchema.parse(data);
+        return parsed;
     }
 
     if (message instanceof SendToggleBreakageReport) {
-        return privacyDashboardSendToggleReport()
+        return privacyDashboardSendToggleReport();
     }
 
     if (message instanceof RejectToggleBreakageReport) {
-        return privacyDashboardRejectToggleReport()
+        return privacyDashboardRejectToggleReport();
     }
 
     if (message instanceof SeeWhatIsSent) {
-        return privacyDashboardSeeWhatIsSent()
+        return privacyDashboardSeeWhatIsSent();
     }
 }
 
@@ -445,13 +445,13 @@ async function fetch(message) {
 const getBackgroundTabData = () => {
     return new Promise((resolve) => {
         if (trackerBlockingData) {
-            resolve(combineSources())
-            return
+            resolve(combineSources());
+            return;
         }
 
-        getBackgroundTabDataPromises.push(resolve)
-    })
-}
+        getBackgroundTabDataPromises.push(resolve);
+    });
+};
 
 /**
  * {@inheritDoc common.openInNewTab}
@@ -459,10 +459,10 @@ const getBackgroundTabData = () => {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardOpenUrlInNewTab(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
     window.webkit.messageHandlers.privacyDashboardOpenUrlInNewTab.postMessage({
         url: args.url,
-    })
+    });
 }
 
 /**
@@ -471,10 +471,10 @@ export function privacyDashboardOpenUrlInNewTab(args) {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardOpenSettings(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
     window.webkit.messageHandlers.privacyDashboardOpenSettings.postMessage({
         target: args.target,
-    })
+    });
 }
 
 /**
@@ -483,11 +483,11 @@ export function privacyDashboardOpenSettings(args) {
  * @category Webkit Message Handlers
  */
 export function privacyDashboardSubmitBrokenSiteReport(report) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
     window.webkit.messageHandlers.privacyDashboardSubmitBrokenSiteReport.postMessage({
         category: report.category,
         description: report.description,
-    })
+    });
 }
 
 /**
@@ -497,8 +497,8 @@ export function privacyDashboardSubmitBrokenSiteReport(report) {
  */
 export function privacyDashboardSetSize(payload) {
     if (!isIOS()) {
-        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-        window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload)
+        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+        window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
     }
 }
 
@@ -506,48 +506,48 @@ export function privacyDashboardSetSize(payload) {
  * These side-effects are used on both ios/macos
  */
 export function setupShared() {
-    window.onChangeRequestData = onChangeRequestData
+    window.onChangeRequestData = onChangeRequestData;
     window.onChangeAllowedPermissions = function (data) {
-        permissionsData = data
-        channel?.send('updateTabData')
-    }
+        permissionsData = data;
+        channel?.send('updateTabData');
+    };
     window.onChangeUpgradedHttps = function (data) {
-        upgradedHttps = data
-        if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
-        resolveInitialRender()
-    }
-    window.onChangePhishingStatus = onChangePhishingStatus
-    window.onChangeProtectionStatus = onChangeProtectionStatus
-    window.onChangeLocale = onChangeLocale
+        upgradedHttps = data;
+        if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
+        resolveInitialRender();
+    };
+    window.onChangePhishingStatus = onChangePhishingStatus;
+    window.onChangeProtectionStatus = onChangeProtectionStatus;
+    window.onChangeLocale = onChangeLocale;
     window.onChangeCertificateData = function (data) {
-        certificateData = data.secCertificateViewModels
-        channel?.send('updateTabData')
-    }
+        certificateData = data.secCertificateViewModels;
+        channel?.send('updateTabData');
+    };
     window.onIsPendingUpdates = function (data) {
-        isPendingUpdates = data
-        channel?.send('updateTabData')
-    }
+        isPendingUpdates = data;
+        channel?.send('updateTabData');
+    };
     window.onChangeParentEntity = function (data) {
-        parentEntity = data
-        channel?.send('updateTabData')
-    }
-    window.onChangeConsentManaged = onChangeConsentManaged
+        parentEntity = data;
+        channel?.send('updateTabData');
+    };
+    window.onChangeConsentManaged = onChangeConsentManaged;
     setupGlobalOpenerListener((href) => {
         privacyDashboardOpenUrlInNewTab({
             url: href,
-        })
-    })
+        });
+    });
 }
 
 /**
  * macOS specific setup
  */
 export function setup() {
-    setupColorScheme()
-    setupShared()
+    setupColorScheme();
+    setupShared();
     setupMutationObserver((height) => {
-        privacyDashboardSetSize({ height })
-    })
+        privacyDashboardSetSize({ height });
+    });
 }
 
 /**
@@ -558,13 +558,13 @@ export function setup() {
  * @category Internal API
  */
 function firstRenderComplete() {
-    const height = getContentHeight()
+    const height = getContentHeight();
     if (typeof height === 'number') {
-        privacyDashboardSetSize({ height })
+        privacyDashboardSetSize({ height });
     }
 }
 
 /**
  * @module
  */
-export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete }
+export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete };

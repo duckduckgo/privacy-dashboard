@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import styles from './debugger.module.css'
-import { requests } from '../shared/js/ui/views/tests/generate-data.mjs'
+import { h } from 'preact';
+import styles from './debugger.module.css';
+import { requests } from '../shared/js/ui/views/tests/generate-data.mjs';
 
 export function Debugger({ states, initialState, selectedRequests, updateRequests, platforms, items, reflectParams, toggles }) {
     return (
@@ -18,7 +18,7 @@ export function Debugger({ states, initialState, selectedRequests, updateRequest
                 <Frames platforms={platforms} initialState={initialState} reflectParams={reflectParams} items={items} states={states} />
             </div>
         </div>
-    )
+    );
 }
 
 /**
@@ -42,17 +42,17 @@ export function Selector({ options, selected, label, onChange }) {
                         <option value={key} selected={selected === key}>
                             {key}
                         </option>
-                    )
+                    );
                 })}
             </select>
         </label>
-    )
+    );
 }
 
 export function PlatformToggles({ selected, onChange, items }) {
     function onChanged(e) {
-        const d = new FormData(e.target.form)
-        onChange(d.getAll('platform'))
+        const d = new FormData(e.target.form);
+        onChange(d.getAll('platform'));
     }
     return (
         <form onChange={onChanged}>
@@ -62,16 +62,16 @@ export function PlatformToggles({ selected, onChange, items }) {
                         <input type="checkbox" name="platform" value={item.platform} checked={selected.includes(item.platform)}></input>{' '}
                         {item.platform}
                     </label>
-                )
+                );
             })}
         </form>
-    )
+    );
 }
 
 function Requests({ selected, onChange }) {
     function onChanged(e) {
-        const d = new FormData(e.target.form)
-        onChange(d.getAll('request'))
+        const d = new FormData(e.target.form);
+        onChange(d.getAll('request'));
     }
     return (
         <div>
@@ -83,17 +83,17 @@ function Requests({ selected, onChange }) {
                             <input type="checkbox" name="request" value={key} checked={selected.includes(key)}></input>
                             {key}
                         </label>
-                    )
+                    );
                 })}
             </form>
         </div>
-    )
+    );
 }
 
 function Frames({ platforms, initialState, states, items, reflectParams }) {
-    const previewJSON = states[initialState]
-    const { certificate, ...rest } = previewJSON
-    rest.certificate = certificate
+    const previewJSON = states[initialState];
+    const { certificate, ...rest } = previewJSON;
+    rest.certificate = certificate;
     return (
         <div class={styles.frames}>
             <div class={styles.code} data-state="ready">
@@ -102,9 +102,9 @@ function Frames({ platforms, initialState, states, items, reflectParams }) {
                 </pre>
             </div>
             {items.map((item) => {
-                const { platform } = item
-                const src = new URL(item.platform + '.html?' + reflectParams.toString(), location.href)
-                const height = item.height ?? 600
+                const { platform } = item;
+                const src = new URL(item.platform + '.html?' + reflectParams.toString(), location.href);
+                const height = item.height ?? 600;
                 return (
                     <div class={styles.frame} data-state={platforms.includes(platform) ? 'ready' : 'hidden'}>
                         <p>
@@ -124,8 +124,8 @@ function Frames({ platforms, initialState, states, items, reflectParams }) {
                             }}
                         ></iframe>
                     </div>
-                )
+                );
             })}
         </div>
-    )
+    );
 }

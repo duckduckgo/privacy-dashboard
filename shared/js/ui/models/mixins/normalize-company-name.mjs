@@ -8,12 +8,12 @@ export function normalizeCompanyName(companyName) {
             // Remove non-alphanumeric characters
             // e.g. Fixes cases like "new relic" -> "newrelic"
             .replace(/[^a-z0-9]/g, '')
-    )
+    );
 }
 
 /**
  * @param {string | ""} entityName
  */
 export function removeTLD(entityName) {
-    return entityName.replace(/\.[a-z]+$/i, '')
+    return entityName.replace(/\.[a-z]+$/i, '');
 }

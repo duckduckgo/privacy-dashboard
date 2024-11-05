@@ -1,13 +1,13 @@
-import { css, html, LitElement } from 'lit'
-import { map } from 'lit/directives/map.js'
-import '@material/web/button/filled-button.js'
-import '@material/web/button/filled-tonal-button.js'
-import '@material/web/button/text-button.js'
-import '@material/web/dialog/dialog.js'
-import '@material/web/icon/icon.js'
-import '@material/web/iconbutton/icon-button.js'
-import '@material/web/radio/radio.js'
-import '@material/web/textfield/outlined-text-field.js'
+import { css, html, LitElement } from 'lit';
+import { map } from 'lit/directives/map.js';
+import '@material/web/button/filled-button.js';
+import '@material/web/button/filled-tonal-button.js';
+import '@material/web/button/text-button.js';
+import '@material/web/dialog/dialog.js';
+import '@material/web/icon/icon.js';
+import '@material/web/iconbutton/icon-button.js';
+import '@material/web/radio/radio.js';
+import '@material/web/textfield/outlined-text-field.js';
 
 export class AndroidBreakageDialog extends LitElement {
     static properties = {
@@ -20,14 +20,14 @@ export class AndroidBreakageDialog extends LitElement {
         opened: {
             type: Boolean,
         },
-    }
+    };
 
-    title = 'please set the title prop'
-    okText = 'OK'
-    cancelText = 'Cancel'
+    title = 'please set the title prop';
+    okText = 'OK';
+    cancelText = 'Cancel';
     /** @type {[string, string][]} */
-    items = []
-    opened = false
+    items = [];
+    opened = false;
 
     /**
      * Every time we show the modal, reset the form to
@@ -36,43 +36,43 @@ export class AndroidBreakageDialog extends LitElement {
      * @param {string} initial - the category value
      */
     show(initial) {
-        if (!this.shadowRoot) throw new Error('unreachable')
-        const elem = this.shadowRoot?.querySelector('md-dialog')
-        if (!elem) throw new Error('unreachable')
+        if (!this.shadowRoot) throw new Error('unreachable');
+        const elem = this.shadowRoot?.querySelector('md-dialog');
+        if (!elem) throw new Error('unreachable');
 
-        const form = elem?.querySelector('form')
-        if (!form) throw new Error('unreachable, missing form')
+        const form = elem?.querySelector('form');
+        if (!form) throw new Error('unreachable, missing form');
 
-        const radioElements = this.shadowRoot?.querySelectorAll('md-radio')
+        const radioElements = this.shadowRoot?.querySelectorAll('md-radio');
 
-        form.reset()
+        form.reset();
 
         for (const element of Array.from(radioElements)) {
             if (element.value === initial) {
-                element.checked = true
+                element.checked = true;
             }
         }
 
-        elem.show()
+        elem.show();
     }
     get _currentFormValue() {
-        const elem = this.shadowRoot?.querySelector('md-dialog')
-        if (!elem) throw new Error('unreachable')
+        const elem = this.shadowRoot?.querySelector('md-dialog');
+        if (!elem) throw new Error('unreachable');
 
-        const form = elem?.querySelector('form')
-        if (!form) throw new Error('unreachable, missing form')
+        const form = elem?.querySelector('form');
+        if (!form) throw new Error('unreachable, missing form');
 
-        const formData = new FormData(form)
-        const value = formData.get('category')
-        return value
+        const formData = new FormData(form);
+        const value = formData.get('category');
+        return value;
     }
     _onClose(e) {
-        const dialog = e.target
+        const dialog = e.target;
         if (dialog.returnValue === 'ok') {
-            const value = this._currentFormValue
-            const options = { detail: { value }, composed: true, bubbles: true }
-            const event = new CustomEvent('did-select', options)
-            this.dispatchEvent(event)
+            const value = this._currentFormValue;
+            const options = { detail: { value }, composed: true, bubbles: true };
+            const event = new CustomEvent('did-select', options);
+            this.dispatchEvent(event);
         }
     }
 
@@ -87,7 +87,7 @@ export class AndroidBreakageDialog extends LitElement {
                                 <md-radio name="category" value=${value} aria-label=${title} touch-target="wrapper"></md-radio>
                                 <span aria-hidden="true">${title}</span>
                             </label>
-                        `
+                        `;
                     })}
                 </form>
                 <div slot="actions">
@@ -96,7 +96,7 @@ export class AndroidBreakageDialog extends LitElement {
                     <md-filled-button form="form" value="ok">${this.okText}</md-filled-button>
                 </div>
             </md-dialog>
-        `
+        `;
     }
     static styles = [
         css`
@@ -147,7 +147,7 @@ export class AndroidBreakageDialog extends LitElement {
                 --md-text-button-container-shape: 8px;
             }
         `,
-    ]
+    ];
 }
 
-customElements.define('ddg-android-breakage-dialog', AndroidBreakageDialog)
+customElements.define('ddg-android-breakage-dialog', AndroidBreakageDialog);

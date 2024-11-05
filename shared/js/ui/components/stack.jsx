@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
+import { h } from 'preact';
 /**
  * @typedef {object} ButtonBarComponentProps
  * @property {string} [gap]
@@ -10,7 +10,7 @@ export function Stack({ children, gap, ...rest }) {
         <div {...rest} className="stack" style={{ gap: gap }}>
             {children}
         </div>
-    )
+    );
 }
 
 /**
@@ -22,5 +22,5 @@ export function Scrollable({ children, ...rest }) {
         <div className="scrollable fade-in" {...rest}>
             {children}
         </div>
-    )
+    );
 }

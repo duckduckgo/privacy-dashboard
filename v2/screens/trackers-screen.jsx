@@ -1,16 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { DomNode } from '../dom-node'
-import { useData } from '../data-provider'
-import { heroFromTabTrackers } from '../../shared/js/ui/templates/shared/hero'
-import { sectionsFromSiteTrackers } from '../../shared/js/ui/templates/page-trackers'
-import { platformLimitations } from '../../shared/js/ui/templates/shared/platform-limitations'
-import { SecondaryTopNav } from '../components/top-nav'
-import { useRippleChildren } from '../../shared/js/ui/hooks/useRipple'
+import { h } from 'preact';
+import { DomNode } from '../dom-node';
+import { useData } from '../data-provider';
+import { heroFromTabTrackers } from '../../shared/js/ui/templates/shared/hero';
+import { sectionsFromSiteTrackers } from '../../shared/js/ui/templates/page-trackers';
+import { platformLimitations } from '../../shared/js/ui/templates/shared/platform-limitations';
+import { SecondaryTopNav } from '../components/top-nav';
+import { useRippleChildren } from '../../shared/js/ui/hooks/useRipple';
 
 export function TrackersScreen() {
-    const data = useData()
-    const ref = useRippleChildren(data.count)
+    const data = useData();
+    const ref = useRippleChildren(data.count);
     return (
         <div className="site-info card page-inner" data-page="trackers">
             <SecondaryTopNav />
@@ -21,7 +21,7 @@ export function TrackersScreen() {
             <div className="padding-x-double" aria-label="List of Tracker Companies">
                 {sectionsFromSiteTrackers(data).map((el, index) => {
                     /* @ts-ignore */
-                    return <DomNode key={String(data.count) + String(index)}>{el}</DomNode>
+                    return <DomNode key={String(data.count) + String(index)}>{el}</DomNode>;
                 })}
             </div>
             {data.tab.platformLimitations ? (
@@ -33,5 +33,5 @@ export function TrackersScreen() {
                 <div />
             )}
         </div>
-    )
+    );
 }

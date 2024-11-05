@@ -1,6 +1,6 @@
-import html from 'nanohtml'
-import raw from 'nanohtml/raw'
-import { i18n } from '../base/localize.js'
+import html from 'nanohtml';
+import raw from 'nanohtml/raw';
+import { i18n } from '../base/localize.js';
 
 /**
  * Generate a string to describe what will be burned.
@@ -8,25 +8,25 @@ import { i18n } from '../base/localize.js'
  * @returns {null|HTMLElement}
  */
 export function fireSummaryTemplate(selectedOption) {
-    const { descriptionStats } = selectedOption
-    let template = 'firebutton:summary'
+    const { descriptionStats } = selectedOption;
+    let template = 'firebutton:summary';
     if (descriptionStats.clearHistory && descriptionStats.openTabs) {
-        template += 'ClearTabsHistory'
+        template += 'ClearTabsHistory';
     } else if (descriptionStats.clearHistory && !descriptionStats.openTabs) {
-        template += 'ClearHistory'
+        template += 'ClearHistory';
     } else if (!descriptionStats.clearHistory && descriptionStats.openTabs) {
-        template += 'ClearTabs'
+        template += 'ClearTabs';
     } else {
-        template += 'ClearCookies'
+        template += 'ClearCookies';
     }
     if (descriptionStats.site) {
-        template += 'Site'
+        template += 'Site';
     } else if (descriptionStats.duration === 'all') {
-        template += 'All'
+        template += 'All';
     } else {
-        template += 'Duration'
+        template += 'Duration';
     }
-    template += '.title'
+    template += '.title';
     return html`<div id="fire-button-summary">
         <p>
             ${raw(
@@ -44,5 +44,5 @@ export function fireSummaryTemplate(selectedOption) {
                   ${raw(i18n.t('firebutton:summaryPinnedIgnored.title', { tabs: descriptionStats.pinnedTabs }))}
               </p>`
             : null}
-    </div>`
+    </div>`;
 }

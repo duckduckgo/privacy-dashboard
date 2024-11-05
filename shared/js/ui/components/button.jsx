@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
+import { h } from 'preact';
 
 /**
  * @typedef {object} ComponentProps
@@ -12,7 +12,7 @@ export function Button({ children, btnSize, variant = 'desktop-vibrancy', ...res
         <button type="button" className="button token-body" {...rest} data-variant={variant} data-size={btnSize}>
             {children}
         </button>
-    )
+    );
 }
 
 /**
@@ -25,5 +25,5 @@ export function ButtonBar({ children, layout = 'horizontal', ...rest }) {
         <div className="button-bar" data-layout={layout} {...rest}>
             {children}
         </div>
-    )
+    );
 }

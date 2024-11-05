@@ -28,9 +28,9 @@
  * @module Windows integration
  * @category integrations
  */
-import { z } from 'zod'
-import { windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema } from '../../../schema/__generated__/schema.parsers.mjs'
-import { setupGlobalOpenerListener } from '../ui/views/utils/utils'
+import { z } from 'zod';
+import { windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema } from '../../../schema/__generated__/schema.parsers.mjs';
+import { setupGlobalOpenerListener } from '../ui/views/utils/utils';
 import {
     assert,
     CloseMessage,
@@ -41,25 +41,25 @@ import {
     setupMutationObserver,
     SubmitBrokenSiteReportMessage,
     UpdatePermissionMessage,
-} from './common.js'
-import { createTabData } from './utils/request-details.mjs'
+} from './common.js';
+import { createTabData } from './utils/request-details.mjs';
 
-let channel = null
+let channel = null;
 const backgroundMessage = (backgroundModel) => {
-    channel = backgroundModel
-}
+    channel = backgroundModel;
+};
 
-const getBackgroundTabDataPromises = []
-let trackerBlockingData
-let permissionsData
-let certificateData
-let upgradedHttps
-let protections
-let isPendingUpdates
-let parentEntity
+const getBackgroundTabDataPromises = [];
+let trackerBlockingData;
+let permissionsData;
+let certificateData;
+let upgradedHttps;
+let protections;
+let isPendingUpdates;
+let parentEntity;
 
 /** @type {string | undefined} */
-let locale
+let locale;
 
 const combineSources = () => ({
     tab: Object.assign(
@@ -73,19 +73,19 @@ const combineSources = () => ({
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
     ),
-})
+});
 
 const resolveInitialRender = function () {
-    const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean'
-    const isIsProtectedSet = typeof protections !== 'undefined'
-    const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object'
+    const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
+    const isIsProtectedSet = typeof protections !== 'undefined';
+    const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
-        return
+        return;
     }
 
-    getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()))
-    channel?.send('updateTabData')
-}
+    getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()));
+    channel?.send('updateTabData');
+};
 
 // Change handlers
 // -----------------------------------------------------------------------------
@@ -102,31 +102,31 @@ const resolveInitialRender = function () {
  * @param {import('../../../schema/__generated__/schema.types').WindowsViewModel} viewModel
  */
 function handleViewModelUpdate(viewModel) {
-    upgradedHttps = viewModel.upgradedHttps
-    parentEntity = viewModel.parentEntity || {}
-    permissionsData = viewModel.permissions || []
-    certificateData = viewModel.certificates || []
-    protections = viewModel.protections
-    locale = viewModel.localeSettings?.locale
+    upgradedHttps = viewModel.upgradedHttps;
+    parentEntity = viewModel.parentEntity || {};
+    permissionsData = viewModel.permissions || [];
+    certificateData = viewModel.certificates || [];
+    protections = viewModel.protections;
+    locale = viewModel.localeSettings?.locale;
 
-    trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData)
-    trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus
-    trackerBlockingData.isInvalidCert = viewModel.isInvalidCert
+    trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData);
+    trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
+    trackerBlockingData.isInvalidCert = viewModel.isInvalidCert;
 
-    if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
+    if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
 
-    resolveInitialRender()
+    resolveInitialRender();
 }
 
 // -----------------------------------------------------------------------------
 
 function windowsPostMessage(name, data) {
-    assert(typeof window.chrome.webview?.postMessage === 'function')
+    assert(typeof window.chrome.webview?.postMessage === 'function');
     window.chrome.webview.postMessage({
         Feature: 'PrivacyDashboard',
         Name: name,
         Data: data,
-    })
+    });
 }
 
 /**
@@ -137,35 +137,35 @@ async function fetch(message) {
         SubmitBrokenSiteReport({
             category: message.category,
             description: message.description,
-        })
-        return
+        });
+        return;
     }
 
     if (message instanceof OpenSettingsMessages) {
         OpenSettings({
             target: message.target,
-        })
-        return
+        });
+        return;
     }
 
     if (message instanceof SetListsMessage) {
         for (const listItem of message.lists) {
-            const { list, value } = listItem
+            const { list, value } = listItem;
             if (list !== 'allowlisted') {
-                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on windows')
-                continue
+                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on windows');
+                continue;
             }
 
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
-            const isProtected = value === false
+            const isProtected = value === false;
             /** @type {import('../../../schema/__generated__/schema.types').EventOrigin} */
-            const eventOrigin = message.eventOrigin
+            const eventOrigin = message.eventOrigin;
 
             if (isProtected) {
-                RemoveFromAllowListCommand(eventOrigin)
+                RemoveFromAllowListCommand(eventOrigin);
             } else {
-                AddToAllowListCommand(eventOrigin)
+                AddToAllowListCommand(eventOrigin);
             }
         }
     }
@@ -174,11 +174,11 @@ async function fetch(message) {
         SetPermissionCommand({
             permission: message.id,
             value: message.value,
-        })
+        });
     }
 
     if (message instanceof CloseMessage) {
-        CloseCommand(message.eventOrigin)
+        CloseCommand(message.eventOrigin);
     }
 }
 
@@ -201,7 +201,7 @@ export function SubmitBrokenSiteReport(report) {
     windowsPostMessage('SubmitBrokenSiteReport', {
         category: report.category,
         description: report.description,
-    })
+    });
 }
 
 /**
@@ -222,7 +222,7 @@ export function SubmitBrokenSiteReport(report) {
 export function OpenInNewTab(args) {
     windowsPostMessage('OpenInNewTab', {
         url: args.url,
-    })
+    });
 }
 
 /**
@@ -241,7 +241,7 @@ export function OpenInNewTab(args) {
  * ```
  */
 export function SetSize(payload) {
-    windowsPostMessage('SetSize', payload)
+    windowsPostMessage('SetSize', payload);
 }
 
 /**
@@ -260,7 +260,7 @@ export function SetSize(payload) {
  * ```
  */
 export function OpenSettings(args) {
-    windowsPostMessage('OpenSettings', args)
+    windowsPostMessage('OpenSettings', args);
 }
 
 /**
@@ -279,7 +279,7 @@ export function OpenSettings(args) {
  * ```
  */
 export function SetPermissionCommand(args) {
-    windowsPostMessage('SetPermissionCommand', args)
+    windowsPostMessage('SetPermissionCommand', args);
 }
 
 /**
@@ -288,7 +288,7 @@ export function SetPermissionCommand(args) {
  * @group JavaScript -> Windows Messages
  */
 export function RemoveFromAllowListCommand(eventOrigin) {
-    windowsPostMessage('RemoveFromAllowListCommand', { eventOrigin })
+    windowsPostMessage('RemoveFromAllowListCommand', { eventOrigin });
 }
 
 /**
@@ -297,7 +297,7 @@ export function RemoveFromAllowListCommand(eventOrigin) {
  * @group JavaScript -> Windows Messages
  */
 export function AddToAllowListCommand(eventOrigin) {
-    windowsPostMessage('AddToAllowListCommand', { eventOrigin })
+    windowsPostMessage('AddToAllowListCommand', { eventOrigin });
 }
 
 /**
@@ -306,25 +306,25 @@ export function AddToAllowListCommand(eventOrigin) {
  * @group JavaScript -> Windows Messages
  */
 export function CloseCommand(eventOrigin) {
-    windowsPostMessage('CloseCommand', { eventOrigin })
+    windowsPostMessage('CloseCommand', { eventOrigin });
 }
 
 const getBackgroundTabData = () => {
     return new Promise((resolve) => {
         if (trackerBlockingData) {
-            resolve(combineSources())
-            return
+            resolve(combineSources());
+            return;
         }
 
-        getBackgroundTabDataPromises.push(resolve)
-    })
-}
+        getBackgroundTabDataPromises.push(resolve);
+    });
+};
 
 /**
  * A list of the known messages we can handle from the windows layer.
  * Uses the key 'Name' to quickly differentiate between the messages
  */
-const eventShape = z.discriminatedUnion('Name', [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema])
+const eventShape = z.discriminatedUnion('Name', [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema]);
 
 /**
  * Handle all messages sent from Windows via `window.chrome.webview.addEventListener`
@@ -337,43 +337,43 @@ const eventShape = z.discriminatedUnion('Name', [windowsIncomingViewModelSchema,
  * @param {import('../../../schema/__generated__/schema.types').WindowsIncomingMessage} message
  */
 export function handleIncomingMessage(message) {
-    const parsed = eventShape.safeParse(message)
+    const parsed = eventShape.safeParse(message);
     if (!parsed.success) {
-        console.error('cannot handle incoming message from event data', message)
-        console.error(parsed.error)
-        return
+        console.error('cannot handle incoming message from event data', message);
+        console.error(parsed.error);
+        return;
     }
     switch (parsed.data.Name) {
         case 'VisibilityChanged': {
             if (parsed.data.Data.isVisible === false) {
-                document.body.innerHTML = ''
+                document.body.innerHTML = '';
             }
-            break
+            break;
         }
         case 'ViewModelUpdated': {
-            handleViewModelUpdate(parsed.data.Data)
+            handleViewModelUpdate(parsed.data.Data);
         }
     }
 }
 
 export function setup() {
     if (!window.chrome.webview) {
-        console.error('window.chrome.webview not available')
-        return
+        console.error('window.chrome.webview not available');
+        return;
     }
-    setupColorScheme()
-    assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required')
+    setupColorScheme();
+    assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required');
     window.chrome.webview.addEventListener('message', (event) => {
-        handleIncomingMessage(event.data)
-    })
+        handleIncomingMessage(event.data);
+    });
     setupMutationObserver((height) => {
-        SetSize({ height })
-    })
+        SetSize({ height });
+    });
     setupGlobalOpenerListener((href) => {
         OpenInNewTab({
             url: href,
-        })
-    })
+        });
+    });
 }
 
 /**
@@ -384,10 +384,10 @@ export function setup() {
  * @category Internal API
  */
 function firstRenderComplete() {
-    const height = getContentHeight()
+    const height = getContentHeight();
     if (typeof height === 'number') {
-        SetSize({ height })
+        SetSize({ height });
     }
 }
 
-export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete }
+export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete };

@@ -1,24 +1,24 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { SecondaryTopNavAlt, Title } from '../components/top-nav'
-import { Nav, NavItem } from '../components/nav'
-import { KeyInsightsMain } from '../components/key-insights'
-import { useNav } from '../navigation'
-import { TextLink } from '../../shared/js/ui/components/text-link'
-import { ProtectionToggle } from '../../shared/js/ui/components/toggle'
-import { useData, useFeatures, useSendReport, useShowAlert, useShowNativeFeedback, useTelemetry, useToggle } from '../data-provider'
-import { FormElement } from './breakage-form-screen'
-import { ns } from '../../shared/js/ui/base/localize'
-import { useMemo } from 'preact/hooks'
-import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categories'
+import { h } from 'preact';
+import { SecondaryTopNavAlt, Title } from '../components/top-nav';
+import { Nav, NavItem } from '../components/nav';
+import { KeyInsightsMain } from '../components/key-insights';
+import { useNav } from '../navigation';
+import { TextLink } from '../../shared/js/ui/components/text-link';
+import { ProtectionToggle } from '../../shared/js/ui/components/toggle';
+import { useData, useFeatures, useSendReport, useShowAlert, useShowNativeFeedback, useTelemetry, useToggle } from '../data-provider';
+import { FormElement } from './breakage-form-screen';
+import { ns } from '../../shared/js/ui/base/localize';
+import { useMemo } from 'preact/hooks';
+import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categories';
 
 export function CategoryTypeSelection() {
-    const description = ns.report('selectTheCategoryType.title')
-    const { push } = useNav()
-    const send = useTelemetry()
-    const { tab } = useData()
+    const description = ns.report('selectTheCategoryType.title');
+    const { push } = useNav();
+    const send = useTelemetry();
+    const { tab } = useData();
 
-    const showNativeFeedback = useShowNativeFeedback()
+    const showNativeFeedback = useShowNativeFeedback();
     return (
         <div className="site-info page-inner card" data-page="choice-problem">
             <NavWrapper />
@@ -30,24 +30,24 @@ export function CategoryTypeSelection() {
                 <Nav>
                     <NavItem
                         onClick={() => {
-                            send({ name: 'categoryTypeSelected', value: 'notWorking' })
-                            push('categorySelection')
+                            send({ name: 'categoryTypeSelected', value: 'notWorking' });
+                            push('categorySelection');
                         }}
                     >
                         {ns.report('categoryType1.title')}
                     </NavItem>
                     <NavItem
                         onClick={() => {
-                            send({ name: 'categoryTypeSelected', value: 'dislike' })
-                            push('choiceBreakageForm', { category: 'dislike' })
+                            send({ name: 'categoryTypeSelected', value: 'dislike' });
+                            push('choiceBreakageForm', { category: 'dislike' });
                         }}
                     >
                         {ns.report('categoryType2.title')}
                     </NavItem>
                     <NavItem
                         onClick={() => {
-                            send({ name: 'categoryTypeSelected', value: 'general' })
-                            showNativeFeedback()
+                            send({ name: 'categoryTypeSelected', value: 'general' });
+                            showNativeFeedback();
                         }}
                     >
                         {ns.report('categoryType3.title')}
@@ -55,30 +55,30 @@ export function CategoryTypeSelection() {
                 </Nav>
             </div>
         </div>
-    )
+    );
 }
 
 export function CategorySelection() {
-    const description = ns.report('selectTheCategory.title')
-    const { push } = useNav()
-    const send = useTelemetry()
-    const { protectionsEnabled, tab } = useData()
-    const text = tab.domain
-    const platformFeatures = useFeatures()
+    const description = ns.report('selectTheCategory.title');
+    const { push } = useNav();
+    const send = useTelemetry();
+    const { protectionsEnabled, tab } = useData();
+    const text = tab.domain;
+    const platformFeatures = useFeatures();
     const showToggle =
         protectionsEnabled &&
-        (platformFeatures.breakageScreen === 'categoryTypeSelection' || platformFeatures.initialScreen === 'categoryTypeSelection')
+        (platformFeatures.breakageScreen === 'categoryTypeSelection' || platformFeatures.initialScreen === 'categoryTypeSelection');
 
     // shuffle once and remember
     const randomised = useMemo(() => {
-        const f = createBreakageFeaturesFrom(platformFeatures)
+        const f = createBreakageFeaturesFrom(platformFeatures);
 
         // override the description for 'login' on this screen.
         // this is deliberately different to the 'regular' breakage form.
         return f.categoryList({
             login: ns.report('loginV2.title'),
-        })
-    }, [platformFeatures])
+        });
+    }, [platformFeatures]);
 
     return (
         <div className="site-info page-inner card" data-page="choice-category">
@@ -94,31 +94,31 @@ export function CategorySelection() {
                             <NavItem
                                 key={value}
                                 onClick={() => {
-                                    send({ name: 'categorySelected', value: /** @type {any} */ (value) })
+                                    send({ name: 'categorySelected', value: /** @type {any} */ (value) });
                                     if (showToggle) {
-                                        push('choiceToggle', { category: value })
+                                        push('choiceToggle', { category: value });
                                     } else {
-                                        push('choiceBreakageForm', { category: value })
+                                        push('choiceBreakageForm', { category: value });
                                     }
                                 }}
                             >
                                 {title}
                             </NavItem>
-                        )
+                        );
                     })}
                 </Nav>
             </div>
         </div>
-    )
+    );
 }
 
 export function ChoiceToggleScreen() {
-    const description = ns.report('tryTurningProtectionsOff.title')
-    const { push } = useNav()
-    const data = useData()
-    const text = data.tab.domain
-    const onToggle = useToggle()
-    const send = useTelemetry()
+    const description = ns.report('tryTurningProtectionsOff.title');
+    const { push } = useNav();
+    const data = useData();
+    const text = data.tab.domain;
+    const onToggle = useToggle();
+    const send = useTelemetry();
     return (
         <div className="site-info page-inner card" data-page="choice-category">
             <NavWrapper />
@@ -139,8 +139,8 @@ export function ChoiceToggleScreen() {
                 <div class="text--center">
                     <TextLink
                         onClick={() => {
-                            push('choiceBreakageForm')
-                            send({ name: 'toggleSkipped' })
+                            push('choiceBreakageForm');
+                            send({ name: 'toggleSkipped' });
                         }}
                     >
                         {ns.report('skipThisStep.title')}
@@ -148,40 +148,40 @@ export function ChoiceToggleScreen() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export const validCategories = () => {
     return {
         ...defaultCategories(),
         dislike: ns.report('dislike.title'),
-    }
-}
+    };
+};
 export function ChoiceBreakageForm() {
-    const { tab } = useData()
-    const sendReport = useSendReport()
-    const nav = useNav()
-    const showAlert = useShowAlert()
-    const categories = validCategories()
-    let category = nav.params.get('category')
+    const { tab } = useData();
+    const sendReport = useSendReport();
+    const nav = useNav();
+    const showAlert = useShowAlert();
+    const categories = validCategories();
+    let category = nav.params.get('category');
 
     if (!category || !Object.hasOwnProperty.call(categories, category)) {
-        category = 'other'
+        category = 'other';
     }
-    const description = categories[category]
-    const placeholder = category === 'other' ? ns.report('otherRequired.title') : ns.report('otherOptional.title')
+    const description = categories[category];
+    const placeholder = category === 'other' ? ns.report('otherRequired.title') : ns.report('otherOptional.title');
 
     function submit(e) {
-        e.preventDefault()
-        const values = Object.fromEntries(new FormData(e.target))
-        const desc = String(values.description).trim()
+        e.preventDefault();
+        const values = Object.fromEntries(new FormData(e.target));
+        const desc = String(values.description).trim();
         if (category === 'other' && desc.length === 0) {
-            showAlert()
+            showAlert();
         } else {
             sendReport({
                 category: category,
                 description: desc,
-            })
+            });
         }
     }
 
@@ -206,7 +206,7 @@ export function ChoiceBreakageForm() {
                 />
             </div>
         </div>
-    )
+    );
 }
 
 function NavWrapper() {
@@ -214,5 +214,5 @@ function NavWrapper() {
         <SecondaryTopNavAlt>
             <Title>{ns.report('reportTitle.title')}</Title>
         </SecondaryTopNavAlt>
-    )
+    );
 }

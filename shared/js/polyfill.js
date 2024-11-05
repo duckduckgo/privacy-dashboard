@@ -1,1 +1,1 @@
-import '@formatjs/intl-locale/polyfill'
+import '@formatjs/intl-locale/polyfill';

@@ -1,5 +1,5 @@
-import { Protections } from '../../../browser/utils/protections.mjs'
-import { protectionsOff } from './toggle-protections.mjs'
+import { Protections } from '../../../browser/utils/protections.mjs';
+import { protectionsOff } from './toggle-protections.mjs';
 
 /**
  * @typedef {import('../../../browser/utils/request-details.mjs').TabData} TabData
@@ -15,7 +15,7 @@ const allowedFirstPartyTracker = {
     url: 'https://example.com/a.js',
     pageUrl: 'https://example.com',
     state: { allowed: { reason: 'ownedByFirstParty' } },
-}
+};
 
 /** @type {DetectedRequest} */
 const allowedTrackerRule = {
@@ -24,7 +24,7 @@ const allowedTrackerRule = {
     url: 'https://example.com/a.js',
     pageUrl: 'https://example.com',
     state: { allowed: { reason: 'ruleException' } },
-}
+};
 
 /** @type {DetectedRequest} */
 const allowedThirdParty = {
@@ -34,7 +34,7 @@ const allowedThirdParty = {
     pageUrl: 'https://example.com',
     category: 'Advertising',
     state: { allowed: { reason: 'otherThirdPartyRequest' } },
-}
+};
 
 /** @type {DetectedRequest} */
 const allowedAdClickAttribution = {
@@ -44,7 +44,7 @@ const allowedAdClickAttribution = {
     pageUrl: 'https://example.com',
     category: 'Advertising',
     state: { allowed: { reason: 'adClickAttribution' } },
-}
+};
 
 /** @type {DetectedRequest} */
 const blocked1 = {
@@ -54,7 +54,7 @@ const blocked1 = {
     pageUrl: 'https://example.com',
     category: 'Advertising',
     state: { blocked: {} },
-}
+};
 
 /** @type {DetectedRequest} */
 const allowedProtectionsDisabled = {
@@ -64,7 +64,7 @@ const allowedProtectionsDisabled = {
     pageUrl: 'https://example.com',
     category: 'Advertising',
     state: { allowed: { reason: 'protectionDisabled' } },
-}
+};
 
 export const requests = {
     allowedTrackerFirstParty: allowedFirstPartyTracker,
@@ -73,7 +73,7 @@ export const requests = {
     allowedAdClickAttribution,
     allowedProtectionsDisabled,
     blocked: blocked1,
-}
+};
 
 export const defaultCertificates = [
     {
@@ -140,7 +140,7 @@ export const defaultCertificates = [
         emails: [],
         summary: 'Baltimore CyberTrust Root',
     },
-]
+];
 
 export const permissions = [
     {
@@ -223,7 +223,7 @@ export const permissions = [
             },
         ],
     },
-]
+];
 
 /**
  * @typedef {{ clearHistory: boolean, tabClearEnabled: boolean, pinnedTabs: number }} BurnConfig
@@ -262,43 +262,43 @@ export class MockData {
      * @param {boolean} [params.isInvalidCert]
      */
     constructor(params) {
-        this.urlParams = params.urlParams || {}
-        this.url = params.url || 'https://example.com'
-        this.requests = params.requests || []
-        this.state = params.state
-        this.localeSettings = params.localeSettings || { locale: 'en' }
-        this.certificate = params.certificate || defaultCertificates
-        this.upgradedHttps = params.upgradedHttps ?? false
-        this.phishing = params.phishing ?? { phishingStatus: false }
-        this.contentBlockingException = params.contentBlockingException
-        this.parentEntity = params.parentEntity
-        this.permissions = params.permissions
-        this.allowlisted = params.allowlisted
-        this.denylisted = params.denylisted
-        this.specialDomainName = params.specialDomainName
-        this.emailUser = params.emailUser
-        this.cookiePromptManagementStatus = params.cookiePromptManagementStatus
-        this.fireButtonEnabled = params.fireButtonEnabled || false
-        this.remoteFeatureSettings = params.remoteFeatureSettings
-        this.emailProtectionUserData = params.emailProtectionUserData
-        this.fireButtonOptions = params.fireButtonOptions
-        this.isInvalidCert = params.isInvalidCert
+        this.urlParams = params.urlParams || {};
+        this.url = params.url || 'https://example.com';
+        this.requests = params.requests || [];
+        this.state = params.state;
+        this.localeSettings = params.localeSettings || { locale: 'en' };
+        this.certificate = params.certificate || defaultCertificates;
+        this.upgradedHttps = params.upgradedHttps ?? false;
+        this.phishing = params.phishing ?? { phishingStatus: false };
+        this.contentBlockingException = params.contentBlockingException;
+        this.parentEntity = params.parentEntity;
+        this.permissions = params.permissions;
+        this.allowlisted = params.allowlisted;
+        this.denylisted = params.denylisted;
+        this.specialDomainName = params.specialDomainName;
+        this.emailUser = params.emailUser;
+        this.cookiePromptManagementStatus = params.cookiePromptManagementStatus;
+        this.fireButtonEnabled = params.fireButtonEnabled || false;
+        this.remoteFeatureSettings = params.remoteFeatureSettings;
+        this.emailProtectionUserData = params.emailProtectionUserData;
+        this.fireButtonOptions = params.fireButtonOptions;
+        this.isInvalidCert = params.isInvalidCert;
 
         /** @type {Protections} */
-        this.protections = Protections.default()
+        this.protections = Protections.default();
 
         if (this.allowlisted) {
-            this.protections.allowlisted = true
+            this.protections.allowlisted = true;
         }
         if (this.denylisted) {
-            this.protections.denylisted = true
-            this.contentBlockingException = true
+            this.protections.denylisted = true;
+            this.contentBlockingException = true;
         }
         if (this.contentBlockingException) {
-            this.protections.enabledFeatures = []
+            this.protections.enabledFeatures = [];
         }
         if (this.requests && (this.protections.allowlisted || this.contentBlockingException)) {
-            this.requests = protectionsOff(this.requests)
+            this.requests = protectionsOff(this.requests);
         }
     }
 
@@ -309,7 +309,7 @@ export class MockData {
     static default(mock) {
         return new MockData({
             ...mock,
-        })
+        });
     }
 
     /**
@@ -333,7 +333,7 @@ export class MockData {
                 isInvalidCert: this.isInvalidCert,
                 localeSettings: this.localeSettings,
             },
-        }
+        };
     }
 
     /**
@@ -354,29 +354,29 @@ export class MockData {
                 requests: this.requests || [],
             },
             emailProtectionUserData: this.emailProtectionUserData,
-        }
+        };
 
         if (this.specialDomainName) {
-            output.tab.specialDomainName = 'extensions'
+            output.tab.specialDomainName = 'extensions';
         }
         if (this.emailUser) {
             output.emailProtectionUserData = {
                 nextAlias: '123456_next',
-            }
+            };
         }
         if (this.localeSettings) {
-            output.tab.localeSettings = this.localeSettings
+            output.tab.localeSettings = this.localeSettings;
         }
 
-        return output
+        return output;
     }
 
     /**
      * @return {import('../../../../../schema/__generated__/schema.types.js').FireButtonData}
      */
     toBurnOptions() {
-        const burnConfig = this.fireButtonOptions || { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 }
-        const { clearHistory, pinnedTabs, tabClearEnabled } = burnConfig
+        const burnConfig = this.fireButtonOptions || { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 };
+        const { clearHistory, pinnedTabs, tabClearEnabled } = burnConfig;
         return {
             options: [
                 {
@@ -418,7 +418,7 @@ export class MockData {
                     },
                 },
             ],
-        }
+        };
     }
 }
 
@@ -813,12 +813,12 @@ export const createDataStates = (google, cnn) => {
             },
         }),
         empty: new MockData({}),
-    }
-}
+    };
+};
 
 function requestsFromOverride() {
-    if (typeof window === 'undefined') return []
-    const keys = new URLSearchParams(window.location.search).getAll('requests')
-    const known = Object.keys(requests)
-    return keys.filter((key) => known.includes(key)).map((key) => requests[key])
+    if (typeof window === 'undefined') return [];
+    const keys = new URLSearchParams(window.location.search).getAll('requests');
+    const known = Object.keys(requests);
+    return keys.filter((key) => known.includes(key)).map((key) => requests[key]);
 }

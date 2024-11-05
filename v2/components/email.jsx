@@ -1,17 +1,17 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { createContext, h } from 'preact'
-import { useContext, useReducer } from 'preact/hooks'
-import { useData, useFetcher } from '../data-provider'
-import { i18n } from '../../shared/js/ui/base/localize'
-import { RefreshEmailAliasMessage } from '../../shared/js/browser/common'
-import { z } from 'zod'
+import { createContext, h } from 'preact';
+import { useContext, useReducer } from 'preact/hooks';
+import { useData, useFetcher } from '../data-provider';
+import { i18n } from '../../shared/js/ui/base/localize';
+import { RefreshEmailAliasMessage } from '../../shared/js/browser/common';
+import { z } from 'zod';
 
 /**
  * Given a username, returns a valid email address with the duck domain
  * @param {string} address
  * @returns {string}
  */
-const formatAddress = (address) => address + '@duck.com'
+const formatAddress = (address) => address + '@duck.com';
 
 const EmailContext = createContext({
     /** @type {EmailState} */
@@ -21,9 +21,9 @@ const EmailContext = createContext({
     },
     /** @type {() => void} */
     copyAlias: () => {
-        throw new Error('todo: implement refresh')
+        throw new Error('todo: implement refresh');
     },
-})
+});
 
 /**
  * @typedef {{state: 'unknown' | 'idle' | 'added', alias: string | null | undefined}} EmailState
@@ -31,14 +31,14 @@ const EmailContext = createContext({
  */
 
 export function EmailProvider({ children }) {
-    const data = useData()
-    const fetcher = useFetcher()
-    const hasAlias = typeof data.emailProtectionUserData?.nextAlias === 'string'
+    const data = useData();
+    const fetcher = useFetcher();
+    const hasAlias = typeof data.emailProtectionUserData?.nextAlias === 'string';
     /** @type {EmailState} */
     const initialState = {
         state: hasAlias ? 'idle' : 'unknown',
         alias: hasAlias ? data.emailProtectionUserData?.nextAlias : null,
-    }
+    };
     const [state, dispatch] = useReducer((/** @type {EmailState} */ state, /** @type {EmailActions} */ action) => {
         switch (state.state) {
             case 'added': {
@@ -47,16 +47,16 @@ export function EmailProvider({ children }) {
                         return {
                             ...state,
                             alias: action.alias,
-                        }
+                        };
                     }
                     case 'reset': {
                         return {
                             ...state,
                             state: /** @type {const} */ ('idle'),
-                        }
+                        };
                     }
                     default:
-                        return state
+                        return state;
                 }
             }
             case 'idle':
@@ -66,58 +66,58 @@ export function EmailProvider({ children }) {
                         return {
                             ...state,
                             state: /** @type {const} */ ('added'),
-                        }
+                        };
                     }
                 }
-                break
+                break;
         }
-        return state
-    }, initialState)
+        return state;
+    }, initialState);
     function copyAlias() {
-        dispatch({ type: 'copy' })
+        dispatch({ type: 'copy' });
         if (!state.alias) {
-            return console.warn('missing state.alias')
+            return console.warn('missing state.alias');
         }
-        navigator.clipboard?.writeText(formatAddress(state.alias))
-        const msg = new RefreshEmailAliasMessage()
+        navigator.clipboard?.writeText(formatAddress(state.alias));
+        const msg = new RefreshEmailAliasMessage();
         fetcher(msg)
             .then((resp) => {
-                console.log('--', resp)
+                console.log('--', resp);
                 const response = z.object({
                     privateAddress: z.string().optional(),
-                })
-                const parsed = response.safeParse(resp)
+                });
+                const parsed = response.safeParse(resp);
                 if (!parsed.success) {
-                    console.warn('response did not contain a valid private address', resp)
+                    console.warn('response did not contain a valid private address', resp);
                     dispatch({
                         type: 'update',
                         alias: null,
-                    })
+                    });
                 } else {
                     if (!parsed.data.privateAddress) {
-                        return console.warn('missing `privateAddress`')
+                        return console.warn('missing `privateAddress`');
                     }
                     dispatch({
                         type: 'update',
                         alias: parsed.data.privateAddress,
-                    })
+                    });
                 }
             })
             .catch((e) => console.error('error refreshing', e))
             .finally(() => {
                 setTimeout(() => {
-                    dispatch({ type: 'reset' })
-                }, 2000)
-            })
+                    dispatch({ type: 'reset' });
+                }, 2000);
+            });
     }
-    if (state.state === 'unknown') return null
-    return <EmailContext.Provider value={{ state, copyAlias }}>{children}</EmailContext.Provider>
+    if (state.state === 'unknown') return null;
+    return <EmailContext.Provider value={{ state, copyAlias }}>{children}</EmailContext.Provider>;
 }
 
 export function EmailBar() {
-    const { state, copyAlias } = useContext(EmailContext)
-    const text = state.state === 'idle' ? i18n.t('site:createNewDuckAddress.title') : i18n.t('site:createNewDuckAddressCopied.title')
-    const icon = state.state === 'idle' ? <WandIcon /> : <CheckMarkIcon />
+    const { state, copyAlias } = useContext(EmailContext);
+    const text = state.state === 'idle' ? i18n.t('site:createNewDuckAddress.title') : i18n.t('site:createNewDuckAddressCopied.title');
+    const icon = state.state === 'idle' ? <WandIcon /> : <CheckMarkIcon />;
 
     return (
         <div id="email-alias-container">
@@ -134,7 +134,7 @@ export function EmailBar() {
                 </button>
             </div>
         </div>
-    )
+    );
 }
 
 function WandIcon() {
@@ -150,7 +150,7 @@ function WandIcon() {
             <path d="M2.28296 12.658L9.24784 5.69307C9.54074 5.40018 10.0156 5.40018 10.3085 5.69307V5.69307C10.6014 5.98597 10.6014 6.46084 10.3085 6.75373L3.34362 13.7186L2.28296 12.658Z" />
             <path d="M0.243221 15.7588C-0.0496725 15.466 -0.0496726 14.9911 0.243221 14.6982L1.75195 13.1895L2.81261 14.2501L1.30388 15.7588C1.01099 16.0517 0.536114 16.0517 0.243221 15.7588V15.7588Z" />
         </svg>
-    )
+    );
 }
 
 function CheckMarkIcon() {
@@ -163,5 +163,5 @@ function CheckMarkIcon() {
                 d="M8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0ZM1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8Z"
             />
         </svg>
-    )
+    );
 }

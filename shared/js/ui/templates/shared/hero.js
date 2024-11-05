@@ -1,8 +1,8 @@
-import html from 'nanohtml'
-import { aboutLink } from './links'
-import { trackerNetworksHeroIcon, trackerNetworkSummary } from './tracker-networks-text.js'
-import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.js'
-import raw from 'nanohtml/raw'
+import html from 'nanohtml';
+import { aboutLink } from './links';
+import { trackerNetworksHeroIcon, trackerNetworkSummary } from './tracker-networks-text.js';
+import { thirdpartyHeroIcon, thirdpartySummary } from './thirdparty-text.js';
+import raw from 'nanohtml/raw';
 
 /**
  * @param {object} opts
@@ -17,7 +17,7 @@ export function heroTemplate(opts) {
             ${opts.icon} ${opts.summary ? html`<p class="token-title-3">${raw(opts.summary)}</p>` : null}
             ${opts.suffix === 'about-link' ? aboutLink() : null} ${opts.children ? opts.children : null}
         </div>
-    `
+    `;
 }
 
 /**
@@ -26,16 +26,16 @@ export function heroTemplate(opts) {
  * @returns {HTMLElement}
  */
 export function heroFromTabTrackers(requestDetails, protectionsEnabled) {
-    const summary = trackerNetworkSummary(requestDetails, protectionsEnabled)
-    const icon = trackerNetworksHeroIcon(requestDetails, protectionsEnabled)
+    const summary = trackerNetworkSummary(requestDetails, protectionsEnabled);
+    const icon = trackerNetworksHeroIcon(requestDetails, protectionsEnabled);
     const largeIcon = largeHeroIcon({
         status: icon,
-    })
+    });
     return heroTemplate({
         suffix: 'about-link',
         icon: largeIcon,
         summary,
-    })
+    });
 }
 
 /**
@@ -44,16 +44,16 @@ export function heroFromTabTrackers(requestDetails, protectionsEnabled) {
  * @returns {HTMLElement}
  */
 export function heroFromTabNonTrackers(requestDetails, protectionsEnabled) {
-    const summary = thirdpartySummary(requestDetails, protectionsEnabled)
-    const icon = thirdpartyHeroIcon(requestDetails, protectionsEnabled)
+    const summary = thirdpartySummary(requestDetails, protectionsEnabled);
+    const icon = thirdpartyHeroIcon(requestDetails, protectionsEnabled);
     const largeIcon = largeHeroIcon({
         status: icon,
-    })
+    });
     return heroTemplate({
         suffix: 'about-link',
         icon: largeIcon,
         summary,
-    })
+    });
 }
 
 /**
@@ -61,5 +61,5 @@ export function heroFromTabNonTrackers(requestDetails, protectionsEnabled) {
  * @param {string} props.status
  */
 export function largeHeroIcon(props) {
-    return html`<div class="large-icon-container hero-icon--${props.status}"></div>`
+    return html`<div class="large-icon-container hero-icon--${props.status}"></div>`;
 }

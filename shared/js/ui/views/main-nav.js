@@ -1,24 +1,24 @@
-import html from 'nanohtml'
-import { trackerNetworksTitle, trackerNetworksIcon } from '../templates/shared/tracker-networks-text.js'
-import { thirdpartyTitle, thirdpartyIcon } from '../templates/shared/thirdparty-text.js'
-import { i18n } from '../base/localize.js'
-import { httpsMessages } from '../../../data/constants'
-import { states } from '../../browser/utils/request-details.mjs'
+import html from 'nanohtml';
+import { trackerNetworksTitle, trackerNetworksIcon } from '../templates/shared/tracker-networks-text.js';
+import { thirdpartyTitle, thirdpartyIcon } from '../templates/shared/thirdparty-text.js';
+import { i18n } from '../base/localize.js';
+import { httpsMessages } from '../../../data/constants';
+import { states } from '../../browser/utils/request-details.mjs';
 
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  * @returns {HTMLElement}
  */
 export function template(model, nav) {
-    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged
-    const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`
+    const consentCb = model.tab.cookiePromptManagementStatus?.cosmetic ? nav.cookieHidden : nav.consentManaged;
+    const consentRow = html`<li class="main-nav__row">${renderCookieConsentManaged(model, consentCb)}</li>`;
     const networkTrackersLink = shouldRenderTrackerNetworksLink(model)
         ? html`<li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>`
-        : ''
-    const renderConnectionAsText = model.httpsState === 'phishing'
+        : '';
+    const renderConnectionAsText = model.httpsState === 'phishing';
     const connectionRow = renderConnectionAsText
         ? html`<li class="main-nav__row no-hover">${renderConnectionText(model)}</li>`
-        : html`<li class="main-nav__row">${renderConnection(model, nav.connection)}</li>`
+        : html`<li class="main-nav__row">${renderConnection(model, nav.connection)}</li>`;
 
     return html`
         <ul class="default-list main-nav token-body-em js-site-main-nav">
@@ -26,18 +26,18 @@ export function template(model, nav) {
             <li class="main-nav__row">${renderThirdPartyNew(model, nav.nonTrackers)}</li>
             ${model.tab?.cookiePromptManagementStatus?.consentManaged ? consentRow : null}
         </ul>
-    `
+    `;
 }
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderCookieConsentManaged(model, cb) {
-    if (!model.tab?.cookiePromptManagementStatus) return null
+    if (!model.tab?.cookiePromptManagementStatus) return null;
 
-    const { consentManaged, cosmetic, optoutFailed, configurable } = model.tab.cookiePromptManagementStatus
+    const { consentManaged, cosmetic, optoutFailed, configurable } = model.tab.cookiePromptManagementStatus;
 
     if (consentManaged && !optoutFailed) {
-        const text = cosmetic ? i18n.t('site:cookiesHidden.title') : i18n.t('site:cookiesMinimized.title')
+        const text = cosmetic ? i18n.t('site:cookiesHidden.title') : i18n.t('site:cookiesMinimized.title');
         if (configurable) {
             return html`
                 <a
@@ -51,30 +51,30 @@ function renderCookieConsentManaged(model, cb) {
                     <span class="main-nav__text">${text}</span>
                     <span class="main-nav__chev"></span>
                 </a>
-            `
+            `;
         } else {
             return html`
                 <div class="main-nav__item">
                     <span class="main-nav__icon icon-small--secure"></span>
                     <span class="main-nav__text">${text}</span>
                 </div>
-            `
+            `;
         }
     }
 
-    return html``
+    return html``;
 }
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderConnection(model, cb) {
-    let icon = 'icon-small--insecure'
-    const text = i18n.t(httpsMessages[model.httpsState])
-    const isSecure = model.httpsState === 'secure'
-    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+    let icon = 'icon-small--insecure';
+    const text = i18n.t(httpsMessages[model.httpsState]);
+    const isSecure = model.httpsState === 'secure';
+    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url);
 
     if (isSecure || isUpgraded) {
-        icon = 'icon-small--secure'
+        icon = 'icon-small--secure';
     }
 
     return html` <a
@@ -88,34 +88,34 @@ function renderConnection(model, cb) {
         <span class="main-nav__icon ${icon}"></span>
         <span class="main-nav__text">${text}</span>
         <span class="main-nav__chev"></span>
-    </a>`
+    </a>`;
 }
 
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderConnectionText(model) {
-    let icon = 'icon-small--insecure'
-    const text = i18n.t(httpsMessages[model.httpsState])
-    const isSecure = model.httpsState === 'secure'
-    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url)
+    let icon = 'icon-small--insecure';
+    const text = i18n.t(httpsMessages[model.httpsState]);
+    const isSecure = model.httpsState === 'secure';
+    const isUpgraded = model.httpsState === 'upgraded' && /^https/.exec(model.tab.url);
 
     if (isSecure || isUpgraded) {
-        icon = 'icon-small--secure'
+        icon = 'icon-small--secure';
     }
 
     return html`<div class="main-nav__item">
         <span class="main-nav__icon ${icon}"></span>
         <span class="main-nav__text">${text}</span>
-    </div>`
+    </div>`;
 }
 
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderTrackerNetworksNew(model, cb) {
-    const title = trackerNetworksTitle(model.tab.requestDetails, model.protectionsEnabled)
-    const icon = trackerNetworksIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus)
+    const title = trackerNetworksTitle(model.tab.requestDetails, model.protectionsEnabled);
+    const icon = trackerNetworksIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
 
     return html` <a
         href="javascript:void(0)"
@@ -128,15 +128,15 @@ function renderTrackerNetworksNew(model, cb) {
         <span class="main-nav__icon icon-small--${icon}"></span>
         <span class="main-nav__text">${title}</span>
         <span class="main-nav__chev"></span>
-    </a>`
+    </a>`;
 }
 
 /**
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderThirdPartyNew(model, cb) {
-    const title = thirdpartyTitle(model.tab.requestDetails, model.protectionsEnabled)
-    const icon = thirdpartyIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus)
+    const title = thirdpartyTitle(model.tab.requestDetails, model.protectionsEnabled);
+    const icon = thirdpartyIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
 
     return html` <a
         href="javascript:void(0)"
@@ -149,7 +149,7 @@ function renderThirdPartyNew(model, cb) {
         <span class="main-nav__icon icon-small--${icon}"></span>
         <span class="main-nav__text">${title}</span>
         <span class="main-nav__chev"></span>
-    </a>`
+    </a>`;
 }
 
 /**
@@ -157,15 +157,15 @@ function renderThirdPartyNew(model, cb) {
  * @returns {boolean}
  */
 export function shouldRenderTrackerNetworksLink(model) {
-    const state = model.tab.requestDetails.state(model.protectionsEnabled)
+    const state = model.tab.requestDetails.state(model.protectionsEnabled);
 
     switch (state) {
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
-            return false
+            return false;
         default:
-            return true
+            return true;
     }
 }

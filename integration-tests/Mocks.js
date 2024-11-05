@@ -1,17 +1,17 @@
-import { expect } from '@playwright/test'
-import { installAndroidMocks, installWebkitMocks, installWindowsMocks } from './helpers'
-import { z } from 'zod'
+import { expect } from '@playwright/test';
+import { installAndroidMocks, installWebkitMocks, installWindowsMocks } from './helpers';
+import { z } from 'zod';
 
 export class Mocks {
-    page
-    platform
+    page;
+    platform;
     /**
      * @param {import("@playwright/test").Page} page
      * @param {import("../shared/js/ui/platform-features.mjs").Platform} platform
      */
     constructor(page, platform) {
-        this.page = page
-        this.platform = platform
+        this.page = page;
+        this.platform = platform;
     }
 
     /**
@@ -20,18 +20,18 @@ export class Mocks {
     async install() {
         switch (this.platform.name) {
             case 'android':
-                return installAndroidMocks(this.page)
+                return installAndroidMocks(this.page);
             case 'ios':
             case 'macos':
-                return installWebkitMocks(this.page)
+                return installWebkitMocks(this.page);
             case 'windows':
-                return installWindowsMocks(this.page)
+                return installWindowsMocks(this.page);
             case 'browser':
-                return Promise.resolve()
+                return Promise.resolve();
             default: {
                 /** @type {never} */
-                const n = this.platform.name
-                throw new Error('unreachable ' + n)
+                const n = this.platform.name;
+                throw new Error('unreachable ' + n);
             }
         }
     }
@@ -43,46 +43,46 @@ export class Mocks {
     async outgoing(opts = { names: [] }) {
         await this.page.waitForFunction(
             (opts) => {
-                const current = window.__playwright.mocks.outgoing
+                const current = window.__playwright.mocks.outgoing;
                 if (opts.names.length) {
-                    const target = opts.names.length
-                    const messages = current.filter(([name]) => opts.names.includes(name))
-                    if (messages.length >= target) return true
-                    return false
+                    const target = opts.names.length;
+                    const messages = current.filter(([name]) => opts.names.includes(name));
+                    if (messages.length >= target) return true;
+                    return false;
                 }
-                if (current.length > 0) return true
-                return false
+                if (current.length > 0) return true;
+                return false;
             },
             opts,
             { timeout: 5000 }
-        )
+        );
 
-        const values = await this.page.evaluate(() => window.__playwright.mocks.outgoing)
+        const values = await this.page.evaluate(() => window.__playwright.mocks.outgoing);
 
         if (Array.isArray(opts.names) && opts.names.length > 0) {
-            return values.filter(([name]) => opts.names.includes(name))
+            return values.filter(([name]) => opts.names.includes(name));
         }
-        return values
+        return values;
     }
 
     async calledForShowBreakageForm() {
         // only on ios/android
-        if (!['android', 'ios'].includes(this.platform.name)) return
+        if (!['android', 'ios'].includes(this.platform.name)) return;
 
-        const calls = await this.outgoing()
+        const calls = await this.outgoing();
         if (this.platform.name === 'android') {
-            expect(calls).toMatchObject([['showBreakageForm', undefined]])
-            return
+            expect(calls).toMatchObject([['showBreakageForm', undefined]]);
+            return;
         }
         if (this.platform.name === 'ios') {
-            expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]])
+            expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]]);
         }
     }
 
     async calledForSendToggleReport() {
-        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return
+        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return;
         if (this.platform.name === 'browser') {
-            const calls = await this.outgoing({ names: ['sendToggleReport'] })
+            const calls = await this.outgoing({ names: ['sendToggleReport'] });
             expect(calls).toMatchObject([
                 [
                     'sendToggleReport',
@@ -90,19 +90,19 @@ export class Mocks {
                         messageType: 'sendToggleReport',
                     },
                 ],
-            ])
+            ]);
         } else {
             const out = await this.outgoing({
                 names: ['privacyDashboardSendToggleReport'],
-            })
-            expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]])
+            });
+            expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]]);
         }
     }
 
     async calledForRejectToggleReport() {
-        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return
+        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return;
         if (this.platform.name === 'browser') {
-            const calls = await this.outgoing({ names: ['rejectToggleReport'] })
+            const calls = await this.outgoing({ names: ['rejectToggleReport'] });
             expect(calls).toMatchObject([
                 [
                     'rejectToggleReport',
@@ -110,21 +110,21 @@ export class Mocks {
                         messageType: 'rejectToggleReport',
                     },
                 ],
-            ])
+            ]);
         } else {
             // ios/macos
             const out = await this.outgoing({
                 names: ['privacyDashboardRejectToggleReport'],
-            })
-            expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]])
+            });
+            expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]]);
         }
     }
 
     async calledForSeeWhatsSent() {
         const out = await this.outgoing({
             names: ['privacyDashboardSeeWhatIsSent'],
-        })
-        expect(out).toMatchObject([['privacyDashboardSeeWhatIsSent', {}]])
+        });
+        expect(out).toMatchObject([['privacyDashboardSeeWhatIsSent', {}]]);
     }
 
     /**
@@ -136,8 +136,8 @@ export class Mocks {
     async didSendTelemetry({ screen, attributes }) {
         const calls = await this.outgoing({
             names: ['privacyDashboardTelemetrySpan'],
-        })
-        const filtered = calls.find(([_name, payload]) => payload.attributes?.name === attributes.name)
+        });
+        const filtered = calls.find(([_name, payload]) => payload.attributes?.name === attributes.name);
         expect(filtered).toMatchObject([
             'privacyDashboardTelemetrySpan',
             {
@@ -146,7 +146,7 @@ export class Mocks {
                 },
                 attributes,
             },
-        ])
+        ]);
     }
 
     /**
@@ -156,28 +156,28 @@ export class Mocks {
     async calledForAlert(alertType) {
         const calls = await this.outgoing({
             names: ['privacyDashboardShowAlertForMissingDescription'],
-        })
+        });
         switch (alertType) {
             case 'missingDescription': {
-                expect(calls).toMatchObject([['privacyDashboardShowAlertForMissingDescription', {}]])
-                return
+                expect(calls).toMatchObject([['privacyDashboardShowAlertForMissingDescription', {}]]);
+                return;
             }
             default:
-                throw new Error('unimplemented')
+                throw new Error('unimplemented');
         }
     }
     async calledForNativeFeedback() {
         const calls = await this.outgoing({
             names: ['privacyDashboardShowNativeFeedback'],
-        })
-        expect(calls).toMatchObject([['privacyDashboardShowNativeFeedback', {}]])
+        });
+        expect(calls).toMatchObject([['privacyDashboardShowNativeFeedback', {}]]);
     }
 
     async calledForSubmitBreakageForm({ category = '', description = '' }) {
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({
                 names: ['SubmitBrokenSiteReport'],
-            })
+            });
             expect(calls).toMatchObject([
                 [
                     'SubmitBrokenSiteReport',
@@ -190,18 +190,18 @@ export class Mocks {
                         },
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
         if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const out = await this.outgoing({
                 names: ['privacyDashboardSubmitBrokenSiteReport'],
-            })
-            expect(out).toMatchObject([['privacyDashboardSubmitBrokenSiteReport', { category, description }]])
-            return
+            });
+            expect(out).toMatchObject([['privacyDashboardSubmitBrokenSiteReport', { category, description }]]);
+            return;
         }
         if (this.platform.name === 'browser') {
-            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] })
+            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] });
             expect(out).toMatchObject([
                 [
                     'submitBrokenSiteReport',
@@ -213,20 +213,20 @@ export class Mocks {
                         },
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
         if (this.platform.name === 'android') {
-            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] })
-            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category, description })]])
-            return
+            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] });
+            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category, description })]]);
+            return;
         }
-        throw new Error('unreachable. mockCalledForSubmitBreakageForm must be handled')
+        throw new Error('unreachable. mockCalledForSubmitBreakageForm must be handled');
     }
 
     async calledForAboutLink() {
         if (this.platform.name === 'android') {
-            const calls = await this.outgoing({ names: ['openInNewTab'] })
+            const calls = await this.outgoing({ names: ['openInNewTab'] });
             expect(calls).toMatchObject([
                 [
                     'openInNewTab',
@@ -234,13 +234,13 @@ export class Mocks {
                         url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
                     }),
                 ],
-            ])
-            return
+            ]);
+            return;
         }
         if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const calls = await this.outgoing({
                 names: ['privacyDashboardOpenUrlInNewTab'],
-            })
+            });
             expect(calls).toMatchObject([
                 [
                     'privacyDashboardOpenUrlInNewTab',
@@ -248,14 +248,14 @@ export class Mocks {
                         url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
-        throw new Error('unreachable. mockCalledForAboutLink must be handled')
+        throw new Error('unreachable. mockCalledForAboutLink must be handled');
     }
 
     async calledForInitialExtensionMessage() {
-        const calls = await this.outgoing()
+        const calls = await this.outgoing();
         z.array(
             z.tuple([
                 z.literal('getPrivacyDashboardData'),
@@ -269,12 +269,12 @@ export class Mocks {
             ])
         )
             .length(1)
-            .parse(calls)
+            .parse(calls);
     }
 
     async calledForOptions() {
         if (this.platform.name === 'browser') {
-            const calls = await this.outgoing({ names: ['openOptions'] })
+            const calls = await this.outgoing({ names: ['openOptions'] });
             expect(calls).toMatchObject([
                 [
                     'openOptions',
@@ -282,10 +282,10 @@ export class Mocks {
                         messageType: 'openOptions',
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
-        throw new Error('unreachable: must handle `mockCalledForSearch` on platform ' + this.platform.name)
+        throw new Error('unreachable: must handle `mockCalledForSearch` on platform ' + this.platform.name);
     }
 
     /**
@@ -294,12 +294,12 @@ export class Mocks {
      */
     async calledForClose(eventOrigin = { screen: 'primaryScreen' }) {
         if (this.platform.name === 'android') {
-            const calls = await this.outgoing({ names: ['close'] })
-            expect(calls).toMatchObject([['close', undefined]])
-            return
+            const calls = await this.outgoing({ names: ['close'] });
+            expect(calls).toMatchObject([['close', undefined]]);
+            return;
         }
         if (this.platform.name === 'ios' || this.platform.name === 'macos') {
-            const calls = await this.outgoing({ names: ['privacyDashboardClose'] })
+            const calls = await this.outgoing({ names: ['privacyDashboardClose'] });
             expect(calls).toMatchObject([
                 [
                     'privacyDashboardClose',
@@ -307,28 +307,28 @@ export class Mocks {
                         eventOrigin,
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
-        throw new Error('unreachable. mockCalledForClose must be handled')
+        throw new Error('unreachable. mockCalledForClose must be handled');
     }
 
     async calledForInitialHeight() {
-        await this.page.locator('"No Tracking Requests Found"').click()
+        await this.page.locator('"No Tracking Requests Found"').click();
 
         if (this.platform.name === 'windows') {
-            const calls = await this.outgoing({ names: ['SetSize'] })
-            expect(calls.length).toBeGreaterThanOrEqual(2)
-            return
+            const calls = await this.outgoing({ names: ['SetSize'] });
+            expect(calls.length).toBeGreaterThanOrEqual(2);
+            return;
         }
 
         if (this.platform.name === 'macos') {
-            const calls = await this.outgoing({ names: ['privacyDashboardSetSize'] })
-            expect(calls.length).toBeGreaterThanOrEqual(1)
-            return
+            const calls = await this.outgoing({ names: ['privacyDashboardSetSize'] });
+            expect(calls.length).toBeGreaterThanOrEqual(1);
+            return;
         }
 
-        throw new Error('unreachable. sendsInitialHeight must be handled')
+        throw new Error('unreachable. sendsInitialHeight must be handled');
     }
 
     /**
@@ -338,7 +338,7 @@ export class Mocks {
      */
     async calledForToggleAllowList(kind = 'protections-off', eventOrigin = { screen: 'primaryScreen' }) {
         if (this.platform.name === 'android') {
-            const calls = await this.outgoing({ names: ['toggleAllowlist'] })
+            const calls = await this.outgoing({ names: ['toggleAllowlist'] });
             expect(calls).toMatchObject([
                 [
                     'toggleAllowlist',
@@ -347,11 +347,11 @@ export class Mocks {
                         isProtected: false,
                     }),
                 ],
-            ])
-            return
+            ]);
+            return;
         }
         if (this.platform.name === 'windows') {
-            const calls = await this.outgoing({ names: ['AddToAllowListCommand'] })
+            const calls = await this.outgoing({ names: ['AddToAllowListCommand'] });
             expect(calls).toMatchObject([
                 [
                     'AddToAllowListCommand',
@@ -361,11 +361,11 @@ export class Mocks {
                         Data: { eventOrigin },
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
         if (this.platform.name === 'macos' || this.platform.name === 'ios') {
-            const calls = await this.outgoing({ names: ['privacyDashboardSetProtection'] })
+            const calls = await this.outgoing({ names: ['privacyDashboardSetProtection'] });
             expect(calls).toMatchObject([
                 [
                     'privacyDashboardSetProtection',
@@ -374,11 +374,11 @@ export class Mocks {
                         isProtected: false,
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
         if (this.platform.name === 'browser') {
-            const calls = await this.outgoing({ names: ['setLists'] })
+            const calls = await this.outgoing({ names: ['setLists'] });
             const expected = {
                 'protections-off': [
                     { list: 'denylisted', domain: 'example.com', value: false },
@@ -389,7 +389,7 @@ export class Mocks {
                     { list: 'allowlisted', domain: 'example.com', value: false },
                 ],
                 'protections-on-override': [{ list: 'denylisted', domain: 'example.com', value: true }],
-            }
+            };
             expect(calls).toMatchObject([
                 [
                     'setLists',
@@ -400,15 +400,15 @@ export class Mocks {
                         },
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
-        throw new Error('unreachable. mockCalledForAboutLink must be handled')
+        throw new Error('unreachable. mockCalledForAboutLink must be handled');
     }
 
     async calledForSearch(term) {
         if (this.platform.name === 'browser') {
-            const calls = await this.outgoing({ names: ['search'] })
+            const calls = await this.outgoing({ names: ['search'] });
             expect(calls).toMatchObject([
                 [
                     'search',
@@ -419,10 +419,10 @@ export class Mocks {
                         },
                     },
                 ],
-            ])
-            return
+            ]);
+            return;
         }
-        throw new Error('unreachable: must handle `mockCalledForSearch` on platform ' + this.platform.name)
+        throw new Error('unreachable: must handle `mockCalledForSearch` on platform ' + this.platform.name);
     }
 
     async calledForOpenSettings() {
@@ -431,7 +431,7 @@ export class Mocks {
          */
         const implementations = {
             windows: async () => {
-                const calls = await this.outgoing({ names: ['OpenSettings'] })
+                const calls = await this.outgoing({ names: ['OpenSettings'] });
                 expect(calls).toMatchObject([
                     [
                         'OpenSettings',
@@ -441,25 +441,25 @@ export class Mocks {
                             Data: { target: 'cpm' },
                         },
                     ],
-                ])
+                ]);
             },
             ios: async () => {
-                const calls = await this.outgoing({ names: ['privacyDashboardOpenSettings'] })
-                expect(calls).toMatchObject([['privacyDashboardOpenSettings', { target: 'cpm' }]])
+                const calls = await this.outgoing({ names: ['privacyDashboardOpenSettings'] });
+                expect(calls).toMatchObject([['privacyDashboardOpenSettings', { target: 'cpm' }]]);
             },
             macos: async () => {
-                const calls = await this.outgoing({ names: ['privacyDashboardOpenSettings'] })
-                expect(calls).toMatchObject([['privacyDashboardOpenSettings', { target: 'cpm' }]])
+                const calls = await this.outgoing({ names: ['privacyDashboardOpenSettings'] });
+                expect(calls).toMatchObject([['privacyDashboardOpenSettings', { target: 'cpm' }]]);
             },
             android: async () => {
-                const calls = await this.outgoing({ names: ['openSettings'] })
-                expect(calls).toMatchObject([['openSettings', JSON.stringify({ target: 'cpm' })]])
+                const calls = await this.outgoing({ names: ['openSettings'] });
+                expect(calls).toMatchObject([['openSettings', JSON.stringify({ target: 'cpm' })]]);
             },
             browser: undefined,
-        }
-        const impl = implementations[this.platform.name]
-        if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name)
-        await impl()
+        };
+        const impl = implementations[this.platform.name];
+        if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name);
+        await impl();
     }
 
     /**
@@ -474,7 +474,7 @@ export class Mocks {
          */
         const implementations = {
             windows: async () => {
-                const calls = await this.outgoing({ names: ['SetPermissionCommand'] })
+                const calls = await this.outgoing({ names: ['SetPermissionCommand'] });
                 expect(calls).toMatchObject([
                     [
                         'SetPermissionCommand',
@@ -487,10 +487,10 @@ export class Mocks {
                             },
                         },
                     ],
-                ])
+                ]);
             },
             macos: async () => {
-                const calls = await this.outgoing({ names: ['privacyDashboardSetPermission'] })
+                const calls = await this.outgoing({ names: ['privacyDashboardSetPermission'] });
                 expect(calls).toMatchObject([
                     [
                         'privacyDashboardSetPermission',
@@ -499,14 +499,14 @@ export class Mocks {
                             value,
                         },
                     ],
-                ])
+                ]);
             },
             ios: undefined,
             android: undefined,
             browser: undefined,
-        }
-        const impl = implementations[this.platform.name]
-        if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name)
-        await impl()
+        };
+        const impl = implementations[this.platform.name];
+        if (!impl) throw new Error('calledForOpenSettings not implemented for ' + this.platform.name);
+        await impl();
     }
 }

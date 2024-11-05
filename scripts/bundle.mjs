@@ -1,22 +1,22 @@
-import esbuild from 'esbuild'
-import { basename, join } from 'node:path'
-import { readdirSync, readFileSync } from 'node:fs'
-import { cwd, debug } from './utils.mjs'
-import z from 'zod'
-const CWD = cwd(import.meta.url)
-const BASE = join(CWD, '..')
-const LOCALES_BASE = join(BASE, 'shared/locales')
+import esbuild from 'esbuild';
+import { basename, join } from 'node:path';
+import { readdirSync, readFileSync } from 'node:fs';
+import { cwd, debug } from './utils.mjs';
+import z from 'zod';
+const CWD = cwd(import.meta.url);
+const BASE = join(CWD, '..');
+const LOCALES_BASE = join(BASE, 'shared/locales');
 
 const env = z
     .object({
         BUILD_OUTPUT: z.string(),
         NODE_ENV: z.union([z.literal('production'), z.literal('development')]).default('production'),
     })
-    .parse(process.env)
+    .parse(process.env);
 
-const IS_PROD = env.NODE_ENV === 'production'
+const IS_PROD = env.NODE_ENV === 'production';
 
-console.log({ env, IS_PROD })
+console.log({ env, IS_PROD });
 
 /**
  * Bundle the base and polyfill files.
@@ -43,7 +43,7 @@ async function init() {
             input: join(BASE, 'shared/js/polyfill.js'),
             output: join(BASE, env.BUILD_OUTPUT, 'public/js/polyfills.js'),
         },
-    }
+    };
     await esbuild.build({
         entryPoints: [manifest.base.input],
         bundle: true,
@@ -59,18 +59,18 @@ async function init() {
                 name: 'require-globify-shim',
                 setup(build) {
                     build.onResolve({ filter: /locales\/\*\/\*.json/ }, (args) => {
-                        return { path: args.path, namespace: 'require-globify-shim' }
-                    })
+                        return { path: args.path, namespace: 'require-globify-shim' };
+                    });
                     build.onLoad({ filter: /.*/, namespace: 'require-globify-shim' }, () => {
                         return {
                             contents: JSON.stringify(buildLocaleMap()),
                             loader: 'json',
-                        }
-                    })
+                        };
+                    });
                 },
             },
         ],
-    })
+    });
 
     await esbuild.build({
         entryPoints: [manifest.polyfills.input],
@@ -78,7 +78,7 @@ async function init() {
         bundle: true,
         outfile: manifest.polyfills.output,
         sourcemap: debug ? 'linked' : undefined,
-    })
+    });
 
     await esbuild.build({
         entryPoints: [manifest.modal.input],
@@ -86,7 +86,7 @@ async function init() {
         bundle: true,
         outfile: manifest.modal.output,
         sourcemap: debug ? 'linked' : undefined,
-    })
+    });
 
     if (!IS_PROD) {
         await esbuild.build({
@@ -98,11 +98,11 @@ async function init() {
             loader: {
                 '.js': 'jsx',
             },
-        })
+        });
     }
 }
 
-init()
+init();
 
 /**
  * Convert the folder structure into a map of locale keys to their respective namespaces
@@ -119,10 +119,10 @@ init()
  * ```
  */
 function buildLocaleMap() {
-    const localeList = readdirSync(LOCALES_BASE, { withFileTypes: true })
-    const processedList = localeList.filter((d) => d.isDirectory()).map((dir) => [dir.name, processLocale(dir.name)])
+    const localeList = readdirSync(LOCALES_BASE, { withFileTypes: true });
+    const processedList = localeList.filter((d) => d.isDirectory()).map((dir) => [dir.name, processLocale(dir.name)]);
 
-    return Object.fromEntries(processedList)
+    return Object.fromEntries(processedList);
 }
 
 /**
@@ -144,16 +144,16 @@ function buildLocaleMap() {
  * @return {{[p: string]: any}}
  */
 function processLocale(localeName) {
-    const localeFolder = join(LOCALES_BASE, localeName)
+    const localeFolder = join(LOCALES_BASE, localeName);
     const readListOfFoldersFromDisk = readdirSync(localeFolder, { withFileTypes: true })
         .filter((item) => item.isFile())
         .map((file) => {
-            const nsFile = readFileSync(join(LOCALES_BASE, localeName, file.name), 'utf-8')
-            const parsed = JSON.parse(nsFile)
+            const nsFile = readFileSync(join(LOCALES_BASE, localeName, file.name), 'utf-8');
+            const parsed = JSON.parse(nsFile);
 
             // returning [key, value] pairs such as ['site', { ... }]
-            return [basename(file.name, '.json'), parsed]
-        })
+            return [basename(file.name, '.json'), parsed];
+        });
 
-    return Object.fromEntries(readListOfFoldersFromDisk)
+    return Object.fromEntries(readListOfFoldersFromDisk);
 }
