@@ -21,13 +21,7 @@
  * @category integrations
  */
 import invariant from 'tiny-invariant';
-import {
-    CheckBrokenSiteReportHandledMessage,
-    setupColorScheme,
-    ShowAlertForMissingDescription,
-    ShowNativeFeedback,
-    TelemetrySpanMsg,
-} from './common.js';
+import { CheckBrokenSiteReportHandledMessage, setupColorScheme, ShowNativeFeedback, TelemetrySpanMsg } from './common.js';
 import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShared } from './macos-communication.js';
 
 /**
@@ -59,24 +53,7 @@ export function privacyDashboardShowReportBrokenSite(args) {
 }
 
 /**
- * On iOS, the breakage report form is handled natively - so all the dashboard needs
- * to do in this situation is ping the correct message to the backend.
- *
- * @category Webkit Message Handlers
- * @param {{}} args - An empty object to keep the `webkit` message handlers happy
- * @example
- * ```js
- * window.webkit.messageHandlers.privacyDashboardShowAlertForMissingDescription.postMessage(args)
- * ```
- */
-export function privacyDashboardShowAlertForMissingDescription(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
-    window.webkit.messageHandlers.privacyDashboardShowAlertForMissingDescription.postMessage(args);
-}
-
-/**
- * On iOS, the breakage report form is handled natively - so all the dashboard needs
- * to do in this situation is ping the correct message to the backend.
+ * Triggers a native form for general feedback on iOS
  *
  * @category Webkit Message Handlers
  * @param {{}} args - An empty object to keep the `webkit` message handlers happy
@@ -110,10 +87,6 @@ export function privacyDashboardTelemetrySpan(args) {
 async function fetch(message) {
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
         privacyDashboardShowReportBrokenSite({});
-        return false; // Return true to prevent HTML form from showing
-    }
-    if (message instanceof ShowAlertForMissingDescription) {
-        privacyDashboardShowAlertForMissingDescription({});
         return false; // Return true to prevent HTML form from showing
     }
     if (message instanceof ShowNativeFeedback) {

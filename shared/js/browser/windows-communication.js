@@ -29,7 +29,11 @@
  * @category integrations
  */
 import { z } from 'zod';
-import { windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema } from '../../../schema/__generated__/schema.parsers.mjs';
+import {
+    windowsIncomingViewModelSchema,
+    windowsIncomingVisibilitySchema,
+    windowsIncomingToggleReportOptionsSchema,
+} from '../../../schema/__generated__/schema.parsers.mjs';
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils';
 import {
     assert,
@@ -41,6 +45,11 @@ import {
     setupMutationObserver,
     SubmitBrokenSiteReportMessage,
     UpdatePermissionMessage,
+    FetchToggleReportOptions,
+    RejectToggleBreakageReport,
+    SeeWhatIsSent,
+    SendToggleBreakageReport,
+    ShowNativeFeedback,
 } from './common.js';
 import { createTabData } from './utils/request-details.mjs';
 
@@ -120,19 +129,54 @@ function handleViewModelUpdate(viewModel) {
 
 // -----------------------------------------------------------------------------
 
-function windowsPostMessage(name, data) {
+/**
+ * Posts a message to the Windows Browser
+ *
+ * @param {string} name - Message name
+ * @param {object} data - Message data
+ * @param {{ Id?: string, SubFeatureName?: string }} [options] - Optional message data
+ */
+function windowsPostMessage(name, data, options = {}) {
     assert(typeof globalThis.windowsInteropPostMessage === 'function');
-    globalThis.windowsInteropPostMessage({
+
+    const outgoing = {
         Feature: 'PrivacyDashboard',
         Name: name,
         Data: data,
-    });
+        ...options,
+    };
+
+    globalThis.windowsInteropPostMessage(outgoing);
 }
 
 /**
  * @type {import("./common.js").fetcher}
  */
 async function fetch(message) {
+    if (message instanceof FetchToggleReportOptions) {
+        return getToggleReportOptions();
+    }
+
+    if (message instanceof RejectToggleBreakageReport) {
+        rejectToggleBreakageReport();
+        return;
+    }
+
+    if (message instanceof SeeWhatIsSent) {
+        seeWhatIsSent();
+        return;
+    }
+
+    if (message instanceof ShowNativeFeedback) {
+        showNativeFeedback();
+        return;
+    }
+
+    if (message instanceof SendToggleBreakageReport) {
+        sendToggleBreakageReport();
+        return;
+    }
+
     if (message instanceof SubmitBrokenSiteReportMessage) {
         SubmitBrokenSiteReport({
             category: message.category,
@@ -352,6 +396,7 @@ export function handleIncomingMessage(message) {
         }
         case 'ViewModelUpdated': {
             handleViewModelUpdate(parsed.data.Data);
+            break;
         }
     }
 }
@@ -364,7 +409,7 @@ export function setup() {
     setupColorScheme();
     assert(typeof globalThis.windowsInteropAddEventListener === 'function', 'globalThis.windowsInteropAddEventListener required');
     globalThis.windowsInteropAddEventListener('message', (event) => {
-        handleIncomingMessage(event.data);
+        if (event.data.Name) handleIncomingMessage(event.data);
     });
     setupMutationObserver((height) => {
         SetSize({ height });
@@ -388,6 +433,57 @@ function firstRenderComplete() {
     if (typeof height === 'number') {
         SetSize({ height });
     }
+}
+
+/**
+ * @return {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
+ */
+function getToggleReportOptions() {
+    return new Promise((resolve) => {
+        const requestId = String(Math.random());
+        windowsPostMessage('GetToggleReportOptions', {}, { Id: requestId, SubFeatureName: 'GetToggleReportOptions' });
+
+        /**
+         * @param event
+         */
+        function handler(event) {
+            const response = event.data;
+
+            // TODO: How to better filter out non-toggle report data
+            if (response.featureName !== 'GetToggleReportOptions') return;
+
+            const parsed = windowsIncomingToggleReportOptionsSchema.safeParse(response);
+            if (!parsed.success) {
+                console.error('cannot handle incoming message from event data', response);
+                console.error(parsed.error);
+                return;
+            }
+
+            if (parsed.data.id === requestId) {
+                window.chrome.webview?.removeEventListener?.('message', handler);
+                resolve(parsed.data.result);
+            } else {
+                console.warn('no match', parsed, requestId);
+            }
+        }
+        globalThis.windowsInteropAddEventListener('message', handler);
+    });
+}
+
+function sendToggleBreakageReport() {
+    windowsPostMessage('SendToggleBreakageReport', {});
+}
+
+function rejectToggleBreakageReport() {
+    windowsPostMessage('RejectToggleBreakageReport', {});
+}
+
+function seeWhatIsSent() {
+    windowsPostMessage('SeeWhatIsSent', {});
+}
+
+function showNativeFeedback() {
+    windowsPostMessage('ShowNativeFeedback', {});
 }
 
 export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete };

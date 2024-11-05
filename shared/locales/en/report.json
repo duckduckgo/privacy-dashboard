@@ -120,8 +120,8 @@
         "note": "Title for what the user sees upon submitting the report"
     },
     "yourReportWillHelpDesc": {
-        "title": "Your report will help improve our products and make the experience better for other people.",
-        "note": "Body that the user sees upon submitting the report"
+        "title": "Your report helps make DuckDuckGo{newline}better for everyone!",
+        "note": "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
     },
     "dislike": {
         "title": "I dislike the content",
@@ -134,6 +134,10 @@
     "otherOptional": {
         "title": "Please describe the issue you experienced (optional)",
         "note": "Placeholder text in a form where the user can provide additional information, but is not required to"
+    },
+    "descriptionRequired": {
+        "title": "Description required",
+        "note": "Error message shown to user in a form when a description field is required but was not entered"
     },
     "suggestionWhatHappened": {
         "title": "What happened?",

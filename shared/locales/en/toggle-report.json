@@ -27,6 +27,10 @@
     "title": "See what’s sent",
     "note": "Button label allowing users to see the information that is sent in the report."
   },
+  "siteNotWorkingInfoRevealShort": {
+    "title": "What’s sent",
+    "note": "Button label allowing users to see the information that is sent in the report."
+  },
   "siteNotWorkingInfoHide": {
     "title": "Hide",
     "note": "Button label allowing users to hide the information that is sent in the report."

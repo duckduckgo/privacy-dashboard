@@ -80,7 +80,12 @@ export class Mocks {
     }
 
     async calledForSendToggleReport() {
-        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return;
+        if (this.platform.name === 'android') {
+            const calls = await this.outgoing({ names: ['sendToggleReport'] });
+            expect(calls).toMatchObject([['sendToggleReport', undefined]]);
+            return;
+        }
+
         if (this.platform.name === 'browser') {
             const calls = await this.outgoing({ names: ['sendToggleReport'] });
             expect(calls).toMatchObject([
@@ -91,16 +96,44 @@ export class Mocks {
                     },
                 ],
             ]);
-        } else {
+            return;
+        }
+
+        if (this.platform.name === 'windows') {
+            const calls = await this.outgoing({
+                names: ['SendToggleBreakageReport'],
+            });
+            expect(calls).toMatchObject([
+                [
+                    'SendToggleBreakageReport',
+                    {
+                        Feature: 'PrivacyDashboard',
+                        Name: 'SendToggleBreakageReport',
+                        Data: {},
+                    },
+                ],
+            ]);
+            return;
+        }
+
+        if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const out = await this.outgoing({
                 names: ['privacyDashboardSendToggleReport'],
             });
             expect(out).toMatchObject([['privacyDashboardSendToggleReport', {}]]);
+            return;
         }
+
+        throw new Error('unreachable. mockCalledForSendToggleReport must be handled');
     }
 
     async calledForRejectToggleReport() {
-        if (!['browser', 'ios', 'macos'].includes(this.platform.name)) return;
+        if (this.platform.name === 'android') {
+            const calls = await this.outgoing({ names: ['rejectToggleReport'] });
+            expect(calls).toMatchObject([['rejectToggleReport', undefined]]);
+            return;
+        }
+
         if (this.platform.name === 'browser') {
             const calls = await this.outgoing({ names: ['rejectToggleReport'] });
             expect(calls).toMatchObject([
@@ -111,20 +144,83 @@ export class Mocks {
                     },
                 ],
             ]);
-        } else {
-            // ios/macos
+            return;
+        }
+
+        if (this.platform.name === 'windows') {
+            const calls = await this.outgoing({
+                names: ['RejectToggleBreakageReport'],
+            });
+            expect(calls).toMatchObject([
+                [
+                    'RejectToggleBreakageReport',
+                    {
+                        Feature: 'PrivacyDashboard',
+                        Name: 'RejectToggleBreakageReport',
+                        Data: {},
+                    },
+                ],
+            ]);
+            return;
+        }
+
+        if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const out = await this.outgoing({
                 names: ['privacyDashboardRejectToggleReport'],
             });
             expect(out).toMatchObject([['privacyDashboardRejectToggleReport', {}]]);
+            return;
         }
+
+        throw new Error('unreachable. mockCalledForRejectToggleReport must be handled');
     }
 
     async calledForSeeWhatsSent() {
-        const out = await this.outgoing({
-            names: ['privacyDashboardSeeWhatIsSent'],
-        });
-        expect(out).toMatchObject([['privacyDashboardSeeWhatIsSent', {}]]);
+        if (this.platform.name === 'android') {
+            const calls = await this.outgoing({ names: ['seeWhatIsSent'] });
+            expect(calls).toMatchObject([['seeWhatIsSent', undefined]]);
+            return;
+        }
+
+        if (this.platform.name === 'browser') {
+            const calls = await this.outgoing({ names: ['seeWhatIsSent'] });
+            expect(calls).toMatchObject([
+                [
+                    'seeWhatIsSent',
+                    {
+                        messageType: 'seeWhatIsSent',
+                    },
+                ],
+            ]);
+            return;
+        }
+
+        if (this.platform.name === 'windows') {
+            const calls = await this.outgoing({
+                names: ['SeeWhatIsSent'],
+            });
+            expect(calls).toMatchObject([
+                [
+                    'SeeWhatIsSent',
+                    {
+                        Feature: 'PrivacyDashboard',
+                        Name: 'SeeWhatIsSent',
+                        Data: {},
+                    },
+                ],
+            ]);
+            return;
+        }
+
+        if (this.platform.name === 'macos' || this.platform.name === 'ios') {
+            const out = await this.outgoing({
+                names: ['privacyDashboardSeeWhatIsSent'],
+            });
+            expect(out).toMatchObject([['privacyDashboardSeeWhatIsSent', {}]]);
+            return;
+        }
+
+        throw new Error('unreachable. mockCalledForSeeWhatsSent must be handled');
     }
 
     /**
@@ -149,31 +245,67 @@ export class Mocks {
         ]);
     }
 
-    /**
-     * @param {'missingDescription'} alertType
-     * @return {Promise<void>}
-     */
-    async calledForAlert(alertType) {
-        const calls = await this.outgoing({
-            names: ['privacyDashboardShowAlertForMissingDescription'],
-        });
-        switch (alertType) {
-            case 'missingDescription': {
-                expect(calls).toMatchObject([['privacyDashboardShowAlertForMissingDescription', {}]]);
-                return;
-            }
-            default:
-                throw new Error('unimplemented');
-        }
-    }
     async calledForNativeFeedback() {
-        const calls = await this.outgoing({
-            names: ['privacyDashboardShowNativeFeedback'],
-        });
-        expect(calls).toMatchObject([['privacyDashboardShowNativeFeedback', {}]]);
+        if (this.platform.name === 'browser') return;
+
+        if (this.platform.name === 'android') {
+            const out = await this.outgoing({ names: ['showNativeFeedback'] });
+            expect(out).toMatchObject([['showNativeFeedback', undefined]]);
+            return;
+        }
+
+        if (this.platform.name === 'windows') {
+            const calls = await this.outgoing({
+                names: ['ShowNativeFeedback'],
+            });
+            expect(calls).toMatchObject([
+                [
+                    'ShowNativeFeedback',
+                    {
+                        Feature: 'PrivacyDashboard',
+                        Name: 'ShowNativeFeedback',
+                        Data: {},
+                    },
+                ],
+            ]);
+            return;
+        }
+
+        if (this.platform.name === 'macos' || this.platform.name === 'ios') {
+            const calls = await this.outgoing({
+                names: ['privacyDashboardShowNativeFeedback'],
+            });
+            expect(calls).toMatchObject([['privacyDashboardShowNativeFeedback', {}]]);
+            return;
+        }
+
+        throw new Error('unreachable. mockCalledForNativeFeedback must be handled');
     }
 
     async calledForSubmitBreakageForm({ category = '', description = '' }) {
+        if (this.platform.name === 'android') {
+            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] });
+            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category, description })]]);
+            return;
+        }
+
+        if (this.platform.name === 'browser') {
+            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] });
+            expect(out).toMatchObject([
+                [
+                    'submitBrokenSiteReport',
+                    {
+                        messageType: 'submitBrokenSiteReport',
+                        options: {
+                            category,
+                            description,
+                        },
+                    },
+                ],
+            ]);
+            return;
+        }
+
         if (this.platform.name === 'windows') {
             const calls = await this.outgoing({
                 names: ['SubmitBrokenSiteReport'],
@@ -193,6 +325,7 @@ export class Mocks {
             ]);
             return;
         }
+
         if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const out = await this.outgoing({
                 names: ['privacyDashboardSubmitBrokenSiteReport'],
@@ -200,27 +333,7 @@ export class Mocks {
             expect(out).toMatchObject([['privacyDashboardSubmitBrokenSiteReport', { category, description }]]);
             return;
         }
-        if (this.platform.name === 'browser') {
-            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] });
-            expect(out).toMatchObject([
-                [
-                    'submitBrokenSiteReport',
-                    {
-                        messageType: 'submitBrokenSiteReport',
-                        options: {
-                            category,
-                            description,
-                        },
-                    },
-                ],
-            ]);
-            return;
-        }
-        if (this.platform.name === 'android') {
-            const out = await this.outgoing({ names: ['submitBrokenSiteReport'] });
-            expect(out).toMatchObject([['submitBrokenSiteReport', JSON.stringify({ category, description })]]);
-            return;
-        }
+
         throw new Error('unreachable. mockCalledForSubmitBreakageForm must be handled');
     }
 
@@ -296,6 +409,24 @@ export class Mocks {
         if (this.platform.name === 'android') {
             const calls = await this.outgoing({ names: ['close'] });
             expect(calls).toMatchObject([['close', undefined]]);
+            return;
+        }
+        if (this.platform.name === 'windows') {
+            const calls = await this.outgoing({ names: ['CloseCommand'] });
+            expect(calls).toMatchObject([
+                [
+                    'CloseCommand',
+                    {
+                        Data: {
+                            eventOrigin: {
+                                screen: 'toggleReport',
+                            },
+                        },
+                        Feature: 'PrivacyDashboard',
+                        Name: 'CloseCommand',
+                    },
+                ],
+            ]);
             return;
         }
         if (this.platform.name === 'ios' || this.platform.name === 'macos') {

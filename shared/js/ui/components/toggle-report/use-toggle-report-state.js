@@ -22,6 +22,8 @@ export function useToggleReportState() {
                 case 'toggle': {
                     const next = state.value === 'hiding' ? /** @type {const} */ ('showing') : /** @type {const} */ ('hiding');
                     if (next === 'showing') {
+                        console.log('TOGGLE 2');
+
                         didShowWhatIsSent();
                     }
                     return {

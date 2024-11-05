@@ -41,21 +41,10 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
 /**
  * A helper list of messages that the Dashboard accepts from Windows
  */
-export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
-export type ScreenKind =
-  | "primaryScreen"
-  | "breakageForm"
-  | "promptBreakageForm"
-  | "toggleReport"
-  | "categoryTypeSelection"
-  | "categorySelection"
-  | "choiceToggle"
-  | "choiceBreakageForm"
-  | "connection"
-  | "trackers"
-  | "nonTrackers"
-  | "consentManaged"
-  | "cookieHidden";
+export type WindowsIncomingMessage =
+  | WindowsIncomingVisibility
+  | WindowsIncomingViewModel
+  | WindowsIncomingToggleReportOptions;
 export type DataItemId =
   | WvVersionTitle
   | RequestsTitle
@@ -152,6 +141,17 @@ export type UserRefreshCountTitle = "userRefreshCount";
  * jsPerformance description
  */
 export type JsPerformanceTitle = "jsPerformance";
+export type ScreenKind =
+  | "primaryScreen"
+  | "breakageForm"
+  | "toggleReport"
+  | "breakageFormCategorySelection"
+  | "breakageFormFinalStep"
+  | "connection"
+  | "trackers"
+  | "nonTrackers"
+  | "consentManaged"
+  | "cookieHidden";
 export type IncomingExtensionMessage =
   | IncomingResponse
   | IncomingToggleReport
@@ -478,6 +478,31 @@ export interface CookiePromptManagementStatus {
    */
   configurable?: boolean;
 }
+/**
+ * This message contains user data disclosure options for Toggle Report and Breakage Form
+ */
+export interface WindowsIncomingToggleReportOptions {
+  context: "PrivacyDashboard";
+  featureName: "GetToggleReportOptions";
+  id: string;
+  result: ToggleReportScreen;
+}
+/**
+ * [Sample JSON 📝](../__fixtures__/toggle-report-screen.json)
+ */
+export interface ToggleReportScreen {
+  /**
+   * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
+   */
+  data: ToggleReportScreenDataItem[];
+}
+export interface ToggleReportScreenDataItem {
+  id: DataItemId;
+  additional?: SiteUrlAdditionalData;
+}
+export interface SiteUrlAdditionalData {
+  url: string;
+}
 export interface RefreshAliasResponse {
   personalAddress: string;
   privateAddress: string;
@@ -530,22 +555,6 @@ export interface SetProtectionParams {
 }
 export interface EventOrigin {
   screen: ScreenKind;
-}
-/**
- * [Sample JSON 📝](../__fixtures__/toggle-report-screen.json)
- */
-export interface ToggleReportScreen {
-  /**
-   * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
-   */
-  data: ToggleReportScreenDataItem[];
-}
-export interface ToggleReportScreenDataItem {
-  id: DataItemId;
-  additional?: SiteUrlAdditionalData;
-}
-export interface SiteUrlAdditionalData {
-  url: string;
 }
 export interface CloseMessageParams {
   eventOrigin: EventOrigin;

@@ -34,7 +34,7 @@ export function ToggleReportScreen() {
 
     return (
         <div data-toggle-report="parent" class="toggle-report page-inner" data-opener={features.opener}>
-            {features.opener === 'menu' ? <TopNav back={back} done={done} /> : <TopNav />}
+            {features.opener === 'menu' ? <TopNav back={back} done={done} /> : <TopNav back={back} />}
             <div data-testid="toggle-report">
                 <ToggleReportProvider key={connectionId} model={{ fetch: fetcher }} screen={features.initialScreen}>
                     <ToggleReport />

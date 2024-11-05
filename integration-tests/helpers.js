@@ -26,6 +26,10 @@ export async function playTimeline(page, state, platform) {
     }
     if (platform.name === 'windows') {
         messages.windowsViewModel = state.toWindowsViewModel();
+        messages.GetToggleReportOptions = state.toWindowsToggleReportOptions();
+    }
+    if (platform.name === 'ios' || platform.name === 'macos') {
+        messages.privacyDashboardGetToggleReportOptions = toggleReportScreen;
     }
     await page.evaluate(mockDataProvider, { state, platform, messages });
     return messages;
@@ -33,7 +37,11 @@ export async function playTimeline(page, state, platform) {
 
 export async function installAndroidMocks(page) {
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function');
-    return page.evaluate(mockAndroidApis);
+    return page.evaluate(mockAndroidApis, {
+        messages: {
+            getToggleReportOptions: toggleReportScreen,
+        },
+    });
 }
 
 /**
@@ -52,7 +60,7 @@ export function installWindowsMocks(page) {
 export async function installWebkitMocks(page, _args) {
     await page.waitForFunction(() => typeof window.onChangeRequestData === 'function');
     return page.evaluate(webkitMockApis, {
-        responses: {
+        messages: {
             privacyDashboardGetToggleReportOptions: toggleReportScreen,
         },
     });
