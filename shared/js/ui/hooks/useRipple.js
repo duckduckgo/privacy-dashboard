@@ -1,29 +1,29 @@
-import { useLayoutEffect, useEffect, useRef } from 'preact/hooks'
-import { MDCRipple } from '@material/ripple'
-import { isAndroid } from '../environment-check'
+import { useLayoutEffect, useEffect, useRef } from 'preact/hooks';
+import { MDCRipple } from '@material/ripple';
+import { isAndroid } from '../environment-check';
 
 /**
  * @param {object} params
  * @param {any} params.ref
  */
 export function useRipple(params) {
-    const { ref } = params
+    const { ref } = params;
     useLayoutEffect(() => {
-        const $el = ref.current
-        if (!$el) return
-        if (!isAndroid()) return
-        $el.classList.add('material-design-ripple')
-        const instance = MDCRipple.attachTo($el)
+        const $el = ref.current;
+        if (!$el) return;
+        if (!isAndroid()) return;
+        $el.classList.add('material-design-ripple');
+        const instance = MDCRipple.attachTo($el);
         instance.listen('click', function (e) {
             if (e.target instanceof HTMLElement) {
-                e.target.closest?.('a')?.blur()
+                e.target.closest?.('a')?.blur();
             }
-        })
+        });
         return () => {
             // cleanup
-            instance.destroy()
-        }
-    }, [])
+            instance.destroy();
+        };
+    }, []);
 }
 
 /**
@@ -32,18 +32,18 @@ export function useRipple(params) {
  */
 export function useRippleChildren(count) {
     /** @type {import('preact/hooks').MutableRef<HTMLElement | null>} */
-    const ref = useRef(null)
+    const ref = useRef(null);
     useEffect(() => {
-        const $el = ref.current
-        if (!$el) return console.warn('missing ref')
-        if (!isAndroid()) return
-        const links = $el.querySelectorAll('a')
-        const cleanup = addRippleTo(links)
+        const $el = ref.current;
+        if (!$el) return console.warn('missing ref');
+        if (!isAndroid()) return;
+        const links = $el.querySelectorAll('a');
+        const cleanup = addRippleTo(links);
         return () => {
-            cleanup()
-        }
-    }, [count])
-    return ref
+            cleanup();
+        };
+    }, [count]);
+    return ref;
 }
 
 /**
@@ -51,21 +51,21 @@ export function useRippleChildren(count) {
  * @return {() => void}
  */
 export function addRippleTo(elements) {
-    const instances = []
+    const instances = [];
     elements.forEach((element) => {
-        const instance = MDCRipple.attachTo(element)
-        element.classList.add('material-design-ripple')
+        const instance = MDCRipple.attachTo(element);
+        element.classList.add('material-design-ripple');
         instance.listen('click', function (e) {
             if (e.target instanceof HTMLElement) {
-                e.target.closest?.('a')?.blur()
+                e.target.closest?.('a')?.blur();
             }
-        })
-        instances.push(instance)
-    })
+        });
+        instances.push(instance);
+    });
     return () => {
         while (instances.length) {
-            const last = instances.pop()
-            last.destroy()
+            const last = instances.pop();
+            last.destroy();
         }
-    }
+    };
 }

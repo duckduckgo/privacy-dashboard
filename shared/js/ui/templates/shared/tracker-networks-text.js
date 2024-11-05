@@ -1,5 +1,5 @@
-import { states } from '../../../browser/utils/request-details.mjs'
-import { ns } from '../../base/localize.js'
+import { states } from '../../../browser/utils/request-details.mjs';
+import { ns } from '../../base/localize.js';
 
 /**
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
@@ -7,13 +7,13 @@ import { ns } from '../../base/localize.js'
  * @returns {string}
  */
 export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn_blocked:
         case states.protectionsOn_blocked_allowedTrackers:
         case states.protectionsOn_blocked_allowedNonTrackers:
         case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers: {
-            return ns.site('trackerNetworksDesc.title')
+            return ns.site('trackerNetworksDesc.title');
         }
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedTrackers:
@@ -21,17 +21,17 @@ export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers:
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
-            return ns.site('trackerNetworksNotBlocked.title')
+            return ns.site('trackerNetworksNotBlocked.title');
         }
         case states.protectionsOn:
         case states.protectionsOff:
         case states.protectionsOn_allowedNonTrackers:
         case states.protectionsOff_allowedNonTrackers: {
-            return ns.site('trackerNetworksNotFound.title')
+            return ns.site('trackerNetworksNotFound.title');
         }
         // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
         default:
-            return unreachable(state)
+            return unreachable(state);
     }
 }
 
@@ -43,10 +43,10 @@ export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
  */
 export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishingDetected) {
     if (phishingDetected) {
-        return 'info'
+        return 'info';
     }
 
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn_blocked:
         case states.protectionsOn_blocked_allowedTrackers:
@@ -56,21 +56,21 @@ export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishing
         case states.protectionsOff:
         case states.protectionsOn_allowedNonTrackers:
         case states.protectionsOff_allowedNonTrackers: {
-            return 'blocked'
+            return 'blocked';
         }
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return 'info'
+            return 'info';
         }
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
-            return 'warning'
+            return 'warning';
         }
         // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
         default:
-            return unreachable(state)
+            return unreachable(state);
     }
 }
 
@@ -79,25 +79,25 @@ export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishing
  * @param {boolean} protectionsEnabled
  */
 export function trackerNetworkSummary(requestDetails, protectionsEnabled) {
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOff:
         case states.protectionsOn_allowedNonTrackers:
         case states.protectionsOff_allowedNonTrackers: {
-            return ns.site('trackerNetworksSummaryNoneFound.title')
+            return ns.site('trackerNetworksSummaryNoneFound.title');
         }
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return ns.site('trackerNetworksSummaryNoneBlocked.title')
+            return ns.site('trackerNetworksSummaryNoneBlocked.title');
         }
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers:
-            return ns.site('trackerNetworksSummaryProtectionsOff.title')
+            return ns.site('trackerNetworksSummaryProtectionsOff.title');
         default:
-            return ns.site('trackerNetworksSummaryBlocked.title')
+            return ns.site('trackerNetworksSummaryBlocked.title');
     }
 }
 
@@ -107,32 +107,32 @@ export function trackerNetworkSummary(requestDetails, protectionsEnabled) {
  * @returns {string}
  */
 export function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOff:
         case states.protectionsOff_allowedNonTrackers:
         case states.protectionsOn_allowedNonTrackers: {
-            return 'major-networks-no-activity'
+            return 'major-networks-no-activity';
         }
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return 'major-networks-info'
+            return 'major-networks-info';
         }
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOff_allowedTrackers_allowedNonTrackers: {
-            return 'major-networks-warning'
+            return 'major-networks-warning';
         }
         case states.protectionsOn_blocked_allowedTrackers:
         case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_blocked:
         case states.protectionsOn_blocked_allowedNonTrackers: {
-            return 'major-networks-blocked'
+            return 'major-networks-blocked';
         }
         default:
-            return unreachable(state)
+            return unreachable(state);
     }
 }
 
@@ -141,5 +141,5 @@ export function trackerNetworksHeroIcon(requestDetails, protectionsEnabled) {
  * @returns {never}
  */
 function unreachable(x) {
-    throw new Error("Didn't expect to get here with value" + x)
+    throw new Error("Didn't expect to get here with value" + x);
 }

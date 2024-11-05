@@ -1,4 +1,4 @@
-import toggleReportScreen from '../../../../schema/__fixtures__/toggle-report-screen.json'
+import toggleReportScreen from '../../../../schema/__fixtures__/toggle-report-screen.json';
 /**
  * @param {object} params
  * @param {import("../../ui/views/tests/generate-data.mjs").MockData} params.state
@@ -6,57 +6,57 @@ import toggleReportScreen from '../../../../schema/__fixtures__/toggle-report-sc
  * @param {Record<string, any>} params.messages
  */
 export async function mockDataProvider(params) {
-    const { state, platform, messages } = params
+    const { state, platform, messages } = params;
 
     // ensure certain globals are assigned. This is how the browser/extension mocks work
-    Object.assign(window.__playwright.messages, messages)
+    Object.assign(window.__playwright.messages, messages);
 
     // on windows, all data is delivered through a single API call.
     if (platform?.name === 'windows') {
-        if (!window.__playwright.messages.windowsViewModel) throw new Error('missing `windowsViewModel` on messages')
+        if (!window.__playwright.messages.windowsViewModel) throw new Error('missing `windowsViewModel` on messages');
         for (const listener of window.__playwright.listeners || []) {
             listener({
                 data: window.__playwright.messages.windowsViewModel,
-            })
+            });
         }
-        return
+        return;
     }
 
     // in the 'browser/extension' scenario, we trigger the `updateTabData` event, and the Object.assign
     // above takes care of ensuring the correct data is available on `window.__playwright.messages.x`
     if (platform?.name === 'browser') {
         for (const listener of window.__playwright.listeners || []) {
-            listener({ updateTabData: true }, { id: 'test' })
+            listener({ updateTabData: true }, { id: 'test' });
         }
-        return
+        return;
     }
 
     // If we get here, we're on ios/android or macOS - where everything is delivered through window methods
     if (state.cookiePromptManagementStatus) {
-        window.onChangeConsentManaged(state.cookiePromptManagementStatus)
+        window.onChangeConsentManaged(state.cookiePromptManagementStatus);
     }
     if (state.permissions) {
-        window.onChangeAllowedPermissions(state.permissions)
+        window.onChangeAllowedPermissions(state.permissions);
     }
-    window.onChangeParentEntity(state.parentEntity)
-    window.onChangeProtectionStatus(state.protections)
-    window.onChangeUpgradedHttps(state.upgradedHttps)
+    window.onChangeParentEntity(state.parentEntity);
+    window.onChangeProtectionStatus(state.protections);
+    window.onChangeUpgradedHttps(state.upgradedHttps);
     window.onChangeCertificateData({
         secCertificateViewModels: state.certificate,
-    })
+    });
     if (state.remoteFeatureSettings) {
-        window.onChangeFeatureSettings?.(state.remoteFeatureSettings)
+        window.onChangeFeatureSettings?.(state.remoteFeatureSettings);
     }
-    window.onChangeLocale?.(state.localeSettings)
-    window.onChangeRequestData(state.url, { requests: state.requests || [] })
-    window.onChangePhishingStatus?.(state.phishing)
+    window.onChangeLocale?.(state.localeSettings);
+    window.onChangeRequestData(state.url, { requests: state.requests || [] });
+    window.onChangePhishingStatus?.(state.phishing);
 }
 
 export function windowsMockApis() {
     try {
         if (!window.chrome) {
             // @ts-ignore
-            window.chrome = {}
+            window.chrome = {};
         }
         window.__playwright = {
             listeners: [],
@@ -67,21 +67,21 @@ export function windowsMockApis() {
                 incoming: [],
             },
             calls: [],
-        }
+        };
         // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
         window.chrome.webview = {
             // @ts-ignore
             addEventListener: (messageName, listener) => {
-                window.__playwright.listeners?.push(listener)
+                window.__playwright.listeners?.push(listener);
             },
             postMessage(arg) {
-                window.__playwright.mocks.outgoing.push([arg.Name, arg])
+                window.__playwright.mocks.outgoing.push([arg.Name, arg]);
             },
-        }
+        };
         // console.log('window.chrome.webview', window.chrome.webview)
     } catch (e) {
-        console.error("❌couldn't set up mocks")
-        console.error(e)
+        console.error("❌couldn't set up mocks");
+        console.error(e);
     }
 }
 
@@ -92,7 +92,7 @@ export function windowsMockApis() {
 export function webkitMockApis({ responses = {} }) {
     const merged = {
         ...responses,
-    }
+    };
     try {
         window.__playwright = {
             messages: {},
@@ -102,92 +102,92 @@ export function webkitMockApis({ responses = {} }) {
                 incoming: [],
             },
             calls: [],
-        }
+        };
         window.webkit = {
             messageHandlers: {
                 privacyDashboardTelemetrySpan: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardTelemetrySpan', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardTelemetrySpan', arg]);
                     },
                 },
                 privacyDashboardShowNativeFeedback: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowNativeFeedback', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowNativeFeedback', arg]);
                     },
                 },
                 privacyDashboardShowAlertForMissingDescription: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowAlertForMissingDescription', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowAlertForMissingDescription', arg]);
                     },
                 },
                 privacyDashboardShowReportBrokenSite: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowReportBrokenSite', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowReportBrokenSite', arg]);
                     },
                 },
                 privacyDashboardOpenUrlInNewTab: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardOpenUrlInNewTab', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardOpenUrlInNewTab', arg]);
                     },
                 },
                 privacyDashboardOpenSettings: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardOpenSettings', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardOpenSettings', arg]);
                     },
                 },
                 privacyDashboardSubmitBrokenSiteReport: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardSubmitBrokenSiteReport', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSubmitBrokenSiteReport', arg]);
                     },
                 },
                 privacyDashboardSetSize: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardSetSize', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSetSize', arg]);
                     },
                 },
                 privacyDashboardClose: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardClose', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardClose', arg]);
                     },
                 },
                 privacyDashboardSetProtection: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardSetProtection', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSetProtection', arg]);
                     },
                 },
                 privacyDashboardSetPermission: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardSetPermission', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSetPermission', arg]);
                     },
                 },
                 privacyDashboardSendToggleReport: {
                     postMessage: async (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardSendToggleReport', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSendToggleReport', arg]);
                     },
                 },
                 privacyDashboardRejectToggleReport: {
                     postMessage: async (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardRejectToggleReport', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardRejectToggleReport', arg]);
                     },
                 },
                 privacyDashboardSeeWhatIsSent: {
                     postMessage: async (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardSeeWhatIsSent', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSeeWhatIsSent', arg]);
                     },
                 },
                 privacyDashboardGetToggleReportOptions: {
                     postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg])
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg]);
                         setTimeout(() => {
-                            window.onGetToggleReportOptionsResponse?.(window.__playwright.responses.privacyDashboardGetToggleReportOptions)
-                        }, 0)
+                            window.onGetToggleReportOptionsResponse?.(window.__playwright.responses.privacyDashboardGetToggleReportOptions);
+                        }, 0);
                     },
                 },
             },
-        }
+        };
     } catch (e) {
-        console.error("❌couldn't set up mocks")
-        console.error(e)
+        console.error("❌couldn't set up mocks");
+        console.error(e);
     }
 }
 
@@ -201,30 +201,30 @@ export function mockAndroidApis() {
                 incoming: [],
             },
             calls: [],
-        }
+        };
         window.PrivacyDashboard = {
             showBreakageForm(arg) {
-                window.__playwright.mocks.outgoing.push(['showBreakageForm', arg])
+                window.__playwright.mocks.outgoing.push(['showBreakageForm', arg]);
             },
             openInNewTab(arg) {
-                window.__playwright.mocks.outgoing.push(['openInNewTab', arg])
+                window.__playwright.mocks.outgoing.push(['openInNewTab', arg]);
             },
             openSettings(arg) {
-                window.__playwright.mocks.outgoing.push(['openSettings', arg])
+                window.__playwright.mocks.outgoing.push(['openSettings', arg]);
             },
             close(arg) {
-                window.__playwright.mocks.outgoing.push(['close', arg])
+                window.__playwright.mocks.outgoing.push(['close', arg]);
             },
             toggleAllowlist(arg) {
-                window.__playwright.mocks.outgoing.push(['toggleAllowlist', arg])
+                window.__playwright.mocks.outgoing.push(['toggleAllowlist', arg]);
             },
             submitBrokenSiteReport(arg) {
-                window.__playwright.mocks.outgoing.push(['submitBrokenSiteReport', arg])
+                window.__playwright.mocks.outgoing.push(['submitBrokenSiteReport', arg]);
             },
-        }
+        };
     } catch (e) {
-        console.error("❌couldn't set up mocks")
-        console.error(e)
+        console.error("❌couldn't set up mocks");
+        console.error(e);
     }
 }
 
@@ -248,7 +248,7 @@ export function mockBrowserApis(params = { messages: {} }) {
         getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
         ...params.messages,
-    }
+    };
     try {
         if (!window.chrome?.permissions) {
             // @ts-ignore
@@ -258,7 +258,7 @@ export function mockBrowserApis(params = { messages: {} }) {
                     // eslint-disable-next-line n/no-callback-literal
                     request: (permissions, cb) => cb && cb(true),
                 },
-            }
+            };
         }
         window.__playwright = {
             messages,
@@ -270,74 +270,74 @@ export function mockBrowserApis(params = { messages: {} }) {
             calls: [],
             listeners: [],
             handler: undefined,
-        }
+        };
 
         // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
         // @ts-ignore
         window.chrome.runtime = {
             id: 'test',
             connect: (info) => {
-                console.log('connect: ', info.name)
+                console.log('connect: ', info.name);
                 const port = {
                     onDisconnect: {
                         addListener: (cb) => {
-                            console.log('did add onDisconnect listener')
-                            window.__playwright.onDisconnect = cb
+                            console.log('did add onDisconnect listener');
+                            window.__playwright.onDisconnect = cb;
                         },
                     },
                     onMessage: {
                         addListener: (cb) => {
-                            window.__playwright.handler = cb
-                            console.log('did add onMessage listener')
+                            window.__playwright.handler = cb;
+                            console.log('did add onMessage listener');
                         },
                     },
                     postMessage: (message) => {
-                        const id = message.id
-                        console.log('[mock] did post message', message)
-                        const handler = window.__playwright.handler
-                        if (!handler) throw new Error('no registered handler')
+                        const id = message.id;
+                        console.log('[mock] did post message', message);
+                        const handler = window.__playwright.handler;
+                        if (!handler) throw new Error('no registered handler');
 
                         function respond(response, timeout = 100) {
-                            if (!id) return console.log('not responding since `id` was absent')
+                            if (!id) return console.log('not responding since `id` was absent');
                             const responseShape = {
                                 messageType: 'response',
                                 options: structuredClone(response),
                                 id,
-                            }
-                            console.log('[mock] will respond with', JSON.stringify(responseShape))
+                            };
+                            console.log('[mock] will respond with', JSON.stringify(responseShape));
                             setTimeout(() => {
-                                handler?.(responseShape)
-                            }, timeout)
+                                handler?.(responseShape);
+                            }, timeout);
                         }
 
                         // does the incoming message match one that's been mocked here?
-                        const matchingMessage = window.__playwright.messages[message.messageType]
+                        const matchingMessage = window.__playwright.messages[message.messageType];
                         if (matchingMessage) {
-                            window.__playwright.mocks.outgoing.push([message.messageType, message])
-                            respond(matchingMessage, 200)
+                            window.__playwright.mocks.outgoing.push([message.messageType, message]);
+                            respond(matchingMessage, 200);
                         } else {
                             setTimeout(() => {
-                                const matchingMessage = window.__playwright.messages[message.messageType]
+                                const matchingMessage = window.__playwright.messages[message.messageType];
                                 if (matchingMessage) {
-                                    window.__playwright.mocks.outgoing.push([message.messageType, message])
-                                    respond(matchingMessage, 0)
+                                    window.__playwright.mocks.outgoing.push([message.messageType, message]);
+                                    respond(matchingMessage, 0);
                                 } else {
-                                    console.trace(`❌ [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`)
+                                    console.trace(`❌ [(mocks): window.chrome.runtime] Missing support for ${JSON.stringify(message)}`);
                                 }
-                            }, 200)
+                            }, 200);
                         }
                     },
-                }
+                };
 
-                return /** @type {any} */ (port)
+                return /** @type {any} */ (port);
             },
             async sendMessage() {
                 // no longer used
             },
-        }
+        };
     } catch (e) {
-        console.error("❌couldn't set up browser mocks")
-        console.error(e)
+        console.error("❌couldn't set up browser mocks");
+        console.error(e);
     }
 }
 
@@ -346,60 +346,60 @@ export function mockBrowserApis(params = { messages: {} }) {
  * @return {Promise<void>}
  */
 export async function installMocks(platform) {
-    console.log('instaling...')
+    console.log('instaling...');
     if (window.__playwright) {
-        console.log('instaling... NOE')
-        return console.log('❌ mocked already there')
+        console.log('instaling... NOE');
+        return console.log('❌ mocked already there');
     }
     if (platform.name === 'windows') {
-        windowsMockApis()
+        windowsMockApis();
     } else if (platform.name === 'ios' || platform.name === 'macos') {
         webkitMockApis({
             responses: {
                 privacyDashboardGetToggleReportOptions: toggleReportScreen,
             },
-        })
+        });
     } else if (platform.name === 'android') {
-        mockAndroidApis()
+        mockAndroidApis();
     } else if (platform.name === 'browser') {
-        mockBrowserApis()
+        mockBrowserApis();
     }
 
-    const { testDataStates } = await import('../../ui/views/tests/states-with-fixtures')
-    const stateFromUrl = new URLSearchParams(window.location.search).get('state')
+    const { testDataStates } = await import('../../ui/views/tests/states-with-fixtures');
+    const stateFromUrl = new URLSearchParams(window.location.search).get('state');
 
-    let mock
+    let mock;
     if (stateFromUrl && stateFromUrl in testDataStates) {
-        mock = testDataStates[stateFromUrl]
+        mock = testDataStates[stateFromUrl];
     } else {
-        mock = testDataStates.protectionsOn_blocked
-        console.warn('state not found, falling back to default. state: ', 'protectionsOn_blocked', stateFromUrl)
+        mock = testDataStates.protectionsOn_blocked;
+        console.warn('state not found, falling back to default. state: ', 'protectionsOn_blocked', stateFromUrl);
     }
 
-    console.groupCollapsed(`${platform.name} open for more Dashboard States`)
+    console.groupCollapsed(`${platform.name} open for more Dashboard States`);
     const urls = Object.keys(testDataStates).map((key) => {
-        const clone = new URL(location.href)
-        clone.searchParams.set('state', key)
-        return clone.href
-    })
+        const clone = new URL(location.href);
+        clone.searchParams.set('state', key);
+        return clone.href;
+    });
     for (const url of urls) {
-        console.log(url)
+        console.log(url);
     }
-    console.groupEnd()
+    console.groupEnd();
 
-    const messages = {}
+    const messages = {};
     if (platform.name === 'browser') {
-        messages.getBurnOptions = mock.toBurnOptions()
-        messages.getPrivacyDashboardData = mock.toExtensionDashboardData()
-        messages.getToggleReportOptions = toggleReportScreen
+        messages.getBurnOptions = mock.toBurnOptions();
+        messages.getPrivacyDashboardData = mock.toExtensionDashboardData();
+        messages.getToggleReportOptions = toggleReportScreen;
     }
     if (platform.name === 'windows') {
-        messages.windowsViewModel = mock.toWindowsViewModel()
+        messages.windowsViewModel = mock.toWindowsViewModel();
     }
 
     await mockDataProvider({
         state: mock,
         platform,
         messages,
-    })
+    });
 }

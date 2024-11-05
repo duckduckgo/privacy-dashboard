@@ -1,33 +1,33 @@
-import { describe, it } from 'node:test'
-import { equal, deepEqual } from 'node:assert'
-import { readFileSync } from 'node:fs'
-import { createRequestDetails, createTabData, fromJson, fromMultiJson, states } from './request-details.mjs'
-import { Protections } from './protections.mjs'
-import { cwd } from '../../../../scripts/utils.mjs'
-import { join } from 'node:path'
+import { describe, it } from 'node:test';
+import { equal, deepEqual } from 'node:assert';
+import { readFileSync } from 'node:fs';
+import { createRequestDetails, createTabData, fromJson, fromMultiJson, states } from './request-details.mjs';
+import { Protections } from './protections.mjs';
+import { cwd } from '../../../../scripts/utils.mjs';
+import { join } from 'node:path';
 
-const CWD = cwd(import.meta.url)
-const BASE = join(CWD, '../../../../schema/__fixtures__')
+const CWD = cwd(import.meta.url);
+const BASE = join(CWD, '../../../../schema/__fixtures__');
 
-const amazon = JSON.parse(readFileSync(join(BASE, 'request-data-amazon.json'), 'utf-8'))
-const google = JSON.parse(readFileSync(join(BASE, 'request-data-google.json'), 'utf-8'))
-const cnn = JSON.parse(readFileSync(join(BASE, 'request-data-cnn.json'), 'utf-8'))
-const reddit = JSON.parse(readFileSync(join(BASE, 'request-data-reddit.json'), 'utf-8'))
+const amazon = JSON.parse(readFileSync(join(BASE, 'request-data-amazon.json'), 'utf-8'));
+const google = JSON.parse(readFileSync(join(BASE, 'request-data-google.json'), 'utf-8'));
+const cnn = JSON.parse(readFileSync(join(BASE, 'request-data-cnn.json'), 'utf-8'));
+const reddit = JSON.parse(readFileSync(join(BASE, 'request-data-reddit.json'), 'utf-8'));
 
 describe('RequestDetails', () => {
     it('accepts zero requests', () => {
-        const requestDetails = createRequestDetails([], [])
-        equal(requestDetails.all.requestCount, 0)
-        equal(requestDetails.blocked.requestCount, 0)
-        equal(requestDetails.allowed.adClickAttribution.requestCount, 0)
-        equal(requestDetails.allowed.otherThirdPartyRequest.requestCount, 0)
-        equal(requestDetails.allowed.ruleException.requestCount, 0)
-        equal(requestDetails.allowed.ownedByFirstParty.requestCount, 0)
-        equal(requestDetails.allowed.protectionDisabled.requestCount, 0)
-    })
+        const requestDetails = createRequestDetails([], []);
+        equal(requestDetails.all.requestCount, 0);
+        equal(requestDetails.blocked.requestCount, 0);
+        equal(requestDetails.allowed.adClickAttribution.requestCount, 0);
+        equal(requestDetails.allowed.otherThirdPartyRequest.requestCount, 0);
+        equal(requestDetails.allowed.ruleException.requestCount, 0);
+        equal(requestDetails.allowed.ownedByFirstParty.requestCount, 0);
+        equal(requestDetails.allowed.protectionDisabled.requestCount, 0);
+    });
     it('sorts by prevalence', () => {
-        const requestDetails = fromJson(amazon)
-        const actual = requestDetails.all.sortedByPrevalence()
+        const requestDetails = fromJson(amazon);
+        const actual = requestDetails.all.sortedByPrevalence();
         const expected = [
             {
                 displayName: 'Amazon',
@@ -45,12 +45,12 @@ describe('RequestDetails', () => {
                     },
                 },
             },
-        ]
-        deepEqual(actual, expected)
-    })
+        ];
+        deepEqual(actual, expected);
+    });
     it('sorts by prevalence (google first)', () => {
-        const requestDetails = fromMultiJson(amazon, google)
-        const actual = requestDetails.all.sortedByPrevalence()
+        const requestDetails = fromMultiJson(amazon, google);
+        const actual = requestDetails.all.sortedByPrevalence();
         const expected = [
             {
                 displayName: 'Google',
@@ -92,42 +92,42 @@ describe('RequestDetails', () => {
                     },
                 },
             },
-        ]
-        deepEqual(actual, expected)
-    })
+        ];
+        deepEqual(actual, expected);
+    });
     it('calulates states (empty)', () => {
-        const requestDetails = createRequestDetails([], [])
-        const state = requestDetails.state(true)
-        equal(state, states.protectionsOn)
-        const state2 = requestDetails.state(false)
-        equal(state2, states.protectionsOff)
-    })
+        const requestDetails = createRequestDetails([], []);
+        const state = requestDetails.state(true);
+        equal(state, states.protectionsOn);
+        const state2 = requestDetails.state(false);
+        equal(state2, states.protectionsOff);
+    });
     it('calculates states (amazon)', () => {
-        const requestDetails = fromJson(amazon)
-        const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_allowedFirstParty)
-        const state2 = requestDetails.state(false)
-        equal(state2, states.protectionsOff_allowedTrackers)
-    })
+        const requestDetails = fromJson(amazon);
+        const state = requestDetails.state(true);
+        equal(state, states.protectionsOn_allowedFirstParty);
+        const state2 = requestDetails.state(false);
+        equal(state2, states.protectionsOff_allowedTrackers);
+    });
     it('calculates states (google)', () => {
-        const requestDetails = fromJson(google)
-        const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_allowedFirstParty)
-    })
+        const requestDetails = fromJson(google);
+        const state = requestDetails.state(true);
+        equal(state, states.protectionsOn_allowedFirstParty);
+    });
     it('calculates states (cnn)', () => {
-        const requestDetails = fromJson(cnn)
-        const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers)
-        const state2 = requestDetails.state(false)
-        equal(state2, states.protectionsOff_allowedTrackers_allowedNonTrackers)
-    })
+        const requestDetails = fromJson(cnn);
+        const state = requestDetails.state(true);
+        equal(state, states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers);
+        const state2 = requestDetails.state(false);
+        equal(state2, states.protectionsOff_allowedTrackers_allowedNonTrackers);
+    });
     it('calculates states (reddit)', () => {
-        const requestDetails = fromJson(reddit)
-        const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_allowedTrackers_allowedNonTrackers)
-        const state2 = requestDetails.state(false)
-        equal(state2, states.protectionsOff_allowedTrackers_allowedNonTrackers)
-    })
+        const requestDetails = fromJson(reddit);
+        const state = requestDetails.state(true);
+        equal(state, states.protectionsOn_allowedTrackers_allowedNonTrackers);
+        const state2 = requestDetails.state(false);
+        equal(state2, states.protectionsOff_allowedTrackers_allowedNonTrackers);
+    });
     it('calculates states (on + blocked)', () => {
         const requestDetails = fromJson({
             requests: [
@@ -141,10 +141,10 @@ describe('RequestDetails', () => {
                     },
                 },
             ],
-        })
-        const state = requestDetails.state(true)
-        equal(state, states.protectionsOn_blocked)
-    })
+        });
+        const state = requestDetails.state(true);
+        equal(state, states.protectionsOn_blocked);
+    });
     /**
      * In this case, 'entityName' and 'eTLDplus1' match - our logic
      * was always running `removeTLD` when the entity name was present.
@@ -169,7 +169,7 @@ describe('RequestDetails', () => {
                     entityName: 'bbci.co.uk',
                 },
             ],
-        })
+        });
         const expected = {
             entities: {
                 'bbci.co.uk': {
@@ -187,15 +187,15 @@ describe('RequestDetails', () => {
             },
             entitiesCount: 1,
             requestCount: 1,
-        }
-        deepEqual(requestDetails.all, expected)
-    })
-})
+        };
+        deepEqual(requestDetails.all, expected);
+    });
+});
 
 describe('createTabData', () => {
     it('creates a TabData object', () => {
-        const url = 'https://www.example.com/'
-        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] })
+        const url = 'https://www.example.com/';
+        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] });
         const expected = {
             certificate: undefined,
             cookiePromptManagementStatus: undefined,
@@ -262,13 +262,13 @@ describe('createTabData', () => {
             upgradedHttps: true,
             phishingStatus: undefined,
             url: 'https://www.example.com/',
-        }
-        deepEqual(tabData, expected)
-    })
+        };
+        deepEqual(tabData, expected);
+    });
 
     it('removes port from the site domain', () => {
-        const url = 'https://www.example.com:8080/'
-        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] })
-        equal(tabData.domain, 'example.com')
-    })
-})
+        const url = 'https://www.example.com:8080/';
+        const tabData = createTabData(url, true, new Protections(false, [], false, false), { requests: [] });
+        equal(tabData.domain, 'example.com');
+    });
+});

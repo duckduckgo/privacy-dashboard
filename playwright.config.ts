@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test'
+import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -103,6 +103,6 @@ const config: PlaywrightTestConfig = {
         ignoreHTTPSErrors: true,
         env: process.env as any,
     },
-}
+};
 
-export default config
+export default config;

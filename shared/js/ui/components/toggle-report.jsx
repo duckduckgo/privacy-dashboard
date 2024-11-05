@@ -1,32 +1,32 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { ns } from '../base/localize'
-import { PlainTextLink } from './text-link'
-import { Button, ButtonBar } from './button'
-import { platform } from '../../browser/communication'
-import { Scrollable, Stack } from './stack'
-import { useContext, useEffect } from 'preact/hooks'
-import { useIosAnimation } from './toggle-report/use-ios-animation'
-import { ToggleReportContext } from './toggle-report/toggle-report-provider'
-import { useToggleReportState } from './toggle-report/use-toggle-report-state'
-import { ToggleReportDataList } from './toggle-report/toggle-report-data-list'
-import { ToggleReportSent } from './toggle-report/toggle-report-sent'
-import { ToggleReportWrapper } from './toggle-report/toggle-report-wrapper'
-import { ToggleReportTitle } from './toggle-report/toggle-report-title'
-import { getContentHeight, setupMutationObserverForExtensions } from '../../browser/common'
+import { h } from 'preact';
+import { ns } from '../base/localize';
+import { PlainTextLink } from './text-link';
+import { Button, ButtonBar } from './button';
+import { platform } from '../../browser/communication';
+import { Scrollable, Stack } from './stack';
+import { useContext, useEffect } from 'preact/hooks';
+import { useIosAnimation } from './toggle-report/use-ios-animation';
+import { ToggleReportContext } from './toggle-report/toggle-report-provider';
+import { useToggleReportState } from './toggle-report/use-toggle-report-state';
+import { ToggleReportDataList } from './toggle-report/toggle-report-data-list';
+import { ToggleReportSent } from './toggle-report/toggle-report-sent';
+import { ToggleReportWrapper } from './toggle-report/toggle-report-wrapper';
+import { ToggleReportTitle } from './toggle-report/toggle-report-title';
+import { getContentHeight, setupMutationObserverForExtensions } from '../../browser/common';
 
 export function ToggleReport() {
-    const desktop = platform.name === 'macos' || platform.name === 'windows'
-    const extension = platform.name === 'browser'
+    const desktop = platform.name === 'macos' || platform.name === 'windows';
+    const extension = platform.name === 'browser';
 
     // data context (data, api, messages)
-    const { value, didClickSuccessScreen } = useContext(ToggleReportContext)
+    const { value, didClickSuccessScreen } = useContext(ToggleReportContext);
 
     // local state
-    const [state, dispatch] = useToggleReportState()
+    const [state, dispatch] = useToggleReportState();
 
     // iOS animation
-    useIosAnimation(state, dispatch)
+    useIosAnimation(state, dispatch);
 
     // on desktop only, transition to a success screen
     if (state.value === 'sent' && (desktop || extension)) {
@@ -35,7 +35,7 @@ export function ToggleReport() {
                 {extension && <SetAutoHeight />}
                 <ToggleReportSent onClick={didClickSuccessScreen} />
             </ToggleReportWrapper>
-        )
+        );
     }
 
     if (desktop || extension) {
@@ -63,7 +63,7 @@ export function ToggleReport() {
                     <ToggleReportButtons send={() => dispatch('send')} reject={() => dispatch('reject')} />
                 </div>
             </ToggleReportWrapper>
-        )
+        );
     }
 
     if (platform.name === 'ios') {
@@ -88,10 +88,10 @@ export function ToggleReport() {
                     )}
                 </Stack>
             </ToggleReportWrapper>
-        )
+        );
     }
 
-    return <p>unsupported platform: {platform.name}</p>
+    return <p>unsupported platform: {platform.name}</p>;
 }
 
 /**
@@ -107,30 +107,30 @@ export function ToggleReport() {
  */
 function SetAutoHeight() {
     useEffect(() => {
-        const inner = /** @type {HTMLElement} */ (document.querySelector('[data-screen="toggleReport"] .page-inner'))
+        const inner = /** @type {HTMLElement} */ (document.querySelector('[data-screen="toggleReport"] .page-inner'));
         if (inner) {
-            inner.style.height = 'auto'
-            const height = getContentHeight()
+            inner.style.height = 'auto';
+            const height = getContentHeight();
 
-            document.body.style.setProperty('--height', `${height}px`)
+            document.body.style.setProperty('--height', `${height}px`);
             const unsub = setupMutationObserverForExtensions((height) => {
-                document.body.style.setProperty('--height', `${height}px`)
-            })
+                document.body.style.setProperty('--height', `${height}px`);
+            });
             return () => {
-                unsub()
-            }
+                unsub();
+            };
         } else {
-            console.warn('Could not select the required element')
+            console.warn('Could not select the required element');
         }
-    }, [])
+    }, []);
 
-    return null
+    return null;
 }
 
 function ToggleReportButtons({ send, reject }) {
-    const buttonVariant = platform.name === 'ios' ? 'ios-secondary' : 'desktop-vibrancy'
-    const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal'
-    const buttonSize = platform.name === 'ios' ? 'big' : 'desktop-large'
+    const buttonVariant = platform.name === 'ios' ? 'ios-secondary' : 'desktop-vibrancy';
+    const buttonLayout = platform.name === 'ios' ? 'vertical' : 'horizontal';
+    const buttonSize = platform.name === 'ios' ? 'big' : 'desktop-large';
 
     return (
         <ButtonBar layout={buttonLayout}>
@@ -141,7 +141,7 @@ function ToggleReportButtons({ send, reject }) {
                 {ns.report('sendReport.title')}
             </Button>
         </ButtonBar>
-    )
+    );
 }
 
 function RevealText({ toggle }) {
@@ -151,7 +151,7 @@ function RevealText({ toggle }) {
                 {ns.toggleReport('siteNotWorkingInfoReveal.title')}
             </PlainTextLink>
         </p>
-    )
+    );
 }
 
 function DesktopRevealText({ state, toggle }) {
@@ -164,5 +164,5 @@ function DesktopRevealText({ state, toggle }) {
                 </PlainTextLink>
             </p>
         </div>
-    )
+    );
 }

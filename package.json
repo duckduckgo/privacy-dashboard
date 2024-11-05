@@ -34,7 +34,7 @@
         "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
     },
     "devDependencies": {
-        "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#51dc868a4342379d6aec1d0f4214156e7046d5f6",
+        "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#v0.1.0",
         "@formatjs/intl-locale": "^3.0.7",
         "@material/ripple": "^14.0.0",
         "@material/web": "^2.1.0",
@@ -70,7 +70,6 @@
         "zod": "^3.22.4"
     },
     "prettier": {
-        "semi": false,
         "singleQuote": true,
         "printWidth": 140,
         "tabWidth": 4

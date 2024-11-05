@@ -1,14 +1,14 @@
-import html from 'nanohtml'
-import { i18n } from '../base/localize.js'
-import { topNav } from './shared/top-nav'
-import { protectionHeader } from './protection-header'
+import html from 'nanohtml';
+import { i18n } from '../base/localize.js';
+import { topNav } from './shared/top-nav';
+import { protectionHeader } from './protection-header';
 
 /** @this {{model: import('../models/site.js').PublicSiteModel}} */
 export default function () {
     // here we'll show CTAs when the tab is disabled
-    const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens)
+    const supportsCtaScreens = Boolean(this.model.tab?.ctaScreens);
     if (this.model.tab.error) {
-        const errorText = i18n.t('site:errorMessage.title')
+        const errorText = i18n.t('site:errorMessage.title');
         return html`
             <div class="site-info">
                 <div class="page-inner">
@@ -21,7 +21,7 @@ export default function () {
                     <div class="padding-x"></div>
                 </div>
             </div>
-        `
+        `;
     }
     if (this.model.disabled && supportsCtaScreens) {
         return html`
@@ -34,9 +34,9 @@ export default function () {
                     <div class="padding-x">${renderEmailWrapper(this.model)}</div>
                 </div>
             </div>
-        `
+        `;
     }
-    const permissions = localizePermissions(this.model.permissions)
+    const permissions = localizePermissions(this.model.permissions);
 
     // prettier-ignore
     return html` <div class="site-info page">
@@ -63,7 +63,7 @@ export default function () {
 }
 
 function outer(props) {
-    return html`<div class="page-outer">${props.children}</div>`
+    return html`<div class="page-outer">${props.children}</div>`;
 }
 
 /**
@@ -71,7 +71,7 @@ function outer(props) {
  */
 function renderSearchWrapper(model) {
     if (model.tab?.search) {
-        return html`<section id="search-form-container"></section>`
+        return html`<section id="search-form-container"></section>`;
     }
 }
 
@@ -80,7 +80,7 @@ function renderSearchWrapper(model) {
  */
 function renderEmailWrapper(model) {
     if (model.tab?.emailProtection) {
-        return html`<div id="email-alias-container"></div>`
+        return html`<div id="email-alias-container"></div>`;
     }
 }
 
@@ -89,15 +89,15 @@ function renderEmailWrapper(model) {
  */
 function renderManagePermissions(model) {
     if (!model.permissions || model.permissions.length === 0) {
-        return ''
+        return '';
     }
 
-    const localizedPerms = localizePermissions(model.permissions)
+    const localizedPerms = localizePermissions(model.permissions);
 
     return html` <ul class="default-list">
         <li class="site-info__li--manage-permissions">
             ${localizedPerms.map(({ key: permissionId, title, permission, options }) => {
-                if (!model.permissions) return '' // todo(Shane): typescript issue
+                if (!model.permissions) return ''; // todo(Shane): typescript issue
                 return html`<div class="site-info__page-permission">
                     <label>
                         <div>
@@ -110,10 +110,10 @@ function renderManagePermissions(model) {
                             )}
                         </select>
                     </label>
-                </div>`
+                </div>`;
             })}
         </li>
-    </ul>`
+    </ul>`;
 }
 
 /**
@@ -122,25 +122,25 @@ function renderManagePermissions(model) {
  */
 export function localizePermissions(permissions) {
     if (!Array.isArray(permissions) || permissions.length === 0) {
-        return []
+        return [];
     }
     // deep copy before mutating
-    const updatedPermissions = JSON.parse(JSON.stringify(permissions))
+    const updatedPermissions = JSON.parse(JSON.stringify(permissions));
 
     return updatedPermissions.map((perm) => {
-        const permKey = `permissions:${perm.key}.title`
+        const permKey = `permissions:${perm.key}.title`;
         if (i18n.exists(permKey)) {
-            perm.title = i18n.t(permKey)
+            perm.title = i18n.t(permKey);
         }
 
         perm.options = perm.options.map((option) => {
-            const optionKey = `permissions:${option.id}.title`
+            const optionKey = `permissions:${option.id}.title`;
             if (i18n.exists(optionKey)) {
-                option.title = i18n.t(optionKey)
+                option.title = i18n.t(optionKey);
             }
-            return option
-        })
+            return option;
+        });
 
-        return perm
-    })
+        return perm;
+    });
 }

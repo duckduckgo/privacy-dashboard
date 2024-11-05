@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h } from 'preact';
 
 /**
  * This is stable - it's deliberately supported by Preact
@@ -7,7 +7,7 @@ import { h } from 'preact'
  * @props {HTMLElement} props.children
  */
 export function DomNode({ children }) {
-    this.shouldComponentUpdate = () => false
+    this.shouldComponentUpdate = () => false;
     // @ts-ignore
-    return /** @type {any} */ (Object.defineProperty(h(children.localName), '__e', { get: () => children, set: Object }))
+    return /** @type {any} */ (Object.defineProperty(h(children.localName), '__e', { get: () => children, set: Object }));
 }

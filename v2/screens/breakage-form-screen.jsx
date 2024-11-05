@@ -1,49 +1,49 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { ns } from '../../shared/js/ui/base/localize'
-import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero'
-import { DomNode } from '../dom-node'
-import { useMemo, useState } from 'preact/hooks'
-import { useClose, useData, useFeatures, useSendReport, useToggle } from '../data-provider'
-import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header'
-import { Back, Close, Done, SecondaryTopNav, Title, TopNav } from '../components/top-nav'
-import { useNav } from '../navigation'
-import { platformSwitch } from '../../shared/js/ui/environment-check'
-import { createBreakageFeaturesFrom } from '../breakage-categories'
-import { FormSelectElementWithDialog } from '../components/android-breakage-modal-wrapper'
+import { h } from 'preact';
+import { ns } from '../../shared/js/ui/base/localize';
+import { largeHeroIcon } from '../../shared/js/ui/templates/shared/hero';
+import { DomNode } from '../dom-node';
+import { useMemo, useState } from 'preact/hooks';
+import { useClose, useData, useFeatures, useSendReport, useToggle } from '../data-provider';
+import { ProtectionHeader } from '../../shared/js/ui/templates/protection-header';
+import { Back, Close, Done, SecondaryTopNav, Title, TopNav } from '../components/top-nav';
+import { useNav } from '../navigation';
+import { platformSwitch } from '../../shared/js/ui/environment-check';
+import { createBreakageFeaturesFrom } from '../breakage-categories';
+import { FormSelectElementWithDialog } from '../components/android-breakage-modal-wrapper';
 
 /**
  * @param {object} props
  * @param {object} props.includeToggle
  */
 export function BreakageFormScreen({ includeToggle }) {
-    const data = useData()
-    const onToggle = useToggle()
-    const onClose = useClose()
-    const nav = useNav()
-    const canPop = nav.canPop()
-    const sendReport = useSendReport()
-    const platformFeatures = useFeatures()
-    const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle')
+    const data = useData();
+    const onToggle = useToggle();
+    const onClose = useClose();
+    const nav = useNav();
+    const canPop = nav.canPop();
+    const sendReport = useSendReport();
+    const platformFeatures = useFeatures();
+    const [state, setState] = useState(/** @type {"idle" | "sent"} */ 'idle');
 
     const icon = largeHeroIcon({
         status: 'breakage-form',
-    })
+    });
 
     /**
      * Currently using the visibility of the toggle to determine which title
      * to use. This might be too simplistic and need updating later.
      */
-    let headerText = includeToggle ? ns.report('selectTheOptionDesc.title') : ns.report('selectTheOptionDescV2.title')
+    let headerText = includeToggle ? ns.report('selectTheOptionDesc.title') : ns.report('selectTheOptionDescV2.title');
 
     function submit(e) {
-        e.preventDefault()
-        const values = Object.fromEntries(new FormData(e.target))
+        e.preventDefault();
+        const values = Object.fromEntries(new FormData(e.target));
         sendReport({
             category: String(values.category || ''),
             description: String(values.description || ''),
-        })
-        setState('sent')
+        });
+        setState('sent');
     }
 
     let topNav = platformSwitch({
@@ -53,7 +53,7 @@ export function BreakageFormScreen({ includeToggle }) {
             </SecondaryTopNav>
         ),
         default: () => <SecondaryTopNav />,
-    })
+    });
 
     // if we can't go back, swap out the nav
     if (!canPop) {
@@ -65,7 +65,7 @@ export function BreakageFormScreen({ includeToggle }) {
                 </TopNav>
             ),
             default: () => <TopNav done={<Close onClick={onClose} />} />,
-        })
+        });
     }
 
     return (
@@ -110,20 +110,20 @@ export function BreakageFormScreen({ includeToggle }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 /**
  * When the platform can use the select element directly
  */
 function DefaultSelectElement() {
-    const platformFeatures = useFeatures()
+    const platformFeatures = useFeatures();
 
     // shuffle once and remember
     const randomised = useMemo(() => {
-        const f = createBreakageFeaturesFrom(platformFeatures)
-        return f.categoryList()
-    }, [platformFeatures])
+        const f = createBreakageFeaturesFrom(platformFeatures);
+        return f.categoryList();
+    }, [platformFeatures]);
 
     return (
         <div className="form__select breakage-form__input--dropdown">
@@ -132,11 +132,11 @@ function DefaultSelectElement() {
                     {ns.report('pickYourIssueFromTheList.title')}
                 </option>
                 {randomised.map(([key, value]) => {
-                    return <option value={key}>{value}</option>
+                    return <option value={key}>{value}</option>;
                 })}
             </select>
         </div>
-    )
+    );
 }
 
 /**
@@ -149,8 +149,8 @@ function DefaultSelectElement() {
  * @param {string} [options.placeholder] - The placeholder text in the textare
  */
 export function FormElement({ onSubmit, before, after, placeholder }) {
-    let bullet = '\u000A • '
-    placeholder = placeholder || ns.report('tellUsMoreDesc.title', { bullet })
+    let bullet = '\u000A • ';
+    placeholder = placeholder || ns.report('tellUsMoreDesc.title', { bullet });
 
     return (
         <form className="breakage-form__element" onSubmit={onSubmit}>
@@ -163,5 +163,5 @@ export function FormElement({ onSubmit, before, after, placeholder }) {
                 {ns.report('sendReport.title')}
             </button>
         </form>
-    )
+    );
 }

@@ -1,14 +1,14 @@
-import i18next from 'i18next'
-import ICU from 'i18next-icu'
+import i18next from 'i18next';
+import ICU from 'i18next-icu';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import siteTranslations from '../../../locales/en/site.json'
+import siteTranslations from '../../../locales/en/site.json';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import reportTranslations from '../../../locales/en/report.json'
+import reportTranslations from '../../../locales/en/report.json';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import toggleReportTranslations from '../../../locales/en/toggle-report.json'
+import toggleReportTranslations from '../../../locales/en/toggle-report.json';
 
 // @ts-ignore
-import localeResources from '../../../locales/*/*.json'
+import localeResources from '../../../locales/*/*.json';
 
 i18next.use(ICU).init({
     // debug: true,
@@ -20,12 +20,12 @@ i18next.use(ICU).init({
     resources: localeResources,
     i18nFormat: {
         parseErrorHandler: (err, key, res, options) => {
-            console.warn('parseErrorHandler', err, key, res, options)
+            console.warn('parseErrorHandler', err, key, res, options);
         },
     },
-})
+});
 
-export const i18n = i18next
+export const i18n = i18next;
 
 /**
  * A helper for accessing the 'site' namespace with a bit of help from Typescript
@@ -35,7 +35,7 @@ export const i18n = i18next
  * @param {Record<string, any>} [options]
  */
 function site(key, options) {
-    return i18next.t(`site:${key}`, options)
+    return i18next.t(`site:${key}`, options);
 }
 
 /**
@@ -46,7 +46,7 @@ function site(key, options) {
  * @param {Record<string, any>} [options]
  */
 function report(key, options) {
-    return i18next.t(`report:${key}`, options)
+    return i18next.t(`report:${key}`, options);
 }
 
 /**
@@ -57,11 +57,11 @@ function report(key, options) {
  * @param {Record<string, any>} [options]
  */
 function toggleReport(key, options) {
-    return i18next.t(`toggle-report:${key}`, options)
+    return i18next.t(`toggle-report:${key}`, options);
 }
 
 export const ns = {
     site,
     report,
     toggleReport,
-}
+};

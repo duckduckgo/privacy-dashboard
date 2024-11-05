@@ -11,7 +11,7 @@ import {
     outgoingExtensionMessageSchema,
     refreshAliasResponseSchema,
     setListOptionsSchema,
-} from '../../../schema/__generated__/schema.parsers.mjs'
+} from '../../../schema/__generated__/schema.parsers.mjs';
 import {
     BurnMessage,
     CheckBrokenSiteReportHandledMessage,
@@ -27,64 +27,64 @@ import {
     SetListsMessage,
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
-} from './common.js'
-import { createTabData } from './utils/request-details.mjs'
-import { Protections } from './utils/protections.mjs'
+} from './common.js';
+import { createTabData } from './utils/request-details.mjs';
+import { Protections } from './utils/protections.mjs';
 
 /** @type {Pick<import("../../../v2/data-provider.js").DataChannel, 'send' | 'didReconnect'>} */
-let channel
-let port
+let channel;
+let port;
 
-const devtoolsMessageResponseReceived = new EventTarget()
+const devtoolsMessageResponseReceived = new EventTarget();
 
 function openPort() {
-    port = chrome.runtime.connect({ name: 'privacy-dashboard' })
+    port = chrome.runtime.connect({ name: 'privacy-dashboard' });
     port.onDisconnect.addListener(() => {
-        openPort()
-        channel.didReconnect()
-    })
+        openPort();
+        channel.didReconnect();
+    });
     port.onMessage.addListener((message) => {
         // console.log('did receive raw', message)
-        const parsed = incomingExtensionMessageSchema.safeParse(message)
+        const parsed = incomingExtensionMessageSchema.safeParse(message);
         // console.log('did parse into', parsed)
 
         if (!parsed.success) {
-            console.warn('the incoming message could not be parsed with `incomingExtensionMessageSchema`', JSON.stringify(message))
-            return
+            console.warn('the incoming message could not be parsed with `incomingExtensionMessageSchema`', JSON.stringify(message));
+            return;
         }
 
         switch (parsed.data.messageType) {
             case 'response': {
-                const { id, options } = parsed.data
+                const { id, options } = parsed.data;
                 // console.log('did send options from', parsed.data)
-                devtoolsMessageResponseReceived.dispatchEvent(new CustomEvent(String(id), { detail: options }))
-                break
+                devtoolsMessageResponseReceived.dispatchEvent(new CustomEvent(String(id), { detail: options }));
+                break;
             }
             case 'toggleReport': {
-                window.location.search = '?screen=toggleReport&opener=dashboard'
-                break
+                window.location.search = '?screen=toggleReport&opener=dashboard';
+                break;
             }
             case 'closePopup': {
-                window.close()
-                break
+                window.close();
+                break;
             }
             case 'updateTabData': {
-                channel.send('updateTabData')
-                break
+                channel.send('updateTabData');
+                break;
             }
             case 'didResetTrackersData': {
-                channel.send('updateTabData')
-                break
+                channel.send('updateTabData');
+                break;
             }
             default: {
-                console.warn('unhandled message')
+                console.warn('unhandled message');
             }
         }
-    })
+    });
 }
 
 function notify(messageType, options = {}) {
-    port.postMessage({ messageType, options })
+    port.postMessage({ messageType, options });
 }
 
 /**
@@ -98,25 +98,25 @@ function request(messageType, options = {}) {
             messageType,
             options,
             id: Math.random(),
-        }
-        const parsed = outgoingExtensionMessageSchema.safeParse(outgoing)
+        };
+        const parsed = outgoingExtensionMessageSchema.safeParse(outgoing);
         if (!parsed.success) {
-            return reject(new Error('invalid message ' + JSON.stringify(outgoing)))
+            return reject(new Error('invalid message ' + JSON.stringify(outgoing)));
         }
         // console.log('Will 👂 for', outgoing.id)
         devtoolsMessageResponseReceived.addEventListener(
             String(outgoing.id),
             (/** @type {any} */ evt) => {
-                resolve(evt.detail)
+                resolve(evt.detail);
             },
             { once: true }
-        )
-        port.postMessage(outgoing)
-    })
+        );
+        port.postMessage(outgoing);
+    });
 }
 
 export function setup() {
-    setupColorScheme()
+    setupColorScheme();
 }
 
 /**
@@ -126,45 +126,45 @@ export async function fetch(message) {
     // console.log('⏱ [extension.fetch]', JSON.stringify(message, null, 2))
     // ensure the HTML form is shown for the extension
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
-        return false
+        return false;
     }
     if (message instanceof SubmitBrokenSiteReportMessage) {
-        return submitBrokenSiteReport(message)
+        return submitBrokenSiteReport(message);
     }
     if (message instanceof SetListsMessage) {
-        return setLists(message)
+        return setLists(message);
     }
     if (message instanceof SearchMessage) {
-        return search(message)
+        return search(message);
     }
     if (message instanceof RefreshEmailAliasMessage) {
-        return refreshAlias()
+        return refreshAlias();
     }
     if (message instanceof OpenOptionsMessage) {
-        return openOptions()
+        return openOptions();
     }
     if (message instanceof BurnMessage) {
-        return doBurn(message)
+        return doBurn(message);
     }
     if (message instanceof FetchBurnOptions) {
-        return getBurnOptions()
+        return getBurnOptions();
     }
     if (message instanceof SetBurnDefaultOption) {
-        return setBurnDefaultOption(message)
+        return setBurnDefaultOption(message);
     }
     if (message instanceof SendToggleBreakageReport) {
-        return sendToggleReport()
+        return sendToggleReport();
     }
     if (message instanceof RejectToggleBreakageReport) {
-        return rejectToggleReport()
+        return rejectToggleReport();
     }
     if (message instanceof FetchToggleReportOptions) {
-        return getToggleReportOptions()
+        return getToggleReportOptions();
     }
     if (message instanceof SeeWhatIsSent) {
-        return seeWhatIsSent()
+        return seeWhatIsSent();
     }
-    return Promise.reject(new Error('unhandled message: ' + JSON.stringify(message)))
+    return Promise.reject(new Error('unhandled message: ' + JSON.stringify(message)));
 }
 
 /**
@@ -182,8 +182,8 @@ export async function fetch(message) {
  * ```
  */
 export async function submitBrokenSiteReport(report) {
-    const parsedInput = breakageReportRequestSchema.parse(report)
-    notify('submitBrokenSiteReport', parsedInput)
+    const parsedInput = breakageReportRequestSchema.parse(report);
+    notify('submitBrokenSiteReport', parsedInput);
 }
 
 /**
@@ -214,8 +214,8 @@ export async function submitBrokenSiteReport(report) {
  * ```
  */
 export async function setLists(options) {
-    const parsedInput = setListOptionsSchema.parse(options)
-    return notify('setLists', parsedInput)
+    const parsedInput = setListOptionsSchema.parse(options);
+    return notify('setLists', parsedInput);
 }
 
 /**
@@ -231,8 +231,8 @@ export async function setLists(options) {
  * ```
  */
 export async function refreshAlias() {
-    const result = await request('refreshAlias')
-    return refreshAliasResponseSchema.parse(result)
+    const result = await request('refreshAlias');
+    return refreshAliasResponseSchema.parse(result);
 }
 
 /**
@@ -251,7 +251,7 @@ export async function refreshAlias() {
  * ```
  */
 export async function search(options) {
-    return notify('search', options)
+    return notify('search', options);
 }
 
 /**
@@ -267,7 +267,7 @@ export async function search(options) {
  * ```
  */
 export async function openOptions() {
-    return notify('openOptions')
+    return notify('openOptions');
 }
 
 /**
@@ -283,7 +283,7 @@ export async function openOptions() {
  * ```
  */
 export async function sendToggleReport() {
-    return notify('sendToggleReport')
+    return notify('sendToggleReport');
 }
 
 /**
@@ -299,7 +299,7 @@ export async function sendToggleReport() {
  * ```
  */
 export async function rejectToggleReport() {
-    return notify('rejectToggleReport')
+    return notify('rejectToggleReport');
 }
 
 /**
@@ -315,7 +315,7 @@ export async function rejectToggleReport() {
  * ```
  */
 export async function seeWhatIsSent() {
-    return notify('seeWhatIsSent')
+    return notify('seeWhatIsSent');
 }
 
 /**
@@ -330,7 +330,7 @@ export async function seeWhatIsSent() {
  * ```
  */
 export function getBurnOptions() {
-    return request('getBurnOptions')
+    return request('getBurnOptions');
 }
 
 /**
@@ -345,7 +345,7 @@ export function getBurnOptions() {
  * ```
  */
 export function getToggleReportOptions() {
-    return request('getToggleReportOptions')
+    return request('getToggleReportOptions');
 }
 
 /**
@@ -362,7 +362,7 @@ export function getToggleReportOptions() {
  * ```
  */
 export function setBurnDefaultOption(message) {
-    return request('setBurnDefaultOption', message)
+    return request('setBurnDefaultOption', message);
 }
 
 /**
@@ -378,12 +378,12 @@ export function setBurnDefaultOption(message) {
 export async function doBurn(message) {
     const browsingDataPermissions = {
         permissions: ['browsingData'],
-    }
-    const permissionRequestGranted = await new Promise((resolve) => chrome.permissions.request(browsingDataPermissions, resolve))
+    };
+    const permissionRequestGranted = await new Promise((resolve) => chrome.permissions.request(browsingDataPermissions, resolve));
     if (!permissionRequestGranted) {
-        throw new Error('Permission not granted')
+        throw new Error('Permission not granted');
     }
-    return notify('doBurn', message)
+    return notify('doBurn', message);
 }
 
 /**
@@ -402,12 +402,12 @@ export async function doBurn(message) {
  * ```
  */
 export async function getPrivacyDashboardData(tabId) {
-    return request('getPrivacyDashboardData', { tabId })
+    return request('getPrivacyDashboardData', { tabId });
 }
 
 export function backgroundMessage(_channel) {
-    channel = _channel
-    openPort()
+    channel = _channel;
+    openPort();
 }
 
 /**
@@ -419,22 +419,22 @@ export function backgroundMessage(_channel) {
  */
 export async function getBackgroundTabData() {
     // @ts-ignore
-    const tabIdParam = new URL(document.location.href).searchParams.get('tabId')
-    const isNumeric = tabIdParam && !Number.isNaN(Number(tabIdParam))
-    const tabId = isNumeric ? Number(tabIdParam) : null
-    const resp = await getPrivacyDashboardData(tabId)
-    const parsedMessageData = getPrivacyDashboardDataSchema.safeParse(resp)
+    const tabIdParam = new URL(document.location.href).searchParams.get('tabId');
+    const isNumeric = tabIdParam && !Number.isNaN(Number(tabIdParam));
+    const tabId = isNumeric ? Number(tabIdParam) : null;
+    const resp = await getPrivacyDashboardData(tabId);
+    const parsedMessageData = getPrivacyDashboardDataSchema.safeParse(resp);
 
     if (parsedMessageData.success === true) {
-        const { tab, emailProtectionUserData, requestData, fireButton } = parsedMessageData.data
-        const { upgradedHttps, url, parentEntity, specialDomainName, id, localeSettings } = tab
+        const { tab, emailProtectionUserData, requestData, fireButton } = parsedMessageData.data;
+        const { upgradedHttps, url, parentEntity, specialDomainName, id, localeSettings } = tab;
 
         const protections = new Protections(
             tab.protections.unprotectedTemporary,
             tab.protections.enabledFeatures,
             tab.protections.allowlisted,
             tab.protections.denylisted
-        )
+        );
         return {
             tab: {
                 ...createTabData(url, upgradedHttps, protections, requestData),
@@ -449,14 +449,14 @@ export async function getBackgroundTabData() {
             },
             emailProtectionUserData,
             fireButton,
-        }
+        };
     } else {
-        console.log('getPrivacyDashboardDataSchema failed', parsedMessageData.error)
-        console.log('getPrivacyDashboardDataSchema failed: ', JSON.stringify(resp))
+        console.log('getPrivacyDashboardDataSchema failed', parsedMessageData.error);
+        console.log('getPrivacyDashboardDataSchema failed: ', JSON.stringify(resp));
     }
 
     if (!window.__playwright) {
-        console.log('🙏 getBackgroundTabData ❌', parsedMessageData.error, resp)
+        console.log('🙏 getBackgroundTabData ❌', parsedMessageData.error, resp);
     }
 
     // todo(Shane): Have an error state here instead?
@@ -465,7 +465,7 @@ export async function getBackgroundTabData() {
         denylisted: false,
         enabledFeatures: ['contentBlocking'],
         unprotectedTemporary: false,
-    }
+    };
     return {
         tab: {
             ...createTabData('unknown', false, protections, { requests: [] }),
@@ -473,5 +473,5 @@ export async function getBackgroundTabData() {
             search: {},
             ctaScreens: {},
         },
-    }
+    };
 }

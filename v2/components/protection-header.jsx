@@ -1,19 +1,19 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { ProtectionHeader as ProtectionHeaderComponent } from '../../shared/js/ui/templates/protection-header'
-import { useData, useFeatures, useFeatureSettings, useFetcher, useToggle } from '../data-provider'
-import { TextLink } from '../../shared/js/ui/components/text-link'
-import { useNav } from '../navigation'
-import { ns } from '../../shared/js/ui/base/localize'
-import { CheckBrokenSiteReportHandledMessage } from '../../shared/js/browser/common'
+import { h } from 'preact';
+import { ProtectionHeader as ProtectionHeaderComponent } from '../../shared/js/ui/templates/protection-header';
+import { useData, useFeatures, useFeatureSettings, useFetcher, useToggle } from '../data-provider';
+import { TextLink } from '../../shared/js/ui/components/text-link';
+import { useNav } from '../navigation';
+import { ns } from '../../shared/js/ui/base/localize';
+import { CheckBrokenSiteReportHandledMessage } from '../../shared/js/browser/common';
 
 export function ProtectionHeader() {
-    const { push } = useNav()
-    const data = useData()
-    const onToggle = useToggle()
-    const fetcher = useFetcher()
-    const { breakageScreen } = useFeatures()
-    const featureSettings = useFeatureSettings()
+    const { push } = useNav();
+    const data = useData();
+    const onToggle = useToggle();
+    const fetcher = useFetcher();
+    const { breakageScreen } = useFeatures();
+    const featureSettings = useFeatureSettings();
 
     return (
         <div data-testid="protectionHeader">
@@ -25,10 +25,10 @@ export function ProtectionHeader() {
                             fetcher(new CheckBrokenSiteReportHandledMessage())
                                 .then(() => {
                                     if (featureSettings.webBreakageForm.state === 'enabled') {
-                                        push(breakageScreen)
+                                        push(breakageScreen);
                                     }
                                 })
-                                .catch(console.error)
+                                .catch(console.error);
                         }}
                         rounded={true}
                     >
@@ -37,5 +37,5 @@ export function ProtectionHeader() {
                 </div>
             </ProtectionHeaderComponent>
         </div>
-    )
+    );
 }

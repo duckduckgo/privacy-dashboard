@@ -13,8 +13,8 @@ import {
     protectionsStatusSchema,
     remoteFeatureSettingsSchema,
     requestDataSchema,
-} from '../../../schema/__generated__/schema.parsers.mjs'
-import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils'
+} from '../../../schema/__generated__/schema.parsers.mjs';
+import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils';
 import {
     CheckBrokenSiteReportHandledMessage,
     CloseMessage,
@@ -22,30 +22,30 @@ import {
     SetListsMessage,
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
-} from './common.js'
-import { createTabData } from './utils/request-details.mjs'
-import invariant from 'tiny-invariant'
+} from './common.js';
+import { createTabData } from './utils/request-details.mjs';
+import invariant from 'tiny-invariant';
 
-let channel = null
+let channel = null;
 const backgroundMessage = (backgroundModel) => {
-    channel = backgroundModel
-}
-const getBackgroundTabDataPromises = []
-let trackerBlockingData
-let permissionsData
-let certificateData
-let upgradedHttps
+    channel = backgroundModel;
+};
+const getBackgroundTabDataPromises = [];
+let trackerBlockingData;
+let permissionsData;
+let certificateData;
+let upgradedHttps;
 /** @type {import("./utils/protections.mjs").Protections | undefined} */
-let protections
-let isPendingUpdates
-let parentEntity
-const cookiePromptManagementStatus = {}
+let protections;
+let isPendingUpdates;
+let parentEntity;
+const cookiePromptManagementStatus = {};
 
 /** @type {string | undefined} */
-let locale
+let locale;
 
 /** @type {import('../../../schema/__generated__/schema.types').RemoteFeatureSettings | undefined} */
-let featureSettings
+let featureSettings;
 
 const combineSources = () => ({
     tab: Object.assign(
@@ -61,20 +61,20 @@ const combineSources = () => ({
         certificateData ? { certificate: certificateData } : {}
     ),
     featureSettings,
-})
+});
 
 const resolveInitialRender = function () {
-    const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean'
-    const isIsProtectedSet = typeof protections !== 'undefined'
-    const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object'
-    const isLocaleSet = typeof locale === 'string'
+    const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
+    const isIsProtectedSet = typeof protections !== 'undefined';
+    const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
+    const isLocaleSet = typeof locale === 'string';
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
-        return
+        return;
     }
 
-    getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()))
-    channel?.send('updateTabData', { via: 'resolveInitialRender' })
-}
+    getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()));
+    channel?.send('updateTabData', { via: 'resolveInitialRender' });
+};
 
 // Integration APIs
 // -----------------------------------------------------------------------------
@@ -105,18 +105,18 @@ const resolveInitialRender = function () {
 export function onChangeRequestData(tabUrl, rawRequestData) {
     // note: this will fail currently, but is added here to enable the wiring of the documentation/schema
 
-    const requestData = requestDataSchema.safeParse(rawRequestData)
+    const requestData = requestDataSchema.safeParse(rawRequestData);
     if (!protections) {
-        console.error('protections status not set')
-        return
+        console.error('protections status not set');
+        return;
     }
     if (!requestData.success) {
-        console.error('could not parse incoming request data from `onChangeRequestData`')
-        console.log(requestData.error)
-        return
+        console.error('could not parse incoming request data from `onChangeRequestData`');
+        console.log(requestData.error);
+        return;
     }
-    trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data)
-    resolveInitialRender()
+    trackerBlockingData = createTabData(tabUrl, upgradedHttps, protections, requestData.data);
+    resolveInitialRender();
 }
 
 /**
@@ -138,15 +138,15 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
  */
 export function onChangeProtectionStatus(protectionsStatus) {
-    const parsed = protectionsStatusSchema.safeParse(protectionsStatus)
+    const parsed = protectionsStatusSchema.safeParse(protectionsStatus);
     if (!parsed.success) {
-        console.error('could not parse incoming protection status from onChangeProtectionStatus')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming protection status from onChangeProtectionStatus');
+        console.error(parsed.error);
+        return;
     }
-    protections = parsed.data
+    protections = parsed.data;
 
-    resolveInitialRender()
+    resolveInitialRender();
 }
 
 /**
@@ -162,14 +162,14 @@ export function onChangeProtectionStatus(protectionsStatus) {
  * ```
  */
 export function onChangeLocale(payload) {
-    const parsed = localeSettingsSchema.safeParse(payload)
+    const parsed = localeSettingsSchema.safeParse(payload);
     if (!parsed.success) {
-        console.error('could not parse incoming protection status from onChangeLocale')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming protection status from onChangeLocale');
+        console.error(parsed.error);
+        return;
     }
-    locale = parsed.data.locale
-    channel?.send('updateTabData', { via: 'onChangeLocale' })
+    locale = parsed.data.locale;
+    channel?.send('updateTabData', { via: 'onChangeLocale' });
 }
 
 /**
@@ -185,14 +185,14 @@ export function onChangeLocale(payload) {
  * ```
  */
 export function onChangeFeatureSettings(payload) {
-    const parsed = remoteFeatureSettingsSchema.safeParse(payload)
+    const parsed = remoteFeatureSettingsSchema.safeParse(payload);
     if (!parsed.success) {
-        console.error('could not parse incoming protection status from onChangeFeatureSettings')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming protection status from onChangeFeatureSettings');
+        console.error(parsed.error);
+        return;
     }
-    featureSettings = parsed.data
-    channel?.send('updateTabData', { via: 'onChangeFeatureSettings' })
+    featureSettings = parsed.data;
+    channel?.send('updateTabData', { via: 'onChangeFeatureSettings' });
 }
 
 /**
@@ -207,14 +207,14 @@ export function onChangeFeatureSettings(payload) {
  * ```
  */
 export function onChangeConsentManaged(payload) {
-    const parsed = cookiePromptManagementStatusSchema.safeParse(payload)
+    const parsed = cookiePromptManagementStatusSchema.safeParse(payload);
     if (!parsed.success) {
-        console.error('could not parse incoming data from onChangeConsentManaged')
-        console.error(parsed.error)
-        return
+        console.error('could not parse incoming data from onChangeConsentManaged');
+        console.error(parsed.error);
+        return;
     }
-    Object.assign(cookiePromptManagementStatus, parsed.data)
-    channel?.send('updateTabData')
+    Object.assign(cookiePromptManagementStatus, parsed.data);
+    channel?.send('updateTabData');
 }
 
 /**
@@ -259,7 +259,7 @@ export class PrivacyDashboardJavascriptInterface {
      * ```
      */
     toggleAllowlist(params) {
-        window.PrivacyDashboard.toggleAllowlist(JSON.stringify(params))
+        window.PrivacyDashboard.toggleAllowlist(JSON.stringify(params));
     }
 
     /**
@@ -271,7 +271,7 @@ export class PrivacyDashboardJavascriptInterface {
      * ```
      */
     showBreakageForm() {
-        window.PrivacyDashboard.showBreakageForm()
+        window.PrivacyDashboard.showBreakageForm();
     }
 
     /**
@@ -281,7 +281,7 @@ export class PrivacyDashboardJavascriptInterface {
      * ```
      */
     close() {
-        window.PrivacyDashboard.close()
+        window.PrivacyDashboard.close();
     }
 
     /**
@@ -296,7 +296,7 @@ export class PrivacyDashboardJavascriptInterface {
      * ```
      */
     openInNewTab(payload) {
-        window.PrivacyDashboard.openInNewTab(JSON.stringify(payload))
+        window.PrivacyDashboard.openInNewTab(JSON.stringify(payload));
     }
 
     /**
@@ -311,7 +311,7 @@ export class PrivacyDashboardJavascriptInterface {
      * ```
      */
     openSettings(payload) {
-        window.PrivacyDashboard.openSettings(JSON.stringify(payload))
+        window.PrivacyDashboard.openSettings(JSON.stringify(payload));
     }
 
     /**
@@ -319,15 +319,15 @@ export class PrivacyDashboardJavascriptInterface {
      * @type {import("./common.js").submitBrokenSiteReport}
      */
     submitBrokenSiteReport(payload) {
-        invariant(typeof window.PrivacyDashboard?.submitBrokenSiteReport, 'window.PrivacyDashboard.submitBrokenSiteReport required')
-        window.PrivacyDashboard.submitBrokenSiteReport(JSON.stringify(payload))
+        invariant(typeof window.PrivacyDashboard?.submitBrokenSiteReport, 'window.PrivacyDashboard.submitBrokenSiteReport required');
+        window.PrivacyDashboard.submitBrokenSiteReport(JSON.stringify(payload));
     }
 }
 
 /**
  * @type {PrivacyDashboardJavascriptInterface}
  */
-let privacyDashboardApi
+let privacyDashboardApi;
 
 // -----------------------------------------------------------------------------
 
@@ -337,140 +337,140 @@ let privacyDashboardApi
 async function fetchAndroid(message) {
     if (message instanceof SetListsMessage) {
         for (const listItem of message.lists) {
-            const { list, value } = listItem
+            const { list, value } = listItem;
             if (list !== 'allowlisted') {
-                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on android')
-                continue
+                if (!window.__playwright) console.warn('only `allowlisted` is currently supported on android');
+                continue;
             }
 
             // `allowlisted: true` means the user disabled protections.
             // so `isProtected` is the opposite of `allowlisted`.
-            const isProtected = value === false
-            privacyDashboardApi.toggleAllowlist({ eventOrigin: message.eventOrigin, isProtected })
+            const isProtected = value === false;
+            privacyDashboardApi.toggleAllowlist({ eventOrigin: message.eventOrigin, isProtected });
         }
-        return
+        return;
     }
 
     if (message instanceof CloseMessage) {
-        privacyDashboardApi.close()
-        return
+        privacyDashboardApi.close();
+        return;
     }
 
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
-        privacyDashboardApi.showBreakageForm()
-        return true // Return true to prevent HTML form from showing
+        privacyDashboardApi.showBreakageForm();
+        return true; // Return true to prevent HTML form from showing
     }
 
     if (message instanceof SubmitBrokenSiteReportMessage) {
         privacyDashboardApi.submitBrokenSiteReport({
             category: message.category,
             description: message.description,
-        })
-        return true // Return true to prevent HTML form from showing
+        });
+        return true; // Return true to prevent HTML form from showing
     }
 
     if (message instanceof OpenSettingsMessages) {
         return privacyDashboardApi.openSettings({
             target: message.target,
-        })
+        });
     }
 
-    console.warn('unhandled message', message)
+    console.warn('unhandled message', message);
 }
 
 const getBackgroundTabDataAndroid = () => {
     return new Promise((resolve) => {
         if (trackerBlockingData) {
-            resolve(combineSources())
-            return
+            resolve(combineSources());
+            return;
         }
 
-        getBackgroundTabDataPromises.push(resolve)
-    })
-}
+        getBackgroundTabDataPromises.push(resolve);
+    });
+};
 
 export function setup(debug) {
-    const setColorScheme = setupColorScheme()
+    const setColorScheme = setupColorScheme();
     window.onChangeTheme = function (themeName) {
-        setColorScheme(themeName)
-    }
-    window.onChangeProtectionStatus = onChangeProtectionStatus
-    window.onChangeLocale = onChangeLocale
-    window.onChangeRequestData = onChangeRequestData
-    window.onChangeConsentManaged = onChangeConsentManaged
-    window.onChangeFeatureSettings = onChangeFeatureSettings
+        setColorScheme(themeName);
+    };
+    window.onChangeProtectionStatus = onChangeProtectionStatus;
+    window.onChangeLocale = onChangeLocale;
+    window.onChangeRequestData = onChangeRequestData;
+    window.onChangeConsentManaged = onChangeConsentManaged;
+    window.onChangeFeatureSettings = onChangeFeatureSettings;
 
     window.onChangeAllowedPermissions = function (data) {
-        permissionsData = data
-        channel?.send('updateTabData', { via: 'onChangeAllowedPermissions' })
-    }
+        permissionsData = data;
+        channel?.send('updateTabData', { via: 'onChangeAllowedPermissions' });
+    };
     window.onChangeUpgradedHttps = function (data) {
-        upgradedHttps = data
-        if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps
-        resolveInitialRender()
-    }
+        upgradedHttps = data;
+        if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
+        resolveInitialRender();
+    };
     window.onChangeCertificateData = function (data) {
-        certificateData = data.secCertificateViewModels
-        channel?.send('updateTabData', { via: 'onChangeCertificateData' })
-    }
+        certificateData = data.secCertificateViewModels;
+        channel?.send('updateTabData', { via: 'onChangeCertificateData' });
+    };
     window.onIsPendingUpdates = function (data) {
-        isPendingUpdates = data
-        channel?.send('updateTabData', { via: 'onIsPendingUpdates' })
-    }
+        isPendingUpdates = data;
+        channel?.send('updateTabData', { via: 'onIsPendingUpdates' });
+    };
     window.onChangeParentEntity = function (data) {
-        parentEntity = data
-        channel?.send('updateTabData', { via: 'onChangeParentEntity' })
-    }
+        parentEntity = data;
+        channel?.send('updateTabData', { via: 'onChangeParentEntity' });
+    };
 
     /**
      * This matches what Android injects into the webview
      * @type {PrivacyDashboardJavascriptInterface}
      */
-    privacyDashboardApi = new PrivacyDashboardJavascriptInterface()
+    privacyDashboardApi = new PrivacyDashboardJavascriptInterface();
 
     // Blur elements on Android when a long-press is detected
-    setupBlurOnLongPress()
+    setupBlurOnLongPress();
     setupGlobalOpenerListener((href) => {
         privacyDashboardApi.openInNewTab({
             url: href,
-        })
-    })
+        });
+    });
 
-    if (debug) installAndroidCommunicationsProxy()
+    if (debug) installAndroidCommunicationsProxy();
 }
 export const getBackgroundTabData = new Proxy(getBackgroundTabDataAndroid, {
     apply(target, thisArg, argArray) {
         // console.log('🚀 getBackgroundTabData...', JSON.stringify(argArray))
-        return Reflect.apply(target, thisArg, argArray)
+        return Reflect.apply(target, thisArg, argArray);
     },
-})
+});
 export const fetch = new Proxy(fetchAndroid, {
     apply(target, thisArg, argArray) {
         // console.log('🚀 fetch...', JSON.stringify(argArray))
-        return Reflect.apply(target, thisArg, argArray)
+        return Reflect.apply(target, thisArg, argArray);
     },
-})
+});
 
 function installAndroidCommunicationsProxy() {
     const handler = {
         get(target, propKey, receiver) {
-            const origMethod = target[propKey]
+            const origMethod = target[propKey];
             if (typeof origMethod === 'function') {
                 return function (...args) {
                     if (args.length === 0) {
-                        console.log(`🤖 called window.PrivacyDashboard.${propKey} without args`)
+                        console.log(`🤖 called window.PrivacyDashboard.${propKey} without args`);
                     } else {
-                        console.log(`🤖 called window.PrivacyDashboard.${propKey} with`, ...args)
+                        console.log(`🤖 called window.PrivacyDashboard.${propKey} with`, ...args);
                     }
-                    return Reflect.apply(origMethod, receiver, args)
-                }
+                    return Reflect.apply(origMethod, receiver, args);
+                };
             } else {
                 // If the property is not a function, return it as is
-                return origMethod
+                return origMethod;
             }
         },
-    }
-    window.PrivacyDashboard = new Proxy(window.PrivacyDashboard, handler)
+    };
+    window.PrivacyDashboard = new Proxy(window.PrivacyDashboard, handler);
 }
 
-export { backgroundMessage }
+export { backgroundMessage };

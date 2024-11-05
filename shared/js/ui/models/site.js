@@ -13,4 +13,4 @@
  * @property {any[] | null | undefined} permissions
  * @property {import('../../browser/utils/request-details.mjs').TabData} tab
  */
-export {}
+export {};

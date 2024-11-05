@@ -1,39 +1,39 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { useData, useFetcher } from '../data-provider'
-import { ns } from '../../shared/js/ui/base/localize'
-import { useState } from 'preact/hooks'
-import { OpenOptionsMessage, SearchMessage } from '../../shared/js/browser/common'
-import { FireProvider } from './fire-dialog'
+import { h } from 'preact';
+import { useData, useFetcher } from '../data-provider';
+import { ns } from '../../shared/js/ui/base/localize';
+import { useState } from 'preact/hooks';
+import { OpenOptionsMessage, SearchMessage } from '../../shared/js/browser/common';
+import { FireProvider } from './fire-dialog';
 
 export function SearchBar() {
-    const data = useData()
-    const fetcher = useFetcher()
-    const showFireButton = data.fireButton?.enabled === true
-    const [focussed, setFocussed] = useState(false)
-    const [fireDialogOpen, setFireDialogOpen] = useState(false)
+    const data = useData();
+    const fetcher = useFetcher();
+    const showFireButton = data.fireButton?.enabled === true;
+    const [focussed, setFocussed] = useState(false);
+    const [fireDialogOpen, setFireDialogOpen] = useState(false);
     function openSettings() {
-        const msg = new OpenOptionsMessage()
-        fetcher(msg).catch(console.error)
+        const msg = new OpenOptionsMessage();
+        fetcher(msg).catch(console.error);
     }
     function openFire() {
-        setFireDialogOpen(true)
+        setFireDialogOpen(true);
     }
     function doSearch(e) {
-        e.preventDefault()
-        const values = Object.fromEntries(new FormData(e.target))
+        e.preventDefault();
+        const values = Object.fromEntries(new FormData(e.target));
         if (!values.q || !(typeof values.q === 'string')) {
-            return console.warn('missing value')
+            return console.warn('missing value');
         }
-        const msg = new SearchMessage({ term: values.q })
-        fetcher(msg).catch(console.error)
+        const msg = new SearchMessage({ term: values.q });
+        fetcher(msg).catch(console.error);
     }
     const fireButton = showFireButton ? (
         <button type="button" class="fire-button" onClick={openFire}>
             <FireIcon />
         </button>
-    ) : null
-    if (!data.tab.search) return null
+    ) : null;
+    if (!data.tab.search) return null;
     return (
         <div className="search token-search-input">
             <form className="search-form" name="x" data-test-id="search-form" data-focussed={focussed} onSubmit={doSearch}>
@@ -59,7 +59,7 @@ export function SearchBar() {
                 <CogIcon />
             </button>
         </div>
-    )
+    );
 }
 
 export function LoupeIcon() {
@@ -72,7 +72,7 @@ export function LoupeIcon() {
                 stroke-width="1.5"
             />
         </svg>
-    )
+    );
 }
 
 export function CogIcon() {
@@ -86,7 +86,7 @@ export function CogIcon() {
                 fill-opacity="0.8"
             />
         </svg>
-    )
+    );
 }
 
 export function FireIcon() {
@@ -100,5 +100,5 @@ export function FireIcon() {
                 fill-opacity="0.84"
             />
         </svg>
-    )
+    );
 }

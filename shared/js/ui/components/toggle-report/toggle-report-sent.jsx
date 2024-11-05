@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { Stack } from '../stack'
-import { ns } from '../../base/localize'
+import { h } from 'preact';
+import { Stack } from '../stack';
+import { ns } from '../../base/localize';
 
 export function ToggleReportSent({ onClick }) {
     return (
@@ -12,5 +12,5 @@ export function ToggleReportSent({ onClick }) {
                 <h2 className="token-title-3 text--center">{ns.toggleReport('yourReportWillHelpToggleReport.title')}</h2>
             </Stack>
         </div>
-    )
+    );
 }

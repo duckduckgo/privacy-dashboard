@@ -1,25 +1,25 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { useData, useFetcher } from '../data-provider'
-import { localizePermissions } from '../../shared/js/ui/templates/site'
-import { PageOuter } from './page-outer'
-import { UpdatePermissionMessage } from '../../shared/js/browser/common'
+import { h } from 'preact';
+import { useData, useFetcher } from '../data-provider';
+import { localizePermissions } from '../../shared/js/ui/templates/site';
+import { PageOuter } from './page-outer';
+import { UpdatePermissionMessage } from '../../shared/js/browser/common';
 
 export function Permissions() {
-    const data = useData()
+    const data = useData();
     if (!data.permissions || data.permissions.length === 0) {
-        return null
+        return null;
     }
-    const localizedPerms = localizePermissions(data.permissions)
-    const fetcher = useFetcher()
+    const localizedPerms = localizePermissions(data.permissions);
+    const fetcher = useFetcher();
 
     /**
      * @param {string} id
      * @param {string} value
      */
     function update(id, value) {
-        console.log(id, value)
-        fetcher(new UpdatePermissionMessage({ id, value })).catch((e) => console.error(e))
+        console.log(id, value);
+        fetcher(new UpdatePermissionMessage({ id, value })).catch((e) => console.error(e));
     }
     return (
         <PageOuter>
@@ -41,9 +41,9 @@ export function Permissions() {
                                 </select>
                             </label>
                         </div>
-                    )
+                    );
                 })}
             </div>
         </PageOuter>
-    )
+    );
 }

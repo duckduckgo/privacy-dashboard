@@ -1,5 +1,5 @@
-import { states } from '../../../browser/utils/request-details.mjs'
-import { ns } from '../../base/localize.js'
+import { states } from '../../../browser/utils/request-details.mjs';
+import { ns } from '../../base/localize.js';
 
 /**
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
@@ -7,12 +7,12 @@ import { ns } from '../../base/localize.js'
  * @returns {string}
  */
 export function thirdpartyTitle(requestDetails, protectionsEnabled) {
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOn_blocked:
         case states.protectionsOff: {
-            return ns.site('thirdPartiesNoneFound.title')
+            return ns.site('thirdPartiesNoneFound.title');
         }
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedNonTrackers:
@@ -25,12 +25,12 @@ export function thirdpartyTitle(requestDetails, protectionsEnabled) {
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return ns.site('thirdPartiesLoaded.title')
+            return ns.site('thirdPartiesLoaded.title');
         }
 
         // if no 3rd party requests were observed in any way, then we use the 'nothing found' messaging
         default:
-            return unreachable(state)
+            return unreachable(state);
     }
 }
 
@@ -42,15 +42,15 @@ export function thirdpartyTitle(requestDetails, protectionsEnabled) {
  */
 export function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetected) {
     if (phishingDetected) {
-        return 'info'
+        return 'info';
     }
 
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOn_blocked:
         case states.protectionsOff: {
-            return 'blocked'
+            return 'blocked';
         }
         case states.protectionsOn_allowedTrackers:
         case states.protectionsOn_allowedNonTrackers:
@@ -63,10 +63,10 @@ export function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetec
         case states.protectionsOff_allowedTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return 'info'
+            return 'info';
         }
         default:
-            return unreachable(state)
+            return unreachable(state);
     }
 }
 
@@ -75,7 +75,7 @@ export function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetec
  * @param {boolean} protectionsEnabled
  */
 export function thirdpartySummary(requestDetails, protectionsEnabled) {
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn_blocked_allowedTrackers:
         case states.protectionsOn_blocked_allowedNonTrackers:
@@ -88,15 +88,15 @@ export function thirdpartySummary(requestDetails, protectionsEnabled) {
         case states.protectionsOff_allowedNonTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return ns.site('thirdPartiesSummaryProtectionsOff.title')
+            return ns.site('thirdPartiesSummaryProtectionsOff.title');
         }
         case states.protectionsOn:
         case states.protectionsOff:
         case states.protectionsOn_blocked: {
-            return ns.site('thirdPartiesSummaryNone.title')
+            return ns.site('thirdPartiesSummaryNone.title');
         }
         default:
-            return unreachable(state)
+            return unreachable(state);
     }
 }
 
@@ -106,12 +106,12 @@ export function thirdpartySummary(requestDetails, protectionsEnabled) {
  * @returns {string}
  */
 export function thirdpartyHeroIcon(requestDetails, protectionsEnabled) {
-    const state = requestDetails.state(protectionsEnabled)
+    const state = requestDetails.state(protectionsEnabled);
     switch (state) {
         case states.protectionsOn:
         case states.protectionsOn_blocked:
         case states.protectionsOff: {
-            return 'major-networks-no-activity'
+            return 'major-networks-no-activity';
         }
         case states.protectionsOn_blocked_allowedTrackers:
         case states.protectionsOn_blocked_allowedTrackers_allowedNonTrackers:
@@ -124,10 +124,10 @@ export function thirdpartyHeroIcon(requestDetails, protectionsEnabled) {
         case states.protectionsOn_allowedTrackers_allowedNonTrackers:
         case states.protectionsOn_allowedFirstParty:
         case states.protectionsOn_allowedFirstParty_allowedNonTrackers: {
-            return 'major-networks-info'
+            return 'major-networks-info';
         }
         default:
-            return unreachable(state)
+            return unreachable(state);
     }
 }
 
@@ -136,5 +136,5 @@ export function thirdpartyHeroIcon(requestDetails, protectionsEnabled) {
  * @returns {never}
  */
 function unreachable(x) {
-    throw new Error("Didn't expect to get here with value " + x)
+    throw new Error("Didn't expect to get here with value " + x);
 }

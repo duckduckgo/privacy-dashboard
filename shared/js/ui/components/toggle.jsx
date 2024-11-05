@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
-import { ns } from '../base/localize'
-import { isBrowser } from '../environment-check'
+import { h } from 'preact';
+import { useEffect, useState } from 'preact/hooks';
+import { ns } from '../base/localize';
+import { isBrowser } from '../environment-check';
 
 /**
  * @typedef {import('../templates/protection-header').ToggleState} ToggleState
@@ -15,8 +15,8 @@ import { isBrowser } from '../environment-check'
  * @param {() => void} props.toggle
  */
 export function ProtectionToggle(props) {
-    const [toggleState, toggle] = useToggleState(props.model, props.toggle)
-    const altText = ns.site('updatingProtectionList.title')
+    const [toggleState, toggle] = useToggleState(props.model, props.toggle);
+    const altText = ns.site('updatingProtectionList.title');
 
     return (
         <div class={`site-info-toggle ${toggleState.active ? 'is-active' : ''}`}>
@@ -28,7 +28,7 @@ export function ProtectionToggle(props) {
                 {!toggleState.toggled && <ToggleButton toggleState={toggleState} onToggle={toggle} />}
             </div>
         </div>
-    )
+    );
 }
 
 /**
@@ -45,11 +45,11 @@ export function useToggleState(model, toggle) {
             label: '',
             toggled: false,
             sideEffects: false,
-        }
+        };
 
         if (!model.protectionsEnabled) {
-            toggleState.text = ns.site('protectionsDisabled.title')
-            toggleState.active = false
+            toggleState.text = ns.site('protectionsDisabled.title');
+            toggleState.active = false;
         }
 
         /**
@@ -58,52 +58,52 @@ export function useToggleState(model, toggle) {
          */
         if (model.isBroken) {
             if (!isBrowser()) {
-                toggleState.active = false
-                toggleState.disabled = true
+                toggleState.active = false;
+                toggleState.disabled = true;
             }
         }
 
-        const labelEnabled = ns.site('enableProtectionsSwitch.title')
-        const labelDisabled = ns.site('disableProtectionsSwitch.title')
-        toggleState.label = toggleState.active ? labelDisabled : labelEnabled
+        const labelEnabled = ns.site('enableProtectionsSwitch.title');
+        const labelDisabled = ns.site('disableProtectionsSwitch.title');
+        toggleState.label = toggleState.active ? labelDisabled : labelEnabled;
 
-        return toggleState
-    })
+        return toggleState;
+    });
 
     /**
      * When the state changes, decide what to do
      */
     useEffect(() => {
-        if (!state.sideEffects) return
-        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches === true
-        const timeout = isReducedMotion ? 0 : 300
+        if (!state.sideEffects) return;
+        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches === true;
+        const timeout = isReducedMotion ? 0 : 300;
 
         const int = setTimeout(() => {
             // toggle, this communicates with native
-            toggle()
+            toggle();
 
             // if the platform supports using a spinner
             if (model.features.spinnerFollowingProtectionsToggle) {
                 setState((prev) => {
-                    return { ...prev, toggled: true }
-                })
+                    return { ...prev, toggled: true };
+                });
             }
-        }, timeout)
+        }, timeout);
         return () => {
-            clearTimeout(int)
-        }
-    }, [state.active, state.sideEffects])
+            clearTimeout(int);
+        };
+    }, [state.active, state.sideEffects]);
 
     /**
      * Wrapper around the toggle method that consumers will call.
      */
     function toggleInternal() {
         setState((prev) => {
-            return { ...prev, active: !prev.active, sideEffects: true }
-        })
+            return { ...prev, active: !prev.active, sideEffects: true };
+        });
     }
 
-    return [state, toggleInternal]
+    return [state, toggleInternal];
 }
 
 /**
@@ -112,13 +112,13 @@ export function useToggleState(model, toggle) {
  * @param {() => void} props.onToggle
  */
 export function ToggleButton(props) {
-    const { toggleState } = props
+    const { toggleState } = props;
 
-    const labelEnabled = ns.site('enableProtectionsSwitch.title')
-    const labelDisabled = ns.site('disableProtectionsSwitch.title')
-    const label = toggleState.active ? labelDisabled : labelEnabled
+    const labelEnabled = ns.site('enableProtectionsSwitch.title');
+    const labelDisabled = ns.site('disableProtectionsSwitch.title');
+    const label = toggleState.active ? labelDisabled : labelEnabled;
 
-    return <DefaultToggleButton toggleState={toggleState} label={label} onToggle={props.onToggle} />
+    return <DefaultToggleButton toggleState={toggleState} label={label} onToggle={props.onToggle} />;
 }
 
 /**
@@ -128,7 +128,7 @@ export function ToggleButton(props) {
  * @param {() => void} props.onToggle
  */
 export function DefaultToggleButton(props) {
-    const { toggleState, label } = props
+    const { toggleState, label } = props;
 
     return (
         <button
@@ -143,5 +143,5 @@ export function DefaultToggleButton(props) {
             <div class="toggle-button__track"></div>
             <div class="toggle-button__handle"></div>
         </button>
-    )
+    );
 }

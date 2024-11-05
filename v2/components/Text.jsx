@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
+import { h } from 'preact';
 
 export function Text(props) {
-    return props.children
+    return props.children;
 }
 
 /**
@@ -12,5 +12,5 @@ export function Text(props) {
  * @param {string} props.text - The HTML content to be rendered
  */
 export function Raw(props) {
-    return <span dangerouslySetInnerHTML={{ __html: props.text }}></span>
+    return <span dangerouslySetInnerHTML={{ __html: props.text }}></span>;
 }

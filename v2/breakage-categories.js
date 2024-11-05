@@ -1,4 +1,4 @@
-import { ns } from '../shared/js/ui/base/localize'
+import { ns } from '../shared/js/ui/base/localize';
 
 /**
  * A list of category keys and their descriptions
@@ -14,8 +14,8 @@ export const defaultCategories = () => {
         login: ns.report('login.title'),
         shopping: ns.report('shopping.title'),
         other: ns.report('other.title'),
-    }
-}
+    };
+};
 
 /**
  * @param {import("../shared/js/ui/platform-features.mjs").PlatformFeatures} platformFeatures
@@ -30,14 +30,14 @@ export function createBreakageFeaturesFrom(platformFeatures) {
             const items = {
                 ...defaultCategories(),
                 ...additional,
-            }
-            const list = Object.entries(items)
+            };
+            const list = Object.entries(items);
             if (platformFeatures.randomisedCategories) {
-                return shuffle(list)
+                return shuffle(list);
             }
-            return list
+            return list;
         },
-    }
+    };
 }
 
 /**
@@ -48,15 +48,15 @@ export function createBreakageFeaturesFrom(platformFeatures) {
  * @returns {T[]} - The shuffled array.
  */
 function shuffle(arr) {
-    let len = arr.length
-    let temp
-    let index
+    let len = arr.length;
+    let temp;
+    let index;
     while (len > 0) {
-        index = Math.floor(Math.random() * len)
-        len--
-        temp = arr[len]
-        arr[len] = arr[index]
-        arr[index] = temp
+        index = Math.floor(Math.random() * len);
+        len--;
+        temp = arr[len];
+        arr[len] = arr[index];
+        arr[index] = temp;
     }
-    return arr
+    return arr;
 }

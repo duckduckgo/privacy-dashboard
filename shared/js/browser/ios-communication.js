@@ -20,26 +20,26 @@
  * @module iOS integration
  * @category integrations
  */
-import invariant from 'tiny-invariant'
+import invariant from 'tiny-invariant';
 import {
     CheckBrokenSiteReportHandledMessage,
     setupColorScheme,
     ShowAlertForMissingDescription,
     ShowNativeFeedback,
     TelemetrySpanMsg,
-} from './common.js'
-import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShared } from './macos-communication.js'
+} from './common.js';
+import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShared } from './macos-communication.js';
 
 /**
  * iOS specific setup
  */
 export function setup() {
-    const setColorScheme = setupColorScheme()
+    const setColorScheme = setupColorScheme();
     window.onChangeTheme = function (themeName) {
-        setColorScheme(themeName)
-    }
-    window.history.replaceState({}, '', window.location.href)
-    setupShared()
+        setColorScheme(themeName);
+    };
+    window.history.replaceState({}, '', window.location.href);
+    setupShared();
 }
 
 /**
@@ -54,8 +54,8 @@ export function setup() {
  * ```
  */
 export function privacyDashboardShowReportBrokenSite(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args)
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardShowReportBrokenSite.postMessage(args);
 }
 
 /**
@@ -70,8 +70,8 @@ export function privacyDashboardShowReportBrokenSite(args) {
  * ```
  */
 export function privacyDashboardShowAlertForMissingDescription(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    window.webkit.messageHandlers.privacyDashboardShowAlertForMissingDescription.postMessage(args)
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardShowAlertForMissingDescription.postMessage(args);
 }
 
 /**
@@ -86,8 +86,8 @@ export function privacyDashboardShowAlertForMissingDescription(args) {
  * ```
  */
 export function privacyDashboardShowNativeFeedback(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    window.webkit.messageHandlers.privacyDashboardShowNativeFeedback.postMessage(args)
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardShowNativeFeedback.postMessage(args);
 }
 
 /**
@@ -99,8 +99,8 @@ export function privacyDashboardShowNativeFeedback(args) {
  * ```
  */
 export function privacyDashboardTelemetrySpan(args) {
-    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required')
-    window.webkit.messageHandlers.privacyDashboardTelemetrySpan.postMessage(args)
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardTelemetrySpan.postMessage(args);
 }
 
 /**
@@ -109,23 +109,23 @@ export function privacyDashboardTelemetrySpan(args) {
  */
 async function fetch(message) {
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
-        privacyDashboardShowReportBrokenSite({})
-        return false // Return true to prevent HTML form from showing
+        privacyDashboardShowReportBrokenSite({});
+        return false; // Return true to prevent HTML form from showing
     }
     if (message instanceof ShowAlertForMissingDescription) {
-        privacyDashboardShowAlertForMissingDescription({})
-        return false // Return true to prevent HTML form from showing
+        privacyDashboardShowAlertForMissingDescription({});
+        return false; // Return true to prevent HTML form from showing
     }
     if (message instanceof ShowNativeFeedback) {
-        privacyDashboardShowNativeFeedback({})
-        return false // Return true to prevent HTML form from showing
+        privacyDashboardShowNativeFeedback({});
+        return false; // Return true to prevent HTML form from showing
     }
     if (message instanceof TelemetrySpanMsg) {
-        privacyDashboardTelemetrySpan(message)
-        return false // Return true to prevent HTML form from showing
+        privacyDashboardTelemetrySpan(message);
+        return false; // Return true to prevent HTML form from showing
     }
 
-    return macosFetch(message)
+    return macosFetch(message);
 }
 
-export { backgroundMessage, getBackgroundTabData, fetch }
+export { backgroundMessage, getBackgroundTabData, fetch };

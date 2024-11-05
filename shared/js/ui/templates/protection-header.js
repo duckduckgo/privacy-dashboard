@@ -1,11 +1,11 @@
-import html from 'nanohtml'
+import html from 'nanohtml';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { render, h, Fragment, createContext } from 'preact'
+import { render, h, Fragment, createContext } from 'preact';
 
-import { useState } from 'preact/hooks'
-import { i18n, ns } from '../base/localize'
-import { TextLink } from '../components/text-link.jsx'
-import { ProtectionToggle } from '../components/toggle'
+import { useState } from 'preact/hooks';
+import { i18n, ns } from '../base/localize';
+import { TextLink } from '../components/text-link.jsx';
+import { ProtectionToggle } from '../components/toggle';
 
 /**
  * @typedef MigrationModel
@@ -22,24 +22,24 @@ import { ProtectionToggle } from '../components/toggle'
  * @returns {HTMLElement}
  */
 export function protectionHeader(model) {
-    const root = html`<div data-testid="protectionHeader"></div>`
+    const root = html`<div data-testid="protectionHeader"></div>`;
     const migrationModel = {
         protectionsEnabled: model.protectionsEnabled,
         isAllowlisted: model.isAllowlisted,
         isDenylisted: model.isDenylisted,
         features: model.features,
         isBroken: model.isBroken,
-    }
+    };
     const toggle = () => {
-        return /** @type {any} */ (model).toggleAllowlist({ screen: 'primaryScreen' })
-    }
+        return /** @type {any} */ (model).toggleAllowlist({ screen: 'primaryScreen' });
+    };
     render(
         <ProtectionHeader model={migrationModel} toggle={toggle}>
             <ProtectionHeaderText />
         </ProtectionHeader>,
         root
-    )
-    return root
+    );
+    return root;
 }
 
 /**
@@ -47,7 +47,9 @@ export function protectionHeader(model) {
  * @typedef {{text: string; label: string; active: boolean; disabled: boolean; toggled: boolean}} ToggleState
  */
 
-export const ProtectionContext = createContext(/** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */ ({}))
+export const ProtectionContext = createContext(
+    /** @type {{state: UIState, setState: (st: UIState) => void; model: MigrationModel}} */ ({})
+);
 
 /**
  * @param {object} props
@@ -58,17 +60,17 @@ export const ProtectionContext = createContext(/** @type {{state: UIState, setSt
  */
 export function ProtectionHeader({ model, initialState, toggle, children, ...rest }) {
     /** @type {UIState} */
-    let initial
+    let initial;
     if (initialState) {
-        initial = initialState
+        initial = initialState;
     } else {
         if (model.isBroken || model.isAllowlisted) {
-            initial = 'form-trigger'
+            initial = 'form-trigger';
         } else {
-            initial = 'help-trigger'
+            initial = 'help-trigger';
         }
     }
-    const [state, setState] = useState(/** @type {UIState} */ (initial))
+    const [state, setState] = useState(/** @type {UIState} */ (initial));
 
     return (
         <div {...rest}>
@@ -86,7 +88,7 @@ export function ProtectionHeader({ model, initialState, toggle, children, ...res
                 {children}
             </ProtectionContext.Provider>
         </div>
-    )
+    );
 }
 
 export function ProtectionHeaderText() {
@@ -94,10 +96,10 @@ export function ProtectionHeaderText() {
     const buttonText = ns.site('websiteNotWorkingPrompt.title')
 
     function onClickTextLink(e) {
-        e.preventDefault()
+        e.preventDefault();
         // dispatching this for now, since there a few things that
         // are checked/used in the existing view
-        window.dispatchEvent(new CustomEvent('open-feedback'))
+        window.dispatchEvent(new CustomEvent('open-feedback'));
     }
 
     return (
@@ -106,7 +108,7 @@ export function ProtectionHeaderText() {
                 {buttonText}
             </TextLink>
         </div>
-    )
+    );
 }
 
 /**
@@ -116,8 +118,8 @@ export function ProtectionHeaderText() {
  * @param {() => void} props.toggle
  */
 function HeaderDefault(props) {
-    const text = ns.site('websiteNotWorkingAdvice.title')
-    const showHelp = props.state === 'site-not-working' && !props.model.isAllowlisted
+    const text = ns.site('websiteNotWorkingAdvice.title');
+    const showHelp = props.state === 'site-not-working' && !props.model.isAllowlisted;
     return (
         <div className="protection-toggle">
             <div className="protection-toggle__row">
@@ -125,7 +127,7 @@ function HeaderDefault(props) {
             </div>
             {showHelp && <div className="protection-toggle__row protection-toggle__row--alt">{text}</div>}
         </div>
-    )
+    );
 }
 
 /**
@@ -135,9 +137,9 @@ function HeaderDefault(props) {
  * @param {() => void} props.toggle
  */
 function HeaderDisabled(props) {
-    let text = i18n.t('site:protectionsDisabledRemote.title')
+    let text = i18n.t('site:protectionsDisabledRemote.title');
     if (props.model.isDenylisted) {
-        text = i18n.t('site:protectionsDisabledRemoteOverride.title')
+        text = i18n.t('site:protectionsDisabledRemoteOverride.title');
     }
     return (
         <>
@@ -146,5 +148,5 @@ function HeaderDisabled(props) {
             </div>
             <div className="note note--nested">{text}</div>
         </>
-    )
+    );
 }

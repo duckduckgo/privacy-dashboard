@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { h } from 'preact'
+import { h } from 'preact';
 
 export function Nav({ children }) {
-    return <ul className="default-list main-nav token-body-em">{children}</ul>
+    return <ul className="default-list main-nav token-body-em">{children}</ul>;
 }
 
 /**
@@ -27,5 +27,5 @@ export function NavItem({ children, label, onClick }) {
                 <span className="main-nav__chev"></span>
             </a>
         </li>
-    )
+    );
 }
