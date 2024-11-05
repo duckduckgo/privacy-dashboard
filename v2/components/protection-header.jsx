@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact';
 import { ProtectionHeader as ProtectionHeaderComponent } from '../../shared/js/ui/templates/protection-header';
-import { useData, useFeatures, useFeatureSettings, useFetcher, useToggle } from '../data-provider';
+import { useData, useFeatureSettings, useFetcher, useToggle } from '../data-provider';
 import { TextLink } from '../../shared/js/ui/components/text-link';
 import { useNav } from '../navigation';
 import { ns } from '../../shared/js/ui/base/localize';
@@ -28,7 +28,6 @@ export function BreakageFormLink() {
     const { push } = useNav();
     const fetcher = useFetcher();
     const featureSettings = useFeatureSettings();
-    const { breakageScreen } = useFeatures();
 
     return (
         <TextLink
@@ -37,7 +36,7 @@ export function BreakageFormLink() {
                 fetcher(new CheckBrokenSiteReportHandledMessage())
                     .then(() => {
                         if (featureSettings.webBreakageForm.state === 'enabled') {
-                            push(breakageScreen);
+                            push('breakageForm');
                         }
                     })
                     .catch(console.error);
