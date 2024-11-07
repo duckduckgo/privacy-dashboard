@@ -1,0 +1,87 @@
+name: Build and Release
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed for creating releases
+      pull-requests: write  # Needed for commenting on PRs
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Get Git SHA
+        id: git-sha
+        run: echo "sha=$(git rev-parse --short=8 HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Create zip
+        run: zip -r build.zip build/
+
+      - name: Calculate checksum
+        id: checksum
+        run: |
+          CHECKSUM=$(shasum -a 256 build.zip | awk '{print $1}')
+          echo "sha256=$CHECKSUM" >> $GITHUB_OUTPUT
+          mv build.zip "build-${{ steps.git-sha.outputs.sha }}-${CHECKSUM}.zip"
+
+      # Create/update PR specific release
+      - name: Create/Update PR Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Delete existing release if it exists
+          gh release delete pr-${{ github.event.pull_request.number }} --cleanup-tag || true
+          
+          # Create new release
+          gh release create pr-${{ github.event.pull_request.number }} \
+            --title "PR #${{ github.event.pull_request.number }} Preview" \
+            --notes "Preview build for PR #${{ github.event.pull_request.number }}" \
+            --prerelease \
+            "build-${{ steps.git-sha.outputs.sha }}-${{ steps.checksum.outputs.sha256 }}.zip"
+
+      - name: Comment PR with Package.swift Example
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const checksum = process.env.CHECKSUM
+            const gitSha = process.env.GIT_SHA
+            const releaseUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/releases/download/pr-${context.issue.number}/build-${gitSha}-${checksum}.zip`
+            
+            github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `🚀 Preview build available!
+
+              Add this to your Package.swift:
+              
+              \`\`\`swift
+              // Preview build from PR #${context.issue.number}
+              .binaryTarget(
+                name: "YourAssets",
+                url: "${releaseUrl}",
+                checksum: "${checksum}"
+              )
+              \`\`\`
+              
+              Once you merge this PR, remember to update to the main release URL.`
+            })
+
+        env:
+          CHECKSUM: ${{ steps.checksum.outputs.sha256 }}
+          GIT_SHA: ${{ steps.git-sha.outputs.sha }}
