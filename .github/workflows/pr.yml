@@ -1,0 +1,64 @@
+name: Build and Release
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Create zip
+        run: zip -r build.zip build/
+
+      - name: Calculate checksum
+        id: checksum
+        run: |
+          CHECKSUM=$(shasum -a 256 build.zip | awk '{print $1}')
+          echo "sha256=$CHECKSUM" >> $GITHUB_OUTPUT
+          # Rename the zip to include its checksum
+          mv build.zip "build-${CHECKSUM}.zip"
+
+      # For PRs
+      - name: Upload PR Artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-${{ steps.checksum.outputs.sha256 }}
+          path: build-*.zip
+          retention-days: 5
+
+      - name: Comment PR with Package.swift Example
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const checksum = process.env.CHECKSUM
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `Preview build available!
+
+              For Swift Package Manager, use:
+              
+              .binaryTarget(
+                name: "YourAssets",
+                url: "https://github.com/${context.repo.owner}/${context.repo.repo}/releases/download/pr-${context.issue.number}/build-${checksum}.zip",
+                checksum: "${checksum}"
+              )
+        env:
+          CHECKSUM: ${{ steps.checksum.outputs.sha256 }}
