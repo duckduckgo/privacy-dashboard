@@ -9,7 +9,6 @@ public/js/*.*
 public/css/*.*
 *.swp
 *.swo
-build/docs/
 __diff_output__
 /test-results/
 /playwright-report/
@@ -18,6 +17,7 @@ build/app/html/iframe.html
 build/app/html/states.json
 build/app/public/font
 build/app-debug
+build/docs/
 .swiftpm/xcode/xcuserdata
 build/app_backup
 bslive.yml
