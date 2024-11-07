@@ -21,3 +21,4 @@ build/app-debug
 .swiftpm/xcode/xcuserdata
 build/app_backup
 bslive.yml
+.vscode
