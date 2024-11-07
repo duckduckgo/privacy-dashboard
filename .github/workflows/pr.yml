@@ -41,7 +41,7 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v3
         with:
-          name: build-${{ steps.git-sha.outputs.sha }}-${{ steps.checksum.outputs.sha256 }}
+          name: build-${{ steps.git-sha.outputs.sha }}-${{ steps.checksum.outputs.sha256 }}.zip
           path: build-*.zip
           retention-days: 5
 
