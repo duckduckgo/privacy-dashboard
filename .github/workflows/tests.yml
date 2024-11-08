@@ -10,35 +10,8 @@ permissions:
     id-token: write
     deployments: write
 jobs:
-    test:
-        runs-on: macos-latest
-        steps:
-            - uses: actions/checkout@v3
-            - name: Use Node.js from .nvmrc
-              uses: actions/setup-node@v3
-              with:
-                  node-version-file: '.nvmrc'
-            - name: Cache node modules
-              id: cache-npm
-              uses: actions/cache@v3
-              env:
-                  cache-name: cache-node-modules
-              with:
-                  path: node_modules
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
-            - name: Install dependencies
-              run: npm ci
-            - name: Run lint
-              run: npm run lint
-            - name: Run tests
-              run: npm run test.unit
     build:
         runs-on: macos-latest
-        needs: test
         steps:
             - uses: actions/checkout@v3
             - name: Use Node.js from .nvmrc
@@ -59,10 +32,16 @@ jobs:
               with:
                   path: build/docs
                   key: build-output-${{ github.run_id }}
+            - name: Install dependencies
+              run: npm ci
+            - name: Run lint
+              run: npm run lint
             - name: Build all
               run: npm run build && npm run build.debug
             - name: Fetch fonts
               run: npm run fetch-fonts
+            - name: Run tests
+              run: npm run test.unit
             ###
             ###  Run clean-tree following the build - no changes should be present
             ###
