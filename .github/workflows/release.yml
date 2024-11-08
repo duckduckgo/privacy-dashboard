@@ -49,7 +49,6 @@ jobs:
                   else
                     git checkout -b releases
                   fi
-                  
 
             - name: Collect commit ranges
               run: |
