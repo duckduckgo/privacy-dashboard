@@ -39,12 +39,17 @@ jobs:
                   else
                     git checkout -b main origin/main
                   fi
-                  # Check if the 'releases' branch exists, if not, create it
+                  # Check if the 'releases' branch exists locally
                   if git rev-parse --verify releases >/dev/null 2>&1; then
                     git checkout releases
-                  else
+                  # Check if 'origin/releases' exists on the remote
+                  elif git ls-remote --heads origin releases | grep releases >/dev/null 2>&1; then
                     git checkout -b releases origin/releases
+                  # Otherwise, create a new 'releases' branch locally
+                  else
+                    git checkout -b releases
                   fi
+                  
 
             - name: Collect commit ranges
               run: |
