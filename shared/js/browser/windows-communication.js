@@ -5,7 +5,7 @@
  * The Dashboard receives data from Windows by registering a listener on `window.chrome.webview`
  *
  * ```js
- * window.chrome.webview.addEventListener('message', (event) => handleViewModelUpdate(event.data))
+ * globalThis.windowsInteropAddEventListener('message', (event) => handleViewModelUpdate(event.data))
  * ```
  *
  * Tip: See {@link "Windows integration".handleIncomingMessage} for details of supported messages.
@@ -15,7 +15,7 @@
  * When the dashboard needs to communicate back to the Windows application, it will do so in the following way...
  *
  * ```js
- * window.chrome.webview.postMessage({
+ * globalThis.windowsInteropPostMessage({
  *     Feature: 'PrivacyDashboard',
  *     Name: name,
  *     Data: data
@@ -96,7 +96,7 @@ const resolveInitialRender = function () {
  * @example
  *
  * ```js
- * window.chrome.webview.addEventListener('message', event => handleViewModelUpdate(event.data))
+ * globalThis.windowsInteropAddEventListener('message', event => handleViewModelUpdate(event.data))
  * ```
  *
  * @param {import('../../../schema/__generated__/schema.types').WindowsViewModel} viewModel
@@ -121,8 +121,8 @@ function handleViewModelUpdate(viewModel) {
 // -----------------------------------------------------------------------------
 
 function windowsPostMessage(name, data) {
-    assert(typeof window.chrome.webview?.postMessage === 'function');
-    window.chrome.webview.postMessage({
+    assert(typeof globalThis.windowsInteropPostMessage === 'function');
+    globalThis.windowsInteropPostMessage({
         Feature: 'PrivacyDashboard',
         Name: name,
         Data: data,
@@ -190,7 +190,7 @@ async function fetch(message) {
  * @example
  *
  * ```javascript
- * window.chrome.webview.postMessage({
+ * globalThis.windowsInteropPostMessage({
  *    Feature: 'PrivacyDashboard',
  *    Name: 'SubmitBrokenSiteReport',
  *    Data: { category: "videos", description: "something was broken :(" }
@@ -212,7 +212,7 @@ export function SubmitBrokenSiteReport(report) {
  * @example
  *
  * ```javascript
- * window.chrome.webview.postMessage({
+ * globalThis.windowsInteropPostMessage({
  *    Feature: 'PrivacyDashboard',
  *    Name: 'OpenInNewTab',
  *    Data: { url: "https://example.com" }
@@ -233,7 +233,7 @@ export function OpenInNewTab(args) {
  * @example
  *
  * ```javascript
- * window.chrome.webview.postMessage({
+ * globalThis.windowsInteropPostMessage({
  *    Feature: 'PrivacyDashboard',
  *    Name: 'SetSize',
  *    Data: { height: 445 }
@@ -252,7 +252,7 @@ export function SetSize(payload) {
  * @example
  *
  * ```javascript
- * window.chrome.webview.postMessage({
+ * globalThis.windowsInteropPostMessage({
  *     Feature: 'PrivacyDashboard',
  *     Name: 'OpenSettings',
  *     Data: { target: 'cpm' }
@@ -271,7 +271,7 @@ export function OpenSettings(args) {
  * @example
  *
  * ```javascript
- * window.chrome.webview.postMessage({
+ * globalThis.windowsInteropPostMessage({
  *     Feature: 'PrivacyDashboard',
  *     Name: 'SetPermissionCommand',
  *     Data: { permission: 'camera', value: "grant" }
@@ -327,7 +327,7 @@ const getBackgroundTabData = () => {
 const eventShape = z.discriminatedUnion('Name', [windowsIncomingViewModelSchema, windowsIncomingVisibilitySchema]);
 
 /**
- * Handle all messages sent from Windows via `window.chrome.webview.addEventListener`
+ * Handle all messages sent from Windows via `globalThis.windowsInteropAddEventListener`
  *
  * Currently accepted messages:
  * - {@link "Generated Schema Definitions".WindowsIncomingViewModel}
@@ -357,13 +357,13 @@ export function handleIncomingMessage(message) {
 }
 
 export function setup() {
-    if (!window.chrome.webview) {
-        console.error('window.chrome.webview not available');
+    if (!globalThis.windowsInteropPostMessage) {
+        console.error('globalThis.windowsInteropPostMessage');
         return;
     }
     setupColorScheme();
-    assert(typeof window.chrome.webview?.addEventListener === 'function', 'window.chrome.webview.addEventListener is required');
-    window.chrome.webview.addEventListener('message', (event) => {
+    assert(typeof globalThis.windowsInteropAddEventListener === 'function', 'globalThis.windowsInteropAddEventListener required');
+    globalThis.windowsInteropAddEventListener('message', (event) => {
         handleIncomingMessage(event.data);
     });
     setupMutationObserver((height) => {

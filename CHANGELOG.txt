@@ -1,8 +1,3 @@
-- fix release flow
-- Remove artifacts from 'main' (#227)
-- Add config to ignore linting PRs (#224)
-- Consistent Prettier config (#222)
-- Bump typedoc from 0.26.8 to 0.26.11 (#199)
-- Shared eslint config (#198)
-- Adds JSON example to Toggle Report guide (#197)
-- Grey out icons depending on phishingStatus (#195)
+- windows interop messaging (#228)
+- prettier
+- add netlify file

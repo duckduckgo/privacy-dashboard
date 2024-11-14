@@ -14654,8 +14654,8 @@
     resolveInitialRender3();
   }
   function windowsPostMessage(name, data) {
-    assert(typeof window.chrome.webview?.postMessage === "function");
-    window.chrome.webview.postMessage({
+    assert(typeof globalThis.windowsInteropPostMessage === "function");
+    globalThis.windowsInteropPostMessage({
       Feature: "PrivacyDashboard",
       Name: name,
       Data: data
@@ -14761,13 +14761,13 @@
     }
   }
   function setup5() {
-    if (!window.chrome.webview) {
-      console.error("window.chrome.webview not available");
+    if (!globalThis.windowsInteropPostMessage) {
+      console.error("globalThis.windowsInteropPostMessage");
       return;
     }
     setupColorScheme();
-    assert(typeof window.chrome.webview?.addEventListener === "function", "window.chrome.webview.addEventListener is required");
-    window.chrome.webview.addEventListener("message", (event) => {
+    assert(typeof globalThis.windowsInteropAddEventListener === "function", "globalThis.windowsInteropAddEventListener required");
+    globalThis.windowsInteropAddEventListener("message", (event) => {
       handleIncomingMessage(event.data);
     });
     setupMutationObserver((height) => {

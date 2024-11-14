@@ -68,17 +68,12 @@ export function windowsMockApis() {
             },
             calls: [],
         };
-        // override some methods on window.chrome.runtime to fake the incoming/outgoing messages
-        window.chrome.webview = {
-            // @ts-ignore
-            addEventListener: (messageName, listener) => {
-                window.__playwright.listeners?.push(listener);
-            },
-            postMessage(arg) {
-                window.__playwright.mocks.outgoing.push([arg.Name, arg]);
-            },
+        globalThis.windowsInteropAddEventListener = (messageName, listener) => {
+            window.__playwright.listeners?.push(listener);
         };
-        // console.log('window.chrome.webview', window.chrome.webview)
+        globalThis.windowsInteropPostMessage = (arg) => {
+            window.__playwright.mocks.outgoing.push([arg.Name, arg]);
+        };
     } catch (e) {
         console.error("❌couldn't set up mocks");
         console.error(e);
