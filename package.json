@@ -47,7 +47,7 @@
         "deep-freeze": "0.0.1",
         "duckduckgo-colors": "0.0.1",
         "esbuild": "^0.20.1",
-        "eslint": "^9.13.0",
+        "eslint": "^9.15.0",
         "eventemitter2": "4.1.0",
         "http-server": "^13.0.2",
         "i18next": "^21.6.14",
