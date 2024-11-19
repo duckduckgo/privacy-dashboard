@@ -98,6 +98,7 @@ test.describe('opens directly to feedback form', () => {
 test.describe('stack based router', () => {
     test('goes back and forward in categorySelection flow', async ({ page }) => {
         const dash = await DashboardPage.browser(page, testDataStates.google);
+        // await dash.reducedMotion(); // TODO: Removed because back button was going back two steps rather than one
         await dash.clicksWebsiteNotWorking();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
