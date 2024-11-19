@@ -1,3 +1,2 @@
-- windows interop messaging (#228)
-- prettier
-- add netlify file
+- test (#239)
+- fix: `files` in package.json

@@ -13,11 +13,8 @@ __diff_output__
 /test-results/
 /playwright-report/
 /playwright/.cache/
-build/app/html/iframe.html
-build/app/html/states.json
-build/app/public/font
-build/app-debug
-build/docs/
+build/
+/.build
 .swiftpm/xcode/xcuserdata
 build/app_backup
 bslive.yml
