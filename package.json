@@ -34,7 +34,8 @@
         "verify.artifacts": "node scripts/verify-artifacts.mjs",
         "verify.local": "npm run lint.fix && npm run build && npm run test.unit && npm run docs && npm run test.int -- --grep-invert '@screenshots'",
         "fetch-fonts": "mkdir -p build/app/public/font && curl -o build/app/public/font/ProximaNova-Reg-webfont.woff https://duckduckgo.com/font/ProximaNova-Reg-webfont.woff && curl -o build/app/public/font/ProximaNova-Sbold-webfont.woff https://duckduckgo.com/font/ProximaNova-Sbold-webfont.woff",
-        "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
+        "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font",
+        "_test": "true"
     },
     "devDependencies": {
         "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#v0.1.0",
