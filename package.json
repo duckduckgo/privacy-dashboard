@@ -5,6 +5,9 @@
         "node": ">=22.0.0",
         "npm": ">=9.0.0"
     },
+    "files": [
+        "build"
+    ],
     "scripts": {
         "start": "npm run dev",
         "dev": "chokidar \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
