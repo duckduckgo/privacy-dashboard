@@ -68,6 +68,13 @@ export function SecondaryTopNavAlt({ children }) {
         android: () => {
             return <TopNav back={canPop ? <Back onClick={pop} /> : <Back onClick={onClose} />}>{children}</TopNav>;
         },
+        browser: () => {
+            return (
+                <TopNav back={canPop ? <Back onClick={pop} /> : null}>
+                    {children}
+                </TopNav>
+            );
+        },
         default: () => {
             return (
                 <TopNav back={canPop ? <Back onClick={pop} /> : null} done={<Close onClick={onClose} />}>

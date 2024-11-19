@@ -17,7 +17,6 @@ test.describe('breakage form', () => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, { screen: 'breakageForm' });
         await dash.showsCategoryTypeSelectionForExtension();
-        await dash.showsOnlyCloseButton();
     });
 
     test('navigates through categories to breakage form', { tag: '@screenshots' }, async ({ page }) => {
