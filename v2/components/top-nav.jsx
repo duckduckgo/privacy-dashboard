@@ -69,11 +69,7 @@ export function SecondaryTopNavAlt({ children }) {
             return <TopNav back={canPop ? <Back onClick={pop} /> : <Back onClick={onClose} />}>{children}</TopNav>;
         },
         browser: () => {
-            return (
-                <TopNav back={canPop ? <Back onClick={pop} /> : null}>
-                    {children}
-                </TopNav>
-            );
+            return <TopNav back={canPop ? <Back onClick={pop} /> : null}>{children}</TopNav>;
         },
         default: () => {
             return (
