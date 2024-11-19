@@ -43,27 +43,26 @@ The following are all sent in response to user interactions
 
 -   Webkit: {@link "macOS integration".privacyDashboardClose}
 
-
 ### Appendix: Data item ids and their meanings
 
-| ID | Description |
-|-|-|
-| appVersion | App version number |
-| atb | Anonymous experiment group for feature testing |
-| device | Device make, model, and manufacturer |
-| didOpenReportInfo | Whether or not you opted to show this report info |
-| errorDescriptions | Browser-reported errors |
-| extensionVersion | Extension version number |
-| features | List of which protections and browser features were active |
-| httpErrorCodes | Website response status (HTTP) codes |
-| jsPerformance | How quickly parts of the page loaded |
-| lastSentDay | Date of last report sent for this site |
-| listVersions | Information about which versions of our protections were active |
-| openerContext | How you got to this page, either: "SERP" (DuckDuckGo search), "Navigation" (link/URL), or "External" (other means) |
-| os | Operating system version number |
-| reportFlow | Which reporting form you used ("menu", "dashboard", etc.) |
-| requests | Hostnames of trackers blocked, surrogate requests, ignored requests, and requests not in tracker | blocking list |
-| siteUrl | Page URL (without identifiable info) |
-| toggleReportCounter | Number of times protections were toggled off |
-| userRefreshCount | Number of refreshes since page load |
-| wvVersion | Web browser engine version number |
+| ID                  | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| appVersion          | App version number                                                                                                 |
+| atb                 | Anonymous experiment group for feature testing                                                                     |
+| device              | Device make, model, and manufacturer                                                                               |
+| didOpenReportInfo   | Whether or not you opted to show this report info                                                                  |
+| errorDescriptions   | Browser-reported errors                                                                                            |
+| extensionVersion    | Extension version number                                                                                           |
+| features            | List of which protections and browser features were active                                                         |
+| httpErrorCodes      | Website response status (HTTP) codes                                                                               |
+| jsPerformance       | How quickly parts of the page loaded                                                                               |
+| lastSentDay         | Date of last report sent for this site                                                                             |
+| listVersions        | Information about which versions of our protections were active                                                    |
+| openerContext       | How you got to this page, either: "SERP" (DuckDuckGo search), "Navigation" (link/URL), or "External" (other means) |
+| os                  | Operating system version number                                                                                    |
+| reportFlow          | Which reporting form you used ("menu", "dashboard", etc.)                                                          |
+| requests            | Hostnames of trackers blocked, surrogate requests, ignored requests, and requests not in tracker blocking list     |
+| siteUrl             | Page URL (without identifiable info)                                                                               |
+| toggleReportCounter | Number of times protections were toggled off                                                                       |
+| userRefreshCount    | Number of refreshes since page load                                                                                |
+| wvVersion           | Web browser engine version number                                                                                  |
