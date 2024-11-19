@@ -26,6 +26,8 @@ This is called immediately to retrieve the data needed to render the list.
 -   WebKit: {@link "macOS integration".privacyDashboardGetToggleReportOptions}
 -   Other platforms will be added
 
+See also: [Data disclosure item ids and their meanings](#appendix-data-disclosure-item-ids-and-their-meanings)
+
 ## Step 4: Implement new handlers
 
 The following are all sent in response to user interactions
@@ -43,7 +45,7 @@ The following are all sent in response to user interactions
 
 -   Webkit: {@link "macOS integration".privacyDashboardClose}
 
-### Appendix: Data item ids and their meanings
+## Appendix: Data disclosure item ids and their meanings
 
 | ID                  | Description                                                                                                        |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
