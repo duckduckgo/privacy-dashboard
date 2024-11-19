@@ -152,6 +152,13 @@ test.describe('opens toggle report', () => {
         await dash.showsOnlyBackButton('toggleReport');
         await dash.sendToggleReport();
     });
+    test('back button rejects toggle report', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'toggleReport', opener: 'menu' });
+        await dash.addState([testDataStates.google]);
+        await dash.toggleReportIsVisible();
+        await dash.backButtonRejectsToggleReport();
+    });
     test('rejects toggle report', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.android(page, { screen: 'toggleReport', opener: 'dashboard' });
