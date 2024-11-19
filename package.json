@@ -6,7 +6,7 @@
         "npm": ">=9.0.0"
     },
     "files": [
-        "build"
+        "build/"
     ],
     "scripts": {
         "start": "npm run dev",
