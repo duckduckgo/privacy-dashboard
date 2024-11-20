@@ -62,7 +62,7 @@ export function createPlatformFeatures(platform) {
         initialScreen: screen,
         opener,
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
-        supportsPhishingWarning: platform.name === 'macos',
+        supportsPhishingWarning: platform.name !== 'browser',
         includeToggleOnBreakageForm,
         randomisedCategories,
         breakageFormCategorySelect,

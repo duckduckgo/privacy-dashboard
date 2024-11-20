@@ -6,11 +6,12 @@ import { ProtectionHeader } from '../components/protection-header';
 import { SearchBar } from '../components/search-bar';
 import { isAndroid, isBrowser, isIOS } from '../../shared/js/ui/environment-check';
 import { Back, Done, TopNav } from '../components/top-nav';
-import { useClose, usePrimaryStatus } from '../data-provider';
+import { useClose, usePrimaryStatus, useData } from '../data-provider';
 import { EmailBar, EmailProvider } from '../components/email';
 import { Permissions } from '../components/permissions';
 import { CtaScreen } from './cta-screen';
 import { i18n } from '../../shared/js/ui/base/localize';
+import { PhishingMalwareScreen } from './phishing-malware-screen';
 
 export function PrimaryScreen() {
     const status = usePrimaryStatus();
@@ -45,6 +46,14 @@ function Footer() {
 }
 
 function PrimaryScreenInner() {
+    const data = useData();
+
+    if (data.tab?.phishingStatus) {
+        return (
+            <PhishingMalwareScreen />
+        )
+    }
+
     return (
         <>
             <header class="header">
@@ -86,3 +95,4 @@ function ErrorInner() {
         </div>
     );
 }
+
