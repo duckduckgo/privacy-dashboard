@@ -118,20 +118,20 @@
         display: block;
         text-decoration: none;
         width: 100%;
-    
+
         box-shadow: var(--btn-accent-shadow);
         border-radius: var(--btn-accent-border-radius);
         border: var(--btn-accent-border);
         color: var(--btn-accent-color);
         background: var(--btn-accent-bg);
-    
+
         &:hover {
             background: var(--btn-accent-bg-hover);
         }
         &:active {
             background: var(--btn-accent-bg-active);
         }
-    
+
         .environment--windows & {
             /* Windows/Label */
             box-shadow: none;
@@ -140,12 +140,12 @@
             font-size: 14px;
             line-height: 19px;
             border-radius: 4px;
-    
+
             &:focus {
                 /* todo(Shane): where does this live? */
                 box-shadow: 0px 0px 0px 1px #ffffff, 0px 0px 0px 3px #3969ef;
             }
-    
+
             &:active {
                 box-shadow: none;
             }

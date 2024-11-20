@@ -49,9 +49,7 @@ function PrimaryScreenInner() {
     const data = useData();
 
     if (data.tab?.phishingStatus) {
-        return (
-            <PhishingMalwareScreen />
-        )
+        return <PhishingMalwareScreen />;
     }
 
     return (
@@ -95,4 +93,3 @@ function ErrorInner() {
         </div>
     );
 }
-
