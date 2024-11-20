@@ -31,6 +31,9 @@
         },
         "localeSettings": {
             "$ref": "locale.json"
+        },
+        "phishing": {
+            "$ref": "phishing.json"
         }
     }
 }

@@ -13,6 +13,7 @@ import {
     protectionsStatusSchema,
     remoteFeatureSettingsSchema,
     requestDataSchema,
+    phishingStatusSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs';
 import { setupBlurOnLongPress, setupGlobalOpenerListener } from '../ui/views/utils/utils';
 import {
@@ -46,6 +47,9 @@ let isPendingUpdates;
 let parentEntity;
 const cookiePromptManagementStatus = {};
 
+/** @type {boolean | undefined} */
+let phishingStatus;
+
 /** @type {string | undefined} */
 let locale;
 
@@ -56,6 +60,7 @@ const combineSources = () => ({
     tab: Object.assign(
         {},
         trackerBlockingData || {},
+        { phishingStatus: phishingStatus ?? false },
         {
             isPendingUpdates,
             parentEntity,
@@ -73,7 +78,8 @@ const resolveInitialRender = function () {
     const isIsProtectedSet = typeof protections !== 'undefined';
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     const isLocaleSet = typeof locale === 'string';
-    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    const isPhishingSet = typeof phishingStatus === 'boolean';
+    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isPhishingSet) {
         return;
     }
 
@@ -175,6 +181,28 @@ export function onChangeLocale(payload) {
     }
     locale = parsed.data.locale;
     channel?.send('updateTabData', { via: 'onChangeLocale' });
+}
+
+/**
+ * {@inheritDoc common.onChangePhishingStatus}
+ * @type {import("./common.js").onChangePhishingStatus}
+ * @group macOS -> JavaScript Interface
+ * @example
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangePhishingStatus(\(phishingStatusJsonString))", in: webView)
+ * ```
+ */
+export function onChangePhishingStatus(payload) {
+    const parsed = phishingStatusSchema.safeParse(payload);
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangePhishingStatus');
+        console.error(parsed.error);
+        return;
+    }
+    phishingStatus = parsed.data.phishingStatus;
+    resolveInitialRender();
 }
 
 /**
@@ -476,6 +504,7 @@ export function setup(debug) {
     };
     window.onChangeProtectionStatus = onChangeProtectionStatus;
     window.onChangeLocale = onChangeLocale;
+    window.onChangePhishingStatus = onChangePhishingStatus;
     window.onChangeRequestData = onChangeRequestData;
     window.onChangeConsentManaged = onChangeConsentManaged;
     window.onChangeFeatureSettings = onChangeFeatureSettings;
