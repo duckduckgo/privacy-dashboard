@@ -70,6 +70,7 @@ export function createPlatformFeatures(platform) {
         opener,
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
         supportsPhishingWarning: platform.name !== 'browser',
+        supportsMalwareWarning: platform.name === 'macos',
         includeToggleOnBreakageForm,
         randomisedCategories,
         breakageFormCategorySelect,
@@ -90,6 +91,7 @@ export class PlatformFeatures {
      * @param {boolean} params.supportsInvalidCertsImplicitly
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {boolean} params.supportsPhishingWarning
+     * @param {boolean} params.supportsMalwareWarning
      * @param {boolean} params.randomisedCategories
      * @param {"default" | "material-web-dialog"} params.breakageFormCategorySelect
      */
@@ -129,6 +131,11 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.supportsPhishingWarning = params.supportsPhishingWarning;
+        /**
+         * Does the current platform support phishing warnings?
+         * @type {boolean}
+         */
+        this.supportsMalwareWarning = params.supportsMalwareWarning;
         /**
          * Whether or to randomize the categories in the breakage form
          * @type {boolean}

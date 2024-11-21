@@ -38,10 +38,11 @@ export function thirdpartyTitle(requestDetails, protectionsEnabled) {
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {boolean} protectionsEnabled
  * @param {boolean} [phishingDetected]
+ * @param {boolean} [malwareDetected]
  * @returns {'info'|'blocked'}
  */
-export function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetected) {
-    if (phishingDetected) {
+export function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetected, malwareDetected) {
+    if (phishingDetected || malwareDetected) {
         return 'info';
     }
 

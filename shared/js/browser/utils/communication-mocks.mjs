@@ -50,6 +50,7 @@ export async function mockDataProvider(params) {
     window.onChangeLocale?.(state.localeSettings);
     window.onChangeRequestData(state.url, { requests: state.requests || [] });
     window.onChangePhishingStatus?.(state.phishing);
+    window.onChangeMalwareStatus?.(state.malware);
 }
 
 export function windowsMockApis() {

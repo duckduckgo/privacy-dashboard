@@ -15,7 +15,7 @@ export function template(model, nav) {
     const networkTrackersLink = shouldRenderTrackerNetworksLink(model)
         ? html`<li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>`
         : '';
-    const renderConnectionAsText = model.httpsState === 'phishing';
+    const renderConnectionAsText = model.httpsState === 'phishing' || model.httpsState === 'malware';
     const connectionRow = renderConnectionAsText
         ? html`<li class="main-nav__row no-hover">${renderConnectionText(model)}</li>`
         : html`<li class="main-nav__row">${renderConnection(model, nav.connection)}</li>`;

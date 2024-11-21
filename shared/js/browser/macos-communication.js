@@ -17,6 +17,7 @@ import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
     phishingStatusSchema,
+    malwareStatusSchema,
     protectionsStatusSchema,
     requestDataSchema,
     toggleReportScreenSchema,
@@ -64,6 +65,9 @@ const cookiePromptManagementStatus = {};
 /** @type {boolean | undefined} */
 let phishingStatus;
 
+/** @type {boolean | undefined} */
+let malwareStatus;
+
 /** @type {string | undefined} */
 let locale;
 
@@ -72,6 +76,7 @@ const combineSources = () => ({
         {},
         trackerBlockingData || {},
         { phishingStatus: phishingStatus ?? false },
+        { malwareStatus: malwareStatus ?? false },
         {
             isPendingUpdates,
             parentEntity,
@@ -90,7 +95,8 @@ const resolveInitialRender = function () {
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     const isLocaleSet = typeof locale === 'string';
     const isPhishingSet = typeof phishingStatus === 'boolean';
-    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isPhishingSet) {
+    const isMalwareSet = typeof malwareStatus === 'boolean';
+    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isPhishingSet || !isMalwareSet) {
         return;
     }
     getBackgroundTabDataPromises.forEach((resolve) => resolve(combineSources()));
@@ -196,6 +202,28 @@ export function onChangePhishingStatus(payload) {
         return;
     }
     phishingStatus = parsed.data.phishingStatus;
+    resolveInitialRender();
+}
+
+/**
+ * {@inheritDoc common.onChangeMalwareStatus}
+ * @type {import("./common.js").onChangeMalwareStatus}
+ * @group macOS -> JavaScript Interface
+ * @example
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangeMalwareStatus(\(malwareStatusJsonString))", in: webView)
+ * ```
+ */
+export function onChangeMalwareStatus(payload) {
+    const parsed = malwareStatusSchema.safeParse(payload);
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangeMalwareStatus');
+        console.error(parsed.error);
+        return;
+    }
+    malwareStatus = parsed.data.malwareStatus;
     resolveInitialRender();
 }
 
@@ -538,6 +566,7 @@ export function setupShared() {
         resolveInitialRender();
     };
     window.onChangePhishingStatus = onChangePhishingStatus;
+    window.onChangeMalwareStatus = onChangeMalwareStatus;
     window.onChangeProtectionStatus = onChangeProtectionStatus;
     window.onChangeLocale = onChangeLocale;
     window.onChangeCertificateData = function (data) {

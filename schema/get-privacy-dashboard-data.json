@@ -54,6 +54,9 @@
                 "phishingStatus": {
                     "$ref": "./phishing.json"
                 },
+                "malwareStatus": {
+                    "$ref": "./malware.json"
+                },
                 "parentEntity": { "$ref": "./parent-entity.json" },
                 "specialDomainName": {
                     "description": "Provide this if the current tab is a domain that we cannot provide regular dashboard features for (like new tab, about://blank etc)",

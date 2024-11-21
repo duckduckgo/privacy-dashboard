@@ -175,6 +175,21 @@ export function onChangeLocale(payload) {}
 export function onChangePhishingStatus(payload) {}
 
 /**
+ * Sets the malware status for a page. This is a required call.
+ *
+ * Example Payload: see {@link "Generated Schema Definitions".MalwareStatus}
+ *
+ * ```json
+ * {
+ *    "malwareStatus": true
+ * }
+ * ```
+ *
+ * @param {import('../../../schema/__generated__/schema.types').MalwareStatus} payload
+ */
+export function onChangeMalwareStatus(payload) {}
+
+/**
  * Sets the Feature Settings
  *
  * Example Payload: see {@link "Generated Schema Definitions".RemoteFeatureSettings}

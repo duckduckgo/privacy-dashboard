@@ -16,6 +16,7 @@ const keyInsightsState = /** @type {const} */ ({
     /* 09 */ invalid: 'invalid',
     /* 10 */ noneBlocked_firstPartyAllowed: 'noneBlocked_firstPartyAllowed',
     /* 11 */ phishing: 'phishing',
+    /* 12 */ malware: 'malware',
 });
 
 /**
@@ -29,6 +30,7 @@ export function renderKeyInsight(modelOverride) {
     /** @type {keyInsightsState[keyof keyInsightsState]} */
     const state = (() => {
         if (model.httpsState === 'phishing') return keyInsightsState.phishing;
+        if (model.httpsState === 'malware') return keyInsightsState.malware;
         if (model.httpsState === 'none') return keyInsightsState.insecure;
         if (model.httpsState === 'invalid') return keyInsightsState.invalid;
         if (model.isBroken) return keyInsightsState.broken;
@@ -147,6 +149,15 @@ export function renderKeyInsight(modelOverride) {
             `;
         },
         phishing: () => {
+            const text = i18n.t('site:phishingWebsiteDesc.title', { domain: model.tab.domain });
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--phishing"></div>
+                    ${title(model.tab.domain)} ${description(raw(text))}
+                </div>
+            `;
+        },
+        malware: () => {
             const text = i18n.t('site:phishingWebsiteDesc.title', { domain: model.tab.domain });
             return html`
                 <div class="key-insight key-insight--main">

@@ -91,6 +91,10 @@ export const phishingStatusSchema = z.object({
     phishingStatus: z.boolean()
 });
 
+export const malwareStatusSchema = z.object({
+    malwareStatus: z.boolean()
+});
+
 export const parentEntitySchema = z.object({
     displayName: z.string(),
     prevalence: z.number()
@@ -244,6 +248,7 @@ export const tabSchema = z.object({
     protections: protectionsStatusSchema,
     localeSettings: localeSettingsSchema.optional(),
     phishingStatus: phishingStatusSchema.optional(),
+    malwareStatus: malwareStatusSchema.optional(),
     parentEntity: parentEntitySchema.optional(),
     specialDomainName: z.string().optional()
 });

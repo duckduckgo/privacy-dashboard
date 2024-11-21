@@ -34,6 +34,7 @@ export class TabData {
      * @param {Record<string, any> | null | undefined} search
      * @param {Record<string, any> | null | undefined} emailProtection
      * @param {boolean | undefined} phishingStatus
+     * @param {boolean | undefined} malwareStatus
      * @param {{prevalence: number, displayName: string} | null | undefined} parentEntity
      * @param {string | null | undefined} error
      * @param {boolean | null | undefined} isInvalidCert
@@ -54,6 +55,7 @@ export class TabData {
         search,
         emailProtection,
         phishingStatus,
+        malwareStatus,
         parentEntity,
         error,
         isInvalidCert
@@ -72,6 +74,7 @@ export class TabData {
         this.search = search;
         this.emailProtection = emailProtection;
         this.phishingStatus = phishingStatus;
+        this.malwareStatus = malwareStatus;
         this.parentEntity = parentEntity;
         this.error = error;
         this.isInvalidCert = isInvalidCert;
@@ -109,6 +112,7 @@ export const createTabData = (tabUrl, upgradedHttps, protections, rawRequestData
         search: undefined,
         emailProtection: undefined,
         phishingStatus: undefined,
+        malwareStatus: undefined,
         isPendingUpdates: undefined,
         certificate: undefined,
         platformLimitations: undefined,

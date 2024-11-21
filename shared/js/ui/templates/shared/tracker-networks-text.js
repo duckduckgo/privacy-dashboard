@@ -39,10 +39,11 @@ export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {any} protectionsEnabled
  * @param {boolean} [phishingDetected]
+ * @param {boolean} [malwareDetected]
  * @returns {'info'|'blocked'|'warning'}
  */
-export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishingDetected) {
-    if (phishingDetected) {
+export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishingDetected, malwareDetected) {
+    if (phishingDetected || malwareDetected) {
         return 'info';
     }
 

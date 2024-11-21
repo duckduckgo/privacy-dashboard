@@ -261,6 +261,7 @@ describe('createTabData', () => {
             status: 'complete',
             upgradedHttps: true,
             phishingStatus: undefined,
+            malwareStatus: undefined,
             url: 'https://www.example.com/',
         };
         deepEqual(tabData, expected);
