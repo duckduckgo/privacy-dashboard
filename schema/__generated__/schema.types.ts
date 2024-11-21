@@ -64,7 +64,8 @@ export type DataItemId =
   | ToggleReportCounterTitle
   | OpenerContextTitle
   | UserRefreshCountTitle
-  | JsPerformanceTitle;
+  | JsPerformanceTitle
+  | LocaleTitle;
 /**
  * wvVersion description
  */
@@ -141,6 +142,10 @@ export type UserRefreshCountTitle = "userRefreshCount";
  * jsPerformance description
  */
 export type JsPerformanceTitle = "jsPerformance";
+/**
+ * locale description
+ */
+export type LocaleTitle = "locale";
 export type ScreenKind =
   | "primaryScreen"
   | "breakageForm"

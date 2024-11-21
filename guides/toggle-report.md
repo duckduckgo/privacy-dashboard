@@ -60,6 +60,7 @@ The following are all sent in response to user interactions
 | jsPerformance       | How quickly parts of the page loaded                                                                               |
 | lastSentDay         | Date of last report sent for this site                                                                             |
 | listVersions        | Information about which versions of our protections were active                                                    |
+| locale              | Primary language and country of your device                                                                        |
 | openerContext       | How you got to this page, either: "SERP" (DuckDuckGo search), "Navigation" (link/URL), or "External" (other means) |
 | os                  | Operating system version number                                                                                    |
 | reportFlow          | Which reporting form you used ("menu", "dashboard", etc.)                                                          |

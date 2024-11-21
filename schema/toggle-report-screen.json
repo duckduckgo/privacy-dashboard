@@ -40,7 +40,8 @@
                         { "$ref": "#/definitions/toggleReportCounter" },
                         { "$ref": "#/definitions/openerContext" },
                         { "$ref": "#/definitions/userRefreshCount" },
-                        { "$ref": "#/definitions/jsPerformance" }
+                        { "$ref": "#/definitions/jsPerformance" },
+                        { "$ref": "#/definitions/locale" }
                     ]
                 },
                 "additional": {
@@ -154,6 +155,11 @@
             "title": "jsPerformance title",
             "const": "jsPerformance",
             "description": "jsPerformance description"
+        },
+        "locale": {
+            "title": "locale title",
+            "const": "locale",
+            "description": "locale description"
         }
     }
 }

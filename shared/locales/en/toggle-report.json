@@ -114,5 +114,9 @@
   "dynamic_jsPerformance": {
     "title": "How quickly parts of the page loaded",
     "note": "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale": {
+    "title": "Primary language and country of your device",
+    "note": "This text provides information on the user's locale settings."
   }
 }
