@@ -418,9 +418,7 @@ export class Mocks {
                     'CloseCommand',
                     {
                         Data: {
-                            eventOrigin: {
-                                screen: 'toggleReport',
-                            },
+                            eventOrigin,
                         },
                         Feature: 'PrivacyDashboard',
                         Name: 'CloseCommand',

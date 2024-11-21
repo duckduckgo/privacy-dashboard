@@ -60,6 +60,7 @@ test.describe('breakage form', () => {
         await dash.selectsCategory('Something else', 'other');
         await dash.breakageFormIsVisible();
         await dash.submitOtherFeedbackFormWithDescription('something happened');
+        await dash.screenshot('screen-breakage-form-success.png');
     });
 });
 

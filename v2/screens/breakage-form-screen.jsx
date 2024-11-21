@@ -7,7 +7,7 @@ import { SecondaryTopNavAlt, Title } from '../components/top-nav';
 import { Nav, NavItem } from '../components/nav';
 import { KeyInsightsMain } from '../components/key-insights';
 import { useNav } from '../navigation';
-import { useData, useFeatures, useSendReport, useShowNativeFeedback, useFetcher, useConnectionCount } from '../data-provider';
+import { useData, useFeatures, useSendReport, useShowNativeFeedback, useFetcher, useConnectionCount, useClose } from '../data-provider';
 import { ns } from '../../shared/js/ui/base/localize';
 import { Stack } from '../../shared/js/ui/components/stack';
 import { ToggleReportContext } from '../../shared/js/ui/components/toggle-report/toggle-report-provider';
@@ -121,7 +121,7 @@ export function BreakageForm() {
     const desktop = platform.name === 'macos' || platform.name === 'windows';
     const extension = platform.name === 'browser';
 
-    // on desktop only, transition to a success screen
+    // on desktop only, show success screen
     if (isSent && (desktop || extension)) {
         return (
             <BreakageScreenWrapper pageId="success">
@@ -200,8 +200,15 @@ function BreakageScreenWrapper({ className = '', pageId, children }) {
 }
 
 function FormSent() {
+    const onClose = useClose();
+    const clickHandler = () => {
+        if (platform.name === 'windows' || platform.name === 'macos') {
+            onClose();
+        }
+    };
+
     return (
-        <div className="success__container">
+        <div className="success__container" onClick={clickHandler}>
             <div className="success__icon"></div>
             <h1 className="token-body-em">{ns.report('thankYou.title')}</h1>
             <p className="token-body success__message">{ns.report('yourReportWillHelpDesc.title', { newline: '\n' })}</p>

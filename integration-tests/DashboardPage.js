@@ -804,6 +804,11 @@ export class DashboardPage {
         await this.mocks.calledForClose({ screen: 'toggleReport' });
     }
 
+    async clickingSuccessScreenClosesBreakageFormScreen() {
+        await this.page.getByText('Your report helps make DuckDuckGo better for everyone!').click();
+        await this.mocks.calledForClose({ screen: 'breakageFormFinalStep' });
+    }
+
     /**
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
      */

@@ -126,6 +126,7 @@ test.describe('breakage form', () => {
         await dash.submitOtherFeedbackFormWithDescription('something happened');
         await dash.screenshot('screen-breakage-form-success.png');
         await dash.showsBreakageFormSuccessScreen();
+        await dash.clickingSuccessScreenClosesBreakageFormScreen();
     });
 });
 
