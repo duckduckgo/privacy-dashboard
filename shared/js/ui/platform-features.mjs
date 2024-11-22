@@ -25,7 +25,14 @@ export function createPlatformFeatures(platform) {
     let screen = 'primaryScreen';
     const url = new URL(window.location.href);
 
-    const acceptedScreenParam = ['breakageForm', 'breakageFormCategorySelection', 'breakageFormFinalStep', 'toggleReport'];
+    // prettier-ignore
+    const acceptedScreenParam = [
+        'breakageForm',
+        'breakageFormCategorySelection',
+        'breakageFormFinalStep',
+        'toggleReport'
+    ];
+
     if (url.searchParams.has('screen')) {
         const param = url.searchParams.get('screen');
         if (typeof param === 'string' && acceptedScreenParam.includes(/** @type {string} */ (param))) {
