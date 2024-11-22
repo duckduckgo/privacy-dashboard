@@ -27,10 +27,6 @@
     "title": "See what’s sent",
     "note": "Button label allowing users to see the information that is sent in the report."
   },
-  "siteNotWorkingInfoRevealShort": {
-    "title": "What’s sent",
-    "note": "Button label allowing users to see the information that is sent in the report."
-  },
   "siteNotWorkingInfoHide": {
     "title": "Hide",
     "note": "Button label allowing users to hide the information that is sent in the report."
@@ -48,7 +44,7 @@
     "note": "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features": {
-    "title": "List of which protections and browser features were active",
+    "title": "List of which browser features were active",
     "note": "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion": {
@@ -118,5 +114,9 @@
   "dynamic_locale": {
     "title": "Primary language and country of your device",
     "note": "This text provides information on the user's locale settings."
+  },
+  "dynamic_description": {
+    "title": "Your selected category and optional comments",
+    "note": "This text provides information on the user's selected category and comments."
   }
 }

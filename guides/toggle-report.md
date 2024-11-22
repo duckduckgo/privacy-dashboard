@@ -51,11 +51,12 @@ The following are all sent in response to user interactions
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | appVersion          | App version number                                                                                                 |
 | atb                 | Anonymous experiment group for feature testing                                                                     |
+| description         | Your selected category and optional comments                                                                       |
 | device              | Device make, model, and manufacturer                                                                               |
 | didOpenReportInfo   | Whether or not you opted to show this report info                                                                  |
 | errorDescriptions   | Browser-reported errors                                                                                            |
 | extensionVersion    | Extension version number                                                                                           |
-| features            | List of which protections and browser features were active                                                         |
+| features            | List of which browser features were active                                                                         |
 | httpErrorCodes      | Website response status (HTTP) codes                                                                               |
 | jsPerformance       | How quickly parts of the page loaded                                                                               |
 | lastSentDay         | Date of last report sent for this site                                                                             |

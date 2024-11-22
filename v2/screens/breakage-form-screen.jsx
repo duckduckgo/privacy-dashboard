@@ -138,6 +138,7 @@ export function BreakageForm() {
     }
     const description = categories[category];
     const placeholder = category === 'other' ? ns.report('otherRequired.title') : ns.report('otherOptional.title');
+    const shouldShowDescriptionPrompt = category !== 'dislike';
 
     /**
      * @param {string} description
@@ -159,11 +160,13 @@ export function BreakageForm() {
                         <FormElement
                             placeholder={placeholder}
                             after={
-                                <ul class="form__description-prompt padding-x">
-                                    <li>{ns.report('suggestionWhatHappened.title')}</li>
-                                    <li>{ns.report('suggestionWhatHappened2.title')}</li>
-                                    <li>{ns.report('suggestionWhatHappened3.title')}</li>
-                                </ul>
+                                shouldShowDescriptionPrompt && (
+                                    <ul class="form__description-prompt padding-x">
+                                        <li>{ns.report('suggestionWhatHappened.title')}</li>
+                                        <li>{ns.report('suggestionWhatHappened2.title')}</li>
+                                        <li>{ns.report('suggestionWhatHappened3.title')}</li>
+                                    </ul>
+                                )
                             }
                             onSubmit={submit}
                             required={category === 'other'}
@@ -322,10 +325,9 @@ function DetailsDisclosureMessage() {
     return (
         <details className="disclosure-message" ref={detailsRef} onToggle={toggleHandler}>
             <summary className="disclosure-message__summary">
-                <span className="disclosure-message__title">{ns.toggleReport('siteNotWorkingInfoRevealShort.title')}</span>
+                <span className="disclosure-message__title">{ns.toggleReport('siteNotWorkingInfoReveal.title')}</span>
                 <div className="disclosure-message__control">
-                    <span className="control__text control__text--closed">Learn More</span>
-                    <span className="control__text control__text--open">Hide</span>
+                    {/* <span className="control__text control__text--open">{ns.toggleReport('siteNotWorkingInfoHide.title')}</span> */}
                     <svg className="control__chevron" aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
                             fill="currentColor"

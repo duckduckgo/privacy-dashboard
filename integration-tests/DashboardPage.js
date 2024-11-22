@@ -426,8 +426,21 @@ export class DashboardPage {
         await this.page.getByLabel('Something else').waitFor();
     }
 
-    async breakageFormIsVisible() {
-        await this.page.getByRole('button', { name: 'Send Report' }).waitFor();
+    async breakageFormIsVisible(categoryText) {
+        const formView = this.page.getByTestId('subview-breakageFormFinalStep');
+
+        await formView.getByRole('button', { name: 'Send Report' }).waitFor();
+        if (categoryText) {
+            await formView.getByText(categoryText).waitFor();
+        }
+    }
+
+    async descriptionPromptIsVisible() {
+        await this.page.getByText('What happened?').waitFor();
+    }
+
+    async descriptionPromptIsNotVisible() {
+        await expect(this.page.getByText('What happened?')).not.toBeVisible();
     }
 
     /**

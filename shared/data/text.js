@@ -47,5 +47,7 @@ export function namedString(item) {
             return ns.toggleReport('dynamic_toggleReportCounter.title');
         case 'locale':
             return ns.toggleReport('dynamic_locale.title');
+        case 'description':
+            return ns.toggleReport('dynamic_description.title');
     }
 }

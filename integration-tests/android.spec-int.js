@@ -91,11 +91,26 @@ test.describe('breakage form', () => {
         await dash.screenshot('category-selection.png');
         await dash.selectsCategory('Site layout broken', 'layout');
         await dash.breakageFormIsVisible();
+        await dash.descriptionPromptIsVisible();
         await dash.screenshot('screen-breakage-form.png');
         await dash.submitFeedbackForm();
         await dash.mocks.calledForSubmitBreakageForm({ category: 'layout', description: '' });
     });
 
+    test('hides description prompt on "dislike" category', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, {
+            screen: 'breakageForm',
+            randomisedCategories: 'false',
+            platform: 'macos',
+        });
+        await dash.addState([testDataStates.google]);
+        await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
+        await dash.breakageFormIsVisible('I dislike the content');
+        await dash.descriptionPromptIsNotVisible();
+        await dash.screenshot('category-type-dislike.png');
+    });
+    
     test('skips to breakage form when disliked', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.android(page, { screen: 'breakageForm' });

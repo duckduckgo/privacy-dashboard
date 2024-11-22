@@ -46,106 +46,111 @@ export type WindowsIncomingMessage =
   | WindowsIncomingViewModel
   | WindowsIncomingToggleReportOptions;
 export type DataItemId =
-  | WvVersionTitle
-  | RequestsTitle
-  | FeaturesTitle
-  | AppVersionTitle
-  | AtbTitle
-  | ErrorDescriptionsTitle
-  | ExtensionVersionTitle
-  | HttpErrorCodesTitle
-  | LastSentDayTitle
-  | DeviceTitle
-  | OsTitle
-  | ListVersionsTitle
-  | ReportFlowTitle
-  | SiteUrlTitle
-  | DidOpenReportInfoTitle
-  | ToggleReportCounterTitle
-  | OpenerContextTitle
-  | UserRefreshCountTitle
-  | JsPerformanceTitle
-  | LocaleTitle;
+  | WVVersion
+  | Requests
+  | Features
+  | AppVersion
+  | ATB
+  | ErrorDescriptions
+  | ExtensionVersion
+  | HTTPErrorCodes
+  | LastSentDay
+  | Device
+  | OS
+  | ListVersions
+  | ReportFlow
+  | SiteURL
+  | DidOpenReportInfo
+  | ToggleReportCounter
+  | OpenerContext
+  | UserRefreshCount
+  | JSPerformance
+  | Locale
+  | Description;
 /**
- * wvVersion description
+ * Web browser engine version number
  */
-export type WvVersionTitle = "wvVersion";
+export type WVVersion = "wvVersion";
 /**
- * requests description
+ * Hostnames of trackers blocked, surrogate requests, ignored requests, and requests not in tracker blocking list
  */
-export type RequestsTitle = "requests";
+export type Requests = "requests";
 /**
- * features description
+ * List of which browser features were active
  */
-export type FeaturesTitle = "features";
+export type Features = "features";
 /**
- * appVersion description
+ * App version number
  */
-export type AppVersionTitle = "appVersion";
+export type AppVersion = "appVersion";
 /**
- * atb description
+ * Anonymous experiment group for feature testing
  */
-export type AtbTitle = "atb";
+export type ATB = "atb";
 /**
- * errorDescriptions description
+ * Browser-reported errors
  */
-export type ErrorDescriptionsTitle = "errorDescriptions";
+export type ErrorDescriptions = "errorDescriptions";
 /**
- * extensionVersion description
+ * Extension version number
  */
-export type ExtensionVersionTitle = "extensionVersion";
+export type ExtensionVersion = "extensionVersion";
 /**
- * httpErrorCodes description
+ * Website response status (HTTP) codes
  */
-export type HttpErrorCodesTitle = "httpErrorCodes";
+export type HTTPErrorCodes = "httpErrorCodes";
 /**
- * lastSentDay description
+ * Date of last report sent for this site
  */
-export type LastSentDayTitle = "lastSentDay";
+export type LastSentDay = "lastSentDay";
 /**
- * device description
+ * Device make, model, and manufacturer
  */
-export type DeviceTitle = "device";
+export type Device = "device";
 /**
- * os description
+ * Operating system version number
  */
-export type OsTitle = "os";
+export type OS = "os";
 /**
- * listVersions description
+ * Information about which versions of our protections were active
  */
-export type ListVersionsTitle = "listVersions";
+export type ListVersions = "listVersions";
 /**
- * reportFlow description
+ * Which reporting form you used ('menu', 'dashboard', etc.)
  */
-export type ReportFlowTitle = "reportFlow";
+export type ReportFlow = "reportFlow";
 /**
- * siteUrl description
+ * Page URL (without identifiable info)
  */
-export type SiteUrlTitle = "siteUrl";
+export type SiteURL = "siteUrl";
 /**
- * didOpenReportInfo description
+ * Whether or not you opted to show this report info
  */
-export type DidOpenReportInfoTitle = "didOpenReportInfo";
+export type DidOpenReportInfo = "didOpenReportInfo";
 /**
- * toggleReportCounter description
+ * Number of times protections were toggled off
  */
-export type ToggleReportCounterTitle = "toggleReportCounter";
+export type ToggleReportCounter = "toggleReportCounter";
 /**
- * openerContext description
+ * How you got to this page, either: 'SERP' (DuckDuckGo search), 'Navigation' (link/URL), or 'External' (other means)
  */
-export type OpenerContextTitle = "openerContext";
+export type OpenerContext = "openerContext";
 /**
- * userRefreshCount description
+ * Number of refreshes since page load
  */
-export type UserRefreshCountTitle = "userRefreshCount";
+export type UserRefreshCount = "userRefreshCount";
 /**
- * jsPerformance description
+ * How quickly parts of the page loaded
  */
-export type JsPerformanceTitle = "jsPerformance";
+export type JSPerformance = "jsPerformance";
 /**
- * locale description
+ * Primary language and country of your device
  */
-export type LocaleTitle = "locale";
+export type Locale = "locale";
+/**
+ * Your selected category and optional comments
+ */
+export type Description = "description";
 export type ScreenKind =
   | "primaryScreen"
   | "breakageForm"
