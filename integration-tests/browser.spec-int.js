@@ -49,7 +49,7 @@ test.describe('breakage form', () => {
         await dash.descriptionPromptIsNotVisible();
         await dash.screenshot('category-type-dislike.png');
     });
-    
+
     test('skips to breakage form when disliked', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, { screen: 'breakageForm' });

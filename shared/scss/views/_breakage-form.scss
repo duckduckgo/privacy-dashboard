@@ -149,7 +149,7 @@
 }
 
 .breakage-form__inner {
-    height: calc(100% - var(--nav-height));
+    // height: calc(100% - var(--nav-height));
     display: flex;
     flex-direction: column;
 }
