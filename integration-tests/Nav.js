@@ -11,7 +11,7 @@ export class Nav {
         await page.getByLabel('Site layout broken').click();
         await page.getByLabel('Back').nth(1).click();
         await page.getByRole('button', { name: 'Done' }).click();
-        await page.getByRole('link', { name: 'Website not working?' }).waitFor({ timeout: 1000 });
+        await page.getByRole('link', { name: 'Report a problem with this site' }).waitFor({ timeout: 1000 });
     }
 
     async goesBackToPrimaryScreenFromBreakageScreen() {
@@ -21,6 +21,6 @@ export class Nav {
         await page.getByTestId('subview-breakageFormFinalStep').getByLabel('Back').click();
         await page.getByTestId('subview-breakageFormCategorySelection').getByLabel('Back').click();
         await page.getByTestId('subview-breakageForm').getByLabel('Back').click();
-        await page.getByRole('link', { name: 'Website not working?' }).waitFor({ timeout: 1000 });
+        await page.getByRole('link', { name: 'Report a problem with this site' }).waitFor({ timeout: 1000 });
     }
 }

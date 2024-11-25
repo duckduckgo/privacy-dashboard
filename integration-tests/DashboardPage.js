@@ -747,7 +747,7 @@ export class DashboardPage {
     }
 
     async clicksWebsiteNotWorking() {
-        await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 5000 });
+        await this.page.getByRole('link', { name: 'Report a problem with this site' }).click({ timeout: 5000 });
     }
 
     async showsBreakageForm() {
@@ -778,7 +778,7 @@ export class DashboardPage {
     }
 
     async showsReportFromPrimaryScreen() {
-        await this.page.getByRole('link', { name: 'Website not working?' }).click();
+        await this.page.getByRole('link', { name: 'Report a problem with this site' }).click();
         await this.showsCategorySelection();
     }
 
