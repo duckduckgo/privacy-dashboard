@@ -302,6 +302,8 @@ function DetailsDisclosureMessage() {
 
     // Animates height of details container
     useLayoutEffect(() => {
+        if (platform.name !== 'android' && platform.name !== 'ios') return;
+
         let height = 0;
 
         if (detailsRef.current) {
@@ -315,11 +317,13 @@ function DetailsDisclosureMessage() {
             }
 
             detailsElement.style.height = `${height}px`;
+            detailsElement.dataset.open = `${detailsOpen}`;
         }
     });
 
     const toggleHandler = (e) => {
-        setDetailsOpen(/** @type HTMLDetailsElement */ (e.target).open);
+        const detailsElement = /** @type HTMLDetailsElement */ (e.target);
+        setDetailsOpen(detailsElement.open);
     };
 
     return (
