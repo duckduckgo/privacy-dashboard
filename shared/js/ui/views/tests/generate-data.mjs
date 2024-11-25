@@ -252,6 +252,7 @@ export class MockData {
      * @param {boolean} [params.denylisted]
      * @param {any[]} [params.permissions]
      * @param {{phishingStatus: boolean}} [params.phishing]
+     * @param {{malwareStatus: boolean}} [params.malware]
      * @param {boolean} [params.specialDomainName]
      * @param {boolean} [params.emailUser]
      * @param {boolean} [params.fireButtonEnabled]
@@ -271,6 +272,7 @@ export class MockData {
         this.certificate = params.certificate || defaultCertificates;
         this.upgradedHttps = params.upgradedHttps ?? false;
         this.phishing = params.phishing ?? { phishingStatus: false };
+        this.malware = params.malware ?? { malwareStatus: false };
         this.contentBlockingException = params.contentBlockingException;
         this.parentEntity = params.parentEntity;
         this.permissions = params.permissions;
@@ -334,6 +336,7 @@ export class MockData {
                 isInvalidCert: this.isInvalidCert,
                 localeSettings: this.localeSettings,
                 phishing: this.phishing,
+                malware: this.malware,
             },
         };
     }
@@ -617,6 +620,14 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             requests: [],
             permissions,
+        }),
+        malware: new MockData({
+            url: 'https://privacy-test-pages.site/security/badware/malware.html',
+            requests: [],
+            malware: {
+                malwareStatus: true,
+            },
+            certificate: defaultCertificates,
         }),
         phishing: new MockData({
             url: 'https://privacy-test-pages.site/security/badware/phishing.html',

@@ -11,4 +11,5 @@ export const httpsMessages = {
     none: 'site:connectionNotSecure.title',
     invalid: 'site:connectionNotSecureInvalidCertificate.title',
     phishing: 'site:phishingWebsite.title',
+    malware: 'site:malwareWebsite.title',
 };

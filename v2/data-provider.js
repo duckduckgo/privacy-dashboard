@@ -17,7 +17,7 @@ import { useNav } from './navigation';
 /**
  * @typedef {Object} DataChannelPublicData
  * @property {boolean} protectionsEnabled
- * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} httpsState
+ * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware'} httpsState
  * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
  * @property {boolean} isDenylisted
@@ -36,7 +36,7 @@ import { useNav } from './navigation';
 
 export class DataChannel extends EventTarget {
     protectionsEnabled = false;
-    /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} */
+    /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware'} */
     httpsState = 'none';
     isBroken = false;
     isAllowlisted = false;
@@ -179,6 +179,12 @@ export class DataChannel extends EventTarget {
             if (this.features.supportsPhishingWarning) {
                 if (this.tab.phishingStatus) {
                     return 'phishing';
+                }
+            }
+
+            if (this.features.supportsMalwareWarning) {
+                if (this.tab.malwareStatus) {
+                    return 'malware';
                 }
             }
 

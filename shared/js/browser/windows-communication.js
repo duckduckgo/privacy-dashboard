@@ -70,6 +70,9 @@ let parentEntity;
 /** @type {boolean | undefined} */
 let phishingStatus;
 
+/** @type {boolean | undefined} */
+let malwareStatus;
+
 /** @type {string | undefined} */
 let locale;
 
@@ -78,6 +81,7 @@ const combineSources = () => ({
         {},
         trackerBlockingData || {},
         { phishingStatus: phishingStatus ?? false },
+        { malwareStatus: malwareStatus ?? false },
         {
             isPendingUpdates,
             parentEntity,
@@ -93,7 +97,8 @@ const resolveInitialRender = function () {
     const isIsProtectedSet = typeof protections !== 'undefined';
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     const isPhishingSet = typeof phishingStatus === 'boolean';
-    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isPhishingSet) {
+    const isMalwareSet = typeof malwareStatus === 'boolean';
+    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isPhishingSet || !isMalwareSet) {
         return;
     }
 
@@ -123,11 +128,13 @@ function handleViewModelUpdate(viewModel) {
     protections = viewModel.protections;
     locale = viewModel.localeSettings?.locale;
     phishingStatus = viewModel.phishing?.phishingStatus;
+    malwareStatus = viewModel.malware?.malwareStatus;
 
     trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData);
     trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
     trackerBlockingData.isInvalidCert = viewModel.isInvalidCert;
     trackerBlockingData.phishingStatus = phishingStatus;
+    trackerBlockingData.malwareStatus = malwareStatus;
 
     if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
 

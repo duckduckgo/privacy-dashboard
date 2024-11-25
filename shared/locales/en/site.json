@@ -71,6 +71,14 @@
         "title": "Copied to your clipboard!",
         "note": "Note to inform that the email address was copied"
     },
+    "reportWebsiteAsSafeCTA": {
+        "title": "Report a site as safe",
+        "note": "button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
+    },
+    "aboutPhishingMalwareLink": {
+        "title": "About our phishing and malware protection",
+        "note": "Label for a link that takes the user to a help page about Phishing & Malware protection"
+    },
     "websiteNotWorkingQ": {
         "title": "Website not working as expected?",
         "note": "Call to action for user to click if they are having issues with this web page"
@@ -142,6 +150,14 @@
     "phishingWebsiteDesc": {
         "title": "This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.",
         "note": "Shown as the description text when the URL is reported as a phishing website."
+    },
+    "malwareWebsite": {
+        "title": "Site May Be Deceptive",
+        "note": "Shown as the button text when the URL is reported as a phishing website."
+    },
+    "malwareWebsiteDesc": {
+        "title": "This site has been flagged for distributing malware designed to compromise your device or steal your personal information.",
+        "note": "Shown as the description text when the URL is reported as a malware website."
     },
     "trackerNetworksDesc": {
         "title": "Requests Blocked from Loading",

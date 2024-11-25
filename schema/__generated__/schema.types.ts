@@ -473,6 +473,7 @@ export interface WindowsViewModel {
   isInvalidCert?: boolean;
   localeSettings?: LocaleSettings;
   phishing?: PhishingStatus;
+  malware?: MalwareStatus;
 }
 /**
  * This describes the fields needed for the dashboard to display the status of CPM (Cookie Prompt Management)

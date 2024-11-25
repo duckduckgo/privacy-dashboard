@@ -70,7 +70,7 @@ export function createPlatformFeatures(platform) {
         opener,
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
         supportsPhishingWarning: platform.name !== 'browser',
-        supportsMalwareWarning: platform.name === 'macos',
+        supportsMalwareWarning: platform.name !== 'browser',
         includeToggleOnBreakageForm,
         randomisedCategories,
         breakageFormCategorySelect,

@@ -154,15 +154,25 @@ export function renderKeyInsight(modelOverride) {
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--phishing"></div>
                     ${title(model.tab.domain)} ${description(raw(text))}
+                    <div class="key-insight__link">
+                        <a class="link-action link-action--text" href="https://duckduckgo.com/duckduckgo-help-pages/" target="_blank">
+                            ${i18n.t('site:aboutPhishingMalwareLink.title')}
+                        </a>
+                    </div>
                 </div>
             `;
         },
         malware: () => {
-            const text = i18n.t('site:phishingWebsiteDesc.title', { domain: model.tab.domain });
+            const text = i18n.t('site:malwareWebsiteDesc.title', { domain: model.tab.domain });
             return html`
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--phishing"></div>
                     ${title(model.tab.domain)} ${description(raw(text))}
+                    <div class="key-insight__link">
+                        <a class="link-action link-action--text" href="https://duckduckgo.com/duckduckgo-help-pages/" target="_blank">
+                            ${i18n.t('site:aboutPhishingMalwareLink.title')}
+                        </a>
+                    </div>
                 </div>
             `;
         },

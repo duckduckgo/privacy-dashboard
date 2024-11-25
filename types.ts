@@ -43,6 +43,7 @@ interface Window {
     onChangeUpgradedHttps: any;
     onChangeProtectionStatus: (protections: import('./shared/js/browser/utils/protections.mjs').Protections) => void;
     onChangePhishingStatus?: any;
+    onChangeMalwareStatus?: any;
     onChangeCertificateData: any;
     onIsPendingUpdates: any;
 
