@@ -4,12 +4,11 @@ import cn from 'classnames';
 import { useCallback, useContext, useEffect, useReducer, useRef } from 'preact/hooks';
 import { ConnectionScreen } from './screens/connection-screen';
 import { PrimaryScreen } from './screens/primary-screen';
-import { BreakageFormScreen } from './screens/breakage-form-screen';
 import { TrackersScreen } from './screens/trackers-screen';
 import { NonTrackersScreen } from './screens/non-trackers-screen';
 import { ConsentManagedScreen } from './screens/consent-managed-screen';
 import { ToggleReportScreen } from './screens/toggle-report-screen';
-import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection, ChoiceToggleScreen } from './screens/choice-problem';
+import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm } from './screens/breakage-form-screen';
 import { isAndroid } from '../shared/js/ui/environment-check';
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 
@@ -22,16 +21,12 @@ const availableScreens = {
     primaryScreen: { kind: 'root', component: () => <PrimaryScreen /> },
 
     // screens that would load immediately
-    breakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={true} /> },
-    promptBreakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={false} /> },
+    breakageForm: { kind: 'subview', component: () => <BreakagePrimaryScreen /> },
+    breakageFormCategorySelection: { kind: 'subview', component: () => <BreakageCategorySelection /> },
+    breakageFormFinalStep: { kind: 'subview', component: () => <BreakageForm /> },
     toggleReport: { kind: 'subview', component: () => <ToggleReportScreen /> },
 
     //
-    categoryTypeSelection: { kind: 'subview', component: () => <CategoryTypeSelection /> },
-    categorySelection: { kind: 'subview', component: () => <CategorySelection /> },
-    choiceToggle: { kind: 'subview', component: () => <ChoiceToggleScreen /> },
-    choiceBreakageForm: { kind: 'subview', component: () => <ChoiceBreakageForm /> },
-
     connection: { kind: 'subview', component: () => <ConnectionScreen /> },
     trackers: { kind: 'subview', component: () => <TrackersScreen /> },
     nonTrackers: { kind: 'subview', component: () => <NonTrackersScreen /> },
@@ -343,7 +338,7 @@ export function Navigation(props) {
                     if (item.kind === 'root') {
                         return (
                             <ScreenContext.Provider value={{ screen: screenName }}>
-                                <section className="app-height" key={screenName}>
+                                <section className="app-height" key={screenName} data-testid={`subview-${screenName}`}>
                                     {item.component()}
                                 </section>
                             </ScreenContext.Provider>
@@ -361,6 +356,7 @@ export function Navigation(props) {
                                 data-current={String(current)}
                                 className="sliding-subview-v2"
                                 key={screenName}
+                                data-testid={`subview-${screenName}`}
                                 style={{ transform: cssProp }}
                             >
                                 {item.component()}

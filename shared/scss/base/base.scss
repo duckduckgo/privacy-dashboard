@@ -90,6 +90,14 @@ textarea {
     font-weight: bold;
 }
 
+strong {
+    font-weight: bold;
+
+    .environment--browser & {
+        font-weight: 600;
+    }
+}
+
 /* Links */
 a {
     color: var(--color-accent-blue);
@@ -200,6 +208,11 @@ a {
     text-align: left;
 }
 
+/* Text Wrap */
+.text--balance {
+    text-wrap: balance;
+}
+
 /* Borders */
 .border--top {
     border-top: 1px solid var(--color-lines-light);
@@ -234,6 +247,11 @@ a {
 .padding-y {
     padding-top: 16px;
     padding-bottom: 16px;
+}
+
+.padding-y-third {
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 .padding-y--reduced {

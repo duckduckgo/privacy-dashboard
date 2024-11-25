@@ -26,6 +26,8 @@ This is called immediately to retrieve the data needed to render the list.
 -   WebKit: {@link "macOS integration".privacyDashboardGetToggleReportOptions}
 -   Other platforms will be added
 
+See also: [Data disclosure item ids and their meanings](#appendix-data-disclosure-item-ids-and-their-meanings)
+
 ## Step 4: Implement new handlers
 
 The following are all sent in response to user interactions
@@ -42,3 +44,29 @@ The following are all sent in response to user interactions
 ### 👆Tapping anywhere on the success screen (macos only)
 
 -   Webkit: {@link "macOS integration".privacyDashboardClose}
+
+## Appendix: Data disclosure item ids and their meanings
+
+| ID                  | Description                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| appVersion          | App version number                                                                                                 |
+| atb                 | Anonymous experiment group for feature testing                                                                     |
+| description         | Your selected category and optional comments                                                                       |
+| device              | Device make, model, and manufacturer                                                                               |
+| didOpenReportInfo   | Whether or not you opted to show this report info                                                                  |
+| errorDescriptions   | Browser-reported errors                                                                                            |
+| extensionVersion    | Extension version number                                                                                           |
+| features            | List of which browser features were active                                                                         |
+| httpErrorCodes      | Website response status (HTTP) codes                                                                               |
+| jsPerformance       | How quickly parts of the page loaded                                                                               |
+| lastSentDay         | Date of last report sent for this site                                                                             |
+| listVersions        | Information about which versions of our protections were active                                                    |
+| locale              | Primary language and country of your device                                                                        |
+| openerContext       | How you got to this page, either: "SERP" (DuckDuckGo search), "Navigation" (link/URL), or "External" (other means) |
+| os                  | Operating system version number                                                                                    |
+| reportFlow          | Which reporting form you used ("menu", "dashboard", etc.)                                                          |
+| requests            | Hostnames of trackers blocked, surrogate requests, ignored requests, and requests not in tracker blocking list     |
+| siteUrl             | Page URL (without identifiable info)                                                                               |
+| toggleReportCounter | Number of times protections were toggled off                                                                       |
+| userRefreshCount    | Number of refreshes since page load                                                                                |
+| wvVersion           | Web browser engine version number                                                                                  |

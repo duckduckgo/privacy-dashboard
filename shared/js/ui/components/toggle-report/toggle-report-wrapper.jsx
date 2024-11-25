@@ -5,6 +5,7 @@ import { platform } from '../../../browser/communication';
 export function ToggleReportWrapper({ children, state }) {
     switch (platform.name) {
         case 'android':
+            return <div className="padding-x-xl padding-y-third">{children}</div>;
         case 'ios':
             return (
                 <div className="padding-x-xl vertically-centered" data-state={state} data-toggle-report="child">

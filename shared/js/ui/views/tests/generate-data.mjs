@@ -1,5 +1,6 @@
 import { Protections } from '../../../browser/utils/protections.mjs';
 import { protectionsOff } from './toggle-protections.mjs';
+import toggleReportScreen from '../../../../../schema/__fixtures__/toggle-report-screen.json';
 
 /**
  * @typedef {import('../../../browser/utils/request-details.mjs').TabData} TabData
@@ -333,6 +334,18 @@ export class MockData {
                 isInvalidCert: this.isInvalidCert,
                 localeSettings: this.localeSettings,
             },
+        };
+    }
+
+    /**
+     * @return {import('../../../../../schema/__generated__/schema.types').WindowsIncomingToggleReportOptions}
+     */
+    toWindowsToggleReportOptions() {
+        return {
+            context: 'PrivacyDashboard',
+            featureName: 'GetToggleReportOptions',
+            id: '0.1',
+            result: /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */ (toggleReportScreen),
         };
     }
 
@@ -777,7 +790,7 @@ export const createDataStates = (google, cnn) => {
             // @ts-expect-error - this SHOULD error, that's the test
             requests: [{ foo: 'bar' }],
         }),
-        'screen-breakageForm': new MockData({
+        'screen-breakageReporting': new MockData({
             url: 'https://example.com',
             requests: [],
             urlParams: {
@@ -789,13 +802,6 @@ export const createDataStates = (google, cnn) => {
             requests: [],
             urlParams: {
                 screen: 'toggleReport',
-            },
-        }),
-        'screen-promptBreakageForm': new MockData({
-            url: 'https://example.com',
-            requests: [],
-            urlParams: {
-                screen: 'promptBreakageForm',
             },
         }),
         'webBreakageForm-enabled': new MockData({

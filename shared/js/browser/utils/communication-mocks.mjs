@@ -73,6 +73,26 @@ export function windowsMockApis() {
         };
         globalThis.windowsInteropPostMessage = (arg) => {
             window.__playwright.mocks.outgoing.push([arg.Name, arg]);
+
+            let responseData;
+            switch (arg.Name) {
+                case 'GetToggleReportOptions': {
+                    if (!window.__playwright.messages.GetToggleReportOptions)
+                        throw new Error('missing `GetToggleReportOptions` on messages');
+                    responseData = structuredClone(window.__playwright.messages.GetToggleReportOptions);
+                    responseData.id = String(arg.Id);
+                }
+            }
+
+            if (responseData) {
+                setTimeout(() => {
+                    for (const listener of window.__playwright.listeners || []) {
+                        listener({
+                            data: responseData,
+                        });
+                    }
+                }, 0);
+            }
         };
     } catch (e) {
         console.error("❌couldn't set up mocks");
@@ -82,16 +102,13 @@ export function windowsMockApis() {
 
 /**
  * @param {object} params
- * @param {Partial<Record<keyof WebkitMessageHandlers, any>>} params.responses
+ * @param {Partial<Record<keyof WebkitMessageHandlers, any>>} params.messages
  */
-export function webkitMockApis({ responses = {} }) {
-    const merged = {
-        ...responses,
-    };
+export function webkitMockApis({ messages = {} }) {
     try {
         window.__playwright = {
-            messages: {},
-            responses: merged,
+            messages,
+            responses: {},
             mocks: {
                 outgoing: [],
                 incoming: [],
@@ -108,11 +125,6 @@ export function webkitMockApis({ responses = {} }) {
                 privacyDashboardShowNativeFeedback: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardShowNativeFeedback', arg]);
-                    },
-                },
-                privacyDashboardShowAlertForMissingDescription: {
-                    postMessage: (arg) => {
-                        window.__playwright.mocks.outgoing.push(['privacyDashboardShowAlertForMissingDescription', arg]);
                     },
                 },
                 privacyDashboardShowReportBrokenSite: {
@@ -174,7 +186,7 @@ export function webkitMockApis({ responses = {} }) {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg]);
                         setTimeout(() => {
-                            window.onGetToggleReportOptionsResponse?.(window.__playwright.responses.privacyDashboardGetToggleReportOptions);
+                            window.onGetToggleReportOptionsResponse?.(window.__playwright.messages.privacyDashboardGetToggleReportOptions);
                         }, 0);
                     },
                 },
@@ -186,10 +198,14 @@ export function webkitMockApis({ responses = {} }) {
     }
 }
 
-export function mockAndroidApis() {
+/**
+ * @param {object} params
+ * @param {Partial<Record<keyof Window['PrivacyDashboard'], any>>} params.messages
+ */
+export function mockAndroidApis({ messages = {} }) {
     try {
         window.__playwright = {
-            messages: {},
+            messages,
             responses: {},
             mocks: {
                 outgoing: [],
@@ -216,6 +232,26 @@ export function mockAndroidApis() {
             submitBrokenSiteReport(arg) {
                 window.__playwright.mocks.outgoing.push(['submitBrokenSiteReport', arg]);
             },
+            getToggleReportOptions() {
+                const response = window.__playwright.messages.getToggleReportOptions;
+                if (!response) throw new Error('unreachable, missing mock for getToggleReportOptions');
+
+                setTimeout(() => {
+                    window.onGetToggleReportOptionsResponse?.(response);
+                }, 0);
+            },
+            sendToggleReport() {
+                window.__playwright.mocks.outgoing.push(['sendToggleReport']);
+            },
+            rejectToggleReport() {
+                window.__playwright.mocks.outgoing.push(['rejectToggleReport']);
+            },
+            seeWhatIsSent() {
+                window.__playwright.mocks.outgoing.push(['seeWhatIsSent']);
+            },
+            showNativeFeedback() {
+                window.__playwright.mocks.outgoing.push(['showNativeFeedback']);
+            },
         };
     } catch (e) {
         console.error("❌couldn't set up mocks");
@@ -239,6 +275,7 @@ export function mockBrowserApis(params = { messages: {} }) {
         sendToggleReport: {},
         rejectToggleReport: {},
         seeWhatIsSent: {},
+        showNativeFeedback: {},
         doBurn: {},
         getBurnOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 },
         refreshAlias: { privateAddress: '__mock__', personalAddress: 'dax' },
@@ -307,6 +344,7 @@ export function mockBrowserApis(params = { messages: {} }) {
 
                         // does the incoming message match one that's been mocked here?
                         const matchingMessage = window.__playwright.messages[message.messageType];
+
                         if (matchingMessage) {
                             window.__playwright.mocks.outgoing.push([message.messageType, message]);
                             respond(matchingMessage, 200);
@@ -340,22 +378,24 @@ export function mockBrowserApis(params = { messages: {} }) {
  * @param {import("../../ui/platform-features.mjs").Platform} platform
  * @return {Promise<void>}
  */
-export async function installMocks(platform) {
-    console.log('instaling...');
+export async function installDebuggerMocks(platform) {
     if (window.__playwright) {
-        console.log('instaling... NOE');
         return console.log('❌ mocked already there');
     }
     if (platform.name === 'windows') {
         windowsMockApis();
     } else if (platform.name === 'ios' || platform.name === 'macos') {
         webkitMockApis({
-            responses: {
+            messages: {
                 privacyDashboardGetToggleReportOptions: toggleReportScreen,
             },
         });
     } else if (platform.name === 'android') {
-        mockAndroidApis();
+        mockAndroidApis({
+            messages: {
+                getToggleReportOptions: toggleReportScreen,
+            },
+        });
     } else if (platform.name === 'browser') {
         mockBrowserApis();
     }
@@ -383,6 +423,7 @@ export async function installMocks(platform) {
     console.groupEnd();
 
     const messages = {};
+
     if (platform.name === 'browser') {
         messages.getBurnOptions = mock.toBurnOptions();
         messages.getPrivacyDashboardData = mock.toExtensionDashboardData();
@@ -390,6 +431,7 @@ export async function installMocks(platform) {
     }
     if (platform.name === 'windows') {
         messages.windowsViewModel = mock.toWindowsViewModel();
+        messages.GetToggleReportOptions = mock.toWindowsToggleReportOptions();
     }
 
     await mockDataProvider({

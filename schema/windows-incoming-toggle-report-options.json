@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "WindowsIncomingToggleReportOptions",
+    "type": "object",
+    "description": "This message contains user data disclosure options for Toggle Report and Breakage Form",
+    "additionalProperties": false,
+    "required": ["context", "featureName", "id", "result"],
+    "properties": {
+        "context": {
+            "type": "string",
+            "const": "PrivacyDashboard"
+        },
+        "featureName": {
+            "type": "string",
+            "const": "GetToggleReportOptions"
+        },
+        "id": {
+            "type": "string"
+        },
+        "result": {
+            "$ref": "./toggle-report-screen.json"
+        }
+    }
+}

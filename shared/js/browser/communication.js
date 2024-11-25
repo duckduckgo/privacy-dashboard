@@ -4,7 +4,7 @@ import * as iosComms from './ios-communication.js';
 import * as androidComms from './android-communication.js';
 import * as windowsComms from './windows-communication.js';
 import * as macosComms from './macos-communication.js';
-import { installMocks } from './utils/communication-mocks.mjs';
+import { installDebuggerMocks } from './utils/communication-mocks.mjs';
 
 let defaultComms;
 
@@ -38,7 +38,7 @@ let debug = false;
 // eslint-disable-next-line no-unused-labels, no-labels
 $TEST: (() => {
     if (typeof window.__ddg_integration_test === 'undefined') {
-        installMocks(platform).catch(console.error);
+        installDebuggerMocks(platform).catch(console.error);
         debug = true;
     }
 })();

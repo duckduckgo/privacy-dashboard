@@ -36,6 +36,7 @@ import {
     setupMutationObserver,
     SubmitBrokenSiteReportMessage,
     UpdatePermissionMessage,
+    ShowNativeFeedback,
 } from './common.js';
 import { createTabData } from './utils/request-details.mjs';
 
@@ -317,7 +318,7 @@ export function privacyDashboardGetToggleReportOptions() {
 export function privacyDashboardSendToggleReport() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
     invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, 'privacyDashboardSendToggleReport required');
-    return window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({});
+    window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({});
 }
 
 /**
@@ -335,7 +336,7 @@ export function privacyDashboardSendToggleReport() {
 export function privacyDashboardRejectToggleReport() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
     invariant(window.webkit.messageHandlers.privacyDashboardRejectToggleReport, 'privacyDashboardRejectToggleReport required');
-    return window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({});
+    window.webkit.messageHandlers.privacyDashboardRejectToggleReport.postMessage({});
 }
 
 /**
@@ -436,6 +437,11 @@ async function fetch(message) {
     if (message instanceof SeeWhatIsSent) {
         return privacyDashboardSeeWhatIsSent();
     }
+
+    if (message instanceof ShowNativeFeedback) {
+        privacyDashboardShowNativeFeedback({});
+        return false; // Return true to prevent HTML form from showing
+    }
 }
 
 /**
@@ -500,6 +506,21 @@ export function privacyDashboardSetSize(payload) {
         invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
         window.webkit.messageHandlers.privacyDashboardSetSize.postMessage(payload);
     }
+}
+
+/**
+ * Triggers a native form for general feedback on macOS
+ *
+ * @category Webkit Message Handlers
+ * @param {{}} args - An empty object to keep the `webkit` message handlers happy
+ * @example
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardShowNativeFeedback.postMessage(args)
+ * ```
+ */
+export function privacyDashboardShowNativeFeedback(args) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardShowNativeFeedback.postMessage(args);
 }
 
 /**

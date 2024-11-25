@@ -13,7 +13,7 @@ import { useToggleReportState } from './use-toggle-report-state';
  */
 export function useIosAnimation(state, dispatch) {
     useEffect(() => {
-        if (platform.name !== 'ios') return;
+        if (platform.name !== 'ios' && platform.name !== 'android') return;
         if (state.value === 'animating') {
             const child = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="child"]'));
             if (!child) return;
@@ -25,7 +25,7 @@ export function useIosAnimation(state, dispatch) {
     }, [state.value]);
 
     useEffect(() => {
-        if (platform.name !== 'ios') return;
+        if (platform.name !== 'ios' && platform.name !== 'android') return;
         const child = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="child"]'));
         const parent = /** @type {HTMLDivElement | null} */ (document.querySelector('[data-toggle-report="parent"]'));
 
