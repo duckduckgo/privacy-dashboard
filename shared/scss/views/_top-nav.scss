@@ -5,7 +5,7 @@ body {
     &.environment--browser,
     &.environment--windows,
     &.environment--example {
-        --nav-height: var(--size-unit-double);
+        --nav-height: 48px;
     }
 }
 
@@ -40,6 +40,7 @@ body {
     // rounded corners on android because of the ripple effect
     .environment--android & {
         border-radius: 100%;
+        left: 10px;
     }
 
     .environment--ios & {
@@ -146,7 +147,8 @@ body {
 
     .environment--android & {
         transform: unset;
-        left: 60px;
+        left: 72px;
+        top: 2px;
         font-size: 20px;
         font-weight: 500;
         &:active {
