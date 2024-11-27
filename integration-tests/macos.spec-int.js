@@ -34,7 +34,7 @@ test('invalid/missing certificate', { tag: '@screenshots' }, async ({ page }) =>
     await dash.showsInvalidCertDetail();
 });
 
-test('phishing warning', async ({ page }) => {
+test('phishing warning', { tag: '@screenshots' }, async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.webkit(page, { platform: 'macos' });
     await dash.addState([testDataStates.phishing]);

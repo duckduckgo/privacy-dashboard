@@ -672,6 +672,15 @@ export class DashboardPage {
         await this.mocks.calledForClose({ screen: 'toggleReport' });
     }
 
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     */
+    async backButtonRejectsToggleReport(screen = 'toggleReport') {
+        const selector = this.parent(screen);
+        await this.page.locator(selector).getByLabel('Back', { exact: true }).click();
+        await this.mocks.calledForRejectToggleReport();
+    }
+
     async rejectToggleReport() {
         const { page } = this;
         await page.getByRole('button', { name: `Don't send` }).click();
