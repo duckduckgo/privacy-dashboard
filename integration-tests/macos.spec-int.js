@@ -119,7 +119,6 @@ test.describe('opening breakage form', () => {
         await dash.showsInformation();
         await dash.mocks.calledForSeeWhatsSent();
         await dash.screenshot('screen-toggle-report-show.png');
-        await dash.hidesInformation();
     });
 });
 
