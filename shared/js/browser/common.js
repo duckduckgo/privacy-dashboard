@@ -285,7 +285,6 @@ export async function getToggleReportOptions() {
 
 /**
  * Send the toggle report
- * @returns {Promise<void>}
  */
 export function sendToggleReport() {
     throw new Error('base impl');
@@ -293,7 +292,6 @@ export function sendToggleReport() {
 
 /**
  * Reject sending the toggle report
- * @returns {Promise<void>}
  */
 export function rejectToggleReport() {
     throw new Error('base impl');
