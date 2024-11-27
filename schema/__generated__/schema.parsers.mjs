@@ -11,45 +11,49 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
+export const wVVersionSchema = z.literal("wvVersion");
+
+export const requestsSchema = z.literal("requests");
+
+export const featuresSchema = z.literal("features");
+
+export const appVersionSchema = z.literal("appVersion");
+
+export const atbSchema = z.literal("atb");
+
+export const errorDescriptionsSchema = z.literal("errorDescriptions");
+
+export const extensionVersionSchema = z.literal("extensionVersion");
+
+export const hTTPErrorCodesSchema = z.literal("httpErrorCodes");
+
+export const lastSentDaySchema = z.literal("lastSentDay");
+
+export const deviceSchema = z.literal("device");
+
+export const osSchema = z.literal("os");
+
+export const listVersionsSchema = z.literal("listVersions");
+
+export const reportFlowSchema = z.literal("reportFlow");
+
+export const siteURLSchema = z.literal("siteUrl");
+
+export const didOpenReportInfoSchema = z.literal("didOpenReportInfo");
+
+export const toggleReportCounterSchema = z.literal("toggleReportCounter");
+
+export const openerContextSchema = z.literal("openerContext");
+
+export const userRefreshCountSchema = z.literal("userRefreshCount");
+
+export const jSPerformanceSchema = z.literal("jsPerformance");
+
+export const localeSchema = z.literal("locale");
+
+export const descriptionSchema = z.literal("description");
+
 export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("promptBreakageForm"), z.literal("toggleReport"), z.literal("categoryTypeSelection"), z.literal("categorySelection"), z.literal("choiceToggle"), z.literal("choiceBreakageForm"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
-
-export const wvVersionTitleSchema = z.literal("wvVersion");
-
-export const requestsTitleSchema = z.literal("requests");
-
-export const featuresTitleSchema = z.literal("features");
-
-export const appVersionTitleSchema = z.literal("appVersion");
-
-export const atbTitleSchema = z.literal("atb");
-
-export const errorDescriptionsTitleSchema = z.literal("errorDescriptions");
-
-export const extensionVersionTitleSchema = z.literal("extensionVersion");
-
-export const httpErrorCodesTitleSchema = z.literal("httpErrorCodes");
-
-export const lastSentDayTitleSchema = z.literal("lastSentDay");
-
-export const deviceTitleSchema = z.literal("device");
-
-export const osTitleSchema = z.literal("os");
-
-export const listVersionsTitleSchema = z.literal("listVersions");
-
-export const reportFlowTitleSchema = z.literal("reportFlow");
-
-export const siteUrlTitleSchema = z.literal("siteUrl");
-
-export const didOpenReportInfoTitleSchema = z.literal("didOpenReportInfo");
-
-export const toggleReportCounterTitleSchema = z.literal("toggleReportCounter");
-
-export const openerContextTitleSchema = z.literal("openerContext");
-
-export const userRefreshCountTitleSchema = z.literal("userRefreshCount");
-
-export const jsPerformanceTitleSchema = z.literal("jsPerformance");
 
 export const stateBlockedSchema = z.object({
     blocked: z.object({})
@@ -129,6 +133,10 @@ export const cookiePromptManagementStatusSchema = z.object({
     configurable: z.boolean().optional()
 });
 
+export const siteUrlAdditionalDataSchema = z.object({
+    url: z.string()
+});
+
 export const refreshAliasResponseSchema = z.object({
     personalAddress: z.string(),
     privateAddress: z.string()
@@ -166,10 +174,6 @@ export const webBreakageFormSchema = z.object({
 
 export const eventOriginSchema = z.object({
     screen: screenKindSchema
-});
-
-export const siteUrlAdditionalDataSchema = z.object({
-    url: z.string()
 });
 
 export const closeMessageParamsSchema = z.object({
@@ -218,7 +222,7 @@ export const outgoingExtensionMessageSchema = z.object({
     options: z.object({})
 });
 
-export const dataItemIdSchema = z.union([wvVersionTitleSchema, requestsTitleSchema, featuresTitleSchema, appVersionTitleSchema, atbTitleSchema, errorDescriptionsTitleSchema, extensionVersionTitleSchema, httpErrorCodesTitleSchema, lastSentDayTitleSchema, deviceTitleSchema, osTitleSchema, listVersionsTitleSchema, reportFlowTitleSchema, siteUrlTitleSchema, didOpenReportInfoTitleSchema, toggleReportCounterTitleSchema, openerContextTitleSchema, userRefreshCountTitleSchema, jsPerformanceTitleSchema]);
+export const dataItemIdSchema = z.union([wVVersionSchema, requestsSchema, featuresSchema, appVersionSchema, atbSchema, errorDescriptionsSchema, extensionVersionSchema, hTTPErrorCodesSchema, lastSentDaySchema, deviceSchema, osSchema, listVersionsSchema, reportFlowSchema, siteURLSchema, didOpenReportInfoSchema, toggleReportCounterSchema, openerContextSchema, userRefreshCountSchema, jSPerformanceSchema, localeSchema, descriptionSchema]);
 
 export const incomingExtensionMessageSchema = z.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
 
@@ -249,6 +253,11 @@ export const breakageReportSchema = z.object({
     response: z.object({}).optional()
 });
 
+export const toggleReportScreenDataItemSchema = z.object({
+    id: dataItemIdSchema,
+    additional: siteUrlAdditionalDataSchema.optional()
+});
+
 export const fireButtonDataSchema = z.object({
     options: z.array(fireOptionSchema)
 });
@@ -261,11 +270,6 @@ export const remoteFeatureSettingsSchema = z.object({
 export const setProtectionParamsSchema = z.object({
     isProtected: z.boolean(),
     eventOrigin: eventOriginSchema
-});
-
-export const toggleReportScreenDataItemSchema = z.object({
-    id: dataItemIdSchema,
-    additional: siteUrlAdditionalDataSchema.optional()
 });
 
 export const telemetrySpanSchema = z.object({
@@ -308,7 +312,14 @@ export const windowsIncomingViewModelSchema = z.object({
     Data: windowsViewModelSchema
 });
 
-export const windowsIncomingMessageSchema = z.union([windowsIncomingVisibilitySchema, windowsIncomingViewModelSchema]);
+export const windowsIncomingToggleReportOptionsSchema = z.object({
+    context: z.literal("PrivacyDashboard"),
+    featureName: z.literal("GetToggleReportOptions"),
+    id: z.string(),
+    result: toggleReportScreenSchema
+});
+
+export const windowsIncomingMessageSchema = z.union([windowsIncomingVisibilitySchema, windowsIncomingViewModelSchema, windowsIncomingToggleReportOptionsSchema]);
 
 export const apiSchema = z.object({
     "request-data": requestDataSchema,

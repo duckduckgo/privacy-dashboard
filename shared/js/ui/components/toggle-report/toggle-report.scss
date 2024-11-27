@@ -7,11 +7,13 @@
     }
 }
 
-.environment--ios [data-toggle-report='child'] {
+.environment--ios [data-toggle-report='child'],
+.environment--android [data-toggle-report='child'] {
     opacity: 0;
     visibility: hidden;
 }
-.environment--ios [data-toggle-report='child'][data-ready='true'] {
+.environment--ios [data-toggle-report='child'][data-ready='true'],
+.environment--android [data-toggle-report='child'][data-ready='true'] {
     opacity: 1;
     visibility: visible;
 }
