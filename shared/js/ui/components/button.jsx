@@ -3,7 +3,7 @@ import { h } from 'preact';
 
 /**
  * @typedef {object} ComponentProps
- * @property {"desktop-vibrancy" | "desktop-standard" | "ios-secondary" | "macos-standard"} [variant]
+ * @property {"standard" | "desktop-vibrancy" | "desktop-standard" | "ios-secondary" | "macos-standard"} [variant]
  * @property {"big" | "desktop-large" | "small"} [btnSize]
  * @param {import("preact").ComponentProps<'button'> & ComponentProps} props
  */

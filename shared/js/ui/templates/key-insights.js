@@ -3,6 +3,7 @@ import raw from 'nanohtml/raw';
 import { i18n } from '../base/localize.js';
 import { normalizeCompanyName } from '../models/mixins/normalize-company-name.mjs';
 import { getColorId } from './shared/utils.js';
+import { duckDuckGoURLs } from '../../../data/constants.js';
 
 const keyInsightsState = /** @type {const} */ ({
     /* 01 */ insecure: 'insecure',
@@ -16,6 +17,7 @@ const keyInsightsState = /** @type {const} */ ({
     /* 09 */ invalid: 'invalid',
     /* 10 */ noneBlocked_firstPartyAllowed: 'noneBlocked_firstPartyAllowed',
     /* 11 */ phishing: 'phishing',
+    /* 12 */ malware: 'malware',
 });
 
 /**
@@ -29,6 +31,7 @@ export function renderKeyInsight(modelOverride) {
     /** @type {keyInsightsState[keyof keyInsightsState]} */
     const state = (() => {
         if (model.httpsState === 'phishing') return keyInsightsState.phishing;
+        if (model.httpsState === 'malware') return keyInsightsState.malware;
         if (model.httpsState === 'none') return keyInsightsState.insecure;
         if (model.httpsState === 'invalid') return keyInsightsState.invalid;
         if (model.isBroken) return keyInsightsState.broken;
@@ -152,6 +155,25 @@ export function renderKeyInsight(modelOverride) {
                 <div class="key-insight key-insight--main">
                     <div class="key-insight__icon hero-icon--phishing"></div>
                     ${title(model.tab.domain)} ${description(raw(text))}
+                    <div class="key-insight__link">
+                        <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
+                            ${i18n.t('site:aboutPhishingMalwareLink.title')}
+                        </a>
+                    </div>
+                </div>
+            `;
+        },
+        malware: () => {
+            const text = i18n.t('site:malwareWebsiteDesc.title', { domain: model.tab.domain });
+            return html`
+                <div class="key-insight key-insight--main">
+                    <div class="key-insight__icon hero-icon--phishing"></div>
+                    ${title(model.tab.domain)} ${description(raw(text))}
+                    <div class="key-insight__link">
+                        <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
+                            ${i18n.t('site:aboutPhishingMalwareLink.title')}
+                        </a>
+                    </div>
                 </div>
             `;
         },

@@ -167,6 +167,16 @@ export class DashboardPage {
         await page.locator('[data-page="connection"]').getByText(text).waitFor();
     }
 
+    async clickReportAsSafeLink() {
+        const { page } = this;
+        await expect(page.getByRole('link', { name: 'Report a site as safe' })).toBeVisible();
+    }
+
+    async clickHelpPageLink() {
+        const { page } = this;
+        await page.getByRole('link', { name: 'About our phishing and malware protection' }).click();
+    }
+
     async hasPhishingIcon() {
         const { page } = this;
         await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/);
@@ -185,6 +195,28 @@ export class DashboardPage {
     }
 
     async hasPhishingStatusText() {
+        const { page } = this;
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be Deceptive');
+    }
+
+    async hasMalwareIcon() {
+        const { page } = this;
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/);
+    }
+
+    async hasMalwareHeadingText() {
+        const { page } = this;
+        await expect(page.getByRole('heading', { name: 'privacy-test-pages.site' })).toBeVisible();
+    }
+
+    async hasMalwareWarningText() {
+        const { page } = this;
+        await expect(page.locator('#popup-container')).toContainText(
+            'This site has been flagged for distributing malware designed to compromise your device or steal your personal information.'
+        );
+    }
+
+    async hasMalwareStatusText() {
         const { page } = this;
         await expect(page.locator('#main-nav div')).toContainText('Site May Be Deceptive');
     }

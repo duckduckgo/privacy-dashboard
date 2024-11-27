@@ -347,30 +347,33 @@ export class Mocks {
     }
 
     async calledForAboutLink() {
+        return this.calledForOpenURLInNewTab('https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/');
+    }
+
+    async calledForHelpPagesLink() {
+        return this.calledForOpenURLInNewTab(
+            'https://dub.duckduckgo.com/pages/duckduckgo/mgurgel-help-pages/privacy/phishing-and-malware-protection/'
+        );
+    }
+
+    async calledForReportAsSafeLink(urlParam) {
+        const url = new URL('https://use-devtesting12.duckduckgo.com/malicious-site-protection/report-error');
+        url.searchParams.set('url', urlParam);
+
+        return this.calledForOpenURLInNewTab(url.toString());
+    }
+
+    async calledForOpenURLInNewTab(url) {
         if (this.platform.name === 'android') {
             const calls = await this.outgoing({ names: ['openInNewTab'] });
-            expect(calls).toMatchObject([
-                [
-                    'openInNewTab',
-                    JSON.stringify({
-                        url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
-                    }),
-                ],
-            ]);
+            expect(calls).toMatchObject([['openInNewTab', JSON.stringify({ url })]]);
             return;
         }
         if (this.platform.name === 'macos' || this.platform.name === 'ios') {
             const calls = await this.outgoing({
                 names: ['privacyDashboardOpenUrlInNewTab'],
             });
-            expect(calls).toMatchObject([
-                [
-                    'privacyDashboardOpenUrlInNewTab',
-                    {
-                        url: 'https://help.duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections/',
-                    },
-                ],
-            ]);
+            expect(calls).toMatchObject([['privacyDashboardOpenUrlInNewTab', { url }]]);
             return;
         }
         throw new Error('unreachable. mockCalledForAboutLink must be handled');

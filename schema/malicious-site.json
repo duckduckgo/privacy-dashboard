@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "MaliciousSiteStatus",
+    "type": "object",
+    "description": "This describes the payload required to set the phishing & malware status",
+    "additionalProperties": false,
+    "required": ["kind"],
+    "properties": {
+        "kind": {
+            "description": "Kind of threat detected",
+            "enum": ["phishing", "malware", null]
+        }
+    }
+}
