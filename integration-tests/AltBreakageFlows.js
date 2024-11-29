@@ -39,7 +39,7 @@ export class AltBreakageFlows {
 
     async showsReportFromPrimaryScreen() {
         const { page } = this.dash;
-        await page.getByRole('link', { name: 'Report a problem with this site' }).click();
+        await page.getByRole('link', { name: 'Website not working?' }).click();
         await this.breakageFormIsVisible();
     }
 

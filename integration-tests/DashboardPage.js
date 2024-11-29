@@ -638,7 +638,7 @@ export class DashboardPage {
     }
 
     async clicksWebsiteNotWorking() {
-        await this.page.getByRole('link', { name: 'Report a problem with this site' }).click({ timeout: 5000 });
+        await this.page.getByRole('link', { name: 'Website not working?' }).click({ timeout: 5000 });
     }
     async showsBreakageForm() {
         await this.page.getByText('Submitting an anonymous').waitFor({ timeout: 5000 });

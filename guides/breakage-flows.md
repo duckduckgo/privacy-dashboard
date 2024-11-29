@@ -4,13 +4,13 @@ title: Breakage flows
 
 # Breakage flows
 
-### Flow 1: Show Category-type selection when 'Report a problem with this site' is clicked
+### Flow 1: Show Category-type selection when 'Website not working?' is clicked
 
 Open the dashboard with the following query params
 
 -   `breakageScreen=categoryTypeSelection`
 
-### Flow 2: Show Category selection when 'Report a problem with this site' is clicked
+### Flow 2: Show Category selection when 'Website not working?' is clicked
 
 Open the dashboard with the following query params
 
