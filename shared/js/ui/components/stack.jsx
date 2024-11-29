@@ -1,13 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact';
+import cn from 'classnames';
+
 /**
  * @typedef {object} ButtonBarComponentProps
  * @property {string} [gap]
+ * @property {string} [className]
  * @param {import("preact").ComponentProps<'div'> & ButtonBarComponentProps} props
  */
-export function Stack({ children, gap, ...rest }) {
+export function Stack({ children, gap, className, ...rest }) {
     return (
-        <div {...rest} className="stack" style={{ gap: gap }}>
+        <div {...rest} className={cn(['stack', className])} style={{ gap: gap }}>
             {children}
         </div>
     );

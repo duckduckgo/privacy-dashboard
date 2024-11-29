@@ -109,6 +109,23 @@
     margin-right: 10px;
     // when text wraps on this buttons (for different languages) this prevents the layout looking broken
     line-height: 1;
+
+    /** TODO: Move */
+    .environment--ios & {
+        line-height: calc(20 / 15);
+    }
+
+    .environment--android & {
+        line-height: calc(20 / 14);
+    }
+
+    .environment--macos & {
+        line-height: calc(16 / 13);
+    }
+
+    .environment--windows & {
+        line-height: calc(18 / 14);
+    }
 }
 
 .main-nav__chev {

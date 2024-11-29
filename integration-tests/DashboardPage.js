@@ -248,15 +248,17 @@ export class DashboardPage {
      * @param {import("@playwright/test").Page} page
      * @param {object} [opts]
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} [opts.screen]
+     * @param {'menu' | 'dashboard'} [opts.opener]
      * @return {Promise<DashboardPage>}
      */
     static async windows(page, opts = {}) {
         /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
         const screen = opts?.screen || 'primaryScreen';
+        const opener = opts?.opener || 'dashboard';
         const dash = new DashboardPage(page, { name: 'windows' });
         await dash.withMarker();
         await dash.mocks.install();
-        await dash.loadPage({ screen });
+        await dash.loadPage({ screen, opener });
         await page.waitForFunction(() => typeof window.__playwright !== 'undefined');
         return dash;
     }
@@ -266,7 +268,7 @@ export class DashboardPage {
      * @param {import("../shared/js/ui/views/tests/generate-data.mjs").MockData} initial
      * @returns {Promise<DashboardPage>}
      */
-    static async browser(page, initial = testDataStates.empty) {
+    static async browser(page, initial = testDataStates.empty, opts = {}) {
         const dash = new DashboardPage(page, { name: 'browser' });
         await dash.withMarker();
 
@@ -670,6 +672,15 @@ export class DashboardPage {
             })
             .click();
         await this.mocks.calledForClose({ screen: 'toggleReport' });
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
+     */
+    async backButtonRejectsToggleReport(screen = 'toggleReport') {
+        const selector = this.parent(screen);
+        await this.page.locator(selector).getByLabel('Back', { exact: true }).click();
+        await this.mocks.calledForRejectToggleReport();
     }
 
     async rejectToggleReport() {

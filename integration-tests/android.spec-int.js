@@ -109,6 +109,41 @@ test.describe('Breakage form', () => {
     });
 });
 
+test.describe('opens toggle report', () => {
+    test('sends toggle report', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'toggleReport', opener: 'menu' });
+        await dash.addState([testDataStates.google]);
+        await dash.toggleReportIsVisible();
+        await dash.screenshot('screen-toggle-report.png');
+        await dash.showsOnlyBackButton('toggleReport');
+        await dash.sendToggleReport();
+    });
+    test('back button rejects toggle report', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'toggleReport', opener: 'menu' });
+        await dash.addState([testDataStates.google]);
+        await dash.toggleReportIsVisible();
+        await dash.backButtonRejectsToggleReport();
+    });
+    test('rejects toggle report', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'toggleReport', opener: 'dashboard' });
+        await dash.addState([testDataStates.google]);
+        await dash.toggleReportIsVisible();
+        await dash.rejectToggleReport();
+    });
+    test('shows information once', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'toggleReport', opener: 'dashboard' });
+        await dash.addState([testDataStates.google]);
+        await dash.toggleReportIsVisible();
+        await dash.showsInformation();
+        await dash.cannotHideInformation();
+        await dash.screenshot('screen-toggle-report-show.png');
+    });
+});
+
 test.describe('Close', () => {
     test('pressing close should call native API', async ({ page }) => {
         const dash = await DashboardPage.android(page);

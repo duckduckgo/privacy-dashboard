@@ -39,6 +39,10 @@
     }
 }
 
+.token-body {
+    @include token-body;
+}
+
 .token-body-em {
     //styleName: Mac/Body (Emphasis);
     font-size: 13px;
@@ -104,7 +108,7 @@
 .token-ios-title-3 {
     font-size: 20px;
     font-weight: 600;
-    line-height: 25px;
+    line-height: calc(25 / 20);
 }
 
 .token-title-3-em {
@@ -116,6 +120,13 @@
     .environment--android & {
         font-size: 16px;
         line-height: 20px;
+    }
+
+    //styleName: Windows/System/Title 3 (Emphasis)
+    .environment--windows {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: calc(20 / 16);
     }
 
     .environment--browser & {
@@ -152,6 +163,13 @@
         font-weight: 400;
         line-height: 20px;
     }
+}
+
+.token-headline-2 {
+    //styleName: Android/Headline 2
+    font-size: 20px;
+    font-weight: 500;
+    line-height: calc(24 / 20);
 }
 
 .token-label-em {

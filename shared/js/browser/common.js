@@ -285,17 +285,15 @@ export async function getToggleReportOptions() {
 
 /**
  * Send the toggle report
- * @returns {Promise<void>}
  */
-export async function sendToggleReport() {
+export function sendToggleReport() {
     throw new Error('base impl');
 }
 
 /**
  * Reject sending the toggle report
- * @returns {Promise<void>}
  */
-export async function rejectToggleReport() {
+export function rejectToggleReport() {
     throw new Error('base impl');
 }
 
@@ -303,6 +301,13 @@ export async function rejectToggleReport() {
  * Sent when the user expands the disclosure
  */
 export function seeWhatIsSent() {
+    throw new Error('base impl');
+}
+
+/**
+ * Sent when the user chooses to provide general feedback from the breakage form
+ */
+export function showNativeFeedback() {
     throw new Error('base impl');
 }
 
