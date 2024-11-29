@@ -147,7 +147,11 @@ function SetAutoHeight() {
 }
 
 /**
- * @returns {{variant: 'ios-secondary'|'desktop-vibrancy'|'desktop-standard'; size: 'small'|'big'|'desktop-large'; layout: 'vertical'|'horizontal'}}
+ * @typedef {object} ButtonStyle
+ * @property {import('./button').ComponentProps['variant']} variant
+ * @property {import('./button').ComponentProps['btnSize']} size
+ * @property {import('./button').ButtonBarComponentProps['layout']} layout
+ * @returns {ButtonStyle}
  */
 function getButtonStyles() {
     switch (platform.name) {
@@ -157,7 +161,7 @@ function getButtonStyles() {
         case 'windows':
             return { variant: 'desktop-standard', size: 'desktop-large', layout: 'horizontal' };
         default:
-            return { variant: 'desktop-vibrancy', size: 'small', layout: 'horizontal' };
+            return { variant: 'desktop-vibrancy', size: 'desktop-large', layout: 'horizontal' };
     }
 }
 

@@ -5,7 +5,7 @@ body {
     &.environment--browser,
     &.environment--windows,
     &.environment--example {
-        --nav-height: 48px;
+        --nav-height: var(--size-unit-double);
     }
 }
 
