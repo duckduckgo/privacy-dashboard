@@ -121,7 +121,7 @@
     },
     "yourReportWillHelpDesc": {
         "title": "Your report will help improve our products and make the experience better for other people.",
-        "note": "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
+        "note": "Body that the user sees upon submitting the report"
     },
     "dislike": {
         "title": "I dislike the content",
