@@ -1,2 +1,1 @@
-- test (#239)
-- fix: `files` in package.json
+- Toggle Report for Windows and Android (#251)

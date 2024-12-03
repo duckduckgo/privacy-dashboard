@@ -343,7 +343,7 @@ export function Navigation(props) {
                     if (item.kind === 'root') {
                         return (
                             <ScreenContext.Provider value={{ screen: screenName }}>
-                                <section className="app-height" key={screenName}>
+                                <section className="app-height" key={screenName} data-testid={`subview-${screenName}`}>
                                     {item.component()}
                                 </section>
                             </ScreenContext.Provider>

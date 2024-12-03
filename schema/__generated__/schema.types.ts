@@ -41,7 +41,116 @@ export type OtherThirdPartyRequestReason = "otherThirdPartyRequest";
 /**
  * A helper list of messages that the Dashboard accepts from Windows
  */
-export type WindowsIncomingMessage = WindowsIncomingVisibility | WindowsIncomingViewModel;
+export type WindowsIncomingMessage =
+  | WindowsIncomingVisibility
+  | WindowsIncomingViewModel
+  | WindowsIncomingToggleReportOptions;
+export type DataItemId =
+  | WVVersion
+  | Requests
+  | Features
+  | AppVersion
+  | ATB
+  | ErrorDescriptions
+  | ExtensionVersion
+  | HTTPErrorCodes
+  | LastSentDay
+  | Device
+  | OS
+  | ListVersions
+  | ReportFlow
+  | SiteURL
+  | DidOpenReportInfo
+  | ToggleReportCounter
+  | OpenerContext
+  | UserRefreshCount
+  | JSPerformance
+  | Locale
+  | Description;
+/**
+ * Web browser engine version number
+ */
+export type WVVersion = "wvVersion";
+/**
+ * Hostnames of trackers blocked, surrogate requests, ignored requests, and requests not in tracker blocking list
+ */
+export type Requests = "requests";
+/**
+ * List of which browser features were active
+ */
+export type Features = "features";
+/**
+ * App version number
+ */
+export type AppVersion = "appVersion";
+/**
+ * Anonymous experiment group for feature testing
+ */
+export type ATB = "atb";
+/**
+ * Browser-reported errors
+ */
+export type ErrorDescriptions = "errorDescriptions";
+/**
+ * Extension version number
+ */
+export type ExtensionVersion = "extensionVersion";
+/**
+ * Website response status (HTTP) codes
+ */
+export type HTTPErrorCodes = "httpErrorCodes";
+/**
+ * Date of last report sent for this site
+ */
+export type LastSentDay = "lastSentDay";
+/**
+ * Device make, model, and manufacturer
+ */
+export type Device = "device";
+/**
+ * Operating system version number
+ */
+export type OS = "os";
+/**
+ * Information about which versions of our protections were active
+ */
+export type ListVersions = "listVersions";
+/**
+ * Which reporting form you used ('menu', 'dashboard', etc.)
+ */
+export type ReportFlow = "reportFlow";
+/**
+ * Page URL (without identifiable info)
+ */
+export type SiteURL = "siteUrl";
+/**
+ * Whether or not you opted to show this report info
+ */
+export type DidOpenReportInfo = "didOpenReportInfo";
+/**
+ * Number of times protections were toggled off
+ */
+export type ToggleReportCounter = "toggleReportCounter";
+/**
+ * How you got to this page, either: 'SERP' (DuckDuckGo search), 'Navigation' (link/URL), or 'External' (other means)
+ */
+export type OpenerContext = "openerContext";
+/**
+ * Number of refreshes since page load
+ */
+export type UserRefreshCount = "userRefreshCount";
+/**
+ * How quickly parts of the page loaded
+ */
+export type JSPerformance = "jsPerformance";
+/**
+ * Primary language and country of your device
+ */
+export type Locale = "locale";
+/**
+ * Your selected category and optional comments
+ */
+export type Description = "description";
 export type ScreenKind =
   | "primaryScreen"
   | "breakageForm"
@@ -56,102 +165,6 @@ export type ScreenKind =
   | "nonTrackers"
   | "consentManaged"
   | "cookieHidden";
-export type DataItemId =
-  | WvVersionTitle
-  | RequestsTitle
-  | FeaturesTitle
-  | AppVersionTitle
-  | AtbTitle
-  | ErrorDescriptionsTitle
-  | ExtensionVersionTitle
-  | HttpErrorCodesTitle
-  | LastSentDayTitle
-  | DeviceTitle
-  | OsTitle
-  | ListVersionsTitle
-  | ReportFlowTitle
-  | SiteUrlTitle
-  | DidOpenReportInfoTitle
-  | ToggleReportCounterTitle
-  | OpenerContextTitle
-  | UserRefreshCountTitle
-  | JsPerformanceTitle;
-/**
- * wvVersion description
- */
-export type WvVersionTitle = "wvVersion";
-/**
- * requests description
- */
-export type RequestsTitle = "requests";
-/**
- * features description
- */
-export type FeaturesTitle = "features";
-/**
- * appVersion description
- */
-export type AppVersionTitle = "appVersion";
-/**
- * atb description
- */
-export type AtbTitle = "atb";
-/**
- * errorDescriptions description
- */
-export type ErrorDescriptionsTitle = "errorDescriptions";
-/**
- * extensionVersion description
- */
-export type ExtensionVersionTitle = "extensionVersion";
-/**
- * httpErrorCodes description
- */
-export type HttpErrorCodesTitle = "httpErrorCodes";
-/**
- * lastSentDay description
- */
-export type LastSentDayTitle = "lastSentDay";
-/**
- * device description
- */
-export type DeviceTitle = "device";
-/**
- * os description
- */
-export type OsTitle = "os";
-/**
- * listVersions description
- */
-export type ListVersionsTitle = "listVersions";
-/**
- * reportFlow description
- */
-export type ReportFlowTitle = "reportFlow";
-/**
- * siteUrl description
- */
-export type SiteUrlTitle = "siteUrl";
-/**
- * didOpenReportInfo description
- */
-export type DidOpenReportInfoTitle = "didOpenReportInfo";
-/**
- * toggleReportCounter description
- */
-export type ToggleReportCounterTitle = "toggleReportCounter";
-/**
- * openerContext description
- */
-export type OpenerContextTitle = "openerContext";
-/**
- * userRefreshCount description
- */
-export type UserRefreshCountTitle = "userRefreshCount";
-/**
- * jsPerformance description
- */
-export type JsPerformanceTitle = "jsPerformance";
 export type IncomingExtensionMessage =
   | IncomingResponse
   | IncomingToggleReport
@@ -478,6 +491,31 @@ export interface CookiePromptManagementStatus {
    */
   configurable?: boolean;
 }
+/**
+ * This message contains user data disclosure options for Toggle Report and Breakage Form
+ */
+export interface WindowsIncomingToggleReportOptions {
+  context: "PrivacyDashboard";
+  featureName: "GetToggleReportOptions";
+  id: string;
+  result: ToggleReportScreen;
+}
+/**
+ * [Sample JSON 📝](../__fixtures__/toggle-report-screen.json)
+ */
+export interface ToggleReportScreen {
+  /**
+   * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
+   */
+  data: ToggleReportScreenDataItem[];
+}
+export interface ToggleReportScreenDataItem {
+  id: DataItemId;
+  additional?: SiteUrlAdditionalData;
+}
+export interface SiteUrlAdditionalData {
+  url: string;
+}
 export interface RefreshAliasResponse {
   personalAddress: string;
   privateAddress: string;
@@ -530,22 +568,6 @@ export interface SetProtectionParams {
 }
 export interface EventOrigin {
   screen: ScreenKind;
-}
-/**
- * [Sample JSON 📝](../__fixtures__/toggle-report-screen.json)
- */
-export interface ToggleReportScreen {
-  /**
-   * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
-   */
-  data: ToggleReportScreenDataItem[];
-}
-export interface ToggleReportScreenDataItem {
-  id: DataItemId;
-  additional?: SiteUrlAdditionalData;
-}
-export interface SiteUrlAdditionalData {
-  url: string;
 }
 export interface CloseMessageParams {
   eventOrigin: EventOrigin;
