@@ -49,7 +49,10 @@ export async function mockDataProvider(params) {
     }
     window.onChangeLocale?.(state.localeSettings);
     window.onChangeRequestData(state.url, { requests: state.requests || [] });
-    window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
+
+    if (platform?.name === 'macos') {
+        window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
+    }
 }
 
 export function windowsMockApis() {
@@ -383,9 +386,9 @@ export function mockBrowserApis(params = { messages: {} }) {
  * @return {Promise<void>}
  */
 export async function installDebuggerMocks(platform) {
-    console.log('instaling...');
+    console.log('installing...');
     if (window.__playwright) {
-        console.log('instaling... NOE');
+        console.log('installing... NOE');
         return console.log('❌ mocked already there');
     }
     if (platform.name === 'windows') {
