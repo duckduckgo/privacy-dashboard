@@ -72,8 +72,8 @@
         "note": "Note to inform that the email address was copied"
     },
     "reportWebsiteAsSafeCTA": {
-        "title": "Report a site as safe",
-        "note": "button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
+        "title": "Report site as safe",
+        "note": "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
     },
     "aboutPhishingMalwareLink": {
         "title": "About our phishing and malware protection",
