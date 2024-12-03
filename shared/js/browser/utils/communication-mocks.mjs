@@ -49,7 +49,10 @@ export async function mockDataProvider(params) {
     }
     window.onChangeLocale?.(state.localeSettings);
     window.onChangeRequestData(state.url, { requests: state.requests || [] });
-    window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
+
+    if (platform?.name === 'macos') {
+        window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
+    }
 }
 
 export function windowsMockApis() {
