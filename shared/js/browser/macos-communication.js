@@ -89,7 +89,7 @@ const resolveInitialRender = function () {
     const isIsProtectedSet = typeof protections !== 'undefined';
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     const isLocaleSet = typeof locale === 'string';
-    const isMaliciousSiteSet = isIOS() || (maliciousSiteStatus && maliciousSiteStatus.kind !== undefined);
+    const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== undefined;
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
         return;
     }
