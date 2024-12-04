@@ -64,7 +64,7 @@ test.describe('phishing & malware protection', () => {
         const dash = await DashboardPage.webkit(page, { platform: 'macos' });
         await dash.addState([testDataStates.malware]);
         await dash.clickReportAsSafeLink();
-        await dash.mocks.calledForReportAsSafeLink();
+        await dash.mocks.calledForReportAsSafeLink('https://privacy-test-pages.site/security/badware/malware.html');
     });
 
     test('shows help page link', async ({ page }) => {

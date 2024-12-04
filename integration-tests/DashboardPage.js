@@ -169,7 +169,7 @@ export class DashboardPage {
 
     async clickReportAsSafeLink() {
         const { page } = this;
-        await expect(page.getByRole('link', { name: 'Report site as safe' })).toBeVisible();
+        await page.getByRole('link', { name: 'Report site as safe' }).click();
     }
 
     async clickHelpPageLink() {
