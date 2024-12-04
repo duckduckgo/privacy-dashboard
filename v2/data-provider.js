@@ -176,7 +176,7 @@ export class DataChannel extends EventTarget {
 
         /** @type {import('../shared/js/ui/models/site.js').PublicSiteModel['httpsState']} */
         const nextState = (() => {
-            if (this.features.supportsMaliciousSiteWarning && this.tab.maliciousSiteStatus) {
+            if (this.features.supportsMaliciousSiteWarning && typeof this.tab.maliciousSiteStatus === 'object') {
                 const { kind } = this.tab.maliciousSiteStatus;
                 if (kind === 'phishing' || kind === 'malware') {
                     return kind;
