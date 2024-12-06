@@ -251,7 +251,8 @@ export class MockData {
      * @param {boolean} [params.allowlisted]
      * @param {boolean} [params.denylisted]
      * @param {any[]} [params.permissions]
-     * @param {{phishingStatus: boolean}} [params.phishing]
+     * @param {import('../../../../../schema/__generated__/schema.types').MaliciousSiteStatus} [params.maliciousSiteStatus]
+     * @param {{malwareStatus: boolean}} [params.malware]
      * @param {boolean} [params.specialDomainName]
      * @param {boolean} [params.emailUser]
      * @param {boolean} [params.fireButtonEnabled]
@@ -270,7 +271,7 @@ export class MockData {
         this.localeSettings = params.localeSettings || { locale: 'en' };
         this.certificate = params.certificate || defaultCertificates;
         this.upgradedHttps = params.upgradedHttps ?? false;
-        this.phishing = params.phishing ?? { phishingStatus: false };
+        this.maliciousSiteStatus = params.maliciousSiteStatus ?? { kind: null };
         this.contentBlockingException = params.contentBlockingException;
         this.parentEntity = params.parentEntity;
         this.permissions = params.permissions;
@@ -617,11 +618,19 @@ export const createDataStates = (google, cnn) => {
             requests: [],
             permissions,
         }),
-        phishing: new MockData({
-            url: 'https://privacy-test-pages.site/security/badware/phishing.html',
+        malware: new MockData({
+            url: 'https://privacy-test-pages.site/security/badware/malware.html?">someQueryParam=false',
             requests: [],
-            phishing: {
-                phishingStatus: true,
+            maliciousSiteStatus: {
+                kind: 'malware',
+            },
+            certificate: defaultCertificates,
+        }),
+        phishing: new MockData({
+            url: 'https://privacy-test-pages.site/security/badware/phishing.html?query=param&and=another',
+            requests: [],
+            maliciousSiteStatus: {
+                kind: 'phishing',
             },
             certificate: defaultCertificates,
         }),

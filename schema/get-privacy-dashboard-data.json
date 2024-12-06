@@ -51,8 +51,8 @@
                 "localeSettings": {
                     "$ref": "./locale.json"
                 },
-                "phishingStatus": {
-                    "$ref": "./phishing.json"
+                "maliciousSiteStatus": {
+                    "$ref": "./malicious-site.json"
                 },
                 "parentEntity": { "$ref": "./parent-entity.json" },
                 "specialDomainName": {

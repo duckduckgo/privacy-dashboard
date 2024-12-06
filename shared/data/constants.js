@@ -11,4 +11,10 @@ export const httpsMessages = {
     none: 'site:connectionNotSecure.title',
     invalid: 'site:connectionNotSecureInvalidCertificate.title',
     phishing: 'site:phishingWebsite.title',
+    malware: 'site:malwareWebsite.title',
+};
+
+export const duckDuckGoURLs = {
+    phishingAndMalwareHelpPage: 'https://duckduckgo.com/duckduckgo-help-pages/privacy/phishing-and-malware-protection/',
+    reportSiteAsSafeForm: 'https://duckduckgo.com/malicious-site-protection/report-error',
 };

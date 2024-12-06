@@ -15,7 +15,7 @@ export function template(model, nav) {
     const networkTrackersLink = shouldRenderTrackerNetworksLink(model)
         ? html`<li class="main-nav__row">${renderTrackerNetworksNew(model, nav.trackers)}</li>`
         : '';
-    const renderConnectionAsText = model.httpsState === 'phishing';
+    const renderConnectionAsText = model.httpsState === 'phishing' || model.httpsState === 'malware';
     const connectionRow = renderConnectionAsText
         ? html`<li class="main-nav__row no-hover">${renderConnectionText(model)}</li>`
         : html`<li class="main-nav__row">${renderConnection(model, nav.connection)}</li>`;
@@ -115,7 +115,7 @@ function renderConnectionText(model) {
  */
 function renderTrackerNetworksNew(model, cb) {
     const title = trackerNetworksTitle(model.tab.requestDetails, model.protectionsEnabled);
-    const icon = trackerNetworksIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
+    const icon = trackerNetworksIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.maliciousSiteStatus?.kind || null);
 
     return html` <a
         href="javascript:void(0)"
@@ -136,7 +136,7 @@ function renderTrackerNetworksNew(model, cb) {
  */
 function renderThirdPartyNew(model, cb) {
     const title = thirdpartyTitle(model.tab.requestDetails, model.protectionsEnabled);
-    const icon = thirdpartyIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.phishingStatus);
+    const icon = thirdpartyIcon(model.tab.requestDetails, model.protectionsEnabled, model.tab.maliciousSiteStatus?.kind || null);
 
     return html` <a
         href="javascript:void(0)"

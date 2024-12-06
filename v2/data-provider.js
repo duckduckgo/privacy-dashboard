@@ -18,8 +18,7 @@ import { useNav } from './navigation';
 /**
  * @typedef {Object} DataChannelPublicData
  * @property {boolean} protectionsEnabled
- * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} httpsState
- * @property {boolean} isBroken
+ * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware'} httpsState * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
  * @property {boolean} isDenylisted
  * @property {boolean} displayBrokenUI
@@ -37,7 +36,7 @@ import { useNav } from './navigation';
 
 export class DataChannel extends EventTarget {
     protectionsEnabled = false;
-    /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing'} */
+    /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware'} */
     httpsState = 'none';
     isBroken = false;
     isAllowlisted = false;
@@ -177,9 +176,10 @@ export class DataChannel extends EventTarget {
 
         /** @type {import('../shared/js/ui/models/site.js').PublicSiteModel['httpsState']} */
         const nextState = (() => {
-            if (this.features.supportsPhishingWarning) {
-                if (this.tab.phishingStatus) {
-                    return 'phishing';
+            if (this.features.supportsMaliciousSiteWarning && this.tab.maliciousSiteStatus) {
+                const { kind } = this.tab.maliciousSiteStatus;
+                if (kind === 'phishing' || kind === 'malware') {
+                    return kind;
                 }
             }
 
