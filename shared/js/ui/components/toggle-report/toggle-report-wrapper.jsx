@@ -8,7 +8,7 @@ export function ToggleReportWrapper({ children, state }) {
             return <div className="padding-x-xl padding-y-third">{children}</div>;
         case 'ios':
             return (
-                <div className="padding-x-xl vertically-centered" data-state={state} data-toggle-report="child">
+                <div className="padding-x-xl padding-y-third vertically-centered" data-state={state} data-toggle-report="child">
                     {children}
                 </div>
             );

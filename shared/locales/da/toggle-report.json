@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Liste over hvilke beskyttelser og browserfunktioner, der var aktive",
+    "title" : "Liste over hvilke browserfunktioner, der var aktive",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "Hvor hurtigt dele af siden indlæses",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Din enheds primære sprog og land",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Din valgte kategori og valgfrie kommentarer",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }
