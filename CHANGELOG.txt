@@ -1,1 +1,1 @@
-- Toggle Report for Windows and Android (#251)
+- Toggle Report translations + minor fixes (#253)

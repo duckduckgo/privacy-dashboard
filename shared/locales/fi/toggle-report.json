@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Luettelo aktiivisista suojauksista ja selaimen ominaisuuksista",
+    "title" : "Luettelo siitä, mitkä selaimen ominaisuudet olivat aktiivisia",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "Kuinka nopeasti sivun osat latautuivat",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Laitteesi ensisijainen kieli ja maa",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Valitsemasi luokka ja mahdolliset kommentit",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }

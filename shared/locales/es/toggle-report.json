@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Lista de las protecciones y funciones del navegador que estaban activas",
+    "title" : "Lista de las funciones del navegador que estaban activas",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "La rapidez con la que se cargaron las partes de la página",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Idioma principal y país de tu dispositivo",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Tu categoría seleccionada y comentarios opcionales",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }

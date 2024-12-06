@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Seznam, katere zaščite in funkcije brskalnika so bile aktivne",
+    "title" : "Seznam aktivnih funkcij brskalnika",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "Kako hitro so se naložili deli strani",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Primarni jezik in država vaše naprave",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Izbrana kategorija in neobvezni komentarji",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }

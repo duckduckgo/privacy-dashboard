@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Seznam aktivních ochran a funkcí prohlížeče",
+    "title" : "Seznam aktivních funkcí prohlížeče",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "Jak rychle se jednotlivé části stránky načetly",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Primární jazyk a země tvého zařízení",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Vybraná kategorie a volitelné komentáře",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }

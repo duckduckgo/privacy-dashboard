@@ -37,79 +37,87 @@
     "note" : "This text emphasizes that the sent reports do not contain any personally identifiable information."
   },
   "dynamic_wvVersion" : {
-    "title" : "номер версии движка браузера;",
+    "title" : "номер версии движка браузера",
     "note" : "This text represents the version number of the web browser engine."
   },
   "dynamic_requests" : {
-    "title" : "имена хостов заблокированных трекеров, суррогатные и проигнорированные запросы, а также запросы, не входящие в список блокировки трекеров;",
+    "title" : "имена хостов заблокированных трекеров, суррогатные и проигнорированные запросы, а также запросы, не входящие в список блокировки трекеров",
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "список активных рычагов защиты и функций браузера;",
+    "title" : "Список активных функций браузера",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
-    "title" : "номер версии приложения;",
+    "title" : "номер версии приложения",
     "note" : "This text indicates the version number of the app."
   },
   "dynamic_atb" : {
-    "title" : "анонимная экспериментальная группа для тестирования функций;",
+    "title" : "анонимная экспериментальная группа для тестирования функций",
     "note" : "This text represents an anonymous group for testing features."
   },
   "dynamic_errorDescriptions" : {
-    "title" : "ошибки, зафиксированные браузером;",
+    "title" : "ошибки, зафиксированные браузером",
     "note" : "This text provides a list of errors reported by the browser."
   },
   "dynamic_extensionVersion" : {
-    "title" : "номер версии расширения;",
+    "title" : "номер версии расширения",
     "note" : "This text indicates the version number of the extension."
   },
   "dynamic_httpErrorCodes" : {
-    "title" : "коды состояния ответа сайта (HTTP);",
+    "title" : "коды состояния ответа сайта (HTTP)",
     "note" : "This text provides a list of response status codes from the website."
   },
   "dynamic_lastSentDay" : {
-    "title" : "дата отправки последнего отчета по этому сайту;",
+    "title" : "дата отправки последнего отчета по этому сайту",
     "note" : "This text indicates the date of the last report sent for the site."
   },
   "dynamic_device" : {
-    "title" : "марка, модель и производитель устройства;",
+    "title" : "марка, модель и производитель устройства",
     "note" : "This text provides information about the device, including make, model, and manufacturer."
   },
   "dynamic_os" : {
-    "title" : "номер версии операционной системы;",
+    "title" : "номер версии операционной системы",
     "note" : "This text indicates the version number of the operating system."
   },
   "dynamic_reportFlow" : {
-    "title" : "способ отправки отчета (через меню, панель управления и так далее);",
+    "title" : "способ отправки отчета (через меню, панель управления и так далее)",
     "note" : "This text represents the path the user took to get to this feedback screen."
   },
   "dynamic_siteUrl" : {
-    "title" : "адрес страницы (без идентифицирующей информации);",
+    "title" : "адрес страницы (без идентифицирующей информации)",
     "note" : "This text represents the URL of the page, without including any identifiable information."
   },
   "dynamic_listVersions" : {
-    "title" : "версии задействованных функций защиты;",
+    "title" : "версии задействованных функций защиты",
     "note" : "This text represents the URL of the page, without including any identifiable information."
   },
   "dynamic_didOpenReportInfo" : {
-    "title" : "отметка о том, готовы ли вы раскрыть содержимое отчета;",
+    "title" : "отметка о том, готовы ли вы раскрыть содержимое отчета",
     "note" : "This text represents if the user has opted to see a list of information, or not."
   },
   "dynamic_toggleReportCounter" : {
-    "title" : "количество отключений функций защиты;",
+    "title" : "количество отключений функций защиты",
     "note" : "This text represents the amount of times protections were toggled"
   },
   "dynamic_openerContext" : {
-    "title" : "информация о том, как вы попали на данную страницу — через результаты поиска (в DuckDuckGo), путем навигации (по ссылке/URL-адресу) или иным (внешним) способом;",
+    "title" : "информация о том, как вы попали на данную страницу — через результаты поиска (в DuckDuckGo), путем навигации (по ссылке/URL-адресу) или иным (внешним) способом",
     "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount" : {
-    "title" : "количество обновлений с момента загрузки страницы;",
+    "title" : "количество обновлений с момента загрузки страницы",
     "note" : "This text represents the number of times the user has refreshed the page since it was initially loaded."
   },
   "dynamic_jsPerformance" : {
-    "title" : "скорость загрузки разных частей страницы.",
+    "title" : "скорость загрузки разных частей страницы",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Основной язык и страна вашего устройства",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Выбранная категория и необязательные комментарии",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }
