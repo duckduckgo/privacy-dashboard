@@ -352,12 +352,12 @@ export class Mocks {
 
     async calledForHelpPagesLink() {
         return this.calledForOpenURLInNewTab(
-            'https://dub.duckduckgo.com/pages/duckduckgo/mgurgel-help-pages/privacy/phishing-and-malware-protection/'
+            'https://duckduckgo.com/duckduckgo-help-pages/privacy/phishing-and-malware-protection/'
         );
     }
 
     async calledForReportAsSafeLink(urlParam) {
-        const url = new URL('https://use-devtesting12.duckduckgo.com/malicious-site-protection/report-error');
+        const url = new URL('https://duckduckgo.com/malicious-site-protection/report-error');
         url.searchParams.set('url', urlParam);
 
         return this.calledForOpenURLInNewTab(url.toString());

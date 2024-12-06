@@ -15,6 +15,6 @@ export const httpsMessages = {
 };
 
 export const duckDuckGoURLs = {
-    phishingAndMalwareHelpPage: 'https://dub.duckduckgo.com/pages/duckduckgo/mgurgel-help-pages/privacy/phishing-and-malware-protection/',
-    reportSiteAsSafeForm: 'https://use-devtesting12.duckduckgo.com/malicious-site-protection/report-error',
+    phishingAndMalwareHelpPage: 'https://duckduckgo.com/duckduckgo-help-pages/privacy/phishing-and-malware-protection/',
+    reportSiteAsSafeForm: 'https://duckduckgo.com/malicious-site-protection/report-error',
 };
