@@ -38,11 +38,11 @@ export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
 /**
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {any} protectionsEnabled
- * @param {boolean} [phishingDetected]
+ * @param {import("../../../../../schema/__generated__/schema.types").MaliciousSiteStatus['kind']} [threatDetected]
  * @returns {'info'|'blocked'|'warning'}
  */
-export function trackerNetworksIcon(requestDetails, protectionsEnabled, phishingDetected) {
-    if (phishingDetected) {
+export function trackerNetworksIcon(requestDetails, protectionsEnabled, threatDetected) {
+    if (threatDetected === 'phishing' || threatDetected === 'malware') {
         return 'info';
     }
 

@@ -34,16 +34,46 @@ test('invalid/missing certificate', { tag: '@screenshots' }, async ({ page }) =>
     await dash.showsInvalidCertDetail();
 });
 
-test('phishing warning', { tag: '@screenshots' }, async ({ page }) => {
-    /** @type {DashboardPage} */
-    const dash = await DashboardPage.webkit(page, { platform: 'macos' });
-    await dash.addState([testDataStates.phishing]);
-    await dash.screenshot('phishing-warning.png');
-    await dash.hasPhishingIcon();
-    await dash.hasPhishingHeadingText();
-    await dash.hasPhishingWarningText();
-    await dash.hasPhishingStatusText();
-    await dash.connectionLinkDoesntShow();
+test.describe('phishing & malware protection', () => {
+    test('phishing warning', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates.phishing]);
+        await dash.screenshot('phishing-warning.png');
+        await dash.hasPhishingIcon();
+        await dash.hasPhishingHeadingText();
+        await dash.hasPhishingWarningText();
+        await dash.hasPhishingStatusText();
+        await dash.connectionLinkDoesntShow();
+    });
+
+    test('malware warning', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates.malware]);
+        await dash.screenshot('malware-warning.png');
+        await dash.hasMalwareIcon();
+        await dash.hasMalwareHeadingText();
+        await dash.hasMalwareWarningText();
+        await dash.hasMalwareStatusText();
+        await dash.connectionLinkDoesntShow();
+    });
+
+    test('shows report as safe link', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates.malware]);
+        await dash.clickReportAsSafeLink();
+        await dash.mocks.calledForReportAsSafeLink('https://privacy-test-pages.site/security/badware/malware.html');
+    });
+
+    test('shows help page link', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates.malware]);
+        await dash.clickHelpPageLink();
+        await dash.mocks.calledForHelpPagesLink();
+    });
 });
 
 test('insecure certificate', async ({ page }) => {

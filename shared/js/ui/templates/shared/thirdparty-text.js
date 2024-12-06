@@ -37,11 +37,11 @@ export function thirdpartyTitle(requestDetails, protectionsEnabled) {
 /**
  * @param {import("../../../browser/utils/request-details.mjs").RequestDetails} requestDetails
  * @param {boolean} protectionsEnabled
- * @param {boolean} [phishingDetected]
+ * @param {import("../../../../../schema/__generated__/schema.types").MaliciousSiteStatus['kind']} [threatDetected]
  * @returns {'info'|'blocked'}
  */
-export function thirdpartyIcon(requestDetails, protectionsEnabled, phishingDetected) {
-    if (phishingDetected) {
+export function thirdpartyIcon(requestDetails, protectionsEnabled, threatDetected) {
+    if (threatDetected === 'phishing' || threatDetected === 'malware') {
         return 'info';
     }
 

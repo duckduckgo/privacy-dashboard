@@ -260,7 +260,7 @@ describe('createTabData', () => {
             specialDomainName: undefined,
             status: 'complete',
             upgradedHttps: true,
-            phishingStatus: undefined,
+            maliciousSiteStatus: undefined,
             url: 'https://www.example.com/',
         };
         deepEqual(tabData, expected);

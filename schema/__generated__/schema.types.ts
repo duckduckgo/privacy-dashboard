@@ -347,7 +347,7 @@ export interface Tab {
   upgradedHttps: boolean;
   protections: ProtectionsStatus;
   localeSettings?: LocaleSettings;
-  phishingStatus?: PhishingStatus;
+  maliciousSiteStatus?: MaliciousSiteStatus;
   parentEntity?: ParentEntity;
   /**
    * Provide this if the current tab is a domain that we cannot provide regular dashboard features for (like new tab, about://blank etc)
@@ -385,13 +385,13 @@ export interface LocaleSettings {
   locale: string;
 }
 /**
- * This describes the payload required to set the phishing status
+ * This describes the payload required to set the phishing & malware status
  */
-export interface PhishingStatus {
+export interface MaliciousSiteStatus {
   /**
-   * Set to true if page is potentially malicious
+   * Kind of threat detected
    */
-  phishingStatus: boolean;
+  kind: "phishing" | "malware" | null;
 }
 /**
  * This fields required to describe a 'parent entity'

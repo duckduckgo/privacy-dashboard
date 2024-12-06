@@ -30,10 +30,5 @@ let package = Package(
                         .copy("app/img"),
                         .copy ("app/public"),
                         .copy ("app/index.html")]),
-
-        .testTarget(
-            name: "PrivacyDashboardTests",
-            dependencies: ["PrivacyDashboardResources"],
-            path: "swift-package/Tests"),
     ]
 )

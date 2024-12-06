@@ -82,7 +82,7 @@ export function createPlatformFeatures(platform) {
         initialScreen: screen,
         opener,
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
-        supportsPhishingWarning: platform.name === 'macos',
+        supportsMaliciousSiteWarning: platform.name === 'macos',
         includeToggleOnBreakageForm,
         breakageScreen,
         randomisedCategories,
@@ -104,7 +104,7 @@ export class PlatformFeatures {
      * @param {boolean} params.supportsInvalidCertsImplicitly
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {InitialScreen} params.breakageScreen
-     * @param {boolean} params.supportsPhishingWarning
+     * @param {boolean} params.supportsMaliciousSiteWarning
      * @param {boolean} params.randomisedCategories
      * @param {"default" | "material-web-dialog"} params.breakageFormCategorySelect
      */
@@ -140,10 +140,10 @@ export class PlatformFeatures {
          */
         this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm;
         /**
-         * Does the current platform support phishing warnings?
+         * Does the current platform support phishing and malware warnings?
          * @type {boolean}
          */
-        this.supportsPhishingWarning = params.supportsPhishingWarning;
+        this.supportsMaliciousSiteWarning = params.supportsMaliciousSiteWarning;
         /**
          * @type {import("../../../schema/__generated__/schema.types").EventOrigin['screen']}
          */

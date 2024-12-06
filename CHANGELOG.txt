@@ -1,1 +1,2 @@
-- Toggle Report translations + minor fixes (#253)
+- Malware status support and design updates - macOS (#250)
+- Adds schema folder to NPM package (#254)

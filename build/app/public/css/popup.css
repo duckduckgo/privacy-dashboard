@@ -3928,6 +3928,41 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   background: rgba(57, 105, 239, 0.2);
   color: var(--color-accent-blue-active);
 }
+.button[data-variant=standard] {
+  text-align: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  box-shadow: var(--btn-accent-shadow);
+  border-radius: var(--btn-accent-border-radius);
+  border: var(--btn-accent-border);
+  color: var(--btn-accent-color);
+  background: var(--btn-accent-bg);
+}
+.button[data-variant=standard]:hover {
+  background: var(--btn-accent-bg-hover);
+}
+.button[data-variant=standard]:active {
+  background: var(--btn-accent-bg-active);
+}
+.environment--windows .button[data-variant=standard] {
+  /* Windows/Label */
+  box-shadow: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  border-radius: 4px;
+}
+.environment--windows .button[data-variant=standard]:focus {
+  /* todo(Shane): where does this live? */
+  box-shadow: 0px 0px 0px 1px #ffffff, 0px 0px 0px 3px #3969ef;
+}
+.environment--windows .button[data-variant=standard]:active {
+  box-shadow: none;
+}
 
 .button-bar[data-layout=horizontal] {
   display: grid;
