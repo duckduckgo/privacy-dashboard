@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Hangi korumaların ve tarayıcı özelliklerinin etkin olduğunu gösteren liste",
+    "title" : "Hangi tarayıcı özelliklerinin etkin olduğunu gösteren liste",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "Sayfanın bölümlerinin ne kadar hızlı yüklendiği",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Cihazınızın birincil dili ve ülkesi",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Seçilen kategori ve isteğe bağlı yorumlar",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }

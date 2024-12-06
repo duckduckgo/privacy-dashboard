@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Saraksts ar aizsardzības un pārlūkprogrammas funkcijām, kas bija aktīvas",
+    "title" : "Saraksts ar pārlūkprogrammas funkcijām, kas bija aktīvas",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "Cik ātri tika ielādētas lapas daļas",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Tavas ierīces primārā valoda un valsts",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Tava izvēlētā kategorija un neobligātie komentāri",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }

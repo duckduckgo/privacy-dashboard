@@ -45,7 +45,7 @@
     "note" : "This text provides information about various types of requests, including blocked trackers and ignored requests."
   },
   "dynamic_features" : {
-    "title" : "Λίστα που περιλαμβάνει ποιες προστασίες και λειτουργίες του προγράμματος περιήγησης ήταν ενεργές",
+    "title" : "Λίστα με τις λειτουργίες του προγράμματος περιήγησης που ήταν ενεργές",
     "note" : "This text represents a list of active protections and browser features."
   },
   "dynamic_appVersion" : {
@@ -111,5 +111,13 @@
   "dynamic_jsPerformance" : {
     "title" : "Πόσο γρήγορα φορτώθηκαν τμήματα της σελίδας",
     "note" : "This text provides information on the performance of the page's JavaScript, indicating how quickly different parts of the page loaded."
+  },
+  "dynamic_locale" : {
+    "title" : "Κύρια γλώσσα και χώρα της συσκευής σας",
+    "note" : "This text provides information on the user's locale settings."
+  },
+  "dynamic_description" : {
+    "title" : "Η κατηγορία που επιλέξατε και τα προαιρετικά σχόλια",
+    "note" : "This text provides information on the user's selected category and comments."
   }
 }
