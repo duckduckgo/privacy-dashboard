@@ -144,7 +144,7 @@
         "note": "Shown as the button text when the connection is using an invalid certificate."
     },
     "phishingWebsite": {
-        "title": "Site May Be Deceptive",
+        "title": "Site May Be Malicious",
         "note": "Shown as the button text when the URL is reported as a phishing website."
     },
     "phishingWebsiteDesc": {
@@ -152,7 +152,7 @@
         "note": "Shown as the description text when the URL is reported as a phishing website."
     },
     "malwareWebsite": {
-        "title": "Site May Be Deceptive",
+        "title": "Site May Be Malicious",
         "note": "Shown as the button text when the URL is reported as a phishing website."
     },
     "malwareWebsiteDesc": {

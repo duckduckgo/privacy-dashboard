@@ -196,7 +196,7 @@ export class DashboardPage {
 
     async hasPhishingStatusText() {
         const { page } = this;
-        await expect(page.locator('#main-nav div')).toContainText('Site May Be Deceptive');
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be Malicious');
     }
 
     async hasMalwareIcon() {
@@ -218,7 +218,7 @@ export class DashboardPage {
 
     async hasMalwareStatusText() {
         const { page } = this;
-        await expect(page.locator('#main-nav div')).toContainText('Site May Be Deceptive');
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be Malicious');
     }
 
     async connectionLinkDoesntShow() {
