@@ -137,32 +137,11 @@
     }
 }
 
-.token-breakage-form-body {
-    //styleName: Mac/Body;
-    //styleName: Android/Body 1;
-
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 16px;
-
-    .environment--android & {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 20px;
-        letter-spacing: 0em;
-    }
-
-    .environment--browser & {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 18px;
-    }
-
-    .environment--windows & {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 20px;
-    }
+.token-headline-2 {
+    //styleName: Android/Headline 2
+    font-size: 20px;
+    font-weight: 500;
+    line-height: calc(24 / 20);
 }
 
 .token-headline-2 {
