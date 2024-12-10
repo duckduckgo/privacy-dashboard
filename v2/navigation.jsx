@@ -8,7 +8,7 @@ import { TrackersScreen } from './screens/trackers-screen';
 import { NonTrackersScreen } from './screens/non-trackers-screen';
 import { ConsentManagedScreen } from './screens/consent-managed-screen';
 import { ToggleReportScreen } from './screens/toggle-report-screen';
-import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm } from './screens/breakage-form-screen';
+import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm, BreakageFormSuccess } from './screens/breakage-form-screen';
 import { isAndroid } from '../shared/js/ui/environment-check';
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 
@@ -24,6 +24,7 @@ const availableScreens = {
     breakageForm: { kind: 'subview', component: () => <BreakagePrimaryScreen /> },
     breakageFormCategorySelection: { kind: 'subview', component: () => <BreakageCategorySelection /> },
     breakageFormFinalStep: { kind: 'subview', component: () => <BreakageForm /> },
+    breakageFormSuccess: { kind: 'subview', component: () => <BreakageFormSuccess /> },
     toggleReport: { kind: 'subview', component: () => <ToggleReportScreen /> },
 
     //
@@ -46,8 +47,8 @@ const NavContext = createContext({
     pop() {
         throw new Error('not implemented');
     },
-    /** @type {(name: ScreenName) => void} */
-    popToRoot() {
+    /** @type {(addedItems: ScreenName[]) => void} */
+    replace() {
         throw new Error('not implemented');
     },
     params: new URLSearchParams(''),
@@ -112,14 +113,12 @@ function navReducer(state, event) {
                     if (!event.opts.animate) {
                         return {
                             ...state,
-                            commit: event.stack,
                             stack: event.stack,
                             state: /** @type {const} */ ('settled'),
                         };
                     }
                     return {
                         ...state,
-                        commit: state.stack,
                         stack: event.stack,
                         state: /** @type {const} */ ('transitioning'),
                     };
@@ -308,15 +307,18 @@ export function Navigation(props) {
             // change component state
             dispatch({ type: 'pop', opts: { animate: props.animate } });
         },
-        popToRoot: () => {
-            const stack = [state.stack[0]];
-            const historyDelta = 1 - state.stack.length;
+        replace: (stack) => {
+            const url = new URL(window.location.href);
 
-            // remove entries from history
-            window.history.go(historyDelta);
+            url.searchParams.delete('stack');
+            for (let string of stack) {
+                url.searchParams.append('stack', string);
+            }
+
+            window.history.replaceState({}, '', url);
 
             // change component state
-            dispatch({ type: 'goto', stack, opts: { animate: props.animate } });
+            dispatch({ type: 'goto', stack, opts: { animate: false } });
         },
         canPop: canPop,
         canPopFrom: canPopFrom,
