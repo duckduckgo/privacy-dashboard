@@ -189,7 +189,7 @@ export function BreakageForm() {
  */
 function BreakageScreenWrapper({ className = '', pageId, children }) {
     const features = useFeatures();
-    
+
     const showTitle = platform.name === 'ios' || platform.name === 'android';
     const backToRoot = pageId === 'success';
     const hideBackButton = backToRoot && features.opener === 'menu';
