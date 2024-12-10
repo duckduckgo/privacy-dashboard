@@ -51,29 +51,35 @@ export function SecondaryTopNav({ children }) {
 
 /**
  * @param {object} props
+ * @param {boolean} [props.hideBackButton=false]
+ * @param {boolean} [props.backToRoot=false]
  * @param {import("preact").ComponentChild} [props.children]
  */
-export function SecondaryTopNavAlt({ children }) {
-    const { pop } = useNav();
+export function SecondaryTopNavAlt({ hideBackButton=false, backToRoot=false, children }) {
+    const { pop, popToRoot } = useNav();
     const canPop = useCanPop();
     const onClose = useClose();
+
+    const canGoBack = canPop && !hideBackButton;
+    const backHandler = backToRoot ? popToRoot : pop;
+
     return platformSwitch({
         ios: () => {
             return (
-                <TopNav back={canPop ? <Back onClick={pop} /> : null} done={<Cancel onClick={onClose} />}>
+                <TopNav back={canGoBack ? <Back onClick={backHandler} /> : null} done={<Cancel onClick={onClose} />}>
                     {children}
                 </TopNav>
             );
         },
         android: () => {
-            return <TopNav back={canPop ? <Back onClick={pop} /> : <Back onClick={onClose} />}>{children}</TopNav>;
+            return <TopNav back={canGoBack ? <Back onClick={backHandler} /> : <Back onClick={onClose} />}>{children}</TopNav>;
         },
         browser: () => {
-            return <TopNav back={canPop ? <Back onClick={pop} /> : null}>{children}</TopNav>;
+            return <TopNav back={canGoBack ? <Back onClick={backHandler} /> : null}>{children}</TopNav>;
         },
         default: () => {
             return (
-                <TopNav back={canPop ? <Back onClick={pop} /> : null} done={<Close onClick={onClose} />}>
+                <TopNav back={canGoBack ? <Back onClick={backHandler} /> : null} done={<Close onClick={onClose} />}>
                     {children}
                 </TopNav>
             );
