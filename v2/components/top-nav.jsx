@@ -55,7 +55,7 @@ export function SecondaryTopNav({ children }) {
  * @param {boolean} [props.backToRoot=false]
  * @param {import("preact").ComponentChild} [props.children]
  */
-export function SecondaryTopNavAlt({ hideBackButton=false, backToRoot=false, children }) {
+export function SecondaryTopNavAlt({ hideBackButton = false, backToRoot = false, children }) {
     const { pop, popToRoot } = useNav();
     const canPop = useCanPop();
     const onClose = useClose();

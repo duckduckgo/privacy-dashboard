@@ -309,7 +309,7 @@ export function Navigation(props) {
             dispatch({ type: 'pop', opts: { animate: props.animate } });
         },
         popToRoot: () => {
-            const stack = [state.stack[0]] ;
+            const stack = [state.stack[0]];
             const historyDelta = 1 - state.stack.length;
 
             // remove entries from history
