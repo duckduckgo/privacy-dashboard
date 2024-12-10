@@ -574,6 +574,16 @@ export class DashboardPage {
     }
 
     /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screenName
+     * @return {Promise<void>}
+     */
+    async showsOnlyCloseButtonInSubview(screenName) {
+        const subview = await this.page.getByTestId(`subview-${screenName}`);
+        await subview.locator('a:has-text("Close")').waitFor();
+        await expect(subview.locator('.top-nav a')).toHaveCount(1);
+    }
+
+    /**
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
      * @return {Promise<void>}
      */

@@ -15,6 +15,8 @@ import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categ
 import { ToggleReportProvider } from '../../shared/js/ui/components/toggle-report/toggle-report-provider';
 import { namedString } from '../../shared/data/text.js';
 
+/** @typedef {'choice-problem'|'choice-category'|'form'|'success'} BreakagePageId */
+
 export function BreakagePrimaryScreen() {
     const description = ns.report('selectTheCategoryType.title');
     const { push } = useNav();
@@ -178,25 +180,27 @@ export function BreakageForm() {
     );
 }
 
-function NavWrapper() {
-    const showTitle = platform.name === 'ios' || platform.name === 'android';
-
-    return <SecondaryTopNavAlt>{showTitle && <Title>{ns.report('reportTitle.title')}</Title>}</SecondaryTopNavAlt>;
-}
-
 /**
  *
  * @param {object} props
  * @param {string} [props.className='']
- * @param {'choice-problem'|'choice-category'|'form'|'success'} props.pageId
+ * @param {BreakagePageId} props.pageId
  * @param {import("preact").ComponentChild} props.children
  */
 function BreakageScreenWrapper({ className = '', pageId, children }) {
+    const features = useFeatures();
+    
+    const showTitle = platform.name === 'ios' || platform.name === 'android';
+    const backToRoot = pageId === 'success';
+    const hideBackButton = backToRoot && features.opener === 'menu';
+
     const classes = cn('site-info page-inner card breakage-screen', className);
 
     return (
         <div className={classes} data-page={pageId}>
-            <NavWrapper />
+            <SecondaryTopNavAlt backToRoot={backToRoot} hideBackButton={hideBackButton}>
+                {showTitle && <Title>{ns.report('reportTitle.title')}</Title>}
+            </SecondaryTopNavAlt>
             {children}
         </div>
     );

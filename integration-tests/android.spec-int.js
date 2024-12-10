@@ -99,10 +99,9 @@ test.describe('breakage form', () => {
 
     test('hides description prompt on "dislike" category', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, {
+        const dash = await DashboardPage.android(page, {
             screen: 'breakageForm',
             randomisedCategories: 'false',
-            platform: 'macos',
         });
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
@@ -139,6 +138,30 @@ test.describe('breakage form', () => {
         await dash.selectsCategory('Something else', 'other');
         await dash.breakageFormIsVisible();
         await dash.submitOtherFeedbackFormWithDescription('something happened');
+    });
+
+    test('goes back to primary screen from success screen', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'macos', opener: 'dashboard' });
+        await dash.addState([testDataStates.google]);
+        await dash.clicksWebsiteNotWorking();
+        await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.submitFeedbackForm();
+        await dash.showsBreakageFormSuccessScreen();
+        await dash.nav.goesBackToPrimaryScreenFromSuccessScreen();
+    });
+
+    test('hides back button in success screen when invoked from menu', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'macos', opener: 'menu' });
+        await dash.addState([testDataStates.google]);
+        await dash.clicksWebsiteNotWorking();
+        await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.submitFeedbackForm();
+        await dash.showsBreakageFormSuccessScreen();
+        await dash.showsOnlyCloseButtonInSubview('breakageFormFinalStep');
     });
 });
 
@@ -194,9 +217,13 @@ test.describe('opens toggle report', () => {
 
 test.describe('stack based router', () => {
     test('goes back and forward in categorySelection flow', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates.google);
+        const dash = await DashboardPage.android(page);
         // await dash.reducedMotion(); // TODO: Removed because back button was going back two steps rather than one
+        await dash.addState([testDataStates['webBreakageForm-enabled']]);
+
         await dash.clicksWebsiteNotWorking();
+        await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.selectsCategory('Site layout broken', 'layout');
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
     test('goes back and forward generally', async ({ page }) => {

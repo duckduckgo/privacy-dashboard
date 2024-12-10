@@ -46,10 +46,14 @@ const NavContext = createContext({
     pop() {
         throw new Error('not implemented');
     },
+    /** @type {(name: ScreenName) => void} */
+    popToRoot() {
+        throw new Error('not implemented');
+    },
     params: new URLSearchParams(''),
     /** @type {() => boolean} */
     canPop: () => false,
-    /** @type {(screen: import('../schema/__generated__/schema.types').EventOrigin['screen']) => boolean} */
+    /** @type {(screen: ScreenName) => boolean} */
     canPopFrom: (screen) => false,
     /** @type {() => ScreenName} */
     screen: () => {
@@ -58,7 +62,7 @@ const NavContext = createContext({
 });
 
 export const ScreenContext = createContext({
-    /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
+    /** @type {ScreenName} */
     screen: /** @type {const} */ ('primaryScreen'),
 });
 
@@ -108,12 +112,14 @@ function navReducer(state, event) {
                     if (!event.opts.animate) {
                         return {
                             ...state,
+                            commit: event.stack,
                             stack: event.stack,
                             state: /** @type {const} */ ('settled'),
                         };
                     }
                     return {
                         ...state,
+                        commit: state.stack,
                         stack: event.stack,
                         state: /** @type {const} */ ('transitioning'),
                     };
@@ -301,6 +307,16 @@ export function Navigation(props) {
 
             // change component state
             dispatch({ type: 'pop', opts: { animate: props.animate } });
+        },
+        popToRoot: () => {
+            const stack = [state.stack[0]] ;
+            const historyDelta = 1 - state.stack.length;
+
+            // remove entries from history
+            window.history.go(historyDelta);
+
+            // change component state
+            dispatch({ type: 'goto', stack, opts: { animate: props.animate } });
         },
         canPop: canPop,
         canPopFrom: canPopFrom,
