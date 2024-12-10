@@ -115,25 +115,15 @@ export function BreakageForm() {
     const fetcher = useFetcher();
     const { tab } = useData();
     const sendReport = useSendReport();
-    const nav = useNav();
-    const [isSent, setIsSent] = useState(false);
+    const { replace, params } = useNav();
     const { count } = useConnectionCount();
 
     const connectionId = `connection-${count}`;
     const desktop = platform.name === 'macos' || platform.name === 'windows';
     const extension = platform.name === 'browser';
 
-    // on desktop only, show success screen
-    if (isSent && (desktop || extension)) {
-        return (
-            <BreakageScreenWrapper pageId="success">
-                <FormSent />
-            </BreakageScreenWrapper>
-        );
-    }
-
     const categories = validCategories();
-    let category = nav.params.get('category');
+    let category = params.get('category');
 
     if (!category || !Object.hasOwnProperty.call(categories, category)) {
         category = 'other';
@@ -147,7 +137,11 @@ export function BreakageForm() {
      */
     function submit(description) {
         sendReport({ category, description });
-        setIsSent(true);
+
+        if (desktop || extension) {
+            // Clear stack before showing success screen
+            replace(['primaryScreen', 'breakageFormSuccess']);
+        }
     }
 
     return (
@@ -191,14 +185,13 @@ function BreakageScreenWrapper({ className = '', pageId, children }) {
     const features = useFeatures();
 
     const showTitle = platform.name === 'ios' || platform.name === 'android';
-    const backToRoot = pageId === 'success';
-    const hideBackButton = backToRoot && features.opener === 'menu';
+    const hideBackButton = pageId === 'success' && features.opener === 'menu';
 
     const classes = cn('site-info page-inner card breakage-screen', className);
 
     return (
         <div className={classes} data-page={pageId}>
-            <SecondaryTopNavAlt backToRoot={backToRoot} hideBackButton={hideBackButton}>
+            <SecondaryTopNavAlt hideBackButton={hideBackButton}>
                 {showTitle && <Title>{ns.report('reportTitle.title')}</Title>}
             </SecondaryTopNavAlt>
             {children}
@@ -206,7 +199,7 @@ function BreakageScreenWrapper({ className = '', pageId, children }) {
     );
 }
 
-function FormSent() {
+export function BreakageFormSuccess() {
     const onClose = useClose();
     const clickHandler = () => {
         if (platform.name === 'windows' || platform.name === 'macos') {
@@ -215,11 +208,13 @@ function FormSent() {
     };
 
     return (
-        <div className="success__container" onClick={clickHandler}>
-            <div className="success__icon"></div>
-            <h1 className="token-body-em">{ns.report('thankYou.title')}</h1>
-            <p className="token-body success__message">{ns.report('yourReportWillHelpDesc.title', { newline: '\n' })}</p>
-        </div>
+        <BreakageScreenWrapper pageId="success">
+            <div className="success__container" onClick={clickHandler}>
+                <div className="success__icon"></div>
+                <h1 className="token-body-em">{ns.report('thankYou.title')}</h1>
+                <p className="token-body success__message">{ns.report('yourReportWillHelpDesc.title', { newline: '\n' })}</p>
+            </div>
+        </BreakageScreenWrapper>
     );
 }
 

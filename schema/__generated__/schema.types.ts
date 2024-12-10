@@ -157,6 +157,7 @@ export type ScreenKind =
   | "toggleReport"
   | "breakageFormCategorySelection"
   | "breakageFormFinalStep"
+  | "breakageFormSuccess"
   | "connection"
   | "trackers"
   | "nonTrackers"
