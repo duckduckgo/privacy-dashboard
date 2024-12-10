@@ -4,12 +4,11 @@ import cn from 'classnames';
 import { useCallback, useContext, useEffect, useReducer, useRef } from 'preact/hooks';
 import { ConnectionScreen } from './screens/connection-screen';
 import { PrimaryScreen } from './screens/primary-screen';
-import { BreakageFormScreen } from './screens/breakage-form-screen';
 import { TrackersScreen } from './screens/trackers-screen';
 import { NonTrackersScreen } from './screens/non-trackers-screen';
 import { ConsentManagedScreen } from './screens/consent-managed-screen';
 import { ToggleReportScreen } from './screens/toggle-report-screen';
-import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection, ChoiceToggleScreen } from './screens/choice-problem';
+import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm, BreakageFormSuccess } from './screens/breakage-form-screen';
 import { isAndroid } from '../shared/js/ui/environment-check';
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 
@@ -22,16 +21,13 @@ const availableScreens = {
     primaryScreen: { kind: 'root', component: () => <PrimaryScreen /> },
 
     // screens that would load immediately
-    breakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={true} /> },
-    promptBreakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={false} /> },
+    breakageForm: { kind: 'subview', component: () => <BreakagePrimaryScreen /> },
+    breakageFormCategorySelection: { kind: 'subview', component: () => <BreakageCategorySelection /> },
+    breakageFormFinalStep: { kind: 'subview', component: () => <BreakageForm /> },
+    breakageFormSuccess: { kind: 'subview', component: () => <BreakageFormSuccess /> },
     toggleReport: { kind: 'subview', component: () => <ToggleReportScreen /> },
 
     //
-    categoryTypeSelection: { kind: 'subview', component: () => <CategoryTypeSelection /> },
-    categorySelection: { kind: 'subview', component: () => <CategorySelection /> },
-    choiceToggle: { kind: 'subview', component: () => <ChoiceToggleScreen /> },
-    choiceBreakageForm: { kind: 'subview', component: () => <ChoiceBreakageForm /> },
-
     connection: { kind: 'subview', component: () => <ConnectionScreen /> },
     trackers: { kind: 'subview', component: () => <TrackersScreen /> },
     nonTrackers: { kind: 'subview', component: () => <NonTrackersScreen /> },
@@ -51,10 +47,14 @@ const NavContext = createContext({
     pop() {
         throw new Error('not implemented');
     },
+    /** @type {(addedItems: ScreenName[]) => void} */
+    replace() {
+        throw new Error('not implemented');
+    },
     params: new URLSearchParams(''),
     /** @type {() => boolean} */
     canPop: () => false,
-    /** @type {(screen: import('../schema/__generated__/schema.types').EventOrigin['screen']) => boolean} */
+    /** @type {(screen: ScreenName) => boolean} */
     canPopFrom: (screen) => false,
     /** @type {() => ScreenName} */
     screen: () => {
@@ -63,7 +63,7 @@ const NavContext = createContext({
 });
 
 export const ScreenContext = createContext({
-    /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
+    /** @type {ScreenName} */
     screen: /** @type {const} */ ('primaryScreen'),
 });
 
@@ -307,6 +307,19 @@ export function Navigation(props) {
             // change component state
             dispatch({ type: 'pop', opts: { animate: props.animate } });
         },
+        replace: (stack) => {
+            const url = new URL(window.location.href);
+
+            url.searchParams.delete('stack');
+            for (let string of stack) {
+                url.searchParams.append('stack', string);
+            }
+
+            window.history.replaceState({}, '', url);
+
+            // change component state
+            dispatch({ type: 'goto', stack, opts: { animate: false } });
+        },
         canPop: canPop,
         canPopFrom: canPopFrom,
         screen: screen,
@@ -361,6 +374,7 @@ export function Navigation(props) {
                                 data-current={String(current)}
                                 className="sliding-subview-v2"
                                 key={screenName}
+                                data-testid={`subview-${screenName}`}
                                 style={{ transform: cssProp }}
                             >
                                 {item.component()}
