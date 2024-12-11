@@ -41,9 +41,9 @@ export function createPlatformFeatures(platform) {
     }
 
     /** @type {'dashboard' | 'menu'} */
-    let opener = 'menu';
-    if (url.searchParams.get('opener') === 'dashboard') {
-        opener = 'dashboard';
+    let opener = 'dashboard';
+    if (url.searchParams.get('opener') === 'menu') {
+        opener = 'menu';
     }
 
     // allow randomization to be disabled in a URL param
