@@ -226,7 +226,7 @@ test.describe('temporary reporting flows', () => {
             await dash.mocks.calledForAlert('missingDescription');
         });
     });
-    
+
     test('opens to category selection from primary screen when breakageScreen param is present', async ({ page }) => {
         const dash = await DashboardPage.webkit(page, { breakageScreen: 'categorySelection', platform: 'ios' });
         await dash.reducedMotion();
