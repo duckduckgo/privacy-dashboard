@@ -583,6 +583,10 @@ export class DashboardPage {
         await expect(subview.locator('.top-nav a')).toHaveCount(1);
     }
 
+    async showsOnlyCloseButtonInSuccessScreen() {
+        return this.showsOnlyCloseButtonInSubview('breakageFormSuccess');
+    }
+
     /**
      * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screen
      * @return {Promise<void>}
@@ -601,6 +605,19 @@ export class DashboardPage {
         const selector = this.parent(screen);
         await this.page.locator(selector).locator('a:has-text("Cancel")').waitFor();
         await expect(this.page.locator(selector).locator('.top-nav a')).toHaveCount(1);
+    }
+
+    /**
+     * @param {import('../schema/__generated__/schema.types').EventOrigin['screen']} screenName
+     * @return {Promise<void>}
+     */
+    async showsNoButtonsInSubviewNav(screenName) {
+        const subview = await this.page.getByTestId(`subview-${screenName}`);
+        await expect(subview.locator('.top-nav a')).toHaveCount(0);
+    }
+
+    async showsNoButtonsInSuccessScreen() {
+        return this.showsNoButtonsInSubviewNav('breakageFormSuccess');
     }
 
     /**
@@ -859,7 +876,7 @@ export class DashboardPage {
 
     async clickingSuccessScreenClosesBreakageFormScreen() {
         await this.page.getByText('Your report helps make DuckDuckGo better for everyone!').click();
-        await this.mocks.calledForClose({ screen: 'breakageFormFinalStep' });
+        await this.mocks.calledForClose({ screen: 'breakageFormSuccess' });
     }
 
     /**

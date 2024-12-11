@@ -24,7 +24,7 @@ export class Nav {
 
     async goesBackToPrimaryScreenFromSuccessScreen() {
         const { page } = this.dash;
-        await page.getByTestId('subview-breakageFormFinalStep').getByLabel('Back').click();
+        await page.getByTestId('subview-breakageFormSuccess').getByLabel('Back').click();
 
         await page.getByRole('link', { name: 'Report a problem with this site' }).waitFor({ timeout: 1000 });
     }
