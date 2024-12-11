@@ -195,7 +195,7 @@ test.describe('breakage form', () => {
         await dash.selectsCategory('Site layout broken', 'layout');
         await dash.submitFeedbackForm();
         await dash.showsBreakageFormSuccessScreen();
-        await dash.showsOnlyCloseButtonInSubview('breakageFormFinalStep');
+        await dash.showsOnlyCloseButtonInSuccessScreen();
     });
 });
 

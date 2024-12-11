@@ -95,7 +95,7 @@ test.describe('breakage form', () => {
 
     test('goes back to primary screen from success screen', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, { platform: 'macos', opener: 'dashboard' });
+        const dash = await DashboardPage.windows(page, { opener: 'dashboard' });
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -107,14 +107,14 @@ test.describe('breakage form', () => {
 
     test('hides back button in success screen when invoked from menu', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
-        const dash = await DashboardPage.webkit(page, { platform: 'macos', opener: 'menu' });
+        const dash = await DashboardPage.windows(page, { opener: 'menu' });
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Site layout broken', 'layout');
         await dash.submitFeedbackForm();
         await dash.showsBreakageFormSuccessScreen();
-        await dash.showsOnlyCloseButtonInSubview('breakageFormFinalStep');
+        await dash.showsOnlyCloseButtonInSuccessScreen();
     });
 });
 
