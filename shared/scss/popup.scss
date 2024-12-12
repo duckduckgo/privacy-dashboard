@@ -24,6 +24,7 @@ body {
     --page-outer-bg: #{$color--dark-platinum};
     --color-text-primary: rgba(0, 0, 0, 0.84);
     --color-text-secondary: rgba(0, 0, 0, 0.6);
+    --color-button-primary: #fff;
     --color-accent-blue: #3969ef;
     --color-accent-blue-active: #1e42a4;
     --color-lines-light: rgba(0, 0, 0, 0.12);
@@ -88,6 +89,7 @@ body {
         --page-outer-bg: #{$slate-blue};
         --color-text-primary: rgba(255, 255, 255, 0.84);
         --color-text-secondary: rgba(255, 255, 255, 0.6);
+        --color-button-primary: rgba(0, 0, 0, 0.84);
         --color-accent-blue: #7295f6;
         --color-accent-blue-active: #8fabf9;
         --color-lines-light: rgba(255, 255, 255, 0.18);
