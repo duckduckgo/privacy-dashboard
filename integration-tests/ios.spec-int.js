@@ -171,7 +171,7 @@ test.describe('breakage form', () => {
         const dash = await DashboardPage.webkit(page, {
             screen: 'breakageForm',
             randomisedCategories: 'false',
-            platform: 'macos',
+            platform: 'ios',
         });
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
