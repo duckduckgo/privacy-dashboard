@@ -272,7 +272,7 @@ test.describe('toggle report', () => {
         await dash.toggleReportIsVisible();
         await dash.sendToggleReport();
 
-        // this is macOS specific:
+        // this is macOS and Windows specific:
         await dash.showsSuccessScreen();
         await dash.screenshot('screen-toggle-report-sent.png');
         await dash.clickingSuccessScreenClosesDashboard();
