@@ -282,7 +282,7 @@ export function FormElement({ onSubmit, before, after, placeholder, required = f
                 </div>
                 <DetailsDisclosureMessage />
                 <footer className="breakage-form__footer">
-                    <button className="form__submit token-label-em" type="submit">
+                    <button className="form__submit" type="submit">
                         {ns.report('sendReport.title')}
                     </button>
                 </footer>

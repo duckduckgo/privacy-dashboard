@@ -95,44 +95,129 @@
     }
 }
 
+/* TODO: Move button to shared component */
 .form__submit {
-    text-align: center;
-    padding: 10px 12px;
+    --submit-button-background: var(--color-accent-blue);
+    --submit-button-border-radius: 8px;
+    --submit-button-border: none;
+    --submit-button-box-shadow: none;
+    --submit-button-color: var(--color-button-primary);
+    --submit-button-font-size: 15px;
+    --submit-button-font-weight: 600;
+    --submit-button-height: 50px;
+    --submit-button-line-height: calc(20 / 15);
+    --submit-button-padding: 0 24px;
+
+    background: var(--submit-button-background);
+    border: var(--submit-button-border);
+    border-radius: var(--submit-button-border-radius);
+    box-shadow: var(--submit-button-box-shadow);
+    color: var(--submit-button-color);
+    font-size: var(--submit-button-font-size);
+    font-weight: var(--submit-button-font-weight);
+    height: var(--submit-button-height);
+    line-height: var(--submit-button-line-height);
+    padding: var(--submit-button-padding);
+
     cursor: pointer;
     display: block;
+    font-family: $font__face--default;
+    text-align: center;
     text-decoration: none;
     width: 100%;
 
-    box-shadow: var(--btn-accent-shadow);
-    border-radius: var(--btn-accent-border-radius);
-    border: var(--btn-accent-border);
-    color: var(--btn-accent-color);
-    background: var(--btn-accent-bg);
+    .environment--android & {
+        --submit-button-font-size: 15px;
+        --submit-button-font-weight: 700;
+        --submit-button-line-height: calc(20 / 15);
+        --submit-button-height: 48px;
+    }
+
+    .environment--browser & {
+        --submit-button-font-size: 16px;
+        --submit-button-font-weight: 700;
+        --submit-button-line-height: normal;
+        --submit-button-height: 44px;
+        --submit-button-padding: 0 20px;
+    }
+
+    .environment--ios & {
+        --submit-button-font-size: 15px;
+        --submit-button-font-weight: 600;
+        --submit-button-line-height: calc(20 / 15);
+        --submit-button-height: 50px;
+    }
+
+    .environment--macos & {
+        --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
+        --submit-button-border-radius: 6px;
+        --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+        --submit-button-font-size: 13px;
+        --submit-button-font-weight: 400;
+        --submit-button-height: 32px;
+        --submit-button-line-height: 1;
+        --submit-button-padding: 0 16px;
+    }
+
+    .environment--windows & {
+        --submit-button-border-radius: 6px;
+        --submit-button-font-size: 14px;
+        --submit-button-font-weight: 400;
+        --submit-button-line-height: normal;
+        --submit-button-height: 40px;
+        --submit-button-padding: 0 16px;
+    }
 
     &:hover {
-        background: var(--btn-accent-bg-hover);
+        --submit-button-background: #{$color--blue-60};
     }
+
+    &:focus {
+        .environment--macos & {
+            --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset, 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
+        }
+
+        .environment--windows & {
+            --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--color-accent-blue);
+        }
+    }
+
     &:active {
-        background: var(--btn-accent-bg-active);
+        --submit-button-background: #{$color--blue-70};
     }
 
-    /* https://www.figma.com/file/DBZiXJRgTTJTuBeWAPyE5h/Desktop-Components?node-id=9113%3A130956&t=de8DMDVt8GbRBQub-0 */
-    .environment--windows & {
-        /* Windows/Label */
-        box-shadow: none;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 19px;
-        border-radius: 4px;
+    &:disabled {
+        --submit-button-background: rgba(0, 0, 0, 0.06);
+        --submit-button-color: rgba(0, 0, 0, 0.36);
+        cursor: default;
+    }
 
+    .body--theme-dark & {
+        .environment--windows & {
+            --submit-button-background: #{$color--blue-20};
+        }
+
+        &:hover {
+            --submit-button-background: #{$color--blue-60};
+        }
+    
         &:focus {
-            /* todo(Shane): where does this live? */
-            box-shadow: 0px 0px 0px 1px #ffffff, 0px 0px 0px 3px #3969ef;
+            .environment--macos & {
+                --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset, 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
+            }
+    
+            .environment--windows & {
+                --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--color-accent-blue);
+            }
         }
 
         &:active {
-            box-shadow: none;
+            --submit-button-background: #{$color--blue-50};
+        }
+
+        &:disabled {
+            --submit-button-background: rgba(255, 255, 255, 0.18);
+            --submit-button-color: rgba(255, 255, 255, 0.36);
         }
     }
 }
