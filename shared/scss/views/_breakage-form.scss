@@ -95,7 +95,7 @@
     }
 }
 
-/* TODO: Move button to shared component */
+/* TODO: Move button to shared component, primary variant */
 .form__submit {
     --submit-button-background: var(--color-accent-blue);
     --submit-button-border-radius: 8px;
@@ -106,6 +106,7 @@
     --submit-button-font-weight: 600;
     --submit-button-height: 50px;
     --submit-button-line-height: calc(20 / 15);
+    --submit-button-opacity: 1;
     --submit-button-padding: 0 24px;
 
     background: var(--submit-button-background);
@@ -117,6 +118,7 @@
     font-weight: var(--submit-button-font-weight);
     height: var(--submit-button-height);
     line-height: var(--submit-button-line-height);
+    opacity: var(--submit-button-opacity);
     padding: var(--submit-button-padding);
 
     cursor: pointer;
@@ -126,6 +128,36 @@
     text-decoration: none;
     width: 100%;
 
+    &:hover {
+        --submit-button-background: var(--color-blue-60);
+    }
+
+    &:active {
+        --submit-button-background: var(--color-blue-70);
+    }
+
+    &:disabled {
+        --submit-button-background: rgba(0, 0, 0, 0.06);
+        --submit-button-color: rgba(0, 0, 0, 0.36);
+        cursor: default;
+    }
+
+    .body--theme-dark & {
+        &:hover {
+            --submit-button-background: var(--color-blue-40);
+        }
+
+        &:active {
+            --submit-button-background: var(--color-blue-50);
+        }
+
+        &:disabled {
+            --submit-button-background: rgba(255, 255, 255, 0.18);
+            --submit-button-color: rgba(255, 255, 255, 0.36);
+        }
+    }
+
+    /* Platform-specific button styles */
     .environment--android & {
         --submit-button-font-size: 15px;
         --submit-button-font-weight: 700;
@@ -149,14 +181,63 @@
     }
 
     .environment--macos & {
-        --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
+        --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
         --submit-button-border-radius: 6px;
-        --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+        --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset,
+            0px 0px 0px 0.5px rgba(0, 122, 255, 0.05), 0px 0px 1px 0px rgba(0, 122, 255, 0.05), 0px 1px 1px 0px rgba(0, 122, 255, 0.1);
+        --submit-button-color: #fff;
         --submit-button-font-size: 13px;
         --submit-button-font-weight: 400;
         --submit-button-height: 32px;
         --submit-button-line-height: 1;
         --submit-button-padding: 0 16px;
+
+        &:focus {
+            --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset,
+                0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #1743d1;
+            --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset,
+                0px 0px 0px 0.5px rgba(0, 122, 255, 0.05), 0px 0px 1px 0px rgba(0, 122, 255, 0.05), 0px 1px 1px 0px rgba(0, 122, 255, 0.1);
+            --submit-button-color: rgba(255, 255, 255, 0.8);
+        }
+
+        &:disabled {
+            --submit-button-background: #fff;
+            --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset,
+                0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+            --submit-button-color: rgba(0, 0, 0, 0.84);
+            --submit-button-opacity: 0.4;
+        }
+
+        @at-root .body--theme-dark#{&} {
+            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
+            --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset,
+                0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+
+            &:focus {
+                --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset,
+                    0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+            }
+
+            &:active {
+                --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #3259c9;
+                --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset,
+                    0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
+                    0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+                --submit-button-color: rgba(255, 255, 255, 0.8);
+            }
+
+            &:disabled {
+                --submit-button-background: rgba(255, 255, 255, 0.28);
+                --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset,
+                    0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
+                    0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+                --submit-button-color: rgba(255, 255, 255, 0.84);
+            }
+        }
     }
 
     .environment--windows & {
@@ -166,58 +247,40 @@
         --submit-button-line-height: normal;
         --submit-button-height: 40px;
         --submit-button-padding: 0 16px;
-    }
 
-    &:hover {
-        --submit-button-background: #{$color--blue-60};
-    }
-
-    &:focus {
-        .environment--macos & {
-            --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset, 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
-        }
-
-        .environment--windows & {
-            --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--color-accent-blue);
-        }
-    }
-
-    &:active {
-        --submit-button-background: #{$color--blue-70};
-    }
-
-    &:disabled {
-        --submit-button-background: rgba(0, 0, 0, 0.06);
-        --submit-button-color: rgba(0, 0, 0, 0.36);
-        cursor: default;
-    }
-
-    .body--theme-dark & {
-        .environment--windows & {
-            --submit-button-background: #{$color--blue-20};
-        }
-
-        &:hover {
-            --submit-button-background: #{$color--blue-60};
-        }
-    
         &:focus {
-            .environment--macos & {
-                --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset, 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
-            }
-    
-            .environment--windows & {
-                --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--color-accent-blue);
-            }
+            --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--color-blue-50);
         }
 
         &:active {
-            --submit-button-background: #{$color--blue-50};
+            --submit-button-box-shadow: none;
         }
 
         &:disabled {
-            --submit-button-background: rgba(255, 255, 255, 0.18);
-            --submit-button-color: rgba(255, 255, 255, 0.36);
+            --submit-button-background: rgba(0, 0, 0, 0.36);
+            --submit-button-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @at-root .body--theme-dark#{&} {
+            --submit-button-background: var(--color-blue-20);
+
+            &:hover {
+                --submit-button-background: var(--color-blue-30);
+            }
+
+            &:focus {
+                --submit-button-box-shadow: 0px 0px 0px 1px #0b2059, 0px 0px 0px 3px #fff;
+            }
+
+            &:active {
+                --submit-button-background: var(--color-blue-40);
+                --submit-button-box-shadow: none;
+            }
+
+            &:disabled {
+                --submit-button-background: rgba(255, 255, 255, 0.36);
+                --submit-button-color: rgba(0, 0, 0, 0.84);
+            }
         }
     }
 }
