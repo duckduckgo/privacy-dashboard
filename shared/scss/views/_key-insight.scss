@@ -7,13 +7,18 @@
         padding-bottom: 12px;
     }
 
+    .environment--android &,
+    .environment--ios & {
+        padding-top: 24px;
+    }
+
     .environment--browser & {
         background-color: transparent;
     }
 
-    // slight padding needed on ios to move this below the nav
-    .environment--ios & {
-        padding-top: 6px;
+    .environment--macos &,
+    .environment--windows & {
+        padding-top: 32px;
     }
 
     .token-title-3-em {
@@ -28,14 +33,10 @@
     margin-bottom: 8px;
     background-size: contain;
 
-    .environment--macos & {
-        margin-bottom: 20px;
-    }
+    .environment--browser &,
+    .environment--macos &,
     .environment--windows & {
-        margin-bottom: 20px;
-    }
-    .environment--browser & {
-        margin-bottom: 12px;
+        margin-bottom: 6px;
     }
 }
 
