@@ -25,7 +25,7 @@ body {
 .top-nav__back {
     position: absolute;
     padding: var(--size-unit-half); // <-- this padding ids for creating a larger tap area
-    left: var(--size-unit-half);
+    left: var(--size-unit);
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -70,7 +70,7 @@ body {
 .top-nav__done {
     position: absolute;
     padding: 0 var(--size-unit-half);
-    right: var(--size-unit-half);
+    right: var(--size-unit);
     height: var(--nav-height);
     line-height: var(--nav-height);
     color: var(--color-text-primary);
