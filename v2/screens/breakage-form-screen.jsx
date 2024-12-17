@@ -139,7 +139,7 @@ export function BreakageForm() {
         sendReport({ category, description });
 
         if (desktop || extension) {
-            push('breakageFormSuccess');
+            push('breakageFormSuccess', {}, { animate: false });
         }
     }
 
