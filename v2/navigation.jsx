@@ -278,9 +278,12 @@ export function Navigation(props) {
         /**
          * @param {ScreenName} name
          * @param {Record<string, any>} params
+         * @param {object} [opts]
+         * @param {boolean} [opts.animate]
          */
-        push: (name, params = {}) => {
+        push: (name, params = {}, opts = {}) => {
             const url = new URL(window.location.href);
+            const animate = opts.animate !== undefined ? opts.animate : props.animate;
 
             for (let [key, value] of Object.entries(params)) {
                 // using 'set' to override any previous values.
@@ -298,7 +301,7 @@ export function Navigation(props) {
             window.history.pushState({}, '', url);
 
             // change component state
-            dispatch({ type: 'push', name, opts: { animate: props.animate } });
+            dispatch({ type: 'push', name, opts: { animate } });
         },
         pop: () => {
             // remove a history entry
