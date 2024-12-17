@@ -72,6 +72,14 @@
     "title" : "Kopiert til utklippstavlen din!",
     "note" : "Note to inform that the email address was copied"
   },
+  "reportWebsiteAsSafeCTA" : {
+    "title" : "Rapporter nettstedet som trygt",
+    "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
+  },
+  "aboutPhishingMalwareLink" : {
+    "title" : "Om vår beskyttelse mot phishing og skadelig programvare",
+    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Virker ikke nettsiden som forventet?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -137,12 +145,20 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Nettstedet kan være villedende",
+    "title" : "Nettstedet kan være ondsinnet",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
     "title" : "Dette nettstedet utgir seg muligens for å være et legitimt nettsted for å lure deg til å oppgi personopplysninger, som passord eller kredittkortnumre.",
     "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
+  "malwareWebsite" : {
+    "title" : "Nettstedet kan være ondsinnet",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "malwareWebsiteDesc" : {
+    "title" : "Dette nettstedet er blitt flagget for distribusjon av skadelig programvare som er laget for å kompromittere enheten din eller stjele personopplysningene dine.",
+    "note" : "Shown as the description text when the URL is reported as a malware website."
   },
   "trackerNetworksDesc" : {
     "title" : "Forespørsler blokkert fra lasting",

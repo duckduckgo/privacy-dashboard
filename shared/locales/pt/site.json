@@ -72,6 +72,14 @@
     "title" : "Copiado para a área de transferência!",
     "note" : "Note to inform that the email address was copied"
   },
+  "reportWebsiteAsSafeCTA" : {
+    "title" : "Sinalizar site como seguro",
+    "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
+  },
+  "aboutPhishingMalwareLink" : {
+    "title" : "Sobre a nossa proteção contra phishing e malware",
+    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "O website não funciona como esperado?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -137,12 +145,20 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "O site pode ser enganador",
+    "title" : "O site pode ser malicioso",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
     "title" : "Este site pode estar a fazer-se passar por um site legítimo para te enganar a fornecer informações pessoais, como palavras-passe ou números de cartão de crédito.",
     "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
+  "malwareWebsite" : {
+    "title" : "O site pode ser malicioso",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "malwareWebsiteDesc" : {
+    "title" : "Este site foi denunciado por distribuir malware projetado para comprometer o teu dispositivo ou roubar as tuas informações pessoais.",
+    "note" : "Shown as the description text when the URL is reported as a malware website."
   },
   "trackerNetworksDesc" : {
     "title" : "Pedidos com carregamento bloqueado",
