@@ -72,6 +72,14 @@
     "title" : "Skopiowano do schowka!",
     "note" : "Note to inform that the email address was copied"
   },
+  "reportWebsiteAsSafeCTA" : {
+    "title" : "Zgłoś witrynę jako bezpieczną",
+    "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
+  },
+  "aboutPhishingMalwareLink" : {
+    "title" : "Informacje o naszej ochronie przed wyłudzaniem informacji i złośliwym oprogramowaniem",
+    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Witryna internetowa nie działa zgodnie z oczekiwaniami?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -137,12 +145,20 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Witryna może wprowadzać w błąd",
+    "title" : "Witryna może być złośliwa",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
     "title" : "Ta witryna może podszywać się pod legalną witrynę w celu nakłonienia użytkownika do podania danych osobowych, takich jak hasła lub numery kart kredytowych.",
     "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
+  "malwareWebsite" : {
+    "title" : "Witryna może być złośliwa",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "malwareWebsiteDesc" : {
+    "title" : "Ta witryna została oznaczona jako rozpowszechniająca złośliwe oprogramowanie, którego celem jest naruszenie bezpieczeństwa urządzenia lub kradzież danych osobowych.",
+    "note" : "Shown as the description text when the URL is reported as a malware website."
   },
   "trackerNetworksDesc" : {
     "title" : "Żądania zablokowane przed załadowaniem",

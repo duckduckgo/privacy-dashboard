@@ -1,2 +1,2 @@
-- Malware status support and design updates - macOS (#250)
-- Adds schema folder to NPM package (#254)
+- Copy review: Site may be malicious (#266)
+- Node 22.11 (#276)

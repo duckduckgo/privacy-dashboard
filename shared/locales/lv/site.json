@@ -72,6 +72,14 @@
     "title" : "Nokopēts starpliktuvē!",
     "note" : "Note to inform that the email address was copied"
   },
+  "reportWebsiteAsSafeCTA" : {
+    "title" : "Ziņot par vietni kā drošu",
+    "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
+  },
+  "aboutPhishingMalwareLink" : {
+    "title" : "Par mūsu aizsardzību pret pikšķerēšanu un ļaunprātīgu programmatūru",
+    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Tīmekļa vietne nedarbojas, kā paredzēts?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -137,12 +145,20 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Vietne var būt maldinoša",
+    "title" : "Vietne var būt ļaunprātīga",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
     "title" : "Iespējams, ka šī vietne uzdodas par likumīgu vietni, lai tevi maldinātu sniegt personisku informāciju, piemēram, paroles vai kredītkartes numurus.",
     "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
+  "malwareWebsite" : {
+    "title" : "Vietne var būt ļaunprātīga",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "malwareWebsiteDesc" : {
+    "title" : "Šī vietne ir atzīmēta kā tāda, kas izplata ļaunprātīgu programmatūru, kas var apdraudēt tavu ierīci vai nozagt tavu personisko informāciju.",
+    "note" : "Shown as the description text when the URL is reported as a malware website."
   },
   "trackerNetworksDesc" : {
     "title" : "Pieprasījumi, kuru ielādēšana ir bloķēta",

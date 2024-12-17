@@ -72,6 +72,14 @@
     "title" : "Скопировано в буфер!",
     "note" : "Note to inform that the email address was copied"
   },
+  "reportWebsiteAsSafeCTA" : {
+    "title" : "Пометить как безопасный",
+    "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
+  },
+  "aboutPhishingMalwareLink" : {
+    "title" : "О нашей защите от фишинга и вредоносного ПО",
+    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Сайт плохо работает?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -137,12 +145,20 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Потенциально мошеннический сайт",
+    "title" : "Потенциально вредоносный сайт",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
     "title" : "Возможно, это лишь имитация настоящего сайта, созданная с целью собрать ваши данные (например, пароли и номера платежных карт) обманным путем.",
     "note" : "Shown as the description text when the URL is reported as a phishing website."
+  },
+  "malwareWebsite" : {
+    "title" : "Потенциально вредоносный сайт",
+    "note" : "Shown as the button text when the URL is reported as a phishing website."
+  },
+  "malwareWebsiteDesc" : {
+    "title" : "На этот сайт поступила жалоба за распространение вредоносного ПО, предназначенного для взлома устройств или кражи личной информации.",
+    "note" : "Shown as the description text when the URL is reported as a malware website."
   },
   "trackerNetworksDesc" : {
     "title" : "Заблокирована загрузка запросов",
