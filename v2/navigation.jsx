@@ -47,8 +47,8 @@ const NavContext = createContext({
     pop() {
         throw new Error('not implemented');
     },
-    /** @type {(addedItems: ScreenName[]) => void} */
-    replace() {
+    /** @type {() => void} */
+    popToRoot() {
         throw new Error('not implemented');
     },
     params: new URLSearchParams(''),
@@ -109,7 +109,7 @@ function navReducer(state, event) {
         case 'initial':
         case 'settled': {
             switch (event.type) {
-                case 'goto': {
+                case 'replace': {
                     if (!event.opts.animate) {
                         return {
                             ...state,
@@ -179,7 +179,7 @@ function navReducer(state, event) {
  * @typedef {{ animate: boolean }} ActionOpts
  * @typedef {{ type: 'push', name: ScreenName, opts: ActionOpts}
  *   | {type: 'pop', opts: ActionOpts}
- *   | {type: 'goto', stack: ScreenName[], opts: ActionOpts}
+ *   | {type: 'replace', stack: ScreenName[], opts: ActionOpts}
  *   | {type: 'end'}
  * } NavEvent
  * @typedef {{
@@ -307,18 +307,26 @@ export function Navigation(props) {
             // change component state
             dispatch({ type: 'pop', opts: { animate: props.animate } });
         },
-        replace: (stack) => {
-            const url = new URL(window.location.href);
-
-            url.searchParams.delete('stack');
-            for (let string of stack) {
-                url.searchParams.append('stack', string);
+        popToRoot: () => {
+            // Replace current stack with only root screen and current screen
+            const primaryScreen = 'primaryScreen';
+            const newStack = /** @type {ScreenName[]} */ ([primaryScreen]);
+            if (state.stack.length > 1) {
+                newStack.push(state.stack.slice(-1)[0]);
             }
 
-            window.history.replaceState({}, '', url);
+            dispatch({ type: 'replace', stack: newStack, opts: { animate: false } });
 
-            // change component state
-            dispatch({ type: 'goto', stack, opts: { animate: false } });
+            // Pop to root screen
+            setTimeout(() => {
+                dispatch({ type: 'pop', opts: { animate: props.animate } });
+
+                // Update URL
+                const url = new URL(window.location.href);
+                url.searchParams.delete('stack');
+                url.searchParams.append('stack', primaryScreen);
+                window.history.replaceState({}, '', url);
+            }, 0);
         },
         canPop: canPop,
         canPopFrom: canPopFrom,
@@ -356,7 +364,12 @@ export function Navigation(props) {
                     if (item.kind === 'root') {
                         return (
                             <ScreenContext.Provider value={{ screen: screenName }}>
-                                <section className="app-height" key={screenName} data-testid={`subview-${screenName}`}>
+                                <section
+                                    className="app-height"
+                                    key={screenName}
+                                    data-testid={`subview-${screenName}`}
+                                    data-current={String(current)}
+                                >
                                     {item.component()}
                                 </section>
                             </ScreenContext.Provider>

@@ -115,7 +115,7 @@ export function BreakageForm() {
     const fetcher = useFetcher();
     const { tab } = useData();
     const sendReport = useSendReport();
-    const { replace, params } = useNav();
+    const { params, push } = useNav();
     const { count } = useConnectionCount();
 
     const connectionId = `connection-${count}`;
@@ -139,8 +139,7 @@ export function BreakageForm() {
         sendReport({ category, description });
 
         if (desktop || extension) {
-            // Clear stack before showing success screen
-            replace(['primaryScreen', 'breakageFormSuccess']);
+            push('breakageFormSuccess');
         }
     }
 
@@ -186,12 +185,13 @@ function BreakageScreenWrapper({ className = '', pageId, children }) {
 
     const showTitle = platform.name === 'ios' || platform.name === 'android';
     const hideBackButton = pageId === 'success' && features.opener === 'menu';
+    const shouldPopToRoot = pageId === 'success';
 
     const classes = cn('site-info page-inner card breakage-screen', className);
 
     return (
         <div className={classes} data-page={pageId}>
-            <SecondaryTopNavAlt hideBackButton={hideBackButton}>
+            <SecondaryTopNavAlt hideBackButton={hideBackButton} shouldPopToRoot={shouldPopToRoot}>
                 {showTitle && <Title>{ns.report('reportTitle.title')}</Title>}
             </SecondaryTopNavAlt>
             {children}

@@ -207,22 +207,12 @@ body {
     &:not(.sliding-subview-v2--root) {
         overflow-y: auto;
     }
-
-    /* Prevents flash of window background on macOS */
-    .environment--macos & {
-        background: var(--page-bg);
-    }
 }
 
 .sliding-subview-v2--root {
     position: absolute;
     top: 0;
     left: 0;
-
-    /* Prevents flash of window background on macOS */
-    .environment--macos & {
-        background: var(--page-bg);
-    }
 }
 
 .sliding-subview-v2--animating {
