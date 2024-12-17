@@ -39,7 +39,7 @@ const availableScreens = {
 const entries = /** @type {[ScreenName, { kind: 'subview' | 'root', component: () => any}][]} */ (Object.entries(availableScreens));
 
 const NavContext = createContext({
-    /** @type {(name: ScreenName, params?: Record<string, string>) => void} */
+    /** @type {(name: ScreenName, params?: Record<string, string>, opts?: { animate?: boolean }) => void} */
     push() {
         throw new Error('not implemented');
     },
