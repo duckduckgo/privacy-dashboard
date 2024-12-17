@@ -307,8 +307,12 @@ export function Navigation(props) {
             // change component state
             dispatch({ type: 'pop', opts: { animate: props.animate } });
         },
+        /**
+         * Pops from current screen directly to primary screen
+         */
         popToRoot: () => {
             // Replace current stack with only root screen and current screen
+            // Current screen will be popped right after
             const primaryScreen = 'primaryScreen';
             const newStack = /** @type {ScreenName[]} */ ([primaryScreen]);
             if (state.stack.length > 1) {
