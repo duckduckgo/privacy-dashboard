@@ -4,11 +4,6 @@
     &--choice {
         padding-bottom: 16px;
     }
-
-    /* Prevents macOS popover from shrinking too much */
-    .environment--macos &--form {
-        min-height: 500px;
-    }
 }
 
 .breakage-form__close-container {
