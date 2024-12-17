@@ -317,8 +317,10 @@ export function Navigation(props) {
 
             dispatch({ type: 'replace', stack: newStack, opts: { animate: false } });
 
-            // Pop to root screen
-            setTimeout(() => {
+            // TODO: build a more integrated solution for sequencing dispatches
+            // For now, we'll use requestAnimationFrame
+            requestAnimationFrame(() => {
+                // Pop to root screen
                 dispatch({ type: 'pop', opts: { animate: props.animate } });
 
                 // Update URL
@@ -326,7 +328,7 @@ export function Navigation(props) {
                 url.searchParams.delete('stack');
                 url.searchParams.append('stack', primaryScreen);
                 window.history.replaceState({}, '', url);
-            }, 0);
+            });
         },
         canPop: canPop,
         canPopFrom: canPopFrom,
