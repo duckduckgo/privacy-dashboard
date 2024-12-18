@@ -6,6 +6,7 @@
  *   featureSettings?: import('../../../schema/__generated__/schema.types').RemoteFeatureSettings | undefined
  * }} BackgroundTabData
  */
+
 /**
  * @module common
  */
@@ -13,9 +14,8 @@ export const getContentHeight = () => {
     const $openSubviewV2 = window.document.querySelector(
         '#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child'
     );
-    const $rootSubviewV2 = window.document.querySelector('#popup-container.sliding-subview-v2--root .page-inner');
 
-    return ($openSubviewV2 || $rootSubviewV2)?.scrollHeight;
+    return $openSubviewV2?.scrollHeight;
 };
 
 export const getContentHeightForScreenShot = () => {
@@ -31,6 +31,7 @@ export function setupMutationObserver(callback) {
     let lastHeight;
     const mutationObserver = new MutationObserver(() => {
         const contentHeight = getContentHeight();
+
         if (!contentHeight) return;
 
         const height = Math.min(window.screen.height - bufferHeight, contentHeight);
@@ -278,6 +279,7 @@ export async function refreshAlias() {
 
 /**
  * Fetch the data needed to display the toggle report screen
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
  */
 export async function getToggleReportOptions() {
     throw new Error('base impl');
@@ -411,11 +413,6 @@ export class RefreshEmailAliasMessage extends Msg {}
  */
 export class OpenOptionsMessage extends Msg {}
 
-/**
- * Use this message to indicate that a native platform should open
- * an alert because the form description was required, but missing
- */
-export class ShowAlertForMissingDescription extends Msg {}
 /**
  * Use this message to indicate that a native platform should open
  * an alert because the form description was required, but missing
