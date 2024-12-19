@@ -477,6 +477,7 @@ export class BurnMessage extends Msg {
 
 export class FetchBurnOptions extends Msg {}
 export class FetchToggleReportOptions extends Msg {}
+export class FetchBreakageFormOptions extends Msg {}
 export class SendToggleBreakageReport extends Msg {}
 export class RejectToggleBreakageReport extends Msg {}
 export class SeeWhatIsSent extends Msg {}

@@ -274,6 +274,7 @@ export function mockBrowserApis(params = { messages: {} }) {
         openOptions: {},
         setBurnDefaultOption: {},
         getToggleReportOptions: {},
+        getBreakageFormOptions: {},
         getPrivacyDashboardData: {},
         sendToggleReport: {},
         rejectToggleReport: {},
@@ -433,6 +434,8 @@ export async function installDebuggerMocks(platform) {
         messages.getBurnOptions = mock.toBurnOptions();
         messages.getPrivacyDashboardData = mock.toExtensionDashboardData();
         messages.getToggleReportOptions = toggleReportScreen;
+        messages.getBreakageFormOptions = toggleReportScreen;
+
     }
     if (platform.name === 'windows') {
         messages.windowsViewModel = mock.toWindowsViewModel();

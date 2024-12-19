@@ -10,9 +10,8 @@ import { useNav } from '../navigation';
 import { useData, useFeatures, useSendReport, useShowNativeFeedback, useFetcher, useConnectionCount, useClose } from '../data-provider';
 import { ns } from '../../shared/js/ui/base/localize';
 import { Stack } from '../../shared/js/ui/components/stack';
-import { ToggleReportContext } from '../../shared/js/ui/components/toggle-report/toggle-report-provider';
 import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categories';
-import { ToggleReportProvider } from '../../shared/js/ui/components/toggle-report/toggle-report-provider';
+import { BreakageFormContext, BreakageFormProvider } from '../components/breakage-form-provider.jsx';
 import { namedString } from '../../shared/data/text.js';
 
 /** @typedef {'choice-problem'|'choice-category'|'form'|'success'} BreakagePageId */
@@ -144,7 +143,7 @@ export function BreakageForm() {
     }
 
     return (
-        <ToggleReportProvider key={connectionId} model={{ fetch: fetcher }} screen={'breakageFormFinalStep'}>
+        <BreakageFormProvider key={connectionId} model={{ fetch: fetcher }} screen={'breakageFormFinalStep'}>
             <BreakageScreenWrapper pageId="form" className="breakage-screen--form">
                 <div className="padding-x">
                     {/* @ts-ignore */}
@@ -169,7 +168,7 @@ export function BreakageForm() {
                     </Stack>
                 </div>
             </BreakageScreenWrapper>
-        </ToggleReportProvider>
+        </BreakageFormProvider>
     );
 }
 
@@ -295,7 +294,7 @@ export function FormElement({ onSubmit, before, after, placeholder, required = f
  * Displays a control that reveals hidden text (in this case, the disclosure message)
  */
 function DetailsDisclosureMessage() {
-    const { value } = useContext(ToggleReportContext);
+    const { value } = useContext(BreakageFormContext);
     const detailsRef = useRef(null);
     const [detailsOpen, setDetailsOpen] = useState(false);
 
@@ -330,7 +329,6 @@ function DetailsDisclosureMessage() {
             <summary className="disclosure-message__summary">
                 <span className="disclosure-message__title">{ns.toggleReport('siteNotWorkingInfoReveal.title')}</span>
                 <div className="disclosure-message__control">
-                    {/* <span className="control__text control__text--open">{ns.toggleReport('siteNotWorkingInfoHide.title')}</span> */}
                     <svg className="control__chevron" aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
                             fill="currentColor"
