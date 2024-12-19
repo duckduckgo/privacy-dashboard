@@ -19,6 +19,7 @@ import {
     CheckBrokenSiteReportHandledMessage,
     CloseMessage,
     FetchToggleReportOptions,
+    FetchBreakageFormOptions,
     OpenSettingsMessages,
     RejectToggleBreakageReport,
     SeeWhatIsSent,
@@ -435,7 +436,7 @@ async function fetchAndroid(message) {
         });
     }
 
-    if (message instanceof FetchToggleReportOptions) {
+    if (message instanceof FetchToggleReportOptions || message instanceof FetchBreakageFormOptions) {
         return privacyDashboardApi.getToggleReportOptions();
     }
 

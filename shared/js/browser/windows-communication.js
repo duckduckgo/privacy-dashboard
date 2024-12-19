@@ -46,6 +46,7 @@ import {
     SubmitBrokenSiteReportMessage,
     UpdatePermissionMessage,
     FetchToggleReportOptions,
+    FetchBreakageFormOptions,
     RejectToggleBreakageReport,
     SeeWhatIsSent,
     SendToggleBreakageReport,
@@ -153,7 +154,7 @@ function windowsPostMessage(name, data, options = {}) {
  * @type {import("./common.js").fetcher}
  */
 async function fetch(message) {
-    if (message instanceof FetchToggleReportOptions) {
+    if (message instanceof FetchToggleReportOptions || message instanceof FetchBreakageFormOptions) {
         return getToggleReportOptions();
     }
 

@@ -15,6 +15,7 @@ import {
 import {
     BurnMessage,
     CheckBrokenSiteReportHandledMessage,
+    FetchBreakageFormOptions,
     FetchBurnOptions,
     FetchToggleReportOptions,
     OpenOptionsMessage,
@@ -160,6 +161,9 @@ export async function fetch(message) {
     }
     if (message instanceof FetchToggleReportOptions) {
         return getToggleReportOptions();
+    }
+    if (message instanceof FetchBreakageFormOptions) {
+        return getBrekageFormOptions();
     }
     if (message instanceof SeeWhatIsSent) {
         return seeWhatIsSent();
@@ -346,6 +350,22 @@ export function getBurnOptions() {
  */
 export function getToggleReportOptions() {
     return request('getToggleReportOptions');
+}
+
+
+/**
+ * @category Dashboard -> Extension Messages
+ * @return {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
+ * @example
+ * ```javascript
+ * port.postMessage({
+ *    messageType: 'getBrekageFormOptions',
+ *    options: {}
+ * })
+ * ```
+ */
+export function getBrekageFormOptions() {
+    return request('getBrekageFormOptions');
 }
 
 /**
