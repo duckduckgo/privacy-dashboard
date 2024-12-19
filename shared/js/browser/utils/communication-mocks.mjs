@@ -435,7 +435,6 @@ export async function installDebuggerMocks(platform) {
         messages.getPrivacyDashboardData = mock.toExtensionDashboardData();
         messages.getToggleReportOptions = toggleReportScreen;
         messages.getBreakageFormOptions = toggleReportScreen;
-
     }
     if (platform.name === 'windows') {
         messages.windowsViewModel = mock.toWindowsViewModel();
