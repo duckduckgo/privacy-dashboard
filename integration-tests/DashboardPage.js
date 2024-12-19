@@ -315,6 +315,7 @@ export class DashboardPage {
         messages.getPrivacyDashboardData = initial.toExtensionDashboardData();
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         messages.getToggleReportOptions = require('../schema/__fixtures__/toggle-report-screen.json');
+        messages.getBreakageFormOptions = require('../schema/__fixtures__/toggle-report-screen.json');
 
         await page.addInitScript(mockBrowserApis, { messages });
 
