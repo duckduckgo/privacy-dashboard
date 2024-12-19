@@ -5,6 +5,7 @@ import { Nav } from './Nav';
 import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs';
 import { Extension } from './Extension';
+import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json';
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]');
@@ -313,9 +314,9 @@ export class DashboardPage {
         const messages = {};
         messages.getBurnOptions = initial.toBurnOptions();
         messages.getPrivacyDashboardData = initial.toExtensionDashboardData();
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        messages.getToggleReportOptions = require('../schema/__fixtures__/toggle-report-screen.json');
-        messages.getBreakageFormOptions = require('../schema/__fixtures__/toggle-report-screen.json');
+
+        messages.getToggleReportOptions = toggleReportScreen;
+        messages.getBreakageFormOptions = toggleReportScreen;
 
         await page.addInitScript(mockBrowserApis, { messages });
 

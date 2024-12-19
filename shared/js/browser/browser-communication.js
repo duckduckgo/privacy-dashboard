@@ -352,7 +352,6 @@ export function getToggleReportOptions() {
     return request('getToggleReportOptions');
 }
 
-
 /**
  * @category Dashboard -> Extension Messages
  * @return {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
