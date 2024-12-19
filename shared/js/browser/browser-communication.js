@@ -163,7 +163,7 @@ export async function fetch(message) {
         return getToggleReportOptions();
     }
     if (message instanceof FetchBreakageFormOptions) {
-        return getBrekageFormOptions();
+        return getBreakageFormOptions();
     }
     if (message instanceof SeeWhatIsSent) {
         return seeWhatIsSent();
@@ -359,13 +359,13 @@ export function getToggleReportOptions() {
  * @example
  * ```javascript
  * port.postMessage({
- *    messageType: 'getBrekageFormOptions',
+ *    messageType: 'getBreakageFormOptions',
  *    options: {}
  * })
  * ```
  */
-export function getBrekageFormOptions() {
-    return request('getBrekageFormOptions');
+export function getBreakageFormOptions() {
+    return request('getBreakageFormOptions');
 }
 
 /**
