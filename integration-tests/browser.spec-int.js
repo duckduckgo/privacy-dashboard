@@ -36,6 +36,16 @@ test.describe('breakage form', () => {
         await dash.mocks.calledForSubmitBreakageForm({ category: 'layout', description: '' });
     });
 
+    test('other category is at the end of list', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.browser(page, testDataStates.google, {
+            screen: 'breakageForm',
+            randomisedCategories: 'true',
+        });
+        await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.categoryIsLast('Something else');
+    });
+
     test('hides description prompt on "dislike" category', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, {
