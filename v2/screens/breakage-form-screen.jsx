@@ -7,7 +7,7 @@ import { SecondaryTopNavAlt, Title } from '../components/top-nav';
 import { Nav, NavItem } from '../components/nav';
 import { KeyInsightsMain } from '../components/key-insights';
 import { useNav } from '../navigation';
-import { useData, useFeatures, useSendReport, useShowNativeFeedback, useFetcher, useConnectionCount, useClose } from '../data-provider';
+import { useData, useFeatures, useSendReport, useShowNativeFeedback, useFetcher, useClose } from '../data-provider';
 import { ns } from '../../shared/js/ui/base/localize';
 import { Stack } from '../../shared/js/ui/components/stack';
 import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categories';
