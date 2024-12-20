@@ -67,53 +67,6 @@ export function toggleFlowsDenyList(dashboardFactory) {
 /**
  * @param {DashboardFactory} dashboardFactory
  */
-export function desktopBreakageForm(dashboardFactory) {
-    test('should show HTML breakage form and submit fields', { tag: '@screenshots' }, async ({ page }) => {
-        const dash = await dashboardFactory(page, testDataStates.protectionsOn);
-        await dash.reducedMotion();
-        await dash.addState([testDataStates.protectionsOn]);
-        await dash.showsAlternativeLayout();
-        await dash.clicksWebsiteNotWorking();
-        await dash.screenshot('breakage-form.png', { skipInCI: true });
-        await dash.enterBreakageSubscription('TEST');
-        await dash.selectBreakageCategory(`Video didn’t play or load`);
-        await dash.submitBreakageForm();
-        await dash.screenshot('breakage-form-message.png', { skipInCI: true });
-        await dash.mocks.calledForSubmitBreakageForm({ category: 'videos', description: 'TEST' });
-    });
-    test('toggling protections off from breakage form', async ({ page }) => {
-        const dash = await dashboardFactory(page, testDataStates.protectionsOn);
-        await dash.reducedMotion();
-        await dash.addState([testDataStates.protectionsOn]);
-        await dash.clicksWebsiteNotWorking();
-
-        /** @type {import('../../schema/__generated__/schema.types').EventOrigin} */
-        const eventOrigin = { screen: 'breakageForm' };
-        await dash.toggleProtectionsOff(eventOrigin);
-        await dash.mocks.calledForToggleAllowList('protections-off', eventOrigin);
-    });
-    test('toggling protections back on, from breakage form', { tag: '@screenshots' }, async ({ page }) => {
-        const dash = await dashboardFactory(page, testDataStates.allowlisted);
-        await dash.reducedMotion();
-        await dash.addState([testDataStates.allowlisted]);
-        await dash.clicksWebsiteNotWorking();
-        /** @type {import('../../schema/__generated__/schema.types').EventOrigin} */
-        const eventOrigin = { screen: 'breakageForm' };
-        await dash.screenshot('breakage-form-allowlisted.png', { skipInCI: true });
-        await dash.toggleProtectionsOn(eventOrigin);
-    });
-    test('broken (remote disabled) breakage form', { tag: '@screenshots' }, async ({ page }) => {
-        const dash = await dashboardFactory(page, testDataStates.protectionsOff);
-        await dash.reducedMotion();
-        await dash.addState([testDataStates.protectionsOff]);
-        await dash.clicksWebsiteNotWorking();
-        await dash.screenshot('breakage-form-broken.png', { skipInCI: true });
-    });
-}
-
-/**
- * @param {DashboardFactory} dashboardFactory
- */
 export function settingPermissions(dashboardFactory) {
     test('permissions toggles', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await dashboardFactory(page, testDataStates.permissions);

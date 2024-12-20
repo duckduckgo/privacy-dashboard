@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Jūsų ataskaita padės patobulinti mūsų produktus ir pagerinti kitų naudotojų patirtį.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Tavo pateikta informacija padeda tobulinti „DuckDuckGo“ {newline}visiems!",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Man nepatinka turinys",
@@ -136,6 +136,10 @@
     "title" : "Aprašykite problemą, su kuria susidūrėte (pasirenkama)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
   },
+  "descriptionRequired" : {
+    "title" : "Apibūdinimo tekstas",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
+  },
   "suggestionWhatHappened" : {
     "title" : "Kas nutiko?",
     "note" : "Suggestion to enter a description of what problem the user was experiencing"
@@ -145,7 +149,7 @@
     "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
   },
   "suggestionWhatHappened3" : {
-    "title" : "Ar išjungus privatumo apsaugą problemos nebeliko?",
+    "title" : "Ar padėjo išjungus apsaugos priemones?",
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {

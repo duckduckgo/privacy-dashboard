@@ -21,20 +21,11 @@ function initialStack(features) {
     if (features.initialScreen === 'breakageForm') {
         return ['breakageForm'];
     }
-    if (features.initialScreen === 'promptBreakageForm') {
-        return ['promptBreakageForm'];
-    }
     if (features.initialScreen === 'toggleReport') {
         return ['toggleReport'];
     }
-    if (features.initialScreen === 'choiceBreakageForm') {
-        return ['choiceBreakageForm'];
-    }
-    if (features.initialScreen === 'categoryTypeSelection') {
-        return ['categoryTypeSelection'];
-    }
-    if (features.initialScreen === 'categorySelection') {
-        return ['categorySelection'];
+    if (features.initialScreen === 'breakageFormFinalStep') {
+        return ['breakageForm', 'breakageFormCategorySelection', 'breakageFormFinalStep'];
     }
     return ['primaryScreen'];
 }

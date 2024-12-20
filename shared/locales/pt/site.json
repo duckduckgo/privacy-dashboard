@@ -85,7 +85,7 @@
     "note" : "Call to action for user to click if they are having issues with this web page"
   },
   "websiteNotWorkingPrompt" : {
-    "title" : "O site não está a funcionar?",
+    "title" : "Comunicar um problema neste site",
     "note" : "button label text when we are trying to encourage a user to toggle protections off"
   },
   "websiteNotWorkingCta" : {

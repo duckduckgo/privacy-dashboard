@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "La tua segnalazione contribuirà a migliorare i nostri prodotti e a rendere l'esperienza migliore per gli altri utenti.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "La tua segnalazione aiuta a rendere DuckDuckGo{newline}migliore per tutti.",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Non mi piace il contenuto",
@@ -136,6 +136,10 @@
     "title" : "Descrivi il problema riscontrato (facoltativo)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
   },
+  "descriptionRequired" : {
+    "title" : "Descrizione necessaria",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
+  },
   "suggestionWhatHappened" : {
     "title" : "Cos'è successo?",
     "note" : "Suggestion to enter a description of what problem the user was experiencing"
@@ -145,7 +149,7 @@
     "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
   },
   "suggestionWhatHappened3" : {
-    "title" : "Disattivare le Protezioni della Privacy è stato utile?",
+    "title" : "Disattivare le protezioni è stato utile?",
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {

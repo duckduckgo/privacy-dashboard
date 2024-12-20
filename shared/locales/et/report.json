@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Sinu teade aitab täiustada meie tooteid ja parendada teiste inimeste kasutajakogemust.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Teie aruanne aitab muuta DuckDuckGo{newline}kõigi jaoks paremaks!",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Mulle ei meeldi saidi sisu",
@@ -136,6 +136,10 @@
     "title" : "Kirjelda tekkinud probleemi (valikuline)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
   },
+  "descriptionRequired" : {
+    "title" : "Kirjeldus on vajalik",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
+  },
   "suggestionWhatHappened" : {
     "title" : "Mis juhtus?",
     "note" : "Suggestion to enter a description of what problem the user was experiencing"
@@ -145,7 +149,7 @@
     "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
   },
   "suggestionWhatHappened3" : {
-    "title" : "Kas privaatsuskaitsete väljalülitamine aitas?",
+    "title" : "Kas kaitsefunktsioonide väljalülitamine aitas?",
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {
