@@ -11,16 +11,15 @@ export const BreakageFormContext = createContext({
 /**
  * @param {object} params
  * @param {import("preact").ComponentChild} params.children
- * @param {{ fetch: (msg: import("../../shared/js/browser/common.js").Msg) => Promise<any> | void}} params.model
+ * @param {(msg: import("../../shared/js/browser/common.js").Msg) => Promise<any> | void} params.fetcher
  * @param {import('../../shared/js/ui/platform-features.mjs').InitialScreen} params.screen
  */
-export function BreakageFormProvider({ children, model, screen }) {
+export function BreakageFormProvider({ children, fetcher, screen }) {
     const initial = { status: 'pending' };
     const [state, dispatch] = useReducer((state, action) => action, initial);
     useEffect(() => {
         const msg = new FetchBreakageFormOptions();
-        model
-            .fetch(msg)
+        fetcher(msg)
             ?.then((data) => {
                 const parsed = toggleReportScreenSchema.safeParse(data);
                 if (parsed.success) {
@@ -37,7 +36,7 @@ export function BreakageFormProvider({ children, model, screen }) {
             .catch((e) => {
                 dispatch({ status: 'error', error: e.toString() });
             });
-    }, [model]);
+    }, [fetcher]);
 
     if (state.status === 'ready') {
         return (

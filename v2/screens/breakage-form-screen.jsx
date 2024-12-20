@@ -115,9 +115,7 @@ export function BreakageForm() {
     const { tab } = useData();
     const sendReport = useSendReport();
     const { params, push } = useNav();
-    const { count } = useConnectionCount();
 
-    const connectionId = `connection-${count}`;
     const desktop = platform.name === 'macos' || platform.name === 'windows';
     const extension = platform.name === 'browser';
 
@@ -143,7 +141,7 @@ export function BreakageForm() {
     }
 
     return (
-        <BreakageFormProvider key={connectionId} model={{ fetch: fetcher }} screen={'breakageFormFinalStep'}>
+        <BreakageFormProvider fetcher={fetcher} screen={'breakageFormFinalStep'}>
             <BreakageScreenWrapper pageId="form" className="breakage-screen--form">
                 <div className="padding-x">
                     {/* @ts-ignore */}
