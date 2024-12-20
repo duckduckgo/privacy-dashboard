@@ -496,6 +496,15 @@ export class DashboardPage {
 
     /**
      * @param {string} text
+     */
+    async categoryIsLast(text) {
+        const listItems = await this.page.$$('ul > li');
+        const lastItemText = await listItems[listItems.length - 1].textContent();
+        expect(lastItemText?.trim()).toBe(text);
+    }
+
+    /**
+     * @param {string} text
      * @param {string} category
      * @param {{ telemetry?: boolean }} [options]
      */
