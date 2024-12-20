@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Vaše oznámenie pomôže zlepšiť prehliadač a zlepšiť skúsenosti ostatných používateľov.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Tvoje nahlásenie pomáha zlepšiť DuckDuckGo{newline}pre všetkých!",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Nevhodný obsah",
@@ -136,6 +136,10 @@
     "title" : "Opíšte problém, s ktorým ste sa stretli, a ktorých rozšírení sa týkal.",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
   },
+  "descriptionRequired" : {
+    "title" : "Požadovaný popis",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
+  },
   "suggestionWhatHappened" : {
     "title" : "Čo sa stalo?",
     "note" : "Suggestion to enter a description of what problem the user was experiencing"
@@ -145,7 +149,7 @@
     "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
   },
   "suggestionWhatHappened3" : {
-    "title" : "Pomohlo vypnutie ochrany súkromia?",
+    "title" : "Pomohlo vypnutie ochranných prvkov?",
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {

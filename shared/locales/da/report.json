@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Din rapport vil være med til at forbedre vores produkter og gøre oplevelsen bedre for andre brugere.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Din rapport hjælper med at gøre DuckDuckGo{newline}bedre for alle!",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Jeg kan ikke lide indholdet",
@@ -136,6 +136,10 @@
     "title" : "Beskriv det problem, du oplevede (valgfrit)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
   },
+  "descriptionRequired" : {
+    "title" : "Beskrivelse skal udfyldes",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
+  },
   "suggestionWhatHappened" : {
     "title" : "Hvad skete der?",
     "note" : "Suggestion to enter a description of what problem the user was experiencing"
@@ -145,7 +149,7 @@
     "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
   },
   "suggestionWhatHappened3" : {
-    "title" : "Hjalp det at slå beskyttelse af personlige oplysninger fra?",
+    "title" : "Hjalp det at slå beskyttelsen fra?",
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {

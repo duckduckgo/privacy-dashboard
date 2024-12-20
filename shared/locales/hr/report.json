@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Tvoj će izvještaj pomoći poboljšati preglednik, kao i doživljaj pretraživanja za druge posjetitelje.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Tvoje izvješće pomaže da DuckDuckGo{newline}bude bolji za sve!",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Ne sviđa mi se sadržaj",
@@ -135,6 +135,10 @@
   "otherOptional" : {
     "title" : "Opišite problem na koji si naišao (neobavezno)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "descriptionRequired" : {
+    "title" : "Opis je obavezan",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
   },
   "suggestionWhatHappened" : {
     "title" : "Šta se dogodilo?",
