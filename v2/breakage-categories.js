@@ -33,7 +33,7 @@ export function createBreakageFeaturesFrom(platformFeatures) {
             };
 
             let list = Object.entries(items);
-            
+
             if (platformFeatures.randomisedCategories) {
                 list = shuffle(list);
             }
