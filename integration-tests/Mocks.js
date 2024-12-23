@@ -390,7 +390,7 @@ export class Mocks {
             ]);
             return;
         }
-        
+
         throw new Error('unreachable. mockCalledForOpenURLInNewTab must be handled');
     }
 
