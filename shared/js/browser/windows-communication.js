@@ -67,6 +67,9 @@ let protections;
 let isPendingUpdates;
 let parentEntity;
 
+/** @type {import('../../../schema/__generated__/schema.types').MaliciousSiteStatus | undefined} */
+let maliciousSiteStatus;
+
 /** @type {string | undefined} */
 let locale;
 
@@ -74,6 +77,7 @@ const combineSources = () => ({
     tab: Object.assign(
         {},
         trackerBlockingData || {},
+        { maliciousSiteStatus: maliciousSiteStatus ?? null },
         {
             isPendingUpdates,
             parentEntity,
@@ -88,7 +92,8 @@ const resolveInitialRender = function () {
     const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
     const isIsProtectedSet = typeof protections !== 'undefined';
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
-    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== undefined;
+    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
         return;
     }
 
@@ -117,6 +122,7 @@ function handleViewModelUpdate(viewModel) {
     certificateData = viewModel.certificates || [];
     protections = viewModel.protections;
     locale = viewModel.localeSettings?.locale;
+    maliciousSiteStatus = viewModel.maliciousSiteStatus;
 
     trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData);
     trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;

@@ -82,7 +82,7 @@ export function createPlatformFeatures(platform) {
         initialScreen: screen,
         opener,
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
-        supportsMaliciousSiteWarning: platform.name === 'macos' || platform.name === 'ios',
+        supportsMaliciousSiteWarning: platform.name === 'macos' || platform.name === 'ios' || platform.name === 'windows',
         includeToggleOnBreakageForm,
         breakageScreen,
         randomisedCategories,
