@@ -299,7 +299,8 @@ export const windowsViewModelSchema = z.object({
     certificates: z.array(z.unknown()).optional(),
     cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional(),
     isInvalidCert: z.boolean().optional(),
-    localeSettings: localeSettingsSchema.optional()
+    localeSettings: localeSettingsSchema.optional(),
+    maliciousSiteStatus: maliciousSiteStatusSchema.optional()
 });
 
 export const toggleReportScreenSchema = z.object({
