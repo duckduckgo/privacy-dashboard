@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Raporunuz ürünlerimizi geliştirmemize ve diğer kullanıcılar için daha iyi bir deneyim sunmamıza yardımcı olacaktır.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Bu gibi bildirimler DuckDuckGo'yu herkes için{newline}daha iyi hale getirmeye yardımcı oluyor!",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "İçeriği beğenmedim",
@@ -136,6 +136,10 @@
     "title" : "Lütfen karşılaştığınız sorunu açıklayın (isteğe bağlı)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
   },
+  "descriptionRequired" : {
+    "title" : "Açıklama Gerekli",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
+  },
   "suggestionWhatHappened" : {
     "title" : "Ne oldu?",
     "note" : "Suggestion to enter a description of what problem the user was experiencing"
@@ -145,7 +149,7 @@
     "note" : "Suggestion to enter a description of what the user expected to happen, but didn't"
   },
   "suggestionWhatHappened3" : {
-    "title" : "Gizlilik Korumalarını kapatmak yardımcı oldu mu?",
+    "title" : "Korumaları kapatmak yardımcı oldu mu?",
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {

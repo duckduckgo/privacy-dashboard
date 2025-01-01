@@ -31,10 +31,19 @@ export function createBreakageFeaturesFrom(platformFeatures) {
                 ...defaultCategories(),
                 ...additional,
             };
-            const list = Object.entries(items);
+
+            let list = Object.entries(items);
+
             if (platformFeatures.randomisedCategories) {
-                return shuffle(list);
+                list = shuffle(list);
             }
+
+            // Move "other" category to end of list
+            const otherItemIndex = list.findIndex(([key]) => key === 'other');
+            if (otherItemIndex !== -1) {
+                list.push(list.splice(otherItemIndex, 1)[0]);
+            }
+
             return list;
         },
     };
