@@ -11,11 +11,17 @@
  * @module common
  */
 export const getContentHeight = () => {
-    const $openSubviewV2 = window.document.querySelector(
-        '#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child'
-    );
+    const $openSubviewV2 = getTopSubview();
 
     return $openSubviewV2?.scrollHeight;
+};
+
+/**
+ *
+ * @returns Element|null
+ */
+export const getTopSubview = () => {
+    return window.document.querySelector('#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child');
 };
 
 export const getContentHeightForScreenShot = () => {
@@ -25,8 +31,9 @@ export const getContentHeightForScreenShot = () => {
 
 /**
  * @param {(height: number) => void} callback
+ * @param {(height: number, subview: Element|null) => number} heightTransformer
  */
-export function setupMutationObserver(callback) {
+export function setupMutationObserver(callback, heightTransformer = (h) => h) {
     const bufferHeight = 200;
     let lastHeight;
     const mutationObserver = new MutationObserver(() => {
@@ -34,11 +41,13 @@ export function setupMutationObserver(callback) {
 
         if (!contentHeight) return;
 
-        const height = Math.min(window.screen.height - bufferHeight, contentHeight);
+        const height = Math.min(window.screen.height - bufferHeight, heightTransformer(contentHeight, getTopSubview()));
 
         // Only update if the height has changed since last run
         if (lastHeight === height) return;
         lastHeight = height;
+
+        console.log('HEIGHT', height);
 
         callback(height);
     });

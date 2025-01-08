@@ -567,9 +567,17 @@ export function setupShared() {
 export function setup() {
     setupColorScheme();
     setupShared();
-    setupMutationObserver((height) => {
-        privacyDashboardSetSize({ height });
-    });
+    setupMutationObserver(
+        (height) => {
+            privacyDashboardSetSize({ height });
+        },
+        (height, subview) => {
+            if (subview?.classList.contains('breakage-screen--form')) {
+                return Math.min(height, 700);
+            }
+            return height;
+        }
+    );
 }
 
 /**
