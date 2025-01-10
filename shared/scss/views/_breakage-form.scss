@@ -384,13 +384,7 @@
 }
 
 .disclosure-message__summary {
-    align-items: center;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    min-height: 48px;
-
-    padding-inline: 16px;
     position: sticky;
     top: 0;
 
@@ -398,6 +392,14 @@
     &::-webkit-details-marker {
         display: none;
     }
+}
+
+.disclosure-message__summary-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    min-height: 48px;
+    padding-inline: 16px;
 }
 
 .disclosure-message__control {

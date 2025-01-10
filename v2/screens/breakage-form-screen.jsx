@@ -330,16 +330,18 @@ function DetailsDisclosureMessage() {
     return (
         <details className="disclosure-message" ref={detailsRef} onToggle={toggleHandler}>
             <summary className="disclosure-message__summary">
-                <span className="disclosure-message__title">{ns.toggleReport('siteNotWorkingInfoReveal.title')}</span>
-                <div className="disclosure-message__control">
-                    <svg className="control__chevron" aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            fill="currentColor"
-                            fill-rule="evenodd"
-                            d="M3.293 7.793a1 1 0 0 0 0 1.414l8 8a1 1 0 0 0 1.414 0l8-8a1 1 0 0 0-1.414-1.414L12 15.086 4.707 7.793a1 1 0 0 0-1.414 0"
-                            clip-rule="evenodd"
-                        />
-                    </svg>
+                <div className="disclosure-message__summary-container">
+                    <span className="disclosure-message__title">{ns.toggleReport('siteNotWorkingInfoReveal.title')}</span>
+                    <div className="disclosure-message__control">
+                        <svg className="control__chevron" aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                fill="currentColor"
+                                fill-rule="evenodd"
+                                d="M3.293 7.793a1 1 0 0 0 0 1.414l8 8a1 1 0 0 0 1.414 0l8-8a1 1 0 0 0-1.414-1.414L12 15.086 4.707 7.793a1 1 0 0 0-1.414 0"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </summary>
             <div className="disclosure-message__content">
