@@ -1,0 +1,37 @@
+name: Delete manually created release
+
+on:
+    release:
+        types:
+            - created
+
+jobs:
+    validate-release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out the repository
+              uses: actions/checkout@v3
+
+            - name: Delete Release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  echo "Deleting release: ${{ github.event.release.tag_name }}"
+                  gh release delete ${{ github.event.release.tag_name }} --yes
+
+            - name: Delete the release and tag
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  echo "Deleting tag: ${{ github.event.release.tag_name }}"
+                  git tag -d ${{ github.event.release.tag_name }}
+                  git push origin --delete ${{ github.event.release.tag_name }}
+
+            - name: Why was this release deleted?
+              run: |
+                  cat <<EOF
+                  Our release process commits assets to the 'releases' branch - and that has to occur before the 
+                  git tag is created. Because of that fact, we need to prevent anyone from creating a release in the GitHub UI.
+
+                  Instead, use the release workflow.
+                  EOF

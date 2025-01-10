@@ -1,2 +1,3 @@
-- Copy review: Site may be malicious (#266)
-- Node 22.11 (#276)
+- Malicious website protection - iOS support (#252)
+- ci: add release protection (#283)
+- Disabling experimental require module on node (#277)

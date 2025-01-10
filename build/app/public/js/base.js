@@ -14005,7 +14005,7 @@
     const isIsProtectedSet = typeof protections !== "undefined";
     const isTrackerBlockingDataSet = typeof trackerBlockingData === "object";
     const isLocaleSet = typeof locale === "string";
-    const isMaliciousSiteSet = isIOS() || maliciousSiteStatus && maliciousSiteStatus.kind !== void 0;
+    const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== void 0;
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
       return;
     }
@@ -15015,7 +15015,7 @@
       initialScreen: screen,
       opener,
       supportsInvalidCertsImplicitly: platform2.name !== "browser" && platform2.name !== "windows",
-      supportsMaliciousSiteWarning: platform2.name === "macos",
+      supportsMaliciousSiteWarning: platform2.name === "macos" || platform2.name === "ios",
       includeToggleOnBreakageForm,
       breakageScreen,
       randomisedCategories,
@@ -15205,7 +15205,7 @@
       if (!this.tab)
         return;
       const nextState = (() => {
-        if (this.features.supportsMaliciousSiteWarning && this.tab.maliciousSiteStatus) {
+        if (this.features.supportsMaliciousSiteWarning && typeof this.tab.maliciousSiteStatus === "object") {
           const { kind } = this.tab.maliciousSiteStatus;
           if (kind === "phishing" || kind === "malware") {
             return kind;
