@@ -4,6 +4,18 @@
     &--choice {
         padding-bottom: 16px;
     }
+
+    .key-insight {
+        .environment--android &,
+        .environment--ios & {
+            padding-top: 24px;
+        }
+
+        .environment--macos &,
+        .environment--windows & {
+            padding-top: 32px;
+        }
+    }
 }
 
 .breakage-form__close-container {
