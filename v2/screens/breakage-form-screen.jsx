@@ -333,7 +333,13 @@ function DetailsDisclosureMessage() {
                 <div className="disclosure-message__summary-container">
                     <span className="disclosure-message__title">{ns.toggleReport('siteNotWorkingInfoReveal.title')}</span>
                     <div className="disclosure-message__control">
-                        <svg className="control__chevron" aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                            className="control__chevron"
+                            aria-hidden="true"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
                             <path
                                 fill="currentColor"
                                 fill-rule="evenodd"
