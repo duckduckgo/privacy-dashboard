@@ -28,14 +28,6 @@
             margin-bottom: 6px;
         }
     }
-
-    .key-insight--main {
-        .environment--macos &,
-        .environment--windows &,
-        .environment--browser & {
-            padding-bottom: 0;
-        }
-    }
 }
 
 .breakage-form__close-container {
