@@ -320,7 +320,7 @@ function DetailsDisclosureMessage() {
             detailsElement.style.height = `${height}px`;
             detailsElement.dataset.open = `${detailsOpen}`;
         }
-    }, []);
+    }, [detailsOpen]);
 
     const toggleHandler = (e) => {
         const detailsElement = /** @type HTMLDetailsElement */ (e.target);
