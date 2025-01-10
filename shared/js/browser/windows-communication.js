@@ -412,17 +412,9 @@ export function setup() {
     globalThis.windowsInteropAddEventListener('message', (event) => {
         if (event.data.Name) handleIncomingMessage(event.data);
     });
-    setupMutationObserver(
-        (height) => {
-            SetSize({ height });
-        },
-        (height, subview) => {
-            if (subview?.classList.contains('breakage-screen--form')) {
-                return Math.min(height, 700);
-            }
-            return height;
-        }
-    );
+    setupMutationObserver((height) => {
+        SetSize({ height });
+    });
     setupGlobalOpenerListener((href) => {
         OpenInNewTab({
             url: href,

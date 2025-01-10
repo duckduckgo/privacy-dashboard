@@ -10,18 +10,26 @@
 /**
  * @module common
  */
-export const getContentHeight = () => {
-    const $openSubviewV2 = getTopSubview();
-
-    return $openSubviewV2?.scrollHeight;
-};
 
 /**
+ * Returns content height of nav view based on topmost subview.
+ * If the topmost subview contains a data-max-view-height attribute, it caps the height at that value.
  *
- * @returns Element|null
+ * @returns {number|null|undefined}
  */
-export const getTopSubview = () => {
-    return window.document.querySelector('#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child');
+export const getContentHeight = () => {
+    const $openSubviewV2 = /** @type HTMLElement */ (
+        window.document.querySelector('#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child')
+    );
+
+    const maxViewHeight = Number($openSubviewV2?.dataset.maxViewHeight);
+    const { scrollHeight } = $openSubviewV2;
+
+    if (!maxViewHeight) {
+        return scrollHeight;
+    }
+
+    return Math.min(maxViewHeight, scrollHeight);
 };
 
 export const getContentHeightForScreenShot = () => {
@@ -31,23 +39,19 @@ export const getContentHeightForScreenShot = () => {
 
 /**
  * @param {(height: number) => void} callback
- * @param {(height: number, subview: Element|null) => number} heightTransformer
  */
-export function setupMutationObserver(callback, heightTransformer = (h) => h) {
+export function setupMutationObserver(callback) {
     const bufferHeight = 200;
     let lastHeight;
     const mutationObserver = new MutationObserver(() => {
         const contentHeight = getContentHeight();
-
         if (!contentHeight) return;
 
-        const height = Math.min(window.screen.height - bufferHeight, heightTransformer(contentHeight, getTopSubview()));
+        const height = Math.min(window.screen.height - bufferHeight, contentHeight);
 
         // Only update if the height has changed since last run
         if (lastHeight === height) return;
         lastHeight = height;
-
-        console.log('HEIGHT', height);
 
         callback(height);
     });
