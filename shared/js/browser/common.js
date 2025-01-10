@@ -22,6 +22,10 @@ export const getContentHeight = () => {
         window.document.querySelector('#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child')
     );
 
+    if (!$openSubviewV2) {
+        return null;
+    }
+
     const { scrollHeight, dataset } = $openSubviewV2;
     const maxViewHeight = Number(dataset?.maxViewHeight);
 
