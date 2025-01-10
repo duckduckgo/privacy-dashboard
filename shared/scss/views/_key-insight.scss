@@ -25,13 +25,29 @@
     height: 96px;
     background-position: center center;
     background-repeat: no-repeat;
-    margin-bottom: 8px;
+    margin-bottom: 24px;
     background-size: contain;
 
-    .environment--browser &,
-    .environment--macos &,
+    .environment--macos & {
+        margin-bottom: 20px;
+    }
     .environment--windows & {
-        margin-bottom: 6px;
+        margin-bottom: 20px;
+    }
+    .environment--browser & {
+        margin-bottom: 12px;
+    }
+}
+
+.key-insight--main {
+    .environment--macos & {
+        padding-bottom: 20px;
+    }
+    .environment--windows & {
+        padding-bottom: 20px;
+    }
+    .environment--browser & {
+        padding-bottom: 12px;
     }
 }
 

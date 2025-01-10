@@ -6,6 +6,8 @@
     }
 
     .key-insight {
+        margin-bottom: 8px;
+
         .environment--android &,
         .environment--ios & {
             padding-top: 24px;
@@ -14,6 +16,24 @@
         .environment--macos &,
         .environment--windows & {
             padding-top: 32px;
+        }
+    }
+
+    .key-insight__icon {
+        margin-bottom: 8px;
+
+        .environment--browser &,
+        .environment--macos &,
+        .environment--windows & {
+            margin-bottom: 6px;
+        }
+    }
+
+    .key-insight--main {
+        .environment--macos &,
+        .environment--windows &,
+        .environment--browser & {
+            padding-bottom: 0;
         }
     }
 }
