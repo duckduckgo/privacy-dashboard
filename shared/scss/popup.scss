@@ -21,9 +21,10 @@ body {
     --height: 100vh;
     --bg: #{$color--dark-platinum};
     --page-bg: #{$white};
-    --page-outer-bg: #{$color--dark-platinum};
+    --permissions-bg: #{$color--dark-platinum};
     --color-text-primary: rgba(0, 0, 0, 0.84);
     --color-text-secondary: rgba(0, 0, 0, 0.6);
+    --color-button-primary: #fff;
     --color-accent-blue: #3969ef;
     --color-accent-blue-active: #1e42a4;
     --color-lines-light: rgba(0, 0, 0, 0.12);
@@ -58,6 +59,10 @@ body {
         --height: auto;
     }
 
+    &.environment--macos {
+        --bg: #fff;
+    }
+
     &.environment--browser {
         --height: 600px;
     }
@@ -85,9 +90,10 @@ body {
         --text: #{$color--off-white};
         --page-bg: #{$slate};
         --bg: #{$slate-blue};
-        --page-outer-bg: #{$slate-blue};
+        --permissions-bg: #{$slate-blue};
         --color-text-primary: rgba(255, 255, 255, 0.84);
         --color-text-secondary: rgba(255, 255, 255, 0.6);
+        --color-button-primary: rgba(0, 0, 0, 0.84);
         --color-accent-blue: #7295f6;
         --color-accent-blue-active: #8fabf9;
         --color-lines-light: rgba(255, 255, 255, 0.18);
@@ -112,6 +118,10 @@ body {
         &.environment--ios {
             --bg: #222222;
             --page-bg: #222222;
+        }
+
+        &.environment--macos {
+            --bg: #{$slate};
         }
     }
 
@@ -164,6 +174,7 @@ body {
 @import 'views/note';
 @import 'views/fire-button';
 @import 'views/protection-header';
+@import 'views/textarea';
 
 /* Generic menu list styling */
 @include default_list();

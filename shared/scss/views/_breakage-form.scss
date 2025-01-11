@@ -1,16 +1,32 @@
-.breakage-form {
-    .environment--browser & {
-        padding-bottom: 0;
+.breakage-screen {
+    max-height: 100vh;
+
+    &--choice {
+        padding-bottom: 16px;
     }
-}
 
-.breakage-form__content {
-    z-index: 1;
-    position: relative;
-    text-align: center;
+    .key-insight {
+        margin-bottom: 8px;
 
-    [data-state='sent'] & {
-        display: none;
+        .environment--android &,
+        .environment--ios & {
+            padding-top: 24px;
+        }
+
+        .environment--macos &,
+        .environment--windows & {
+            padding-top: 32px;
+        }
+    }
+
+    .key-insight__icon {
+        margin-bottom: 8px;
+
+        .environment--browser &,
+        .environment--macos &,
+        .environment--windows & {
+            margin-bottom: 6px;
+        }
     }
 }
 
@@ -27,9 +43,6 @@
 }
 
 .breakage-form__element {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
     opacity: 1;
     transition: all 0.2s ease-in-out;
 
@@ -56,12 +69,6 @@
     text-align: left;
 }
 
-.form__group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
 .form__select {
     width: 100%;
 }
@@ -82,103 +89,236 @@
     }
 }
 
-.form__textarea {
-    resize: none;
-    width: 100%;
-    height: 88px;
-    display: block;
-    box-sizing: border-box;
-    padding: var(--size-unit-half) var(--size-unit);
-    border: 1px solid var(--color-lines-light);
-    border-radius: 4px;
-    font-size: 13px;
-    line-height: 16px;
-
-    &::placeholder {
-        color: rgba(0, 0, 0, 0.6);
-    }
+.form__error-message {
+    color: #eb102d;
+    font-size: 12px;
+    line-height: calc(16 / 12);
+    padding: 0 16px;
 
     .body--theme-dark & {
-        &::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        background-color: $dark-mode-white;
-        border-color: var(--color-lines-light);
-    }
-
-    .environment--macos & {
-        height: 102px;
-    }
-
-    .environment--windows & {
-        height: 102px;
-        line-height: 20px;
+        color: #ff545a;
     }
 }
 
-.form__submit {
-    text-align: center;
-    padding: 10px 12px;
-    cursor: pointer;
-    display: block;
-    text-decoration: none;
-    width: 100%;
-
-    box-shadow: var(--btn-accent-shadow);
-    border-radius: var(--btn-accent-border-radius);
-    border: var(--btn-accent-border);
-    color: var(--btn-accent-color);
-    background: var(--btn-accent-bg);
-
-    &:hover {
-        background: var(--btn-accent-bg-hover);
-    }
-    &:active {
-        background: var(--btn-accent-bg-active);
-    }
-
-    /* https://www.figma.com/file/DBZiXJRgTTJTuBeWAPyE5h/Desktop-Components?node-id=9113%3A130956&t=de8DMDVt8GbRBQub-0 */
-    .environment--windows & {
-        /* Windows/Label */
-        box-shadow: none;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 19px;
-        border-radius: 4px;
-
-        &:focus {
-            /* todo(Shane): where does this live? */
-            box-shadow: 0px 0px 0px 1px #ffffff, 0px 0px 0px 3px #3969ef;
-        }
-
-        &:active {
-            box-shadow: none;
-        }
-    }
-}
-
-.breakage-form__footer {
-    padding-bottom: 24px;
-    padding-top: 24px;
-    text-align: center;
+.form__description-prompt {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: calc(16 / 12);
+    list-style: none;
 
     .body--theme-dark & {
         color: rgba(255, 255, 255, 0.5);
     }
 
-    .environment--browser & {
-        margin-top: auto;
+    li {
+        display: inline;
     }
 
-    [data-state='sent'] & {
-        display: none;
+    li::after {
+        content: ' ';
     }
 }
 
+/* TODO: Move button to shared component, primary variant */
+.form__submit {
+    --submit-button-background: var(--color-accent-blue);
+    --submit-button-border-radius: 8px;
+    --submit-button-border: none;
+    --submit-button-box-shadow: none;
+    --submit-button-color: var(--color-button-primary);
+    --submit-button-font-size: 15px;
+    --submit-button-font-weight: 600;
+    --submit-button-height: 50px;
+    --submit-button-line-height: calc(20 / 15);
+    --submit-button-opacity: 1;
+    --submit-button-padding: 0 24px;
+
+    background: var(--submit-button-background);
+    border: var(--submit-button-border);
+    border-radius: var(--submit-button-border-radius);
+    box-shadow: var(--submit-button-box-shadow);
+    color: var(--submit-button-color);
+    font-size: var(--submit-button-font-size);
+    font-weight: var(--submit-button-font-weight);
+    height: var(--submit-button-height);
+    line-height: var(--submit-button-line-height);
+    opacity: var(--submit-button-opacity);
+    padding: var(--submit-button-padding);
+
+    cursor: pointer;
+    display: block;
+    font-family: $font__face--default;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+
+    &:hover {
+        --submit-button-background: var(--color-blue-60);
+    }
+
+    &:active {
+        --submit-button-background: var(--color-blue-70);
+    }
+
+    &:disabled {
+        --submit-button-background: rgba(0, 0, 0, 0.06);
+        --submit-button-color: rgba(0, 0, 0, 0.36);
+        cursor: default;
+    }
+
+    .body--theme-dark & {
+        &:hover {
+            --submit-button-background: var(--color-blue-40);
+        }
+
+        &:active {
+            --submit-button-background: var(--color-blue-50);
+        }
+
+        &:disabled {
+            --submit-button-background: rgba(255, 255, 255, 0.18);
+            --submit-button-color: rgba(255, 255, 255, 0.36);
+        }
+    }
+
+    /* Platform-specific button styles */
+    .environment--android & {
+        --submit-button-font-size: 15px;
+        --submit-button-font-weight: 700;
+        --submit-button-line-height: calc(20 / 15);
+        --submit-button-height: 48px;
+    }
+
+    .environment--browser & {
+        --submit-button-font-size: 16px;
+        --submit-button-font-weight: 700;
+        --submit-button-line-height: normal;
+        --submit-button-height: 44px;
+        --submit-button-padding: 0 20px;
+    }
+
+    .environment--ios & {
+        --submit-button-font-size: 15px;
+        --submit-button-font-weight: 600;
+        --submit-button-line-height: calc(20 / 15);
+        --submit-button-height: 50px;
+    }
+
+    .environment--macos & {
+        --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
+        --submit-button-border-radius: 6px;
+        --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset,
+            0px 0px 0px 0.5px rgba(0, 122, 255, 0.05), 0px 0px 1px 0px rgba(0, 122, 255, 0.05), 0px 1px 1px 0px rgba(0, 122, 255, 0.1);
+        --submit-button-color: #fff;
+        --submit-button-font-size: 13px;
+        --submit-button-font-weight: 400;
+        --submit-button-height: 32px;
+        --submit-button-line-height: 1;
+        --submit-button-padding: 0 16px;
+
+        &:focus {
+            --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset,
+                0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #1743d1;
+            --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset,
+                0px 0px 0px 0.5px rgba(0, 122, 255, 0.05), 0px 0px 1px 0px rgba(0, 122, 255, 0.05), 0px 1px 1px 0px rgba(0, 122, 255, 0.1);
+            --submit-button-color: rgba(255, 255, 255, 0.8);
+        }
+
+        &:disabled {
+            --submit-button-background: #fff;
+            --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset,
+                0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+            --submit-button-color: rgba(0, 0, 0, 0.84);
+            --submit-button-opacity: 0.4;
+        }
+
+        @at-root .body--theme-dark#{&} {
+            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
+            --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset,
+                0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+
+            &:focus {
+                --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset,
+                    0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+            }
+
+            &:active {
+                --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #3259c9;
+                --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset,
+                    0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
+                    0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+                --submit-button-color: rgba(255, 255, 255, 0.8);
+            }
+
+            &:disabled {
+                --submit-button-background: rgba(255, 255, 255, 0.28);
+                --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset,
+                    0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
+                    0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+                --submit-button-color: rgba(255, 255, 255, 0.84);
+            }
+        }
+    }
+
+    .environment--windows & {
+        --submit-button-border-radius: 6px;
+        --submit-button-font-size: 14px;
+        --submit-button-font-weight: 400;
+        --submit-button-line-height: normal;
+        --submit-button-height: 40px;
+        --submit-button-padding: 0 16px;
+
+        &:focus {
+            --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--color-blue-50);
+        }
+
+        &:active {
+            --submit-button-box-shadow: none;
+        }
+
+        &:disabled {
+            --submit-button-background: rgba(0, 0, 0, 0.36);
+            --submit-button-color: rgba(255, 255, 255, 0.4);
+        }
+
+        @at-root .body--theme-dark#{&} {
+            --submit-button-background: var(--color-blue-20);
+
+            &:hover {
+                --submit-button-background: var(--color-blue-30);
+            }
+
+            &:focus {
+                --submit-button-box-shadow: 0px 0px 0px 1px #0b2059, 0px 0px 0px 3px #fff;
+            }
+
+            &:active {
+                --submit-button-background: var(--color-blue-40);
+                --submit-button-box-shadow: none;
+            }
+
+            &:disabled {
+                --submit-button-background: rgba(255, 255, 255, 0.36);
+                --submit-button-color: rgba(0, 0, 0, 0.84);
+            }
+        }
+    }
+}
+
+.breakage-form__footer {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--page-bg);
+    margin-inline: -16px;
+    padding: 16px;
+    margin-top: -16px;
+}
+
 .breakage-form__inner {
-    height: calc(100% - var(--nav-height));
     display: flex;
     flex-direction: column;
 }
@@ -224,5 +364,114 @@
     }
 }
 
-/* Android-specific styles */
-@import './breakage-form-android';
+/* Disclosure Message */
+
+.disclosure-message {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: height 300ms ease-in-out;
+
+    .body--theme-dark & {
+        border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .control__text--open {
+        display: none;
+    }
+
+    &[open] {
+        .control__text--open {
+            display: inline;
+        }
+
+        .control__text--closed {
+            display: none;
+        }
+
+        .control__chevron {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.disclosure-message__summary {
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+
+    &::marker,
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+.disclosure-message__summary-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    min-height: 48px;
+    padding-inline: 16px;
+}
+
+.disclosure-message__control {
+    align-items: center;
+    color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    gap: 4px;
+
+    .body--theme-dark & {
+        color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+.control__text {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: calc(20 / 14);
+}
+
+.control__chevron {
+    height: 18px;
+    width: 18px;
+}
+
+.disclosure-message__content {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 13px;
+    line-height: calc(18 / 13);
+
+    overflow-y: auto;
+    padding-inline: 16px;
+    padding-block: 0 16px;
+
+    .body--theme-dark & {
+        color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+.disclosure-message__title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: calc(20 / 14);
+}
+
+.success__container {
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px 24px;
+}
+
+.success__icon {
+    background: url('../../img/refresh-assets/Thanks-Heart-128.svg') no-repeat;
+    height: 106px;
+    width: 128px;
+}
+
+.success__message {
+    white-space: pre-line;
+}

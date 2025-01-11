@@ -19,20 +19,20 @@ export function createPlatformFeatures(platform) {
     /** @type {Platform["name"][]} */
     const desktop = ['windows', 'macos', 'browser'];
 
-    let includeToggleOnBreakageForm = true;
+    const includeToggleOnBreakageForm = true;
 
     /** @type {InitialScreen} */
     let screen = 'primaryScreen';
     const url = new URL(window.location.href);
 
+    // prettier-ignore
     const acceptedScreenParam = [
         'breakageForm',
-        'toggleReport',
-        'choiceBreakageForm',
-        'categoryTypeSelection',
-        'categorySelection',
-        'promptBreakageForm',
+        'breakageFormCategorySelection',
+        'breakageFormFinalStep',
+        'toggleReport'
     ];
+
     if (url.searchParams.has('screen')) {
         const param = url.searchParams.get('screen');
         if (typeof param === 'string' && acceptedScreenParam.includes(/** @type {string} */ (param))) {
@@ -40,41 +40,15 @@ export function createPlatformFeatures(platform) {
         }
     }
 
-    if (screen === 'promptBreakageForm') {
-        includeToggleOnBreakageForm = false;
-    }
-
     /** @type {'dashboard' | 'menu'} */
-    let opener = 'menu';
-    if (url.searchParams.get('opener') === 'dashboard') {
-        opener = 'dashboard';
-    }
-
-    /** @type {InitialScreen} */
-    let breakageScreen = 'breakageForm';
-    if (url.searchParams.get('breakageScreen') === 'categorySelection') {
-        breakageScreen = 'categorySelection';
-    }
-    if (url.searchParams.get('breakageScreen') === 'categoryTypeSelection') {
-        breakageScreen = 'categoryTypeSelection';
+    let opener = 'dashboard';
+    if (url.searchParams.get('opener') === 'menu') {
+        opener = 'menu';
     }
 
     // allow randomization to be disabled in a URL param
     let randomisedCategories = true;
     if (url.searchParams.get('randomisedCategories') === 'false') randomisedCategories = false;
-
-    // which kind of select element should the breakage form use?
-    /** @type {"default" | "material-web-dialog"} */
-    let breakageFormCategorySelect = 'default';
-    if (platform.name === 'android' && typeof CSSLayerBlockRule === 'function') {
-        breakageFormCategorySelect = 'material-web-dialog';
-    }
-    if (url.searchParams.get('breakageFormCategorySelect') === 'material-web-dialog') {
-        breakageFormCategorySelect = 'material-web-dialog';
-    }
-    if (url.searchParams.get('breakageFormCategorySelect') === 'default') {
-        breakageFormCategorySelect = 'default';
-    }
 
     return new PlatformFeatures({
         spinnerFollowingProtectionsToggle: platform.name !== 'android' && platform.name !== 'windows',
@@ -84,9 +58,7 @@ export function createPlatformFeatures(platform) {
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
         supportsMaliciousSiteWarning: platform.name === 'macos' || platform.name === 'ios',
         includeToggleOnBreakageForm,
-        breakageScreen,
         randomisedCategories,
-        breakageFormCategorySelect,
     });
 }
 
@@ -103,10 +75,8 @@ export class PlatformFeatures {
      * @param {'dashboard' | 'menu'} params.opener
      * @param {boolean} params.supportsInvalidCertsImplicitly
      * @param {boolean} params.includeToggleOnBreakageForm
-     * @param {InitialScreen} params.breakageScreen
      * @param {boolean} params.supportsMaliciousSiteWarning
      * @param {boolean} params.randomisedCategories
-     * @param {"default" | "material-web-dialog"} params.breakageFormCategorySelect
      */
     constructor(params) {
         /**
@@ -145,19 +115,10 @@ export class PlatformFeatures {
          */
         this.supportsMaliciousSiteWarning = params.supportsMaliciousSiteWarning;
         /**
-         * @type {import("../../../schema/__generated__/schema.types").EventOrigin['screen']}
-         */
-        this.breakageScreen = params.breakageScreen;
-        /**
          * Whether or to randomize the categories in the breakage form
          * @type {boolean}
          */
         this.randomisedCategories = params.randomisedCategories;
-        /**
-         * Whether we should use the material web dialog for the breakage form
-         * @type {"default" | "material-web-dialog"}
-         */
-        this.breakageFormCategorySelect = params.breakageFormCategorySelect;
     }
 }
 

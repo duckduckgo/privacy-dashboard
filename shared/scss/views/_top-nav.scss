@@ -5,7 +5,7 @@ body {
     &.environment--browser,
     &.environment--windows,
     &.environment--example {
-        --nav-height: var(--size-unit-double);
+        --nav-height: 48px;
     }
 }
 
@@ -25,7 +25,7 @@ body {
 .top-nav__back {
     position: absolute;
     padding: var(--size-unit-half); // <-- this padding ids for creating a larger tap area
-    left: var(--size-unit-half);
+    left: var(--size-unit);
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -57,20 +57,13 @@ body {
     .environment--browser &,
     .environment--windows &,
     .environment--example & {
+        align-items: center;
         border-radius: 0;
         bottom: 0;
+        display: flex;
+        height: var(--nav-height);
         padding: 0;
-        height: 32px;
-        width: 32px;
-
-        // this is for visually aligning the arrow to the bottom of the container
-        .icon {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%) translateY(100%);
-            width: 15px;
-            height: 15px;
-        }
+        width: var(--nav-height);
     }
 }
 
@@ -96,12 +89,6 @@ body {
         &:active {
             opacity: 0.5;
         }
-    }
-
-    .environment--macos & {
-        height: auto;
-        line-height: normal;
-        bottom: 0;
     }
 }
 

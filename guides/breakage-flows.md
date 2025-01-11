@@ -4,39 +4,27 @@ title: Breakage flows
 
 # Breakage flows
 
-### Flow 1: Show Category-type selection when 'Website not working?' is clicked
+### Flow 1: Open primary breakage reporting screen (category type selection)
 
 Open the dashboard with the following query params
 
--   `breakageScreen=categoryTypeSelection`
+-   `screen=breakageForm`
 
-### Flow 2: Show Category selection when 'Website not working?' is clicked
-
-Open the dashboard with the following query params
-
--   `breakageScreen=categorySelection`
-
-### Flow 3: Open Category-type selection directly (like from a menu)
+### Flow 2: Open secondary ategory selection directly (like from a menu)
 
 Open the dashboard with the following query params
 
--   `screen=categoryTypeSelection`
+-   `screen=breakageFormCategorySelection`
 
-### Flow 4: Open Category selection directly (like from a menu)
-
-Open the dashboard with the following query params
-
--   `screen=categorySelection`
-
-### Flow 5: Open the new Breakage Form directly:
+### Flow 3: Open the final screen of the Breakage Form directly:
 
 Open the dashboard with the following query params
 
--   `screen=choiceBreakageForm`
+-   `screen=breakageFormFinalStep`
 -   `category=videos` (this can be any valid category value)
 
-### Flow 6: Open the new Breakage Form directly
+### Flow 4: Open the final screen of the Breakage Form directly:
 
 Open the dashboard with the following query params
 
--   `screen=choiceBreakageForm`
+-   `screen=breakageFormFinalStep`
