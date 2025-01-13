@@ -40,7 +40,7 @@
     },
     "devDependencies": {
         "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#v0.1.0",
-        "@formatjs/intl-locale": "^3.0.7",
+        "@formatjs/intl-locale": "^4.2.9",
         "@material/ripple": "^14.0.0",
         "@playwright/test": "^1.45.3",
         "@types/chrome": "^0.0.203",
