@@ -4,12 +4,11 @@ import cn from 'classnames';
 import { useCallback, useContext, useEffect, useReducer, useRef } from 'preact/hooks';
 import { ConnectionScreen } from './screens/connection-screen';
 import { PrimaryScreen } from './screens/primary-screen';
-import { BreakageFormScreen } from './screens/breakage-form-screen';
 import { TrackersScreen } from './screens/trackers-screen';
 import { NonTrackersScreen } from './screens/non-trackers-screen';
 import { ConsentManagedScreen } from './screens/consent-managed-screen';
 import { ToggleReportScreen } from './screens/toggle-report-screen';
-import { ChoiceBreakageForm, CategorySelection, CategoryTypeSelection, ChoiceToggleScreen } from './screens/choice-problem';
+import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm, BreakageFormSuccess } from './screens/breakage-form-screen';
 import { isAndroid } from '../shared/js/ui/environment-check';
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 
@@ -22,16 +21,13 @@ const availableScreens = {
     primaryScreen: { kind: 'root', component: () => <PrimaryScreen /> },
 
     // screens that would load immediately
-    breakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={true} /> },
-    promptBreakageForm: { kind: 'subview', component: () => <BreakageFormScreen includeToggle={false} /> },
+    breakageForm: { kind: 'subview', component: () => <BreakagePrimaryScreen /> },
+    breakageFormCategorySelection: { kind: 'subview', component: () => <BreakageCategorySelection /> },
+    breakageFormFinalStep: { kind: 'subview', component: () => <BreakageForm /> },
+    breakageFormSuccess: { kind: 'subview', component: () => <BreakageFormSuccess /> },
     toggleReport: { kind: 'subview', component: () => <ToggleReportScreen /> },
 
     //
-    categoryTypeSelection: { kind: 'subview', component: () => <CategoryTypeSelection /> },
-    categorySelection: { kind: 'subview', component: () => <CategorySelection /> },
-    choiceToggle: { kind: 'subview', component: () => <ChoiceToggleScreen /> },
-    choiceBreakageForm: { kind: 'subview', component: () => <ChoiceBreakageForm /> },
-
     connection: { kind: 'subview', component: () => <ConnectionScreen /> },
     trackers: { kind: 'subview', component: () => <TrackersScreen /> },
     nonTrackers: { kind: 'subview', component: () => <NonTrackersScreen /> },
@@ -43,7 +39,7 @@ const availableScreens = {
 const entries = /** @type {[ScreenName, { kind: 'subview' | 'root', component: () => any}][]} */ (Object.entries(availableScreens));
 
 const NavContext = createContext({
-    /** @type {(name: ScreenName, params?: Record<string, string>) => void} */
+    /** @type {(name: ScreenName, params?: Record<string, string>, opts?: { animate?: boolean }) => void} */
     push() {
         throw new Error('not implemented');
     },
@@ -51,10 +47,14 @@ const NavContext = createContext({
     pop() {
         throw new Error('not implemented');
     },
+    /** @type {() => void} */
+    popToRoot() {
+        throw new Error('not implemented');
+    },
     params: new URLSearchParams(''),
     /** @type {() => boolean} */
     canPop: () => false,
-    /** @type {(screen: import('../schema/__generated__/schema.types').EventOrigin['screen']) => boolean} */
+    /** @type {(screen: ScreenName) => boolean} */
     canPopFrom: (screen) => false,
     /** @type {() => ScreenName} */
     screen: () => {
@@ -63,7 +63,7 @@ const NavContext = createContext({
 });
 
 export const ScreenContext = createContext({
-    /** @type {import('../schema/__generated__/schema.types').EventOrigin['screen']} */
+    /** @type {ScreenName} */
     screen: /** @type {const} */ ('primaryScreen'),
 });
 
@@ -109,7 +109,7 @@ function navReducer(state, event) {
         case 'initial':
         case 'settled': {
             switch (event.type) {
-                case 'goto': {
+                case 'replace': {
                     if (!event.opts.animate) {
                         return {
                             ...state,
@@ -179,7 +179,7 @@ function navReducer(state, event) {
  * @typedef {{ animate: boolean }} ActionOpts
  * @typedef {{ type: 'push', name: ScreenName, opts: ActionOpts}
  *   | {type: 'pop', opts: ActionOpts}
- *   | {type: 'goto', stack: ScreenName[], opts: ActionOpts}
+ *   | {type: 'replace', stack: ScreenName[], opts: ActionOpts}
  *   | {type: 'end'}
  * } NavEvent
  * @typedef {{
@@ -278,9 +278,12 @@ export function Navigation(props) {
         /**
          * @param {ScreenName} name
          * @param {Record<string, any>} params
+         * @param {object} [opts]
+         * @param {boolean} [opts.animate]
          */
-        push: (name, params = {}) => {
+        push: (name, params = {}, opts = {}) => {
             const url = new URL(window.location.href);
+            const animate = opts.animate !== undefined ? opts.animate : props.animate;
 
             for (let [key, value] of Object.entries(params)) {
                 // using 'set' to override any previous values.
@@ -298,7 +301,7 @@ export function Navigation(props) {
             window.history.pushState({}, '', url);
 
             // change component state
-            dispatch({ type: 'push', name, opts: { animate: props.animate } });
+            dispatch({ type: 'push', name, opts: { animate } });
         },
         pop: () => {
             // remove a history entry
@@ -306,6 +309,33 @@ export function Navigation(props) {
 
             // change component state
             dispatch({ type: 'pop', opts: { animate: props.animate } });
+        },
+        /**
+         * Pops from current screen directly to primary screen
+         */
+        popToRoot: () => {
+            // Replace current stack with only root screen and current screen
+            // Current screen will be popped right after
+            const primaryScreen = 'primaryScreen';
+            const newStack = /** @type {ScreenName[]} */ ([primaryScreen]);
+            if (state.stack.length > 1) {
+                newStack.push(state.stack.slice(-1)[0]);
+            }
+
+            dispatch({ type: 'replace', stack: newStack, opts: { animate: false } });
+
+            // TODO: build a more integrated solution for sequencing dispatches
+            // For now, we'll use requestAnimationFrame
+            requestAnimationFrame(() => {
+                // Pop to root screen
+                dispatch({ type: 'pop', opts: { animate: props.animate } });
+
+                // Update URL
+                const url = new URL(window.location.href);
+                url.searchParams.delete('stack');
+                url.searchParams.append('stack', primaryScreen);
+                window.history.replaceState({}, '', url);
+            });
         },
         canPop: canPop,
         canPopFrom: canPopFrom,
@@ -343,7 +373,12 @@ export function Navigation(props) {
                     if (item.kind === 'root') {
                         return (
                             <ScreenContext.Provider value={{ screen: screenName }}>
-                                <section className="app-height" key={screenName} data-testid={`subview-${screenName}`}>
+                                <section
+                                    className="app-height"
+                                    key={screenName}
+                                    data-testid={`subview-${screenName}`}
+                                    data-current={String(current)}
+                                >
                                     {item.component()}
                                 </section>
                             </ScreenContext.Provider>
@@ -361,6 +396,7 @@ export function Navigation(props) {
                                 data-current={String(current)}
                                 className="sliding-subview-v2"
                                 key={screenName}
+                                data-testid={`subview-${screenName}`}
                                 style={{ transform: cssProp }}
                             >
                                 {item.component()}
