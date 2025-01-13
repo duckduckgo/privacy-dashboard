@@ -6,16 +6,34 @@
  *   featureSettings?: import('../../../schema/__generated__/schema.types').RemoteFeatureSettings | undefined
  * }} BackgroundTabData
  */
+
 /**
  * @module common
  */
-export const getContentHeight = () => {
-    const $openSubviewV2 = window.document.querySelector(
-        '#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child'
-    );
-    const $rootSubviewV2 = window.document.querySelector('#popup-container.sliding-subview-v2--root .page-inner');
 
-    return ($openSubviewV2 || $rootSubviewV2)?.scrollHeight;
+/**
+ * Returns content height of nav view based on topmost subview.
+ * If the topmost subview contains a data-max-view-height attribute, it caps the height at that value.
+ *
+ * @returns {number|null|undefined}
+ */
+export const getContentHeight = () => {
+    const $openSubviewV2 = /** @type HTMLElement */ (
+        window.document.querySelector('#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child')
+    );
+
+    if (!$openSubviewV2) {
+        return null;
+    }
+
+    const { scrollHeight, dataset } = $openSubviewV2;
+    const maxViewHeight = Number(dataset?.maxViewHeight);
+
+    if (!maxViewHeight) {
+        return scrollHeight;
+    }
+
+    return Math.min(maxViewHeight, scrollHeight);
 };
 
 export const getContentHeightForScreenShot = () => {
@@ -278,6 +296,7 @@ export async function refreshAlias() {
 
 /**
  * Fetch the data needed to display the toggle report screen
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').ToggleReportScreen>}
  */
 export async function getToggleReportOptions() {
     throw new Error('base impl');
@@ -415,11 +434,6 @@ export class OpenOptionsMessage extends Msg {}
  * Use this message to indicate that a native platform should open
  * an alert because the form description was required, but missing
  */
-export class ShowAlertForMissingDescription extends Msg {}
-/**
- * Use this message to indicate that a native platform should open
- * an alert because the form description was required, but missing
- */
 export class ShowNativeFeedback extends Msg {}
 
 /**
@@ -480,6 +494,7 @@ export class BurnMessage extends Msg {
 
 export class FetchBurnOptions extends Msg {}
 export class FetchToggleReportOptions extends Msg {}
+export class FetchBreakageFormOptions extends Msg {}
 export class SendToggleBreakageReport extends Msg {}
 export class RejectToggleBreakageReport extends Msg {}
 export class SeeWhatIsSent extends Msg {}

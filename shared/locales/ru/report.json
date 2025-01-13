@@ -121,8 +121,8 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Ваше сообщение будет способствовать улучшению ПО и повышению удобства пользования.",
-    "note" : "Body that the user sees upon submitting the report"
+    "title" : "Ваш отчет поможет улучшить{newline}DuckDuckGo для всех.",
+    "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
     "title" : "Не нравится контент",
@@ -135,6 +135,10 @@
   "otherOptional" : {
     "title" : "Опишите возникшую проблему (необязательно)",
     "note" : "Placeholder text in a form where the user can provide additional information, but is not required to"
+  },
+  "descriptionRequired" : {
+    "title" : "Описание обязательно",
+    "note" : "Error message shown to user in a form when a description field is required but was not entered"
   },
   "suggestionWhatHappened" : {
     "title" : "Что случилось?",
