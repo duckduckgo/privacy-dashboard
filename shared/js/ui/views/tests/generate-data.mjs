@@ -334,6 +334,7 @@ export class MockData {
                 cookiePromptManagementStatus: this.cookiePromptManagementStatus,
                 isInvalidCert: this.isInvalidCert,
                 localeSettings: this.localeSettings,
+                maliciousSiteStatus: this.maliciousSiteStatus || { kind: null },
             },
         };
     }

@@ -49,7 +49,6 @@ export async function mockDataProvider(params) {
     }
     window.onChangeLocale?.(state.localeSettings);
     window.onChangeRequestData(state.url, { requests: state.requests || [] });
-
     if (platform?.name === 'macos' || platform?.name === 'ios') {
         window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
     }
