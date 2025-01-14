@@ -62,7 +62,7 @@ const combineSources = () => ({
     tab: Object.assign(
         {},
         trackerBlockingData || {},
-        { maliciousSiteStatus: maliciousSiteStatus ?? false },
+        { maliciousSiteStatus: maliciousSiteStatus ?? null },
         {
             isPendingUpdates,
             parentEntity,
