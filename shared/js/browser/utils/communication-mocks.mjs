@@ -260,6 +260,9 @@ export function mockAndroidApis({ messages = {} }) {
             showNativeFeedback() {
                 window.__playwright.mocks.outgoing.push(['showNativeFeedback']);
             },
+            reportBrokenSiteShown() {
+                window.__playwright.mocks.outgoing.push(['reportBrokenSiteShown']);
+            },
         };
     } catch (e) {
         console.error("❌couldn't set up mocks");

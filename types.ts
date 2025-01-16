@@ -65,6 +65,7 @@ interface Window {
         rejectToggleReport: () => void;
         seeWhatIsSent: () => void;
         showNativeFeedback: () => void;
+        reportBrokenSiteShown: () => void;
     };
     /**
      * This is set in Playwright tests

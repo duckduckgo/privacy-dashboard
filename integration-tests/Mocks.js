@@ -80,8 +80,30 @@ export class Mocks {
     }
 
     async calledForReportBreakageFormShown() {
-        const calls = await this.outgoing();
-        expect(calls).toEqual([['privacyDashboardReportBrokenSiteShown', {}]]);
+        if (this.platform.name === 'ios' || this.platform.name === 'macos') {
+            const calls = await this.outgoing();
+            expect(calls).toMatchObject([['privacyDashboardReportBrokenSiteShown', {}]]);
+            return;
+        }
+
+        if (this.platform.name === 'windows') {
+            const calls = await this.outgoing({
+                names: ['ReportBrokenSiteShown'],
+            });
+            expect(calls).toMatchObject([
+                [
+                    'ReportBrokenSiteShown',
+                    {
+                        Feature: 'PrivacyDashboard',
+                        Name: 'ReportBrokenSiteShown',
+                        Data: {},
+                    },
+                ],
+            ]);
+            return;
+        }
+
+        throw new Error('unreachable. mockCalledForReportBreakageFormShown must be handled');
     }
 
     async calledForSendToggleReport() {
