@@ -79,6 +79,11 @@ export class Mocks {
         }
     }
 
+    async calledForReportBreakageFormShown() {
+        const calls = await this.outgoing();
+        expect(calls).toEqual([['privacyDashboardReportBrokenSiteShown', {}]]);
+    }
+
     async calledForSendToggleReport() {
         if (this.platform.name === 'android') {
             const calls = await this.outgoing({ names: ['sendToggleReport'] });

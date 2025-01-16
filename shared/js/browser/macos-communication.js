@@ -38,6 +38,7 @@ import {
     SubmitBrokenSiteReportMessage,
     UpdatePermissionMessage,
     ShowNativeFeedback,
+    ReportBrokenSiteShown,
 } from './common.js';
 import { createTabData } from './utils/request-details.mjs';
 
@@ -271,7 +272,22 @@ export function privacyDashboardSetPermission(params) {
 }
 
 /**
- * @category Webkit Message Handler
+ * Notifies the app that the site breakage form has been invoked
+ *
+ * @category Webkit Message Handlers
+ * @param {{}} args - An empty object to keep the `webkit` message handlers happy
+ * @example
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardReportBrokenSiteShown.postMessage(args)
+ * ```
+ */
+export function privacyDashboardReportBrokenSiteShown(args) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    window.webkit.messageHandlers.privacyDashboardReportBrokenSiteShown.postMessage(args);
+}
+
+/**
+ * @category Webkit Message Handlers
  * @example
  *
  * When the Dashboard loads, it will call this message handler...
@@ -441,6 +457,11 @@ async function fetch(message) {
 
     if (message instanceof ShowNativeFeedback) {
         privacyDashboardShowNativeFeedback({});
+        return false; // Return true to prevent HTML form from showing
+    }
+
+    if (message instanceof ReportBrokenSiteShown) {
+        privacyDashboardReportBrokenSiteShown({});
         return false; // Return true to prevent HTML form from showing
     }
 }

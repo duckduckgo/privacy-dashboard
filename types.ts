@@ -5,6 +5,7 @@ interface WebkitMessageHandlers {
     privacyDashboardOpenUrlInNewTab?: any;
     privacyDashboardSetSize?: any;
     privacyDashboardShowReportBrokenSite?: any;
+    privacyDashboardReportBrokenSiteShown?: any;
     privacyDashboardClose?: any;
     privacyDashboardSetProtection?: {
         postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void;

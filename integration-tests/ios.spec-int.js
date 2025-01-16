@@ -129,6 +129,21 @@ test.describe('cookie prompt management', () => {
 });
 
 test.describe('breakage form', () => {
+    test('sends message when breakage form is triggered from primary screen', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'ios', opener: 'dashboard' });
+        await dash.addState([testDataStates.google]);
+        await dash.clicksWebsiteNotWorking();
+        await dash.mocks.calledForReportBreakageFormShown();
+    });
+
+    test('sends message when breakage form is triggered from app menu', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });
+        await dash.addState([testDataStates.google]);
+        await dash.mocks.calledForReportBreakageFormShown();
+    });
+
     test('shows breakage form on category selection screen only', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });

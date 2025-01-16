@@ -331,6 +331,13 @@ export function showNativeFeedback() {
 }
 
 /**
+ * Sent when the user invokes the site breakage form
+ */
+export function reportBrokenSiteShown() {
+    throw new Error('base impl');
+}
+
+/**
  * @param {import('../../../schema/__generated__/schema.types').Search} options
  */
 export function search(options) {}
@@ -435,6 +442,12 @@ export class OpenOptionsMessage extends Msg {}
  * an alert because the form description was required, but missing
  */
 export class ShowNativeFeedback extends Msg {}
+
+/**
+ * Use this message to indicate that the user has invoked the
+ * site breakage report flow
+ */
+export class ReportBrokenSiteShown extends Msg {}
 
 /**
  * Use this message to indicate that an internal navigation occurred

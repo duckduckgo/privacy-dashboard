@@ -7,6 +7,7 @@ import { i18n } from '../shared/js/ui/base/localize';
 import { createPlatformFeatures, FeatureSettings, PlatformFeatures } from '../shared/js/ui/platform-features.mjs';
 import {
     CloseMessage,
+    ReportBrokenSiteShown,
     SetListsMessage,
     ShowNativeFeedback,
     SubmitBrokenSiteReportMessage,
@@ -457,6 +458,15 @@ export function useShowNativeFeedback() {
     const nav = useNav();
     return useCallback(() => {
         const msg = new ShowNativeFeedback();
+        fetcher(msg).catch(console.error);
+    }, [nav]);
+}
+
+export function useReportBrokenSiteShown() {
+    const fetcher = useFetcher();
+    const nav = useNav();
+    return useCallback(() => {
+        const msg = new ReportBrokenSiteShown();
         fetcher(msg).catch(console.error);
     }, [nav]);
 }
