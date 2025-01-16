@@ -362,6 +362,10 @@ export class DashboardPage {
         return results;
     }
 
+    async sendsPing() {
+        await this.mocks.sentPing();
+    }
+
     async submitBreakageForm() {
         await this.page.getByRole('button', { name: 'Send Report' }).click();
     }
