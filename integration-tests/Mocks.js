@@ -75,7 +75,7 @@ export class Mocks {
             return;
         }
         if (this.platform.name === 'ios') {
-            expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]]);
+            expect(calls).toMatchObject([['privacyDashboardReportBrokenSiteShown', {}]]);
         }
     }
 
