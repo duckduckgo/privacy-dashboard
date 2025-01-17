@@ -80,6 +80,12 @@ export class Mocks {
     }
 
     async calledForReportBreakageFormShown() {
+        if (this.platform.name === 'android') {
+            const calls = await this.outgoing({ names: ['reportBrokenSiteShown'] });
+            expect(calls).toMatchObject([['reportBrokenSiteShown', undefined]]);
+            return;
+        }
+
         if (this.platform.name === 'ios' || this.platform.name === 'macos') {
             const calls = await this.outgoing();
             expect(calls).toMatchObject([['privacyDashboardReportBrokenSiteShown', {}]]);

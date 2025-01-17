@@ -28,6 +28,7 @@ import {
     setupColorScheme,
     SubmitBrokenSiteReportMessage,
     ShowNativeFeedback,
+    ReportBrokenSiteShown,
 } from './common.js';
 import { createTabData } from './utils/request-details.mjs';
 import invariant from 'tiny-invariant';
@@ -383,6 +384,15 @@ export class PrivacyDashboardJavascriptInterface {
         invariant(window.PrivacyDashboard?.showNativeFeedback, 'showNativeFeedback missing');
         window.PrivacyDashboard.showNativeFeedback();
     }
+
+    /**
+     * {@inheritDoc common.reportBrokenSiteShown}
+     * @type {import("./common.js").reportBrokenSiteShown}
+     */
+    reportBrokenSiteShown() {
+        invariant(window.PrivacyDashboard?.reportBrokenSiteShown, 'reportBrokenSiteShown missing');
+        window.PrivacyDashboard.reportBrokenSiteShown();
+    }
 }
 
 /**
@@ -418,7 +428,7 @@ async function fetchAndroid(message) {
     }
 
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
-        privacyDashboardApi.showBreakageForm();
+        privacyDashboardApi.showBreakageForm(); // TODO: Check what happens
         return true; // Return true to prevent HTML form from showing
     }
 
@@ -454,6 +464,10 @@ async function fetchAndroid(message) {
 
     if (message instanceof ShowNativeFeedback) {
         return privacyDashboardApi.showNativeFeedback();
+    }
+
+    if (message instanceof ReportBrokenSiteShown) {
+        return privacyDashboardApi.reportBrokenSiteShown();
     }
 
     console.warn('unhandled message', message);

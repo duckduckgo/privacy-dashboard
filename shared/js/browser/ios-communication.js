@@ -86,7 +86,6 @@ export function privacyDashboardTelemetrySpan(args) {
  */
 async function fetch(message) {
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
-        // privacyDashboardShowReportBrokenSite({});
         return false; // Return true to prevent HTML form from showing
     }
     if (message instanceof ShowNativeFeedback) {
