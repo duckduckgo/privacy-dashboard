@@ -428,7 +428,9 @@ async function fetchAndroid(message) {
     }
 
     if (message instanceof CheckBrokenSiteReportHandledMessage) {
-        privacyDashboardApi.showBreakageForm(); // TODO: Check what happens
+        // This method is kept here for now so that Android can toggle the native breakage form if needed.
+        // On the Android side, this is behind a feature flag and will noop when the web-based form is enabled
+        privacyDashboardApi.showBreakageForm();
         return true; // Return true to prevent HTML form from showing
     }
 
