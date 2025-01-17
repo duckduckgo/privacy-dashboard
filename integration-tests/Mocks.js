@@ -87,7 +87,10 @@ export class Mocks {
         }
 
         if (this.platform.name === 'ios' || this.platform.name === 'macos') {
-            const calls = await this.outgoing();
+            const calls = await this.outgoing({
+                names: ['privacyDashboardReportBrokenSiteShown'],
+            });
+
             expect(calls).toMatchObject([['privacyDashboardReportBrokenSiteShown', {}]]);
             return;
         }
