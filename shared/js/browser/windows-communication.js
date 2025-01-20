@@ -411,6 +411,7 @@ export function setup() {
     globalThis.windowsInteropAddEventListener('message', (event) => {
         if (event.data.Name) handleIncomingMessage(event.data);
     });
+    windowsPostMessage('Ping', {});
     setupMutationObserver((height) => {
         SetSize({ height });
     });
