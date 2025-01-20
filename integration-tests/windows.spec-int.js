@@ -8,6 +8,7 @@ test.describe('initial page data', () => {
         const dash = await DashboardPage.windows(page);
         await dash.addState([testDataStates.protectionsOn]);
         await dash.showsPrimaryScreen();
+        await dash.sendsPing();
     });
 });
 
