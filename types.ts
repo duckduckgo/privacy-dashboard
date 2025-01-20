@@ -5,6 +5,7 @@ interface WebkitMessageHandlers {
     privacyDashboardOpenUrlInNewTab?: any;
     privacyDashboardSetSize?: any;
     privacyDashboardShowReportBrokenSite?: any;
+    privacyDashboardReportBrokenSiteShown?: any;
     privacyDashboardClose?: any;
     privacyDashboardSetProtection?: {
         postMessage: (params: import('./schema/__generated__/schema.types').SetProtectionParams) => void;
@@ -64,6 +65,7 @@ interface Window {
         rejectToggleReport: () => void;
         seeWhatIsSent: () => void;
         showNativeFeedback: () => void;
+        reportBrokenSiteShown: () => void;
     };
     /**
      * This is set in Playwright tests
