@@ -281,6 +281,10 @@ export class Mocks {
         throw new Error('unreachable. mockCalledForNativeFeedback must be handled');
     }
 
+    async sentPing() {
+        await this.outgoing({ names: ['Ping'] });
+    }
+
     async calledForSubmitBreakageForm({ category = '', description = '' }) {
         if (this.platform.name === 'android') {
             const out = await this.outgoing({ names: ['submitBrokenSiteReport'] });
