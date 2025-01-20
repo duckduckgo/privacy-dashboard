@@ -12,6 +12,21 @@ test.describe('initial page data', () => {
 });
 
 test.describe('breakage form', () => {
+    test('sends message when breakage form is triggered from primary screen', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.google]);
+        await dash.clicksWebsiteNotWorking();
+        await dash.mocks.calledForReportBreakageFormShown();
+    });
+
+    test('sends message when breakage form is triggered from app menu', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.addState([testDataStates.google]);
+        await dash.mocks.calledForReportBreakageFormShown();
+    });
+
     test('shows breakage form on category selection screen only', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });

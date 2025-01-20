@@ -54,6 +54,21 @@ test.describe('Protections toggle', () => {
 });
 
 test.describe('breakage form', () => {
+    test('sends message when breakage form is triggered from primary screen', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page);
+        await dash.addState([testDataStates['webBreakageForm-enabled']]);
+        await dash.clicksWebsiteNotWorking();
+        await dash.mocks.calledForReportBreakageFormShown();
+    });
+
+    test('sends message when breakage form is triggered from app menu', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.android(page, { screen: 'breakageForm' });
+        await dash.addState([testDataStates.google]);
+        await dash.mocks.calledForReportBreakageFormShown();
+    });
+
     test('uses native breakage form', async ({ page }) => {
         const dash = await DashboardPage.android(page);
         await dash.addState([testDataStates['webBreakageForm-disabled']]);

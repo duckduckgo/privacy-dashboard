@@ -2,17 +2,25 @@
 import { h } from 'preact';
 import cn from 'classnames';
 import { platform } from '../../shared/js/browser/communication.js';
-import { useMemo, useState, useRef, useContext, useLayoutEffect } from 'preact/hooks';
+import { useMemo, useState, useRef, useContext, useLayoutEffect, useEffect } from 'preact/hooks';
 import { SecondaryTopNavAlt, Title } from '../components/top-nav';
 import { Nav, NavItem } from '../components/nav';
 import { KeyInsightsMain } from '../components/key-insights';
 import { useNav } from '../navigation';
-import { useData, useFeatures, useSendReport, useShowNativeFeedback, useFetcher, useClose } from '../data-provider';
 import { ns } from '../../shared/js/ui/base/localize';
 import { Stack } from '../../shared/js/ui/components/stack';
 import { createBreakageFeaturesFrom, defaultCategories } from '../breakage-categories';
 import { BreakageFormContext, BreakageFormProvider } from '../components/breakage-form-provider.jsx';
 import { namedString } from '../../shared/data/text.js';
+import {
+    useData,
+    useFeatures,
+    useSendReport,
+    useShowNativeFeedback,
+    useFetcher,
+    useClose,
+    useReportBrokenSiteShown,
+} from '../data-provider';
 
 /** @typedef {'choice-problem'|'choice-category'|'form'|'success'} BreakagePageId */
 
@@ -20,6 +28,11 @@ export function BreakagePrimaryScreen() {
     const description = ns.report('selectTheCategoryType.title');
     const { push } = useNav();
     const { tab } = useData();
+    const reportBrokenSiteShown = useReportBrokenSiteShown();
+
+    useEffect(() => {
+        reportBrokenSiteShown();
+    }, []);
 
     const showNativeFeedback = useShowNativeFeedback();
     return (

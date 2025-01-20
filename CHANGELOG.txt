@@ -1,1 +1,1 @@
-- Improved Breakage Form (#196)
+- Fire message when invoking breakage form (#302)

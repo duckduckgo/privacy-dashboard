@@ -51,6 +51,7 @@ import {
     SeeWhatIsSent,
     SendToggleBreakageReport,
     ShowNativeFeedback,
+    ReportBrokenSiteShown,
 } from './common.js';
 import { createTabData } from './utils/request-details.mjs';
 
@@ -170,6 +171,11 @@ async function fetch(message) {
 
     if (message instanceof ShowNativeFeedback) {
         showNativeFeedback();
+        return;
+    }
+
+    if (message instanceof ReportBrokenSiteShown) {
+        reportBrokenSiteShown();
         return;
     }
 
@@ -485,6 +491,10 @@ function seeWhatIsSent() {
 
 function showNativeFeedback() {
     windowsPostMessage('ShowNativeFeedback', {});
+}
+
+function reportBrokenSiteShown() {
+    windowsPostMessage('ReportBrokenSiteShown', {});
 }
 
 export { fetch, backgroundMessage, getBackgroundTabData, firstRenderComplete };

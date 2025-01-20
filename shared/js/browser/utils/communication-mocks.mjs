@@ -135,6 +135,11 @@ export function webkitMockApis({ messages = {} }) {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardShowReportBrokenSite', arg]);
                     },
                 },
+                privacyDashboardReportBrokenSiteShown: {
+                    postMessage: (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardReportBrokenSiteShown', arg]);
+                    },
+                },
                 privacyDashboardOpenUrlInNewTab: {
                     postMessage: (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardOpenUrlInNewTab', arg]);
@@ -254,6 +259,9 @@ export function mockAndroidApis({ messages = {} }) {
             },
             showNativeFeedback() {
                 window.__playwright.mocks.outgoing.push(['showNativeFeedback']);
+            },
+            reportBrokenSiteShown() {
+                window.__playwright.mocks.outgoing.push(['reportBrokenSiteShown']);
             },
         };
     } catch (e) {

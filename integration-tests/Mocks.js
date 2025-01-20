@@ -75,8 +75,44 @@ export class Mocks {
             return;
         }
         if (this.platform.name === 'ios') {
-            expect(calls).toMatchObject([['privacyDashboardShowReportBrokenSite', {}]]);
+            expect(calls).toMatchObject([['privacyDashboardReportBrokenSiteShown', {}]]);
         }
+    }
+
+    async calledForReportBreakageFormShown() {
+        if (this.platform.name === 'android') {
+            const calls = await this.outgoing({ names: ['reportBrokenSiteShown'] });
+            expect(calls).toMatchObject([['reportBrokenSiteShown', undefined]]);
+            return;
+        }
+
+        if (this.platform.name === 'ios' || this.platform.name === 'macos') {
+            const calls = await this.outgoing({
+                names: ['privacyDashboardReportBrokenSiteShown'],
+            });
+
+            expect(calls).toMatchObject([['privacyDashboardReportBrokenSiteShown', {}]]);
+            return;
+        }
+
+        if (this.platform.name === 'windows') {
+            const calls = await this.outgoing({
+                names: ['ReportBrokenSiteShown'],
+            });
+            expect(calls).toMatchObject([
+                [
+                    'ReportBrokenSiteShown',
+                    {
+                        Feature: 'PrivacyDashboard',
+                        Name: 'ReportBrokenSiteShown',
+                        Data: {},
+                    },
+                ],
+            ]);
+            return;
+        }
+
+        throw new Error('unreachable. mockCalledForReportBreakageFormShown must be handled');
     }
 
     async calledForSendToggleReport() {
