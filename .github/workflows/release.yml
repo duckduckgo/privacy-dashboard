@@ -66,6 +66,9 @@ jobs:
               git checkout -b ${{ github.event.inputs.target_branch }}
           fi
 
+      - name: Export source branch as environment variable
+        run: echo "SOURCE_BRANCH=${{ github.event.inputs.source_branch }}" >> $GITHUB_ENV
+
       - name: Collect commit ranges
         run: |
           bash ./scripts/changelog.sh > ${{ github.workspace }}/CHANGELOG.txt
