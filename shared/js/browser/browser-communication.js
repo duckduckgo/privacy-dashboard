@@ -21,6 +21,7 @@ import {
     OpenOptionsMessage,
     RefreshEmailAliasMessage,
     RejectToggleBreakageReport,
+    ReportBrokenSiteShown,
     SearchMessage,
     SeeWhatIsSent,
     SendToggleBreakageReport,
@@ -167,6 +168,11 @@ export async function fetch(message) {
     }
     if (message instanceof SeeWhatIsSent) {
         return seeWhatIsSent();
+    }
+    /* This fires a pixel when showing the breakage form on native platforms.
+       On the extension, it's currently ignored. */
+    if (message instanceof ReportBrokenSiteShown) {
+        return false;
     }
     return Promise.reject(new Error('unhandled message: ' + JSON.stringify(message)));
 }
