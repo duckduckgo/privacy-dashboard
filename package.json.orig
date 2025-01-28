@@ -1,0 +1,85 @@
+{
+    "name": "@duckduckgo/privacy-dashboard",
+    "private": true,
+    "engines": {
+        "node": ">=22.0.0",
+        "npm": ">=9.0.0"
+    },
+<<<<<<< HEAD
+    "version": "7.3.2",
+    "files": [
+        "build",
+        "schema/__**/*"
+=======
+    "files": [
+        "build"
+>>>>>>> 49db7982 (Release build 7.2.1 [ci release])
+    ],
+    "scripts": {
+        "start": "npm run dev",
+        "dev": "chokidar \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
+        "build.watch.prod": "chokidar \"v2\" \"shared\" \"schema/*.json\" -c \"npm run build\" --initial \"npm run build\"",
+        "build": "node scripts/build.js",
+        "build.debug": "node scripts/build.js --debug",
+        "docs": "typedoc",
+        "docs.watch": "chokidar \"guides\" \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run docs\" --initial \"npm run docs\"",
+        "preview": "npm run build.debug && npm run preview.serve",
+        "preview.serve": "npm run serve -- -o html/iframe.html",
+        "serve": "http-server build/app-debug --port 3220 -c-1",
+        "lint": "eslint . && prettier . --check",
+        "lint.fix": "eslint . --fix && prettier . --write",
+        "tsc": "tsc",
+        "tsc.watch": "tsc --watch",
+        "test": "npm run verify.local",
+        "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs && node shared/locales/validate-locales.test.mjs && node scripts/verify-artifacts.test.mjs",
+        "test.int": "npm run build.debug && playwright test",
+        "test.int.ui": "playwright test --ui",
+        "test.int.headed": "playwright test --headed",
+        "test.int.update-screenshots": "npm run test.int -- --grep '@screenshots' --update-snapshots",
+        "test.int-debug": "playwright test --headed --debug",
+        "test.clean-tree": "npm run build && sh scripts/check-for-changes.sh",
+        "verify.artifacts": "node scripts/verify-artifacts.mjs",
+        "verify.local": "npm run lint.fix && npm run build && npm run test.unit && npm run docs && npm run test.int -- --grep-invert '@screenshots'",
+        "fetch-fonts": "mkdir -p build/app/public/font && curl -o build/app/public/font/ProximaNova-Reg-webfont.woff https://duckduckgo.com/font/ProximaNova-Reg-webfont.woff && curl -o build/app/public/font/ProximaNova-Sbold-webfont.woff https://duckduckgo.com/font/ProximaNova-Sbold-webfont.woff",
+        "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
+    },
+    "devDependencies": {
+        "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#v0.1.0",
+        "@formatjs/intl-locale": "^3.0.7",
+        "@material/ripple": "^14.0.0",
+        "@playwright/test": "^1.45.3",
+        "@types/chrome": "^0.0.203",
+        "@types/eslint__js": "^8.42.3",
+        "@types/node": "22.10.7",
+        "chokidar-cli": "^3.0.0",
+        "classnames": "^2.5.1",
+        "deep-freeze": "0.0.1",
+        "duckduckgo-colors": "0.0.1",
+        "esbuild": "^0.20.1",
+        "eslint": "^9.13.0",
+        "eventemitter2": "4.1.0",
+        "http-server": "^13.0.2",
+        "i18next": "^21.6.14",
+        "i18next-icu": "^2.0.3",
+        "is-plain-object": "5.0.0",
+        "jquery": "^3.7.1",
+        "json-schema-to-typescript": "^11.0.2",
+        "nanohtml": "^1.10.0",
+        "normalize.scss": "0.1.0",
+        "preact": "^10.18.0",
+        "prettier": "^2.7.1",
+        "sass": "^1.32.4",
+        "standard": "^17.1.0",
+        "tiny-invariant": "^1.3.1",
+        "ts-to-zod": "^1.13.1",
+        "typedoc": "^0.26.11",
+        "typescript": "5.6",
+        "typescript-eslint": "^8.20.0",
+        "zod": "^3.22.4"
+    },
+    "prettier": {
+        "singleQuote": true,
+        "printWidth": 140,
+        "tabWidth": 4
+    }
+}
