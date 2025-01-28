@@ -94,8 +94,7 @@ const resolveInitialRender = function () {
     const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
     const isIsProtectedSet = typeof protections !== 'undefined';
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
-    const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== undefined;
-    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
+    if (!isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
         return;
     }
 
@@ -124,7 +123,7 @@ function handleViewModelUpdate(viewModel) {
     certificateData = viewModel.certificates || [];
     protections = viewModel.protections;
     locale = viewModel.localeSettings?.locale;
-    maliciousSiteStatus = viewModel.maliciousSiteStatus || {};
+    maliciousSiteStatus = viewModel.maliciousSiteStatus || { "kind": null };
 
     trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData);
     trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
