@@ -12956,6 +12956,10 @@
     if (message instanceof SeeWhatIsSent) {
       return seeWhatIsSent();
     }
+    if (message instanceof ReportBrokenSiteShown) {
+      console.log("ReportBrokenSiteShown message ignored");
+      return false;
+    }
     return Promise.reject(new Error("unhandled message: " + JSON.stringify(message)));
   }
   async function submitBrokenSiteReport(report2) {
@@ -14909,6 +14913,7 @@
       if (event.data.Name)
         handleIncomingMessage(event.data);
     });
+    windowsPostMessage("Ping", {});
     setupMutationObserver((height) => {
       SetSize({ height });
     });
@@ -17190,8 +17195,7 @@
     const classes = (0, import_classnames2.default)({
       "hero-icon--toggle-report": variant === "standard",
       "hero-icon--toggle-report-sent": variant === "sent",
-      "large-icon-container": platform.name === "browser" || platform.name === "windows",
-      "medium-icon-container": platform.name === "macos" || platform.name === "ios" || platform.name === "android"
+      "medium-icon-container": true
     });
     return /* @__PURE__ */ y("div", { className: classes });
   }

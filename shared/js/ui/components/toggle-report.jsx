@@ -25,8 +25,7 @@ export function ToggleReportIcon({ variant = 'standard' }) {
     const classes = cn({
         'hero-icon--toggle-report': variant === 'standard',
         'hero-icon--toggle-report-sent': variant === 'sent',
-        'large-icon-container': platform.name === 'browser' || platform.name === 'windows',
-        'medium-icon-container': platform.name === 'macos' || platform.name === 'ios' || platform.name === 'android',
+        'medium-icon-container': true,
     });
 
     return <div className={classes}></div>;

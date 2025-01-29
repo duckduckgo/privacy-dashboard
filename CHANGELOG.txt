@@ -1,1 +1,5 @@
-- Fire message when invoking breakage form (#302)
+- Toggle Report Feedback: Windows scrollbar color change (#310)
+- Ignore call to ReportBrokenSiteShown on the extension (#318)
+- Bump typescript-eslint from 8.12.2 to 8.20.0 (#307)
+- Bump @types/node from 18.16.16 to 22.10.7 (#304)
+- windows: send a ping (backport from 7-x) (#309)

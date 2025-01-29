@@ -367,6 +367,10 @@ export class DashboardPage {
         return results;
     }
 
+    async sendsPing() {
+        await this.mocks.sentPing();
+    }
+
     async submitEmptyFeedbackForm() {
         await this.page.getByPlaceholder('Please describe the issue you').fill('');
         await this.page.getByRole('button', { name: 'Send Report' }).click();
