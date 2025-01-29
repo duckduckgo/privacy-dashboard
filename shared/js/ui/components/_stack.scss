@@ -26,6 +26,14 @@
         border-color: rgba(255, 255, 255, 0.09);
     }
 
+    .environment--windows & {
+        scrollbar-color: #a1a1a1 transparent;
+    }
+
+    .environment--windows.body--theme-dark & {
+        scrollbar-color: #7e7e7e transparent;
+    }
+
     //&::-webkit-scrollbar {
     //    width: 0.5em !important;
     //    scroll-behavior: smooth !important;
