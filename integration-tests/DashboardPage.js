@@ -169,9 +169,14 @@ export class DashboardPage {
         await page.getByRole('link', { name: 'Report site as safe' }).click();
     }
 
-    async clickHelpPageLink() {
+    async clickMalwareHelpPageLink() {
         const { page } = this;
-        await page.getByRole('link', { name: 'About our phishing and malware protection' }).click();
+        await page.getByRole('link', { name: 'About our Malware Protection' }).click();
+    }
+
+    async clickPhishingHelpPageLink() {
+        const { page } = this;
+        await page.getByRole('link', { name: 'About our Phishing Protection' }).click();
     }
 
     async hasPhishingIcon() {
@@ -193,7 +198,7 @@ export class DashboardPage {
 
     async hasPhishingStatusText() {
         const { page } = this;
-        await expect(page.locator('#main-nav div')).toContainText('Site May Be Malicious');
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be a Security Risk');
     }
 
     async hasMalwareIcon() {
@@ -215,7 +220,7 @@ export class DashboardPage {
 
     async hasMalwareStatusText() {
         const { page } = this;
-        await expect(page.locator('#main-nav div')).toContainText('Site May Be Malicious');
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be a Security Risk');
     }
 
     async connectionLinkDoesntShow() {

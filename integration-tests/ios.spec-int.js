@@ -346,11 +346,19 @@ test.describe('phishing & malware protection', () => {
         await dash.mocks.calledForReportAsSafeLink('https://privacy-test-pages.site/security/badware/malware.html');
     });
 
-    test('shows help page link', async ({ page }) => {
+    test('shows malware help page link', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'ios' });
         await dash.addState([testDataStates.malware]);
-        await dash.clickHelpPageLink();
+        await dash.clickMalwareHelpPageLink();
+        await dash.mocks.calledForHelpPagesLink();
+    });
+
+    test('shows phishing help page link', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.webkit(page, { platform: 'ios' });
+        await dash.addState([testDataStates.phishing]);
+        await dash.clickPhishingHelpPageLink();
         await dash.mocks.calledForHelpPagesLink();
     });
 });
