@@ -74,7 +74,7 @@ test.describe('phishing & malware protection', () => {
     test('shows phishing help page link', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'macos' });
-        await dash.addState([testDataStates.malware]);
+        await dash.addState([testDataStates.phishing]);
         await dash.clickPhishingHelpPageLink();
         await dash.mocks.calledForHelpPagesLink();
     });
