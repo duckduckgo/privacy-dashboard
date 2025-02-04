@@ -76,9 +76,13 @@
     "title" : "Zgłoś witrynę jako bezpieczną",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Informacje o naszej ochronie przed wyłudzaniem informacji i złośliwym oprogramowaniem",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Informacje o naszej ochronie przed phishingiem",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Informacje o naszej ochronie przed złośliwym oprogramowaniem",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Witryna internetowa nie działa zgodnie z oczekiwaniami?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Witryna może być złośliwa",
+    "title" : "Witryna może być zagrożeniem dla bezpieczeństwa",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Witryna może być złośliwa",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Witryna może być zagrożeniem dla bezpieczeństwa",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Ta witryna została oznaczona jako rozpowszechniająca złośliwe oprogramowanie, którego celem jest naruszenie bezpieczeństwa urządzenia lub kradzież danych osobowych.",

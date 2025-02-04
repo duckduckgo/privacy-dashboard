@@ -76,9 +76,13 @@
     "title" : "Rapporter nettstedet som trygt",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Om vår beskyttelse mot phishing og skadelig programvare",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Om phishing-beskyttelsen vår",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Om beskyttelsen vår mot skadelig programvare",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Virker ikke nettsiden som forventet?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Nettstedet kan være ondsinnet",
+    "title" : "Nettstedet kan utgjøre en sikkerhetsrisiko",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Nettstedet kan være ondsinnet",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Nettstedet kan utgjøre en sikkerhetsrisiko",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Dette nettstedet er blitt flagget for distribusjon av skadelig programvare som er laget for å kompromittere enheten din eller stjele personopplysningene dine.",

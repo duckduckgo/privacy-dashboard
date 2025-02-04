@@ -76,9 +76,13 @@
     "title" : "Pažymėti svetainę kaip saugią",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Apie mūsų apsaugą nuo sukčiavimo ir kenkėjiškų programų.",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Apie mūsų apsaugą nuo sukčiavimo",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Apie mūsų apsaugą nuo kenkėjiškų programų",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Svetainė neveikia taip, kaip tikėtasi?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Svetainė gali būti kenkėjiška",
+    "title" : "Svetainė gali kelti pavojų saugumui",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Svetainė gali būti kenkėjiška",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Svetainė gali kelti pavojų saugumui",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Ši svetainė buvo pažymėta kaip platinanti kenkėjišką programinę įrangą, kuri gali pakenkti jūsų įrenginiui arba pavogti jūsų asmeninę informaciją.",

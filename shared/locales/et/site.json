@@ -76,9 +76,13 @@
     "title" : "Tunnista sait ohutuks",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Teave meie andmepüügi- ja pahavarakaitse kohta",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Meie andmepüügikaitse teave",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Meie pahavarakaitse teave",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Kas veebisait ei tööta ootuspäraselt?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Sait võib olla pahatahtlik",
+    "title" : "Sait võib olla turvaoht",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Sait võib olla pahatahtlik",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Sait võib olla turvaoht",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "See sait on märgistatud pahavara levitamise eest, mille eesmärk on kahjustada teie seadet või varastada teie isikuandmeid.",

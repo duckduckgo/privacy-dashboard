@@ -76,9 +76,13 @@
     "title" : "Ziņot par vietni kā drošu",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Par mūsu aizsardzību pret pikšķerēšanu un ļaunprātīgu programmatūru",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Par mūsu aizsardzību pret pikšķerēšanu",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Par mūsu aizsardzību pret ļaunprātīgu programmatūru",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Tīmekļa vietne nedarbojas, kā paredzēts?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Vietne var būt ļaunprātīga",
+    "title" : "Vietne var radīt drošības risku",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Vietne var būt ļaunprātīga",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Vietne var radīt drošības risku",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Šī vietne ir atzīmēta kā tāda, kas izplata ļaunprātīgu programmatūru, kas var apdraudēt tavu ierīci vai nozagt tavu personisko informāciju.",

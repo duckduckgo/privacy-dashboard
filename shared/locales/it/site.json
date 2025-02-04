@@ -76,9 +76,13 @@
     "title" : "Segnala il sito come sicuro",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Informazioni sulla nostra protezione da phishing e malware",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Informazioni sulla nostra protezione dal phishing",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Informazioni sulla nostra protezione da malware",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Il sito web non funziona come dovrebbe?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Il sito potrebbe essere dannoso",
+    "title" : "Il sito potrebbe essere un rischio per la sicurezza",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Il sito potrebbe essere dannoso",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Il sito potrebbe essere un rischio per la sicurezza",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Questo sito è stato segnalato come responsabile della distribuzione di malware progettato per compromettere il tuo dispositivo o rubare le tue informazioni personali.",
