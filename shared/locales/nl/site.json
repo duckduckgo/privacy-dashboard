@@ -76,9 +76,13 @@
     "title" : "Website als veilig melden",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Over onze bescherming tegen phishing en malware",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Over onze bescherming tegen phishing",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Over onze bescherming tegen malware",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Werkt de website niet zoals verwacht?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "De website kan schadelijk zijn",
+    "title" : "De website is mogelijk een veiligheidsrisico",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "De website kan schadelijk zijn",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Website is mogelijk een veiligheidsrisico",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Deze site is aangeduid als een site die malware verspreidt om je apparaat te beschadigen of je persoonlijke gegevens te stelen.",

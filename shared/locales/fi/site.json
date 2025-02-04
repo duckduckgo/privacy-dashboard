@@ -76,9 +76,13 @@
     "title" : "Ilmoita sivusto turvalliseksi",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Tietoa tietojenkalastelu- ja haittaohjelmasuojauksestamme",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Tietoa tietojenkalastelusuojauksestamme",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Tietoa suojauksesta haittaohjelmia vastaan",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Eikö verkkosivusto toimi odotetulla tavalla?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Sivusto voi olla haitallinen",
+    "title" : "Sivusto voi olla turvallisuusriski",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Sivusto voi olla haitallinen",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Sivusto voi olla turvallisuusriski",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Tämä sivusto on ilmoitettu sellaisten haittaohjelmien levittäjäksi, joiden tarkoituksena on vaarantaa laitteesi tai varastaa henkilökohtaisia tietojasi.",

@@ -76,9 +76,13 @@
     "title" : "Αναφέρετε τον ιστότοπο ως ασφαλή",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Σχετικά με την προστασία που προσφέρουμε από ηλεκτρονικό ψάρεμα και κακόβουλο λογισμικό",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Σχετικά με την προστασία μας από το ηλεκτρονικό ψάρεμα",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Σχετικά με την προστασία μας από κακόβουλο λογισμικό",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Δεν λειτουργεί ο ιστότοπος όπως αναμενόταν;",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Ο ιστότοπος μπορεί να είναι κακόβουλος",
+    "title" : "Η ασφάλεια του ιστότοπου ενδέχεται να βρίσκεται σε κίνδυνο",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Ο ιστότοπος μπορεί να είναι κακόβουλος",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Η ασφάλεια του ιστότοπου ενδέχεται να βρίσκεται σε κίνδυνο",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Αυτός ο ιστότοπος έχει επισημανθεί για διανομή κακόβουλου λογισμικού, το οποίο έχει σχεδιαστεί για να θέσει σε κίνδυνο τη συσκευή σας ή να υποκλέψει τα προσωπικά στοιχεία σας.",

@@ -157,7 +157,7 @@ export function renderKeyInsight(modelOverride) {
                     ${title(model.tab.domain)} ${description(raw(text))}
                     <div class="key-insight__link">
                         <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
-                            ${i18n.t('site:aboutPhishingMalwareLink.title')}
+                            ${i18n.t('site:aboutPhishingLink.title')}
                         </a>
                     </div>
                 </div>
@@ -171,7 +171,7 @@ export function renderKeyInsight(modelOverride) {
                     ${title(model.tab.domain)} ${description(raw(text))}
                     <div class="key-insight__link">
                         <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
-                            ${i18n.t('site:aboutPhishingMalwareLink.title')}
+                            ${i18n.t('site:aboutMalwareLink.title')}
                         </a>
                     </div>
                 </div>

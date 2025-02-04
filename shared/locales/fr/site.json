@@ -76,9 +76,13 @@
     "title" : "Signaler le site comme étant sûr",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "À propos de notre protection contre le hameçonnage et les logiciels malveillants",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "À propos de notre protection contre le hameçonnage",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "À propos de notre protection contre les logiciels malveillants",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Le site Web ne fonctionne pas correctement ?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Le site est peut-être malveillant",
+    "title" : "Le site peut présenter un risque pour la sécurité",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Le site est peut-être malveillant",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Le site peut présenter un risque pour la sécurité",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Ce site a été signalé pour diffusion de logiciels malveillants conçus pour compromettre votre appareil ou voler vos informations personnelles.",
