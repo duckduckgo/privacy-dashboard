@@ -54,7 +54,7 @@ jobs:
             - name: Run Playwright tests (screenshots only)
               run: npm run test.int -- --grep @screenshots
               id: screenshot_tests
-            - uses: actions/upload-artifact@v3
+            - uses: actions/upload-artifact@v4
               if: always()
               with:
                   name: playwright-report
@@ -64,7 +64,7 @@ jobs:
               run: npm run test.int -- --grep @screenshots --update-snapshots
             - if: ${{ failure() && steps.screenshot_tests.conclusion == 'failure' }}
               name: Upload screens
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: integration-tests
                   path: integration-tests/
