@@ -76,9 +76,13 @@
     "title" : "Informar de que el sitio es seguro",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Acerca de nuestra protección contra el phishing y el malware",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Acerca de nuestra protección contra el phishing",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Acerca de nuestra protección contra el malware",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "¿El sitio web no funciona como esperabas?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "El sitio puede ser malicioso",
+    "title" : "El sitio podría suponer un riesgo de seguridad",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "El sitio puede ser malicioso",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "El sitio podría suponer un riesgo de seguridad",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Este sitio ha sido marcado por distribuir malware diseñado para comprometer tu dispositivo o robar tu información personal.",

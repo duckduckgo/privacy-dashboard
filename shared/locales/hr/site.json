@@ -76,9 +76,13 @@
     "title" : "Prijavi web-mjesto kao sigurno",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "O našoj zaštiti od phishinga i zlonamjernog softvera",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "O našoj zaštiti od krađe identiteta (phishinga)",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "O našoj zaštiti od zlonamjernog softvera (malwarea)",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Web-mjesto ne radi u skladu s očekivanjima?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Web-mjesto može biti zlonamjerno",
+    "title" : "Web-mjesto može predstavljati sigurnosni rizik",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Web-mjesto može biti zlonamjerno",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Web-mjesto može predstavljati sigurnosni rizik",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Ovo web-mjesto označeno je zbog distribucije zlonamjernog softvera koji je dizajniran da ugrozi tvoj uređaj ili ukrade tvoje osobne podatke.",

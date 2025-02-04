@@ -1,5 +1,5 @@
-- Toggle Report Feedback: Windows scrollbar color change (#310)
-- Ignore call to ReportBrokenSiteShown on the extension (#318)
-- Bump typescript-eslint from 8.12.2 to 8.20.0 (#307)
-- Bump @types/node from 18.16.16 to 22.10.7 (#304)
-- windows: send a ping (backport from 7-x) (#309)
+- Workflow actions update (#325)
+- Malicious site protection - Copy review  (#319)
+- Updated to actions/upload-artifact@v4 (#324)
+- Revert "Updated to actions/upload-artifact@v4"
+- Updated to actions/upload-artifact@v4

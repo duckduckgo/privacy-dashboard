@@ -76,9 +76,13 @@
     "title" : "Webhely jelentése biztonságosként",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Bővebben az adathalászat és a rosszindulatú programok elleni védelmünkről",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Adathalászat elleni védelmünkről",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "A rosszindulatú programok elleni védelmünkről",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "A weboldal nem az elvártak szerint működik?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "A webhely rosszindulatú lehet",
+    "title" : "A webhely biztonsági kockázatot jelenthet",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "A webhely rosszindulatú lehet",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "A webhely biztonsági kockázatot jelenthet",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "A webhely meg lett jelölve rosszindulatú programok terjesztése miatt, amelyek veszélyeztethetik az eszközöd biztonságát vagy ellophatják a személyes adataidat.",

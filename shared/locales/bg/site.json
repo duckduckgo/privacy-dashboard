@@ -76,9 +76,13 @@
     "title" : "Докладване на сайта като безопасен",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Относно нашата защита от фишинг и злонамерен софтуер",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Относно нашата защита от фишинг",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Относно нашата защита от зловреден софтуер",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Уебсайтът не работи според очакванията?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Сайтът може да е злонамерен",
+    "title" : "Сайтът може да представлява риск за сигурността",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Сайтът може да е злонамерен",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Сайтът може да представлява риск за сигурността",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Този сайт е отбелязан като разпространяващ зловреден софтуер, който може да компрометира устройството ви или да открадне личната ви информация.",

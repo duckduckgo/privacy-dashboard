@@ -76,9 +76,13 @@
     "title" : "Sitenin güvenli olduğunu bildir",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Kimlik avı ve kötü amaçlı yazılım korumamız hakkında",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Kimlik Avı Korumamız Hakkında",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Kötü Amaçlı Yazılım Korumamız Hakkında",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Web sitesi beklendiği gibi çalışmıyor mu?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Site Kötü Amaçlı Olabilir",
+    "title" : "Sitede Güvenlik Riski Olabilir",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Site Kötü Amaçlı Olabilir",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Sitede Güvenlik Riski Olabilir",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Bu site, cihazınızı tehlikeye atmak veya kişisel bilgi çalmak üzere tasarlanmış kötü amaçlı yazılımlar dağıttığı için işaretlenmiş.",

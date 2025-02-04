@@ -76,9 +76,13 @@
     "title" : "Rapportera webbplatsen som säker",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "Om vårt skydd mot nätfiske och skadlig programvara",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "Om vårt skydd mot nätfiske",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "Om vårt skydd mot skadlig programvara",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Fungerar inte webbplatsen som förväntat?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Webbplatsen kan vara skadlig",
+    "title" : "Webbplatsen kan utgöra en säkerhetsrisk",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Webbplatsen kan vara skadlig",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Webbplatsen kan utgöra en säkerhetsrisk",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Den här webbplatsen har flaggats för att distribuera skadlig programvara avsedd att göra intrång på din enhet eller stjäla din personliga information.",

@@ -76,9 +76,13 @@
     "title" : "Nahlásiť stránku ako bezpečnú",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingMalwareLink" : {
-    "title" : "O našej ochrane pred phishingom a malvérom",
-    "note" : "Label for a link that takes the user to a help page about Phishing & Malware protection"
+  "aboutPhishingLink" : {
+    "title" : "O našej ochrane pred phishingom",
+    "note" : "Label for a link that takes the user to a help page about Phishing protection"
+  },
+  "aboutMalwareLink" : {
+    "title" : "O našej ochrane pred škodlivým softvérom",
+    "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
   "websiteNotWorkingQ" : {
     "title" : "Webová lokalita nefunguje podľa očakávania?",
@@ -145,7 +149,7 @@
     "note" : "Shown as the button text when the connection is using an invalid certificate."
   },
   "phishingWebsite" : {
-    "title" : "Stránka môže byť škodlivá",
+    "title" : "Stránka môže byť bezpečnostným rizikom",
     "note" : "Shown as the button text when the URL is reported as a phishing website."
   },
   "phishingWebsiteDesc" : {
@@ -153,8 +157,8 @@
     "note" : "Shown as the description text when the URL is reported as a phishing website."
   },
   "malwareWebsite" : {
-    "title" : "Stránka môže byť škodlivá",
-    "note" : "Shown as the button text when the URL is reported as a phishing website."
+    "title" : "Lokalita môže byť rizikom pre zabezpečenie",
+    "note" : "Shown as the button text when the URL is reported as a malware website."
   },
   "malwareWebsiteDesc" : {
     "title" : "Táto stránka bola označená pre distribúciu škodlivého softvéru, ktorý môže ohroziť tvoje zariadenie alebo ukradnúť tvoje osobné údaje.",
