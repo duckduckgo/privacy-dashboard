@@ -31,6 +31,9 @@
         },
         "localeSettings": {
             "$ref": "locale.json"
+        },
+        "maliciousSiteStatus": {
+            "$ref": "./malicious-site.json"
         }
     }
 }

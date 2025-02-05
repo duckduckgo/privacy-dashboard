@@ -72,14 +72,10 @@ let parentEntity;
 /** @type {string | undefined} */
 let locale;
 
-/** @type {import('../../../schema/__generated__/schema.types').MaliciousSiteStatus} */
-let maliciousSiteStatus;
-
 const combineSources = () => ({
     tab: Object.assign(
         {},
         trackerBlockingData || {},
-        { maliciousSiteStatus: maliciousSiteStatus ?? false },
         {
             isPendingUpdates,
             parentEntity,
@@ -123,7 +119,6 @@ function handleViewModelUpdate(viewModel) {
     certificateData = viewModel.certificates || [];
     protections = viewModel.protections;
     locale = viewModel.localeSettings?.locale;
-    maliciousSiteStatus = viewModel.maliciousSiteStatus || { "kind": null };
 
     trackerBlockingData = createTabData(viewModel.tabUrl, upgradedHttps, viewModel.protections, viewModel.rawRequestData);
     trackerBlockingData.cookiePromptManagementStatus = viewModel.cookiePromptManagementStatus;
@@ -136,6 +131,7 @@ function handleViewModelUpdate(viewModel) {
 
 // -----------------------------------------------------------------------------
 
+<<<<<<< HEAD
 /**
  * Posts a message to the Windows Browser
  *
@@ -147,6 +143,11 @@ function windowsPostMessage(name, data, options = {}) {
     assert(typeof globalThis.windowsInteropPostMessage === 'function');
 
     const outgoing = {
+=======
+function windowsPostMessage(name, data) {
+    assert(typeof globalThis.windowsInteropPostMessage === 'function');
+    globalThis.windowsInteropPostMessage({
+>>>>>>> 757bbbae (Release build 7.2.0 [ci release])
         Feature: 'PrivacyDashboard',
         Name: name,
         Data: data,
@@ -421,7 +422,11 @@ export function setup() {
     setupColorScheme();
     assert(typeof globalThis.windowsInteropAddEventListener === 'function', 'globalThis.windowsInteropAddEventListener required');
     globalThis.windowsInteropAddEventListener('message', (event) => {
+<<<<<<< HEAD
         if (event.data.Name) handleIncomingMessage(event.data);
+=======
+        handleIncomingMessage(event.data);
+>>>>>>> 757bbbae (Release build 7.2.0 [ci release])
     });
     windowsPostMessage('Ping', {});
     setupMutationObserver((height) => {
