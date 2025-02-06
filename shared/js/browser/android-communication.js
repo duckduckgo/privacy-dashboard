@@ -10,6 +10,7 @@
 import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
+    maliciousSiteStatusSchema,
     protectionsStatusSchema,
     remoteFeatureSettingsSchema,
     requestDataSchema,
@@ -48,6 +49,9 @@ let isPendingUpdates;
 let parentEntity;
 const cookiePromptManagementStatus = {};
 
+/** @type {import('../../../schema/__generated__/schema.types').MaliciousSiteStatus} */
+let maliciousSiteStatus;
+
 /** @type {string | undefined} */
 let locale;
 
@@ -58,6 +62,7 @@ const combineSources = () => ({
     tab: Object.assign(
         {},
         trackerBlockingData || {},
+        { maliciousSiteStatus: maliciousSiteStatus === undefined ? null : maliciousSiteStatus },
         {
             isPendingUpdates,
             parentEntity,
@@ -75,7 +80,8 @@ const resolveInitialRender = function () {
     const isIsProtectedSet = typeof protections !== 'undefined';
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     const isLocaleSet = typeof locale === 'string';
-    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== undefined;
+    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
         return;
     }
 
@@ -177,6 +183,28 @@ export function onChangeLocale(payload) {
     }
     locale = parsed.data.locale;
     channel?.send('updateTabData', { via: 'onChangeLocale' });
+}
+
+/**
+ * {@inheritDoc common.onChangeMaliciousSiteStatus}
+ * @type {import("./common.js").onChangeMaliciousSiteStatus}
+ * @group macOS -> JavaScript Interface
+ * @example
+ *
+ * ```kotlin
+ * // kotlin
+ * webView.evaluateJavascript("javascript:onChangeMaliciousSiteStatus(${maliciousSiteStatusJsonString});", null)
+ * ```
+ */
+export function onChangeMaliciousSiteStatus(payload) {
+    const parsed = maliciousSiteStatusSchema.safeParse(payload);
+    if (!parsed.success) {
+        console.error('could not parse incoming data from onChangeMaliciousSiteStatus');
+        console.error(parsed.error);
+        return;
+    }
+    maliciousSiteStatus = parsed.data;
+    resolveInitialRender();
 }
 
 /**
@@ -493,6 +521,7 @@ export function setup(debug) {
     };
     window.onChangeProtectionStatus = onChangeProtectionStatus;
     window.onChangeLocale = onChangeLocale;
+    window.onChangeMaliciousSiteStatus = onChangeMaliciousSiteStatus;
     window.onChangeRequestData = onChangeRequestData;
     window.onChangeConsentManaged = onChangeConsentManaged;
     window.onChangeFeatureSettings = onChangeFeatureSettings;
