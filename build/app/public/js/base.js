@@ -14009,7 +14009,7 @@
     tab: Object.assign(
       {},
       trackerBlockingData || {},
-      { maliciousSiteStatus: maliciousSiteStatus ?? false },
+      { maliciousSiteStatus: maliciousSiteStatus === void 0 ? null : maliciousSiteStatus },
       {
         isPendingUpdates,
         parentEntity,
@@ -14322,6 +14322,7 @@
     onChangeConsentManaged: () => onChangeConsentManaged2,
     onChangeFeatureSettings: () => onChangeFeatureSettings,
     onChangeLocale: () => onChangeLocale2,
+    onChangeMaliciousSiteStatus: () => onChangeMaliciousSiteStatus2,
     onChangeProtectionStatus: () => onChangeProtectionStatus2,
     onChangeRequestData: () => onChangeRequestData2,
     setup: () => setup4
@@ -14340,12 +14341,14 @@
   var isPendingUpdates2;
   var parentEntity2;
   var cookiePromptManagementStatus2 = {};
+  var maliciousSiteStatus2;
   var locale2;
   var featureSettings;
   var combineSources2 = () => ({
     tab: Object.assign(
       {},
       trackerBlockingData2 || {},
+      { maliciousSiteStatus: maliciousSiteStatus2 === void 0 ? null : maliciousSiteStatus2 },
       {
         isPendingUpdates: isPendingUpdates2,
         parentEntity: parentEntity2,
@@ -14362,7 +14365,8 @@
     const isIsProtectedSet = typeof protections2 !== "undefined";
     const isTrackerBlockingDataSet = typeof trackerBlockingData2 === "object";
     const isLocaleSet = typeof locale2 === "string";
-    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet) {
+    const isMaliciousSiteSet = maliciousSiteStatus2 && maliciousSiteStatus2.kind !== void 0;
+    if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
       return;
     }
     getBackgroundTabDataPromises2.forEach((resolve) => resolve(combineSources2()));
@@ -14401,6 +14405,16 @@
     }
     locale2 = parsed.data.locale;
     channel3?.send("updateTabData", { via: "onChangeLocale" });
+  }
+  function onChangeMaliciousSiteStatus2(payload) {
+    const parsed = maliciousSiteStatusSchema.safeParse(payload);
+    if (!parsed.success) {
+      console.error("could not parse incoming data from onChangeMaliciousSiteStatus");
+      console.error(parsed.error);
+      return;
+    }
+    maliciousSiteStatus2 = parsed.data;
+    resolveInitialRender2();
   }
   function onChangeFeatureSettings(payload) {
     const parsed = remoteFeatureSettingsSchema.safeParse(payload);
@@ -14633,6 +14647,7 @@
     };
     window.onChangeProtectionStatus = onChangeProtectionStatus2;
     window.onChangeLocale = onChangeLocale2;
+    window.onChangeMaliciousSiteStatus = onChangeMaliciousSiteStatus2;
     window.onChangeRequestData = onChangeRequestData2;
     window.onChangeConsentManaged = onChangeConsentManaged2;
     window.onChangeFeatureSettings = onChangeFeatureSettings;
@@ -15031,7 +15046,7 @@
       initialScreen: screen,
       opener,
       supportsInvalidCertsImplicitly: platform2.name !== "browser" && platform2.name !== "windows",
-      supportsMaliciousSiteWarning: platform2.name === "macos" || platform2.name === "ios",
+      supportsMaliciousSiteWarning: platform2.name === "macos" || platform2.name === "ios" || platform2.name === "android",
       includeToggleOnBreakageForm,
       randomisedCategories
     });
