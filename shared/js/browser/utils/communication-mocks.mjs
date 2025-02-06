@@ -51,7 +51,6 @@ export async function mockDataProvider(params) {
     window.onChangeRequestData(state.url, { requests: state.requests || [] });
 
     if (platform?.name === 'macos' || platform?.name === 'ios' || platform?.name === 'android') {
-        console.log('HERE');
         window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
     }
 }
