@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { forwardConsole, playTimeline } from './helpers';
 import { Mocks } from './Mocks';
 import { Nav } from './Nav';
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './utils/states-with-fixtures';
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs';
 import { Extension } from './Extension';
 import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json';

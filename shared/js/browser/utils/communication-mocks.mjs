@@ -1,11 +1,12 @@
-import toggleReportScreen from '../../../../schema/__fixtures__/toggle-report-screen.json';
 /**
+ * This can be used in playwright + preview environments
+ *
  * @param {object} params
  * @param {import("../../ui/views/tests/generate-data.mjs").MockData} params.state
  * @param {import('../../ui/platform-features.mjs').Platform} params.platform
  * @param {Record<string, any>} params.messages
  */
-export async function mockDataProvider(params) {
+export function sharedMockDataProvider(params) {
     const { state, platform, messages } = params;
 
     // ensure certain globals are assigned. This is how the browser/extension mocks work
@@ -384,74 +385,4 @@ export function mockBrowserApis(params = { messages: {} }) {
         console.error("❌couldn't set up browser mocks");
         console.error(e);
     }
-}
-
-/**
- * @param {import("../../ui/platform-features.mjs").Platform} platform
- * @return {Promise<void>}
- */
-export async function installDebuggerMocks(platform) {
-    console.log('installing...');
-    if (window.__playwright) {
-        console.log('installing... NOE');
-        return console.log('❌ mocked already there');
-    }
-    if (platform.name === 'windows') {
-        windowsMockApis();
-    } else if (platform.name === 'ios' || platform.name === 'macos') {
-        webkitMockApis({
-            messages: {
-                privacyDashboardGetToggleReportOptions: toggleReportScreen,
-            },
-        });
-    } else if (platform.name === 'android') {
-        mockAndroidApis({
-            messages: {
-                getToggleReportOptions: toggleReportScreen,
-            },
-        });
-    } else if (platform.name === 'browser') {
-        mockBrowserApis();
-    }
-
-    const { testDataStates } = await import('../../ui/views/tests/states-with-fixtures');
-    const stateFromUrl = new URLSearchParams(window.location.search).get('state');
-
-    let mock;
-    if (stateFromUrl && stateFromUrl in testDataStates) {
-        mock = testDataStates[stateFromUrl];
-    } else {
-        mock = testDataStates.protectionsOn_blocked;
-        console.warn('state not found, falling back to default. state: ', 'protectionsOn_blocked', stateFromUrl);
-    }
-
-    console.groupCollapsed(`${platform.name} open for more Dashboard States`);
-    const urls = Object.keys(testDataStates).map((key) => {
-        const clone = new URL(location.href);
-        clone.searchParams.set('state', key);
-        return clone.href;
-    });
-    for (const url of urls) {
-        console.log(url);
-    }
-    console.groupEnd();
-
-    const messages = {};
-
-    if (platform.name === 'browser') {
-        messages.getBurnOptions = mock.toBurnOptions();
-        messages.getPrivacyDashboardData = mock.toExtensionDashboardData();
-        messages.getToggleReportOptions = toggleReportScreen;
-        messages.getBreakageFormOptions = toggleReportScreen;
-    }
-    if (platform.name === 'windows') {
-        messages.windowsViewModel = mock.toWindowsViewModel();
-        messages.GetToggleReportOptions = mock.toWindowsToggleReportOptions();
-    }
-
-    await mockDataProvider({
-        state: mock,
-        platform,
-        messages,
-    });
 }
