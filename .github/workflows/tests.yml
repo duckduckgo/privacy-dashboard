@@ -9,6 +9,7 @@ permissions:
     pages: write
     id-token: write
     deployments: write
+
 jobs:
     build:
         runs-on: macos-latest
@@ -61,7 +62,7 @@ jobs:
                   path: playwright-report/
                   retention-days: 30
             - if: ${{ failure() && steps.screenshot_tests.conclusion == 'failure' }}
-              run: npm run test.int -- --grep @screenshots --update-snapshots
+              run: npm run test.int -- --grep @screenshots --update-snapshots --last-failed
             - if: ${{ failure() && steps.screenshot_tests.conclusion == 'failure' }}
               name: Upload screens
               uses: actions/upload-artifact@v4
