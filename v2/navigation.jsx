@@ -139,10 +139,34 @@ function navReducer(state, event) {
                         via: 'push',
                     };
                 }
+                case 'check-pop': {
+                    const url = event.urls.filter((x) => x !== 'primaryScreen');
+                    const local = state.stack.filter((x) => x !== 'primaryScreen');
+                    if (local.length > url.length) {
+                        if (!event.opts.animate) {
+                            const next = state.stack.slice(0, -1);
+                            return {
+                                ...state,
+                                commit: next,
+                                stack: next,
+                                state: /** @type {const} */ ('settled'),
+                                via: 'pop',
+                            };
+                        }
+                        return {
+                            ...state,
+                            commit: state.stack,
+                            stack: state.stack.slice(0, -1),
+                            state: /** @type {const} */ ('transitioning'),
+                            via: 'pop',
+                        };
+                    }
+                    return state;
+                }
                 case 'pop': {
                     if (state.stack.length < 2) {
                         if (!window.__ddg_integration_test) {
-                            console.warn('ignoring a `pop` event', window.location.search);
+                            console.warn('ignoring a `pop` event', window.location.search, state.stack.length);
                         }
                         return state;
                     }
@@ -181,6 +205,7 @@ function navReducer(state, event) {
  *   | {type: 'pop', opts: ActionOpts}
  *   | {type: 'replace', stack: ScreenName[], opts: ActionOpts}
  *   | {type: 'end'}
+ *   | {type: 'check-pop', urls: string[], opts: ActionOpts}
  * } NavEvent
  * @typedef {{
  *    commit: string[],
@@ -241,7 +266,7 @@ export function Navigation(props) {
                     dispatch({ type: 'push', name: lastEntry, opts: { animate: props.animate && isAndroid() } });
                 }
             } else {
-                dispatch({ type: 'pop', opts: { animate: props.animate && isAndroid() } });
+                dispatch({ type: 'check-pop', urls: currentURLStack, opts: { animate: props.animate && isAndroid() } });
             }
         }
 

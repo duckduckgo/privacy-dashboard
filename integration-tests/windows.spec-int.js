@@ -16,6 +16,7 @@ test.describe('breakage form', () => {
     test('sends message when breakage form is triggered from primary screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page);
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.mocks.calledForReportBreakageFormShown();
@@ -31,6 +32,7 @@ test.describe('breakage form', () => {
     test('shows breakage form on category selection screen only', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.showsCategoryTypeSelection();
         await dash.showsOnlyCloseButton();
@@ -39,6 +41,7 @@ test.describe('breakage form', () => {
     test('shows native feedback screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.showsCategoryTypeSelection();
         await dash.showsNativeFeedback();
@@ -51,6 +54,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'false',
         });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.screenshot('category-type-selection.png');
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -70,6 +74,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'true',
         });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.categoryIsLast('Something else');
@@ -81,6 +86,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'false',
         });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
         await dash.breakageFormIsVisible('I dislike the content');
@@ -99,6 +105,7 @@ test.describe('breakage form', () => {
     test('shows empty description warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -111,6 +118,7 @@ test.describe('breakage form', () => {
     test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -123,6 +131,7 @@ test.describe('breakage form', () => {
     test('goes back to primary screen from success screen', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { opener: 'dashboard' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -135,6 +144,7 @@ test.describe('breakage form', () => {
     test('hides back button in success screen when invoked from menu', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { opener: 'menu' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -163,7 +173,7 @@ test.describe('opens directly to feedback form', () => {
 test.describe('stack based router', () => {
     test('goes back and forward in categorySelection flow', async ({ page }) => {
         const dash = await DashboardPage.windows(page);
-        // await dash.reducedMotion(); // TODO: Removed because back button was going back two steps rather than one
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
 
         await dash.clicksWebsiteNotWorking();
@@ -334,6 +344,7 @@ test.describe('windows screenshots', { tag: '@screenshots' }, () => {
             test(name, async ({ page }) => {
                 await page.emulateMedia({ reducedMotion: 'reduce' });
                 const dash = await DashboardPage.windows(page);
+                await dash.reducedMotion();
                 await dash.screenshotEachScreenForState(name, state);
             });
         }
