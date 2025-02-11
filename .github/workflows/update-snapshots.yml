@@ -1,34 +1,35 @@
 name: Update Snapshots on a PR
 
 on:
-  workflow_dispatch:
-    inputs:
-      pr_number:
-        description: "Pull Request Number"
-        required: true
-        type: string
+    workflow_dispatch:
+        inputs:
+            pr_number:
+                description: 'Pull Request Number'
+                required: true
+                type: string
 
 permissions:
-  pull-requests: write
-  contents: write
+    pull-requests: write
+    contents: write
 
 jobs:
-  update-pr:
-    name: Update PR Snapshots
-    runs-on: macos-latest
-    steps:
-      - name: Checkout PR
-        if: github.event_name == 'workflow_dispatch'
-        run: gh pr checkout ${{ github.event.inputs.pr_number }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    update-pr:
+        name: Update PR Snapshots
+        runs-on: macos-latest
+        steps:
+            - name: Checkout PR
+              if: github.event_name == 'workflow_dispatch'
+              run: gh pr checkout ${{ github.event.inputs.pr_number }}
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run command
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          echo "Running A command here command..."
+            - name: Run command
+              if: github.event_name == 'workflow_dispatch'
+              run: |
+                  echo "Running A command here command..."
 
-      # Step 5: Commit and push changes back to the PR branch
+            # Step 5: Commit and push changes back to the PR branch
+
 #      - name: Commit and push changes
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
