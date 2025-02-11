@@ -65,6 +65,24 @@ export class Mocks {
         return values;
     }
 
+    /**
+     * @param {{name: string, count: number}} opts
+     * @returns {Promise<any[]>}
+     */
+    async waitFor(opts) {
+        await this.page.waitForFunction(
+            (opts) => {
+                const current = window.__playwright.mocks.outgoing;
+                return current.filter(([name]) => name === opts.name).length >= opts.count;
+            },
+            opts,
+            { timeout: 5000 }
+        );
+
+        const values = await this.page.evaluate(() => window.__playwright.mocks.outgoing);
+        return values.filter(([name]) => opts.name === name);
+    }
+
     async calledForShowBreakageForm() {
         // only on ios/android
         if (!['android', 'ios'].includes(this.platform.name)) return;

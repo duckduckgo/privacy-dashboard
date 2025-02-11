@@ -19,3 +19,4 @@ build/
 build/app_backup
 bslive.yml
 .vscode
+/json-reports
