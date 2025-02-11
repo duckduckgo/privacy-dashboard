@@ -56,7 +56,8 @@ export function createPlatformFeatures(platform) {
         initialScreen: screen,
         opener,
         supportsInvalidCertsImplicitly: platform.name !== 'browser' && platform.name !== 'windows',
-        supportsMaliciousSiteWarning: platform.name === 'macos' || platform.name === 'ios' || platform.name === 'android' || platform.name === 'windows',
+        supportsMaliciousSiteWarning:
+            platform.name === 'macos' || platform.name === 'ios' || platform.name === 'android' || platform.name === 'windows',
         includeToggleOnBreakageForm,
         randomisedCategories,
     });
