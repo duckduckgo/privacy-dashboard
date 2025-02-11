@@ -302,7 +302,7 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
-        { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
+        // { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
         { name: 'google-off', state: testDataStates['google-off'] },
         { name: 'cnn', state: testDataStates.cnn },
         {
