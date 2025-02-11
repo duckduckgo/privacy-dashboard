@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { toggleFlows } from './utils/common-flows';
 
@@ -197,6 +197,7 @@ test.describe('breakage form', () => {
     test('shows empty description warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.android(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -209,6 +210,7 @@ test.describe('breakage form', () => {
     test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.android(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -274,8 +276,11 @@ test.describe('stack based router', () => {
         await dash.addState([testDataStates['webBreakageForm-enabled']]);
 
         await dash.clicksWebsiteNotWorking();
+        await dash.waitForRouterToSettle();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.waitForRouterToSettle();
         await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.waitForRouterToSettle();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
     test('goes back and forward generally', async ({ page }) => {
@@ -360,6 +365,7 @@ test.describe('Android screenshots', { tag: '@screenshots' }, () => {
             test(name, async ({ page }) => {
                 await page.emulateMedia({ reducedMotion: 'reduce' });
                 const dash = await DashboardPage.android(page);
+                await dash.reducedMotion();
                 await dash.screenshotEachScreenForState(name, state);
             });
         }
@@ -374,6 +380,7 @@ test.describe('Android screenshots', { tag: '@screenshots' }, () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
                 const dash = await DashboardPage.android(page);
+                await dash.reducedMotion();
                 await dash.addState([state]);
                 await dash.showsPrimaryScreen();
                 await dash.screenshot(`${name}.png`);
@@ -400,6 +407,7 @@ test.describe('Android screenshots', { tag: '@screenshots' }, () => {
             });
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.android(page);
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable']]);
                 await dash.viewCookiePromptManagement();
                 await dash.screenshot('consent-managed-configurable-secondary.png');
@@ -417,6 +425,7 @@ test.describe('Android screenshots', { tag: '@screenshots' }, () => {
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.android(page);
                 await dash.addState([testDataStates['consent-managed-configurable-cosmetic']]);
+                await dash.reducedMotion();
                 await dash.viewCookiePromptManagement();
                 await dash.screenshot('consent-managed-configurable-secondary-cosmetic.png');
                 await dash.disableCookiesInSettings();

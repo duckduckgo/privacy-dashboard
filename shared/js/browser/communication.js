@@ -4,7 +4,7 @@ import * as iosComms from './ios-communication.js';
 import * as androidComms from './android-communication.js';
 import * as windowsComms from './windows-communication.js';
 import * as macosComms from './macos-communication.js';
-import { installDebuggerMocks } from './utils/communication-mocks.mjs';
+import { installBrowserMocks } from './utils/browser-mocks.mjs';
 
 let defaultComms;
 
@@ -33,17 +33,20 @@ if (isIOS()) {
 if (!defaultComms) throw new Error('unsupported environment');
 
 let debug = false;
+let postInstall;
 
-// in test environments, install mocks and deliver initial data
+// in preview environments, install mocks and deliver initial data
+// NOTE: we DO NOT run this when Playwright is running, since it handles its own data mocks
 // eslint-disable-next-line no-unused-labels, no-labels
 $TEST: (() => {
     if (typeof window.__ddg_integration_test === 'undefined') {
-        installDebuggerMocks(platform).catch(console.error);
+        postInstall = installBrowserMocks(platform);
         debug = true;
     }
 })();
 
 defaultComms.setup(debug);
+postInstall?.();
 
 export { platform };
 
