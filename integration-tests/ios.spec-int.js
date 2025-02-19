@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { toggleFlows } from './utils/common-flows';
 
@@ -11,6 +11,7 @@ test.describe('page data (no trackers)', () => {
     });
     test('should accept updates when on trackers list screen', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page);
+        await dash.reducedMotion();
         await dash.addState([testDataStates.protectionsOn]);
         await dash.viewTrackerCompanies();
         await dash.screenshot('tracker-list-before.png');
@@ -20,6 +21,7 @@ test.describe('page data (no trackers)', () => {
     });
     test('should accept updates when on non-trackers list screen', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page);
+        await dash.reducedMotion();
         await dash.addState([testDataStates.protectionsOn]);
         await dash.viewThirdParties();
         await dash.screenshot('non-tracker-list-before.png');
@@ -29,6 +31,7 @@ test.describe('page data (no trackers)', () => {
     });
     test('does not alter the appearance of connection panel', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page);
+        await dash.reducedMotion();
         await dash.addState([testDataStates.protectionsOn]);
         await dash.viewConnection();
         await dash.screenshot('connection-before.png');
@@ -40,6 +43,7 @@ test.describe('page data (no trackers)', () => {
 test.describe('page data (with trackers)', () => {
     test('should display correct primary screen', { tag: '@screenshots' }, async ({ page }) => {
         const dash = await DashboardPage.webkit(page);
+        await dash.reducedMotion();
         await dash.addState([testDataStates.cnn]);
         await dash.showsPrimaryScreen();
         await dash.screenshot('primary-screen.png');
@@ -87,6 +91,7 @@ test.describe('cookie prompt management', () => {
     test.describe('none-configurable', () => {
         test('primary screen', async ({ page }) => {
             const dash = await DashboardPage.webkit(page);
+            await dash.reducedMotion();
             await dash.addState([testDataStates['consent-managed']]);
             await dash.indicatesCookiesWereManaged();
         });
@@ -95,11 +100,13 @@ test.describe('cookie prompt management', () => {
         test.describe('non-cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page);
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable']]);
                 await dash.indicatesCookiesWereManaged();
             });
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page);
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable']]);
                 await dash.viewCookiePromptManagement();
                 await dash.disableCookiesInSettings();
@@ -112,11 +119,13 @@ test.describe('cookie prompt management', () => {
         test.describe('cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page);
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable-cosmetic']]);
                 await dash.indicatesCookiesWereHidden();
             });
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page);
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable-cosmetic']]);
                 await dash.viewCookiePromptManagement();
                 await dash.disableCookiesInSettings();
@@ -132,6 +141,7 @@ test.describe('breakage form', () => {
     test('sends message when breakage form is triggered from primary screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'ios', opener: 'dashboard' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.mocks.calledForReportBreakageFormShown();
@@ -140,6 +150,7 @@ test.describe('breakage form', () => {
     test('sends message when breakage form is triggered from app menu', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.mocks.calledForReportBreakageFormShown();
     });
@@ -147,6 +158,7 @@ test.describe('breakage form', () => {
     test('shows breakage form on category selection screen only', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.showsCategoryTypeSelection();
         await dash.showsBreakageFormTitle();
@@ -156,6 +168,7 @@ test.describe('breakage form', () => {
     test('shows native feedback screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.showsCategoryTypeSelection();
         await dash.showsNativeFeedback();
@@ -188,6 +201,7 @@ test.describe('breakage form', () => {
             randomisedCategories: 'true',
             platform: 'ios',
         });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.categoryIsLast('Something else');
@@ -200,6 +214,7 @@ test.describe('breakage form', () => {
             randomisedCategories: 'false',
             platform: 'ios',
         });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
         await dash.breakageFormIsVisible('I dislike the content');
@@ -210,6 +225,7 @@ test.describe('breakage form', () => {
     test('skips to breakage form when disliked', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.showsCategoryTypeSelection();
         await dash.skipsToBreakageFormWhenDisliked();
@@ -218,6 +234,7 @@ test.describe('breakage form', () => {
     test('shows empty description warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -227,9 +244,10 @@ test.describe('breakage form', () => {
         await dash.screenshot('screen-breakage-form-empty-description.png');
     });
 
-    test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
+    test('submits form with description', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -257,6 +275,7 @@ test.describe('opens toggle report', () => {
     test('sends toggle report', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'menu' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.toggleReportIsVisible();
         await dash.screenshot('screen-toggle-report.png');
@@ -266,6 +285,7 @@ test.describe('opens toggle report', () => {
     test('rejects toggle report', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'toggleReport', platform: 'ios', opener: 'dashboard' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.toggleReportIsVisible();
         await dash.rejectToggleReport();
@@ -288,8 +308,11 @@ test.describe('stack based router', () => {
         await dash.addState([testDataStates.google]);
 
         await dash.clicksWebsiteNotWorking();
+        await dash.waitForRouterToSettle();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.waitForRouterToSettle();
         await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.waitForRouterToSettle();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
     test('goes back and forward generally', async ({ page }) => {
@@ -301,12 +324,10 @@ test.describe('stack based router', () => {
 
         // needed to allow the router to settle
         // playwright is too fast here and is doing something a user never could
-        await page.waitForTimeout(100);
         await page.goBack();
         await dash.showsPrimaryScreen();
 
         // same as previous wait point
-        await page.waitForTimeout(100);
         await page.goForward();
         await dash.showsCategoryTypeSelection();
     });
@@ -316,6 +337,7 @@ test.describe('phishing & malware protection', () => {
     test('phishing warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.phishing]);
         await dash.screenshot('phishing-warning.png');
         await dash.hasPhishingIcon();
@@ -328,6 +350,7 @@ test.describe('phishing & malware protection', () => {
     test('malware warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.malware]);
         await dash.page.pause();
         await dash.screenshot('malware-warning.png');
@@ -341,6 +364,7 @@ test.describe('phishing & malware protection', () => {
     test('shows report as safe link', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.malware]);
         await dash.clickReportAsSafeLink();
         await dash.mocks.calledForReportAsSafeLink('https://privacy-test-pages.site/security/badware/malware.html');
@@ -349,6 +373,7 @@ test.describe('phishing & malware protection', () => {
     test('shows malware help page link', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.malware]);
         await dash.clickMalwareHelpPageLink();
         await dash.mocks.calledForHelpPagesLink();
@@ -357,6 +382,7 @@ test.describe('phishing & malware protection', () => {
     test('shows phishing help page link', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'ios' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.phishing]);
         await dash.clickPhishingHelpPageLink();
         await dash.mocks.calledForHelpPagesLink();
@@ -389,6 +415,7 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
         test(name, async ({ page }) => {
             await page.emulateMedia({ reducedMotion: 'reduce' });
             const dash = await DashboardPage.webkit(page);
+            await dash.reducedMotion();
             await dash.screenshotEachScreenForState(name, state);
         });
     }

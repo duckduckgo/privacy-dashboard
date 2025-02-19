@@ -1,5 +1,11 @@
-import { mockAndroidApis, mockDataProvider, webkitMockApis, windowsMockApis } from '../shared/js/browser/utils/communication-mocks.mjs';
-import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json';
+import {
+    mockAndroidApis,
+    sharedMockDataProvider,
+    webkitMockApis,
+    windowsMockApis,
+} from '../shared/js/browser/utils/communication-mocks.mjs';
+import { readFileSync } from 'node:fs';
+const toggleReportScreen = JSON.parse(readFileSync('./schema/__fixtures__/toggle-report-screen.json', 'utf8'));
 
 /**
  * @param {import('@playwright/test').Page} page
@@ -26,12 +32,12 @@ export async function playTimeline(page, state, platform) {
     }
     if (platform.name === 'windows') {
         messages.windowsViewModel = state.toWindowsViewModel();
-        messages.GetToggleReportOptions = state.toWindowsToggleReportOptions();
+        messages.GetToggleReportOptions = state.toWindowsToggleReportOptions(toggleReportScreen);
     }
     if (platform.name === 'ios' || platform.name === 'macos') {
         messages.privacyDashboardGetToggleReportOptions = toggleReportScreen;
     }
-    await page.evaluate(mockDataProvider, { state, platform, messages });
+    await page.evaluate(sharedMockDataProvider, { state, platform, messages });
     return messages;
 }
 

@@ -16,6 +16,7 @@ export class Nav {
 
     async goesBackToPrimaryScreenFromBreakageScreen() {
         const { page } = this.dash;
+        await page.getByRole('textbox', { name: 'Please describe the issue you' }).waitFor({ timeout: 1000 });
         await page.getByTestId('subview-breakageFormFinalStep').getByLabel('Back', { exact: true }).click();
         await page.getByTestId('subview-breakageFormCategorySelection').getByLabel('Back', { exact: true }).click();
         await page.getByTestId('subview-breakageForm').getByLabel('Back', { exact: true }).click();

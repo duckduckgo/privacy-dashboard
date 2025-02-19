@@ -32,7 +32,7 @@ export class Extension {
         await page.evaluate(() => {
             window.__playwright.onDisconnect?.();
         });
-        const callCountAfter = await this.dash.mocks.outgoing({ names: ['getToggleReportOptions'] });
+        const callCountAfter = await this.dash.mocks.waitFor({ name: 'getToggleReportOptions', count: 2 });
         expect(callCountAfter).toHaveLength(2);
     }
 

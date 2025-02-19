@@ -30,7 +30,10 @@
             "type": "boolean"
         },
         "localeSettings": {
-            "$ref": "locale.json"
+            "$ref": "./locale.json"
+        },
+        "maliciousSiteStatus": {
+            "$ref": "./malicious-site.json"
         }
     }
 }

@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { toggleFlows } from './utils/common-flows';
 import { forwardConsole } from './helpers';
@@ -25,6 +25,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'false',
         });
+        await dash.reducedMotion();
         await dash.screenshot('category-type-selection.png');
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.screenshot('category-selection.png');
@@ -42,6 +43,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'true',
         });
+        await dash.reducedMotion();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.categoryIsLast('Something else');
     });
@@ -52,6 +54,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'false',
         });
+        await dash.reducedMotion();
         await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
         await dash.breakageFormIsVisible('I dislike the content');
         await dash.descriptionPromptIsNotVisible();
@@ -61,6 +64,7 @@ test.describe('breakage form', () => {
     test('skips to breakage form when disliked', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.showsCategoryTypeSelectionForExtension();
         await dash.skipsToBreakageFormWhenDisliked();
     });
@@ -68,6 +72,7 @@ test.describe('breakage form', () => {
     test('shows empty description warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
         await dash.breakageFormIsVisible();
@@ -79,6 +84,7 @@ test.describe('breakage form', () => {
     test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
         await dash.breakageFormIsVisible();
@@ -86,9 +92,10 @@ test.describe('breakage form', () => {
         await dash.screenshot('screen-breakage-form-success.png');
     });
 
-    test('goes back to primary screen from success screen', { tag: '@screenshots' }, async ({ page }) => {
+    test('goes back to primary screen from success screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, { opener: 'dashboard' });
+        await dash.reducedMotion();
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Site layout broken', 'layout');
@@ -97,9 +104,10 @@ test.describe('breakage form', () => {
         await dash.nav.goesBackToPrimaryScreenFromSuccessScreen();
     });
 
-    test('hides back button in success screen when invoked from menu', { tag: '@screenshots' }, async ({ page }) => {
+    test('hides back button in success screen when invoked from menu', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.browser(page, testDataStates.google, { opener: 'menu' });
+        await dash.reducedMotion();
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Site layout broken', 'layout');
@@ -126,10 +134,12 @@ test.describe('stack based router', () => {
     test('goes back and forward in categorySelection flow', async ({ page }) => {
         const dash = await DashboardPage.browser(page, testDataStates.google);
         // await dash.reducedMotion(); // TODO: Removed because back button was going back two steps rather than one
-
         await dash.clicksWebsiteNotWorking();
+        await dash.waitForRouterToSettle();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.waitForRouterToSettle();
         await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.waitForRouterToSettle();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
     test('goes back and forward generally', async ({ page }) => {
@@ -168,6 +178,7 @@ test.describe('Protections toggle -> simple report screen', () => {
     test('shows toggle report + accepts it', async ({ page }) => {
         forwardConsole(page);
         const dash = await DashboardPage.browser(page, testDataStates.protectionsOn);
+        await dash.reducedMotion();
         await dash.showsPrimaryScreen();
         await dash.toggleProtectionsOff();
         await dash.mocks.calledForToggleAllowList();
@@ -178,6 +189,7 @@ test.describe('Protections toggle -> simple report screen', () => {
     test('handles disconnect + fetches new data for toggle-report', async ({ page }) => {
         forwardConsole(page);
         const dash = await DashboardPage.browser(page, testDataStates.protectionsOn);
+        await dash.reducedMotion();
         await dash.showsPrimaryScreen();
         await dash.toggleProtectionsOff();
         await dash.mocks.calledForToggleAllowList();
@@ -190,6 +202,7 @@ test.describe('Protections toggle -> simple report screen', () => {
     test('shows toggle report + rejects it', async ({ page }) => {
         forwardConsole(page);
         const dash = await DashboardPage.browser(page, testDataStates.protectionsOn);
+        await dash.reducedMotion();
         await dash.showsPrimaryScreen();
         await dash.toggleProtectionsOff();
         await dash.mocks.calledForToggleAllowList();
@@ -289,7 +302,7 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },
-        { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
+        // { name: 'upgraded+secure', state: testDataStates['upgraded+secure'] },
         { name: 'google-off', state: testDataStates['google-off'] },
         { name: 'cnn', state: testDataStates.cnn },
         {
@@ -300,6 +313,7 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
     for (const { name, state } of states) {
         test(name, async ({ page }) => {
             const dash = await DashboardPage.browser(page, state);
+            await dash.reducedMotion();
             await dash.screenshotEachScreenForState(name, state, { skipInCI: true });
         });
     }

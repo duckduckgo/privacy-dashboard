@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { settingPermissions, toggleFlows } from './utils/common-flows';
 
@@ -22,6 +22,7 @@ test.describe('permissions', () => {
 test('invalid/missing certificate', { tag: '@screenshots' }, async ({ page }) => {
     /** @type {DashboardPage} */
     const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+    await dash.reducedMotion();
     await dash.addState([testDataStates['https-without-certificate']]);
     await dash.screenshot('invalid-cert.png');
     await dash.hasInvalidCertText();
@@ -187,6 +188,7 @@ test.describe('breakage form', () => {
     test('shows empty description warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -199,6 +201,7 @@ test.describe('breakage form', () => {
     test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { screen: 'breakageForm', platform: 'macos' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -212,6 +215,7 @@ test.describe('breakage form', () => {
     test('goes back to primary screen from success screen', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'macos', opener: 'dashboard' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -224,6 +228,7 @@ test.describe('breakage form', () => {
     test('hides back button in success screen when invoked from menu', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.webkit(page, { platform: 'macos', opener: 'menu' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -256,8 +261,11 @@ test.describe('stack based router', () => {
         await dash.addState([testDataStates.google]);
 
         await dash.clicksWebsiteNotWorking();
+        await dash.waitForRouterToSettle();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.waitForRouterToSettle();
         await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.waitForRouterToSettle();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
 
@@ -383,8 +391,8 @@ test.describe('macos screenshots', { tag: '@screenshots' }, () => {
     test.describe('states', () => {
         for (const { name, state } of states) {
             test(name, async ({ page }) => {
-                await page.emulateMedia({ reducedMotion: 'reduce' });
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+                await dash.reducedMotion();
                 await dash.screenshotEachScreenForState(name, state);
             });
         }
@@ -401,12 +409,14 @@ test.describe('macos screenshots', { tag: '@screenshots' }, () => {
         test.describe('non-cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable']]);
                 await dash.indicatesCookiesWereManaged();
                 await dash.screenshot('consent-managed-configurable.png');
             });
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable']]);
                 await dash.viewCookiePromptManagement();
                 await dash.screenshot('consent-managed-configurable-secondary.png');
@@ -417,12 +427,14 @@ test.describe('macos screenshots', { tag: '@screenshots' }, () => {
         test.describe('cosmetic', () => {
             test('primary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable-cosmetic']]);
                 await dash.indicatesCookiesWereHidden();
                 await dash.screenshot('consent-managed-configurable-primary-cosmetic.png');
             });
             test('secondary screen', async ({ page }) => {
                 const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+                await dash.reducedMotion();
                 await dash.addState([testDataStates['consent-managed-configurable-cosmetic']]);
                 await dash.viewCookiePromptManagement();
                 await dash.screenshot('consent-managed-configurable-secondary-cosmetic.png');

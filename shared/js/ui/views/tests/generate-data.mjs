@@ -1,6 +1,5 @@
 import { Protections } from '../../../browser/utils/protections.mjs';
 import { protectionsOff } from './toggle-protections.mjs';
-import toggleReportScreen from '../../../../../schema/__fixtures__/toggle-report-screen.json';
 
 /**
  * @typedef {import('../../../browser/utils/request-details.mjs').TabData} TabData
@@ -334,19 +333,21 @@ export class MockData {
                 cookiePromptManagementStatus: this.cookiePromptManagementStatus,
                 isInvalidCert: this.isInvalidCert,
                 localeSettings: this.localeSettings,
+                maliciousSiteStatus: this.maliciousSiteStatus || { kind: null },
             },
         };
     }
 
     /**
+     * @param {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} reportScreen
      * @return {import('../../../../../schema/__generated__/schema.types').WindowsIncomingToggleReportOptions}
      */
-    toWindowsToggleReportOptions() {
+    toWindowsToggleReportOptions(reportScreen) {
         return {
             context: 'PrivacyDashboard',
             featureName: 'GetToggleReportOptions',
             id: '0.1',
-            result: /** @type {import('../../../../../schema/__generated__/schema.types').ToggleReportScreen} */ (toggleReportScreen),
+            result: reportScreen,
         };
     }
 

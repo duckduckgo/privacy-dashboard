@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { forwardConsole, playTimeline } from './helpers';
 import { Mocks } from './Mocks';
 import { Nav } from './Nav';
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './utils/states-with-fixtures';
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs';
 import { Extension } from './Extension';
 import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json';
@@ -490,7 +490,8 @@ export class DashboardPage {
      * @param {{ telemetry?: boolean }} [options]
      */
     async selectsCategory(text, category, options = { telemetry: false }) {
-        await this.page.getByLabel(text).click();
+        // await this.page.pause();
+        await this.page.getByLabel(text).click({ timeout: 5000 });
 
         if (options.telemetry) {
             await this.mocks.didSendTelemetry({
@@ -829,6 +830,21 @@ export class DashboardPage {
 
     async showsBreakageForm() {
         await this.page.getByText('Submitting an anonymous').waitFor({ timeout: 5000 });
+    }
+
+    // todo: remove
+    async waitForRouterToSettle() {
+        const { page } = this;
+        // wait for it to start animating
+        await page.waitForFunction(() => {
+            const element = document.getElementById('popup-container');
+            return element && element.classList.contains('sliding-subview-v2--animating');
+        });
+        // then wait for it to finish
+        await page.waitForFunction(() => {
+            const element = document.getElementById('popup-container');
+            return element && !element.classList.contains('sliding-subview-v2--animating');
+        });
     }
 
     async skipsToBreakageFormWhenDisliked() {

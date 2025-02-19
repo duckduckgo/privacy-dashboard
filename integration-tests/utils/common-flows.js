@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { testDataStates } from '../../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './states-with-fixtures';
 
 /**
  * @typedef {import("../../shared/js/ui/views/tests/generate-data.mjs").MockData} MockData

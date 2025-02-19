@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { testDataStates } from '../shared/js/ui/views/tests/states-with-fixtures';
+import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { settingPermissions, toggleFlows } from './utils/common-flows';
 
@@ -16,6 +16,7 @@ test.describe('breakage form', () => {
     test('sends message when breakage form is triggered from primary screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page);
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.mocks.calledForReportBreakageFormShown();
@@ -31,6 +32,7 @@ test.describe('breakage form', () => {
     test('shows breakage form on category selection screen only', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.showsCategoryTypeSelection();
         await dash.showsOnlyCloseButton();
@@ -39,6 +41,7 @@ test.describe('breakage form', () => {
     test('shows native feedback screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.showsCategoryTypeSelection();
         await dash.showsNativeFeedback();
@@ -70,6 +73,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'true',
         });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.categoryIsLast('Something else');
@@ -81,6 +85,7 @@ test.describe('breakage form', () => {
             screen: 'breakageForm',
             randomisedCategories: 'false',
         });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('I dislike the content on this site', 'dislike');
         await dash.breakageFormIsVisible('I dislike the content');
@@ -99,6 +104,7 @@ test.describe('breakage form', () => {
     test('shows empty description warning', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -111,6 +117,7 @@ test.describe('breakage form', () => {
     test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
         await dash.selectsCategory('Something else', 'other');
@@ -120,9 +127,10 @@ test.describe('breakage form', () => {
         await dash.clickingSuccessScreenClosesBreakageFormScreen();
     });
 
-    test('goes back to primary screen from success screen', { tag: '@screenshots' }, async ({ page }) => {
+    test('goes back to primary screen from success screen', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { opener: 'dashboard' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -132,9 +140,10 @@ test.describe('breakage form', () => {
         await dash.nav.goesBackToPrimaryScreenFromSuccessScreen();
     });
 
-    test('hides back button in success screen when invoked from menu', { tag: '@screenshots' }, async ({ page }) => {
+    test('hides back button in success screen when invoked from menu', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { opener: 'menu' });
+        await dash.reducedMotion();
         await dash.addState([testDataStates.google]);
         await dash.clicksWebsiteNotWorking();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
@@ -165,10 +174,12 @@ test.describe('stack based router', () => {
         const dash = await DashboardPage.windows(page);
         // await dash.reducedMotion(); // TODO: Removed because back button was going back two steps rather than one
         await dash.addState([testDataStates.google]);
-
         await dash.clicksWebsiteNotWorking();
+        await dash.waitForRouterToSettle();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
+        await dash.waitForRouterToSettle();
         await dash.selectsCategory('Site layout broken', 'layout');
+        await dash.waitForRouterToSettle();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
     test('goes back and forward generally', async ({ page }) => {
@@ -321,6 +332,56 @@ test.describe('cookie prompt management', () => {
     });
 });
 
+test.describe('phishing & malware protection', () => {
+    test('phishing warning', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.phishing]);
+        await dash.screenshot('phishing-warning.png');
+        await dash.hasPhishingIcon();
+        await dash.hasPhishingHeadingText();
+        await dash.hasPhishingWarningText();
+        await dash.hasPhishingStatusText();
+        await dash.connectionLinkDoesntShow();
+    });
+
+    test('malware warning', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.malware]);
+        await dash.screenshot('malware-warning.png');
+        await dash.hasMalwareIcon();
+        await dash.hasMalwareHeadingText();
+        await dash.hasMalwareWarningText();
+        await dash.hasMalwareStatusText();
+        await dash.connectionLinkDoesntShow();
+    });
+
+    test('shows report as safe link', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.malware]);
+        await dash.clickReportAsSafeLink();
+        await dash.mocks.calledForReportAsSafeLink('https://privacy-test-pages.site/security/badware/malware.html');
+    });
+
+    test('shows malware help page link', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.malware]);
+        await dash.clickMalwareHelpPageLink();
+        await dash.mocks.calledForHelpPagesLink();
+    });
+
+    test('shows phishing help page link', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.phishing]);
+        await dash.clickPhishingHelpPageLink();
+        await dash.mocks.calledForHelpPagesLink();
+    });
+});
+
 test.describe('windows screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
@@ -334,6 +395,7 @@ test.describe('windows screenshots', { tag: '@screenshots' }, () => {
             test(name, async ({ page }) => {
                 await page.emulateMedia({ reducedMotion: 'reduce' });
                 const dash = await DashboardPage.windows(page);
+                await dash.reducedMotion();
                 await dash.screenshotEachScreenForState(name, state);
             });
         }
