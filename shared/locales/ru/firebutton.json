@@ -42,7 +42,7 @@
     "note": "Dropdown option to clear all data, since recording started"
   },
   "historyDuration": {
-    "title": "{duration, select, hour {за последний час} day {за последние 24 часа} week {за последнюю неделю} month {за последние 4 недели} other {Все}}",
+    "title": "{duration, select, hour {за последний час} day {за последние 24 часа} week {за последнюю неделю} month {за последние 4 недели} other {Всё}}",
     "note": "Description of what period of history data should be deleted."
   },
   "summaryClearTabsHistoryDuration": {
@@ -94,7 +94,7 @@
     "note": "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
   },
   "summaryPinnedIgnored": {
-    "title": "{tabs, plural, one {<b>{tabs} закрепленная</b> вкладка будет проигнорирована.} few {<b>{tabs} закрепленные</b> вкладки будут проигнорированы.} many {<b>{tabs} закрепленных</b> вкладок будет проигнорировано.} other {Закрепленные вкладки (<b>{tabs}</b>) будут проигнорированы.}}",
+    "title": "{tabs, plural, one {<b>{tabs} закреплённая</b> вкладка будет проигнорирована.} few {<b>{tabs} закреплённые</b> вкладки будут проигнорированы.} many {<b>{tabs} закреплённых</b> вкладок будет проигнорировано.} other {Закреплённые вкладки (<b>{tabs}</b>) будут проигнорированы.}}",
     "note": "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
   },
   "clearData": {
