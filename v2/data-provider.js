@@ -18,7 +18,8 @@ import { useNav } from './navigation';
 /**
  * @typedef {Object} DataChannelPublicData
  * @property {boolean} protectionsEnabled
- * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware'} httpsState * @property {boolean} isBroken
+ * @property {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware' | 'scam'} httpsState
+ * @property {boolean} isBroken
  * @property {boolean} isAllowlisted
  * @property {boolean} isDenylisted
  * @property {boolean} displayBrokenUI
@@ -36,7 +37,7 @@ import { useNav } from './navigation';
 
 export class DataChannel extends EventTarget {
     protectionsEnabled = false;
-    /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware'} */
+    /** @type {'secure' | 'upgraded' | 'none' | 'invalid' | 'phishing' | 'malware' | 'scam'} */
     httpsState = 'none';
     isBroken = false;
     isAllowlisted = false;
@@ -178,7 +179,7 @@ export class DataChannel extends EventTarget {
         const nextState = (() => {
             if (this.features.supportsMaliciousSiteWarning && typeof this.tab.maliciousSiteStatus === 'object') {
                 const { kind } = this.tab.maliciousSiteStatus;
-                if (kind === 'phishing' || kind === 'malware') {
+                if (kind === 'phishing' || kind === 'malware' || kind === 'scam') {
                     return kind;
                 }
             }

@@ -41,7 +41,7 @@ export function thirdpartyTitle(requestDetails, protectionsEnabled) {
  * @returns {'info'|'blocked'}
  */
 export function thirdpartyIcon(requestDetails, protectionsEnabled, threatDetected) {
-    if (threatDetected === 'phishing' || threatDetected === 'malware') {
+    if (threatDetected === 'phishing' || threatDetected === 'malware' || threatDetected === 'scam') {
         return 'info';
     }
 
