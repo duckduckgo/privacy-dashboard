@@ -42,7 +42,7 @@ export function trackerNetworksTitle(requestDetails, protectionsEnabled) {
  * @returns {'info'|'blocked'|'warning'}
  */
 export function trackerNetworksIcon(requestDetails, protectionsEnabled, threatDetected) {
-    if (threatDetected === 'phishing' || threatDetected === 'malware') {
+    if (threatDetected === 'phishing' || threatDetected === 'malware' || threatDetected === 'scam') {
         return 'info';
     }
 

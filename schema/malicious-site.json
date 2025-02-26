@@ -8,7 +8,7 @@
     "properties": {
         "kind": {
             "description": "Kind of threat detected",
-            "enum": ["phishing", "malware", null]
+            "enum": ["phishing", "malware", "scam", null]
         }
     }
 }
