@@ -51,7 +51,7 @@ export function sharedMockDataProvider(params) {
     window.onChangeLocale?.(state.localeSettings);
     window.onChangeRequestData(state.url, { requests: state.requests || [] });
 
-    if (platform?.name === 'macos' || platform?.name === 'ios' || platform?.name === 'android') {
+    if (platform?.name === 'macos' || platform?.name === 'ios' || platform?.name === 'android' || platform?.name === 'windows') {
         window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
     }
 }
