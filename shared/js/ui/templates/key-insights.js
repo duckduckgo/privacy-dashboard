@@ -183,7 +183,7 @@ export function renderKeyInsight(modelOverride) {
             const text = i18n.t('site:scamWebsiteDesc.title', { domain: model.tab.domain });
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--phishing"></div>
+                    <div class="key-insight__icon hero-icon--scam"></div>
                     ${title(model.tab.domain)} ${description(raw(text))}
                     <div class="key-insight__link">
                         <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
