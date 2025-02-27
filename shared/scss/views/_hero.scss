@@ -73,6 +73,11 @@
     @include cross_platform_bg_image('refresh-assets/Cookies-Hidden-128.svg');
 }
 
+.hero-icon--scam,
+.hero-icon--connection-scam {
+    @include cross_platform_bg_image('refresh-assets/Block-Disabled-128.svg');
+}
+
 .hero-icon--phishing,
 .hero-icon--connection-phishing {
     @include cross_platform_bg_image('refresh-assets/Phishing-128.svg');

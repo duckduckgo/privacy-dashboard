@@ -230,7 +230,7 @@ export class DashboardPage {
 
     async hasScamIcon() {
         const { page } = this;
-        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/);
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--scam/);
     }
 
     async hasScamHeadingText() {
