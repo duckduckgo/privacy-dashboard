@@ -169,11 +169,11 @@
     },
     "scamWebsite": {
         "title": "Site May Be a Security Risk",
-        "note": "Shown as the button text when the URL is reported as a malware website."
+        "note": "Shown as the button text when the URL is reported as a scam website."
     },
     "scamWebsiteDesc": {
-        "title": "This site has been flagged for manipulating you into transferring money, buying counterfeit goods, or installing malware.",
-        "note": "Shown as the description text when the URL is reported as a malware website."
+        "title": "This site has been flagged for trying to manipulate people into transferring money, buying counterfeit goods, or installing malware.",
+        "note": "Shown as the description text when the URL is reported as a scam website."
     },
     "trackerNetworksDesc": {
         "title": "Requests Blocked from Loading",

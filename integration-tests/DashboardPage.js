@@ -241,7 +241,7 @@ export class DashboardPage {
     async hasScamWarningText() {
         const { page } = this;
         await expect(page.locator('#popup-container')).toContainText(
-            'This site has been flagged for manipulating you into transferring money, buying counterfeit goods, or installing malware.'
+            'This site has been flagged for trying to manipulate people into transferring money, buying counterfeit goods, or installing malware.'
         );
     }
 
