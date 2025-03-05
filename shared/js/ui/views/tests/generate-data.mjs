@@ -635,7 +635,7 @@ export const createDataStates = (google, cnn) => {
             certificate: defaultCertificates,
         }),
         scam: new MockData({
-            url: 'https://privacy-test-pages.site/security/badware/phishing.html?query=param&and=another', // TODO: Update to actual test url
+            url: 'https://privacy-test-pages.site/security/badware/scam.html',
             requests: [],
             maliciousSiteStatus: {
                 kind: 'scam',
