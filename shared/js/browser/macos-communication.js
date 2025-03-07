@@ -13,6 +13,7 @@
  * @category integrations
  */
 import invariant from 'tiny-invariant';
+import * as z from 'zod';
 import {
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
@@ -44,6 +45,12 @@ import { createTabData } from './utils/request-details.mjs';
 
 let channel = null;
 
+const start = Date.now();
+const log = (msg, ...args) => {
+    const ms = Date.now() - start;
+    console.log(msg, `after: ${ms}ms`, ...args);
+};
+
 /**
  * @category Internal API
  * @param backgroundModel
@@ -60,6 +67,8 @@ let upgradedHttps;
 /** @type {import("./utils/protections.mjs").Protections | undefined} */
 let protections;
 let isPendingUpdates;
+/** @type {null|boolean} */
+let isInvalidCert = null;
 let parentEntity;
 const cookiePromptManagementStatus = {};
 
@@ -69,22 +78,27 @@ let maliciousSiteStatus;
 /** @type {string | undefined} */
 let locale;
 
-const combineSources = () => ({
-    tab: Object.assign(
-        {},
-        trackerBlockingData || {},
-        { maliciousSiteStatus: maliciousSiteStatus === undefined ? null : maliciousSiteStatus },
-        {
-            isPendingUpdates,
-            parentEntity,
-            cookiePromptManagementStatus,
-            platformLimitations: true,
-            locale,
-        },
-        permissionsData ? { permissions: permissionsData } : {},
-        certificateData ? { certificate: certificateData } : {}
-    ),
-});
+const combineSources = () => {
+    const output = {
+        tab: Object.assign(
+            {},
+            trackerBlockingData,
+            { maliciousSiteStatus: maliciousSiteStatus === undefined ? null : maliciousSiteStatus },
+            {
+                isPendingUpdates,
+                parentEntity,
+                cookiePromptManagementStatus,
+                platformLimitations: true,
+                locale,
+                isInvalidCert
+            },
+            permissionsData ? { permissions: permissionsData } : {},
+            certificateData ? { certificate: certificateData } : {},
+        ),
+    };
+    console.log("next", output)
+    return output;
+};
 
 const resolveInitialRender = function () {
     const isUpgradedHttpsSet = typeof upgradedHttps === 'boolean';
@@ -92,6 +106,9 @@ const resolveInitialRender = function () {
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     const isLocaleSet = typeof locale === 'string';
     const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== undefined;
+    
+    // wait for cert info
+    if (isInvalidCert === null) return console.log("isInvalidCert was not ready")
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
         return;
     }
@@ -119,6 +136,7 @@ const resolveInitialRender = function () {
  * Please see [cnn.json](media://request-data-cnn.json) or [google.json](media://request-data-google.json) for examples of this type
  */
 export function onChangeRequestData(tabUrl, rawRequestData) {
+    log('onChangeRequestData');
     const requestData = requestDataSchema.safeParse(rawRequestData);
     if (!protections) throw new Error('protections status not set');
     if (!requestData.success) {
@@ -147,6 +165,7 @@ export function onChangeRequestData(tabUrl, rawRequestData) {
  * @param {import('../../../schema/__generated__/schema.types').ProtectionsStatus} protectionsStatus
  */
 export function onChangeProtectionStatus(protectionsStatus) {
+    log('onChangeProtectionStatus');
     const parsed = protectionsStatusSchema.safeParse(protectionsStatus);
     if (!parsed.success) {
         console.error('could not parse incoming protection status from onChangeProtectionStatus');
@@ -551,10 +570,12 @@ export function privacyDashboardShowNativeFeedback(args) {
 export function setupShared() {
     window.onChangeRequestData = onChangeRequestData;
     window.onChangeAllowedPermissions = function (data) {
+        log("onChangeAllowedPermissions")
         permissionsData = data;
         channel?.send('updateTabData');
     };
     window.onChangeUpgradedHttps = function (data) {
+        log("onChangeAllowedPermissions")
         upgradedHttps = data;
         if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
         resolveInitialRender();
@@ -563,14 +584,22 @@ export function setupShared() {
     window.onChangeProtectionStatus = onChangeProtectionStatus;
     window.onChangeLocale = onChangeLocale;
     window.onChangeCertificateData = function (data) {
-        certificateData = data.secCertificateViewModels;
+        const schema = z.object({
+            secCertificateViewModels: z.array(z.any()),
+            isInvalidCert: z.boolean()
+        }).parse(data)
+        log("onChangeCertificateData:schema", schema)
+        certificateData = schema.secCertificateViewModels;
+        isInvalidCert = schema.isInvalidCert;
         channel?.send('updateTabData');
     };
     window.onIsPendingUpdates = function (data) {
+        log('onIsPendingUpdates');
         isPendingUpdates = data;
         channel?.send('updateTabData');
     };
     window.onChangeParentEntity = function (data) {
+        log('onChangeParentEntity');
         parentEntity = data;
         channel?.send('updateTabData');
     };
