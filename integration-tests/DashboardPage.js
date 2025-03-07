@@ -186,7 +186,7 @@ export class DashboardPage {
 
     async hasPhishingIcon() {
         const { page } = this;
-        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/);
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--malicious/);
     }
 
     async hasPhishingHeadingText() {
@@ -208,7 +208,7 @@ export class DashboardPage {
 
     async hasMalwareIcon() {
         const { page } = this;
-        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/);
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--malicious/);
     }
 
     async hasMalwareHeadingText() {
@@ -230,7 +230,7 @@ export class DashboardPage {
 
     async hasScamIcon() {
         const { page } = this;
-        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--scam/);
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--malicious/);
     }
 
     async hasScamHeadingText() {
