@@ -251,7 +251,6 @@ export class MockData {
      * @param {boolean} [params.denylisted]
      * @param {any[]} [params.permissions]
      * @param {import('../../../../../schema/__generated__/schema.types').MaliciousSiteStatus} [params.maliciousSiteStatus]
-     * @param {{malwareStatus: boolean}} [params.malware]
      * @param {boolean} [params.specialDomainName]
      * @param {boolean} [params.emailUser]
      * @param {boolean} [params.fireButtonEnabled]
@@ -632,6 +631,14 @@ export const createDataStates = (google, cnn) => {
             requests: [],
             maliciousSiteStatus: {
                 kind: 'phishing',
+            },
+            certificate: defaultCertificates,
+        }),
+        scam: new MockData({
+            url: 'https://privacy-test-pages.site/security/badware/scam.html',
+            requests: [],
+            maliciousSiteStatus: {
+                kind: 'scam',
             },
             certificate: defaultCertificates,
         }),

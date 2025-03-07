@@ -111,7 +111,7 @@ export class PlatformFeatures {
          */
         this.includeToggleOnBreakageForm = params.includeToggleOnBreakageForm;
         /**
-         * Does the current platform support phishing and malware warnings?
+         * Does the current platform support malicious site warnings?
          * @type {boolean}
          */
         this.supportsMaliciousSiteWarning = params.supportsMaliciousSiteWarning;

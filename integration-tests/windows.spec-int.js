@@ -357,6 +357,18 @@ test.describe('phishing & malware protection', () => {
         await dash.connectionLinkDoesntShow();
     });
 
+    test('scam warning', { tag: '@screenshots' }, async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.scam]);
+        await dash.screenshot('scam-warning.png');
+        await dash.hasScamIcon();
+        await dash.hasScamHeadingText();
+        await dash.hasScamWarningText();
+        await dash.hasScamStatusText();
+        await dash.connectionLinkDoesntShow();
+    });
+
     test('shows report as safe link', async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page);
@@ -378,6 +390,14 @@ test.describe('phishing & malware protection', () => {
         const dash = await DashboardPage.windows(page);
         await dash.addState([testDataStates.phishing]);
         await dash.clickPhishingHelpPageLink();
+        await dash.mocks.calledForHelpPagesLink();
+    });
+
+    test('shows scam help page link', async ({ page }) => {
+        /** @type {DashboardPage} */
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.scam]);
+        await dash.clickScamHelpPageLink();
         await dash.mocks.calledForHelpPagesLink();
     });
 });

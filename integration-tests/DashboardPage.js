@@ -179,9 +179,14 @@ export class DashboardPage {
         await page.getByRole('link', { name: 'About our Phishing Protection' }).click();
     }
 
+    async clickScamHelpPageLink() {
+        const { page } = this;
+        await page.getByRole('link', { name: 'About our Scam Protection' }).click();
+    }
+
     async hasPhishingIcon() {
         const { page } = this;
-        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/);
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--malicious/);
     }
 
     async hasPhishingHeadingText() {
@@ -203,7 +208,7 @@ export class DashboardPage {
 
     async hasMalwareIcon() {
         const { page } = this;
-        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--phishing/);
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--malicious/);
     }
 
     async hasMalwareHeadingText() {
@@ -219,6 +224,28 @@ export class DashboardPage {
     }
 
     async hasMalwareStatusText() {
+        const { page } = this;
+        await expect(page.locator('#main-nav div')).toContainText('Site May Be a Security Risk');
+    }
+
+    async hasScamIcon() {
+        const { page } = this;
+        await expect(page.locator('#key-insight div').nth(1)).toHaveClass(/hero-icon--malicious/);
+    }
+
+    async hasScamHeadingText() {
+        const { page } = this;
+        await expect(page.getByRole('heading', { name: 'privacy-test-pages.site' })).toBeVisible();
+    }
+
+    async hasScamWarningText() {
+        const { page } = this;
+        await expect(page.locator('#popup-container')).toContainText(
+            'This site has been flagged for trying to manipulate people into transferring money, buying counterfeit goods, or installing malware.'
+        );
+    }
+
+    async hasScamStatusText() {
         const { page } = this;
         await expect(page.locator('#main-nav div')).toContainText('Site May Be a Security Risk');
     }
