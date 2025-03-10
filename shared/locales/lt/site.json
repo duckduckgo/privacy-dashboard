@@ -84,6 +84,10 @@
     "title" : "Apie mūsų apsaugą nuo kenkėjiškų programų",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Apie mūsų apsaugą nuo sukčiavimo",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Svetainė neveikia taip, kaip tikėtasi?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Ši svetainė buvo pažymėta kaip platinanti kenkėjišką programinę įrangą, kuri gali pakenkti jūsų įrenginiui arba pavogti jūsų asmeninę informaciją.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Svetainė gali kelti pavojų saugumui",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Ši svetainė buvo pažymėta dėl bandymo manipuliuoti žmonėmis, kad jie pervestų pinigus, pirktų padirbtas prekes arba įdiegtų kenkėjiškas programas.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Užklausos užblokuotos įkelti",

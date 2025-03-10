@@ -84,6 +84,10 @@
     "title" : "Despre protecția noastră împotriva malware-ului",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Despre protecția noastră împotriva înșelătoriilor",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Site-ul nu funcționează așa cum era de așteptat?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Acest site a fost semnalat pentru distribuirea de programe rău intenționate, concepute pentru a-ți compromite dispozitivul sau pentru a-ți fura informațiile personale.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Site-ul poate reprezenta un risc de securitate",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Acest site a fost semnalat pentru încercarea de a manipula oamenii să transfere bani, să cumpere bunuri contrafăcute sau să instaleze programe rău intenționate (malware).",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Solicitări a căror încărcare a fost blocată",

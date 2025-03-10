@@ -389,7 +389,7 @@ export interface MaliciousSiteStatus {
   /**
    * Kind of threat detected
    */
-  kind: "phishing" | "malware" | null;
+  kind: "phishing" | "malware" | "scam" | null;
 }
 /**
  * This fields required to describe a 'parent entity'

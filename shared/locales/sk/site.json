@@ -84,6 +84,10 @@
     "title" : "O našej ochrane pred škodlivým softvérom",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "O našej ochrane pred podvodmi",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Webová lokalita nefunguje podľa očakávania?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Táto stránka bola označená pre distribúciu škodlivého softvéru, ktorý môže ohroziť tvoje zariadenie alebo ukradnúť tvoje osobné údaje.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Lokalita môže byť rizikom pre zabezpečenie",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Táto lokalita bola označená za lokalitu, ktorá sa pokúša zmanipulovať ľudí, aby previedli peniaze, zakúpili falšovaný tovar alebo si nainštalovali škodlivý softvér.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Načítavanie žiadostí je zablokované",

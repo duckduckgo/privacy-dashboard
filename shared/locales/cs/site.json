@@ -84,6 +84,10 @@
     "title" : "O naší ochraně proti malwaru",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "O naší ochraně proti podvodům",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Nefunguje web podle očekávání?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Tahle stránka byla nahlášená jako stránka, která šíří malware, jehož cílem je narušit zabezpečení zařízení nebo odcizit osobní údaje.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Stránka může představovat bezpečnostní riziko",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Tento web byl nahlášený kvůli pokusu přimět lidi k převodu peněz, nákupu padělaného zboží nebo instalaci malwaru.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Načítání požadavků bylo zablokováno",

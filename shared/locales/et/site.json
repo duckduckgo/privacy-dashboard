@@ -84,6 +84,10 @@
     "title" : "Meie pahavarakaitse teave",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Meie pettusekaitse teave",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Kas veebisait ei tööta ootuspäraselt?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "See sait on märgistatud pahavara levitamise eest, mille eesmärk on kahjustada teie seadet või varastada teie isikuandmeid.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Sait võib olla turvaoht",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "See sait on märgistatud lipukesega, kuna siin püütakse inimesi manipuleerida raha üle kandma, võltsitud kaupu ostma või pahavara installima.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Päringute laadimine on blokeeritud",

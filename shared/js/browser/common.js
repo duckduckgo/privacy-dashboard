@@ -178,7 +178,7 @@ export function assert(condition, message = '') {
 export function onChangeLocale(payload) {}
 
 /**
- * Sets the phishing & malware status for a page. This is a required call.
+ * Sets the malicious stie status for a page. This is a required call.
  *
  * Example Payload: see {@link "Generated Schema Definitions".MaliciousSiteStatus}
  *

@@ -59,6 +59,7 @@ export function renderCertificateDetails(site, tab) {
         site.httpsState === 'none' ||
         site.httpsState === 'phishing' ||
         site.httpsState === 'malware' ||
+        site.httpsState === 'scam' ||
         !tab.certificate ||
         tab.certificate.length === 0
     )
@@ -171,6 +172,9 @@ export function renderConnectionDescription(site, tab) {
     }
     if (site.httpsState === 'malware') {
         return i18n.t('connection:malwareWebsiteDesc.title', { domain: tab.domain });
+    }
+    if (site.httpsState === 'scam') {
+        return i18n.t('connection:scamWebsiteDesc.title', { domain: tab.domain });
     }
     if (site.httpsState === 'invalid') {
         return i18n.t('connection:invalidConnectionDesc.title', { domain: tab.domain });

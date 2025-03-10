@@ -12,6 +12,7 @@ export const httpsMessages = {
     invalid: 'site:connectionNotSecureInvalidCertificate.title',
     phishing: 'site:phishingWebsite.title',
     malware: 'site:malwareWebsite.title',
+    scam: 'site:scamWebsite.title',
 };
 
 export const duckDuckGoURLs = {

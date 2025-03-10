@@ -84,6 +84,10 @@
     "title" : "A rosszindulatú programok elleni védelmünkről",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "A csalások elleni védelmünkről",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "A weboldal nem az elvártak szerint működik?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "A webhely meg lett jelölve rosszindulatú programok terjesztése miatt, amelyek veszélyeztethetik az eszközöd biztonságát vagy ellophatják a személyes adataidat.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "A webhely biztonsági kockázatot jelenthet",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "A webhely meg lett jelölve, mert megpróbálta rávenni az embereket pénz átutalására, hamisított termékek megvásárlására vagy rosszindulatú programok telepítésére.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Kérések betöltése blokkolva",
