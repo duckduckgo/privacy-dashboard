@@ -70,7 +70,9 @@ export function ProtectionHeader() {
 
     const isMaliciousSite =
         data.tab?.maliciousSiteStatus &&
-        (data.tab.maliciousSiteStatus.kind === 'phishing' || data.tab.maliciousSiteStatus.kind === 'malware');
+        (data.tab.maliciousSiteStatus.kind === 'phishing' ||
+            data.tab.maliciousSiteStatus.kind === 'malware' ||
+            data.tab.maliciousSiteStatus.kind === 'scam');
 
     return (
         <div data-testid="protectionHeader">

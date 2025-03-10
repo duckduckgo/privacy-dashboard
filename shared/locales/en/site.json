@@ -83,6 +83,10 @@
         "title": "About our Malware Protection",
         "note": "Label for a link that takes the user to a help page about Malware protection"
     },
+    "aboutScamLink": {
+        "title": "About our Scam Protection",
+        "note": "Label for a link that takes the user to a help page about Scam protection"
+    },
     "websiteNotWorkingQ": {
         "title": "Website not working as expected?",
         "note": "Call to action for user to click if they are having issues with this web page"
@@ -162,6 +166,14 @@
     "malwareWebsiteDesc": {
         "title": "This site has been flagged for distributing malware designed to compromise your device or steal your personal information.",
         "note": "Shown as the description text when the URL is reported as a malware website."
+    },
+    "scamWebsite": {
+        "title": "Site May Be a Security Risk",
+        "note": "Shown as the button text when the URL is reported as a scam website."
+    },
+    "scamWebsiteDesc": {
+        "title": "This site has been flagged for trying to manipulate people into transferring money, buying counterfeit goods, or installing malware.",
+        "note": "Shown as the description text when the URL is reported as a scam website."
     },
     "trackerNetworksDesc": {
         "title": "Requests Blocked from Loading",

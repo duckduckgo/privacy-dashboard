@@ -84,6 +84,10 @@
     "title" : "Σχετικά με την προστασία μας από κακόβουλο λογισμικό",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Σχετικά με την προστασία μας από απάτες",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Δεν λειτουργεί ο ιστότοπος όπως αναμενόταν;",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Αυτός ο ιστότοπος έχει επισημανθεί για διανομή κακόβουλου λογισμικού, το οποίο έχει σχεδιαστεί για να θέσει σε κίνδυνο τη συσκευή σας ή να υποκλέψει τα προσωπικά στοιχεία σας.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Η ασφάλεια του ιστότοπου ενδέχεται να βρίσκεται σε κίνδυνο",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Αυτός ο ιστότοπος έχει επισημανθεί για προσπάθεια χειραγώγησης ανθρώπων ώστε να μεταφέρουν χρήματα, να αγοράζουν παραποιημένα προϊόντα ή να εγκαθιστούν κακόβουλο λογισμικό.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Αιτήματα που αποκλείστηκαν από τη φόρτωση",

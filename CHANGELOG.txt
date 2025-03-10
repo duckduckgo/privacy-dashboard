@@ -1,5 +1,2 @@
-- Malicious website protection - Windows support (#282)
-- Bump eslint from 9.13.0 to 9.20.1 (#338)
-- fix playwright tests with better mock separation (#326)
-- update ts deps (#337)
-- added snapshot
+- Scam Protection (#354)
+- Node 22.14 fix (#370)

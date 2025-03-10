@@ -84,6 +84,10 @@
     "title" : "À propos de notre protection contre les logiciels malveillants",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "À propos de notre protection contre les escroqueries",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Le site Web ne fonctionne pas correctement ?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Ce site a été signalé pour diffusion de logiciels malveillants conçus pour compromettre votre appareil ou voler vos informations personnelles.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Le site peut présenter un risque pour la sécurité",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Ce site a été signalé pour avoir tenté de manipuler les gens afin qu'ils transfèrent de l'argent, achètent des produits contrefaits ou installent des logiciels malveillants.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Demandes dont le chargement a été bloqué",

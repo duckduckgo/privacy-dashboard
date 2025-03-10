@@ -84,6 +84,10 @@
     "title" : "Om beskyttelsen vår mot skadelig programvare",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Om svindelbeskyttelsen vår",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Virker ikke nettsiden som forventet?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Dette nettstedet er blitt flagget for distribusjon av skadelig programvare som er laget for å kompromittere enheten din eller stjele personopplysningene dine.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Nettstedet kan utgjøre en sikkerhetsrisiko",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Dette nettstedet er blitt flagget for å prøve å manipulere folk til å overføre penger, kjøpe falske varer eller installere skadelig programvare.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Forespørsler blokkert fra lasting",

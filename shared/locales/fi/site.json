@@ -84,6 +84,10 @@
     "title" : "Tietoa suojauksesta haittaohjelmia vastaan",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Tietoa petossuojauksestamme",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Eikö verkkosivusto toimi odotetulla tavalla?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Tämä sivusto on ilmoitettu sellaisten haittaohjelmien levittäjäksi, joiden tarkoituksena on vaarantaa laitteesi tai varastaa henkilökohtaisia tietojasi.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Sivusto voi olla turvallisuusriski",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Tämän sivuston epäillään yrittävän manipuloida ihmisiä siirtämään rahaa, ostamaan väärennettyjä tuotteita tai asentamaan haittaohjelmia.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Pyynnöt, joiden lataaminen estetty",

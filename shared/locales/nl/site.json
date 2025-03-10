@@ -84,6 +84,10 @@
     "title" : "Over onze bescherming tegen malware",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Over onze bescherming tegen oplichting",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Werkt de website niet zoals verwacht?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Deze site is aangeduid als een site die malware verspreidt om je apparaat te beschadigen of je persoonlijke gegevens te stelen.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Website is mogelijk een veiligheidsrisico",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Deze site is gemarkeerd omdat hij mensen probeert te manipuleren om geld over te maken, namaakproducten te kopen of malware te installeren.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Verzoeken geblokkeerd bij laden",

@@ -84,6 +84,10 @@
     "title" : "О нашей защите от вредоносного ПО",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "О нашей защите от мошенничества",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Сайт плохо работает?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "На этот сайт поступила жалоба за распространение вредоносного ПО, предназначенного для взлома устройств или кражи личной информации.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Сайт может представлять угрозу безопасности",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "На этот сайт поступили жалобы за попытки обманным путем заставить посетителей перевести деньги, купить поддельный товар или установить вредоносное ПО.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Заблокирована загрузка запросов",

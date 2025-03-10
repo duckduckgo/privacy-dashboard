@@ -88,7 +88,7 @@ export const localeSettingsSchema = z.object({
 });
 
 export const maliciousSiteStatusSchema = z.object({
-    kind: z.union([z.literal("phishing"), z.literal("malware")]).nullable()
+    kind: z.union([z.literal("phishing"), z.literal("malware"), z.literal("scam")]).nullable()
 });
 
 export const parentEntitySchema = z.object({
