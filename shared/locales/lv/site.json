@@ -84,6 +84,10 @@
     "title" : "Par mūsu aizsardzību pret ļaunprātīgu programmatūru",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Par mūsu aizsardzību pret krāpniecību",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Tīmekļa vietne nedarbojas, kā paredzēts?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Šī vietne ir atzīmēta kā tāda, kas izplata ļaunprātīgu programmatūru, kas var apdraudēt tavu ierīci vai nozagt tavu personisko informāciju.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Vietne var radīt drošības risku",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Šī vietne ir atzīmēta kā tāda, kas mēģina manipulēt ar cilvēkiem, lai viņi pārskaitītu naudu, iegādātos viltotas preces vai instalētu ļaunprātīgu programmatūru.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Pieprasījumi, kuru ielādēšana ir bloķēta",

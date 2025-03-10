@@ -84,6 +84,10 @@
     "title" : "Om vårt skydd mot skadlig programvara",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Om vårt skydd mot bedrägerier",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Fungerar inte webbplatsen som förväntat?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Den här webbplatsen har flaggats för att distribuera skadlig programvara avsedd att göra intrång på din enhet eller stjäla din personliga information.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Webbplatsen kan utgöra en säkerhetsrisk",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Den här webbplatsen har flaggats för att försöka manipulera folk att överföra pengar, köpa förfalskade varor eller installera skadlig programvara.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Förfrågningar blockerades från att läsas in",

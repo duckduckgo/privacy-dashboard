@@ -84,6 +84,10 @@
     "title" : "Informacje o naszej ochronie przed złośliwym oprogramowaniem",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Informacje o naszej ochronie przed oszustwami",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Witryna internetowa nie działa zgodnie z oczekiwaniami?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Ta witryna została oznaczona jako rozpowszechniająca złośliwe oprogramowanie, którego celem jest naruszenie bezpieczeństwa urządzenia lub kradzież danych osobowych.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Witryna może być zagrożeniem dla bezpieczeństwa",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Ta strona została oznaczona ze względu na próby skłonienia użytkowników do przesłania pieniędzy, zakupu podrobionych towarów lub zainstalowania złośliwego oprogramowania.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Żądania zablokowane przed załadowaniem",

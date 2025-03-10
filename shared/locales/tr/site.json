@@ -84,6 +84,10 @@
     "title" : "Kötü Amaçlı Yazılım Korumamız Hakkında",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "Dolandırıcılık Korumamız Hakkında",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Web sitesi beklendiği gibi çalışmıyor mu?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Bu site, cihazınızı tehlikeye atmak veya kişisel bilgi çalmak üzere tasarlanmış kötü amaçlı yazılımlar dağıttığı için işaretlenmiş.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Sitede Güvenlik Riski Olabilir",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "Bu site, insanları para transfer etmeye, sahte ürünler satın almaya veya kötü amaçlı yazılım yüklemeye yönlendirmeye çalıştığı için işaretlendi.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Yüklenmesi Engellenen İstekler",

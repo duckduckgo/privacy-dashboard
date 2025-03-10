@@ -84,6 +84,10 @@
     "title" : "O naši zaščiti pred zlonamerno programsko opremo",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "O naši zaščiti pred prevarami",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Spletno mesto ne deluje po pričakovanjih?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "To spletno mesto je bilo označeno zaradi razširjanja zlonamerne programske opreme, namenjene ogrožanju vaše naprave ali kraji vaših osebnih podatkov.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Spletno mesto lahko predstavlja varnostno tveganje",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "To spletno mesto je bilo označeno zaradi poskusov zavajanja ljudi k prenosu denarja, nakupu ponarejenega blaga ali namestitvi zlonamerne programske opreme.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Zahtevki, katerih nalaganje je blokirano",

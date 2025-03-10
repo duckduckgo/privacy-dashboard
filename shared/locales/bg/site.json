@@ -84,6 +84,10 @@
     "title" : "Относно нашата защита от зловреден софтуер",
     "note" : "Label for a link that takes the user to a help page about Malware protection"
   },
+  "aboutScamLink" : {
+    "title" : "За нашата защита от измами",
+    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  },
   "websiteNotWorkingQ" : {
     "title" : "Уебсайтът не работи според очакванията?",
     "note" : "Call to action for user to click if they are having issues with this web page"
@@ -163,6 +167,14 @@
   "malwareWebsiteDesc" : {
     "title" : "Този сайт е отбелязан като разпространяващ зловреден софтуер, който може да компрометира устройството ви или да открадне личната ви информация.",
     "note" : "Shown as the description text when the URL is reported as a malware website."
+  },
+  "scamWebsite" : {
+    "title" : "Сайтът може да представлява риск за сигурността",
+    "note" : "Shown as the button text when the URL is reported as a scam website."
+  },
+  "scamWebsiteDesc" : {
+    "title" : "За този сайт има подадени сигнали за опити да манипулиране на хора да превеждат пари, да купуват фалшиви стоки или да инсталират зловреден софтуер.",
+    "note" : "Shown as the description text when the URL is reported as a scam website."
   },
   "trackerNetworksDesc" : {
     "title" : "Блокирано зареждане на заявки",
