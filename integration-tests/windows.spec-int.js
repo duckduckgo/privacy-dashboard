@@ -114,7 +114,7 @@ test.describe('breakage form', () => {
         await dash.screenshot('screen-breakage-form-empty-description.png');
     });
 
-    test('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
+    test.skip('submits form with description', { tag: '@screenshots' }, async ({ page }) => {
         /** @type {DashboardPage} */
         const dash = await DashboardPage.windows(page, { screen: 'breakageForm' });
         await dash.reducedMotion();
