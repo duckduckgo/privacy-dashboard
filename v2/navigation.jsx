@@ -164,14 +164,8 @@ function navReducer(state, event) {
                     };
                 }
                 case 'popstate': {
-                    console.groupCollapsed('popstate');
                     const stack = state.stack.filter((x) => x !== 'primaryScreen');
-                    const commit = state.commit.filter((x) => x !== 'primaryScreen');
                     const current = new URLSearchParams(location.search).getAll('stack').filter((x) => x !== 'primaryScreen');
-                    console.log('  state.stack', stack);
-                    console.log('  state.commit', commit);
-                    console.log('  url current', current);
-                    console.groupEnd();
                     if (current.length < stack.length) {
                         if (!event.opts.animate) {
                             const next = state.stack.slice(0, -1);
