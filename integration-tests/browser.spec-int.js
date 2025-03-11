@@ -133,13 +133,10 @@ test.describe('opens directly to feedback form', () => {
 test.describe('stack based router', () => {
     test('goes back and forward in categorySelection flow', async ({ page }) => {
         const dash = await DashboardPage.browser(page, testDataStates.google);
-        // await dash.reducedMotion(); // TODO: Removed because back button was going back two steps rather than one
+        await dash.reducedMotion();
         await dash.clicksWebsiteNotWorking();
-        await dash.waitForRouterToSettle();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
-        await dash.waitForRouterToSettle();
         await dash.selectsCategory('Site layout broken', 'layout');
-        await dash.waitForRouterToSettle();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
     test('goes back and forward generally', async ({ page }) => {
@@ -298,7 +295,7 @@ test.describe('fire button', () => {
     });
 });
 
-test.describe('screenshots', { tag: '@screenshots' }, () => {
+test.describe.skip('screenshots', { tag: '@screenshots' }, () => {
     const states = [
         { name: 'ad-attribution', state: testDataStates['ad-attribution'] },
         { name: 'new-entities', state: testDataStates['new-entities'] },

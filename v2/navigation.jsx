@@ -9,7 +9,6 @@ import { NonTrackersScreen } from './screens/non-trackers-screen';
 import { ConsentManagedScreen } from './screens/consent-managed-screen';
 import { ToggleReportScreen } from './screens/toggle-report-screen';
 import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm, BreakageFormSuccess } from './screens/breakage-form-screen';
-import { isAndroid } from '../shared/js/ui/environment-check';
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 
 /**
@@ -164,6 +163,48 @@ function navReducer(state, event) {
                         via: 'pop',
                     };
                 }
+                case 'popstate': {
+                    const stack = state.stack.filter((x) => x !== 'primaryScreen');
+                    const current = new URLSearchParams(location.search).getAll('stack').filter((x) => x !== 'primaryScreen');
+                    if (current.length < stack.length) {
+                        if (!event.opts.animate) {
+                            const next = state.stack.slice(0, -1);
+                            return {
+                                ...state,
+                                commit: next,
+                                stack: next,
+                                state: /** @type {const} */ ('settled'),
+                                via: 'pop',
+                            };
+                        }
+                        return {
+                            ...state,
+                            commit: state.stack,
+                            stack: state.stack.slice(0, -1),
+                            state: /** @type {const} */ ('transitioning'),
+                            via: 'pop',
+                        };
+                    } else if (current.length === stack.length + 1) {
+                        const last = current[current.length - 1];
+                        if (isScreenName(last)) {
+                            if (!event.opts.animate) {
+                                return {
+                                    ...state,
+                                    stack: state.stack.concat(last),
+                                    state: /** @type {const} */ ('settled'),
+                                    via: 'push',
+                                };
+                            }
+                            return {
+                                ...state,
+                                stack: state.stack.concat(last),
+                                state: /** @type {const} */ ('transitioning'),
+                                via: 'push',
+                            };
+                        }
+                    }
+                    return state;
+                }
                 default: {
                     console.warn('ignoring', event, 'state', state);
                     return state;
@@ -178,9 +219,10 @@ function navReducer(state, event) {
 /**
  * @typedef {{ animate: boolean }} ActionOpts
  * @typedef {{ type: 'push', name: ScreenName, opts: ActionOpts}
- *   | {type: 'pop', opts: ActionOpts}
+ *   | {type: 'pop', opts: ActionOpts }
  *   | {type: 'replace', stack: ScreenName[], opts: ActionOpts}
  *   | {type: 'end'}
+ *   | {type: 'popstate'; opts: ActionOpts }
  * } NavEvent
  * @typedef {{
  *    commit: string[],
@@ -231,18 +273,7 @@ export function Navigation(props) {
          * - otherwise, it's just a 'back' action, so we can `pop` an item from the stack as usual
          */
         function popstateHandler() {
-            const currentUrlParams = new URLSearchParams(location.search);
-            const currentURLStack = currentUrlParams.getAll('stack');
-            const navigationIntentionIsForwards = currentURLStack.length > state.stack.length;
-
-            if (navigationIntentionIsForwards) {
-                const lastEntry = currentURLStack[currentURLStack.length - 1];
-                if (isScreenName(lastEntry)) {
-                    dispatch({ type: 'push', name: lastEntry, opts: { animate: props.animate && isAndroid() } });
-                }
-            } else {
-                dispatch({ type: 'pop', opts: { animate: props.animate && isAndroid() } });
-            }
+            dispatch({ type: 'popstate', opts: { animate: props.animate } });
         }
 
         window.addEventListener('popstate', popstateHandler);
@@ -318,6 +349,7 @@ export function Navigation(props) {
             // Current screen will be popped right after
             const primaryScreen = 'primaryScreen';
             const newStack = /** @type {ScreenName[]} */ ([primaryScreen]);
+
             if (state.stack.length > 1) {
                 newStack.push(state.stack.slice(-1)[0]);
             }
