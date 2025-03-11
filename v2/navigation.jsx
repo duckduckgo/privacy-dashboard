@@ -9,7 +9,6 @@ import { NonTrackersScreen } from './screens/non-trackers-screen';
 import { ConsentManagedScreen } from './screens/consent-managed-screen';
 import { ToggleReportScreen } from './screens/toggle-report-screen';
 import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm, BreakageFormSuccess } from './screens/breakage-form-screen';
-import { isAndroid } from '../shared/js/ui/environment-check';
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 
 /**
@@ -166,9 +165,9 @@ function navReducer(state, event) {
                 }
                 case 'popstate': {
                     console.groupCollapsed('popstate');
-                    const stack = state.stack.filter(x=>x!=='primaryScreen')
-                    const commit = state.commit.filter(x=>x!=='primaryScreen')
-                    const current = new URLSearchParams(location.search).getAll('stack').filter(x=>x!=='primaryScreen')
+                    const stack = state.stack.filter((x) => x !== 'primaryScreen');
+                    const commit = state.commit.filter((x) => x !== 'primaryScreen');
+                    const current = new URLSearchParams(location.search).getAll('stack').filter((x) => x !== 'primaryScreen');
                     console.log('  state.stack', stack);
                     console.log('  state.commit', commit);
                     console.log('  url current', current);
@@ -191,6 +190,24 @@ function navReducer(state, event) {
                             state: /** @type {const} */ ('transitioning'),
                             via: 'pop',
                         };
+                    } else if (current.length === stack.length + 1) {
+                        const last = current[current.length - 1];
+                        if (isScreenName(last)) {
+                            if (!event.opts.animate) {
+                                return {
+                                    ...state,
+                                    stack: state.stack.concat(last),
+                                    state: /** @type {const} */ ('settled'),
+                                    via: 'push',
+                                };
+                            }
+                            return {
+                                ...state,
+                                stack: state.stack.concat(last),
+                                state: /** @type {const} */ ('transitioning'),
+                                via: 'push',
+                            };
+                        }
                     }
                     return state;
                 }
@@ -262,7 +279,7 @@ export function Navigation(props) {
          * - otherwise, it's just a 'back' action, so we can `pop` an item from the stack as usual
          */
         function popstateHandler() {
-            dispatch({ type: 'popstate', opts: { animate: props.animate } })
+            dispatch({ type: 'popstate', opts: { animate: props.animate } });
         }
 
         window.addEventListener('popstate', popstateHandler);
