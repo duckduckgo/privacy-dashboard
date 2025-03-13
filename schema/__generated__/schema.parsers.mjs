@@ -222,6 +222,23 @@ export const outgoingExtensionMessageSchema = z.object({
     options: z.object({})
 });
 
+export const secKeyViewModelSchema = z.object({
+    keyId: z.string().optional().nullable(),
+    externalRepresentation: z.string().optional().nullable(),
+    bitSize: z.number().optional().nullable(),
+    blockSize: z.number().optional().nullable(),
+    effectiveSize: z.number().optional().nullable(),
+    canDecrypt: z.boolean(),
+    canDerive: z.boolean(),
+    canEncrypt: z.boolean(),
+    canSign: z.boolean(),
+    canUnwrap: z.boolean(),
+    canVerify: z.boolean(),
+    canWrap: z.boolean(),
+    isPermanent: z.boolean().optional().nullable(),
+    type: z.union([z.literal("RSA"), z.literal("Elliptic Curve"), z.literal("Elliptic Curve (Prime Random)")]).optional().nullable()
+});
+
 export const dataItemIdSchema = z.union([wVVersionSchema, requestsSchema, featuresSchema, appVersionSchema, atbSchema, errorDescriptionsSchema, extensionVersionSchema, hTTPErrorCodesSchema, lastSentDaySchema, deviceSchema, osSchema, listVersionsSchema, reportFlowSchema, siteURLSchema, didOpenReportInfoSchema, toggleReportCounterSchema, openerContextSchema, userRefreshCountSchema, jSPerformanceSchema, localeSchema, descriptionSchema]);
 
 export const incomingExtensionMessageSchema = z.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
@@ -277,6 +294,13 @@ export const telemetrySpanSchema = z.object({
     eventOrigin: eventOriginSchema
 });
 
+export const secCertificateViewModelSchema = z.object({
+    summary: z.string().optional(),
+    commonName: z.string().optional(),
+    emails: z.array(z.string()).optional(),
+    publicKey: secKeyViewModelSchema.optional()
+});
+
 export const requestDataSchema = z.object({
     requests: z.array(detectedRequestSchema),
     installedSurrogates: z.array(z.string()).optional()
@@ -305,6 +329,11 @@ export const windowsViewModelSchema = z.object({
 
 export const toggleReportScreenSchema = z.object({
     data: z.array(toggleReportScreenDataItemSchema)
+});
+
+export const certDataSchema = z.object({
+    secCertificateViewModels: z.array(secCertificateViewModelSchema),
+    isInvalidCert: z.boolean()
 });
 
 export const windowsIncomingViewModelSchema = z.object({
@@ -340,6 +369,7 @@ export const apiSchema = z.object({
     "close-message": closeMessageParamsSchema.optional(),
     "telemetry-span": telemetrySpanSchema.optional(),
     "extension-incoming": incomingExtensionMessageSchema.optional(),
-    "extension-outgoing": outgoingExtensionMessageSchema.optional()
+    "extension-outgoing": outgoingExtensionMessageSchema.optional(),
+    "cert-data": certDataSchema.optional()
 });
 

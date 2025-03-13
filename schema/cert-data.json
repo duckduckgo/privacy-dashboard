@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CertData",
+    "type": "object",
+    "description": "",
+    "required": ["secCertificateViewModels", "isInvalidCert"],
+    "additionalProperties": false,
+    "properties": {
+        "secCertificateViewModels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/SecCertificateViewModel"
+            }
+        },
+        "isInvalidCert": {
+            "type": "boolean",
+            "description": "`true` if the certificate is missing or invalid"
+        }
+    },
+    "definitions": {
+        "SecCertificateViewModel": {
+            "title": "SecCertificateViewModel",
+            "type": "object",
+            "properties": {
+                "summary": {
+                    "type": "string"
+                },
+                "commonName": {
+                    "type": "string"
+                },
+                "emails": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "publicKey": {
+                    "$ref": "#/definitions/SecKeyViewModel"
+                }
+            }
+        },
+        "SecKeyViewModel": {
+            "title": "SecKeyViewModel",
+            "description": "A model representing a SecKey with its properties and capabilities",
+            "type": "object",
+            "properties": {
+                "keyId": {
+                    "type": ["string", "null"],
+                    "description": "Base64 encoded representation of the application label data"
+                },
+                "externalRepresentation": {
+                    "type": ["string", "null"],
+                    "description": "Base64 encoded external representation of the key"
+                },
+                "bitSize": {
+                    "type": ["integer", "null"],
+                    "description": "Size of the key in bits"
+                },
+                "blockSize": {
+                    "type": ["integer", "null"],
+                    "description": "Block size of the key"
+                },
+                "effectiveSize": {
+                    "type": ["integer", "null"],
+                    "description": "Effective size of the key in bits"
+                },
+                "canDecrypt": {
+                    "type": "boolean",
+                    "description": "Whether the key can be used for decryption"
+                },
+                "canDerive": {
+                    "type": "boolean",
+                    "description": "Whether the key can be used for key derivation"
+                },
+                "canEncrypt": {
+                    "type": "boolean",
+                    "description": "Whether the key can be used for encryption"
+                },
+                "canSign": {
+                    "type": "boolean",
+                    "description": "Whether the key can be used for signing"
+                },
+                "canUnwrap": {
+                    "type": "boolean",
+                    "description": "Whether the key can be used for unwrapping another key"
+                },
+                "canVerify": {
+                    "type": "boolean",
+                    "description": "Whether the key can be used for verification"
+                },
+                "canWrap": {
+                    "type": "boolean",
+                    "description": "Whether the key can be used for wrapping another key"
+                },
+                "isPermanent": {
+                    "type": ["boolean", "null"],
+                    "description": "Whether the key is stored permanently in the keychain"
+                },
+                "type": {
+                    "type": ["string", "null"],
+                    "description": "Type of the key (RSA, Elliptic Curve, etc.)",
+                    "enum": ["RSA", "Elliptic Curve", "Elliptic Curve (Prime Random)", null]
+                }
+            },
+            "required": [
+                "canDecrypt",
+                "canDerive",
+                "canEncrypt",
+                "canSign",
+                "canUnwrap",
+                "canVerify",
+                "canWrap"
+            ]
+        }
+    }
+}

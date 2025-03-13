@@ -14,12 +14,13 @@
  */
 import invariant from 'tiny-invariant';
 import {
+    certDataSchema,
     cookiePromptManagementStatusSchema,
     localeSettingsSchema,
     maliciousSiteStatusSchema,
     protectionsStatusSchema,
     requestDataSchema,
-    toggleReportScreenSchema,
+    toggleReportScreenSchema
 } from '../../../schema/__generated__/schema.parsers.mjs';
 import { isIOS } from '../ui/environment-check';
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils';
@@ -55,7 +56,12 @@ const backgroundMessage = (backgroundModel) => {
 const getBackgroundTabDataPromises = [];
 let trackerBlockingData;
 let permissionsData;
+
+/** @type {import('../../../schema/__generated__/schema.types').SecCertificateViewModel[]} */
 let certificateData;
+/** @type {null|boolean} */
+let isInvalidCert = null;
+
 let upgradedHttps;
 /** @type {import("./utils/protections.mjs").Protections | undefined} */
 let protections;
@@ -80,6 +86,7 @@ const combineSources = () => ({
             cookiePromptManagementStatus,
             platformLimitations: true,
             locale,
+            isInvalidCert,
         },
         permissionsData ? { permissions: permissionsData } : {},
         certificateData ? { certificate: certificateData } : {}
@@ -92,6 +99,9 @@ const resolveInitialRender = function () {
     const isTrackerBlockingDataSet = typeof trackerBlockingData === 'object';
     const isLocaleSet = typeof locale === 'string';
     const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== undefined;
+
+    // wait for cert info
+    if (isInvalidCert === null) return console.log('isInvalidCert was not ready');
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
         return;
     }
@@ -563,7 +573,16 @@ export function setupShared() {
     window.onChangeProtectionStatus = onChangeProtectionStatus;
     window.onChangeLocale = onChangeLocale;
     window.onChangeCertificateData = function (data) {
-        certificateData = data.secCertificateViewModels;
+        const parsed = certDataSchema.safeParse(data);
+        if (!parsed.success) {
+            console.error('could not parse incoming data from onChangeCertificateData');
+            console.error(parsed.error);
+            certificateData = [];
+            isInvalidCert = false;
+            return;
+        }
+        certificateData = parsed.data.secCertificateViewModels;
+        isInvalidCert = parsed.data.isInvalidCert;
         channel?.send('updateTabData');
     };
     window.onIsPendingUpdates = function (data) {
