@@ -43,6 +43,9 @@
         },
         "extension-outgoing": {
             "$ref": "extension-outgoing.json"
+        },
+        "cert-data": {
+            "$ref": "cert-data.json"
         }
     }
 }

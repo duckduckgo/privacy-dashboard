@@ -1,31 +1,8 @@
 import html from 'nanohtml';
 import { ns } from '../base/localize.js';
 import { states } from '../../browser/utils/request-details.mjs';
-import { heroFromTabNonTrackers } from './shared/hero.js';
 import { renderSections } from './page-trackers.js';
 import { adAttributionLink } from './shared/links';
-import { platformLimitations } from './shared/platform-limitations';
-import { topNav } from './shared/top-nav';
-
-/** @this {{ model: { site: import('../models/site.js').PublicSiteModel }}} */
-export function nonTrackersTemplate() {
-    if (!this.model) {
-        return html`<section class="sliding-subview"></section>`;
-    }
-
-    const sections = sectionsFromSiteNonTracker(this.model.site);
-    const hero = heroFromTabNonTrackers(this.model.site.tab.requestDetails, this.model.site.protectionsEnabled);
-    const limitations = this.model.site.tab.platformLimitations
-        ? html`<div class="padding-x-double">${platformLimitations()}</div>`
-        : html`<div></div>`;
-
-    return html` <div class="site-info card page-inner" data-page="non-trackers">
-        ${topNav({ view: 'secondary' })}
-        <div class="padding-x-double js-tracker-networks-hero">${hero}</div>
-        <div class="padding-x-double js-tracker-networks-details">${sections}</div>
-        ${limitations}
-    </div>`;
-}
 
 /**
  * @param {import('../models/site.js').PublicSiteModel} site

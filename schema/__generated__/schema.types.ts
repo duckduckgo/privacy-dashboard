@@ -193,6 +193,7 @@ export interface API {
   "telemetry-span"?: TelemetrySpan;
   "extension-incoming"?: IncomingExtensionMessage;
   "extension-outgoing"?: OutgoingExtensionMessage;
+  "cert-data"?: CertData;
 }
 /**
  * This describes the shape of the data that's required to display grouped requests in the Dashboard.
@@ -610,5 +611,79 @@ export interface OutgoingExtensionMessage {
    */
   id?: number;
   options: {};
+}
+export interface CertData {
+  secCertificateViewModels: SecCertificateViewModel[];
+  /**
+   * `true` if the certificate is missing or invalid
+   */
+  isInvalidCert: boolean;
+}
+export interface SecCertificateViewModel {
+  summary?: string;
+  commonName?: string;
+  emails?: string[];
+  publicKey?: SecKeyViewModel;
+}
+/**
+ * A model representing a SecKey with its properties and capabilities
+ */
+export interface SecKeyViewModel {
+  /**
+   * Base64 encoded representation of the application label data
+   */
+  keyId?: string | null;
+  /**
+   * Base64 encoded external representation of the key
+   */
+  externalRepresentation?: string | null;
+  /**
+   * Size of the key in bits
+   */
+  bitSize?: number | null;
+  /**
+   * Block size of the key
+   */
+  blockSize?: number | null;
+  /**
+   * Effective size of the key in bits
+   */
+  effectiveSize?: number | null;
+  /**
+   * Whether the key can be used for decryption
+   */
+  canDecrypt: boolean;
+  /**
+   * Whether the key can be used for key derivation
+   */
+  canDerive: boolean;
+  /**
+   * Whether the key can be used for encryption
+   */
+  canEncrypt: boolean;
+  /**
+   * Whether the key can be used for signing
+   */
+  canSign: boolean;
+  /**
+   * Whether the key can be used for unwrapping another key
+   */
+  canUnwrap: boolean;
+  /**
+   * Whether the key can be used for verification
+   */
+  canVerify: boolean;
+  /**
+   * Whether the key can be used for wrapping another key
+   */
+  canWrap: boolean;
+  /**
+   * Whether the key is stored permanently in the keychain
+   */
+  isPermanent?: boolean | null;
+  /**
+   * Type of the key (RSA, Elliptic Curve, etc.)
+   */
+  type?: "RSA" | "Elliptic Curve" | "Elliptic Curve (Prime Random)" | null;
 }
 

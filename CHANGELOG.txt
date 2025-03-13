@@ -1,2 +1,1 @@
-- Scam Protection (#354)
-- Node 22.14 fix (#370)
+- Fixing implicit invalid certs (#363)

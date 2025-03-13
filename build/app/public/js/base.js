@@ -11722,6 +11722,22 @@
     id: z3.number().optional(),
     options: z3.object({})
   });
+  var secKeyViewModelSchema = z3.object({
+    keyId: z3.string().optional().nullable(),
+    externalRepresentation: z3.string().optional().nullable(),
+    bitSize: z3.number().optional().nullable(),
+    blockSize: z3.number().optional().nullable(),
+    effectiveSize: z3.number().optional().nullable(),
+    canDecrypt: z3.boolean(),
+    canDerive: z3.boolean(),
+    canEncrypt: z3.boolean(),
+    canSign: z3.boolean(),
+    canUnwrap: z3.boolean(),
+    canVerify: z3.boolean(),
+    canWrap: z3.boolean(),
+    isPermanent: z3.boolean().optional().nullable(),
+    type: z3.union([z3.literal("RSA"), z3.literal("Elliptic Curve"), z3.literal("Elliptic Curve (Prime Random)")]).optional().nullable()
+  });
   var dataItemIdSchema = z3.union([wVVersionSchema, requestsSchema, featuresSchema, appVersionSchema, atbSchema, errorDescriptionsSchema, extensionVersionSchema, hTTPErrorCodesSchema, lastSentDaySchema, deviceSchema, osSchema, listVersionsSchema, reportFlowSchema, siteURLSchema, didOpenReportInfoSchema, toggleReportCounterSchema, openerContextSchema, userRefreshCountSchema, jSPerformanceSchema, localeSchema, descriptionSchema]);
   var incomingExtensionMessageSchema = z3.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
   var detectedRequestSchema = z3.object({
@@ -11767,6 +11783,12 @@
     attributes: z3.union([categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema]),
     eventOrigin: eventOriginSchema
   });
+  var secCertificateViewModelSchema = z3.object({
+    summary: z3.string().optional(),
+    commonName: z3.string().optional(),
+    emails: z3.array(z3.string()).optional(),
+    publicKey: secKeyViewModelSchema.optional()
+  });
   var requestDataSchema = z3.object({
     requests: z3.array(detectedRequestSchema),
     installedSurrogates: z3.array(z3.string()).optional()
@@ -11792,6 +11814,10 @@
   });
   var toggleReportScreenSchema = z3.object({
     data: z3.array(toggleReportScreenDataItemSchema)
+  });
+  var certDataSchema = z3.object({
+    secCertificateViewModels: z3.array(secCertificateViewModelSchema),
+    isInvalidCert: z3.boolean()
   });
   var windowsIncomingViewModelSchema = z3.object({
     Feature: z3.literal("PrivacyDashboard"),
@@ -11823,7 +11849,8 @@
     "close-message": closeMessageParamsSchema.optional(),
     "telemetry-span": telemetrySpanSchema.optional(),
     "extension-incoming": incomingExtensionMessageSchema.optional(),
-    "extension-outgoing": outgoingExtensionMessageSchema.optional()
+    "extension-outgoing": outgoingExtensionMessageSchema.optional(),
+    "cert-data": certDataSchema.optional()
   });
 
   // shared/js/browser/utils/request-details.mjs
@@ -13982,6 +14009,7 @@
   var trackerBlockingData;
   var permissionsData;
   var certificateData;
+  var isInvalidCert = null;
   var upgradedHttps;
   var protections;
   var isPendingUpdates;
@@ -13999,7 +14027,8 @@
         parentEntity,
         cookiePromptManagementStatus,
         platformLimitations: true,
-        locale
+        locale,
+        isInvalidCert
       },
       permissionsData ? { permissions: permissionsData } : {},
       certificateData ? { certificate: certificateData } : {}
@@ -14011,6 +14040,8 @@
     const isTrackerBlockingDataSet = typeof trackerBlockingData === "object";
     const isLocaleSet = typeof locale === "string";
     const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== void 0;
+    if (isInvalidCert === null)
+      return console.log("isInvalidCert was not ready");
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
       return;
     }
@@ -14228,7 +14259,16 @@
     window.onChangeProtectionStatus = onChangeProtectionStatus;
     window.onChangeLocale = onChangeLocale;
     window.onChangeCertificateData = function(data) {
-      certificateData = data.secCertificateViewModels;
+      const parsed = certDataSchema.safeParse(data);
+      if (!parsed.success) {
+        console.error("could not parse incoming data from onChangeCertificateData");
+        console.error(parsed.error);
+        certificateData = [];
+        isInvalidCert = false;
+        return;
+      }
+      certificateData = parsed.data.secCertificateViewModels;
+      isInvalidCert = parsed.data.isInvalidCert;
       channel2?.send("updateTabData");
     };
     window.onIsPendingUpdates = function(data) {
@@ -15032,7 +15072,7 @@
       supportsHover: desktop.includes(platform2.name),
       initialScreen: screen,
       opener,
-      supportsInvalidCertsImplicitly: platform2.name !== "browser" && platform2.name !== "windows",
+      supportsInvalidCertsImplicitly: platform2.name === "android",
       supportsMaliciousSiteWarning: platform2.name === "macos" || platform2.name === "ios" || platform2.name === "android" || platform2.name === "windows",
       includeToggleOnBreakageForm,
       randomisedCategories

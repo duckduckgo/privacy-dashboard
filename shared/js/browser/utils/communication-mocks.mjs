@@ -44,6 +44,7 @@ export function sharedMockDataProvider(params) {
     window.onChangeUpgradedHttps(state.upgradedHttps);
     window.onChangeCertificateData({
         secCertificateViewModels: state.certificate,
+        isInvalidCert: state.isInvalidCert,
     });
     if (state.remoteFeatureSettings) {
         window.onChangeFeatureSettings?.(state.remoteFeatureSettings);

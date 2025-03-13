@@ -6,6 +6,7 @@ import { protectionsOff } from './toggle-protections.mjs';
  * @typedef {import('../../../../../schema/__generated__/schema.types').DetectedRequest} DetectedRequest
  * @typedef {import('../../../../../schema/__generated__/schema.types').ParentEntity} ParentEntity
  * @typedef {import('../../../../../schema/__generated__/schema.types').RemoteFeatureSettings} RemoteFeatureSettings
+ * @typedef {import('../../../../../schema/__generated__/schema.types').SecCertificateViewModel} SecCertificateViewModel
  */
 
 /** @type {DetectedRequest} */
@@ -75,6 +76,7 @@ export const requests = {
     blocked: blocked1,
 };
 
+/** @type {SecCertificateViewModel[]} */
 export const defaultCertificates = [
     {
         commonName: 'sni.cloudflaressl.com',
@@ -282,7 +284,7 @@ export class MockData {
         this.remoteFeatureSettings = params.remoteFeatureSettings;
         this.emailProtectionUserData = params.emailProtectionUserData;
         this.fireButtonOptions = params.fireButtonOptions;
-        this.isInvalidCert = params.isInvalidCert;
+        this.isInvalidCert = params.isInvalidCert ?? false;
 
         /** @type {Protections} */
         this.protections = Protections.default();
@@ -544,6 +546,7 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             requests: [],
             certificate: [],
+            isInvalidCert: true,
             localeSettings: undefined,
             parentEntity: undefined,
             upgradedHttps: false,
