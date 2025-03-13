@@ -102,15 +102,7 @@
                     "enum": ["RSA", "Elliptic Curve", "Elliptic Curve (Prime Random)", null]
                 }
             },
-            "required": [
-                "canDecrypt",
-                "canDerive",
-                "canEncrypt",
-                "canSign",
-                "canUnwrap",
-                "canVerify",
-                "canWrap"
-            ]
+            "required": ["canDecrypt", "canDerive", "canEncrypt", "canSign", "canUnwrap", "canVerify", "canWrap"]
         }
     }
 }
