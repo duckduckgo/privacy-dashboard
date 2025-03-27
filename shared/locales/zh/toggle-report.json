@@ -1,0 +1,122 @@
+{
+  "smartling": {
+    "string_format" : "icu",
+    "translate_paths": [{
+      "path": "*/title",
+      "key": "{*}/title",
+      "instruction": "*/note"
+    }]
+  },
+  "dontSendReport": {
+    "title": "不发送",
+    "note": "选择不提交报告的按钮"
+  },
+  "yourReportWillHelpToggleReport": {
+    "title": "您的报告将帮助我们改进产品，为所有人提供更好的体验。",
+    "note": "用户提交报告后看到的正文内容"
+  },
+  "siteNotWorkingTitle": {
+    "title": "网站无法正常使用？请告诉我们。",
+    "note": "询问用户网站是否正常工作并提示他们报告问题的标题"
+  },
+  "siteNotWorkingSubTitle": {
+    "title": "匿名报告帮助DuckDuckGo修复由隐私保护功能引起的问题。",
+    "note": "说明匿名报告有助于DuckDuckGo修复隐私保护功能引起的问题的副标题"
+  },
+  "siteNotWorkingInfoReveal": {
+    "title": "查看发送内容",
+    "note": "允许用户查看报告中发送信息的按钮标签"
+  },
+  "siteNotWorkingInfoHide": {
+    "title": "隐藏",
+    "note": "允许用户隐藏报告中发送信息的按钮标签"
+  },
+  "reportsNoInfoSent": {
+    "title": "报告中发送的信息无法用于识别您的身份：",
+    "note": "强调发送的报告不包含任何个人身份信息的文本"
+  },
+  "dynamic_wvVersion": {
+    "title": "网页浏览器引擎版本号",
+    "note": "表示网页浏览器引擎的版本号"
+  },
+  "dynamic_requests": {
+    "title": "被拦截跟踪器的主机名、代理请求、忽略请求及不在跟踪器拦截列表中的请求",
+    "note": "提供关于各类请求的信息，包括被拦截的跟踪器和被忽略的请求"
+  },
+  "dynamic_features": {
+    "title": "浏览器已启用功能列表",
+    "note": "表示已启用的保护功能和浏览器特性的列表"
+  },
+  "dynamic_appVersion": {
+    "title": "应用版本号",
+    "note": "表示应用的版本号"
+  },
+  "dynamic_atb": {
+    "title": "功能测试的匿名实验组",
+    "note": "表示用于测试功能的匿名分组"
+  },
+  "dynamic_errorDescriptions": {
+    "title": "浏览器报告的错误",
+    "note": "提供浏览器报告的错误列表"
+  },
+  "dynamic_extensionVersion": {
+    "title": "扩展程序版本号",
+    "note": "表示扩展程序的版本号"
+  },
+  "dynamic_httpErrorCodes": {
+    "title": "网站响应状态(HTTP)代码",
+    "note": "提供网站返回的响应状态代码列表"
+  },
+  "dynamic_lastSentDay": {
+    "title": "本网站上次发送报告的日期",
+    "note": "表示该网站上次发送报告的日期"
+  },
+  "dynamic_device": {
+    "title": "设备品牌、型号和制造商",
+    "note": "提供设备相关信息，包括品牌、型号和制造商"
+  },
+  "dynamic_os": {
+    "title": "操作系统版本号",
+    "note": "表示操作系统的版本号"
+  },
+  "dynamic_reportFlow": {
+    "title": "您使用的报告方式(\"菜单\"、\"仪表板\"等)",
+    "note": "表示用户到达此反馈屏幕的路径"
+  },
+  "dynamic_siteUrl": {
+    "title": "页面URL(不含身份信息)",
+    "note": "表示页面URL，不包含任何身份识别信息"
+  },
+  "dynamic_listVersions": {
+    "title": "关于已启用保护功能版本的信息",
+    "note": "表示页面URL，不包含任何身份识别信息"
+  },
+  "dynamic_didOpenReportInfo": {
+    "title": "您是否选择显示此报告信息",
+    "note": "表示用户是否选择查看信息列表"
+  },
+  "dynamic_toggleReportCounter": {
+    "title": "保护功能被关闭的次数",
+    "note": "表示保护功能被切换的次数"
+  },
+  "dynamic_openerContext": {
+    "title": "您访问此页面的方式：\"搜索结果\"(DuckDuckGo搜索)、\"导航\"(链接/URL)或\"外部\"(其他方式)",
+    "note": "表示用户访问当前页面的上下文(如通过搜索结果、直接链接或外部来源)"
+  },
+  "dynamic_userRefreshCount": {
+    "title": "页面加载后的刷新次数",
+    "note": "表示页面初始加载后用户刷新的次数"
+  },
+  "dynamic_jsPerformance": {
+    "title": "页面各部分的加载速度",
+    "note": "提供页面JavaScript性能信息，显示页面各部分加载的速度"
+  },
+  "dynamic_locale": {
+    "title": "设备的主要语言和国家/地区",
+    "note": "提供用户区域设置信息"
+  },
+  "dynamic_description": {
+    "title": "您选择的类别和可选评论",
+    "note": "提供用户选择的类别和评论信息"
+  }
+}

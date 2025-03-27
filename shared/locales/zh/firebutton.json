@@ -1,0 +1,110 @@
+{
+    "smartling": {
+        "string_format" : "icu",
+        "translate_paths": [{
+            "path": "*/title",
+            "key": "{*}/title",
+            "instruction": "*/note"
+        }]
+    },
+    "fireDialogHeader": {
+        "title": "关闭标签页并清除数据",
+        "note": "对话框标题。"
+    },
+    "fireDialogHeaderNoTabs": {
+        "title": "清除数据",
+        "note": "当标签页清除功能被禁用时的对话框标题。"
+    },
+    "optionCurrentSite": {
+        "title": "仅当前网站",
+        "note": "下拉选项，仅清除当前活动网站的数据"
+    },
+    "optionLastHour": {
+        "title": "过去1小时",
+        "note": "下拉选项，仅清除过去1小时的数据"
+    },
+    "optionLast24Hour": {
+        "title": "过去24小时",
+        "note": "下拉选项，仅清除过去24小时的数据"
+    },
+    "optionLast7days": {
+        "title": "过去7天",
+        "note": "下拉选项，仅清除过去7天的数据"
+    },
+    "optionLast4Weeks": {
+        "title": "过去4周",
+        "note": "下拉选项，仅清除过去4周的数据"
+    },
+    "optionAllTime": {
+        "title": "所有时间",
+        "note": "下拉选项，清除自记录开始以来的所有数据"
+    },
+    "historyDuration": {
+        "title": "{duration, select, hour {1小时} day {24小时} week {1周} month {4周} other {全部} }",
+        "note": "描述应删除的历史数据时间段。"
+    },
+    "summaryClearTabsHistoryDuration": {
+        "title": "关闭<b>{openTabs}</b>个{openTabs, plural, =1 {标签页} other {标签页}}，并清除<b>{durationDesc}</b>的浏览历史和Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。占位符代表：1. 将受影响的标签页数量；2. 要删除数据的时间范围（使用historyDuration键单独翻译）。示例：关闭3个标签页并清除2周的浏览历史..."
+    },
+    "summaryClearTabsDuration": {
+        "title": "关闭<b>{openTabs}</b>个{openTabs, plural, =1 {标签页} other {标签页}}，并清除<b>{durationDesc}</b>的Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。占位符代表：1. 将受影响的标签页数量；2. 要删除数据的时间范围（使用historyDuration键单独翻译）。示例：关闭3个标签页并清除2周的Cookie？"
+    },
+    "summaryClearHistoryDuration": {
+        "title": "清除<b>{durationDesc}</b>的浏览历史和Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。占位符代表要删除数据的时间范围（使用historyDuration键单独翻译）。示例：清除2周的浏览历史..."
+    },
+    "summaryClearCookiesDuration": {
+        "title": "清除<b>{durationDesc}</b>的Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。占位符代表要删除数据的时间范围（使用historyDuration键单独翻译）。示例：清除2周的Cookie？"
+    },
+    "summaryClearTabsHistoryAll": {
+        "title": "关闭<b>{openTabs}</b>个{openTabs, plural, =1 {标签页} other {标签页}}，并清除<b>全部</b>浏览历史和Cookie（{cookies}个{cookies, plural, =1 {网站} other {网站}}）？",
+        "note": "用户提交表单后将被删除的数据描述。占位符分别代表要关闭的标签页数量和将清除Cookie的网站数量。示例：关闭3个标签页，并清除浏览历史和Cookie（2个网站）？"
+    },
+    "summaryClearTabsAll": {
+        "title": "关闭<b>{openTabs}</b>个{openTabs, plural, =1 {标签页} other {标签页}}，并清除<b>全部</b>Cookie（{cookies}个{cookies, plural, =1 {网站} other {网站}}）？",
+        "note": "用户提交表单后将被删除的数据描述。占位符分别代表要关闭的标签页数量和将清除Cookie的网站数量。示例：关闭3个标签页，并清除所有Cookie（2个网站）？"
+    },
+    "summaryClearHistoryAll": {
+        "title": "清除<b>全部</b>浏览历史和Cookie（{cookies}个{cookies, plural, =1 {网站} other {网站}}）？",
+        "note": "用户提交表单后将被删除的数据描述。占位符代表将清除Cookie的网站数量。示例：清除所有浏览历史和Cookie（2个网站）？"
+    },
+    "summaryClearCookiesAll": {
+        "title": "清除<b>全部</b>Cookie（{cookies}个{cookies, plural, =1 {网站} other {网站}}）？",
+        "note": "用户提交表单后将被删除的数据描述。占位符代表将清除Cookie的网站数量。示例：清除所有Cookie（2个网站）？"
+    },
+    "summaryClearTabsHistorySite": {
+        "title": "关闭<b>{openTabs}个{site}</b>{openTabs, plural, =1 {标签页} other {标签页}}，并清除<b>所有{site}</b>的Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。示例：\"关闭<b>3个example.com</b>标签页，并清除<b>所有example.com</b>的Cookie？\""
+    },
+    "summaryClearTabsSite": {
+        "title": "关闭<b>{openTabs}个{site}</b>{openTabs, plural, =1 {标签页} other {标签页}}，并清除<b>所有{site}</b>的Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。示例：\"关闭<b>3个example.com</b>标签页，并清除<b>所有example.com</b>的Cookie？\""
+    },
+    "summaryClearHistorySite": {
+        "title": "清除<b>所有{site}</b>的浏览历史和Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。示例：清除所有example.com的浏览历史和Cookie？"
+    },
+    "summaryClearCookiesSite": {
+        "title": "清除<b>所有{site}</b>的Cookie？",
+        "note": "用户提交表单后将被删除的数据描述。示例：清除所有example.com的Cookie？"
+    },
+    "summaryPinnedIgnored": {
+        "title": "<b>{tabs}个已固定</b>{tabs, plural, =1 {标签页} other {标签页}}将被忽略。",
+        "note": "通知用户某些标签页不会被关闭。示例：3个已固定的标签页将被忽略。"
+    },
+    "clearData": {
+        "title": "清除",
+        "note": "开始清除数据的按钮文本。"
+    },
+    "cancel": {
+        "title": "取消",
+        "note": "退出清除数据模态框的按钮文本。"
+    },
+    "historyAndDownloadsNotAffected": {
+        "title": "要同时清除历史记录，请选择时间段。",
+        "note": "通知用户由于未从下拉菜单中选择时间段，所选的清除设置不会影响历史记录和下载。"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "smartling": {
+        "string_format" : "icu",
+        "translate_paths": [{
+            "path": "*/title",
+            "key": "{*}/title",
+            "instruction": "*/note"
+        }]
+    },
+    "protectionsUnavailableNote": {
+        "title": "隐私保护功能不适用于特殊页面或本地页面。",
+        "note": "此处的'特殊页面'指浏览器设置页面等，'本地页面'指从用户计算机而非互联网打开的文件"
+    },
+    "spreadTitle": {
+        "title": "喜欢使用飞鸭浏览器吗？",
+        "note": "'推广飞鸭浏览器'行动呼吁的标题文本"
+    },
+    "spreadText": {
+        "title": "帮助我们向您的家人和朋友宣传",
+        "note": "'推广飞鸭浏览器'行动呼吁的辅助文本"
+    },
+    "spreadButton": {
+        "title": "推广飞鸭浏览器",
+        "note": "'推广'行动呼吁的按钮文本"
+    },
+    "emailTitle": {
+        "title": "厌倦了邮件被追踪？",
+        "note": "'邮件保护'行动呼吁的标题文本"
+    },
+    "emailText": {
+        "title": "立即为您的扩展程序注册飞鸭浏览器邮件保护！",
+        "note": "此处'扩展程序'指浏览器扩展或插件"
+    }
+}

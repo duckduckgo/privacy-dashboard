@@ -1,0 +1,342 @@
+{
+    "smartling": {
+        "string_format" : "icu",
+        "translate_paths": [{
+            "path": "*/title",
+            "key": "{*}/title",
+            "instruction": "*/note"
+        }]
+    },
+    "updatingProtectionList": {
+        "title": "正在更新保护列表",
+        "note": "更新保护列表时显示的消息"
+    },
+    "protectionsEnabled": {
+        "title": "本网站保护功能已<b>开启</b>",
+        "note": "隐私保护功能启用时的标题"
+    },
+    "protectionsDisabled": {
+        "title": "本网站保护功能已<b>关闭</b>",
+        "note": "用户手动关闭隐私保护时的标题"
+    },
+    "protectionsDisabledRemote": {
+        "title": "我们已临时关闭隐私保护功能，因其可能导致本网站异常。",
+        "note": "由DuckDuckGo自动关闭隐私保护时的标题"
+    },
+    "protectionsDisabledRemoteOverride": {
+        "title": "建议为本网站关闭隐私保护功能以避免页面异常。",
+        "note": "用户手动关闭隐私保护时的标题"
+    },
+    "connectionDescriptionUnencrypted": {
+        "title": "<b>此网站不安全</b>，可能会泄露您在本页面提交的任何信息。",
+        "note": "当连接未加密（使用HTTP而非HTTPS）时显示"
+    },
+    "connectionDescriptionInvalidCertificate": {
+        "title": "<b>此网站的证书无效。</b>您可能正在连接伪装成<b>{domain}</b>的服务器，这可能导致您的机密信息泄露。",
+        "note": "当连接已加密但证书无效时显示"
+    },
+    "trackerNetworksSummaryBlocked": {
+        "title": "以下第三方域名的请求因被识别为跟踪请求而被拦截。如果允许公司请求加载，它们可能会建立您的用户画像。",
+        "note": "在'跟踪器已拦截'界面直接显示的摘要"
+    },
+    "trackerNetworksSummaryNoneBlocked": {
+        "title": "本页面未拦截任何跟踪请求。如果允许公司请求加载，它们可能会建立您的用户画像。",
+        "note": "当检测到跟踪器但未拦截任何请求时显示的消息"
+    },
+    "trackerNetworksSummaryNoneFound": {
+        "title": "我们未在本页面识别到任何跟踪请求。",
+        "note": "当未检测到任何跟踪器时显示的消息"
+    },
+    "trackerNetworksSummaryNone": {
+        "title": "我们未发现任何公司尝试在本页面加载跟踪请求。",
+        "note": "当页面未发现任何跟踪器时显示"
+    },
+    "trackerNetworksSummaryAllowedOnly": {
+        "title": "本页面未拦截任何跟踪请求。",
+        "note": "当允许某些跟踪器加载时显示的消息"
+    },
+    "trackerNetworksSummaryFirstPartyAllowedOnly": {
+        "title": "我们仅发现非跟踪请求或与<b>{domain}</b>相关的请求在本页面加载。",
+        "note": "当允许第一方跟踪器加载时显示的消息。占位符为正在浏览的域名（如：amazon.com）"
+    },
+    "trackerNetworksSummaryProtectionsOff": {
+        "title": "由于本网站保护功能已关闭，未拦截任何跟踪请求。如果允许公司请求加载，它们可能会建立您的用户画像。",
+        "note": "发现跟踪器但保护功能已禁用时显示"
+    },
+    "createNewDuckAddress": {
+        "title": "生成私人鸭邮地址",
+        "note": "创建新的私人邮件别名"
+    },
+    "createNewDuckAddressCopied": {
+        "title": "已复制到剪贴板！",
+        "note": "提示邮件地址已复制的通知"
+    },
+    "reportWebsiteAsSafeCTA": {
+        "title": "报告网站为安全",
+        "note": "按钮标签文本，用于触发显示反馈表单让用户报告当前网站为安全"
+    },
+    "aboutPhishingLink": {
+        "title": "关于我们的钓鱼保护",
+        "note": "链接标签，指向关于钓鱼保护帮助页面"
+    },
+    "aboutMalwareLink": {
+        "title": "关于我们的恶意软件保护",
+        "note": "链接标签，指向关于恶意软件保护帮助页面"
+    },
+    "aboutScamLink": {
+        "title": "关于我们的诈骗保护",
+        "note": "链接标签，指向关于诈骗保护帮助页面"
+    },
+    "websiteNotWorkingQ": {
+        "title": "网站运行不正常？",
+        "note": "当用户遇到网页问题时点击的呼吁行动"
+    },
+    "websiteNotWorkingPrompt": {
+        "title": "报告此网站问题",
+        "note": "鼓励用户关闭保护功能时的按钮标签文本"
+    },
+    "websiteNotWorkingCta": {
+        "title": "报告网站故障",
+        "note": "触发显示反馈表单的按钮标签文本"
+    },
+    "websiteNotWorkingAdvice": {
+        "title": "关闭保护功能可能有助于解决问题。",
+        "note": "帮助文本"
+    },
+    "websiteNotWorkingPromptFollowUp": {
+        "title": "网站仍然无法正常工作？",
+        "note": "用户已关闭保护功能后显示的按钮标签文本"
+    },
+    "takePrecautions": {
+        "title": "采取预防措施",
+        "note": "当页面未加密时显示的标题"
+    },
+    "majorTrackingNetworkDesc": {
+        "title": "<b>此网站由{companyDisplayName}所有</b>，该公司在{companyPrevalence}%的热门网站运营跟踪网络。{blocked, select, true {我们已拦截部分其在本页面的请求。} other {}}",
+        "note": "当访问由大型跟踪公司拥有的网站时，我们无法拦截其跟踪器，因此警告用户。例如：Google（news.google.com的所有者）在79%的热门网站跟踪您...等"
+    },
+    "trackersBlockedDesc": {
+        "title": "我们已拦截{companyCount, plural, =0 {部分公司} =1 {<b>{firstCompany}</b>} =2 {<b>{firstCompany}</b>和<b>{secondCompany}</b>} =3 {<b>{firstCompany}</b>、<b>{secondCompany}</b>和<b>{thirdCompany}</b>} =4 {<b>{firstCompany}</b>、<b>{secondCompany}</b>、<b>{thirdCompany}</b>和<b>{fourthCompany}</b>} =5 {<b>{firstCompany}</b>、<b>{secondCompany}</b>、<b>{thirdCompany}</b>、<b>{fourthCompany}</b>和<b>1家其他公司</b>} other {<b>{firstCompany}</b>、<b>{secondCompany}</b>、<b>{thirdCompany}</b>、<b>{fourthCompany}</b>和<b>{othersCount}家其他公司</b>}}在本页面加载跟踪请求。",
+        "note": "返回类似'我们已拦截CompanyA和CompanyB尝试跟踪您'的字符串"
+    },
+    "cookiesMinimized": {
+        "title": "Cookie已管理",
+        "note": "当我们将本网站的cookie隐私设置设为最大化隐私时的标题"
+    },
+    "cookiesHidden": {
+        "title": "Cookie弹窗已隐藏",
+        "note": "当我们已隐藏cookie横幅时的标题"
+    },
+    "cookiesHiddenSummary": {
+        "title": "我们能够隐藏本网站的cookie弹窗是因为未提供管理cookie偏好的选项。我们的其他网络跟踪保护仍然适用。",
+        "note": "关于我们已隐藏cookie横幅的详细说明"
+    },
+    "cookiesMinimizedSummary": {
+        "title": "我们已将您的cookie偏好设置为最大化隐私并关闭了弹窗。",
+        "note": "关于我们已将本网站的cookie隐私设置设为最大化隐私的详细说明"
+    },
+    "cookiesMinimizedSettings": {
+        "title": "在设置中禁用",
+        "note": "允许打开设置的按钮文本"
+    },
+    "connectionSecure": {
+        "title": "连接已加密",
+        "note": "与网站的连接是安全的（HTTPS）"
+    },
+    "connectionNotSecure": {
+        "title": "连接未加密",
+        "note": "连接不安全（HTTP）"
+    },
+    "connectionNotSecureInvalidCertificate": {
+        "title": "连接可能不安全",
+        "note": "当连接使用无效证书时显示的按钮文本"
+    },
+    "phishingWebsite": {
+        "title": "网站可能存在安全风险",
+        "note": "当URL被报告为钓鱼网站时显示的按钮文本"
+    },
+    "phishingWebsiteDesc": {
+        "title": "此网站可能冒充合法网站，试图诱骗您提供密码或信用卡号等个人信息。",
+        "note": "当URL被报告为钓鱼网站时显示的描述文本"
+    },
+    "malwareWebsite": {
+        "title": "网站可能存在安全风险",
+        "note": "当URL被报告为恶意软件网站时显示的按钮文本"
+    },
+    "malwareWebsiteDesc": {
+        "title": "此网站因分发旨在入侵设备或窃取个人信息的恶意软件而被标记。",
+        "note": "当URL被报告为恶意软件网站时显示的描述文本"
+    },
+    "scamWebsite": {
+        "title": "网站可能存在安全风险",
+        "note": "当URL被报告为诈骗网站时显示的按钮文本"
+    },
+    "scamWebsiteDesc": {
+        "title": "此网站因试图诱骗人们转账、购买假冒商品或安装恶意软件而被标记。",
+        "note": "当URL被报告为诈骗网站时显示的描述文本"
+    },
+    "trackerNetworksDesc": {
+        "title": "已拦截加载请求",
+        "note": "表示已拦截1个或多个跟踪器"
+    },
+    "trackerNetworksNotBlocked": {
+        "title": "未拦截跟踪请求",
+        "note": "表示未拦截任何跟踪器"
+    },
+    "trackerNetworksNotFound": {
+        "title": "未发现跟踪请求",
+        "note": "当没有跟踪器但至少加载了1个非特殊请求时的替代标题"
+    },
+    "thirdPartiesLoaded": {
+        "title": "已加载第三方请求",
+        "note": "表示第三方请求已被加载"
+    },
+    "thirdPartiesNoneFound": {
+        "title": "未发现第三方请求",
+        "note": "描述加载了多少非跟踪器域名的详细说明。例如：本页面加载了来自3个其他第三方域名的请求。"
+    },
+    "firstPartyDesc": {
+        "title": "{companyName}拥有此网站及本页面发现的跟踪器，因此我们未拦截它们。",
+        "note": "当检测到的跟踪器属于companyName时，我们无法在该公司拥有的网站上拦截它们"
+    },
+    "noTrackersFound": {
+        "title": "我们未发现任何公司尝试在本页面加载跟踪请求。",
+        "note": "表示当前页面未发现任何跟踪器"
+    },
+    "trackersFoundForAllowlisted": {
+        "title": "跟踪器可帮助公司建立您的用户画像。我们发现以下公司正在监控您在本页面的活动。",
+        "note": "当网站保护功能已禁用时显示的跟踪器公司列表标题"
+    },
+    "trackersFoundAndBlocked": {
+        "title": "跟踪器可帮助公司建立您的用户画像。我们已拦截以下公司监控您在本页面的活动。",
+        "note": "当网站保护功能已启用时显示的跟踪器公司列表标题"
+    },
+    "trackerNetworkUnknown": {
+        "title": "未知跟踪网络",
+        "note": "当无法确定特定跟踪器的公司名称时显示"
+    },
+    "trackerDomainsForCompany": {
+        "title": "{companyName}的跟踪器域名",
+        "note": "从特定公司检测到的跟踪器域名列表标题"
+    },
+    "zeroTrackersFound": {
+        "title": "发现0个跟踪器",
+        "note": "表示当前页面未发现任何跟踪器"
+    },
+    "trackerOwnedByThisSite": {
+        "title": "本网站拥有的跟踪器（已允许）",
+        "note": "表示本网站拥有的跟踪器未被拦截"
+    },
+    "trackerCountForDomain": {
+        "title": "在{domain}{blocked, select, true {拦截} other {发现}}{trackerCount}个{trackerCount, plural, =1 {跟踪器} other {跟踪器}}",
+        "note": "对于特定域名，统计被拦截或仅检测到的跟踪器数量。例如：拦截4个跟踪器"
+    },
+    "trackerLimitationsNote": {
+        "title": "请注意：平台限制可能会影响我们检测所有请求的能力。",
+        "note": "显示在跟踪器列表底部的说明"
+    },
+    "trackerAboutLink": {
+        "title": "关于我们的网络跟踪保护",
+        "note": "指向详细介绍我们网络跟踪保护功能的帮助页面链接"
+    },
+    "trackerAdLink": {
+        "title": "我们的搜索广告如何影响保护功能",
+        "note": "指向解释搜索广告如何影响保护功能的帮助页面链接"
+    },
+    "sectionHeadingAdAttribution": {
+        "title": "以下域名的请求被加载是因为最近点击了DuckDuckGo上的{domain}广告。这些请求有助于评估广告效果。DuckDuckGo上的所有广告均不建立用户画像。",
+        "note": "占位符代表公司名称"
+    },
+    "sectionHeadingIgnore": {
+        "title": "以下域名的请求被加载以防止网站异常。",
+        "note": "拦截跟踪器可能导致宿主页面问题，因此我们可能允许它们加载"
+    },
+    "sectionHeadingFirstParty": {
+        "title": "以下域名的请求被加载是因为它们与{domain}相关联。",
+        "note": "占位符代表公司名称"
+    },
+    "sectionHeadingThirdParty": {
+        "title": "以下域名的请求也被加载。",
+        "note": "表示其他第三方请求也被加载"
+    },
+    "sectionHeadingProtectionsDisabled": {
+        "title": "以下域名的请求被加载是因为保护功能已关闭。",
+        "note": "当用户手动关闭保护功能时显示此消息"
+    },
+    "thirdPartiesSummaryLoaded": {
+        "title": "以下第三方域名的请求被加载。如果允许公司请求加载，它们可能会建立您的用户画像，尽管我们的其他网络跟踪保护仍然适用。",
+        "note": "在第三方请求界面显示的摘要"
+    },
+    "thirdPartiesSummaryProtectionsOff": {
+        "title": "以下第三方域名的请求被加载。如果允许公司请求加载，它们可能会建立您的用户画像，尽管我们的其他网络跟踪保护仍然适用。",
+        "note": "当加载了任何请求但保护功能关闭时显示"
+    },
+    "thirdPartiesSummaryNone": {
+        "title": "我们未识别出来自第三方域名的任何请求。",
+        "note": "在第三方列表界面显示"
+    },
+    "analyticsCategory": {
+        "title": "分析",
+        "note": "用于描述跟踪器类型，指用于向网站所有者报告分析数据的跟踪器"
+    },
+    "advertisingCategory": {
+        "title": "广告",
+        "note": "用于描述跟踪器类型，指用于广告的跟踪器"
+    },
+    "socialCategory": {
+        "title": "社交网络",
+        "note": "用于描述跟踪器类型，指流行社交网络使用的跟踪器"
+    },
+    "contentDeliveryCategory": {
+        "title": "内容分发",
+        "note": "用于描述跟踪器类型，指内容分发平台使用的跟踪器"
+    },
+    "embeddedContentCategory": {
+        "title": "嵌入式内容",
+        "note": "用于描述跟踪器类型，指嵌入式内容使用的跟踪器"
+    },
+    "searchPlaceholder": {
+        "title": "搜索DuckDuckGo",
+        "note": "搜索栏的占位文本"
+    },
+    "searchGoButton": {
+        "title": "搜索",
+        "note": "搜索按钮的ARIA标签"
+    },
+    "optionsButton": {
+        "title": "更多选项",
+        "note": "选项按钮的ARIA标签"
+    },
+    "navigationComplete": {
+        "title": "完成",
+        "note": "iOS顶部导航栏按钮文本"
+    },
+    "navigationClose": {
+        "title": "关闭",
+        "note": "macOS顶部导航栏按钮文本"
+    },
+    "navigationCancel": {
+        "title": "取消",
+        "note": "取消操作的按钮文本"
+    },
+    "okDialogAction": {
+        "title": "确定",
+        "note": "对话框中确认或接受选择的按钮文本"
+    },
+    "navigationBack": {
+        "title": "返回",
+        "note": "iOS顶部导航栏的ARIA标签和可见文本"
+    },
+    "enableProtectionsSwitch": {
+        "title": "启用保护",
+        "note": "允许用户开启保护功能的开关ARIA标签"
+    },
+    "disableProtectionsSwitch": {
+        "title": "禁用保护",
+        "note": "允许用户关闭保护功能的开关ARIA标签"
+    },
+    "errorMessage": {
+        "title": "出现错误，我们无法加载此内容。请尝试重新加载页面。",
+        "note": "当发生错误且无法显示界面时向用户显示的消息"
+    }
+}

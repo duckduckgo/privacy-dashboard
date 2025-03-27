@@ -1,0 +1,102 @@
+{
+    "smartling": {
+        "string_format" : "icu",
+        "translate_paths": [{
+            "path": "*/title",
+            "key": "{*}/title",
+            "instruction": "*/note"
+        }]
+    },
+    "encrypt": {
+        "title": "加密",
+        "note": "当加密密钥可用于加密数据时"
+    },
+    "sign": {
+        "title": "签名",
+        "note": "当加密密钥可用于签署数据时"
+    },
+    "verify": {
+        "title": "验证",
+        "note": "当加密密钥可用于验证数据时"
+    },
+    "derive": {
+        "title": "派生",
+        "note": "当加密密钥可用于派生新密钥时"
+    },
+    "wrap": {
+        "title": "封装",
+        "note": "当加密密钥可用于封装其他密钥时"
+    },
+    "unwrap": {
+        "title": "解封",
+        "note": "当加密密钥可用于解封其他密钥时"
+    },
+    "unknown": {
+        "title": "未知",
+        "note": "该加密密钥可用于某些我们无法识别的其他用途"
+    },
+    "certificateDetail": {
+        "title": "安全证书详情",
+        "note": "包含SSL证书详情的章节标题"
+    },
+    "commonName": {
+        "title": "通用名称",
+        "note": "SSL证书的通用名称"
+    },
+    "publicKey": {
+        "title": "公钥",
+        "note": "SSL证书的公钥"
+    },
+    "algorithm": {
+        "title": "算法",
+        "note": "SSL证书使用的算法"
+    },
+    "keySize": {
+        "title": "密钥长度",
+        "note": "SSL证书的加密密钥长度"
+    },
+    "usage": {
+        "title": "用途",
+        "note": "SSL证书的允许用途（引用本文件中'encrypt'、'sign'、'verify'、'unwrap'等字符串）"
+    },
+    "summary": {
+        "title": "摘要",
+        "note": "连接详情摘要的标题"
+    },
+    "permanent": {
+        "title": "永久性",
+        "note": "证书是否为永久性"
+    },
+    "effectiveSize": {
+        "title": "有效长度",
+        "note": "SSL证书加密密钥的有效长度"
+    },
+    "certificateNotFound": {
+        "title": "未找到证书",
+        "note": "当连接未加密（如http）时，我们没有证书详情可显示"
+    },
+    "certificateForDomain": {
+        "title": "{domain}的证书",
+        "note": "指定域名的证书详情标题"
+    },
+    "insecureConnectionDesc": {
+        "title": "此页面使用未加密的连接。第三方可能查看您的活动或拦截您在此页面上发送的敏感信息。",
+        "note": "当连接未加密时显示"
+    },
+    "invalidConnectionDesc": {
+        "title": "此站点的证书无效。您可能正在连接到一个伪装成<b>{domain}</b>的服务器，这可能会危及您的机密信息安全。",
+        "note": "当连接已加密但证书无效时显示"
+    },
+    "upgradedConnectionDesc": {
+        "title": "我们已升级此页面的连接以保护您在传输过程中发送的信息。",
+        "note": "当我们成功将不安全连接升级为安全连接时显示"
+    },
+    "secureConnectionDesc": {
+        "title": "此页面使用加密连接，可防止第三方查看您的活动或拦截您在此页面上发送的敏感信息。",
+        "note": "当用户直接访问安全连接时显示"
+    },
+    "phishingWebsiteDesc": {
+        "title": "该网站可能正在冒充合法网站，以诱骗您提供个人信息，例如密码或信用卡号。",
+        "note": "当用户访问钓鱼网站时显示"
+    }
+}

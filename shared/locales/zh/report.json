@@ -1,0 +1,158 @@
+{
+    "smartling": {
+        "string_format" : "icu",
+        "translate_paths": [{
+            "path": "*/title",
+            "key": "{*}/title",
+            "instruction": "*/note"
+        }]
+    },
+    "selectTheOptionDesc": {
+        "title": "提交匿名网站问题报告可帮助我们改进应用。",
+        "note": "当用户遇到某些网站问题时（可能是由我们引起）会看到此界面"
+    },
+    "selectTheOptionDescV2": {
+        "title": "请选择最符合您遇到的问题的选项。",
+        "note": "引导用户从可能导致网站故障的原因列表中选择的标题"
+    },
+    "selectTheCategoryType": {
+        "title": "遇到什么问题？",
+        "note": "引导用户从列表中选择问题类型的标题。选项包括：'网站未按预期工作'、'我不喜欢该网站内容'或'DuckDuckGo浏览器通用反馈'"
+    },
+    "categoryType1": {
+        "title": "网站未按预期工作",
+        "note": "用户想报告网站功能不符合预期"
+    },
+    "categoryType2": {
+        "title": "我不喜欢该网站内容",
+        "note": "用户想报告不喜欢该网站的内容"
+    },
+    "categoryType3": {
+        "title": "DuckDuckGo浏览器通用反馈",
+        "note": "用户想提供关于我们应用的反馈（与具体网站无关）"
+    },
+    "selectTheCategory": {
+        "title": "网站哪些功能不正常？",
+        "note": "引导用户从可能导致网站故障的原因列表（如'视频无法播放'或'网站布局异常'）中选择的标题"
+    },
+    "tryTurningProtectionsOff": {
+        "title": "尝试关闭隐私保护功能，看看是否能解决问题。",
+        "note": "作为替代解决方案呈现"
+    },
+    "skipThisStep": {
+        "title": "跳过此步骤",
+        "note": "允许用户直接进入下一步的按钮文字"
+    },
+    "pickYourIssueFromTheList": {
+        "title": "描述遇到的问题",
+        "note": "要求用户从下拉列表中选择具体问题"
+    },
+    "blocked": {
+        "title": "网站被拦截或无法加载",
+        "note": "用户因页面无法加载而提交报告"
+    },
+    "layout": {
+        "title": "网站布局异常",
+        "note": "用户因页面布局显示异常而提交报告"
+    },
+    "emptySpaces": {
+        "title": "网站存在大片空白区域",
+        "note": "用户因页面出现大面积空白而提交报告"
+    },
+    "videos": {
+        "title": "视频无法播放或加载",
+        "note": "用户因视频无法正常播放或加载而提交报告"
+    },
+    "images": {
+        "title": "图片无法加载",
+        "note": "用户因部分或全部图片未能加载而提交报告"
+    },
+    "comments": {
+        "title": "评论/评价/聊天内容未加载",
+        "note": "用户因评论区内容未能加载而提交报告"
+    },
+    "content": {
+        "title": "内容缺失",
+        "note": "用户因其他类型内容未能加载而提交报告"
+    },
+    "links": {
+        "title": "链接或按钮失效",
+        "note": "用户因点击链接或按钮无响应而提交报告"
+    },
+    "login": {
+        "title": "无法登录/注册",
+        "note": "用户因无法登录网站而提交报告"
+    },
+    "loginV2": {
+        "title": "无法登录或注册",
+        "note": "用户因无法登录网站而提交报告"
+    },
+    "shopping": {
+        "title": "无法支付/结算/购物",
+        "note": "用户因无法完成购物流程而提交报告"
+    },
+    "browser": {
+        "title": "浏览器或其他扩展程序问题",
+        "note": "用户因浏览器或其他扩展程序异常而提交报告"
+    },
+    "paywall": {
+        "title": "网站要求禁用广告拦截器",
+        "note": "用户因网站要求关闭隐私保护或广告拦截功能而提交报告"
+    },
+    "other": {
+        "title": "其他问题",
+        "note": "用户因未列出的其他原因而提交报告"
+    },
+    "tellUsMoreDesc": {
+        "title": "补充详细信息（可选）：{bullet}发生了什么问题？{bullet}预期效果应该是？{bullet}关闭保护功能是否有帮助？",
+        "note": "提示用户在文本框输入问题详情的引导语。包含3个引导问题，每个'bullet'需替换为项目符号（如'• 发生了什么问题？'）"
+    },
+    "sendReport": {
+        "title": "发送报告",
+        "note": "提交报告的按钮文字"
+    },
+    "reportsAreAnonymousDesc": {
+        "title": "发送给DuckDuckGo的报告仅包含帮助我们处理反馈所需的信息。",
+        "note": "页面底部关于报告内容的免责声明"
+    },
+    "thankYou": {
+        "title": "感谢您！",
+        "note": "用户提交报告后看到的标题"
+    },
+    "yourReportWillHelpDesc": {
+        "title": "您的报告将帮助DuckDuckGo{newline}为所有人变得更好！",
+        "note": "用户提交报告后看到的正文内容。请保留{newline}标记，并根据翻译需要将其置于适当位置以保持版式平衡"
+    },
+    "dislike": {
+        "title": "我不喜欢该内容",
+        "note": "用户因不喜欢页面内容而提交报告"
+    },
+    "otherRequired": {
+        "title": "请描述您遇到的问题（必填）",
+        "note": "用户必须填写额外信息的表单占位文字"
+    },
+    "otherOptional": {
+        "title": "请描述您遇到的问题（选填）",
+        "note": "用户可选填额外信息的表单占位文字"
+    },
+    "descriptionRequired": {
+        "title": "需要填写描述",
+        "note": "当必填描述字段为空时显示的错误提示"
+    },
+    "suggestionWhatHappened": {
+        "title": "发生了什么问题？",
+        "note": "建议用户描述遇到问题的引导语"
+    },
+    "suggestionWhatHappened2": {
+        "title": "预期效果应该是？",
+        "note": "建议用户描述预期效果的引导语"
+    },
+    "suggestionWhatHappened3": {
+        "title": "关闭保护功能是否有帮助？",
+        "note": "建议用户说明关闭隐私保护是否解决问题的引导语"
+    },
+    "reportTitle": {
+        "title": "向DuckDuckGo报告",
+        "note": "用作网站故障报告流程的屏幕标题"
+    }
+}
