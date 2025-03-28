@@ -256,8 +256,7 @@
         "note": "占位符代表公司名称"
     },
     "sectionHeadingThirdParty": {
-        "title": "以下域名的请求也被加载。",
-        "note": "表示其他第三方请求也被加载"
+        "title": "以下域名的请求也被加载。"
     },
     "sectionHeadingProtectionsDisabled": {
         "title": "以下域名的请求被加载是因为保护功能已关闭。",

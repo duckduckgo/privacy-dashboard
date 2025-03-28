@@ -11,7 +11,7 @@ import toggleReportTranslations from '../../../locales/en/toggle-report.json';
 import localeResources from '../../../locales/*/*.json';
 
 i18next.use(ICU).init({
-    debug: true,
+    // debug: true,
     initImmediate: false,
     fallbackLng: 'en',
     lng: 'en',
