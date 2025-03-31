@@ -46,7 +46,7 @@
         "@playwright/test": "^1.45.3",
         "@types/chrome": "^0.0.203",
         "@types/eslint__js": "^8.42.3",
-        "@types/node": "22.10.7",
+        "@types/node": "22.13.14",
         "chokidar-cli": "^3.0.0",
         "classnames": "^2.5.1",
         "deep-freeze": "0.0.1",
