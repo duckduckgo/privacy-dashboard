@@ -20,8 +20,8 @@
     "note": "询问用户网站是否正常工作并提示他们报告问题的标题"
   },
   "siteNotWorkingSubTitle": {
-    "title": "匿名报告帮助DuckDuckGo修复由隐私保护功能引起的问题。",
-    "note": "说明匿名报告有助于DuckDuckGo修复隐私保护功能引起的问题的副标题"
+    "title": "匿名报告帮助飞鸭浏览器修复由隐私保护功能引起的问题。",
+    "note": "说明匿名报告有助于飞鸭浏览器修复隐私保护功能引起的问题的副标题"
   },
   "siteNotWorkingInfoReveal": {
     "title": "查看发送内容",
@@ -100,7 +100,7 @@
     "note": "表示保护功能被切换的次数"
   },
   "dynamic_openerContext": {
-    "title": "您访问此页面的方式：\"搜索结果\"(DuckDuckGo搜索)、\"导航\"(链接/URL)或\"外部\"(其他方式)",
+    "title": "您访问此页面的方式：\"搜索结果\"(飞鸭浏览器搜索)、\"导航\"(链接/URL)或\"外部\"(其他方式)",
     "note": "表示用户访问当前页面的上下文(如通过搜索结果、直接链接或外部来源)"
   },
   "dynamic_userRefreshCount": {

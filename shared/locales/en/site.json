@@ -244,7 +244,7 @@
         "note": "A link pointing to an help page explaining how our search ads impact our protections"
     },
     "sectionHeadingAdAttribution": {
-        "title": "The following domain’s requests were loaded because a {domain} ad on DuckDuckGo was recently clicked. These requests help evaluate ad effectiveness. All ads on DuckDuckGo are non-profiling.",
+        "title": "The following domain’s requests were loaded because a {domain} ad on Goduck was recently clicked. These requests help evaluate ad effectiveness. All ads on Goduck are non-profiling.",
         "note": "The placeholder stands for a company name"
     },
     "sectionHeadingIgnore": {
@@ -295,7 +295,7 @@
         "note": "Used to describe the type of tracker, in this case one that is used by embedded content"
     },
     "searchPlaceholder": {
-        "title": "Search DuckDuckGo",
+        "title": "Search Goduck",
         "note": "Placeholder text for the search bar"
     },
     "searchGoButton": {

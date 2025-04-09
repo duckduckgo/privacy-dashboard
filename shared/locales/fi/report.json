@@ -18,7 +18,7 @@
   },
   "selectTheCategoryType" : {
     "title" : "Mikä on vialla?",
-    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General Goduck browser feedback'"
   },
   "categoryType1" : {
     "title" : "Verkkosivusto ei toimi odotetulla tavalla",
@@ -29,7 +29,7 @@
     "note" : "The user wants to report that they didn't like the content of the site in question."
   },
   "categoryType3" : {
-    "title" : "Yleistä palautetta DuckDuckGo-selaimesta",
+    "title" : "Yleistä palautetta Goduck-selaimesta",
     "note" : "The user wants to provide feedback about our application, not the site in question"
   },
   "selectTheCategory" : {

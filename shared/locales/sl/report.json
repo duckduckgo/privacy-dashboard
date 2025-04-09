@@ -18,7 +18,7 @@
   },
   "selectTheCategoryType" : {
     "title" : "V čem je težava?",
-    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General Goduck browser feedback'"
   },
   "categoryType1" : {
     "title" : "Spletno mesto ne deluje po pričakovanjih",
@@ -29,7 +29,7 @@
     "note" : "The user wants to report that they didn't like the content of the site in question."
   },
   "categoryType3" : {
-    "title" : "Splošne povratne informacije o brskalniku DuckDuckGo",
+    "title" : "Splošne povratne informacije o brskalniku Goduck",
     "note" : "The user wants to provide feedback about our application, not the site in question"
   },
   "selectTheCategory" : {
@@ -113,7 +113,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Poročila, poslana DuckDuckGo, vključujejo samo informacije, ki so potrebne za obravnavanje vaših povratnih informacij.",
+    "title" : "Poročila, poslana Goduck, vključujejo samo informacije, ki so potrebne za obravnavanje vaših povratnih informacij.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -121,7 +121,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Vaše poročilo pripomore k temu, da lahko DuckDuckGo{newline}postane boljši za vse!",
+    "title" : "Vaše poročilo pripomore k temu, da lahko Goduck{newline}postane boljši za vse!",
     "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
@@ -153,7 +153,7 @@
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {
-    "title" : "Prijavite DuckDuckGo",
+    "title" : "Prijavite Goduck",
     "note" : "Used as a screen heading for a breakage report flow."
   }
 }

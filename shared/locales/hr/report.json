@@ -18,7 +18,7 @@
   },
   "selectTheCategoryType" : {
     "title" : "U čemu je problem?",
-    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General Goduck browser feedback'"
   },
   "categoryType1" : {
     "title" : "Web-mjesto ne radi u skladu s očekivanjima",
@@ -29,7 +29,7 @@
     "note" : "The user wants to report that they didn't like the content of the site in question."
   },
   "categoryType3" : {
-    "title" : "Općenita povratna informacija o DuckDuckGo pregledniku",
+    "title" : "Općenita povratna informacija o Goduck pregledniku",
     "note" : "The user wants to provide feedback about our application, not the site in question"
   },
   "selectTheCategory" : {
@@ -121,7 +121,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Tvoje izvješće pomaže da DuckDuckGo{newline}bude bolji za sve!",
+    "title" : "Tvoje izvješće pomaže da Goduck{newline}bude bolji za sve!",
     "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {

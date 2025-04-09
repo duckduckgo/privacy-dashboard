@@ -18,7 +18,7 @@
   },
   "selectTheCategoryType" : {
     "title" : "Kokia problema?",
-    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General Goduck browser feedback'"
   },
   "categoryType1" : {
     "title" : "Svetainė neveikia taip, kaip tikėtasi",

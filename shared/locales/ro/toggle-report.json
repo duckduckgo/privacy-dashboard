@@ -21,8 +21,8 @@
     "note" : "Title asking users if the site is not working and prompting them to report the issue."
   },
   "siteNotWorkingSubTitle" : {
-    "title" : "Rapoartele anonime ajută DuckDuckGo să rezolve problemele cauzate de instrumentele de protecție a confidențialității.",
-    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+    "title" : "Rapoartele anonime ajută Goduck să rezolve problemele cauzate de instrumentele de protecție a confidențialității.",
+    "note" : "Subtitle explaining that anonymous reports assist Goduck in fixing issues caused by privacy protections."
   },
   "siteNotWorkingInfoReveal" : {
     "title" : "Vezi ce se trimite",
@@ -101,7 +101,7 @@
     "note" : "This text represents the amount of times protections were toggled"
   },
   "dynamic_openerContext" : {
-    "title" : "Cum ai ajuns la această pagină, fie: „SERP” (căutare DuckDuckGo), „Navigare” (link/URL), sau „Extern” (alte mijloace)",
+    "title" : "Cum ai ajuns la această pagină, fie: „SERP” (căutare Goduck), „Navigare” (link/URL), sau „Extern” (alte mijloace)",
     "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount" : {

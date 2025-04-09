@@ -21,8 +21,8 @@
     "note" : "Title asking users if the site is not working and prompting them to report the issue."
   },
   "siteNotWorkingSubTitle" : {
-    "title" : "A névtelen jelentések segítséget nyújtanak ahhoz, hogy a DuckDuckGo kijavíthassa az adatvédelem által okozott hibákat.",
-    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+    "title" : "A névtelen jelentések segítséget nyújtanak ahhoz, hogy a Goduck kijavíthassa az adatvédelem által okozott hibákat.",
+    "note" : "Subtitle explaining that anonymous reports assist Goduck in fixing issues caused by privacy protections."
   },
   "siteNotWorkingInfoReveal" : {
     "title" : "Elküldött adatok megtekintése",
@@ -101,7 +101,7 @@
     "note" : "This text represents the amount of times protections were toggled"
   },
   "dynamic_openerContext" : {
-    "title" : "Miként jutottál el erre az oldalra, ami lehet: „SERP” (DuckDuckGo-keresés), „Navigáció”(link/URL) vagy „Külső” (egyéb mód)",
+    "title" : "Miként jutottál el erre az oldalra, ami lehet: „SERP” (Goduck-keresés), „Navigáció”(link/URL) vagy „Külső” (egyéb mód)",
     "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount" : {

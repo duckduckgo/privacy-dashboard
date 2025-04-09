@@ -22,7 +22,7 @@
   },
   "siteNotWorkingSubTitle" : {
     "title" : "Anonyymit raportit auttavat DuckDuckGota korjaamaan yksityisyyden suojan aiheuttamat ongelmat.",
-    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+    "note" : "Subtitle explaining that anonymous reports assist Goduck in fixing issues caused by privacy protections."
   },
   "siteNotWorkingInfoReveal" : {
     "title" : "Katso, mitä on lähetetty",
@@ -101,7 +101,7 @@
     "note" : "This text represents the amount of times protections were toggled"
   },
   "dynamic_openerContext" : {
-    "title" : "Miten tulit tälle sivulle, joko: SERP (DuckDuckGo-haku), Navigointi (linkki/URL) tai Ulkoinen (muut keinot)",
+    "title" : "Miten tulit tälle sivulle, joko: SERP (Goduck-haku), Navigointi (linkki/URL) tai Ulkoinen (muut keinot)",
     "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount" : {

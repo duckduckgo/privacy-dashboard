@@ -18,7 +18,7 @@
   },
   "selectTheCategoryType" : {
     "title" : "Ποιο είναι το πρόβλημα;",
-    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General Goduck browser feedback'"
   },
   "categoryType1" : {
     "title" : "Ο ιστότοπος δεν λειτουργεί όπως αναμενόταν",
@@ -29,7 +29,7 @@
     "note" : "The user wants to report that they didn't like the content of the site in question."
   },
   "categoryType3" : {
-    "title" : "Γενικά σχόλια για το πρόγραμμα περιήγησης DuckDuckGo",
+    "title" : "Γενικά σχόλια για το πρόγραμμα περιήγησης Goduck",
     "note" : "The user wants to provide feedback about our application, not the site in question"
   },
   "selectTheCategory" : {
@@ -113,7 +113,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Οι αναφορές που αποστέλλονται στο DuckDuckGo περιλαμβάνουν μόνο τις πληροφορίες που απαιτούνται για να μας βοηθήσουν να απαντάμε στα σχόλιά σας.",
+    "title" : "Οι αναφορές που αποστέλλονται στο Goduck περιλαμβάνουν μόνο τις πληροφορίες που απαιτούνται για να μας βοηθήσουν να απαντάμε στα σχόλιά σας.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -121,7 +121,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Η αναφορά σας βοηθάει ώστε να γίνει το{newline}DuckDuckGo καλύτερο για όλους!",
+    "title" : "Η αναφορά σας βοηθάει ώστε να γίνει το{newline}Goduck καλύτερο για όλους!",
     "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
@@ -153,7 +153,7 @@
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {
-    "title" : "Αναφορά στο DuckDuckGo",
+    "title" : "Αναφορά στο Goduck",
     "note" : "Used as a screen heading for a breakage report flow."
   }
 }

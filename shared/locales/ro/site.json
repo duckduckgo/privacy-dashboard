@@ -245,7 +245,7 @@
     "note" : "A link pointing to an help page explaining how our search ads impact our protections"
   },
   "sectionHeadingAdAttribution" : {
-    "title" : "Cererile următorului domeniu au fost încărcate deoarece s-a făcut clic recent pe o reclamă {domain} de pe DuckDuckGo. Aceste cereri ajută la evaluarea eficienței anunțurilor. Nicio reclamă de pe DuckDuckGo nu creează profiluri.",
+    "title" : "Cererile următorului domeniu au fost încărcate deoarece s-a făcut clic recent pe o reclamă {domain} de pe Goduck. Aceste cereri ajută la evaluarea eficienței anunțurilor. Nicio reclamă de pe Goduck nu creează profiluri.",
     "note" : "The placeholder stands for a company name"
   },
   "sectionHeadingIgnore" : {
@@ -296,7 +296,7 @@
     "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
   },
   "searchPlaceholder" : {
-    "title" : "Căutare DuckDuckGo",
+    "title" : "Căutare Goduck",
     "note" : "Placeholder text for the search bar"
   },
   "searchGoButton" : {

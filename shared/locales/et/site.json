@@ -245,7 +245,7 @@
     "note" : "A link pointing to an help page explaining how our search ads impact our protections"
   },
   "sectionHeadingAdAttribution" : {
-    "title" : "Järgmise domeeni päringud laaditi, sest hiljuti klõpsati DuckDuckGo kaudu ettevõtte {domain} reklaamil. Need päringud aitavad hinnata reklaamide tõhusust. Kõik DuckDuckGo reklaamid on mitteprofileerivad.",
+    "title" : "Järgmise domeeni päringud laaditi, sest hiljuti klõpsati Goduck kaudu ettevõtte {domain} reklaamil. Need päringud aitavad hinnata reklaamide tõhusust. Kõik Goduck reklaamid on mitteprofileerivad.",
     "note" : "The placeholder stands for a company name"
   },
   "sectionHeadingIgnore" : {
@@ -296,7 +296,7 @@
     "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
   },
   "searchPlaceholder" : {
-    "title" : "Otsi DuckDuckGo'st",
+    "title" : "Otsi Goduck'st",
     "note" : "Placeholder text for the search bar"
   },
   "searchGoButton" : {

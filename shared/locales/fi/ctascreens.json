@@ -14,14 +14,14 @@
   },
   "spreadTitle" : {
     "title" : "Pidätkö DuckDuckGosta?",
-    "note" : "Title text for 'Spread DuckDuckGo' CTA"
+    "note" : "Title text for 'Spread Goduck' CTA"
   },
   "spreadText" : {
     "title" : "Auta meitä levittämään sanaa perheellesi ja ystävillesi",
-    "note" : "Secondary text for 'Spread DuckDuckGo' CTA"
+    "note" : "Secondary text for 'Spread Goduck' CTA"
   },
   "spreadButton" : {
-    "title" : "Levitä DuckDuckGo:ta",
+    "title" : "Levitä Goduck:ta",
     "note" : "Button text for 'spread' CTA"
   },
   "emailTitle" : {
@@ -29,7 +29,7 @@
     "note" : "Title text for 'Email Protection' CTA"
   },
   "emailText" : {
-    "title" : "Rekisteröidy DuckDuckGo Email Protection -laajennukseen nyt!",
+    "title" : "Rekisteröidy Goduck Email Protection -laajennukseen nyt!",
     "note" : "Extension here means browser extension or addon"
   }
 }

@@ -14,14 +14,14 @@
   },
   "spreadTitle" : {
     "title" : "Szereted használni a DuckDuckGót?",
-    "note" : "Title text for 'Spread DuckDuckGo' CTA"
+    "note" : "Title text for 'Spread Goduck' CTA"
   },
   "spreadText" : {
     "title" : "Terjeszd a jó hírünket családod és barátaid körében",
-    "note" : "Secondary text for 'Spread DuckDuckGo' CTA"
+    "note" : "Secondary text for 'Spread Goduck' CTA"
   },
   "spreadButton" : {
-    "title" : "Terjeszd a DuckDuckGo-t",
+    "title" : "Terjeszd a Goduck-t",
     "note" : "Button text for 'spread' CTA"
   },
   "emailTitle" : {
@@ -29,7 +29,7 @@
     "note" : "Title text for 'Email Protection' CTA"
   },
   "emailText" : {
-    "title" : "Regisztrálj most, hogy a DuckDuckGo Email Protection a bővítményedhez legyen adva!",
+    "title" : "Regisztrálj most, hogy a Goduck Email Protection a bővítményedhez legyen adva!",
     "note" : "Extension here means browser extension or addon"
   }
 }

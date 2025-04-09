@@ -18,7 +18,7 @@
   },
   "selectTheCategoryType" : {
     "title" : "В чем проблема?",
-    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General DuckDuckGo browser feedback'"
+    "note" : "A heading that encourages the user to select the kind of problem from a list. Options such as: 'The site is not working as expected', 'I dislike the content on this site' or 'General Goduck browser feedback'"
   },
   "categoryType1" : {
     "title" : "Сайт не работает должным образом",
@@ -29,7 +29,7 @@
     "note" : "The user wants to report that they didn't like the content of the site in question."
   },
   "categoryType3" : {
-    "title" : "Общий отзыв о браузере DuckDuckGo",
+    "title" : "Общий отзыв о браузере Goduck",
     "note" : "The user wants to provide feedback about our application, not the site in question"
   },
   "selectTheCategory" : {
@@ -113,7 +113,7 @@
     "note" : "Button for submitting report"
   },
   "reportsAreAnonymousDesc" : {
-    "title" : "Сообщения, отправленные в DuckDuckGo, содержат только информацию, необходимую для обработки вашего отзыва.",
+    "title" : "Сообщения, отправленные в Goduck, содержат только информацию, необходимую для обработки вашего отзыва.",
     "note" : "A small disclaimer at the bottom of the view describing what is included in the report"
   },
   "thankYou" : {
@@ -121,7 +121,7 @@
     "note" : "Title for what the user sees upon submitting the report"
   },
   "yourReportWillHelpDesc" : {
-    "title" : "Ваш отчет поможет улучшить{newline}DuckDuckGo для всех.",
+    "title" : "Ваш отчет поможет улучшить{newline}Goduck для всех.",
     "note" : "Body that the user sees upon submitting the report. Do not translate {newline} but place it within the translated text as to break the string into two or more lines resulting in a balanced layout"
   },
   "dislike" : {
@@ -153,7 +153,7 @@
     "note" : "Suggestion to mention if turning off privacy protections helped solve a problem the user was having"
   },
   "reportTitle" : {
-    "title" : "Отчет в DuckDuckGo",
+    "title" : "Отчет в Goduck",
     "note" : "Used as a screen heading for a breakage report flow."
   }
 }

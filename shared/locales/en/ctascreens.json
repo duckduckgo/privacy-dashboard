@@ -12,15 +12,15 @@
         "note": "'Special pages' here means things like the browser settings page, whereas 'local pages' means files opened from the user's computer rather than the internet"
     },
     "spreadTitle": {
-        "title": "Love using DuckDuckGo?",
-        "note": "Title text for 'Spread DuckDuckGo' CTA"
+        "title": "Love using Goduck?",
+        "note": "Title text for 'Spread Goduck' CTA"
     },
     "spreadText": {
         "title": "Help us spread the word to your family and friends",
-        "note": "Secondary text for 'Spread DuckDuckGo' CTA"
+        "note": "Secondary text for 'Spread Goduck' CTA"
     },
     "spreadButton": {
-        "title": "Spread DuckDuckGo",
+        "title": "Spread Goduck",
         "note": "Button text for 'spread' CTA"
     },
     "emailTitle": {
@@ -28,7 +28,7 @@
         "note": "Title text for 'Email Protection' CTA"
     },
     "emailText": {
-        "title": "Sign up for DuckDuckGo Email Protection for your extension now!",
+        "title": "Sign up for Goduck Email Protection for your extension now!",
         "note": "Extension here means browser extension or addon"
     }
 }

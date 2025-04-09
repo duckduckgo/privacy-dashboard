@@ -21,8 +21,8 @@
     "note" : "Title asking users if the site is not working and prompting them to report the issue."
   },
   "siteNotWorkingSubTitle" : {
-    "title" : "Οι ανώνυμες αναφορές βοηθούν το DuckDuckGo να διορθώνει προβλήματα που προκαλούνται από την προστασία προσωπικών δεδομένων.",
-    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+    "title" : "Οι ανώνυμες αναφορές βοηθούν το Goduck να διορθώνει προβλήματα που προκαλούνται από την προστασία προσωπικών δεδομένων.",
+    "note" : "Subtitle explaining that anonymous reports assist Goduck in fixing issues caused by privacy protections."
   },
   "siteNotWorkingInfoReveal" : {
     "title" : "Δείτε τι έχει αποσταλεί",
@@ -101,7 +101,7 @@
     "note" : "This text represents the amount of times protections were toggled"
   },
   "dynamic_openerContext" : {
-    "title" : "Πώς μεταβήκατε σε αυτήν τη σελίδα, είτε: «SERP» (αναζήτηση DuckDuckGo), «Πλοήγηση» (σύνδεσμος/διεύθυνση URL), είτε «Εξωτερικά» (άλλα μέσα)",
+    "title" : "Πώς μεταβήκατε σε αυτήν τη σελίδα, είτε: «SERP» (αναζήτηση Goduck), «Πλοήγηση» (σύνδεσμος/διεύθυνση URL), είτε «Εξωτερικά» (άλλα μέσα)",
     "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount" : {

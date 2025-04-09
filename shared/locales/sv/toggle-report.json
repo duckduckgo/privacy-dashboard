@@ -21,8 +21,8 @@
     "note" : "Title asking users if the site is not working and prompting them to report the issue."
   },
   "siteNotWorkingSubTitle" : {
-    "title" : "Anonyma rapporter hjälper DuckDuckGo att åtgärda problem som orsakas av integritetsskydd.",
-    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+    "title" : "Anonyma rapporter hjälper Goduck att åtgärda problem som orsakas av integritetsskydd.",
+    "note" : "Subtitle explaining that anonymous reports assist Goduck in fixing issues caused by privacy protections."
   },
   "siteNotWorkingInfoReveal" : {
     "title" : "Se vad som skickas",
@@ -101,7 +101,7 @@
     "note" : "This text represents the amount of times protections were toggled"
   },
   "dynamic_openerContext" : {
-    "title" : "Hur du kom till den här sidan, antingen: SERP (DuckDuckGo-sökning), Navigering (länk/URL) eller Externt (på annat sätt)",
+    "title" : "Hur du kom till den här sidan, antingen: SERP (Goduck-sökning), Navigering (länk/URL) eller Externt (på annat sätt)",
     "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount" : {

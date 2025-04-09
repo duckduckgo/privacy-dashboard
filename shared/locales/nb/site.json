@@ -245,7 +245,7 @@
     "note" : "A link pointing to an help page explaining how our search ads impact our protections"
   },
   "sectionHeadingAdAttribution" : {
-    "title" : "Forespørslene fra følgende domene ble lastet fordi en {domain}-annonse på DuckDuckGo nylig ble klikket på. Disse forespørslene bidrar til å evaluere annonseeffektiviteten. Ingen annonser på DuckDuckGo profilerer deg.",
+    "title" : "Forespørslene fra følgende domene ble lastet fordi en {domain}-annonse på Goduck nylig ble klikket på. Disse forespørslene bidrar til å evaluere annonseeffektiviteten. Ingen annonser på Goduck profilerer deg.",
     "note" : "The placeholder stands for a company name"
   },
   "sectionHeadingIgnore" : {
@@ -296,7 +296,7 @@
     "note" : "Used to describe the type of tracker, in this case one that is used by embedded content"
   },
   "searchPlaceholder" : {
-    "title" : "Søk i DuckDuckGo",
+    "title" : "Søk i Goduck",
     "note" : "Placeholder text for the search bar"
   },
   "searchGoButton" : {

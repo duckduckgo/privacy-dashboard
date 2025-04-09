@@ -21,8 +21,8 @@
     "note" : "Title asking users if the site is not working and prompting them to report the issue."
   },
   "siteNotWorkingSubTitle" : {
-    "title" : "Les signalements anonymes aident DuckDuckGo à résoudre les problèmes causés par les protections de la confidentialité.",
-    "note" : "Subtitle explaining that anonymous reports assist DuckDuckGo in fixing issues caused by privacy protections."
+    "title" : "Les signalements anonymes aident Goduck à résoudre les problèmes causés par les protections de la confidentialité.",
+    "note" : "Subtitle explaining that anonymous reports assist Goduck in fixing issues caused by privacy protections."
   },
   "siteNotWorkingInfoReveal" : {
     "title" : "Voir ce qui est envoyé",
@@ -101,7 +101,7 @@
     "note" : "This text represents the amount of times protections were toggled"
   },
   "dynamic_openerContext" : {
-    "title" : "Comment vous avez accédé à cette page, soit : « SERP » (recherche DuckDuckGo), « Navigation » (lien/URL) ou « Externe » (autres moyens)",
+    "title" : "Comment vous avez accédé à cette page, soit : « SERP » (recherche Goduck), « Navigation » (lien/URL) ou « Externe » (autres moyens)",
     "note" : "This text represents the context of how the user navigated to the current page (e.g., through search results, direct link, or external sources)."
   },
   "dynamic_userRefreshCount" : {

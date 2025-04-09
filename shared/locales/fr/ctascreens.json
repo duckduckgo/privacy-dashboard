@@ -14,14 +14,14 @@
   },
   "spreadTitle" : {
     "title" : "Vous aimez utiliser DuckDuckGo ?",
-    "note" : "Title text for 'Spread DuckDuckGo' CTA"
+    "note" : "Title text for 'Spread Goduck' CTA"
   },
   "spreadText" : {
     "title" : "Aidez-nous à faire passer le mot à votre famille et vos amis",
-    "note" : "Secondary text for 'Spread DuckDuckGo' CTA"
+    "note" : "Secondary text for 'Spread Goduck' CTA"
   },
   "spreadButton" : {
-    "title" : "Diffusez DuckDuckGo",
+    "title" : "Diffusez Goduck",
     "note" : "Button text for 'spread' CTA"
   },
   "emailTitle" : {
@@ -29,7 +29,7 @@
     "note" : "Title text for 'Email Protection' CTA"
   },
   "emailText" : {
-    "title" : "Ajoutez DuckDuckGo Email Protection à votre extension en vous inscrivant dès maintenant !",
+    "title" : "Ajoutez Goduck Email Protection à votre extension en vous inscrivant dès maintenant !",
     "note" : "Extension here means browser extension or addon"
   }
 }

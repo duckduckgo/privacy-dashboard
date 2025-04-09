@@ -21,7 +21,7 @@
     },
     "protectionsDisabledRemote": {
         "title": "我们已临时关闭隐私保护功能，因其可能导致本网站异常。",
-        "note": "由DuckDuckGo自动关闭隐私保护时的标题"
+        "note": "由飞鸭浏览器自动关闭隐私保护时的标题"
     },
     "protectionsDisabledRemoteOverride": {
         "title": "建议为本网站关闭隐私保护功能以避免页面异常。",
@@ -244,7 +244,7 @@
         "note": "指向解释搜索广告如何影响保护功能的帮助页面链接"
     },
     "sectionHeadingAdAttribution": {
-        "title": "以下域名的请求被加载是因为最近点击了DuckDuckGo上的{domain}广告。这些请求有助于评估广告效果。DuckDuckGo上的所有广告均不建立用户画像。",
+        "title": "以下域名的请求被加载是因为最近点击了飞鸭浏览器上的{domain}广告。这些请求有助于评估广告效果。飞鸭浏览器上的所有广告均不建立用户画像。",
         "note": "占位符代表公司名称"
     },
     "sectionHeadingIgnore": {
@@ -295,7 +295,7 @@
         "note": "用于描述跟踪器类型，指嵌入式内容使用的跟踪器"
     },
     "searchPlaceholder": {
-        "title": "搜索DuckDuckGo",
+        "title": "搜索飞鸭浏览器",
         "note": "搜索栏的占位文本"
     },
     "searchGoButton": {

@@ -17,7 +17,7 @@
     },
     "selectTheCategoryType": {
         "title": "遇到什么问题？",
-        "note": "引导用户从列表中选择问题类型的标题。选项包括：'网站未按预期工作'、'我不喜欢该网站内容'或'DuckDuckGo浏览器通用反馈'"
+        "note": "引导用户从列表中选择问题类型的标题。选项包括：'网站未按预期工作'、'我不喜欢该网站内容'或'飞鸭浏览器浏览器通用反馈'"
     },
     "categoryType1": {
         "title": "网站未按预期工作",
@@ -28,7 +28,7 @@
         "note": "用户想报告不喜欢该网站的内容"
     },
     "categoryType3": {
-        "title": "DuckDuckGo浏览器通用反馈",
+        "title": "飞鸭浏览器浏览器通用反馈",
         "note": "用户想提供关于我们应用的反馈（与具体网站无关）"
     },
     "selectTheCategory": {
@@ -112,7 +112,7 @@
         "note": "提交报告的按钮文字"
     },
     "reportsAreAnonymousDesc": {
-        "title": "发送给DuckDuckGo的报告仅包含帮助我们处理反馈所需的信息。",
+        "title": "发送给飞鸭浏览器的报告仅包含帮助我们处理反馈所需的信息。",
         "note": "页面底部关于报告内容的免责声明"
     },
     "thankYou": {
@@ -120,7 +120,7 @@
         "note": "用户提交报告后看到的标题"
     },
     "yourReportWillHelpDesc": {
-        "title": "您的报告将帮助DuckDuckGo{newline}为所有人变得更好！",
+        "title": "您的报告将帮助飞鸭浏览器{newline}为所有人变得更好！",
         "note": "用户提交报告后看到的正文内容。请保留{newline}标记，并根据翻译需要将其置于适当位置以保持版式平衡"
     },
     "dislike": {
@@ -152,7 +152,7 @@
         "note": "建议用户说明关闭隐私保护是否解决问题的引导语"
     },
     "reportTitle": {
-        "title": "向DuckDuckGo报告",
+        "title": "向飞鸭浏览器报告",
         "note": "用作网站故障报告流程的屏幕标题"
     }
 }
