@@ -3,11 +3,15 @@ import { h } from 'preact';
 import { Navigation } from './navigation';
 import { useGlobalSettings } from './settings';
 import { useFeatures } from './data-provider';
+import { useDynamicHeight } from './hooks/useDynamicHeight.js';
 
 export function App() {
     const { reducedMotion } = useGlobalSettings();
-    const data = useFeatures();
-    const stack = initialStack(data);
+    const features = useFeatures();
+    const stack = initialStack(features);
+
+    useDynamicHeight(features);
+
     return <Navigation stack={stack} animate={!reducedMotion} params={new URLSearchParams(window.location.search)} />;
 }
 

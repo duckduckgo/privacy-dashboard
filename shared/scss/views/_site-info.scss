@@ -1,10 +1,6 @@
 .site-info {
     margin-top: 0;
 
-    .environment--browser & {
-        height: 100%;
-    }
-
     .environment--ios & {
         > :last-child {
             padding-bottom: 18px;
