@@ -43,18 +43,15 @@ export function isValidPlatform(name) {
 let lastKnownPlatformName;
 
 /**
- * @template T - return value
- * @param {Record<string, () => T>} mapping
- * @returns {T}
+ * @template {() => any} VariantFn
+ * @template {import("./platform-features.mjs").Platform["name"] | 'default'} K
+ * @param {Record<K, VariantFn> & Record<'default', VariantFn>} mapping
+ * @returns {ReturnType<VariantFn>}
  */
 export function platformSwitch(mapping) {
     if (!lastKnownPlatformName) lastKnownPlatformName = currentPlatform(); // for caching
     if (!lastKnownPlatformName) throw new Error('could not determine the current platform.');
-    if (lastKnownPlatformName in mapping) {
-        return mapping[lastKnownPlatformName]();
-    }
-    if ('default' in mapping) {
-        return mapping.default();
-    }
+    const fn = mapping[lastKnownPlatformName] || mapping.default;
+    if (fn) return fn();
     throw new Error('did not expect to get here - use a default!');
 }

@@ -6,7 +6,7 @@ import { PlainTextLink } from './text-link';
 import { Button, ButtonBar } from './button';
 import { platform } from '../../browser/communication';
 import { Scrollable, Stack } from './stack';
-import { useContext, useEffect } from 'preact/hooks';
+import { useContext } from 'preact/hooks';
 import { useIosAnimation } from './toggle-report/use-ios-animation';
 import { ToggleReportContext } from './toggle-report/toggle-report-provider';
 import { useToggleReportState } from './toggle-report/use-toggle-report-state';
@@ -14,7 +14,6 @@ import { ToggleReportDataList } from './toggle-report/toggle-report-data-list';
 import { ToggleReportSent } from './toggle-report/toggle-report-sent';
 import { ToggleReportWrapper } from './toggle-report/toggle-report-wrapper';
 import { ToggleReportTitle } from './toggle-report/toggle-report-title';
-import { getContentHeight, setupMutationObserverForExtensions } from '../../browser/common';
 
 /**
  * @param {object} props
@@ -50,7 +49,6 @@ export function ToggleReport() {
     if (state.value === 'sent' && (desktop || extension)) {
         return (
             <ToggleReportWrapper state={state.value}>
-                {extension && <SetAutoHeight />}
                 <ToggleReportSent onClick={didClickSuccessScreen} />
             </ToggleReportWrapper>
         );
@@ -59,7 +57,6 @@ export function ToggleReport() {
     if (desktop || extension) {
         return (
             <ToggleReportWrapper state={state.value}>
-                {extension && <SetAutoHeight />}
                 <Stack gap="40px">
                     <Stack gap="24px">
                         <Stack gap={innerGap}>
@@ -110,39 +107,6 @@ export function ToggleReport() {
     }
 
     return <p>unsupported platform: {platform.name}</p>;
-}
-
-/**
- * Sets the height of the page to auto.
- *
- * This function is called to set the height of the page dynamically based on the content height.
- * It searches for the required element in the DOM, sets its height to 'auto', and updates the CSS variable '--height'
- * to reflect the new height. It also sets up a mutation observer to track any changes in the content height
- * and updates the '--height' variable accordingly.
- *
- * This is done as a temporary work-around for the ToggleReport only (and only in the extension).
- * It's very likely we want this behaviour everywhere later.
- */
-function SetAutoHeight() {
-    useEffect(() => {
-        const inner = /** @type {HTMLElement} */ (document.querySelector('[data-screen="toggleReport"] .page-inner'));
-        if (inner) {
-            inner.style.height = 'auto';
-            const height = getContentHeight();
-
-            document.body.style.setProperty('--height', `${height}px`);
-            const unsub = setupMutationObserverForExtensions((height) => {
-                document.body.style.setProperty('--height', `${height}px`);
-            });
-            return () => {
-                unsub();
-            };
-        } else {
-            console.warn('Could not select the required element');
-        }
-    }, []);
-
-    return null;
 }
 
 /**

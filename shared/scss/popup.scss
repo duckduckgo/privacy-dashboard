@@ -64,7 +64,8 @@ body {
     }
 
     &.environment--browser {
-        --height: 600px;
+        --height: auto;
+        --bg: #fff;
     }
 
     &.environment--windows {
@@ -120,7 +121,8 @@ body {
             --page-bg: #222222;
         }
 
-        &.environment--macos {
+        &.environment--macos,
+        &.environment--browser {
             --bg: #{$slate};
         }
     }
