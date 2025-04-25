@@ -19,7 +19,7 @@ import {
     localeSettingsSchema,
     maliciousSiteStatusSchema,
     protectionsStatusSchema,
-    requestDataSchema
+    requestDataSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs';
 import { isIOS } from '../ui/environment-check';
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils';
