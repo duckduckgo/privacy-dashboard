@@ -19,8 +19,7 @@ import {
     localeSettingsSchema,
     maliciousSiteStatusSchema,
     protectionsStatusSchema,
-    requestDataSchema,
-    toggleReportScreenSchema,
+    requestDataSchema
 } from '../../../schema/__generated__/schema.parsers.mjs';
 import { isIOS } from '../ui/environment-check';
 import { setupGlobalOpenerListener } from '../ui/views/utils/utils';
@@ -448,9 +447,7 @@ async function fetch(message) {
     }
 
     if (message instanceof FetchToggleReportOptions || message instanceof FetchBreakageFormOptions) {
-        const data = await privacyDashboardGetToggleReportOptions();
-        const parsed = toggleReportScreenSchema.parse(data);
-        return parsed;
+        return await privacyDashboardGetToggleReportOptions();
     }
 
     if (message instanceof SendToggleBreakageReport) {
