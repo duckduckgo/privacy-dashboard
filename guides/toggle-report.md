@@ -48,7 +48,7 @@ The following are all sent in response to user interactions
 ## Appendix: Data disclosure item ids and their meanings
 
 | ID                  | Description                                                                                                        |
-|---------------------|--------------------------------------------------------------------------------------------------------------------|
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | appVersion          | App version number                                                                                                 |
 | atb                 | Anonymous experiment group for feature testing                                                                     |
 | description         | Your selected category and optional comments                                                                       |
