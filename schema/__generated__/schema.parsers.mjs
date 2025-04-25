@@ -53,6 +53,8 @@ export const localeSchema = z.literal("locale");
 
 export const descriptionSchema = z.literal("description");
 
+export const isPIREnabledSchema = z.literal("isPirEnabled");
+
 export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("breakageFormCategorySelection"), z.literal("breakageFormFinalStep"), z.literal("breakageFormSuccess"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
 
 export const stateBlockedSchema = z.object({
@@ -239,7 +241,7 @@ export const secKeyViewModelSchema = z.object({
     type: z.union([z.literal("RSA"), z.literal("Elliptic Curve"), z.literal("Elliptic Curve (Prime Random)")]).optional().nullable()
 });
 
-export const dataItemIdSchema = z.union([wVVersionSchema, requestsSchema, featuresSchema, appVersionSchema, atbSchema, errorDescriptionsSchema, extensionVersionSchema, hTTPErrorCodesSchema, lastSentDaySchema, deviceSchema, osSchema, listVersionsSchema, reportFlowSchema, siteURLSchema, didOpenReportInfoSchema, toggleReportCounterSchema, openerContextSchema, userRefreshCountSchema, jSPerformanceSchema, localeSchema, descriptionSchema]);
+export const dataItemIdSchema = z.union([wVVersionSchema, requestsSchema, featuresSchema, appVersionSchema, atbSchema, errorDescriptionsSchema, extensionVersionSchema, hTTPErrorCodesSchema, lastSentDaySchema, deviceSchema, osSchema, listVersionsSchema, reportFlowSchema, siteURLSchema, didOpenReportInfoSchema, toggleReportCounterSchema, openerContextSchema, userRefreshCountSchema, jSPerformanceSchema, localeSchema, descriptionSchema, isPIREnabledSchema]);
 
 export const incomingExtensionMessageSchema = z.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
 

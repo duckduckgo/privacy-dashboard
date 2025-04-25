@@ -66,7 +66,8 @@ export type DataItemId =
   | UserRefreshCount
   | JSPerformance
   | Locale
-  | Description;
+  | Description
+  | IsPIREnabled;
 /**
  * Web browser engine version number
  */
@@ -151,6 +152,10 @@ export type Locale = "locale";
  * Your selected category and optional comments
  */
 export type Description = "description";
+/**
+ * If you're a user of PIR
+ */
+export type IsPIREnabled = "isPirEnabled";
 export type ScreenKind =
   | "primaryScreen"
   | "breakageForm"

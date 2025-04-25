@@ -48,7 +48,7 @@ The following are all sent in response to user interactions
 ## Appendix: Data disclosure item ids and their meanings
 
 | ID                  | Description                                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+|---------------------|--------------------------------------------------------------------------------------------------------------------|
 | appVersion          | App version number                                                                                                 |
 | atb                 | Anonymous experiment group for feature testing                                                                     |
 | description         | Your selected category and optional comments                                                                       |
@@ -70,3 +70,4 @@ The following are all sent in response to user interactions
 | toggleReportCounter | Number of times protections were toggled off                                                                       |
 | userRefreshCount    | Number of refreshes since page load                                                                                |
 | wvVersion           | Web browser engine version number                                                                                  |
+| isPirEnabled        | If you're a user of PIR                                                                                            |

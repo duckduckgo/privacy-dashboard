@@ -118,5 +118,9 @@
   "dynamic_description": {
     "title": "Your selected category and optional comments",
     "note": "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_isPirEnabled": {
+    "title": "If you are using Personal Information Removal",
+    "note": "This label indicates whether or not the user is using the Personal Information Removal feature."
   }
 }
