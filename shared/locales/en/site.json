@@ -76,15 +76,15 @@
         "note": "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
     },
     "aboutPhishingLink": {
-        "title": "About our Phishing Protection",
+        "title": "About Scam Blocker",
         "note": "Label for a link that takes the user to a help page about Phishing protection"
     },
     "aboutMalwareLink": {
-        "title": "About our Malware Protection",
+        "title": "About Scam Blocker",
         "note": "Label for a link that takes the user to a help page about Malware protection"
     },
     "aboutScamLink": {
-        "title": "About our Scam Protection",
+        "title": "About Scam Blocker",
         "note": "Label for a link that takes the user to a help page about Scam protection"
     },
     "websiteNotWorkingQ": {
