@@ -156,7 +156,7 @@
         "note": "Shown as the button text when the URL is reported as a phishing website."
     },
     "phishingWebsiteDesc": {
-        "title": "DuckDuckGo blocked this page because it may be trying to deceive or manipulate you into transferring money, buying counterfeit goods, or installing malware under false pretenses.",
+        "title": "This website may be impersonating a legitimate site in order to trick you into providing personal information, such as passwords or credit card numbers.",
         "note": "Shown as the description text when the URL is reported as a phishing website."
     },
     "malwareWebsite": {
@@ -164,7 +164,7 @@
         "note": "Shown as the button text when the URL is reported as a malware website."
     },
     "malwareWebsiteDesc": {
-        "title": "DuckDuckGo blocked this page because it may be trying to deceive or manipulate you into transferring money, buying counterfeit goods, or installing malware under false pretenses.",
+        "title": "This site has been flagged for distributing malware designed to compromise your device or steal your personal information.",
         "note": "Shown as the description text when the URL is reported as a malware website."
     },
     "scamWebsite": {
@@ -172,7 +172,7 @@
         "note": "Shown as the button text when the URL is reported as a scam website."
     },
     "scamWebsiteDesc": {
-        "title": "DuckDuckGo blocked this page because it may be trying to deceive or manipulate you into transferring money, buying counterfeit goods, or installing malware under false pretenses.",
+        "title": "This site has been flagged for trying to manipulate people into transferring money, buying counterfeit goods, or installing malware.",
         "note": "Shown as the description text when the URL is reported as a scam website."
     },
     "trackerNetworksDesc": {
