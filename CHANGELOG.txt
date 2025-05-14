@@ -1,1 +1,1 @@
-- Fixing implicit invalid certs (#363)
+- Breakage reporting copy change (#424)

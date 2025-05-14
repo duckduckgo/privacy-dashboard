@@ -85,7 +85,7 @@
         "atb": {
             "title": "ATB",
             "const": "atb",
-            "description": "Anonymous experiment group for feature testing"
+            "description": "Anonymous experiment groups for feature testing"
         },
         "errorDescriptions": {
             "title": "Error Descriptions",
