@@ -84,7 +84,7 @@ export type Features = "features";
  */
 export type AppVersion = "appVersion";
 /**
- * Anonymous experiment group for feature testing
+ * Anonymous experiment groups for feature testing
  */
 export type ATB = "atb";
 /**

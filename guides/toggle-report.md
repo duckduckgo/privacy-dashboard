@@ -50,7 +50,7 @@ The following are all sent in response to user interactions
 | ID                  | Description                                                                                                        |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | appVersion          | App version number                                                                                                 |
-| atb                 | Anonymous experiment group for feature testing                                                                     |
+| atb                 | Anonymous experiment groups for feature testing                                                                    |
 | description         | Your selected category and optional comments                                                                       |
 | device              | Device make, model, and manufacturer                                                                               |
 | didOpenReportInfo   | Whether or not you opted to show this report info                                                                  |
