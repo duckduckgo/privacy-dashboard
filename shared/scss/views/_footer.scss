@@ -1,5 +1,6 @@
 .footer {
     margin-top: auto;
+    .environment--browser &,
     .environment--macos &,
     .environment--windows & {
         padding-bottom: 20px;
