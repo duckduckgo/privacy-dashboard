@@ -52,8 +52,8 @@
     "title" : "Appversjonsnummer",
     "note" : "This text indicates the version number of the app."
   },
-  "dynamic_atb" : {
-    "title" : "Anonym eksperimentgruppe for funksjonstesting",
+  "dynamic_experimentGroups" : {
+    "title" : "Anonyme eksperimentgrupper for funksjonstesting",
     "note" : "This text represents an anonymous group for testing features."
   },
   "dynamic_errorDescriptions" : {

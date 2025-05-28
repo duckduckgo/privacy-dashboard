@@ -52,8 +52,8 @@
     "title" : "Uygulama sürüm numarası",
     "note" : "This text indicates the version number of the app."
   },
-  "dynamic_atb" : {
-    "title" : "Özellik testi için anonim deneme grubu",
+  "dynamic_experimentGroups" : {
+    "title" : "Özellik testi için anonim deneme grupları",
     "note" : "This text represents an anonymous group for testing features."
   },
   "dynamic_errorDescriptions" : {
