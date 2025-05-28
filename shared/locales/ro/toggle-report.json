@@ -52,8 +52,8 @@
     "title" : "Numărul versiunii aplicației",
     "note" : "This text indicates the version number of the app."
   },
-  "dynamic_atb" : {
-    "title" : "Grup de experimentare anonim pentru testarea caracteristicilor",
+  "dynamic_experimentGroups" : {
+    "title" : "Grupuri de încercare anonime pentru testarea caracteristicilor",
     "note" : "This text represents an anonymous group for testing features."
   },
   "dynamic_errorDescriptions" : {

@@ -1,1 +1,1 @@
-- Breakage reporting copy change (#424)
+- Experiment groups translations and locale key update (#435)
