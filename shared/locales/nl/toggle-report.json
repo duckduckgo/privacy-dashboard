@@ -53,7 +53,7 @@
     "note" : "This text indicates the version number of the app."
   },
   "dynamic_atb" : {
-    "title" : "Anonieme experimenteergroep voor het testen van functies",
+    "title" : "Anonieme experimenteergroepen voor het testen van functies",
     "note" : "This text represents an anonymous group for testing features."
   },
   "dynamic_errorDescriptions" : {

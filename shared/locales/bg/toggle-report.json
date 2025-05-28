@@ -53,7 +53,7 @@
     "note" : "This text indicates the version number of the app."
   },
   "dynamic_atb" : {
-    "title" : "Анонимна експериментална група за тестване на функции",
+    "title" : "Анонимни експериментни групи за тестване на функции",
     "note" : "This text represents an anonymous group for testing features."
   },
   "dynamic_errorDescriptions" : {
