@@ -22,7 +22,7 @@ export function namedString(item) {
         case 'appVersion':
             return ns.toggleReport('dynamic_appVersion.title');
         case 'atb':
-            return ns.toggleReport('dynamic_atb.title');
+            return ns.toggleReport('dynamic_experimentGroups.title');
         case 'errorDescriptions':
             return ns.toggleReport('dynamic_errorDescriptions.title');
         case 'extensionVersion':

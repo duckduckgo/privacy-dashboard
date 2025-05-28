@@ -52,7 +52,7 @@
     "title" : "Rakenduse versiooni number",
     "note" : "This text indicates the version number of the app."
   },
-  "dynamic_atb" : {
+  "dynamic_experimentGroups" : {
     "title" : "Anonüümsed katserühmad funktsioonide testimiseks",
     "note" : "This text represents an anonymous group for testing features."
   },

@@ -52,7 +52,7 @@
     "title" : "Αριθμός έκδοσης εφαρμογής",
     "note" : "This text indicates the version number of the app."
   },
-  "dynamic_atb" : {
+  "dynamic_experimentGroups" : {
     "title" : "Ανώνυμες πειραματικές ομάδες για δοκιμή λειτουργιών",
     "note" : "This text represents an anonymous group for testing features."
   },

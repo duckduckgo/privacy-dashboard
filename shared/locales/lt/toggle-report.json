@@ -52,7 +52,7 @@
     "title" : "Programėlės versijos numeris",
     "note" : "This text indicates the version number of the app."
   },
-  "dynamic_atb" : {
+  "dynamic_experimentGroups" : {
     "title" : "Anoniminės eksperimentinės grupės funkcijų testavimui",
     "note" : "This text represents an anonymous group for testing features."
   },

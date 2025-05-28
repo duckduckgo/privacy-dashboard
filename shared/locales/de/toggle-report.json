@@ -52,7 +52,7 @@
     "title" : "App-Versionsnummer",
     "note" : "This text indicates the version number of the app."
   },
-  "dynamic_atb" : {
+  "dynamic_experimentGroups" : {
     "title" : "Anonyme Experimentiergruppen für Funktionstests",
     "note" : "This text represents an anonymous group for testing features."
   },
