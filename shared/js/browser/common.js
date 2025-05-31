@@ -19,7 +19,7 @@
  */
 export const getContentHeight = () => {
     const $openSubviewV2 = /** @type HTMLElement */ (
-        window.document.querySelector('#popup-container.sliding-subview-v2--root [data-current]:last-of-type > *:first-child')
+        window.document.querySelector('#popup-container.sliding-subview-v2--root [data-current="true"] > *:first-child')
     );
 
     if (!$openSubviewV2) {
@@ -34,11 +34,6 @@ export const getContentHeight = () => {
     }
 
     return Math.min(maxViewHeight, scrollHeight);
-};
-
-export const getContentHeightForScreenShot = () => {
-    const $rootSubview = window.document.querySelector('.site-info.site-info--main');
-    return $rootSubview?.scrollHeight;
 };
 
 /**
@@ -70,7 +65,7 @@ export function setupMutationObserver(callback) {
  * @param {function} callback - The callback function to be executed when a mutation is observed.
  * @return {function} - A function that can be called to disconnect the MutationObserver.
  */
-export function setupMutationObserverForExtensions(callback) {
+export function setupMutationObserverUnrestricted(callback) {
     let lastHeight;
     const mutationObserver = new MutationObserver(() => {
         const contentHeight = getContentHeight();
