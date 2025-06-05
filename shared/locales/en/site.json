@@ -75,9 +75,17 @@
         "title": "Report site as safe",
         "note": "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
     },
-    "aboutScamBlockerLink": {
+    "aboutPhishingLink": {
         "title": "About Scam Blocker",
-        "note": "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
+        "note": "Label for a link that takes the user to a help page about Phishing protection"
+    },
+    "aboutMalwareLink": {
+        "title": "About Scam Blocker",
+        "note": "Label for a link that takes the user to a help page about Malware protection"
+    },
+    "aboutScamLink": {
+        "title": "About Scam Blocker",
+        "note": "Label for a link that takes the user to a help page about Scam protection"
     },
     "websiteNotWorkingQ": {
         "title": "Website not working as expected?",
