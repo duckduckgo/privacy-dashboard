@@ -399,7 +399,7 @@ export class Mocks {
     }
 
     async calledForHelpPagesLink() {
-        return this.calledForOpenURLInNewTab('https://duckduckgo.com/duckduckgo-help-pages/privacy/phishing-and-malware-protection/');
+        return this.calledForOpenURLInNewTab('https://duckduckgo.com/duckduckgo-help-pages/threat-protection/scam-blocker');
     }
 
     async calledForReportAsSafeLink(urlParam) {

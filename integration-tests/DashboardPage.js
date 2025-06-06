@@ -171,17 +171,17 @@ export class DashboardPage {
 
     async clickMalwareHelpPageLink() {
         const { page } = this;
-        await page.getByRole('link', { name: 'About our Malware Protection' }).click();
+        await page.getByRole('link', { name: 'About Scam Blocker' }).click();
     }
 
     async clickPhishingHelpPageLink() {
         const { page } = this;
-        await page.getByRole('link', { name: 'About our Phishing Protection' }).click();
+        await page.getByRole('link', { name: 'About Scam Blocker' }).click();
     }
 
     async clickScamHelpPageLink() {
         const { page } = this;
-        await page.getByRole('link', { name: 'About our Scam Protection' }).click();
+        await page.getByRole('link', { name: 'About Scam Blocker' }).click();
     }
 
     async hasPhishingIcon() {
