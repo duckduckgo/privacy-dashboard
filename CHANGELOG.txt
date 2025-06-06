@@ -1,1 +1,1 @@
-- Experiment groups translations and locale key update (#435)
+- Updated Scam Blocker help page URLs (#416)
