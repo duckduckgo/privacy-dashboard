@@ -57,6 +57,7 @@ export function setupMutationObserver(callback) {
         if (lastHeight === height) return;
         lastHeight = height;
 
+        console.log('HEIGHT', height); // TODO: Remove before shipping
         callback(height);
     });
     const config = { childList: true, attributes: true, subtree: true };
