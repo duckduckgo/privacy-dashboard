@@ -11,6 +11,8 @@
  * @typedef {import("../../../schema/__generated__/schema.types").EventOrigin['screen']} InitialScreen
  */
 
+import { platformSwitch } from './environment-check.js';
+
 /**
  * @param {Platform} platform
  * @return {PlatformFeatures}
@@ -60,6 +62,16 @@ export function createPlatformFeatures(platform) {
             platform.name === 'macos' || platform.name === 'ios' || platform.name === 'android' || platform.name === 'windows',
         includeToggleOnBreakageForm,
         randomisedCategories,
+        dynamicHeight: platformSwitch({
+            browser: () => ({ max: 600 }),
+            default: () => null,
+        }),
+        maxHeight: platformSwitch({
+            browser: () => 600,
+            macos: () => 700,
+            windows: () => 700,
+            default: () => null,
+        }),
     });
 }
 
@@ -78,6 +90,8 @@ export class PlatformFeatures {
      * @param {boolean} params.includeToggleOnBreakageForm
      * @param {boolean} params.supportsMaliciousSiteWarning
      * @param {boolean} params.randomisedCategories
+     * @param {{max: number} | null} params.dynamicHeight
+     * @param {number | null} params.maxHeight
      */
     constructor(params) {
         /**
@@ -120,6 +134,15 @@ export class PlatformFeatures {
          * @type {boolean}
          */
         this.randomisedCategories = params.randomisedCategories;
+        /**
+         * Whether the application container needs a specific height (for example, the extension having a max height of 600)
+         * @type {{max: number} | null}
+         */
+        this.dynamicHeight = params.dynamicHeight;
+        /**
+         * @type {number|null}
+         */
+        this.maxHeight = params.maxHeight;
     }
 }
 

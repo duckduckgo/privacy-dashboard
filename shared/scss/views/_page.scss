@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
 
-    .environment--browser &,
     .environment--ios &,
     .environment--android & {
         height: 100%;
@@ -23,7 +22,6 @@
         display: none;
     }
 
-    .environment--browser &,
     .environment--ios &,
     .environment--android & {
         height: 100%;

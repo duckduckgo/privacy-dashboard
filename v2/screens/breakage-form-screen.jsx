@@ -198,11 +198,12 @@ function BreakageScreenWrapper({ className = '', pageId, children }) {
     const shouldPopToRoot = pageId === 'success';
 
     const classes = cn('site-info page-inner card breakage-screen', className);
-    /*
-     We cap the height of the form on desktop to avoid a gigantic window when expanding the data disclosure message
+
+    /**
+     * We cap the height of the form on desktop to avoid a gigantic window when expanding the data disclosure message
      */
-    const shouldCapHeight = pageId === 'form' && (platform.name === 'macos' || platform.name === 'windows' || platform.name === 'browser');
-    const maxViewHeight = 700;
+    const shouldCapHeight = pageId === 'form' && features.maxHeight !== null;
+    const maxViewHeight = features.maxHeight;
 
     return (
         <div className={classes} data-page={pageId} data-max-view-height={shouldCapHeight && maxViewHeight}>
