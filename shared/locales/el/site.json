@@ -76,17 +76,9 @@
     "title" : "Αναφέρετε τον ιστότοπο ως ασφαλή",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "Σχετικά με την προστασία μας από το ηλεκτρονικό ψάρεμα",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "Σχετικά με την προστασία μας από κακόβουλο λογισμικό",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "Σχετικά με την προστασία μας από απάτες",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "Σχετικά με το Πρόγραμμα αποκλεισμού απάτης",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Δεν λειτουργεί ο ιστότοπος όπως αναμενόταν;",

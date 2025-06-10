@@ -76,17 +76,9 @@
     "title" : "Prijavi web-mjesto kao sigurno",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "O našoj zaštiti od krađe identiteta (phishinga)",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "O našoj zaštiti od zlonamjernog softvera (malwarea)",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "O našoj zaštiti od prijevara",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "O programu za blokiranje prevara Scam Blocker",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Web-mjesto ne radi u skladu s očekivanjima?",
