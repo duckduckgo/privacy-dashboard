@@ -76,17 +76,9 @@
     "title" : "Zgłoś witrynę jako bezpieczną",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "Informacje o naszej ochronie przed phishingiem",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "Informacje o naszej ochronie przed złośliwym oprogramowaniem",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "Informacje o naszej ochronie przed oszustwami",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "O funkcji blokowania oszustw",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Witryna internetowa nie działa zgodnie z oczekiwaniami?",

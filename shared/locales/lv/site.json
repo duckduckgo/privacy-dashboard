@@ -76,17 +76,9 @@
     "title" : "Ziņot par vietni kā drošu",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "Par mūsu aizsardzību pret pikšķerēšanu",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "Par mūsu aizsardzību pret ļaunprātīgu programmatūru",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "Par mūsu aizsardzību pret krāpniecību",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "Par Krāpniecības bloķētāju",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Tīmekļa vietne nedarbojas, kā paredzēts?",
