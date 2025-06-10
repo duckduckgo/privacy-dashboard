@@ -1,1 +1,1 @@
-- Updated Scam Blocker help page URLs (#416)
+- Scam Blocker translations (#448)

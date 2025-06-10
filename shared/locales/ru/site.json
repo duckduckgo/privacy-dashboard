@@ -76,17 +76,9 @@
     "title" : "Пометить как безопасный",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "О нашей защите от фишинга",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "О нашей защите от вредоносного ПО",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "О нашей защите от мошенничества",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "О блокировщике мошенничества",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Сайт плохо работает?",

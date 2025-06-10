@@ -76,17 +76,9 @@
     "title" : "Nahlásiť stránku ako bezpečnú",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "O našej ochrane pred phishingom",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "O našej ochrane pred škodlivým softvérom",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "O našej ochrane pred podvodmi",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "O blokátore podvodov",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Webová lokalita nefunguje podľa očakávania?",

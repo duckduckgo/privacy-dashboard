@@ -76,17 +76,9 @@
     "title" : "Signaler le site comme étant sûr",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "À propos de notre protection contre le hameçonnage",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "À propos de notre protection contre les logiciels malveillants",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "À propos de notre protection contre les escroqueries",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "À propos du bloqueur d'escroqueries",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Le site Web ne fonctionne pas correctement ?",

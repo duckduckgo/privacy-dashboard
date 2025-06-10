@@ -76,17 +76,9 @@
     "title" : "Pažymėti svetainę kaip saugią",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "Apie mūsų apsaugą nuo sukčiavimo",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "Apie mūsų apsaugą nuo kenkėjiškų programų",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "Apie mūsų apsaugą nuo sukčiavimo",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "Apie sukčiavimo blokavimo įrankį",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Svetainė neveikia taip, kaip tikėtasi?",

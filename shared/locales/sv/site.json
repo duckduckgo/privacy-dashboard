@@ -76,17 +76,9 @@
     "title" : "Rapportera webbplatsen som säker",
     "note" : "Button label text for a trigger that shows a feedback form in which the user can report the current website as safe"
   },
-  "aboutPhishingLink" : {
-    "title" : "Om vårt skydd mot nätfiske",
-    "note" : "Label for a link that takes the user to a help page about Phishing protection"
-  },
-  "aboutMalwareLink" : {
-    "title" : "Om vårt skydd mot skadlig programvara",
-    "note" : "Label for a link that takes the user to a help page about Malware protection"
-  },
-  "aboutScamLink" : {
-    "title" : "Om vårt skydd mot bedrägerier",
-    "note" : "Label for a link that takes the user to a help page about Scam protection"
+  "aboutScamBlockerLink" : {
+    "title" : "Om bedrägeriblockerare",
+    "note" : "Label for a link that takes the user to a help page about DuckDuckGo's Scam Blocker, which is a feature that blocks scam websites."
   },
   "websiteNotWorkingQ" : {
     "title" : "Fungerar inte webbplatsen som förväntat?",
