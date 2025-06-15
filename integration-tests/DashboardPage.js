@@ -855,25 +855,6 @@ export class DashboardPage {
         await this.page.getByRole('link', { name: 'Report a problem with this site' }).click({ timeout: 5000 });
     }
 
-    async showsBreakageForm() {
-        await this.page.getByText('Submitting an anonymous').waitFor({ timeout: 5000 });
-    }
-
-    // todo: remove
-    async waitForRouterToSettle() {
-        const { page } = this;
-        // wait for it to start animating
-        await page.waitForFunction(() => {
-            const element = document.getElementById('popup-container');
-            return element && element.classList.contains('sliding-subview-v2--animating');
-        });
-        // then wait for it to finish
-        await page.waitForFunction(() => {
-            const element = document.getElementById('popup-container');
-            return element && !element.classList.contains('sliding-subview-v2--animating');
-        });
-    }
-
     async skipsToBreakageFormWhenDisliked() {
         await this.page.getByLabel('I dislike the content on this').click();
         await this.page.getByRole('button', { name: 'Send Report' }).click();
