@@ -43,7 +43,7 @@
         "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#v0.1.0",
         "@formatjs/intl-locale": "^3.0.7",
         "@material/ripple": "^14.0.0",
-        "@playwright/test": "^1.45.3",
+        "@playwright/test": "^1.53.0",
         "@types/chrome": "^0.0.203",
         "@types/eslint__js": "^8.42.3",
         "@types/node": "22.10.7",
