@@ -48,12 +48,12 @@
 .hero-icon--protections-off,
 .hero-icon--major-networks-warning,
 .hero-icon--major-networks-protections-off {
-    @include cross_platform_bg_image('refresh-assets/Block-Disabled-128.svg');
+    @include cross_platform_bg_image('refresh-assets/Shield-Alert-128.svg');
 }
 
 .hero-icon--info,
 .hero-icon--major-networks-info {
-    @include cross_platform_bg_image('refresh-assets/Block-Info-128.svg');
+    @include cross_platform_bg_image('refresh-assets/Shield-Info-128.svg');
 }
 
 .hero-icon--no-activity,
