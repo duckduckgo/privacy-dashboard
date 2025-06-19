@@ -31,18 +31,18 @@
     @include cross_platform_bg_image('refresh-assets/breakage-sent.svg');
 }
 .hero-icon--tracker-network {
-    @include cross_platform_bg_image('refresh-assets/Network-128.svg');
+    @include cross_platform_bg_image('refresh-assets/Network-Warning-128.svg');
 }
 
 .hero-icon--insecure-connection,
 .hero-icon--trackers-blocked,
 .hero-icon--connection-none,
 .hero-icon--connection-invalid {
-    @include cross_platform_bg_image('refresh-assets/Unlocked-128.svg');
+    @include cross_platform_bg_image('refresh-assets/Lock-Warning-128.svg');
 }
 
 .hero-icon--major-networks-blocked {
-    @include cross_platform_bg_image('refresh-assets/Shield-128.svg');
+    @include cross_platform_bg_image('refresh-assets/Shield-Check-128.svg');
 }
 
 .hero-icon--protections-off,
@@ -63,7 +63,7 @@
 
 .hero-icon--connection-secure,
 .hero-icon--connection-upgraded {
-    @include cross_platform_bg_image('refresh-assets/Locked-128.svg');
+    @include cross_platform_bg_image('refresh-assets/Lock-Check-128.svg');
 }
 
 .hero-icon--cookies-managed {
@@ -75,7 +75,7 @@
 
 .hero-icon--malicious,
 .hero-icon--connection-malicious {
-    @include cross_platform_bg_image('refresh-assets/Phishing-128.svg');
+    @include cross_platform_bg_image('refresh-assets/Malware-Site-128.svg');
 }
 
 .hero-icon--chat {
