@@ -1,1 +1,11 @@
-<svg fill="none" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z" fill="#21c000"/><path d="m11.75 5.191c.309.276.335.75.059 1.06l-4.25 4.749c-.146.162-.356.254-.576.249-.219-.005-.425-.105-.563-.275l-2.25-2.75c-.263-.32-.215-.793.105-1.055.32-.263.793-.215 1.055.105l1.696 2.072 3.664-4.096c.276-.309.75-.335 1.06-.059z" fill="#fff"/></g></svg>
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#4CBA3C" d="M15.5 8a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0"/>
+  <path fill="#fff" fill-rule="evenodd" d="M11.854 5.146a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L6.5 9.793l4.646-4.647a.5.5 0 0 1 .708 0" clip-rule="evenodd"/>
+  <path fill="url(#Check-Color-16_svg__a)" fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8" clip-rule="evenodd"/>
+  <defs>
+    <linearGradient id="Check-Color-16_svg__a" x1="8" x2="8" y1="0" y2="16" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4CBA3C"/>
+      <stop offset="1" stop-color="#288419"/>
+    </linearGradient>
+  </defs>
+</svg>
