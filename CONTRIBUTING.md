@@ -36,7 +36,9 @@ The Privacy Dashboard can be built for all supported environments using
 `npm run preview` to view it in your default browser.
 
 The browser will open at `/html/iframe.html` - from there, you can click 'open in new tab' on
-any of the test instances to work on that configuration exclusively
+any of the test instances to work on that configuration exclusively.
+
+It's also recommended to run `npm run fetch-fonts` if you're making a UI change, to prevent unnecessary snapshot diffs
 
 ## Emulating different platforms/scenarios.
 
