@@ -129,12 +129,12 @@
 }
 
 .main-nav__chev {
-    width: 7px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin-left: auto;
-    margin-right: 16px;
+    margin-right: 12px;
     background-repeat: no-repeat;
-    background-size: 7px;
+    background-size: 16px;
     background-position: center center;
     opacity: 60%;
     @include cross_platform_bg_image('refresh-assets/chevron.svg');
