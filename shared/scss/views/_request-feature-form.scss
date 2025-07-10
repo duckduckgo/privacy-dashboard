@@ -1,0 +1,365 @@
+// Request Feature Form Screen Styles
+.request-feature-form {
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 20px 24px 16px 24px;
+}
+
+// Header Section
+.request-feature-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.icon-request-feature-header {
+    @include cross_platform_bg_image('request-new-feature-assets/header.svg');
+    width: 48px;
+    height: 48px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.request-feature-text {
+    flex: 1;
+}
+
+.request-feature-title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin: 0 0 4px 0;
+    .environment--macos & {
+        font-family: "SF Pro";
+        font-weight: 700;
+        line-height: 22px;
+        letter-spacing: -0.43px;
+    }
+}
+
+.request-feature-subtitle {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.4;
+
+    .environment--macos & {
+        font-family: "SF Pro";
+        font-style: normal;
+        font-weight: 400;
+        line-height: 13px;
+        letter-spacing: -0.08px;
+    }
+}
+
+// Feature Pills Grid
+.feature-pills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+// Individual Feature Pill
+.feature-pill {    
+    --pill-background: var(--color-surface-color);
+    --pill-border: 1px solid var(--color-lines-light);
+    --pill-color: var(--color-text-primary);
+    --pill-border-radius: 20px;
+    --pill-font-size: 13px;
+    --pill-font-weight: 400;
+    --pill-padding: 10px 16px;
+    --pill-line-height: 1.2;
+
+    background: var(--pill-background);
+    border: var(--pill-border);
+    border-radius: var(--pill-border-radius);
+    color: var(--pill-color);
+    cursor: pointer;
+    display: block;
+    font-family: $font__face--default;
+    font-size: var(--pill-font-size);
+    font-weight: var(--pill-font-weight);
+    line-height: var(--pill-line-height);
+    padding: var(--pill-padding);
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+        --pill-background: var(--color-surface-hover);
+        --pill-border: 1px solid var(--color-lines-medium);
+    }
+
+    &:active {
+        --pill-background: var(--color-surface-active);
+    }
+
+    &--selected {
+        --pill-background: var(--color-accent-blue);
+        --pill-border: 1px solid var(--color-accent-blue);
+        --pill-color: var(--color-button-primary);
+        --pill-font-weight: 500;
+
+        &:hover {
+            --pill-background: var(--color-blue-60);
+            --pill-border: 1px solid var(--color-blue-60);
+        }
+
+        &:active {
+            --pill-background: var(--color-blue-70);
+            --pill-border: 1px solid var(--color-blue-70);
+        }
+    }
+
+    .body--theme-dark & {
+        &:hover {
+            --pill-background: rgba(255, 255, 255, 0.08);
+        }
+
+        &:active {
+            --pill-background: rgba(255, 255, 255, 0.12);
+        }
+
+        &--selected {
+            &:hover {
+                --pill-background: var(--color-blue-40);
+                --pill-border: 1px solid var(--color-blue-40);
+            }
+
+            &:active {
+                --pill-background: var(--color-blue-50);
+                --pill-border: 1px solid var(--color-blue-50);
+            }
+        }
+    }
+
+    // Platform-specific adjustments
+    .environment--android & {
+        --pill-font-size: 14px;
+        --pill-padding: 12px 16px;
+    }
+
+    .environment--ios & {
+        --pill-border-radius: 16px;
+        --pill-font-size: 15px;
+        --pill-padding: 12px 16px;
+    }
+
+    .environment--macos & {
+        --pill-border-radius: 16px;
+        --pill-font-size: 13px;
+        --pill-padding: 11px 16px;
+        --pill-background: rgba(0, 0, 0, 0.01);
+
+        &--selected {
+            --pill-color: #2B55CA;
+            --pill-background: rgba(204, 218, 255, 0.40);
+            --pill-border: 1px solid rgba(85, 127, 243, 0.56);
+        }
+    }
+}
+
+// Custom Feature Input Section
+.custom-feature-input {
+    margin-bottom: 24px;
+}
+
+.custom-feature-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+
+    .environment--macos & {
+        font-family: "SF Pro Text";
+        font-style: normal;
+        line-height: 16px;
+        letter-spacing: -0.08px;
+    }
+}
+
+.custom-feature-textarea {
+    --textarea-background: var(--color-surface-color);
+    --textarea-border: 1px solid var(--color-lines-light);
+    --textarea-border-radius: 8px;
+    --textarea-color: var(--color-text-primary);
+    --textarea-font-size: 14px;
+    --textarea-line-height: 1.4;
+    --textarea-padding: 12px;
+
+    background: var(--textarea-background);
+    border: var(--textarea-border);
+    border-radius: var(--textarea-border-radius);
+    color: var(--textarea-color);
+    font-family: $font__face--default;
+    font-size: var(--textarea-font-size);
+    line-height: var(--textarea-line-height);
+    padding: var(--textarea-padding);
+    resize: vertical;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 80px;
+
+    &:focus {
+        --textarea-border: 1px solid var(--color-accent-blue);
+        outline: none;
+    }
+
+    &::placeholder {
+        color: var(--color-text-placeholder);
+    }
+
+    .body--theme-dark & {
+        &:focus {
+            --textarea-border: 1px solid var(--color-blue-40);
+        }
+    }
+
+    // Platform-specific adjustments
+    .environment--android & {
+        --textarea-font-size: 15px;
+        --textarea-padding: 14px;
+    }
+
+    .environment--ios & {
+        --textarea-font-size: 16px;
+        --textarea-padding: 14px;
+    }
+
+    .environment--macos & {
+        --textarea-border-radius: 6px;
+        --textarea-font-size: 13px;
+        --textarea-padding: 10px;
+    }
+}
+
+// Action Buttons
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-button {
+    --button-background: var(--color-surface-color);
+    --button-border: 1px solid var(--color-lines-light);
+    --button-border-radius: 8px;
+    --button-color: var(--color-text-primary);
+    --button-font-size: 14px;
+    --button-font-weight: 400;
+    --button-height: 20px;
+    --button-line-height: calc(20 / 15);
+    --button-padding: 0 12px;
+
+    background: var(--button-background);
+    border: var(--button-border);
+    border-radius: var(--button-border-radius);
+    color: var(--button-color);
+    cursor: pointer;
+    display: block;
+    font-family: $font__face--default;
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    height: var(--button-height);
+    line-height: var(--button-line-height);
+    padding: var(--button-padding);
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    flex: 1;
+
+    &:hover {
+        --button-background: var(--color-surface-hover);
+    }
+
+    &:active {
+        --button-background: var(--color-surface-active);
+    }
+
+    &:disabled {
+        --button-color: #A9A9A9;
+    }
+
+    .body--theme-dark & {
+        &:hover {
+            --button-background: rgba(255, 255, 255, 0.08);
+        }
+
+        &:active {
+            --button-background: rgba(255, 255, 255, 0.12);
+        }
+    }
+
+    // Platform-specific adjustments
+    .environment--android & {
+        --button-font-size: 15px;
+        --button-font-weight: 700;
+        --button-height: 48px;
+    }
+
+    .environment--browser & {
+        --button-font-size: 16px;
+        --button-font-weight: 700;
+        --button-height: 44px;
+        --button-padding: 0 20px;
+    }
+
+    .environment--ios & {
+        --button-font-size: 15px;
+        --button-font-weight: 600;
+        --button-height: 50px;
+    }
+
+    .environment--macos & {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "SF Pro Text";
+        font-style: normal;
+        line-height: 13px; /* 100% */
+        letter-spacing: -0.08px;
+        box-shadow: 0px 0.5px 0px 0px var(rgba(255, 255, 255, 0.20)) inset, 0px 1px 0px 0px var(rgba(255, 255, 255, 0.05)) inset, 0px 0px 0px 0.5px var(rgba(0, 0, 0, 0.10)), 0px 0px 1px 0px var(rgba(0, 0, 0, 0.05)), 0px 1px 1px 0px var(rgba(0, 0, 0, 0.20));
+        
+        --button-border-radius: var(5px);
+        --button-background:: var(#FFF);
+        --button-font-size: 13px;
+        --button-font-weight: 400;
+        --button-height: 20px;
+        --button-padding: 0 12px;
+        --buton-color: rgba(0, 0, 0, 0.84);
+    }
+}
+
+// Responsive adjustments for smaller screens
+@media (max-width: 480px) {
+    .feature-pills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 6px;
+    }
+
+    .feature-pill {
+        --pill-font-size: 12px;
+        --pill-padding: 8px 12px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .action-button {
+        width: 100%;
+        flex: none;
+    }
+}

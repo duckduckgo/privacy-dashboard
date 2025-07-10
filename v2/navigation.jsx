@@ -9,6 +9,7 @@ import { NonTrackersScreen } from './screens/non-trackers-screen';
 import { ConsentManagedScreen } from './screens/consent-managed-screen';
 import { ToggleReportScreen } from './screens/toggle-report-screen';
 import { BreakagePrimaryScreen, BreakageCategorySelection, BreakageForm, BreakageFormSuccess } from './screens/breakage-form-screen';
+import { RequestFeatureFormScreen } from './screens/request-feature-form-screen';
 import { isAndroid } from '../shared/js/ui/environment-check';
 import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 
@@ -19,6 +20,7 @@ import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 /** @type {Record<ScreenName, { kind: 'subview' | 'root', component: () => any}>} */
 const availableScreens = {
     primaryScreen: { kind: 'root', component: () => <PrimaryScreen /> },
+    requestFeatureForm: { kind: 'root', component: () => <RequestFeatureFormScreen /> },
 
     // screens that would load immediately
     breakageForm: { kind: 'subview', component: () => <BreakagePrimaryScreen /> },
