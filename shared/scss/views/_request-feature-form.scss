@@ -34,7 +34,7 @@
     color: var(--color-text-primary);
     margin: 0 0 4px 0;
     .environment--macos & {
-        font-family: "SF Pro";
+        font-family: 'SF Pro';
         font-weight: 700;
         line-height: 22px;
         letter-spacing: -0.43px;
@@ -48,7 +48,7 @@
     line-height: 1.4;
 
     .environment--macos & {
-        font-family: "SF Pro";
+        font-family: 'SF Pro';
         font-style: normal;
         font-weight: 400;
         line-height: 13px;
@@ -65,7 +65,7 @@
 }
 
 // Individual Feature Pill
-.feature-pill {    
+.feature-pill {
     --pill-background: var(--color-surface-color);
     --pill-border: 1px solid var(--color-lines-light);
     --pill-color: var(--color-text-primary);
@@ -144,8 +144,8 @@
         --pill-font-weight: 400;
 
         &--selected {
-            --pill-color: #2B55CA;
-            --pill-background: rgba(204, 218, 255, 0.40);
+            --pill-color: #2b55ca;
+            --pill-background: rgba(204, 218, 255, 0.4);
             --pill-border: 1px solid rgba(85, 127, 243, 0.56);
         }
     }
@@ -165,7 +165,7 @@
     line-height: 1.4;
 
     .environment--macos & {
-        font-family: "SF Pro Text";
+        font-family: 'SF Pro Text';
         font-style: normal;
         line-height: 16px;
         letter-spacing: -0.08px;
@@ -273,7 +273,7 @@
     }
 
     &:disabled {
-        --button-color: #A9A9A9;
+        --button-color: #a9a9a9;
     }
 
     .body--theme-dark & {
@@ -310,14 +310,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-family: "SF Pro Text";
+        font-family: 'SF Pro Text';
         font-style: normal;
         line-height: 13px; /* 100% */
         letter-spacing: -0.08px;
-        box-shadow: 0px 0.5px 0px 0px var(rgba(255, 255, 255, 0.20)) inset, 0px 1px 0px 0px var(rgba(255, 255, 255, 0.05)) inset, 0px 0px 0px 0.5px var(rgba(0, 0, 0, 0.10)), 0px 0px 1px 0px var(rgba(0, 0, 0, 0.05)), 0px 1px 1px 0px var(rgba(0, 0, 0, 0.20));
-        
+        box-shadow: 0px 0.5px 0px 0px var(rgba(255, 255, 255, 0.2)) inset, 0px 1px 0px 0px var(rgba(255, 255, 255, 0.05)) inset,
+            0px 0px 0px 0.5px var(rgba(0, 0, 0, 0.1)), 0px 0px 1px 0px var(rgba(0, 0, 0, 0.05)), 0px 1px 1px 0px var(rgba(0, 0, 0, 0.2));
+
         --button-border-radius: var(5px);
-        --button-background:: var(#FFF);
+        --button-background: var(#fff);
         --button-font-size: 13px;
         --button-font-weight: 400;
         --button-height: 20px;
@@ -327,9 +328,9 @@
 }
 
 .reports-text {
-    color: rgba(0, 0, 0, 0.60);
+    color: rgba(0, 0, 0, 0.6);
     font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "SF Pro";
+    font-family: 'SF Pro';
     font-size: 10px;
     font-style: normal;
     font-weight: 400;

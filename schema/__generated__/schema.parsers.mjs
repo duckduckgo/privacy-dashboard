@@ -55,6 +55,8 @@ export const descriptionSchema = z.literal("description");
 
 export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("breakageFormCategorySelection"), z.literal("breakageFormFinalStep"), z.literal("breakageFormSuccess"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden"), z.literal("requestNewFeatureForm")]);
 
+export const dataItemId1Schema = z.union([z.literal("reader-mode"), z.literal("password-manager"), z.literal("ad-blocking"), z.literal("new-tab-widgets"), z.literal("website-translation"), z.literal("incognito"), z.literal("user-profiles"), z.literal("import-bookmarks"), z.literal("vertical-tabs"), z.literal("picture-in-picture"), z.literal("cast-media"), z.literal("tab-groups")]);
+
 export const stateBlockedSchema = z.object({
     blocked: z.object({})
 });
@@ -176,6 +178,11 @@ export const eventOriginSchema = z.object({
     screen: screenKindSchema
 });
 
+export const featureRequestScreenDataItemSchema = z.object({
+    id: dataItemId1Schema,
+    label: z.string()
+});
+
 export const closeMessageParamsSchema = z.object({
     eventOrigin: eventOriginSchema
 });
@@ -289,6 +296,10 @@ export const setProtectionParamsSchema = z.object({
     eventOrigin: eventOriginSchema
 });
 
+export const requestFeatureScreenSchema = z.object({
+    data: z.array(featureRequestScreenDataItemSchema)
+});
+
 export const telemetrySpanSchema = z.object({
     attributes: z.union([categoryTypeSelectedSchema, categorySelectedSchema, toggleSkippedSchema]),
     eventOrigin: eventOriginSchema
@@ -366,6 +377,7 @@ export const apiSchema = z.object({
     "feature-settings": remoteFeatureSettingsSchema.optional(),
     "set-protection": setProtectionParamsSchema.optional(),
     "toggle-report-screen": toggleReportScreenSchema.optional(),
+    "request-feature-screen": requestFeatureScreenSchema.optional(),
     "close-message": closeMessageParamsSchema.optional(),
     "telemetry-span": telemetrySpanSchema.optional(),
     "extension-incoming": incomingExtensionMessageSchema.optional(),

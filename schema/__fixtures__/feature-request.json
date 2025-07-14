@@ -1,0 +1,52 @@
+{
+    "data": [
+        {
+            "id": "reader-mode",
+            "label": "Reader mode"
+        },
+        {
+            "id": "password-manager",
+            "label": "Password manager extensions"
+        },
+        {
+            "id": "ad-blocking",
+            "label": "Advanced ad blocking"
+        },
+        {
+            "id": "new-tab-widgets",
+            "label": "New tab page widgets"
+        },
+        {
+            "id": "website-translation",
+            "label": "Website translation"
+        },
+        {
+            "id": "incognito",
+            "label": "Incognito"
+        },
+        {
+            "id": "user-profiles",
+            "label": "User profiles"
+        },
+        {
+            "id": "import-bookmarks",
+            "label": "Import bookmarks folders"
+        },
+        {
+            "id": "vertical-tabs",
+            "label": "Vertical tabs"
+        },
+        {
+            "id": "picture-in-picture",
+            "label": "Picture-in-picture"
+        },
+        {
+            "id": "cast-media",
+            "label": "Cast video/audio"
+        },
+        {
+            "id": "tab-groups",
+            "label": "Tab groups"
+        }
+    ]
+}

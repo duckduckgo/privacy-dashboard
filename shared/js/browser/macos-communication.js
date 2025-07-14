@@ -20,6 +20,7 @@ import {
     maliciousSiteStatusSchema,
     protectionsStatusSchema,
     requestDataSchema,
+    requestFeatureScreenSchema,
     toggleReportScreenSchema,
 } from '../../../schema/__generated__/schema.parsers.mjs';
 import { isIOS } from '../ui/environment-check';
@@ -40,6 +41,8 @@ import {
     UpdatePermissionMessage,
     ShowNativeFeedback,
     ReportBrokenSiteShown,
+    FetchRequestFeatureOptions,
+    SendFeatureRequest,
 } from './common.js';
 import { createTabData } from './utils/request-details.mjs';
 
@@ -331,6 +334,43 @@ export function privacyDashboardGetToggleReportOptions() {
 }
 
 /**
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * When the Dashboard loads, it will call this message handler...
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardGetToggleReportOptions.postMessage({})
+ * ```
+ *
+ * ... then, to reply with the correct data, call evaluate on the following window method:
+ *
+ * The JSON object should match {@link "Generated Schema Definitions".RequestFeatureScreen}
+ *
+ * ```js
+ * window.onGetFeatureRequestOptionsResponse({ "data": [...] })
+ * ```
+ *
+ * [Sample JSON 📝](../../../schema/__fixtures__/toggle-report-screen.json)
+ *
+ * @returns {Promise<import('../../../schema/__generated__/schema.types').RequestFeatureScreen>}
+ */
+export function privacyDashboardGetFeatureRequestOptions() {
+    return new Promise((resolve) => {
+        invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+        invariant(
+            window.webkit.messageHandlers.privacyDashboardGetFeatureRequestOptions,
+            'privacyDashboardGetFeatureRequestOptions required'
+        );
+        window.webkit.messageHandlers.privacyDashboardGetFeatureRequestOptions.postMessage({});
+        window.onGetFeatureRequestOptionsResponse = (data) => {
+            resolve(data);
+            Reflect.deleteProperty(window, 'onGetToggleReportOptionsResponse');
+        };
+    });
+}
+
+/**
  * {@inheritDoc common.sendToggleReport}
  * @type {import("./common.js").sendToggleReport}
  * @category Webkit Message Handlers
@@ -346,6 +386,23 @@ export function privacyDashboardSendToggleReport() {
     invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
     invariant(window.webkit.messageHandlers.privacyDashboardSendToggleReport, 'privacyDashboardSendToggleReport required');
     window.webkit.messageHandlers.privacyDashboardSendToggleReport.postMessage({});
+}
+/**
+ * {@inheritDoc common.sendFeatureRequest}
+ * @type {import("./common.js").sendFeatureRequest}
+ * @category Webkit Message Handlers
+ * @example
+ *
+ * This message handler is the equivalent of calling the following JavaScript.
+ *
+ * ```js
+ * window.webkit.messageHandlers.privacyDashboardSendFeatureRequest.postMessage({ features })
+ * ```
+ */
+export function privacyDashboardSendFeatureRequest(features) {
+    invariant(window.webkit?.messageHandlers, 'webkit.messageHandlers required');
+    invariant(window.webkit.messageHandlers.privacyDashboardSendFeatureRequest, 'privacyDashboardSendFeatureRequest');
+    window.webkit.messageHandlers.privacyDashboardSendFeatureRequest.postMessage({ features });
 }
 
 /**
@@ -452,9 +509,17 @@ async function fetch(message) {
         const parsed = toggleReportScreenSchema.parse(data);
         return parsed;
     }
+    if (message instanceof FetchRequestFeatureOptions) {
+        const data = await privacyDashboardGetFeatureRequestOptions();
+        const parsed = requestFeatureScreenSchema.parse(data);
+        return parsed;
+    }
 
     if (message instanceof SendToggleBreakageReport) {
         return privacyDashboardSendToggleReport();
+    }
+    if (message instanceof SendFeatureRequest) {
+        return privacyDashboardSendFeatureRequest(message.features);
     }
 
     if (message instanceof RejectToggleBreakageReport) {

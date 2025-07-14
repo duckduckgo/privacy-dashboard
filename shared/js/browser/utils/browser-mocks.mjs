@@ -1,4 +1,5 @@
 import toggleReportScreen from '../../../../schema/__fixtures__/toggle-report-screen.json';
+import featureRequestScreen from '../../../../schema/__fixtures__/feature-request.json';
 import { createDataStates } from '../../ui/views/tests/generate-data.mjs';
 import google from '../../../../schema/__fixtures__/request-data-google.json';
 import cnn from '../../../../schema/__fixtures__/request-data-cnn.json';
@@ -16,9 +17,12 @@ export function installBrowserMocks(platform) {
     if (platform.name === 'windows') {
         windowsMockApis();
     } else if (platform.name === 'ios' || platform.name === 'macos') {
+        console.log('mockking...');
         webkitMockApis({
             messages: {
                 privacyDashboardGetToggleReportOptions: toggleReportScreen,
+                privacyDashboardGetFeatureRequestOptions: featureRequestScreen,
+                privacyDashboardSendFeatureRequest: {},
             },
         });
     } else if (platform.name === 'android') {

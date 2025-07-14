@@ -1,0 +1,83 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "RequestFeatureScreen",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["data"],
+    "description": "",
+    "properties": {
+        "data": {
+            "type": "array",
+            "description": "The line-items to show to the user for indicating what data the report will send to DuckDuckGo",
+            "items": {
+                "$ref": "#/definitions/FeatureRequestScreenDataItem"
+            }
+        }
+    },
+    "definitions": {
+        "FeatureRequestScreenDataItem": {
+            "type": "object",
+            "required": ["id", "label"],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "title": "DataItemId",
+                    "type": "string",
+                    "enum": [
+                        { "$ref": "#/definitions/reader-mode" },
+                        { "$ref": "#/definitions/password-manager" },
+                        { "$ref": "#/definitions/ad-blocking" },
+                        { "$ref": "#/definitions/new-tab-widgets" },
+                        { "$ref": "#/definitions/website-translation" },
+                        { "$ref": "#/definitions/incognito" },
+                        { "$ref": "#/definitions/user-profiles" },
+                        { "$ref": "#/definitions/import-bookmarks" },
+                        { "$ref": "#/definitions/vertical-tabs" },
+                        { "$ref": "#/definitions/picture-in-picture" },
+                        { "$ref": "#/definitions/cast-media" },
+                        { "$ref": "#/definitions/tab-groups" }
+                    ]
+                },
+                "label": {
+                    "type": "string"
+                }
+            }
+        },
+        "reader-mode": {
+            "const": "reader-mode"
+        },
+        "password-manager": {
+            "const": "password-manager"
+        },
+        "ad-blocking": {
+            "const": "ad-blocking"
+        },
+        "new-tab-widgets": {
+            "const": "new-tab-widgets"
+        },
+        "website-translation": {
+            "const": "website-translation"
+        },
+        "incognito": {
+            "const": "incognito"
+        },
+        "user-profiles": {
+            "const": "user-profiles"
+        },
+        "import-bookmarks": {
+            "const": "import-bookmarks"
+        },
+        "vertical-tabs": {
+            "const": "vertical-tabs"
+        },
+        "picture-in-picture": {
+            "const": "picture-in-picture"
+        },
+        "cast-media": {
+            "const": "cast-media"
+        },
+        "tab-groups": {
+            "const": "tab-groups"
+        }
+    }
+}

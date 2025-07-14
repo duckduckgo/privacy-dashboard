@@ -15,11 +15,17 @@ interface WebkitMessageHandlers {
     privacyDashboardGetToggleReportOptions?: {
         postMessage: (params: any) => void;
     };
+    privacyDashboardGetFeatureRequestOptions?: {
+        postMessage: (params: any) => void;
+    };
     privacyDashboardRejectToggleReport?: {
         postMessage: (params: any) => Promise<void>;
     };
     privacyDashboardSendToggleReport?: {
         postMessage: (params: any) => Promise<void>;
+    };
+    privacyDashboardSendFeatureRequest?: {
+        postMessage: (params: { features: string[] }) => Promise<void>;
     };
     privacyDashboardSeeWhatIsSent?: {
         postMessage: (params: any) => Promise<void>;
@@ -87,6 +93,7 @@ interface Window {
         messageHandlers?: WebkitMessageHandlers;
     };
     onGetToggleReportOptionsResponse?: (data: import('./schema/__generated__/schema.types').ToggleReportScreen) => void;
+    onGetFeatureRequestOptionsResponse?: (data: import('./schema/__generated__/schema.types').RequestFeatureScreen) => void;
     chrome: {
         webview?: {
             postMessage?: Window['postMessage'];

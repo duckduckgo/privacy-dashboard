@@ -182,6 +182,11 @@ export function webkitMockApis({ messages = {} }) {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardSendToggleReport', arg]);
                     },
                 },
+                privacyDashboardSendFeatureRequest: {
+                    postMessage: async (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardSendFeatureRequest', arg]);
+                    },
+                },
                 privacyDashboardRejectToggleReport: {
                     postMessage: async (arg) => {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardRejectToggleReport', arg]);
@@ -197,6 +202,16 @@ export function webkitMockApis({ messages = {} }) {
                         window.__playwright.mocks.outgoing.push(['privacyDashboardGetToggleReportOptions', arg]);
                         setTimeout(() => {
                             window.onGetToggleReportOptionsResponse?.(window.__playwright.messages.privacyDashboardGetToggleReportOptions);
+                        }, 0);
+                    },
+                },
+                privacyDashboardGetFeatureRequestOptions: {
+                    postMessage: (arg) => {
+                        window.__playwright.mocks.outgoing.push(['privacyDashboardGetFeatureRequestOptions', arg]);
+                        setTimeout(() => {
+                            window.onGetFeatureRequestOptionsResponse?.(
+                                window.__playwright.messages.privacyDashboardGetFeatureRequestOptions
+                            );
                         }, 0);
                     },
                 },

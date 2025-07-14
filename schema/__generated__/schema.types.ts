@@ -164,6 +164,19 @@ export type ScreenKind =
   | "consentManaged"
   | "cookieHidden"
   | "requestNewFeatureForm";
+export type DataItemId1 =
+  | "reader-mode"
+  | "password-manager"
+  | "ad-blocking"
+  | "new-tab-widgets"
+  | "website-translation"
+  | "incognito"
+  | "user-profiles"
+  | "import-bookmarks"
+  | "vertical-tabs"
+  | "picture-in-picture"
+  | "cast-media"
+  | "tab-groups";
 export type IncomingExtensionMessage =
   | IncomingResponse
   | IncomingToggleReport
@@ -190,6 +203,7 @@ export interface API {
   "feature-settings"?: RemoteFeatureSettings;
   "set-protection"?: SetProtectionParams;
   "toggle-report-screen"?: ToggleReportScreen;
+  "request-feature-screen"?: RequestFeatureScreen;
   "close-message"?: CloseMessageParams;
   "telemetry-span"?: TelemetrySpan;
   "extension-incoming"?: IncomingExtensionMessage;
@@ -569,6 +583,16 @@ export interface SetProtectionParams {
 }
 export interface EventOrigin {
   screen: ScreenKind;
+}
+export interface RequestFeatureScreen {
+  /**
+   * The line-items to show to the user for indicating what data the report will send to DuckDuckGo
+   */
+  data: FeatureRequestScreenDataItem[];
+}
+export interface FeatureRequestScreenDataItem {
+  id: DataItemId1;
+  label: string;
 }
 export interface CloseMessageParams {
   eventOrigin: EventOrigin;

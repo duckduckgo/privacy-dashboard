@@ -32,6 +32,9 @@
         "toggle-report-screen": {
             "$ref": "toggle-report-screen.json"
         },
+        "request-feature-screen": {
+            "$ref": "request-feature-screen.json"
+        },
         "close-message": {
             "$ref": "close-message.json"
         },

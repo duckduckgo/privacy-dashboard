@@ -310,6 +310,14 @@ export function sendToggleReport() {
 }
 
 /**
+ * Send the feature request
+ * @param {string[]} features
+ */
+export function sendFeatureRequest(features) {
+    throw new Error('base impl');
+}
+
+/**
  * Reject sending the toggle report
  */
 export function rejectToggleReport() {
@@ -507,8 +515,18 @@ export class BurnMessage extends Msg {
 
 export class FetchBurnOptions extends Msg {}
 export class FetchToggleReportOptions extends Msg {}
+export class FetchRequestFeatureOptions extends Msg {}
 export class FetchBreakageFormOptions extends Msg {}
 export class SendToggleBreakageReport extends Msg {}
+export class SendFeatureRequest extends Msg {
+    /**
+     * @param {string[]} features
+     */
+    constructor(features) {
+        super();
+        this.features = features;
+    }
+}
 export class RejectToggleBreakageReport extends Msg {}
 export class SeeWhatIsSent extends Msg {}
 
