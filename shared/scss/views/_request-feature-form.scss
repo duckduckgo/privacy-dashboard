@@ -58,8 +58,8 @@
 
 // Feature Pills Grid
 .feature-pills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 24px;
 }
@@ -89,14 +89,6 @@
     text-align: center;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    &:hover {
-        --pill-background: var(--color-surface-hover);
-        --pill-border: 1px solid var(--color-lines-medium);
-    }
 
     &:active {
         --pill-background: var(--color-surface-active);
@@ -108,11 +100,6 @@
         --pill-color: var(--color-button-primary);
         --pill-font-weight: 500;
 
-        &:hover {
-            --pill-background: var(--color-blue-60);
-            --pill-border: 1px solid var(--color-blue-60);
-        }
-
         &:active {
             --pill-background: var(--color-blue-70);
             --pill-border: 1px solid var(--color-blue-70);
@@ -120,10 +107,6 @@
     }
 
     .body--theme-dark & {
-        &:hover {
-            --pill-background: rgba(255, 255, 255, 0.08);
-        }
-
         &:active {
             --pill-background: rgba(255, 255, 255, 0.12);
         }
@@ -158,6 +141,7 @@
         --pill-font-size: 13px;
         --pill-padding: 11px 16px;
         --pill-background: rgba(0, 0, 0, 0.01);
+        --pill-font-weight: 400;
 
         &--selected {
             --pill-color: #2B55CA;
@@ -249,6 +233,7 @@
     gap: 10px;
     justify-content: space-between;
     align-items: center;
+    margin-top: 16px;
 }
 
 .action-button {
@@ -339,6 +324,17 @@
         --button-padding: 0 12px;
         --buton-color: rgba(0, 0, 0, 0.84);
     }
+}
+
+.reports-text {
+    color: rgba(0, 0, 0, 0.60);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "SF Pro";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13px; /* 130% */
+    letter-spacing: 0.12px;
 }
 
 // Responsive adjustments for smaller screens

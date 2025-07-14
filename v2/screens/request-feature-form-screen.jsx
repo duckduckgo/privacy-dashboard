@@ -107,6 +107,7 @@ function CustomFeatureInput({ value, onChange }) {
 function ActionButtons({ onCancel, onSubmit, isSubmitDisabled }) {
     return (
         <div className="padding-x">
+            <label className="reports-text">Reports sent to DuckDuckGo are 100% anonymous and only include your message, the DuckDuckGo browser version, and your macOS version</label>
             <div className="action-buttons">
                 <button
                     className="action-button action-button"
