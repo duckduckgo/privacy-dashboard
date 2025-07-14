@@ -162,7 +162,8 @@ export type ScreenKind =
   | "trackers"
   | "nonTrackers"
   | "consentManaged"
-  | "cookieHidden";
+  | "cookieHidden"
+  | "requestNewFeatureForm";
 export type IncomingExtensionMessage =
   | IncomingResponse
   | IncomingToggleReport

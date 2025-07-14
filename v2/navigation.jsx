@@ -27,7 +27,7 @@ const availableScreens = {
     breakageFormFinalStep: { kind: 'subview', component: () => <BreakageForm /> },
     breakageFormSuccess: { kind: 'subview', component: () => <BreakageFormSuccess /> },
     toggleReport: { kind: 'subview', component: () => <ToggleReportScreen /> },
-    requestFeatureForm: { kind: 'subview', component: () => <RequestFeatureFormScreen /> },
+    requestNewFeatureForm: { kind: 'subview', component: () => <RequestFeatureFormScreen /> },
     //
     connection: { kind: 'subview', component: () => <ConnectionScreen /> },
     trackers: { kind: 'subview', component: () => <TrackersScreen /> },

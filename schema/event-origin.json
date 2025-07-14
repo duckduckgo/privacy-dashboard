@@ -20,7 +20,7 @@
                 "nonTrackers",
                 "consentManaged",
                 "cookieHidden",
-                "requestFeatureForm"
+                "requestNewFeatureForm"
             ]
         }
     }

@@ -27,8 +27,8 @@ function initialStack(features) {
     if (features.initialScreen === 'breakageFormFinalStep') {
         return ['breakageForm', 'breakageFormCategorySelection', 'breakageFormFinalStep'];
     }
-    if (features.initialScreen === 'requestFeatureForm') {
-        return ['requestFeatureForm'];
+    if (features.initialScreen === 'requestNewFeatureForm') {
+        return ['requestNewFeatureForm'];
     }
 
     return ['primaryScreen'];

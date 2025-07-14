@@ -53,7 +53,7 @@ export const localeSchema = z.literal("locale");
 
 export const descriptionSchema = z.literal("description");
 
-export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("breakageFormCategorySelection"), z.literal("breakageFormFinalStep"), z.literal("breakageFormSuccess"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
+export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("breakageFormCategorySelection"), z.literal("breakageFormFinalStep"), z.literal("breakageFormSuccess"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden"), z.literal("requestNewFeatureForm")]);
 
 export const stateBlockedSchema = z.object({
     blocked: z.object({})
