@@ -12,7 +12,7 @@ const keys = Object.keys(states);
 /**
  * @type {Screen[]}
  */
-const validInitialScreens = ['breakageForm', 'breakageFormFinalStep', 'toggleReport', 'primaryScreen'];
+const validInitialScreens = ['breakageForm', 'breakageFormFinalStep', 'toggleReport', 'primaryScreen', 'requestFeatureForm'];
 const screens = Object.fromEntries(validInitialScreens.map((x) => [x, x]));
 
 const items = [

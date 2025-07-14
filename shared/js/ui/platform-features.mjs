@@ -30,7 +30,8 @@ export function createPlatformFeatures(platform) {
         'breakageForm',
         'breakageFormCategorySelection',
         'breakageFormFinalStep',
-        'toggleReport'
+        'toggleReport',
+        'requestFeatureForm'
     ];
 
     if (url.searchParams.has('screen')) {

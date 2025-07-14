@@ -19,7 +19,8 @@
                 "trackers",
                 "nonTrackers",
                 "consentManaged",
-                "cookieHidden"
+                "cookieHidden",
+                "requestFeatureForm"
             ]
         }
     }

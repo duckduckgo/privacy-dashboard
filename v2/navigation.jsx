@@ -20,7 +20,6 @@ import { screenKindSchema } from '../schema/__generated__/schema.parsers.mjs';
 /** @type {Record<ScreenName, { kind: 'subview' | 'root', component: () => any}>} */
 const availableScreens = {
     primaryScreen: { kind: 'root', component: () => <PrimaryScreen /> },
-    requestFeatureForm: { kind: 'root', component: () => <RequestFeatureFormScreen /> },
 
     // screens that would load immediately
     breakageForm: { kind: 'subview', component: () => <BreakagePrimaryScreen /> },
@@ -28,7 +27,7 @@ const availableScreens = {
     breakageFormFinalStep: { kind: 'subview', component: () => <BreakageForm /> },
     breakageFormSuccess: { kind: 'subview', component: () => <BreakageFormSuccess /> },
     toggleReport: { kind: 'subview', component: () => <ToggleReportScreen /> },
-
+    requestFeatureForm: { kind: 'subview', component: () => <RequestFeatureFormScreen /> },
     //
     connection: { kind: 'subview', component: () => <ConnectionScreen /> },
     trackers: { kind: 'subview', component: () => <TrackersScreen /> },
