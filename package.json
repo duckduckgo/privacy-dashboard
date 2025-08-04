@@ -44,7 +44,7 @@
         "@formatjs/intl-locale": "^3.0.7",
         "@material/ripple": "^14.0.0",
         "@playwright/test": "^1.45.3",
-        "@types/chrome": "^0.0.203",
+        "@types/chrome": "^0.1.1",
         "@types/eslint__js": "^8.42.3",
         "@types/node": "22.10.7",
         "chokidar-cli": "^3.0.0",
