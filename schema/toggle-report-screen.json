@@ -42,7 +42,8 @@
                         { "$ref": "#/definitions/userRefreshCount" },
                         { "$ref": "#/definitions/jsPerformance" },
                         { "$ref": "#/definitions/locale" },
-                        { "$ref": "#/definitions/description" }
+                        { "$ref": "#/definitions/description" },
+                        { "$ref": "#/definitions/originTrials" }
                     ]
                 },
                 "additional": {
@@ -166,6 +167,11 @@
             "title": "Description",
             "const": "description",
             "description": "Your selected category and optional comments"
+        },
+        "originTrials": {
+            "title": "Origin Trials",
+            "const": "originTrials",
+            "description": ""
         }
     }
 }

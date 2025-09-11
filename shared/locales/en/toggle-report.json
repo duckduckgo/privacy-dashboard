@@ -118,5 +118,9 @@
   "dynamic_description": {
     "title": "Your selected category and optional comments",
     "note": "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_originTrials": {
+    "title": "Any origin trials that were enabled...",
+    "note": "..."
   }
 }
