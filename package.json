@@ -55,7 +55,7 @@
         "eslint": "^9.20.1",
         "eventemitter2": "4.1.0",
         "http-server": "^13.0.2",
-        "i18next": "^21.6.14",
+        "i18next": "^25.6.1",
         "i18next-icu": "^2.0.3",
         "is-plain-object": "5.0.0",
         "jquery": "^3.7.1",
