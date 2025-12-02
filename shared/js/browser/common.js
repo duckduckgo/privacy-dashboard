@@ -89,7 +89,9 @@ export function setupMutationObserverForExtensions(callback) {
 
 const DARK_THEME = 'dark';
 const LIGHT_THEME = 'light';
+const VALID_THEME_VARIANTS = ['default', 'coolGray', 'slateBlue', 'green', 'violet', 'rose', 'orange', 'desert'];
 let explicitlySetTheme = '';
+let explicitlySetThemeVariant = '';
 let detectedTheme = LIGHT_THEME;
 const oppositeTheme = {
     [LIGHT_THEME]: DARK_THEME,
@@ -101,12 +103,22 @@ function swapThemeTo(theme) {
     document.body.classList.add(`body--theme-${theme}`);
 }
 
+function swapThemeVariantTo(variant) {
+    for (const v of VALID_THEME_VARIANTS) {
+        document.body.classList.remove(`body--theme-variant-${v}`);
+    }
+    if (variant && variant !== 'default' && VALID_THEME_VARIANTS.includes(variant)) {
+        document.body.classList.add(`body--theme-variant-${variant}`);
+    }
+}
+
 function updateTheme() {
     if (explicitlySetTheme) {
         swapThemeTo(explicitlySetTheme);
     } else {
         swapThemeTo(detectedTheme);
     }
+    swapThemeVariantTo(explicitlySetThemeVariant);
 }
 
 export function setupColorScheme() {
@@ -116,7 +128,7 @@ export function setupColorScheme() {
     }
 
     if (query.addEventListener) {
-        query?.addEventListener('change', (event) => {
+        query.addEventListener('change', (event) => {
             detectedTheme = event.matches ? DARK_THEME : LIGHT_THEME;
             updateTheme();
         });
@@ -128,18 +140,51 @@ export function setupColorScheme() {
     }
 
     updateTheme();
+}
 
-    return (theme = '') => {
-        theme = theme.trim().toLowerCase();
-
+/**
+ * Sets the explicit theme and/or theme variant.
+ *
+ * @param {string | { theme?: string, themeVariant?: string }} payload
+ *   - If a string, sets the theme ('light' or 'dark') for backwards compatibility
+ *   - If an object, can set both theme and themeVariant
+ */
+export function setColorScheme(payload) {
+    if (typeof payload === 'string') {
+        // Backwards compatibility: string is just the theme
+        const theme = payload.trim().toLowerCase();
+        if (theme === LIGHT_THEME || theme === DARK_THEME) {
+            explicitlySetTheme = theme;
+        } else {
+            explicitlySetTheme = '';
+        }
+    } else if (typeof payload === 'object') {
+        // New format: object with theme and/or themeVariant
+        const theme = payload.theme?.trim()?.toLowerCase();
         if (theme === LIGHT_THEME || theme === DARK_THEME) {
             explicitlySetTheme = theme;
         } else {
             explicitlySetTheme = '';
         }
 
-        updateTheme();
-    };
+        const variant = payload.themeVariant;
+        if (variant && VALID_THEME_VARIANTS.includes(variant)) {
+            explicitlySetThemeVariant = variant;
+        } else {
+            explicitlySetThemeVariant = '';
+        }
+    }
+
+    updateTheme();
+}
+
+/**
+ * Called by native platforms to update theme settings.
+ *
+ * @param {string | { theme?: string, themeVariant?: string }} payload
+ */
+export function onChangeTheme(payload) {
+    setColorScheme(payload);
 }
 
 /**

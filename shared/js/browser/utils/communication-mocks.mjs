@@ -55,6 +55,13 @@ export function sharedMockDataProvider(params) {
     if (platform?.name === 'macos' || platform?.name === 'ios' || platform?.name === 'android' || platform?.name === 'windows') {
         window.onChangeMaliciousSiteStatus?.(state.maliciousSiteStatus);
     }
+
+    if (state.theme || state.themeVariant) {
+        window.onChangeTheme?.({
+            theme: state.theme,
+            themeVariant: state.themeVariant,
+        });
+    }
 }
 
 export function windowsMockApis() {

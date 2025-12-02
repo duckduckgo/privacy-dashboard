@@ -125,6 +125,58 @@ body {
         }
     }
 
+    // TODO: Use colour variables from design-tokens
+
+    // Theme variant background colors (light mode)
+    &.body--theme-light {
+        &.body--theme-variant-coolGray {
+            --bg: #d2d5e3;
+        }
+        &.body--theme-variant-slateBlue {
+            --bg: #d2e5f3;
+        }
+        &.body--theme-variant-green {
+            --bg: #e3eee1;
+        }
+        &.body--theme-variant-violet {
+            --bg: #e7e4f5;
+        }
+        &.body--theme-variant-rose {
+            --bg: #f8ebf5;
+        }
+        &.body--theme-variant-orange {
+            --bg: #fcedd8;
+        }
+        &.body--theme-variant-desert {
+            --bg: #eee9e1;
+        }
+    }
+
+    // Theme variant background colors (dark mode)
+    &.body--theme-dark {
+        &.body--theme-variant-coolGray {
+            --bg: #2b2f45;
+        }
+        &.body--theme-variant-slateBlue {
+            --bg: #1e3347;
+        }
+        &.body--theme-variant-green {
+            --bg: #203b30;
+        }
+        &.body--theme-variant-violet {
+            --bg: #2e2158;
+        }
+        &.body--theme-variant-rose {
+            --bg: #5b194b;
+        }
+        &.body--theme-variant-orange {
+            --bg: #54240c;
+        }
+        &.body--theme-variant-desert {
+            --bg: #3c3833;
+        }
+    }
+
     color: var(--color-text-primary);
     background: var(--bg);
     width: var(--width);

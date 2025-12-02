@@ -425,6 +425,34 @@ export class DashboardPage {
         await this.page.locator('"Połączenie jest szyfrowane"').waitFor({ timeout: 3000 });
     }
 
+    /**
+     * @param {'light' | 'dark'} theme
+     */
+    async hasThemeClass(theme) {
+        await expect(this.page.locator('body')).toHaveClass(new RegExp(`body--theme-${theme}`));
+    }
+
+    /**
+     * @param {'light' | 'dark'} theme
+     */
+    async doesNotHaveThemeClass(theme) {
+        await expect(this.page.locator('body')).not.toHaveClass(new RegExp(`body--theme-${theme}`));
+    }
+
+    /**
+     * @param {string} variant
+     */
+    async hasThemeVariantClass(variant) {
+        await expect(this.page.locator('body')).toHaveClass(new RegExp(`body--theme-variant-${variant}`));
+    }
+
+    /**
+     * @param {string} variant
+     */
+    async doesNotHaveThemeVariantClass(variant) {
+        await expect(this.page.locator('body')).not.toHaveClass(new RegExp(`body--theme-variant-${variant}`));
+    }
+
     async hasFrenchLinkTextForConnectionInfo() {
         await this.page.locator('"La connexion est chiffrée"').waitFor({ timeout: 3000 });
     }

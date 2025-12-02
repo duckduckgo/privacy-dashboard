@@ -28,10 +28,7 @@ import { backgroundMessage, getBackgroundTabData, fetch as macosFetch, setupShar
  * iOS specific setup
  */
 export function setup() {
-    const setColorScheme = setupColorScheme();
-    window.onChangeTheme = function (themeName) {
-        setColorScheme(themeName);
-    };
+    setupColorScheme();
     window.history.replaceState({}, '', window.location.href);
     setupShared();
 }
