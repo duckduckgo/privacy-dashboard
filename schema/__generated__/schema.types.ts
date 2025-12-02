@@ -66,7 +66,8 @@ export type DataItemId =
   | UserRefreshCount
   | JSPerformance
   | Locale
-  | Description;
+  | Description
+  | DetectorData;
 /**
  * Web browser engine version number
  */
@@ -151,6 +152,10 @@ export type Locale = "locale";
  * Your selected category and optional comments
  */
 export type Description = "description";
+/**
+ * Information about detected page elements that may be related to site issues
+ */
+export type DetectorData = "detectorData";
 export type ScreenKind =
   | "primaryScreen"
   | "breakageForm"

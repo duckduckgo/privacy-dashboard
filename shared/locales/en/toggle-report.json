@@ -118,5 +118,9 @@
   "dynamic_description": {
     "title": "Your selected category and optional comments",
     "note": "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData": {
+    "title": "Information about detected page elements that may be related to site issues",
+    "note": "This text provides information about detected page elements that may be causing site issues."
   }
 }

@@ -49,5 +49,7 @@ export function namedString(item) {
             return ns.toggleReport('dynamic_locale.title');
         case 'description':
             return ns.toggleReport('dynamic_description.title');
+        case 'detectorData':
+            return ns.toggleReport('dynamic_detectorData.title');
     }
 }
