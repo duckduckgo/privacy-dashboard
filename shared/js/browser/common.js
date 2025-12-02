@@ -179,7 +179,22 @@ export function setColorScheme(payload) {
 }
 
 /**
- * Called by native platforms to update theme settings.
+ * Sets the color scheme theme and/or theme variant.
+ *
+ * This can be called with either a string for backwards compatibility,
+ * or an object to set both theme and themeVariant.
+ *
+ * Example Payloads:
+ *
+ * ```
+ * // String format (backwards compatible)
+ * "dark"
+ * "light"
+ *
+ * // Object format
+ * { "theme": "dark" }
+ * { "theme": "light", "themeVariant": "violet" }
+ * ```
  *
  * @param {string | { theme?: string, themeVariant?: string }} payload
  */

@@ -604,7 +604,11 @@ export function setupShared() {
 }
 
 /**
- * {@inheritDoc common.onChangeTheme}
+ * Sets the color scheme theme and/or theme variant.
+ *
+ * This can be called with either a string for backwards compatibility,
+ * or an object to set both theme and themeVariant.
+ *
  * @type {import("./common.js").onChangeTheme}
  * @group macOS -> JavaScript Interface
  * @example
