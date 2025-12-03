@@ -41,6 +41,7 @@ import {
     getContentHeight,
     OpenSettingsMessages,
     SetListsMessage,
+    setColorScheme,
     setupColorScheme,
     setupMutationObserver,
     SubmitBrokenSiteReportMessage,
@@ -131,6 +132,14 @@ function handleViewModelUpdate(viewModel) {
     trackerBlockingData.isInvalidCert = viewModel.isInvalidCert;
 
     if (trackerBlockingData) trackerBlockingData.upgradedHttps = upgradedHttps;
+
+    // Handle theme settings if present
+    if (viewModel.theme || viewModel.themeVariant) {
+        setColorScheme({
+            theme: viewModel.theme,
+            themeVariant: viewModel.themeVariant,
+        });
+    }
 
     resolveInitialRender();
 }

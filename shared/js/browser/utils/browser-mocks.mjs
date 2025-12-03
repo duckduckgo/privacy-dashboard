@@ -32,7 +32,8 @@ export function installBrowserMocks(platform) {
     }
 
     const testDataStates = createDataStates(/** @type {any} */ (google), /** @type {any} */ (cnn));
-    const stateFromUrl = new URLSearchParams(window.location.search).get('state');
+    const urlParams = new URLSearchParams(window.location.search);
+    const stateFromUrl = urlParams.get('state');
 
     let mock;
     if (stateFromUrl && stateFromUrl in testDataStates) {
@@ -41,6 +42,12 @@ export function installBrowserMocks(platform) {
         mock = testDataStates.protectionsOn_blocked;
         console.warn('state not found, falling back to default. state: ', 'protectionsOn_blocked', stateFromUrl);
     }
+
+    // Allow theme/themeVariant overrides from URL params
+    const themeFromUrl = urlParams.get('theme');
+    const themeVariantFromUrl = urlParams.get('themeVariant');
+    if (themeFromUrl) mock.theme = themeFromUrl;
+    if (themeVariantFromUrl) mock.themeVariant = themeVariantFromUrl;
 
     console.groupCollapsed(`${platform.name} open for more Dashboard States`);
     const urls = Object.keys(testDataStates).map((key) => {

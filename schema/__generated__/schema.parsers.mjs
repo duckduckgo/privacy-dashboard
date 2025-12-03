@@ -11,6 +11,8 @@ export const adClickAttributionReasonSchema = z.literal("adClickAttribution");
 
 export const otherThirdPartyRequestReasonSchema = z.literal("otherThirdPartyRequest");
 
+export const themeVariantSchema = z.union([z.literal("default"), z.literal("coolGray"), z.literal("slateBlue"), z.literal("green"), z.literal("violet"), z.literal("rose"), z.literal("orange"), z.literal("desert")]);
+
 export const wVVersionSchema = z.literal("wvVersion");
 
 export const requestsSchema = z.literal("requests");
@@ -324,7 +326,9 @@ export const windowsViewModelSchema = z.object({
     cookiePromptManagementStatus: cookiePromptManagementStatusSchema.optional(),
     isInvalidCert: z.boolean().optional(),
     localeSettings: localeSettingsSchema.optional(),
-    maliciousSiteStatus: maliciousSiteStatusSchema.optional()
+    maliciousSiteStatus: maliciousSiteStatusSchema.optional(),
+    theme: z.string().optional(),
+    themeVariant: themeVariantSchema.optional()
 });
 
 export const toggleReportScreenSchema = z.object({

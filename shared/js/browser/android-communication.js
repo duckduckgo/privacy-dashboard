@@ -21,6 +21,7 @@ import {
     CloseMessage,
     FetchToggleReportOptions,
     FetchBreakageFormOptions,
+    onChangeTheme,
     OpenSettingsMessages,
     RejectToggleBreakageReport,
     SeeWhatIsSent,
@@ -515,10 +516,8 @@ const getBackgroundTabDataAndroid = () => {
 };
 
 export function setup(debug) {
-    const setColorScheme = setupColorScheme();
-    window.onChangeTheme = function (themeName) {
-        setColorScheme(themeName);
-    };
+    setupColorScheme();
+    window.onChangeTheme = onChangeTheme;
     window.onChangeProtectionStatus = onChangeProtectionStatus;
     window.onChangeLocale = onChangeLocale;
     window.onChangeMaliciousSiteStatus = onChangeMaliciousSiteStatus;

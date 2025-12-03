@@ -12,6 +12,39 @@ test.describe('initial page data', () => {
     });
 });
 
+test.describe('theme', () => {
+    test('defaults to light theme when no explicit theme is set', async ({ page }) => {
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.protectionsOn]);
+        await dash.hasThemeClass('light');
+    });
+    test('defaults to dark theme when browser prefers dark', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'dark' });
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates.protectionsOn]);
+        await dash.hasThemeClass('dark');
+    });
+    test('explicit theme in view model overrides browser preference', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'dark' });
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates['theme-light']]);
+        await dash.hasThemeClass('light');
+        await dash.doesNotHaveThemeClass('dark');
+    });
+    test('theme variant in view model applies variant class', async ({ page }) => {
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates['theme-light-variant-violet']]);
+        await dash.hasThemeClass('light');
+        await dash.hasThemeVariantClass('violet');
+    });
+    test('dark theme with variant in view model applies both classes', async ({ page }) => {
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates['theme-dark-variant-violet']]);
+        await dash.hasThemeClass('dark');
+        await dash.hasThemeVariantClass('violet');
+    });
+});
+
 test.describe('breakage form', () => {
     test('sends message when breakage form is triggered from primary screen', async ({ page }) => {
         /** @type {DashboardPage} */

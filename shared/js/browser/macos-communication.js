@@ -29,6 +29,7 @@ import {
     FetchToggleReportOptions,
     FetchBreakageFormOptions,
     getContentHeight,
+    onChangeTheme,
     OpenSettingsMessages,
     RejectToggleBreakageReport,
     SeeWhatIsSent,
@@ -594,12 +595,32 @@ export function setupShared() {
         channel?.send('updateTabData');
     };
     window.onChangeConsentManaged = onChangeConsentManaged;
+    window.onChangeTheme = onChangeTheme;
     setupGlobalOpenerListener((href) => {
         privacyDashboardOpenUrlInNewTab({
             url: href,
         });
     });
 }
+
+/**
+ * Sets the color scheme theme and/or theme variant.
+ *
+ * This can be called with either a string for backwards compatibility,
+ * or an object to set both theme and themeVariant.
+ *
+ * @type {import("./common.js").onChangeTheme}
+ * @group macOS -> JavaScript Interface
+ * @example
+ *
+ * ```swift
+ * // swift
+ * evaluate(js: "window.onChangeTheme({ theme: 'dark', themeVariant: 'violet' })", in: webView)
+ * // or for backwards compatibility:
+ * evaluate(js: "window.onChangeTheme('dark')", in: webView)
+ * ```
+ */
+export { onChangeTheme };
 
 /**
  * macOS specific setup
