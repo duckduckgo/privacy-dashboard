@@ -100,6 +100,10 @@
     "title" : "Witryna poprosiła mnie o wyłączenie blokady reklam",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Wyskakujące okienka nie otwierają się lub są uszkodzone",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Coś innego",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

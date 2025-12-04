@@ -100,6 +100,10 @@
     "title" : "Сайтът иска да деактивирам инструмента за блокиране на реклами",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Изскачащите прозорци не се отварят или са повредени",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Нещо друго",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

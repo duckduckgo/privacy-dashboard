@@ -100,6 +100,10 @@
     "title" : "Nettstedet ba meg om å deaktivere annonseblokkering",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Popup-vinduer åpner ikke eller er ødelagte",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Noe annet",
     "note" : "User is reporting this page because of some other reason than the ones we listed"
