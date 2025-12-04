@@ -99,6 +99,10 @@
         "title": "Site asked me to disable ad blocker",
         "note": "User is reporting this page asked them to disable their privacy or ad blocking extension"
     },
+    "popupsNotOpening": {
+        "title": "Pop-up windows not opening or broken",
+        "note": "User is reporting this page because pop-up windows are not opening or not functioning properly"
+    },
     "other": {
         "title": "Something else",
         "note": "User is reporting this page because of some other reason than the ones we listed"

@@ -100,6 +100,10 @@
     "title" : "A webhely a reklámblokkoló kikapcsolását kérte",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "A felugró ablakok nem nyílnak meg, vagy hibásak",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Valami más",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

@@ -11,6 +11,7 @@ export const defaultCategories = () => {
         paywall: ns.report('paywall.title'),
         videos: ns.report('videos.title'),
         comments: ns.report('comments.title'),
+        'popups-not-opening': ns.report('popupsNotOpening.title'),
         login: ns.report('login.title'),
         shopping: ns.report('shopping.title'),
         other: ns.report('other.title'),

@@ -102,7 +102,9 @@ const resolveInitialRender = function () {
     const isMaliciousSiteSet = maliciousSiteStatus && maliciousSiteStatus.kind !== undefined;
 
     // wait for cert info
-    if (isInvalidCert === null) return console.log('isInvalidCert was not ready');
+    if (isInvalidCert === null) {
+        return;
+    }
     if (!isLocaleSet || !isUpgradedHttpsSet || !isIsProtectedSet || !isTrackerBlockingDataSet || !isMaliciousSiteSet) {
         return;
     }
