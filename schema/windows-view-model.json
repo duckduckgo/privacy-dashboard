@@ -34,6 +34,13 @@
         },
         "maliciousSiteStatus": {
             "$ref": "./malicious-site.json"
+        },
+        "theme": {
+            "type": "string",
+            "description": "The color scheme theme ('light' or 'dark')"
+        },
+        "themeVariant": {
+            "$ref": "./theme-variant.json"
         }
     }
 }

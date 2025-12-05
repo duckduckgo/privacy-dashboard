@@ -100,6 +100,10 @@
     "title" : "Stránka ma požiadala, aby som vypol/vypla blokovanie reklám",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Vyskakovacie okná sa neotvárajú alebo sú nefunkčné",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Niečo iné",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

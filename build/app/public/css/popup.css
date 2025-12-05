@@ -332,6 +332,62 @@ body.body--theme-dark.environment--ios {
 body.body--theme-dark.environment--macos {
   --bg: #333333;
 }
+body.body--theme-light.body--theme-variant-coolGray {
+  --bg: #d2d5e3;
+  --page-bg: #d2d5e3;
+}
+body.body--theme-light.body--theme-variant-slateBlue {
+  --bg: #d2e5f3;
+  --page-bg: #d2e5f3;
+}
+body.body--theme-light.body--theme-variant-green {
+  --bg: #e3eee1;
+  --page-bg: #e3eee1;
+}
+body.body--theme-light.body--theme-variant-violet {
+  --bg: #e7e4f5;
+  --page-bg: #e7e4f5;
+}
+body.body--theme-light.body--theme-variant-rose {
+  --bg: #f8ebf5;
+  --page-bg: #f8ebf5;
+}
+body.body--theme-light.body--theme-variant-orange {
+  --bg: #fcedd8;
+  --page-bg: #fcedd8;
+}
+body.body--theme-light.body--theme-variant-desert {
+  --bg: #eee9e1;
+  --page-bg: #eee9e1;
+}
+body.body--theme-dark.body--theme-variant-coolGray {
+  --bg: #2b2f45;
+  --page-bg: #2b2f45;
+}
+body.body--theme-dark.body--theme-variant-slateBlue {
+  --bg: #1e3347;
+  --page-bg: #1e3347;
+}
+body.body--theme-dark.body--theme-variant-green {
+  --bg: #203b30;
+  --page-bg: #203b30;
+}
+body.body--theme-dark.body--theme-variant-violet {
+  --bg: #2e2158;
+  --page-bg: #2e2158;
+}
+body.body--theme-dark.body--theme-variant-rose {
+  --bg: #5b194b;
+  --page-bg: #5b194b;
+}
+body.body--theme-dark.body--theme-variant-orange {
+  --bg: #54240c;
+  --page-bg: #54240c;
+}
+body.body--theme-dark.body--theme-variant-desert {
+  --bg: #3c3833;
+  --page-bg: #3c3833;
+}
 
 .app-height {
   height: var(--height);
@@ -796,12 +852,12 @@ body.environment--windows {
 }
 
 .main-nav__chev {
-  width: 7px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   margin-left: auto;
-  margin-right: 16px;
+  margin-right: 12px;
   background-repeat: no-repeat;
-  background-size: 7px;
+  background-size: 16px;
   background-position: center center;
   opacity: 60%;
   background-image: url("../../img/refresh-assets/chevron.svg");
@@ -1000,29 +1056,29 @@ body.environment--windows {
 }
 
 .hero-icon--tracker-network {
-  background-image: url("../../img/refresh-assets/Network-128.svg");
+  background-image: url("../../img/refresh-assets/Network-Warning-128.svg");
 }
 
 .hero-icon--insecure-connection,
 .hero-icon--trackers-blocked,
 .hero-icon--connection-none,
 .hero-icon--connection-invalid {
-  background-image: url("../../img/refresh-assets/Unlocked-128.svg");
+  background-image: url("../../img/refresh-assets/Lock-Warning-128.svg");
 }
 
 .hero-icon--major-networks-blocked {
-  background-image: url("../../img/refresh-assets/Shield-128.svg");
+  background-image: url("../../img/refresh-assets/Shield-Check-128.svg");
 }
 
 .hero-icon--protections-off,
 .hero-icon--major-networks-warning,
 .hero-icon--major-networks-protections-off {
-  background-image: url("../../img/refresh-assets/Block-Disabled-128.svg");
+  background-image: url("../../img/refresh-assets/Shield-Alert-128.svg");
 }
 
 .hero-icon--info,
 .hero-icon--major-networks-info {
-  background-image: url("../../img/refresh-assets/Block-Info-128.svg");
+  background-image: url("../../img/refresh-assets/Shield-Info-128.svg");
 }
 
 .hero-icon--no-activity,
@@ -1032,7 +1088,7 @@ body.environment--windows {
 
 .hero-icon--connection-secure,
 .hero-icon--connection-upgraded {
-  background-image: url("../../img/refresh-assets/Locked-128.svg");
+  background-image: url("../../img/refresh-assets/Lock-Check-128.svg");
 }
 
 .hero-icon--cookies-managed {
@@ -1045,7 +1101,7 @@ body.environment--windows {
 
 .hero-icon--malicious,
 .hero-icon--connection-malicious {
-  background-image: url("../../img/refresh-assets/Phishing-128.svg");
+  background-image: url("../../img/refresh-assets/Malware-Site-128.svg");
 }
 
 .hero-icon--chat {
@@ -3134,6 +3190,7 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   overflow: hidden;
   white-space: nowrap;
   direction: rtl;
+  text-align: left;
   padding-right: 10px;
   line-height: 18px;
 }

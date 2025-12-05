@@ -11,6 +11,39 @@ test.describe('initial page data', () => {
     });
 });
 
+test.describe('theme', () => {
+    test('defaults to light theme when no explicit theme is set', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates.protectionsOn]);
+        await dash.hasThemeClass('light');
+    });
+    test('defaults to dark theme when browser prefers dark', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'dark' });
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates.protectionsOn]);
+        await dash.hasThemeClass('dark');
+    });
+    test('onChangeTheme with explicit theme overrides browser preference', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'dark' });
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates['theme-light']]);
+        await dash.hasThemeClass('light');
+        await dash.doesNotHaveThemeClass('dark');
+    });
+    test('onChangeTheme with theme variant applies variant class', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates['theme-light-variant-violet']]);
+        await dash.hasThemeClass('light');
+        await dash.hasThemeVariantClass('violet');
+    });
+    test('onChangeTheme with dark theme and variant applies both classes', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates['theme-dark-variant-violet']]);
+        await dash.hasThemeClass('dark');
+        await dash.hasThemeVariantClass('violet');
+    });
+});
+
 test.describe('Protections toggle', () => {
     toggleFlows((page) => DashboardPage.webkit(page, { platform: 'macos' }));
 });

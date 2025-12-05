@@ -262,6 +262,8 @@ export class MockData {
      * @param {import('../../../../../schema/__generated__/schema.types').EmailProtectionUserData} [params.emailProtectionUserData]
      * @param {{screen?: import('../../../../../schema/__generated__/schema.types').ScreenKind}} [params.urlParams]
      * @param {boolean} [params.isInvalidCert]
+     * @param {string} [params.theme]
+     * @param {import('../../../../../schema/__generated__/schema.types').ThemeVariant} [params.themeVariant]
      */
     constructor(params) {
         this.urlParams = params.urlParams || {};
@@ -285,6 +287,8 @@ export class MockData {
         this.emailProtectionUserData = params.emailProtectionUserData;
         this.fireButtonOptions = params.fireButtonOptions;
         this.isInvalidCert = params.isInvalidCert ?? false;
+        this.theme = params.theme;
+        this.themeVariant = params.themeVariant;
 
         /** @type {Protections} */
         this.protections = Protections.default();
@@ -335,6 +339,8 @@ export class MockData {
                 isInvalidCert: this.isInvalidCert,
                 localeSettings: this.localeSettings,
                 maliciousSiteStatus: this.maliciousSiteStatus || { kind: null },
+                theme: this.theme,
+                themeVariant: this.themeVariant,
             },
         };
     }
@@ -837,6 +843,28 @@ export const createDataStates = (google, cnn) => {
             remoteFeatureSettings: {
                 webBreakageForm: { state: 'disabled' },
             },
+        }),
+        'theme-light': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            theme: 'light',
+        }),
+        'theme-dark': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            theme: 'dark',
+        }),
+        'theme-light-variant-violet': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            theme: 'light',
+            themeVariant: 'violet',
+        }),
+        'theme-dark-variant-violet': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            theme: 'dark',
+            themeVariant: 'violet',
         }),
         empty: new MockData({}),
     };

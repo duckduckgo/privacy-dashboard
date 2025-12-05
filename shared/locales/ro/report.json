@@ -100,6 +100,10 @@
     "title" : "Site-ul mi-a solicitat să dezactivez funcția de blocare a reclamelor",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Ferestrele pop-up nu se deschid sau sunt defecte",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Altceva",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

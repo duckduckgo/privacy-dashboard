@@ -100,6 +100,10 @@
     "title" : "O site solicitou que desativasse o bloqueador de anúncios",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Janelas pop-up que não abrem ou não funcionam",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Outra coisa",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -9,7 +9,7 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-const config: PlaywrightTestConfig = {
+export default defineConfig({
     testDir: './integration-tests',
     /* Maximum time one test can run for. */
     timeout: 30 * 1000,
@@ -104,6 +104,4 @@ const config: PlaywrightTestConfig = {
         ignoreHTTPSErrors: true,
         env: process.env as any,
     },
-};
-
-export default config;
+});

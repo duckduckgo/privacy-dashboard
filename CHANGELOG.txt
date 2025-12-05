@@ -1,1 +1,23 @@
-- Scam Blocker translations (#448)
+- adding new category for breakage report 'popupsNotOpening' (#595)
+- Merge pull request #596 from duckduckgo/randerson/add-theming-support
+- Add support for interpolating a loading background
+- Set --page-bg as well as --bg
+- Fix `npm run docs`
+- Add theme and variant support to dashboard
+- Update icons for refresh
+- rm: opacities from light icons
+- fix: category selection
+- fix: Category selection chevron
+- chore: update snapshots
+- chore: Update arrows and chevrons
+- chore: update snapshots for arrow
+- chore: Update arrows and chevrons
+- chore: Update counter
+- docs: Add fetch-fonts command to Contributing
+- rm: unused icons
+- chore: Update most snapshots
+- rm: unused icons
+- revert check-color
+- chore: additional changes
+- chore: more icons
+- chore: Swap in new Shield 128 svgs

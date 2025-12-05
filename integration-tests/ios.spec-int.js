@@ -78,6 +78,21 @@ test.describe('localization', () => {
     });
 });
 
+test.describe('theme', () => {
+    test('onChangeTheme with "light" applies light theme', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page);
+        await dash.addState([testDataStates['theme-light']]);
+        await dash.hasThemeClass('light');
+        await dash.doesNotHaveThemeClass('dark');
+    });
+    test('onChangeTheme with "dark" applies dark theme', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page);
+        await dash.addState([testDataStates['theme-dark']]);
+        await dash.hasThemeClass('dark');
+        await dash.doesNotHaveThemeClass('light');
+    });
+});
+
 test.describe('Close', () => {
     test('pressing close should call native API on iOS', async ({ page }) => {
         const dash = await DashboardPage.webkit(page);

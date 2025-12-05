@@ -45,6 +45,10 @@ export type WindowsIncomingMessage =
   | WindowsIncomingVisibility
   | WindowsIncomingViewModel
   | WindowsIncomingToggleReportOptions;
+/**
+ * The color scheme theme variant
+ */
+export type ThemeVariant = "default" | "coolGray" | "slateBlue" | "green" | "violet" | "rose" | "orange" | "desert";
 export type DataItemId =
   | WVVersion
   | Requests
@@ -465,6 +469,11 @@ export interface WindowsViewModel {
   isInvalidCert?: boolean;
   localeSettings?: LocaleSettings;
   maliciousSiteStatus?: MaliciousSiteStatus;
+  /**
+   * The color scheme theme ('light' or 'dark')
+   */
+  theme?: string;
+  themeVariant?: ThemeVariant;
 }
 /**
  * This describes the fields needed for the dashboard to display the status of CPM (Cookie Prompt Management)

@@ -100,6 +100,10 @@
     "title" : "Web-lokacija me zamolila da onemogućim blokiranje oglasa",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Skočni prozori se ne otvaraju ili su neispravni",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Nešto drugo",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

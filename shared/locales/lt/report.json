@@ -100,6 +100,10 @@
     "title" : "Svetainė paprašė manęs išjungti reklamos blokavimo programą",
     "note" : "User is reporting this page asked them to disable their privacy or ad blocking extension"
   },
+  "popupsNotOpening" : {
+    "title" : "Iššokantys langai neatsidaro arba sugedę",
+    "note" : "User is reporting this page because pop-up windows are not opening or not functioning properly"
+  },
   "other" : {
     "title" : "Kažkas kito",
     "note" : "User is reporting this page because of some other reason than the ones we listed"

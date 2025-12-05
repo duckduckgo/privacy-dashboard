@@ -49,6 +49,21 @@ test.describe('localization', () => {
     });
 });
 
+test.describe('theme', () => {
+    test('onChangeTheme with "light" applies light theme', async ({ page }) => {
+        const dash = await DashboardPage.android(page);
+        await dash.addState([testDataStates['theme-light']]);
+        await dash.hasThemeClass('light');
+        await dash.doesNotHaveThemeClass('dark');
+    });
+    test('onChangeTheme with "dark" applies dark theme', async ({ page }) => {
+        const dash = await DashboardPage.android(page);
+        await dash.addState([testDataStates['theme-dark']]);
+        await dash.hasThemeClass('dark');
+        await dash.doesNotHaveThemeClass('light');
+    });
+});
+
 test.describe('Protections toggle', () => {
     toggleFlows((page) => DashboardPage.android(page));
 });

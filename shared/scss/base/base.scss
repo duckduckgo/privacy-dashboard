@@ -349,7 +349,7 @@ a {
 
         .environment--ios & {
             @include cross_platform_bg_image('refresh-assets/back-chevron-ios.svg');
-            width: 20px;
+            width: 24px;
             height: 20px;
 
             &:before {
