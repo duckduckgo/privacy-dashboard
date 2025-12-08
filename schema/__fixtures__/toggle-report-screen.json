@@ -65,6 +65,9 @@
         },
         {
             "id": "description"
+        },
+        {
+            "id": "originTrials"
         }
     ]
 }
