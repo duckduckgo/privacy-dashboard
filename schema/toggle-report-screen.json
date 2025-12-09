@@ -171,7 +171,7 @@
         "detectorData": {
             "title": "Detector Data",
             "const": "detectorData",
-            "description": "Information about detected page elements that may be related to site issues"
+            "description": "Information about page elements that have been known to cause site issues"
         }
     }
 }

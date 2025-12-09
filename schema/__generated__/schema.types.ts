@@ -8,7 +8,7 @@
  * For example, {@link RequestData} is used by all platforms to describe the minimum amount of data required
  * by the Privacy Dashboard - it's parser can be imported from 'schema/__generated__/schema.parsers.js' and used
  * to validate incoming Tracker data.
- * 
+ *
  * @module Generated Schema Definitions
  */
 /* tslint:disable */
@@ -153,7 +153,7 @@ export type Locale = "locale";
  */
 export type Description = "description";
 /**
- * Information about detected page elements that may be related to site issues
+ * Information about page elements that have been known to cause site issues
  */
 export type DetectorData = "detectorData";
 export type ScreenKind =

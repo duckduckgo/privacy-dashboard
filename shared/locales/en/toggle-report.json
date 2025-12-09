@@ -120,7 +120,7 @@
     "note": "This text provides information on the user's selected category and comments."
   },
   "dynamic_detectorData": {
-    "title": "Information about detected page elements that may be related to site issues",
-    "note": "This text provides information about detected page elements that may be causing site issues."
+    "title": "Information about page elements that have been known to cause site issues",
+    "note": "This text provides information about page elements that have been known to cause site issues."
   }
 }
