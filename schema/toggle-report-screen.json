@@ -42,7 +42,8 @@
                         { "$ref": "#/definitions/userRefreshCount" },
                         { "$ref": "#/definitions/jsPerformance" },
                         { "$ref": "#/definitions/locale" },
-                        { "$ref": "#/definitions/description" }
+                        { "$ref": "#/definitions/description" },
+                        { "$ref": "#/definitions/detectorData" }
                     ]
                 },
                 "additional": {
@@ -166,6 +167,11 @@
             "title": "Description",
             "const": "description",
             "description": "Your selected category and optional comments"
+        },
+        "detectorData": {
+            "title": "Detector Data",
+            "const": "detectorData",
+            "description": "Information about page elements that have been known to cause site issues"
         }
     }
 }

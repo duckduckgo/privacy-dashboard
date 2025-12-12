@@ -29,12 +29,12 @@ import {
     FetchToggleReportOptions,
     FetchBreakageFormOptions,
     getContentHeight,
-    onChangeTheme,
     OpenSettingsMessages,
     RejectToggleBreakageReport,
     SeeWhatIsSent,
     SendToggleBreakageReport,
     SetListsMessage,
+    setColorScheme,
     setupColorScheme,
     setupMutationObserver,
     SubmitBrokenSiteReportMessage,
@@ -606,11 +606,7 @@ export function setupShared() {
 }
 
 /**
- * Sets the color scheme theme and/or theme variant.
- *
- * This can be called with either a string for backwards compatibility,
- * or an object to set both theme and themeVariant.
- *
+ * {@inheritDoc common.onChangeTheme}
  * @type {import("./common.js").onChangeTheme}
  * @group macOS -> JavaScript Interface
  * @example
@@ -621,8 +617,12 @@ export function setupShared() {
  * // or for backwards compatibility:
  * evaluate(js: "window.onChangeTheme('dark')", in: webView)
  * ```
+ *
+ * @param {string | { theme?: string, themeVariant?: string }} payload
  */
-export { onChangeTheme };
+export function onChangeTheme(payload) {
+    setColorScheme(payload);
+}
 
 /**
  * macOS specific setup
