@@ -1,5 +1,0 @@
-- Merge pull request #597 from duckduckgo/jd/detector-data
-- generated file
-- update text
-- Merge pull request #598 from duckduckgo/cursor/add-onchangetheme-documentation-to-netlify-claude-4.5-opus-high-thinking-7ecb
-- Refactor: Rename onChangeTheme to setColorScheme
