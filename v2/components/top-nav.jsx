@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { h } from 'preact';
+import { useEffect } from 'preact/hooks';
 import { ns } from '../../shared/js/ui/base/localize';
 import { platformSwitch } from '../../shared/js/ui/environment-check';
 import { useCanPop, useNav } from '../navigation';
@@ -31,6 +32,21 @@ export function TopNav({ back, done, children }) {
 export function SecondaryTopNav({ children }) {
     const { pop } = useNav();
     const onClose = useClose();
+
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.key === 'Escape') {
+                onClose();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [onClose]);
+
     return platformSwitch({
         ios: () => {
             return (
@@ -62,6 +78,20 @@ export function SecondaryTopNavAlt({ hideBackButton = false, shouldPopToRoot = f
 
     const canGoBack = canPop && !hideBackButton;
     const backHandler = shouldPopToRoot ? popToRoot : pop;
+
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.key === 'Escape') {
+                onClose();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [onClose]);
 
     return platformSwitch({
         ios: () => {
