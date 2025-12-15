@@ -1,0 +1,145 @@
+/**
+ * Theme Mappings
+ *
+ * These mappings allow apps to use semantic theme variables (e.g., --ds-color-theme-surface-primary)
+ * that automatically resolve to the correct values based on:
+ * - .body--theme-light or .body--theme-dark classes on <body>
+ * - .body--theme-variant-* classes (optional: coolGray, slateBlue, green, violet, rose, orange, desert)
+ *
+ * These classes are applied to <body> by shared/js/browser/common.js
+ */
+
+/// Generates all semantic theme token mappings for a given variant and mode
+/// @param {String} $variant - The variant name in token format (e.g., "default", "cool-gray", "slate-blue")
+/// @param {String} $mode - The mode: "light" or "dark"
+@mixin theme-tokens($variant, $mode) {
+    --ds-color-theme-surface-primary: var(--ds-color-theme-#{$variant}-#{$mode}-surface-primary);
+    --ds-color-theme-surface-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-surface-secondary);
+    --ds-color-theme-surface-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-surface-tertiary);
+    --ds-color-theme-surface-backdrop: var(--ds-color-theme-#{$variant}-#{$mode}-surface-backdrop);
+    --ds-color-theme-surface-canvas: var(--ds-color-theme-#{$variant}-#{$mode}-surface-canvas);
+    --ds-color-theme-surface-decoration-primary: var(--ds-color-theme-#{$variant}-#{$mode}-surface-decoration-primary);
+    --ds-color-theme-surface-decoration-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-surface-decoration-secondary);
+    --ds-color-theme-surface-decoration-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-surface-decoration-tertiary);
+    --ds-color-theme-text-primary: var(--ds-color-theme-#{$variant}-#{$mode}-text-primary);
+    --ds-color-theme-text-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-text-secondary);
+    --ds-color-theme-text-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-text-tertiary);
+    --ds-color-theme-icons-primary: var(--ds-color-theme-#{$variant}-#{$mode}-icons-primary);
+    --ds-color-theme-icons-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-icons-secondary);
+    --ds-color-theme-icons-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-icons-tertiary);
+    --ds-color-theme-control-fill-primary: var(--ds-color-theme-#{$variant}-#{$mode}-control-fill-primary);
+    --ds-color-theme-control-fill-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-control-fill-secondary);
+    --ds-color-theme-control-fill-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-control-fill-tertiary);
+    --ds-color-theme-control-border-primary: var(--ds-color-theme-#{$variant}-#{$mode}-control-border-primary);
+    --ds-color-theme-control-border-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-control-border-secondary);
+    --ds-color-theme-control-border-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-control-border-tertiary);
+    --ds-color-theme-control-border-quaternary: var(--ds-color-theme-#{$variant}-#{$mode}-control-border-quaternary);
+    --ds-color-theme-container-fill-primary: var(--ds-color-theme-#{$variant}-#{$mode}-container-fill-primary);
+    --ds-color-theme-container-fill-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-container-fill-secondary);
+    --ds-color-theme-container-fill-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-container-fill-tertiary);
+    --ds-color-theme-container-border-primary: var(--ds-color-theme-#{$variant}-#{$mode}-container-border-primary);
+    --ds-color-theme-container-border-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-container-border-secondary);
+    --ds-color-theme-container-border-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-container-border-tertiary);
+    --ds-color-theme-accent-primary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-primary);
+    --ds-color-theme-accent-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-secondary);
+    --ds-color-theme-accent-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-tertiary);
+    --ds-color-theme-accent-quaternary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-quaternary);
+    --ds-color-theme-accent-text-primary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-text-primary);
+    --ds-color-theme-accent-text-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-text-secondary);
+    --ds-color-theme-accent-text-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-text-tertiary);
+    --ds-color-theme-accent-content-primary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-content-primary);
+    --ds-color-theme-accent-content-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-content-secondary);
+    --ds-color-theme-accent-content-tertiary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-content-tertiary);
+    --ds-color-theme-accent-glow-primary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-glow-primary);
+    --ds-color-theme-accent-glow-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-accent-glow-secondary);
+    --ds-color-theme-highlight-primary: var(--ds-color-theme-#{$variant}-#{$mode}-highlight-primary);
+
+    // Default-only tokens
+    @if $variant == 'default' {
+        --ds-color-theme-tone-tint-primary: var(--ds-color-theme-#{$variant}-#{$mode}-tone-tint-primary);
+        --ds-color-theme-control-raised-backdrop: var(--ds-color-theme-#{$variant}-#{$mode}-control-raised-backdrop);
+        --ds-color-theme-control-raised-fill-primary: var(--ds-color-theme-#{$variant}-#{$mode}-control-raised-fill-primary);
+        --ds-color-theme-shadow-primary: var(--ds-color-theme-#{$variant}-#{$mode}-shadow-primary);
+        --ds-color-theme-shadow-secondary: var(--ds-color-theme-#{$variant}-#{$mode}-shadow-secondary);
+    }
+}
+
+body {
+    &.body--theme-light {
+        @include theme-tokens('default', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('default', 'dark');
+    }
+}
+
+body.body--theme-variant-coolGray {
+    &.body--theme-light {
+        @include theme-tokens('cool-gray', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('cool-gray', 'dark');
+    }
+}
+
+body.body--theme-variant-slateBlue {
+    &.body--theme-light {
+        @include theme-tokens('slate-blue', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('slate-blue', 'dark');
+    }
+}
+
+body.body--theme-variant-green {
+    &.body--theme-light {
+        @include theme-tokens('green', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('green', 'dark');
+    }
+}
+
+body.body--theme-variant-violet {
+    &.body--theme-light {
+        @include theme-tokens('violet', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('violet', 'dark');
+    }
+}
+
+body.body--theme-variant-rose {
+    &.body--theme-light {
+        @include theme-tokens('rose', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('rose', 'dark');
+    }
+}
+
+body.body--theme-variant-orange {
+    &.body--theme-light {
+        @include theme-tokens('orange', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('orange', 'dark');
+    }
+}
+
+body.body--theme-variant-desert {
+    &.body--theme-light {
+        @include theme-tokens('desert', 'light');
+    }
+
+    &.body--theme-dark {
+        @include theme-tokens('desert', 'dark');
+    }
+}
