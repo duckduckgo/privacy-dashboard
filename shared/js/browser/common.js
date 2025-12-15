@@ -89,6 +89,7 @@ export function setupMutationObserverForExtensions(callback) {
 
 const DARK_THEME = 'dark';
 const LIGHT_THEME = 'light';
+const SYSTEM_THEME = 'system';
 const VALID_THEME_VARIANTS = ['default', 'coolGray', 'slateBlue', 'green', 'violet', 'rose', 'orange', 'desert'];
 let explicitlySetTheme = '';
 let explicitlySetThemeVariant = '';
@@ -155,6 +156,8 @@ export function setColorScheme(payload) {
         const theme = payload.trim().toLowerCase();
         if (theme === LIGHT_THEME || theme === DARK_THEME) {
             explicitlySetTheme = theme;
+        } else if (theme === SYSTEM_THEME) {
+            explicitlySetTheme = '';
         } else {
             explicitlySetTheme = '';
         }
@@ -163,6 +166,8 @@ export function setColorScheme(payload) {
         const theme = payload.theme?.trim()?.toLowerCase();
         if (theme === LIGHT_THEME || theme === DARK_THEME) {
             explicitlySetTheme = theme;
+        } else if (theme === SYSTEM_THEME) {
+            explicitlySetTheme = '';
         } else {
             explicitlySetTheme = '';
         }
@@ -190,10 +195,12 @@ export function setColorScheme(payload) {
  * // String format (backwards compatible)
  * "dark"
  * "light"
+ * "system"
  *
  * // Object format
  * { "theme": "dark" }
  * { "theme": "light", "themeVariant": "violet" }
+ * { "theme": "system" }
  * ```
  *
  * @param {string | { theme?: string, themeVariant?: string }} payload
