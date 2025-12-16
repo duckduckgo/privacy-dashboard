@@ -93,6 +93,11 @@
     li::after {
         content: ' ';
     }
+
+    .environment--macos &,
+    .environment--windows & {
+        color: var(--ds-color-theme-text-secondary);
+    }
 }
 
 /* TODO: Move button to shared component, primary variant */
@@ -181,27 +186,34 @@
     }
 
     .environment--macos & {
-        --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
+        --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%),
+            var(--ds-color-theme-accent-primary);
         --submit-button-border-radius: 6px;
         --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset,
             0px 0px 0px 0.5px rgba(0, 122, 255, 0.05), 0px 0px 1px 0px rgba(0, 122, 255, 0.05), 0px 1px 1px 0px rgba(0, 122, 255, 0.1);
-        --submit-button-color: #fff;
+        --submit-button-color: var(--ds-color-theme-accent-content-primary);
         --submit-button-font-size: 13px;
         --submit-button-font-weight: 400;
         --submit-button-height: 32px;
         --submit-button-line-height: 1;
         --submit-button-padding: 0 16px;
 
+        &:hover {
+            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%),
+                var(--ds-color-theme-accent-primary);
+        }
+
         &:focus {
-            --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset,
-                0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+            --submit-button-box-shadow: 0px 0px 0px 2.5px var(--ds-color-theme-accent-primary),
+                0px 0px 0px 1px var(--ds-color-theme-accent-primary) inset, 0px 0px 1px 0px rgba(0, 0, 0, 0.05),
+                0px 1px 1px 0px rgba(0, 0, 0, 0.1);
         }
 
         &:active {
-            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #1743d1;
+            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%),
+                var(--ds-color-theme-accent-secondary);
             --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0) inset,
                 0px 0px 0px 0.5px rgba(0, 122, 255, 0.05), 0px 0px 1px 0px rgba(0, 122, 255, 0.05), 0px 1px 1px 0px rgba(0, 122, 255, 0.1);
-            --submit-button-color: rgba(255, 255, 255, 0.8);
         }
 
         &:disabled {
@@ -211,76 +223,34 @@
             --submit-button-color: rgba(0, 0, 0, 0.84);
             --submit-button-opacity: 0.4;
         }
-
-        @at-root .body--theme-dark#{&} {
-            --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #2749db;
-            --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset,
-                0px 0px 0px 0.5px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
-
-            &:focus {
-                --submit-button-box-shadow: 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55), 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset,
-                    0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
-            }
-
-            &:active {
-                --submit-button-background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.16) 100%), #3259c9;
-                --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset,
-                    0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
-                    0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
-                --submit-button-color: rgba(255, 255, 255, 0.8);
-            }
-
-            &:disabled {
-                --submit-button-background: rgba(255, 255, 255, 0.28);
-                --submit-button-box-shadow: 0px 0.5px 0px 0px rgba(255, 255, 255, 0.2) inset,
-                    0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.1),
-                    0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-                --submit-button-color: rgba(255, 255, 255, 0.84);
-            }
-        }
     }
 
     .environment--windows & {
+        --submit-button-background: var(--ds-color-theme-accent-primary);
         --submit-button-border-radius: 6px;
+        --submit-button-color: var(--ds-color-theme-accent-content-primary);
         --submit-button-font-size: 14px;
         --submit-button-font-weight: 400;
         --submit-button-line-height: normal;
         --submit-button-height: 40px;
         --submit-button-padding: 0 16px;
 
+        &:hover {
+            --submit-button-background: var(--ds-color-theme-accent-secondary);
+        }
+
         &:focus {
-            --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--color-blue-50);
+            --submit-button-box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 3px var(--ds-color-theme-accent-primary);
         }
 
         &:active {
+            --submit-button-background: var(--ds-color-theme-accent-tertiary);
             --submit-button-box-shadow: none;
         }
 
         &:disabled {
             --submit-button-background: rgba(0, 0, 0, 0.36);
             --submit-button-color: rgba(255, 255, 255, 0.4);
-        }
-
-        @at-root .body--theme-dark#{&} {
-            --submit-button-background: var(--color-blue-20);
-
-            &:hover {
-                --submit-button-background: var(--color-blue-30);
-            }
-
-            &:focus {
-                --submit-button-box-shadow: 0px 0px 0px 1px #0b2059, 0px 0px 0px 3px #fff;
-            }
-
-            &:active {
-                --submit-button-background: var(--color-blue-40);
-                --submit-button-box-shadow: none;
-            }
-
-            &:disabled {
-                --submit-button-background: rgba(255, 255, 255, 0.36);
-                --submit-button-color: rgba(0, 0, 0, 0.84);
-            }
         }
     }
 }
@@ -369,6 +339,12 @@
             transform: rotate(180deg);
         }
     }
+
+    .environment--macos &,
+    .environment--windows & {
+        border-color: var(--ds-color-theme-container-border-primary);
+        background-color: var(--ds-color-theme-container-fill-primary);
+    }
 }
 
 .disclosure-message__summary {
@@ -424,6 +400,11 @@
 
     .body--theme-dark & {
         color: rgba(255, 255, 255, 0.6);
+    }
+
+    .environment--macos &,
+    .environment--windows & {
+        color: var(--ds-color-theme-text-primary);
     }
 }
 

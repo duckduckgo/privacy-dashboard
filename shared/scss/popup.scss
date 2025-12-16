@@ -118,11 +118,18 @@ body {
         }
     }
 
-    // macOS and Windows use design tokens for background colors
+    // macOS and Windows use design system colors
     &.environment--macos,
     &.environment--windows {
         --bg: var(--ds-color-theme-surface-canvas);
         --page-bg: var(--ds-color-theme-surface-canvas);
+        --color-text-primary: var(--ds-color-theme-text-primary);
+        --color-text-secondary: var(--ds-color-theme-text-secondary);
+        --color-button-primary: var(--ds-color-theme-accent-content-primary);
+        --color-accent-blue: var(--ds-color-theme-accent-text-primary);
+        --color-accent-blue-active: var(--ds-color-theme-accent-text-secondary);
+        --color-lines-light: var(--ds-color-theme-surface-decoration-primary);
+        --color-hover-bg: var(--ds-color-theme-container-fill-secondary);
     }
 
     color: var(--color-text-primary);

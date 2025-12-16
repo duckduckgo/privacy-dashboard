@@ -59,11 +59,15 @@ body {
         --handle-color-off: rgba(0, 0, 0, 0.9);
         --handle-shadow: none;
 
-        --track-color: #3969ef;
         --track-color-off: #{$white};
         --track-outline: 1px solid var(--track-color);
         --track-outline-off: 1px solid rgba(0, 0, 0, 0.48);
         --toggle-opacity-disabled: 0.6;
+    }
+
+    &.environment--macos,
+    &.environment--windows {
+        --track-color: var(--ds-color-theme-accent-primary);
     }
 }
 

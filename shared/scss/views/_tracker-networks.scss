@@ -101,5 +101,10 @@
         background-color: var(--color-lines-lighter);
         white-space: nowrap;
         text-align: right;
+
+        .environment--macos &,
+        .environment--windows & {
+            background-color: var(--ds-color-theme-control-fill-primary);
+        }
     }
 }
