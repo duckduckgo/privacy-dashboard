@@ -43,6 +43,23 @@ test.describe('theme', () => {
         await dash.hasThemeClass('dark');
         await dash.hasThemeVariantClass('violet');
     });
+    test('system theme in view model follows browser preference for light', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'light' });
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates['theme-system']]);
+        await dash.hasThemeClass('light');
+    });
+    test('system theme in view model follows browser preference for dark', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'dark' });
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates['theme-system']]);
+        await dash.hasThemeClass('dark');
+    });
+    test('system theme with variant in view model applies variant class', async ({ page }) => {
+        const dash = await DashboardPage.windows(page);
+        await dash.addState([testDataStates['theme-system-variant-violet']]);
+        await dash.hasThemeVariantClass('violet');
+    });
 });
 
 test.describe('breakage form', () => {

@@ -118,28 +118,22 @@
     }
 
     .environment--windows & {
-        --textarea-border: 1px solid rgba(0, 0, 0, 0.12);
-        --textarea-border--dark: 1px solid rgba(255, 255, 255, 0.18);
-
         --textarea-border--focus: 1px solid transparent;
-        --textarea-box-shadow--focus: 0 0 0 2px #3969ef;
+        --textarea-box-shadow--focus: 0 0 0 2px var(--ds-color-theme-accent-primary);
 
         --textarea-border--focus--dark: 1px solid transparent;
-        --textarea-box-shadow--focus--dark: 0 0 0 2px #8fabf9;
     }
 
     .environment--macos & {
-        --textarea-border: 1px solid rgba(0, 0, 0, 0.1);
         --textarea-box-shadow: 0px 1px 0px -0.5px rgba(0, 0, 0, 0.1), 0px 0.5px 0px -0.5px rgba(0, 0, 0, 0.1);
 
-        --textarea-border--dark: 1px solid rgba(0, 0, 0, 0.1);
         --textarea-box-shadow--dark: 0px 1px 0px -0.5px rgba(0, 0, 0, 0.1), 0px 0.5px 0px -0.5px rgba(0, 0, 0, 0.1);
 
         --textarea-border--focus: 1px solid rgba(0, 0, 0, 0.1);
-        --textarea-box-shadow--focus: 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset, 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55);
+        --textarea-box-shadow--focus: 0px 0px 0px 1px var(--ds-color-theme-accent-primary) inset,
+            0px 0px 0px 2.5px var(--ds-color-theme-accent-primary);
 
         --textarea-border--focus--dark: 1px solid rgba(0, 0, 0, 0.2);
-        --textarea-box-shadow--focus--dark: 0px 0px 0px 1px rgba(57, 105, 239, 0.55) inset, 0px 0px 0px 2.5px rgba(57, 105, 239, 0.55);
 
         --textarea-border--invalid: var(--textarea-border);
         --textarea-border--invalid--dark: var(--textarea-border--dark);
@@ -151,5 +145,17 @@
 
         --textarea-border--focus: 1px solid rgba(0, 0, 0, 0.12);
         --textarea-border--focus--dark: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .environment--macos &,
+    .environment--windows & {
+        --textarea-background: var(--ds-color-theme-surface-tertiary);
+        --textarea-background--dark: var(--ds-color-theme-surface-tertiary);
+        --textarea-border: 1px solid var(--ds-color-theme-container-border-primary);
+        --textarea-border--dark: 1px solid var(--ds-color-theme-container-border-primary);
+        --textarea-color: var(--ds-color-theme-text-primary);
+        --textarea-color--dark: var(--ds-color-theme-text-primary);
+        --textarea-placeholder-color: var(--ds-color-theme-text-secondary);
+        --textarea-placeholder-color--dark: var(--ds-color-theme-text-secondary);
     }
 }

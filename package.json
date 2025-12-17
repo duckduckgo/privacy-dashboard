@@ -40,6 +40,7 @@
         "postfetch-fonts": "cp -R build/app/public/font build/app-debug/public/font"
     },
     "devDependencies": {
+        "@duckduckgo/design-tokens": "github:duckduckgo/design-tokens#v0.2.0",
         "@duckduckgo/eslint-config": "github:duckduckgo/eslint-config#v0.1.0",
         "@formatjs/intl-locale": "^3.0.7",
         "@material/ripple": "^14.0.0",

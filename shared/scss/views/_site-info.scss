@@ -131,6 +131,11 @@
     .body--theme-dark & {
         color: $color--off-white;
     }
+
+    .environment--macos &,
+    .environment--windows & {
+        color: var(--ds-color-theme-text-primary);
+    }
 }
 
 .site-info__toggle-container {

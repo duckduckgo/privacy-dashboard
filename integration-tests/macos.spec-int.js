@@ -42,6 +42,23 @@ test.describe('theme', () => {
         await dash.hasThemeClass('dark');
         await dash.hasThemeVariantClass('violet');
     });
+    test('onChangeTheme with "system" follows browser preference for light', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'light' });
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates['theme-system']]);
+        await dash.hasThemeClass('light');
+    });
+    test('onChangeTheme with "system" follows browser preference for dark', async ({ page }) => {
+        await page.emulateMedia({ colorScheme: 'dark' });
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates['theme-system']]);
+        await dash.hasThemeClass('dark');
+    });
+    test('onChangeTheme with "system" and variant applies variant class', async ({ page }) => {
+        const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+        await dash.addState([testDataStates['theme-system-variant-violet']]);
+        await dash.hasThemeVariantClass('violet');
+    });
 });
 
 test.describe('Protections toggle', () => {

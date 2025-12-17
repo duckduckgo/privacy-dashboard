@@ -12658,6 +12658,7 @@
   }
   var DARK_THEME = "dark";
   var LIGHT_THEME = "light";
+  var SYSTEM_THEME = "system";
   var VALID_THEME_VARIANTS = ["default", "coolGray", "slateBlue", "green", "violet", "rose", "orange", "desert"];
   var explicitlySetTheme = "";
   var explicitlySetThemeVariant = "";
@@ -12709,6 +12710,8 @@
       const theme = payload.trim().toLowerCase();
       if (theme === LIGHT_THEME || theme === DARK_THEME) {
         explicitlySetTheme = theme;
+      } else if (theme === SYSTEM_THEME) {
+        explicitlySetTheme = "";
       } else {
         explicitlySetTheme = "";
       }
@@ -12716,6 +12719,8 @@
       const theme = payload.theme?.trim()?.toLowerCase();
       if (theme === LIGHT_THEME || theme === DARK_THEME) {
         explicitlySetTheme = theme;
+      } else if (theme === SYSTEM_THEME) {
+        explicitlySetTheme = "";
       } else {
         explicitlySetTheme = "";
       }

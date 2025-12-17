@@ -5,6 +5,11 @@
     .body--theme-dark & {
         color: $gray-fifty;
     }
+
+    .environment--macos &,
+    .environment--windows & {
+        color: var(--ds-color-theme-text-secondary);
+    }
 }
 
 .page-connection__certificate-details {
@@ -17,6 +22,11 @@
         .body--theme-dark & {
             color: $color--off-white;
         }
+
+        .environment--macos &,
+        .environment--windows & {
+            color: var(--ds-color-theme-text-primary);
+        }
     }
 
     > div {
@@ -27,6 +37,11 @@
 
         .body--theme-dark & {
             color: $color--off-white;
+        }
+
+        .environment--macos &,
+        .environment--windows & {
+            color: var(--ds-color-theme-text-primary);
         }
     }
 

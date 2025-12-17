@@ -866,6 +866,17 @@ export const createDataStates = (google, cnn) => {
             theme: 'dark',
             themeVariant: 'violet',
         }),
+        'theme-system': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            theme: 'system',
+        }),
+        'theme-system-variant-violet': new MockData({
+            url: 'https://example.com',
+            requests: [],
+            theme: 'system',
+            themeVariant: 'violet',
+        }),
         empty: new MockData({}),
     };
 };

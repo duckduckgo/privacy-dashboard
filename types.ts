@@ -36,7 +36,7 @@ interface Window {
      * @deprecated use window.onChangeRequestData
      */
     onChangeTrackerBlockingData: any;
-    onChangeTheme: (payload: string | { theme?: string; themeVariant?: string }) => void;
+    onChangeTheme: (payload: string | { theme?: string; themeVariant?: string }) => void; // theme can be 'light', 'dark', or 'system'
     onChangeRequestData: (url: string, rawRequestData: import('./schema/__generated__/schema.types').RequestData) => void;
     onChangeLocale: (payload: import('./schema/__generated__/schema.types').LocaleSettings) => void;
     onChangeFeatureSettings: (remoteFeatureSettings: import('./schema/__generated__/schema.types').RemoteFeatureSettings) => void;
