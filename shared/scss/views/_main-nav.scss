@@ -4,6 +4,12 @@
     position: relative;
     z-index: 0;
     overflow: hidden;
+
+    .environment--macos &,
+    .environment--windows & {
+        background-color: var(--ds-color-theme-container-fill-primary);
+        border-color: var(--ds-color-theme-container-border-primary);
+    }
 }
 
 .main-nav__row {
@@ -18,6 +24,11 @@
         position: absolute;
         bottom: -0.5px;
         left: 16px;
+
+        .environment--macos &,
+        .environment--windows & {
+            background-color: var(--ds-color-theme-container-border-primary);
+        }
     }
 
     /*

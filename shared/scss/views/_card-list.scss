@@ -12,6 +12,11 @@
     position: relative;
     z-index: 0;
     overflow: hidden;
+
+    .environment--macos &,
+    .environment--windows & {
+        border-color: var(--ds-color-theme-container-border-primary);
+    }
 }
 
 .card-list--last {
