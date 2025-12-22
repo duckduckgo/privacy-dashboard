@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "La tua categoria selezionata e i commenti facoltativi",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Informazioni sugli elementi della pagina che notoriamente causano problemi al sito",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

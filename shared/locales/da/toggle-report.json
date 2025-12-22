@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Din valgte kategori og valgfrie kommentarer",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Oplysninger om sideelementer, der er kendt for at forårsage problemer på webstedet",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

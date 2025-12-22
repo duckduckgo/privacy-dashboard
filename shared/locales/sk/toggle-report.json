@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Tvoja vybraná kategória a voliteľné komentáre",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Údaje o prvkoch stránky, o ktorých je známe, že spôsobujú problémy so stránkou",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Tava izvēlētā kategorija un neobligātie komentāri",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Informācija par lapas elementiem, kas, kā zināms, var izraisīt vietnes problēmas",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

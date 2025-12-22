@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Valitsemasi luokka ja mahdolliset kommentit",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Tietoja sivuelementeistä, joiden tiedetään aiheuttavan sivuston ongelmia",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }
