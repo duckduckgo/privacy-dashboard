@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Categoria ta selectată și comentariile opționale",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Informații despre elementele paginii despre care se știe că cauzează probleme pe site",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

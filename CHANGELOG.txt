@@ -1,9 +1,1 @@
-- Merge pull request #599 from duckduckgo/randerson/support-system-theme
-- Merge pull request #600 from duckduckgo/randerson/add-theming
-- Fix wrong color value for .disclosure-message__content
-- Fix missing --textarea-color--dark and --textarea-placeholder-color--dark
-- Update integration-tests/windows.spec-int.js:448:13 › windows screenshots › states › google-off screenshot
-- Use --ds vars in submit button disabled state
-- Use --ds variables on macOS and Windows
-- Add @duckduckgo/design-tokens dependency and set up theme color mappings
-- Support setting theme to 'system' to respect OS's theme setting
+- Detector data translations (#601)

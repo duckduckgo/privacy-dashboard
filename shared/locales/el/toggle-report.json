@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Η κατηγορία που επιλέξατε και τα προαιρετικά σχόλια",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Πληροφορίες σχετικά με τα στοιχεία της σελίδας που είναι γνωστό ότι προκαλούν προβλήματα στον ιστότοπο",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

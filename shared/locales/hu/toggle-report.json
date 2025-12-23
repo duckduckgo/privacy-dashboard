@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "A kiválasztott kategóriád és az opcionális megjegyzéseid",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Információ az oldal azon elemeiről, amelyekről ismert, hogy webhellyel kapcsolatos problémákat okoznak",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

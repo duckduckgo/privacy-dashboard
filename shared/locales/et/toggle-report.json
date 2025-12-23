@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Sinu valitud kategooria ja valikulised kommentaarid",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Teave lehe elementide kohta, mis teadaolevalt põhjustavad saidil probleeme",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }
