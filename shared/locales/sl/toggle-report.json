@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Izbrana kategorija in neobvezni komentarji",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Informacije o elementih strani, za katere je znano, da povzročajo težave s spletnim mestom",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

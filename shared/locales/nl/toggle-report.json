@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Je geselecteerde categorie en optionele opmerkingen",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Informatie over pagina-elementen waarvan bekend is dat ze problemen op de site veroorzaken",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

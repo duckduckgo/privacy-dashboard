@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Tavo pasirinkta kategorija ir neprivalomi komentarai",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Informacija apie puslapio elementus, kurie, kaip žinoma, gali sukelti svetainės problemų",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }

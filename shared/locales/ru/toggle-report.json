@@ -119,5 +119,9 @@
   "dynamic_description" : {
     "title" : "Выбранная категория и необязательные комментарии",
     "note" : "This text provides information on the user's selected category and comments."
+  },
+  "dynamic_detectorData" : {
+    "title" : "Элементы страницы, которые, по нашим данным, могут вызывать проблемы.",
+    "note" : "This text provides information about page elements that have been known to cause site issues."
   }
 }
