@@ -11,6 +11,8 @@ permissions:
     deployments: write
 jobs:
     build:
+        # TODO: Re-enable when macOS runners are available
+        if: false
         runs-on: macos-latest
         steps:
             - uses: actions/checkout@v3
@@ -74,6 +76,8 @@ jobs:
             - name: copy-to-docs
               run: cp -r build/app-debug/ build/docs/app-debug
     deploy:
+        # TODO: Re-enable when macOS runners are available
+        if: false
         runs-on: macos-latest
         needs: build
         if: ${{ github.ref == 'refs/heads/main' }}
