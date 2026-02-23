@@ -1,1 +1,4 @@
-- Detector data translations (#601)
+- Merge pull request #603 from duckduckgo/randerson/surface-secondary-background
+- Use Surface Secondary as background color instead of Surface Canvas
+- Merge pull request #602 from duckduckgo/randerson/update-design-tokens
+- Update @duckduckgo/design-tokens to v0.3.0

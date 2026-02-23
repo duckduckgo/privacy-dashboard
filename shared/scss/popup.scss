@@ -121,8 +121,8 @@ body {
     // macOS and Windows use design system colors
     &.environment--macos,
     &.environment--windows {
-        --bg: var(--ds-color-theme-surface-canvas);
-        --page-bg: var(--ds-color-theme-surface-canvas);
+        --bg: var(--ds-color-theme-surface-secondary);
+        --page-bg: var(--ds-color-theme-surface-secondary);
         --color-text-primary: var(--ds-color-theme-text-primary);
         --color-text-secondary: var(--ds-color-theme-text-secondary);
         --color-button-primary: var(--ds-color-theme-accent-content-primary);
