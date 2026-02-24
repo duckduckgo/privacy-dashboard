@@ -17,7 +17,7 @@
     "note" : "Headline when privacy protections are enabled"
   },
   "protectionsDisabled" : {
-    "title" : "Функции защиты на этом сайте <b>ВЫКЛЮЧЕНЫ</b>",
+    "title" : "Функции защиты на этом сайте <b>ОТКЛЮЧЕНЫ</b>",
     "note" : "Headline when privacy protections are disabled by user"
   },
   "protectionsDisabledRemote" : {
@@ -109,7 +109,7 @@
     "note" : "When visiting a site that is owned by a major tracking company, we cannot block their trackers so we warn the user.  Ex. Google (owner of news.google.com) tracks you across 79% of top sites.... etc"
   },
   "trackersBlockedDesc" : {
-    "title" : "{companyCount, plural, =0 {Мы остановили загрузку трекинг-запросов некоторых компаний на этой странице.} =2 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b>.} =5 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще одной</b> компании.} one {Мы предотвратили загрузку запроса на отслеживание от <b>{firstCompany}</b> на этом сайте.} few {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> и еще <b>{othersCount}</b> других на этом сайте.} many {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> других на этом сайте.} other {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>еще {othersCount}</b> других на этом сайте.}}",
+    "title" : "{companyCount, plural, =0 {Мы остановили загрузку трекинг-запросов некоторых компаний на этой странице.} =2 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b>.} =5 {Мы заблокировали на этой странице запросы на отслеживание <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>ещё одной</b> компании.} one {Мы предотвратили загрузку запроса на отслеживание от <b>{firstCompany}</b> на этом сайте.} few {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> и еще <b>{othersCount}</b> других на этом сайте.} many {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>ещё {othersCount}</b> других на этом сайте.} other {Мы предотвратили загрузку запросов на отслеживание, поступивших от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>ещё {othersCount}</b> других на этом сайте.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
   "cookiesMinimized" : {
@@ -121,7 +121,7 @@
     "note" : "Title for when we have cosmetically hidden a cookie banner"
   },
   "cookiesHiddenSummary" : {
-    "title" : "На этом сайте не предусмотрена настройка куки-файлов, поэтому мы просто скрыли их всплывающее окно. Остальные средства защиты от отслеживания онлайн по-прежнему активны.",
+    "title" : "На этом сайте не предусмотрена настройка куки-файлов, поэтому мы просто скрыли их всплывающее окно. Остальные средства защиты от отслеживания онлайн по-прежнему действуют.",
     "note" : "A longer explanation that we have cosmetically hidden a cookie banner"
   },
   "cookiesMinimizedSummary" : {
@@ -189,7 +189,7 @@
     "note" : "This describes how many non-tracker domains were loaded with a longer description  Ex: Requests from 3 other third-party domains were loaded on this page."
   },
   "firstPartyDesc" : {
-    "title" : "Этот сайт и найденные на нем трекеры принадлежат компании {companyName}, поэтому мы их не блокировали.",
+    "title" : "Этот сайт и найденные на нём трекеры принадлежат компании {companyName}, поэтому мы их не блокировали.",
     "note" : "When trackers detected belong to companyName, we can't block them on a site that company owns"
   },
   "noTrackersFound" : {
@@ -256,11 +256,11 @@
     "note" : "The user can manually turn off protections. When that happens we show this message"
   },
   "thirdPartiesSummaryLoaded" : {
-    "title" : "Ниже приведен список загруженных запросов сторонних доменов. Благодаря этим запросам компании могут вас профилировать, однако мы по-прежнему защищаем вас от отслеживания в сети другими способами.",
+    "title" : "Ниже приведён список загруженных запросов сторонних доменов. Благодаря этим запросам компании могут вас профилировать, однако мы по-прежнему защищаем вас от отслеживания в сети другими способами.",
     "note" : "Shown as the summary in third parties screen"
   },
   "thirdPartiesSummaryProtectionsOff" : {
-    "title" : "Ниже приведен список загруженных запросов сторонних доменов. Благодаря этим запросам компании могут вас профилировать, однако мы по-прежнему защищаем вас от отслеживания в сети другими способами.",
+    "title" : "Ниже приведён список загруженных запросов сторонних доменов. Благодаря этим запросам компании могут вас профилировать, однако мы по-прежнему защищаем вас от отслеживания в сети другими способами.",
     "note" : "Shown when any requests were loaded, but protections are off"
   },
   "thirdPartiesSummaryNone" : {
