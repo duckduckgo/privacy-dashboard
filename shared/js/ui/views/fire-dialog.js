@@ -35,6 +35,12 @@ export function fireSummaryTemplate(selectedOption) {
                     ...descriptionStats,
                 })
             )}
+            ${descriptionStats.site
+                ? html` ${i18n.t('firebutton:clearingCookiesWarning.title')}
+                      <a class="fire-button-learn-more" href="https://duckduckgo.com/duckduckgo-help-pages/settings/save" target="_blank"
+                          >${i18n.t('firebutton:learnMore.title')}</a
+                      >`
+                : null}
         </p>
         ${descriptionStats.site && descriptionStats.clearHistory
             ? html`<p class="fire-button-disclaimer">${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>`

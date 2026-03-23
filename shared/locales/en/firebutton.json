@@ -103,6 +103,14 @@
         "title": "Cancel",
         "note": "Button text to exit the fire button modal."
     },
+    "clearingCookiesWarning": {
+        "title": "Clearing cookies will reset your Search preferences.",
+        "note": "Warning message shown when clearing cookies for a specific site, informing the user that their search preferences will be reset."
+    },
+    "learnMore": {
+        "title": "Learn more",
+        "note": "Link text that opens a help page with more information about clearing cookies and search preferences."
+    },
     "historyAndDownloadsNotAffected": {
         "title": "To also clear history, select a time period.",
         "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."

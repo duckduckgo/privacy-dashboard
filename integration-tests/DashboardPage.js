@@ -879,6 +879,14 @@ export class DashboardPage {
         await this.page.locator('#fire-button-opts').selectOption({ index });
     }
 
+    async fireDialogShowsCookieWarning() {
+        await expect(this.page.locator('#fire-button-summary')).toContainText('Clearing cookies will reset your Search preferences.');
+        const learnMore = this.page.locator('#fire-button-summary a.fire-button-learn-more');
+        await expect(learnMore).toHaveText('Learn more');
+        await expect(learnMore).toHaveAttribute('href', 'https://duckduckgo.com/duckduckgo-help-pages/settings/save');
+    }
+
+
     async clicksWebsiteNotWorking() {
         await this.page.getByRole('link', { name: 'Report a problem with this site' }).click({ timeout: 5000 });
     }
