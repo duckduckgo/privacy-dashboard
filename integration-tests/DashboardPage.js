@@ -6,6 +6,7 @@ import { testDataStates } from './utils/states-with-fixtures';
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs';
 import { Extension } from './Extension';
 import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json' assert { type: 'json' };
+import { duckDuckGoURLs } from '../shared/data/constants.js';
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]');
@@ -883,9 +884,8 @@ export class DashboardPage {
         await expect(this.page.locator('#fire-button-summary')).toContainText('This will reset your Search settings.');
         const learnMore = this.page.locator('#fire-button-summary a.fire-button-learn-more');
         await expect(learnMore).toHaveText('Learn More');
-        await expect(learnMore).toHaveAttribute('href', 'https://duckduckgo.com/duckduckgo-help-pages/settings/save');
+        await expect(learnMore).toHaveAttribute('href', duckDuckGoURLs.settingsHelpPage);
     }
-
 
     async clicksWebsiteNotWorking() {
         await this.page.getByRole('link', { name: 'Report a problem with this site' }).click({ timeout: 5000 });
