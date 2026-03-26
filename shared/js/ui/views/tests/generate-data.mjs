@@ -398,17 +398,19 @@ export class MockData {
      */
     toBurnOptions() {
         const burnConfig = this.fireButtonOptions || { clearHistory: true, tabClearEnabled: true, pinnedTabs: 2 };
-        const { clearHistory, pinnedTabs, tabClearEnabled } = burnConfig;
+        const { clearHistory, pinnedTabs, tabClearEnabled, defaultOption } = burnConfig;
+        const siteHostname = new URL(this.url).hostname.replace(/^www\./, '');
         return {
             options: [
                 {
                     name: 'CurrentSite',
+                    selected: defaultOption === 'CurrentSite',
                     options: {
-                        origins: ['https://example.com/'],
+                        origins: [this.url + '/'],
                     },
                     descriptionStats: {
                         clearHistory,
-                        site: 'example.com',
+                        site: siteHostname,
                         duration: 'all',
                         openTabs: tabClearEnabled ? 1 : 0,
                         cookies: 1,
@@ -417,6 +419,7 @@ export class MockData {
                 },
                 {
                     name: 'LastHour',
+                    selected: defaultOption === 'LastHour',
                     options: {
                         since: Date.now(),
                     },
@@ -800,6 +803,16 @@ export const createDataStates = (google, cnn) => {
             url: 'https://example.com',
             fireButtonEnabled: true,
             fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0 },
+        }),
+        'fire-button-ddg-site': new MockData({
+            url: 'https://duckduckgo.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0, defaultOption: 'CurrentSite' },
+        }),
+        'fire-button-ddg-time-based': new MockData({
+            url: 'https://duckduckgo.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0, defaultOption: 'LastHour' },
         }),
         'fire-button-tab-clear-disabled': new MockData({
             url: 'https://example.com',

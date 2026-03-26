@@ -296,8 +296,8 @@ test.describe('fire button', () => {
         await dash.clickFireButtonBurn();
         await dash.sendsOptionsWithBurnMessage(messages.getBurnOptions.options[1].options);
     });
-    test('fire button menu: shows cookie warning and learn more link for site-specific clearing', async ({ page }) => {
-        const dash = await DashboardPage.browser(page, testDataStates['fire-button-no-pinned']);
+    test('fire button menu: shows cookie warning and learn more link for duckduckgo.com', async ({ page }) => {
+        const dash = await DashboardPage.browser(page, testDataStates['fire-button-ddg-site']);
         await dash.clickFireButton();
         await dash.fireDialogShowsCookieWarning();
     });
