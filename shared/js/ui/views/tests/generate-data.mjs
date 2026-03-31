@@ -814,6 +814,16 @@ export const createDataStates = (google, cnn) => {
             fireButtonEnabled: true,
             fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0, defaultOption: 'LastHour' },
         }),
+        'fire-button-google-site': new MockData({
+            url: 'https://google.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0, defaultOption: 'CurrentSite' },
+        }),
+        'fire-button-google-time-based': new MockData({
+            url: 'https://google.com',
+            fireButtonEnabled: true,
+            fireButtonOptions: { clearHistory: true, tabClearEnabled: true, pinnedTabs: 0, defaultOption: 'LastHour' },
+        }),
         'fire-button-tab-clear-disabled': new MockData({
             url: 'https://example.com',
             fireButtonEnabled: true,
