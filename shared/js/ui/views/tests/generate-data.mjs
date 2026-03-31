@@ -228,7 +228,7 @@ export const permissions = [
 ];
 
 /**
- * @typedef {{ clearHistory: boolean, tabClearEnabled: boolean, pinnedTabs: number }} BurnConfig
+ * @typedef {{ clearHistory: boolean, tabClearEnabled: boolean, pinnedTabs: number, defaultOption?: string }} BurnConfig
  */
 
 /**
