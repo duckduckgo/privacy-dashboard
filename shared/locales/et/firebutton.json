@@ -62,11 +62,11 @@
     "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Delete 2 weeks of cookies?"
   },
   "summaryClearTabsHistoryAll": {
-    "title": "Kas sulgeda <b>{openTabs}</b> {openTabs, plural, =1 {tab} muu {tabs}} ja kustutada <b>kogu</b> sirvimisajalugu ja küpsised ({cookies} {cookies, plural, =1 {site} muu {sites}})?",
+    "title": "Kas sulgeda <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {tabs}} ja kustutada <b>kogu</b> sirvimisajalugu ja küpsised ({cookies} {cookies, plural, =1 {site} other {sites}})?",
     "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll delete cookies. Example: Close 3 tabs, and delete browsing history and cookies (2 sites)?"
   },
   "summaryClearTabsAll": {
-    "title": "Kas sulgeda <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {tabs}} ja kustutada <b>kõik</b> küpsised ({cookies} {cookies, plural, =1 {site} muu {sites}})?",
+    "title": "Kas sulgeda <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {tabs}} ja kustutada <b>kõik</b> küpsised ({cookies} {cookies, plural, =1 {site} other {sites}})?",
     "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll delete cookies. Example: Close 3 tabs, and delete all cookies (2 sites)?"
   },
   "summaryClearHistoryAll": {
