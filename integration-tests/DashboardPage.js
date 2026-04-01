@@ -6,6 +6,7 @@ import { testDataStates } from './utils/states-with-fixtures';
 import { mockBrowserApis } from '../shared/js/browser/utils/communication-mocks.mjs';
 import { Extension } from './Extension';
 import toggleReportScreen from '../schema/__fixtures__/toggle-report-screen.json' assert { type: 'json' };
+import { duckDuckGoURLs } from '../shared/data/constants.js';
 
 export class DashboardPage {
     connectInfoLink = () => this.page.locator('[aria-label="View Connection Information"]');
@@ -844,7 +845,7 @@ export class DashboardPage {
     }
 
     async fireDialogIsPopulatedFromOptions(getBurnOptions) {
-        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear');
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Delete');
         // check that dropdown options are populated
         await expect(this.page.locator('#fire-button-opts > option')).toHaveCount(getBurnOptions.options.length);
         // there should be two text sections: summary and a notice
@@ -855,7 +856,7 @@ export class DashboardPage {
     }
 
     async fireDialogHistoryDisabled() {
-        await expect(this.page.locator('#fire-button-burn')).toHaveText('Clear');
+        await expect(this.page.locator('#fire-button-burn')).toHaveText('Delete');
     }
 
     async clickFireButtonBurn() {
@@ -877,6 +878,13 @@ export class DashboardPage {
 
     async chooseBurnOption(index) {
         await this.page.locator('#fire-button-opts').selectOption({ index });
+    }
+
+    async fireDialogShowsCookieWarning() {
+        await expect(this.page.locator('#fire-button-summary')).toContainText('This will reset your Search settings.');
+        const learnMore = this.page.locator('#fire-button-summary a.fire-button-learn-more');
+        await expect(learnMore).toHaveText('Learn More');
+        await expect(learnMore).toHaveAttribute('href', duckDuckGoURLs.settingsHelpPage);
     }
 
     async clicksWebsiteNotWorking() {

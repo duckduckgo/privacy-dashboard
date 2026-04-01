@@ -119,6 +119,20 @@
     font-size: 15px;
 }
 
+#fire-button-summary .fire-button-learn-more {
+    color: #3969ef;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    .body--theme-dark & {
+        color: #7295f6;
+    }
+}
+
 #fire-button-summary p {
     text-align: center;
     font-weight: 400;

@@ -1,4 +1,7 @@
-- Merge pull request #603 from duckduckgo/randerson/surface-secondary-background
-- Use Surface Secondary as background color instead of Surface Canvas
-- Merge pull request #602 from duckduckgo/randerson/update-design-tokens
-- Update @duckduckgo/design-tokens to v0.3.0
+- Merge pull request #604 from duckduckgo/aganjewar/o-2/clarify-ai-setting-message
+- Fixed failing defaultOption to BurnConfig type
+- Fixed Smartling translation errors in et, it, sk locale files
+- Add Smartling translations for fire button copy changes
+- Move settings help page URL to centralized constants
+- Replace "Clear" with "Delete" wording and scope cookie warning to duckduckgo.com only with current site only option
+- Add cookie clearing warning and Learn more link to fire dialog for site-specific data clearing

@@ -89,7 +89,7 @@ body {
   line-height: 20px;
 }
 .token-body.environment--browser {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -112,7 +112,7 @@ body {
   line-height: 22px;
 }
 .environment--browser .token-body-em {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -143,7 +143,7 @@ body {
   letter-spacing: 0;
 }
 .environment--browser .token-title-3 {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 20px;
 }
@@ -169,7 +169,7 @@ body {
   line-height: 1.25;
 }
 .environment--browser .token-title-3-em {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
@@ -2223,7 +2223,7 @@ body.environment--android {
   line-height: 20px;
 }
 body.environment--browser {
-  font-family: "DDG_ProximaNova";
+  font-family: "DDG_ProximaNova", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -5793,6 +5793,18 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 
 #fire-button-summary .fire-button-disclaimer {
   font-size: 15px;
+}
+
+#fire-button-summary .fire-button-learn-more {
+  color: #3969ef;
+  text-decoration: none;
+  cursor: pointer;
+}
+#fire-button-summary .fire-button-learn-more:hover {
+  text-decoration: underline;
+}
+.body--theme-dark #fire-button-summary .fire-button-learn-more {
+  color: #7295f6;
 }
 
 #fire-button-summary p {
