@@ -1,6 +1,7 @@
 import html from 'nanohtml';
 import raw from 'nanohtml/raw';
 import { i18n } from '../base/localize.js';
+import { duckDuckGoURLs } from '../../../data/constants.js';
 
 /**
  * Generate a string to describe what will be burned.
@@ -35,6 +36,12 @@ export function fireSummaryTemplate(selectedOption) {
                     ...descriptionStats,
                 })
             )}
+            ${descriptionStats.site === 'duckduckgo.com'
+                ? html` ${i18n.t('firebutton:clearingCookiesWarning.title')}
+                      <a class="fire-button-learn-more" href="${duckDuckGoURLs.settingsHelpPage}" target="_blank"
+                          >${i18n.t('firebutton:learnMore.title')}</a
+                      >`
+                : null}
         </p>
         ${descriptionStats.site && descriptionStats.clearHistory
             ? html`<p class="fire-button-disclaimer">${i18n.t('firebutton:historyAndDownloadsNotAffected.title')}</p>`

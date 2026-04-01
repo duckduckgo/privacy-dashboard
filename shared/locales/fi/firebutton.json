@@ -10,7 +10,7 @@
     ]
   },
   "fireDialogHeader": {
-    "title": "Sulje välilehdet ja tyhjennä tiedot",
+    "title": "Sulje välilehdet ja poista tiedot",
     "note": "Dialog header."
   },
   "fireDialogHeaderNoTabs": {
@@ -19,94 +19,102 @@
   },
   "optionCurrentSite": {
     "title": "Vain nykyinen sivusto",
-    "note": "Dropdown option to only clear data for the current active website"
+    "note": "Dropdown option to only delete data for the current active website"
   },
   "optionLastHour": {
     "title": "Viime tunti",
-    "note": "Dropdown option to only clear data from the past hour"
+    "note": "Dropdown option to only delete data from the past hour"
   },
   "optionLast24Hour": {
     "title": "Viimeiset 24 tuntia",
-    "note": "Dropdown option to only clear data from the past 24 hours"
+    "note": "Dropdown option to only delete data from the past 24 hours"
   },
   "optionLast7days": {
     "title": "Viimeiset 7 päivää",
-    "note": "Dropdown option to only clear data from the past 7 days"
+    "note": "Dropdown option to only delete data from the past 7 days"
   },
   "optionLast4Weeks": {
     "title": "Viimeiset 4 viikkoa",
-    "note": "Dropdown option to only clear data from the past 4 weeks"
+    "note": "Dropdown option to only delete data from the past 4 weeks"
   },
   "optionAllTime": {
     "title": "Kaikki",
-    "note": "Dropdown option to clear all data, since recording started"
+    "note": "Dropdown option to delete all data, since recording started"
   },
   "historyDuration": {
     "title": "{duration, select, hour {yksi tunti} day {24 tuntia} week {yksi viikko} month {4 viikkoa} other {Kaikki}}",
     "note": "Description of what period of history data should be deleted."
   },
   "summaryClearTabsHistoryDuration": {
-    "title": "{openTabs, plural, one {Sulje <b>{openTabs}</b> välilehti ja tyhjennä <b>{durationDesc}</b> selaushistoriaa ja evästeitä?} other {Sulje <b>{openTabs}</b> välilehteä ja tyhjennä <b>{durationDesc}</b> selaushistoriaa ja evästeitä?}}",
-    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of browsing…"
+    "title": "{openTabs, plural, one {Suljetaanko <b>{openTabs}</b> välilehti ja poistetaanko selaushistoriaa ja evästeitä <b>{durationDesc}</b> ajalta?} other {Suljetaanko <b>{openTabs}</b> välilehteä ja poistetaanko selaushistoriaa ja evästeitä <b>{durationDesc}</b> ajalta?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and delete 2 weeks of browsing…"
   },
   "summaryClearTabsDuration": {
-    "title": "{openTabs, plural, one {Sulje <b>{openTabs}</b> välilehti ja tyhjennä <b>{durationDesc}</b> evästeitä?} other {Sulje <b>{openTabs}</b> välilehteä ja tyhjennä <b>{durationDesc}</b> evästeitä?}}",
-    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and clear 2 weeks of cookies?"
+    "title": "{openTabs, plural, one {Suljetaanko <b>{openTabs}</b> välilehti ja poistetaanko evästeet <b>{durationDesc}</b> ajalta?} other {Suljetaanko <b>{openTabs}</b> välilehteä ja poistetaanko evästeet <b>{durationDesc}</b> ajalta?}}",
+    "note": "Description of data to be removed after the user submits the form. Placeholders stand for: 1. the number of tabs that will be affected; 2. the timespan of data to be removed (translated separately with key historyDuration). Example: Close 3 tabs and delete 2 weeks of cookies?"
   },
   "summaryClearHistoryDuration": {
-    "title": "Tyhjennä <b>{durationDesc}</b> selaushistoriaa ja evästeitä?",
-    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of browsing…"
+    "title": "Haluatko poistaa selaushistoriaa ja evästeitä <b>{durationDesc}</b> ajalta?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Delete 2 weeks of browsing…"
   },
   "summaryClearCookiesDuration": {
-    "title": "Tyhjennä <b>{durationDesc}</b> evästeitä?",
-    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Clear 2 weeks of cookies?"
+    "title": "Poistetaanko evästeitä <b>{durationDesc}</b> ajalta?",
+    "note": "Description of data to be removed after the user submits the form. The placeholder stands for the timespan of data to be removed (translated separately with key historyDuration). Example: Delete 2 weeks of cookies?"
   },
   "summaryClearTabsHistoryAll": {
-    "title": "Sulje <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {välilehteä}} ja tyhjennä <b>kaikki</b> selaushistoria ja evästeet ({cookies} {cookies, plural, =1 {site} other {sivustoa}})?",
-    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear browsing history and cookies (2 sites)?"
+    "title": "Suljetaanko <b>{openTabs}</b> {openTabs, plural, =1 {välilehti} other {välilehteä}} ja poistetaanko <b>kaikki</b> selaushistoria ja evästeet ({cookies} {cookies, plural, =1 {sivusto} other {sivustoa}}) ?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll delete cookies. Example: Close 3 tabs, and delete browsing history and cookies (2 sites)?"
   },
   "summaryClearTabsAll": {
-    "title": "Sulje <b>{openTabs}</b> {openTabs, plural, =1 {tab} other {välilehteä}} ja tyhjennä <b>kaikki</b> evästeet ({cookies} {cookies, plural, =1 {site} other {sivustoa}})?",
-    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll clear cookies. Example: Close 3 tabs, and clear all cookies (2 sites)?"
+    "title": "Suljetaanko <b>{openTabs}</b> {openTabs, plural, =1 {välilehti} other {välilehteä}} ja poistetaanko <b>kaikki</b> evästeet ({cookies} {cookies, plural, =1 {sivusto} other {sivustoa}})?",
+    "note": "Description of data to be removed after the user submits the form. The placeholders are for the number of tabs to be closed, and the number of sites where we'll delete cookies. Example: Close 3 tabs, and delete all cookies (2 sites)?"
   },
   "summaryClearHistoryAll": {
-    "title": "{cookies, plural, one {Tyhjennä <b>kaikki</b> ja evästeet ({cookies} sivusto)?} other {Tyhjennä <b>kaikki</b> selaushistoria ja evästeet ({cookies} sivustoa)?}}",
-    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all browsing history and cookies (2 sites)?"
+    "title": "{cookies, plural, one {Poistetaanko <b>kaikki</b> selaushistoria ja evästeet ({cookies} sivusto)?} other {Poistetaanko <b>kaikki</b> selaushistoria ja evästeet ({cookies} sivustoa)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll delete cookies. Example: Delete all browsing history and cookies (2 sites)?"
   },
   "summaryClearCookiesAll": {
-    "title": "{cookies, plural, one {Poista <b>kaikki</b> evästeet ({cookies} sivusto)?} other {Poista <b>kaikki</b> evästeet ({cookies} sivustoa)?}}",
-    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll clear cookies. Example: Clear all cookies (2 sites)?"
+    "title": "{cookies, plural, one {Poistetaanko <b>kaikki</b> evästeet ({cookies} sivusto)?} other {Poistetaanko <b>kaikki</b> evästeet ({cookies} sivustoa)?}}",
+    "note": "Description of data to be removed after the user submits the form. The placeholders stand for the number of sites where we'll delete cookies. Example: Delete all cookies (2 sites)?"
   },
   "summaryClearTabsHistorySite": {
-    "title": "{openTabs, plural, one {Sulje <b>{openTabs} {site}</b> välilehti ja tyhjennä <b>kaikki {site}</b> evästeet?} other {Close <b>{openTabs} {site}</b> välilehteä ja tyhjennä <b>kaikki {site}</b> evästeet?}}",
-    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+    "title": "{openTabs, plural, one {Suljetaanko <b>{openTabs} {site}</b> välilehti ja poistetaanko <b>kaikki {site}</b> evästeet?} other {Suljetaanko <b>{openTabs} {site}</b> välilehteä ja poistetaanko <b>kaikki {site}</b> evästeet?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and delete <b>all example.com</b> cookies?\"."
   },
   "summaryClearTabsSite": {
-    "title": "{openTabs, plural, one {Sulje <b>{openTabs} {site}</b> välilehti ja tyhjennä <b>kaikki {site}</b> evästeet?} other {Sulje <b>{openTabs} {site}</b> välilehteä ja tyhjennä <b>kaikki {site}</b> evästeet?}}",
-    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and clear <b>all example.com</b> cookies?\"."
+    "title": "{openTabs, plural, one {Sulje <b>{openTabs} {site}</b> välilehteä ja tyhjennä <b>kaikki {site}</b> evästeet?} other {Suljetaanko <b>{openTabs} {site}</b> välilehteä ja poistetaanko <b>kaikki {site}</b> evästeet?}}",
+    "note": "Description of data to be removed after the user submits the form. Example: \"Close <b>3 example.com</b> tabs, and delete <b>all example.com</b> cookies?\"."
   },
   "summaryClearHistorySite": {
-    "title": "Tyhjennä <b>kaikki {site}</b> selaushistoria ja evästeet?",
-    "note": "Description of data to be removed after the user submits the form. Example: Clear all example.com browsing history and cookies?"
+    "title": "Poistetaanko <b>kaikki sivuston {site}</b> selaushistoria ja evästeet?",
+    "note": "Description of data to be removed after the user submits the form. Example: Delete all example.com browsing history and cookies?"
   },
   "summaryClearCookiesSite": {
-    "title": "Tyhjennä <b>kaikki {site}</b> evästeet?",
-    "note": "Description of data to be removed after the user submits the form. Clear all example.com cookies?"
+    "title": "Poista <b>kaikki sivuston {site}</b> evästeet?",
+    "note": "Description of data to be removed after the user submits the form. Delete all example.com cookies?"
   },
   "summaryPinnedIgnored": {
     "title": "{tabs, plural, one {<b>{tabs} kiinnitetty</b> välilehti ohitetaan.} other {<b>{tabs} kiinnitettyä</b> välilehteä ohitetaan.}}",
     "note": "Notice to tell the user that some tabs will not be closed. Example: 3 pinned tabs will be ignored."
   },
   "clearData": {
-    "title": "Tyhjennä",
-    "note": "Button text to start data clearing."
+    "title": "Poista",
+    "note": "Button text to start data deletion."
   },
   "cancel": {
     "title": "Peruuta",
     "note": "Button text to exit the fire button modal."
   },
+  "clearingCookiesWarning": {
+    "title": "Tämä palauttaa hakuasetuksesi.",
+    "note": "Warning message shown when deleting cookies, informing the user that their search settings will be reset."
+  },
+  "learnMore": {
+    "title": "Lue lisää",
+    "note": "Link text that opens a help page with more information about deleting cookies and search settings."
+  },
   "historyAndDownloadsNotAffected": {
-    "title": "Jos haluat tyhjentää myös historian, valitse ajanjakso.",
-    "note": "Notice to tell the user that the chosen clearing settings will not affect history and downloads because a time period has not been selected from the dropdown."
+    "title": "Valitse ajanjakso, jos haluat poistaa myös historian.",
+    "note": "Notice to tell the user that the chosen deletion settings will not affect history and downloads because a time period has not been selected from the dropdown."
   }
 }
