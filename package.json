@@ -54,7 +54,7 @@
         "duckduckgo-colors": "0.0.1",
         "esbuild": "^0.20.1",
         "eslint": "^9.39.1",
-        "eventemitter2": "4.1.0",
+        "eventemitter2": "6.4.9",
         "http-server": "^13.0.2",
         "i18next": "^21.6.14",
         "i18next-icu": "^2.0.3",
