@@ -16,6 +16,10 @@ body {
     width: 100%;
     height: var(--nav-height);
     background: var(--page-bg);
+
+    .environment--ios & {
+        z-index: 10;
+    }
 }
 
 .top-nav__spacer {
