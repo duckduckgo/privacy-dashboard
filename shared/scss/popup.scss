@@ -49,7 +49,7 @@ body {
     // mobile environments
     &.environment--ios {
         --width: 100%;
-        --height: -webkit-fill-available;
+        --height: 100dvh;
     }
 
     &.environment--android {
