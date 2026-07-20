@@ -2231,7 +2231,7 @@ body.environment--browser {
 }
 body.environment--ios {
   --width: 100%;
-  --height: -webkit-fill-available;
+  --height: 100dvh;
 }
 body.environment--android {
   --width: 100%;
@@ -3117,6 +3117,9 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   width: 100%;
   height: var(--nav-height);
   background: var(--page-bg);
+}
+.environment--ios .top-nav {
+  z-index: 10;
 }
 
 .top-nav__spacer {
