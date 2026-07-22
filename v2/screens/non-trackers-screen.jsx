@@ -2,6 +2,7 @@
 import { h } from 'preact';
 import { DomNode } from '../dom-node';
 import { useData } from '../data-provider';
+import { platform } from '../../shared/js/browser/communication.js';
 import { heroFromTabNonTrackers } from '../../shared/js/ui/templates/shared/hero';
 import { platformLimitations } from '../../shared/js/ui/templates/shared/platform-limitations';
 import { sectionsFromSiteNonTracker } from '../../shared/js/ui/templates/page-non-trackers';
@@ -12,8 +13,11 @@ export function NonTrackersScreen() {
     // const c = useChannel()
     const data = useData();
     const ref = useRippleChildren(data.count);
+    const shouldCapHeight = platform.name === 'macos' || platform.name === 'windows' || platform.name === 'browser';
+    const maxViewHeight = 700;
+
     return (
-        <div className="site-info card page-inner" data-page="non-trackers">
+        <div className="site-info card page-inner" data-page="non-trackers" data-max-view-height={shouldCapHeight && maxViewHeight}>
             <SecondaryTopNav />
             <div className="padding-x-double" ref={ref}>
                 {/* @ts-ignore */}
