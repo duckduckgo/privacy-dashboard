@@ -6,12 +6,7 @@ import { i18n } from '../../shared/js/ui/base/localize';
 import { RefreshEmailAliasMessage } from '../../shared/js/browser/common';
 import { z } from 'zod';
 
-/**
- * Given a username, returns a valid email address with the duck domain
- * @param {string} address
- * @returns {string}
- */
-const formatAddress = (address) => address + '@duck.com';
+import { formatAddress, copyToClipboard } from '../../shared/js/browser/utils/clipboard.mjs';
 
 const EmailContext = createContext({
     /** @type {EmailState} */
@@ -78,7 +73,9 @@ export function EmailProvider({ children }) {
         if (!state.alias) {
             return console.warn('missing state.alias');
         }
-        navigator.clipboard?.writeText(formatAddress(state.alias));
+        copyToClipboard(formatAddress(state.alias)).catch((e) => {
+            console.error('Failed to copy alias to clipboard', e);
+        });
         const msg = new RefreshEmailAliasMessage();
         fetcher(msg)
             .then((resp) => {
