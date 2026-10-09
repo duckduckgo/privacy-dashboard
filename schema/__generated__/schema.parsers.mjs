@@ -57,6 +57,14 @@ export const descriptionSchema = z.literal("description");
 
 export const detectorDataSchema = z.literal("detectorData");
 
+export const deviceWithMemorySchema = z.literal("deviceWithMemory");
+
+export const networkStateSchema = z.literal("networkState");
+
+export const dNSResolutionSchema = z.literal("dnsResolution");
+
+export const failedResourcesSchema = z.literal("failedResources");
+
 export const screenKindSchema = z.union([z.literal("primaryScreen"), z.literal("breakageForm"), z.literal("toggleReport"), z.literal("breakageFormCategorySelection"), z.literal("breakageFormFinalStep"), z.literal("breakageFormSuccess"), z.literal("connection"), z.literal("trackers"), z.literal("nonTrackers"), z.literal("consentManaged"), z.literal("cookieHidden")]);
 
 export const stateBlockedSchema = z.object({
@@ -243,7 +251,7 @@ export const secKeyViewModelSchema = z.object({
     type: z.union([z.literal("RSA"), z.literal("Elliptic Curve"), z.literal("Elliptic Curve (Prime Random)")]).optional().nullable()
 });
 
-export const dataItemIdSchema = z.union([wVVersionSchema, requestsSchema, featuresSchema, appVersionSchema, atbSchema, errorDescriptionsSchema, extensionVersionSchema, hTTPErrorCodesSchema, lastSentDaySchema, deviceSchema, osSchema, listVersionsSchema, reportFlowSchema, siteURLSchema, didOpenReportInfoSchema, toggleReportCounterSchema, openerContextSchema, userRefreshCountSchema, jSPerformanceSchema, localeSchema, descriptionSchema, detectorDataSchema]);
+export const dataItemIdSchema = z.union([wVVersionSchema, requestsSchema, featuresSchema, appVersionSchema, atbSchema, errorDescriptionsSchema, extensionVersionSchema, hTTPErrorCodesSchema, lastSentDaySchema, deviceSchema, osSchema, listVersionsSchema, reportFlowSchema, siteURLSchema, didOpenReportInfoSchema, toggleReportCounterSchema, openerContextSchema, userRefreshCountSchema, jSPerformanceSchema, localeSchema, descriptionSchema, detectorDataSchema, deviceWithMemorySchema, networkStateSchema, dNSResolutionSchema, failedResourcesSchema]);
 
 export const incomingExtensionMessageSchema = z.union([incomingResponseSchema, incomingToggleReportSchema, incomingUpdateTabDataSchema, incomingClosePopupSchema, incomingDidResetTrackersDataSchema]);
 
