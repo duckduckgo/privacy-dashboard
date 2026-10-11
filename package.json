@@ -1,10 +1,6 @@
 {
     "name": "@duckduckgo/privacy-dashboard",
     "private": true,
-    "engines": {
-        "node": ">=22.0.0",
-        "npm": ">=9.0.0"
-    },
     "version": "7.3.2",
     "files": [
         "build",
