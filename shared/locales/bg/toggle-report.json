@@ -123,5 +123,21 @@
   "dynamic_detectorData" : {
     "title" : "Информация за елементи на страницата, за които е известно, че причиняват проблеми със сайта",
     "note" : "This text provides information about page elements that have been known to cause site issues."
+  },
+  "dynamic_deviceWithMemory" : {
+    "title" : "Марка, модел, производител и състояние на паметта на устройството",
+    "note" : "This text provides information about the device, including make, model, manufacturer, and whether the device is low on memory."
+  },
+  "dynamic_networkState" : {
+    "title" : "Състояние, тип и качество на мрежовата връзка",
+    "note" : "This text indicates whether the device is online, the type of network connection (e.g. Wi-Fi, cellular), and its quality."
+  },
+  "dynamic_dnsResolution" : {
+    "title" : "Информация дали уебсайтът може да бъде достигнат (DNS)",
+    "note" : "This text indicates whether the website's address could be looked up. DNS stands for Domain Name System and should not be translated."
+  },
+  "dynamic_failedResources" : {
+    "title" : "Домейни на ресурсите на страницата, които не успяха да се заредят, и типовете им грешки",
+    "note" : "This text represents the domains of page resources (e.g. images, scripts) that failed to load, and the type of error for each."
   }
 }

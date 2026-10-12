@@ -123,5 +123,21 @@
   "dynamic_detectorData" : {
     "title" : "Tietoja sivuelementeistä, joiden tiedetään aiheuttavan sivuston ongelmia",
     "note" : "This text provides information about page elements that have been known to cause site issues."
+  },
+  "dynamic_deviceWithMemory" : {
+    "title" : "Laitteen merkki, malli, valmistaja ja muistin tila",
+    "note" : "This text provides information about the device, including make, model, manufacturer, and whether the device is low on memory."
+  },
+  "dynamic_networkState" : {
+    "title" : "Verkkoyhteyden tila, tyyppi ja laatu",
+    "note" : "This text indicates whether the device is online, the type of network connection (e.g. Wi-Fi, cellular), and its quality."
+  },
+  "dynamic_dnsResolution" : {
+    "title" : "Tietoa siitä, voidaanko verkkosivuston osoite selvittää (DNS)",
+    "note" : "This text indicates whether the website's address could be looked up. DNS stands for Domain Name System and should not be translated."
+  },
+  "dynamic_failedResources" : {
+    "title" : "Latautumatta jääneiden sivuresurssien verkkotunnukset ja niiden virhetyypit",
+    "note" : "This text represents the domains of page resources (e.g. images, scripts) that failed to load, and the type of error for each."
   }
 }

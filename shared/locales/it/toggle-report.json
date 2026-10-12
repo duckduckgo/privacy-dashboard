@@ -123,5 +123,21 @@
   "dynamic_detectorData" : {
     "title" : "Informazioni sugli elementi della pagina che notoriamente causano problemi al sito",
     "note" : "This text provides information about page elements that have been known to cause site issues."
+  },
+  "dynamic_deviceWithMemory" : {
+    "title" : "Marca, modello, produttore e stato della memoria del dispositivo",
+    "note" : "This text provides information about the device, including make, model, manufacturer, and whether the device is low on memory."
+  },
+  "dynamic_networkState" : {
+    "title" : "Stato, tipo e qualità della connessione di rete",
+    "note" : "This text indicates whether the device is online, the type of network connection (e.g. Wi-Fi, cellular), and its quality."
+  },
+  "dynamic_dnsResolution" : {
+    "title" : "Informazioni sulla risoluzione dell’indirizzo del sito web (DNS)",
+    "note" : "This text indicates whether the website's address could be looked up. DNS stands for Domain Name System and should not be translated."
+  },
+  "dynamic_failedResources" : {
+    "title" : "Domini delle risorse della pagina che non sono state caricate e relativi tipi di errore",
+    "note" : "This text represents the domains of page resources (e.g. images, scripts) that failed to load, and the type of error for each."
   }
 }
