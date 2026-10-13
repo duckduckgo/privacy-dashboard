@@ -1,1 +1,1 @@
-- Fix iOS Privacy Dashboard scrolling and Done button on small screens (#624)
+- Breakage Report: Updates Copy - See whats sent (#627)

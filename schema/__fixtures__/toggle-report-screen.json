@@ -65,6 +65,18 @@
         },
         {
             "id": "description"
+        },
+        {
+            "id": "deviceWithMemory"
+        },
+        {
+            "id": "networkState"
+        },
+        {
+            "id": "dnsResolution"
+        },
+        {
+            "id": "failedResources"
         }
     ]
 }

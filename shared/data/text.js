@@ -51,5 +51,13 @@ export function namedString(item) {
             return ns.toggleReport('dynamic_description.title');
         case 'detectorData':
             return ns.toggleReport('dynamic_detectorData.title');
+        case 'deviceWithMemory':
+            return ns.toggleReport('dynamic_deviceWithMemory.title');
+        case 'networkState':
+            return ns.toggleReport('dynamic_networkState.title');
+        case 'dnsResolution':
+            return ns.toggleReport('dynamic_dnsResolution.title');
+        case 'failedResources':
+            return ns.toggleReport('dynamic_failedResources.title');
     }
 }

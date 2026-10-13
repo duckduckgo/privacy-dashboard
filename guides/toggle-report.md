@@ -52,16 +52,21 @@ The following are all sent in response to user interactions
 | appVersion          | App version number                                                                                                 |
 | atb                 | Anonymous experiment groups for feature testing                                                                    |
 | description         | Your selected category and optional comments                                                                       |
+| detectorData        | Information about page elements that have been known to cause site issues                                          |
 | device              | Device make, model, and manufacturer                                                                               |
+| deviceWithMemory    | Device make, model, manufacturer, and memory status                                                                |
 | didOpenReportInfo   | Whether or not you opted to show this report info                                                                  |
+| dnsResolution       | Information about whether the website can be reached (DNS)                                                         |
 | errorDescriptions   | Browser-reported errors                                                                                            |
 | extensionVersion    | Extension version number                                                                                           |
+| failedResources     | Domains of page resources that failed to load, and their error types                                               |
 | features            | List of which browser features were active                                                                         |
 | httpErrorCodes      | Website response status (HTTP) codes                                                                               |
 | jsPerformance       | How quickly parts of the page loaded                                                                               |
 | lastSentDay         | Date of last report sent for this site                                                                             |
 | listVersions        | Information about which versions of our protections were active                                                    |
 | locale              | Primary language and country of your device                                                                        |
+| networkState        | Network connection status, type, and quality                                                                       |
 | openerContext       | How you got to this page, either: "SERP" (DuckDuckGo search), "Navigation" (link/URL), or "External" (other means) |
 | os                  | Operating system version number                                                                                    |
 | reportFlow          | Which reporting form you used ("menu", "dashboard", etc.)                                                          |

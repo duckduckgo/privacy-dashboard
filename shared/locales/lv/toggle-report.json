@@ -123,5 +123,21 @@
   "dynamic_detectorData" : {
     "title" : "Informācija par lapas elementiem, kas, kā zināms, var izraisīt vietnes problēmas",
     "note" : "This text provides information about page elements that have been known to cause site issues."
+  },
+  "dynamic_deviceWithMemory" : {
+    "title" : "Ierīces marka, modelis, ražotājs un atmiņas statuss",
+    "note" : "This text provides information about the device, including make, model, manufacturer, and whether the device is low on memory."
+  },
+  "dynamic_networkState" : {
+    "title" : "Tīkla savienojuma statuss, veids un kvalitāte",
+    "note" : "This text indicates whether the device is online, the type of network connection (e.g. Wi-Fi, cellular), and its quality."
+  },
+  "dynamic_dnsResolution" : {
+    "title" : "Informācija par to, vai vietne ir sasniedzama (DNS)",
+    "note" : "This text indicates whether the website's address could be looked up. DNS stands for Domain Name System and should not be translated."
+  },
+  "dynamic_failedResources" : {
+    "title" : "Neielādēto lapas resursu domēni un to kļūdu veidi",
+    "note" : "This text represents the domains of page resources (e.g. images, scripts) that failed to load, and the type of error for each."
   }
 }

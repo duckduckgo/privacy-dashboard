@@ -123,5 +123,21 @@
   "dynamic_detectorData" : {
     "title" : "Site sorunlarına neden olduğu bilinen sayfa öğeleri hakkında bilgi",
     "note" : "This text provides information about page elements that have been known to cause site issues."
+  },
+  "dynamic_deviceWithMemory" : {
+    "title" : "Cihazın markası, modeli, üreticisi ve bellek durumu",
+    "note" : "This text provides information about the device, including make, model, manufacturer, and whether the device is low on memory."
+  },
+  "dynamic_networkState" : {
+    "title" : "Ağ bağlantısı durumu, türü ve kalitesi",
+    "note" : "This text indicates whether the device is online, the type of network connection (e.g. Wi-Fi, cellular), and its quality."
+  },
+  "dynamic_dnsResolution" : {
+    "title" : "Web sitesine erişilip erişilemediğine dair bilgi (DNS)",
+    "note" : "This text indicates whether the website's address could be looked up. DNS stands for Domain Name System and should not be translated."
+  },
+  "dynamic_failedResources" : {
+    "title" : "Yüklenemeyen sayfa kaynaklarının alan adları ve hata türleri",
+    "note" : "This text represents the domains of page resources (e.g. images, scripts) that failed to load, and the type of error for each."
   }
 }
