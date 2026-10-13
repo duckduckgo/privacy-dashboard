@@ -43,7 +43,11 @@
                         { "$ref": "#/definitions/jsPerformance" },
                         { "$ref": "#/definitions/locale" },
                         { "$ref": "#/definitions/description" },
-                        { "$ref": "#/definitions/detectorData" }
+                        { "$ref": "#/definitions/detectorData" },
+                        { "$ref": "#/definitions/deviceWithMemory" },
+                        { "$ref": "#/definitions/networkState" },
+                        { "$ref": "#/definitions/dnsResolution" },
+                        { "$ref": "#/definitions/failedResources" }
                     ]
                 },
                 "additional": {
@@ -172,6 +176,26 @@
             "title": "Detector Data",
             "const": "detectorData",
             "description": "Information about page elements that have been known to cause site issues"
+        },
+        "deviceWithMemory": {
+            "title": "Device With Memory",
+            "const": "deviceWithMemory",
+            "description": "Device make, model, manufacturer, and memory status"
+        },
+        "networkState": {
+            "title": "Network State",
+            "const": "networkState",
+            "description": "Network connection status, type, and quality"
+        },
+        "dnsResolution": {
+            "title": "DNS Resolution",
+            "const": "dnsResolution",
+            "description": "Information about whether the website can be reached (DNS)"
+        },
+        "failedResources": {
+            "title": "Failed Resources",
+            "const": "failedResources",
+            "description": "Domains of page resources that failed to load, and their error types"
         }
     }
 }

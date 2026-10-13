@@ -71,7 +71,11 @@ export type DataItemId =
   | JSPerformance
   | Locale
   | Description
-  | DetectorData;
+  | DetectorData
+  | DeviceWithMemory
+  | NetworkState
+  | DNSResolution
+  | FailedResources;
 /**
  * Web browser engine version number
  */
@@ -160,6 +164,22 @@ export type Description = "description";
  * Information about page elements that have been known to cause site issues
  */
 export type DetectorData = "detectorData";
+/**
+ * Device make, model, manufacturer, and memory status
+ */
+export type DeviceWithMemory = "deviceWithMemory";
+/**
+ * Network connection status, type, and quality
+ */
+export type NetworkState = "networkState";
+/**
+ * Information about whether the website can be reached (DNS)
+ */
+export type DNSResolution = "dnsResolution";
+/**
+ * Domains of page resources that failed to load, and their error types
+ */
+export type FailedResources = "failedResources";
 export type ScreenKind =
   | "primaryScreen"
   | "breakageForm"
