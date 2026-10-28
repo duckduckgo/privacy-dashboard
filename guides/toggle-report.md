@@ -23,8 +23,9 @@ This is called immediately to retrieve the data needed to render the list.
 
 [Sample JSON 📝](../schema/__fixtures__/toggle-report-screen.json)
 
+-   Android: {@link "Android integration".PrivacyDashboardJavascriptInterface.getToggleReportOptions}
 -   WebKit: {@link "macOS integration".privacyDashboardGetToggleReportOptions}
--   Other platforms will be added
+-   Browser Extensions: {@link "Browser/Extensions integration".getToggleReportOptions}
 
 See also: [Data disclosure item ids and their meanings](#appendix-data-disclosure-item-ids-and-their-meanings)
 
@@ -32,18 +33,27 @@ See also: [Data disclosure item ids and their meanings](#appendix-data-disclosur
 
 The following are all sent in response to user interactions
 
-### 👆Sending/rejecting the report
+### 👆Sending the report
 
+-   Android: {@link "Android integration".PrivacyDashboardJavascriptInterface.sendToggleReport}
 -   WebKit: {@link "macOS integration".privacyDashboardSendToggleReport}
--   WebKit: {@link "macOS integration".privacyDashboardRejectToggleReport}
+-   Browser Extensions: {@link "Browser/Extensions integration".sendToggleReport}
+
+### 👆Rejecting the report
+
+-   Android: {@link "Android integration".PrivacyDashboardJavascriptInterface.rejectToggleReport}
+-   WebKit: {@link "macOS integration".privacyDashboardSendToggleReport}
+-   Browser Extensions: {@link "Browser/Extensions integration".rejectToggleReport}
 
 ### 👆Tapping the 'see what's sent' list
 
--   Webkit: {@link "macOS integration".privacyDashboardSeeWhatIsSent}
+-   Android: {@link "Android integration".PrivacyDashboardJavascriptInterface.seeWhatIsSent}
+-   WebKit: {@link "macOS integration".privacyDashboardSeeWhatIsSent}
+-   Browser Extensions: {@link "Browser/Extensions integration".seeWhatIsSent}
 
 ### 👆Tapping anywhere on the success screen (macos only)
 
--   Webkit: {@link "macOS integration".privacyDashboardClose}
+-   WebKit: {@link "macOS integration".privacyDashboardClose}
 
 ## Appendix: Data disclosure item ids and their meanings
 
