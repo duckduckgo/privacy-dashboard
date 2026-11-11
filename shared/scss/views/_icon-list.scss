@@ -1,27 +1,216 @@
-$large-icon: 64px;
-$medium-icon: 32px;
-$small-icon: 20px;
+@use 'sass:math';
 
-$large-wrapper: 96px;
-$medium-wrapper: 64px;
-$small-wrapper: 48px;
+/**
+ * Blocked-trackers hero (brand refresh, static).
+ *
+ * A static illustration per company count (shield + cloud + motion lines + empty coins),
+ * with the live company logos placed on the coins. The illustration files live in `img/refresh-assets/hero-blocked/`.
+ * Files: hero-blocked-{1,2,3,4}-{light,dark}{,@2x,@3x}.png, 393x237 at 1x, transparent background.
+ *
+ * Geometry: the design spec "Tracker logo placement & distortion" in Figma,
+ * frames `tracker_illustration_{count}_{theme}` (393x237). All values are at 1x, origin top-left of the asset.
+ * Every position below is converted to a percentage of the asset, so the hero scales with its width (k = W / 393)
+ * and keeps its aspect ratio: the matrices do not change with k.
+ *
+ * Layers, back to front: logo (distorted with the slot matrix) → illustration → "+N" pill.
+ * The illustration is transparent where the coin faces are, so the logos show through, and it draws the strike
+ * (white halo + dark stroke) on top of them: the code draws no strike (design spec).
+ * Variants 4 and 4+ use the same illustration: the pill is drawn by code.
+ */
 
-.icon-list {
-    position: relative;
-    display: flex;
-    justify-content: center;
+$hero-width: 393;
+$hero-height: 237;
+
+/// x as a percentage of the asset width
+@function hero-x($value) {
+    @return math.percentage(math.div($value, $hero-width));
 }
 
-.icon-list__item {
+/// y as a percentage of the asset height
+@function hero-y($value) {
+    @return math.percentage(math.div($value, $hero-height));
+}
+
+// Per slot: logo box centre (cx, cy), logo box side and CSS matrix(a, b, c, d).
+// Use matrix(), never skew(): skew() uses tan and does not keep the axis length (logo ~4% taller, over-sheared).
+// Top right: the source frame's Skew panel reads H 20° / V −4°, the drawn art measures H +11.8° / V +4.2° (used here).
+$hero-slots: (
+    'tl': (
+        'center': (
+            97.2,
+            43.4,
+        ),
+        'size': 52.5,
+        'matrix': (
+            0.9962,
+            0.0872,
+            -0.2924,
+            0.9563,
+        ),
+    ),
+    'tr': (
+        'center': (
+            297.3,
+            57.4,
+        ),
+        'size': 27.5,
+        'matrix': (
+            0.9974,
+            0.0727,
+            0.205,
+            0.9788,
+        ),
+    ),
+    'bl': (
+        'center': (
+            99.3,
+            188,
+        ),
+        'size': 32,
+        'matrix': (
+            0.9962,
+            -0.0872,
+            0.342,
+            0.9397,
+        ),
+    ),
+    'br': (
+        'center': (
+            310.1,
+            167.1,
+        ),
+        'size': 23.5,
+        'matrix': (
+            1,
+            0,
+            0,
+            1,
+        ),
+    ),
+);
+
+/// @param {String} $file - file name without extension and density suffix, e.g. "hero-blocked-4-light"
+@mixin hero_blocked_bg($file) {
+    $base: '../../img/refresh-assets/hero-blocked/#{$file}';
+    background-image: url('#{$base}@2x.png');
+    background-image: -webkit-image-set(url('#{$base}.png') 1x, url('#{$base}@2x.png') 2x, url('#{$base}@3x.png') 3x);
+    background-image: image-set(url('#{$base}.png') 1x, url('#{$base}@2x.png') 2x, url('#{$base}@3x.png') 3x);
+}
+
+.hero-blocked {
+    position: relative;
+    width: 100%;
+    max-width: #{$hero-width}px;
+    aspect-ratio: #{$hero-width} / #{$hero-height};
+    margin-left: auto;
+    margin-right: auto;
+
+    // the illustration, on top of the logos
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 100% 100%;
+    }
+
+    // 4+ reuses the 4 illustration: the pill is drawn by code
+    @each $variant, $file in ('1': '1', '2': '2', '3': '3', '4': '4', '4plus': '4') {
+        &[data-hero-variant='#{$variant}']::after {
+            @include hero_blocked_bg('hero-blocked-#{$file}-light');
+        }
+
+        .body--theme-dark &[data-hero-variant='#{$variant}']::after {
+            @include hero_blocked_bg('hero-blocked-#{$file}-dark');
+        }
+    }
+
+    // The asset already includes the space under the illustration (237px frame), but the art is not centred in it
+    // (16px empty on top, 29px under the pill at 1x). Design spec: same space above and below the art.
+    // --hero-shift moves the art up without moving the text under it: half the measured difference between the
+    // gap domain → art and the gap art (pill) → description, per platform, in the 4+ variant.
+    &.key-insight__icon {
+        --hero-shift: 4.5px;
+        height: auto;
+        margin-top: calc(-1 * var(--hero-shift));
+        margin-bottom: var(--hero-shift);
+
+        .environment--windows & {
+            --hero-shift: 4px;
+        }
+        .environment--android & {
+            --hero-shift: 7px;
+        }
+        .environment--browser & {
+            --hero-shift: 1px;
+        }
+    }
+}
+
+// square logo box, centred on the slot centre, distorted around that centre
+.hero-blocked__slot {
+    position: absolute;
+    display: block;
+
+    @each $name, $slot in $hero-slots {
+        $cx: nth(map-get($slot, 'center'), 1);
+        $cy: nth(map-get($slot, 'center'), 2);
+        $size: map-get($slot, 'size');
+        $m: map-get($slot, 'matrix');
+        &--#{$name} {
+            left: hero-x($cx - $size * 0.5);
+            top: hero-y($cy - $size * 0.5);
+            width: hero-x($size);
+            height: hero-y($size);
+            transform-origin: 50% 50%;
+            transform: matrix(nth($m, 1), nth($m, 2), nth($m, 3), nth($m, 4), 0, 0);
+        }
+    }
+
+    // the logo fills the box (aspect-fit). `.hero-blocked` raises specificity above the sprite mixin (18px)
+    .hero-blocked & .icon-list__icon {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// "+N" pill under the shield, above the illustration. Figma: 89x27 at (156, 181) of 393x237, radius 46, 1px outline, bold 16/24.
+.hero-blocked__more {
+    position: absolute;
+    z-index: 2;
+    left: hero-x(156 + 89 * 0.5);
+    top: hero-y(181);
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
+    height: 27px;
+    box-sizing: border-box;
+    padding: 0 12px;
+    border-radius: 46px;
+    border: 1px solid var(--pd-hero-outline);
+    background-color: var(--pd-hero-badge-bg);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+
+    // Figma: --ds-font-body-lg-size / -line-height (16/24), weight 700, --ds-text-primary.
+    // The --ds-* tokens are not in this repo (design-tokens has no mobile build), so the values are inlined.
+    // Font: DuckSans Product, then the system stack (see $font__face--ducksans-product).
+    &.token-body-em {
+        font-family: $font__face--ducksans-product;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 700;
+
+        .environment--browser & {
+            font-family: $font__face--ducksans-product-browser;
+        }
+    }
 }
 
-.icon-list__count {
-    display: inline-block;
-    letter-spacing: -0.7px;
-}
-
+// the live company logo (or its letter fallback), from the tracker icon sprite set
 .icon-list__icon {
     @include tracker_network_icons_colors();
     @include tracker_network_icons_subview();
@@ -29,134 +218,6 @@ $small-wrapper: 48px;
     overflow: hidden;
     background-size: contain;
     margin: 0;
-    width: $small-icon;
-    height: $small-icon;
-}
-
-.icon-list__blocked-icon {
-    border-radius: 100%;
-    position: absolute;
-
-    svg path {
-        shape-rendering: geometricPrecision;
-    }
-    svg circle {
-        shape-rendering: geometricPrecision;
-    }
-    .body--theme-dark & {
-        circle {
-            fill: #222;
-        }
-    }
-}
-
-// ignoring the first element (the middle one), offset odd items to the left to create the overlap
-[data-company-icon-position]:nth-child(n + 2):nth-child(odd) {
-    margin-left: -8px;
-}
-
-// ignoring the first element (the middle one), offset odd items to the right to create the overlap
-[data-company-icon-position]:nth-child(n + 2):nth-child(even) {
-    margin-right: -8px;
-}
-
-[data-company-icon-size='large'] {
-    z-index: 4;
-    display: block;
-    // the following line was the value from figma, it was converted to multiple box-shadows
-    // because that gave a closer result to the design.
-    // ▶️ [from figma:] filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.1)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.08));
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.08);
-    height: $large-wrapper;
-    width: $large-wrapper;
-
-    .icon-list__icon {
-        margin: 0;
-        width: $large-icon;
-        height: $large-icon;
-    }
-
-    .icon-list__blocked-icon {
-        bottom: 14px;
-        right: 14px;
-        width: 30px;
-        height: 30px;
-
-        .environment--browser & {
-            bottom: 10px;
-            right: 10px;
-        }
-    }
-}
-
-[data-company-icon-size='medium'] {
-    z-index: 3;
-    // ▶️ [from figma:] filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.08)) drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.1);
-    height: $medium-wrapper;
-    width: $medium-wrapper;
-
-    .icon-list__icon {
-        margin: 0;
-        width: $medium-icon;
-        height: $medium-icon;
-    }
-    .icon-list__blocked-icon {
-        width: 24px;
-        height: 24px;
-        bottom: 8px;
-        right: 8px;
-    }
-}
-[data-company-icon-size='small'] {
-    z-index: 2;
-    //box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #f2f2f2;
-    box-shadow: 0px 1px 0px rgba(125, 125, 125, 0.06);
-
-    height: $small-wrapper;
-    width: $small-wrapper;
-
-    .icon-list__icon {
-        margin: 0;
-        width: $small-icon;
-        height: $small-icon;
-    }
-
-    .icon-list__blocked-icon {
-        width: 24px;
-        height: 24px;
-        bottom: 3px;
-        right: 3px;
-    }
-}
-
-.icon-list__wrapper {
-    background-color: $white;
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    color: rgba(0, 0, 0, 0.85);
-    align-items: center;
-    justify-content: center;
-
-    .body--theme-dark & {
-        background-color: $color-gray-90;
-        border-color: $color-gray-90;
-        color: rgba(255, 255, 255, 0.85);
-    }
-
-    .environment--macos &,
-    .environment--windows & {
-        background-color: var(--ds-color-theme-surface-tertiary);
-        color: var(--ds-color-theme-text-primary);
-    }
-}
-
-.icon-list__wrapper--count {
-    border: 1px solid var(--color-lines-light);
-    height: $small-wrapper - 2;
-    width: $small-wrapper - 2;
-    background: #fafafa;
-    font-size: 16px;
+    width: 20px;
+    height: 20px;
 }

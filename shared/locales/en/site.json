@@ -111,6 +111,10 @@
         "title": "We blocked {companyCount, plural, =0 {some companies} =1 {<b>{firstCompany}</b>} =2 {<b>{firstCompany}</b> and <b>{secondCompany}</b>} =3 {<b>{firstCompany}</b>, <b>{secondCompany}</b> and <b>{thirdCompany}</b>} =4 {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> and <b>{fourthCompany}</b>} =5 {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> and <b>1 other</b>} other {<b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> and <b>{othersCount} others</b>}} from loading tracking requests on this page.",
         "note": "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
     },
+    "trackersBlockedMoreCompanies": {
+        "title": "+ {count} more",
+        "note": "Short label in a pill under the blocked-trackers illustration. 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '+ 4 more'."
+    },
     "cookiesMinimized": {
         "title": "Cookies Managed",
         "note": "Title for when we have set the cookie privacy settings on this website to maximize privacy"
