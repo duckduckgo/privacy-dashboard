@@ -234,9 +234,23 @@ const heroSlots = /** @type {const} */ ({
 });
 
 /**
+ * The hero is decoration: if it fails on unexpected data, drop it and keep the rest of the primary screen
+ * (domain, description, list, toggle) usable.
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderCompanyIconsList(model) {
+    try {
+        return renderHero(model);
+    } catch (e) {
+        console.error('blocked-trackers hero failed to render', e);
+        return '';
+    }
+}
+
+/**
+ * @param {import('../models/site.js').PublicSiteModel} model
+ */
+function renderHero(model) {
     const companyNames = model.tab.requestDetails.blockedCompanyNames();
 
     if (companyNames.length === 0) return '';
@@ -248,7 +262,8 @@ function renderCompanyIconsList(model) {
 
     const icons = topCompanies.map((name, index) => {
         const slug = normalizeCompanyName(name);
-        const letter = slug[0].toUpperCase();
+        // a name with no latin letters (e.g. "Яндекс") normalises to "": no letter class, the plain coloured circle shows
+        const letter = slug ? slug[0].toUpperCase() : '';
         return html`
             <span class="hero-blocked__slot hero-blocked__slot--${slots[index]}" data-company-icon-position=${index + 1}>
                 <span class="icon-list__icon ${letter} color-${getColorId(slug)} ${slug}"></span>

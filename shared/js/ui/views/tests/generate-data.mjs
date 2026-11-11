@@ -949,6 +949,21 @@ export const createDataStates = (google, cnn) => {
             themeVariant: 'violet',
         }),
         ...heroBlockedStates(),
+        // a company name with no latin letters normalises to an empty slug (no letter, no logo)
+        'hero-blocked-non-latin': new MockData({
+            url: 'https://example.com',
+            requests: [
+                ...blockedCompanies(1),
+                {
+                    entityName: 'Яндекс',
+                    prevalence: 50,
+                    url: 'https://mc.yandex.ru/script.js',
+                    pageUrl: 'https://example.com',
+                    category: 'Analytics',
+                    state: { blocked: {} },
+                },
+            ],
+        }),
         empty: new MockData({}),
     };
 };

@@ -30,6 +30,14 @@ export function heroBlockedFlows(open) {
                 }
             });
         }
+        test('still shows the hero when a company name has no latin letters', async ({ page }) => {
+            const dash = await open(page, testDataStates['hero-blocked-non-latin']);
+            await dash.showsPrimaryScreen();
+            const hero = page.getByLabel('List of Blocked Company Icons');
+            await expect(hero.locator('[data-company-icon-position]')).toHaveCount(2);
+            await expect(page.getByText('Яндекс')).toBeVisible();
+            await expect(page.getByTestId('protectionHeader')).toBeVisible();
+        });
         test('shows the domain above the hero and the toggle under the list', async ({ page }) => {
             const dash = await open(page, testDataStates['hero-blocked-4plus-light']);
             await dash.showsPrimaryScreen();
