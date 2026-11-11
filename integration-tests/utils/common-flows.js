@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { testDataStates } from './states-with-fixtures';
 
 /**
@@ -17,6 +17,16 @@ export function toggleFlows(dashboardFactory) {
         await dash.showsAlternativeLayout();
         await dash.toggleProtectionsOff();
         await dash.mocks.calledForToggleAllowList();
+    });
+    test('the toggle row loses its ON tint as soon as the switch is turned off', async ({ page }) => {
+        const dash = await dashboardFactory(page, testDataStates.protectionsOn);
+        await dash.reducedMotion();
+        await dash.addState([testDataStates.protectionsOn]);
+        const row = page.getByTestId('protectionHeader').locator('.protection-toggle');
+        await expect(row).toHaveClass(/protection-toggle--on/);
+        // no new data arrives from native here, so the row must follow the switch, not the model
+        await dash.toggleProtectionsOff();
+        await expect(row).not.toHaveClass(/protection-toggle--on/);
     });
     test('with alternative primary screen - toggling protections', async ({ page }) => {
         const dash = await dashboardFactory(page, testDataStates['alternative-layout-exp-1']);

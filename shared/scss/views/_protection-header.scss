@@ -48,3 +48,63 @@
         padding: 12px 16px;
     }
 }
+
+/**
+ * Brand refresh: the protections toggle and "Report a problem" sit at the bottom of the primary screen,
+ * under the list. The toggle row gets a green tint when protections are ON.
+ * Figma (mobile, node 5496:32796): row 48px, radius 24, padding 18/12, ds-color-lilypad-10 (light), no border.
+ */
+.primary-protections {
+    // Figma: list ends at y=524, toggle starts at y=577 (mobile)
+    margin-top: 52px;
+
+    // GUESSED: no desktop frames in Figma
+    .environment--macos &,
+    .environment--windows & {
+        margin-top: 16px;
+    }
+    .environment--browser & {
+        margin-top: 12px;
+    }
+
+    .card-list--bordered {
+        border: 0;
+        border-radius: 24px;
+        background-color: var(--pd-toggle-bg-off);
+
+        .environment--macos &,
+        .environment--windows &,
+        .environment--browser & {
+            border-radius: 16px;
+        }
+    }
+
+    .protection-toggle--on .protection-toggle__row:not(.protection-toggle__row--alt) {
+        background-color: var(--pd-toggle-bg);
+    }
+
+    .protection-toggle__row:not(.protection-toggle__row--alt) {
+        .environment--ios &,
+        .environment--android & {
+            box-sizing: border-box;
+            min-height: 48px;
+            padding: 6px 12px 6px 18px;
+            display: flex;
+            align-items: center;
+
+            > * {
+                flex: 1;
+            }
+        }
+    }
+
+    // "Report a problem with this site": Figma 48px row, centered
+    .text--center {
+        padding: 8px 4px;
+
+        .environment--ios &,
+        .environment--android & {
+            padding: 12px 4px;
+        }
+    }
+}

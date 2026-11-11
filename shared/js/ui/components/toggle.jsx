@@ -16,6 +16,18 @@ import { isBrowser } from '../environment-check';
  */
 export function ProtectionToggle(props) {
     const [toggleState, toggle] = useToggleState(props.model, props.toggle);
+    return <ProtectionToggleView toggleState={toggleState} toggle={toggle} />;
+}
+
+/**
+ * The toggle for a state owned by the caller (see `useToggleState`), so the caller can style
+ * its container from the same state the switch shows.
+ *
+ * @param {object} props
+ * @param {ToggleState} props.toggleState
+ * @param {() => void} props.toggle
+ */
+export function ProtectionToggleView({ toggleState, toggle }) {
     const altText = ns.site('updatingProtectionList.title');
 
     return (
