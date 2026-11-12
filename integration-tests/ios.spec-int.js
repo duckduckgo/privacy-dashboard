@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { toggleFlows } from './utils/common-flows';
+import { heroBlockedFlows } from './utils/hero-flows';
 
 test.describe('page data (no trackers)', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -425,6 +426,12 @@ test.describe('phishing & malware protection', () => {
         await dash.clickScamHelpPageLink();
         await dash.mocks.calledForHelpPagesLink();
     });
+});
+
+heroBlockedFlows(async (page, state) => {
+    const dash = await DashboardPage.webkit(page);
+    await dash.addState([state]);
+    return dash;
 });
 
 test.describe('screenshots', { tag: '@screenshots' }, () => {

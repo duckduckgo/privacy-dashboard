@@ -26,7 +26,7 @@ const keyInsightsState = /** @type {const} */ ({
  */
 export function renderKeyInsight(modelOverride) {
     const model = modelOverride;
-    const title = (text) => html`<h1 class="token-title-3-em">${text}</h1>`;
+    const title = (text) => html`<h1 class="key-insight__domain">${text}</h1>`;
     const description = (text) => html`<div class="token-title-3"><span role="text">${text}</span></div>`;
 
     /** @type {keyInsightsState[keyof keyInsightsState]} */
@@ -59,8 +59,9 @@ export function renderKeyInsight(modelOverride) {
         insecure: () => {
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--insecure-connection"></div>
-                    ${title(model.tab.domain)} ${description(raw(i18n.t('site:connectionDescriptionUnencrypted.title')))}
+                    ${description(raw(i18n.t('site:connectionDescriptionUnencrypted.title')))}
                 </div>
             `;
         },
@@ -68,8 +69,9 @@ export function renderKeyInsight(modelOverride) {
             const text = i18n.t('site:connectionDescriptionInvalidCertificate.title', { domain: model.tab.domain });
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--insecure-connection"></div>
-                    ${title(model.tab.domain)} ${description(raw(text))}
+                    ${description(raw(text))}
                 </div>
             `;
         },
@@ -77,16 +79,17 @@ export function renderKeyInsight(modelOverride) {
             // prettier-ignore
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--protections-off"></div>
                     ${title(model.tab.domain)}
+                    <div class="key-insight__icon hero-icon--protections-off"></div>
                 </div>
             `
         },
         userAllowListed: () => {
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--protections-off"></div>
-                    ${title(model.tab.domain)} ${description(raw(i18n.t('site:protectionsDisabled.title')))}
+                    ${description(raw(i18n.t('site:protectionsDisabled.title')))}
                 </div>
             `;
         },
@@ -95,8 +98,8 @@ export function renderKeyInsight(modelOverride) {
 
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--tracker-network"></div>
                     ${title(model.tab.domain)}
+                    <div class="key-insight__icon hero-icon--tracker-network"></div>
                     ${description(
                         raw(
                             i18n.t('site:majorTrackingNetworkDesc.title', {
@@ -112,16 +115,17 @@ export function renderKeyInsight(modelOverride) {
         noneBlocked_someSpecialAllowed: () => {
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--info"></div>
-                    ${title(model.tab.domain)} ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
+                    ${description(i18n.t('site:trackerNetworksSummaryAllowedOnly.title'))}
                 </div>
             `;
         },
         noneBlocked_firstPartyAllowed: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--no-activity"></div>
                     ${title(model.tab.domain)}
+                    <div class="key-insight__icon hero-icon--no-activity"></div>
                     ${description(raw(i18n.t('site:trackerNetworksSummaryFirstPartyAllowedOnly.title', { domain: model.tab.domain })))}
                 </div>
             `;
@@ -129,16 +133,17 @@ export function renderKeyInsight(modelOverride) {
         noneBlocked: () => {
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--no-activity"></div>
-                    ${title(model.tab.domain)} ${description(raw(i18n.t('site:trackerNetworksSummaryNone.title')))}
+                    ${description(raw(i18n.t('site:trackerNetworksSummaryNone.title')))}
                 </div>
             `;
         },
         emptyCompaniesList: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    <div class="key-insight__icon hero-icon--trackers-blocked"></div>
                     ${title(model.tab.domain)}
+                    <div class="key-insight__icon hero-icon--trackers-blocked"></div>
                     ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
                 </div>
             `;
@@ -146,7 +151,7 @@ export function renderKeyInsight(modelOverride) {
         blocked: () => {
             return html`
                 <div class="key-insight key-insight--main">
-                    ${renderCompanyIconsList(model)} ${title(model.tab.domain)}
+                    ${title(model.tab.domain)} ${renderCompanyIconsList(model)}
                     ${description(raw(i18n.t('site:trackersBlockedDesc.title', generateCompanyNamesList(model))))}
                 </div>
             `;
@@ -155,8 +160,9 @@ export function renderKeyInsight(modelOverride) {
             const text = i18n.t('site:phishingWebsiteDesc.title', { domain: model.tab.domain });
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--malicious"></div>
-                    ${title(model.tab.domain)} ${description(raw(text))}
+                    ${description(raw(text))}
                     <div class="key-insight__link">
                         <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
                             ${i18n.t('site:aboutScamBlockerLink.title')}
@@ -169,8 +175,9 @@ export function renderKeyInsight(modelOverride) {
             const text = i18n.t('site:malwareWebsiteDesc.title', { domain: model.tab.domain });
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--malicious"></div>
-                    ${title(model.tab.domain)} ${description(raw(text))}
+                    ${description(raw(text))}
                     <div class="key-insight__link">
                         <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
                             ${i18n.t('site:aboutScamBlockerLink.title')}
@@ -183,8 +190,9 @@ export function renderKeyInsight(modelOverride) {
             const text = i18n.t('site:scamWebsiteDesc.title', { domain: model.tab.domain });
             return html`
                 <div class="key-insight key-insight--main">
+                    ${title(model.tab.domain)}
                     <div class="key-insight__icon hero-icon--malicious"></div>
-                    ${title(model.tab.domain)} ${description(raw(text))}
+                    ${description(raw(text))}
                     <div class="key-insight__link">
                         <a class="link-action link-action--text" href="${duckDuckGoURLs.phishingAndMalwareHelpPage}" target="_blank">
                             ${i18n.t('site:aboutScamBlockerLink.title')}
@@ -212,92 +220,85 @@ function generateCompanyNamesList(model) {
     };
 }
 /**
+ * Logo slots on the static hero illustration (brand refresh), per number of companies shown.
+ * Slot names: tl = top-left (largest), tr = top-right, bl = bottom-left, br = bottom-right (smallest).
+ * Fill order from the design spec: tl → br → tr → bl, so the first blocked company always takes the largest slot.
+ * Positions and matrices live in `_icon-list.scss` and must match the coin holes in the illustration (`hero-blocked-*.png`),
+ * which sits on top of the logos and draws the strike.
+ */
+const heroSlots = /** @type {const} */ ({
+    1: ['tl'],
+    2: ['tl', 'br'],
+    3: ['tl', 'br', 'tr'],
+    4: ['tl', 'br', 'tr', 'bl'],
+});
+
+/**
+ * Visible text of the "+N" pill: the number of blocked companies not shown as logos, capped at "99+".
+ * @param {number} count - 1 or more
+ * @returns {string}
+ */
+export function heroMoreLabel(count) {
+    return count > 99 ? '99+' : `+${count}`;
+}
+
+/**
+ * The hero is decoration: if it fails on unexpected data, drop it and keep the rest of the primary screen
+ * (domain, description, list, toggle) usable.
  * @param {import('../models/site.js').PublicSiteModel} model
  */
 function renderCompanyIconsList(model) {
+    try {
+        return renderHero(model);
+    } catch (e) {
+        console.error('blocked-trackers hero failed to render', e);
+        return '';
+    }
+}
+
+/**
+ * @param {import('../models/site.js').PublicSiteModel} model
+ */
+function renderHero(model) {
     const companyNames = model.tab.requestDetails.blockedCompanyNames();
 
     if (companyNames.length === 0) return '';
 
     const topCompanies = companyNames.slice(0, 4);
     const remainingCount = companyNames.length - topCompanies.length;
+    const slots = heroSlots[topCompanies.length];
+    const variant = remainingCount > 0 ? '4plus' : String(topCompanies.length);
 
-    const items = ['large', 'medium', 'medium', 'small', 'small'];
-    const positions = {
-        1: [1],
-        2: [2, 1],
-        3: [2, 1, 3],
-        4: [3, 2, 4, 1],
-        5: [3, 2, 4, 1, 5],
-    };
-
-    /**
-     * @type {Array<{
-     *   kind: "icon",
-     *   slug: string,
-     *   colorId: number,
-     *   letter: string,
-     *   size: string,
-     * } | { kind: 'more', count: number, size: string }>}
-     */
-    const processed = topCompanies.map((name, index) => {
+    const icons = topCompanies.map((name, index) => {
         const slug = normalizeCompanyName(name);
-        return {
-            kind: 'icon',
-            slug,
-            colorId: getColorId(slug),
-            letter: slug[0].toUpperCase(),
-            size: items[index],
-        };
-    });
-
-    if (remainingCount > 0) {
-        processed.push({
-            kind: 'more',
-            count: remainingCount,
-            size: items[4],
-        });
-    }
-
-    const positionMap = positions[processed.length];
-
-    const list = processed.map((item, index) => {
-        if (item.kind === 'icon') {
-            return html`
-                <span class="icon-list__item" style="order: ${positionMap[index]}" data-company-icon-position=${positionMap[index]}>
-                    <span class="icon-list__wrapper" data-company-icon-size=${item.size}>
-                        <span class="icon-list__icon ${item.letter} color-${item.colorId} ${item.slug}"></span>
-                        <span class="icon-list__blocked-icon"> ${blockSvg()} </span>
-                    </span>
-                </span>
-            `;
-        }
+        // a name with no latin letters (e.g. "Яндекс") normalises to "": no letter class, the plain coloured circle shows
+        const letter = slug ? slug[0].toUpperCase() : '';
         return html`
-            <span class='icon-list__item' style='order: ${positionMap[index]}' data-company-icon-position='${positionMap[index]}'>
-                <span class='icon-list__wrapper icon-list__wrapper--count'
-                    data-company-icon-size='${item.size}'>
-                    <span class='icon-list__count'>+${item.count}</span>
-                </span>
-            </div>`;
+            <span class="hero-blocked__slot hero-blocked__slot--${slots[index]}" data-company-icon-position=${index + 1}>
+                <span class="icon-list__icon ${letter} color-${getColorId(slug)} ${slug}"></span>
+            </span>
+        `;
     });
 
-    return html`
-        <div class="key-insight__icon icon-list" data-company-count="${processed.length}" aria-label="List of Blocked Company Icons">
-            ${list}
-        </div>
-    `;
-}
+    // the pill shows only the number (no text to translate, no truncation); screen readers get the full sentence
+    const more =
+        remainingCount > 0
+            ? html`<span
+                  class="hero-blocked__more token-body-em"
+                  role="img"
+                  aria-label=${i18n.t('site:trackersBlockedMoreCompanies.title', { count: remainingCount })}
+                  >${heroMoreLabel(remainingCount)}</span
+              >`
+            : '';
 
-function blockSvg() {
     return html`
-        <svg viewBox="0 0 32 32" fill="none">
-            <circle fill="white" cx="16" cy="16" r="15" />
-            <path
-                fill="#EE1025"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M28 16C28 22.6274 22.6274 28 16 28C9.37258 28 4 22.6274 4 16C4 9.37258 9.37258 4 16 4C22.6274 4 28 9.37258 28 16ZM24 16C24 20.4183 20.4183 24 16 24C14.5164 24 13.1271 23.5961 11.9361 22.8924L22.8924 11.9361C23.5961 13.1271 24 14.5164 24 16ZM9.10763 20.0639L20.0639 9.10763C18.8729 8.40386 17.4836 8 16 8C11.5817 8 8 11.5817 8 16C8 17.4836 8.40386 18.8729 9.10763 20.0639Z"
-            />
-        </svg>
+        <div
+            class="key-insight__icon hero-blocked"
+            data-company-count="${topCompanies.length}"
+            data-hero-variant="${variant}"
+            aria-label="List of Blocked Company Icons"
+        >
+            ${icons} ${more}
+        </div>
     `;
 }

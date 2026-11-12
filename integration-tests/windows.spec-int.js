@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { settingPermissions, toggleFlows } from './utils/common-flows';
+import { heroBlockedFlows } from './utils/hero-flows';
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -470,4 +471,10 @@ test.describe('windows screenshots', { tag: '@screenshots' }, () => {
             });
         }
     });
+});
+
+heroBlockedFlows(async (page, state) => {
+    const dash = await DashboardPage.windows(page);
+    await dash.addState([state]);
+    return dash;
 });

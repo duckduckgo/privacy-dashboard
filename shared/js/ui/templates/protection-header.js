@@ -5,7 +5,7 @@ import { render, h, Fragment, createContext } from 'preact';
 import { useState } from 'preact/hooks';
 import { i18n, ns } from '../base/localize';
 import { TextLink } from '../components/text-link.jsx';
-import { ProtectionToggle } from '../components/toggle';
+import { ProtectionToggleView, useToggleState } from '../components/toggle';
 
 /**
  * @typedef MigrationModel
@@ -120,10 +120,12 @@ export function ProtectionHeaderText() {
 function HeaderDefault(props) {
     const text = ns.site('websiteNotWorkingAdvice.title');
     const showHelp = props.state === 'site-not-working' && !props.model.isAllowlisted;
+    // the green row follows the switch (optimistic state), not the model, which only updates after the round trip to native
+    const [toggleState, toggle] = useToggleState(props.model, props.toggle);
     return (
-        <div className="protection-toggle">
+        <div className={toggleState.active ? 'protection-toggle protection-toggle--on' : 'protection-toggle'}>
             <div className="protection-toggle__row">
-                <ProtectionToggle model={props.model} toggle={props.toggle} />
+                <ProtectionToggleView toggleState={toggleState} toggle={toggle} />
             </div>
             {showHelp && <div className="protection-toggle__row protection-toggle__row--alt">{text}</div>}
         </div>
@@ -141,10 +143,11 @@ function HeaderDisabled(props) {
     if (props.model.isDenylisted) {
         text = i18n.t('site:protectionsDisabledRemoteOverride.title');
     }
+    const [toggleState, toggle] = useToggleState(props.model, props.toggle);
     return (
         <>
-            <div className="padding-x padding-y--reduced">
-                <ProtectionToggle model={props.model} toggle={props.toggle} />
+            <div className={toggleState.active ? 'padding-x padding-y--reduced protection-toggle--on' : 'padding-x padding-y--reduced'}>
+                <ProtectionToggleView toggleState={toggleState} toggle={toggle} />
             </div>
             <div className="note note--nested">{text}</div>
         </>

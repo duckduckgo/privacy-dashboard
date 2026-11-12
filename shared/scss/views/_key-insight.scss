@@ -87,3 +87,40 @@
         }
     }
 }
+
+// Domain on top of the primary screen (brand refresh): centered, no favicon.
+// Design spec (mobile): Title 06 → --ds-font-title-06-size / -line-height (20/28), weight 400, --ds-text-primary, centred.
+// The design spec has no desktop frames: the desktop sizes are assumed.
+// The --ds-* tokens are not in this repo, so the values are inlined. Font: DuckSans Display, then the system stack.
+.key-insight__domain {
+    margin: 0 0 16px; // design spec: gap domain → hero is ~19px
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-family: $font__face--ducksans-display;
+    color: var(--color-text-primary);
+    word-break: break-word;
+
+    .environment--macos &,
+    .environment--windows &,
+    .environment--browser & {
+        font-size: 17px;
+        line-height: 22px;
+        margin-bottom: 12px;
+    }
+
+    .environment--browser & {
+        font-family: $font__face--ducksans-display-browser;
+    }
+}
+
+// Brand refresh: the old toggle header gave the desktop popups their top padding; the hero now sits first.
+.primary-hero {
+    .environment--macos &,
+    .environment--windows & {
+        padding-top: 16px;
+    }
+    .environment--browser & {
+        padding-top: 12px;
+    }
+}

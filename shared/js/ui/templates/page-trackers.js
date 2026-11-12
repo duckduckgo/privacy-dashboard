@@ -53,7 +53,8 @@ export function renderCompany(company) {
     const titleClasses = [
         'site-info__tracker__icon',
         'site-info__tracker__icon--company',
-        slug[0].toUpperCase(),
+        // a name with no latin letters normalises to "": no letter class, the plain coloured circle shows
+        slug ? slug[0].toUpperCase() : '',
         'color-' + getColorId(slug),
         slug,
     ];
