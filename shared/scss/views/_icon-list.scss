@@ -33,6 +33,8 @@ $hero-height: 237;
 // Per slot: logo box centre (cx, cy), logo box side and CSS matrix(a, b, c, d).
 // Use matrix(), never skew(): skew() uses tan and does not keep the axis length (logo ~4% taller, over-sheared).
 // Top right: the source frame's Skew panel reads H 20° / V −4°, the drawn art measures H +11.8° / V +4.2° (used here).
+// Top right centre: the design spec says (297.3, 57.4), but the coin face in the exported PNG is centred at
+// (296.8, 58.7), so the logo sat ~1.3px high. The centre follows the PNG. The other coins match the spec within 0.4px.
 $hero-slots: (
     'tl': (
         'center': (
@@ -49,8 +51,8 @@ $hero-slots: (
     ),
     'tr': (
         'center': (
-            297.3,
-            57.4,
+            296.8,
+            58.7,
         ),
         'size': 27.5,
         'matrix': (
