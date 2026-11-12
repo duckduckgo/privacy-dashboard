@@ -30,13 +30,26 @@ export function heroBlockedFlows(open) {
                 }
             });
         }
-        test('still shows the hero when a company name has no latin letters', async ({ page }) => {
+        test('shows a filled coin when a company name has no latin letters or starts with a digit', async ({ page }) => {
             const dash = await open(page, testDataStates['hero-blocked-non-latin']);
             await dash.showsPrimaryScreen();
             const hero = page.getByLabel('List of Blocked Company Icons');
-            await expect(hero.locator('[data-company-icon-position]')).toHaveCount(2);
+            const icons = hero.locator('.icon-list__icon');
+            await expect(icons).toHaveCount(3);
+            for (const icon of await icons.all()) {
+                const box = await icon.boundingBox();
+                expect(box?.width).toBeGreaterThan(0);
+                expect(box?.height).toBeGreaterThan(0);
+            }
             await expect(page.getByText('Яндекс')).toBeVisible();
             await expect(page.getByTestId('protectionHeader')).toBeVisible();
+        });
+        test('opens the tracker companies screen when a company name has no latin letters', async ({ page }) => {
+            const dash = await open(page, testDataStates['hero-blocked-non-latin']);
+            await dash.showsPrimaryScreen();
+            await dash.viewTrackerCompanies();
+            await dash.showsTrackersScreen();
+            await expect(page.locator('[data-page="trackers"]').getByText('Яндекс')).toBeVisible();
         });
         test('shows the domain above the hero and the toggle under the list', async ({ page }) => {
             const dash = await open(page, testDataStates['hero-blocked-4plus-light']);

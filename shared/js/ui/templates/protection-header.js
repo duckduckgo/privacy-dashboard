@@ -5,7 +5,7 @@ import { render, h, Fragment, createContext } from 'preact';
 import { useState } from 'preact/hooks';
 import { i18n, ns } from '../base/localize';
 import { TextLink } from '../components/text-link.jsx';
-import { ProtectionToggle, ProtectionToggleView, useToggleState } from '../components/toggle';
+import { ProtectionToggleView, useToggleState } from '../components/toggle';
 
 /**
  * @typedef MigrationModel
@@ -143,10 +143,11 @@ function HeaderDisabled(props) {
     if (props.model.isDenylisted) {
         text = i18n.t('site:protectionsDisabledRemoteOverride.title');
     }
+    const [toggleState, toggle] = useToggleState(props.model, props.toggle);
     return (
         <>
-            <div className="padding-x padding-y--reduced">
-                <ProtectionToggle model={props.model} toggle={props.toggle} />
+            <div className={toggleState.active ? 'padding-x padding-y--reduced protection-toggle--on' : 'padding-x padding-y--reduced'}>
+                <ProtectionToggleView toggleState={toggleState} toggle={toggle} />
             </div>
             <div className="note note--nested">{text}</div>
         </>

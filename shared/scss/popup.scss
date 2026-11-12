@@ -37,14 +37,14 @@ body {
     --size-unit-half: calc(var(--size-unit) / 2);
     --size-unit-double: calc(var(--size-unit) * 2);
 
-    // Primary screen, brand refresh. Values from Figma (mobile tokens, node 5496:32796).
+    // Primary screen, brand refresh. Values from the design spec (mobile tokens).
     // Not in @duckduckgo/design-tokens v0.3.0 (desktop-browsers build has different values), so kept local.
     --pd-hero-outline: #000000; // ds-surface-contrast
     --pd-hero-badge-bg: #ffffff; // ds-surface-primary
     --pd-list-border: rgba(0, 0, 0, 0.12); // ds-surface-decoration-secondary
     --pd-list-divider: rgba(0, 0, 0, 0.24); // ds-surface-decoration-tertiary
     --pd-toggle-bg: #e2f3e9; // ds-color-lilypad-10
-    --pd-toggle-bg-off: rgba(0, 0, 0, 0.06); // GUESSED: not in Figma (only the ON state is designed)
+    --pd-toggle-bg-off: rgba(0, 0, 0, 0.06); // assumed: the design spec has only the ON state
 
     --btn-accent-border-radius: 8px;
     --btn-accent-border: 0.5px solid rgba(40, 145, 255, 0.05);
@@ -113,7 +113,7 @@ body {
         --pd-list-border: rgba(255, 255, 255, 0.12);
         --pd-list-divider: rgba(255, 255, 255, 0.24);
         --pd-toggle-bg: #0a4739; // ds-color-lilypad-80 (inferred: the dark frame uses lilypad-80 where light uses lilypad-10)
-        --pd-toggle-bg-off: rgba(255, 255, 255, 0.09); // GUESSED
+        --pd-toggle-bg-off: rgba(255, 255, 255, 0.09); // assumed, as in light
 
         // windows uses slightly different colors for buttons
         &.environment--windows {
@@ -146,6 +146,8 @@ body {
         --color-accent-blue-active: var(--ds-color-theme-accent-text-secondary);
         --color-lines-light: var(--ds-color-theme-surface-decoration-primary);
         --color-hover-bg: var(--ds-color-theme-container-fill-secondary);
+        --pd-list-border: var(--ds-color-theme-container-border-primary);
+        --pd-list-divider: var(--ds-color-theme-container-border-primary);
     }
 
     color: var(--color-text-primary);

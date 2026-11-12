@@ -176,7 +176,7 @@
 
 /**
  * Brand refresh (primary screen only): outlined card (no fill), radius 24, medium-weight labels, thin dividers.
- * Figma (mobile, node 5496:32796): 1px ds-surface-decoration-secondary border, radius ds-radius-x06 (24),
+ * Design spec (mobile): 1px ds-surface-decoration-secondary border, radius ds-radius-x06 (24),
  * rows 48px, labels 16/24, 0.5px ds-surface-decoration-tertiary dividers inset 16px, 20px icons.
  * Scoped to `.primary-list` because the breakage form reuses `.main-nav` and is out of scope.
  */
@@ -186,7 +186,7 @@
         border-radius: 24px;
         background-color: transparent;
 
-        // GUESSED: no desktop frames in Figma, smaller radius for the shorter desktop rows
+        // assumed: no desktop frames in the design spec, smaller radius for the shorter desktop rows
         .environment--macos &,
         .environment--windows &,
         .environment--browser & {

@@ -7,8 +7,7 @@
  * with the live company logos placed on the coins. The illustration files live in `img/refresh-assets/hero-blocked/`.
  * Files: hero-blocked-{1,2,3,4}-{light,dark}{,@2x,@3x}.png, 393x237 at 1x, transparent background.
  *
- * Geometry: the design spec "Tracker logo placement & distortion" in Figma,
- * frames `tracker_illustration_{count}_{theme}` (393x237). All values are at 1x, origin top-left of the asset.
+ * Geometry: the design spec for the tracker logo placement and distortion, one 393x237 frame per count and theme. All values are at 1x, origin top-left of the asset.
  * Every position below is converted to a percentage of the asset, so the hero scales with its width (k = W / 393)
  * and keeps its aspect ratio: the matrices do not change with k.
  *
@@ -99,11 +98,23 @@ $hero-slots: (
 
 .hero-blocked {
     position: relative;
+    // own stacking context: the illustration (z-index 1) and the pill (z-index 2) stay under the fixed top nav
+    // (z-index 1) when the screen scrolls
+    isolation: isolate;
     width: 100%;
     max-width: #{$hero-width}px;
     aspect-ratio: #{$hero-width} / #{$hero-height};
     margin-left: auto;
     margin-right: auto;
+
+    // web views without aspect-ratio (Safari < 15, Chromium < 88): the box would collapse to 0 height
+    @supports not (aspect-ratio: 1) {
+        &::before {
+            content: '';
+            display: block;
+            padding-top: math.percentage(math.div($hero-height, $hero-width)); // padding % is of the width
+        }
+    }
 
     // the illustration, on top of the logos
     &::after {
@@ -170,14 +181,18 @@ $hero-slots: (
         }
     }
 
-    // the logo fills the box (aspect-fit). `.hero-blocked` raises specificity above the sprite mixin (18px)
+    // the logo fills the box (aspect-fit). `.hero-blocked` raises specificity above the sprite mixin (18px).
+    // display: block, because the sprite mixin sets inline-block only for A-Z and known logos: a name that starts
+    // with a digit or has no latin letters would stay inline (0x0, empty coin), and inline-block sits on the
+    // line box baseline (logo ~2px low in the small slots).
     .hero-blocked & .icon-list__icon {
+        display: block;
         width: 100%;
         height: 100%;
     }
 }
 
-// "+N" pill under the shield, above the illustration. Figma: 89x27 at (156, 181) of 393x237, radius 46, 1px outline, bold 16/24.
+// "+N" pill under the shield, above the illustration. Design spec: 89x27 at (156, 181) of 393x237, radius 46, 1px outline, bold 16/24.
 .hero-blocked__more {
     position: absolute;
     z-index: 2;
@@ -195,7 +210,7 @@ $hero-slots: (
     color: var(--color-text-primary);
     white-space: nowrap;
 
-    // Figma: --ds-font-body-lg-size / -line-height (16/24), weight 700, --ds-text-primary.
+    // Design spec: --ds-font-body-lg-size / -line-height (16/24), weight 700, --ds-text-primary.
     // The --ds-* tokens are not in this repo (design-tokens has no mobile build), so the values are inlined.
     // Font: DuckSans Product, then the system stack (see $font__face--ducksans-product).
     &.token-body-em {

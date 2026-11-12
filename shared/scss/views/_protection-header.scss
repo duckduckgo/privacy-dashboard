@@ -52,13 +52,13 @@
 /**
  * Brand refresh: the protections toggle and "Report a problem" sit at the bottom of the primary screen,
  * under the list. The toggle row gets a green tint when protections are ON.
- * Figma (mobile, node 5496:32796): row 48px, radius 24, padding 18/12, ds-color-lilypad-10 (light), no border.
+ * Design spec (mobile): row 48px, radius 24, padding 18/12, ds-color-lilypad-10 (light), no border.
  */
 .primary-protections {
-    // Figma: list ends at y=524, toggle starts at y=577 (mobile)
+    // design spec (mobile): list ends at y=524, toggle starts at y=577
     margin-top: 52px;
 
-    // GUESSED: no desktop frames in Figma
+    // assumed: no desktop frames in the design spec
     .environment--macos &,
     .environment--windows & {
         margin-top: 16px;
@@ -79,7 +79,9 @@
         }
     }
 
-    .protection-toggle--on .protection-toggle__row:not(.protection-toggle__row--alt) {
+    // HeaderDefault tints its row, HeaderDisabled (broken site, extension only can turn it ON) tints its wrapper
+    .protection-toggle--on .protection-toggle__row:not(.protection-toggle__row--alt),
+    .padding-x.protection-toggle--on {
         background-color: var(--pd-toggle-bg);
     }
 
@@ -98,7 +100,7 @@
         }
     }
 
-    // "Report a problem with this site": Figma 48px row, centered
+    // "Report a problem with this site": 48px row, centered (design spec)
     .text--center {
         padding: 8px 4px;
 

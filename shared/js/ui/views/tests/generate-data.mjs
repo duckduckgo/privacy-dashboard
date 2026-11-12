@@ -77,7 +77,7 @@ export const requests = {
 };
 
 /**
- * Blocked requests from `count` different companies, in the order of the brand refresh Figma frames
+ * Blocked requests from `count` different companies, in the order of the brand refresh design frames
  * (Google, Amazon, Facebook, Comscore, then others). Used for the 1, 2, 3, 4, 4+ hero variants.
  * @param {number} count
  * @returns {DetectedRequest[]}
@@ -949,7 +949,8 @@ export const createDataStates = (google, cnn) => {
             themeVariant: 'violet',
         }),
         ...heroBlockedStates(),
-        // a company name with no latin letters normalises to an empty slug (no letter, no logo)
+        // a company name with no latin letters normalises to an empty slug, one that starts with a digit has no
+        // letter icon: both show the plain coloured circle
         'hero-blocked-non-latin': new MockData({
             url: 'https://example.com',
             requests: [
@@ -960,6 +961,14 @@ export const createDataStates = (google, cnn) => {
                     url: 'https://mc.yandex.ru/script.js',
                     pageUrl: 'https://example.com',
                     category: 'Analytics',
+                    state: { blocked: {} },
+                },
+                {
+                    entityName: '33Across',
+                    prevalence: 40,
+                    url: 'https://ads.33across.com/script.js',
+                    pageUrl: 'https://example.com',
+                    category: 'Advertising',
                     state: { blocked: {} },
                 },
             ],
