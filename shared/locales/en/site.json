@@ -112,8 +112,8 @@
         "note": "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
     },
     "trackersBlockedMoreCompanies": {
-        "title": "+ {count} more",
-        "note": "Short label in a pill under the blocked-trackers illustration. 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '+ 4 more'."
+        "title": "{count, plural, =1 {1 more company blocked} other {{count} more companies blocked}}",
+        "note": "Screen reader label for the '+N' pill under the blocked-trackers illustration (the pill itself shows only '+4'). 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '4 more companies blocked'."
     },
     "cookiesMinimized": {
         "title": "Cookies Managed",

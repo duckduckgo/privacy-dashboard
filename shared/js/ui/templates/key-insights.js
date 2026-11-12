@@ -234,6 +234,15 @@ const heroSlots = /** @type {const} */ ({
 });
 
 /**
+ * Visible text of the "+N" pill: the number of blocked companies not shown as logos, capped at "99+".
+ * @param {number} count - 1 or more
+ * @returns {string}
+ */
+export function heroMoreLabel(count) {
+    return count > 99 ? '99+' : `+${count}`;
+}
+
+/**
  * The hero is decoration: if it fails on unexpected data, drop it and keep the rest of the primary screen
  * (domain, description, list, toggle) usable.
  * @param {import('../models/site.js').PublicSiteModel} model
@@ -271,10 +280,14 @@ function renderHero(model) {
         `;
     });
 
+    // the pill shows only the number (no text to translate, no truncation); screen readers get the full sentence
     const more =
         remainingCount > 0
-            ? html`<span class="hero-blocked__more token-body-em"
-                  >${i18n.t('site:trackersBlockedMoreCompanies.title', { count: remainingCount })}</span
+            ? html`<span
+                  class="hero-blocked__more token-body-em"
+                  role="img"
+                  aria-label=${i18n.t('site:trackersBlockedMoreCompanies.title', { count: remainingCount })}
+                  >${heroMoreLabel(remainingCount)}</span
               >`
             : '';
 

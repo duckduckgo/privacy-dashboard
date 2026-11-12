@@ -105,7 +105,7 @@ export function blockedCompanies(count) {
 
 /**
  * Mock states for the blocked-trackers hero: `hero-blocked-{1,2,3,4,4plus}-{light,dark}`.
- * 4plus uses 8 companies, so the pill reads "+ 4 more".
+ * 4plus uses 8 companies, so the pill reads "+4".
  * @returns {Record<string, MockData>}
  */
 function heroBlockedStates() {

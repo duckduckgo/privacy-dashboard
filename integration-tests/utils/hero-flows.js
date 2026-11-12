@@ -14,7 +14,7 @@ export function heroBlockedFlows(open) {
             { state: 'hero-blocked-2-light', variant: '2', logos: 2, more: null },
             { state: 'hero-blocked-3-light', variant: '3', logos: 3, more: null },
             { state: 'hero-blocked-4-light', variant: '4', logos: 4, more: null },
-            { state: 'hero-blocked-4plus-light', variant: '4plus', logos: 4, more: '+ 4 more' },
+            { state: 'hero-blocked-4plus-light', variant: '4plus', logos: 4, more: '+4' },
         ];
         for (const { state, variant, logos, more } of cases) {
             test(`shows the ${variant} variant with ${logos} live logos`, async ({ page }) => {
@@ -24,7 +24,9 @@ export function heroBlockedFlows(open) {
                 await expect(hero).toHaveAttribute('data-hero-variant', variant);
                 await expect(hero.locator('[data-company-icon-position]')).toHaveCount(logos);
                 if (more) {
-                    await expect(hero).toContainText(more);
+                    const pill = hero.locator('.hero-blocked__more');
+                    await expect(pill).toHaveText(more);
+                    await expect(page.getByRole('img', { name: '4 more companies blocked' })).toBeVisible();
                 } else {
                     await expect(hero.locator('.hero-blocked__more')).toHaveCount(0);
                 }

@@ -199,7 +199,7 @@ $hero-slots: (
     }
 }
 
-// "+N" pill under the shield, above the illustration. Design spec: 89x27 at (156, 181) of 393x237, radius 46, 1px outline, bold 16/24.
+// "+N" pill under the shield, above the illustration (number only, capped at "99+"). Design spec: 89x27 at (156, 181) of 393x237, radius 46, 1px outline, bold 16/24.
 .hero-blocked__more {
     position: absolute;
     z-index: 2;
