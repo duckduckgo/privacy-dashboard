@@ -181,6 +181,13 @@ $hero-slots: (
         }
     }
 
+    // The positions above are measured on the 4 illustration. In the 3 illustration the top-right coin is drawn
+    // 2px lower (light and dark), the other coins match.
+    [data-hero-variant='3'] &--tr {
+        $tr: map-get($hero-slots, 'tr');
+        top: hero-y(nth(map-get($tr, 'center'), 2) + 2 - map-get($tr, 'size') * 0.5);
+    }
+
     // the logo fills the box (aspect-fit). `.hero-blocked` raises specificity above the sprite mixin (18px).
     // display: block, because the sprite mixin sets inline-block only for A-Z and known logos: a name that starts
     // with a digit or has no latin letters would stay inline (0x0, empty coin), and inline-block sits on the
