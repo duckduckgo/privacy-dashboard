@@ -113,8 +113,8 @@ jobs:
             - name: npm ci passes with the cooldown config
               run: |
                   npm --version
-                  npm config get min-release-age allow-git
-                  npm ci --ignore-scripts
+                  npm config get min-release-age allow-git strict-allow-scripts
+                  npm ci
             - name: Cooldown blocks a package newer than 7 days (expect ETARGET)
               if: success() || failure()
               run: |
