@@ -78,8 +78,10 @@
         "tabWidth": 4
     },
     "allowScripts": {
+        "@bundled-es-modules/glob@10.4.2": true,
         "es5-ext@0.10.61": false,
         "esbuild@0.20.1": true,
-        "fsevents@2.3.2": true
+        "fsevents@2.3.2": true,
+        "style-dictionary@4.3.0": true
     }
 }
