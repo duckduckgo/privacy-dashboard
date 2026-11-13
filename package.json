@@ -7,6 +7,9 @@
         "schema/__**/*"
     ],
     "type": "module",
+    "engines": {
+        "npm": ">=11.10.0"
+    },
     "scripts": {
         "start": "npm run dev",
         "dev": "chokidar \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
