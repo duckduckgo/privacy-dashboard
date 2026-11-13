@@ -101,3 +101,46 @@ jobs:
             - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
+
+    # TEMP: verifies the npm cooldown config. Remove before merging.
+    npm-cooldown-check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version-file: '.nvmrc'
+            - name: npm ci passes with the cooldown config
+              run: |
+                  npm --version
+                  npm config get min-release-age allow-git
+                  npm ci --ignore-scripts
+            - name: Cooldown blocks a package newer than 7 days (expect ETARGET)
+              if: success() || failure()
+              run: |
+                  VERSION=$(npm view caniuse-lite time --json | node -e '
+                      const t = JSON.parse(require("fs").readFileSync(0, "utf8"));
+                      const day = 864e5;
+                      const recent = Object.entries(t)
+                          .filter(([k, d]) => !["created", "modified"].includes(k) && Date.now() - Date.parse(d) < 7 * day)
+                          .sort((a, b) => Date.parse(a[1]) - Date.parse(b[1]));
+                      if (!recent.length) { console.error("no caniuse-lite version under 7 days old"); process.exit(1); }
+                      console.log(recent[0][0]);
+                  ')
+                  echo "Trying caniuse-lite@$VERSION"
+                  if out=$(npm pack --dry-run "caniuse-lite@$VERSION" 2>&1); then echo "$out"; echo "FAIL: cooldown not enforced"; exit 1; fi
+                  echo "$out"
+                  echo "$out" | grep -q ETARGET
+            - name: allow-git=root blocks transitive git deps (expect EALLOWGIT)
+              if: success() || failure()
+              run: |
+                  if out=$(npm pack --dry-run github:npm/ini 2>&1); then echo "$out"; echo "FAIL: git dep allowed"; exit 1; fi
+                  echo "$out"
+                  echo "$out" | grep -q EALLOWGIT
+            - name: npm older than 11.10 fails loudly (expect EBADENGINE)
+              if: success() || failure()
+              run: |
+                  rm -rf node_modules
+                  if out=$(npx -y npm@11.5.2 ci --dry-run --ignore-scripts 2>&1); then echo "$out"; echo "FAIL: old npm installed silently"; exit 1; fi
+                  echo "$out"
+                  echo "$out" | grep -q EBADENGINE
