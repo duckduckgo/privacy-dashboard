@@ -324,11 +324,11 @@ test.describe('stack based router', () => {
         await dash.addState([testDataStates.google]);
 
         await dash.clicksWebsiteNotWorking();
-        await dash.waitForRouterToSettle();
+        await dash.showsCategoryTypeSelection();
         await dash.selectsCategoryType('The site is not working as expected', 'notWorking');
-        await dash.waitForRouterToSettle();
+        await dash.showsCategorySelection();
         await dash.selectsCategory('Site layout broken', 'layout');
-        await dash.waitForRouterToSettle();
+        await dash.breakageFormIsVisible();
         await dash.nav.goesBackToPrimaryScreenFromBreakageScreen();
     });
     test('goes back and forward generally', async ({ page }) => {
