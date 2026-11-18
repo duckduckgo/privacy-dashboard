@@ -112,6 +112,10 @@
     "title" : "{companyCount, plural, =0 {Blokkoltuk néhány cég nyomkövető kéréseinek betöltését ezen az oldalon.} =2 {Blokkoltuk a(z) <b>{firstCompany}</b> és a(z) <b>{secondCompany}</b> nyomon követő kéréseinek betöltését ezen az oldalon.} =3 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b> és a(z) <b>{thirdCompany}</b> nyomon követő kéréseinek betöltését ezen az oldalon.} =4 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b> és a(z) <b>{fourthCompany}</b> nyomon követő kéréseinek betöltését ezen az oldalon.} =5 {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>1 másik</b> cég nyomon követő kéréseinek betöltését ezen az oldalon.} one {Blokkoltuk a(z) <b>{firstCompany}</b> nyomon követő kérésének betöltését ezen az oldalon.} other {Blokkoltuk a(z) <b>{firstCompany}</b>, a(z) <b>{secondCompany}</b>, a(z) <b>{thirdCompany}</b>, a(z) <b>{fourthCompany}</b> és <b>{othersCount} másik</b> cég nyomon követő kéréseinek betöltését ezen az oldalon.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
+  "trackersBlockedMoreCompanies" : {
+    "title" : "{count, plural, one {További 1 cég letiltva} other {További {count} cég letiltva}}",
+    "note" : "Screen reader label for the '+N' pill under the blocked-trackers illustration (the pill itself shows only '+4'). 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '4 more companies blocked'."
+  },
   "cookiesMinimized" : {
     "title" : "Kezelt sütik",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"

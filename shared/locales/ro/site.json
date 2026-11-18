@@ -112,6 +112,10 @@
     "title" : "{companyCount, plural, =0 {Am blocat unele companii pentru a nu încărca solicitări de urmărire pe această pagină.} =2 {Am blocat <b>{firstCompany}</b> și <b>{secondCompany}</b> să încarce solicitări de urmărire pe această pagină.} =3 {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b> și <b>{thirdCompany}</b> să încarce cereri de urmărire pe această pagină.} =4 {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>și <b>{fourthCompany}</b>să încarce solicitări de urmărire pe această pagină.} =5 {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> și <b>încă o companie</b> să încarce solicitări de urmărire pe această pagină.} one {Am blocat <b>{firstCompany}</b> să încarce solicitări de urmărire pe această pagină.} few {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> și <b>{othersCount} altele</b> de la încărcarea cererilor de urmărire pe această pagină.} other {Am blocat <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> și încă <b>{othersCount} companii</b> să încarce solicitări de urmărire pe această pagină.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
+  "trackersBlockedMoreCompanies" : {
+    "title" : "{count, plural, one {Încă o companie blocată} few {Încă {count} companii blocate} other {Încă {count} de companii blocate}}",
+    "note" : "Screen reader label for the '+N' pill under the blocked-trackers illustration (the pill itself shows only '+4'). 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '4 more companies blocked'."
+  },
   "cookiesMinimized" : {
     "title" : "Modulele cookie au fost gestionate",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"

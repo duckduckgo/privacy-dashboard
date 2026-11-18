@@ -112,6 +112,10 @@
     "title" : "{companyCount, plural, =0 {Abbiamo impedito ad alcune aziende di caricare richieste di tracciamento su questa pagina.} =2 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b> e <b>{secondCompany}</b> su questa pagina.} =3 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b> e <b>{thirdCompany}</b> su questa pagina.} =4 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> e <b>{fourthCompany}</b> su questa pagina.} =5 {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> e di <b>1 altra</b> su questa pagina.} one {Abbiamo bloccato il caricamento della richiesta con tracciamento di <b>{firstCompany}</b> su questa pagina.} other {Abbiamo bloccato il caricamento delle richieste con tracciamento di <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> e di <b>{othersCount} altre</b> su questa pagina.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
+  "trackersBlockedMoreCompanies" : {
+    "title" : "{count, plural, one {1 altra azienda bloccata} other {{count} altre aziende bloccate}}",
+    "note" : "Screen reader label for the '+N' pill under the blocked-trackers illustration (the pill itself shows only '+4'). 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '4 more companies blocked'."
+  },
   "cookiesMinimized" : {
     "title" : "Cookie gestiti",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"

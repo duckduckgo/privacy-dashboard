@@ -112,6 +112,10 @@
     "title" : "{companyCount, plural, =0 {Блокирахме зареждането на заявки за проследяване на тази страница от няколко компании.} =2 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b> и <b>{secondCompany}</b>.} =3 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b> и <b>{thirdCompany}</b>.} =4 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> и <b>{fourthCompany}</b> .} =5 {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и <b>още 1 друга компания</b>.} one {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>.} other {Блокирахме зареждането на заявки с проследяване на тази страница от <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> и още <b>{othersCount} други компании</b>.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
+  "trackersBlockedMoreCompanies" : {
+    "title" : "{count, plural, one {Още 1 блокирана компания} other {Още {count} блокирани компании}}",
+    "note" : "Screen reader label for the '+N' pill under the blocked-trackers illustration (the pill itself shows only '+4'). 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '4 more companies blocked'."
+  },
   "cookiesMinimized" : {
     "title" : "Бисквитките са настроени",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
