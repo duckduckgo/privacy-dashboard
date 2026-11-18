@@ -90,23 +90,6 @@ $hero-slots: (
     ),
 );
 
-// Tracker logos whose SVG starts with a full white circle (r 11.5-12 in a 24x24 viewBox), see tracker-icons/logos/
-$hero-white-circle-logos: (
-    'adobe',
-    'google',
-    'googleadsgoogle',
-    'googleanalyticsgoogle',
-    'iponweb',
-    'microsoft',
-    'quantcast',
-    'salesforce',
-    'smaato',
-    'spotx',
-    'urbanairship',
-    'youtubegoogle',
-    'zeotap'
-);
-
 /// @param {String} $file - file name without extension and density suffix, e.g. "hero-blocked-4-light"
 @mixin hero_blocked_bg($file) {
     $base: '../../img/refresh-assets/hero-blocked/#{$file}';
@@ -217,15 +200,10 @@ $hero-white-circle-logos: (
         height: 100%;
     }
 
-    // Logos drawn on a full white circle touch the coin edge in the top-left slot (the biggest one), and the
-    // illustration's strike looks off against them in dark mode. Shrink them so the coin shows a ring around them.
-    // Same size in light and dark, so a logo does not change size with the theme.
+    // Every logo (and letter fallback) is a full circle, so in the top-left slot (the biggest one) it touches the
+    // coin edge. Shrink it so the coin shows a ring around it, same size in light and dark.
     .hero-blocked &--tl .icon-list__icon {
-        @each $name in $hero-white-circle-logos {
-            &.#{$name} {
-                transform: scale(0.85);
-            }
-        }
+        transform: scale(0.85);
     }
 }
 
