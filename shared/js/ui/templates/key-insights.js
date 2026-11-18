@@ -3,6 +3,7 @@ import raw from 'nanohtml/raw';
 import { i18n } from '../base/localize.js';
 import { normalizeCompanyName } from '../models/mixins/normalize-company-name.mjs';
 import { getColorId } from './shared/utils.js';
+import { heroMoreLabel } from './shared/hero-more-label.mjs';
 import { duckDuckGoURLs } from '../../../data/constants.js';
 
 const keyInsightsState = /** @type {const} */ ({
@@ -234,15 +235,6 @@ const heroSlots = /** @type {const} */ ({
 });
 
 /**
- * Visible text of the "+N" pill: the number of blocked companies not shown as logos, capped at "99+".
- * @param {number} count - 1 or more
- * @returns {string}
- */
-export function heroMoreLabel(count) {
-    return count > 99 ? '99+' : `+${count}`;
-}
-
-/**
  * The hero is decoration: if it fails on unexpected data, drop it and keep the rest of the primary screen
  * (domain, description, list, toggle) usable.
  * @param {import('../models/site.js').PublicSiteModel} model
@@ -296,7 +288,7 @@ function renderHero(model) {
             class="key-insight__icon hero-blocked"
             data-company-count="${topCompanies.length}"
             data-hero-variant="${variant}"
-            aria-label="List of Blocked Company Icons"
+            data-testid="hero-blocked"
         >
             ${icons} ${more}
         </div>

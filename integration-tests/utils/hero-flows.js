@@ -20,7 +20,7 @@ export function heroBlockedFlows(open) {
             test(`shows the ${variant} variant with ${logos} live logos`, async ({ page }) => {
                 const dash = await open(page, testDataStates[state]);
                 await dash.showsPrimaryScreen();
-                const hero = page.getByLabel('List of Blocked Company Icons');
+                const hero = page.getByTestId('hero-blocked');
                 await expect(hero).toHaveAttribute('data-hero-variant', variant);
                 await expect(hero.locator('[data-company-icon-position]')).toHaveCount(logos);
                 if (more) {
@@ -35,7 +35,7 @@ export function heroBlockedFlows(open) {
         test('shows a filled coin when a company name has no latin letters or starts with a digit', async ({ page }) => {
             const dash = await open(page, testDataStates['hero-blocked-non-latin']);
             await dash.showsPrimaryScreen();
-            const hero = page.getByLabel('List of Blocked Company Icons');
+            const hero = page.getByTestId('hero-blocked');
             const icons = hero.locator('.icon-list__icon');
             await expect(icons).toHaveCount(3);
             for (const icon of await icons.all()) {
@@ -59,7 +59,7 @@ export function heroBlockedFlows(open) {
             const y = async (locator) => (await locator.boundingBox())?.y ?? -1;
             const order = async () => {
                 const domain = await y(page.getByRole('heading', { name: 'example.com' }));
-                const hero = await y(page.getByLabel('List of Blocked Company Icons'));
+                const hero = await y(page.getByTestId('hero-blocked'));
                 const list = await y(page.locator('#main-nav'));
                 const toggle = await y(page.getByTestId('protectionHeader'));
                 return domain >= 0 && domain < hero && hero < list && list < toggle;

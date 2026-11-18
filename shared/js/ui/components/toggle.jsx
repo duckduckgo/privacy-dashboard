@@ -10,16 +10,6 @@ import { isBrowser } from '../environment-check';
  */
 
 /**
- * @param {object} props
- * @param {MigrationModel} props.model
- * @param {() => void} props.toggle
- */
-export function ProtectionToggle(props) {
-    const [toggleState, toggle] = useToggleState(props.model, props.toggle);
-    return <ProtectionToggleView toggleState={toggleState} toggle={toggle} />;
-}
-
-/**
  * The toggle for a state owned by the caller (see `useToggleState`), so the caller can style
  * its container from the same state the switch shows.
  *
