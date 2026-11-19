@@ -118,17 +118,20 @@ jobs:
             - name: Cooldown blocks a package newer than 7 days (expect ETARGET)
               if: success() || failure()
               run: |
-                  VERSION=$(npm view caniuse-lite time --json | node -e '
-                      const t = JSON.parse(require("fs").readFileSync(0, "utf8"));
-                      const day = 864e5;
-                      const recent = Object.entries(t)
-                          .filter(([k, d]) => !["created", "modified"].includes(k) && Date.now() - Date.parse(d) < 7 * day)
-                          .sort((a, b) => Date.parse(a[1]) - Date.parse(b[1]));
-                      if (!recent.length) { console.error("no caniuse-lite version under 7 days old"); process.exit(1); }
-                      console.log(recent[0][0]);
-                  ')
-                  echo "Trying caniuse-lite@$VERSION"
-                  if out=$(npm pack --dry-run "caniuse-lite@$VERSION" 2>&1); then echo "$out"; echo "FAIL: cooldown not enforced"; exit 1; fi
+                  for PKG in caniuse-lite electron-to-chromium @types/node; do
+                      VERSION=$(npm view "$PKG" time --json | node -e '
+                          const t = JSON.parse(require("fs").readFileSync(0, "utf8"));
+                          const day = 864e5;
+                          const recent = Object.entries(t)
+                              .filter(([k, d]) => !["created", "modified"].includes(k) && Date.now() - Date.parse(d) < 7 * day)
+                              .sort((a, b) => Date.parse(a[1]) - Date.parse(b[1]));
+                          if (recent.length) console.log(recent[0][0]);
+                      ')
+                      [ -n "$VERSION" ] && break
+                  done
+                  if [ -z "$VERSION" ]; then echo "No test package has a version under 7 days old"; exit 1; fi
+                  echo "Trying $PKG@$VERSION"
+                  if out=$(npm pack --dry-run "$PKG@$VERSION" 2>&1); then echo "$out"; echo "FAIL: cooldown not enforced"; exit 1; fi
                   echo "$out"
                   echo "$out" | grep -q ETARGET
             - name: allow-git=root blocks transitive git deps (expect EALLOWGIT)
