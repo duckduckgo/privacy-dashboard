@@ -222,6 +222,20 @@ export function BreakageFormSuccess() {
         }
     };
 
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.key === 'Escape') {
+                onClose();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [onClose]);
+
     return (
         <BreakageScreenWrapper pageId="success">
             <div className="success__container" onClick={clickHandler}>
