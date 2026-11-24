@@ -3,6 +3,7 @@ import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { toggleFlows } from './utils/common-flows';
 import { forwardConsole } from './helpers';
+import { heroBlockedFlows } from './utils/hero-flows';
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -322,4 +323,8 @@ test.describe('screenshots', { tag: '@screenshots' }, () => {
             await dash.screenshotEachScreenForState(name, state, { skipInCI: true });
         });
     }
+});
+
+heroBlockedFlows(async (page, state) => {
+    return DashboardPage.browser(page, state);
 });

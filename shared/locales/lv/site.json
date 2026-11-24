@@ -112,6 +112,10 @@
     "title" : "{companyCount, plural, =0 {Mēs bloķējām dažu uzņēmumu izsekošanas pieprasījumu ielādēšanu šajā lapā.} =2 {Mēs bloķējām <b>{firstCompany}</b> un <b>{secondCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} =3 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b> un <b>{thirdCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} =4 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> un <b>{fourthCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} =5 {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>1 cita uzņēmuma</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} zero {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} one {Mēs bloķējām <b>{firstCompany}</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.} other {Mēs bloķējām <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> un <b>{othersCount} citu uzņēmumu</b> izsekojošo pieprasījumu ielādēšanu šajā lapā.}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
+  "trackersBlockedMoreCompanies" : {
+    "title" : "{count, plural, zero {Bloķēti vēl {count} uzņēmumu} one {Bloķēts vēl {count} uzņēmums} other {Bloķēti vēl {count} uzņēmumi}}",
+    "note" : "Screen reader label for the '+N' pill under the blocked-trackers illustration (the pill itself shows only '+4'). 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '4 more companies blocked'."
+  },
   "cookiesMinimized" : {
     "title" : "Pārvaldītie sīkfaili",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"

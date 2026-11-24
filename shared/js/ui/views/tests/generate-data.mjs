@@ -76,6 +76,54 @@ export const requests = {
     blocked: blocked1,
 };
 
+/**
+ * Blocked requests from `count` different companies, in the order of the brand refresh design frames
+ * (Google, Amazon, Facebook, Comscore, then others). Used for the 1, 2, 3, 4, 4+ hero variants.
+ * @param {number} count
+ * @returns {DetectedRequest[]}
+ */
+export function blockedCompanies(count) {
+    const entities = [
+        ['Google', 'securepubads.g.doubleclick.net', 82.6],
+        ['Amazon', 'c.amazon-adsystem.com', 30.1],
+        ['Facebook', 'connect.facebook.net', 26.4],
+        ['Comscore', 'sb.scorecardresearch.com', 13.4],
+        ['Microsoft', 'bat.bing.com', 10.2],
+        ['Adobe', 'dpm.demdex.net', 8.1],
+        ['Taboola', 'cdn.taboola.com', 5.3],
+        ['Criteo', 'static.criteo.net', 4.9],
+    ];
+    return entities.slice(0, count).map(([entityName, host, prevalence]) => ({
+        entityName: String(entityName),
+        prevalence: Number(prevalence),
+        url: `https://${host}/script.js`,
+        pageUrl: 'https://example.com',
+        category: 'Advertising',
+        state: { blocked: {} },
+    }));
+}
+
+/**
+ * Mock states for the blocked-trackers hero: `hero-blocked-{1,2,3,4,4plus}-{light,dark}`.
+ * 4plus uses 8 companies, so the pill reads "+4".
+ * @returns {Record<string, MockData>}
+ */
+function heroBlockedStates() {
+    const companies = { 1: 1, 2: 2, 3: 3, 4: 4, '4plus': 8 };
+    /** @type {Record<string, MockData>} */
+    const states = {};
+    for (const [variant, count] of Object.entries(companies)) {
+        for (const theme of /** @type {const} */ (['light', 'dark'])) {
+            states[`hero-blocked-${variant}-${theme}`] = new MockData({
+                url: 'https://example.com',
+                requests: blockedCompanies(count),
+                theme,
+            });
+        }
+    }
+    return states;
+}
+
 /** @type {SecCertificateViewModel[]} */
 export const defaultCertificates = [
     {
@@ -899,6 +947,31 @@ export const createDataStates = (google, cnn) => {
             requests: [],
             theme: 'system',
             themeVariant: 'violet',
+        }),
+        ...heroBlockedStates(),
+        // a company name with no latin letters normalises to an empty slug, one that starts with a digit has no
+        // letter icon: both show the plain coloured circle
+        'hero-blocked-non-latin': new MockData({
+            url: 'https://example.com',
+            requests: [
+                ...blockedCompanies(1),
+                {
+                    entityName: 'Яндекс',
+                    prevalence: 50,
+                    url: 'https://mc.yandex.ru/script.js',
+                    pageUrl: 'https://example.com',
+                    category: 'Analytics',
+                    state: { blocked: {} },
+                },
+                {
+                    entityName: '33Across',
+                    prevalence: 40,
+                    url: 'https://ads.33across.com/script.js',
+                    pageUrl: 'https://example.com',
+                    category: 'Advertising',
+                    state: { blocked: {} },
+                },
+            ],
         }),
         empty: new MockData({}),
     };

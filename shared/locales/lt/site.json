@@ -112,6 +112,10 @@
     "title" : "{companyCount, plural, =0 {Užblokavome kai kurių bendrovių galimybę šiame puslapyje įkelti sekimo užklausas.} =2 {Užblokavome <b>{firstCompany}</b> ir <b>{secondCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =3 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b> ir <b>{thirdCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =4 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b> ir <b>{fourthCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} =5 {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar 1</b> sekimo užklausų įkėlimą šiame puslapyje.} one {Užblokavome <b>{firstCompany}</b> sekimo užklausų įkėlimą šiame puslapyje.} few {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} many {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..} other {Užblokavome <b>{firstCompany}</b>, <b>{secondCompany}</b>, <b>{thirdCompany}</b>, <b>{fourthCompany}</b> ir <b>dar {othersCount}</b> sekimo užklausų įkėlimą šiame puslapyje..}}",
     "note" : "Returns a string in the form of 'We blocked CompanyA and CompanyB from trying to track you.'"
   },
+  "trackersBlockedMoreCompanies" : {
+    "title" : "{count, plural, one {Užblokuota dar {count} įmonė} few {Užblokuotos dar {count} įmonės} many {Užblokuota dar {count} įmonės} other {Užblokuota dar {count} įmonių}}",
+    "note" : "Screen reader label for the '+N' pill under the blocked-trackers illustration (the pill itself shows only '+4'). 'count' is the number of blocked companies not shown as logos (always 1 or more). Example: '4 more companies blocked'."
+  },
   "cookiesMinimized" : {
     "title" : "Slapukai valdomi",
     "note" : "Title for when we have set the cookie privacy settings on this website to maximize privacy"
