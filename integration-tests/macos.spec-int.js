@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import { testDataStates } from './utils/states-with-fixtures';
 import { DashboardPage } from './DashboardPage';
 import { settingPermissions, toggleFlows } from './utils/common-flows';
+import { heroBlockedFlows } from './utils/hero-flows';
 
 test.describe('initial page data', () => {
     test('should fetch initial data', async ({ page }) => {
@@ -513,4 +514,10 @@ test.describe('macos screenshots', { tag: '@screenshots' }, () => {
             });
         });
     });
+});
+
+heroBlockedFlows(async (page, state) => {
+    const dash = await DashboardPage.webkit(page, { platform: 'macos' });
+    await dash.addState([state]);
+    return dash;
 });

@@ -1,16 +1,15 @@
 {
     "name": "@duckduckgo/privacy-dashboard",
     "private": true,
-    "engines": {
-        "node": ">=22.0.0",
-        "npm": ">=9.0.0"
-    },
     "version": "7.3.2",
     "files": [
         "build",
         "schema/__**/*"
     ],
     "type": "module",
+    "engines": {
+        "npm": ">=11.15.0"
+    },
     "scripts": {
         "start": "npm run dev",
         "dev": "chokidar \"v2\" \"shared\" 'debugger' \"schema/*.json\" -c \"npm run build.debug\" --initial \"npm run build.debug\"",
@@ -27,7 +26,7 @@
         "tsc": "tsc",
         "tsc.watch": "tsc --watch",
         "test": "npm run verify.local",
-        "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs && node shared/locales/validate-locales.test.mjs && node scripts/verify-artifacts.test.mjs",
+        "test.unit": "node schema/schema.test.mjs && node shared/js/browser/utils/request-details.test.mjs && node shared/js/ui/templates/shared/hero-more-label.test.mjs && node shared/locales/validate-locales.test.mjs && node scripts/verify-artifacts.test.mjs",
         "test.int": "npm run build.debug && playwright test",
         "test.int.ui": "playwright test --ui",
         "test.int.headed": "playwright test --headed",

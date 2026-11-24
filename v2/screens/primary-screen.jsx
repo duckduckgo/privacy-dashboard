@@ -44,18 +44,21 @@ function Footer() {
     );
 }
 
+/**
+ * Brand refresh layout: domain + hero + description on top, then the list,
+ * then the protections toggle and "Report a problem" at the bottom.
+ */
 function PrimaryScreenInner() {
     return (
         <>
-            <header class="header">
-                <ProtectionHeader />
-            </header>
-            <div class="header-spacer"></div>
-            <div class="padding-x-double">
+            <div class="padding-x-double primary-hero">
                 <KeyInsights />
             </div>
-            <div class="padding-x">
+            <div class="padding-x primary-list">
                 <MainNav />
+            </div>
+            <div class="padding-x primary-protections">
+                <ProtectionHeader />
             </div>
         </>
     );

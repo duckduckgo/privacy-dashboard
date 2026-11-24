@@ -2204,6 +2204,12 @@ body {
   --size-unit: 16px;
   --size-unit-half: calc(var(--size-unit) / 2);
   --size-unit-double: calc(var(--size-unit) * 2);
+  --pd-hero-outline: #000000;
+  --pd-hero-badge-bg: #ffffff;
+  --pd-list-border: rgba(0, 0, 0, 0.12);
+  --pd-list-divider: rgba(0, 0, 0, 0.24);
+  --pd-toggle-bg: #e2f3e9;
+  --pd-toggle-bg-off: rgba(0, 0, 0, 0.06);
   --btn-accent-border-radius: 8px;
   --btn-accent-border: 0.5px solid rgba(40, 145, 255, 0.05);
   --btn-accent-bg: linear-gradient(180deg, #4690f7 0%, #307bf7 100%);
@@ -2267,6 +2273,12 @@ body.body--theme-dark {
   --color-lines-lighter: rgba(255, 255, 255, 0.09);
   --color-hover-bg: rgba(255, 255, 255, 0.12);
   --color-system-lines: rgba(255, 255, 255, 0.09);
+  --pd-hero-outline: #eeeeee;
+  --pd-hero-badge-bg: #222222;
+  --pd-list-border: rgba(255, 255, 255, 0.12);
+  --pd-list-divider: rgba(255, 255, 255, 0.24);
+  --pd-toggle-bg: #0a4739;
+  --pd-toggle-bg-off: rgba(255, 255, 255, 0.09);
 }
 body.body--theme-dark.environment--windows {
   --btn-accent-color: #000000;
@@ -2292,6 +2304,8 @@ body.environment--macos, body.environment--windows {
   --color-accent-blue-active: var(--ds-color-theme-accent-text-secondary);
   --color-lines-light: var(--ds-color-theme-surface-decoration-primary);
   --color-hover-bg: var(--ds-color-theme-container-fill-secondary);
+  --pd-list-border: var(--ds-color-theme-container-border-primary);
+  --pd-list-divider: var(--ds-color-theme-container-border-primary);
 }
 
 .app-height {
@@ -2433,6 +2447,16 @@ body.environment--macos, body.environment--windows {
 }
 .environment--browser .page, .environment--ios .page, .environment--android .page {
   height: 100%;
+}
+
+.environment--macos .app-height,
+.environment--windows .app-height {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.environment--macos .app-height::-webkit-scrollbar,
+.environment--windows .app-height::-webkit-scrollbar {
+  display: none;
 }
 
 .page-inner {
@@ -2803,6 +2827,38 @@ body.environment--macos, body.environment--windows {
   background-image: url("../../img/refresh-assets/Error-Color-16.svg");
 }
 
+/**
+ * Brand refresh (primary screen only): outlined card (no fill), radius 24, medium-weight labels, thin dividers.
+ * Design spec (mobile): 1px ds-surface-decoration-secondary border, radius ds-radius-x06 (24),
+ * rows 48px, labels 16/24, 0.5px ds-surface-decoration-tertiary dividers inset 16px, 20px icons.
+ * Scoped to `.primary-list` because the breakage form reuses `.main-nav` and is out of scope.
+ */
+.primary-list .main-nav {
+  border: 1px solid var(--pd-list-border);
+  border-radius: 24px;
+  background-color: transparent;
+}
+.environment--macos .primary-list .main-nav, .environment--windows .primary-list .main-nav, .environment--browser .primary-list .main-nav {
+  border-radius: 16px;
+}
+.primary-list .main-nav.token-body-em {
+  font-weight: 500;
+}
+.environment--ios .primary-list .main-nav.token-body-em, .environment--android .primary-list .main-nav.token-body-em {
+  font-size: 16px;
+  line-height: 24px;
+}
+.primary-list .main-nav__row:after {
+  height: 0.5px;
+  bottom: -0.25px;
+  background: var(--pd-list-divider);
+}
+.environment--ios .primary-list .main-nav__icon, .environment--android .primary-list .main-nav__icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 18px;
+}
+
 .search {
   display: flex;
   align-items: center;
@@ -3103,6 +3159,31 @@ body.environment--macos, body.environment--windows {
   margin-bottom: 6px;
 }
 
+.key-insight__domain {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  font-family: "DuckSans Display", "DuckSansDisplay", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+.environment--macos .key-insight__domain, .environment--windows .key-insight__domain, .environment--browser .key-insight__domain {
+  font-size: 17px;
+  line-height: 22px;
+  margin-bottom: 12px;
+}
+.environment--browser .key-insight__domain {
+  font-family: "DuckSans Display", "DuckSansDisplay", "DDG_ProximaNova", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.environment--macos .primary-hero, .environment--windows .primary-hero {
+  padding-top: 16px;
+}
+.environment--browser .primary-hero {
+  padding-top: 12px;
+}
+
 body {
   --nav-height: 56px;
 }
@@ -3274,20 +3355,187 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   background-image: url("../../img/status--bad.svg");
 }
 
-.icon-list {
+/**
+ * Blocked-trackers hero (brand refresh, static).
+ *
+ * A static illustration per company count (shield + cloud + motion lines + empty coins),
+ * with the live company logos placed on the coins. The illustration files live in `img/refresh-assets/hero-blocked/`.
+ * Files: hero-blocked-{1,2,3,4}-{light,dark}{,@2x,@3x}.png, 393x237 at 1x, transparent background.
+ *
+ * Geometry: the design spec for the tracker logo placement and distortion, one 393x237 frame per count and theme. All values are at 1x, origin top-left of the asset.
+ * Every position below is converted to a percentage of the asset, so the hero scales with its width (k = W / 393)
+ * and keeps its aspect ratio: the matrices do not change with k.
+ *
+ * Layers, back to front: logo (distorted with the slot matrix) → illustration → "+N" pill.
+ * The illustration is transparent where the coin faces are, so the logos show through, and it draws the strike
+ * (white halo + dark stroke) on top of them: the code draws no strike (design spec).
+ * Variants 4 and 4+ use the same illustration: the pill is drawn by code.
+ */
+.hero-blocked {
   position: relative;
-  display: flex;
-  justify-content: center;
+  isolation: isolate;
+  width: 100%;
+  max-width: 393px;
+  aspect-ratio: 393/237;
+  margin-left: auto;
+  margin-right: auto;
+}
+@supports not (aspect-ratio: 1) {
+  .hero-blocked::before {
+    content: "";
+    display: block;
+    padding-top: 60.3053435115%;
+  }
+}
+.hero-blocked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 100%;
+}
+.hero-blocked[data-hero-variant="1"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-1-light@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-1-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-light@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-1-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-light@3x.png") 3x);
+}
+.body--theme-dark .hero-blocked[data-hero-variant="1"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-1-dark@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-1-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-dark@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-1-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-1-dark@3x.png") 3x);
+}
+.hero-blocked[data-hero-variant="2"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-2-light@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-2-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-light@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-2-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-light@3x.png") 3x);
+}
+.body--theme-dark .hero-blocked[data-hero-variant="2"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-2-dark@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-2-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-dark@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-2-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-2-dark@3x.png") 3x);
+}
+.hero-blocked[data-hero-variant="3"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-3-light@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-3-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-light@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-3-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-light@3x.png") 3x);
+}
+.body--theme-dark .hero-blocked[data-hero-variant="3"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-3-dark@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-3-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-dark@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-3-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-3-dark@3x.png") 3x);
+}
+.hero-blocked[data-hero-variant="4"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@3x.png") 3x);
+}
+.body--theme-dark .hero-blocked[data-hero-variant="4"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@3x.png") 3x);
+}
+.hero-blocked[data-hero-variant="4plus"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-light@3x.png") 3x);
+}
+.body--theme-dark .hero-blocked[data-hero-variant="4plus"]::after {
+  background-image: url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@2x.png");
+  background-image: -webkit-image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@3x.png") 3x);
+  background-image: image-set(url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark.png") 1x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@2x.png") 2x, url("../../img/refresh-assets/hero-blocked/hero-blocked-4-dark@3x.png") 3x);
+}
+.hero-blocked.key-insight__icon {
+  --hero-shift: 4.5px;
+  height: auto;
+  margin-top: calc(-1 * var(--hero-shift));
+  margin-bottom: var(--hero-shift);
+}
+.environment--windows .hero-blocked.key-insight__icon {
+  --hero-shift: 4px;
+}
+.environment--android .hero-blocked.key-insight__icon {
+  --hero-shift: 7px;
+}
+.environment--browser .hero-blocked.key-insight__icon {
+  --hero-shift: 1px;
 }
 
-.icon-list__item {
+.hero-blocked__slot {
+  position: absolute;
+  display: block;
+}
+.hero-blocked__slot--tl {
+  left: 18.0534351145%;
+  top: 7.2362869198%;
+  width: 13.358778626%;
+  height: 22.1518987342%;
+  transform-origin: 50% 50%;
+  transform: matrix(0.9962, 0.0872, -0.2924, 0.9563, 0, 0);
+}
+.hero-blocked__slot--tr {
+  left: 72.0229007634%;
+  top: 18.9662447257%;
+  width: 6.9974554707%;
+  height: 11.6033755274%;
+  transform-origin: 50% 50%;
+  transform: matrix(0.9974, 0.0727, 0.205, 0.9788, 0, 0);
+}
+.hero-blocked__slot--bl {
+  left: 21.1959287532%;
+  top: 72.5738396624%;
+  width: 8.1424936387%;
+  height: 13.5021097046%;
+  transform-origin: 50% 50%;
+  transform: matrix(0.9962, -0.0872, 0.342, 0.9397, 0, 0);
+}
+.hero-blocked__slot--br {
+  left: 75.9160305344%;
+  top: 65.5485232068%;
+  width: 5.9796437659%;
+  height: 9.9156118143%;
+  transform-origin: 50% 50%;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+[data-hero-variant="3"] .hero-blocked__slot--tr {
+  top: 19.8101265823%;
+}
+.hero-blocked .hero-blocked__slot .icon-list__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.hero-blocked .hero-blocked__slot--tl .icon-list__icon {
+  transform: scale(0.85);
+}
+
+.hero-blocked__more {
+  position: absolute;
+  z-index: 2;
+  left: 51.0178117048%;
+  top: 76.3713080169%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
+  height: 27px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  border-radius: 46px;
+  border: 1px solid var(--pd-hero-outline);
+  background-color: var(--pd-hero-badge-bg);
+  color: var(--color-text-primary);
+  white-space: nowrap;
 }
-
-.icon-list__count {
-  display: inline-block;
-  letter-spacing: -0.7px;
+.hero-blocked__more.token-body-em {
+  font-family: "DuckSans Product", "DuckSansProduct", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+}
+.environment--browser .hero-blocked__more.token-body-em {
+  font-family: "DuckSans Product", "DuckSansProduct", "DDG_ProximaNova", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .icon-list__icon {
@@ -4109,115 +4357,6 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
   vertical-align: middle;
   background-image: url("../../img/refresh-assets/tracker-icons/logos/zeotap.svg");
   background-color: transparent;
-}
-
-.icon-list__blocked-icon {
-  border-radius: 100%;
-  position: absolute;
-}
-.icon-list__blocked-icon svg path {
-  shape-rendering: geometricPrecision;
-}
-.icon-list__blocked-icon svg circle {
-  shape-rendering: geometricPrecision;
-}
-.body--theme-dark .icon-list__blocked-icon circle {
-  fill: #222;
-}
-
-[data-company-icon-position]:nth-child(n+2):nth-child(odd) {
-  margin-left: -8px;
-}
-
-[data-company-icon-position]:nth-child(n+2):nth-child(even) {
-  margin-right: -8px;
-}
-
-[data-company-icon-size=large] {
-  z-index: 4;
-  display: block;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.08);
-  height: 96px;
-  width: 96px;
-}
-[data-company-icon-size=large] .icon-list__icon {
-  margin: 0;
-  width: 64px;
-  height: 64px;
-}
-[data-company-icon-size=large] .icon-list__blocked-icon {
-  bottom: 14px;
-  right: 14px;
-  width: 30px;
-  height: 30px;
-}
-.environment--browser [data-company-icon-size=large] .icon-list__blocked-icon {
-  bottom: 10px;
-  right: 10px;
-}
-
-[data-company-icon-size=medium] {
-  z-index: 3;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.1);
-  height: 64px;
-  width: 64px;
-}
-[data-company-icon-size=medium] .icon-list__icon {
-  margin: 0;
-  width: 32px;
-  height: 32px;
-}
-[data-company-icon-size=medium] .icon-list__blocked-icon {
-  width: 24px;
-  height: 24px;
-  bottom: 8px;
-  right: 8px;
-}
-
-[data-company-icon-size=small] {
-  z-index: 2;
-  border: 1px solid #f2f2f2;
-  box-shadow: 0px 1px 0px rgba(125, 125, 125, 0.06);
-  height: 48px;
-  width: 48px;
-}
-[data-company-icon-size=small] .icon-list__icon {
-  margin: 0;
-  width: 20px;
-  height: 20px;
-}
-[data-company-icon-size=small] .icon-list__blocked-icon {
-  width: 24px;
-  height: 24px;
-  bottom: 3px;
-  right: 3px;
-}
-
-.icon-list__wrapper {
-  background-color: #ffffff;
-  border-radius: 50%;
-  position: relative;
-  display: flex;
-  color: rgba(0, 0, 0, 0.85);
-  align-items: center;
-  justify-content: center;
-}
-.body--theme-dark .icon-list__wrapper {
-  background-color: #222;
-  border-color: #222;
-  color: rgba(255, 255, 255, 0.85);
-}
-.environment--macos .icon-list__wrapper, .environment--windows .icon-list__wrapper {
-  background-color: var(--ds-color-theme-surface-tertiary);
-  color: var(--ds-color-theme-text-primary);
-}
-
-.icon-list__wrapper--count {
-  border: 1px solid var(--color-lines-light);
-  height: 46px;
-  width: 46px;
-  background: #fafafa;
-  font-size: 16px;
 }
 
 .tracker-networks__explainer {
@@ -5921,6 +6060,49 @@ body.environment--macos, body.environment--browser, body.environment--windows, b
 }
 .environment--android .protection-toggle__row--alt {
   padding: 12px 16px;
+}
+
+/**
+ * Brand refresh: the protections toggle and "Report a problem" sit at the bottom of the primary screen,
+ * under the list. The toggle row gets a green tint when protections are ON.
+ * Design spec (mobile): row 48px, radius 24, padding 18/12, ds-color-lilypad-10 (light), no border.
+ */
+.primary-protections {
+  margin-top: 52px;
+}
+.environment--macos .primary-protections, .environment--windows .primary-protections {
+  margin-top: 16px;
+}
+.environment--browser .primary-protections {
+  margin-top: 12px;
+}
+.primary-protections .card-list--bordered {
+  border: 0;
+  border-radius: 24px;
+  background-color: var(--pd-toggle-bg-off);
+}
+.environment--macos .primary-protections .card-list--bordered, .environment--windows .primary-protections .card-list--bordered, .environment--browser .primary-protections .card-list--bordered {
+  border-radius: 16px;
+}
+.primary-protections .protection-toggle--on .protection-toggle__row:not(.protection-toggle__row--alt),
+.primary-protections .padding-x.protection-toggle--on {
+  background-color: var(--pd-toggle-bg);
+}
+.environment--ios .primary-protections .protection-toggle__row:not(.protection-toggle__row--alt), .environment--android .primary-protections .protection-toggle__row:not(.protection-toggle__row--alt) {
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 6px 12px 6px 18px;
+  display: flex;
+  align-items: center;
+}
+.environment--ios .primary-protections .protection-toggle__row:not(.protection-toggle__row--alt) > *, .environment--android .primary-protections .protection-toggle__row:not(.protection-toggle__row--alt) > * {
+  flex: 1;
+}
+.primary-protections .text--center {
+  padding: 8px 4px;
+}
+.environment--ios .primary-protections .text--center, .environment--android .primary-protections .text--center {
+  padding: 12px 4px;
 }
 
 .textarea {

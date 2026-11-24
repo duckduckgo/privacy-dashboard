@@ -1,1 +1,26 @@
-- Breakage Report: Updates Copy - See whats sent (#627)
+- Merge pull request #629 from duckduckgo/matteo/rebrand/pd-primary-screen-redesign
+- Enable npm release cooldown and restrict git dependencies (#631)
+- feat(i18n): translate the "+N more companies" label
+- Updated snapshots via workflow
+- fix(hero): drop the unnamed list label, test the 99+ cap
+- refactor(hero): shrink every logo in the top-left coin
+- test(ios): wait for target screens in the stack router flow
+- Updated snapshots via workflow
+- fix(hero): shrink white-circle logos in the top-left coin
+- Updated snapshots via workflow
+- fix(hero): centre the top-right logo on its coin
+- Updated snapshots via workflow
+- feat(hero): show only the number in the blocked-companies pill
+- Updated snapshots via workflow
+- fix(hero): align the top-right logo with its coin in the 3-company hero
+- Updated snapshots via workflow
+- fix(hero): address review findings on the primary screen
+- Updated snapshots via workflow
+- fix(hero): keep the primary screen when a company name has no latin letters
+- test(screenshots): update the primary screen snapshots
+- test(hero): cover the hero variants on every platform
+- feat(hero): static blocked-trackers hero with live logos and "+ N more" pill
+- feat(primary-screen): apply the brand refresh layout and list/toggle styles
+- Merge pull request #628 from duckduckgo/claude/node-24-22-1-upgrade-1b1bac
+- Bump Node to 24.22.1 (latest LTS)
+- Merge pull request #626 from duckduckgo/randerson/upgrade-node-24

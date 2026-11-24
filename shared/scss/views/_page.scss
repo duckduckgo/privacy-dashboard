@@ -9,6 +9,18 @@
     }
 }
 
+// macOS and Windows size the window to the content, capped at the screen height minus 200px (common.js).
+// When the content is taller, the root screen must scroll, or the toggle and "Report a problem" at the bottom are cut.
+.environment--macos .app-height,
+.environment--windows .app-height {
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 .page-inner {
     display: flex;
     flex-direction: column;
