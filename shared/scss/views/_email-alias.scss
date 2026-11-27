@@ -1,5 +1,10 @@
 .email-alias {
     margin-bottom: var(--size-unit);
+
+    // the extension popup is capped at 600px (see .primary-hero in _key-insight.scss)
+    .environment--browser & {
+        margin-bottom: var(--size-unit-half);
+    }
 }
 
 .email-alias__button {
