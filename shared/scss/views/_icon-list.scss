@@ -109,6 +109,12 @@ $hero-slots: (
     margin-left: auto;
     margin-right: auto;
 
+    // The extension popup is capped at 600px. With the Email Protection bar and a three-line description,
+    // a full-width hero pushes the content past it and the popup scrolls.
+    .environment--browser & {
+        max-width: 220px;
+    }
+
     // web views without aspect-ratio (Safari < 15, Chromium < 88): the box would collapse to 0 height
     @supports not (aspect-ratio: 1) {
         &::before {

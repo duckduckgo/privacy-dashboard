@@ -115,12 +115,24 @@
 }
 
 // Brand refresh: the old toggle header gave the desktop popups their top padding; the hero now sits first.
+// The extension popup is capped at 600px, so its vertical spacing is tighter than on macOS and Windows: with the
+// Email Protection bar and a long translation, the content would otherwise overflow and the popup would scroll.
 .primary-hero {
     .environment--macos &,
     .environment--windows & {
         padding-top: 16px;
     }
     .environment--browser & {
-        padding-top: 12px;
+        padding-top: 4px;
+
+        .key-insight--main {
+            padding-bottom: 8px;
+        }
+
+        // with the 220px hero the asset's transparent top band is ~9px: 4px here centres the domain between the
+        // search bar and the art (12px above, 12px below)
+        .key-insight__domain {
+            margin-bottom: 4px;
+        }
     }
 }

@@ -63,8 +63,9 @@
     .environment--windows & {
         margin-top: 16px;
     }
+    // the extension popup is capped at 600px (see .primary-hero)
     .environment--browser & {
-        margin-top: 12px;
+        margin-top: 8px;
     }
 
     .card-list--bordered {
@@ -107,6 +108,15 @@
         .environment--ios &,
         .environment--android & {
             padding: 12px 4px;
+        }
+
+        .environment--browser & {
+            padding: 0 4px;
+
+            .link-action--rounded {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
         }
     }
 }
