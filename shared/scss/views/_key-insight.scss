@@ -47,7 +47,7 @@
         padding-bottom: 20px;
     }
     .environment--browser & {
-        padding-bottom: 8px;
+        padding-bottom: 12px;
     }
 }
 
@@ -111,9 +111,6 @@
 
     .environment--browser & {
         font-family: $font__face--ducksans-display-browser;
-        // with the 220px hero the asset's transparent top band is ~9px: 4px here centres the domain between the
-        // search bar and the art (12px above, 12px below)
-        margin-bottom: 4px;
     }
 }
 
@@ -127,5 +124,15 @@
     }
     .environment--browser & {
         padding-top: 4px;
+
+        .key-insight--main {
+            padding-bottom: 8px;
+        }
+
+        // with the 220px hero the asset's transparent top band is ~9px: 4px here centres the domain between the
+        // search bar and the art (12px above, 12px below)
+        .key-insight__domain {
+            margin-bottom: 4px;
+        }
     }
 }
